@@ -47,14 +47,15 @@ else
 	include_once('bandeaux.php');
 
 // action du bouton annuler
-if ($_POST["envoiquestion"]&&$_POST["nom"]!=""&&$_POST["question"]!=""){
+if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['question']) && !empty($_POST['question'])){
+
 
 	$message=str_replace("\\","",$_POST["question"]);
 	
 	//envoi des mails
 	$headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
 	mail (ADRESSEMAILADMIN, "" . _("[CONTACT] You have sent a question ") . "".NOMAPPLICATION, "" . _("You have a question from a user ") . " ".NOMAPPLICATION."\n\n" . _("User") . " : ".$_POST["nom"]."\n\n" . _("User's email address") . " : $_POST[adresse_mail]\n\n" . _("Message") . " :".$message,$headers);
-	if ($_POST["adresse_mail"]!=""){
+	if (isset($_POST['adresse_mail']) && !empty($_POST['adresse_mail']) && validateEmail($_POST['adresse_mail'])){
 		$headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
 		mail ("$_POST[adresse_mail]", "" . _("[COPY] Someone has sent a question ") . "".NOMAPPLICATION, "" . _("Here is a copy of your question") . " :\n\n".$message." \n\n" . _("We're going to answer your question shortly.") . "\n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION,$headers);
 	}
@@ -85,9 +86,14 @@ if ($_POST["envoiquestion"]&&$_POST["nom"]!=""&&$_POST["question"]!=""){
 }
 
 else {
-	$_SESSION["question"]=$_POST["question"];
-	$_SESSION["nom"]=$_POST["nom"];
-	$_SESSION["adresse_mail"]=$_POST["adresse_mail"];
+	$post_var = array('question', 'nom', 'adresse_mail', );
+	foreach ($post_var as $var) {
+		if (isset($_POST[$var]) && !empty($_POST[$var])) {
+			$_SESSION[$var] = $_POST[$var];
+		} else {
+			$_SESSION[$var] = null;
+		}
+	}
 
 	//affichage de la page
 	echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
@@ -115,7 +121,7 @@ else {
 	echo _("Your name") .' :<br>'."\n";
 	echo '<input type="text" size="40" maxlength="64" name="nom" value="'.$_SESSION["nom"].'">';
 
-	if ($_POST["envoiquestion"]&&$_SESSION["nom"]==""){
+	if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && $_SESSION["nom"]==""){
 		echo ' <font color="#FF0000">'. _("Enter a name") .'</font>';
 	}
 
@@ -129,7 +135,7 @@ else {
 	echo _("Question") .' :<br>'."\n";
 	echo '<textarea name="question" rows="7" cols="40">'.$_SESSION["question"].'</textarea>';
 
-	if ($_POST["envoiquestion"]&&$_SESSION["question"]==""){
+	if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && $_SESSION["question"]==""){
 		echo ' <font color="#FF0000">&nbsp;Il faut poser une question !</font>';
 	}
 
