@@ -46,17 +46,31 @@ if (file_exists('bandeaux_local.php'))
 else
 	include_once('bandeaux.php');
 
+// Initialisation des variables
+$numsondageadmin = false;
+$sondage = false;
+
 // recuperation du numero de sondage admin (24 car.) dans l'URL
-$numsondageadmin=$_GET["sondage"];
-//on découpe le résultat pour avoir le numéro de sondage (16 car.)
-$numsondage=substr($numsondageadmin, 0, 16);
+if (isset($_GET['sondage']) && !empty($_GET['sondage']) && is_string($_GET['sondage']) && strlen($_GET['sondage']) === 24) {
+	$numsondageadmin=$_GET["sondage"];
+	//on découpe le résultat pour avoir le numéro de sondage (16 car.)
+	$numsondage=substr($numsondageadmin, 0, 16);
+}
 
-if (preg_match(";[\w\d]{16};i",$numsondage)){
-
-	$sondage=$connect->Execute("SELECT * FROM sondage WHERE id_sondage_admin = '$numsondageadmin'");
-	$sujets=$connect->Execute("SELECT * FROM sujet_studs WHERE id_sondage='$numsondage'");
-	$user_studs=$connect->Execute("SELECT * FROM user_studs WHERE id_sondage='$numsondage' order by id_users");
-
+if (preg_match(";[\w\d]{24};i", $numsondageadmin)) {
+	$sql = 'SELECT * FROM sondage WHERE id_sondage_admin = '.$connect->Param('numsondageadmin');
+	$sql = $connect->Prepare($sql);
+	$sondage = $connect->Execute($sql, array($numsondageadmin));
+	
+	if ($sondage !== false) {
+		$sql = 'SELECT * FROM sujet_studs WHERE id_sondage = '.$connect->Param('numsondage');
+		$sql = $connect->Prepare($sql);
+		$sujets = $connect->Execute($sql, array($numsondage));
+		
+		$sql = 'SELECT * FROM user_studs WHERE id_sondage = '.$connect->Param('numsondage').' order by id_users';
+		$sql = $connect->Prepare($sql);
+		$user_studs = $connect->Execute($sql, array($numsondage));
+	}
 }
 
 //verification de l'existence du sondage, s'il n'existe pas on met une page d'erreur
