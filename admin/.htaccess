@@ -1,0 +1,7 @@
+AuthType basic
+AuthName "Administration de STUDS"
+# replace with your server path here
+# added content to the .htpasswd file with
+# htpasswd -mnb <admin_username> <admin_password>
+AuthUserFile /var/www/studs/admin/.htpasswd
+Require valid-user

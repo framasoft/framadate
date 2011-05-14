@@ -1,0 +1,63 @@
+Les dernières améliorations de STUdS
+	Changelog version 0.6.7 (mai 2011)
+	- fork du projet STUdS (https://sourcesup.cru.fr/projects/studs/) de la version trunk du 15 mai 2011)
+	Changelog version 0.6.6 (XXX 2011) :
+	- internationalisation avec gettext
+	- abstraction de la base de données avec ADOdb
+	- support de mysql (fichier d'initialisation disponible)
+	- meilleure compatibilité avec le mode strict de PHP
+	- factorisation de code et de CSS
+	- moins de boutons de formulaire, plus de liens <a href>
+
+	Changelog version 0.6.5 (juin 2010) :
+	- Changement de deux icones dans la creation d'un sondage.
+
+	Changelog version 0.6.4 (mars 2010) :
+	- Corrections de bug
+
+	Changelog version 0.6.3 (janvier 2010) :
+	- Corrections de bug
+
+	Changelog version 0.6.2 (novembre 2009) :
+	- Correction dans l'affichage des bandeaux,
+	- Modification de la partie "A propos",
+	- Préparation à l'authentification,
+	- De UdSification de l'application dans certains fichiers.
+
+	Changelog version 0.6.1 (octobre 2009) :
+	- Corrections d'erreurs dans les traductions et d'oublis de traduction dans certaines pages.
+
+	Changelog version 0.6 (août 2009) :
+	- Mise sous la licence CeCILL-B du code source de STUdS,
+	- Passage de STUdS en encodage UTF8,
+	- Ajout des icones des menus dans toutes les pages et non pas seulement sur la page d'accueil,
+	- Correction d'un bug lors du rajout d'une colonne dans l'interface d'administration des sondages.
+
+	Changelog version 0.5 (février 2009) :
+	- Traduction de STUdS en anglais, allemand et espagnol,
+	- Changement de la CSS avec ajout du logo de l'Université de Strasbourg,
+	- Possibilité d'ajouter un commentaire pour les sondés.
+	
+	Changelog version 0.4 (janvier 2009) :
+	- Possibilité de faire un export PDF pour envoyer la lettre de convocation à la date de réunion,
+	- Possibilité de rajouter des colonnes dans la partie administration de sondage,
+	- Correction de bugs d'affichage avec les caractères ' et " .
+
+	Changelog version 0.3 (novembre 2008) :
+	- Possibilité de faire un export CSV pour exploiter le sondage dans un tableur,
+	- Mise en place d'un repository Subversion pour partager les nouvelles versions de STUdS,
+	- Amélioration de la CSS pour un meilleur affichage,
+	- Modification du code source pour le rendre portable vers une autre machine.
+	
+	Changelog version 0.2 (novembre 2008) :
+	- Lors de la création d'un sondage DATE, classement des dates par ordre croissant,
+	- Lors de la création d'un sondage DATE, accepter les horaires au format "8h" ou "8H",
+	- Lors de la création d'un sondage DATE, possibilité de copier des horaires entre les dates,
+	- Lors d'une modification de ligne, cocher les cases initialement choisies et non pas des cases vides,
+	- Changement du format d'affichage des dates pour un formatage type : "Mardi 13/06",
+	- Meilleure visualisation des choix les plus votés,
+	- Possibilité pour l'administrateur du sondage de choisir de recevoir un mail d'alerte à chaque participation d'un sondé,
+	- Remplacement des boutons de formulaire par des images moins austères,
+	- Correction de quelques petits bugs d'affichage,
+	- Possibilité de rajouter des cases supplémentaires lors de la création d'un sondage AUTRE,
+	- Possibilité de rajouter des cases supplémentaires lors de la création d'un sondage DATE.

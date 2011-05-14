@@ -1,0 +1,100 @@
+2.6.1 ######################
+config 'nl' default set to PHP_EOL
+function vcalendar, parse
+
+2.6.2 ###################### /thanks, Simon L.
+function selectComponents, select components with (latest) recurrence_id
+
+2.6.3 ######################
+function sort, refactored
+
+2.6.4 ######################
+function deleteProperty (removal of x-properties)
+
+2.6.5 ######################
+function getConfig, typo error
+
+2.6.6 ######################
+function setConfig, no longer creates file (on disc) when setting 'filename'
+
+2.6.7 ###################### /thanks Steve S.
+using.html, typo errors
+
+2.6.8 ######################
+Updated calendar properties PRODID and VERSION
+
+2.6.9 ######################
+function createSequence, setSequence, getProperty, allow SEQUENCE '0'
+
+2.6.10 ######################
+function _format_duration, fix duration format, skip trailing ..0S, ..0M0S etc.
+
+2.6.11 ######################
+function (component) parse and management of all TEXT-properties
+
+2.6.12 ###################### /thanks Enrico T.
+function _setMval, PHP error
+
+2.6.13 ###################### /thanks Ivar N. and Robert S.
+function _size75, support for multibyte characters
+alt. using mb_string, if installed and configured
+
+2.6.15 ######################
+function _strrep, eol character management
+
+2.6.19 ######################
+function deletePropertyM typo errror
+
+2.6.20 ######################
+function (component) parse, return value
+
+2.6.20 ######################
+function selectComponent, accepts DUE in vtodo if DTSTART is missing
+
+2.6.22 ######################
+utility (static) functions collected in support class,
+iCalUtilityFunctions.class.php
+
+2.6.23 ######################
+function selectComponents, RDATE/EXDATE bug
+
+2.6.24 ######################
+function setDescription, force index=1 if NOT vjournal
+DESCRIPTION MAY occur more than once only in VJOURNAL component
+
+2.6.25 ######################
+function makeDtstamp, bug in date creation
+
+2.6.26 ######################
+function setComponent, insert at index position
+
+2.6.27 ######################
+function setConfig, accepts array as single argument
+function getConfig. returns array if called without arguments
+create vcalendar/components and accept config array as argument
+
+2.6.28 ###################### /Damian R.
+function setComponent, bugfix when using a short UID
+
+2.6.29 ######################
+function setOrganizer, value prefix (protocol)
+
+2.6.31 ###################### /thanks Nate
+function _date_time_string, Time Zone incorrectly detected
+
+2.6.32 ###################### /thanks Mauro B.
+function (calendar ) parse, removed argument filename, accepts string/array (calendar)
+
+2.6.33 ######################
+new function newComponent, factory-method for creating components
+
+2.6.34 ######################
+function setAttendee, setRdate, all TEXT-properties etc
+property parameters in rfc 2445 order
+
+2.6.35 ######################
+function _date_time_string, bug when datetime ends with 'T000000Z'
+
+2.6.36 ###################### /thanks Greg L.
+date_default_timezone_set is available from PHP 5.1.0, updated
+
