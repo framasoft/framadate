@@ -153,6 +153,22 @@ function validateEmail($email)
 }
 
 
+/**
+ * Fonction vérifiant l'existance et la valeur non vide d'une clé d'un tableau
+ * @param   string  $name       La clé à tester
+ * @param   array   $tableau    Le tableau où rechercher la clé ($_POST par défaut)
+ * @return  bool                Vrai si la clé existe et renvoie une valeur non vide
+ */
+function issetAndNoEmpty($name, $tableau = null)
+{
+  if ($tableau === null) {
+    $tableau = $_POST;
+  }
+  
+  return (isset($tableau[$name]) === true && empty($tableau[$name]) === false);
+}
+
+
 $connect=connexion_base();
 
 define('COMMENT_EMPTY',         0x0000000001);
