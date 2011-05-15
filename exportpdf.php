@@ -82,5 +82,3 @@ $PDF->Text(35,275,"Cette lettre de convocation a été générée automatiquement par
 
 //Sortie
 $PDF->Output();
-
-?>

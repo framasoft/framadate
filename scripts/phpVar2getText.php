@@ -1,24 +1,25 @@
 <?php
-   /*
-    raphael.droz@gmail.com, dwtfywwi licence , 2010 :
+/*
+ raphael.droz@gmail.com, dwtfywwi licence , 2010 :
+ 
+ choppe un fichier $vara="traduction"; dans <lang>.inc
+ build un assoc array
+ preg_replace les appels wrappés dans gettext() dans le php principal
+ generate un .po
+ 
+ (
+ echo -e "<?php\n\$l = array (";
+ sed -n '/^$.*$/s/^$\([^=]\+\)=.\(.*\).;/"\1"=>\x27\2\x27,/p' lang/en.inc;
+ echo '); ?>'
+ ) > /tmp/lang.mod
+ (manually tweak 2 double quotes)
+*/
 
-    choppe un fichier $vara="traduction"; dans <lang>.inc
-    build un assoc array
-    preg_replace les appels wrappés dans gettext() dans le php principal
-
-    generate un .po
-
-    (
-    echo -e "<?php\n\$l = array (";
-    sed -n '/^$.*$/s/^$\([^=]\+\)=.\(.*\).;/"\1"=>\x27\2\x27,/p' lang/en.inc;
-    echo '); ?>'
-    ) > /tmp/lang.mod
-    (manually tweak 2 double quotes)
-   */
-
-   // drop a $l which contain the array
-if(isset($_SERVER['PHP_SELF']))
+// drop a $l which contain the array
+if(isset($_SERVER['PHP_SELF'])) {
   die(); // die if not run with php-cli
+}
+
 require_once('/tmp/lang.mod');
 $mypath = '/var/www/studs';
 
@@ -43,19 +44,23 @@ msgstr ""
 
 ';
 
-
 /* helpers */
-function stripN($a) {
+function stripN($a)
+{
   return preg_replace("/\n/","\\n", $a);
 }
-function addDQ($a) {
+
+function addDQ($a)
+{
   return addcslashes($a,'"');
 }
 
 /* low priority for weak regexps (small variable length) at the end, please */
-function cmp($a, $b) {
+function cmp($a, $b)
+{
   return (mb_strlen($a) < mb_strlen($b));
 }
+
 uksort($l, 'cmp');
 
 /*
@@ -79,12 +84,15 @@ foreach($l as $k => $v) {
 }
 
 foreach (new DirectoryIterator('.') as $fileInfo) {
-  if($fileInfo->isDot()) continue;
+  if($fileInfo->isDot()) {
+    continue;
+  }
+  
   $name = $fileInfo->getFilename();
   // process php files
-  if(!preg_match('/\.php$/' , $name) ||
-     preg_match('/phpVar2getText/', $name))
+  if(!preg_match('/\.php$/' , $name) || preg_match('/phpVar2getText/', $name)) {
     continue;
+  }
 
   $orig = file_get_contents($name);
   $a = preg_replace($match0, $repl0, $orig, -1, $b);
@@ -114,16 +122,14 @@ foreach(array('fr_FR','es_ES','de_DE', 'en_GB') as $i) {
   foreach(array_unique($l) as $k => $v) {
     /* poedit is strict with its syntax */
     $po_ready_v = stripN(addDQ($v));
-    if($f == 'en')
-      $a .= 'msgid "' . $po_ready_v . '"' . "\n" .
-	'msgstr "' . $po_ready_v . '"' . "\n\n";
-    else
+    if($f == 'en') {
+      $a .= 'msgid "' . $po_ready_v . '"' . "\n" . 'msgstr "' . $po_ready_v . '"' . "\n\n";
+    } else {
       $a .= 'msgid "' . $po_ready_v . '"' . "\n" . 
 	/* ${$k} the key (var name) in the orig (EN) array
 	 to look for as a raw $var while the <lang>.inc is included in the context */
 	'msgstr "' .  stripN(addDQ(${$k})) . '"' . "\n\n";
+    }
   }
   file_put_contents('locale/' . $f . '_' . $g . '/LC_MESSAGES/Studs.po', $header . $a);
 }
-
-?>

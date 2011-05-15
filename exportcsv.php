@@ -39,8 +39,9 @@
 
 include_once('fonctions.php');
 
-if(!isset($_GET['numsondage']) || ! preg_match(";^[\w\d]{16}$;i", $_GET['numsondage']))
-   header('Location: studs.php');
+if(!isset($_GET['numsondage']) || ! preg_match(";^[\w\d]{16}$;i", $_GET['numsondage'])) {
+  header('Location: studs.php');
+}
 
 $user_studs=$connect->Execute("SELECT * FROM user_studs WHERE id_sondage=" . $_GET['numsondage'] . " ORDER BY id_users");
 
@@ -48,56 +49,55 @@ $dsondage = get_sondage_from_id($_GET['numsondage']);
 $nbcolonnes=substr_count($dsondage->sujet,',')+1;
 
 $toutsujet=explode(",",$dsondage->sujet);
-#$toutsujet=str_replace("°","'",$toutsujet);	
+#$toutsujet=str_replace("°","'",$toutsujet);
 
 //affichage des sujets du sondage
-
 $input.=";";
-for ($i=0;$toutsujet[$i];$i++){
-	if ($dsondage->format=="D"||$dsondage->format=="D+"){
-		$input.=''.date("j/n/Y",$toutsujet[$i]).';';
-	}
-	else{
-		$input.=''.$toutsujet[$i].';';
-	}
+for ($i=0;$toutsujet[$i];$i++) {
+  if ($dsondage->format=="D"||$dsondage->format=="D+") {
+    $input.=''.date("j/n/Y",$toutsujet[$i]).';';
+  } else {
+    $input.=''.$toutsujet[$i].';';
+  }
 }
+
 $input.="\r\n";
 
-if (strpos($dsondage->sujet,'@') !== false){
-	$input.=";";
-	for ($i=0;$toutsujet[$i];$i++){
-		$heures=explode("@",$toutsujet[$i]);
-		$input.=''.$heures[1].';';
-	}
-	$input.="\r\n";
+if (strpos($dsondage->sujet,'@') !== false) {
+  $input.=";";
+  for ($i=0;$toutsujet[$i];$i++) {
+    $heures=explode("@",$toutsujet[$i]);
+    $input.=''.$heures[1].';';
+  }
+  
+  $input.="\r\n";
 }
 
 while (	$data=$user_studs->FetchNextObject(false)) {
-// Le nom de l'utilisateur
-	$nombase=str_replace("°","'",$data->nom);
-	$input.=$nombase.';';
-//affichage des resultats
-	$ensemblereponses=$data->reponses;
-	for ($k=0;$k<$nbcolonnes;$k++){
-		$car=substr($ensemblereponses,$k,1);
-		if ($car=="1"){
-			$input.='OK;';
-			$somme[$k]++;
-		}
-		else {
-			$input.=';';
-		}
-	}
-	$input.="\r\n";
+  // Le nom de l'utilisateur
+  $nombase=str_replace("°","'",$data->nom);
+  $input.=$nombase.';';
+  //affichage des resultats
+  $ensemblereponses=$data->reponses;
+  for ($k=0;$k<$nbcolonnes;$k++) {
+    $car=substr($ensemblereponses,$k,1);
+    if ($car=="1") {
+      $input.='OK;';
+      $somme[$k]++;
+    } else {
+      $input.=';';
+    }
+  }
+  
+  $input.="\r\n";
 }
 
 $filesize = strlen( $input );
 $filename=$_GET["numsondage"].".csv";
 
- header( 'Content-Type: text/csv; charset=utf-8' );
- header( 'Content-Length: '.$filesize );
- header( 'Content-Disposition: attachment; filename="'.$filename.'"' );
- header( 'Cache-Control: max-age=10' );
+header( 'Content-Type: text/csv; charset=utf-8' );
+header( 'Content-Length: '.$filesize );
+header( 'Content-Disposition: attachment; filename="'.$filename.'"' );
+header( 'Cache-Control: max-age=10' );
 echo $input;
- die();
-?>
+die();

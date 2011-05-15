@@ -41,80 +41,74 @@ session_start();
 
 include_once('variables.php');
 include_once( 'i18n.php' );
-if (file_exists('bandeaux_local.php'))
-	include_once('bandeaux_local.php');
-else
-	include_once('bandeaux.php');
+if (file_exists('bandeaux_local.php')) {
+  include_once('bandeaux_local.php');
+} else {
+  include_once('bandeaux.php');
+}
 
-	//affichage de la page
-	echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-	echo '<html>'."\n";
-	echo '<head>'."\n";
-	echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-	echo '<title>'.NOMAPPLICATION.'</title>'."\n";
-	echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
-	echo '</head>'."\n";
-	echo '<body>'."\n";
+//affichage de la page
+echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
+echo '<html>'."\n";
+echo '<head>'."\n";
+echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
+echo '<title>'.NOMAPPLICATION.'</title>'."\n";
+echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
+echo '</head>'."\n";
+echo '<body>'."\n";
 
-    //debut du formulaire
-    echo '<form name=formulaire action="apropos.php" method="POST">'."\n";
+//debut du formulaire
+echo '<form name=formulaire action="apropos.php" method="POST">'."\n";
 
-	//bandeaux de tete
-	logo();
-	bandeau_tete();
+//bandeaux de tete
+logo();
+bandeau_tete();
 bandeau_titre(_("About"));
-	sous_bandeau();
+sous_bandeau();
 
-	//blablabla
-	echo '<div class=corps>'."\n";
+echo '<div class=corps>'."\n";
 
-	if (NOMAPPLICATION!="STUdS !"){
-		echo '<b>Application d\'origine</b><br><br>'."\n";
-		echo 'L\'application '.NOMAPPLICATION.' est une instance du logiciel <b><a href ="http://studs.u-strasbg.fr">STUdS !</a></b> d&eacute;velopp&eacute; &agrave; l\'Universit&eacute; de Strasbourg depuis 2008.<br><br>'."\n";
-	}
+if (NOMAPPLICATION!="STUdS !") {
+  echo '<b>Application d\'origine</b><br><br>'."\n";
+  echo 'L\'application '.NOMAPPLICATION.' est une instance du logiciel <b><a href ="http://studs.u-strasbg.fr">STUdS !</a></b> d&eacute;velopp&eacute; &agrave; l\'Universit&eacute; de Strasbourg depuis 2008.<br><br>'."\n";
+}
 
-	echo '<b>Licence Logicielle de '.NOMAPPLICATION.'</b><br><br>'."\n";
-	echo NOMAPPLICATION.' est plac&eacute; sous la licence logicielle libre <a href="http://www.cecill.info/licences.fr.html">CeCILL-B</a>.<br><br>'."\n";
+echo '<b>Licence Logicielle de '.NOMAPPLICATION.'</b><br><br>'."\n";
+echo NOMAPPLICATION.' est plac&eacute; sous la licence logicielle libre <a href="http://www.cecill.info/licences.fr.html">CeCILL-B</a>.<br><br>'."\n";
 
-	echo '<b>Technologies utilis&eacute;es</b><br><br>'."\n";
-	echo '- <a href="http://www.php.net/">PHP</a><br>'."\n";
-	echo '- <a href="http://www.postgresql.org/">PostgreSQL</a><br>'."\n";
-	echo '- <a href="http://www.apache.org/">Apache</a><br>'."\n";
-	echo '- <a href="http://subversion.tigris.org/">Subversion</a><br>'."\n";
-	echo '- <a href="http://www.kigkonsult.se/iCalcreator/">iCalcreator</a><br>'."\n";
-	echo '- <a href="http://www.fpdf.org/">FPDF</a><br>'."\n";
-	echo '- Ic&ocirc;nes : <a href="http://deleket.deviantart.com/">Deleket</a>, <a href ="http://pixel-mixer.com">PixelMixer</a> et <a href="http://dryicons.com">DryIcons</a><br><br>'."\n";
-	
-	echo '<b>Compatibilit&eacute;s des navigateurs</b><br><br>'."\n";
-	echo '- <a href="http://www.mozilla.com/firefox/">Firefox</a><br>'."\n";
-	echo '- <a href="http://www.opera.com/">Op&eacute;ra</a><br>'."\n";
-	echo '- <a href="http://www.konqueror.org/">Konqueror</a><br>'."\n";
-	echo '- <a href="http://www.jikos.cz/~mikulas/links/">Links</a><br>'."\n";
-	echo '- <a href="http://www.apple.com/fr/safari/">Safari</a><br>'."\n";
-	echo '- <a href="http://www.mozilla.com/firefox/">IE</a><br><br>'."\n";
+echo '<b>Technologies utilis&eacute;es</b><br><br>'."\n";
+echo '- <a href="http://www.php.net/">PHP</a><br>'."\n";
+echo '- <a href="http://www.postgresql.org/">PostgreSQL</a><br>'."\n";
+echo '- <a href="http://www.apache.org/">Apache</a><br>'."\n";
+echo '- <a href="http://subversion.tigris.org/">Subversion</a><br>'."\n";
+echo '- <a href="http://www.kigkonsult.se/iCalcreator/">iCalcreator</a><br>'."\n";
+echo '- <a href="http://www.fpdf.org/">FPDF</a><br>'."\n";
+echo '- Ic&ocirc;nes : <a href="http://deleket.deviantart.com/">Deleket</a>, <a href ="http://pixel-mixer.com">PixelMixer</a> et <a href="http://dryicons.com">DryIcons</a><br><br>'."\n";
 
-	echo '<b>Validations des pages</b><br><br>'."\n";
-	echo '- Toutes les pages disposent de la validation HTML 4.01 Strict du W3C. <br>- La CSS dispose de la validation CSS 2.1 du W3C.'."\n";
- 	echo '<p>'."\n"; 
-	echo '<img src="http://www.w3.org/Icons/valid-html401-blue" alt="Valid HTML 4.01 Strict" height="31" width="88"><img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valide !">'."\n";
- 	echo'</p>'."\n"; 
+echo '<b>Compatibilit&eacute;s des navigateurs</b><br><br>'."\n";
+echo '- <a href="http://www.mozilla.com/firefox/">Firefox</a><br>'."\n";
+echo '- <a href="http://www.opera.com/">Op&eacute;ra</a><br>'."\n";
+echo '- <a href="http://www.konqueror.org/">Konqueror</a><br>'."\n";
+echo '- <a href="http://www.jikos.cz/~mikulas/links/">Links</a><br>'."\n";
+echo '- <a href="http://www.apple.com/fr/safari/">Safari</a><br>'."\n";
+echo '- <a href="http://www.mozilla.com/firefox/">IE</a><br><br>'."\n";
 
-	echo '<b>Propositions am&eacute;liorations de '.NOMAPPLICATION.'</b><br><br>'."\n";
-	
-	echo 'Si quelquechose venait &agrave; vous manquer, vous pouvez nous en faire part via le <a href="contacts.php">formulaire en ligne</a>. <br>'."\n";
+echo '<b>Validations des pages</b><br><br>'."\n";
+echo '- Toutes les pages disposent de la validation HTML 4.01 Strict du W3C. <br>- La CSS dispose de la validation CSS 2.1 du W3C.'."\n";
+echo '<p>'."\n";
+echo '<img src="http://www.w3.org/Icons/valid-html401-blue" alt="Valid HTML 4.01 Strict" height="31" width="88"><img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss-blue" alt="CSS Valide !">'."\n";
+echo'</p>'."\n";
 
-	echo 'Les derni&egrave;res am&eacute;liorations de '.NOMAPPLICATION.' sont visibles dans le fichier <a href="CHANGELOG">CHANGELOG</a>.<br><br>'."\n";
-	
-	echo '<b>Remerciements</b><br><br>'."\n";
-	echo 'Pour leurs contributions techniques ou ergonomiques : Guy, Christophe, Julien, Pierre, Romaric, Matthieu, Catherine, Christine, Olivier, Emmanuel et Florence <br><br>'."\n";
+echo '<b>Propositions am&eacute;liorations de '.NOMAPPLICATION.'</b><br><br>'."\n";
+echo 'Si quelquechose venait &agrave; vous manquer, vous pouvez nous en faire part via le <a href="contacts.php">formulaire en ligne</a>. <br>'."\n";
+echo 'Les derni&egrave;res am&eacute;liorations de '.NOMAPPLICATION.' sont visibles dans le fichier <a href="CHANGELOG">CHANGELOG</a>.<br><br>'."\n";
 
-	
+echo '<b>Remerciements</b><br><br>'."\n";
+echo 'Pour leurs contributions techniques ou ergonomiques : Guy, Christophe, Julien, Pierre, Romaric, Matthieu, Catherine, Christine, Olivier, Emmanuel et Florence <br><br>'."\n";
 
-	echo '</div>'."\n";
-	
-	bandeau_pied_mobile();
-	echo '</form>'."\n";
-	echo '</body>'."\n";
-	echo '</html>'."\n";
+echo '</div>'."\n";
 
-?>
+bandeau_pied_mobile();
+echo '</form>'."\n";
+echo '</body>'."\n";
+echo '</html>'."\n";

@@ -1,18 +1,14 @@
 <?php
+//$locale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 
-  //$locale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
-if ( isset($_GET['lang']) && is_string($_GET['lang']) &&
-     in_array($_GET['lang'], array_keys($ALLOWED_LANGUAGES)) ) {
+if (isset($_GET['lang']) && is_string($_GET['lang']) && in_array($_GET['lang'], array_keys($ALLOWED_LANGUAGES)) ) {
   $mlocale = $_GET['lang'] ;
   setcookie('lang' , $_GET['lang'], time()+60*5);
- }
-elseif ( isset($_COOKIE['lang']) && is_string($_COOKIE['lang']) &&
-	 in_array($_COOKIE['lang'], array_keys($ALLOWED_LANGUAGES)) ) {
+} elseif ( isset($_COOKIE['lang']) && is_string($_COOKIE['lang']) && in_array($_COOKIE['lang'], array_keys($ALLOWED_LANGUAGES)) ) {
   $mlocale = $_COOKIE['lang'] ;
+} else {
+  $mlocale = LANGUE ;
 }
- else
-   $mlocale = LANGUE ;
-
 
 $locale = $mlocale . '.utf8';
 setlocale(LC_ALL, $locale);
@@ -27,5 +23,3 @@ textdomain($domain);
 /* temp, for compatibility :*/
 $a = explode('_', $locale);
 $_SESSION['langue'] = strtoupper($a[0]);
-
-?>

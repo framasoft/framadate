@@ -37,38 +37,46 @@
 //
 //==========================================================================
 
-if(ini_get('date.timezone') == '')
+if(ini_get('date.timezone') == '') {
   date_default_timezone_set("Europe/Paris");
+}
 
 include_once('variables.php');
 include_once('i18n.php');
 require_once('adodb/adodb.inc.php');
 
-function connexion_base(){
-       $DB = NewADOConnection(BASE_TYPE);
-       $DB->Connect(SERVEURBASE, USERBASE, USERPASSWD, BASE);
-       //$DB->debug = true;
-       return $DB;
+function connexion_base()
+{
+  $DB = NewADOConnection(BASE_TYPE);
+  $DB->Connect(SERVEURBASE, USERBASE, USERPASSWD, BASE);
+  //$DB->debug = true;
+  return $DB;
 }
 
-function get_server_name() {
+
+function get_server_name()
+{
   $scheme = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") ? 'https' : 'http';
-	$url = sprintf("%s://%s%s", $scheme,
-		      STUDS_URL,
-		      dirname($_SERVER["SCRIPT_NAME"]));
-	if (!preg_match("|/$|", $url)){
-		$url = $url."/";        
-	}
-	return $url;
+  $url = sprintf("%s://%s%s", $scheme, STUDS_URL, dirname($_SERVER["SCRIPT_NAME"]));
+  
+  if (!preg_match("|/$|", $url)) {
+    $url = $url."/";
+  }
+  
+  return $url;
 }
 
-function get_sondage_from_id($id) {
+
+function get_sondage_from_id($id)
+{
   global $connect;
+  
   // Ouverture de la base de données
   if(preg_match(";^[\w\d]{16}$;i",$id)) {
     $sql = 'SELECT sondage.*,sujet_studs.sujet FROM sondage
-	    LEFT OUTER JOIN sujet_studs ON sondage.id_sondage = sujet_studs.id_sondage
-	    WHERE sondage.id_sondage = '.$connect->Param('id_sondage');
+            LEFT OUTER JOIN sujet_studs ON sondage.id_sondage = sujet_studs.id_sondage
+            WHERE sondage.id_sondage = '.$connect->Param('id_sondage');
+            
     $sql = $connect->Prepare($sql);
     $sondage=$connect->Execute($sql, array($id));
     
@@ -80,8 +88,70 @@ function get_sondage_from_id($id) {
     $psondage->date_fin = strtotime($psondage->date_fin);
     return $psondage;
   }
+  
   return false;
 }
+
+
+function is_error($cerr)
+{
+  global $err;
+  if ( $err == 0 ) {
+    return false;
+  }
+  
+  return (($err & $cerr) != 0 );
+}
+
+
+function is_user()
+{
+  return isset($_SERVER['REMOTE_USER']) || (isset($_SESSION['nom']));
+}
+
+
+function print_header($js = false)
+{
+  echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>'.NOMAPPLICATION.'</title>
+    <link rel="stylesheet" type="text/css" href="style.css">';
+  
+  if($js) {
+    echo '<script type="text/javascript" src="block_enter.js"></script>';
+  }
+  
+  echo '</head>';
+}
+
+
+function check_table_sondage()
+{
+  global $connect;
+  $tables = $connect->MetaTables('TABLES');
+  if (in_array("sondage", $tables)) {
+    return true;
+  }
+  return false;
+}
+
+
+/**
+ * Vérifie une adresse e-mail selon les normes RFC
+ * @param  string  $email  l'adresse e-mail a vérifier
+ * @return  bool    vrai si l'adresse est correcte, faux sinon
+ * @see http://fightingforalostcause.net/misc/2006/compare-email-regex.php
+ * @see http://svn.php.net/viewvc/php/php-src/trunk/ext/filter/logical_filters.c?view=markup
+ */
+function validateEmail($email)
+{
+  $pattern = '/^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){255,})(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){65,}@)(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22))(?:\\.(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\\]))$/iD';
+  
+  return (bool)preg_match($pattern, $email);
+}
+
 
 $connect=connexion_base();
 
@@ -96,54 +166,3 @@ define('INVALID_EMAIL',         0x0010000000);
 define('TITLE_EMPTY',           0x0100000000);
 define('INVALID_DATE',          0x1000000000);
 $err = 0;
-
-function is_error($cerr) {
-  global $err;
-  if ( $err == 0 )
-    return false;
-  return (($err & $cerr) != 0 );
-}
-
-
-function is_user() {
-  return isset($_SERVER['REMOTE_USER']) || (isset($_SESSION['nom']));
-}
-
-function print_header($js = false) {
-  ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
-    <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title><?php echo NOMAPPLICATION; ?></title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-<?php
-if($js)
-  echo '<script type="text/javascript" src="block_enter.js"></script>';
-echo '</head>';
-}
-
-function check_table_sondage() {
-  global $connect;
-  $tables = $connect->MetaTables('TABLES');
-  if (in_array("sondage", $tables))
-    return true;
-  return false;
-}
-
-
-
-/**
- * Vérifie une adresse e-mail selon les normes RFC
- * @param	string	$email	l'adresse e-mail a vérifier
- * @return	bool		vrai si l'adresse est correcte, faux sinon
- * @see http://fightingforalostcause.net/misc/2006/compare-email-regex.php
- * @see http://svn.php.net/viewvc/php/php-src/trunk/ext/filter/logical_filters.c?view=markup
- */
-function validateEmail($email) {
-  $pattern = '/^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){255,})(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){65,}@)(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22))(?:\\.(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\\]))$/iD';
-  
-  return (bool)preg_match($pattern, $email);
-}
-
-?>

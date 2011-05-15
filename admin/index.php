@@ -71,32 +71,30 @@ echo '<form action="index.php" method="POST">'."\n";
 // Test et affichage du bouton de confirmation en cas de suppression de sondage
 $i=0;
 while($dsondage = $sondage->FetchNextObject(false)) {
- 	if ($_POST["supprimersondage$i"]){
-		echo '<table>'."\n";
- 		echo '<tr><td bgcolor="#EE0000" colspan="11">'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'" : <input type="submit" name="confirmesuppression'.$i.'" value="'. _("Remove this poll!") .'">'."\n";
- 		echo '<input type="submit" name="annullesuppression" value="'. _("Keep this poll!") .'"></td></tr>'."\n";
-		echo '</table>'."\n";
-		echo '<br>'."\n";
- 	}
-	// Traitement de la confirmation de suppression
-
-	if ($_POST["confirmesuppression$i"]){
-
-		$date=date('H:i:s d/m/Y');
-
-		// requetes SQL qui font le ménage dans la base
-		$connect->Execute('DELETE FROM sondage LEFT INNER JOIN sujet_studs ON sujet_studs.id_sondage = sondage.id_sondage '.
-				  'LEFT INNER JOIN user_studs ON user_studs.id_sondage = sondage.id_sondage ' .
-				  'LEFT INNER JOIN comments ON comments.id_sondage = sondage.id_sondage ' .
-				  "WHERE id_sondage = '$dsondage->id_sondage' ");
-
-		// ecriture des traces dans le fichier de logs
-		error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\t$nbuser\t$dsujets->sujet\n", 'logs_studs.txt');
-
-	}
-	$i++;
+  if ($_POST["supprimersondage$i"]) {
+    echo '<table>'."\n";
+    echo '<tr><td bgcolor="#EE0000" colspan="11">'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'" : <input type="submit" name="confirmesuppression'.$i.'" value="'. _("Remove this poll!") .'">'."\n";
+    echo '<input type="submit" name="annullesuppression" value="'. _("Keep this poll!") .'"></td></tr>'."\n";
+    echo '</table>'."\n";
+    echo '<br>'."\n";
+  }
+  
+  // Traitement de la confirmation de suppression
+  if ($_POST["confirmesuppression$i"]) {
+    $date=date('H:i:s d/m/Y');
+    
+    // requetes SQL qui font le ménage dans la base
+    $connect->Execute('DELETE FROM sondage LEFT INNER JOIN sujet_studs ON sujet_studs.id_sondage = sondage.id_sondage '.
+                      'LEFT INNER JOIN user_studs ON user_studs.id_sondage = sondage.id_sondage ' .
+                      'LEFT INNER JOIN comments ON comments.id_sondage = sondage.id_sondage ' .
+                      "WHERE id_sondage = '$dsondage->id_sondage' ");
+    
+    // ecriture des traces dans le fichier de logs
+    error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\t$nbuser\t$dsujets->sujet\n", 'logs_studs.txt');
+  }
+  
+  $i++;
 }
-
 
 $sondage=$connect->Execute("select * from sondage");
 $nbsondages=$sondage->RecordCount();
@@ -104,40 +102,36 @@ $nbsondages=$sondage->RecordCount();
 echo $nbsondages.' '. _("polls in the database at this time") .'<br><br>'."\n";
 
 // tableau qui affiche tous les sondages de la base
-echo '<table border=1>'."\n";	
-
+echo '<table border=1>'."\n";
 echo '<tr align=center><td>'. _("Poll ID") .'</td><td>'. _("Format") .'</td><td>'. _("Title") .'</td><td>'. _("Author") .'</td><td>'. _("Expiration's date") .'</td><td>'. _("Users") .'</td><td colspan=3>'. _("Actions") .'</td>'."\n";
-
 
 $i = 0;
 while($dsondage = $sondage->FetchNextObject(false)) {
-	/* possible en 1 bonne requête dans $sondage */
-	$sujets=$connect->Execute( "select * from sujet_studs where id_sondage='$dsondage->id_sondage'");
-	$dsujets=$sujets->FetchObject(false);
+  /* possible en 1 bonne requête dans $sondage */
+  $sujets=$connect->Execute( "select * from sujet_studs where id_sondage='$dsondage->id_sondage'");
+  $dsujets=$sujets->FetchObject(false);
 
-	$user_studs=$connect->Execute( "select * from user_studs where id_sondage='$dsondage->id_sondage'");
-	$nbuser=$user_studs->RecordCount();
+  $user_studs=$connect->Execute( "select * from user_studs where id_sondage='$dsondage->id_sondage'");
+  $nbuser=$user_studs->RecordCount();
 
-	echo '<tr align=center><td>'.$dsondage->id_sondage.'</td><td>'.$dsondage->format.'</td><td>'.$dsondage->titre.'</td><td>'.$dsondage->nom_admin.'</td>';
+  echo '<tr align=center><td>'.$dsondage->id_sondage.'</td><td>'.$dsondage->format.'</td><td>'.$dsondage->titre.'</td><td>'.$dsondage->nom_admin.'</td>';
 
-	if (strtotime($dsondage->date_fin) > time()){
-	  echo '<td>'.date("d/m/y",strtotime($dsondage->date_fin)).'</td>';
-	}
-	else{
-	  echo '<td><font color=#FF0000>'.date("d/m/y",strtotime($dsondage->date_fin)).'</font></td>';
-	}
-	
-	echo'<td>'.$nbuser.'</td>'."\n";
+  if (strtotime($dsondage->date_fin) > time()) {
+    echo '<td>'.date("d/m/y",strtotime($dsondage->date_fin)).'</td>';
+  } else {
+    echo '<td><font color=#FF0000>'.date("d/m/y",strtotime($dsondage->date_fin)).'</font></td>';
+  }
+  
+  echo'<td>'.$nbuser.'</td>'."\n";
+  echo '<td><a href="../studs.php?sondage='.$dsondage->id_sondage.'">'. _("See the poll") .'</a></td>'."\n";
+  echo '<td><a href="../adminstuds.php?sondage='.$dsondage->id_sondage_admin.'">'. _("Change the poll") .'</a></td>'."\n";
+  echo '<td><input type="submit" name="supprimersondage'.$i.'" value="'. _("Remove the poll") .'"></td>'."\n";
 
-	echo '<td><a href="../studs.php?sondage='.$dsondage->id_sondage.'">'. _("See the poll") .'</a></td>'."\n";
-	echo '<td><a href="../adminstuds.php?sondage='.$dsondage->id_sondage_admin.'">'. _("Change the poll") .'</a></td>'."\n";
-	echo '<td><input type="submit" name="supprimersondage'.$i.'" value="'. _("Remove the poll") .'"></td>'."\n";
-
-	echo '</tr>'."\n";
-	$i++;
+  echo '</tr>'."\n";
+  $i++;
 }
 
-echo '</table>'."\n";	
+echo '</table>'."\n";  
 echo'</div>'."\n";
 // fin du formulaire et de la page web
 echo '</form>'."\n";
@@ -145,7 +139,5 @@ echo '</body>'."\n";
 echo '</html>'."\n";
 
 // si on annule la suppression, rafraichissement de la page
-if ($_POST["annulesuppression"]){
+if ($_POST["annulesuppression"]) {
 }
-
-?>

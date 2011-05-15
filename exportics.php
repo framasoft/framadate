@@ -43,15 +43,12 @@ header('Location: studs.php');
 
 $meilleursujet=$_SESSION["meilleursujet"];
 
-
 session_start();
 require_once('iCalcreator/iCalcreator.class.php');
 
 $v = new vcalendar(); // create a new calendar instance
 $v->setConfig( 'unique_id', $_SESSION["numsondage"] ); // set Your unique id
 $v->setProperty( 'method', 'PUBLISH' ); // required of some calendar software
-
-
 $vevent = new vevent(); // create an event calendar component
 
 /*
@@ -61,25 +58,29 @@ $vevent = new vevent(); // create an event calendar component
 */
 $adate = strtok($meilleursujet, "@");
 $dtstart = $dtend = array(
-			  'year'=>intval(date("Y",$adate)),
-			  'month'=>intval(date("n",$adate)),
-			  'day'=>intval(date("j",$adate)),
-			  'hour'=>0,
-			  'min'=>0,
-			  'sec'=>0
-			  );
+  'year'=>intval(date("Y",$adate)),
+  'month'=>intval(date("n",$adate)),
+  'day'=>intval(date("j",$adate)),
+  'hour'=>0,
+  'min'=>0,
+  'sec'=>0
+);
+
 $double_time = false;
-if(strpos($meilleursujet, '-') !== false)
+if(strpos($meilleursujet, '-') !== false) {
   $double_time = true;
+}
 
 $dtstart['hour'] = intval(strtok(":Hh"));
 $a = intval(strtok(":Hh-"));
 $b = intval(strtok(":Hh-"));
-if($b === false) {
-  if($double_time)
+
+if ($b === false) {
+  if($double_time) {
     $dtend['hour'] = $a;
-  else
+  } else {
     $dtstart['min'] = $a;
+  }
 } else {
   $dtstart['min'] = $a;
   $dtend['hour'] = $b;
@@ -97,9 +98,6 @@ $vevent->setProperty( 'summary', $_SESSION["sondagetitre"] );
 
 $v->setComponent ( $vevent ); // add event to calendar
 $v->setConfig( "language", "fr" );
-$v->setConfig( "directory", "export" ); 
+$v->setConfig( "directory", "export" );
 $v->setConfig( "filename", $_SESSION["numsondage"].".ics" ); // set file name
-
 $v->returnCalendar(); 
-
-?>

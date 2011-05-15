@@ -63,5 +63,3 @@ sur_bandeau_pied();
 bandeau_pied();
 echo '</body>'."\n";
 echo '</html>'."\n";
-
-?>

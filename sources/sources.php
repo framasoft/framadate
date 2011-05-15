@@ -62,5 +62,3 @@ echo '</div>'."\n";
 bandeau_pied();
 echo '</body>'."\n";
 echo '</html>'."\n";
-
-?>

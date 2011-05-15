@@ -1,6 +1,7 @@
 Les dernières améliorations de STUdS
 	Changelog version 0.6.7 (mai 2011)
 	- fork du projet STUdS (https://sourcesup.cru.fr/projects/studs/) de la version trunk du 15 mai 2011)
+        - nettoyage du code (indentation, cohérence de la convention de codage)
 	Changelog version 0.6.6 (XXX 2011) :
 	- internationalisation avec gettext
 	- abstraction de la base de données avec ADOdb

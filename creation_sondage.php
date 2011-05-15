@@ -43,59 +43,57 @@ include_once('fonctions.php');
 
 
 //Generer une chaine de caractere unique et aleatoire
-function random($car) {
-	$string = "";
-	$chaine = "abcdefghijklmnopqrstuvwxyz123456789";
-	srand((double)microtime()*1000000);
-	for($i=0; $i<$car; $i++) {
-		$string .= $chaine[rand()%strlen($chaine)];
-	}
-	return $string;
+function random($car)
+{
+  $string = "";
+  $chaine = "abcdefghijklmnopqrstuvwxyz123456789";
+  srand((double)microtime()*1000000);
+  for($i=0; $i<$car; $i++) {
+    $string .= $chaine[rand()%strlen($chaine)];
+  }
+  return $string;
 }
 
-function ajouter_sondage(){
-	$sondage=random(16);
-	$sondage_admin=$sondage.random(8);
-
-if ($_SESSION["formatsondage"]=="A"||$_SESSION["formatsondage"]=="A+"){
-
-	//extraction de la date de fin choisie
-	if ($_SESSION["champdatefin"]){
-		if ($_SESSION["champdatefin"]>time()+250000){
-			$date_fin=$_SESSION["champdatefin"];
-		}
-	}
-	else{$date_fin=time()+15552000;}
+function ajouter_sondage()
+{
+  $sondage=random(16);
+  $sondage_admin=$sondage.random(8);
+  
+  if ($_SESSION["formatsondage"]=="A"||$_SESSION["formatsondage"]=="A+") {
+    //extraction de la date de fin choisie
+    if ($_SESSION["champdatefin"]) {
+      if ($_SESSION["champdatefin"]>time()+250000) {
+        $date_fin=$_SESSION["champdatefin"];
+      }
+    } else {
+      $date_fin=time()+15552000;
+    }
+  }
+  
+  if ($_SESSION["formatsondage"]=="D"||$_SESSION["formatsondage"]=="D+") {
+    //Calcul de la date de fin du sondage
+    $taille_tableau=sizeof($_SESSION["totalchoixjour"])-1;
+    $date_fin=$_SESSION["totalchoixjour"][$taille_tableau]+200000;
+  }
+  
+  $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
+  
+  global $connect;
+  
+  $connect->Execute('insert into sondage ' .
+                    '(id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, date_fin, format, mailsonde) ' .
+                    'VALUES '.
+                    "('$sondage','$_SESSION[commentaires]', '$_SESSION[adresse]', '$_SESSION[nom]', '$_SESSION[titre]','$sondage_admin', FROM_UNIXTIME('$date_fin'), '$_SESSION[formatsondage]','$_SESSION[mailsonde]'  )");
+  $connect->Execute("insert into sujet_studs values ('$sondage', '$_SESSION[toutchoix]' )");
+  
+  mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), "" . _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.") . "\n\n".stripslashes($_SESSION["nom"])." " . _("hast just created a poll called") . " : \"".stripslashes($_SESSION["titre"])."\".\n" . _("Thanks for filling the poll at the link above") . " :\n\n".get_server_name()."studs.php?sondage=$sondage \n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION,$headers);
+  mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]),
+        _("This message should NOT be sended to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above") .
+        " :\n\n".get_server_name()."adminstuds.php?sondage=$sondage_admin \n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION,$headers);
+  
+  $date=date('H:i:s d/m/Y:');
+  error_log($date . " CREATION: $sondage\t$_SESSION[formatsondage]\t$_SESSION[nom]\t$_SESSION[adresse]\t \t$_SESSION[toutchoix]\n", 3, 'admin/logs_studs.txt');
+  header("Location:studs.php?sondage=$sondage");
+  exit();
+  session_unset();
 }
-
-if ($_SESSION["formatsondage"]=="D"||$_SESSION["formatsondage"]=="D+"){
-
-	//Calcul de la date de fin du sondage
-	$taille_tableau=sizeof($_SESSION["totalchoixjour"])-1;
-	$date_fin=$_SESSION["totalchoixjour"][$taille_tableau]+200000;
-}
-
-	$headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
-
-	global $connect;
-	$connect->Execute('insert into sondage ' .
-			  '(id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, date_fin, format, mailsonde) ' .
-			  'VALUES '.
-			  "('$sondage','$_SESSION[commentaires]', '$_SESSION[adresse]', '$_SESSION[nom]', '$_SESSION[titre]','$sondage_admin', FROM_UNIXTIME('$date_fin'), '$_SESSION[formatsondage]','$_SESSION[mailsonde]'  )");
-	$connect->Execute("insert into sujet_studs values ('$sondage', '$_SESSION[toutchoix]' )");
-
-	
-	mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), "" . _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.") . "\n\n".stripslashes($_SESSION["nom"])." " . _("hast just created a poll called") . " : \"".stripslashes($_SESSION["titre"])."\".\n" . _("Thanks for filling the poll at the link above") . " :\n\n".get_server_name()."studs.php?sondage=$sondage \n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION,$headers);
-	mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]),
-	      _("This message should NOT be sended to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above") .
-	      " :\n\n".get_server_name()."adminstuds.php?sondage=$sondage_admin \n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION,$headers);
-
-	$date=date('H:i:s d/m/Y:');
-	error_log($date . " CREATION: $sondage\t$_SESSION[formatsondage]\t$_SESSION[nom]\t$_SESSION[adresse]\t \t$_SESSION[toutchoix]\n", 3, 'admin/logs_studs.txt'); 
-
-	header("Location:studs.php?sondage=$sondage");
-
-	exit();
-	session_unset();
-}
-?>
