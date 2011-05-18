@@ -47,7 +47,7 @@ msgstr "Lieu"
 
 #: exportpdf.php:75
 msgid "Cordially,"
-msgstr "Cordiallement"
+msgstr "Cordialement"
 
 #: choix_autre.php:60
 #: choix_date.php:61
@@ -432,7 +432,7 @@ msgstr "Nom"
 
 #: studs.php:578
 msgid "Export to CSV"
-msgstr "Export to CSV"
+msgstr "Export en CSV"
 
 #: studs.php:580
 msgid "Export: Spreadsheet"
@@ -448,11 +448,11 @@ msgstr "Agenda"
 
 #: index.php:69
 msgid "What is it about?"
-msgstr "A quoi ça sert ?"
+msgstr "&Agrave; quoi ça sert ?"
 
 #: index.php:70
 msgid "Making polls to schedule meetings or events, quickly and easily. <br> You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays."
-msgstr "A faire des sondages pour que vous puissiez trouver une date de r&eacute;union qui convienne &agrave; toutes les personnes concern&eacute;es. <br>Vous pouvez &eacute;galement utiliser cette application pour d&eacute;terminer &agrave; plusieurs un choix quelconque comme un lieu de RV, un th&egrave;me de r&eacute;union ou la marque de votre prochaine machine &agrave; caf&eacute;."
+msgstr "&Agrave; faire des sondages pour que vous puissiez trouver une date de r&eacute;union qui convienne &agrave; toutes les personnes concern&eacute;es. <br>Vous pouvez &eacute;galement utiliser cette application pour d&eacute;terminer &agrave; plusieurs un choix quelconque comme un lieu de RV, un th&egrave;me de r&eacute;union ou la marque de votre prochaine machine &agrave; caf&eacute;."
 
 #: creation_sondage.php:88
 msgid "For sending to the polled users"
@@ -544,7 +544,7 @@ msgstr "Si vous souhaitez ajouter une colonne"
 
 #: adminstuds.php:175
 msgid "You can add a new scheduling date to your poll.<br> If you just want to add a new hour to an existant date, put the same date and choose a new hour."
-msgstr "Vous pouvez ajouter une date &agrave; votre sondage. Si la date existe d&eacute;j&agrave; et que vous ne voulez que rajouter un horaire,<br> mettez le jour en entier avec l'horaire ou le cr&eacute;neau suppl&eacute;mentaire il sera int&eacute;gr&eacute; normalement au sondage existant."
+msgstr "Vous pouvez ajouter une date &agrave; votre sondage. Si la date existe d&eacute;j&agrave; et que vous ne voulez rajouter qu'un horaire,<br> mettez le jour en entier avec l'horaire ou le cr&eacute;neau suppl&eacute;mentaire et il sera int&eacute;gr&eacute; normalement au sondage existant."
 
 #: adminstuds.php:176
 msgid "Add a date"
@@ -590,7 +590,7 @@ msgstr ""
 
 #: adminstuds.php:630
 msgid "As poll administrator, you can change all the lines of this poll with <img src=\"images/info.png\" alt=\"infos\">.<br> You can, as well, remove a column or a line with <img src=\"images/cancel.png\" alt=\"Cancel\">. <br>You can also add a new column with <img src=\"images/add-16.png\" alt=\"Add column\">.<br> Finally, you can change the informations of this poll like the title, the comments or your email address."
-msgstr "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec <img src=\"images/info.png\" alt=\"Icone infos\">.<br> Vous avez aussi la possibilit&eacute; d'effacer une colonne ou une ligne avec <img src=\"images/cancel.png\" alt=\"Annuler\">. <br>Si vous avez oubli&eacute; de mettre un choix vous pouvez rajouter une colonne en cliquant sur <img src=\"images/add-16.png\" alt=\"Annuler\"> <br> en bout de ligne des noms de colonne. Vous pouvez enfin &eacute;galement modifier les informations <br>relatives &agrave; ce sondage comme le titre, les commentaires ou encore votre adresse &eacute;lectronique."
+msgstr "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec <img src=\"images/info.png\" alt=\"Icone infos\">.<br> Vous avez aussi la possibilit&eacute; d'effacer une colonne ou une ligne avec <img src=\"images/cancel.png\" alt=\"Annuler\">. <br>Si vous avez oubli&eacute; de mettre un choix, vous pouvez rajouter une colonne en cliquant sur <img src=\"images/add-16.png\" alt=\"Annuler\"> <br> en bout de ligne des noms de colonne. Vous pouvez enfin &eacute;galement modifier les informations <br>relatives &agrave; ce sondage comme le titre, les commentaires ou encore votre adresse &eacute;lectronique."
 
 #: adminstuds.php:669
 #: adminstuds.php:689
@@ -627,7 +627,7 @@ msgstr "Si vous souhaitez changer le titre du sondage"
 
 #: adminstuds.php:976
 msgid "Generate the convocation letter (.PDF), choose the place to meet and validate"
-msgstr "Si vous souhaitez produire la lettre de convocation (en PDF), choississez un lieu de r&eacute;union et validez"
+msgstr "Si vous souhaitez produire la lettre de convocation (en PDF), saisissez un lieu de r&eacute;union et validez"
 
 #: adminstuds.php:987
 msgid "Enter a meeting place!"
