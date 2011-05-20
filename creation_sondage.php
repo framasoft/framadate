@@ -88,14 +88,23 @@ function ajouter_sondage()
                     "('$sondage','$_SESSION[commentaires]', '$_SESSION[adresse]', '$_SESSION[nom]', '$_SESSION[titre]','$sondage_admin', FROM_UNIXTIME('$date_fin'), '$_SESSION[formatsondage]','$_SESSION[mailsonde]'  )");
   $connect->Execute("insert into sujet_studs values ('$sondage', '$_SESSION[toutchoix]' )");
   
-  mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), "" . _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.") . "\n\n".stripslashes($_SESSION["nom"])." " . _("hast just created a poll called") . " : \"".stripslashes($_SESSION["titre"])."\".\n" . _("Thanks for filling the poll at the link above") . " :\n\n".get_server_name()."studs.php?sondage=$sondage \n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION,$headers);
-  mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]),
-        _("This message should NOT be sended to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above") .
-        " :\n\n".get_server_name()."adminstuds.php?sondage=$sondage_admin \n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION,$headers);
+  $message = _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
+  $message .= "\n\n";
+  $message .= stripslashes($_SESSION["nom"])." " . _("hast just created a poll called") . " : \"".stripslashes($_SESSION["titre"])."\".\n";
+  $message .= _("Thanks for filling the poll at the link above") . " :\n\n%s\n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION;
+  
+  $message_admin = _("This message should NOT be sended to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
+  $message_admin .= " :\n\n"."%s \n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION;
+  
+  $message = sprintf($message, getUrlSondage($sondage));
+  $message_admin = sprintf($message_admin, getUrlSondage($sondage_admin, true));
+  
+  mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), $message, $headers);
+  mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), $message, $headers);
   
   $date=date('H:i:s d/m/Y:');
   error_log($date . " CREATION: $sondage\t$_SESSION[formatsondage]\t$_SESSION[nom]\t$_SESSION[adresse]\t \t$_SESSION[toutchoix]\n", 3, 'admin/logs_studs.txt');
-  header("Location:studs.php?sondage=$sondage");
+  header("Location:".getUrlSondage($sondage));
   exit();
   session_unset();
 }

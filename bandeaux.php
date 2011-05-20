@@ -44,7 +44,7 @@ include_once('fonctions.php');
 function logo ()
 {
   if(defined('LOGOBANDEAU')) {
-    echo '<div class="logo"><img src="./'. LOGOBANDEAU .'" height="74" alt="logo"></div>'."\n";
+    echo '<div class="logo"><img src="'.get_server_name().LOGOBANDEAU.'" height="74" alt="logo"></div>'."\n";
   }
 }
 
@@ -81,7 +81,7 @@ function sous_bandeau()
 {
   echo '<div class="sousbandeau">' .
        '<a href="' . get_server_name() . 'index.php">'. _("Home") .'</a>' .
-       '<a href="' . get_server_name() . 'studs.php?sondage=aqg259dth55iuhwm">'. _("Example") .'</a>' .
+       '<a href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a>' .
        '<a href="' . get_server_name() . 'contacts.php">'. _("Contact") .'</a>' .
        //'<a href="' . get_server_name() . 'sources/sources.php">'. _("Sources") .'</a>' . //not implemented
        '<a href="' . get_server_name() . 'apropos.php">'. _("About") .'</a>' .

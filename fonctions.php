@@ -110,17 +110,24 @@ function is_user()
 }
 
 
-function print_header($js = false)
+function print_header($js = false, $nom_sondage = '')
 {
   echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>'.NOMAPPLICATION.'</title>
-    <link rel="stylesheet" type="text/css" href="style.css">';
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
+  if (empty($nom_sondage) === false) {
+    echo '
+    <title>'.$nom_sondage.' - '.NOMAPPLICATION.'</title>';
+  } else {
+    echo '
+    <title>'.NOMAPPLICATION.'</title>';
+  }
+  echo '
+    <link rel="stylesheet" type="text/css" href="'.get_server_name().'style.css">';
   
   if($js) {
-    echo '<script type="text/javascript" src="block_enter.js"></script>';
+    echo '<script type="text/javascript" src="'.get_server_name().'block_enter.js"></script>';
   }
   
   echo '</head>';
@@ -166,6 +173,32 @@ function issetAndNoEmpty($name, $tableau = null)
   }
   
   return (isset($tableau[$name]) === true && empty($tableau[$name]) === false);
+}
+
+
+/**
+ * Fonction permettant de générer les URL pour les sondage
+ * @param   string    $id     L'identifiant du sondage
+ * @param   bool      $admin  True pour générer une URL pour l'administration d'un sondage, False pour un URL publique
+ * @return  string            L'url pour le sondage
+ */
+function getUrlSondage($id, $admin = false)
+{
+  if (URL_PROPRE === true) {
+    if ($admin === true) {
+      $url = get_server_name().$id.'/admin';
+    } else {
+      $url = get_server_name().$id;
+    }
+  } else {
+    if ($admin === true) {
+      $url = get_server_name().'adminstuds.php?sondage='.$id;
+    } else {
+      $url = get_server_name().'studs.php?sondage='.$id;
+    }
+  }
+  
+  return $url;
 }
 
 

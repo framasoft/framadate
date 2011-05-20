@@ -117,7 +117,7 @@ if (isset($_POST["boutonnouveautitre"])) {
     mail ($adresseadmin,
           _("[ADMINISTRATOR] New title for your poll") . ' ' . NOMAPPLICATION,
           _("You have changed the title of your poll. \nYou can modify this poll with this link") .
-          " :\n\n".get_server_name()."/adminstuds.php?sondage=$numsondageadmin\n\n" .
+          " :\n\n".getUrlSondage($numsondageadmin, true)."\n\n" .
           _("Thanks for your confidence.") . "\n" . NOMAPPLICATION,
           $headers);
 
@@ -135,7 +135,7 @@ if (isset($_POST["boutonnouveauxcommentaires"])) {
     mail ($adresseadmin,
           _("[ADMINISTRATOR] New comments for your poll") . ' ' . NOMAPPLICATION,
           _("You have changed the comments of your poll. \nYou can modify this poll with this link") .
-          " :\n\n".get_server_name()."/adminstuds.php?sondage=$numsondageadmin \n\n" .
+          " :\n\n".getUrlSondage($numsondageadmin, true)." \n\n" .
           _("Thanks for your confidence.") . "\n" . NOMAPPLICATION,
           $headers);
     
@@ -154,7 +154,7 @@ if (isset($_POST["boutonnouvelleadresse"])){
     mail ($_POST['nouvelleadresse'],
           _("[ADMINISTRATOR] New email address for your poll") . ' ' . NOMAPPLICATION,
           _("You have changed your email address in your poll. \nYou can modify this poll with this link") .
-          " :\n\n".get_server_name()."/adminstuds.php?sondage=$numsondageadmin\n\n" .
+          " :\n\n".getUrlSondage($numsondageadmin, true)."\n\n" .
           _("Thanks for your confidence.") . "\n" . NOMAPPLICATION,
           $headers);
     
@@ -177,7 +177,7 @@ if ($_POST["ajoutsujet_x"]){
   sous_bandeau();
   
   //on recupere les données et les sujets du sondage
-  echo '<form name="formulaire" action="adminstuds.php?sondage='.$numsondageadmin.'" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+  echo '<form name="formulaire" action="'.getUrlSondage($numsondageadmin, true).'" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
     
   echo '<div class="corpscentre">'."\n";
   echo "<H2>" . _("Column's adding") . "</H2><br><br>"."\n";
@@ -639,7 +639,7 @@ $toutsujet=str_replace("@","<br>",$toutsujet);
 $toutsujet=str_replace("°","'",$toutsujet);
 $nbcolonnes=substr_count($dsujet->sujet,',')+1;
 
-echo '<form name="formulaire" action="adminstuds.php?sondage='.$numsondageadmin.'" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+echo '<form name="formulaire" action="'.getUrlSondage($numsondageadmin, true).'" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 echo '<div class="cadre"> '."\n";
 echo _('As poll administrator, you can change all the lines of this poll with <img src="images/info.png" alt="infos">.<br> You can, as well, remove a column or a line with <img src="images/cancel.png" alt="Cancel">. <br>You can also add a new column with <img src="images/add-16.png" alt="Add column">.<br> Finally, you can change the informations of this poll like the title, the comments or your email address.') ."\n";
 echo '<br><br>'."\n";

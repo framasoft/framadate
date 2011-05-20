@@ -166,7 +166,7 @@ if (!is_error(NO_POLL) && isset($_POST["boutonp"])) {
   }
 }
 
-print_header(true);
+print_header(true, $dsondage->titre);
 echo '<body>'."\n";
 logo();
 bandeau_tete();
