@@ -75,6 +75,9 @@ define('LOGOBANDEAU', '<chemin relatif suivi du nom du fichier du logo pour le b
 // Nom et emplacement du logo de la lettre générée en PDF
 define('LOGOLETTRE', '<chemin relatif suivi du nom du fichier du logo pour la lettre>');
 
+// Activation des URL propre (true pour activer, false sinon)
+define('URL_PROPRE', false);
+
 if (@file_exists('variables.local.php')) {
     include('variables.local.php');
 }
