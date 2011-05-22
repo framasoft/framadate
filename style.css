@@ -373,6 +373,14 @@ p.affichageresultats{
 	font-size:13px;
 }
 
+div.comment{
+	width:100%;
+}
+
+div.comment span.usercomment{
+	font-weight:bold;
+}
+
 a.affichageexport{
 	text-align: center;
 	font-family:arial;

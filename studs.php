@@ -244,7 +244,7 @@ echo _("Initiator of the poll") .' : '.$dsondage->nom_admin.'<br><br>'."\n";
 if ($dsondage->commentaires) {
   echo _("Comments") .' :<br>'."\n";
   $commentaires = $dsondage->commentaires;
-  $commentaires=str_replace("\\","",$commentaires);
+  $commentaires=nl2br(str_replace("\\","",$commentaires));
   echo $commentaires;
   echo '<br>'."\n";
 }
@@ -621,7 +621,7 @@ $comment_user=$connect->Execute($sql, array($numsondage));
 if ($comment_user->RecordCount() != 0) {
   print "<br><b>" . _("Comments of polled people") . " :</b><br>\n";
   while($dcomment = $comment_user->FetchNextObject(false)) {
-    print $dcomment->usercomment . ' : ' . $dcomment->comment . '<br />';
+    print '<div class="comment"><span class="usercomment">'.$dcomment->usercomment. ' :</span> <span class="comment">' . nl2br($dcomment->comment) . '</span></div>';
   }
 }
 

@@ -224,7 +224,7 @@ if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
     echo '<br><br>'. _("Add a start hour (optional)") .' : <br><br>'."\n";
     echo '<select name="nouvelleheuredebut"> '."\n";
     echo '<OPTION VALUE="vide"></OPTION>'."\n";
-    for ($i = 7; $i < 22; $i++) {
+    for ($i = 0; $i < 24; $i++) {
       echo '<OPTION VALUE="'.$i.'">'.$i.' H</OPTION>'."\n";
     }
     echo '</SELECT>'."\n";
@@ -238,7 +238,7 @@ if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
     echo '<br><br>'. _("Add a end hour (optional)") .' : <br><br>'."\n";
     echo '<select name="nouvelleheurefin"> '."\n";
     echo '<OPTION VALUE="vide"></OPTION>'."\n";
-    for ($i = 7; $i < 22; $i++) {
+    for ($i = 0; $i < 24; $i++) {
       echo '<OPTION VALUE="'.$i.'">'.$i.' H</OPTION>'."\n";
     }
     echo '</SELECT>'."\n";
@@ -463,7 +463,7 @@ if (isset($_POST["ajoutercolonne_x"]) && ($dsondage->format == "D" || $dsondage-
       }
     }
     
-    if($_POST["nouvelleheuredebut"] == "vide" || ($_POST["nouvelleheuredebut"] && $_POST["nouvelleheurefin"] && (($_POST["nouvelleheuredebut"] < $_POST["nouvelleheurefin"]) || (($_POST["nouvelleheuredebut"] == $_POST["nouvelleheurefin"]) && ($_POST["nouvelleminutedebut"] < $_POST["nouvelleminutefin"]))))) {
+    if($_POST["nouvelleheuredebut"] == "vide" || (isset($_POST["nouvelleheuredebut"]) && isset($_POST["nouvelleheurefin"]) && (($_POST["nouvelleheuredebut"] < $_POST["nouvelleheurefin"]) || (($_POST["nouvelleheuredebut"] == $_POST["nouvelleheurefin"]) && ($_POST["nouvelleminutedebut"] < $_POST["nouvelleminutefin"]))))) {
       $erreur_ajout_date = false;
     } else {
       $erreur_ajout_date = "yes";
