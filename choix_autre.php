@@ -47,7 +47,7 @@ if (file_exists('bandeaux_local.php')) {
 }
 
 //si les variables de session ne sont pas valides, il y a une erreur
-if (!$_SESSION["nom"]&&!$_SESSION["adresse"]&&!$_SESSION["commentaires"]&&!$_SESSION["mail"]) {
+if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SESSION) === false || issetAndNoEmpty('adresse', $_SESSION) === false) {
   echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
   echo '<html>'."\n";
   echo '<head>'."\n";
@@ -72,60 +72,70 @@ if (!$_SESSION["nom"]&&!$_SESSION["adresse"]&&!$_SESSION["commentaires"]&&!$_SES
   //partie creation du sondage dans la base SQL
   //On prépare les données pour les inserer dans la base
   
-  if ($_POST["confirmecreation_x"]) {
+  $erreur = false;
+  $testdate = true;
+  $date_selected = '';
+  
+  if (isset($_POST["confirmecreation"]) || isset($_POST["confirmecreation_x"])) {
     //recuperation des données de champs textes
-    for ($i=0;$i<$_SESSION["nbrecases"]+1;$i++) {
-      if ($_POST["choix"][$i]) {
+    $toutchoix = '';
+    for ($i = 0; $i < $_SESSION["nbrecases"] + 1; $i++) {
+      if (isset($_POST["choix"]) && issetAndNoEmpty($i, $_POST["choix"])) {
         $toutchoix.=',';
-        $toutchoix.=str_replace(","," ",$_POST["choix"][$i]);
+        $toutchoix.=str_replace(",", " ", htmlentities(html_entity_decode($_POST["choix"][$i], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8'));
       }
     }
     
-    $toutchoix=str_replace("'","°",$toutchoix);
     $toutchoix=substr("$toutchoix",1);
     $_SESSION["toutchoix"]=$toutchoix;
     
-    if ($_POST["champdatefin"]) {
+    if (issetAndNoEmpty('champdatefin')) {
       $registredate=explode("/",$_POST["champdatefin"]);
-      if (mktime(0,0,0,$registredate[1],$registredate[0],$registredate[2])>time()+250000) {
-        $_SESSION["champdatefin"]=mktime(0,0,0,$registredate[1],$registredate[0],$registredate[2]);
+      if (is_array($registredate) === false || count($registredate) !== 3) {
+        $testdate = false;
+        $date_selected = $_POST["champdatefin"];
+      } else {
+        $time = mktime(0,0,0,$registredate[1],$registredate[0],$registredate[2]);
+        if ($time === false || date('d/m/Y', $time) !== $_POST["champdatefin"]) {
+          $testdate = false;
+          $date_selected = $_POST["champdatefin"];
+        } else {
+          if (mktime(0,0,0,$registredate[1],$registredate[0],$registredate[2]) > time() + 250000) {
+            $_SESSION["champdatefin"]=mktime(0,0,0,$registredate[1],$registredate[0],$registredate[2]);
+          }
+        }
       }
     } else {
       $_SESSION["champdatefin"]=time()+15552000;
     }
     
-    //format du sondage AUTRE
-    $_SESSION["formatsondage"]="A".$_SESSION["studsplus"];
-    
-    ajouter_sondage();
-  }
-  
-  // recuperation des sujets pour sondage AUTRE
-  for ($i=0;$i<$_SESSION["nbrecases"];$i++) {
-    if (!preg_match(';<|>|";',$_POST["choix"][$i])) {
-      $_SESSION["choix$i"]=$_POST["choix"][$i];
+    if ($testdate === true) {
+      //format du sondage AUTRE
+      $_SESSION["formatsondage"]="A".$_SESSION["studsplus"];
+      
+      ajouter_sondage();
     } else {
-      $erreur_injection="yes";
+      $_POST["fin_sondage_autre"] = 'ok';
     }
   }
   
-  //nombre de cases par défaut
-  if (!$_SESSION["nbrecases"]) {
+  // recuperation des sujets pour sondage AUTRE
+  $erreur_injection = false;
+  if (isset($_SESSION["nbrecases"])) {
+    for ($i = 0; $i < $_SESSION["nbrecases"]; $i++) {
+      if (isset($_POST["choix"]) && isset($_POST["choix"][$i])) {
+        $_SESSION["choix$i"]=htmlentities(html_entity_decode($_POST["choix"][$i], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
+      }
+    }
+  } else { //nombre de cases par défaut
     $_SESSION["nbrecases"]=10;
   }
   
-  if ($_POST["ajoutcases"]||$_POST["ajoutcases_x"]) {
+  if (isset($_POST["ajoutcases"]) || isset($_POST["ajoutcases_x"])) {
     $_SESSION["nbrecases"]=$_SESSION["nbrecases"]+5;
   }
   
-  echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-  echo '<html>'."\n";
-  echo '<head>'."\n";
-  echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-  echo '<title>'.NOMAPPLICATION.'</title>'."\n";
-  echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
-  echo '<script type="text/javascript" src="block_enter.js"></script>';
-  echo '</head>'."\n";
+  print_header();
   echo '<body>'."\n";
   
   echo '<form name="formulaire" action="#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
@@ -139,8 +149,11 @@ if (!$_SESSION["nom"]&&!$_SESSION["adresse"]&&!$_SESSION["commentaires"]&&!$_SES
   echo '<table>'."\n";
   
   //affichage des cases texte de formulaire
-  for ($i=0;$i<$_SESSION["nbrecases"];$i++) {
-    $j=$i+1;
+  for ($i = 0; $i < $_SESSION["nbrecases"]; $i++) {
+    $j = $i + 1;
+    if (isset($_SESSION["choix$i"]) === false) {
+      $_SESSION["choix$i"] = '';
+    }
     echo '<tr><td>'. _("Choice") .' '.$j.' : </td><td><input type="text" name="choix[]" size="40" maxlength="40" value="'.str_replace("\\","",$_SESSION["choix$i"]).'" id="choix'.$i.'"></td></tr>'."\n";
   }
   
@@ -162,28 +175,34 @@ if (!$_SESSION["nom"]&&!$_SESSION["adresse"]&&!$_SESSION["commentaires"]&&!$_SES
   echo '</tr></table>'."\n";
   
   //test de remplissage des cases
+  $testremplissage = '';
   for ($i=0;$i<$_SESSION["nbrecases"];$i++) {
-    if ($_POST["choix"][$i]!="") {
+    if (isset($_POST["choix"]) && issetAndNoEmpty($i, $_POST["choix"])) {
       $testremplissage="ok";
     }
   }
   
   //message d'erreur si aucun champ renseigné
-  if ($testremplissage!="ok"&&($_POST["fin_sondage_autre"]||$_POST["fin_sondage_autre_x"])) {
+  if ($testremplissage != "ok" && (isset($_POST["fin_sondage_autre"]) || isset($_POST["fin_sondage_autre_x"]))) {
     print "<br><font color=\"#FF0000\">" . _("Enter at least one choice") . "</font><br><br>"."\n";
-    $erreur="yes";
+    $erreur = true;
+  }
+  
+  //message d'erreur si mauvaise date
+  if ($testdate === false) {
+    print "<br><font color=\"#FF0000\">" . _("Date must be have the format DD/MM/YYYY") . "</font><br><br>"."\n";
   }
   
   if ($erreur_injection) {
     print "<font color=#FF0000>" . _("Characters \" < and > are not permitted") . "</font><br><br>\n";
   }
   
-  if (($_POST["fin_sondage_autre"]||$_POST["fin_sondage_autre_x"])&&!$erreur&&!$erreur_injection) {
+  if ((isset($_POST["fin_sondage_autre"]) || isset($_POST["fin_sondage_autre_x"])) && !$erreur && !$erreur_injection) {
     //demande de la date de fin du sondage
     echo '<br>'."\n";
     echo '<div class=presentationdatefin>'."\n";
     echo '<br>'. _("Your poll will be automatically removed after 6 months.<br> You can fix another removal date for it.") .'<br><br>'."\n";
-    echo _("Removal date (optional)") .' : <input type="text" name="champdatefin" size="10" maxlength="10"> '. _("(DD/MM/YYYY)") ."\n";
+    echo _("Removal date (optional)") .' : <input type="text" name="champdatefin" value="'.$date_selected.'" size="10" maxlength="10"> '. _("(DD/MM/YYYY)") ."\n";
     echo '</div>'."\n";
     echo '<div class=presentationdatefin>'."\n";
     echo '<font color=#FF0000>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll. <br><br>Then, you will receive quickly an email contening the link to your poll for sending it to the voters.") .'</font>'."\n";

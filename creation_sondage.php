@@ -78,15 +78,33 @@ function ajouter_sondage()
     $date_fin=$_SESSION["totalchoixjour"][$taille_tableau]+200000;
   }
   
+  if (is_numeric($date_fin) === false) {
+    $date_fin = time()+15552000;
+  }
+  
   $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
   
   global $connect;
   
-  $connect->Execute('insert into sondage ' .
-                    '(id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, date_fin, format, mailsonde) ' .
-                    'VALUES '.
-                    "('$sondage','$_SESSION[commentaires]', '$_SESSION[adresse]', '$_SESSION[nom]', '$_SESSION[titre]','$sondage_admin', FROM_UNIXTIME('$date_fin'), '$_SESSION[formatsondage]','$_SESSION[mailsonde]'  )");
-  $connect->Execute("insert into sujet_studs values ('$sondage', '$_SESSION[toutchoix]' )");
+  $sql = 'INSERT INTO sondage
+          (id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, date_fin, format, mailsonde)
+          VALUES (
+          '.$connect->Param('id_sondage').',
+          '.$connect->Param('commentaires').',
+          '.$connect->Param('mail_admin').',
+          '.$connect->Param('nom_admin').',
+          '.$connect->Param('titre').',
+          '.$connect->Param('id_sondage_admin').',
+          FROM_UNIXTIME('.$date_fin.'),
+          '.$connect->Param('format').',
+          '.$connect->Param('mailsonde').'
+          )';
+  $sql = $connect->Prepare($sql);
+  $res = $connect->Execute($sql, array($sondage, $_SESSION['commentaires'], $_SESSION['adresse'], $_SESSION['nom'], $_SESSION['titre'], $sondage_admin, $_SESSION['formatsondage'], $_SESSION['mailsonde']));
+  
+  $sql = 'INSERT INTO sujet_studs values ('.$connect->Param('sondage').', '.$connect->Param('choix').')';
+  $sql = $connect->Prepare($sql);
+  $connect->Execute($sql, array($sondage, $_SESSION['toutchoix']));
   
   $message = _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
   $message .= "\n\n";

@@ -361,7 +361,7 @@ if ($dsondage->commentaires){
   echo '<br>'. _("Comments") .' :<br>'."\n";
   $commentaires=$dsondage->commentaires;
   $commentaires=str_replace("\\","",$commentaires);       
-  echo $commentaires;
+  echo nl2br($commentaires);
   echo '<br>'."\n";
 }
 echo '<br>'."\n";
@@ -417,7 +417,7 @@ if (isset($_POST["ajoutercolonne_x"]) && issetAndNoEmpty('nouvellecolonne') && (
   //on rajoute la valeur a la fin de tous les sujets deja entrés
   $nouveauxsujets.=",";
   $nouveauxsujets.=str_replace(","," ",$_POST["nouvellecolonne"]);
-  $nouveauxsujets=str_replace("'","°",$nouveauxsujets);
+  $nouveauxsujets = htmlentities(html_entity_decode($nouveauxsujets, ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
   
   //mise a jour avec les nouveaux sujets dans la base
   $sql = 'UPDATE sujet_studs SET sujet = '.$connect->Param('nouveauxsujets').' WHERE id_sondage = '.$connect->Param('numsondage');
