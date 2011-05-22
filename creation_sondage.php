@@ -117,8 +117,10 @@ function ajouter_sondage()
   $message = sprintf($message, getUrlSondage($sondage));
   $message_admin = sprintf($message_admin, getUrlSondage($sondage_admin, true));
   
-  mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), $message, $headers);
-  mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), $message, $headers);
+  if (validateEmail($_SESSION['adresse'])) {
+    mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), $message, $headers);
+    mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), $message, $headers);
+  }
   
   $date=date('H:i:s d/m/Y:');
   error_log($date . " CREATION: $sondage\t$_SESSION[formatsondage]\t$_SESSION[nom]\t$_SESSION[adresse]\t \t$_SESSION[toutchoix]\n", 3, 'admin/logs_studs.txt');
