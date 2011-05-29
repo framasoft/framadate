@@ -1,7 +1,14 @@
-Les dernières améliorations de STUdS
+Les dernières améliorations d'OpenSondage
 	Changelog version 0.6.7 (mai 2011)
 	- fork du projet STUdS (https://sourcesup.cru.fr/projects/studs/) de la version trunk du 15 mai 2011)
+        - reprise par Simon Leblanc
         - nettoyage du code (indentation, cohérence de la convention de codage)
+        - suppression des warning php
+        - résolution d'une faille de sécurité par injection SQL
+        - résolution d'une faille de sécurité par injection mail
+        - correction dans le fichier de langue (merci à Julien Reitzel)
+        - possibilité de mettre un texte libre pour les horaires
+Les dernières améliorations de STUdS
 	Changelog version 0.6.6 (XXX 2011) :
 	- internationalisation avec gettext
 	- abstraction de la base de données avec ADOdb
