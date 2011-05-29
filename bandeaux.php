@@ -52,7 +52,7 @@ function logo ()
 #le bandeau principal
 function bandeau_tete()
 {
-  echo '<div class="bandeau">'.NOMAPPLICATION.'</div>'."\n";
+  echo '<div class="bandeau"><p class="framamauve">Frama</p><p class="framorange">date</p></div>'."\n";
 }
 
 
@@ -79,7 +79,7 @@ function liste_lang()
 #Les sous-bandeaux contenant les boutons de navigation
 function sous_bandeau()
 {
-  echo '<div class="sousbandeau">' .
+  /*echo '<div class="sousbandeau">' .
        '<a href="' . get_server_name() . 'index.php">'. _("Home") .'</a>' .
        '<a href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a>' .
        '<a href="' . get_server_name() . 'contacts.php">'. _("Contact") .'</a>' .
@@ -88,7 +88,7 @@ function sous_bandeau()
        '<a href="' . get_server_name() . 'admin/index.php">'. _("Admin") .'</a>' .
        '<span class="sousbandeau sousbandeaulangue">' .
        liste_lang() . '</span>'.
-       '</div>' . "\n";
+       '</div>' . "\n";*/
 }
 
 
@@ -110,9 +110,9 @@ function sous_bandeau_admin()
 
 function sous_bandeau_choix()
 {
-  echo '<div class="sousbandeau">' .
+  /*echo '<div class="sousbandeau">' .
        '<a href="' . get_server_name() . 'index.php">'. _("Home") .'</a>' .
-       '</div>'."\n";
+       '</div>'."\n";*/
 }
 
 
@@ -125,12 +125,32 @@ function sur_bandeau_pied()
 
 function bandeau_pied()
 {
-  echo '<div class="bandeaupied">'. _("Universit&eacute; de Strasbourg. Creation: Guilhem BORGHESI. 2008-2009") .'</div>'."\n";
+  //echo '<div class="bandeaupied">'. _("Universit&eacute; de Strasbourg. Creation: Guilhem BORGHESI. 2008-2009") .'</div>'."\n";
+  echo '<div class="sousbandeau">' .
+       '<a href="' . get_server_name() . 'index.php">'. _("Home") .'</a>' .
+       '<a href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a>' .
+       '<a href="' . get_server_name() . 'contacts.php">'. _("Contact") .'</a>' .
+       //'<a href="' . get_server_name() . 'sources/sources.php">'. _("Sources") .'</a>' . //not implemented
+       '<a href="' . get_server_name() . 'apropos.php">'. _("About") .'</a>' .
+       '<a href="' . get_server_name() . 'admin/index.php">'. _("Admin") .'</a>' .
+       '<span class="sousbandeau sousbandeaulangue">' .
+       liste_lang() . '</span>'.
+       '</div>' . "\n";
 }
 
 
 function bandeau_pied_mobile()
 {
-  echo '<div class="surbandeaupiedmobile"></div>'."\n" .
-       '<div class="bandeaupiedmobile">'. _("Universit&eacute; de Strasbourg. Creation: Guilhem BORGHESI. 2008-2009") .'</div>'."\n";
+  /*echo '<div class="surbandeaupiedmobile"></div>'."\n" .
+       '<div class="bandeaupiedmobile">'. _("Universit&eacute; de Strasbourg. Creation: Guilhem BORGHESI. 2008-2009") .'</div>'."\n";*/
+  echo '<div class="sousbandeau">' .
+       '<a href="' . get_server_name() . 'index.php">'. _("Home") .'</a>' .
+       '<a href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a>' .
+       '<a href="' . get_server_name() . 'contacts.php">'. _("Contact") .'</a>' .
+       //'<a href="' . get_server_name() . 'sources/sources.php">'. _("Sources") .'</a>' . //not implemented
+       '<a href="' . get_server_name() . 'apropos.php">'. _("About") .'</a>' .
+       '<a href="' . get_server_name() . 'admin/index.php">'. _("Admin") .'</a>' .
+       '<span class="sousbandeau sousbandeaulangue">' .
+       liste_lang() . '</span>'.
+       '</div>' . "\n";
 }

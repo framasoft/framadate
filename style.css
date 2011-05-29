@@ -43,17 +43,39 @@ Le fichier style.css est le fichier de style de studs. Il se trouve à la racine
 du répertoire studs. Il contient toutes les mises en forme des fichiers PHP
 de Studs.
 */
+
+body {
+  margin:0;
+  background: #F7FAFE;
+  font-family: "Lucida Grande",Verdana,Arial,sans-serif;
+  font-size: 14px;
+}
+
 /*bandeau de titre*/
+.framorange {
+  color: #FF8400;
+  display: inline;
+  font-family: "bitstream sans","bitstream vera sans",'Helvetica Neue',Helvetica,Arial,'Liberation Sans',FreeSans,"sans-serif";
+  font-weight: bold;
+  text-shadow: 0.05em 0.05em 0.05em #404040;
+}
+.framamauve {
+  color: #6B6BB5;
+  display: inline;
+  font-family: "bitstream sans","bitstream vera sans",'Helvetica Neue',Helvetica,Arial,'Liberation Sans',FreeSans,"sans-serif";
+  font-weight: bold;
+  text-shadow: 0.05em 0.05em 0.05em #404040;
+}
+
 div.bandeau{ 
-	line-height:35px;
 	text-align:center;
-	background-color: #0b419b;
+	background-color: #EAEAFF;
 	color:white;
 	vertical-align:middle;
-	font-size:35px;
+	font-size:42px;
 	font-family:arial;
 	padding:8px; 
-	height:35px;
+	height:50px;
 	position:static;
 	top:6px;
 	left:6px;
@@ -72,11 +94,12 @@ div.logo{
 /*Sous bandeau avec bouton de navigation*/
 div.bandeautitre{ 
 	height:17px;
-	background-color: #0077DD;
+	background-color: #EAEAFF;
 	font-size:14px;
 	font-weight:bold;
 	text-align:center;
-	color:white;
+	color:#404040;
+        font-style: italic;
 	vertical-align:middle;
 	font-family:arial;
  	padding:3px; 
@@ -87,12 +110,12 @@ div.bandeautitre{
 } 
 div.sousbandeau{ 
 	height:17px;
-	background-color: #DDDDDD;
+	background-color: #C4C4FF;
 	font-size:11px;
 	color:black;
 	vertical-align:middle;
 	font-family:arial;
-	padding:3px;
+	padding:5px;
 	position:static;
 	top:80px;
 	left:6px;
@@ -100,7 +123,7 @@ div.sousbandeau{
 }
 /*bandeau de pied*/
 div.surbandeaupied{ 
-	background-color: #0077DD;
+	background-color: #EAEAFF;
 	position:absolute;
 	bottom:30px;
 	left:6px;
@@ -109,7 +132,7 @@ div.surbandeaupied{
 }
 div.bandeaupied{ 
 	text-align:center;
-	background-color: #0b419b;
+	background-color: #C4C4FF;
 	color:white;
 	font-size:11px;
 	font-family:arial;
@@ -121,7 +144,7 @@ div.bandeaupied{
 	margin:2px;
 }
 div.surbandeaupiedmobile{ 
-	background-color: #0077DD;
+	background-color: #EAEAFF;
 	position:static; 
 	bottom:32px;
 	left:6px;
@@ -130,7 +153,7 @@ div.surbandeaupiedmobile{
 }
 div.bandeaupiedmobile{ 
 	text-align:center;
-	background-color: #0b419b;
+	background-color: #C4C4FF;
 	color:white;
 	font-size:11px;
 	font-family:arial;
@@ -139,7 +162,8 @@ div.bandeaupiedmobile{
 }
 /*les boutons se trouvant dans le sousbandeau*/
 div.sousbandeau a, div.sousbandeau span.sousbandeaulangue a {
- 	background-color: #0b419b; 
+ 	background-color: #3E779D;
+        background: -moz-linear-gradient(center top , #3E779D, #65A9D7) repeat scroll 0 0 transparent;
 	height:16px;
 	padding: 2px 6px 2px 6px;
 	vertical-align:middle;
@@ -150,6 +174,10 @@ div.sousbandeau a, div.sousbandeau span.sousbandeaulangue a {
 	color:white;
 	font-size:10px;
 	text-decoration:none;
+        border-radius: 14px 14px 14px 14px;
+	border-top: 1px solid #96D1F8;
+	box-shadow: 0 1px 0 #000000;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 span.sousbandeaulangue {
 	margin-left:6px;
@@ -157,14 +185,17 @@ span.sousbandeaulangue {
 	float:right;
 }
 /*corps de la page index.php*/
-div.corps{ 
-	font-size:12px;
-	font-family:arial;
-	position:static;
-	top:170px;
-	left:20px;
-	right:20px;
-	padding:30px;
+div.corps{
+  border-top: 3px solid #CCCCCC;
+  font-size: 14px;
+  left: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+  position: static;
+  right: 20px;
+  top: 170px;
+  width: 800px;
 }
 div.corps  table{
 	font-family:arial;
@@ -180,6 +211,20 @@ div.corpscentre{
 	margin-right:10%;
 	margin-left:10%;
 	width:80%;
+}
+div.nouveau_sondage b {
+  font-size:12px;
+  font-weight:bold;
+  line-height:32px;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right:10px;
+}
+div.nouveau_sondage span {
+  font-size:12px;
+  height:32px;
+  vertical-align: middle;
+  display: inline-block; 
 }
 /*affichage des jours*/
 div.jourschoisis {
@@ -260,13 +305,13 @@ div.cadre td {
 }
 /*case de tableau OK dans affichage de sondage*/
 div.cadre td.ok {
-	background-color: #66FF99; 
+	background-color: #9494CF;
 	font-size:12px;	
 	text-align:center;
 }
 /*Case de tableau NON dans affichage de sondage*/
 div.cadre td.non {
-	background-color: #FF7777; 
+	background-color: #FFC475; 
 	width:35px;
 }
 /*Case de tableau VIDE dans affichage de sondage*/
@@ -433,6 +478,7 @@ div.error, div.addcomment {
     font-size: 13px;
 }
 ul.exports {
+  display:none; /* fonction non fonctionnelle */
     text-align:center;
     list-style-type : none ;
 }

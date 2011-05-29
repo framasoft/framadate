@@ -62,7 +62,7 @@ echo '<form name=formulaire action="index.php" method="POST">'."\n";
 //bandeaux de tete
 logo();
 bandeau_tete();
-bandeau_titre(_("Make your polls"));
+bandeau_titre(_("Organiser des rendez-vous simplement, librement."));
 sous_bandeau();
 
 echo '<div class=corps>'."\n";
