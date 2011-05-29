@@ -85,7 +85,8 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
               $choixdate.=",";
               $choixdate .= $_SESSION["totalchoixjour"][$i];
               $choixdate.="@";
-              $choixdate .= $_SESSION["horaires$i"][$j];
+              // On remplace la virgule et l'arobase pour ne pas avoir de problème par la suite
+              $choixdate .= str_replace(array(',', '@'), array('&#44;', '&#64;'), $_SESSION["horaires$i"][$j]);
             }
           }
         }
@@ -461,8 +462,8 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
           } elseif ($_POST["horaires$i"][$j]=="") { //Si la case est vide
             unset($_SESSION["horaires$i"][$j]);
           } else { //pour tout autre format, message d'erreur
-            $errheure[$i][$j]=true;
-            $erreur=true;
+            //$errheure[$i][$j]=true;
+            //$erreur=true;
             $_SESSION["horaires$i"][$j] = $_POST["horaires$i"][$j];
           }
         }
