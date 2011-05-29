@@ -17,4 +17,4 @@ function process_keypress(e)
   }
 }
 
-document.onkeypress = process_keypress;
+//document.onkeypress = process_keypress;
