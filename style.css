@@ -295,6 +295,7 @@ div.presentationdate {
 	margin-top:10px;
 	margin-left:30%;
 	margin-right: 30%; 
+	background-color: #FFF;
 }
 div.presentationdatefin {
 	width:40%;
@@ -528,4 +529,12 @@ li.error {
 }
 .separateur {
  line-height: 4em;
+}
+.formulaire2 {
+    width:40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.formulaire2 input[name="lieureunion"] {
+    width: 350px;
 }
