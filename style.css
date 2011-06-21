@@ -57,14 +57,19 @@ body {
   display: inline;
   font-family: "bitstream sans","bitstream vera sans",'Helvetica Neue',Helvetica,Arial,'Liberation Sans',FreeSans,"sans-serif";
   font-weight: bold;
-  text-shadow: 0.05em 0.05em 0.05em #404040;
+  text-shadow: 1px 1px 1px #666;
+  font-size: 60px;
+   -webkit-font-smoothing: antialiased;
+   font-smooth: always;
 }
 .framamauve {
   color: #6B6BB5;
   display: inline;
   font-family: "bitstream sans","bitstream vera sans",'Helvetica Neue',Helvetica,Arial,'Liberation Sans',FreeSans,"sans-serif";
   font-weight: bold;
-  text-shadow: 0.05em 0.05em 0.05em #404040;
+  text-shadow: 1px 1px 1px #666;
+  font-size: 60px;
+   -webkit-font-smoothing: antialiased;
 }
 
 div.bandeau{ 
@@ -82,6 +87,11 @@ div.bandeau{
 	right:6px;
 
 }
+
+.bandeau > a {
+    text-decoration:none;
+}
+
 div.logo{ 
 	height:64px;
 	float:right;
@@ -107,6 +117,8 @@ div.bandeautitre{
 	top:57px;
 	left:6px;
 	right:6px;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #CCC;
 } 
 div.sousbandeau{ 
 	height:17px;
@@ -115,11 +127,16 @@ div.sousbandeau{
 	color:black;
 	vertical-align:middle;
 	font-family:arial;
-	padding:5px;
-	position:static;
-	top:80px;
+	padding: 15px 10px 13px 10px;
+	position:fixed;
+	bottom: 0px;
+	width: 100%;
+	/* top:80px;
 	left:6px;
-	right:6px;
+	right:6px; */
+	/* display: none; */
+	margin-top: 1.5em;
+	border-top: 1px solid #999;
 }
 /*bandeau de pied*/
 div.surbandeaupied{ 
@@ -165,14 +182,14 @@ div.sousbandeau a, div.sousbandeau span.sousbandeaulangue a {
  	background-color: #3E779D;
         background: -moz-linear-gradient(center top , #3E779D, #65A9D7) repeat scroll 0 0 transparent;
 	height:16px;
-	padding: 2px 6px 2px 6px;
+	padding: 3px 8px 3px 8px;
 	vertical-align:middle;
 	text-align:center;
 	margin-left:10px;
 	margin-right:10px;
 	font-family:arial;
 	color:white;
-	font-size:10px;
+	font-size:12px;
 	text-decoration:none;
         border-radius: 14px 14px 14px 14px;
 	border-top: 1px solid #96D1F8;
@@ -185,20 +202,29 @@ span.sousbandeaulangue {
 	float:right;
 }
 /*corps de la page index.php*/
-div.corps{
-  border-top: 3px solid #CCCCCC;
-  font-size: 14px;
-  left: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 30px;
-  position: static;
-  right: 20px;
-  top: 170px;
-  width: 800px;
+
+.corps {
+   font-family: "Lucida Grande",Verdana,Arial,sans-serif;
+   font-size: 14px;
+   /* left: 20px; */
+   margin-left: auto;
+   margin-right: auto;
+   padding-bottom: 30px;
+   padding-left: 30px;
+   padding-right: 30px;
+   padding-top: 30px;
+   /* position: static;
+   right: 20px;
+   top: 170px; */
+   width: 800px;
+   border: 3px solid #CCC;
+   background-color: #fff;
+   box-shadow: 5px 5px 5px #666;
+   
 }
+
+
 div.corps  table{
-	font-family:arial;
 	font-size:12px;	
 	font-weight:bold;
 }
@@ -484,4 +510,22 @@ ul.exports {
 }
 li.error {
     color: red;
+}
+
+#creation_sondage_date, #creation_sondage_autre {
+    vertical-align: middle;
+    margin: 10px;
+    margin-left: 0;
+    padding-left: 5px;
+    border-left: 1px solid #ccc;
+}
+
+#choix_sondage {
+    width: 300px;
+}
+#choix_sondage tr:hover {
+    background: #fcc;
+}
+.separateur {
+ line-height: 4em;
 }
