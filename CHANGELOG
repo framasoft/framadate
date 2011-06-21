@@ -8,6 +8,7 @@ Les dernières améliorations d'OpenSondage
         - résolution d'une faille de sécurité par injection mail
         - correction dans le fichier de langue (merci à Julien Reitzel)
         - possibilité de mettre un texte libre pour les horaires
+        - version Framasoft
 Les dernières améliorations de STUdS
 	Changelog version 0.6.6 (XXX 2011) :
 	- internationalisation avec gettext
