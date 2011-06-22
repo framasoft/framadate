@@ -1133,7 +1133,7 @@ if ((isset($_POST["boutonnouveautitre"]) || isset($_POST["boutonnouveautitre_x"]
 }
 
 //Changer les commentaires du sondage
-echo _("Change the comments") .' :<br> <textarea name="nouveauxcommentaires" rows="7" cols="40">'.$dsondage->commentaires.'</textarea><br><input type="image" name="boutonnouveauxcommentaires" value="Changer les commentaires" src="images/accept.png" alt="Valider"><br><br>'."\n";
+echo _("Change the comments") .' :<br> <textarea name="nouveauxcommentaires" rows="7" cols="40">'.stripslashes($dsondage->commentaires).'</textarea><br><input type="image" name="boutonnouveauxcommentaires" value="Changer les commentaires" src="images/accept.png" alt="Valider"><br><br>'."\n";
 
 //Changer l'adresse de l'administrateur
 echo _("Change your email address") .' :<br> <input type="text" name="nouvelleadresse" size="40" value="'.$dsondage->mail_admin.'"> <input type="image" name="boutonnouvelleadresse" value="Changer votre adresse" src="images/accept.png" alt="Valider"><br>'."\n";
@@ -1181,7 +1181,7 @@ if (isset($_POST["suppressionsondage"])) {
 echo '</form>'."\n";
 
 if ($dsondage->format == "D" || $dsondage->format == "D+") {
-  echo '<form name="formulaire2" action="'.get_server_name().'exportpdf.php" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+  echo '<form name="formulaire2" action="'.get_server_name().'exportpdf.php" method="POST" onkeypress="javascript:process_keypress(event)" class="formulaire2">'."\n";
   echo _("Generate the convocation letter (.PDF), choose the place to meet and validate") .'<br>';
   echo '<input type="text" name="lieureunion" size="100" value="" />';
   echo '<input type="hidden" name="sondage" value="$numsondageadmin" />';

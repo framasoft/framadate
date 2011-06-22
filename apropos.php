@@ -71,6 +71,7 @@ echo '<div class=corps>'."\n";
 if (NOMAPPLICATION!="STUdS !") {
   echo '<b>Application d\'origine</b><br><br>'."\n";
   echo 'L\'application '.NOMAPPLICATION.' est une instance du logiciel <b><a href ="http://studs.u-strasbg.fr">STUdS !</a></b> d&eacute;velopp&eacute; &agrave; l\'Universit&eacute; de Strasbourg depuis 2008.<br><br>'."\n";
+  echo "Pour les besoins de Framadate, STUdS a fait l'objet d'un fork par l'équipe Framasoft. Les sources sont disponibles sur le Github <a href='https://github.com/leblanc-simon/OpenSondage'>OpenSondage</a>.<br/><br/>\n";
 }
 
 echo '<b>Licence Logicielle de '.NOMAPPLICATION.'</b><br><br>'."\n";

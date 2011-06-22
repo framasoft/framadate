@@ -658,6 +658,15 @@ msgstr ""
 msgid "Your poll has been removed!"
 msgstr "Your poll has been removed!"
 
+#: studs.php:245
+msgid "Share URL"
+msgstr "Share URL"
+
+#: choix_date.php:490
+msgid "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8\", \"evening\", etc.)"
+msgstr "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8\", \"evening\", etc.)"
+
+
 #~ msgid ""
 #~ "For each selected day, you can choose, or not, meeting hours in the "
 #~ "following format :<br>- empty,<br>- \"8h\", \"8H\" or \"8:00\" to give a "

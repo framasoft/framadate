@@ -192,7 +192,7 @@ logo();
 bandeau_tete();
 bandeau_titre(_("Make your polls"));
 sous_bandeau();
-
+#print_r($_SESSION);
 if($err != 0) {
   bandeau_titre(_("Error!"));
 
@@ -217,6 +217,7 @@ if($err != 0) {
   }
   echo '</ul></div>';
 
+
   if(is_error(NO_POLL_ID) || is_error(NO_POLL)) {
     echo '<div class=corpscentre>'."\n";
     print "<H2>" . _("This poll doesn't exist !") . "</H2>"."\n";
@@ -231,14 +232,18 @@ if($err != 0) {
   }
 }
 
+echo '<div class="corps">'; //ajout pyg cohérence graphique
+echo '<div class="imprimer""><a href="javascript:print()" class="button white medium">Imprimer</a></div>';
 echo '<div class="presentationdate"> '."\n";
 
 //affichage du titre du sondage
 $titre=str_replace("\\","",$dsondage->titre);
-echo '<H2>'.$titre.'</H2>'."\n";
+echo '<H2>'.stripslashes($titre).'</H2>'."\n";
 
 //affichage du nom de l'auteur du sondage
-echo _("Initiator of the poll") .' : '.$dsondage->nom_admin.'<br><br>'."\n";
+echo _("Initiator of the poll") .' : '.stripslashes($dsondage->nom_admin).'<br>'."\n";
+echo 'Adresse : <code>http://'. $_SERVER['SERVER_NAME']."/".$_SESSION['numsondage'].'</code><br>'."\n";;
+
 
 //affichage des commentaires du sondage
 if ($dsondage->commentaires) {
@@ -398,7 +403,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     for ($i=0; isset($toutsujet[$i]); $i++) {
       $heures=explode("@",$toutsujet[$i]);
       if (isset($heures[1]) === true) {
-        echo '<td class="heure">'.$heures[1].'</td>'."\n";
+        echo '<td class="heure">'.stripslashes($heures[1]).'</td>'."\n";
       } else {
 	echo '<td class="heure"></td>'."\n";
       }
@@ -414,7 +419,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
   echo '<td></td>'."\n";
   
   for ($i=0; isset($toutsujet[$i]); $i++) {
-    echo '<td class="sujet">'.$toutsujet[$i].'</td>'."\n";
+    echo '<td class="sujet">'.stripslashes($toutsujet[$i]).'</td>'."\n";
   }
   
   echo '</tr>'."\n";
@@ -433,7 +438,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
   
   // Le nom de l'utilisateur
   $nombase=str_replace("°","'",$data->nom);
-  echo $nombase.'</td>'."\n";
+  echo stripslashes($nombase).'</td>'."\n";
   
   // Les réponses qu'il a choisit
   $ensemblereponses = $data->reponses;
@@ -489,7 +494,7 @@ if (!isset($_SERVER['REMOTE_USER']) || !$user_mod) {
   echo '<tr>'."\n";
   echo '<td class="nom">'."\n";
   if (isset($_SESSION['nom'])) {
-    echo '<input type=hidden name="nom" value="'.$_SESSION['nom'].'">'.$_SESSION['nom']."\n";
+    echo '<input type=hidden name="nom" value="'.stripslashes($_SESSION['nom']).'">'.stripslashes($_SESSION['nom'])."\n";
   } else {
     echo '<input type=text name="nom" maxlength="64">'."\n";
   }
@@ -606,9 +611,9 @@ echo '<p class="affichageresultats">'."\n";
 
 // Affichage du meilleur choix
 if ($compteursujet == "1" && isset($meilleurecolonne)) {
-  print '<img src="images/medaille.png" alt="Meilleur choix"> ' . _('The best choice at this time is:') . "<b>$meilleursujet</b> " . _('with') . " <b>$meilleurecolonne </b>" . $vote_str . ".\n";
+  print '<img src="images/medaille.png" alt="Meilleur choix"> ' . _('The best choice at this time is:') . "<b>".stripslashes($meilleursujet)."</b> " . _('with') . " <b>$meilleurecolonne </b>" . $vote_str . ".\n";
 } elseif (isset($meilleurecolonne)) {
-  print '<img src="images/medaille.png" alt="Meilleur choix"> ' . _('The bests choices at this time are:') . " <b>$meilleursujet</b> " . _('with') . "  <b>$meilleurecolonne </b>" . $vote_str . ".\n";
+  print '<img src="images/medaille.png" alt="Meilleur choix"> ' . _('The bests choices at this time are:') . " <b>".stripslashes($meilleursujet)."</b> " . _('with') . "  <b>$meilleurecolonne </b>" . $vote_str . ".\n";
 }
 
 echo '</p>';
@@ -621,7 +626,7 @@ $comment_user=$connect->Execute($sql, array($numsondage));
 if ($comment_user->RecordCount() != 0) {
   print "<br><b>" . _("Comments of polled people") . " :</b><br>\n";
   while($dcomment = $comment_user->FetchNextObject(false)) {
-    print '<div class="comment"><span class="usercomment">'.$dcomment->usercomment. ' :</span> <span class="comment">' . nl2br($dcomment->comment) . '</span></div>';
+    print '<div class="comment"><span class="usercomment">'.stripslashes($dcomment->usercomment). ' :</span> <span class="comment">' . stripslashes(nl2br($dcomment->comment)) . '</span></div>';
   }
 }
 
@@ -648,6 +653,9 @@ if ( ($dsondage->format == 'D' || $dsondage->format == 'D+') && $compteursujet==
 
 echo '</ul>';
 echo '<a name="bas"></a>'."\n";
+
+echo '</div>'; // ajout pyg cohérence graphique
+
 bandeau_pied_mobile();
 // Affichage du bandeau de pied
 echo '</body>'."\n";

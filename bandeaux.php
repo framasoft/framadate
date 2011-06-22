@@ -52,7 +52,7 @@ function logo ()
 #le bandeau principal
 function bandeau_tete()
 {
-  echo '<div class="bandeau"><p class="framamauve">Frama</p><p class="framorange">date</p></div>'."\n";
+  echo '<div class="bandeau"><a href="/" title="Accueil Framadate"><span class="framamauve">Frama</span><span class="framorange">date</span></a></div>'."\n";
 }
 
 
@@ -69,7 +69,7 @@ function liste_lang()
   
   $str = '';
   foreach ($ALLOWED_LANGUAGES as $k => $v ) {
-    $str .= '<a href="' . $_SERVER['PHP_SELF'] . '?lang=' . $k . '">' . $v . '</a>' . "\n" ;
+    $str .= '<a class="button small gray" href="' . $_SERVER['PHP_SELF'] . '?lang=' . $k . '">' . $v . '</a>' . "\n" ;
   }
   
   return $str;
@@ -126,13 +126,14 @@ function sur_bandeau_pied()
 function bandeau_pied()
 {
   //echo '<div class="bandeaupied">'. _("Universit&eacute; de Strasbourg. Creation: Guilhem BORGHESI. 2008-2009") .'</div>'."\n";
+  echo '<div class="separateur">&nbsp;</div>';
   echo '<div class="sousbandeau">' .
-       '<a href="' . get_server_name() . 'index.php">'. _("Home") .'</a>' .
-       '<a href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a>' .
-       '<a href="' . get_server_name() . 'contacts.php">'. _("Contact") .'</a>' .
+       '<a class="button small gray" href="' . get_server_name() . 'index.php">'. _("Home") .'</a>' .
+       '<a class="button small gray" href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a>' .
+       '<a class="button small gray" href="' . get_server_name() . 'contacts.php">'. _("Contact") .'</a>' .
        //'<a href="' . get_server_name() . 'sources/sources.php">'. _("Sources") .'</a>' . //not implemented
-       '<a href="' . get_server_name() . 'apropos.php">'. _("About") .'</a>' .
-       '<a href="' . get_server_name() . 'admin/index.php">'. _("Admin") .'</a>' .
+       '<a class="button small gray" href="' . get_server_name() . 'apropos.php">'. _("About") .'</a>' .
+       '<a class="button small gray" href="' . get_server_name() . 'admin/index.php">'. _("Admin") .'</a>' .
        '<span class="sousbandeau sousbandeaulangue">' .
        liste_lang() . '</span>'.
        '</div>' . "\n";
@@ -143,13 +144,14 @@ function bandeau_pied_mobile()
 {
   /*echo '<div class="surbandeaupiedmobile"></div>'."\n" .
        '<div class="bandeaupiedmobile">'. _("Universit&eacute; de Strasbourg. Creation: Guilhem BORGHESI. 2008-2009") .'</div>'."\n";*/
+       echo '<div class="separateur">&nbsp;</div>';
   echo '<div class="sousbandeau">' .
-       '<a href="' . get_server_name() . 'index.php">'. _("Home") .'</a>' .
-       '<a href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a>' .
-       '<a href="' . get_server_name() . 'contacts.php">'. _("Contact") .'</a>' .
+       '<a class="button small gray" href="' . get_server_name() . 'index.php">'. _("Home") .'</a>' .
+       '<a class="button small gray" href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a>' .
+       '<a class="button small gray" href="' . get_server_name() . 'contacts.php">'. _("Contact") .'</a>' .
        //'<a href="' . get_server_name() . 'sources/sources.php">'. _("Sources") .'</a>' . //not implemented
-       '<a href="' . get_server_name() . 'apropos.php">'. _("About") .'</a>' .
-       '<a href="' . get_server_name() . 'admin/index.php">'. _("Admin") .'</a>' .
+       '<a class="button small gray" href="' . get_server_name() . 'apropos.php">'. _("About") .'</a>' .
+       '<a class="button small gray" href="' . get_server_name() . 'admin/index.php">'. _("Admin") .'</a>' .
        '<span class="sousbandeau sousbandeaulangue">' .
        liste_lang() . '</span>'.
        '</div>' . "\n";

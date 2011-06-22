@@ -129,7 +129,7 @@ msgstr "STUdS n'est pas correctement installé, merci de vous référer au fichi
 
 #: infos_sondage.php:125
 msgid "You are in the poll creation section. <br> Required fields cannot be left blank"
-msgstr "Vous avez choisi de cr&eacute;er un nouveau sondage !<br> Merci de remplir les champs obligatoires."
+msgstr "Vous avez choisi de cr&eacute;er un nouveau sondage !<br> Merci de remplir les champs obligatoires, marqu&eacute;s d'une *."
 
 #: infos_sondage.php:130
 msgid "Poll title *: "
@@ -183,17 +183,17 @@ msgstr " Vous souhaitez recevoir un mail &agrave; chaque participation d'un sond
 
 #: infos_sondage.php:188
 msgid "Schedule an event"
-msgstr "Sondage pour choisir une date"
+msgstr "Cr&eacute;er un sondage spécial dates"
 
 #: infos_sondage.php:190
 msgid "Make a choice"
-msgstr "Autre sondage"
+msgstr "Autres sondages"
 
 #: infos_sondage.php:192
 #: index.php:72
 #: index.php:74
 msgid "Make a poll"
-msgstr "Cr&eacute;er un sondage"
+msgstr "Cr&eacute;er un sondage classique"
 
 #: choix_date.php:217
 msgid "Poll dates (2 on 2)"
@@ -210,6 +210,11 @@ msgstr "Jour retenus"
 #: choix_date.php:489
 msgid "For each selected day, you can choose, or not, meeting hours in the following format :<br>- empty,<br>- \"8h\", \"8H\" or \"8:00\" to give a meeting's start hour,<br>- \"8-11\", \"8h-11h\", \"8H-11H\" ou \"8:00-11:00\" to give a meeting's start and end hour,<br>- \"8h15-11h15\", \"8H15-11H15\" ou \"8:15-11:15\" for the same thing but with minutes."
 msgstr "Pour chacun des jours que vous avez s&eacute;lectionn&eacute;, vous avez la possibilit&eacute; de choisir ou non, des heures de r&eacute;union avec ce format :<br>- vide, si vous ne d&eacute;sirez pas mettre d'horaires particuliers,<br>- \"8h\", \"8H\" ou \"8:00\" pour proposer une heure de d&eacute;but de r&eacute;union,<br>- \"8-11\", \"8h-11h\", \"8H-11H\" ou \"8:00-11:00\" pour un cr&eacute;neau,<br>- \"8h15-11h15\", \"8H15-11H15\" ou \"8:15-11:15\" pour un cr&eacute;neau avec minutes."
+
+#: choix_date.php:490
+msgid "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8\", \"evening\", etc.)"
+msgstr "Pour chacun des jours que vous avez s&eacute;lectionn&eacute;, vous avez la possibilit&eacute; de choisir ou non, des heures de r&eacute;union (par exemple : \"8h\", \"8:15\", \"8h-10h\", \"soir\")."
+
 
 #: choix_date.php:496
 msgid "Time"
@@ -327,7 +332,7 @@ msgstr "Merci de votre confiance."
 #: adminstuds.php:270
 #: adminstuds.php:314
 msgid "Make your polls"
-msgstr "Se Trouver &agrave; l'Universit&eacute; de Strasbourg"
+msgstr "Organiser des rendez-vous simplement, librement."
 
 #: studs.php:179
 #: adminstuds.php:884
@@ -366,7 +371,7 @@ msgstr "Auteur du sondage"
 #: adminstuds.php:328
 #: adminstuds.php:1012
 msgid "Comments"
-msgstr "Commentaires des sond&eacute;s"
+msgstr "Commentaire de l'auteur"
 
 #: studs.php:238
 msgid "If you want to vote in this poll, you have to give your name, choose the values that fit best for you<br>(without paying attention to the choices of the other voters) and validate with the plus button at the end of the line."
@@ -421,9 +426,13 @@ msgstr "Les meilleurs choix pour l'instant sont :"
 msgid "Comments of polled people"
 msgstr "Commentaires de sondés"
 
+#: studs.php:245
+msgid "Share URL"
+msgstr "URL a communiquer"
+
 #: studs.php:563
 msgid "Add a comment in the poll:"
-msgstr "Ajoutez un commentaire dans ce sondage :"
+msgstr "Ajoutez un commentaire à ce sondage :"
 
 #: studs.php:566
 #: adminstuds.php:1027

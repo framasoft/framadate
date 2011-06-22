@@ -118,7 +118,7 @@ function print_header($js = false, $nom_sondage = '')
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
   if (empty($nom_sondage) === false) {
     echo '
-    <title>'.$nom_sondage.' - '.NOMAPPLICATION.'</title>';
+    <title>'.stripslashes($nom_sondage).' - '.NOMAPPLICATION.'</title>';
   } else {
     echo '
     <title>'.NOMAPPLICATION.'</title>';

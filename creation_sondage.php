@@ -118,7 +118,7 @@ function ajouter_sondage()
   $message_admin = sprintf($message_admin, getUrlSondage($sondage_admin, true));
   
   if (validateEmail($_SESSION['adresse'])) {
-    mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), $message, $headers);
+    mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), $message_admin, $headers);
     mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), $message, $headers);
   }
   

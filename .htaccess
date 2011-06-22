@@ -1,4 +1,4 @@
-<IfModule mod_rewrite.c>
+#<IfModule mod_rewrite.c>
   RewriteEngine On
   
   RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -9,4 +9,4 @@
   RewriteRule ^([a-z0-9]{24})/admin$ adminstuds.php?sondage=$1
   # Pour le dernier j'ai honte, mais il y a trop de chose à modifier pour le moment :-)
   RewriteRule ^([a-z0-9]{24})/images/(.*)$ images/$2
-</IfModule>
+#</IfModule>

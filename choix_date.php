@@ -60,7 +60,7 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   logo();
   bandeau_tete();
   bandeau_titre(_("Error!"));
-  echo '<div class=corpscentre>'."\n";
+  echo '<div class=corpscentre corps>'."\n";
   print "<H2>" . _("You haven't filled the first section of the poll creation.") . " !</H2>"."\n";
   print _("Back to the homepage of ") . ' ' . '<a href="index.php">' . NOMAPPLICATION . '</a>.' . "\n";
   echo '<br><br><br>'."\n";
@@ -229,8 +229,11 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   bandeau_titre(_("Poll dates (2 on 2)"));
   sous_bandeau_choix();
   
+  //ajout pyg pour la cohérence graphique
+  echo ' <div class="corps">';
+  
   //affichage de l'aide pour les jours
-  echo '<div class=bodydate>'."\n";
+  echo '<div class="bodydate">'."\n";
   echo _("Select your dates amoung the free days (green). The selected days are in blue.<br> You can unselect a day previously selected by clicking again on it.") ."\n";
   echo '</div>'."\n";
   
@@ -375,7 +378,7 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   
   //traitement de l'entrée des heures dans les cases texte
   $errheure = $erreur = false;
-  if (issetAndNoEmpty('choixheures') || issetAndNoEmpty('choixheures_x')) {
+  if (issetAndNoEmpty('choixheures') || issetAndNoEmpty('choixheures_x') ) {
     //On sauvegarde les heures deja entrées
     if (issetAndNoEmpty('totalchoixjour', $_SESSION) === true && issetAndNoEmpty('nbrecaseshoraires', $_SESSION) === true) {
       for ($i = 0; $i < count($_SESSION["totalchoixjour"]); $i++) {
@@ -479,7 +482,8 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
     echo '<br>'."\n";
     echo '<H2>'. _("Selected days") .' :</H2>'."\n";
     //affichage de l'aide pour les jours
-    echo _("For each selected day, you can choose, or not, meeting hours in the following format :<br>- empty,<br>- \"8h\", \"8H\" or \"8:00\" to give a meeting's start hour,<br>- \"8-11\", \"8h-11h\", \"8H-11H\" ou \"8:00-11:00\" to give a meeting's start and end hour,<br>- \"8h15-11h15\", \"8H15-11H15\" ou \"8:15-11:15\" for the same thing but with minutes.") .'<br><br>'."\n";
+    //echo _("For each selected day, you can choose, or not, meeting hours in the following format :<br>- empty,<br>- \"8h\", \"8H\" or \"8:00\" to give a meeting's start hour,<br>- \"8-11\", \"8h-11h\", \"8H-11H\" ou \"8:00-11:00\" to give a meeting's start and end hour,<br>- \"8h15-11h15\", \"8H15-11H15\" ou \"8:15-11:15\" for the same thing but with minutes.") .'<br><br>'."\n";
+    echo _("For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8\", \"evening\", etc.)") .'<br><br>'."\n";
     echo '<table>'."\n";
     echo '<tr>'."\n";
     echo '<td></td>'."\n";
@@ -539,9 +543,14 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
     echo '<table>'."\n";
     echo '<tr>'."\n";
     echo '<td><input type=submit name="reset" value="'. _("Remove all days") .'"></td><td><input type=submit name="reporterhoraires" value="'. _("Copy hours of the first day") .'"></td><td><input type=submit name="resethoraires" value="'. _("Remove all hours") .'"></td></tr>'."\n";
-    echo'<tr><td><br></td></tr>'."\n";
-    echo '<tr><td>'. _("Next") .'</td><td><input type=image name="choixheures" value="'. _("Next") .'" src="images/next-32.png"></td></tr>'."\n";
+#    echo'<tr><td><br></td></tr>'."\n";
+#    echo '<tr><td>'. _("Next") .'</td><td><input type=image name="choixheures" value="'. _("Next") .'" src="images/next-32.png"></td></tr>'."\n";
     echo '</table>'."\n";
+    
+    //patch vraiment crado : on donne le nom "choixheures_x" au bouton pour éviter d'avoir à cleaner le code
+    echo '<br><button name="choixheures_x" value="'. _("Next") .'" type="submit" class="button green poursuivre"><strong>'. _('Next') . '</strong> </button>';
+    echo '<div style="clear:both"></div>';
+    
     
     //si un seul jour et aucunes horaires choisies, : message d'erreur
     if ((issetAndNoEmpty('choixheures') || issetAndNoEmpty('choixheures_x')) && (count($_SESSION["totalchoixjour"])=="1" && $_POST["horaires0"][0]=="" && $_POST["horaires0"][1]=="" && $_POST["horaires0"][2]=="" && $_POST["horaires0"][3]=="" && $_POST["horaires0"][4]=="")) {
@@ -553,7 +562,7 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   //s'il n'y a pas d'erreur et que le bouton de creation est activé, on demande confirmation
   if (!$erreur  && (issetAndNoEmpty('choixheures') || issetAndNoEmpty('choixheures_x'))) {
     $taille_tableau=sizeof($_SESSION["totalchoixjour"])-1;
-    $jour_arret = $_SESSION["totalchoixjour"][$taille_tableau]+200000;
+    $jour_arret = $_SESSION["totalchoixjour"][$taille_tableau]+2592000;
     if ($_SESSION["langue"]=="EN") {
       $date_fin=date("l, F jS Y", $jour_arret);
     } else {
@@ -568,10 +577,17 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
     // echo'<p class=affichageexport>'."\n";
     // echo 'Pour finir la cr&eacute;ation du sondage, cliquez sur le bouton <img src="images/add-16.png" alt="ajout"> ci-dessous'."\n";
     // echo '</p>'."\n";
-    echo '<table>'."\n";
-    echo '<tr><td>'. _("Back to hours") .'</td><td></td><td><input type="image" name="retourhoraires" src="images/back-32.png"></td></tr>'."\n";
-    echo'<tr><td>'. _("Create the poll") .'</td><td></td><td><input type="image" name="confirmation" value="Valider la cr&eacute;ation" src="images/add.png"></td></tr>'."\n";
-    echo '</table>'."\n";
+
+    //echo '<table>'."\n";
+    //echo '<tr><td>'. _("Back to hours") .'</td><td></td><td><input type="image" name="retourhoraires" src="images/back-32.png"></td></tr>'."\n";
+    //echo'<tr><td>'. _("Create the poll") .'</td><td></td><td><input type="image" name="confirmation" value="Valider la cr&eacute;ation" src="images/add.png"></td></tr>'."\n";
+    //echo '</table>'."\n";
+    
+    echo '<br/><br/>';
+    // patch crado : on attribue les noms de boutons avec _x pour faire croire qu'on a cliqué sur une image
+    echo '<button name="retourhoraires_x" value="retourhoraires" type="submit" class="button red retour"><strong>'. _('Back to hours') . '</strong> </button>';
+    echo '<button name="confirmation_x" value="confirmation" type="submit" class="button green poursuivre"><strong>'. _('Create the poll') . '</strong> </button>';
+    echo '<div style="clear:both"></div>';
   }
   
   echo '</tr>'."\n";
@@ -580,8 +596,11 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   //fin du formulaire et bandeau de pied
   echo '</form>'."\n";
   //bandeau de pied
-  echo '<br><br><br><br>'."\n";
+  //echo '<br><br><br><br>'."\n";
   echo '</div>'."\n";
+  
+  echo '</div>'; // ajout pyg pour cohérence graphique
+  
   bandeau_pied_mobile();
   echo '</body>'."\n";
   echo '</html>'."\n";

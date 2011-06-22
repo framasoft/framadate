@@ -170,9 +170,11 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
   echo '</tr></table>'."\n";
   echo'<br>'."\n";
   
-  echo '<table><tr>'."\n";
-  echo '<td>'. _("Next") .'</td><td><input type="image" name="fin_sondage_autre" value="Cr&eacute;er le sondage" src="images/next-32.png"></td>'."\n";
-  echo '</tr></table>'."\n";
+  //echo '<table><tr>'."\n";
+  //echo '<td>'. _("Next") .'</td><td><input type="image" name="fin_sondage_autre" value="Cr&eacute;er le sondage" src="images/next-32.png"></td>'."\n";
+  //echo '</tr></table>'."\n";
+  echo '<button name="fin_sondage_autre_x" value="'._('Next').'" type="submit" class="button green poursuivre"><strong>'. _('Next') . '</strong> </button>';
+  echo '<div style="clear:both"></div>';
   
   //test de remplissage des cases
   $testremplissage = '';
@@ -208,9 +210,13 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
     echo '<font color=#FF0000>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll. <br><br>Then, you will receive quickly an email contening the link to your poll for sending it to the voters.") .'</font>'."\n";
     echo '</div>'."\n";
     echo '<br>'."\n";
-    echo '<table>'."\n";
-    echo '<tr><td>'. _("Create the poll") .'</td><td><input type="image" name="confirmecreation" value="Valider la cr&eacute;ation"i src="images/add.png"></td></tr>'."\n";
-    echo '</table>'."\n";
+    //echo '<table>'."\n";
+    //echo '<tr><td>'. _("Create the poll") .'</td><td><input type="image" name="confirmecreation" value="Valider la cr&eacute;ation"i src="images/add.png"></td></tr>'."\n";
+    //echo '</table>'."\n";
+    
+    echo '<button name="confirmecreation" value="confirmecreation" type="submit" class="button green poursuivre"><strong>'. _('Make a poll') . '</strong> </button>';
+    echo '<div style="clear:both"></div>';
+    
   }
   
   //fin du formulaire et bandeau de pied

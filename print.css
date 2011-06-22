@@ -1,0 +1,10 @@
+.corps {
+    width: 100% !important;
+    overflow-x: none;
+}
+.sousbandeau {
+    display: none !important;
+}
+body {
+    background-color: none !important;
+}

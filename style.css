@@ -44,6 +44,8 @@ du répertoire studs. Il contient toutes les mises en forme des fichiers PHP
 de Studs.
 */
 
+@import url('/buttons.css');
+@import url('print.css') print;
 body {
   margin:0;
   background: #F7FAFE;
@@ -178,7 +180,7 @@ div.bandeaupiedmobile{
 	position:static; 
 }
 /*les boutons se trouvant dans le sousbandeau*/
-div.sousbandeau a, div.sousbandeau span.sousbandeaulangue a {
+/* div.sousbandeau a, div.sousbandeau span.sousbandeaulangue a {
  	background-color: #3E779D;
         background: -moz-linear-gradient(center top , #3E779D, #65A9D7) repeat scroll 0 0 transparent;
 	height:16px;
@@ -196,11 +198,13 @@ div.sousbandeau a, div.sousbandeau span.sousbandeaulangue a {
 	box-shadow: 0 1px 0 #000000;
         text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
+*/
 span.sousbandeaulangue {
 	margin-left:6px;
-	margin-right:6px;
+	margin-right:20px;
 	float:right;
 }
+
 /*corps de la page index.php*/
 
 .corps {
@@ -216,11 +220,13 @@ span.sousbandeaulangue {
    /* position: static;
    right: 20px;
    top: 170px; */
-   width: 800px;
+   width: 70em;
+   overflow-x:auto;
    border: 3px solid #CCC;
    background-color: #fff;
    box-shadow: 5px 5px 5px #666;
-   
+   -moz-border-radius: 20px;
+   border-radius: 20px;
 }
 
 
@@ -298,7 +304,7 @@ div.presentationdate {
 	background-color: #FFF;
 }
 div.presentationdatefin {
-	width:40%;
+	width:60%;
 	padding:10px;
 	font-family:arial;
 	text-align:center;
@@ -306,8 +312,8 @@ div.presentationdatefin {
 	border-width:1px;
 	border-style:solid;
 	margin-top: 10px;
-	margin-left: 30%;
-    margin-right: 30%; 
+	margin-left: 20%;
+    margin-right: 20%; 
 	position:static;
 }
 /*cadre principal de studs.php*/
@@ -390,13 +396,14 @@ div.cadre td.mois {
 /*affichage du calendrier*/
 div.calendrier {
 	padding:10px;
-	background-color: #AAA;
+	background-color: #CCC;
 	width:490px;
 	font-size:12px;
 	font-family:arial;
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: auto;
+    margin-right: auto;
 	position:static;
+	border-radius: 10px;
 }
 /*jour de la semaine dans calendrier*/
 div.calendrier td.joursemaine {
@@ -422,7 +429,7 @@ div.calendrier td.avant {
 	border: 2px;
 	font-family:arial;
 	font-size:13px;
-	background-color: #DDDDDD; 
+	background-color: #EEEEEE; 
 }
 /*jour libre dans calendrier*/
 div.calendrier td.libre {
@@ -436,7 +443,7 @@ div.calendrier td.choisi {
 	width:65px;
 	text-align: center;
 	border: 2px;
-	background-color: #0077DD; 
+	background-color: #54ADF7;
 }
 /* Le paragraphe de fin */
 p.affichageresultats{
@@ -484,7 +491,7 @@ div.titregestionadmin{
 
 /*les boutons pour deselectionner un jour deja choisi*/
 .OFF {
-    background-color: #0077DD;
+    background-color: #54ADF7;
 }
 
 div.nouveau_sondage a {
@@ -537,4 +544,34 @@ li.error {
 }
 .formulaire2 input[name="lieureunion"] {
     width: 350px;
+}
+
+.index_date, .index_sondage {
+    float:left;
+    width:50%;
+    text-align:center;
+}
+
+
+.index_date .opacity, .index_sondage .opacity {
+    opacity: 0.6;
+}
+
+.index_date img:hover, .index_sondage img:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.poursuivre {
+    float: right;
+    margin-right: 50px;
+}
+
+.retour {
+    float: left;
+    margin-left: 50px;
+}
+
+.imprimer {
+    float:right;
 }
