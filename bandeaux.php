@@ -133,7 +133,7 @@ function bandeau_pied()
        '<a class="button small gray" href="' . get_server_name() . 'contacts.php">'. _("Contact") .'</a>' .
        //'<a href="' . get_server_name() . 'sources/sources.php">'. _("Sources") .'</a>' . //not implemented
        '<a class="button small gray" href="' . get_server_name() . 'apropos.php">'. _("About") .'</a>' .
-       '<a class="button small gray" href="' . get_server_name() . 'admin/index.php">'. _("Admin") .'</a>' .
+       //'<a class="button small gray" href="' . get_server_name() . 'admin/index.php">'. _("Admin") .'</a>' .
        '<span class="sousbandeau sousbandeaulangue">' .
        liste_lang() . '</span>'.
        '</div>' . "\n";
@@ -151,7 +151,7 @@ function bandeau_pied_mobile()
        '<a class="button small gray" href="' . get_server_name() . 'contacts.php">'. _("Contact") .'</a>' .
        //'<a href="' . get_server_name() . 'sources/sources.php">'. _("Sources") .'</a>' . //not implemented
        '<a class="button small gray" href="' . get_server_name() . 'apropos.php">'. _("About") .'</a>' .
-       '<a class="button small gray" href="' . get_server_name() . 'admin/index.php">'. _("Admin") .'</a>' .
+       //'<a class="button small gray" href="' . get_server_name() . 'admin/index.php">'. _("Admin") .'</a>' .
        '<span class="sousbandeau sousbandeaulangue">' .
        liste_lang() . '</span>'.
        '</div>' . "\n";
