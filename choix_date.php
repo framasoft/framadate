@@ -57,6 +57,7 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
   echo '</head>'."\n";
   echo '<body>'."\n";
+  framanav();
   logo();
   bandeau_tete();
   bandeau_titre(_("Error!"));

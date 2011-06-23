@@ -56,6 +56,7 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
   echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
   echo '</head>'."\n";
   echo '<body>'."\n";
+  framanav();
   logo();
   bandeau_tete();
   bandeau_titre(_("Error!"));
@@ -137,6 +138,7 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
   
   print_header();
   echo '<body>'."\n";
+  framanav();
   
   echo '<form name="formulaire" action="#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
   logo();

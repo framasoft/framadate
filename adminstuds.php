@@ -78,10 +78,12 @@ if (preg_match(";[\w\d]{24};i", $numsondageadmin)) {
 if (!$sondage || $sondage->RecordCount() != 1){
   print_header(false);
   echo '<body>'."\n";
-
+  framanav();
   logo();
   bandeau_tete();
   bandeau_titre(_("Error!"));
+  
+  
   echo '<div class=corpscentre>'."\n";
   print "<H2>" . _("This poll doesn't exist !") . "</H2><br><br>"."\n";
   print "" . _("Back to the homepage of ") . " <a href=\"index.php\"> ".NOMAPPLICATION."</A>. "."\n";
@@ -183,12 +185,17 @@ $dsondage=$sondage->FetchObject(false);
 if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
   print_header(true);
   echo '<body>'."\n";
+  framanav();
   logo();
   bandeau_tete();
   bandeau_titre(_("Make your polls"));
   sous_bandeau();
   
   //on recupere les données et les sujets du sondage
+  
+    echo '<div class="corps">'."\n";
+
+  
   echo '<form name="formulaire" action="'.getUrlSondage($numsondageadmin, true).'" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
     
   echo '<div class="corpscentre">'."\n";
@@ -258,6 +265,10 @@ if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
   echo '<br><br><br><br>'."\n";
   echo '</div>'."\n";
 
+  echo '</div>'."\n";
+  echo '<div class="separateur">&nbsp;</div>';
+
+
   bandeau_pied();
   
   echo'</body>'."\n";
@@ -291,10 +302,11 @@ if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"
     //affichage de l'ecran de confirmation de suppression de sondage
     print_header();
     echo '<body>'."\n";
+    framanav();
     logo();
     bandeau_tete();
     bandeau_titre(_("Make your polls"));
-  
+ 
     echo '<div class="corpscentre">'."\n";
     print "<H2>" . _("Your poll has been removed!") . "</H2><br><br>";
     print  _("Back to the homepage of ") . " <a href=\"index.php\"> ".NOMAPPLICATION."</A>."."\n";
@@ -342,10 +354,14 @@ if(isset($_POST['ajoutcomment']) || isset($_POST['ajoutcomment_x'])) {
 // DEBUT DE L'AFFICHAGE DE LA PAGE HTML
 print_header(true);
 echo '<body>'."\n";
+framanav();
 logo();
 bandeau_tete();
 bandeau_titre(_("Make your polls"));
 sous_bandeau();
+
+echo '<div class="corps">'."\n";
+
   
 echo '<div class="presentationdate"> '."\n";
 
@@ -354,14 +370,14 @@ $titre=str_replace("\\","",$dsondage->titre);
 echo '<H2>'.$titre.'</H2>'."\n";
 
 //affichage du nom de l'auteur du sondage
-echo _("Initiator of the poll") .' : '.$dsondage->nom_admin.'<br>'."\n";
+echo _("Initiator of the poll") .' : '.stripslashes($dsondage->nom_admin).'<br>'."\n";
 
 //affichage des commentaires du sondage
 if ($dsondage->commentaires){
   echo '<br>'. _("Comments") .' :<br>'."\n";
   $commentaires=$dsondage->commentaires;
   $commentaires=str_replace("\\","",$commentaires);       
-  echo nl2br($commentaires);
+  echo stripslashes(nl2br($commentaires));
   echo '<br>'."\n";
 }
 echo '<br>'."\n";
@@ -698,6 +714,7 @@ if ($sondage !== false) {
 } else {
   print_header(false);
   echo '<body>'."\n";
+  framanav();
   logo();
   bandeau_tete();
   bandeau_titre(_("Error!"));
@@ -706,6 +723,8 @@ if ($sondage !== false) {
   print "" . _("Back to the homepage of ") . " <a href=\"index.php\"> ".NOMAPPLICATION."</A>. "."\n";
   echo '<br><br><br><br>'."\n";
   echo '</div>'."\n";
+  
+  
   bandeau_pied();
   echo'</body>'."\n";
   echo '</html>'."\n";
@@ -871,7 +890,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
   echo '<td></td>'."\n";
   
   for ($i = 0; isset($toutsujet[$i]); $i++) {
-    echo '<td class="sujet">'.$toutsujet[$i].'</td>'."\n";
+    echo '<td class="sujet">'.stripslashes($toutsujet[$i]).'</td>'."\n";
   }
   
   echo '<td class="sujet"><input type="image" name="ajoutsujet" src="images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
@@ -891,7 +910,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
   
   //affichage du nom
   $nombase=str_replace("°","'",$data->nom);
-  echo '<td class="nom">'.$nombase.'</td>'."\n";
+  echo '<td class="nom">'.stripslashes($nombase).'</td>'."\n";
   
   //si la ligne n'est pas a changer, on affiche les données
   if (!$testligneamodifier) {
@@ -1152,7 +1171,7 @@ if ($comment_user->RecordCount() != 0) {
   
   $i = 0;
   while ( $dcomment=$comment_user->FetchNextObject(false)) {
-    print "<input type=\"image\" name=\"suppressioncomment$i\" src=\"images/cancel.png\" alt=\"supprimer commentaires\"> $dcomment->usercomment : $dcomment->comment <br>";
+    print "<input type=\"image\" name=\"suppressioncomment$i\" src=\"images/cancel.png\" alt=\"supprimer commentaires\"> ". stripslashes($dcomment->usercomment) ." : ".stripslashes($dcomment->comment) ." <br>";
     $i++;
   }
   
@@ -1201,6 +1220,8 @@ echo '<br><br>'."\n";
 
 //fin de la partie GESTION et beandeau de pied
 echo '</p>'."\n";
+echo '</div>';
+echo '<div class="separateur">&nbsp;</div>';
 bandeau_pied_mobile();
 echo '</form>'."\n";
 echo '</body>'."\n";

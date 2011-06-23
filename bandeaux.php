@@ -40,6 +40,17 @@
 // pour get_server_name()
 include_once('fonctions.php');
 
+function framanav()
+{
+    if (file_exists($_SERVER['DOCUMENT_ROOT']."/framanav/nav.inc.html")) {
+	echo "\n".'<!-- Framanav --> '."\n";;
+	echo '<script src="/framanav/scripts/jquery.min.js" type="text/javascript"></script>'."\n";
+	include_once($_SERVER['DOCUMENT_ROOT']."/framanav/nav.inc.html");
+	echo '<!-- /Framanav --> '."\n";
+    }
+}
+
+
 //le logo
 function logo ()
 {
@@ -52,7 +63,7 @@ function logo ()
 #le bandeau principal
 function bandeau_tete()
 {
-  echo '<div class="bandeau"><a href="/" title="Accueil Framadate"><span class="framamauve">Frama</span><span class="framorange">date</span></a></div>'."\n";
+  echo '<div class="bandeau"><a href="/" title="Accueil Framadate"><img src="/images/logo-framadate.png" title="Accueil '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'"></a></div>'."\n";
 }
 
 
@@ -95,13 +106,13 @@ function sous_bandeau()
 function sous_bandeau_admin()
 {
   echo '<div class="sousbandeau">' .
-       '<a href="' . get_server_name() . 'index.php">'. _("Home") .'</a>';
+       '<a class="button small gray" href="' . get_server_name() . 'index.php">'. _("Home") .'</a>';
   
   if(is_readable('logs_studs.txt')) {
-    echo '<a href="' . get_server_name() . 'logs_studs.txt">'. _("Logs") .'</a>';
+    echo '<a class="button small gray" href="' . get_server_name() . 'logs_studs.txt">'. _("Logs") .'</a>';
   }
   
-  echo '<a href="' . get_server_name() . '../scripts/nettoyage_sondage.php">'. _("Cleaning") .'</a>' .
+  echo '<a class="button small gray" href="' . get_server_name() . '../scripts/nettoyage_sondage.php">'. _("Cleaning") .'</a>' .
        '<span class="sousbandeau sousbandeaulangue">' .
        liste_lang() . '</span>'.
        '</div>'."\n";

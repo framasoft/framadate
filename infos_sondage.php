@@ -147,6 +147,8 @@ if (issetAndNoEmpty("poursuivre")){
 //affichage de la page
 print_header(true);
 echo '<body>'."\n";
+framanav();
+
 //affichage des bandeaux de tete
 logo();
 bandeau_tete();

@@ -56,6 +56,8 @@ echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
 echo '</head>'."\n";
 echo '<body>'."\n";
 
+framanav();
+
 //debut du formulaire
 echo '<form name=formulaire action="infos_sondage.php" method="POST">'."\n";
 

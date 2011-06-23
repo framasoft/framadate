@@ -108,7 +108,7 @@ function ajouter_sondage()
   
   $message = _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
   $message .= "\n\n";
-  $message .= stripslashes($_SESSION["nom"])." " . _("hast just created a poll called") . " : \"".stripslashes($_SESSION["titre"])."\".\n";
+  $message .= stripslashes(htmlspecialchars_decode($_SESSION["nom"],ENT_QUOTES))." " . _("hast just created a poll called") . " : \"".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES))."\".\n";
   $message .= _("Thanks for filling the poll at the link above") . " :\n\n%s\n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION;
   
   $message_admin = _("This message should NOT be sended to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
@@ -118,8 +118,8 @@ function ajouter_sondage()
   $message_admin = sprintf($message_admin, getUrlSondage($sondage_admin, true));
   
   if (validateEmail($_SESSION['adresse'])) {
-    mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), $message_admin, $headers);
-    mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message") . "] " . _("Poll") . " : ".stripslashes($_SESSION["titre"]), $message, $headers);
+    mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message_admin, $headers);
+    mail ("$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message, $headers);
   }
   
   $date=date('H:i:s d/m/Y:');

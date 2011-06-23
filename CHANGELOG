@@ -1,5 +1,20 @@
 Les dernières améliorations d'OpenSondage
 
+	Changelog des 22 et 23 juin (pyg@framasoft.net)
+	- très nombreuses modifications CSS
+	- ajout de buttons.css pour des boutons plus propres 
+	- ajout de print.css pour une impression sans la classe "corps"
+	- refonte de la page d'accueil
+	- ajout de la framanav
+	- qq retouches dans les fichiers .po
+	- date de destruction passée de 2j à 30j
+	- ajout de l'adresse à transmettre
+	- ajout d'un bouton imprimer
+	- généralisation des stripslashes
+	- fix d'un bug sur une requete (suppression). Reste la seconde partie : https://github.com/leblanc-simon/OpenSondage/issues/8
+	- modification du titre en image
+	- ajout de htmlspecialchars_decode avec param ENT_QUOTES pour l'envoi des emails
+
 	Changelog du 21 juin 2011 (pyg@framasoft.net)
 	- très nombreuses modifications CSS
 	- modification adminstuds.php : ajout de classes aux formulaires et ajout de stripslashes à l'affichage (TODO: à généraliser)

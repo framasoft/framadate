@@ -38,6 +38,7 @@
 //==========================================================================
 
 
+
 session_start();
 
 include_once('../variables.php');
@@ -59,10 +60,12 @@ echo '</head>'."\n";
 echo '<body>'."\n";
 
 //Affichage des bandeaux et début du formulaire
+framanav();
 logo();
 bandeau_tete();
 bandeau_titre(_("Polls administrator"));
 sous_bandeau_admin();
+//print_r($_SESSION);
 
 $sondage=$connect->Execute("select * from sondage");
 
@@ -114,7 +117,7 @@ while($dsondage = $sondage->FetchNextObject(false)) {
   $user_studs=$connect->Execute( "select * from user_studs where id_sondage='$dsondage->id_sondage'");
   $nbuser=$user_studs->RecordCount();
 
-  echo '<tr align=center><td>'.$dsondage->id_sondage.'</td><td>'.$dsondage->format.'</td><td>'.$dsondage->titre.'</td><td>'.$dsondage->nom_admin.'</td>';
+  echo '<tr align=center><td>'.$dsondage->id_sondage.'</td><td>'.$dsondage->format.'</td><td>'. stripslashes($dsondage->titre).'</td><td>'.stripslashes($dsondage->nom_admin).'</td>';
 
   if (strtotime($dsondage->date_fin) > time()) {
     echo '<td>'.date("d/m/y",strtotime($dsondage->date_fin)).'</td>';
@@ -124,7 +127,7 @@ while($dsondage = $sondage->FetchNextObject(false)) {
   
   echo'<td>'.$nbuser.'</td>'."\n";
   echo '<td><a href="../studs.php?sondage='.$dsondage->id_sondage.'">'. _("See the poll") .'</a></td>'."\n";
-  echo '<td><a href="'.getUrlSondage($dsondage->id_sondage_admin, true).'">'. _("Change the poll") .'</a></td>'."\n";
+  echo '<td><a href="/'.$dsondage->id_sondage_admin.'/admin">'. _("Change the poll") .'</a></td>'."\n";
   echo '<td><input type="submit" name="supprimersondage'.$i.'" value="'. _("Remove the poll") .'"></td>'."\n";
 
   echo '</tr>'."\n";
@@ -135,6 +138,7 @@ echo '</table>'."\n";
 echo'</div>'."\n";
 // fin du formulaire et de la page web
 echo '</form>'."\n";
+echo '<div class="separateur">&nbsp;</div>';
 echo '</body>'."\n";
 echo '</html>'."\n";
 

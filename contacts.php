@@ -97,6 +97,8 @@ if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && isse
   echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
   echo '</head>'."\n";
   echo '<body>'."\n";
+
+framanav();
   
   //debut du formulaire
   echo '<form name=formulaire action="contacts.php" method="POST">'."\n";
