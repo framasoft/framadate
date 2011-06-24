@@ -173,7 +173,7 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
       if ($dsondage->mailsonde || /* compatibility for non boolean DB */ $dsondage->mailsonde=="yes" || $dsondage->mailsonde=="true") {
         $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
         mail ("$dsondage->mail_admin",
-              "[".NOMAPPLICATION."] "._("Poll's participation")." : ".htmlspecialchars_decode($dsondage->titre, ENT_QUOTES).",".
+              "[".NOMAPPLICATION."] "._("Poll's participation")." : ".htmlspecialchars_decode($dsondage->titre, ENT_QUOTES),.
               htmlspecialchars_decode("\"$nom\" ",ENT_QUOTES).
               _("has filled a line.\nYou can find your poll at the link") . " :\n\n".
               getUrlSondage($numsondage)." \n\n" .
