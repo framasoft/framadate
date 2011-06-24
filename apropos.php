@@ -57,6 +57,8 @@ echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
 echo '</head>'."\n";
 echo '<body>'."\n";
 
+framanav();
+
 //debut du formulaire
 echo '<form name=formulaire action="apropos.php" method="POST">'."\n";
 
@@ -67,6 +69,58 @@ bandeau_titre(_("About"));
 sous_bandeau();
 
 echo '<div class=corps>'."\n";
+
+echo <<<mentions
+<h2>Éditeur et Responsable de la publication</h2>
+
+
+<p>Alexis Kauffmann (<a href="/contact.php">contact</a>)</p>
+
+
+<p>Les propos tenus sur ce site ne représentent que et uniquement l’opinion de leur auteur, et n’engagent pas les sociétés, entreprises ou collectifs auxquels il contribue ou dont il peut être associé ou employé.</p>
+
+
+<h2>Hébergement</h2>
+
+
+<p>Ce site est hébergé par Framasoft, c/o T. CEZARD, 5 avenue Stephen Pichon 75013 Paris, France.
+Cet hébergeur possède à ce jour les éléments d’identification personnelle concernant l'Éditeur (voir <a href="http://www.framasoft.net/article4736.html">http://www.framasoft.net/article4736.html</a>).</p>
+
+
+<h2>Données personnelles</h2>
+
+
+<p>Les données personnelles collectées par Framadate sont uniquement destinées à un usage interne. En aucun cas ces données ne seront cédées ou vendues à des tiers.
+Conformément à l’article 39 de la loi du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, vous avez un droit d’accès, de modification et d’opposition sur vos données personnelles enregistrées par le blog.
+Dans ce cas, utilisez le formulaire de contact.</p>
+
+
+<h2>Conditions de modération/suppression de sondages</h2>
+
+
+<p>Les sondages de Framadate bénéficient d'une URL aléatoire, mais publique. Si vous souhaitez supprimer un sondage, utilisez l'adresse d'aministration fournie à la création. Vous pouvez exceptionnellement demander la suppression d'un sondage en utilisant la page de contact.</p>
+
+<h2>Notification des contenus litigieux</h2>
+
+<p>Conformément à l’article 6 I 5° LCEN, la connaissance des contenus litigieux est présumée acquise par L’Éditeur lorsqu&#8217;il lui est notifié, par lettre recommandée avec accusé de réception adressée au siège social de L’Éditeur, la totalité des éléments suivants (i) la date de la notification&#160;; (ii) si le notifiant est une personne physique&#160;: ses nom, prénoms, profession, domicile, nationalité, date et lieu de naissance&#160;; si le notifiant est une personne morale&#160;: sa forme, sa dénomination, son siège social et l&#8217;organe qui la représente légalement&#160;; (iii) les nom et domicile du destinataire ou, s&#8217;il s&#8217;agit d&#8217;une personne morale, sa dénomination et son siège social&#160;; (iv) la description des faits litigieux et leur localisation précise&#160;; (v) les motifs pour lesquels le contenu doit être retiré, comprenant la mention des dispositions légales et des justifications de faits&#160;; (vi) la copie de la correspondance adressée à l&#8217;auteur ou à l&#8217;éditeur des informations ou activités litigieuses demandant leur interruption, leur retrait ou leur modification, ou la justification de ce que l&#8217;auteur ou l&#8217;éditeur n&#8217;a pu être contacté.</p>
+
+
+<p>A défaut d’envoi de la totalité de ces éléments, la notification ne sera pas prise en compte par L’Éditeur et ce dernier ne pourra en conséquence être présumé informé d’un contenu litigieux.</p>
+
+
+<p>L’Éditeur se réserve le droit d’engager des poursuites à l’encontre de toute personne ayant usé abusivement du droit réservé par l’article 6 I 4° LCEN. L’Éditeur vous rappelle que toute personne qui aurait présenté un contenu ou une activité comme étant illicite dans le but d&#8217;en obtenir le retrait ou d&#8217;en faire cesser la diffusion alors qu&#8217;elle a connaissance du caractère inexact de cette information, est susceptible d’encourir une peine d&#8217;un an d&#8217;emprisonnement et de 15.000 €uros d&#8217;amende.</p>
+
+
+<h2>Licences, droits de reproduction</h2>
+
+
+<p>L'application Framadate, basé sur le logiciel OpenSondage, lui-même basé sur STUdS, est publiée sous licence CECILL-B. Les contenus (sondages) sont publiés sous licence Creative Commons BY-SA. Cela signifie que si l'adresse de votre sondage est connue d'un individu, vous autorisez cette personne à utiliser, partager, modifier votre sondage. Si vous souhaitez des sondages 100% privés et avec votre propre licence, installez votre propre logiciel de sondage et n'utilisez pas Framadate.org.</p>
+
+
+<h2>Crédits</h2>
+
+mentions;
+
 
 if (NOMAPPLICATION!="STUdS !") {
   echo '<b>Application d\'origine</b><br><br>'."\n";
