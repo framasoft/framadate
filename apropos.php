@@ -74,7 +74,7 @@ echo <<<mentions
 <h2>Éditeur et Responsable de la publication</h2>
 
 
-<p>Alexis Kauffmann (<a href="/contact.php">contact</a>)</p>
+<p>Alexis Kauffmann (<a href="contacts.php">contact</a>)</p>
 
 
 <p>Les propos tenus sur ce site ne représentent que et uniquement l’opinion de leur auteur, et n’engagent pas les sociétés, entreprises ou collectifs auxquels il contribue ou dont il peut être associé ou employé.</p>

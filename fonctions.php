@@ -57,7 +57,12 @@ function connexion_base()
 function get_server_name()
 {
   $scheme = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") ? 'https' : 'http';
-  $url = sprintf("%s://%s%s", $scheme, STUDS_URL, dirname($_SERVER["SCRIPT_NAME"]));
+  
+  $get = explode('/', dirname($_SERVER["SCRIPT_NAME"]));
+  $folder = explode('/', str_replace('\\', '/', dirname(__FILE__)));
+  $communs = array_intersect($get, $folder);
+  $base = implode('/', $communs);
+  $url = sprintf("%s://%s%s", $scheme, STUDS_URL, $base);
   
   if (!preg_match("|/$|", $url)) {
     $url = $url."/";

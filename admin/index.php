@@ -134,8 +134,8 @@ while($dsondage = $sondage->FetchNextObject(false)) {
   }
   
   echo'<td>'.$nbuser.'</td>'."\n";
-  echo '<td><a href="../studs.php?sondage='.$dsondage->id_sondage.'">'. _("See the poll") .'</a></td>'."\n";
-  echo '<td><a href="/'.$dsondage->id_sondage_admin.'/admin">'. _("Change the poll") .'</a></td>'."\n";
+  echo '<td><a href="'.getUrlSondage($dsondage->id_sondage).'">'. _("See the poll") .'</a></td>'."\n";
+  echo '<td><a href="'.getUrlSondage($dsondage->id_sondage_admin, true).'">'. _("Change the poll") .'</a></td>'."\n";
   echo '<td><input type="submit" name="supprimersondage'.$i.'" value="'. _("Remove the poll") .'"></td>'."\n";
 
   echo '</tr>'."\n";
