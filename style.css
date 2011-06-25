@@ -44,7 +44,7 @@ du répertoire studs. Il contient toutes les mises en forme des fichiers PHP
 de Studs.
 */
 
-@import url('/buttons.css');
+@import url('./buttons.css');
 @import url('print.css') print;
 body {
   margin:0;
