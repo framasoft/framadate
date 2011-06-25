@@ -50,13 +50,20 @@ while ($dsondage=$sondage->FetchNextObject(false)) {
   if ($date_courante > strtotime($dsondage->date_fin)) {
     //destruction des données dans la base
     
-    $req = 'DELETE FROM sondage LEFT INNER JOIN sujet_studs ON sujet_studs.id_sondage = sondage.id_sondage '.
-                      'LEFT INNER JOIN user_studs ON user_studs.id_sondage = sondage.id_sondage ' .
-                      'LEFT INNER JOIN comments ON comments.id_sondage = sondage.id_sondage ' .
-                      "WHERE id_sondage = '$dsondage->id_sondage'; ";
-    echo $req;
-    $connect->Execute($req);
+    $req = 'DELETE s, su, u, c
+            FROM
+              sondage s LEFT JOIN sujet_studs su
+                ON su.id_sondage = s.id_sondage
+              LEFT JOIN user_studs u
+                ON u.id_sondage = s.id_sondage
+              LEFT JOIN comments c
+                ON c.id_sondage = s.id_sondage
+            WHERE s.id_sondage = '.$connect->Param('id_sondage');
+    
+    $sql = $connect->Prepare($req);
+    $connect->Execute($sql, array($dsondage->id_sondage));
+    
     // ecriture des traces dans le fichier de logs
-    error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", '../admin/logs_studs.txt');
+    error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, '../admin/logs_studs.txt');
   }
 }

@@ -74,7 +74,7 @@ echo '<form action="index.php" method="POST">'."\n";
 // Test et affichage du bouton de confirmation en cas de suppression de sondage
 $i=0;
 while($dsondage = $sondage->FetchNextObject(false)) {
-  if ($_POST["supprimersondage$i"]) {
+  if (issetAndNoEmpty('supprimersondage'.$i) === true) {
     echo '<table>'."\n";
     echo '<tr><td bgcolor="#EE0000" colspan="11">'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'" : <input type="submit" name="confirmesuppression'.$i.'" value="'. _("Remove this poll!") .'">'."\n";
     echo '<input type="submit" name="annullesuppression" value="'. _("Keep this poll!") .'"></td></tr>'."\n";
@@ -83,17 +83,25 @@ while($dsondage = $sondage->FetchNextObject(false)) {
   }
   
   // Traitement de la confirmation de suppression
-  if ($_POST["confirmesuppression$i"]) {
+  if (issetAndNoEmpty('confirmesuppression'.$i) === true) {
+    // On inclut la routine de suppression
     $date=date('H:i:s d/m/Y');
     
-    // requetes SQL qui font le ménage dans la base
-    $connect->Execute('DELETE FROM sondage LEFT INNER JOIN sujet_studs ON sujet_studs.id_sondage = sondage.id_sondage '.
-                      'LEFT INNER JOIN user_studs ON user_studs.id_sondage = sondage.id_sondage ' .
-                      'LEFT INNER JOIN comments ON comments.id_sondage = sondage.id_sondage ' .
-                      "WHERE id_sondage = '$dsondage->id_sondage' ");
+    $req = 'DELETE s, su, u, c
+            FROM
+              sondage s LEFT JOIN sujet_studs su
+                ON su.id_sondage = s.id_sondage
+              LEFT JOIN user_studs u
+                ON u.id_sondage = s.id_sondage
+              LEFT JOIN comments c
+                ON c.id_sondage = s.id_sondage
+            WHERE s.id_sondage = '.$connect->Param('id_sondage');
+    
+    $sql = $connect->Prepare($req);
+    $connect->Execute($sql, array($dsondage->id_sondage));
     
     // ecriture des traces dans le fichier de logs
-    error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\t$nbuser\t$dsujets->sujet\n", 'logs_studs.txt');
+    error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'logs_studs.txt');
   }
   
   $i++;
@@ -143,5 +151,5 @@ echo '</body>'."\n";
 echo '</html>'."\n";
 
 // si on annule la suppression, rafraichissement de la page
-if ($_POST["annulesuppression"]) {
+if (issetAndNoEmpty('annulesuppression') === true) {
 }
