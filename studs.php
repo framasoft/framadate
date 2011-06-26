@@ -89,7 +89,7 @@ if(issetAndNoEmpty('export', $_GET) && $dsondage !== false) {
 
 // quand on ajoute un commentaire utilisateur
 if(isset($_POST['ajoutcomment']) || isset($_POST['ajoutcomment_x'])) {
-  if (isset($_SESSION['nom'])) {
+  if (isset($_SESSION['nom']) && issetAndNoEmpty('commentuser') === false) {
     // Si le nom vient de la session, on le de-htmlentities
     $comment_user = html_entity_decode($_SESSION['nom'], ENT_QUOTES, 'UTF-8');
   } elseif(issetAndNoEmpty('commentuser')) {
@@ -636,9 +636,12 @@ if ($comment_user->RecordCount() != 0) {
 print '<div class="addcomment">' .'<p>' ._("Add a comment in the poll:") . '</p>' . "\n";
 
 if (isset($_SESSION['nom']) === false) {
-  echo _("Name") .' : ';
-  echo '<input type="text" name="commentuser" maxlength="64" /><br>'."\n";
-} 
+  $nom = '';
+} else {
+  $nom = stripslashes($_SESSION['nom']);
+}
+echo _("Name") .' : ';
+echo '<input type="text" name="commentuser" maxlength="64" value="'.$nom.'" /><br>'."\n";
 
 echo '<textarea name="comment" rows="2" cols="40"></textarea>'."\n";
 echo '<input type="image" name="ajoutcomment" value="Ajouter un commentaire" src="images/accept.png" alt="Valider"><br>'."\n";
