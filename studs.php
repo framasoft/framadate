@@ -258,7 +258,7 @@ if ($dsondage->commentaires) {
 echo '<br>'."\n";
 echo '</div>'."\n";
 
-echo '<form name="formulaire" action="studs.php"'.'#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+echo '<form name="formulaire" action="'.getUrlSondage($dsondage->id_sondage).'"'.'#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 echo '<input type="hidden" name="sondage" value="' . $numsondage . '"/>';
 // Todo : add CSRF protection
 echo '<div class="cadre"> '."\n";
