@@ -495,10 +495,11 @@ if (!isset($_SERVER['REMOTE_USER']) || !$user_mod) {
   echo '<tr>'."\n";
   echo '<td class="nom">'."\n";
   if (isset($_SESSION['nom'])) {
-    echo '<input type=hidden name="nom" value="'.stripslashes($_SESSION['nom']).'">'.stripslashes($_SESSION['nom'])."\n";
+    $nom = stripslashes($_SESSION['nom']);
   } else {
-    echo '<input type=text name="nom" maxlength="64">'."\n";
+    $nom = '';
   }
+  echo '<input type=text name="nom" maxlength="64" value="'.$nom.'">'."\n";
   
   echo '</td>'."\n";
   
