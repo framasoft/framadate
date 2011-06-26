@@ -45,7 +45,7 @@ de Studs.
 */
 
 @import url('./buttons.css');
-@import url('print.css') print;
+
 body {
   margin:0;
   background: #F7FAFE;
@@ -326,6 +326,10 @@ div.cadre {
 	top:235px;
 	text-align:center;
 	margin:0 auto;
+}
+/*information au sujet de la participation au sondage*/
+div.cadre div.information {
+	margin-bottom:20px;
 }
 /*la table des résultats dans l'affichage de sondage*/
 div.cadre table.resultats {

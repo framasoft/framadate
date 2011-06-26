@@ -129,7 +129,8 @@ function print_header($js = false, $nom_sondage = '')
     <title>'.NOMAPPLICATION.'</title>';
   }
   echo '
-    <link rel="stylesheet" type="text/css" href="'.get_server_name().'style.css">';
+    <link rel="stylesheet" type="text/css" href="'.get_server_name().'style.css">
+    <link rel="stylesheet" type="text/css" href="'.get_server_name().'print.css" media="print">';
   
   echo '</head>';
 }

@@ -261,9 +261,9 @@ echo '</div>'."\n";
 echo '<form name="formulaire" action="'.getUrlSondage($dsondage->id_sondage).'"'.'#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 echo '<input type="hidden" name="sondage" value="' . $numsondage . '"/>';
 // Todo : add CSRF protection
-echo '<div class="cadre"> '."\n";
+echo '<div class="cadre"><div class="information">'."\n";
 echo _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you<br>(without paying attention to the choices of the other voters) and validate with the plus button at the end of the line.") ."\n";
-echo '<br><br>'."\n";
+echo '</div>'."\n";
 
 // Debut de l'affichage des resultats du sondage
 echo '<table class="resultats">'."\n";
@@ -492,7 +492,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
 
 // affichage de la ligne pour un nouvel utilisateur
 if (!isset($_SERVER['REMOTE_USER']) || !$user_mod) {
-  echo '<tr>'."\n";
+  echo '<tr class="ajout_reponse">'."\n";
   echo '<td class="nom">'."\n";
   if (isset($_SESSION['nom'])) {
     $nom = stripslashes($_SESSION['nom']);

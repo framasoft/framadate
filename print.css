@@ -1,10 +1,43 @@
+@import url(./style.css);
+
 .corps {
-    width: 100% !important;
-    overflow-x: none;
+  width: auto;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
 }
 .sousbandeau {
-    display: none !important;
+  display:none;
 }
 body {
-    background-color: none !important;
+  background:none;
+}
+
+.imprimer {
+  display:none;
+}
+
+.casevide {
+  display:none;
+}
+
+div.cadre div.information {
+  display:none;
+}
+
+div.cadre td.ok, div.cadre td.non, div.cadre td.somme {
+  background:none;
+  border:1px solid black;
+}
+
+div.cadre tr:last-child td {
+  border:none;
+}
+
+div.cadre tr.ajout_reponse {
+  display:none;
+}
+
+div.addcomment {
+  display:none;
 }
