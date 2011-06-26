@@ -243,7 +243,7 @@ echo '<H2>'.stripslashes($titre).'</H2>'."\n";
 
 //affichage du nom de l'auteur du sondage
 echo _("Initiator of the poll") .' : '.stripslashes($dsondage->nom_admin).'<br>'."\n";
-echo 'Adresse : <code>http://'. $_SERVER['SERVER_NAME']."/".$_SESSION['numsondage'].'</code><br>'."\n";;
+echo 'Adresse : <code>'.getUrlSondage($dsondage->id_sondage).'</code><br>'."\n";;
 
 
 //affichage des commentaires du sondage
