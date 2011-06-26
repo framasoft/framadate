@@ -13,6 +13,10 @@ body {
   background:none;
 }
 
+.logo {
+  display:none;
+}
+
 .imprimer {
   display:none;
 }
@@ -39,5 +43,12 @@ div.cadre tr.ajout_reponse {
 }
 
 div.addcomment {
+  display:none;
+}
+
+#framanav {
+  display:none;
+}
+#donation {
   display:none;
 }
