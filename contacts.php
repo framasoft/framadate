@@ -52,7 +52,10 @@ if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && isse
   $message=str_replace("\\","",$_POST["question"]);
   
   //envoi des mails
-  $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
+  $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\r\nContent-Transfer-Encoding: 8bit";
+  if (isset($_POST['adresse_mail']) && !empty($_POST['adresse_mail']) && validateEmail($_POST['adresse_mail'])) {
+    $headers .= "\r\n".'Reply-To: '.$_POST['adresse_mail'];
+  }
   mail (ADRESSEMAILADMIN, "" . _("[CONTACT] You have sent a question ") . "".NOMAPPLICATION, "" . _("You have a question from a user ") . " ".NOMAPPLICATION."\n\n" . _("User") . " : ".$_POST["nom"]."\n\n" . _("User's email address") . " : $_POST[adresse_mail]\n\n" . _("Message") . " :".$message,$headers);
   if (isset($_POST['adresse_mail']) && !empty($_POST['adresse_mail']) && validateEmail($_POST['adresse_mail'])) {
     $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
@@ -122,6 +125,10 @@ framanav();
   echo '<br><br>'."\n";
   echo _("Your email address ") .' :<br>'."\n";
   echo '<input type="text" size="40" maxlength="64" name="adresse_mail" value="'.$_SESSION["adresse_mail"].'">'."\n";
+  
+  if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && empty($_SESSION["adresse_mail"]) === false && validateEmail($_SESSION["adresse_mail"]) === false) {
+    echo ' <font color="#FF0000">'. _("The address is not correct!") .'</font>';
+  }
 
   echo '<br><br>';
 
@@ -133,9 +140,7 @@ framanav();
   }
 
   echo '<br><br><br>'."\n";
-  echo '<table>'."\n";
-  echo '<tr><td>'. _("Send your question") .'</td><td><input type="image" name="envoiquestion" value="Envoyer votre question" src="images/next-32.png"></td></tr>'."\n";
-  echo '</table>'."\n";
+  echo '<button type="submit" name="envoiquestion" value="'._("Send your question").'" class="button green poursuivre" alt="'._("Send your question").'"><strong>'._("Send your question").'</strong></button>';
   echo '<br><br><br>'."\n";
   echo '</div>'."\n";
   echo '</form>'."\n";

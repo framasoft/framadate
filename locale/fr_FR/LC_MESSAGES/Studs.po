@@ -738,6 +738,10 @@ msgstr "Votre nom"
 msgid "Your email address "
 msgstr "Votre adresse &eacute;lectronique "
 
+#: contacts.php:127
+msgid "The address is not correct!"
+msgstr "L'adresse saisie n'est pas correcte !"
+
 #: contacts.php:129
 msgid "Question"
 msgstr "Question"
