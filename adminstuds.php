@@ -198,11 +198,14 @@ if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
   
   echo '<form name="formulaire" action="'.getUrlSondage($numsondageadmin, true).'" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
     
-  echo '<div class="corpscentre">'."\n";
+  echo '<div class="">'."\n";
   echo "<H2>" . _("Column's adding") . "</H2><br><br>"."\n";
   
   if ($dsondage->format=="A"||$dsondage->format=="A+"){
-    echo _("Add a new column") .' :<br> <input type="text" name="nouvellecolonne" size="40"> <input type="image" name="ajoutercolonne" value="Ajouter une colonne" src="images/accept.png" alt="Valider"><br><br>'."\n";
+    echo _("Add a new column") .' :<br> <input type="text" name="nouvellecolonne" size="40">';
+    echo '<br><br>';
+    echo '<button class="button red retour" type="submit" value="retoursondage" name="retoursondage_x"><strong>Retourner au sondage</strong></button>'."\n";
+    echo '<button type="submit" name="ajoutercolonne_x" value="Ajouter une colonne" class="button green poursuivre" alt="Valider"><strong>Valider</strong></button>'."\n";
   } else {
     //ajout d'une date avec creneau horaire 
     echo _("You can add a new scheduling date to your poll.<br> If you just want to add a new hour to an existant date, put the same date and choose a new hour.") .'<br><br> '."\n";
@@ -257,8 +260,9 @@ if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
     echo '<OPTION VALUE="45">45</OPTION>'."\n";
     echo '</SELECT>'."\n";
 
-    echo '<br><br><input type="image" name="retoursondage" value="Retourner au sondage" src="images/cancel.png"> '."\n";
-    echo' <input type="image" name="ajoutercolonne" value="Ajouter une colonne" src="images/accept.png" alt="Valider">'."\n";
+    echo '<br><br>';
+    echo '<button class="button red retour" type="submit" value="retoursondage" name="retoursondage_x"><strong>Retourner au sondage</strong></button>'."\n";
+    echo '<button type="submit" name="ajoutercolonne_x" value="Ajouter une colonne" class="button green poursuivre" alt="Valider"><strong>Valider</strong></button>'."\n";
   }
 
   echo '</form>'."\n";
