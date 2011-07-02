@@ -280,20 +280,53 @@ if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
   die();  
 }
 
+if (isset($_POST["suppressionsondage_x"])) {
+  print_header(true);
+  echo '<body>'."\n";
+  framanav();
+  logo();
+  bandeau_tete();
+  bandeau_titre(_("Confirm removal of your poll"));
+  sous_bandeau();
+  echo '<div class="corps">'."\n";
+  echo '<form name="formulaire" action="'.getUrlSondage($numsondageadmin, true).'" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+  echo '<div class="">'."\n";
+  echo "<H2>" . _("Confirm removal of your poll") . "</H2><br><br>"."\n";
+  echo '<button class="button red retour" type="submit" value="'._("Keep this poll!").'" name="annullesuppression"><strong>'._("Keep this poll!").'</strong></button>'."\n";
+  echo '<button type="submit" name="confirmesuppression" value="'._("Remove this poll!").'" class="button green poursuivre" alt="'._("Remove this poll!").'"><strong>'._("Remove this poll!").'</strong></button>'."\n";
+  echo '</form>'."\n";
+  echo '<br><br><br><br>'."\n";
+  echo '</div>'."\n";
+
+  echo '</div>'."\n";
+  echo '<div class="separateur">&nbsp;</div>';
+  
+  bandeau_pied();
+  
+  echo'</body>'."\n";
+  echo '</html>'."\n";
+  die();
+}
+
 //action si bouton confirmation de suppression est activé
 if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"])) {
   $nbuser=$user_studs->RecordCount();
   $date=date('H:i:s d/m/Y:');
 
   //destruction des données dans la base SQL
-  $sql = 'DELETE FROM sondage LEFT INNER JOIN sujet_studs ON sujet_studs.id_sondage = sondage.id_sondage '.
-         'LEFT INNER JOIN user_studs ON user_studs.id_sondage = sondage.id_sondage '.
-         'LEFT INNER JOIN comments ON comments.id_sondage = sondage.id_sondage '.
-         'WHERE id_sondage = '.$connect->Param('numsondage');
+  $sql = 'DELETE s, su, u, c
+          FROM
+            sondage s LEFT JOIN sujet_studs su
+              ON su.id_sondage = s.id_sondage
+            LEFT JOIN user_studs u
+              ON u.id_sondage = s.id_sondage
+            LEFT JOIN comments c
+              ON c.id_sondage = s.id_sondage
+          WHERE s.id_sondage = '.$connect->Param('numsondage');
   $sql = $connect->Prepare($sql);
   if ($connect->Execute($sql, array($numsondage))) {
     // on ecrit dans le fichier de logs la suppression du sondage
-    error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\t$nbuser\t$dsujets->sujet\n", 3, 'admin/logs_studs.txt');
+    error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'admin/logs_studs.txt');
   
     //envoi du mail a l'administrateur du sondage
     mail ($adresseadmin, 
@@ -311,9 +344,9 @@ if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"
     bandeau_tete();
     bandeau_titre(_("Make your polls"));
  
-    echo '<div class="corpscentre">'."\n";
+    echo '<div class="corps corpscentre">'."\n";
     print "<H2>" . _("Your poll has been removed!") . "</H2><br><br>";
-    print  _("Back to the homepage of ") . " <a href=\"index.php\"> ".NOMAPPLICATION."</A>."."\n";
+    print  _("Back to the homepage of ") . ' <a href="'.get_server_name().'index.php"> '.NOMAPPLICATION.'</a>.'."\n";
     echo '<br><br><br>'."\n";
     echo '</div>'."\n";
     sur_bandeau_pied();
@@ -1195,11 +1228,6 @@ echo '<input type="image" name="ajoutcomment" value="Ajouter un commentaire" src
 //suppression du sondage
 echo '<br>'."\n";
 echo _("Remove your poll") .' : <input type="image" name="suppressionsondage" value="'. _("Remove the poll") .'" src="images/cancel.png" alt="' . _('Cancel') . '"><br><br>'."\n";
-
-if (isset($_POST["suppressionsondage"])) {
-  echo _("Confirm removal of your poll") .' : <input type="submit" name="confirmesuppression" value="'. _("Remove this poll!") .'">'."\n";
-  echo '<input type="submit" name="annullesuppression" value="'. _("Keep this poll!") .'"><br><br>'."\n";
-}
 
 echo '</form>'."\n";
 
