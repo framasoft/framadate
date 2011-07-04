@@ -266,7 +266,7 @@ echo _("If you want to vote in this poll, you have to give your name, choose the
 echo '</div>'."\n";
 
 // Debut de l'affichage des resultats du sondage
-echo '<table class="resultats">'."\n";
+echo '<table class="resultats">'."\n".'<thead>';
 
 //On récupere les données et les sujets du sondage
 $nblignes = $user_studs->RecordCount();
@@ -426,6 +426,8 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
   echo '</tr>'."\n";
 }
 
+echo '</thead>'."\n".'<tbody>'."\n";
+
 //Usager pré-authentifié dans la liste?
 $user_mod = false;
 
@@ -532,6 +534,8 @@ for ($i=0; $i < $nbcolonnes; $i++) {
   }
 }
 
+echo '</tbody>'."\n".'<tfoot>'."\n";
+
 // Affichage des différentes sommes des colonnes existantes
 echo '<tr>'."\n";
 echo '<td align="right">'. _("Addition") .'</td>'."\n";
@@ -563,6 +567,7 @@ for ($i=0; $i < $nbcolonnes; $i++) {
 }
 
 echo '</tr>'."\n";
+echo '</tfoot>'."\n";
 echo '</table>'."\n";
 echo '</div>'."\n";
 
