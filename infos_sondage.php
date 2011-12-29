@@ -192,7 +192,7 @@ if ($erreur_injection_commentaires) {
 echo '</tr>'."\n";
 echo '<tr><td>'. _("Your name*: ") .'</td><td>';
 
-if (isset($_SERVER['REMOTE_USER'])) {
+if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
   echo '<input type="hidden" name="nom" size="40" maxlength="40" value="'.$_SESSION["nom"].'">'.stripslashes($_SESSION["nom"]).'</td>'."\n";
 } else {
   echo '<input type="text" name="nom" size="40" maxlength="40" value="'.stripslashes($_SESSION["nom"]).'"></td>'."\n";
@@ -207,7 +207,7 @@ if (!$_SESSION["nom"] && issetAndNoEmpty("poursuivre")) {
 echo '</tr>'."\n";
 echo '<tr><td>'. _("Your e-mail address *: ") .'</td><td>';
 
-if (isset($_SERVER['REMOTE_USER'])) {
+if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
   echo '<input type="hidden" name="adresse" size="40" maxlength="64" value="'.$_SESSION["adresse"].'">'.$_SESSION["adresse"].'</td>'."\n";
 } else {
   echo '<input type="text" name="adresse" size="40" maxlength="64" value="'.$_SESSION["adresse"].'"></td>'."\n";
