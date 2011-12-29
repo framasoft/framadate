@@ -49,16 +49,10 @@ $sondage=$connect->Execute("select * from sondage");
 while ($dsondage=$sondage->FetchNextObject(false)) {
   if ($date_courante > strtotime($dsondage->date_fin)) {
     //destruction des données dans la base
-    
-    $req = 'DELETE s, su, u, c
-            FROM
-              sondage s LEFT JOIN sujet_studs su
-                ON su.id_sondage = s.id_sondage
-              LEFT JOIN user_studs u
-                ON u.id_sondage = s.id_sondage
-              LEFT JOIN comments c
-                ON c.id_sondage = s.id_sondage
-            WHERE s.id_sondage = '.$connect->Param('id_sondage');
+    $req = 'DELETE FROM sujet_studs WHERE id_sondage = ' . $connect->Param('id_sondage') . '; ' .
+           'DELETE FROM user_studs  WHERE id_sondage = ' . $connect->Param('id_sondage') . '; ' .
+           'DELETE FROM comments    WHERE id_sondage = ' . $connect->Param('id_sondage') . '; ' .
+           'DELETE FROM sondage     WHERE id_sondage = ' . $connect->Param('id_sondage') ;
     
     $sql = $connect->Prepare($req);
     $connect->Execute($sql, array($dsondage->id_sondage));
