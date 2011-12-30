@@ -86,19 +86,36 @@ while($dsondage = $sondage->FetchNextObject(false)) {
   if (issetAndNoEmpty('confirmesuppression'.$i) === true) {
     // On inclut la routine de suppression
     $date=date('H:i:s d/m/Y');
-    
-    $req = 'DELETE FROM sujet_studs WHERE id_sondage = ' . $connect->Param('id_sondage') . '; ' .
-           'DELETE FROM user_studs  WHERE id_sondage = ' . $connect->Param('id_sondage') . '; ' .
-           'DELETE FROM comments    WHERE id_sondage = ' . $connect->Param('id_sondage') . '; ' .
-           'DELETE FROM sondage     WHERE id_sondage = ' . $connect->Param('id_sondage') ;
-    
+
+    $connect->StartTrans();
+
+    $req = 'DELETE FROM sondage     WHERE id_sondage = ' . $connect->Param('id_sondage') ;
     $sql = $connect->Prepare($req);
     $connect->Execute($sql, array($dsondage->id_sondage));
-    
-    // ecriture des traces dans le fichier de logs
-    error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'logs_studs.txt');
+
+    $req = 'DELETE FROM sujet_studs WHERE id_sondage = ' . $connect->Param('id_sondage') ;
+    $sql = $connect->Prepare($req);
+    $connect->Execute($sql, array($dsondage->id_sondage));
+
+    $req = 'DELETE FROM user_studs  WHERE id_sondage = ' . $connect->Param('id_sondage') ;
+    $sql = $connect->Prepare($req);
+    $connect->Execute($sql, array($dsondage->id_sondage));
+
+    $req = 'DELETE FROM comments    WHERE id_sondage = ' . $connect->Param('id_sondage') ;
+    $sql = $connect->Prepare($req);
+    $connect->Execute($sql, array($dsondage->id_sondage));
+
+    if (! $connect->HasFailedTrans() ) {
+
+      // ecriture des traces dans le fichier de logs
+      error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'logs_studs.txt');
+
+    }
+
+    $connect->CompleteTrans();
+
   }
-  
+
   $i++;
 }
 
