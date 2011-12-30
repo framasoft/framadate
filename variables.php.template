@@ -75,6 +75,10 @@ define('LOGOBANDEAU', '<chemin relatif suivi du nom du fichier du logo pour le b
 // Nom et emplacement du logo de la lettre générée en PDF
 define('LOGOLETTRE', '<chemin relatif suivi du nom du fichier du logo pour la lettre>');
 
+// Nom et emplacement du fichier image contenant le titre
+//define('IMAGE_TITRE', '<chemin relatif suivi du nom du fichier image du titre>');
+define('IMAGE_TITRE', 'images/logo-framadate.png');
+
 // Activation des URL propre (true pour activer, false sinon)
 define('URL_PROPRE', false);
 
