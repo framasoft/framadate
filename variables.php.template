@@ -81,6 +81,9 @@ define('URL_PROPRE', false);
 // Activation de Google Analytics (false si inactif, l'identifiant sinon)
 define('GOOGLE_ANALYTICS_ID', false);
 
+// Utilisation de l'identité (REMOTE_USER) fournie par le serveur web
+define('USE_REMOTE_USER', true);
+
 if (@file_exists('variables.local.php')) {
     include('variables.local.php');
 }
