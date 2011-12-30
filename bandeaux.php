@@ -87,7 +87,7 @@ function bandeau_tete()
 
   } else {
 
-    echo '<div class="bandeau"><a href="'.get_server_name().'" title="Accueil '.NOMAPPLICATION.'">'.NOMAPPLICATION.'"></a></div>'."\n";
+    echo '<div class="bandeau"><a href="'.get_server_name().'" title="Accueil '.NOMAPPLICATION.'">'.NOMAPPLICATION.'</a></div>'."\n";
 
   } ;
 
