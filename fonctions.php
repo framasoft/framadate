@@ -167,7 +167,7 @@ function validateEmail($email)
 
 function sendEmail( $to, $subject, $body, $headers, $param)
 {
-  $to_list = explode( ',', $to ) ;
+  $to_list = explode( ',', html_entity_decode($to, ENT_QUOTES, 'UTF-8' ) ;
   $to = "" ;
   $first = 1 ;
 
@@ -182,7 +182,8 @@ function sendEmail( $to, $subject, $body, $headers, $param)
     $first = 0 ;
   } ;
 
-  $subject = '=?UTF-8?B?' . base64_encode( $subject ) . '?=' ;
+  $subject = '=?UTF-8?B?' . base64_encode( html_entity_decode( $subject, ENT_QUOTES, 'UTF-8' ) ) . '?=' ;
+  $body = html_entity_decode( $body, ENT_QUOTES, 'UTF-8' ) ;
 
   mail( $to, $subject, $body, $headers, $param ) ;
 
