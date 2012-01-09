@@ -197,7 +197,7 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 EOF;
 
-  $encoded_app = '=?UTF-8?B?' . base64_encode( NOMAPPLICATION, ) . '?=' ;
+  $encoded_app = '=?UTF-8?B?' . base64_encode( NOMAPPLICATION ) . '?=' ;
   $headers = sprintf( $headers_str, $encoded_app, ADRESSEMAILADMIN ) ;
 
   return $headers ;
