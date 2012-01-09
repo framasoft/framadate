@@ -188,6 +188,22 @@ function sendEmail( $to, $subject, $body, $headers, $param)
 
 }
 
+function makeHeaders() {
+
+  $headers_str = <<<EOF
+From: %s <%s>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+EOF;
+
+  $encoded_app = '=?UTF-8?B?' . base64_encode( NOMAPPLICATION, ) . '?=' ;
+  $headers = sprintf( $headers_str, $encoded_app, ADRESSEMAILADMIN ) ;
+
+  return $headers ;
+
+}
+
 
 /**
  * Fonction vérifiant l'existance et la valeur non vide d'une clé d'un tableau

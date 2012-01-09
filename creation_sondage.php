@@ -82,7 +82,7 @@ function ajouter_sondage()
     $date_fin = time()+15552000;
   }
   
-  $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
+  $headers =  makeHeaders() ;
   
   global $connect;
   

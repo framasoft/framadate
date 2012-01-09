@@ -103,13 +103,7 @@ $dsondage=$sondage->FetchObject(false);
 
 //si la valeur du nouveau titre est valide et que le bouton est activé
 $adresseadmin = $dsondage->mail_admin;
-$headers_str = <<<EOF
-From: %s <%s>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-EOF;
-$headers = sprintf($headers_str, NOMAPPLICATION, ADRESSEMAILADMIN);
-
+$headers =  makeHeaders() ;
 
 if (isset($_POST["boutonnouveautitre"]) || isset($_POST["boutonnouveautitre_x"])) {
   if(issetAndNoEmpty('nouveautitre') === false) {
@@ -477,7 +471,8 @@ if (isset($_POST["ajoutercolonne_x"]) && issetAndNoEmpty('nouvellecolonne') && (
   $sql = $connect->Prepare($sql);
   if ($connect->Execute($sql, array($nouveauxsujets, $numsondage))) {
     //envoi d'un mail pour prévenir l'administrateur du changement
-    $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
+    $headers =  makeHeaders() ;
+
     sendEmail( "$adresseadmin", "" . _("[ADMINISTRATOR] New column for your poll").NOMAPPLICATION, "" .
           _("You have added a new column in your poll. \nYou can inform the voters of this change with this link") .
           " : \n\n".getUrlSondage($numsondage)." \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION,

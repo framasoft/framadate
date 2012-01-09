@@ -171,7 +171,7 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
       $connect->Execute($sql, array($nom, $numsondage, $nouveauchoix));
 
       if ($dsondage->mailsonde || /* compatibility for non boolean DB */ $dsondage->mailsonde=="yes" || $dsondage->mailsonde=="true") {
-        $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
+        $headers =  makeHeaders() ;
         sendEmail( "$dsondage->mail_admin",
               "[".NOMAPPLICATION."] "._("Poll's participation")." : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8')."",
               html_entity_decode("\"$nom\" ", ENT_QUOTES, 'UTF-8').
@@ -307,7 +307,7 @@ if ($testmodifier) {
       $connect->Execute($sql, array($nouveauchoix, $data->nom, $data->id_users));
       
       if ($dsondage->mailsonde=="yes") {
-        $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
+        $headers =  makeHeaders() ;
         sendEmail( "$dsondage->mail_admin", "[".NOMAPPLICATION."] " . _("Poll's participation") . " : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8'), "\"".html_entity_decode($data->nom, ENT_QUOTES, 'UTF-8')."\""."" . _("has filled a line.\nYou can find your poll at the link") . " :\n\n".getUrlSondage($numsondage)." \n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION,$headers );
       }
     }
