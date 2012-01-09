@@ -173,8 +173,12 @@ function sendEmail( $to, $subject, $body, $headers, $param)
 
   foreach ( $to_list as $one ) {
     if ( $first == 0 ) $to .= ',' ;
-    $to_cut = explode( '<' ,$one, 2 ) ;
-    $to .= '=?UTF-8?B?' . base64_encode( $to_cut[ 0 ] ) . '?= <' . $to_cut[ 1 ] ;
+    if ( preg_match( "/</", $one ) ) {
+      $to_cut = explode( '<' ,$one ) ;
+      $to .= '=?UTF-8?B?' . base64_encode( $to_cut[ 0 ] ) . '?= <' . $to_cut[ 1 ] ;
+    } else {
+      $to .= $one ;
+    }
     $first = 0 ;
   } ;
 
