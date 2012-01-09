@@ -167,7 +167,7 @@ function validateEmail($email)
 
 function sendEmail( $to, $subject, $body, $headers, $param)
 {
-  $to_list = explode( ',', html_entity_decode($to, ENT_QUOTES, 'UTF-8' ) ;
+  $to_list = explode( ',', html_entity_decode( $to, ENT_QUOTES, 'UTF-8' ) ) ;
   $to = "" ;
   $first = 1 ;
 
