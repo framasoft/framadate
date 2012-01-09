@@ -161,6 +161,29 @@ function validateEmail($email)
   return (bool)preg_match($pattern, $email);
 }
 
+# Envoi un courrier avec un codage correct de To et Subject
+# Les en-têtes complémentaires ne sont pas gérés
+# Inspiré de http://geoland.org/2007/12/utf8-ready-php-mail-function/
+
+function sendEmail( $to, $subject, $body, $headers, $param)
+{
+  $to_list = explode( ',', $to ) ;
+  $to = "" ;
+  $first = 1 ;
+
+  foreach ( $to_list as $one ) {
+    if ( $first == 0 ) $to .= ',' ;
+    $to_cut = explode( '<' ,$one, 2 ) ;
+    $to .= '=?UTF-8?B?' . base64_encode( $to_cut[ 0 ] ) . '?= <' . $to_cut[ 1 ] ;
+    $first = 0 ;
+  } ;
+
+  $subject = '=?UTF-8?B?' . base64_encode( $subject ) . '?=' ;
+
+  mail( $to, $subject, $body, $headers, $param ) ;
+
+}
+
 
 /**
  * Fonction vérifiant l'existance et la valeur non vide d'une clé d'un tableau

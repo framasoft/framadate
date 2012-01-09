@@ -122,12 +122,12 @@ if (isset($_POST["boutonnouveautitre"]) || isset($_POST["boutonnouveautitre_x"])
     
     //envoi du mail pour prevenir l'admin de sondage
     if ($connect->Execute($sql, array($nouveautitre, $numsondage))) {
-      mail ($adresseadmin,
+      sendEmail( $adresseadmin,
             _("[ADMINISTRATOR] New title for your poll") . ' ' . NOMAPPLICATION,
             _("You have changed the title of your poll. \nYou can modify this poll with this link") .
             " :\n\n".getUrlSondage($numsondageadmin, true)."\n\n" .
             _("Thanks for your confidence.") . "\n" . NOMAPPLICATION,
-            $headers);
+            $headers );
     }
   }
 }
@@ -145,12 +145,12 @@ if (isset($_POST["boutonnouveauxcommentaires"]) || isset($_POST["boutonnouveauxc
     
     if ($connect->Execute($sql, array($commentaires, $numsondage))) {
       //envoi du mail pour prevenir l'admin de sondage
-      mail ($adresseadmin,
+      sendEmail( $adresseadmin,
             _("[ADMINISTRATOR] New comments for your poll") . ' ' . NOMAPPLICATION,
             _("You have changed the comments of your poll. \nYou can modify this poll with this link") .
             " :\n\n".getUrlSondage($numsondageadmin, true)." \n\n" .
             _("Thanks for your confidence.") . "\n" . NOMAPPLICATION,
-            $headers);
+            $headers );
     }
   }
 }
@@ -168,12 +168,12 @@ if (isset($_POST["boutonnouvelleadresse"]) || isset($_POST["boutonnouvelleadress
     
     if ($connect->Execute($sql, array($nouvelleadresse, $numsondage))) {
       //envoi du mail pour prevenir l'admin de sondage
-      mail ($_POST['nouvelleadresse'],
+      sendEmail( $_POST['nouvelleadresse'],
             _("[ADMINISTRATOR] New email address for your poll") . ' ' . NOMAPPLICATION,
             _("You have changed your email address in your poll. \nYou can modify this poll with this link") .
             " :\n\n".getUrlSondage($numsondageadmin, true)."\n\n" .
             _("Thanks for your confidence.") . "\n" . NOMAPPLICATION,
-            $headers);
+            $headers );
     }
   }
 }
@@ -329,12 +329,12 @@ if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"
     error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'admin/logs_studs.txt');
   
     //envoi du mail a l'administrateur du sondage
-    mail ($adresseadmin, 
+    sendEmail( $adresseadmin, 
           _("[ADMINISTRATOR] Removing of your poll") . ' ' . NOMAPPLICATION,
           _("You have removed your poll. \nYou can make new polls with this link") .
           " :\n\n".get_server_name()."index.php \n\n" .
           _("Thanks for your confidence.") . "\n" . NOMAPPLICATION,
-          $headers);
+          $headers );
 
     //affichage de l'ecran de confirmation de suppression de sondage
     print_header();
@@ -478,10 +478,10 @@ if (isset($_POST["ajoutercolonne_x"]) && issetAndNoEmpty('nouvellecolonne') && (
   if ($connect->Execute($sql, array($nouveauxsujets, $numsondage))) {
     //envoi d'un mail pour prévenir l'administrateur du changement
     $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
-    mail ("$adresseadmin", "" . _("[ADMINISTRATOR] New column for your poll").NOMAPPLICATION, "" .
+    sendEmail( "$adresseadmin", "" . _("[ADMINISTRATOR] New column for your poll").NOMAPPLICATION, "" .
           _("You have added a new column in your poll. \nYou can inform the voters of this change with this link") .
           " : \n\n".getUrlSondage($numsondage)." \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION,
-          $headers);
+          $headers );
   }
 }
 
@@ -592,11 +592,11 @@ if (isset($_POST["ajoutercolonne_x"]) && ($dsondage->format == "D" || $dsondage-
     //envoi d'un mail pour prévenir l'administrateur du changement
     $adresseadmin = $dsondage->mail_admin;
     
-    mail ($adresseadmin,
+    sendEmail( $adresseadmin,
           _("[ADMINISTRATOR] New column for your poll"),
           _("You have added a new column in your poll. \nYou can inform the voters of this change with this link").
           " : \n\n".getUrlSondage($numsondage)." \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION,
-          $headers);
+          $headers );
   } else {
     $erreur_ajout_date="yes";
   }
