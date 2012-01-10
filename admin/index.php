@@ -87,7 +87,7 @@ while($dsondage = $sondage->FetchNextObject(false)) {
     // On inclut la routine de suppression
     $date=date('H:i:s d/m/Y');
 
-    if ( remove_sondage( $dsondage->id_sondage ) ) {
+    if ( remove_sondage( $connect, $dsondage->id_sondage ) ) {
 
       // ecriture des traces dans le fichier de logs
       error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'logs_studs.txt');
