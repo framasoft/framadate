@@ -81,7 +81,16 @@ function logo ()
 #le bandeau principal
 function bandeau_tete()
 {
-  echo '<div class="bandeau"><a href="'.get_server_name().'" title="Accueil Framadate"><img src="'.get_server_name().'images/logo-framadate.png" title="Accueil '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'"></a></div>'."\n";
+  if ( IMAGE_TITRE ) {
+
+    echo '<div class="bandeau"><a href="'.get_server_name().'" title="Accueil '.NOMAPPLICATION.'"><img src="'.get_server_name().IMAGE_TITRE.'" title="Accueil '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'"></a></div>'."\n";
+
+  } else {
+
+    echo '<div class="bandeau"><a href="'.get_server_name().'" title="Accueil '.NOMAPPLICATION.'">'.NOMAPPLICATION.'</a></div>'."\n";
+
+  } ;
+
 }
 
 
