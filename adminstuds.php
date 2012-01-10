@@ -313,29 +313,9 @@ if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"
   $nbuser=$user_studs->RecordCount();
   $date=date('H:i:s d/m/Y:');
 
-  $connect->StartTrans();
+  remove_sondage( $numsondage ) ;
 
-  $req = 'DELETE FROM sondage     WHERE id_sondage = ' . $connect->Param('numsondage') ;
-  $sql = $connect->Prepare($req);
-  $connect->Execute($sql, array($numsondage));
-
-  $req = 'DELETE FROM sujet_studs WHERE id_sondage = ' . $connect->Param('numsondage') ;
-  $sql = $connect->Prepare($req);
-  $connect->Execute($sql, array($numsondage));
-
-  $req = 'DELETE FROM user_studs  WHERE id_sondage = ' . $connect->Param('numsondage') ;
-  $sql = $connect->Prepare($req);
-  $connect->Execute($sql, array($numsondage));
-
-  $req = 'DELETE FROM comments    WHERE id_sondage = ' . $connect->Param('numsondage') ;
-  $sql = $connect->Prepare($req);
-  $connect->Execute($sql, array($numsondage));
-
-  $suppression_OK = ! $connect->HasFailedTrans() ;
-  $connect->CompleteTrans();
-
-
-  if ( $suppression_OK ) {
+  if ( remove_sondage( $numsondage ) ) {
     // on ecrit dans le fichier de logs la suppression du sondage
     error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'admin/logs_studs.txt');
   
