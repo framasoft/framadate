@@ -313,12 +313,6 @@ if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"
   $nbuser=$user_studs->RecordCount();
   $date=date('H:i:s d/m/Y:');
 
-  //destruction des données dans la base SQL
-  $sql = 'DELETE FROM sujet_studs WHERE id_sondage = ' . $connect->Param('numsondage') . '; ' .
-         'DELETE FROM user_studs  WHERE id_sondage = ' . $connect->Param('numsondage') . '; ' .
-         'DELETE FROM comments    WHERE id_sondage = ' . $connect->Param('numsondage') . '; ' .
-         'DELETE FROM sondage     WHERE id_sondage = ' . $connect->Param('numsondage') ;
-
   $connect->StartTrans();
 
   $req = 'DELETE FROM sondage     WHERE id_sondage = ' . $connect->Param('numsondage') ;
