@@ -39,7 +39,7 @@
 
 session_start();
 
-require_once('fpdf/phpToPDF.php');
+require_once('php2pdf/phpToPDF.php');
 include_once('fonctions.php');
 
 $dsondage = get_sondage_from_id($_POST['numsondage']);
