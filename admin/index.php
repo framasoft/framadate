@@ -72,18 +72,17 @@ $sondage=$connect->Execute("select * from sondage");
 echo'<div class=corps>'."\n";
 echo '<form action="index.php" method="POST">'."\n";
 // Test et affichage du bouton de confirmation en cas de suppression de sondage
-$i=0;
 while($dsondage = $sondage->FetchNextObject(false)) {
-  if (issetAndNoEmpty('supprimersondage'.$i) === true) {
+  if (issetAndNoEmpty('supprimersondage'.$dsondage->id_sondage) === true) {
     echo '<table>'."\n";
-    echo '<tr><td bgcolor="#EE0000" colspan="11">'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'" : <input type="submit" name="confirmesuppression'.$i.'" value="'. _("Remove this poll!") .'">'."\n";
+    echo '<tr><td bgcolor="#EE0000" colspan="11">'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'" : <input type="submit" name="confirmesuppression'.$dsondage->id_sondage.'" value="'. _("Remove this poll!") .'">'."\n";
     echo '<input type="submit" name="annullesuppression" value="'. _("Keep this poll!") .'"></td></tr>'."\n";
     echo '</table>'."\n";
     echo '<br>'."\n";
   }
   
   // Traitement de la confirmation de suppression
-  if (issetAndNoEmpty('confirmesuppression'.$i) === true) {
+  if (issetAndNoEmpty('confirmesuppression'.$dsondage->id_sondage) === true) {
     // On inclut la routine de suppression
     $date=date('H:i:s d/m/Y');
 
@@ -96,7 +95,6 @@ while($dsondage = $sondage->FetchNextObject(false)) {
 
   }
 
-  $i++;
 }
 
 $sondage=$connect->Execute("select * from sondage ORDER BY date_fin ASC");
@@ -128,7 +126,7 @@ while($dsondage = $sondage->FetchNextObject(false)) {
   echo'<td>'.$nbuser.'</td>'."\n";
   echo '<td><a href="'.getUrlSondage($dsondage->id_sondage).'">'. _("See the poll") .'</a></td>'."\n";
   echo '<td><a href="'.getUrlSondage($dsondage->id_sondage_admin, true).'">'. _("Change the poll") .'</a></td>'."\n";
-  echo '<td><input type="submit" name="supprimersondage'.$i.'" value="'. _("Remove the poll") .'"></td>'."\n";
+  echo '<td><input type="submit" name="supprimersondage'.$dsondage->id_sondage.'" value="'. _("Remove the poll") .'"></td>'."\n";
 
   echo '</tr>'."\n";
   $i++;
