@@ -86,24 +86,16 @@ while($dsondage = $sondage->FetchNextObject(false)) {
   if (issetAndNoEmpty('confirmesuppression'.$i) === true) {
     // On inclut la routine de suppression
     $date=date('H:i:s d/m/Y');
-    
-    $req = 'DELETE s, su, u, c
-            FROM
-              sondage s LEFT JOIN sujet_studs su
-                ON su.id_sondage = s.id_sondage
-              LEFT JOIN user_studs u
-                ON u.id_sondage = s.id_sondage
-              LEFT JOIN comments c
-                ON c.id_sondage = s.id_sondage
-            WHERE s.id_sondage = '.$connect->Param('id_sondage');
-    
-    $sql = $connect->Prepare($req);
-    $connect->Execute($sql, array($dsondage->id_sondage));
-    
-    // ecriture des traces dans le fichier de logs
-    error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'logs_studs.txt');
+
+    if ( remove_sondage( $connect, $dsondage->id_sondage ) ) {
+
+      // ecriture des traces dans le fichier de logs
+      error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'logs_studs.txt');
+
+    }
+
   }
-  
+
   $i++;
 }
 

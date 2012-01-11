@@ -203,6 +203,33 @@ function getUrlSondage($id, $admin = false)
   return $url;
 }
 
+function remove_sondage( $connect, $numsondage ){
+
+  $connect->StartTrans();
+
+  $req = 'DELETE FROM sondage     WHERE id_sondage = ' . $connect->Param('numsondage') ;
+  $sql = $connect->Prepare($req);
+  $connect->Execute($sql, array($numsondage));
+
+  $req = 'DELETE FROM sujet_studs WHERE id_sondage = ' . $connect->Param('numsondage') ;
+  $sql = $connect->Prepare($req);
+  $connect->Execute($sql, array($numsondage));
+
+  $req = 'DELETE FROM user_studs  WHERE id_sondage = ' . $connect->Param('numsondage') ;
+  $sql = $connect->Prepare($req);
+  $connect->Execute($sql, array($numsondage));
+
+  $req = 'DELETE FROM comments    WHERE id_sondage = ' . $connect->Param('numsondage') ;
+  $sql = $connect->Prepare($req);
+  $connect->Execute($sql, array( $numsondage ));
+
+  $suppression_OK = ! $connect->HasFailedTrans() ;
+  $connect->CompleteTrans();
+
+  return $suppression_OK ;
+
+}
+
 
 $connect=connexion_base();
 
