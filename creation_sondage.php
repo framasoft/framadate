@@ -82,8 +82,6 @@ function ajouter_sondage()
     $date_fin = time()+15552000;
   }
   
-  $headers =  makeHeaders() ;
-  
   global $connect;
   
   $sql = 'INSERT INTO sondage
@@ -118,8 +116,8 @@ function ajouter_sondage()
   $message_admin = sprintf($message_admin, getUrlSondage($sondage_admin, true));
   
   if (validateEmail($_SESSION['adresse'])) {
-    sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message")  . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message_admin, $headers );
-    sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message, $headers );
+    sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message")  . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message_admin );
+    sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message );
   }
   
   $date=date('H:i:s d/m/Y:');

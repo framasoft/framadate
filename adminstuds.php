@@ -103,7 +103,6 @@ $dsondage=$sondage->FetchObject(false);
 
 //si la valeur du nouveau titre est valide et que le bouton est activé
 $adresseadmin = $dsondage->mail_admin;
-$headers =  makeHeaders() ;
 
 if (isset($_POST["boutonnouveautitre"]) || isset($_POST["boutonnouveautitre_x"])) {
   if(issetAndNoEmpty('nouveautitre') === false) {
@@ -120,8 +119,7 @@ if (isset($_POST["boutonnouveautitre"]) || isset($_POST["boutonnouveautitre_x"])
             _("[ADMINISTRATOR] New title for your poll") . ' ' . NOMAPPLICATION,
             _("You have changed the title of your poll. \nYou can modify this poll with this link") .
             " :\n\n".getUrlSondage($numsondageadmin, true)."\n\n" .
-            _("Thanks for your confidence.") . "\n" . NOMAPPLICATION,
-            $headers );
+            _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
     }
   }
 }
@@ -143,8 +141,7 @@ if (isset($_POST["boutonnouveauxcommentaires"]) || isset($_POST["boutonnouveauxc
             _("[ADMINISTRATOR] New comments for your poll") . ' ' . NOMAPPLICATION,
             _("You have changed the comments of your poll. \nYou can modify this poll with this link") .
             " :\n\n".getUrlSondage($numsondageadmin, true)." \n\n" .
-            _("Thanks for your confidence.") . "\n" . NOMAPPLICATION,
-            $headers );
+            _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
     }
   }
 }
@@ -166,8 +163,7 @@ if (isset($_POST["boutonnouvelleadresse"]) || isset($_POST["boutonnouvelleadress
             _("[ADMINISTRATOR] New email address for your poll") . ' ' . NOMAPPLICATION,
             _("You have changed your email address in your poll. \nYou can modify this poll with this link") .
             " :\n\n".getUrlSondage($numsondageadmin, true)."\n\n" .
-            _("Thanks for your confidence.") . "\n" . NOMAPPLICATION,
-            $headers );
+            _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
     }
   }
 }
@@ -327,8 +323,7 @@ if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"
           _("[ADMINISTRATOR] Removing of your poll") . ' ' . NOMAPPLICATION,
           _("You have removed your poll. \nYou can make new polls with this link") .
           " :\n\n".get_server_name()."index.php \n\n" .
-          _("Thanks for your confidence.") . "\n" . NOMAPPLICATION,
-          $headers );
+          _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
 
     //affichage de l'ecran de confirmation de suppression de sondage
     print_header();
@@ -471,12 +466,10 @@ if (isset($_POST["ajoutercolonne_x"]) && issetAndNoEmpty('nouvellecolonne') && (
   $sql = $connect->Prepare($sql);
   if ($connect->Execute($sql, array($nouveauxsujets, $numsondage))) {
     //envoi d'un mail pour prévenir l'administrateur du changement
-    $headers =  makeHeaders() ;
 
     sendEmail( "$adresseadmin", "" . _("[ADMINISTRATOR] New column for your poll").NOMAPPLICATION, "" .
           _("You have added a new column in your poll. \nYou can inform the voters of this change with this link") .
-          " : \n\n".getUrlSondage($numsondage)." \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION,
-          $headers );
+          " : \n\n".getUrlSondage($numsondage)." \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
   }
 }
 
@@ -590,8 +583,7 @@ if (isset($_POST["ajoutercolonne_x"]) && ($dsondage->format == "D" || $dsondage-
     sendEmail( $adresseadmin,
           _("[ADMINISTRATOR] New column for your poll"),
           _("You have added a new column in your poll. \nYou can inform the voters of this change with this link").
-          " : \n\n".getUrlSondage($numsondage)." \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION,
-          $headers );
+          " : \n\n".getUrlSondage($numsondage)." \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
   } else {
     $erreur_ajout_date="yes";
   }
