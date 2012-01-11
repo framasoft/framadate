@@ -186,11 +186,11 @@ function sendEmail( $to, $subject, $body, $headers, $param)
 
   $encoded_app = '=?UTF-8?B?' . base64_encode( NOMAPPLICATION ) . '?=' ;
 
-  if ( $headers ) $headers .= "\r\n"
-  $headers .= sprintf( "From: %s <%s>\r\n", $encoded_app, ADRESSEMAILADMIN )
-  $headers .= "MIME-Version: 1.0\r\n"
-  $headers .= "Content-Type: text/plain; charset=UTF-8\r\n"
-  $headers .= "Content-Transfer-Encoding: 8bit"
+  if ( $headers ) $headers .= "\r\n" ;
+  $headers .= sprintf( "From: %s <%s>\r\n", $encoded_app, ADRESSEMAILADMIN ) ;
+  $headers .= "MIME-Version: 1.0\r\n" ;
+  $headers .= "Content-Type: text/plain; charset=UTF-8\r\n" ;
+  $headers .= "Content-Transfer-Encoding: 8bit" ;
 
   $body = html_entity_decode( $body, ENT_QUOTES, 'UTF-8' ) ;
 
