@@ -172,10 +172,10 @@ function sendEmail( $to, $subject, $body, $headers, $param)
   $subject = mb_encode_mimeheader( html_entity_decode( $subject, ENT_QUOTES, 'UTF-8' ), "UTF-8", "B", "\n", 9 ) ;
 
   $encoded_app = mb_encode_mimeheader( NOMAPPLICATION, "UTF-8", "B", "\n", 6 ) ;
-  $size_encoded_app = strlen( $encoded_app ) % 75 ;
+  $size_encoded_app = ( 6 + strlen( $encoded_app ) ) % 75 ;
   $size_admin_email = strlen( ADRESSEMAILADMIN ) ;
 
-  if ( $size_encoded_app + $size_admin_email + 9 > 74 ) {
+  if ( ( $size_encoded_app + $size_admin_email + 9 ) > 74 ) {
     $folding = "\n" ;
   } else {
     $folding = "" ;
