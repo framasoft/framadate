@@ -167,6 +167,8 @@ function validateEmail($email)
 function sendEmail( $to, $subject, $body, $headers, $param)
 {
 
+  mb_internal_encoding("UTF-8");
+
   $subject = mb_encode_mimeheader( html_entity_decode( $subject, ENT_QUOTES, 'UTF-8' ), "UTF-8", "B", "\r\n", 9 ) ;
 
   $encoded_app = mb_encode_mimeheader( NOMAPPLICATION, "UTF-8", "B", "\r\n", 6 ) ;
