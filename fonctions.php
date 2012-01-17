@@ -163,33 +163,24 @@ function validateEmail($email)
 
 # Envoi un courrier avec un codage correct de To et Subject
 # Les en-têtes complémentaires ne sont pas gérés
-# Inspiré de http://geoland.org/2007/12/utf8-ready-php-mail-function/
 
 function sendEmail( $to, $subject, $body, $headers, $param)
 {
-  $to_list = explode( ',', html_entity_decode( $to, ENT_QUOTES, 'UTF-8' ) ) ;
-  $to = "" ;
-  $first = 1 ;
 
-  foreach ( $to_list as $one ) {
-    if ( $first == 0 ) $to .= ',' ;
-    if ( preg_match( "/</", $one ) ) {
-      $to_cut = explode( '<' ,$one ) ;
-      $to .= '=?UTF-8?B?' . base64_encode( $to_cut[ 0 ] ) . '?= <' . $to_cut[ 1 ] ;
-    } else {
-      $to .= $one ;
-    }
-    $first = 0 ;
-  } ;
+  $subject = mb_encode_mimeheader( html_entity_decode( $subject, ENT_QUOTES, 'UTF-8' ), "UTF-8",,, 9 ) ;
 
-  $subject = '=?UTF-8?B?' . base64_encode( html_entity_decode( $subject, ENT_QUOTES, 'UTF-8' ) ) . '?=' ;
+  $encoded_app = mb_encode_mimeheader( NOMAPPLICATION, "UTF-8",,, 6 ) ;
+  $size_encoded_app = strlen( $encoded_app ) % 76 ;
+  $size_admin_email = strlen( ADRESSEMAILADMIN ) ;
 
-  $encoded_app = '=?UTF-8?B?' . base64_encode( NOMAPPLICATION ) . '?=' ;
+  if ( $size_encoded_app + $size_admin_email + 9 > 74 ) $folding = "\n" 
+  else                                                  $folding = "" ;
+  $from = sprintf( "From: %s%s <%s>\n", $encoded_app, $folding, ADRESSEMAILADMIN ) ;
 
-  if ( $headers ) $headers .= "\r\n" ;
-  $headers .= sprintf( "From: %s <%s>\r\n", $encoded_app, ADRESSEMAILADMIN ) ;
-  $headers .= "MIME-Version: 1.0\r\n" ;
-  $headers .= "Content-Type: text/plain; charset=UTF-8\r\n" ;
+  if ( $headers ) $headers .= "\n" ;
+  $headers .= $from ;
+  $headers .= "MIME-Version: 1.0\n" ;
+  $headers .= "Content-Type: text/plain; charset=UTF-8\n" ;
   $headers .= "Content-Transfer-Encoding: 8bit" ;
 
   $body = html_entity_decode( $body, ENT_QUOTES, 'UTF-8' ) ;
