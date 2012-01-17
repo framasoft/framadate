@@ -169,23 +169,23 @@ function sendEmail( $to, $subject, $body, $headers, $param)
 
   mb_internal_encoding("UTF-8");
 
-  $subject = mb_encode_mimeheader( html_entity_decode( $subject, ENT_QUOTES, 'UTF-8' ), "UTF-8", "B", "\r\n", 9 ) ;
+  $subject = mb_encode_mimeheader( html_entity_decode( $subject, ENT_QUOTES, 'UTF-8' ), "UTF-8", "B", "\n", 9 ) ;
 
-  $encoded_app = mb_encode_mimeheader( NOMAPPLICATION, "UTF-8", "B", "\r\n", 6 ) ;
-  $size_encoded_app = strlen( $encoded_app ) % 76 ;
+  $encoded_app = mb_encode_mimeheader( NOMAPPLICATION, "UTF-8", "B", "\n", 6 ) ;
+  $size_encoded_app = strlen( $encoded_app ) % 75 ;
   $size_admin_email = strlen( ADRESSEMAILADMIN ) ;
 
   if ( $size_encoded_app + $size_admin_email + 9 > 74 ) {
-    $folding = "\r\n" ;
+    $folding = "\n" ;
   } else {
     $folding = "" ;
   } ;
   $from = sprintf( "From: %s%s <%s>\n", $encoded_app, $folding, ADRESSEMAILADMIN ) ;
 
-  if ( $headers ) $headers .= "\r\n" ;
+  if ( $headers ) $headers .= "\n" ;
   $headers .= $from ;
-  $headers .= "MIME-Version: 1.0\r\n" ;
-  $headers .= "Content-Type: text/plain; charset=UTF-8\r\n" ;
+  $headers .= "MIME-Version: 1.0\n" ;
+  $headers .= "Content-Type: text/plain; charset=UTF-8\n" ;
   $headers .= "Content-Transfer-Encoding: 8bit" ;
 
   $body = html_entity_decode( $body, ENT_QUOTES, 'UTF-8' ) ;
