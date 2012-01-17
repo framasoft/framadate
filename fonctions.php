@@ -173,8 +173,11 @@ function sendEmail( $to, $subject, $body, $headers, $param)
   $size_encoded_app = strlen( $encoded_app ) % 76 ;
   $size_admin_email = strlen( ADRESSEMAILADMIN ) ;
 
-  if ( $size_encoded_app + $size_admin_email + 9 > 74 ) $folding = "\r\n" 
-  else                                                  $folding = "" ;
+  if ( $size_encoded_app + $size_admin_email + 9 > 74 ) {
+    $folding = "\r\n" ;
+  } else {
+    $folding = "" ;
+  } ;
   $from = sprintf( "From: %s%s <%s>\n", $encoded_app, $folding, ADRESSEMAILADMIN ) ;
 
   if ( $headers ) $headers .= "\r\n" ;
