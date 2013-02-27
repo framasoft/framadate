@@ -136,7 +136,7 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
     $err |= NAME_EMPTY;
   }
   
-  if(!is_error(NAME_EMPTY) && (!isset($_SERVER['REMOTE_USER']) || $_POST["nom"] == $_SESSION["nom"])) {
+  if(!is_error(NAME_EMPTY) && (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || $_POST["nom"] == $_SESSION["nom"])) {
     $nouveauchoix = '';
     for ($i=0;$i<$nbcolonnes;$i++) {
       // Si la checkbox est enclenchée alors la valeur est 1
@@ -444,7 +444,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
   $ensemblereponses = $data->reponses;
   
   // ligne d'un usager pré-authentifié
-  $mod_ok = !isset($_SERVER['REMOTE_USER']) || ($nombase == $_SESSION['nom']);
+  $mod_ok = !( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || ($nombase == $_SESSION['nom']);
   $user_mod |= $mod_ok;
   
   // pour chaque colonne
@@ -490,7 +490,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
 }
 
 // affichage de la ligne pour un nouvel utilisateur
-if (!isset($_SERVER['REMOTE_USER']) || !$user_mod) {
+if (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || !$user_mod) {
   echo '<tr class="ajout_reponse">'."\n";
   echo '<td class="nom">'."\n";
   if (isset($_SESSION['nom'])) {
