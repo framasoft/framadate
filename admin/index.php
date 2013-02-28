@@ -97,7 +97,7 @@ while($dsondage = $sondage->FetchNextObject(false)) {
 
 }
 
-$sondage=$connect->Execute("select * from sondage ORDER BY date_fin ASC");
+$sondage=$connect->Execute("select * from sondage WHERE date_fin > DATE_SUB(now(), INTERVAL 3 MONTH) ORDER BY date_fin ASC");
 $nbsondages=$sondage->RecordCount();
 
 echo $nbsondages.' '. _("polls in the database at this time") .'<br><br>'."\n";
