@@ -1,12 +1,12 @@
 authType      basic
 authName      "ADMIN OpenSondage"
 
-authUserFile  /home/framatools/www/opensondage/admin/.htpasswd
+authUserFile  /home/framatools/www/opensondage_dev/admin/.htpasswd
 
-order         deny,allow
+#order         deny,allow
 
 # satisfy       all
 
 # allow from all
 
-require user studs
+#require user studs
