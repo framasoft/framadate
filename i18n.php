@@ -1,5 +1,4 @@
 <?php
-//$locale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 
 if (isset($_GET['lang']) && is_string($_GET['lang']) && in_array($_GET['lang'], array_keys($ALLOWED_LANGUAGES)) ) {
   $mlocale = $_GET['lang'] ;
@@ -11,6 +10,7 @@ if (isset($_GET['lang']) && is_string($_GET['lang']) && in_array($_GET['lang'], 
 }
 
 $locale = $mlocale . '.utf8';
+putenv('LANGUAGE=');
 setlocale(LC_ALL, $locale);
 setlocale(LC_TIME, $locale);
 setlocale(LC_MESSAGES, $locale);
