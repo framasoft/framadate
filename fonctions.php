@@ -10,10 +10,10 @@
 //Ce logiciel est régi par la licence CeCILL-B soumise au droit français et
 //respectant les principes de diffusion des logiciels libres. Vous pouvez
 //utiliser, modifier et/ou redistribuer ce programme sous les conditions
-//de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA 
+//de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA
 //sur le site "http://www.cecill.info".
 //
-//Le fait que vous puissiez accéder à cet en-tête signifie que vous avez 
+//Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
 //pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
 //termes. Vous pouvez trouver une copie de la licence dans le fichier LICENCE.
 //
@@ -26,10 +26,10 @@
 //borghesi@unistra.fr
 //
 //This software is governed by the CeCILL-B license under French law and
-//abiding by the rules of distribution of free software. You can  use, 
+//abiding by the rules of distribution of free software. You can  use,
 //modify and/ or redistribute the software under the terms of the CeCILL-B
 //license as circulated by CEA, CNRS and INRIA at the following URL
-//"http://www.cecill.info". 
+//"http://www.cecill.info".
 //
 //The fact that you are presently reading this means that you have had
 //knowledge of the CeCILL-B license and that you accept its terms. You can
@@ -53,47 +53,35 @@ function connexion_base()
   return $DB;
 }
 
-
 function get_server_name()
 {
-  $scheme = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") ? 'https' : 'http';
-  
-  $get = explode('/', dirname($_SERVER["SCRIPT_NAME"]));
-  $folder = explode('/', str_replace('\\', '/', dirname(__FILE__)));
-  $communs = array_intersect($get, $folder);
-  $base = implode('/', $communs);
-  $url = sprintf("%s://%s%s", $scheme, STUDS_URL, $base);
-  
-  if (!preg_match("|/$|", $url)) {
-    $url = $url."/";
-  }
-  
-  return $url;
+    $scheme = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 'on') ? 'https' : 'http';
+    return $scheme . '//' .  $_SERVER['SERVER_NAME'] . '/';
 }
 
 
 function get_sondage_from_id($id)
 {
   global $connect;
-  
+
   // Ouverture de la base de données
   if(preg_match(";^[\w\d]{16}$;i",$id)) {
     $sql = 'SELECT sondage.*,sujet_studs.sujet FROM sondage
             LEFT OUTER JOIN sujet_studs ON sondage.id_sondage = sujet_studs.id_sondage
             WHERE sondage.id_sondage = '.$connect->Param('id_sondage');
-            
+
     $sql = $connect->Prepare($sql);
     $sondage=$connect->Execute($sql, array($id));
-    
+
     if ($sondage === false) {
       return false;
     }
-    
+
     $psondage = $sondage->FetchObject(false);
     $psondage->date_fin = strtotime($psondage->date_fin);
     return $psondage;
   }
-  
+
   return false;
 }
 
@@ -104,7 +92,7 @@ function is_error($cerr)
   if ( $err == 0 ) {
     return false;
   }
-  
+
   return (($err & $cerr) != 0 );
 }
 
@@ -129,9 +117,9 @@ function print_header($js = false, $nom_sondage = '')
     <title>'.NOMAPPLICATION.'</title>';
   }
   echo '
-    <link rel="stylesheet" type="text/css" href="'.get_server_name().'style.css">
-    <link rel="stylesheet" type="text/css" href="'.get_server_name().'print.css" media="print">';
-  
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="/print.css" media="print">';
+
   echo '</head>';
 }
 
@@ -157,7 +145,7 @@ function check_table_sondage()
 function validateEmail($email)
 {
   $pattern = '/^(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){255,})(?!(?:(?:\\x22?\\x5C[\\x00-\\x7E]\\x22?)|(?:\\x22?[^\\x5C\\x22]\\x22?)){65,}@)(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22))(?:\\.(?:(?:[\\x21\\x23-\\x27\\x2A\\x2B\\x2D\\x2F-\\x39\\x3D\\x3F\\x5E-\\x7E]+)|(?:\\x22(?:[\\x01-\\x08\\x0B\\x0C\\x0E-\\x1F\\x21\\x23-\\x5B\\x5D-\\x7F]|(?:\\x5C[\\x00-\\x7F]))*\\x22)))*@(?:(?:(?!.*[^.]{64,})(?:(?:(?:xn--)?[a-z0-9]+(?:-[a-z0-9]+)*\\.){1,126}){1,}(?:(?:[a-z][a-z0-9]*)|(?:(?:xn--)[a-z0-9]+))(?:-[a-z0-9]+)*)|(?:\\[(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){7})|(?:(?!(?:.*[a-f0-9][:\\]]){7,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,5})?)))|(?:(?:IPv6:(?:(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){5}:)|(?:(?!(?:.*[a-f0-9]:){5,})(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3})?::(?:[a-f0-9]{1,4}(?::[a-f0-9]{1,4}){0,3}:)?)))?(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))(?:\\.(?:(?:25[0-5])|(?:2[0-4][0-9])|(?:1[0-9]{2})|(?:[1-9]?[0-9]))){3}))\\]))$/iD';
-  
+
   return (bool)preg_match($pattern, $email);
 }
 
@@ -206,7 +194,7 @@ function issetAndNoEmpty($name, $tableau = null)
   if ($tableau === null) {
     $tableau = $_POST;
   }
-  
+
   return (isset($tableau[$name]) === true && empty($tableau[$name]) === false);
 }
 
@@ -232,7 +220,7 @@ function getUrlSondage($id, $admin = false)
       $url = get_server_name().'studs.php?sondage='.$id;
     }
   }
-  
+
   return $url;
 }
 
