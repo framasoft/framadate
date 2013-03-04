@@ -38,58 +38,58 @@
 //==========================================================================
 
 // Nom du serveur
-define('STUDS_URL', 'www.mon_domaine.coop');
+const STUDS_URL = 'www.mon_domaine.coop';
 
 // Nom de l'application
-define('NOMAPPLICATION', "<nom de l'application>");
+const NOMAPPLICATION = "<nom de l'application>";
 
 // adresse mail de l'administrateur de la base
-define('ADRESSEMAILADMIN', '<adresse mail>');
+const ADRESSEMAILADMIN = '<adresse mail>';
 
 // nom de la base de donnees
-define('BASE', '<nom de la base de données>');
+const BASE = '<nom de la base de données>';
 
 // nom de l'utilisateur de la base
-define('USERBASE', "<nom de l'utilisateur>");
+const USERBASE = "<nom de l'utilisateur>";
 
 // passwd de l'utilisateur de la base
-define('USERPASSWD', '<mot de passe>');
+const USERPASSWD = '<mot de passe>';
 
 // nom du serveur de base de donnees, laisser vide pour utiliser un socket
-define('SERVEURBASE', '<nom du serveur avec domaine>');
+const SERVEURBASE = '<nom du serveur avec domaine>';
 
 // Type de base de données à utiliser (mysql, postgres, ...)
 // http://phplens.com/lens/adodb/docs-adodb.htm#drivers
-define('BASE_TYPE', '<type de BDD>');
+const BASE_TYPE = '<type de BDD>';
 
 // Langue par défaut de l'application (à choisir dans $ALLOWED_LANGUAGES)
-define('LANGUE', 'fr_FR');
+const LANGUE = 'fr_FR';
 
 // Nom et emplacement du logo
-define('LOGOBANDEAU', '<chemin relatif suivi du nom du fichier du logo pour le bandeau>');
+const LOGOBANDEAU = '<chemin relatif suivi du nom du fichier du logo pour le bandeau>';
 
 // Nom et emplacement du logo de la lettre générée en PDF
-define('LOGOLETTRE', '<chemin relatif suivi du nom du fichier du logo pour la lettre>');
+const LOGOLETTRE = '<chemin relatif suivi du nom du fichier du logo pour la lettre>';
 
 // Nom et emplacement du fichier image contenant le titre
-//define('IMAGE_TITRE', '<chemin relatif suivi du nom du fichier image du titre>');
-define('IMAGE_TITRE', 'images/logo-framadate.png');
+//const IMAGE_TITRE', '<chemin relatif suivi du nom du fichier image du titre>';
+const IMAGE_TITRE = 'images/logo-framadate.png';
 
 // Activation des URL propre (true pour activer, false sinon)
-define('URL_PROPRE', false);
+const URL_PROPRE = false;
 
 // Activation de Google Analytics (false si inactif, l'identifiant sinon)
-define('GOOGLE_ANALYTICS_ID', false);
+const GOOGLE_ANALYTICS_ID =  false;
 
 // Utilisation de l'identité (REMOTE_USER) fournie par le serveur web
-define('USE_REMOTE_USER', true);
+const USE_REMOTE_USER =  true;
 
 if (@file_exists('variables.local.php')) {
     include('variables.local.php');
 }
 
 // Studs version
-define('STUDS_VERSION', '0.6.6');
+const STUDS_VERSION = 0.6.6;
 
 // Do not edit the following
 $ALLOWED_LANGUAGES = array('fr_FR' => 'french',
@@ -97,4 +97,3 @@ $ALLOWED_LANGUAGES = array('fr_FR' => 'french',
 			   'es_ES' => 'spanish',
 			   'de_DE' => 'german' );
 
-?>
