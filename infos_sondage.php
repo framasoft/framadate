@@ -10,10 +10,10 @@
 //Ce logiciel est régi par la licence CeCILL-B soumise au droit français et
 //respectant les principes de diffusion des logiciels libres. Vous pouvez
 //utiliser, modifier et/ou redistribuer ce programme sous les conditions
-//de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA 
+//de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA
 //sur le site "http://www.cecill.info".
 //
-//Le fait que vous puissiez accéder à cet en-tête signifie que vous avez 
+//Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
 //pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
 //termes. Vous pouvez trouver une copie de la licence dans le fichier LICENCE.
 //
@@ -26,10 +26,10 @@
 //borghesi@unistra.fr
 //
 //This software is governed by the CeCILL-B license under French law and
-//abiding by the rules of distribution of free software. You can  use, 
+//abiding by the rules of distribution of free software. You can  use,
 //modify and/ or redistribute the software under the terms of the CeCILL-B
 //license as circulated by CEA, CNRS and INRIA at the following URL
-//"http://www.cecill.info". 
+//"http://www.cecill.info".
 //
 //The fact that you are presently reading this means that you have had
 //knowledge of the CeCILL-B license and that you accept its terms. You can
@@ -64,7 +64,7 @@ foreach ($session_var as $var) {
     $_SESSION[$var] = null;
   }
 }
- 
+
 // On initialise également les autres variables
 $erreur_adresse = false;
 $erreur_injection_titre = false;
@@ -80,37 +80,37 @@ if (issetAndNoEmpty("poursuivre")){
   $_SESSION["nom"] = $nom;
   $_SESSION["adresse"] = $adresse;
   $_SESSION["commentaires"] = $commentaires;
-  
+
   unset($_SESSION["studsplus"]);
   if ($studsplus !== null) {
     $_SESSION["studsplus"] = '+';
   } else {
     $_SESSION["studsplus"] = '';
   }
-  
+
   unset($_SESSION["mailsonde"]);
   if ($mailsonde !== null) {
     $_SESSION["mailsonde"] = true;
   } else {
     $_SESSION["mailsonde"] = false;
   }
-  
+
   if(validateEmail($adresse) === false) {
     $erreur_adresse = true;
   }
-  
+
   if (preg_match(';<|>|";',$titre)) {
     $erreur_injection_titre = true;
   }
-  
+
   if (preg_match(';<|>|";',$nom)) {
     $erreur_injection_nom = true;
   }
-  
+
   if (preg_match(';<|>|";',$commentaires)) {
     $erreur_injection_commentaires = true;
   }
-  
+
   // Si pas d'erreur dans l'adresse alors on change de page vers date ou autre
   if ($titre && $nom && $adresse && !$erreur_adresse && ! $erreur_injection_titre && ! $erreur_injection_commentaires && ! $erreur_injection_nom) {
 /*
@@ -119,28 +119,28 @@ if (issetAndNoEmpty("poursuivre")){
       header("Location:choix_date.php");
       exit();
     }
-    
+
     if ($creation_sondage_autre !== null || $creation_sondage_autre_x !== null) {
       header("Location:choix_autre.php");
       exit();
     }
-    
+
     if ( $creation_sondage_autre_x !== null) {
       header("Location:choix_autre.php");
       exit();
-    }    
-*/    
+    }
+*/
     if ( $poursuivre == "creation_sondage_date" ) {
       header("Location:choix_date.php");
       exit();
-    }    
-    
+    }
+
     if ( $poursuivre == "creation_sondage_autre" ) {
       header("Location:choix_autre.php");
       exit();
-    }    
-    
-    
+    }
+
+
   }
 }
 
@@ -168,7 +168,7 @@ if(!check_table_sondage()) {
 
 //debut du formulaire
 echo '<form name="formulaire" id="formulaire" action="infos_sondage.php" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
- 
+
 echo '<div class=corps>'."\n";
 echo '<br>'. _("You are in the poll creation section. <br> Required fields cannot be left blank") .'<br><br>'."\n";
 
@@ -247,10 +247,10 @@ if ($_SESSION["mailsonde"]) {
 echo '<input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde"><label for="mailsonde">'. _(" To receive an email for each new vote.") .'</label><br>'."\n";
 
 //affichage des boutons pour choisir sondage date ou autre
-if ($_POST['choix_sondage']=='date') {
-    $choix="creation_sondage_date";
-} elseif ($_POST['choix_sondage']=='autre') {
-    $choix="creation_sondage_autre";
+if ($_GET['choix_sondage'] == 'date') {
+    $choix = "creation_sondage_date";
+} elseif ($_GET['choix_sondage'] == 'autre') {
+    $choix = "creation_sondage_autre";
 }
 echo '<input type="hidden" name="choix_sondage" value="'. $choix_sondage .'"/>';
 echo '<br><button name="poursuivre" value="'. $choix .'" type="submit" class="button green poursuivre"><strong>'. _('Next') . '</strong> </button>';

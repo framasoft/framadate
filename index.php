@@ -58,9 +58,6 @@ echo '<body>'."\n";
 
 framanav();
 
-//debut du formulaire
-echo '<form name=formulaire action="infos_sondage.php" method="POST">'."\n";
-
 //bandeaux de tete
 logo();
 bandeau_tete();
@@ -80,18 +77,18 @@ echo '<br>'."\n";
 
 echo '<div class="index_date">';
 echo '<div><image class="opacity" src="images/date.png" onclick="document.formulaire.date.click()"/></div>';
-echo '<button id="date" name="choix_sondage" value="date" type="submit" class="button orange bigrounded"/><img src="images/calendar-32.png" alt="" /><strong>&nbsp;'. _('Schedule an event') . '</strong></button>';
+echo '<a href="./infos_sondage.php?choix_sondage=date" class="button orange bigrounded"/><strong><img src="images/calendar-32.png" alt="" />'
+    . _('Schedule an event') . '</strong></a>';
 echo '</div>';
 
 echo '<div class="index_sondage">';
 echo '<div><image class="opacity" src="images/sondage2.png" onclick="document.formulaire.autre.click()" /></div>';
-echo '<button id="autre" name="choix_sondage" value="autre" type="submit" class="button blue bigrounded" /><img src="images/chart-32.png" alt="" /><strong>&nbsp;'. _('Make a poll') . '</strong></button>';
+echo '<a href="./infos_sondage.php?choix_sondage=autre" class="button blue bigrounded"><strong><img src="images/chart-32.png" alt="" />'. _('Make a poll') . '</strong></a>';
 echo '</div>';
 
 
 echo '<div style="clear:both;"></div>'."\n";
 echo '</div>'."\n";
-echo '</form>'."\n";
 //bandeau de pied
 //sur_bandeau_pied();
 bandeau_pied();
