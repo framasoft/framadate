@@ -56,7 +56,7 @@ function connexion_base()
 function get_server_name()
 {
     $scheme = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 'on') ? 'https' : 'http';
-    return $scheme . '//' .  $_SERVER['SERVER_NAME'] . '/';
+    return $scheme . '://' .  $_SERVER['SERVER_NAME'] . '/';
 }
 
 
