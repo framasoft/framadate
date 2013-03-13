@@ -211,7 +211,6 @@ span.sousbandeaulangue {
 
 .corps {
    font-family: "Lucida Grande",Verdana,Arial,sans-serif;
-   font-size: 14px;
    /* left: 20px; */
    margin-left: auto;
    margin-right: auto;
@@ -233,7 +232,7 @@ span.sousbandeaulangue {
 
 
 div.corps  table{
-	font-size:12px;
+	/* font-size:12px; */
 }
 div.corpscentre{ 
 	font-size:12px;
@@ -273,13 +272,16 @@ div.jourschoisis {
 /*presenation des pages*/
 div.bodydate {
 	padding:10px;
-	font-family:arial;
+	text-align:center;
+/*	font-family:arial;
 	font-size:12px;	
 	text-align:center;
 	position:static;
 	top:330px;
 	left:20px;
 	right:20px;
+	
+*/
 }
 div.bodydate table{
 	font-family:arial;
@@ -288,7 +290,7 @@ div.bodydate table{
 }
 /*cadre de commentaires*/
 div.presentationdate {
-	width:40%;
+	width:70%;
 	font-family:arial;
 	text-align:center;
 	font-size:12px;	
@@ -300,22 +302,20 @@ div.presentationdate {
  	right:1px;
 	left:1px;
 	margin-top:10px;
-	margin-left:30%;
-	margin-right: 30%; 
+	margin-left:15%;
+	margin-right: 15%; 
 	background-color: #FFF;
 }
 div.presentationdatefin {
-	width:60%;
+	width:90%;
 	padding:10px;
-	font-family:arial;
 	text-align:center;
-	font-size:12px;	
-	border-width:1px;
-	border-style:solid;
+	border:solid 1px #CCCCCC;
 	margin-top: 10px;
-	margin-left: 20%;
-    margin-right: 20%; 
-	position:static;
+	margin-left: 5%;
+	margin-right: 5%;
+	background-color: #FAFAFA;
+	border-radius: 3px; 
 }
 /*cadre principal de studs.php*/
 div.cadre {
@@ -367,7 +367,8 @@ div.cadre td.casevide {
 	background-color: white; 
 	text-align:center;
 }
-/*les cases contenant les sommes de chaque colonne dans l'affichage de calendrier*/
+/*les cases contenant les sommes de chaque colonne dans l'affichage de 
+calendrier*/
 div.cadre td.somme {
 	background-color: white; 
 	font-weight:  bold;
@@ -401,23 +402,29 @@ div.cadre td.mois {
 /*affichage du calendrier*/
 div.calendrier {
 	padding:10px;
-	background-color: #CCC;
-	width:490px;
-	font-size:12px;
-	font-family:arial;
+	background-color: #CCF;
+	width:650px;
     margin-left: auto;
     margin-right: auto;
 	position:static;
 	border-radius: 10px;
 }
+
+div.calendrier td {
+    height: 40px;
+}
+
+div.calendrier td:hover {
+    opacity: 0.6;
+}
+
 /*jour de la semaine dans calendrier*/
 div.calendrier td.joursemaine {
-	width:65px;
+	width:91px;
 	text-align: center;
-	font-family:arial;
-	font-size:14px;
 	border: 2px;
 	background-color: white; 
+	height: 40px;
 }
 div.calendrier td.jourwe {
 	width:65px;
@@ -429,7 +436,7 @@ div.calendrier td.jourwe {
 }
 /*jour avant le premier jour du mois dans calendrier*/
 div.calendrier td.avant {
-	width:65px;
+	/* width:65px; */ /* inutile car fixé par .joursemaine */
 	text-align: center;
 	border: 2px;
 	font-family:arial;
@@ -438,14 +445,14 @@ div.calendrier td.avant {
 }
 /*jour libre dans calendrier*/
 div.calendrier td.libre {
-	width:65px;
+	/* width:65px; */ /* inutile car fixé par .joursemaine */
 	text-align: center;
 	border: 2px;
 	background-color: #66FF99; 
 }
 /*jour deja selectionné dans calendrier*/
 div.calendrier td.choisi {
-	width:65px;
+	/* width:65px; */ /* inutile car fixé par .joursemaine */
 	text-align: center;
 	border: 2px;
 	background-color: #54ADF7;
@@ -479,11 +486,15 @@ div.titregestionadmin{
 	padding:10px;
 }
 
+.choix_date_mois {
+    width: 190px;
+    font-weight: bold;
+    font-size: larger;
+}
 
 .bouton {
-	width: 65px;
 	border:0px;
-	padding:0px 0 0 0;
+	padding: 12px 30px 6px;
 	margin:0px;
 	cursor:pointer;
 	font-family:arial;
