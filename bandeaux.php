@@ -41,11 +41,11 @@ include_once('fonctions.php');
 
 function framanav()
 {
-    if (file_exists($_SERVER['DOCUMENT_ROOT']."/framanav/nav.inc.html")) {
-    echo "\n".'<!-- Framanav --> '."\n";;
-    echo '<script src="/framanav/scripts/jquery.min.js" type="text/javascript"></script>'."\n";
-    include_once($_SERVER['DOCUMENT_ROOT']."/framanav/nav.inc.html");
-    echo '<!-- /Framanav --> '."\n";
+    if (file_exists($_SERVER['DOCUMENT_ROOT']."/framanav/nav.php")) {
+    //echo "\n".'<!-- Framanav --> '."\n";;
+    //echo '<script src="/framanav/scripts/jquery.min.js" type="text/javascript"></script>'."\n";
+    include_once($_SERVER['DOCUMENT_ROOT']."/framanav/nav.php");
+    //echo '<!-- /Framanav --> '."\n";
     }
 }
 

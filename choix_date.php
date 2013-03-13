@@ -41,7 +41,7 @@ session_start();
 
 include_once('creation_sondage.php');
 
-if (file_exists('bandeaux_local.php')) {
+if (is_readable('bandeaux_local.php')) {
   include_once('bandeaux_local.php');
 } else {
   include_once('bandeaux.php');
@@ -224,11 +224,14 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   echo '<body>'."\n";
   
   //Debut du formulaire et bandeaux de tete
-  echo '<form name="formulaire" action="choix_date.php" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+  framanav();
   logo();
   bandeau_tete();
   bandeau_titre(_("Poll dates (2 on 2)"));
   sous_bandeau_choix();
+
+  echo '<form name="formulaire" action="choix_date.php" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+
   
   //ajout pyg pour la cohérence graphique
   echo ' <div class="corps">';
