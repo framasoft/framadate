@@ -89,7 +89,7 @@ if (@file_exists('variables.local.php')) {
 }
 
 // Studs version
-const STUDS_VERSION = 0.6.6;
+const STUDS_VERSION = 0.7;
 
 // Do not edit the following
 $ALLOWED_LANGUAGES = array('fr_FR' => 'french',
