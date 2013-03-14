@@ -297,14 +297,15 @@ div.presentationdate {
 	border-width:1px;
 	border-style:solid;
 	border-color:#969696;
-	position:static;
+	/* position:static;
 	top:110px;
  	right:1px;
-	left:1px;
+	left:1px; */
 	margin-top:10px;
 	margin-left:15%;
 	margin-right: 15%; 
-	background-color: #FFF;
+	background-color: #EEF;
+	border-radius: 5px;
 }
 div.presentationdatefin {
 	width:90%;
@@ -317,13 +318,18 @@ div.presentationdatefin {
 	background-color: #FAFAFA;
 	border-radius: 3px; 
 }
+
+.champdatefin {
+    width: 8em !important;
+}
+
 /*cadre principal de studs.php*/
 div.cadre {
 	padding:10px; 
-	font-family:arial;
+/*	font-family:arial;
 	font-size:12px;	
 	position:static;
-	top:235px;
+	top:235px; */
 	text-align:center;
 	margin:0 auto;
 }
@@ -339,7 +345,7 @@ div.cadre table.resultats {
 }
 
 div.cadre td {
-	height:21px;
+	height:30px;
 }
 /*case de tableau OK dans affichage de sondage*/
 div.cadre td.ok {
@@ -353,10 +359,29 @@ div.cadre td.non {
 	width:35px;
 }
 /*Case de tableau VIDE dans affichage de sondage*/
-div.cadre td.vide {
+div.cadre td.vide, div.cadre td.sujet {
 	background-color: #DDDDDD; 
 	text-align:center;
 }
+
+div.cadre td.vide, div.cadre td.ok, div.cadre td.non, div.cadre td.sujet, div.cadre td.nom {
+	border-right: 1px solid #BBB !important;
+	border-bottom: 1px solid #BBB !important;
+
+}
+
+div.cadre td:hover.vide {
+    opacity: 0.6;
+}
+
+.resultats tbody tr {
+
+}
+
+.resultats tbody tr:hover {
+    opacity: 0.9;
+}
+
 /*Case de tableau contenant les noms dans affichage de sondage*/
 div.cadre td.nom {
 	background-color: #DDDDDD; 
@@ -366,6 +391,7 @@ div.cadre td.nom {
 div.cadre td.casevide {
 	background-color: white; 
 	text-align:center;
+	border: none !important;
 }
 /*les cases contenant les sommes de chaque colonne dans l'affichage de 
 calendrier*/
@@ -382,6 +408,10 @@ div.cadre td.sujet, div.cadre td.jour, div.cadre td.heure {
 	font-weight:  bold;
 	font-size:14px;
 	padding:1px 5px;
+}
+
+td.jour {
+    min-width: 55px;
 }
 
 div.cadre td.annee {
@@ -465,7 +495,14 @@ p.affichageresultats{
 }
 
 div.comment{
-	width:100%;
+	
+	margin-top: 10px;
+	border-left: 1px dashed #999;
+	background: #F5F5F5;
+	padding-left: 25px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: inherit;
 }
 
 div.comment span.usercomment{
@@ -524,9 +561,17 @@ div.nouveau_sondage span {
 div.error, div.addcomment {
     text-align:center;
     border: 1px;
-    font-family: arial;
-    font-size: 13px;
+    /*    font-family: arial;
+    font-size: 13px; */
 }
+
+div.addcomment {
+    border-top: 1px solid #CCC;
+    padding-top: 25px;
+    background: #EFEFEF;
+    border-radius: 5px;
+}
+
 ul.exports {
   display:none; /* fonction non fonctionnelle */
     text-align:center;
