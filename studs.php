@@ -496,9 +496,9 @@ if (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || !$user_mod) {
   if (isset($_SESSION['nom'])) {
     $nom = stripslashes($_SESSION['nom']);
   } else {
-    $nom = '';
+    $nom = 'Votre nom';
   }
-  echo '<input type=text name="nom" maxlength="64" value="'.$nom.'">'."\n";
+  echo '<input type="text" name="nom" maxlength="64" value="'.$nom.'" onfocus="if (this.value == \'Votre nom\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \'Votre nom\';}" >'."\n";
   
   echo '</td>'."\n";
   
