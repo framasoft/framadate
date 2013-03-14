@@ -175,9 +175,12 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
   //echo '<table><tr>'."\n";
   //echo '<td>'. _("Next") .'</td><td><input type="image" name="fin_sondage_autre" value="Cr&eacute;er le sondage" src="images/next-32.png"></td>'."\n";
   //echo '</tr></table>'."\n";
-  //echo '<button name="fin_sondage_autre_x" value="'._('Next').'" type="submit" class="button green poursuivre"><strong>'. _('Next') . '</strong> </button>';
-  //echo '<div style="clear:both"></div>';
-  
+
+if (!isset($_POST["fin_sondage_autre_x"])) {
+  echo '<button name="fin_sondage_autre_x" value="'._('Next').'" type="submit" class="button green poursuivre"><strong>'. _('Next') . '</strong> </button>';
+  echo '<div style="clear:both"></div>';
+}
+
   //test de remplissage des cases
   $testremplissage = '';
   for ($i=0;$i<$_SESSION["nbrecases"];$i++) {
