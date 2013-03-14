@@ -222,7 +222,7 @@ span.sousbandeaulangue {
    right: 20px;
    top: 170px; */
    width: 70em;
-   overflow-x:auto;
+  /* overflow-x:auto; */
    border: 3px solid #CCC;
    background-color: #fff;
    box-shadow: 5px 5px 5px #666;
@@ -337,6 +337,7 @@ div.cadre {
 	top:235px; */
 	text-align:center;
 	margin:0 auto;
+	overflow-x: auto;
 }
 
 /*information au sujet de la participation au sondage*/
@@ -370,14 +371,14 @@ div.cadre td.vide, div.cadre td.sujet {
 	text-align:center;
 }
 
-div.cadre td.vide, div.cadre td.ok, div.cadre td.non, div.cadre td.sujet, div.cadre td.nom, div.cadre td.jour {
+div.cadre td.vide, div.cadre td.ok, div.cadre td.non, div.cadre td.sujet, div.cadre td.nom, div.cadre td.jour, div.cadre td.heure, div.cadre td.mois {
 	border-right: 1px solid #BBB !important;
 	border-bottom: 1px solid #BBB !important;
 
 }
 
 div.cadre td:hover.vide {
-    opacity: 0.6;
+    opacity: 0.6; 
 }
 
 .resultats tbody tr {
@@ -385,7 +386,7 @@ div.cadre td:hover.vide {
 }
 
 .resultats tbody tr:hover {
-    opacity: 0.9;
+/*    opacity: 0.9; */
 }
 
 /*Case de tableau contenant les noms dans affichage de sondage*/
