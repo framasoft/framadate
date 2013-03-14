@@ -1,5 +1,20 @@
 Les dernières améliorations d'OpenSondage
 
+	Changelog version 0.7 (mars 2013)
+	- Fix : le sondage supprimé n'était pas forcément le sondage sélectionné (cfévrier)
+	- Fix : suppression de STUDS_DIR pour éviter toute confusion
+	- Fix : corrections l'en-tete et de l'encodage des e-mails (cfévrier)
+	- Fix : rend Optionnelle l'utilisation de la variable "REMOTE_USER" (cfévrier)
+	- Amélioration : ne faire apparaitre dans l'admin que les sondage actifs ou expirés depuis x mois (pyg)
+	- Amélioration : ajout d'un champs date_creation dans la table "sondage" (pyg)
+	- Amélioration : permet de faire fonctionner gettext avec le serveur de dev de PHP5.4 + enlève code commenté depuis des années (pascalchevrel)
+	- Fix : enlève les appels à get_server_name() partout sauf dans un appel à sendMail(), réécriture de la fonction pour cet usage (pascalchevrel)
+	- Amélioration : remplacement des define() par des const plus concis (pascalchevrel)
+	- Amélioration : possibilité de faire des liens directs vers les types de sondages à créer (pascalchevrel)
+	- Amélioration : meilleure intégration de la framanav (pyg)
+	- Amélioration : nombreuses modifications CSS pour un meilleur affichage (pyg)
+	
+
 	Changelog des 22 et 23 juin (pyg@framasoft.net)
 	- très nombreuses modifications CSS
 	- ajout de buttons.css pour des boutons plus propres 
@@ -31,6 +46,7 @@ Les dernières améliorations d'OpenSondage
         - correction dans le fichier de langue (merci à Julien Reitzel)
         - possibilité de mettre un texte libre pour les horaires
         - version Framasoft
+
 Les dernières améliorations de STUdS
 	Changelog version 0.6.6 (XXX 2011) :
 	- internationalisation avec gettext
