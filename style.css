@@ -288,6 +288,11 @@ div.bodydate table{
 	font-size:12px;	
 	font-weight:bold;
 }
+
+.mlabel {
+    font-weight: bold;
+}
+
 /*cadre de commentaires*/
 div.presentationdate {
 	width:70%;
@@ -333,6 +338,7 @@ div.cadre {
 	text-align:center;
 	margin:0 auto;
 }
+
 /*information au sujet de la participation au sondage*/
 div.cadre div.information {
 	margin-bottom:20px;
@@ -364,7 +370,7 @@ div.cadre td.vide, div.cadre td.sujet {
 	text-align:center;
 }
 
-div.cadre td.vide, div.cadre td.ok, div.cadre td.non, div.cadre td.sujet, div.cadre td.nom {
+div.cadre td.vide, div.cadre td.ok, div.cadre td.non, div.cadre td.sujet, div.cadre td.nom, div.cadre td.jour {
 	border-right: 1px solid #BBB !important;
 	border-bottom: 1px solid #BBB !important;
 

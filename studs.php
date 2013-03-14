@@ -240,17 +240,17 @@ $titre=str_replace("\\","",$dsondage->titre);
 echo '<H2>'.stripslashes($titre).'</H2>'."\n";
 
 //affichage du nom de l'auteur du sondage
-echo _("Initiator of the poll") .' : '.stripslashes($dsondage->nom_admin).'<br>'."\n";
-echo 'Adresse : <code>'.getUrlSondage($dsondage->id_sondage).'</code><br>'."\n";;
+echo '<div class="initiator"><span class="mlabel">'. _("Initiator of the poll") .' :</span><span class="nom"> '.stripslashes($dsondage->nom_admin).'</span></div>'."\n";
+echo '<div class="adress"><span class="mlabel">'.'Adresse : </span><code>'.getUrlSondage($dsondage->id_sondage).'</code></div>'."\n";;
 
 
 //affichage des commentaires du sondage
 if ($dsondage->commentaires) {
-  echo _("Comments") .' :<br>'."\n";
+  echo '<div class="admin_comment"><span class="mlabel">'._("Comments") .' :</span><br>'."\n";
   $commentaires = $dsondage->commentaires;
   $commentaires=nl2br(str_replace("\\","",$commentaires));
-  echo $commentaires;
-  echo '<br>'."\n";
+  echo '<span class="mcontent">'. $commentaires .'</span>';
+  echo '</div>'."\n";
 }
 
 echo '<br>'."\n";
