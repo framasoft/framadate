@@ -25,6 +25,15 @@ body {
   display:none;
 }
 
+div.cadre {
+    overflow-x: none !important;
+}
+
+{
+table {
+    page-break-after:always}
+}
+
 div.cadre div.information {
   display:none;
 }
