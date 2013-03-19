@@ -428,7 +428,7 @@ msgstr "Commentaires de sondés"
 
 #: studs.php:245
 msgid "Share URL"
-msgstr "URL à communiquer"
+msgstr "URL &agrave; communiquer"
 
 #: studs.php:563
 msgid "Add a comment in the poll:"
