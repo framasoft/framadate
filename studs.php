@@ -320,6 +320,8 @@ $user_studs = $connect->Execute($sql, array($numsondage));
 
 //reformatage des données des sujets du sondage
 $toutsujet = explode(",",$dsondage->sujet);
+//patch pyg pour réordonner les dates ajoutees a posteriori
+sort($toutsujet, SORT_NUMERIC);
 
 //si le sondage est un sondage de date
 if ($dsondage->format=="D"||$dsondage->format=="D+") {
