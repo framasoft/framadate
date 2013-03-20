@@ -662,7 +662,7 @@ if ($testmodifier) {
 for ($i = 0; $i < $nbcolonnes; $i++) {
   if ((isset($_POST["effacecolonne$i"]) || isset($_POST['effacecolonne'.$i.'_x'])) && $nbcolonnes > 1){
     $toutsujet = explode(",",$dsujet->sujet);
-    sort($toutsujet, SORT_NUMERIC);
+    //sort($toutsujet, SORT_NUMERIC);
     $j = 0;
     $nouveauxsujets = '';
 
