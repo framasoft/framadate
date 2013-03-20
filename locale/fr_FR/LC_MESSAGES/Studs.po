@@ -103,7 +103,7 @@ msgstr "Votre sondage sera automatiquement effac&eacute; dans 6 mois.<br> N&eacu
 
 #: choix_autre.php:193
 msgid "Removal date (optional)"
-msgstr "Date de fin (optionnelle)"
+msgstr "Date de fin (facultative)"
 
 #: choix_autre.php:193
 msgid "(DD/MM/YYYY)"
@@ -201,7 +201,7 @@ msgstr "Choix des dates (2 sur 2)"
 
 #: choix_date.php:222
 msgid "Select your dates amoung the free days (green). The selected days are in blue.<br> You can unselect a day previously selected by clicking again on it."
-msgstr "Selectionnez vos dates parmi les jours disponibles qui sont en vert. Une fois selectionn&eacute;s, les jours apparaissent en bleu.<br> Vous pouvez &eacute;galement enlever des jours d&eacute;j&agrave; choisis en recliquant sur la case."
+msgstr "Sélectionnez vos dates parmi les jours disponibles qui sont en vert. Une fois selectionn&eacute;s, les jours apparaissent en bleu.<br> Vous pouvez &eacute;galement enlever des jours d&eacute;j&agrave; choisis en recliquant sur la case."
 
 #: choix_date.php:487
 msgid "Selected days"
@@ -209,11 +209,11 @@ msgstr "Jour retenus"
 
 #: choix_date.php:489
 msgid "For each selected day, you can choose, or not, meeting hours in the following format :<br>- empty,<br>- \"8h\", \"8H\" or \"8:00\" to give a meeting's start hour,<br>- \"8-11\", \"8h-11h\", \"8H-11H\" ou \"8:00-11:00\" to give a meeting's start and end hour,<br>- \"8h15-11h15\", \"8H15-11H15\" ou \"8:15-11:15\" for the same thing but with minutes."
-msgstr "Pour chacun des jours que vous avez s&eacute;lectionn&eacute;, vous avez la possibilit&eacute; de choisir ou non, des heures de r&eacute;union avec ce format :<br>- vide, si vous ne d&eacute;sirez pas mettre d'horaires particuliers,<br>- \"8h\", \"8H\" ou \"8:00\" pour proposer une heure de d&eacute;but de r&eacute;union,<br>- \"8-11\", \"8h-11h\", \"8H-11H\" ou \"8:00-11:00\" pour un cr&eacute;neau,<br>- \"8h15-11h15\", \"8H15-11H15\" ou \"8:15-11:15\" pour un cr&eacute;neau avec minutes."
+msgstr "Pour chacun des jours que vous avez s&eacute;lectionn&eacute;s, vous avez la possibilit&eacute; de choisir ou non, des heures de r&eacute;union avec ce format :<br>- vide, si vous ne d&eacute;sirez pas mettre d'horaires particuliers,<br>- \"8h\", \"8H\" ou \"8:00\" pour proposer une heure de d&eacute;but de r&eacute;union,<br>- \"8-11\", \"8h-11h\", \"8H-11H\" ou \"8:00-11:00\" pour un cr&eacute;neau,<br>- \"8h15-11h15\", \"8H15-11H15\" ou \"8:15-11:15\" pour un cr&eacute;neau avec minutes."
 
 #: choix_date.php:490
 msgid "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8\", \"evening\", etc.)"
-msgstr "Pour chacun des jours que vous avez s&eacute;lectionn&eacute;, vous avez la possibilit&eacute; de choisir ou non, des heures de r&eacute;union (par exemple : \"8h\", \"8:15\", \"8h-10h\", \"soir\")."
+msgstr "Pour chacun des jours que vous avez s&eacute;lectionn&eacute;s, vous avez la possibilit&eacute; de choisir ou non, des heures de r&eacute;union (par exemple : \"8h\", \"8:15\", \"8h-10h\", \"soir\")."
 
 
 #: choix_date.php:496
@@ -428,7 +428,7 @@ msgstr "Commentaires de sondés"
 
 #: studs.php:245
 msgid "Share URL"
-msgstr "URL a communiquer"
+msgstr "URL &agrave; communiquer"
 
 #: studs.php:563
 msgid "Add a comment in the poll:"
@@ -561,11 +561,11 @@ msgstr "Pour ajouter une date"
 
 #: adminstuds.php:197
 msgid "Add a start hour (optional)"
-msgstr "Pour ajouter un horaire de d&eacute;but (optionnel)"
+msgstr "Pour ajouter un horaire de d&eacute;but (facultatif)"
 
 #: adminstuds.php:211
 msgid "Add a end hour (optional)"
-msgstr "Pour ajouter un horaire de fin (optionnel)"
+msgstr "Pour ajouter un horaire de fin (facultatif)"
 
 #: adminstuds.php:253
 msgid "[ADMINISTRATOR] Removing of your poll"
