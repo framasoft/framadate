@@ -116,8 +116,8 @@ function ajouter_sondage()
   $message_admin = sprintf($message_admin, getUrlSondage($sondage_admin, true));
   
   if (validateEmail($_SESSION['adresse'])) {
-    sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message")  . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message_admin );
-    sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message );
+    sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message")  . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message_admin, $_SESSION['adresse'] );
+    sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message, $_SESSION['adresse'] );
   }
   
   $date=date('H:i:s d/m/Y:');

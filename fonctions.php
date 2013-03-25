@@ -168,10 +168,20 @@ function sendEmail( $to, $subject, $body, $headers, $param)
   } else {
     $folding = "" ;
   } ;
+  // si $headers ne contient qu'une adresse email, on la considère comme adresse de reply-to, sinon on met l'adresse de no-reply definie dans variables.php
+  if (validateEmail($headers)) {
+    $replyTo = $headers;
+    $headers = ""; // on reinitialise $headers
+  } else {
+    $replyTo = ADRESSEEMAILREPONSEAUTO;
+  }
+  
+  
   $from = sprintf( "From: %s%s <%s>\n", $encoded_app, $folding, ADRESSEMAILADMIN ) ;
 
   if ( $headers ) $headers .= "\n" ;
   $headers .= $from ;
+  $headers .= "Reply-To: $replyTo\n";
   $headers .= "MIME-Version: 1.0\n" ;
   $headers .= "Content-Type: text/plain; charset=UTF-8\n" ;
   $headers .= "Content-Transfer-Encoding: 8bit" ;
