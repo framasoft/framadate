@@ -46,6 +46,9 @@ const NOMAPPLICATION = "<nom de l'application>";
 // adresse mail de l'administrateur de la base
 const ADRESSEMAILADMIN = '<adresse mail>';
 
+// adresse mail de reponse lors de l'envoi de messages automatique (il est conseille d'utiliser une adresse de "no-reply")
+const ADRESSEMAILREPONSEAUTO = '<no-reply@framasoft.org>';
+
 // nom de la base de donnees
 const BASE = '<nom de la base de données>';
 
