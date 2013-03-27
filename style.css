@@ -53,6 +53,11 @@ body {
   font-size: 14px;
 }
 
+img {
+    border: 0;
+}
+
+
 /*bandeau de titre*/
 .framorange {
   color: #FF8400;
