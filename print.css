@@ -79,4 +79,13 @@ div.addcomment {
   display:none;
 }
 
-@page {size:landscape}
+
+div.cadre td {
+    font-size: 40% !important;
+    height: 10px;
+}
+
+
+@page {
+    size:landscape;
+}
