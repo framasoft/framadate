@@ -539,7 +539,7 @@ echo '</tbody>'."\n".'<tfoot>'."\n";
 echo '<tr>'."\n";
 echo '<td align="right">';
 // si on a plus de 8 colonnes, on affiche un second bouton "valider mes choix"
-echo ($nbcolonnes>8) ?'<input type="button" name="boutonp" value="Valider mes choix" class="btn btn-success btn-mini" style="margin-right:50px">' : "";
+echo ($nbcolonnes>8) ?'<input type="submit" name="boutonp" value="Valider mes choix" class="btn btn-success btn-mini" style="margin-right:50px">' : "";
 echo   _("Addition") .'</td>'."\n";
 
 for ($i=0; $i < $nbcolonnes; $i++) {
@@ -651,7 +651,7 @@ echo _("Name") .' : ';
 echo '<input type="text" name="commentuser" maxlength="64" value="'.$nom.'" /><br>'."\n";
 
 echo '<textarea name="comment" rows="2" cols="40"></textarea>'."\n";
-echo '<input type="button" name="ajoutcomment" value="Ajouter un commentaire" class="btn btn-success" alt="Valider"><br>'."\n";
+echo '<input type="submit" name="ajoutcomment" value="Ajouter un commentaire" class="btn btn-success" alt="Valider"><br>'."\n";
 echo '</form>'."\n";
 // Focus javascript sur la case de texte du formulaire
 echo '<script type="text/javascript">'."\n" . 'document.formulaire.commentuser.focus();'."\n" . '</script>'."\n";

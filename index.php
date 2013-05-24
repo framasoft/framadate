@@ -88,6 +88,7 @@ echo '</div>';
 
 
 echo '<div style="clear:both;"></div>'."\n";
+
 echo '</div>'."\n";
 //bandeau de pied
 //sur_bandeau_pied();
