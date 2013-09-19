@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Framadate || Prototype Ajax</title>
+	<script src="js/jquery-1.9.0.min.js" type="text/javascript" charset="utf-8" ></script>
+	<script src="js/script.js" type="text/javascript" charset="utf-8" ></script>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header id="header" class=""></header><!-- /header -->
+	<div role="Main" class="fastTrans wait">
+		<h1 class="framaTitle trans wait">FramaDate <small>prototype</small></h1>
+		<div id="entry_form" class="trans active wait">
+			<div class="presentation">
+				<p>Vous avez choisi de créer un nouveau sondage !</p>
+				<p>Merci de remplir les champs obligatoires, marqués d'une *.</p>
+			</div>
+			<form id="user_infos" action="truc.php" method="post"  accept-charset="utf-8">
+				<div class="field">				
+					<p>Titre du sondage * :</p>
+				<input type="text" name="titre" value="Sondage" placeholder="Titre du sondage * :" maxlength="80" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,80}$" 	required>
+				</div>
+				<div class="field">
+					<p>Commentaires :</p>
+					<textarea name="commentaire" placeholder="Commentaires :"></textarea>
+				</div>
+				<div class="field">
+					<p>Votre nom * :</p>
+					<input type="text" name="nom" value="Jonathan" placeholder="Votre nom *" maxlength="40" pattern="^[a-zA-Z]{1,40}$" required>
+				</div>
+				<div class="field">
+					<p>Votre adresse e-mail * :</p>
+					<input type="email" name="mail" value="Jonathan@mail.com" placeholder="Votre adresse e-mail * :" maxlength="64" required>
+				</div>
+				<div class="check">
+					<input name="modif" type="checkbox"></input>
+					<p> Vous souhaitez que les sondés puissent modifier toutes les lignes du sondage eux-mêmes.</p>
+				</div>
+				<div class="check">
+					<input name="receive_mail" type="checkbox"></input>
+					<p> Vous souhaitez recevoir un mail à chaque participation d'un sondé.</p>
+				</div>
+				<input type="submit" id="submission" name="" value="Continue">
+				<!--<button class="continue" value="Continue">Continue</button>-->
+			</form>
+		</div>
+
+		<div id="choices" class="trans inactive wait">
+			<div class="presentation">
+				<p>Vous avez créé un sondage pour déterminer un choix entre plusieurs choses.</p>
+				<p>Entrez les différents choix à proposer au vote :</p>
+			</div>
+			<label for="choix_1"><p>Choix 1 :</p></label>
+			<input id="choix_1" class="choice" type="text" name="Choix_1" value="Travailler">
+			<label for="choix_2"><p>Choix 2 :</p></label>
+			<input id="choix_2" class="choice" type="text" name="Choix_2" value="Manger">
+			<label for="choix_3"><p>Choix 3 :</p></label>
+			<input id="choix_3" class="choice" type="text" name="Choix_3" value="Boire">
+			<label for="choix_4"><p>Choix 4 :</p></label>
+			<input id="choix_4" class="choice" type="text" name="Choix_4" value="Dormir">
+			<label for="choix_5"><p>Choix 5 :</p></label>
+			<input id="choix_5" class="choice" type="text" name="Choix_5" value="Se réveiller">
+
+
+			<div class="add_entries"><p>Ajouter un champ supplémentaire</p><button>+</button></div>
+			<button class="continue" type="">Continue</button>
+		</div>
+
+		<div id="action" class="trans inactive wait">
+			<div class="recap">
+				<p class="date_title"></p>
+				<p class="date_author"></p>
+				<p class="date_url"></p>
+			</div>
+			<div class="howto">
+				<p>Pour participer à ce sondage, veuillez entrer votre nom, choisir toutes les valeurs qui vous conviennent 
+				(sans tenir compte des disponibilités des autres sondés) et valider votre choix avec le bouton en bout de ligne.</p>
+			</div>
+			<div class="tableR">
+				<table>
+					<thead>
+						<tr>
+							<th>header</th>
+							<th>header</th>
+							<th>header</th>
+							<th>header</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+						</tr>
+					</tbody>
+				</table>
+				<button type="print">Print Json</button>
+			</div>
+			<div class="commentary">
+				
+			</div>
+		</div>
+
+		<div id="printJSON" class="trans inactive wait">
+			<pre>
+				<code></code>
+			</pre>
+		</div>
+	</div>
+
+	<footer></footer><!-- /footer -->
+
+
+
+
+</body>
+</html>
