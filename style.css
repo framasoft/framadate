@@ -56,7 +56,11 @@ body {
 img {
     border: 0;
 }
-
+*, *:before, *:after {
+    -webkti-box-sizing:content-box;
+    -moz-box-sizing: content-box;
+    box-sizing:content-box;
+}
 
 /*bandeau de titre*/
 .framorange {
@@ -92,7 +96,7 @@ div.bandeau{
 	top:6px;
 	left:6px;
 	right:6px;
-	padding-top:35px;
+/*	padding-top:35px;*/
 
 }
 
@@ -121,7 +125,7 @@ div.bandeautitre{
         font-style: italic;
 	vertical-align:middle;
 	font-family:arial;
- 	padding:3px; 
+ 	padding:13px; 
 	position:static;
 	top:57px;
 	left:6px;

@@ -176,17 +176,16 @@ vous-même votre propre service.
 </h1>
 <h2>Éditeur et Responsable de la publication</h2>
 <p>Editeur : Association Framasoft (cf "Hébergement")</p>
-<p>Responsable de la publication : Alexis Kauffmann&nbsp;</p>
+<p>Responsable de la publication : Christophe Masutti</p>
 <p>Vous pouvez rentrer en contact avec l'Editeur et le
 Responsable de la publication en passant par la page "<a
- href="contacts.php">contact</a>".</p>
+ href="http://contact.framasoft.org">contact</a>".</p>
 <p>Les propos tenus sur ce site ne représentent que et uniquement
 l’opinion de leur auteur, et n’engagent pas l'association Framasoft,
 les sociétés, entreprises ou collectifs auxquels il contribue ou dont
 il peut être associé ou employé.</p>
 <h2>Hébergement</h2>
-<p>Ce site est hébergé par Framasoft, c/o T. CEZARD, 5 avenue
-Stephen Pichon 75013 Paris, France.
+<p>Ce site est hébergé par Framasoft, 10 bis rue Jangot 69007 Lyon, France.
 Cet hébergeur possède à ce jour les éléments d’identification
 personnelle concernant l'Éditeur (voir <a
  href="http://www.framasoft.net/article4736.html">http://www.framasoft.net/article4736.html</a>).</p>
@@ -291,7 +290,7 @@ l'équipe Framasoft. Les sources sont disponibles sur le Github <a
 <b>Propositions améliorations de Framadate</b><br>
 <br>
 Si quelque chose venait à vous manquer, vous pouvez nous en faire part
-via le <a href="contacts.php">formulaire en ligne</a>.
+via le <a href="http://contact.framasoft.org">formulaire en ligne</a>.
 <br>
 Les dernières améliorations de Framadate sont visibles dans le fichier <a
  href="CHANGELOG">CHANGELOG</a>.<br>
