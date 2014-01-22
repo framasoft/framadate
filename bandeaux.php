@@ -136,7 +136,7 @@ function sous_bandeau_admin()
        '<a class="button small gray" href="/">'. _("Home") .'</a>';
 
   if(is_readable('logs_studs.txt')) {
-    echo '<a class="button small gray" href="/logs_studs.txt">'. _("Logs") .'</a>';
+    echo '<a class="button small gray" href="/admin/logs_studs.txt">'. _("Logs") .'</a>';
   }
 
   echo '<a class="button small gray" href="/../scripts/nettoyage_sondage.php">'. _("Cleaning") .'</a>' .
