@@ -374,8 +374,8 @@ msgid "Comments"
 msgstr "Commentaire de l'auteur"
 
 #: studs.php:238
-msgid "If you want to vote in this poll, you have to give your name, choose the values that fit best for you<br>(without paying attention to the choices of the other voters) and validate with the plus button at the end of the line."
-msgstr "Pour participer &agrave; ce sondage, veuillez entrer votre nom, choisir toutes les valeurs qui vous conviennent <br>et valider votre choix avec le bouton en bout de ligne."
+msgid "If you want to vote in this poll, you have to give your name, choose the values that fit best for you<br> and validate with the plus button at the end of the line."
+msgstr "Pour participer &agrave; ce sondage, veuillez entrer votre nom, choisir toutes les valeurs qui vous conviennent <br> et valider votre choix avec le bouton en bout de ligne."
 
 #: studs.php:456
 msgid "Participate"
@@ -395,7 +395,7 @@ msgstr "Meilleur choix"
 #: adminstuds.php:924
 #: adminstuds.php:926
 msgid "for"
-msgstr "&agrave"
+msgstr "&agrave;"
 
 #: studs.php:534
 #: adminstuds.php:947

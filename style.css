@@ -62,7 +62,17 @@ img {
     box-sizing:content-box;
 }
 
+/* a11y rules*/
+a:focus {
+outline:#000 dotted 1px;
+}
+
 /*bandeau de titre*/
+
+h1 {
+	margin:0;
+}
+
 .framorange {
   color: #FF8400;
   display: inline;
@@ -88,7 +98,7 @@ div.bandeau{
 	background-color: #EAEAFF;
 	color:white;
 	vertical-align:middle;
-	font-size:42px;
+	font-size:1em;
 	font-family:arial;
 	padding:8px; 
 	height:40px;
@@ -115,7 +125,8 @@ div.logo{
 	padding-top: 30px;
 }
 /*Sous bandeau avec bouton de navigation*/
-div.bandeautitre{ 
+.bandeautitre{ 
+	margin:0;
 	height:17px;
 	background-color: #EAEAFF;
 	font-size:14px;
@@ -125,7 +136,7 @@ div.bandeautitre{
         font-style: italic;
 	vertical-align:middle;
 	font-family:arial;
- 	padding:13px; 
+ 	padding:.9em; 
 	position:static;
 	top:57px;
 	left:6px;
@@ -134,7 +145,7 @@ div.bandeautitre{
 	border-bottom: 1px solid #CCC;
 } 
 div.sousbandeau{ 
-	height:17px;
+	min-height:17px;
 	background-color: #C4C4FF;
 	font-size:11px;
 	color:black;
@@ -148,8 +159,20 @@ div.sousbandeau{
 	left:6px;
 	right:6px; */
 	/* display: none; */
-	margin-top: 1.5em;
+	margin-top: 3em;
 	border-top: 1px solid #999;
+}
+
+.sousbandeau ul {
+margin:0;
+padding:0;
+display:block;
+float:left;
+}
+
+.sousbandeau ul li {
+list-style:none;
+display:inline;
 }
 /*bandeau de pied*/
 div.surbandeaupied{ 
@@ -210,7 +233,8 @@ div.bandeaupiedmobile{
         text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 */
-span.sousbandeaulangue {
+ul.sousbandeaulangue {
+	display:block;
 	margin-left:6px;
 	margin-right:90px;
 	float:right;
@@ -360,6 +384,7 @@ div.cadre table.resultats {
 	margin:0 auto;
 }
 
+div.cadre th,
 div.cadre td {
 	height:30px;
 }
@@ -375,11 +400,13 @@ div.cadre td.non {
 	width:35px;
 }
 /*Case de tableau VIDE dans affichage de sondage*/
+div.cadre th.vide, div.cadre th.sujet,
 div.cadre td.vide, div.cadre td.sujet {
 	background-color: #DDDDDD; 
 	text-align:center;
+	padding:1px 5px;
 }
-
+div.cadre th.vide, div.cadre th.ok, div.cadre th.non, div.cadre th.sujet, div.cadre th.nom, div.cadre th.jour, div.cadre th.heure, div.cadre th.mois,
 div.cadre td.vide, div.cadre td.ok, div.cadre td.non, div.cadre td.sujet, div.cadre td.nom, div.cadre td.jour, div.cadre td.heure, div.cadre td.mois {
 	border-right: 1px solid #BBB !important;
 	border-bottom: 1px solid #BBB !important;
@@ -653,4 +680,16 @@ li.error {
 
 .imprimer {
     float:right;
+}
+
+.error {
+	color:red;
+}
+
+.margin-top {
+	margin-top:1em;
+}
+
+.txt-right {
+text-align:right;
 }

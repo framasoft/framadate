@@ -56,7 +56,7 @@ function connexion_base()
 function get_server_name()
 {
     $scheme = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 'on') ? 'https' : 'http';
-    return $scheme . '://' .  $_SERVER['SERVER_NAME'] . '/';
+    return $scheme . '://' .  $_SERVER['SERVER_NAME'] . dirname($_SERVER['SCRIPT_NAME']).'/';
 }
 
 
@@ -105,10 +105,10 @@ function is_user()
 
 function print_header($js = false, $nom_sondage = '')
 {
-  echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
+  echo '<!DOCTYPE html>
+<html lang="'.$lang.'">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
+    <meta charset="utf-8">';
   if (empty($nom_sondage) === false) {
     echo '
     <title>'.stripslashes($nom_sondage).' - '.NOMAPPLICATION.'</title>';
@@ -117,8 +117,8 @@ function print_header($js = false, $nom_sondage = '')
     <title>'.NOMAPPLICATION.'</title>';
   }
   echo '
-    <link rel="stylesheet" type="text/css" href="/style.css">
-    <link rel="stylesheet" type="text/css" href="/print.css" media="print">';
+    <link rel="stylesheet" href="'.get_server_name().'style.css">
+    <link rel="stylesheet" href="'.get_server_name().'print.css" media="print">';
 
   echo '</head>';
 }
@@ -219,15 +219,15 @@ function getUrlSondage($id, $admin = false)
 {
   if (URL_PROPRE === true) {
     if ($admin === true) {
-      $url = get_server_name().$id.'/admin';
+      $url = str_replace('/admin','',get_server_name()).$id.'/admin';
     } else {
-      $url = get_server_name().$id;
+      $url = str_replace('/admin','',get_server_name()).$id;
     }
   } else {
     if ($admin === true) {
-      $url = get_server_name().'adminstuds.php?sondage='.$id;
+      $url = str_replace('/admin','',get_server_name()).'adminstuds.php?sondage='.$id;
     } else {
-      $url = get_server_name().'studs.php?sondage='.$id;
+      $url = str_replace('/admin','',get_server_name()).'studs.php?sondage='.$id;
     }
   }
 

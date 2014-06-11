@@ -95,8 +95,8 @@ if (@file_exists('variables.local.php')) {
 const STUDS_VERSION = 0.7;
 
 // Do not edit the following
-$ALLOWED_LANGUAGES = array('fr_FR' => 'french',
-			   'en_GB' => 'english',
-			   'es_ES' => 'spanish',
-			   'de_DE' => 'german' );
+$ALLOWED_LANGUAGES = array('fr_FR' => '<li>Français</li>',
+			   'en_GB' => '<li lang="en">English</li>',
+			   'es_ES' => '<li lang="es">Español</li>',
+			   'de_DE' => '<li lang="de">Deutsch</li>' );
 

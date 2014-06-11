@@ -48,22 +48,21 @@ if (file_exists('bandeaux_local.php')) {
 
 //si les variables de session ne sont pas valides, il y a une erreur
 if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SESSION) === false || issetAndNoEmpty('adresse', $_SESSION) === false) {
-  echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-  echo '<html>'."\n";
+  echo '<!DOCTYPE html>'."\n";
+  echo '<html lang="'.$lang.'">'."\n";
   echo '<head>'."\n";
-  echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-  echo '<title>'.NOMAPPLICATION.'</title>'."\n";
-  echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
+  echo '<meta charset="utf-8">'."\n";
+  echo '<title>'._("Error!").' - '.NOMAPPLICATION.'</title>'."\n";
+  echo '<link rel="stylesheet" href="'.get_server_name().'/style.css">'."\n";
   echo '</head>'."\n";
   echo '<body>'."\n";
   framanav();
   logo();
   bandeau_tete();
   bandeau_titre(_("Error!"));
-  echo '<div class=corpscentre>'."\n";
-  print "<H2>" . _("You haven't filled the first section of the poll creation.") . " !</H2>"."\n";
-  print "" . _("Back to the homepage of ") . " <a href=\"index.php\"> ".NOMAPPLICATION."</A>."."\n";
-  echo '<br><br><br>'."\n";
+  echo '<div class="corpscentre">'."\n";
+  print "<h2>" . _("You haven't filled the first section of the poll creation.") . " !</h2>"."\n";
+  print "" . _("Back to the homepage of ") . " <a href=\"".get_server_name()."\"> ".NOMAPPLICATION."</a>."."\n";
   echo '</div>'."\n";
   //bandeau de pied
   bandeau_pied();
@@ -136,7 +135,14 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
     $_SESSION["nbrecases"]=$_SESSION["nbrecases"]+5;
   }
   
-  print_header();
+  
+  if( ($testremplissage != "ok" && (isset($_POST["fin_sondage_autre"]) || isset($_POST["fin_sondage_autre_x"]))) || ($testdate === false) || ($erreur_injection) ) {
+	// S'il y a des erreurs
+    print_header(false, _("Error!") .' - '. _("Poll subjects (2 on 2)"));
+  } else {
+    print_header(false, _("Poll subjects (2 on 2)"));
+  }
+  
   echo '<body>'."\n";
   framanav();
   
@@ -146,8 +152,8 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
   bandeau_titre(_("Poll subjects (2 on 2)"));
   sous_bandeau_choix();
   
-  echo '<div class=corps>'."\n";
-  echo '<br>'. _("Your poll aim is to make a choice between different subjects.<br>Enter the subjects to vote for:") .'<br><br>'."\n";
+  echo '<div class="corps">'."\n";
+  echo '<p>'. _("Your poll aim is to make a choice between different subjects.<br>Enter the subjects to vote for:") .'</p>'."\n";
   echo '<table>'."\n";
   
   //affichage des cases texte de formulaire
@@ -156,7 +162,7 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
     if (isset($_SESSION["choix$i"]) === false) {
       $_SESSION["choix$i"] = '';
     }
-    echo '<tr><td>'. _("Choice") .' '.$j.' : </td><td><input type="text" name="choix[]" size="40" maxlength="40" value="'.str_replace("\\","",$_SESSION["choix$i"]).'" id="choix'.$i.'"></td></tr>'."\n";
+    echo '<tr><td><label for="choix'.$i.'">'. _("Choice") .' '.$j.'</label> : </td><td><input type="text" name="choix[]" size="40" maxlength="40" value="'.str_replace("\\","",$_SESSION["choix$i"]).'" id="choix'.$i.'"></td></tr>'."\n";
   }
   
   echo '</table>'."\n";
@@ -168,9 +174,8 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
   
   //ajout de cases supplementaires
   echo '<table><tr>'."\n";
-  echo '<td>'. _("5 choices more") .'</td><td><input type="image" name="ajoutcases" value="Retour" src="images/add-16.png"></td>'."\n";
+  echo '<td>'. _("5 choices more") .'</td><td><input type="image" alt="'. _("5 choices more").'" name="ajoutcases" value="Retour" src="'.get_server_name().'images/add-16.png"></td>'."\n";
   echo '</tr></table>'."\n";
-  echo'<br>'."\n";
   
   //echo '<table><tr>'."\n";
   //echo '<td>'. _("Next") .'</td><td><input type="image" name="fin_sondage_autre" value="Cr&eacute;er le sondage" src="images/next-32.png"></td>'."\n";
@@ -191,43 +196,40 @@ if (!isset($_POST["fin_sondage_autre_x"])) {
   
   //message d'erreur si aucun champ renseigné
   if ($testremplissage != "ok" && (isset($_POST["fin_sondage_autre"]) || isset($_POST["fin_sondage_autre_x"]))) {
-    print "<br><font color=\"#FF0000\">" . _("Enter at least one choice") . "</font><br><br>"."\n";
+    print "<p class=\"error\">" . _("Enter at least one choice") . "</p>"."\n";
     $erreur = true;
   }
   
   //message d'erreur si mauvaise date
   if ($testdate === false) {
-    print "<br><font color=\"#FF0000\">" . _("Date must be have the format DD/MM/YYYY") . "</font><br><br>"."\n";
+    print "<p class=\"error\">" . _("Date must be have the format DD/MM/YYYY") . "</p>"."\n";
   }
   
   if ($erreur_injection) {
-    print "<font color=#FF0000>" . _("Characters \" < and > are not permitted") . "</font><br><br>\n";
+    print "<p class=\"error\">" . _("Characters \" < and > are not permitted") . "</p>\n";
   }
   
   if ((isset($_POST["fin_sondage_autre"]) || isset($_POST["fin_sondage_autre_x"])) && !$erreur && !$erreur_injection) {
     //demande de la date de fin du sondage
-    echo '<br>'."\n";
     echo '<div class=presentationdatefin>'."\n";
-    echo '<br>'. _("Your poll will be automatically removed after 6 months.<br> You can fix another removal date for it.") .'<br><br>'."\n";
-    echo _("Removal date (optional)") .' : <input type="text" class="champdatefin" name="champdatefin" value="'.$date_selected.'" size="10" maxlength="10"> '. _("(DD/MM/YYYY)") ."\n";
+    echo '<p>'. _("Your poll will be automatically removed after 6 months.<br> You can fix another removal date for it.") .'</p>'."\n";
+    echo '<label for="champdatefin">'. _("Removal date (optional)") .'</label> : <input type="text" class="champdatefin" id="champdatefin" aria-describedby="dateformat" name="champdatefin" value="'.$date_selected.'" size="10" maxlength="10"> <span id="dateformat">'. _("(DD/MM/YYYY)") .'</span>'."\n";
     echo '</div>'."\n";
     echo '<div class=presentationdatefin>'."\n";
-    echo '<font color=#FF0000>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll. <br><br>Then, you will receive quickly an email contening the link to your poll for sending it to the voters.") .'</font>'."\n";
+    echo '<p class="error">'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll. <br><br>Then, you will receive quickly an email contening the link to your poll for sending it to the voters.").'</p>'."\n";
     echo '</div>'."\n";
-    echo '<br>'."\n";
     //echo '<table>'."\n";
     //echo '<tr><td>'. _("Create the poll") .'</td><td><input type="image" name="confirmecreation" value="Valider la cr&eacute;ation"i src="images/add.png"></td></tr>'."\n";
     //echo '</table>'."\n";
     
-    echo '<button name="confirmecreation" value="confirmecreation" type="submit" class="button green poursuivre"><strong>'. _('Make a poll') . '</strong> </button>';
+    echo '<button name="confirmecreation" value="confirmecreation" type="submit" class="button green poursuivre margin-top"><strong>'. _('Make a poll') . '</strong> </button>';
     echo '<div style="clear:both"></div>';
     
   }
   
   //fin du formulaire et bandeau de pied
   echo '</form>'."\n";
-  echo '<a name=bas></a>'."\n";
-  echo '<br><br><br>'."\n";
+  echo '<a id=bas></a>'."\n";
   echo '</div>'."\n";
   //bandeau de pied
   bandeau_pied_mobile();

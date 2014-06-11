@@ -23,3 +23,7 @@ textdomain($domain);
 /* temp, for compatibility :*/
 $a = explode('_', $locale);
 $_SESSION['langue'] = strtoupper($a[0]);
+
+/* <html lang="$lang"> */
+$lang = ($_SESSION['langue']!='') ? strtolower($_SESSION['langue']) : 'fr';
+

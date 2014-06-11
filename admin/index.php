@@ -51,11 +51,11 @@ include_once('../bandeaux.php');
 
 // Affichage des balises standards
 echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-echo '<html>'."\n";
+echo '<html lang="'.$lang.'">'."\n";
 echo '<head>'."\n";
 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-echo '<title>ADMINISTRATEUR de la base '.NOMAPPLICATION.'</title>'."\n";
-echo '<link rel="stylesheet" type="text/css" href="../style.css">'."\n";
+echo '<title>'._("Polls administrator").' - '.NOMAPPLICATION.'</title>'."\n";
+echo '<link rel="stylesheet" type="text/css" href="'.get_server_name().'../style.css">'."\n";
 echo '</head>'."\n";
 echo '<body>'."\n";
 
@@ -70,7 +70,7 @@ sous_bandeau_admin();
 $sondage=$connect->Execute("select * from sondage");
 
 echo'<div class=corps>'."\n";
-echo '<form action="index.php" method="POST">'."\n";
+echo '<form action="'.get_server_name().'index.php" method="POST">'."\n";
 // Test et affichage du bouton de confirmation en cas de suppression de sondage
 while($dsondage = $sondage->FetchNextObject(false)) {
   if (issetAndNoEmpty('supprimersondage'.$dsondage->id_sondage) === true) {
@@ -133,9 +133,9 @@ while($dsondage = $sondage->FetchNextObject(false)) {
 }
 
 echo '</table>'."\n";  
-echo'</div>'."\n";
 // fin du formulaire et de la page web
 echo '</form>'."\n";
+echo'</div>'."\n";
 echo '<div class="separateur">&nbsp;</div>';
 echo '</body>'."\n";
 echo '</html>'."\n";

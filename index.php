@@ -47,12 +47,12 @@ if (is_readable('bandeaux_local.php')) {
 session_start();
 
 //affichage de la page
-echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-echo '<html>'."\n";
+echo '<!DOCTYPE html>'."\n";
+echo '<html lang="'.$lang.'">'."\n";
 echo '<head>'."\n";
 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-echo '<title>'.NOMAPPLICATION.'</title>'."\n";
-echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
+echo '<title>'._("Home").' - '.NOMAPPLICATION.'</title>'."\n";
+echo '<link rel="stylesheet" type="text/css" href="'.get_server_name().'style.css">'."\n";
 echo '</head>'."\n";
 echo '<body>'."\n";
 
@@ -73,17 +73,15 @@ echo '<div class=corps>'."\n";
 #     '</span>';
 #echo '</div>' . "\n";
 
-echo '<br>'."\n";
-
 echo '<div class="index_date">';
-echo '<div><a href="./infos_sondage.php?choix_sondage=date"/><image class="opacity" src="images/date.png"/></a></div>';
-echo '<a href="./infos_sondage.php?choix_sondage=date" class="button orange bigrounded"/><strong><img src="images/calendar-32.png" alt="" />'
-    . _('Schedule an event') . '</strong></a>';
+echo '<p><a href="'.get_server_name().'infos_sondage.php?choix_sondage=date" role="button"><img class="opacity" src="'.get_server_name().'images/date.png" alt="" />';
+echo '<span class="button orange bigrounded"><strong><img src="'.get_server_name().'images/calendar-32.png" alt="" />'
+    . _('Schedule an event') . '</strong></span></a></p>';
 echo '</div>';
 
 echo '<div class="index_sondage">';
-echo '<div><a href="./infos_sondage.php?choix_sondage=autre"><image class="opacity" src="images/sondage2.png" /></a></div>';
-echo '<a href="./infos_sondage.php?choix_sondage=autre" class="button blue bigrounded"><strong><img src="images/chart-32.png" alt="" />'. _('Make a poll') . '</strong></a>';
+echo '<p><a href="'.get_server_name().'infos_sondage.php?choix_sondage=autre" role="button"><img alt="" class="opacity" src="'.get_server_name().'images/sondage2.png" />';
+echo '<span class="button blue bigrounded"><strong><img src="'.get_server_name().'images/chart-32.png" alt="" />'. _('Make a poll') . '</strong></span></a></p>';
 echo '</div>';
 
 

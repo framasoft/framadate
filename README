@@ -156,14 +156,16 @@ Technologies utilisées
 
 =============================================================================
 Compatibilités des navigateurs
+Dernière mise à jour le 21 avril 2014
 =============================================================================
 
-- Firefox 
-- Opera 
+- Firefox : Ubuntu 13.10/FF28
+-Chrome : Ubuntu13.10/Chromium33
+- Opera (non testé)
 - Konqueror
-- Links 
-- Safari
-- IE 
+- Links (non testé, inutile)
+- Safari (non testé)
+- IE : Win7/IE9
 	
 -----------------
 Janvier 2008

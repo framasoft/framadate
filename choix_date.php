@@ -50,11 +50,11 @@ if (is_readable('bandeaux_local.php')) {
 //si les variables de session ne snot pas valides, il y a une erreur
 if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION) && !issetAndNoEmpty('commentaires', $_SESSION) && !issetAndNoEmpty('mail', $_SESSION)) {
   echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-  echo '<html>'."\n";
+  echo '<html lang="'.$lang.'">'."\n";
   echo '<head>'."\n";
   echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-  echo '<title>'.NOMAPPLICATION.'</title>'."\n";
-  echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
+  echo '<title>'._("Error!").' - '.NOMAPPLICATION.'</title>'."\n";
+  echo '<link rel="stylesheet" type="text/css" href="'.get_server_name().'style.css">'."\n";
   echo '</head>'."\n";
   echo '<body>'."\n";
   framanav();
@@ -63,7 +63,7 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   bandeau_titre(_("Error!"));
   echo '<div class=corpscentre corps>'."\n";
   print "<H2>" . _("You haven't filled the first section of the poll creation.") . " !</H2>"."\n";
-  print _("Back to the homepage of ") . ' ' . '<a href="index.php">' . NOMAPPLICATION . '</a>.' . "\n";
+  print _("Back to the homepage of ") . ' ' . '<a href="'.get_server_name().'">' . NOMAPPLICATION . '</a>.' . "\n";
   echo '<br><br><br>'."\n";
   echo '</div>'."\n";
   //bandeau de pied
@@ -214,12 +214,12 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   
   //debut de la page web
   echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-  echo '<html>'."\n";
+  echo '<html lang="'.$lang.'">'."\n";
   echo '<head>'."\n";
   echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-  echo '<title>'.NOMAPPLICATION.'</title>'."\n";
-  echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
-  echo '<script type="text/javascript" src="block_enter.js"></script>';
+  echo '<title>'._("Poll dates (2 on 2)").' - '.NOMAPPLICATION.'</title>'."\n";
+  echo '<link rel="stylesheet" type="text/css" href="'.get_server_name().'style.css">'."\n";
+  echo '<script type="text/javascript" src="'.get_server_name().'block_enter.js"></script>';
   echo '</head>'."\n";
   echo '<body>'."\n";
   
@@ -230,7 +230,7 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   bandeau_titre(_("Poll dates (2 on 2)"));
   sous_bandeau_choix();
 
-  echo '<form name="formulaire" action="choix_date.php" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+  echo '<form name="formulaire" action="'.get_server_name().'choix_date.php" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 
   
   //ajout pyg pour la cohérence graphique
@@ -244,7 +244,7 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   //debut du tableau qui affiche le calendrier
   echo '<div class=calendrier>'."\n";
   echo '<table align=center>'."\n";
-  echo '<tr><td><input type="image" name="anneeavant" value="<<" src="images/rewind.png"></td><td><input type="image" name="moisavant" value="<" src="images/previous.png"></td><td align="center" class="choix_date_mois"> '.$motmois.' '.$_SESSION["annee"].' </td><td><input type="image" name="moisapres" value=">" src="images/next.png"></td><td><input type="image" name="anneeapres" value=">>" src="images/fforward.png"></td><td></td><td></td><td></td><td></td><td></td><td><input type="image" name="retourmois" value="Aujourd\'hui" src="images/reload.png"></td></tr>'."\n";
+  echo '<tr><td><input type="image" name="anneeavant" value="<<" src="'.get_server_name().'images/rewind.png"></td><td><input type="image" name="moisavant" value="<" src="'.get_server_name().'images/previous.png"></td><td align="center" class="choix_date_mois"> '.$motmois.' '.$_SESSION["annee"].' </td><td><input type="image" name="moisapres" value=">" src="'.get_server_name().'images/next.png"></td><td><input type="image" name="anneeapres" value=">>" src="'.get_server_name().'images/fforward.png"></td><td></td><td></td><td></td><td></td><td></td><td><input type="image" name="retourmois" value="Aujourd\'hui" src="'.get_server_name().'images/reload.png"></td></tr>'."\n";
   echo '</table>'."\n";
   echo '<table>'."\n";
   echo '<tr>'."\n";
@@ -498,7 +498,7 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
     }
     
     if ($_SESSION["nbrecaseshoraires"] < 10) {
-      echo '<td classe=somme><input type="image" name="ajoutcases" src="images/add-16.png"></td>'."\n";
+      echo '<td classe=somme><input type="image" name="ajoutcases" src="'.get_server_name().'images/add-16.png"></td>'."\n";
     }
     
     echo '</tr>'."\n";

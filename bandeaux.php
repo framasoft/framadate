@@ -41,13 +41,11 @@ include_once('fonctions.php');
 
 function framanav()
 {
-/*    if (file_exists($_SERVER['DOCUMENT_ROOT']."/framanav/nav.php")) {
-    //echo "\n".'<!-- Framanav --> '."\n";;
-    //echo '<script src="/framanav/scripts/jquery.min.js" type="text/javascript"></script>'."\n";
-    include_once($_SERVER['DOCUMENT_ROOT']."/framanav/nav.php");
-    //echo '<!-- /Framanav --> '."\n";
-    }*/
+    if (file_exists($_SERVER['DOCUMENT_ROOT']."/nav/nav.js")) {
+    echo "\n".'<!-- Framanav --> '."\n";;
     echo '<script src="/nav/nav.js" id="nav_js" type="text/javascript" charset="utf-8"></script>'."\n";
+    echo '<!-- /Framanav --> '."\n";
+    }
 }
 
 function gAnalytics() {
@@ -73,7 +71,7 @@ function gAnalytics() {
 function logo ()
 {
 /*  if(defined('LOGOBANDEAU')) {
-    echo '<div class="logo"><img src="/' . LOGOBANDEAU . '" height="74" alt="logo"></div>'."\n";
+    echo '<div class="logo"><img src="/' . LOGOBANDEAU . '" height="74" alt=""></div>'."\n";
   }*/
 }
 
@@ -83,11 +81,11 @@ function bandeau_tete()
 {
   if ( IMAGE_TITRE ) {
 
-    echo '<div class="bandeau"><a href="/" title="Accueil '.NOMAPPLICATION.'"><img src="/' . IMAGE_TITRE. '" title="Accueil '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'"></a></div>'."\n";
+    echo '<div role="banner" class="bandeau"><h1><a href="'.str_replace('/admin','',get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'"><img src="'.get_server_name(). IMAGE_TITRE. '" title="'._("Home").' - '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'"></a></h1></div>'."\n";
 
   } else {
 
-    echo '<div class="bandeau"><a href="/" title="Accueil '.NOMAPPLICATION.'">'.NOMAPPLICATION.'</a></div>'."\n";
+    echo '<div role="banner" class="bandeau"><h1><a href="'.str_replace('/admin','',get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'">'.NOMAPPLICATION.'</a></h1></div>'."\n";
 
   } ;
 
@@ -97,7 +95,7 @@ function bandeau_tete()
 // bandeaux de titre
 function bandeau_titre($titre)
 {
-  echo '<div class="bandeautitre">'. $titre .'</div>'."\n";
+  echo '<p class="bandeautitre">'. $titre .'</p>'."\n";
 }
 
 
@@ -107,7 +105,7 @@ function liste_lang()
 
   $str = '';
   foreach ($ALLOWED_LANGUAGES as $k => $v ) {
-    $str .= '<a class="button small gray" href="' . $_SERVER['PHP_SELF'] . '?lang=' . $k . '">' . $v . '</a>' . "\n" ;
+    $str .= '<li lang="'.substr($k,0,2).'"><a class="button small gray" href="' . $_SERVER['PHP_SELF'] . '?lang=' . $k . '">' . $v . '</a></li>' . "\n" ;
   }
 
   return $str;
@@ -118,7 +116,7 @@ function liste_lang()
 function sous_bandeau()
 {
   /*echo '<div class="sousbandeau">' .
-       '<a href="/">'. _("Home") .'</a>' .
+       '<a href="./">'. _("Home") .'</a>' .
        '<a href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a>' .
        '<a href="http://contact.framasoft.org" target="_new">'. _("Contact") .'</a>' .
        //'<a href="/sources/sources.php">'. _("Sources") .'</a>' . //not implemented
@@ -133,15 +131,15 @@ function sous_bandeau()
 function sous_bandeau_admin()
 {
   echo '<div class="sousbandeau">' .
-       '<a class="button small gray" href="/">'. _("Home") .'</a>';
+       '<a class="button small gray" href="'.str_replace('/admin','',get_server_name()).'">'. _("Home") .'</a>';
 
   if(is_readable('logs_studs.txt')) {
-    echo '<a class="button small gray" href="/admin/logs_studs.txt">'. _("Logs") .'</a>';
+    echo '<a role="button" class="button small gray" href="'.str_replace('/admin','',get_server_name()).'admin/logs_studs.txt">'. _("Logs") .'</a>';
   }
 
-  echo '<a class="button small gray" href="/../scripts/nettoyage_sondage.php">'. _("Cleaning") .'</a>' .
-       '<span class="sousbandeau sousbandeaulangue">' .
-       liste_lang() . '</span>'.
+  echo '<a role="button" class="button small gray" href="'.str_replace('/admin','',get_server_name()).'scripts/nettoyage_sondage.php">'. _("Cleaning") .'</a>' .
+       '<ul class="sousbandeau sousbandeaulangue">' .
+       liste_lang() . '</ul>'.
        '</div>'."\n";
 
     gAnalytics();
@@ -166,16 +164,17 @@ function sur_bandeau_pied()
 function bandeau_pied()
 {
   //echo '<div class="bandeaupied">'. _("Universit&eacute; de Strasbourg. Creation: Guilhem BORGHESI. 2008-2009") .'</div>'."\n";
-  echo '<div class="separateur">&nbsp;</div>';
   echo '<div class="sousbandeau">' .
-       '<a class="button small gray" href="/">'. _("Home") .'</a>' .
-       '<a class="button small gray" href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a>' .
-       '<a class="button small gray" href="http://contact.framasoft.org" target="_new">'. _("Contact") .'</a>' .
+		'<ul>' .
+       '<li><a class="button small gray" href="'.get_server_name().'">'. _("Home") .'</a></li>' .
+       '<li><a class="button small gray" href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a></li>' .
+       '<li><a class="button small gray" href="http://contact.framasoft.org">'. _("Contact") .'</a></li>' .
        //'<a href="/sources/sources.php">'. _("Sources") .'</a>' . //not implemented
-       '<a class="button small gray" href="/apropos.php">'. _("About") .'</a>' .
-       //'<a class="button small gray" href="/admin/index.php">'. _("Admin") .'</a>' .
-       '<span class="sousbandeau sousbandeaulangue">' .
-       liste_lang() . '</span>'.
+       '<li><a class="button small gray" href="'.get_server_name().'apropos.php">'. _("About") .'</a></li>' .
+       //'<a class="button small gray" href="/admin/index.php">'. _("Admin") .'</a></li>' .
+       '</ul>' .
+       '<ul class="sousbandeau sousbandeaulangue">' .
+       liste_lang() . '</ul>'.
        '</div>' . "\n";
     gAnalytics();
 }
@@ -187,14 +186,16 @@ function bandeau_pied_mobile()
        '<div class="bandeaupiedmobile">'. _("Universit&eacute; de Strasbourg. Creation: Guilhem BORGHESI. 2008-2009") .'</div>'."\n";*/
        echo '<div class="separateur">&nbsp;</div>';
   echo '<div class="sousbandeau">' .
-       '<a class="button small gray" href="/">'. _("Home") .'</a>' .
-       '<a class="button small gray" href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a>' .
-       '<a class="button small gray" href="http://contact.framasoft.org" target="_new">'. _("Contact") .'</a>' .
+		'<ul>' .
+       '<li><a class="button small gray" href="'.get_server_name().'">'. _("Home") .'</a></li>' .
+       '<li><a class="button small gray" href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a></li>' .
+       '<li><a class="button small gray" href="http://contact.framasoft.org">'. _("Contact") .'</a></li>' .
        //'<a href="/sources/sources.php">'. _("Sources") .'</a>' . //not implemented
-       '<a class="button small gray" href="/apropos.php">'. _("About") .'</a>' .
-       //'<a class="button small gray" href="/admin/index.php">'. _("Admin") .'</a>' .
-       '<span class="sousbandeau sousbandeaulangue">' .
-       liste_lang() . '</span>'.
+       '<li><a class="button small gray" href="'.get_server_name().'apropos.php">'. _("About") .'</a></li>' .
+       //'<a class="button small gray" href="/admin/index.php">'. _("Admin") .'</a></li>' .
+       '</ul>' .
+       '<ul class="sousbandeau sousbandeaulangue">' .
+       liste_lang() . '</ul>'.
        '</div>' . "\n";
     gAnalytics();
 }

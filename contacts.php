@@ -65,21 +65,20 @@ if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && isse
   }
   
   //affichage de la page de confirmation d'envoi
-  echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-  echo '<html>'."\n";
+  echo '<!DOCTYPE html>'."\n";
+  echo '<html lang="'.$lang.'">'."\n";
   echo '<head>'."\n";
-  echo '<title>'.NOMAPPLICATION.'</title>'."\n";
+  echo '<title>'._("Make your polls").' - '.NOMAPPLICATION.'</title>'."\n";
   echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-  echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
+  echo '<link rel="stylesheet" type="text/css" href="'.get_server_name().'style.css">'."\n";
   echo '</head>'."\n";
   echo '<body>'."\n";
   logo();
   bandeau_tete();
   bandeau_titre(_("Make your polls"));
   echo '<div class=corpscentre>'."\n";
-  print "<H2>" . _("Your message has been sent!") . "</H2><br><br>"."\n";
-  print "" . _("Back to the homepage of ") . " <a href=\"index.php\"> ".NOMAPPLICATION."</A>."."\n";
-  echo '<br><br><br>'."\n";
+  print "<h2>" . _("Your message has been sent!") . "</h2>"."\n";
+  print "" . _("Back to the homepage of ") . " <a href=\"".get_server_name()."\"> ".NOMAPPLICATION."</a>."."\n";
   echo '</div>'."\n";
   bandeau_pied();
   session_unset();
@@ -94,19 +93,19 @@ if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && isse
   }
   
   //affichage de la page
-  echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-  echo '<html>'."\n";
+  echo '<!DOCTYPE html>'."\n";
+  echo '<html lang="'.strtolower($_SESSION['langue']).'">'."\n";
   echo '<head>'."\n";
   echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-  echo '<title>'.NOMAPPLICATION.'</title>'."\n";
-  echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
+  echo '<title>'._("Contact us").' - '.NOMAPPLICATION.'</title>'."\n";
+  echo '<link rel="stylesheet" type="text/css" href="'.get_server_name().'style.css">'."\n";
   echo '</head>'."\n";
   echo '<body>'."\n";
 
 framanav();
   
   //debut du formulaire
-  echo '<form name=formulaire action="contacts.php" method="POST">'."\n";
+  echo '<form name=formulaire action="'.get_server_name().'contacts.php" method="POST">'."\n";
   
   //bandeaux de tete
   logo();
@@ -132,8 +131,6 @@ framanav();
     echo ' <font color="#FF0000">'. _("The address is not correct!") .'</font>';
   }
 
-  echo '<br><br>';
-
   echo _("Question") .' :<br>'."\n";
   echo '<textarea name="question" rows="7" cols="40">'.$_SESSION["question"].'</textarea>';
 
@@ -141,9 +138,7 @@ framanav();
     echo ' <font color="#FF0000">&nbsp;Il faut poser une question !</font>';
   }
 
-  echo '<br><br><br>'."\n";
   echo '<button type="submit" name="envoiquestion" value="'._("Send your question").'" class="button green poursuivre" alt="'._("Send your question").'"><strong>'._("Send your question").'</strong></button>';
-  echo '<br><br><br>'."\n";
   echo '</div>'."\n";
   echo '</form>'."\n";
   //bandeau de pied

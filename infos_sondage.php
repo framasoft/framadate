@@ -141,18 +141,23 @@ if (issetAndNoEmpty("poursuivre")){
     }
 
 
+  } else {
+	  // Title Erreur !
+	  print_header(true, _("Error!").' - '._("Poll creation (1 on 2)"));	
   }
+} else {
+	// Title OK (formulaire pas encore rempli)
+	print_header(true, _("Poll creation (1 on 2)"));
 }
 
 //affichage de la page
-print_header(true);
 echo '<body>'."\n";
 framanav();
 
 //affichage des bandeaux de tete
 logo();
 bandeau_tete();
-echo '<div class="bandeautitre">'. _("Poll creation (1 on 2)") .'</div>'."\n";
+echo '<p class="bandeautitre">'. _("Poll creation (1 on 2)") .'</p>'."\n";
 sous_bandeau();
 
 // premier sondage ? test l'existence des schémas SQL avant d'aller plus loin
@@ -167,56 +172,69 @@ if(!check_table_sondage()) {
 }
 
 //debut du formulaire
-echo '<form name="formulaire" id="formulaire" action="infos_sondage.php" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+echo '<form name="formulaire" id="formulaire" action="'.get_server_name().'infos_sondage.php" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 
-echo '<div class=corps>'."\n";
-echo '<br>'. _("You are in the poll creation section. <br> Required fields cannot be left blank") .'<br><br>'."\n";
+echo '<div class="corps" style="margin-bottom:5em;">'."\n";
+echo '<p>'. _("You are in the poll creation section. <br> Required fields cannot be left blank") .'</p>'."\n";
 
 //Affichage des différents champs textes a remplir
-echo '<table>'."\n";
+echo '<table role="presentation">'."\n";
 
-echo '<tr><td>'. _("Poll title *: ") .'</td><td><input type="text" name="titre" size="40" maxlength="80" value="'.stripslashes($_SESSION["titre"]).'"></td>'."\n";
+echo '<tr><td><label for="poll_title">'. _("Poll title *: ") .'</label></td><td><input id="poll_title" type="text" name="titre" size="40" maxlength="80" value="'.stripslashes($_SESSION["titre"]).'"';
 if (!$_SESSION["titre"] && issetAndNoEmpty("poursuivre") ) {
-  print "<td><font color=\"#FF0000\">" . _("Enter a title") . "</font></td>"."\n";
+  // fermeture de la ligne du dessus avec attribut aria-describeby pour avoir les infos concernant l'erreur
+  // pas très propre mais bon...
+  echo 'aria-describeby="#poll_title_error"></td>'."\n"; 
+  echo '<td class="error" id="poll_title_error">' . _("Enter a title") . '</td>'."\n";
 } elseif ($erreur_injection_titre) {
-  print "<td><font color=\"#FF0000\">" . _("Characters < > and \" are not permitted") . "</font></td><br>"."\n";
+  // idem
+  echo 'aria-describeby="#poll_title_error"></td>'."\n";
+  echo '<td class="error" id="poll_title_error">' . _("Characters < > and \" are not permitted") . '</td>'."\n";
+} else {
+  // pas d'erreur, pas d'aria
+  echo '></td>'."\n";
 }
 
 echo '</tr>'."\n";
-echo '<tr><td>'. _("Comments: ") .'</td><td><textarea name="commentaires" rows="7" cols="40">'.stripslashes($_SESSION["commentaires"]).'</textarea></td>'."\n";
 
+echo '<tr><td><label for="poll_comments">'. _("Comments: ") .'</label></td><td><textarea id="poll_comments" name="commentaires" rows="7" cols="40"';
 if ($erreur_injection_commentaires) {
-  print "<td><font color=\"#FF0000\">" . _("Characters < > and \" are not permitted") . "</font></td><br>"."\n";
+  // même principe
+  echo 'aria-describeby="#poll_comment_error">'.stripslashes($_SESSION["commentaires"]).'</textarea></td>'."\n";	
+  echo '<td class="error" id="poll_comment_error">' . _("Characters < > and \" are not permitted") . "</td>"."\n";
+} else {
+  // pas d'erreur, pas d'aria
+  echo '>'.stripslashes($_SESSION["commentaires"]).'</textarea></td>'."\n";	
 }
 
 echo '</tr>'."\n";
-echo '<tr><td>'. _("Your name*: ") .'</td><td>';
+echo '<tr><td><label for="yourname">'. _("Your name*: ") .'</label><td>';
 
 if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
   echo '<input type="hidden" name="nom" size="40" maxlength="40" value="'.$_SESSION["nom"].'">'.stripslashes($_SESSION["nom"]).'</td>'."\n";
 } else {
-  echo '<input type="text" name="nom" size="40" maxlength="40" value="'.stripslashes($_SESSION["nom"]).'"></td>'."\n";
+  echo '<input id="yourname" type="text" name="nom" size="40" maxlength="40" value="'.stripslashes($_SESSION["nom"]).'"></td>'."\n";
 }
 
 if (!$_SESSION["nom"] && issetAndNoEmpty("poursuivre")) {
-  print "<td><font color=\"#FF0000\">" . _("Enter a name") . "</font></td>"."\n";
+  print "<td class=\"error\">" . _("Enter a name") . "</td>"."\n";
 } elseif ($erreur_injection_nom) {
-  print "<td><font color=\"#FF0000\">" . _("Characters < > and \" are not permitted") . "</font></td><br>"."\n";
+  print "<td class=\"error\">" . _("Characters < > and \" are not permitted") . "</td>"."\n";
 }
 
 echo '</tr>'."\n";
-echo '<tr><td>'. _("Your e-mail address *: ") .'</td><td>';
+echo '<tr><td><label for="email">'. _("Your e-mail address *: ") .'</label><td>';
 
 if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
   echo '<input type="hidden" name="adresse" size="40" maxlength="64" value="'.$_SESSION["adresse"].'">'.$_SESSION["adresse"].'</td>'."\n";
 } else {
-  echo '<input type="text" name="adresse" size="40" maxlength="64" value="'.$_SESSION["adresse"].'"></td>'."\n";
+  echo '<input id="email" type="text" name="adresse" size="40" maxlength="64" value="'.$_SESSION["adresse"].'"></td>'."\n";
 }
 
 if (!$_SESSION["adresse"] && issetAndNoEmpty("poursuivre")) {
-  print "<td><font color=\"#FF0000\">" . _("Enter an email address") . " </font></td>"."\n";
+  print "<td class=\"error\">" . _("Enter an email address") . " </td>"."\n";
 } elseif ($erreur_adresse && issetAndNoEmpty("poursuivre")) {
-  print "<td><font color=\"#FF0000\">" . _("The address is not correct! (You should enter a valid email address in order to receive the link to your poll)") . "</font></td>"."\n";
+  print "<td class=\"error\">" . _("The address is not correct! (You should enter a valid email address in order to receive the link to your poll)") . "</td>"."\n";
 }
 
 echo '</tr>'."\n";
@@ -238,13 +256,13 @@ if ($_SESSION["studsplus"]=="+") {
   $cocheplus="checked";
 }
 
-echo '<input type=checkbox name=studsplus '.$cocheplus.' id="studsplus"><label for="studsplus">'. _(" Voters can modify their vote themselves.") .'</label><br>'."\n";
+echo '<p><input type=checkbox name=studsplus '.$cocheplus.' id="studsplus"><label for="studsplus"><strong>'. _(" Voters can modify their vote themselves.") .'</strong></label></p>'."\n";
 
 if ($_SESSION["mailsonde"]) {
   $cochemail="checked";
 }
 
-echo '<input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde"><label for="mailsonde">'. _(" To receive an email for each new vote.") .'</label><br>'."\n";
+echo '<p><input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde"><label for="mailsonde"><strong>'. _(" To receive an email for each new vote.") .'</strong></label></p>'."\n";
 
 //affichage des boutons pour choisir sondage date ou autre
 if ($_GET['choix_sondage'] == 'date') {
@@ -253,7 +271,7 @@ if ($_GET['choix_sondage'] == 'date') {
     $choix = "creation_sondage_autre";
 }
 echo '<input type="hidden" name="choix_sondage" value="'. $choix_sondage .'"/>';
-echo '<br><button name="poursuivre" value="'. $choix .'" type="submit" class="button green poursuivre"><strong>'. _('Next') . '</strong> </button>';
+echo '<button name="poursuivre" value="'. $choix .'" type="submit" class="button green poursuivre"><strong>'. _('Next') . '</strong> </button>';
 echo '<div style="clear:both"></div>';
 
 

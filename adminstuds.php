@@ -76,7 +76,7 @@ if (preg_match(";[\w\d]{24};i", $numsondageadmin)) {
 
 //verification de l'existence du sondage, s'il n'existe pas on met une page d'erreur
 if (!$sondage || $sondage->RecordCount() != 1){
-  print_header(false);
+  print_header(false, _("Error!"));
   echo '<body>'."\n";
   framanav();
   logo();
@@ -86,7 +86,7 @@ if (!$sondage || $sondage->RecordCount() != 1){
 
   echo '<div class=corpscentre>'."\n";
   print "<H2>" . _("This poll doesn't exist !") . "</H2><br><br>"."\n";
-  print "" . _("Back to the homepage of ") . " <a href=\"index.php\"> ".NOMAPPLICATION."</A>. "."\n";
+  print "" . _("Back to the homepage of ") . " <a href=\"".get_server_name()."\"> ".NOMAPPLICATION."</A>. "."\n";
   echo '<br><br><br><br>'."\n";
   echo '</div>'."\n";
 # sur_bandeau_pied();
@@ -324,7 +324,7 @@ if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"
 
     echo '<div class="corps corpscentre">'."\n";
     print "<H2>" . _("Your poll has been removed!") . "</H2><br><br>";
-    print  _("Back to the homepage of ") . ' <a href="/"> '.NOMAPPLICATION.'</a>.'."\n";
+    print  _("Back to the homepage of ") . ' <a href="'.get_server_name().'"> '.NOMAPPLICATION.'</a>.'."\n";
     echo '<br><br><br>'."\n";
     echo '</div>'."\n";
     sur_bandeau_pied();
@@ -726,7 +726,7 @@ if ($sondage !== false) {
   $sql = $connect->Prepare($sql);
   $user_studs = $connect->Execute($sql, array($numsondage));
 } else {
-  print_header(false);
+  print_header(false, _("Error!"));
   echo '<body>'."\n";
   framanav();
   logo();
@@ -734,7 +734,7 @@ if ($sondage !== false) {
   bandeau_titre(_("Error!"));
   echo '<div class=corpscentre>'."\n";
   print "<H2>" . _("This poll doesn't exist !") . "</H2><br><br>"."\n";
-  print "" . _("Back to the homepage of ") . " <a href=\"index.php\"> ".NOMAPPLICATION."</A>. "."\n";
+  print "" . _("Back to the homepage of ") . " <a href=\"".get_server_name()."\"> ".NOMAPPLICATION."</A>. "."\n";
   echo '<br><br><br><br>'."\n";
   echo '</div>'."\n";
 
@@ -756,7 +756,7 @@ $nbcolonnes=substr_count($dsujet->sujet,',')+1;
 
 echo '<form name="formulaire" action="'.getUrlSondage($numsondageadmin, true).'" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 echo '<div class="cadre"> '."\n";
-echo _('As poll administrator, you can change all the lines of this poll with <img src="images/info.png" alt="infos">.<br> You can, as well, remove a column or a line with <img src="images/cancel.png" alt="Cancel">. <br>You can also add a new column with <img src="images/add-16.png" alt="Add column">.<br> Finally, you can change the informations of this poll like the title, the comments or your email address.') ."\n";
+echo _('As poll administrator, you can change all the lines of this poll with <img src="'.get_server_name().'images/info.png" alt="infos">.<br> You can, as well, remove a column or a line with <img src="'.get_server_name().'images/cancel.png" alt="Cancel">. <br>You can also add a new column with <img src="'.get_server_name().'images/add-16.png" alt="Add column">.<br> Finally, you can change the informations of this poll like the title, the comments or your email address.') ."\n";
 echo '<br><br>'."\n";
 
 //debut de l'affichage de résultats
@@ -767,10 +767,11 @@ $toutsujet=explode(",",$dsujet->sujet);
 echo '<tr>'."\n";
 echo '<td></td>'."\n";
 echo '<td></td>'."\n";
+echo '<td></td>'."\n";
 
 //boucle pour l'affichage des boutons de suppression de colonne
 for ($i = 0; isset($toutsujet[$i]); $i++) {
-  echo '<td class=somme><input type="image" name="effacecolonne'.$i.'" value="Effacer la colonne" src="images/cancel.png"></td>'."\n";
+  echo '<td class=somme><input type="image" name="effacecolonne'.$i.'" value="Effacer la colonne" src="'.get_server_name().'images/cancel.png" /></td>'."\n";
 }
 
 echo '</tr>'."\n";
@@ -806,7 +807,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     }
   }
 
-  echo '<td class="annee"><input type="image" name="ajoutsujet" src="images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
+  echo '<td class="annee"><input type="image" name="ajoutsujet" src="'.get_server_name().'images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
   echo '</tr>'."\n";
   echo '<tr>'."\n";
   echo '<td></td>'."\n";
@@ -840,7 +841,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     }
   }
 
-  echo '<td class="mois"><input type="image" name="ajoutsujet" src="images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
+  echo '<td class="mois"><input type="image" name="ajoutsujet" src="'.get_server_name().'images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
   echo '</tr>'."\n";
   echo '<tr>'."\n";
   echo '<td></td>'."\n";
@@ -874,7 +875,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     }
   }
 
-  echo '<td class="jour"><input type="image" name="ajoutsujet" src="images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
+  echo '<td class="jour"><input type="image" name="ajoutsujet" src="'.get_server_name().'images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
   echo '</tr>'."\n";
 
   //affichage des horaires
@@ -892,7 +893,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
       }
     }
 
-    echo '<td class="heure"><input type="image" name="ajoutsujet" src="images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
+    echo '<td class="heure"><input type="image" name="ajoutsujet" src="'.get_server_name().'images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
     echo '</tr>'."\n";
   }
 } else {
@@ -907,7 +908,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     echo '<td class="sujet">'.stripslashes($toutsujet[$i]).'</td>'."\n";
   }
 
-  echo '<td class="sujet"><input type="image" name="ajoutsujet" src="images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
+  echo '<td class="sujet"><input type="image" name="ajoutsujet" src="'.get_server_name().'images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
   echo '</tr>'."\n";
 }
 
@@ -920,7 +921,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
   $ensemblereponses = $data->reponses;
 
   echo '<tr>'."\n";
-  echo '<td><input type="image" name="effaceligne'.$compteur.'" value="Effacer" src="images/cancel.png"  alt="Icone efface"></td>'."\n";
+  echo '<td><input type="image" name="effaceligne'.$compteur.'" value="Effacer" src="'.get_server_name().'images/cancel.png"  alt="Icone efface" /></td>'."\n";
 
   //affichage du nom
   $nombase=str_replace("°","'",$data->nom);
@@ -971,14 +972,14 @@ while ($data = $user_studs->FetchNextObject(false)) {
 
   //a la fin de chaque ligne se trouve les boutons modifier
   if (!$testligneamodifier=="true") {
-    echo '<td class=somme><input type="image" name="modifierligne'.$compteur.'" value="Modifier" src="images/info.png" alt="Icone infos"></td>'."\n";
+    echo '<td class=somme><input type="image" name="modifierligne'.$compteur.'" value="Modifier" src="'.get_server_name().'images/info.png" alt="Icone infos"></td>'."\n";
   }
 
   //demande de confirmation pour modification de ligne
   for ($i = 0; $i < $nblignes; $i++) {
     if (isset($_POST["modifierligne$i"]) || isset($_POST['modifierligne'.$i.'_x'])) {
       if ($compteur == $i) {
-        echo '<td><input type="image" name="validermodifier'.$compteur.'" value="Valider la modification" src="images/accept.png"  alt="Icone valider"></td>'."\n";
+        echo '<td><input type="image" name="validermodifier'.$compteur.'" value="Valider la modification" src="'.get_server_name().'images/accept.png"  alt="Icone valider"></td>'."\n";
       }
     }
   }
@@ -1001,7 +1002,7 @@ for ($i = 0; $i < $nbcolonnes; $i++) {
 }
 
 // Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
-echo '<td><input type="image" name="boutonp" value="Participer" src="images/add-24.png" alt="' . _('Add') . '"></td>'."\n";
+echo '<td><input type="image" name="boutonp" value="Participer" src="'.get_server_name().'images/add-24.png" alt="' . _('Add') . '"></td>'."\n";
 echo '</tr>'."\n";
 
 //determination du meilleur choix
@@ -1040,19 +1041,20 @@ for ($i = 0; $i < $nbcolonnes; $i++) {
     echo '<td class="somme">'.$affichesomme.'</td>'."\n";
   }
 }
-
+echo '<td></td>'."\n";
+echo '</tr>'."\n";
 echo '<tr>'."\n";
 echo '<td></td>'."\n";
 echo '<td class="somme"></td>'."\n";
 
 for ($i = 0; $i < $nbcolonnes; $i++) {
   if (isset($somme[$i]) === true && isset($meilleurecolonne) === true && $somme[$i] == $meilleurecolonne){
-    echo '<td class="somme"><img src="images/medaille.png" alt="Meilleur resultat"></td>'."\n";
+    echo '<td class="somme"><img src="'.get_server_name().'images/medaille.png" alt="Meilleur resultat"></td>'."\n";
   } else {
     echo '<td class="somme"></td>'."\n";
   }
 }
-
+echo '<td></td>'."\n";
 echo '</tr>'."\n";
 
 
@@ -1139,9 +1141,9 @@ echo '<p class=affichageresultats>'."\n";
 
 //affichage de la phrase annoncant le meilleur sujet
 if (isset($meilleurecolonne) && $compteursujet == "1") {
-  print "<img src=\"images/medaille.png\" alt=\"Meilleur resultat\">" . _("The best choice at this time is") . " : <b>$meilleursujet </b>" . _("with") . " <b>$meilleurecolonne </b>" . $vote_str . ".<br>\n";
+  print "<img src=\"".get_server_name()."images/medaille.png\" alt=\"Meilleur resultat\">" . _("The best choice at this time is") . " : <b>$meilleursujet </b>" . _("with") . " <b>$meilleurecolonne </b>" . $vote_str . ".<br>\n";
 } elseif (isset($meilleurecolonne)) {
-  print "<img src=\"images/medaille.png\" alt=\"Meilleur resultat\"> " . _("The bests choices at this time are") . " : <b>$meilleursujet </b>" . _("with") . " <b>$meilleurecolonne </b>" . $vote_str . ".<br>\n";
+  print "<img src=\"".get_server_name()."images/medaille.png\" alt=\"Meilleur resultat\"> " . _("The bests choices at this time are") . " : <b>$meilleursujet </b>" . _("with") . " <b>$meilleurecolonne </b>" . $vote_str . ".<br>\n";
 }
 
 echo '<br><br>'."\n";
@@ -1158,7 +1160,7 @@ echo '<br>'."\n";
 $adresseadmin=$dsondage->mail_admin;
 echo _("Change the title") .' :<br>' .
     '<input type="text" name="nouveautitre" size="40" value="'.$dsondage->titre.'">'.
-    '<input type="image" name="boutonnouveautitre" value="Changer le titre" src="images/accept.png" alt="Valider"><br><br>'."\n";
+    '<input type="image" name="boutonnouveautitre" value="Changer le titre" src="'.get_server_name().'images/accept.png" alt="Valider"><br><br>'."\n";
 
 //si la valeur du nouveau titre est invalide : message d'erreur
 if ((isset($_POST["boutonnouveautitre"]) || isset($_POST["boutonnouveautitre_x"])) && !issetAndNoEmpty('nouveautitre')) {
@@ -1166,10 +1168,10 @@ if ((isset($_POST["boutonnouveautitre"]) || isset($_POST["boutonnouveautitre_x"]
 }
 
 //Changer les commentaires du sondage
-echo _("Change the comments") .' :<br> <textarea name="nouveauxcommentaires" rows="7" cols="40">'.stripslashes($dsondage->commentaires).'</textarea><br><input type="image" name="boutonnouveauxcommentaires" value="Changer les commentaires" src="images/accept.png" alt="Valider"><br><br>'."\n";
+echo _("Change the comments") .' :<br> <textarea name="nouveauxcommentaires" rows="7" cols="40">'.stripslashes($dsondage->commentaires).'</textarea><br><input type="image" name="boutonnouveauxcommentaires" value="Changer les commentaires" src="'.get_server_name().'images/accept.png" alt="Valider"><br><br>'."\n";
 
 //Changer l'adresse de l'administrateur
-echo _("Change your email address") .' :<br> <input type="text" name="nouvelleadresse" size="40" value="'.$dsondage->mail_admin.'"> <input type="image" name="boutonnouvelleadresse" value="Changer votre adresse" src="images/accept.png" alt="Valider"><br>'."\n";
+echo _("Change your email address") .' :<br> <input type="text" name="nouvelleadresse" size="40" value="'.$dsondage->mail_admin.'"> <input type="image" name="boutonnouvelleadresse" value="Changer votre adresse" src="'.get_server_name().'images/accept.png" alt="Valider"><br>'."\n";
 
 //si l'adresse est invalide ou le champ vide : message d'erreur
 if ((isset($_POST["boutonnouvelleadresse"]) || isset($_POST["boutonnouvelleadresse_x"])) && !issetAndNoEmpty('nouvelleadresse')) {
@@ -1185,7 +1187,7 @@ if ($comment_user->RecordCount() != 0) {
 
   $i = 0;
   while ( $dcomment=$comment_user->FetchNextObject(false)) {
-    print "<input type=\"image\" name=\"suppressioncomment$i\" src=\"images/cancel.png\" alt=\"supprimer commentaires\"> ". stripslashes($dcomment->usercomment) ." : ".stripslashes($dcomment->comment) ." <br>";
+    print "<input type=\"image\" name=\"suppressioncomment$i\" src=\"".get_server_name()."images/cancel.png\" alt=\"supprimer commentaires\" /> ". stripslashes($dcomment->usercomment) ." : ".stripslashes($dcomment->comment) ." <br>";
     $i++;
   }
 
@@ -1200,21 +1202,21 @@ if (isset($erreur_commentaire_vide) && $erreur_commentaire_vide=="yes") {
 print "<br>" . _("Add a comment in the poll") . " :<br>\n";
 echo _("Name") .' : <input type=text name="commentuser"><br>'."\n";
 echo '<textarea name="comment" rows="2" cols="40"></textarea>'."\n";
-echo '<input type="image" name="ajoutcomment" value="Ajouter un commentaire" src="images/accept.png" alt="Valider"><br>'."\n";
+echo '<input type="image" name="ajoutcomment" value="Ajouter un commentaire" src="'.get_server_name().'images/accept.png" alt="Valider"><br>'."\n";
 
 //suppression du sondage
 echo '<br>'."\n";
-echo _("Remove your poll") .' : <input type="image" name="suppressionsondage" value="'. _("Remove the poll") .'" src="images/cancel.png" alt="' . _('Cancel') . '"><br><br>'."\n";
+echo _("Remove your poll") .' : <input type="image" name="suppressionsondage" value="'. _("Remove the poll") .'" src="'.get_server_name().'images/cancel.png" alt="' . _('Cancel') . '" /><br><br>'."\n";
 
 echo '</form>'."\n";
 
 if ($dsondage->format == "D" || $dsondage->format == "D+") {
-  echo '<form name="formulaire2" action="/exportpdf.php" method="POST" onkeypress="javascript:process_keypress(event)" class="formulaire2">'."\n";
+  echo '<form name="formulaire2" action="'.get_server_name().'exportpdf.php" method="POST" onkeypress="javascript:process_keypress(event)" class="formulaire2">'."\n";
   echo _("Generate the convocation letter (.PDF), choose the place to meet and validate") .'<br>';
   echo '<input type="text" name="lieureunion" size="100" value="" />';
   echo '<input type="hidden" name="sondage" value="$numsondageadmin" />';
   echo '<input type="hidden" name="meilleursujet" value="$meilleursujetexport" />';
-  echo '<input type="image" name="exportpdf" value="Export en PDF" src="images/accept.png" alt="Export PDF"><br><br>';
+  echo '<input type="image" name="exportpdf" value="Export en PDF" src="'.get_server_name().'images/accept.png" alt="Export PDF"><br><br>';
   echo '</form>'."\n";
   // '<font color="#FF0000">'. _("Enter a meeting place!") .'</font><br><br>'."\n";
 }
@@ -1224,14 +1226,14 @@ if (isset($_POST["exportpdf_x"]) && !issetAndNoEmpty('lieureunion')) {
   echo '<font color="#FF0000">'. _("Enter a meeting place!") .'</font><br><br>'."\n";
 }
 
-echo '<a name="bas"></a>'."\n";
+echo '<a id="bas"></a>'."\n";
 echo '<br><br>'."\n";
 
 //fin de la partie GESTION et beandeau de pied
-echo '</p>'."\n";
+//echo '</p>'."\n";
 echo '</div>';
 echo '<div class="separateur">&nbsp;</div>';
 bandeau_pied_mobile();
-echo '</form>'."\n";
+//echo '</form>'."\n";
 echo '</body>'."\n";
 echo '</html>'."\n";

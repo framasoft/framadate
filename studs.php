@@ -183,8 +183,11 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
     $err |= NAME_EMPTY;
   }
 }
-
-print_header(true, $dsondage->titre);
+if($err != 0) {
+	print_header(true, _("Error!").' - '.$dsondage->titre);
+} else {
+	print_header(true, $dsondage->titre);
+}
 echo '<body>'."\n";
 framanav();
 logo();
@@ -219,9 +222,8 @@ if($err != 0) {
 
   if(is_error(NO_POLL_ID) || is_error(NO_POLL)) {
     echo '<div class=corpscentre>'."\n";
-    print "<H2>" . _("This poll doesn't exist !") . "</H2>"."\n";
-    print _("Back to the homepage of") . ' <a href="index.php"> '. NOMAPPLICATION . '</a>.'."\n";
-    echo '<br><br><br><br>'."\n";
+    print "<h2>" . _("This poll doesn't exist !") . "</h2>"."\n";
+    print _("Back to the homepage of") . ' <a href="'.get_server_name().'"> '. NOMAPPLICATION . '</a>.'."\n";
     echo '</div>'."\n";
     bandeau_pied();
   
@@ -232,16 +234,16 @@ if($err != 0) {
 }
 
 echo '<div class="corps">'; //ajout pyg cohérence graphique
-echo '<div class="imprimer""><a href="javascript:print()" class="button white medium">Imprimer</a></div>';
+echo '<div class="imprimer"><a role="button" href="javascript:print()" class="button white medium">Imprimer</a></div>';
 echo '<div class="presentationdate"> '."\n";
 
 //affichage du titre du sondage
 $titre=str_replace("\\","",$dsondage->titre);
-echo '<H2>'.stripslashes($titre).'</H2>'."\n";
+echo '<h2>'.stripslashes($titre).'</h2>'."\n";
 
 //affichage du nom de l'auteur du sondage
-echo '<div class="initiator"><span class="mlabel">'. _("Initiator of the poll") .' :</span><span class="nom"> '.stripslashes($dsondage->nom_admin).'</span></div>'."\n";
-echo '<div class="adress"><span class="mlabel">'.'Adresse : </span><code>'.getUrlSondage($dsondage->id_sondage).'</code></div>'."\n";;
+echo '<div class="initiator"><p><span class="mlabel">'. _("Initiator of the poll") .' :</span><span class="nom"> '.stripslashes($dsondage->nom_admin).'</span></p></div>'."\n";
+echo '<div class="adress"><p><span class="mlabel">'.'Adresse : </span><code>'.getUrlSondage($dsondage->id_sondage).'</code></p></div>'."\n";;
 
 
 //affichage des commentaires du sondage
@@ -252,15 +254,13 @@ if ($dsondage->commentaires) {
   echo '<span class="mcontent">'. $commentaires .'</span>';
   echo '</div>'."\n";
 }
-
-echo '<br>'."\n";
 echo '</div>'."\n";
 
-echo '<form name="formulaire" action="'.getUrlSondage($dsondage->id_sondage).'"'.'#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+echo '<form name="formulaire" action="'.getUrlSondage($dsondage->id_sondage).'#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 echo '<input type="hidden" name="sondage" value="' . $numsondage . '"/>';
 // Todo : add CSRF protection
 echo '<div class="cadre"><div class="information">'."\n";
-echo _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you<br>(without paying attention to the choices of the other voters) and validate with the plus button at the end of the line.") ."\n";
+echo _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you<br> and validate with the plus button at the end of the line.") ."\n";
 echo '</div>'."\n";
 
 // Debut de l'affichage des resultats du sondage
@@ -416,12 +416,12 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
   
   //affichage des sujets du sondage
   echo '<tr>'."\n";
-  echo '<td></td>'."\n";
+  echo '<th role="presentation"></th>'."\n";
   
   for ($i=0; isset($toutsujet[$i]); $i++) {
-    echo '<td class="sujet">'.stripslashes($toutsujet[$i]).'</td>'."\n";
+    echo '<th scope="col" class="sujet">'.stripslashes($toutsujet[$i]).'</th>'."\n";
   }
-  
+  echo '<th></th>'."\n";
   echo '</tr>'."\n";
 }
 
@@ -442,7 +442,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
   $nombase=str_replace("°","'",$data->nom);
   echo stripslashes($nombase).'</td>'."\n";
   
-  // Les réponses qu'il a choisit
+  // Les réponses qu'il a choisies
   $ensemblereponses = $data->reponses;
   
   // ligne d'un usager pré-authentifié
@@ -453,7 +453,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
   for ($k=0; $k < $nbcolonnes; $k++) {
     // on remplace les choix de l'utilisateur par une ligne de checkbox pour recuperer de nouvelles valeurs
     if ($compteur == $ligneamodifier) {
-      echo '<td class="vide"><input type="checkbox" name="choix'.$k.'" value="1" ';
+      echo '<td class="vide"><input type="checkbox" title="Sélectionnez le choix '.$k.'" name="choix'.$k.'" value="1" ';
       if(substr($ensemblereponses,$k,1) == '1') {
         echo 'checked="checked"';
       }
@@ -475,14 +475,14 @@ while ($data = $user_studs->FetchNextObject(false)) {
   
   //a la fin de chaque ligne se trouve les boutons modifier
   if ($compteur != $ligneamodifier && ($dsondage->format=="A+"||$dsondage->format=="D+") && $mod_ok) {
-    echo '<td class=casevide><input type="image" name="modifierligne'.$compteur.'" value="Modifier" src="images/info.png"></td>'."\n";
+    echo '<td class=casevide><input type="image" alt="Modifier" name="modifierligne'.$compteur.'" src="'.get_server_name().'images/info.png"></td>'."\n";
   }
   
   //demande de confirmation pour modification de ligne
   for ($i=0;$i<$nblignes;$i++) {
     if (isset($_POST["modifierligne$i"]) || isset($_POST['modifierligne'.$i.'_x'])) {
       if ($compteur == $i) {
-        echo '<td class="casevide"><input type="image" name="validermodifier'.$compteur.'" value="Valider la modification" src="images/accept.png" ></td>'."\n";
+        echo '<td class="casevide"><input type="image" alt="Valider la modification" name="validermodifier'.$compteur.'" src="'.get_server_name().'images/accept.png" ></td>'."\n";
       }
     }
   }
@@ -500,13 +500,13 @@ if (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || !$user_mod) {
   } else {
     $nom = 'Votre nom';
   }
-  echo '<input type="text" name="nom" maxlength="64" value="'.$nom.'" onfocus="if (this.value == \'Votre nom\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \'Votre nom\';}" >'."\n";
+  echo '<input title="Votre nom" type="text" id="'.$nom.'" name="nom" maxlength="64" value="'.$nom.'" onfocus="if (this.value == \'Votre nom\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \'Votre nom\';}" >'."\n";
   
   echo '</td>'."\n";
   
   // affichage des cases de formulaire checkbox pour un nouveau choix
   for ($i=0;$i<$nbcolonnes;$i++) {
-    echo '<td class="vide"><input type="checkbox" name="choix'.$i.'" value="1"';
+    echo '<td class="vide"><input type="checkbox" title="sélectionnez le choix'.$i.'" name="choix'.$i.'" value="1"';
     if ( isset($_POST['choix'.$i]) && $_POST['choix'.$i] == '1' && is_error(NAME_EMPTY) ) {
       echo ' checked="checked"';
     }
@@ -515,7 +515,7 @@ if (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || !$user_mod) {
   }
   
   // Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
-  echo '<td><input type="image" name="boutonp" value="' . _('Participate') . '" src="images/add-24.png"></td>'."\n";
+  echo '<td><input type="image" alt="Valider mes choix" name="boutonp" src="'.get_server_name().'images/add-24.png"></td>'."\n";
   echo '</tr>'."\n";
 }
 
@@ -537,10 +537,10 @@ echo '</tbody>'."\n".'<tfoot>'."\n";
 
 // Affichage des différentes sommes des colonnes existantes
 echo '<tr>'."\n";
-echo '<td align="right">';
+echo '<th scope="row" class="txt-right">';
 // si on a plus de 8 colonnes, on affiche un second bouton "valider mes choix"
 echo ($nbcolonnes>8) ?'<input type="submit" name="boutonp" value="Valider mes choix" class="btn btn-success btn-mini" style="margin-right:50px">' : "";
-echo   _("Addition") .'</td>'."\n";
+echo   _("Addition") .'</th>'."\n";
 
 for ($i=0; $i < $nbcolonnes; $i++) {
   if (isset($somme[$i]) === true) {
@@ -555,19 +555,19 @@ for ($i=0; $i < $nbcolonnes; $i++) {
   
   echo '<td class="somme">'.$affichesomme.'</td>'."\n";
 }
-
+echo '<td class="somme"></td>'."\n";
 echo '</tr>'."\n";
 echo '<tr>'."\n";
 echo '<td class="somme"></td>'."\n";
 
 for ($i=0; $i < $nbcolonnes; $i++) {
   if (isset($somme[$i]) && isset($meilleurecolonne) && $somme[$i] == $meilleurecolonne) {
-    echo '<td class="somme"><img src="images/medaille.png" alt="' . _('Best choice') . '"></td>'."\n";
+    echo '<td class="somme"><img src="'.get_server_name().'images/medaille.png" alt="' . _('Best choice') . '"></td>'."\n";
   } else {
     echo '<td class="somme"></td>'."\n";
   }
 }
-
+echo '<td class="somme"></td>'."\n";
 echo '</tr>'."\n";
 echo '</tfoot>'."\n";
 echo '</table>'."\n";
@@ -620,9 +620,9 @@ echo '<p class="affichageresultats">'."\n";
 
 // Affichage du meilleur choix
 if ($compteursujet == "1" && isset($meilleurecolonne)) {
-  print '<img src="images/medaille.png" alt="Meilleur choix"> ' . _('The best choice at this time is:') . "<b>".stripslashes($meilleursujet)."</b> " . _('with') . " <b>$meilleurecolonne </b>" . $vote_str . ".\n";
+  print '<img src="'.get_server_name().'images/medaille.png" alt="Meilleur choix"> ' . _('The best choice at this time is:') . "<b>".stripslashes($meilleursujet)."</b> " . _('with') . " <b>$meilleurecolonne </b>" . $vote_str . ".\n";
 } elseif (isset($meilleurecolonne)) {
-  print '<img src="images/medaille.png" alt="Meilleur choix"> ' . _('The bests choices at this time are:') . " <b>".stripslashes($meilleursujet)."</b> " . _('with') . "  <b>$meilleurecolonne </b>" . $vote_str . ".\n";
+  print '<img src="'.get_server_name().'images/medaille.png" alt="Meilleur choix"> ' . _('The bests choices at this time are:') . " <b>".stripslashes($meilleursujet)."</b> " . _('with') . "  <b>$meilleurecolonne </b>" . $vote_str . ".\n";
 }
 
 echo '</p>';
@@ -640,33 +640,33 @@ if ($comment_user->RecordCount() != 0) {
 }
 
 //affichage de la case permettant de rajouter un commentaire par les utilisateurs
-print '<div class="addcomment">' .'<p>' ._("Add a comment in the poll:") . '</p>' . "\n";
+print '<div class="addcomment">' .'<fieldset><legend>' ._("Add a comment in the poll:") . '</legend>' . "\n";
 
 if (isset($_SESSION['nom']) === false) {
   $nom = '';
 } else {
   $nom = stripslashes($_SESSION['nom']);
 }
-echo _("Name") .' : ';
-echo '<input type="text" name="commentuser" maxlength="64" value="'.$nom.'" /><br>'."\n";
-
-echo '<textarea name="comment" rows="2" cols="40"></textarea>'."\n";
-echo '<input type="submit" name="ajoutcomment" value="Ajouter un commentaire" class="btn btn-success" alt="Valider"><br>'."\n";
-echo '</form>'."\n";
+echo '<p><label for="commentator">'. _("Name") .'</label> : ';
+echo '<input type="text" name="commentuser" maxlength="64" id="commentator" value="'.$nom.'" /></p>'."\n";
+echo '<p><label for="comment">Votre commentaire</label> : <br />';
+echo '<textarea id="comment" title="Écrivez votre commentaire" name="comment" rows="2" cols="40"></textarea></p>'."\n";
+echo '<p><input type="submit" name="ajoutcomment" value="Ajouter un commentaire" class="bouton green"></p>'."\n";
+echo '</fieldset></div></form>'."\n";
 // Focus javascript sur la case de texte du formulaire
 echo '<script type="text/javascript">'."\n" . 'document.formulaire.commentuser.focus();'."\n" . '</script>'."\n";
 echo '</div>'."\n";
 echo '<ul class="exports">';
-echo '<li><img alt="' . _('Export to CSV') . '" src="images/csv.png"/>'.'<a class="affichageexport" href="exportcsv.php?numsondage=' . $numsondage . '">'._("Export: Spreadsheet") .' (.CSV)' . '</a></li>';
+echo '<li><img alt="' . _('Export to CSV') . '" src="'.get_server_name().'images/csv.png"/>'.'<a class="affichageexport" href="'.get_server_name().'exportcsv.php?numsondage=' . $numsondage . '">'._("Export: Spreadsheet") .' (.CSV)' . '</a></li>';
 
 if ( ($dsondage->format == 'D' || $dsondage->format == 'D+') && $compteursujet=="1" &&  $meilleurecolonne && file_exists('iCalcreator/iCalcreator.class.php') && false /* TODO: later */) {
-  echo '<li><img alt="' . _('Export iCal') . '" src="images/ical.png">' .'<a class="affichageexport" href="exportics.php?numsondage=' . $numsondage . '">'._("Agenda") .' (.ICS)' . '</a></li>';
+  echo '<li><img alt="' . _('Export iCal') . '" src="'.get_server_name().'images/ical.png">' .'<a class="affichageexport" href="'.get_server_name().'exportics.php?numsondage=' . $numsondage . '">'._("Agenda") .' (.ICS)' . '</a></li>';
 }
 
 echo '</ul>';
-echo '<a name="bas"></a>'."\n";
+echo '<a id="bas"></a>'."\n";
 
-echo '</div>'; // ajout pyg cohérence graphique
+//echo '</div>'; // ajout pyg cohérence graphique
 
 bandeau_pied_mobile();
 // Affichage du bandeau de pied
