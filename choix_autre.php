@@ -1,42 +1,21 @@
 <?php
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Auteur : Guilhem BORGHESI
-//Création : Février 2008
-//
-//borghesi@unistra.fr
-//
-//Ce logiciel est régi par la licence CeCILL-B soumise au droit français et
-//respectant les principes de diffusion des logiciels libres. Vous pouvez
-//utiliser, modifier et/ou redistribuer ce programme sous les conditions
-//de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA 
-//sur le site "http://www.cecill.info".
-//
-//Le fait que vous puissiez accéder à cet en-tête signifie que vous avez 
-//pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
-//termes. Vous pouvez trouver une copie de la licence dans le fichier LICENCE.
-//
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Author : Guilhem BORGHESI
-//Creation : Feb 2008
-//
-//borghesi@unistra.fr
-//
-//This software is governed by the CeCILL-B license under French law and
-//abiding by the rules of distribution of free software. You can  use, 
-//modify and/ or redistribute the software under the terms of the CeCILL-B
-//license as circulated by CEA, CNRS and INRIA at the following URL
-//"http://www.cecill.info". 
-//
-//The fact that you are presently reading this means that you have had
-//knowledge of the CeCILL-B license and that you accept its terms. You can
-//find a copy of this license in the file LICENSE.
-//
-//==========================================================================
-
+/* This software is governed by the CeCILL-B license. If a copy of this license 
+ * is not distributed with this file, you can obtain one at 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * 
+ * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ * 
+ * =============================
+ * 
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ * 
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ */
+ 
 session_start();
 include_once('creation_sondage.php');
 
@@ -138,9 +117,9 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
   
   if( ($testremplissage != "ok" && (isset($_POST["fin_sondage_autre"]) || isset($_POST["fin_sondage_autre_x"]))) || ($testdate === false) || ($erreur_injection) ) {
 	// S'il y a des erreurs
-    print_header(false, _("Error!") .' - '. _("Poll subjects (2 on 2)"));
+    print_header(false, _("Error!") .' - '. _("Poll subjects (2 on 2)"), $lang);
   } else {
-    print_header(false, _("Poll subjects (2 on 2)"));
+    print_header(false, _("Poll subjects (2 on 2)"), $lang);
   }
   
   echo '<body>'."\n";
@@ -153,7 +132,7 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
   sous_bandeau_choix();
   
   echo '<div class="corps">'."\n";
-  echo '<p>'. _("Your poll aim is to make a choice between different subjects.<br>Enter the subjects to vote for:") .'</p>'."\n";
+  echo '<p>'. _("Your poll aim is to make a choice between different subjects.") . '<br />' . _("Enter the subjects to vote for:") .'</p>'."\n";
   echo '<table>'."\n";
   
   //affichage des cases texte de formulaire
@@ -212,11 +191,11 @@ if (!isset($_POST["fin_sondage_autre_x"])) {
   if ((isset($_POST["fin_sondage_autre"]) || isset($_POST["fin_sondage_autre_x"])) && !$erreur && !$erreur_injection) {
     //demande de la date de fin du sondage
     echo '<div class=presentationdatefin>'."\n";
-    echo '<p>'. _("Your poll will be automatically removed after 6 months.<br> You can fix another removal date for it.") .'</p>'."\n";
+    echo '<p>'. _("Your poll will be automatically removed after 6 months."). '<br />' . _("You can fix another removal date for it.") .'</p>'."\n";
     echo '<label for="champdatefin">'. _("Removal date (optional)") .'</label> : <input type="text" class="champdatefin" id="champdatefin" aria-describedby="dateformat" name="champdatefin" value="'.$date_selected.'" size="10" maxlength="10"> <span id="dateformat">'. _("(DD/MM/YYYY)") .'</span>'."\n";
     echo '</div>'."\n";
     echo '<div class=presentationdatefin>'."\n";
-    echo '<p class="error">'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll. <br><br>Then, you will receive quickly an email contening the link to your poll for sending it to the voters.").'</p>'."\n";
+    echo '<p class="error">'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll.").'<br /><br />'. _("Then, you will receive quickly an email contening the link to your poll for sending it to the voters.").'</p>'."\n";
     echo '</div>'."\n";
     //echo '<table>'."\n";
     //echo '<tr><td>'. _("Create the poll") .'</td><td><input type="image" name="confirmecreation" value="Valider la cr&eacute;ation"i src="images/add.png"></td></tr>'."\n";

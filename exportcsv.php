@@ -1,41 +1,20 @@
 <?php
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Auteur : Guilhem BORGHESI
-//Création : Février 2008
-//
-//borghesi@unistra.fr
-//
-//Ce logiciel est régi par la licence CeCILL-B soumise au droit français et
-//respectant les principes de diffusion des logiciels libres. Vous pouvez
-//utiliser, modifier et/ou redistribuer ce programme sous les conditions
-//de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA 
-//sur le site "http://www.cecill.info".
-//
-//Le fait que vous puissiez accéder à cet en-tête signifie que vous avez 
-//pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
-//termes. Vous pouvez trouver une copie de la licence dans le fichier LICENCE.
-//
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Author : Guilhem BORGHESI
-//Creation : Feb 2008
-//
-//borghesi@unistra.fr
-//
-//This software is governed by the CeCILL-B license under French law and
-//abiding by the rules of distribution of free software. You can  use, 
-//modify and/ or redistribute the software under the terms of the CeCILL-B
-//license as circulated by CEA, CNRS and INRIA at the following URL
-//"http://www.cecill.info". 
-//
-//The fact that you are presently reading this means that you have had
-//knowledge of the CeCILL-B license and that you accept its terms. You can
-//find a copy of this license in the file LICENSE.
-//
-//==========================================================================
+/* This software is governed by the CeCILL-B license. If a copy of this license 
+ * is not distributed with this file, you can obtain one at 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * 
+ * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ * 
+ * =============================
+ * 
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ * 
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ */
 
 include_once('fonctions.php');
 
@@ -43,7 +22,9 @@ if(!isset($_GET['numsondage']) || ! preg_match(";^[\w\d]{16}$;i", $_GET['numsond
   header('Location: studs.php');
 }
 
-$user_studs=$connect->Execute("SELECT * FROM user_studs WHERE id_sondage=" . $_GET['numsondage'] . " ORDER BY id_users");
+$sql = 'SELECT * FROM user_studs WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_users';
+$sql = $connect->Prepare($sql);
+$user_studs = $connect->Execute($sql, array($_GET['numsondage']));
 
 $dsondage = get_sondage_from_id($_GET['numsondage']);
 $nbcolonnes=substr_count($dsondage->sujet,',')+1;
@@ -52,22 +33,26 @@ $toutsujet=explode(",",$dsondage->sujet);
 #$toutsujet=str_replace("°","'",$toutsujet);
 
 //affichage des sujets du sondage
-$input.=";";
-for ($i=0;$toutsujet[$i];$i++) {
+$input =";";
+foreach ($toutsujet as $value) {
   if ($dsondage->format=="D"||$dsondage->format=="D+") {
-    $input.=''.date("j/n/Y",$toutsujet[$i]).';';
+	if (strpos($dsondage->sujet,'@') !== false) {
+		$days=explode("@",$value);
+		$input.= date("j/n/Y",$days[0]).';';
+	} else {  
+		$input.= date("j/n/Y",$values).';';
+	}
   } else {
-    $input.=''.$toutsujet[$i].';';
+    $input.= $value.';';
   }
 }
-
 $input.="\r\n";
 
 if (strpos($dsondage->sujet,'@') !== false) {
   $input.=";";
-  for ($i=0;$toutsujet[$i];$i++) {
-    $heures=explode("@",$toutsujet[$i]);
-    $input.=''.$heures[1].';';
+  foreach ($toutsujet as $value) {
+    $heures=explode("@",$value);
+    $input.= $heures[1].';';
   }
   
   $input.="\r\n";

@@ -1,41 +1,20 @@
 <?php
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Auteur : Guilhem BORGHESI
-//Création : Février 2008
-//
-//borghesi@unistra.fr
-//
-//Ce logiciel est régi par la licence CeCILL-B soumise au droit français et
-//respectant les principes de diffusion des logiciels libres. Vous pouvez
-//utiliser, modifier et/ou redistribuer ce programme sous les conditions
-//de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA
-//sur le site "http://www.cecill.info".
-//
-//Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
-//pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
-//termes. Vous pouvez trouver une copie de la licence dans le fichier LICENCE.
-//
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Author : Guilhem BORGHESI
-//Creation : Feb 2008
-//
-//borghesi@unistra.fr
-//
-//This software is governed by the CeCILL-B license under French law and
-//abiding by the rules of distribution of free software. You can  use,
-//modify and/ or redistribute the software under the terms of the CeCILL-B
-//license as circulated by CEA, CNRS and INRIA at the following URL
-//"http://www.cecill.info".
-//
-//The fact that you are presently reading this means that you have had
-//knowledge of the CeCILL-B license and that you accept its terms. You can
-//find a copy of this license in the file LICENSE.
-//
-//==========================================================================
+/* This software is governed by the CeCILL-B license. If a copy of this license 
+ * is not distributed with this file, you can obtain one at 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * 
+ * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ * 
+ * =============================
+ * 
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ * 
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ */ 
 
 session_start();
 include_once('fonctions.php');
@@ -143,11 +122,11 @@ if (issetAndNoEmpty("poursuivre")){
 
   } else {
 	  // Title Erreur !
-	  print_header(true, _("Error!").' - '._("Poll creation (1 on 2)"));	
+	  print_header(true, _("Error!").' - '._("Poll creation (1 on 2)"), $lang);	
   }
 } else {
 	// Title OK (formulaire pas encore rempli)
-	print_header(true, _("Poll creation (1 on 2)"));
+	print_header(true, _("Poll creation (1 on 2)"), $lang);
 }
 
 //affichage de la page
@@ -175,7 +154,7 @@ if(!check_table_sondage()) {
 echo '<form name="formulaire" id="formulaire" action="'.get_server_name().'infos_sondage.php" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 
 echo '<div class="corps" style="margin-bottom:5em;">'."\n";
-echo '<p>'. _("You are in the poll creation section. <br> Required fields cannot be left blank") .'</p>'."\n";
+echo '<p>'. _("You are in the poll creation section.").' <br /> '._("Required fields cannot be left blank.") .'</p>'."\n";
 
 //Affichage des différents champs textes a remplir
 echo '<table role="presentation">'."\n";
@@ -197,7 +176,7 @@ if (!$_SESSION["titre"] && issetAndNoEmpty("poursuivre") ) {
 
 echo '</tr>'."\n";
 
-echo '<tr><td><label for="poll_comments">'. _("Comments: ") .'</label></td><td><textarea id="poll_comments" name="commentaires" rows="7" cols="40"';
+echo '<tr><td><label for="poll_comments">'. _("Description: ") .'</label></td><td><textarea id="poll_comments" name="commentaires" rows="7" cols="40"';
 if ($erreur_injection_commentaires) {
   // même principe
   echo 'aria-describeby="#poll_comment_error">'.stripslashes($_SESSION["commentaires"]).'</textarea></td>'."\n";	
@@ -245,7 +224,7 @@ echo '<script type="text/javascript">'."\n";
 echo 'document.formulaire.titre.focus();'."\n";
 echo '</script>'."\n";
 
-#echo '<br>'. _("The fields marked with * are required!") .'<br><br>'."\n";
+#echo '<br />'. _("The fields marked with * are required!") .'<br /><br />'."\n";
 
 #affichage du cochage par défaut
 if (!$_SESSION["studsplus"] && !issetAndNoEmpty('creation_sondage_date') && !issetAndNoEmpty('creation_sondage_autre') && !issetAndNoEmpty('creation_sondage_date_x') && !issetAndNoEmpty('creation_sondage_autre_x')) {
@@ -276,12 +255,12 @@ echo '<div style="clear:both"></div>';
 
 
 
-#echo '<br><table id="choix_sondage">'."\n";
+#echo '<br /><table id="choix_sondage">'."\n";
 #echo '<tr><td><input type="image" name="creation_sondage_date" value="Trouver une date" src="images/calendar-32.png" id="creation_sondage_date"><label for="creation_sondage_date" style="cursor:pointer">'.  _("Schedule an event") .'</label></td></tr>'."\n";
 #echo '<tr><td><input type="image" name="creation_sondage_autre" value="'. _('Make a poll') . '" src="images/chart-32.png" id="creation_sondage_autre"><label for="creation_sondage_autre" style="cursor:pointer" onclick="document.formulaire.creation_sondage_autre.click()">'. _("Make a choice") .'</label></td></tr>'."\n";
 #echo '<tr><td><button name="creation_sondage_autre_x" value="creation_sondage_autre_x" type="submit" /><img src="images/chart-32.png" alt="Next page" /><strong>'. _('Make a poll') . '</strong> </button></td></tr>'."\n";
 #echo '</table>'."\n";
-#echo '<br><br><br>'."\n";
+#echo '<br /><br /><br />'."\n";
 echo '</div>'."\n";
 echo '</form>'."\n";
 //bandeau de pied

@@ -34,8 +34,8 @@
 	border-radius: 2em;
 }
 .medium {
-	font-size: 12px;
-	padding: .4em 1.5em .42em;
+	font-size: 12px !important;
+	padding: .4em 1.5em .42em !important;
 }
 .small {
 	font-size: 11px;

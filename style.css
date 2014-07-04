@@ -1,48 +1,19 @@
-/*
-==========================================================================
-
-Université de Strasbourg - Direction Informatique
-Auteur : Guilhem BORGHESI
-Création : Février 2008
-
-borghesi@unistra.fr
-
-Ce logiciel est régi par la licence CeCILL-B soumise au droit français et
-respectant les principes de diffusion des logiciels libres. Vous pouvez
-utiliser, modifier et/ou redistribuer ce programme sous les conditions
-de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA 
-sur le site "http://www.cecill.info".
-
-Le fait que vous puissiez accéder à cet en-tête signifie que vous avez 
-pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
-termes. Vous pouvez trouver une copie de la licence dans le fichier LICENCE.
-
-==========================================================================
-
-Université de Strasbourg - Direction Informatique
-Author : Guilhem BORGHESI
-Creation : Feb 2008
-
-borghesi@unistra.fr
-
-This software is governed by the CeCILL-B license under French law and
-abiding by the rules of distribution of free software. You can  use, 
-modify and/ or redistribute the software under the terms of the CeCILL-B
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info". 
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL-B license and that you accept its terms. You can
-find a copy of this license in the file LICENSE.
-
-==========================================================================
-*/
-
-/*
-Le fichier style.css est le fichier de style de studs. Il se trouve à la racine 
-du répertoire studs. Il contient toutes les mises en forme des fichiers PHP
-de Studs.
-*/
+/* This software is governed by the CeCILL-B license. If a copy of this license 
+ * is not distributed with this file, you can obtain one at 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * 
+ * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ * 
+ * =============================
+ * 
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ * 
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ */
 
 @import url('./buttons.css');
 
@@ -328,9 +299,9 @@ div.bodydate table{
 
 /*cadre de commentaires*/
 div.presentationdate {
-	width:70%;
+	width:66%;
 	font-family:arial;
-	text-align:center;
+/*	text-align:center;*/
 	font-size:12px;	
 	border-width:1px;
 	border-style:solid;
@@ -344,7 +315,10 @@ div.presentationdate {
 	margin-right: 15%; 
 	background-color: #EEF;
 	border-radius: 5px;
+	padding: 0 20px 20px;
 }
+div.presentationdate h2 {text-align:center}
+
 div.presentationdatefin {
 	width:90%;
 	padding:10px;
@@ -374,8 +348,10 @@ div.cadre {
 }
 
 /*information au sujet de la participation au sondage*/
-div.cadre div.information {
-	margin-bottom:20px;
+div.information {
+	margin:0 auto 20px auto;
+	max-width:650px;
+	text-align:justify;
 }
 /*la table des résultats dans l'affichage de sondage*/
 div.cadre table.resultats {
@@ -615,6 +591,13 @@ div.addcomment {
     border-radius: 5px;
 }
 
+div.addcomment p {
+	width:380px;
+	margin-left : auto;
+	margin-right: auto;
+	text-align:left;
+}
+
 ul.exports {
   display:none; /* fonction non fonctionnelle */
     text-align:center;
@@ -680,6 +663,10 @@ li.error {
 
 .imprimer {
     float:right;
+    text-align:center;
+}
+.imprimer a {
+    width: 90px
 }
 
 .error {
@@ -691,5 +678,48 @@ li.error {
 }
 
 .txt-right {
-text-align:right;
+	text-align:right !important;
+}
+.txt-center {
+	text-align:center !important;
+}
+
+.sousbandeaulangue select {
+	border: 1px solid white;
+	height: 14px;
+	border-radius: 0.5em 0 0 0.5em;
+}
+.sousbandeaulangue input {
+	border: none;
+	height: 15px;
+	border-radius: 0 0.5em 0.5em 0;
+}
+
+.clear-left {
+    clear:left;
+}
+
+.newday {
+	width:60px;
+	float:left;
+}
+
+.newmonth {
+	width:110px;
+	float:left;
+}
+
+.newyear {
+	width:70px;
+	float:left;
+}
+
+.newhour {
+	width:70px;
+	float:left;
+}
+
+.newmin {
+	width:50px;
+	float:left;
 }

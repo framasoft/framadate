@@ -1,42 +1,20 @@
 <?php
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Auteur : Guilhem BORGHESI
-//Création : Février 2008
-//
-//borghesi@unistra.fr
-//
-//Ce logiciel est régi par la licence CeCILL-B soumise au droit français et
-//respectant les principes de diffusion des logiciels libres. Vous pouvez
-//utiliser, modifier et/ou redistribuer ce programme sous les conditions
-//de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA 
-//sur le site "http://www.cecill.info".
-//
-//Le fait que vous puissiez accéder à cet en-tête signifie que vous avez 
-//pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
-//termes. Vous pouvez trouver une copie de la licence dans le fichier LICENCE.
-//
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Author : Guilhem BORGHESI
-//Creation : Feb 2008
-//
-//borghesi@unistra.fr
-//
-//This software is governed by the CeCILL-B license under French law and
-//abiding by the rules of distribution of free software. You can  use, 
-//modify and/ or redistribute the software under the terms of the CeCILL-B
-//license as circulated by CEA, CNRS and INRIA at the following URL
-//"http://www.cecill.info". 
-//
-//The fact that you are presently reading this means that you have had
-//knowledge of the CeCILL-B license and that you accept its terms. You can
-//find a copy of this license in the file LICENSE.
-//
-//==========================================================================
-
+/* This software is governed by the CeCILL-B license. If a copy of this license 
+ * is not distributed with this file, you can obtain one at 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * 
+ * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ * 
+ * =============================
+ * 
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ * 
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ */
 session_start();
 
 if (file_exists('bandeaux_local.php')) {
@@ -184,9 +162,9 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
   }
 }
 if($err != 0) {
-	print_header(true, _("Error!").' - '.$dsondage->titre);
+	print_header(true, _("Error!").' - '.$dsondage->titre, $lang);
 } else {
-	print_header(true, $dsondage->titre);
+	print_header(true, $dsondage->titre, $lang);
 }
 echo '<body>'."\n";
 framanav();
@@ -234,7 +212,8 @@ if($err != 0) {
 }
 
 echo '<div class="corps">'; //ajout pyg cohérence graphique
-echo '<div class="imprimer"><a role="button" href="javascript:print()" class="button white medium">Imprimer</a></div>';
+echo '<div class="imprimer"><p><a role="button" href="javascript:print()" class="button white medium">' . _('Print') . '</a></p>';
+echo '<p><a role="button" class="button white medium" href="'.get_server_name().'exportcsv.php?numsondage=' . $numsondage . '">' . _('Export to CSV') . '</a></p></div>';
 echo '<div class="presentationdate"> '."\n";
 
 //affichage du titre du sondage
@@ -243,12 +222,12 @@ echo '<h2>'.stripslashes($titre).'</h2>'."\n";
 
 //affichage du nom de l'auteur du sondage
 echo '<div class="initiator"><p><span class="mlabel">'. _("Initiator of the poll") .' :</span><span class="nom"> '.stripslashes($dsondage->nom_admin).'</span></p></div>'."\n";
-echo '<div class="adress"><p><span class="mlabel">'.'Adresse : </span><code>'.getUrlSondage($dsondage->id_sondage).'</code></p></div>'."\n";;
+echo '<div class="adress"><p><span class="mlabel">'._("Public link of the pool") .' : </span><code>'.getUrlSondage($dsondage->id_sondage).'</code></p></div>'."\n";
 
 
-//affichage des commentaires du sondage
+//affichage de la description du sondage
 if ($dsondage->commentaires) {
-  echo '<div class="admin_comment"><span class="mlabel">'._("Comments") .' :</span><br>'."\n";
+  echo '<div class="admin_comment"><span class="mlabel">'._("Description: ") .'</span><br />'."\n";
   $commentaires = $dsondage->commentaires;
   $commentaires=nl2br(str_replace("\\","",$commentaires));
   echo '<span class="mcontent">'. $commentaires .'</span>';
@@ -260,7 +239,7 @@ echo '<form name="formulaire" action="'.getUrlSondage($dsondage->id_sondage).'#b
 echo '<input type="hidden" name="sondage" value="' . $numsondage . '"/>';
 // Todo : add CSRF protection
 echo '<div class="cadre"><div class="information">'."\n";
-echo _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you<br> and validate with the plus button at the end of the line.") ."\n";
+echo _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.") ."\n";
 echo '</div>'."\n";
 
 // Debut de l'affichage des resultats du sondage
@@ -398,14 +377,14 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
   //affichage des horaires
   if (strpos($dsondage->sujet, '@') !== false) {
     echo '<tr>'."\n";
-    echo '<td></td>'."\n";
+     echo '<th role="presentation"></th>'."\n";
     
     for ($i=0; isset($toutsujet[$i]); $i++) {
       $heures=explode("@",$toutsujet[$i]);
       if (isset($heures[1]) === true) {
         echo '<td class="heure">'.stripslashes($heures[1]).'</td>'."\n";
       } else {
-	echo '<td class="heure"></td>'."\n";
+	echo '<td scope="col" class="heure"></td>'."\n";
       }
     }
     
@@ -453,7 +432,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
   for ($k=0; $k < $nbcolonnes; $k++) {
     // on remplace les choix de l'utilisateur par une ligne de checkbox pour recuperer de nouvelles valeurs
     if ($compteur == $ligneamodifier) {
-      echo '<td class="vide"><input type="checkbox" title="Sélectionnez le choix '.$k.'" name="choix'.$k.'" value="1" ';
+      echo '<td class="vide"><input type="checkbox" title="' . _('Select the choice ') .$k.'" name="choix'.$k.'" value="1" ';
       if(substr($ensemblereponses,$k,1) == '1') {
         echo 'checked="checked"';
       }
@@ -475,14 +454,14 @@ while ($data = $user_studs->FetchNextObject(false)) {
   
   //a la fin de chaque ligne se trouve les boutons modifier
   if ($compteur != $ligneamodifier && ($dsondage->format=="A+"||$dsondage->format=="D+") && $mod_ok) {
-    echo '<td class=casevide><input type="image" alt="Modifier" name="modifierligne'.$compteur.'" src="'.get_server_name().'images/info.png"></td>'."\n";
+    echo '<td class=casevide><input type="image" alt="' . _('Edit') . '" name="modifierligne'.$compteur.'" src="'.get_server_name().'images/info.png"></td>'."\n";
   }
   
   //demande de confirmation pour modification de ligne
   for ($i=0;$i<$nblignes;$i++) {
     if (isset($_POST["modifierligne$i"]) || isset($_POST['modifierligne'.$i.'_x'])) {
       if ($compteur == $i) {
-        echo '<td class="casevide"><input type="image" alt="Valider la modification" name="validermodifier'.$compteur.'" src="'.get_server_name().'images/accept.png" ></td>'."\n";
+        echo '<td class="casevide"><input type="image" alt="'. _('Validate my choices') .'" name="validermodifier'.$compteur.'" src="'.get_server_name().'images/accept.png" ></td>'."\n";
       }
     }
   }
@@ -492,7 +471,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
 }
 
 // affichage de la ligne pour un nouvel utilisateur
-if (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || !$user_mod) {
+if (( !(USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || !$user_mod) && $ligneamodifier==-1) {
   echo '<tr class="ajout_reponse">'."\n";
   echo '<td class="nom">'."\n";
   if (isset($_SESSION['nom'])) {
@@ -500,13 +479,13 @@ if (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || !$user_mod) {
   } else {
     $nom = 'Votre nom';
   }
-  echo '<input title="Votre nom" type="text" id="'.$nom.'" name="nom" maxlength="64" value="'.$nom.'" onfocus="if (this.value == \'Votre nom\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \'Votre nom\';}" >'."\n";
+  echo '<input title="'. _('Your name') .'" type="text" id="'.$nom.'" name="nom" maxlength="64" value="'.$nom.'" onfocus="if (this.value == \''. _('Your name') .'\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \''. _('Your name') .'\';}" >'."\n";
   
   echo '</td>'."\n";
   
   // affichage des cases de formulaire checkbox pour un nouveau choix
   for ($i=0;$i<$nbcolonnes;$i++) {
-    echo '<td class="vide"><input type="checkbox" title="sélectionnez le choix'.$i.'" name="choix'.$i.'" value="1"';
+    echo '<td class="vide"><input type="checkbox" title="' . _('Select the choice ').$i.'" name="choix'.$i.'" value="1"';
     if ( isset($_POST['choix'.$i]) && $_POST['choix'.$i] == '1' && is_error(NAME_EMPTY) ) {
       echo ' checked="checked"';
     }
@@ -515,8 +494,11 @@ if (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || !$user_mod) {
   }
   
   // Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
-  echo '<td><input type="image" alt="Valider mes choix" name="boutonp" src="'.get_server_name().'images/add-24.png"></td>'."\n";
+  echo '<td><input type="image" alt="'. _('Validate my choices') .'" name="boutonp" src="'.get_server_name().'images/add-24.png"></td>'."\n";
   echo '</tr>'."\n";
+  
+  // Focus javascript sur la case de texte du formulaire
+  echo '<script type="text/javascript">'."\n" . 'document.formulaire.nom.focus();'."\n" . '</script>'."\n";
 }
 
 //determination de la meilleure date
@@ -539,7 +521,7 @@ echo '</tbody>'."\n".'<tfoot>'."\n";
 echo '<tr>'."\n";
 echo '<th scope="row" class="txt-right">';
 // si on a plus de 8 colonnes, on affiche un second bouton "valider mes choix"
-echo ($nbcolonnes>8) ?'<input type="submit" name="boutonp" value="Valider mes choix" class="btn btn-success btn-mini" style="margin-right:50px">' : "";
+echo ($nbcolonnes>8) ?'<input type="submit" name="boutonp" alt="'. _('Validate my choices') .'" class="btn btn-success btn-mini" style="margin-right:50px">' : "";
 echo   _("Addition") .'</th>'."\n";
 
 for ($i=0; $i < $nbcolonnes; $i++) {
@@ -620,9 +602,9 @@ echo '<p class="affichageresultats">'."\n";
 
 // Affichage du meilleur choix
 if ($compteursujet == "1" && isset($meilleurecolonne)) {
-  print '<img src="'.get_server_name().'images/medaille.png" alt="Meilleur choix"> ' . _('The best choice at this time is:') . "<b>".stripslashes($meilleursujet)."</b> " . _('with') . " <b>$meilleurecolonne </b>" . $vote_str . ".\n";
+  print '<img src="'.get_server_name().'images/medaille.png" alt=""> ' . _('The best choice at this time is:') . "<b>".stripslashes($meilleursujet)."</b> " . _('with') . " <b>$meilleurecolonne </b>" . $vote_str . ".\n";
 } elseif (isset($meilleurecolonne)) {
-  print '<img src="'.get_server_name().'images/medaille.png" alt="Meilleur choix"> ' . _('The bests choices at this time are:') . " <b>".stripslashes($meilleursujet)."</b> " . _('with') . "  <b>$meilleurecolonne </b>" . $vote_str . ".\n";
+  print '<img src="'.get_server_name().'images/medaille.png" alt=""> ' . _('The bests choices at this time are:') . " <b>".stripslashes($meilleursujet)."</b> " . _('with') . "  <b>$meilleurecolonne </b>" . $vote_str . ".\n";
 }
 
 echo '</p>';
@@ -633,7 +615,7 @@ $sql = $connect->Prepare($sql);
 $comment_user=$connect->Execute($sql, array($numsondage));
 
 if ($comment_user->RecordCount() != 0) {
-  print "<br><b>" . _("Comments of polled people") . " :</b><br>\n";
+  print "<br /><b>" . _("Comments of polled people") . " :</b><br />\n";
   while($dcomment = $comment_user->FetchNextObject(false)) {
     print '<div class="comment"><span class="usercomment">'.stripslashes($dcomment->usercomment). ' :</span> <span class="comment">' . stripslashes(nl2br($dcomment->comment)) . '</span></div>';
   }
@@ -649,21 +631,21 @@ if (isset($_SESSION['nom']) === false) {
 }
 echo '<p><label for="commentator">'. _("Name") .'</label> : ';
 echo '<input type="text" name="commentuser" maxlength="64" id="commentator" value="'.$nom.'" /></p>'."\n";
-echo '<p><label for="comment">Votre commentaire</label> : <br />';
-echo '<textarea id="comment" title="Écrivez votre commentaire" name="comment" rows="2" cols="40"></textarea></p>'."\n";
-echo '<p><input type="submit" name="ajoutcomment" value="Ajouter un commentaire" class="bouton green"></p>'."\n";
+echo '<p><label for="comment">'. _("Your comment: ") .'</label><br />';
+echo '<textarea id="comment" title="'. _("Write your comment") .'" name="comment" rows="2" cols="40"></textarea></p>'."\n";
+echo '<p class="txt-center"><input type="submit" name="ajoutcomment" value="'. _("Send your comment") .'" class="button green"></p>'."\n";
 echo '</fieldset></div></form>'."\n";
-// Focus javascript sur la case de texte du formulaire
-echo '<script type="text/javascript">'."\n" . 'document.formulaire.commentuser.focus();'."\n" . '</script>'."\n";
 echo '</div>'."\n";
-echo '<ul class="exports">';
+/* Export CSV / ICS
+ *  echo '<ul class="exports">';
 echo '<li><img alt="' . _('Export to CSV') . '" src="'.get_server_name().'images/csv.png"/>'.'<a class="affichageexport" href="'.get_server_name().'exportcsv.php?numsondage=' . $numsondage . '">'._("Export: Spreadsheet") .' (.CSV)' . '</a></li>';
 
-if ( ($dsondage->format == 'D' || $dsondage->format == 'D+') && $compteursujet=="1" &&  $meilleurecolonne && file_exists('iCalcreator/iCalcreator.class.php') && false /* TODO: later */) {
+if ( ($dsondage->format == 'D' || $dsondage->format == 'D+') && $compteursujet=="1" &&  $meilleurecolonne && file_exists('iCalcreator/iCalcreator.class.php') && false) {
   echo '<li><img alt="' . _('Export iCal') . '" src="'.get_server_name().'images/ical.png">' .'<a class="affichageexport" href="'.get_server_name().'exportics.php?numsondage=' . $numsondage . '">'._("Agenda") .' (.ICS)' . '</a></li>';
 }
 
 echo '</ul>';
+*/
 echo '<a id="bas"></a>'."\n";
 
 //echo '</div>'; // ajout pyg cohérence graphique

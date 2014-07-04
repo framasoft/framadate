@@ -1,42 +1,21 @@
 <?php
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Auteur : Guilhem BORGHESI
-//Création : Février 2008
-//
-//borghesi@unistra.fr
-//
-//Ce logiciel est régi par la licence CeCILL-B soumise au droit français et
-//respectant les principes de diffusion des logiciels libres. Vous pouvez
-//utiliser, modifier et/ou redistribuer ce programme sous les conditions
-//de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA
-//sur le site "http://www.cecill.info".
-//
-//Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
-//pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
-//termes. Vous pouvez trouver une copie de la licence dans le fichier LICENCE.
-//
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Author : Guilhem BORGHESI
-//Creation : Feb 2008
-//
-//borghesi@unistra.fr
-//
-//This software is governed by the CeCILL-B license under French law and
-//abiding by the rules of distribution of free software. You can  use,
-//modify and/ or redistribute the software under the terms of the CeCILL-B
-//license as circulated by CEA, CNRS and INRIA at the following URL
-//"http://www.cecill.info".
-//
-//The fact that you are presently reading this means that you have had
-//knowledge of the CeCILL-B license and that you accept its terms. You can
-//find a copy of this license in the file LICENSE.
-//
-//==========================================================================
-
+/* This software is governed by the CeCILL-B license. If a copy of this license 
+ * is not distributed with this file, you can obtain one at 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * 
+ * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ * 
+ * =============================
+ * 
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ * 
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ */
+ 
 session_start();
 
 //setlocale(LC_TIME, "fr_FR");
@@ -76,7 +55,7 @@ if (preg_match(";[\w\d]{24};i", $numsondageadmin)) {
 
 //verification de l'existence du sondage, s'il n'existe pas on met une page d'erreur
 if (!$sondage || $sondage->RecordCount() != 1){
-  print_header(false, _("Error!"));
+  print_header(false, _("Error!"), '', $lang);
   echo '<body>'."\n";
   framanav();
   logo();
@@ -85,9 +64,9 @@ if (!$sondage || $sondage->RecordCount() != 1){
 
 
   echo '<div class=corpscentre>'."\n";
-  print "<H2>" . _("This poll doesn't exist !") . "</H2><br><br>"."\n";
+  print "<h2>" . _("This poll doesn't exist !") . "</h2><br /><br />"."\n";
   print "" . _("Back to the homepage of ") . " <a href=\"".get_server_name()."\"> ".NOMAPPLICATION."</A>. "."\n";
-  echo '<br><br><br><br>'."\n";
+  echo '<br /><br /><br /><br />'."\n";
   echo '</div>'."\n";
 # sur_bandeau_pied();
   bandeau_pied();
@@ -173,7 +152,7 @@ $dsujet=$sujets->FetchObject(false);
 $dsondage=$sondage->FetchObject(false);
 
 if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
-  print_header(true);
+  print_header(true, '', $lang);
   echo '<body>'."\n";
   framanav();
   logo();
@@ -185,78 +164,77 @@ if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
 
     echo '<div class="corps">'."\n";
 
-
   echo '<form name="formulaire" action="'.getUrlSondage($numsondageadmin, true).'" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 
   echo '<div class="">'."\n";
-  echo "<H2>" . _("Column's adding") . "</H2><br><br>"."\n";
+  echo "<h2>" . _("Column's adding") . "</h2><br /><br />"."\n";
 
   if ($dsondage->format=="A"||$dsondage->format=="A+"){
-    echo _("Add a new column") .' :<br> <input type="text" name="nouvellecolonne" size="40">';
-    echo '<br><br>';
-    echo '<button class="button red retour" type="submit" value="retoursondage" name="retoursondage_x"><strong>Retourner au sondage</strong></button>'."\n";
-    echo '<button type="submit" name="ajoutercolonne_x" value="Ajouter une colonne" class="button green poursuivre" alt="Valider"><strong>Valider</strong></button>'."\n";
+    echo _("Add a new column") .' :<br /> <input type="text" name="nouvellecolonne" size="40" />';
+    echo '<p>';
+    echo '<button class="button red retour" type="submit" value="retoursondage" name="retoursondage_x"><strong>'. _('Back to the poll') .'</strong></button>'."\n";
+    echo '<button type="submit" name="ajoutercolonne_x" class="button green poursuivre" ><strong>'. _('Add a column') .'</strong></button>'."\n";
   } else {
     //ajout d'une date avec creneau horaire
-    echo _("You can add a new scheduling date to your poll.<br> If you just want to add a new hour to an existant date, put the same date and choose a new hour.") .'<br><br> '."\n";
-    echo _("Add a date") .' :<br><br>'."\n";
-    echo '<select name="nouveaujour"> '."\n";
-    echo '<OPTION VALUE="vide"></OPTION>'."\n";
+    echo '<p>'. _("You can add a new scheduling date to your poll.")._("If you just want to add a new hour to an existant date, put the same date and choose a new hour.") .'</p> '."\n";
+    echo '<p>'. _("Add a date") .' :<p>'."\n";
+    echo '<p class="newday"><label for="nouveaujour">'. _("Day") .'</label><br /><select name="nouveaujour" id="nouveaujour"> '."\n";
+    echo '<option value="vide"></option>'."\n";
     for ($i=1;$i<32;$i++){
-      echo '<OPTION VALUE="'.$i.'">'.$i.'</OPTION>'."\n";
+      echo '<option value="'.$i.'">'.$i.'</option>'."\n";
     }
-    echo '</SELECT>'."\n";
+    echo '</select></p>'."\n";
 
-    echo '<select name="nouveaumois"> '."\n";
-    echo '<OPTION VALUE="vide"></OPTION>'."\n";
+    echo '<p class="newmonth"><label for="nouveaumois">'. _("Month") .'</label><br /><select name="nouveaumois" id="nouveaumois"> '."\n";
+    echo '<option value="vide"></option>'."\n";
     for($i = 1; $i < 13; $i++) {
-      echo '<OPTION VALUE="'.$i.'">'.strftime('%B', mktime(0, 0, 0, $i)).'</OPTION>'."\n";
+      echo '<option value="'.$i.'">'.strftime('%B', mktime(0, 0, 0, $i)).'</option>'."\n";
     }
-    echo '</SELECT>'."\n";
+    echo '</select></p>'."\n";
 
 
-    echo '<select name="nouvelleannee"> '."\n";
-    echo '<OPTION VALUE="vide"></OPTION>'."\n";
+    echo '<p class="newyear"><label for="nouvelleannee">'. _("Year") .'</label><br /><select name="nouvelleannee" id="nouvelleannee"> '."\n";
+    echo '<option value="vide"></option>'."\n";
     for ($i = date("Y"); $i < (date("Y") + 5); $i++) {
-      echo '<OPTION VALUE="'.$i.'">'.$i.'</OPTION>'."\n";
+      echo '<option value="'.$i.'">'.$i.'</option>'."\n";
     }
-    echo '</SELECT>'."\n";
-    echo '<br><br>'. _("Add a start hour (optional)") .' : <br><br>'."\n";
-    echo '<select name="nouvelleheuredebut"> '."\n";
-    echo '<OPTION VALUE="vide"></OPTION>'."\n";
+    echo '</select></p>'."\n";
+    echo '<p class="clear-left">'. _("Add a start hour (optional)") .' : </p>'."\n";
+    echo '<p class="newhour"><label for="nouvelleheuredebut">'. _("Hour") .'</label><br /><select id="nouvelleheuredebut" name="nouvelleheuredebut"> '."\n";
+    echo '<option value="vide"></option>'."\n";
     for ($i = 0; $i < 24; $i++) {
-      echo '<OPTION VALUE="'.$i.'">'.$i.' H</OPTION>'."\n";
+      echo '<option value="'.$i.'">'.$i.' H</option>'."\n";
     }
-    echo '</SELECT>'."\n";
-    echo '<select name="nouvelleminutedebut"> '."\n";
-    echo '<OPTION VALUE="vide"></OPTION>'."\n";
-    echo '<OPTION VALUE="00">00</OPTION>'."\n";
-    echo '<OPTION VALUE="15">15</OPTION>'."\n";
-    echo '<OPTION VALUE="30">30</OPTION>'."\n";
-    echo '<OPTION VALUE="45">45</OPTION>'."\n";
-    echo '</SELECT>'."\n";
-    echo '<br><br>'. _("Add a end hour (optional)") .' : <br><br>'."\n";
-    echo '<select name="nouvelleheurefin"> '."\n";
-    echo '<OPTION VALUE="vide"></OPTION>'."\n";
+    echo '</select></p>'."\n";
+    echo '<p class="newmin"><label for="nouvelleminutedebut">'. _("Min") .'</label><br /><select id="nouvelleminutedebut" name="nouvelleminutedebut"> '."\n";
+    echo '<option value="vide"></option>'."\n";
+    echo '<option value="00">00</option>'."\n";
+    echo '<option value="15">15</option>'."\n";
+    echo '<option value="30">30</option>'."\n";
+    echo '<option value="45">45</option>'."\n";
+    echo '</select></p>'."\n";
+    echo '<p  class="clear-left">'. _("Add a end hour (optional)") .' : </p>'."\n";
+    echo '<p class="newhour"><label for="nouvelleheurefin">'. _("Hour") .'</label><br /><select id="nouvelleheurefin" name="nouvelleheurefin"> '."\n";
+    echo '<option value="vide"></option>'."\n";
     for ($i = 0; $i < 24; $i++) {
-      echo '<OPTION VALUE="'.$i.'">'.$i.' H</OPTION>'."\n";
+      echo '<option value="'.$i.'">'.$i.' H</option>'."\n";
     }
-    echo '</SELECT>'."\n";
-    echo '<select name="nouvelleminutefin"> '."\n";
-    echo '<OPTION VALUE="vide"></OPTION>'."\n";
-    echo '<OPTION VALUE="00">00</OPTION>'."\n";
-    echo '<OPTION VALUE="15">15</OPTION>'."\n";
-    echo '<OPTION VALUE="30">30</OPTION>'."\n";
-    echo '<OPTION VALUE="45">45</OPTION>'."\n";
-    echo '</SELECT>'."\n";
+    echo '</select></p>'."\n";
+    echo '<p class="newmin"><label for="nouvelleminutefin">'. _("Min") .'</label><br /><select id="nouvelleminutefin" name="nouvelleminutefin"> '."\n";
+    echo '<option value="vide"></option>'."\n";
+    echo '<option value="00">00</option>'."\n";
+    echo '<option value="15">15</option>'."\n";
+    echo '<option value="30">30</option>'."\n";
+    echo '<option value="45">45</option>'."\n";
+    echo '</select></p>'."\n";
 
-    echo '<br><br>';
-    echo '<button class="button red retour" type="submit" value="retoursondage" name="retoursondage_x"><strong>Retourner au sondage</strong></button>'."\n";
-    echo '<button type="submit" name="ajoutercolonne_x" value="Ajouter une colonne" class="button green poursuivre" alt="Valider"><strong>Valider</strong></button>'."\n";
+    echo '<p class="clear-left">';
+    echo '<button class="button red retour" type="submit" value="retoursondage" name="retoursondage_x"><strong>'. _('Back to the poll'). '</strong></button>'."\n";
+    echo '<button type="submit" name="ajoutercolonne_x" class="button green poursuivre"><strong>'. _('Add a column'). '</strong></button></p>'."\n";
   }
 
   echo '</form>'."\n";
-  echo '<br><br><br><br>'."\n";
+  echo '<br /><br /><br /><br />'."\n";
   echo '</div>'."\n";
 
   echo '</div>'."\n";
@@ -271,7 +249,7 @@ if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
 }
 
 if (isset($_POST["suppressionsondage_x"])) {
-  print_header(true);
+  print_header(true, '', $lang);
   echo '<body>'."\n";
   framanav();
   logo();
@@ -281,11 +259,11 @@ if (isset($_POST["suppressionsondage_x"])) {
   echo '<div class="corps">'."\n";
   echo '<form name="formulaire" action="'.getUrlSondage($numsondageadmin, true).'" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
   echo '<div class="">'."\n";
-  echo "<H2>" . _("Confirm removal of your poll") . "</H2><br><br>"."\n";
+  echo "<h2>" . _("Confirm removal of your poll") . "</h2><br /><br />"."\n";
   echo '<button class="button red retour" type="submit" value="'._("Keep this poll!").'" name="annullesuppression"><strong>'._("Keep this poll!").'</strong></button>'."\n";
   echo '<button type="submit" name="confirmesuppression" value="'._("Remove this poll!").'" class="button green poursuivre" alt="'._("Remove this poll!").'"><strong>'._("Remove this poll!").'</strong></button>'."\n";
   echo '</form>'."\n";
-  echo '<br><br><br><br>'."\n";
+  echo '<br /><br /><br /><br />'."\n";
   echo '</div>'."\n";
 
   echo '</div>'."\n";
@@ -315,7 +293,7 @@ if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"
           _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
 
     //affichage de l'ecran de confirmation de suppression de sondage
-    print_header();
+    print_header(false, '', $lang);
     echo '<body>'."\n";
     framanav();
     logo();
@@ -323,9 +301,9 @@ if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"
     bandeau_titre(_("Make your polls"));
 
     echo '<div class="corps corpscentre">'."\n";
-    print "<H2>" . _("Your poll has been removed!") . "</H2><br><br>";
+    print "<h2>" . _("Your poll has been removed!") . "</h2><br /><br />";
     print  _("Back to the homepage of ") . ' <a href="'.get_server_name().'"> '.NOMAPPLICATION.'</a>.'."\n";
-    echo '<br><br><br>'."\n";
+    echo '<br /><br /><br />'."\n";
     echo '</div>'."\n";
     sur_bandeau_pied();
     bandeau_pied();
@@ -367,7 +345,7 @@ if(isset($_POST['ajoutcomment']) || isset($_POST['ajoutcomment_x'])) {
 
 //s'il existe on affiche la page normale
 // DEBUT DE L'AFFICHAGE DE LA PAGE HTML
-print_header(true);
+print_header(true, '', $lang);
 echo '<body>'."\n";
 framanav();
 logo();
@@ -376,26 +354,27 @@ bandeau_titre(_("Make your polls"));
 sous_bandeau();
 
 echo '<div class="corps">'."\n";
-
+echo '<div class="imprimer"><p><a role="button" href="javascript:print()" class="button white medium">' . _('Print') . '</a></p>';
+echo '<p><a role="button" class="button white medium" href="'.get_server_name().'exportcsv.php?numsondage=' . $numsondage . '">' . _('Export to CSV') . '</a></p></div>';
 
 echo '<div class="presentationdate"> '."\n";
 
 //affichage du titre du sondage
 $titre=str_replace("\\","",$dsondage->titre);
-echo '<H2>'.$titre.'</H2>'."\n";
+echo '<h2>'.$titre.'</h2>'."\n";
 
 //affichage du nom de l'auteur du sondage
-echo _("Initiator of the poll") .' : '.stripslashes($dsondage->nom_admin).'<br>'."\n";
-
-//affichage des commentaires du sondage
-if ($dsondage->commentaires){
-  echo '<br>'. _("Comments") .' :<br>'."\n";
-  $commentaires=$dsondage->commentaires;
-  $commentaires=str_replace("\\","",$commentaires);
-  echo stripslashes(nl2br($commentaires));
-  echo '<br>'."\n";
+echo '<div class="initiator"><p><span class="mlabel">'. _("Initiator of the poll") .' :</span><span class="nom"> '.stripslashes($dsondage->nom_admin).'</span></p></div>'."\n";
+echo '<div class="adress"><p><span class="mlabel">'._("Public link of the pool") .' : </span><code>'.getUrlSondage($dsondage->id_sondage).'</code></p></div>'."\n";
+echo '<div class="adress"><p><span class="mlabel">'._("Admin link of the pool") .' : </span><code>'.getUrlSondage($dsondage->id_sondage, true).'</code></p></div>'."\n";
+//affichage de la description du sondage
+if ($dsondage->commentaires) {
+  echo '<div class="admin_comment"><span class="mlabel">'._("Description: ") .'</span><br />'."\n";
+  $commentaires = $dsondage->commentaires;
+  $commentaires=nl2br(str_replace("\\","",$commentaires));
+  echo '<span class="mcontent">'. $commentaires .'</span>';
+  echo '</div>'."\n";
 }
-echo '<br>'."\n";
 echo '</div>'."\n";
 
 
@@ -726,16 +705,16 @@ if ($sondage !== false) {
   $sql = $connect->Prepare($sql);
   $user_studs = $connect->Execute($sql, array($numsondage));
 } else {
-  print_header(false, _("Error!"));
+  print_header(false, _("Error!"), '', $lang);
   echo '<body>'."\n";
   framanav();
   logo();
   bandeau_tete();
   bandeau_titre(_("Error!"));
   echo '<div class=corpscentre>'."\n";
-  print "<H2>" . _("This poll doesn't exist !") . "</H2><br><br>"."\n";
-  print "" . _("Back to the homepage of ") . " <a href=\"".get_server_name()."\"> ".NOMAPPLICATION."</A>. "."\n";
-  echo '<br><br><br><br>'."\n";
+  print "<h2>" . _("This poll doesn't exist !") . "</h2><br /><br />"."\n";
+  print "" . _("Back to the homepage of ") . " <a href=\"".get_server_name()."\"> ".NOMAPPLICATION."</a>. "."\n";
+  echo '<br /><br /><br /><br />'."\n";
   echo '</div>'."\n";
 
 
@@ -750,14 +729,17 @@ $dsujet=$sujets->FetchObject(false);
 $dsondage=$sondage->FetchObject(false);
 
 $toutsujet=explode(",",$dsujet->sujet);
-$toutsujet=str_replace("@","<br>",$toutsujet);
+$toutsujet=str_replace("@","<br />",$toutsujet);
 $toutsujet=str_replace("°","'",$toutsujet);
 $nbcolonnes=substr_count($dsujet->sujet,',')+1;
 
 echo '<form name="formulaire" action="'.getUrlSondage($numsondageadmin, true).'" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
-echo '<div class="cadre"> '."\n";
-echo _('As poll administrator, you can change all the lines of this poll with <img src="'.get_server_name().'images/info.png" alt="infos">.<br> You can, as well, remove a column or a line with <img src="'.get_server_name().'images/cancel.png" alt="Cancel">. <br>You can also add a new column with <img src="'.get_server_name().'images/add-16.png" alt="Add column">.<br> Finally, you can change the informations of this poll like the title, the comments or your email address.') ."\n";
-echo '<br><br>'."\n";
+echo '<div class="cadre"><div class="information"><p> '."\n";
+echo _('As poll administrator, you can change all the lines of this poll with this button ').'<img src="'.get_server_name().'images/info.png" alt="' . _('Edit') . '" />.<br />';
+echo _('You can, as well, remove a column or a line with ') . '<img src="'.get_server_name().'images/cancel.png" alt="' . _('Remove the column') . '" />.<br />';
+echo _('You can also add a new column with '). '<img src="'.get_server_name().'images/add-16.png" alt="'. _('Add a colomn') . '" />.<br />';
+echo _('Finally, you can change the informations of this poll like the title, the comments or your email address.') ."\n";
+echo '</p></div>'."\n";
 
 //debut de l'affichage de résultats
 echo '<table class="resultats">'."\n";
@@ -767,13 +749,13 @@ $toutsujet=explode(",",$dsujet->sujet);
 echo '<tr>'."\n";
 echo '<td></td>'."\n";
 echo '<td></td>'."\n";
-echo '<td></td>'."\n";
+
 
 //boucle pour l'affichage des boutons de suppression de colonne
 for ($i = 0; isset($toutsujet[$i]); $i++) {
-  echo '<td class=somme><input type="image" name="effacecolonne'.$i.'" value="Effacer la colonne" src="'.get_server_name().'images/cancel.png" /></td>'."\n";
+  echo '<td class=somme><input type="image" name="effacecolonne'.$i.'" alt="' . _('Remove the column') . '" src="'.get_server_name().'images/cancel.png" /></td>'."\n";
 }
-
+echo '<td><input type="image" name="ajoutsujet" src="'.get_server_name().'images/add-16.png" alt="' . _('Add a column') . '" /></td></td>'."\n";
 echo '</tr>'."\n";
 
 //si le sondage est un sondage de date
@@ -807,7 +789,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     }
   }
 
-  echo '<td class="annee"><input type="image" name="ajoutsujet" src="'.get_server_name().'images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
+  echo '<td>'."\n";
   echo '</tr>'."\n";
   echo '<tr>'."\n";
   echo '<td></td>'."\n";
@@ -841,7 +823,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     }
   }
 
-  echo '<td class="mois"><input type="image" name="ajoutsujet" src="'.get_server_name().'images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
+  echo '<td></td>'."\n";
   echo '</tr>'."\n";
   echo '<tr>'."\n";
   echo '<td></td>'."\n";
@@ -875,7 +857,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     }
   }
 
-  echo '<td class="jour"><input type="image" name="ajoutsujet" src="'.get_server_name().'images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
+  echo '<td></td>'."\n";
   echo '</tr>'."\n";
 
   //affichage des horaires
@@ -893,7 +875,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
       }
     }
 
-    echo '<td class="heure"><input type="image" name="ajoutsujet" src="'.get_server_name().'images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
+    echo '<td></td>'."\n";
     echo '</tr>'."\n";
   }
 } else {
@@ -908,7 +890,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     echo '<td class="sujet">'.stripslashes($toutsujet[$i]).'</td>'."\n";
   }
 
-  echo '<td class="sujet"><input type="image" name="ajoutsujet" src="'.get_server_name().'images/add-16.png"  alt="' . _('Add') . '"></td>'."\n";
+  echo '<td></td>'."\n";
   echo '</tr>'."\n";
 }
 
@@ -921,7 +903,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
   $ensemblereponses = $data->reponses;
 
   echo '<tr>'."\n";
-  echo '<td><input type="image" name="effaceligne'.$compteur.'" value="Effacer" src="'.get_server_name().'images/cancel.png"  alt="Icone efface" /></td>'."\n";
+  echo '<td><input type="image" name="effaceligne'.$compteur.'" src="'.get_server_name().'images/cancel.png" alt="'. _('Remove') .'" /></td>'."\n";
 
   //affichage du nom
   $nombase=str_replace("°","'",$data->nom);
@@ -948,9 +930,9 @@ while ($data = $user_studs->FetchNextObject(false)) {
       for ($j = 0; $j < $nbcolonnes; $j++) {
         $car = substr($ensemblereponses, $j, 1);
         if ($car == "1") {
-          echo '<td class="vide"><input type="checkbox" name="choix'.$j.'" value="" checked></td>'."\n";
+          echo '<td class="vide"><input type="checkbox" name="choix'.$j.'" value="" checked /></td>'."\n";
         } else {
-          echo '<td class="vide"><input type="checkbox" name="choix'.$j.'" value=""></td>'."\n";
+          echo '<td class="vide"><input type="checkbox" name="choix'.$j.'" value="" /></td>'."\n";
         }
       }
     } else { //sinon on affiche les lignes normales
@@ -972,14 +954,14 @@ while ($data = $user_studs->FetchNextObject(false)) {
 
   //a la fin de chaque ligne se trouve les boutons modifier
   if (!$testligneamodifier=="true") {
-    echo '<td class=somme><input type="image" name="modifierligne'.$compteur.'" value="Modifier" src="'.get_server_name().'images/info.png" alt="Icone infos"></td>'."\n";
+    echo '<td class=somme><input type="image" name="modifierligne'.$compteur.'" src="'.get_server_name().'images/info.png" alt="'. _('Edit') .'" /></td>'."\n";
   }
 
   //demande de confirmation pour modification de ligne
   for ($i = 0; $i < $nblignes; $i++) {
     if (isset($_POST["modifierligne$i"]) || isset($_POST['modifierligne'.$i.'_x'])) {
       if ($compteur == $i) {
-        echo '<td><input type="image" name="validermodifier'.$compteur.'" value="Valider la modification" src="'.get_server_name().'images/accept.png"  alt="Icone valider"></td>'."\n";
+        echo '<td><input type="image" name="validermodifier'.$compteur.'" src="'.get_server_name().'images/accept.png" alt="'. _('Validate') .'" /></td>'."\n";
       }
     }
   }
@@ -988,22 +970,27 @@ while ($data = $user_studs->FetchNextObject(false)) {
   echo '</tr>'."\n";
 }
 
+if (!$testligneamodifier=="true") {
+	//affichage de la case vide de texte pour un nouvel utilisateur
+	echo '<tr>'."\n";
+	echo '<td></td>'."\n";
+	echo '<td class=nom>'."\n";
+	echo '<input type="text" name="nom" /><br />'."\n";
+	echo '</td>'."\n";
 
-//affichage de la case vide de texte pour un nouvel utilisateur
-echo '<tr>'."\n";
-echo '<td></td>'."\n";
-echo '<td class=nom>'."\n";
-echo '<input type="text" name="nom"><br>'."\n";
-echo '</td>'."\n";
+	//une ligne de checkbox pour le choix du nouvel utilisateur
+	for ($i = 0; $i < $nbcolonnes; $i++) {
+	  echo '<td class="vide"><input type="checkbox" name="choix'.$i.'" value="" /></td>'."\n";
+	}
 
-//une ligne de checkbox pour le choix du nouvel utilisateur
-for ($i = 0; $i < $nbcolonnes; $i++) {
-  echo '<td class="vide"><input type="checkbox" name="choix'.$i.'" value=""></td>'."\n";
+	// Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
+	echo '<td><input type="image" name="boutonp" src="'.get_server_name().'images/add-24.png" alt="'. _('Validate my choices') .'" /></td>'."\n";
+	echo '</tr>'."\n";
+	
+	//focus en javascript sur le champ texte pour le nom d'utilisateur
+    echo '<script type="text/javascript">document.formulaire.nom.focus();</script>'."\n";
+
 }
-
-// Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
-echo '<td><input type="image" name="boutonp" value="Participer" src="'.get_server_name().'images/add-24.png" alt="' . _('Add') . '"></td>'."\n";
-echo '</tr>'."\n";
 
 //determination du meilleur choix
 for ($i = 0; $i < $nbcolonnes + 1; $i++) {
@@ -1049,7 +1036,7 @@ echo '<td class="somme"></td>'."\n";
 
 for ($i = 0; $i < $nbcolonnes; $i++) {
   if (isset($somme[$i]) === true && isset($meilleurecolonne) === true && $somme[$i] == $meilleurecolonne){
-    echo '<td class="somme"><img src="'.get_server_name().'images/medaille.png" alt="Meilleur resultat"></td>'."\n";
+    echo '<td class="somme"><img src="'.get_server_name().'images/medaille.png" alt="' . _('Best choice') . '" /></td>'."\n";
   } else {
     echo '<td class="somme"></td>'."\n";
   }
@@ -1061,36 +1048,31 @@ echo '</tr>'."\n";
 // S'il a oublié de remplir un nom
 if ((isset($_POST["boutonp"]) || isset($_POST["boutonp_x"])) && $_POST["nom"] == "") {
   echo '<tr>'."\n";
-  print "<td colspan=10><font color=#FF0000>" . _("Enter a name !") . "</font>\n";
+  print '<td colspan=10><p class="error">' . _("Enter a name !") . "</p>\n";
   echo '</tr>'."\n";
 }
 
 if (isset($erreur_prenom) && $erreur_prenom) {
   echo '<tr>'."\n";
-  print "<td colspan=10><font color=#FF0000>" . _("The name you've chosen already exist in this poll!") . "</font></td>\n";
+  print '<td colspan=10><p class="error">' . _("The name you've chosen already exist in this poll!") . "</p></td>\n";
   echo '</tr>'."\n";
 }
 
 if (isset($erreur_injection) && $erreur_injection) {
   echo '<tr>'."\n";
-  print "<td colspan=10><font color=#FF0000>" . _("Characters \"  '  < et > are not permitted") . "</font></td>\n";
+  print '<td colspan=10><p class="error">' . _("Characters \"  '  < et > are not permitted") . "</p></td>\n";
   echo '</tr>'."\n";
 }
 
 if (isset($erreur_ajout_date) && $erreur_ajout_date) {
   echo '<tr>'."\n";
-  print "<td colspan=10><font color=#FF0000>" . _("The date is not correct !") . "</font></td>\n";
+  print '<td colspan=10><p class="error">' . _("The date is not correct !") . "</p></td>\n";
   echo '</tr>'."\n";
 }
 
 //fin du tableau
 echo '</table>'."\n";
 echo '</div>'."\n";
-
-//focus en javascript sur le champ texte pour le nom d'utilisateur
-echo '<script type="text/javascript">'."\n";
-echo 'document.formulaire.nom.focus();'."\n";
-echo '</script>'."\n";
 
 //recuperation des valeurs des sujets et adaptation pour affichage
 $toutsujet = explode(",", $dsujet->sujet);
@@ -1141,97 +1123,104 @@ echo '<p class=affichageresultats>'."\n";
 
 //affichage de la phrase annoncant le meilleur sujet
 if (isset($meilleurecolonne) && $compteursujet == "1") {
-  print "<img src=\"".get_server_name()."images/medaille.png\" alt=\"Meilleur resultat\">" . _("The best choice at this time is") . " : <b>$meilleursujet </b>" . _("with") . " <b>$meilleurecolonne </b>" . $vote_str . ".<br>\n";
+  print "<img src=\"".get_server_name()."images/medaille.png\" alt=\"\" />" . _("The best choice at this time is") . " : <b>$meilleursujet </b>" . _("with") . " <b>$meilleurecolonne </b>" . $vote_str . ".<br />\n";
 } elseif (isset($meilleurecolonne)) {
-  print "<img src=\"".get_server_name()."images/medaille.png\" alt=\"Meilleur resultat\"> " . _("The bests choices at this time are") . " : <b>$meilleursujet </b>" . _("with") . " <b>$meilleurecolonne </b>" . $vote_str . ".<br>\n";
+  print "<img src=\"".get_server_name()."images/medaille.png\" alt=\"\" /> " . _("The bests choices at this time are") . " : <b>$meilleursujet </b>" . _("with") . " <b>$meilleurecolonne </b>" . $vote_str . ".<br />\n";
 }
 
-echo '<br><br>'."\n";
+echo '<br /><br />'."\n";
 echo '</p>'."\n";
 echo '</form>'."\n";
 echo '<form name="formulaire4" action="#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 
+//Suppression du sondage
+echo '<p class="affichageresultats"><input type="submit" id="suppressionsondage" name="suppressionsondage" value="'. _("Remove the poll") .'" class="button red" /></p>'."\n";
+echo '<br />'."\n";
+
 //Gestion du sondage
-echo '<div class=titregestionadmin>'. _("Poll's management") .' :</div>'."\n";
-echo '<p class=affichageresultats>'."\n";
-echo '<br>'."\n";
+echo '<div class="addcomment"><fieldset><legend>'. _("Poll's management") .' :</legend>'."\n";
+echo '<p>'."\n";
+echo '<br />'."\n";
 
 //Changer le titre du sondage
 $adresseadmin=$dsondage->mail_admin;
-echo _("Change the title") .' :<br>' .
-    '<input type="text" name="nouveautitre" size="40" value="'.$dsondage->titre.'">'.
-    '<input type="image" name="boutonnouveautitre" value="Changer le titre" src="'.get_server_name().'images/accept.png" alt="Valider"><br><br>'."\n";
+echo '<label for="nouveautitre">'. _("Poll title: ") .'</label></p>' .
+    '<p><input type="text" title="'. _("Change the title") .'" id="nouveautitre" name="nouveautitre" size="40" value="'.$dsondage->titre.'" /></p>'.
+    '<p class="txt-right"><input type="submit" name="boutonnouveautitre" value="'. _('Save the new title') .'" class="button green medium" /></p>'."\n";
 
 //si la valeur du nouveau titre est invalide : message d'erreur
 if ((isset($_POST["boutonnouveautitre"]) || isset($_POST["boutonnouveautitre_x"])) && !issetAndNoEmpty('nouveautitre')) {
-  echo '<font color="#FF0000">'. _("Enter a new title!") .'</font><br><br>'."\n";
+  echo '<p class="error">'. _("Enter a new title!") .'</p>'."\n";
 }
 
-//Changer les commentaires du sondage
-echo _("Change the comments") .' :<br> <textarea name="nouveauxcommentaires" rows="7" cols="40">'.stripslashes($dsondage->commentaires).'</textarea><br><input type="image" name="boutonnouveauxcommentaires" value="Changer les commentaires" src="'.get_server_name().'images/accept.png" alt="Valider"><br><br>'."\n";
-
 //Changer l'adresse de l'administrateur
-echo _("Change your email address") .' :<br> <input type="text" name="nouvelleadresse" size="40" value="'.$dsondage->mail_admin.'"> <input type="image" name="boutonnouvelleadresse" value="Changer votre adresse" src="'.get_server_name().'images/accept.png" alt="Valider"><br>'."\n";
+echo '<p><label for="nouvelleadresse">'. _("Your e-mail address: ") .'</label></p>'.
+     '<p><input type="text" title="'. _("Change your email") .'" id="nouvelleadresse" name="nouvelleadresse" size="40" value="'.$dsondage->mail_admin.'" /></p>'.
+     '<p class="txt-right"><input type="submit" name="boutonnouvelleadresse" value="'. _('Save your new email') .'" class="button green medium" /></p>'."\n";
 
 //si l'adresse est invalide ou le champ vide : message d'erreur
 if ((isset($_POST["boutonnouvelleadresse"]) || isset($_POST["boutonnouvelleadresse_x"])) && !issetAndNoEmpty('nouvelleadresse')) {
-  echo '<font color="#FF0000">'. _("Enter a new email address!") .'</font><br><br>'."\n";
+  echo '<p class="error">'. _("Enter a new email address!") .'</p>'."\n";
 }
+
+//Changer la description du sondage
+echo '<p><label for="nouveauxcommentaires">'. _("Description: ") .'</label></p>'.
+	 '<p><textarea title="'. _("Change the description") .'" id="nouveauxcommentaires" name="nouveauxcommentaires" rows="7" cols="40">'.stripslashes($dsondage->commentaires).'</textarea></p>'.
+	 '<p class="txt-right"><input type="submit" name="boutonnouveauxcommentaires" value="'. _("Save the description") .'"  class="button green medium" /></p>'."\n";
+
+echo '</fieldset></div>'."\n";
 
 //affichage des commentaires des utilisateurs existants
 $sql = 'SELECT * FROM comments WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_comment';
 $sql = $connect->Prepare($sql);
 $comment_user = $connect->Execute($sql, array($numsondage));
 if ($comment_user->RecordCount() != 0) {
-  print "<br><b>" . _("Comments") . " :</b><br>\n";
+  print "<br /><b>" . _("Comments of polled people") . " :</b><br />\n";
 
   $i = 0;
   while ( $dcomment=$comment_user->FetchNextObject(false)) {
-    print "<input type=\"image\" name=\"suppressioncomment$i\" src=\"".get_server_name()."images/cancel.png\" alt=\"supprimer commentaires\" /> ". stripslashes($dcomment->usercomment) ." : ".stripslashes($dcomment->comment) ." <br>";
+    print "<div class=\"comment\"><input type=\"image\" name=\"suppressioncomment$i\" src=\"".get_server_name()."images/cancel.png\" alt=\"". _('Remove') ."\" />" . '<span class="usercomment">'.stripslashes($dcomment->usercomment). ' :</span> <span class="comment">' . stripslashes(nl2br($dcomment->comment)) . '</span></div>';
     $i++;
   }
 
-  echo '<br>';
+  echo '<br />';
 }
 
 if (isset($erreur_commentaire_vide) && $erreur_commentaire_vide=="yes") {
-  print "<font color=#FF0000>" . _("Enter a name and a comment!") . "</font>";
+  print '<p class="error">' . _("Enter a name and a comment!") . "</p>";
 }
 
 //affichage de la case permettant de rajouter un commentaire par les utilisateurs
-print "<br>" . _("Add a comment in the poll") . " :<br>\n";
-echo _("Name") .' : <input type=text name="commentuser"><br>'."\n";
-echo '<textarea name="comment" rows="2" cols="40"></textarea>'."\n";
-echo '<input type="image" name="ajoutcomment" value="Ajouter un commentaire" src="'.get_server_name().'images/accept.png" alt="Valider"><br>'."\n";
+print '<div class="addcomment">' .'<fieldset><legend>' ._("Add a comment in the poll:") . '</legend>' . "\n";
+echo '<p><label for="commentuser">'. _("Name") .'</label> : <input type=text name="commentuser" id="commentuser" /></p>'."\n";
+echo '<p><label for="comment">'. _("Your comment: ") .'</label><br /><textarea title="'. _("Write your comment") .'" name="comment" id="comment" rows="2" cols="40"></textarea></p>'."\n";
+echo '<p class="txt-center"><input type="submit" name="ajoutcomment" value="'. _("Send your comment") .'" class="button green"></p>'."\n";
+echo '</fieldset></div></form>'."\n";
+echo '</div>'."\n";
 
-//suppression du sondage
-echo '<br>'."\n";
-echo _("Remove your poll") .' : <input type="image" name="suppressionsondage" value="'. _("Remove the poll") .'" src="'.get_server_name().'images/cancel.png" alt="' . _('Cancel') . '" /><br><br>'."\n";
-
-echo '</form>'."\n";
-
+/* Lettre de convocation
 if ($dsondage->format == "D" || $dsondage->format == "D+") {
   echo '<form name="formulaire2" action="'.get_server_name().'exportpdf.php" method="POST" onkeypress="javascript:process_keypress(event)" class="formulaire2">'."\n";
-  echo _("Generate the convocation letter (.PDF), choose the place to meet and validate") .'<br>';
+  echo _("Generate the convocation letter (.PDF), choose the place to meet and validate") .'<br />';
   echo '<input type="text" name="lieureunion" size="100" value="" />';
   echo '<input type="hidden" name="sondage" value="$numsondageadmin" />';
   echo '<input type="hidden" name="meilleursujet" value="$meilleursujetexport" />';
-  echo '<input type="image" name="exportpdf" value="Export en PDF" src="'.get_server_name().'images/accept.png" alt="Export PDF"><br><br>';
+  echo '<input type="image" name="exportpdf" value="Export en PDF" src="'.get_server_name().'images/accept.png" alt="Export PDF"><br /><br />';
   echo '</form>'."\n";
-  // '<font color="#FF0000">'. _("Enter a meeting place!") .'</font><br><br>'."\n";
+  // '<font color="#FF0000">'. _("Enter a meeting place!") .'</font><br /><br />'."\n";
 }
 
 // TODO
 if (isset($_POST["exportpdf_x"]) && !issetAndNoEmpty('lieureunion')) {
-  echo '<font color="#FF0000">'. _("Enter a meeting place!") .'</font><br><br>'."\n";
-}
+  echo '<font color="#FF0000">'. _("Enter a meeting place!") .'</font><br /><br />'."\n";
+} */
 
 echo '<a id="bas"></a>'."\n";
-echo '<br><br>'."\n";
+echo '<br /><br />'."\n";
 
 //fin de la partie GESTION et beandeau de pied
 //echo '</p>'."\n";
-echo '</div>';
+//echo '</div>';
 echo '<div class="separateur">&nbsp;</div>';
 bandeau_pied_mobile();
 //echo '</form>'."\n";

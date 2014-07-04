@@ -136,8 +136,11 @@ msgid "Back to the homepage of "
 msgstr "Kehren sie zur Startseite zur&uuml;ck "
 
 #: choix_date.php:220
-msgid "Select your dates amoung the free days (green). The selected days are in blue.<br> You can unselect a day previously selected by clicking again on it."
-msgstr "W&auml;hlen sie ihr Termin unter den in gr&uuml;n angegebenen Tagen an. Die Felder erscheinen in blau wen sie ausgew heltsind.<br> Sie k&ouml;nnen ihre Wahl wiederufen in dem sie das Feld wiederausw&auml;hlen."
+msgid "Select your dates amoung the free days (green). The selected days are in blue."
+msgstr "W&auml;hlen sie ihr Termin unter den in gr&uuml;n angegebenen Tagen an. Die Felder erscheinen in blau wen sie ausgew heltsind."
+
+msgid "You can unselect a day previously selected by clicking again on it."
+msgstr "Sie k&ouml;nnen ihre Wahl wiederufen in dem sie das Feld wiederausw&auml;hlen."
 
 #: choix_date.php:233
 msgid "monday"
@@ -172,8 +175,8 @@ msgid "Selected days"
 msgstr "Gew&auml;lhter Tag"
 
 #: choix_date.php:487
-msgid "For each selected day, you can choose, or not, meeting hours in the following format :<br>- empty,<br>- \"8h\", \"8H\" or \"8:00\" to give a meeting's start hour,<br>- \"8-11\", \"8h-11h\", \"8H-11H\" ou \"8:00-11:00\" to give a meeting's start and end hour,<br>- \"8h15-11h15\", \"8H15-11H15\" ou \"8:15-11:15\" for the same thing but with minutes."
-msgstr "F&uuml;r jeden ausgew&auml;hlten Tag, haben Sie die M&ouml;glichkeit  die Uhrzeit der Versammlung zu bestimmen in einem der folgenden Formaten :<br>- lehr, wenn Sie keine bestimmte Uhrzeit m&ouml;chten,<br>- \"8h\", \"8H\" oder \"8:00\" um den Beginn der Versammlung vorzuschlagen,<br>- \"8-11\", \"8h-11h\", \"8H-11H\" oder \"8:00-11:00\" f&uuml;r eine Zeitspanne,<br>- \"8h15-11h15\", \"8H15-11H15\" oder \"8:15-11:15\" f&uuml;r ein  Zeitspanne mit minuten."
+msgid "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)"
+msgstr "F&uuml;r jeden ausgew&auml;hlten Tag, haben Sie die M&ouml;glichkeit  die Uhrzeit der Versammlung zu bestimmen (e.g.: \"8h\", \"8:30\", \"8h-10h\", etc.)"
 
 #: choix_date.php:494
 msgid "Time"
@@ -214,8 +217,11 @@ msgstr "Datum an dem die Umfrage gel&ouml;scht werden soll"
 
 #: choix_date.php:552
 #: choix_autre.php:196
-msgid "Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll. <br><br>Then, you will receive quickly an email contening the link to your poll for sending it to the voters."
-msgstr "Als Sie die Herschtelung der Umfrage best&auml;tigt haben werden, werden Sie zur Webseite Ihrer Umfrage automatisch wieder geleitet sein<br><br> Gleichzeitig werden Sie ein E-Mail bekommen in dem ein Link zu ihrer Umfrage ist, um in der erforschten Zukunft zu folgen."
+msgid "Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll."
+msgstr "Als Sie die Herschtelung der Umfrage best&auml;tigt haben werden, werden Sie zur Webseite Ihrer Umfrage automatisch wieder geleitet sein"
+
+msgid "Then, you will receive quickly an email contening the link to your poll for sending it to the voters."
+msgstr "Gleichzeitig werden Sie ein E-Mail bekommen in dem ein Link zu ihrer Umfrage ist, um in der erforschten Zukunft zu folgen."
 
 #: choix_date.php:558
 msgid "Back to hours"
@@ -231,8 +237,12 @@ msgid "Poll creation (1 on 2)"
 msgstr "Erstellen einer Umfrage (1 / 2)"
 
 #: infos_sondage.php:123
-msgid "You are in the poll creation section. <br> Required fields cannot be left blank"
-msgstr "Sie machten eine neue umfrage erstellen !<br> Fullen sie die folgenden Felder aus."
+msgid "You are in the poll creation section."
+msgstr "Sie machten eine neue umfrage erstellen !"
+
+msgid "Required fields cannot be left blank."
+msgstr "Fullen sie die folgenden Felder aus."
+
 
 #: infos_sondage.php:128
 msgid "Poll title *: "
@@ -250,10 +260,10 @@ msgstr "Die Schriftzeichen < > und \" sind nicht genehmigt!"
 
 #: infos_sondage.php:136
 msgid "Comments: "
-msgstr "Komentar (optional): "
+msgstr "Komentar : "
 
 #: infos_sondage.php:141
-msgid "Your name*: "
+msgid "Your name *: "
 msgstr "Name *: "
 
 #: infos_sondage.php:147
@@ -278,12 +288,12 @@ msgid "The fields marked with * are required!"
 msgstr "Die mit * markierten Felder sind obligatorisch!"
 
 #: infos_sondage.php:179
-msgid " Voters can modify their vote themselves."
-msgstr " Sie erlauben eine &Auml;nderung der linien durch die Befragten"
+msgid "Voters can modify their vote themselves."
+msgstr "Sie erlauben eine &Auml;nderung der linien durch die Befragten"
 
 #: infos_sondage.php:181
-msgid " To receive an email for each new vote."
-msgstr " Sie m&ouml;chten eine e-mail bei jeder Beteiligung erhalten"
+msgid "To receive an email for each new vote."
+msgstr "Sie m&ouml;chten eine e-mail bei jeder Beteiligung erhalten"
 
 #: infos_sondage.php:185
 msgid "Schedule an event"
@@ -299,12 +309,12 @@ msgid "Make a poll"
 msgstr "Umfrage erstellen"
 
 #: contacts.php:56
-msgid "[CONTACT] You have sent a question "
-msgstr "[KONTAKT] Senden von Fragen "
+msgid "[CONTACT] You have sent a question"
+msgstr "[KONTAKT] Senden von Fragen"
 
 #: contacts.php:56
-msgid "You have a question from a user "
-msgstr "Sie haben eine ben&uuml;tzer Frager "
+msgid "You have a question from a user"
+msgstr "Sie haben eine ben&uuml;tzer Frager"
 
 #: contacts.php:56
 msgid "User"
@@ -319,8 +329,8 @@ msgid "Message"
 msgstr "Email"
 
 #: contacts.php:59
-msgid "[COPY] Someone has sent a question "
-msgstr "[KOPIE] Senden einer frage "
+msgid "[COPY] Someone has sent a question"
+msgstr "[KOPIE] Senden einer frage"
 
 #: contacts.php:59
 msgid "Here is a copy of your question"
@@ -400,8 +410,8 @@ msgid "Comments"
 msgstr "Kommentar"
 
 #: studs.php:261
-msgid "If you want to vote in this poll, you have to give your name, choose the values that fit best for you<br> and validate with the plus button at the end of the line."
-msgstr "Um an dieser Umfrage Teilzunehmen tragen sie bitte ihren Namen, w&auml;hlen sie die ihnen passenden Wehrte<br> und best&auml;tigen sie ihre Wahl mit dem Knopf am ende der Ligne."
+msgid "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line."
+msgstr "Um an dieser Umfrage teilzunehmen, tragen sie bitte ihren Namen ein, w&auml;hlen sie alle passenden Werte und best&auml;tigen sie ihre Wahl mit dem Knopf am Ende der Linie."
 
 #: studs.php:445
 #: adminstuds.php:806
@@ -491,12 +501,20 @@ msgid "What is it about?"
 msgstr "Warum dies ?"
 
 #: index.php:71
-msgid "Making polls to schedule meetings or events, quickly and easily. <br> You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays."
-msgstr "Ein Datum zu finden das allen Betroffenen passt. <br>Sie k&ouml;nnen ebenfalls ben&ouml;tigen um gemeinsam eine Wahl zu treffen f&uuml;r ein Termin ein Treffpunkt, ein Besprechungsthema oder die Marke ihrer n&auml;chsten Kaffeemaschine "
+msgid "Making polls to schedule meetings or events, quickly and easily."
+msgstr "Ein Datum zu finden das allen Betroffenen passt."
+
+msgid "You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays."
+msgstr "Sie k&ouml;nnen ebenfalls ben&ouml;tigen um gemeinsam eine Wahl zu treffen f&uuml;r ein Termin ein Treffpunkt, ein Besprechungsthema oder die Marke ihrer n&auml;chsten Kaffeemaschine "
+
 
 #: choix_autre.php:144
-msgid "Your poll aim is to make a choice between different subjects.<br>Enter the subjects to vote for:"
-msgstr "Sie erstellen eine Umfrage mit mehreren Wahlmglichkeiten <br>Geben sie die verschiedenen Wahlmglichkeiten an :"
+msgid "Your poll aim is to make a choice between different subjects."
+msgstr "Sie erstellen eine Umfrage mit mehreren Wahlmglichkeiten."
+
+msgid "Enter the subjects to vote for:"
+msgstr "Geben sie die verschiedenen Wahlmglichkeiten an :"
+
 
 #: choix_autre.php:150
 msgid "Choice"
@@ -515,8 +533,12 @@ msgid "Characters \" < and > are not permitted"
 msgstr "Die Schriftzeichen < > und \" sind nicht genehmigt !"
 
 #: choix_autre.php:191
-msgid "Your poll will be automatically removed after 6 months.<br> You can fix another removal date for it."
-msgstr "Ihre Umfrage wird automatisch nach 6 Monaten gelscht.<br> Sie k&ouml;nnen dennoch eine andere Frist w&auml;hlen."
+msgid "Your poll will be automatically removed after 6 months."
+msgstr "Ihre Umfrage wird automatisch nach 6 Monaten gelscht."
+
+msgid "You can fix another removal date for it."
+msgstr "Sie k&ouml;nnen dennoch eine andere Frist w&auml;hlen."
+
 
 #: choix_autre.php:193
 msgid "Removal date (optional)"
@@ -535,8 +557,12 @@ msgid "Add a new column"
 msgstr "Wenn sie eine Spalte einf&uuml;gen m&ouml;chten"
 
 #: adminstuds.php:121
-msgid "You can add a new scheduling date to your poll.<br> If you just want to add a new hour to an existant date, put the same date and choose a new hour."
-msgstr "Sie k&ouml;nnen in ihrer Umfrage ein Datum einf&uuml;gen. Falls das Datum bereits schon besteht und sie eine Uhrzeit eingeben m&ouml;chten tragen sie bitte das ganze Datum ein mit der gew&uuml;nschten Uhrzeit so das dieser in der Umfrage erscheinen kann."
+msgid "You can add a new scheduling date to your poll."
+msgstr "Sie k&ouml;nnen in ihrer Umfrage ein Datum einf&uuml;gen."
+
+msgid "If you just want to add a new hour to an existant date, put the same date and choose a new hour."
+msgstr "Falls das Datum bereits schon besteht und sie eine Uhrzeit eingeben m&ouml;chten tragen sie bitte das ganze Datum ein mit der gew&uuml;nschten Uhrzeit so das dieser in der Umfrage erscheinen kann."
+
 
 #: adminstuds.php:122
 msgid "Add a date"
@@ -599,8 +625,26 @@ msgid ""
 msgstr ""
 
 #: adminstuds.php:582
-msgid "As poll administrator, you can change all the lines of this poll with <img src=\"images/info.png\" alt=\"infos\">.<br> You can, as well, remove a column or a line with <img src=\"images/cancel.png\" alt=\"Cancel\">. <br>You can also add a new column with <img src=\"images/add-16.png\" alt=\"Add column\">.<br> Finally, you can change the informations of this poll like the title, the comments or your email address."
-msgstr "Als administrator k&ouml;nnen sie alle linien ihrer Umfrage mit  <img src=\"images/info.png\" alt=\"Icone infos\"> &auml;ndern.<br> Sie haben auch die m&ouml;glichkeit eine Spalte oder eine Linie mit <img src=\"images/cancel.png\" alt=\"Annuler\"> zu l&ouml;schen. <br>Falls sie vergessen haben eine Wahlm&ouml;glichkeit einzutragen k&ouml;nnen sie eine Spalte zuf&uuml;gen in dem sie  <img src=\"images/add-16.png\" alt=\"r&uuml;ckg&auml;ngig\"> <br> ausw&auml;hlen. en bout de ligne des noms de colonne. Sie k&ouml;nnen ebenfalls informationen wie den Titel die Kommentare oder ihre email adresse &auml;ndern. "
+msgid "As poll administrator, you can change all the lines of this poll with this button : "
+msgstr "Als administrator k&ouml;nnen sie alle linien ihrer Umfrage mit dieser Taste &auml;ndern :"
+
+msgid "Edit"
+msgstr "&auml;ndern"
+
+msgid "You can, as well, remove a column or a line."
+msgstr "Sie haben auch die m&ouml;glichkeit eine Spalte oder eine Linie mit zu l&ouml;schen."
+
+msgid "Cancel"
+msgstr "Stornieren"
+
+msgid "You can also add a new column with "
+msgstr "Falls sie vergessen haben eine Wahlm&ouml;glichkeit einzutragen k&ouml;nnen sie eine Spalte zuf&uuml;gen in dem sie "
+
+msgid "Add"
+msgstr "r&uuml;ckg&auml;ngig"
+
+msgid "Finally, you can change the informations of this poll like the title, the comments or your email address."
+msgstr "Sie k&ouml;nnen ebenfalls informationen wie den Titel die Kommentare oder ihre email adresse &auml;ndern. "
 
 #: adminstuds.php:851
 msgid "The date is not correct !"

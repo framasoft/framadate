@@ -135,8 +135,11 @@ msgid "december"
 msgstr "december"
 
 #: choix_date.php:253
-msgid "Select your dates amoung the free days (green). The selected days are in blue.<br> You can unselect a day previously selected by clicking again on it."
-msgstr "Select your dates amoung the free days (green). The selected days are in blue.<br> You can unselect a day previously selected by clicking again on it."
+msgid "Select your dates amoung the free days (green). The selected days are in blue."
+msgstr "Select your dates amoung the free days (green). The selected days are in blue."
+
+msgid "You can unselect a day previously selected by clicking again on it."
+msgstr "You can unselect a day previously selected by clicking again on it."
 
 #: choix_date.php:266
 msgid "monday"
@@ -170,9 +173,9 @@ msgstr "sunday"
 msgid "Selected days"
 msgstr "Selected days"
 
-#: choix_date.php:521
-msgid "For each selected day, you can choose, or not, meeting hours in the following format :<br>- empty,<br>- "
-msgstr ""
+#: choix_date.php:489
+msgid "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)"
+msgstr "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)"
 
 #: choix_date.php:528
 msgid "Time"
@@ -213,8 +216,11 @@ msgstr "Removal date"
 
 #: choix_date.php:586
 #: choix_autre.php:217
-msgid "Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll. <br><br>Then, you will receive quickly an email contening the link to your poll for sending it to the voters."
-msgstr "Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll. <br><br>Then, you will receive quickly an email contening the link to your poll for sending it to the voters."
+msgid "Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll."
+msgstr "Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll."
+
+msgid "Then, you will receive quickly an email contening the link to your poll for sending it to the voters."
+msgstr "Then, you will receive quickly an email contening the link to your poll for sending it to the voters."
 
 #: choix_date.php:592
 msgid "Back to hours"
@@ -226,8 +232,11 @@ msgid "Create the poll"
 msgstr "Create the poll"
 
 #: infos_sondage.php:187
-msgid "You are in the poll creation section. <br> Required fields cannot be left blank"
-msgstr "You are in the poll creation section. <br> Required fields cannot be left blank"
+msgid "You are in the poll creation section."
+msgstr "You are in the poll creation section."
+
+msgid "Required fields cannot be left blank."
+msgstr "Required fields cannot be left blank."
 
 #: infos_sondage.php:192
 msgid "Poll title *: "
@@ -463,16 +472,22 @@ msgid "What is it about?"
 msgstr "What is it about?"
 
 #: index.php:128
-msgid "Making polls to schedule meetings or events, quickly and easily. <br> You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays."
-msgstr "Making polls to schedule meetings or events, quickly and easily. <br> You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays."
+msgid "Making polls to schedule meetings or events, quickly and easily."
+msgstr "Making polls to schedule meetings or events, quickly and easily."
+
+msgid "You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays."
+msgstr "You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays."
 
 #: index.php:131
 msgid "Make a poll"
 msgstr "Make a poll"
 
 #: choix_autre.php:165
-msgid "Your poll aim is to make a choice between different subjects.<br>Enter the subjects to vote for:"
-msgstr "Your poll aim is to make a choice between different subjects.<br>Enter the subjects to vote for:"
+msgid "Your poll aim is to make a choice between different subjects."
+msgstr "Your poll aim is to make a choice between different subjects."
+
+msgid "Enter the subjects to vote for:"
+msgstr "Enter the subjects to vote for:"
 
 #: choix_autre.php:171
 msgid "Choice"
@@ -491,8 +506,11 @@ msgid "Characters \" < and > are not permitted"
 msgstr "Characters \" < and > are not permitted"
 
 #: choix_autre.php:212
-msgid "Your poll will be automatically removed after 6 months.<br> You can fix another removal date for it."
-msgstr "Your poll will be automatically removed after 6 months.<br> You can fix another removal date for it."
+msgid "Your poll will be automatically removed after 6 months."
+msgstr "Your poll will be automatically removed after 6 months."
+
+msgid "You can fix another removal date for it."
+msgstr "You can fix another removal date for it."
 
 #: choix_autre.php:214
 msgid "Removal date (optional)"
@@ -511,8 +529,11 @@ msgid "Add a new column"
 msgstr "Add a new column"
 
 #: adminstuds.php:150
-msgid "You can add a new scheduling date to your poll.<br> If you just want to add a new hour to an existant date, put the same date and choose a new hour."
-msgstr "You can add a new scheduling date to your poll.<br> If you just want to add a new hour to an existant date, put the same date and choose a new hour."
+msgid "You can add a new scheduling date to your poll."
+msgstr "You can add a new scheduling date to your poll."
+
+msgid "If you just want to add a new hour to an existant date, put the same date and choose a new hour."
+msgstr "If you just want to add a new hour to an existant date, put the same date and choose a new hour."
 
 #: adminstuds.php:151
 msgid "Add a date"
@@ -577,8 +598,26 @@ msgstr ""
 "You can modify this poll with this link"
 
 #: adminstuds.php:662
-msgid "As poll administrator, you can change all the lines of this poll with <img src="
-msgstr ""
+msgid "As poll administrator, you can change all the lines of this poll with this button : "
+msgstr "As poll administrator, you can change all the lines of this poll with this button : "
+
+msgid "Edit"
+msgstr "Edit"
+
+msgid "You can, as well, remove a column or a line."
+msgstr "You can, as well, remove a column or a line."
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "You can also add a new column with "
+msgstr "You can also add a new column with "
+
+msgid "Add"
+msgstr "Add"
+
+msgid "Finally, you can change the informations of this poll like the title, the comments or your email address."
+msgstr "Finally, you can change the informations of this poll like the title, the comments or your email address."
 
 #: adminstuds.php:931
 msgid "The date is not correct !"
@@ -661,11 +700,6 @@ msgstr "Your poll has been removed!"
 #: studs.php:245
 msgid "Share URL"
 msgstr "Share URL"
-
-#: choix_date.php:490
-msgid "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8\", \"evening\", etc.)"
-msgstr "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8\", \"evening\", etc.)"
-
 
 #~ msgid ""
 #~ "For each selected day, you can choose, or not, meeting hours in the "

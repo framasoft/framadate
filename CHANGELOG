@@ -1,4 +1,16 @@
 Les dernières améliorations d'OpenSondage
+    
+    Changelog version 0.8 (juillet 2014 Armony - JosephK)
+	- Améliorations sur l'accessibilité
+	- Améliorations sur l'ergonomie
+	- Améliorations sur l'internationalisation (nombreuses phrases en français dans le code)
+	- Découpage chaines de langue pour virer le code html
+	- Remise en place de l'export CSV
+	- Remise en place de get_server_name() pour permettre l'installation dans un sous dossier, en https ou sur un port différent
+	- Ajout Authors.md + en-têtes refaits
+	- Fix bug changement de langues en mode URL rewriting (requête GET passée en formulaire POST)
+	- Fix bug 2 boutons valider lorsqu'on édite un vote
+	- Fix focus javascript sur "Votre nom"
 
 	Changelog version 0.7 (mars 2013)
 	- Fix : le sondage supprimé n'était pas forcément le sondage sélectionné (cfévrier)

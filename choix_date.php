@@ -1,42 +1,20 @@
 <?php
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Auteur : Guilhem BORGHESI
-//Création : Février 2008
-//
-//borghesi@unistra.fr
-//
-//Ce logiciel est régi par la licence CeCILL-B soumise au droit français et
-//respectant les principes de diffusion des logiciels libres. Vous pouvez
-//utiliser, modifier et/ou redistribuer ce programme sous les conditions
-//de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA 
-//sur le site "http://www.cecill.info".
-//
-//Le fait que vous puissiez accéder à cet en-tête signifie que vous avez 
-//pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
-//termes. Vous pouvez trouver une copie de la licence dans le fichier LICENCE.
-//
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Author : Guilhem BORGHESI
-//Creation : Feb 2008
-//
-//borghesi@unistra.fr
-//
-//This software is governed by the CeCILL-B license under French law and
-//abiding by the rules of distribution of free software. You can  use, 
-//modify and/ or redistribute the software under the terms of the CeCILL-B
-//license as circulated by CEA, CNRS and INRIA at the following URL
-//"http://www.cecill.info". 
-//
-//The fact that you are presently reading this means that you have had
-//knowledge of the CeCILL-B license and that you accept its terms. You can
-//find a copy of this license in the file LICENSE.
-//
-//==========================================================================
-
+/* This software is governed by the CeCILL-B license. If a copy of this license 
+ * is not distributed with this file, you can obtain one at 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * 
+ * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ * 
+ * =============================
+ * 
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ * 
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ */
 session_start();
 
 include_once('creation_sondage.php');
@@ -62,9 +40,8 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   bandeau_tete();
   bandeau_titre(_("Error!"));
   echo '<div class=corpscentre corps>'."\n";
-  print "<H2>" . _("You haven't filled the first section of the poll creation.") . " !</H2>"."\n";
+  print "<h2>" . _("You haven't filled the first section of the poll creation.") . " !</h2>"."\n";
   print _("Back to the homepage of ") . ' ' . '<a href="'.get_server_name().'">' . NOMAPPLICATION . '</a>.' . "\n";
-  echo '<br><br><br>'."\n";
   echo '</div>'."\n";
   //bandeau de pied
   //sur_bandeau_pied();
@@ -237,21 +214,25 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
   echo ' <div class="corps">';
   
   //affichage de l'aide pour les jours
-  echo '<div class="bodydate">'."\n";
-  echo _("Select your dates amoung the free days (green). The selected days are in blue.<br> You can unselect a day previously selected by clicking again on it.") ."\n";
+  echo '<div class="bodydate information">'."\n";
+  echo '<p>'._("Select your dates amoung the free days (green). The selected days are in blue.").'<br />'. _("You can unselect a day previously selected by clicking again on it.") .'</p>'."\n";
   echo '</div>'."\n";
   
   //debut du tableau qui affiche le calendrier
   echo '<div class=calendrier>'."\n";
-  echo '<table align=center>'."\n";
-  echo '<tr><td><input type="image" name="anneeavant" value="<<" src="'.get_server_name().'images/rewind.png"></td><td><input type="image" name="moisavant" value="<" src="'.get_server_name().'images/previous.png"></td><td align="center" class="choix_date_mois"> '.$motmois.' '.$_SESSION["annee"].' </td><td><input type="image" name="moisapres" value=">" src="'.get_server_name().'images/next.png"></td><td><input type="image" name="anneeapres" value=">>" src="'.get_server_name().'images/fforward.png"></td><td></td><td></td><td></td><td></td><td></td><td><input type="image" name="retourmois" value="Aujourd\'hui" src="'.get_server_name().'images/reload.png"></td></tr>'."\n";
-  echo '</table>'."\n";
-  echo '<table>'."\n";
-  echo '<tr>'."\n";
+  echo '<table align="center" summary="'. _('Calendar') .'">'."\n";
+  echo '<tr><td colspan="7" align="center" class="choix_date_mois" scope="colgroup">';
+  echo '<input type="image" style="float:left" name="anneeavant" value="<<" alt="' . _('Previous year') . '" src="'.get_server_name().'images/rewind.png" />'."\n";
+  echo '<input type="image" style="float:left" name="moisavant" value="<" alt="' . _('Previous month') . '" src="'.get_server_name().'images/previous.png" />'."\n";
+  echo $motmois.' '.$_SESSION["annee"]."\n";
+  echo '<input type="image" style="float:right" name="anneeapres" value=">>" alt="' . _('Next year') . '" src="'.get_server_name().'images/fforward.png"/>'."\n";
+  echo '<input type="image" style="float:right" name="moisapres" value=">" alt="' . _('Next month') . '" src="'.get_server_name().'images/next.png" />'."\n";
+  echo '<input type="image" style="float:right" name="retourmois" value="Aujourd\'hui" alt="' . _('Today') . '" src="'.get_server_name().'images/reload.png"/>'."\n";
+  echo '</td></tr><tr>'."\n";
   
   //affichage des jours de la semaine en haut du tableau
   for($i = 0; $i < 7; $i++) {
-    echo '<td class="joursemaine">'. strftime('%A',mktime(0,0,0,0, $i,10)) .'</td>';
+    echo '<td class="joursemaine" scope="col">'. strftime('%A',mktime(0,0,0,0, $i,10)) .'</td>';
   }
   
   echo '</tr>'."\n";
@@ -478,27 +459,26 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
     }
   }
   
-  echo '<div class=bodydate>'."\n";
+  echo '<div class="bodydate">'."\n";
   
   //affichage de tous les jours choisis
   if (issetAndNoEmpty('totalchoixjour', $_SESSION) && (!issetAndNoEmpty('choixheures_x') || $erreur)) {
     //affichage des jours
-    echo '<br>'."\n";
-    echo '<H2>'. _("Selected days") .' :</H2>'."\n";
+    echo '<br />'."\n";
+    echo '<h2>'. _("Selected days") .' :</h2>'."\n";
     //affichage de l'aide pour les jours
-    //echo _("For each selected day, you can choose, or not, meeting hours in the following format :<br>- empty,<br>- \"8h\", \"8H\" or \"8:00\" to give a meeting's start hour,<br>- \"8-11\", \"8h-11h\", \"8H-11H\" ou \"8:00-11:00\" to give a meeting's start and end hour,<br>- \"8h15-11h15\", \"8H15-11H15\" ou \"8:15-11:15\" for the same thing but with minutes.") .'<br><br>'."\n";
-    echo _("For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8\", \"evening\", etc.)") .'<br><br>'."\n";
+    echo '<div class="information"><p>'._("For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)") .'</p></div>'."\n";
     echo '<table>'."\n";
     echo '<tr>'."\n";
     echo '<td></td>'."\n";
     
     for ($i = 0; $i < $_SESSION["nbrecaseshoraires"]; $i++) {
       $j = $i+1;
-      echo '<td classe=somme>'. _("Time") .' '.$j.'</center></td>'."\n";
+      echo '<th class="somme" scope="col">'. _("Time") .' '.$j.'</th>'."\n";
     }
     
     if ($_SESSION["nbrecaseshoraires"] < 10) {
-      echo '<td classe=somme><input type="image" name="ajoutcases" src="'.get_server_name().'images/add-16.png"></td>'."\n";
+      echo '<th class="somme"><input type="image" name="ajoutcases" src="'.get_server_name().'images/add-16.png"></th>'."\n";
     }
     
     echo '</tr>'."\n";
@@ -507,9 +487,9 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
     for ($i=0;$i<count($_SESSION["totalchoixjour"]);$i++) {
       echo '<tr>'."\n";
       if ($_SESSION["langue"]=="EN") {
-        echo '<td>'.date("l, F jS Y", $_SESSION["totalchoixjour"][$i]).' : </td>'."\n";
+        echo '<th scope="row">'.date("l, F jS Y", $_SESSION["totalchoixjour"][$i]).' : </th>'."\n";
       } else {
-        echo '<td>'.strftime(_("%A, den %e. %B %Y"), $_SESSION["totalchoixjour"][$i]).' : </td>'."\n";
+        echo '<th scope="row">'.strftime(_("%A, den %e. %B %Y"), $_SESSION["totalchoixjour"][$i]).' : </th>'."\n";
       }
       
       $affichageerreurfindeligne=false;
@@ -535,7 +515,7 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
       }
       
       if ($affichageerreurfindeligne) {
-        echo '<td><b><font color=#FF0000>'. _("Bad format!") .'</font></b></td>'."\n";
+        echo '<td><p class="error">'. _("Bad format!") .'</p></td>'."\n";
       }
       
       echo '</tr>'."\n";
@@ -547,18 +527,18 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
     echo '<table>'."\n";
     echo '<tr>'."\n";
     echo '<td><input type=submit name="reset" value="'. _("Remove all days") .'"></td><td><input type=submit name="reporterhoraires" value="'. _("Copy hours of the first day") .'"></td><td><input type=submit name="resethoraires" value="'. _("Remove all hours") .'"></td></tr>'."\n";
-#    echo'<tr><td><br></td></tr>'."\n";
+#    echo'<tr><td><br /></td></tr>'."\n";
 #    echo '<tr><td>'. _("Next") .'</td><td><input type=image name="choixheures" value="'. _("Next") .'" src="images/next-32.png"></td></tr>'."\n";
     echo '</table>'."\n";
     
     //patch vraiment crado : on donne le nom "choixheures_x" au bouton pour éviter d'avoir à cleaner le code
-    echo '<br><button name="choixheures_x" value="'. _("Next") .'" type="submit" class="button green poursuivre"><strong>'. _('Next') . '</strong> </button>';
+    echo '<br /><button name="choixheures_x" value="'. _("Next") .'" type="submit" class="button green poursuivre"><strong>'. _('Next') . '</strong> </button>';
     echo '<div style="clear:both"></div>';
     
     
     //si un seul jour et aucunes horaires choisies, : message d'erreur
     if ((issetAndNoEmpty('choixheures') || issetAndNoEmpty('choixheures_x')) && (count($_SESSION["totalchoixjour"])=="1" && $_POST["horaires0"][0]=="" && $_POST["horaires0"][1]=="" && $_POST["horaires0"][2]=="" && $_POST["horaires0"][3]=="" && $_POST["horaires0"][4]=="")) {
-      echo '<table><tr><td colspan=3><font color=#FF0000>'. _("Enter more choices for the voters") .'</font><br></td></tr></table>'."\n";
+      echo '<table><tr><td colspan=3><p class="error">'. _("Enter more choices for the voters") .'</p></td></tr></table>'."\n";
       $erreur=true;
     }
   }
@@ -573,10 +553,10 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
       $date_fin=strftime(_("%A, den %e. %B %Y"), $jour_arret);
     }
     
-    echo '<br><div class="presentationdatefin">'. _("Your poll will expire automatically 2 days after the last date of your poll.") .'<br></td></tr><tr><td><br>'. _("Removal date") .' : <b> '.$date_fin.'</b><br><br>'."\n";
+    echo '<br /><div class="presentationdatefin"><p>'. _("Your poll will expire automatically 2 days after the last date of your poll.") .'</p><p>'. _("Removal date") .' : <b> '.$date_fin.'</b></p>'."\n";
     echo '</div>'."\n";
     echo '<div class="presentationdatefin">'."\n";
-    echo '<font color="#DD0000">'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll. <br><br>Then, you will receive quickly an email contening the link to your poll for sending it to the voters.") .'</font>'."\n";
+    echo '<p>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll."). '</p><p>' . _("Then, you will receive quickly an email contening the link to your poll for sending it to the voters.") .'</p>'."\n";
     echo'</div>'."\n";
     // echo'<p class=affichageexport>'."\n";
     // echo 'Pour finir la cr&eacute;ation du sondage, cliquez sur le bouton <img src="images/add-16.png" alt="ajout"> ci-dessous'."\n";
@@ -594,13 +574,13 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
     echo '<div style="clear:both"></div>';
   }
   
-  echo '</tr>'."\n";
-  echo '</table>'."\n";
-  echo '<a name=bas></a>'."\n";
+/*  echo '</tr>'."\n";
+  echo '</table>'."\n";*/
+  echo '<a name="bas"></a>'."\n";
   //fin du formulaire et bandeau de pied
   echo '</form>'."\n";
   //bandeau de pied
-  //echo '<br><br><br><br>'."\n";
+  //echo '<br /><br /><br /><br />'."\n";
   echo '</div>'."\n";
   
   echo '</div>'; // ajout pyg pour cohérence graphique
