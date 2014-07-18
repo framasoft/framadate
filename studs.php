@@ -1,17 +1,17 @@
 <?php
-/* This software is governed by the CeCILL-B license. If a copy of this license 
- * is not distributed with this file, you can obtain one at 
+/* This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- * 
+ *
  * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
  * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
- * 
+ *
  * =============================
- * 
- * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
- * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
- * 
+ *
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
@@ -22,9 +22,10 @@ if (file_exists('bandeaux_local.php')) {
 } else {
   include_once('bandeaux.php');
 }
-include_once('fonctions.php');
 
-// Le fichier studs.php sert a afficher les résultats d'un sondage à un simple utilisateur. 
+include_once __DIR__ . '/app/inc/functions.php';
+
+// Le fichier studs.php sert a afficher les résultats d'un sondage à un simple utilisateur.
 // C'est également l'interface pour ajouter une valeur à un sondage deja créé.
 $numsondage = false;
 
@@ -57,11 +58,11 @@ if(issetAndNoEmpty('export', $_GET) && $dsondage !== false) {
   if($_GET['export'] == 'csv') {
     require_once('exportcsv.php');
   }
-  
+
   if($_GET['export'] == 'ics' && $dsondage->is_date) {
     require_once('exportics.php');
   }
-  
+
   die();
 }
 
@@ -77,7 +78,7 @@ if(isset($_POST['ajoutcomment']) || isset($_POST['ajoutcomment_x'])) {
   } else {
     $comment_user = _('anonyme');
   }
-  
+
   if(issetAndNoEmpty('comment') === false) {
     $err |= COMMENT_EMPTY;
   }
@@ -86,15 +87,15 @@ if(isset($_POST['ajoutcomment']) || isset($_POST['ajoutcomment_x'])) {
     // protection contre les XSS : htmlentities
     $comment = htmlentities($_POST['comment'], ENT_QUOTES, 'UTF-8');
     $comment_user = htmlentities($comment_user, ENT_QUOTES, 'UTF-8');
-    
+
     $sql = 'INSERT INTO comments (id_sondage, comment, usercomment) VALUES ('.
 	      $connect->Param('id_sondage').','.
 	      $connect->Param('comment').','.
 	      $connect->Param('comment_user').')';
-    
+
     $sql = $connect->Prepare($sql);
     $comments = $connect->Execute($sql, array($numsondage, $comment, $comment_user));
-    
+
     if ($comments === false) {
       $err |= COMMENT_INSERT_FAILED;
     }
@@ -113,7 +114,7 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
   if (issetAndNoEmpty('nom') === false) {
     $err |= NAME_EMPTY;
   }
-  
+
   if(!is_error(NAME_EMPTY) && (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || $_POST["nom"] == $_SESSION["nom"])) {
     $nouveauchoix = '';
     for ($i=0;$i<$nbcolonnes;$i++) {
@@ -124,9 +125,9 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
         $nouveauchoix.="0";
       }
     }
-    
+
     $nom=substr($_POST["nom"],0,64);
-    
+
     // protection contre les XSS : htmlentities
     $nom = htmlentities($nom, ENT_QUOTES, 'UTF-8');
 
@@ -138,13 +139,13 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
 
     // Ecriture des choix de l'utilisateur dans la base
     if (!is_error(NAME_TAKEN) && !is_error(NAME_EMPTY)) {
-      
+
       $sql = 'INSERT INTO user_studs (nom,id_sondage,reponses) VALUES ('.
 		$connect->Param('nom').', '.
 		$connect->Param('numsondage').', '.
 		$connect->Param('nouveauchoix').')';
       $sql = $connect->Prepare($sql);
-      
+
       // Todo : Il faudrait lever une erreur en cas d'erreur d'insertion
       $connect->Execute($sql, array($nom, $numsondage, $nouveauchoix));
 
@@ -204,7 +205,7 @@ if($err != 0) {
     print _("Back to the homepage of") . ' <a href="'.get_server_name().'"> '. NOMAPPLICATION . '</a>.'."\n";
     echo '</div>'."\n";
     bandeau_pied();
-  
+
     echo '</body>'."\n";
     echo '</html>'."\n";
     die();
@@ -255,7 +256,7 @@ for ($i=0;$i<$nblignes;$i++) {
   if (isset($_POST["modifierligne$i"]) || isset($_POST['modifierligne'.$i.'_x'])) {
     $ligneamodifier = $i;
   }
-  
+
   //test pour voir si une ligne est a modifier
   if (isset($_POST['validermodifier'.$i]) || isset($_POST['validermodifier'.$i.'_x'])) {
     $modifier = $i;
@@ -274,7 +275,7 @@ if ($testmodifier) {
       $nouveauchoix.="0";
     }
   }
-  
+
   $compteur=0;
   while ($data = $user_studs->FetchNextObject(false) ) {
     //mise a jour des données de l'utilisateur dans la base SQL
@@ -282,12 +283,12 @@ if ($testmodifier) {
       $sql = 'UPDATE user_studs SET reponses='.$connect->Param('nouveauchoix').' WHERE nom='.$connect->Param('nom').' AND id_users='.$connect->Param('id_users');
       $sql = $connect->Prepare($sql);
       $connect->Execute($sql, array($nouveauchoix, $data->nom, $data->id_users));
-      
+
       if ($dsondage->mailsonde=="yes") {
         sendEmail( "$dsondage->mail_admin", "[".NOMAPPLICATION."] " . _("Poll's participation") . " : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8'), "\"".html_entity_decode($data->nom, ENT_QUOTES, 'UTF-8')."\""."" . _("has filled a line.\nYou can find your poll at the link") . " :\n\n".getUrlSondage($numsondage)." \n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
       }
     }
-    
+
     $compteur++;
   }
 }
@@ -307,7 +308,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
   //affichage des sujets du sondage
   echo '<tr>'."\n";
   echo '<td></td>'."\n";
-  
+
   //affichage des années
   $colspan=1;
   for ($i=0;$i<count($toutsujet);$i++) {
@@ -318,11 +319,11 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
       $colspan=1;
     }
   }
-  
+
   echo '</tr>'."\n";
   echo '<tr>'."\n";
   echo '<td></td>'."\n";
-  
+
   //affichage des mois
   $colspan=1;
   for ($i=0;$i<count($toutsujet);$i++) {
@@ -333,7 +334,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     } else {
       $next = intval($toutsujet[$i+1]);
     }
-    
+
     if ($next && strftime("%B", $cur) == strftime("%B", $next) && date('Y', $cur) == date('Y', $next)) {
       $colspan++;
     } else {
@@ -345,11 +346,11 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
       $colspan=1;
     }
   }
-  
+
   echo '</tr>'."\n";
   echo '<tr>'."\n";
   echo '<td></td>'."\n";
-  
+
   //affichage des jours
   $colspan=1;
   for ($i=0;$i<count($toutsujet);$i++) {
@@ -367,18 +368,18 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
       } else {
         echo '<td colspan='.$colspan.' class="jour">'.strftime("%a %e",$cur).'</td>'."\n";
       }
-      
+
       $colspan=1;
     }
   }
-  
+
   echo '</tr>'."\n";
-  
+
   //affichage des horaires
   if (strpos($dsondage->sujet, '@') !== false) {
     echo '<tr>'."\n";
      echo '<th role="presentation"></th>'."\n";
-    
+
     for ($i=0; isset($toutsujet[$i]); $i++) {
       $heures=explode("@",$toutsujet[$i]);
       if (isset($heures[1]) === true) {
@@ -387,16 +388,16 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
 	echo '<td scope="col" class="heure"></td>'."\n";
       }
     }
-    
+
     echo '</tr>'."\n";
   }
 } else {
   $toutsujet=str_replace("°","'",$toutsujet);
-  
+
   //affichage des sujets du sondage
   echo '<tr>'."\n";
   echo '<th role="presentation"></th>'."\n";
-  
+
   for ($i=0; isset($toutsujet[$i]); $i++) {
     echo '<th scope="col" class="sujet">'.stripslashes($toutsujet[$i]).'</th>'."\n";
   }
@@ -416,18 +417,18 @@ $compteur = 0;
 while ($data = $user_studs->FetchNextObject(false)) {
   echo '<tr>'."\n";
   echo '<td class="nom">';
-  
+
   // Le nom de l'utilisateur
   $nombase=str_replace("°","'",$data->nom);
   echo stripslashes($nombase).'</td>'."\n";
-  
+
   // Les réponses qu'il a choisies
   $ensemblereponses = $data->reponses;
-  
+
   // ligne d'un usager pré-authentifié
   $mod_ok = !( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || ($nombase == $_SESSION['nom']);
   $user_mod |= $mod_ok;
-  
+
   // pour chaque colonne
   for ($k=0; $k < $nbcolonnes; $k++) {
     // on remplace les choix de l'utilisateur par une ligne de checkbox pour recuperer de nouvelles valeurs
@@ -436,7 +437,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
       if(substr($ensemblereponses,$k,1) == '1') {
         echo 'checked="checked"';
       }
-      
+
       echo ' /></td>'."\n";
     } else {
       $car = substr($ensemblereponses, $k, 1);
@@ -451,12 +452,12 @@ while ($data = $user_studs->FetchNextObject(false)) {
       }
     }
   }
-  
+
   //a la fin de chaque ligne se trouve les boutons modifier
   if ($compteur != $ligneamodifier && ($dsondage->format=="A+"||$dsondage->format=="D+") && $mod_ok) {
     echo '<td class=casevide><input type="image" alt="' . _('Edit') . '" name="modifierligne'.$compteur.'" src="'.get_server_name().'images/info.png"></td>'."\n";
   }
-  
+
   //demande de confirmation pour modification de ligne
   for ($i=0;$i<$nblignes;$i++) {
     if (isset($_POST["modifierligne$i"]) || isset($_POST['modifierligne'.$i.'_x'])) {
@@ -465,7 +466,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
       }
     }
   }
-  
+
   $compteur++;
   echo '</tr>'."\n";
 }
@@ -480,23 +481,23 @@ if (( !(USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || !$user_mod) && $li
     $nom = 'Votre nom';
   }
   echo '<input title="'. _('Your name') .'" type="text" id="'.$nom.'" name="nom" maxlength="64" value="'.$nom.'" onfocus="if (this.value == \''. _('Your name') .'\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \''. _('Your name') .'\';}" >'."\n";
-  
+
   echo '</td>'."\n";
-  
+
   // affichage des cases de formulaire checkbox pour un nouveau choix
   for ($i=0;$i<$nbcolonnes;$i++) {
     echo '<td class="vide"><input type="checkbox" title="' . _('Select the choice ').$i.'" name="choix'.$i.'" value="1"';
     if ( isset($_POST['choix'.$i]) && $_POST['choix'.$i] == '1' && is_error(NAME_EMPTY) ) {
       echo ' checked="checked"';
     }
-    
+
     echo '></td>'."\n";
   }
-  
+
   // Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
   echo '<td><input type="image" alt="'. _('Validate my choices') .'" name="boutonp" src="'.get_server_name().'images/add-24.png"></td>'."\n";
   echo '</tr>'."\n";
-  
+
   // Focus javascript sur la case de texte du formulaire
   echo '<script type="text/javascript">'."\n" . 'document.formulaire.nom.focus();'."\n" . '</script>'."\n";
 }
@@ -508,7 +509,7 @@ for ($i=0; $i < $nbcolonnes; $i++) {
     if ($i == "0") {
       $meilleurecolonne = $somme[$i];
     }
-    
+
     if (isset($meilleurecolonne) === false || $somme[$i] > $meilleurecolonne) {
       $meilleurecolonne = $somme[$i];
     }
@@ -527,14 +528,14 @@ echo   _("Addition") .'</th>'."\n";
 for ($i=0; $i < $nbcolonnes; $i++) {
   if (isset($somme[$i]) === true) {
     $affichesomme = $somme[$i];
-    
+
     if ($affichesomme == "") {
       $affichesomme = '0';
     }
   } else {
     $affichesomme = '0';
   }
-  
+
   echo '<td class="somme">'.$affichesomme.'</td>'."\n";
 }
 echo '<td class="somme"></td>'."\n";
@@ -586,7 +587,7 @@ for ($i = 0; $i < $nbcolonnes; $i++) {
     } else {
       $meilleursujet .= $toutsujet[$i];
     }
-    
+
     $compteursujet++;
   }
 }
