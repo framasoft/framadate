@@ -1,0 +1,81 @@
+<?php
+/* This software is governed by the CeCILL-B license. If a copy of this license 
+ * is not distributed with this file, you can obtain one at 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * 
+ * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ * 
+ * =============================
+ * 
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ * 
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ */
+ 
+// Nom du serveur
+const STUDS_URL = 'www.mon_domaine.coop';
+
+// Nom de l'application
+const NOMAPPLICATION = "<nom de l'application>";
+
+// adresse mail de l'administrateur de la base
+const ADRESSEMAILADMIN = '<adresse mail>';
+
+// adresse mail de reponse lors de l'envoi de messages automatique (il est conseille d'utiliser une adresse de "no-reply")
+const ADRESSEMAILREPONSEAUTO = '<no-reply@framasoft.org>';
+
+// nom de la base de donnees
+const BASE = '<nom de la base de données>';
+
+// nom de l'utilisateur de la base
+const USERBASE = "<nom de l'utilisateur>";
+
+// passwd de l'utilisateur de la base
+const USERPASSWD = '<mot de passe>';
+
+// nom du serveur de base de donnees, laisser vide pour utiliser un socket
+const SERVEURBASE = '<nom du serveur avec domaine>';
+
+// Type de base de données à utiliser (mysql, postgres, ...)
+// http://phplens.com/lens/adodb/docs-adodb.htm#drivers
+const BASE_TYPE = '<type de BDD>';
+
+// Langue par défaut de l'application (à choisir dans $ALLOWED_LANGUAGES)
+const LANGUE = 'fr_FR';
+
+// Nom et emplacement du logo
+const LOGOBANDEAU = '<chemin relatif suivi du nom du fichier du logo pour le bandeau>';
+
+// Nom et emplacement du logo de la lettre générée en PDF
+const LOGOLETTRE = '<chemin relatif suivi du nom du fichier du logo pour la lettre>';
+
+// Nom et emplacement du fichier image contenant le titre
+//const IMAGE_TITRE', '<chemin relatif suivi du nom du fichier image du titre>';
+const IMAGE_TITRE = 'images/logo-framadate.png';
+
+// Activation des URL propre (true pour activer, false sinon)
+const URL_PROPRE = false;
+
+// Activation de Google Analytics (false si inactif, l'identifiant sinon)
+const GOOGLE_ANALYTICS_ID =  false;
+
+// Utilisation de l'identité (REMOTE_USER) fournie par le serveur web
+const USE_REMOTE_USER =  true;
+
+if (@file_exists('variables.local.php')) {
+    include('variables.local.php');
+}
+
+// Studs version
+const STUDS_VERSION = 0.7;
+
+// Do not edit the following
+$ALLOWED_LANGUAGES = array('fr_FR' => '<li>Français</li>',
+			   'en_GB' => '<li lang="en">English</li>',
+			   'es_ES' => '<li lang="es">Español</li>',
+			   'de_DE' => '<li lang="de">Deutsch</li>' );
+

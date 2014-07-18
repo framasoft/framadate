@@ -1,0 +1,984 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Studs 0.6.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-02-23 16:15+0100\n"
+"PO-Revision-Date: 2011-02-23 16:16+0100\n"
+"Last-Translator: Raphaël Droz <raphael.droz@gmail.com>\n"
+"Language-Team: Guilhem Borghesi, Raphaël Droz\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _\n"
+"X-Poedit-Basepath: /var/www/studs\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "Print"
+msgstr "Imprimer"
+
+msgid "Select the choice "
+msgstr "Cocher le choix "
+
+msgid "Validate my choices"
+msgstr "Valider mes choix"
+
+msgid "Back to the poll"
+msgstr "Retour au sondage"
+
+msgid "Public link of the pool"
+msgstr "Lien publique du sondage"
+
+msgid "Admin link of the pool"
+msgstr "Lien d'administration du sondage"
+
+msgid "Change the language"
+msgstr "Changer la langue"
+
+#: exportpdf.php:62
+msgid " Convocation"
+msgstr "Convocation"
+
+#: exportpdf.php:64
+msgid "Hello,"
+msgstr "Bonjour,"
+
+#: exportpdf.php:66
+msgid "You're invited at the meeting"
+msgstr "Vous êtes invité à la réunion"
+
+#: exportpdf.php:69
+msgid "Informations about the meeting"
+msgstr "Information à propos de la réunion"
+
+#: exportpdf.php:72
+msgid "Date"
+msgstr "Date"
+
+#: exportpdf.php:72
+msgid "at"
+msgstr "à"
+
+#: exportpdf.php:73
+msgid "Place"
+msgstr "Lieu"
+
+#: exportpdf.php:75
+msgid "Cordially,"
+msgstr "Cordialement"
+
+#: choix_autre.php:60
+#: choix_date.php:61
+#: studs.php:175
+#: adminstuds.php:70
+msgid "Error!"
+msgstr "Erreur !"
+
+#: choix_autre.php:62
+#: choix_date.php:63
+msgid "You haven't filled the first section of the poll creation."
+msgstr "Vous n'avez pas renseign&eacute; la premi&egrave;re page du sondage"
+
+#: choix_autre.php:63
+#: choix_date.php:64
+#: adminstuds.php:73
+#: adminstuds.php:274
+msgid "Back to the homepage of "
+msgstr "Retournez &agrave; la page d'accueil de"
+
+#: choix_autre.php:140
+msgid "Poll subjects (2 on 2)"
+msgstr "Choix des sujets (2 sur 2)"
+
+#: choix_autre.php:144
+msgid "Your poll aim is to make a choice between different subjects."
+msgstr "Vous avez cr&eacute;&eacute; un sondage pour d&eacute;terminer un choix entre plusieurs choses."
+
+msgid "Enter the subjects to vote for:"
+msgstr "Entrez les diff&eacute;rents choix &agrave; proposer au vote :"
+
+#: choix_autre.php:150
+msgid "Choice"
+msgstr "Choix"
+
+#: choix_autre.php:162
+msgid "5 choices more"
+msgstr "Pour ajouter 5 cases suppl&eacute;mentaires"
+
+#: choix_autre.php:167
+#: choix_date.php:535
+msgid "Next"
+msgstr "Continuer"
+
+#: choix_autre.php:177
+msgid "Enter at least one choice"
+msgstr "Il faut remplir au moins un champ !"
+
+#: choix_autre.php:182
+msgid "Characters \" < and > are not permitted"
+msgstr "Les caract&egrave;res \" < et > ne sont pas autoris&eacute;s !"
+
+#: choix_autre.php:191
+msgid "Your poll will be automatically removed after 6 months."
+msgstr "Votre sondage sera automatiquement effac&eacute; dans 6 mois."
+
+msgid "You can fix another removal date for it."
+msgstr "N&eacute;anmoins vous pouvez d&eacute;cider ci-dessous d'une date plus rapproch&eacute;e pour la destruction de votre sondage."
+
+#: choix_autre.php:193
+msgid "Removal date (optional)"
+msgstr "Date de fin (facultative)"
+
+#: choix_autre.php:193
+msgid "(DD/MM/YYYY)"
+msgstr "(JJ/MM/AAAA)"
+
+#: choix_autre.php:196
+#: choix_date.php:554
+msgid "Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll."
+msgstr "Une fois que vous aurez confirm&eacute; la cr&eacute;ation du sondage, vous serez redirig&eacute; automatiquement vers la page de votre sondage."
+
+msgid "Then, you will receive quickly an email contening the link to your poll for sending it to the voters."
+msgstr "En m&ecirc;me temps, vous recevrez un courrier &eacute;lectronique contenant le lien vers votre sondage pour le faire suivre aux futurs sond&eacute;s."
+
+#: choix_autre.php:201
+#: choix_date.php:561
+msgid "Create the poll"
+msgstr "Cr&eacute;er le sondage"
+
+#: infos_sondage.php:107
+msgid "Poll creation (1 on 2)"
+msgstr "Cr&eacute;ation de sondage (1 sur 2)"
+
+#: infos_sondage.php:113
+msgid "STUdS is not properly installed, please check the 'INSTALL' to setup the database before continuing"
+msgstr "STUdS n'est pas correctement installé, merci de vous référer au fichier INSTALL pour initialiser la base de données avant de continuer."
+
+#: infos_sondage.php:125
+msgid "You are in the poll creation section."
+msgstr "Vous avez choisi de cr&eacute;er un nouveau sondage."
+
+msgid "Required fields cannot be left blank."
+msgstr "Merci de remplir les champs obligatoires, marqu&eacute;s d'une *."
+
+
+#: infos_sondage.php:130
+msgid "Poll title *: "
+msgstr "Titre du sondage * : "
+
+#: infos_sondage.php:132
+msgid "Enter a title"
+msgstr "Il faut remplir un titre !"
+
+#: infos_sondage.php:135
+#: infos_sondage.php:140
+#: infos_sondage.php:152
+msgid "Characters < > and \" are not permitted"
+msgstr "Les caract&egrave;res < > et \" ne sont pas autoris&eacute;s !"
+
+#: infos_sondage.php:138
+msgid "Description: "
+msgstr "Description : "
+
+#: infos_sondage.php:143
+msgid "Your name*: "
+msgstr "Votre nom * : "
+
+#: infos_sondage.php:149
+msgid "Enter a name"
+msgstr "Il faut remplir un nom !"
+
+#: infos_sondage.php:155
+msgid "Your e-mail address *: "
+msgstr "Votre adresse e-mail * : "
+
+#: infos_sondage.php:161
+msgid "Enter an email address"
+msgstr "Il faut remplir une adresse !"
+
+#: infos_sondage.php:164
+msgid "The address is not correct! (You should enter a valid email address in order to receive the link to your poll)"
+msgstr "L'adresse saisie n'est pas correcte ! (Il faut une adresse valide pour recevoir le lien vers le sondage)"
+
+#: infos_sondage.php:176
+msgid "The fields marked with * are required!"
+msgstr "Les champs marqu&eacute;s d'une &eacute;toile * sont obligatoires !"
+
+#: infos_sondage.php:182
+msgid " Voters can modify their vote themselves."
+msgstr " Vous souhaitez que les sond&eacute;s puissent modifier leur ligne eux-m&ecirc;mes."
+
+#: infos_sondage.php:184
+msgid " To receive an email for each new vote."
+msgstr " Vous souhaitez recevoir un mail &agrave; chaque participation d'un sond&eacute;."
+
+#: infos_sondage.php:188
+msgid "Schedule an event"
+msgstr "Cr&eacute;er un sondage spécial dates"
+
+#: infos_sondage.php:190
+msgid "Make a choice"
+msgstr "Autres sondages"
+
+#: infos_sondage.php:192
+#: index.php:72
+#: index.php:74
+msgid "Make a poll"
+msgstr "Cr&eacute;er un sondage classique"
+
+#: choix_date.php:217
+msgid "Poll dates (2 on 2)"
+msgstr "Choix des dates (2 sur 2)"
+
+#: choix_date.php:222
+msgid "Select your dates amoung the free days (green). The selected days are in blue."
+msgstr "Sélectionnez vos dates parmi les jours disponibles qui sont en vert. Une fois selectionn&eacute;s, les jours apparaissent en bleu."
+
+msgid "You can unselect a day previously selected by clicking again on it."
+msgstr "Vous pouvez &eacute;galement enlever des jours d&eacute;j&agrave; choisis en recliquant sur la case."
+
+#: choix_date.php:487
+msgid "Selected days"
+msgstr "Jour retenus"
+
+#: choix_date.php:489
+msgid "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)"
+msgstr "Pour chacun des jours s&eacute;lectionn&eacute;s, vous avez la possibilit&eacute; de choisir ou non, des heures de r&eacute;union (par exemple : \"8h\", \"8:30\", \"8h-10h\", \"soir\", etc.)"
+
+#: choix_date.php:225
+msgid "Previous year"
+msgstr "Année précédente"
+
+msgid "Next year"
+msgstr "Année précédente"
+
+msgid "Previous month"
+msgstr "Mois précédent"
+
+msgid "Next month"
+msgstr "Mois suivant"
+
+msgid "Today"
+msgstr "Aujourd'hui"
+
+
+#: choix_date.php:496
+msgid "Time"
+msgstr "Horaire"
+
+#: choix_date.php:509
+#: choix_date.php:550
+#: studs.php:517
+#: studs.php:523
+#: adminstuds.php:926
+#: adminstuds.php:932
+msgid "%A, den %e. %B %Y"
+msgstr "%A %e %B %Y"
+
+#: choix_date.php:524
+msgid "Bad format!"
+msgstr "Format incorrect !"
+
+#: choix_date.php:533
+msgid "Remove all days"
+msgstr "Effacer tous les jours"
+
+#: choix_date.php:533
+msgid "Copy hours of the first day"
+msgstr "Reporter les horaires du premier jour"
+
+#: choix_date.php:533
+msgid "Remove all hours"
+msgstr "Effacer tous les horaires"
+
+#: choix_date.php:539
+msgid "Enter more choices for the voters"
+msgstr "Cela ne laisse pas assez de choix aux participants !"
+
+#: choix_date.php:551
+msgid "Your poll will expire automatically 2 days after the last date of your poll."
+msgstr "Votre sondage sera automatiquement effac&eacute; apr&egrave;s la date la plus tardive."
+
+#: choix_date.php:551
+msgid "Removal date"
+msgstr "Date de destruction"
+
+#: choix_date.php:560
+msgid "Back to hours"
+msgstr "Retourner aux horaires"
+
+#: apropos.php:65
+#: bandeaux.php:74
+msgid "About"
+msgstr "Informations g&eacute;n&eacute;rales"
+
+#: bandeaux.php:70
+#: bandeaux.php:84
+#: bandeaux.php:96
+msgid "Home"
+msgstr "Accueil"
+
+#: bandeaux.php:71
+msgid "Example"
+msgstr "Exemple"
+
+#: bandeaux.php:72
+msgid "Contact"
+msgstr "Contact"
+
+#: bandeaux.php:75
+msgid "Admin"
+msgstr "Admin"
+
+#: bandeaux.php:86
+msgid "Logs"
+msgstr "Historique"
+
+#: bandeaux.php:87
+msgid "Cleaning"
+msgstr "Nettoyage"
+
+#: bandeaux.php:106
+#: bandeaux.php:110
+msgid "Universit&eacute; de Strasbourg. Creation: Guilhem BORGHESI. 2008-2009"
+msgstr "Universit&eacute; de Strasbourg. Cr&eacute;ation : Guilhem BORGHESI. 2008-2009"
+
+#: studs.php:95
+msgid "anonyme"
+msgstr "anonyme"
+
+#: studs.php:153
+#: studs.php:283
+msgid "Poll's participation"
+msgstr "Participation au sondage"
+
+#: studs.php:156
+#: studs.php:283
+msgid ""
+"has filled a line.\n"
+"You can find your poll at the link"
+msgstr ""
+" vient de remplir une ligne.\n"
+"Vous pouvez retrouver votre sondage au lien suivant"
+
+#: studs.php:158
+#: studs.php:283
+#: adminstuds.php:107
+#: adminstuds.php:125
+#: adminstuds.php:144
+#: adminstuds.php:256
+#: adminstuds.php:395
+#: adminstuds.php:500
+msgid "Thanks for your confidence."
+msgstr "Merci de votre confiance."
+
+#: studs.php:171
+#: index.php:64
+#: adminstuds.php:161
+#: adminstuds.php:270
+#: adminstuds.php:314
+msgid "Make your polls"
+msgstr "Organiser des rendez-vous simplement, librement."
+
+#: studs.php:179
+#: adminstuds.php:884
+msgid "Enter a name !"
+msgstr "Vous n'avez pas saisi de nom !"
+
+#: studs.php:182
+#: adminstuds.php:889
+msgid "The name you've chosen already exist in this poll!"
+msgstr "Le nom que vous avez choisi existe d&eacute;j&agrave; !"
+
+#: studs.php:186
+#: adminstuds.php:1022
+msgid "Enter a name and a comment!"
+msgstr "Merci de remplir les deux champs !"
+
+#: studs.php:190
+msgid "Failed to insert the comment!"
+msgstr "Échec à l'insertion du commentaire !"
+
+#: studs.php:197
+#: adminstuds.php:72
+msgid "This poll doesn't exist !"
+msgstr "Ce sondage n'existe pas !"
+
+#: studs.php:198
+msgid "Back to the homepage of"
+msgstr "Retournez &agrave; la page d'accueil de"
+
+#: studs.php:217
+#: adminstuds.php:324
+msgid "Initiator of the poll"
+msgstr "Auteur du sondage"
+
+#: studs.php:221
+#: adminstuds.php:328
+#: adminstuds.php:1012
+msgid "Comments"
+msgstr "Commentaire de l'auteur"
+
+#: studs.php:238
+msgid "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line."
+msgstr "Pour participer &agrave; ce sondage, veuillez entrer votre nom, choisir toutes les valeurs qui vous conviennent et valider votre choix avec le bouton en bout de ligne."
+
+#: studs.php:456
+msgid "Participate"
+msgstr "Participation au sondage"
+
+#: studs.php:474
+#: adminstuds.php:854
+msgid "Addition"
+msgstr "Somme"
+
+#: studs.php:487
+msgid "Best choice"
+msgstr "Meilleur choix"
+
+#: studs.php:515
+#: studs.php:517
+#: adminstuds.php:924
+#: adminstuds.php:926
+msgid "for"
+msgstr "&agrave;"
+
+#: studs.php:534
+#: adminstuds.php:947
+msgid "vote"
+msgstr "vote"
+
+#: studs.php:536
+#: adminstuds.php:949
+msgid "votes"
+msgstr "votes"
+
+#: studs.php:542
+msgid "The best choice at this time is:"
+msgstr "Le meilleur choix pour l'instant est :"
+
+#: studs.php:542
+#: studs.php:545
+#: adminstuds.php:953
+#: adminstuds.php:956
+msgid "with"
+msgstr "avec"
+
+#: studs.php:545
+msgid "The bests choices at this time are:"
+msgstr "Les meilleurs choix pour l'instant sont :"
+
+#: studs.php:554
+msgid "Comments of polled people"
+msgstr "Commentaires de sondés"
+
+#: studs.php:245
+msgid "Share URL"
+msgstr "URL &agrave; communiquer"
+
+#: studs.php:563
+msgid "Add a comment in the poll:"
+msgstr "Ajoutez un commentaire à ce sondage :"
+
+msgid "Your comment: "
+msgstr "Votre commentaire : "
+
+msgid "Write your comment"
+msgstr "Écrire votre commentaire"
+
+msgid "Send your comment"
+msgstr "Envoyer votre commentaire"
+
+#: studs.php:566
+#: adminstuds.php:1027
+msgid "Name"
+msgstr "Nom"
+
+#: studs.php:578
+msgid "Export to CSV"
+msgstr "Export en CSV"
+
+#: studs.php:580
+msgid "Export: Spreadsheet"
+msgstr "Export : Tableur"
+
+#: studs.php:587
+msgid "Export iCal"
+msgstr "Export iCal"
+
+#: studs.php:589
+msgid "Agenda"
+msgstr "Agenda"
+
+#: index.php:69
+msgid "What is it about?"
+msgstr "&Agrave; quoi ça sert ?"
+
+#: index.php:70
+msgid "Making polls to schedule meetings or events, quickly and easily."
+msgstr "&Agrave; faire des sondages pour que vous puissiez trouver une date de r&eacute;union qui convienne &agrave; toutes les personnes concern&eacute;es."
+
+msgid "You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays."
+msgstr "Vous pouvez &eacute;galement utiliser cette application pour d&eacute;terminer &agrave; plusieurs un choix quelconque comme un lieu de RV, un th&egrave;me de r&eacute;union ou la marque de votre prochaine machine &agrave; caf&eacute;."
+
+#: creation_sondage.php:88
+msgid "For sending to the polled users"
+msgstr "Pour diffusion aux sondés"
+
+#: creation_sondage.php:88
+#: creation_sondage.php:89
+msgid "Poll"
+msgstr "Sondage"
+
+#: creation_sondage.php:88
+msgid ""
+"This is the message you have to send to the people you want to poll. \n"
+"Now, you have to send this message to everyone you want to poll."
+msgstr ""
+"Ceci est le message qui doit être envoyé aux sondés. \n"
+"Vous pouvez maintenant transmettre ce message à toutes les personnes susceptibles de participer au vote."
+
+#: creation_sondage.php:88
+msgid "hast just created a poll called"
+msgstr " vient de créer un sondage intitulé "
+
+#: creation_sondage.php:88
+msgid "Thanks for filling the poll at the link above"
+msgstr "Merci de bien vouloir remplir le sondage à l'adresse suivante"
+
+#: creation_sondage.php:88
+#: creation_sondage.php:91
+msgid "Thanks for your confidence"
+msgstr "Merci de votre confiance"
+
+#: creation_sondage.php:89
+msgid "Author's message"
+msgstr "Réservé à l'auteur"
+
+#: creation_sondage.php:90
+msgid ""
+"This message should NOT be sended to the polled people. It is private for the poll's creator.\n"
+"\n"
+"You can now modify it at the link above"
+msgstr ""
+"Ce message ne doit PAS être diffusé aux sondés. Il est réservé à l'auteur du sondage.\n"
+"\n"
+"Vous pouvez modifier ce sondage à l'adresse suivante "
+
+#: adminstuds.php:104
+msgid "[ADMINISTRATOR] New title for your poll"
+msgstr "[ADMINISTRATEUR] Changement du titre du sondage avec "
+
+#: adminstuds.php:105
+msgid ""
+"You have changed the title of your poll. \n"
+"You can modify this poll with this link"
+msgstr ""
+"Vous avez fait la modification du titre de votre sondage. \n"
+"Vous pouvez modifier ce sondage au lien suivant"
+
+#: adminstuds.php:122
+msgid "[ADMINISTRATOR] New description for your poll"
+msgstr "[ADMINISTRATEUR] Changement de la descrpition du sondage avec "
+
+#: adminstuds.php:123
+msgid ""
+"You have changed the description of your poll. \n"
+"You can modify this poll with this link"
+msgstr ""
+"Vous avez modifié la description de votre sondage. \n"
+"Vous pouvez modifier ce sondage au lien suivant"
+
+#: adminstuds.php:141
+msgid "[ADMINISTRATOR] New email address for your poll"
+msgstr "[ADMINISTRATEUR] Changement d'adresse électronique de l'administrateur avec "
+
+#: adminstuds.php:142
+msgid ""
+"You have changed your email address in your poll. \n"
+"You can modify this poll with this link"
+msgstr ""
+"Vous avez fait la modification de votre adresse mail. \n"
+"Vous pouvez modifier ce sondage au lien suivant"
+
+#: adminstuds.php:168
+msgid "Column's adding"
+msgstr "Ajout de colonne"
+
+#: adminstuds.php:171
+msgid "Add a new column"
+msgstr "Si vous souhaitez ajouter une colonne"
+
+#: adminstuds.php:175
+msgid "You can add a new scheduling date to your poll."
+msgstr "Vous pouvez ajouter une date &agrave; votre sondage."
+
+msgid "If you just want to add a new hour to an existant date, put the same date and choose a new hour."
+msgstr "mettez le jour en entier avec l'horaire ou le cr&eacute;neau suppl&eacute;mentaire et il sera int&eacute;gr&eacute; normalement au sondage existant."
+
+#: adminstuds.php:176
+msgid "Add a date"
+msgstr "Pour ajouter une date"
+
+msgid "Day"
+msgstr "Jour"
+
+msgid "Month"
+msgstr "Mois"
+
+msgid "Year"
+msgstr "Année"
+
+msgid "Hour"
+msgstr "Heure"
+
+msgid "Min"
+msgstr "Min"
+
+#: adminstuds.php:197
+msgid "Add a start hour (optional)"
+msgstr "Pour ajouter un horaire de d&eacute;but (facultatif)"
+
+#: adminstuds.php:211
+msgid "Add a end hour (optional)"
+msgstr "Pour ajouter un horaire de fin (facultatif)"
+
+#: adminstuds.php:253
+msgid "[ADMINISTRATOR] Removing of your poll"
+msgstr "[ADMINISTRATEUR] Suppression de sondage"
+
+#: adminstuds.php:254
+msgid ""
+"You have removed your poll. \n"
+"You can make new polls with this link"
+msgstr ""
+"Vous supprimé un sondage. \n"
+"Vous pouvez faire de nouveaux sondages au lien suivant"
+
+#: adminstuds.php:273
+msgid "Your poll has been removed!"
+msgstr "Votre sondage a &eacute;t&eacute; supprim&eacute; !"
+
+#: adminstuds.php:395
+#: adminstuds.php:499
+msgid "[ADMINISTRATOR] New column for your poll"
+msgstr "[ADMINISTRATEUR] Ajout d'une nouvelle colonne au sondage "
+
+#: adminstuds.php:395
+#: adminstuds.php:500
+msgid ""
+"You have added a new column in your poll. \n"
+"You can inform the voters of this change with this link"
+msgstr ""
+"Vous avez fait l'ajout d'une colonne dans votre sondage. \n"
+"Vous pouvez informer vos utilisateurs de ce changement en leur envoyant l'adresse suivante"
+
+#: adminstuds.php:630
+msgid "As poll administrator, you can change all the lines of this poll with this button "
+msgstr "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec ce bouton "
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "You can, as well, remove a column or a line with "
+msgstr "Vous avez aussi la possibilit&eacute; d'effacer une colonne ou une ligne avec "
+
+msgid "Remove"
+msgstr "Effacer"
+
+msgid "Remove the column"
+msgstr "Effacer la colonne"
+
+msgid "Validate"
+msgstr "Valider"
+
+msgid "You can also add a new column with "
+msgstr "Si vous avez oubli&eacute; de mettre un choix, vous pouvez rajouter une colonne en cliquant sur "
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "Add a column"
+msgstr "Ajouter une colonne"
+
+msgid "Finally, you can change the informations of this poll like the title, the comments or your email address."
+msgstr "Vous pouvez enfin &eacute;galement modifier les informations relatives &agrave; ce sondage comme le titre, les commentaires ou encore votre adresse &eacute;lectronique."
+
+#: adminstuds.php:894
+msgid "Characters \"  '  < et > are not permitted"
+msgstr "Les caract&egrave;res \"  '  < et > ne sont pas autoris&eacute;s !"
+
+#: adminstuds.php:899
+msgid "The date is not correct !"
+msgstr "La date choisie n'est pas correcte !"
+
+#: adminstuds.php:953
+msgid "The best choice at this time is"
+msgstr "Le meilleur choix pour l'instant est"
+
+#: adminstuds.php:956
+msgid "The bests choices at this time are"
+msgstr "Les meilleurs choix pour l'instant sont"
+
+#: adminstuds.php:964
+msgid "Poll's management"
+msgstr "Gestion de votre sondage"
+
+#: adminstuds.php:969
+msgid "Poll title: "
+msgstr "Titre du sondage : "
+
+msgid "Change the title"
+msgstr "Modifier le titre"
+
+msgid "Save the new title"
+msgstr "Enregistrer le nouveau titre"
+
+#: adminstuds.php:976
+msgid "Generate the convocation letter (.PDF), choose the place to meet and validate"
+msgstr "Si vous souhaitez produire la lettre de convocation (en PDF), saisissez un lieu de r&eacute;union et validez"
+
+#: adminstuds.php:987
+msgid "Enter a meeting place!"
+msgstr "Veuillez entrer un lieu de r&eacute;union !"
+
+#: adminstuds.php:992
+msgid "Enter a new title!"
+msgstr "Veuillez entrer un nouveau titre !"
+
+#: adminstuds.php:996
+msgid "Change the description"
+msgstr "Changer la description"
+
+msgid "Save the description"
+msgstr "Enregistrer la description"
+
+#: adminstuds.php:1000
+msgid "Your e-mail address: "
+msgstr "Votre adresse e-mail : "
+
+msgid "Change your email"
+msgstr "Changer votre adresse"
+
+msgid "Save your new email"
+msgstr "Enregistrer votre adresse email"
+
+#: adminstuds.php:1004
+msgid "Enter a new email address!"
+msgstr "Veuillez entrer une nouvelle adresse !"
+
+#: adminstuds.php:1026
+msgid "Add a comment in the poll"
+msgstr "Ajoutez un commentaire dans ce sondage"
+
+#: adminstuds.php:1033
+msgid "Remove your poll"
+msgstr "Si vous souhaitez supprimer votre sondage"
+
+#: adminstuds.php:1033
+msgid "Remove the poll"
+msgstr "Supprimer le sondage"
+
+#: adminstuds.php:1033
+msgid "Cancel"
+msgstr "Annuler"
+
+#: adminstuds.php:1036
+msgid "Confirm removal of your poll"
+msgstr "Confirmer la suppression de votre sondage"
+
+#: adminstuds.php:1036
+msgid "Remove this poll!"
+msgstr "Je supprime ce sondage !"
+
+#: adminstuds.php:1037
+msgid "Keep this poll!"
+msgstr "Je garde ce sondage !"
+
+#: contacts.php:56
+msgid "[CONTACT] You have sent a question "
+msgstr "[CONTACT] Envoi de question "
+
+#: contacts.php:56
+msgid "You have a question from a user "
+msgstr "Vous avez une question d'utilisateur de "
+
+#: contacts.php:56
+msgid "User"
+msgstr "Utilisateur"
+
+#: contacts.php:56
+msgid "User's email address"
+msgstr "Adresse utilisateur"
+
+#: contacts.php:56
+msgid "Message"
+msgstr "Message"
+
+#: contacts.php:59
+msgid "[COPY] Someone has sent a question "
+msgstr "[COPIE] Envoi de question "
+
+#: contacts.php:59
+msgid "Here is a copy of your question"
+msgstr "Voici une copie de votre question"
+
+#: contacts.php:59
+msgid "We're going to answer your question shortly."
+msgstr "Nous allons prendre en compte votre message rapidement."
+
+#: contacts.php:76
+msgid "Your message has been sent!"
+msgstr "Votre message a bien &eacute;t&eacute; envoy&eacute; !"
+
+#: contacts.php:108
+msgid "Contact us"
+msgstr "Nous contacter"
+
+#: contacts.php:113
+msgid "If you have questions, you can send a message here."
+msgstr "Pour toutes questions ou suggestions vous pouvez laisser un message via ce formulaire."
+
+#: contacts.php:115
+msgid "Your name"
+msgstr "Votre nom"
+
+#: contacts.php:123
+msgid "Your email address "
+msgstr "Votre adresse &eacute;lectronique "
+
+#: contacts.php:127
+msgid "The address is not correct!"
+msgstr "L'adresse saisie n'est pas correcte !"
+
+#: contacts.php:129
+msgid "Question"
+msgstr "Question"
+
+#: contacts.php:138
+msgid "Send your question"
+msgstr "Envoyer votre question"
+
+#: admin/index.php:64
+msgid "Polls administrator"
+msgstr "Administrateur de la base"
+
+#: admin/index.php:76
+msgid "Confirm removal of the poll "
+msgstr "Confirmer la suppression du sondage "
+
+#: admin/index.php:104
+msgid "polls in the database at this time"
+msgstr "sondages dans la base actuellement"
+
+#: admin/index.php:109
+msgid "Poll ID"
+msgstr "ID sondage"
+
+#: admin/index.php:109
+msgid "Format"
+msgstr "Format"
+
+#: admin/index.php:109
+msgid "Title"
+msgstr "Titre"
+
+#: admin/index.php:109
+msgid "Author"
+msgstr "Auteur"
+
+#: admin/index.php:109
+msgid "Expiration's date"
+msgstr "Date d'expiration"
+
+#: admin/index.php:109
+msgid "Users"
+msgstr "Nombre d'utilisateurs"
+
+#: admin/index.php:109
+msgid "Actions"
+msgstr "Actions"
+
+#: admin/index.php:132
+msgid "See the poll"
+msgstr "Voir le sondage"
+
+#: admin/index.php:133
+msgid "Change the poll"
+msgstr "Modifier le sondage"
+
+#~ msgid "Enter a name!"
+#~ msgstr "Vous n'avez pas saisi de nom !"
+
+#~ msgid "monday"
+#~ msgstr "lundi"
+
+#~ msgid "tuesday"
+#~ msgstr "mardi"
+
+#~ msgid "wednesday"
+#~ msgstr "mercredi"
+
+#~ msgid "thursday"
+#~ msgstr "jeudi"
+
+#~ msgid "friday"
+#~ msgstr "vendredi"
+
+#~ msgid "saturday"
+#~ msgstr "samedi"
+
+#~ msgid "sunday"
+#~ msgstr "dimanche"
+
+#~ msgid "january"
+#~ msgstr "janvier"
+
+#~ msgid "february"
+#~ msgstr "f&eacute;vrier"
+
+#~ msgid "march"
+#~ msgstr "mars"
+
+#~ msgid "april"
+#~ msgstr "avril"
+
+#~ msgid "may"
+#~ msgstr "mai"
+
+#~ msgid "june"
+#~ msgstr "juin"
+
+#~ msgid "july"
+#~ msgstr "juillet"
+
+#~ msgid "august"
+#~ msgstr "ao&ucirc;t"
+
+#~ msgid "september"
+#~ msgstr "septembre"
+
+#~ msgid "october"
+#~ msgstr "octobre"
+
+#~ msgid "november"
+#~ msgstr "novembre"
+
+#~ msgid "december"
+#~ msgstr "d&eacute;cembre"
+
+#~ msgid "Sources"
+#~ msgstr "Sources"
+
+#~ msgid "Back"
+#~ msgstr "Retour"
+
+#~ msgid ""
+#~ "Here are the <a href=\"http://sourcesup.cru.fr/frs/?"
+#~ "group_id=621\">sources</a> of "
+#~ msgstr ""
+#~ "Voila les <a href=\"http://sourcesup.cru.fr/frs/?group_id=621\">sources</"
+#~ "a> de "

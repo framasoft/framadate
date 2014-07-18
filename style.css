@@ -1,0 +1,725 @@
+/* This software is governed by the CeCILL-B license. If a copy of this license 
+ * is not distributed with this file, you can obtain one at 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * 
+ * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ * 
+ * =============================
+ * 
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ * 
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ */
+
+@import url('./buttons.css');
+
+body {
+  margin:0;
+  background: #F7FAFE;
+  font-family: "Lucida Grande",Verdana,Arial,sans-serif;
+  font-size: 14px;
+}
+
+img {
+    border: 0;
+}
+*, *:before, *:after {
+    -webkti-box-sizing:content-box;
+    -moz-box-sizing: content-box;
+    box-sizing:content-box;
+}
+
+/* a11y rules*/
+a:focus {
+outline:#000 dotted 1px;
+}
+
+/*bandeau de titre*/
+
+h1 {
+	margin:0;
+}
+
+.framorange {
+  color: #FF8400;
+  display: inline;
+  font-family: "bitstream sans","bitstream vera sans",'Helvetica Neue',Helvetica,Arial,'Liberation Sans',FreeSans,"sans-serif";
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #666;
+  font-size: 60px;
+   -webkit-font-smoothing: antialiased;
+   font-smooth: always;
+}
+.framamauve {
+  color: #6B6BB5;
+  display: inline;
+  font-family: "bitstream sans","bitstream vera sans",'Helvetica Neue',Helvetica,Arial,'Liberation Sans',FreeSans,"sans-serif";
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #666;
+  font-size: 60px;
+   -webkit-font-smoothing: antialiased;
+}
+
+div.bandeau{ 
+	text-align:center;
+	background-color: #EAEAFF;
+	color:white;
+	vertical-align:middle;
+	font-size:1em;
+	font-family:arial;
+	padding:8px; 
+	height:40px;
+	position:static;
+	top:6px;
+	left:6px;
+	right:6px;
+/*	padding-top:35px;*/
+
+}
+
+.bandeau > a {
+    text-decoration:none;
+}
+
+div.logo{ 
+	height:64px;
+	float:right;
+	top:8px;
+	right:8px;
+	margin-left: 0;
+	margin-right:0; 
+	margin-bottom:auto;
+	padding-top: 30px;
+}
+/*Sous bandeau avec bouton de navigation*/
+.bandeautitre{ 
+	margin:0;
+	height:17px;
+	background-color: #EAEAFF;
+	font-size:14px;
+	font-weight:bold;
+	text-align:center;
+	color:#404040;
+        font-style: italic;
+	vertical-align:middle;
+	font-family:arial;
+ 	padding:.9em; 
+	position:static;
+	top:57px;
+	left:6px;
+	right:6px;
+	margin-bottom: 1em;
+	border-bottom: 1px solid #CCC;
+} 
+div.sousbandeau{ 
+	min-height:17px;
+	background-color: #C4C4FF;
+	font-size:11px;
+	color:black;
+	vertical-align:middle;
+	font-family:arial;
+	padding: 15px 10px 13px 10px;
+	position:fixed;
+	bottom: 0px;
+	width: 100%;
+	/* top:80px;
+	left:6px;
+	right:6px; */
+	/* display: none; */
+	margin-top: 3em;
+	border-top: 1px solid #999;
+}
+
+.sousbandeau ul {
+margin:0;
+padding:0;
+display:block;
+float:left;
+}
+
+.sousbandeau ul li {
+list-style:none;
+display:inline;
+}
+/*bandeau de pied*/
+div.surbandeaupied{ 
+	background-color: #EAEAFF;
+	position:absolute;
+	bottom:30px;
+	left:6px;
+	right:6px; 
+	height:6px;
+}
+div.bandeaupied{ 
+	text-align:center;
+	background-color: #C4C4FF;
+	color:white;
+	font-size:11px;
+	font-family:arial;
+	padding:6px;
+	position:fixed;
+	bottom:6px;
+	left:6px;
+	right:6px; 
+	margin:2px;
+}
+div.surbandeaupiedmobile{ 
+	background-color: #EAEAFF;
+	position:static; 
+	bottom:32px;
+	left:6px;
+	right:6px; 
+	height:6px;
+}
+div.bandeaupiedmobile{ 
+	text-align:center;
+	background-color: #C4C4FF;
+	color:white;
+	font-size:11px;
+	font-family:arial;
+	padding:6px; 
+	position:static; 
+}
+/*les boutons se trouvant dans le sousbandeau*/
+/* div.sousbandeau a, div.sousbandeau span.sousbandeaulangue a {
+ 	background-color: #3E779D;
+        background: -moz-linear-gradient(center top , #3E779D, #65A9D7) repeat scroll 0 0 transparent;
+	height:16px;
+	padding: 3px 8px 3px 8px;
+	vertical-align:middle;
+	text-align:center;
+	margin-left:10px;
+	margin-right:10px;
+	font-family:arial;
+	color:white;
+	font-size:12px;
+	text-decoration:none;
+        border-radius: 14px 14px 14px 14px;
+	border-top: 1px solid #96D1F8;
+	box-shadow: 0 1px 0 #000000;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+*/
+ul.sousbandeaulangue {
+	display:block;
+	margin-left:6px;
+	margin-right:90px;
+	float:right;
+}
+
+/*corps de la page index.php*/
+
+.corps {
+   font-family: "Lucida Grande",Verdana,Arial,sans-serif;
+   /* left: 20px; */
+   margin-left: auto;
+   margin-right: auto;
+   padding-bottom: 30px;
+   padding-left: 30px;
+   padding-right: 30px;
+   padding-top: 30px;
+   /* position: static;
+   right: 20px;
+   top: 170px; */
+   width: 70em;
+  /* overflow-x:auto; */
+   border: 3px solid #CCC;
+   background-color: #fff;
+   box-shadow: 5px 5px 5px #666;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+}
+
+
+div.corps  table{
+	/* font-size:12px; */
+}
+div.corpscentre{ 
+	font-size:12px;
+	font-family:arial;
+	text-align:center;
+	position:absolute;
+	top:150px;
+	margin-right:10%;
+	margin-left:10%;
+	width:80%;
+}
+div.nouveau_sondage b {
+  font-size:12px;
+  font-weight:bold;
+  line-height:32px;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right:10px;
+}
+div.nouveau_sondage span {
+  font-size:12px;
+  height:32px;
+  vertical-align: middle;
+  display: inline-block; 
+}
+/*affichage des jours*/
+div.jourschoisis {
+	background-color: #DDD;
+	padding:10px;
+	text-align: center;
+	position:static;
+	left:700px;
+	top:170px;
+	font-size:12px;
+	width:100%;
+}
+/*presenation des pages*/
+div.bodydate {
+	padding:10px;
+	text-align:center;
+/*	font-family:arial;
+	font-size:12px;	
+	text-align:center;
+	position:static;
+	top:330px;
+	left:20px;
+	right:20px;
+	
+*/
+}
+div.bodydate table{
+	font-family:arial;
+	font-size:12px;	
+	font-weight:bold;
+}
+
+.mlabel {
+    font-weight: bold;
+}
+
+/*cadre de commentaires*/
+div.presentationdate {
+	width:66%;
+	font-family:arial;
+/*	text-align:center;*/
+	font-size:12px;	
+	border-width:1px;
+	border-style:solid;
+	border-color:#969696;
+	/* position:static;
+	top:110px;
+ 	right:1px;
+	left:1px; */
+	margin-top:10px;
+	margin-left:15%;
+	margin-right: 15%; 
+	background-color: #EEF;
+	border-radius: 5px;
+	padding: 0 20px 20px;
+}
+div.presentationdate h2 {text-align:center}
+
+div.presentationdatefin {
+	width:90%;
+	padding:10px;
+	text-align:center;
+	border:solid 1px #CCCCCC;
+	margin-top: 10px;
+	margin-left: 5%;
+	margin-right: 5%;
+	background-color: #FAFAFA;
+	border-radius: 3px; 
+}
+
+.champdatefin {
+    width: 8em !important;
+}
+
+/*cadre principal de studs.php*/
+div.cadre {
+	padding:10px; 
+/*	font-family:arial;
+	font-size:12px;	
+	position:static;
+	top:235px; */
+	text-align:center;
+	margin:0 auto;
+	overflow-x: auto;
+}
+
+/*information au sujet de la participation au sondage*/
+div.information {
+	margin:0 auto 20px auto;
+	max-width:650px;
+	text-align:justify;
+}
+/*la table des résultats dans l'affichage de sondage*/
+div.cadre table.resultats {
+	background-color: white; 
+	text-align: center;
+	margin:0 auto;
+}
+
+div.cadre th,
+div.cadre td {
+	height:30px;
+}
+/*case de tableau OK dans affichage de sondage*/
+div.cadre td.ok {
+	background-color: #9494CF;
+	font-size:12px;	
+	text-align:center;
+}
+/*Case de tableau NON dans affichage de sondage*/
+div.cadre td.non {
+	background-color: #FFC475; 
+	width:35px;
+}
+/*Case de tableau VIDE dans affichage de sondage*/
+div.cadre th.vide, div.cadre th.sujet,
+div.cadre td.vide, div.cadre td.sujet {
+	background-color: #DDDDDD; 
+	text-align:center;
+	padding:1px 5px;
+}
+div.cadre th.vide, div.cadre th.ok, div.cadre th.non, div.cadre th.sujet, div.cadre th.nom, div.cadre th.jour, div.cadre th.heure, div.cadre th.mois,
+div.cadre td.vide, div.cadre td.ok, div.cadre td.non, div.cadre td.sujet, div.cadre td.nom, div.cadre td.jour, div.cadre td.heure, div.cadre td.mois {
+	border-right: 1px solid #BBB !important;
+	border-bottom: 1px solid #BBB !important;
+
+}
+
+div.cadre td:hover.vide {
+    opacity: 0.6; 
+}
+
+.resultats tbody tr {
+
+}
+
+.resultats tbody tr:hover {
+/*    opacity: 0.9; */
+}
+
+/*Case de tableau contenant les noms dans affichage de sondage*/
+div.cadre td.nom {
+	background-color: #DDDDDD; 
+	font-size:12px;	 
+	text-align:center;
+}
+div.cadre td.casevide {
+	background-color: white; 
+	text-align:center;
+	border: none !important;
+}
+/*les cases contenant les sommes de chaque colonne dans l'affichage de 
+calendrier*/
+div.cadre td.somme {
+	background-color: white; 
+	font-weight:  bold;
+	font-size:14px; 
+}
+
+/*Case de tableau SUJET dans affichage de sondage*/
+div.cadre td.sujet, div.cadre td.jour, div.cadre td.heure {
+	border: 2px;
+	background-color: #DDDDDD; 
+	font-weight:  bold;
+	font-size:14px;
+	padding:1px 5px;
+}
+
+td.jour {
+    min-width: 55px;
+}
+
+div.cadre td.annee {
+	border: 2px;
+	background-color: #969696; 
+	font-weight:  bold;
+	font-size:14px;
+	padding:1px 5px;
+}
+div.cadre td.mois {
+	border: 2px;
+	background-color: #C0C0C0; 
+	font-weight:  bold;
+	font-size:14px;
+	padding:1px 5px;
+}
+
+/*affichage du calendrier*/
+div.calendrier {
+	padding:10px;
+	background-color: #CCF;
+	width:650px;
+    margin-left: auto;
+    margin-right: auto;
+	position:static;
+	border-radius: 10px;
+}
+
+div.calendrier td {
+    height: 40px;
+}
+
+div.calendrier td:hover {
+    opacity: 0.6;
+}
+
+/*jour de la semaine dans calendrier*/
+div.calendrier td.joursemaine {
+	width:91px;
+	text-align: center;
+	border: 2px;
+	background-color: white; 
+	height: 40px;
+}
+div.calendrier td.jourwe {
+	width:65px;
+	text-align: center;
+	font-family:arial;
+	font-size:14px;
+	border: 2px;
+	background-color: #C0C0C0; 
+}
+/*jour avant le premier jour du mois dans calendrier*/
+div.calendrier td.avant {
+	/* width:65px; */ /* inutile car fixé par .joursemaine */
+	text-align: center;
+	border: 2px;
+	font-family:arial;
+	font-size:13px;
+	background-color: #EEEEEE; 
+}
+/*jour libre dans calendrier*/
+div.calendrier td.libre {
+	/* width:65px; */ /* inutile car fixé par .joursemaine */
+	text-align: center;
+	border: 2px;
+	background-color: #66FF99; 
+}
+/*jour deja selectionné dans calendrier*/
+div.calendrier td.choisi {
+	/* width:65px; */ /* inutile car fixé par .joursemaine */
+	text-align: center;
+	border: 2px;
+	background-color: #54ADF7;
+}
+/* Le paragraphe de fin */
+p.affichageresultats{
+	text-align: center;
+	font-family:arial;
+	font-size:13px;
+}
+
+div.comment{
+	
+	margin-top: 10px;
+	border-left: 1px dashed #999;
+	background: #F5F5F5;
+	padding-left: 25px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: inherit;
+}
+
+div.comment span.usercomment{
+	font-weight:bold;
+}
+
+a.affichageexport{
+	text-align: center;
+	font-family:arial;
+	font-size:10px;
+	margin-left:10px;
+	text-decoration: none;
+}
+div.titregestionadmin{
+	text-align: center;
+	font-weight:bold;
+	font-size:18px;
+	padding:10px;
+}
+
+.choix_date_mois {
+    width: 190px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.bouton {
+	border:0px;
+	padding: 12px 30px 6px;
+	margin:0px;
+	cursor:pointer;
+	font-family:arial;
+	font-size:13px;
+}
+/*les boutons pour choisir un jour non selectionné*/
+.ON {
+    background-color: #66FF99;
+}
+
+/*les boutons pour deselectionner un jour deja choisi*/
+.OFF {
+    background-color: #54ADF7;
+}
+
+div.nouveau_sondage a {
+    text-decoration: none;
+}
+div.nouveau_sondage span img {
+    vertical-align: middle;
+    border: 0px;
+}
+div.nouveau_sondage span {
+    margin-left: 20px;
+}
+
+div.error, div.addcomment {
+    text-align:center;
+    border: 1px;
+    /*    font-family: arial;
+    font-size: 13px; */
+}
+
+div.addcomment {
+    border-top: 1px solid #CCC;
+    padding-top: 25px;
+    background: #EFEFEF;
+    border-radius: 5px;
+}
+
+div.addcomment p {
+	width:380px;
+	margin-left : auto;
+	margin-right: auto;
+	text-align:left;
+}
+
+ul.exports {
+  display:none; /* fonction non fonctionnelle */
+    text-align:center;
+    list-style-type : none ;
+}
+li.error {
+    color: red;
+}
+
+#creation_sondage_date, #creation_sondage_autre {
+    vertical-align: middle;
+    margin: 10px;
+    margin-left: 0;
+    padding-left: 5px;
+    border-left: 1px solid #ccc;
+}
+
+#choix_sondage {
+    width: 300px;
+}
+#choix_sondage tr:hover {
+    background: #fcc;
+}
+.separateur {
+ line-height: 4em;
+}
+.formulaire2 {
+    width:40%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.formulaire2 input[name="lieureunion"] {
+    width: 350px;
+}
+
+.index_date, .index_sondage {
+    float:left;
+    width:50%;
+    text-align:center;
+}
+
+
+.index_date .opacity, .index_sondage .opacity {
+    opacity: 0.6;
+}
+.button img {
+    vertical-align: middle;
+}
+.index_date img:hover, .index_sondage img:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.poursuivre {
+    float: right;
+    margin-right: 50px;
+}
+
+.retour {
+    float: left;
+    margin-left: 50px;
+}
+
+.imprimer {
+    float:right;
+    text-align:center;
+}
+.imprimer a {
+    width: 90px
+}
+
+.error {
+	color:red;
+}
+
+.margin-top {
+	margin-top:1em;
+}
+
+.txt-right {
+	text-align:right !important;
+}
+.txt-center {
+	text-align:center !important;
+}
+
+.sousbandeaulangue select {
+	border: 1px solid white;
+	height: 14px;
+	border-radius: 0.5em 0 0 0.5em;
+}
+.sousbandeaulangue input {
+	border: none;
+	height: 15px;
+	border-radius: 0 0.5em 0.5em 0;
+}
+
+.clear-left {
+    clear:left;
+}
+
+.newday {
+	width:60px;
+	float:left;
+}
+
+.newmonth {
+	width:110px;
+	float:left;
+}
+
+.newyear {
+	width:70px;
+	float:left;
+}
+
+.newhour {
+	width:70px;
+	float:left;
+}
+
+.newmin {
+	width:50px;
+	float:left;
+}

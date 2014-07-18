@@ -1,0 +1,91 @@
+@import url(./style.css);
+
+.corps {
+  width: auto;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+}
+.sousbandeau {
+  display:none;
+}
+body {
+  background:none;
+}
+
+.logo {
+  display:none;
+}
+
+.imprimer {
+  display:none;
+}
+
+.casevide {
+  display:none;
+}
+
+div.cadre {
+    overflow-x: none !important;
+}
+
+{
+table {
+    page-break-after:always}
+}
+
+div.cadre div.information {
+  display:none;
+}
+
+div.cadre td.ok, div.cadre td.non, div.cadre td.somme {
+  background:none;
+  border:1px solid black;
+}
+
+div.cadre tr:last-child td {
+  border:none;
+}
+
+div.cadre tr.ajout_reponse {
+  display:none;
+}
+
+table {
+  page-break-inside:auto
+}
+
+tr {
+  page-break-inside:avoid;
+  page-break-after:auto;
+}
+
+thead {
+  display:table-header-group;
+}
+
+tfoot {
+  display:table-footer-group;
+}
+
+div.addcomment {
+  display:none;
+}
+
+#framanav {
+  display:none;
+}
+#donation {
+  display:none;
+}
+
+
+div.cadre td {
+    font-size: 40% !important;
+    height: 10px;
+}
+
+
+@page {
+    size:landscape;
+}
