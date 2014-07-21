@@ -1,22 +1,22 @@
 <?php
-/* This software is governed by the CeCILL-B license. If a copy of this license 
- * is not distributed with this file, you can obtain one at 
+/* This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- * 
+ *
  * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
  * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
- * 
+ *
  * =============================
- * 
- * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
- * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
- * 
+ *
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
- 
-include_once('fonctions.php');
+
+include_once __DIR__ . '/app/inc/functions.php';
 
 function framanav()
 {
@@ -83,7 +83,7 @@ function liste_lang()
   global $ALLOWED_LANGUAGES; global $lang;
   $str = '';
   foreach ($ALLOWED_LANGUAGES as $k => $v ) {
-	if (substr($k,0,2)==$lang) { 
+	if (substr($k,0,2)==$lang) {
 		$str .= '<option lang="'.substr($k,0,2).'" selected value="' . $k . '">' . $v . '</option>' . "\n" ;
 	} else {
 		$str .= '<option lang="'.substr($k,0,2).'" value="' . $k . '">' . $v . '</option>' . "\n" ;

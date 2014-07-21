@@ -1,22 +1,22 @@
 <?php
-/* This software is governed by the CeCILL-B license. If a copy of this license 
- * is not distributed with this file, you can obtain one at 
+/* This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- * 
+ *
  * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
  * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
- * 
+ *
  * =============================
- * 
- * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
- * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
- * 
+ *
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-include_once('fonctions.php');
+include_once __DIR__ . '/app/inc/functions.php';
 
 if(!isset($_GET['numsondage']) || ! preg_match(";^[\w\d]{16}$;i", $_GET['numsondage'])) {
   header('Location: studs.php');
@@ -39,7 +39,7 @@ foreach ($toutsujet as $value) {
 	if (strpos($dsondage->sujet,'@') !== false) {
 		$days=explode("@",$value);
 		$input.= date("j/n/Y",$days[0]).';';
-	} else {  
+	} else {
 		$input.= date("j/n/Y",$values).';';
 	}
   } else {
@@ -54,7 +54,7 @@ if (strpos($dsondage->sujet,'@') !== false) {
     $heures=explode("@",$value);
     $input.= $heures[1].';';
   }
-  
+
   $input.="\r\n";
 }
 
@@ -73,7 +73,7 @@ while (	$data=$user_studs->FetchNextObject(false)) {
       $input.=';';
     }
   }
-  
+
   $input.="\r\n";
 }
 

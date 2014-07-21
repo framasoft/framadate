@@ -1,23 +1,24 @@
 <?php
-/* This software is governed by the CeCILL-B license. If a copy of this license 
- * is not distributed with this file, you can obtain one at 
+/* This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- * 
+ *
  * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
  * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
- * 
+ *
  * =============================
- * 
- * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
- * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
- * 
+ *
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
- */ 
+ */
 
 session_start();
-include_once('fonctions.php');
+include_once __DIR__ . '/app/inc/functions.php';
+
 if (file_exists('bandeaux_local.php')) {
   include_once('bandeaux_local.php');
 } else {
@@ -122,7 +123,7 @@ if (issetAndNoEmpty("poursuivre")){
 
   } else {
 	  // Title Erreur !
-	  print_header(true, _("Error!").' - '._("Poll creation (1 on 2)"), $lang);	
+	  print_header(true, _("Error!").' - '._("Poll creation (1 on 2)"), $lang);
   }
 } else {
 	// Title OK (formulaire pas encore rempli)
@@ -163,7 +164,7 @@ echo '<tr><td><label for="poll_title">'. _("Poll title *: ") .'</label></td><td>
 if (!$_SESSION["titre"] && issetAndNoEmpty("poursuivre") ) {
   // fermeture de la ligne du dessus avec attribut aria-describeby pour avoir les infos concernant l'erreur
   // pas très propre mais bon...
-  echo 'aria-describeby="#poll_title_error"></td>'."\n"; 
+  echo 'aria-describeby="#poll_title_error"></td>'."\n";
   echo '<td class="error" id="poll_title_error">' . _("Enter a title") . '</td>'."\n";
 } elseif ($erreur_injection_titre) {
   // idem
@@ -179,11 +180,11 @@ echo '</tr>'."\n";
 echo '<tr><td><label for="poll_comments">'. _("Description: ") .'</label></td><td><textarea id="poll_comments" name="commentaires" rows="7" cols="40"';
 if ($erreur_injection_commentaires) {
   // même principe
-  echo 'aria-describeby="#poll_comment_error">'.stripslashes($_SESSION["commentaires"]).'</textarea></td>'."\n";	
+  echo 'aria-describeby="#poll_comment_error">'.stripslashes($_SESSION["commentaires"]).'</textarea></td>'."\n";
   echo '<td class="error" id="poll_comment_error">' . _("Characters < > and \" are not permitted") . "</td>"."\n";
 } else {
   // pas d'erreur, pas d'aria
-  echo '>'.stripslashes($_SESSION["commentaires"]).'</textarea></td>'."\n";	
+  echo '>'.stripslashes($_SESSION["commentaires"]).'</textarea></td>'."\n";
 }
 
 echo '</tr>'."\n";
