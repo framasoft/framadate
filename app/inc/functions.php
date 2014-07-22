@@ -39,7 +39,7 @@ function get_server_name()
     $port = in_array($_SERVER['SERVER_PORT'], [80, 443]) ? '/' : ':' . $_SERVER['SERVER_PORT'] . '/';
     $server_name = $_SERVER['SERVER_NAME'] . $port . dirname($_SERVER['SCRIPT_NAME']) . '/';
 
-    return $scheme . '://' .  str_replace('///','/',$server_name);
+    return $scheme . '://' .  str_replace('/admin','',str_replace('//','/',str_replace('///','/',$server_name)));
 }
 
 function get_sondage_from_id($id)
@@ -83,24 +83,35 @@ function is_user()
     return (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || isset($_SESSION['nom']);
 }
 
-function print_header($js = false, $nom_sondage = '', $lang = 'fr')
+function print_header($title = '')
 {
+	global $lang;
+	
     echo '<!DOCTYPE html>
-       <html lang="'.$lang.'">
-        <head>
-        <meta charset="utf-8">';
+<html lang="'.$lang.'">
+<head>
+    <meta charset="utf-8">';
 
-    if (! empty($nom_sondage)) {
-        echo '<title>' . stripslashes($nom_sondage) . ' - ' . NOMAPPLICATION . '</title>';
+    if (! empty($title)) {
+        echo '<title>' . stripslashes($title) . ' - ' . NOMAPPLICATION . '</title>';
     } else {
         echo '<title>' . NOMAPPLICATION . '</title>';
     }
 
     echo '
-    <link rel="stylesheet" href="' . get_server_name() . 'style.css">
-    <link rel="stylesheet" href="' . get_server_name() . 'print.css" media="print">';
+    <link rel="stylesheet" href="' . get_server_name() . 'css/bootstrap.min.css">
+    <link rel="stylesheet" href="' . get_server_name() . 'css/bootstrap-accessibility.css">
+    <link rel="stylesheet" href="' . get_server_name() . 'css/style.css">
+    <link rel="stylesheet" href="' . get_server_name() . 'css/print.css" media="print">
+    <script type="text/javascript" src="' . get_server_name() . 'js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="' . get_server_name() . 'js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="' . get_server_name() . 'js/bootstrap-accessibility.min.js"></script>';
+    if (file_exists($_SERVER['DOCUMENT_ROOT']."/nav/nav.js")) {
+        echo '<script src="/nav/nav.js" id="nav_js" type="text/javascript" charset="utf-8"></script><!-- /Framanav -->';
+    }
+    echo '
+</head>';
 
-    echo '</head>';
 }
 
 function check_table_sondage()

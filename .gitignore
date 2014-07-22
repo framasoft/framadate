@@ -4,4 +4,5 @@ admin/.htpasswd
 admin/logs_studs.txt
 framanav
 nav
-.htaccess
+.gitignore
+.gitmodules
