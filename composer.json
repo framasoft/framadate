@@ -1,0 +1,5 @@
+{
+    "require": {
+        "adodb/adodb-php": "5.19"
+    }
+}

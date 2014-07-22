@@ -1,8 +1,10 @@
-variables.php
+.htaccess
 admin/.htaccess
 admin/.htpasswd
 admin/logs_studs.txt
+composer.lock
+composer.phar
 framanav
 nav
-.gitignore
-.gitmodules
+variables.php
+vendor

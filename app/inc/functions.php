@@ -22,7 +22,10 @@ if (ini_get('date.timezone') == '') {
 
 include_once __DIR__ . '/../../variables.php';
 include_once __DIR__ . '/../../i18n.php';
-require_once __DIR__ . '/../../adodb/adodb.inc.php';
+
+// Autoloading of dependencies with Composer
+require_once __DIR__ . '/../../vendor/autoload.php';
+
 
 function connexion_base()
 {
