@@ -50,18 +50,11 @@ include_once __DIR__ . '/../bandeaux.php';
 // de l'application.
 
 // Affichage des balises standards
-echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-echo '<html lang="'.$lang.'">'."\n";
-echo '<head>'."\n";
-echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-echo '<title>'._("Polls administrator").' - '.NOMAPPLICATION.'</title>'."\n";
-echo '<link rel="stylesheet" type="text/css" href="'.get_server_name().'../style.css">'."\n";
-echo '</head>'."\n";
+print_header( _("Polls administrator") );
+
 echo '<body>'."\n";
 
 //Affichage des bandeaux et début du formulaire
-framanav();
-logo();
 bandeau_tete();
 bandeau_titre(_("Polls administrator"));
 sous_bandeau_admin();
@@ -69,76 +62,91 @@ sous_bandeau_admin();
 
 $sondage=$connect->Execute("select * from sondage");
 
-echo'<div class=corps>'."\n";
-echo '<form action="'.get_server_name().'index.php" method="POST">'."\n";
+echo'
+    <div class=corps>
+    <form action="'.get_server_name().'index.php" method="POST">'."\n";
 // Test et affichage du bouton de confirmation en cas de suppression de sondage
 while($dsondage = $sondage->FetchNextObject(false)) {
-  if (issetAndNoEmpty('supprimersondage'.$dsondage->id_sondage) === true) {
-    echo '<table>'."\n";
-    echo '<tr><td bgcolor="#EE0000" colspan="11">'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'" : <input type="submit" name="confirmesuppression'.$dsondage->id_sondage.'" value="'. _("Remove this poll!") .'">'."\n";
-    echo '<input type="submit" name="annullesuppression" value="'. _("Keep this poll!") .'"></td></tr>'."\n";
-    echo '</table>'."\n";
-    echo '<br>'."\n";
-  }
-
-  // Traitement de la confirmation de suppression
-  if (issetAndNoEmpty('confirmesuppression'.$dsondage->id_sondage) === true) {
-    // On inclut la routine de suppression
-    $date=date('H:i:s d/m/Y');
-
-    if ( remove_sondage( $connect, $dsondage->id_sondage ) ) {
-
-      // ecriture des traces dans le fichier de logs
-      error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'logs_studs.txt');
-
+    if (issetAndNoEmpty('supprimersondage'.$dsondage->id_sondage) === true) {
+        echo '
+        <table>
+            <tr><td colspan="11">
+                '. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'" :
+                <input type="submit" id="confirmesuppression'.$dsondage->id_sondage.'" name="confirmesuppression'.$dsondage->id_sondage.'" value="'. _("Remove this poll!") .'">
+                <input type="submit" name="annullesuppression" value="'. _("Keep this poll!") .'">
+            </td></tr>
+        </table>
+        <br />'."\n";
     }
 
-  }
+    // Traitement de la confirmation de suppression
+    if (issetAndNoEmpty('confirmesuppression'.$dsondage->id_sondage) === true) {
+        // On inclut la routine de suppression
+        $date=date('H:i:s d/m/Y');
 
+        if ( remove_sondage( $connect, $dsondage->id_sondage ) ) {
+           // ecriture des traces dans le fichier de logs
+           error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'logs_studs.txt');
+        }
+    }
 }
 
 $sondage=$connect->Execute("select * from sondage WHERE date_fin > DATE_SUB(now(), INTERVAL 3 MONTH) ORDER BY date_fin ASC");
 $nbsondages=$sondage->RecordCount();
 
-echo $nbsondages.' '. _("polls in the database at this time") .'<br><br>'."\n";
+echo '<p>' . $nbsondages. ' ' . _("polls in the database at this time") .'</p>'."\n";
 
 // tableau qui affiche tous les sondages de la base
-echo '<table border=1>'."\n";
-echo '<tr align=center><td>'. _("Poll ID") .'</td><td>'. _("Format") .'</td><td>'. _("Title") .'</td><td>'. _("Author") .'</td><td>'. _("Expiration's date") .'</td><td>'. _("Users") .'</td><td colspan=3>'. _("Actions") .'</td>'."\n";
+echo '<table border="1">
+    <tr align="center">
+	    <th scope="col">'. _("Poll ID") .'</th>
+	    <th scope="col">'. _("Format") .'</th>
+	    <th scope="col">'. _("Title") .'</th>
+	    <th scope="col">'. _("Author") .'</th>
+	    <th scope="col">'. _("Expiration's date") .'</th>
+	    <th scope="col">'. _("Users") .'</th>
+	    <th scope="col" colspan=3>'. _("Actions") .'</th>
+	</tr>'."\n";
 
 $i = 0;
 while($dsondage = $sondage->FetchNextObject(false)) {
-  /* possible en 1 bonne requête dans $sondage */
-  $sujets=$connect->Execute( "select * from sujet_studs where id_sondage='$dsondage->id_sondage'");
-  $dsujets=$sujets->FetchObject(false);
+    /* possible en 1 bonne requête dans $sondage */
+    $sujets=$connect->Execute( "select * from sujet_studs where id_sondage='$dsondage->id_sondage'");
+    $dsujets=$sujets->FetchObject(false);
 
-  $user_studs=$connect->Execute( "select * from user_studs where id_sondage='$dsondage->id_sondage'");
-  $nbuser=$user_studs->RecordCount();
+    $user_studs=$connect->Execute( "select * from user_studs where id_sondage='$dsondage->id_sondage'");
+    $nbuser=$user_studs->RecordCount();
 
-  echo '<tr align=center><td>'.$dsondage->id_sondage.'</td><td>'.$dsondage->format.'</td><td>'. stripslashes($dsondage->titre).'</td><td>'.stripslashes($dsondage->nom_admin).'</td>';
+    echo '
+    <tr align="center">
+        <td>'.$dsondage->id_sondage.'</td>
+        <td>'.$dsondage->format.'</td>
+        <td>'. stripslashes($dsondage->titre).'</td>
+        <td>'.stripslashes($dsondage->nom_admin).'</td>';
 
-  if (strtotime($dsondage->date_fin) > time()) {
-    echo '<td>'.date("d/m/y",strtotime($dsondage->date_fin)).'</td>';
-  } else {
-    echo '<td><font color=#FF0000>'.date("d/m/y",strtotime($dsondage->date_fin)).'</font></td>';
-  }
-
-  echo'<td>'.$nbuser.'</td>'."\n";
-  echo '<td><a href="'.getUrlSondage($dsondage->id_sondage).'">'. _("See the poll") .'</a></td>'."\n";
-  echo '<td><a href="'.getUrlSondage($dsondage->id_sondage_admin, true).'">'. _("Change the poll") .'</a></td>'."\n";
-  echo '<td><input type="submit" name="supprimersondage'.$dsondage->id_sondage.'" value="'. _("Remove the poll") .'"></td>'."\n";
-
-  echo '</tr>'."\n";
-  $i++;
+    if (strtotime($dsondage->date_fin) > time()) {
+        echo '
+        <td>'.date("d/m/y",strtotime($dsondage->date_fin)).'</td>';
+    } else {
+        echo '
+        <td><span class="error">'.date("d/m/y",strtotime($dsondage->date_fin)).'</span></td>';
+    }
+    echo '
+        <td>'.$nbuser.'</td>
+        <td><a href="'.getUrlSondage($dsondage->id_sondage).'">'. _("See the poll") .'</a></td>
+        <td><a href="'.getUrlSondage($dsondage->id_sondage_admin, true).'">'. _("Change the poll") .'</a></td>
+        <td><input type="submit" name="supprimersondage'.$dsondage->id_sondage.'" value="'. _("Remove the poll") .'"></td>
+    </tr>'."\n";
+    $i++;
 }
 
 echo '</table>'."\n";
 // fin du formulaire et de la page web
-echo '</form>'."\n";
-echo'</div>'."\n";
-echo '<div class="separateur">&nbsp;</div>';
-echo '</body>'."\n";
-echo '</html>'."\n";
+echo '</form>
+</div>
+<hr class="separateur" />
+</body>
+</html>';
 
 // si on annule la suppression, rafraichissement de la page
 if (issetAndNoEmpty('annulesuppression') === true) {

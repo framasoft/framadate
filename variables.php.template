@@ -60,9 +60,6 @@ const IMAGE_TITRE = 'images/logo-framadate.png';
 // Activation des URL propre (true pour activer, false sinon)
 const URL_PROPRE = false;
 
-// Activation de Google Analytics (false si inactif, l'identifiant sinon)
-const GOOGLE_ANALYTICS_ID =  false;
-
 // Utilisation de l'identité (REMOTE_USER) fournie par le serveur web
 const USE_REMOTE_USER =  true;
 
@@ -71,7 +68,7 @@ if (@file_exists('variables.local.php')) {
 }
 
 // Studs version
-const STUDS_VERSION = 0.7;
+const STUDS_VERSION = 0.8;
 
 // Do not edit the following
 $ALLOWED_LANGUAGES = array('fr_FR' => '<li>Français</li>',

@@ -17,25 +17,21 @@
  */
 include_once('bandeaux.php');
 
-echo '<!DOCTYPE html>'."\n";
-echo '<html lang="'.$lang.'">'."\n";
-echo '<head>'."\n";
-echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-echo '<title>Maintenance '.NOMAPPLICATION.' </title>'."\n";
-echo '<link rel="stylesheet" type="text/css" href="'.get_server_name().'style.css">'."\n";
-echo '</head>'."\n";
+print_header ( _('Maintenance') );
+
 echo '<body>'."\n";
-logo();
+
 bandeau_tete();
 
-echo '<div class=corpscentre>'."\n";
-print "<H2>L'application ".NOMAPPLICATION." est pour l'instant en maintenance.<br /> </H2>"."\n";
-print "Merci de votre compr&eacute;hension."."\n";
-echo '<br /><br /><br />'."\n";
-echo '</div>'."\n";
+echo '
+    <div class="corpscentre">
+        <h2>'. _('The application') .NOMAPPLICATION . _('is currently under maintenance. ') . '</h2>'
+        '<p>' . _('Thank you for your understanding.') . '</p>
+    </div>'."\n";
 
 // Affichage du bandeau de pied
 sur_bandeau_pied();
 bandeau_pied();
-echo '</body>'."\n";
-echo '</html>'."\n";
+
+echo '</body>
+</html>';

@@ -1,6 +1,6 @@
 Les dernières améliorations d'OpenSondage
     
-    Changelog version 0.8 (juillet 2014 Armony - JosephK)
+    Changelog version 0.8 (juillet 2014 Pascal Chevrel - Armony Altinier - JosephK)
 	- Améliorations sur l'accessibilité
 	- Améliorations sur l'ergonomie
 	- Améliorations sur l'internationalisation (nombreuses phrases en français dans le code)
@@ -11,6 +11,7 @@ Les dernières améliorations d'OpenSondage
 	- Fix bug changement de langues en mode URL rewriting (requête GET passée en formulaire POST)
 	- Fix bug 2 boutons valider lorsqu'on édite un vote
 	- Fix focus javascript sur "Votre nom"
+	- Nettoyage
 
 	Changelog version 0.7 (mars 2013)
 	- Fix : le sondage supprimé n'était pas forcément le sondage sélectionné (cfévrier)

@@ -26,25 +26,14 @@ if (file_exists('bandeaux_local.php')) {
 }
 
 //affichage de la page
-echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-echo '<html lang="'.$lang.'">'."\n";
-echo '<head>'."\n";
-echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-echo '<title>'._("About").' - '.NOMAPPLICATION.'</title>'."\n";
-echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
-echo '</head>'."\n";
-echo '<body>'."\n";
-
-framanav();
-
-//debut du formulaire
-echo '<form name=formulaire action="apropos.php" method="POST">'."\n";
+    print_header( _("About") );
+    
+    echo '
+<body>';
 
 //bandeaux de tete
-logo();
 bandeau_tete();
 bandeau_titre(_("About"));
-sous_bandeau();
 
 echo '<div class=corps>'."\n";
 
@@ -294,7 +283,8 @@ mentions;
 
 echo '</div>'."\n";
 
-bandeau_pied_mobile();
-echo '</form>'."\n";
-echo '</body>'."\n";
-echo '</html>'."\n";
+bandeau_pied();
+
+echo '
+</body>
+</html>';
