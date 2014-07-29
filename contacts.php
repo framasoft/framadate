@@ -45,12 +45,6 @@ if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && isse
   
     //affichage de la page de confirmation d'envoi
     print_header( _("Make your polls") );
-  
-    echo '
-<body>'."\n";
-
-    logo();
-    bandeau_tete();
     bandeau_titre(_("Make your polls"));
 
     echo '
@@ -73,17 +67,10 @@ if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && isse
   
     //affichage de la page
     print_header( _("Contact us") );
-    echo '<body>'."\n";
-
-    //debut du formulaire
-    echo '<form name=formulaire action="'.get_server_name().'contacts.php" method="POST">'."\n";
-  
-    //bandeaux de tete
-    bandeau_tete();
     bandeau_titre(_("Contact us"));
 
     echo '
-    <div class=corps>
+    <form name=formulaire action="'.get_server_name().'contacts.php" method="POST">
         <p>' . _("If you have questions, you can send a message here.") . '</p>
         <p><label for="nom">' . _("Your name") .' :</label><br />
         <input type="text" size="40" maxlength="64" id="nom" name="nom" value="'.$_SESSION["nom"].'"></p>';
@@ -110,13 +97,8 @@ if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && isse
 
     echo '
         <p><button type="submit" name="envoiquestion" value="'._("Send your question").'" class="button green poursuivre"><strong>'._("Send your question").'</strong></button></p>
-    </div>
     </form>'."\n";
     
     //bandeau de pied
     bandeau_pied();
-    
-    echo '
-</body>
-</html>';
 }

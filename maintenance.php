@@ -15,13 +15,12 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
+include_once __DIR__ . '/app/inc/functions.php';
+
 include_once('bandeaux.php');
 
 print_header ( _('Maintenance') );
-
-echo '<body>'."\n";
-
-bandeau_tete();
+bandeau_titre( _('Maintenance') );
 
 echo '
     <div class="corpscentre">
@@ -30,8 +29,4 @@ echo '
     </div>'."\n";
 
 // Affichage du bandeau de pied
-sur_bandeau_pied();
 bandeau_pied();
-
-echo '</body>
-</html>';

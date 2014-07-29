@@ -104,12 +104,6 @@ if (issetAndNoEmpty("poursuivre")){
 	print_header( _("Poll creation (1 on 2)") );
 }
 
-//affichage de la page
-echo '<body>'."\n";
-
-//affichage des bandeaux de tete
-
-bandeau_tete();
 bandeau_titre( _("Poll creation (1 on 2)") );
 
 // premier sondage ? test l'existence des schémas SQL avant d'aller plus loin
@@ -117,9 +111,6 @@ if(!check_table_sondage()) {
     echo '<p calss="error txt-center">' . _("STUdS is not properly installed, please check the 'INSTALL' to setup the database before continuing") . "</p>"."\n";
   
     bandeau_pied();
-  
-    echo '</body>
-</html>'."\n";
 
     die();
 }
@@ -127,7 +118,6 @@ if(!check_table_sondage()) {
 //debut du formulaire
 echo '
     <form name="formulaire" id="formulaire" action="'.get_server_name().'infos_sondage.php" method="POST">
-    <div class="corps">
         <p>'. _("You are in the poll creation section.").' <br /> '._("Required fields cannot be left blank.") .'</p>';
 
 //Affichage des différents champs textes a remplir
@@ -227,14 +217,8 @@ if ($_GET['choix_sondage'] == 'date') {
 echo '
     <p><input type="hidden" name="choix_sondage" value="'. $choix_sondage .'"/>
     <button name="poursuivre" value="'. $choix .'" type="submit" class="button green poursuivre"><strong>'. _('Next') . '</strong> </button></p>
-      
-<div style="clear:both"></div>
 
-</div>
 </form>'."\n";
 
 //bandeau de pied
 bandeau_pied();
-
-echo '</body>
-</html>';

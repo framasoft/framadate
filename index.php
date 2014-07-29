@@ -27,15 +27,9 @@ session_start();
 
 //affichage de la page
 print_header ( _("Home") );
-
-echo '<body>'."\n";
-
-//bandeaux de tete
-bandeau_tete();
 bandeau_titre(_("Organiser des rendez-vous simplement, librement."));
 
 echo '
-    <div class="corps">
         <div class="index_date">
             <p><a href="'.get_server_name().'infos_sondage.php?choix_sondage=date" role="button">
                 <img class="opacity" src="'.get_server_name().'images/date.png" alt="" />
@@ -49,14 +43,7 @@ echo '
                 <br /><span class="button blue bigrounded"><strong><img src="'.get_server_name().'images/chart-32.png" alt="" />
                 '. _('Make a poll') . '</strong></span>
             </a></p>
-        </div>
-        
-        <div style="clear:both;"></div>
-    </div>'."\n";
+        </div>'."\n";
     
 //bandeau de pied
-//sur_bandeau_pied();
 bandeau_pied();
-
-echo '</body>
-</html>';

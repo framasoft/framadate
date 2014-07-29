@@ -18,23 +18,25 @@
 
 include_once __DIR__ . '/app/inc/functions.php';
 
-#le bandeau principal
-function bandeau_tete()
-{
-    if ( IMAGE_TITRE ) {
-        echo '<div role="banner" class="bandeau"><h1><a href="'.str_replace('/admin','',get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'"><img src="'.get_server_name(). IMAGE_TITRE. '" title="'._("Home").' - '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'"></a></h1></div>'."\n";
-    } else {
-        echo '<div role="banner" class="bandeau"><h1><a href="'.str_replace('/admin','',get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'">'.NOMAPPLICATION.'</a></h1></div>'."\n";
-    } ;
-}
-
-
 // bandeaux de titre
 function bandeau_titre($titre)
 {
-    echo '<p class="bandeautitre">'. $titre .'</p>'."\n";
+	$img = ( IMAGE_TITRE ) ? '<img src="'.get_server_name(). IMAGE_TITRE. '" title="'._("Home").' - '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'">' : '';
+    echo '
+    <header role="banner">
+        <form method="post" action="">
+            <div class="input-group input-group-sm pull-right col-md-2">
+                <select name="lang" class="form-control" title="'. _("Select the language") .'" >' . liste_lang() . '</select>
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default btn-sm" title="'. _("Change the language") .'">OK</button>
+                </span>
+            </div>               
+        </form>
+        <h1><a href="'.str_replace('/admin','',get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'">'.$img.'</a></h1>
+        <p class="lead"><i>'. $titre .'</i></p>
+    </header>
+    <main>';	
 }
-
 
 function liste_lang()
 {
@@ -53,47 +55,32 @@ function liste_lang()
   return $str;
 }
 
-
-#Les sous-bandeaux contenant les boutons de navigation
-function sous_bandeau_admin()
+function bandeau_pied($admin=false)
 {
-    echo '
-    <div class="sousbandeau">
-        <ul>
-            <li><a class="button small gray" href="'.str_replace('/admin','',get_server_name()).'">'. _("Home") .'</a></li>';
-
-    if (is_readable('logs_studs.txt')) {
-        echo '
-            <li><a role="button" class="button small gray" href="'.str_replace('/admin','',get_server_name()).'admin/logs_studs.txt">'. _("Logs") .'</a></li>';
+	echo '
+	    <hr />
+    </main>
+    <footer>
+        <ul class="list-inline">';
+	if($admin) {
+		echo '
+		    <li><a class="btn btn-default btn-xs" href="'.str_replace('/admin','',get_server_name()).'">'. _("Home") .'</a></li>
+		    <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','',get_server_name()).'scripts/nettoyage_sondage.php">'. _("Cleaning") .'</a></li>';
+        if (is_readable('logs_studs.txt')) {
+            echo '
+            <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','',get_server_name()).'admin/logs_studs.txt">'. _("Logs") .'</a></li>';
+        }    
+	} else {
+	    echo '
+            <li><a class="btn btn-default btn-xs" href="'.get_server_name().'">'. _("Home") .'</a></li>
+            <li><a class="btn btn-default btn-xs" href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a></li>
+            <li><a class="btn btn-default btn-xs" href="http://contact.framasoft.org">'. _("Contact") .'</a></li>
+            <li><a class="btn btn-default btn-xs" href="'.get_server_name().'apropos.php">'. _("About") .'</a></li>';
     }
-
-    echo '
-            <li><a role="button" class="button small gray" href="'.str_replace('/admin','',get_server_name()).'scripts/nettoyage_sondage.php">'. _("Cleaning") .'</a></li>
+    echo '        
         </ul>
-        <ul class="sousbandeau sousbandeaulangue">
-            <li><form method="post" action="">
-                <select name="lang" title="'. _("Change the language") .'" class="small white" >' . liste_lang() . '</select>
-                <input type="submit" value="OK" class="small white" />
-            </form></li>
-        </ul>'.
-    '</div>'."\n";
-}
-
-function bandeau_pied()
-{
-    echo '
-    <div class="sousbandeau">
-        <ul>
-            <li><a class="button small gray" href="'.get_server_name().'">'. _("Home") .'</a></li>
-            <li><a class="button small gray" href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a></li>
-            <li><a class="button small gray" href="http://contact.framasoft.org">'. _("Contact") .'</a></li>
-            <li><a class="button small gray" href="'.get_server_name().'apropos.php">'. _("About") .'</a></li>
-        </ul>
-        <ul class="sousbandeau sousbandeaulangue">
-            <li><form method="post" action="">
-                <select name="lang" title="'. _("Change the language") .'" class="small white" >' . liste_lang() . '</select>
-                <input type="submit" value="OK" class="small white" />
-            </form></li>
-        </ul>
-    </div>'."\n";
+    </footer>    
+    </div> <!-- .container -->
+</body>
+</html>'."\n";
 }

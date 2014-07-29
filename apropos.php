@@ -28,14 +28,9 @@ if (file_exists('bandeaux_local.php')) {
 //affichage de la page
     print_header( _("About") );
     
-    echo '
-<body>';
+    bandeau_titre(_("About"));
 
-//bandeaux de tete
-bandeau_tete();
-bandeau_titre(_("About"));
-
-echo '<div class=corps>'."\n";
+//echo '<div class="corps">'."\n";
 
 echo <<<mentions
 <ul>
@@ -281,10 +276,6 @@ sous la licence logicielle libre <a
 <br />
 mentions;
 
-echo '</div>'."\n";
+//echo '</div>'."\n";
 
 bandeau_pied();
-
-echo '
-</body>
-</html>';
