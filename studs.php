@@ -118,11 +118,13 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
     if(!is_error(NAME_EMPTY) && (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || $_POST["nom"] == $_SESSION["nom"])) {
         $nouveauchoix = '';
         for ($i=0;$i<$nbcolonnes;$i++) {
-            // Si la checkbox est enclenchée alors la valeur est 1
-            if (isset($_POST["choix$i"]) && $_POST["choix$i"] == '1') {
-                $nouveauchoix.="1";
-            } else { // sinon c'est 0
-                $nouveauchoix.="0";
+            // radio checked 1 = Yes, 2 = Ifneedbe, 0 = No
+            if (isset($_POST["choix$i"])) {
+                switch ($_POST["choix$i"]) {
+                    case 1: $nouveauchoix .= "1";break;
+                    case 2: $nouveauchoix .= "2";break;
+                    default: $nouveauchoix .= "0";break;
+                }
             }
         }
 
@@ -169,94 +171,94 @@ if($err != 0) {
 	print_header($dsondage->titre);
 }
 
-echo '<body>'."\n";
-
-bandeau_tete();
 bandeau_titre(_("Make your polls"));
 
 if($err != 0) {
     bandeau_titre(_("Error!"));
 
-    echo '<div class="error"><ul>'."\n";
+    echo '<div class="alert alert-danger"><ul>'."\n";
     
     if(is_error(NAME_EMPTY)) {
-        echo '<li class="error">' . _("Enter a name !") . "</li>\n";
+        echo '<li>' . _("Enter a name !") . "</li>\n";
     }
     if(is_error(NAME_TAKEN)) {
-        echo '<li class="error">' . _("The name you've chosen already exist in this poll!") . "</li>\n";
+        echo '<li>' . _("The name you've chosen already exist in this poll!") . "</li>\n";
     }
     if(is_error(COMMENT_EMPTY) || is_error(COMMENT_USER_EMPTY)) {
-        echo '<li class="error">' . _("Enter a name and a comment!") . "</li>\n";
+        echo '<li>' . _("Enter a name and a comment!") . "</li>\n";
     }
     if(is_error(COMMENT_INSERT_FAILED) ) {
-        echo '<li class="error">' . _("Failed to insert the comment!") . "</li>\n";
+        echo '<li>' . _("Failed to insert the comment!") . "</li>\n";
     }
-    
+
     echo '</ul></div>';
 
     if(is_error(NO_POLL_ID) || is_error(NO_POLL)) {
         echo '
-    <div class="corpscentre">
+    <div class="col-md-6 col-md-offset-3">
         <h2>' . _("This poll doesn't exist !") . '</h2>
         <p>' . _('Back to the homepage of') . ' <a href="' . get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>   
     </div>'."\n";
     
     bandeau_pied();
-
-    echo '</body>
-</html>';
-
+    
     die();
   }
 }
 
-echo '
-    <div class="corps">
-        <div class="imprimer">
-            <p><a role="button" href="javascript:print()" class="button white medium">' . _('Print') . '</a></p>
-            <p><a role="button" class="button white medium" href="'.get_server_name().'exportcsv.php?numsondage=' . $numsondage . '">' . _('Export to CSV') . '</a></p>
-        </div>
-        <div class="presentationdate"> '."\n";
-
-//affichage du titre du sondage
 $titre=str_replace("\\","",$dsondage->titre);
-echo '        <h2>'.stripslashes($titre).'</h2>'."\n";
-
-//affichage du nom de l'auteur du sondage
 echo '
-            <div class="initiator"><p>
-                <span class="mlabel">'. _("Initiator of the poll") .' :</span>
-                <span class="nom"> '.stripslashes($dsondage->nom_admin).'</span>
-            </p></div>
-            <div class="adress"><p>
-                <span class="mlabel">'._("Public link of the pool") .' : </span>
-                <code>'.getUrlSondage($dsondage->id_sondage).'</code>
-            </p></div>'."\n";
-
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-7">
+                    <h2>'.stripslashes($titre).'</h2>
+                </div>
+                <div class="col-md-5">
+                    <div class="btn-group pull-right">
+                        <button onclick="javascript:print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> ' . _('Print') . '</button>
+                        <button onclick="window.location.href=\''.get_server_name().'exportcsv.php?numsondage=' . $numsondage . '\';return false;" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> ' . _('Export to CSV') . '</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label class="control-label">'. _("Initiator of the poll") .' :</label>
+                        <p class="form-control-static"> '.stripslashes($dsondage->nom_admin).'</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="public-link">'._("Public link of the pool") .' <a href="'.getUrlSondage($dsondage->id_sondage).'" class="glyphicon glyphicon-link"></a> : </label>
+                        <input class="form-control" id="public-link" type="text" readonly="readonly" value="'.getUrlSondage($dsondage->id_sondage).'" />
+                    </div>
+                </div>'."\n";
 
 //affichage de la description du sondage
 if ($dsondage->commentaires) {
-	$commentaires = $dsondage->commentaires;
+    $commentaires = $dsondage->commentaires;
     $commentaires=nl2br(str_replace("\\","",$commentaires));
     echo '
-            <div class="admin_comment">
-                <span class="mlabel">'._("Description: ") .'</span><br />
-                <span class="mcontent">'. $commentaires .'</span>
-            </div>'."\n";
+                <div class="form-group col-md-7">
+                    <label class="control-label">'._("Description: ") .'</label><br />
+                    <p class="form-control-static well">'. $commentaires .'</p>
+                </div>';
 }
 echo '
-        </div>
- 
+            </div>
+        </div>'."\n"; // .jumbotron
+        
+echo ' 
         <form name="formulaire" action="'.getUrlSondage($dsondage->id_sondage).'#bas" method="POST">
             <input type="hidden" name="sondage" value="' . $numsondage . '"/>
             
-            <div class="cadre">
-                <div class="information">' . _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.") . '</div>';
+            <div class="alert alert-info">
+                <p>' . _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.") . '</p>
+            </div>';
 
 // Debut de l'affichage des resultats du sondage
 echo '
-                <table class="resultats">
-                    <thead>';
+    <div id="tableContainer" class="tableContainer">
+        <table class="results">
+            <thead>';
 
 //On récupere les données et les sujets du sondage
 $nblignes = $user_studs->RecordCount();
@@ -280,12 +282,14 @@ for ($i=0;$i<$nblignes;$i++) {
 if ($testmodifier) {
     $nouveauchoix = '';
     for ($i=0;$i<$nbcolonnes;$i++) {
-        //recuperation des nouveaux choix de l'utilisateur
-        if (isset($_POST["choix$i"]) && $_POST["choix$i"] == 1) {
-            $nouveauchoix.="1";
-        } else {
-            $nouveauchoix.="0";
-        }
+        // radio checked 1 = Yes, 2 = Ifneedbe, 0 = No
+        if (isset($_POST["choix$i"])) {
+            switch ($_POST["choix$i"]) {
+                case 1: $nouveauchoix .= "1";break;
+                case 2: $nouveauchoix .= "2";break;
+                default: $nouveauchoix .= "0";break;
+            }
+		}
     }
 
     $compteur=0;
@@ -318,47 +322,46 @@ $toutsujet = explode(",",$dsondage->sujet);
 if ($dsondage->format=="D"||$dsondage->format=="D+") {
     //affichage des sujets du sondage
     echo '<tr>
-<td></td>'."\n";
+<th></th>'."\n";
 
-    //affichage des années
-    $colspan=1;
-    for ($i=0;$i<count($toutsujet);$i++) {
-        if (isset($toutsujet[$i+1]) && date('Y', intval($toutsujet[$i])) == date('Y', intval($toutsujet[$i+1]))) {
+	$border = array();
+	$td_headers = array();
+    
+    //affichage des mois et années
+    $colspan = 1;
+    for ($i = 0; $i < count($toutsujet); $i++) {
+        $current = $toutsujet[$i];
+
+        if (strpos($toutsujet[$i], '@') !== false) {
+            $current = substr($toutsujet[$i], 0, strpos($toutsujet[$i], '@'));
+        }
+
+        if (isset($toutsujet[$i+1]) && strpos($toutsujet[$i+1], '@') !== false) {
+            $next = substr($toutsujet[$i+1], 0, strpos($toutsujet[$i+1], '@'));
+        } elseif (isset($toutsujet[$i+1])) {
+            $next = $toutsujet[$i+1];
+        }
+
+        if (isset($toutsujet[$i+1]) && strftime("%B", $current) == strftime("%B", $next) && strftime("%Y", $current) == strftime("%Y", $next)){
             $colspan++;
+            $border[$i] = false;
         } else {
-            echo '<td colspan='.$colspan.' class="annee">'.date('Y', intval($toutsujet[$i])).'</td>'."\n";
+			$border[$i] = true; // bordure pour distinguer les mois
+			if ($_SESSION["langue"]=="EN") {
+                echo '<th colspan="'.$colspan.'" class="bg-primary month" id="M'.$current.'">'.date("F",$current).' '.strftime("%Y", $current).'</th>'."\n";
+            } else {
+                echo '<th colspan="'.$colspan.'" class="bg-primary month" id="M'.$current.'">'.strftime("%B",$current).' '.strftime("%Y", $current).'</th>'."\n";
+            }
             $colspan=1;
         }
+        $td_headers[$i] = 'M'.$current;
     }
-
-    echo '</tr><tr>
-<td></td>'."\n";
-
-    //affichage des mois
-    $colspan=1;
-        for ($i=0;$i<count($toutsujet);$i++) {
-            // intval() est utiliser pour supprimer le suffixe @* qui déplaît logiquement à strftime()
-            $cur = intval($toutsujet[$i]);
-            if (isset($toutsujet[$i+1]) === false) {
-                $next = false;
-            } else {
-                $next = intval($toutsujet[$i+1]);
-            }
-
-            if ($next && strftime("%B", $cur) == strftime("%B", $next) && date('Y', $cur) == date('Y', $next)) {
-                $colspan++;
-            } else {
-                if ($_SESSION["langue"]=="EN") { // because strftime doesn't support english suffix (like st,nd,rd,th)
-                    echo '<td colspan='.$colspan.' class="mois">'.date("F",$cur).'</td>'."\n";
-                } else {
-                    echo '<td colspan='.$colspan.' class="mois">'.strftime("%B",$cur).'</td>'."\n";
-                }
-                $colspan=1;
-            }
-        }
-        
-    echo '</tr><tr>
-<td></td>'."\n";
+    
+    $border[count($border)-1] = false; // suppression de la bordure droite du dernier mois
+    
+    echo '<th></th>
+</tr><tr>
+<th></th>'."\n";
 
     //affichage des jours
     $colspan=1;
@@ -372,13 +375,15 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
         if ($next && strftime("%a %e", $cur) == strftime("%a %e", $next) && strftime("%B", $cur) == strftime("%B", $next)) {
             $colspan++;
         } else {
+            $rbd = ($border[$i]) ? ' rbd' : '';
             if ($_SESSION["langue"]=="EN") {
-                echo '<td colspan='.$colspan.' class="jour">'.date("D jS",$cur).'</td>'."\n";
+                echo '<th colspan="'.$colspan.'" class="bg-primary day'.$rbd.'" id="D'.$current.'">'.date("D jS",$current).'</th>'."\n";
             } else {
-                echo '<td colspan='.$colspan.' class="jour">'.strftime("%a %e",$cur).'</td>'."\n";
+                echo '<th colspan="'.$colspan.'" class="bg-primary day'.$rbd.'" id="D'.$current.'">'.strftime("%a %e",$current).'</th>'."\n";
             }
             $colspan=1;
         }
+        $td_headers[$i] .= ' D'.$current;
     }
 
     echo '</tr>'."\n";
@@ -389,15 +394,20 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
 <th role="presentation"></th>'."\n";
 
         for ($i=0; isset($toutsujet[$i]); $i++) {
-            $heures=explode("@",$toutsujet[$i]);
-            if (isset($heures[1]) === true) {
-                echo '<td class="heure">'.stripslashes($heures[1]).'</td>'."\n";
+            $rbd = ($border[$i]) ? ' rbd' : '';
+            $heures=explode("@", $toutsujet[$i]);
+            if (isset($heures[1])) {
+                echo '<th class="bg-info'.$rbd.'" id="H'.preg_replace("/[^a-zA-Z0-9]_+/", "", $heures[0].$heures[1]).'">'.$heures[1].'</th>'."\n";
+                $td_headers[$i] .= ' H'.preg_replace("/[^a-zA-Z0-9]_+/", "", $heures[0].$heures[1]);
             } else {
-	            echo '<td scope="col" class="heure"></td>'."\n";
+                echo '<th class="bg-info'.$rbd.'"></th>'."\n";
             }
         }
 
-        echo '</tr>'."\n";
+        echo '<th></th>
+</tr>
+        </thead>
+        <tbody>'."\n";
     }
 } else {
     $toutsujet=str_replace("°","'",$toutsujet);
@@ -407,15 +417,14 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
 <th role="presentation"></th>'."\n";
 
     for ($i=0; isset($toutsujet[$i]); $i++) {
-        echo '<th scope="col" class="sujet">'.stripslashes($toutsujet[$i]).'</th>'."\n";
+        echo '<th class="bg-info" id="S'.preg_replace("/[^a-zA-Z0-9]_+/", "", stripslashes($toutsujet[$i])).'">'.stripslashes($toutsujet[$i]).'</th>'."\n";
+        $td_headers[$i] .= 'S'.preg_replace("/[^a-zA-Z0-9]_+/", "", stripslashes($toutsujet[$i]));
     }
     echo '<th></th>
-</tr>'."\n";
+</tr>
+        </thead>
+        <tbody>'."\n";
 }
-
-echo '
-                    </thead>
-                    <tbody>'."\n";
 
 //Usager pré-authentifié dans la liste?
 $user_mod = false;
@@ -425,15 +434,13 @@ $somme = array();
 $compteur = 0;
 
 while ($data = $user_studs->FetchNextObject(false)) {
-    echo '<tr>
-<td class="nom">';
 
-    // Le nom de l'utilisateur
-    $nombase=str_replace("°","'",$data->nom);
-    echo stripslashes($nombase).'</td>'."\n";
-
-    // Les réponses qu'il a choisies
     $ensemblereponses = $data->reponses;
+    
+    //affichage du nom
+    $nombase=str_replace("°","'",$data->nom);
+    echo '<tr>
+<th class="bg-info">'.stripslashes($nombase).'</th>'."\n";
 
     // ligne d'un usager pré-authentifié
     $mod_ok = !( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || ($nombase == $_SESSION['nom']);
@@ -443,37 +450,51 @@ while ($data = $user_studs->FetchNextObject(false)) {
     for ($k=0; $k < $nbcolonnes; $k++) {
         // on remplace les choix de l'utilisateur par une ligne de checkbox pour recuperer de nouvelles valeurs
         if ($compteur == $ligneamodifier) {
-            echo '<td class="vide"><input type="checkbox" title="' . _('Select the choice ') .$k.'" name="choix'.$k.'" value="1" ';
-
-            if (substr($ensemblereponses,$k,1) == '1') {
-                echo 'checked="checked"';
-            }
             
-            echo ' /></td>'."\n";
+            $car = substr($ensemblereponses, $k , 1);
+                
+                // variable pour afficher la valeur cochée
+                $car_html[0]='value="0"';$car_html[1]='value="1"';$car_html[2]='value="2"';
+                switch ($car) { 
+                    case "1": $car_html[1]='value="1" checked';break;
+                    case "2": $car_html[2]='value="2" checked';break; 
+                    default: $car_html[0]='value="0" checked';break;
+                }
+                    
+                echo '<td class="bg-info" headers="'.$td_headers[$k ].'">
+    <ul class="list-unstyled choice">
+        <li class="yes"><input type="radio" id="y-choice-'.$k .'" name="choix'.$k .'" '.$car_html[1].'><label for="y-choice-'.$k .'"> ' . _('Yes') . '</label></li>
+        <li class="ifneedbe"><input type="radio" id="i-choice-'.$k .'" name="choix'.$k .'" '.$car_html[2].'><label for="i-choice-'.$k .'"> (' . _('Yes') . '<span class="sr-only">' . _(', ifneedbe') . '</span>)</label></li>
+        <li class="no"><input type="radio" id="n-choice-'.$k .'" name="choix'.$k .'" '.$car_html[0].'><label for="n-choice-'.$k .'"> ' . _('No') . '</label></li>
+    </ul>
+</td>'."\n";
+
         } else {
+            $rbd = ($border[$k]) ? ' rbd' : '';
             $car = substr($ensemblereponses, $k, 1);
-            if ($car == "1") {
-                echo '<td class="ok">OK</td>'."\n";
-                if (isset($somme[$k]) === false) {
-	                $somme[$k] = 0;
-	            }
-                $somme[$k]++;
-            } else {
-                echo '<td class="non"></td>'."\n";
+            switch ($car) {
+                case "1": echo '<td class="bg-success text-success'.$rbd.'" headers="'.$td_headers[$k].'"><span class="glyphicon glyphicon-ok"></span><span class="sr-only"> ' . _('Yes') . '</span></td>'."\n";
+                    if (isset($somme[$k]) === false) {
+                        $somme[$k] = 0;
+                    }
+                    $somme[$k]++; break;
+                case "2":  echo '<td class="bg-warning text-warning'.$rbd.'" headers="'.$td_headers[$k].'">(<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only"> ' . _('Yes') . _(', ifneedbe') . '</span></td>'."\n"; break;
+                default: echo '<td class="bg-danger'.$rbd.'" headers="'.$td_headers[$k].'"><span class="sr-only">' . _('No') . '</span></td>'."\n";
             }
         }
     }
 
     //a la fin de chaque ligne se trouve les boutons modifier
     if ($compteur != $ligneamodifier && ($dsondage->format=="A+"||$dsondage->format=="D+") && $mod_ok) {
-        echo '<td class=casevide><input type="image" alt="' . _('Edit') . '" name="modifierligne'.$compteur.'" src="'.get_server_name().'images/info.png"></td>'."\n";
+        echo '<td><button type="submit" class="btn btn-link btn-sm" name="modifierligne'.$compteur.'" title="'. _('Edit the line:') .' '.stripslashes($nombase).'">
+        <span class="glyphicon glyphicon-pencil"></span></button></td>'."\n";
     }
 
     //demande de confirmation pour modification de ligne
     for ($i=0;$i<$nblignes;$i++) {
         if (isset($_POST["modifierligne$i"]) || isset($_POST['modifierligne'.$i.'_x'])) {
             if ($compteur == $i) {
-                echo '<td class="casevide"><input type="image" alt="'. _('Validate my choices') .'" name="validermodifier'.$compteur.'" src="'.get_server_name().'images/accept.png" ></td>'."\n";
+                echo '<td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="validermodifier'.$compteur.'" title="'. _('Save the choices:') .' '.stripslashes($nombase).'">'. _('Save') .'</button></td>'."\n";
             }
         }
     }
@@ -484,31 +505,32 @@ while ($data = $user_studs->FetchNextObject(false)) {
 
 // affichage de la ligne pour un nouvel utilisateur
 if (( !(USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || !$user_mod) && $ligneamodifier==-1) {
-    echo '<tr class="ajout_reponse">
-<td class="nom">';
-    $nom = (isset($_SESSION['nom'])) ? stripslashes($_SESSION['nom']) : _('Your name');
-    echo '<input title="'. _('Your name') .'" type="text" id="'.$nom.'" name="nom" maxlength="64" value="'.$nom.'" onfocus="if (this.value == \''. _('Your name') .'\') {this.value = \'\';}" onblur="if (this.value == \'\') {this.value = \''. _('Your name') .'\';}" >
+    //affichage de la case vide de texte pour un nouvel utilisateur
+    echo '<tr id="vote-form">
+<td class="bg-info" style="padding:5px">
+    <div class="input-group input-group-sm">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+        <input type="text" id="nom" name="nom" class="form-control" title="'. _('Your name') .'" placeholder="'. _('Your name') .'" />
+    </div>
 </td>'."\n";
 
-    // affichage des cases de formulaire checkbox pour un nouveau choix
-    for ($i=0;$i<$nbcolonnes;$i++) {
-        echo '<td class="vide"><input type="checkbox" title="' . _('Select the choice ').$i.'" name="choix'.$i.'" value="1"';
-        if (isset($_POST['choix'.$i]) && $_POST['choix'.$i] == '1' && is_error(NAME_EMPTY) ) {
-            echo ' checked="checked"';
-        }
-
-        echo '></td>'."\n";
+    //une ligne de checkbox pour le choix du nouvel utilisateur
+    for ($i = 0; $i < $nbcolonnes; $i++) {
+        echo '<td class="bg-info" headers="'.$td_headers[$i].'">
+    <ul class="list-unstyled choice">
+        <li class="yes"><input type="radio" id="y-choice-'.$i.'" name="choix'.$i.'" value="1" ><label for="y-choice-'.$i.'">' . _('Yes') . '</label></li>
+        <li class="ifneedbe"><input type="radio" id="i-choice-'.$i.'" name="choix'.$i.'" value="2"><label for="i-choice-'.$i.'">(' . _('Yes') . '<span class="sr-only">, ' . _('ifneedbe') . '</span>)</label></li>
+        <li class="no"><input type="radio" id="n-choice-'.$i.'" name="choix'.$i.'" value="0" checked><label for="n-choice-'.$i.'">' . _('No') . '</label></li>
+    </ul>
+</td>'."\n";
     }
 
     // Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
-    echo '<td><input type="image" alt="'. _('Validate my choices') .'" name="boutonp" src="'.get_server_name().'images/add-24.png"></td>
-</tr>';
+    echo '<td><button type="submit" class="btn btn-success btn-sm" name="boutonp" title="'. _('Save my choices') .'">'. _('Save') .'</button></td>
+</tr>'."\n";
 
-    // Focus javascript sur la case de texte du formulaire
-echo '
-<script type="text/javascript">
-    document.formulaire.nom.focus();
-</script>'."\n";
+    //focus en javascript sur le champ texte pour le nom d'utilisateur
+    echo '<script type="text/javascript">document.formulaire.nom.focus();</script>'."\n";
 
 }
 
@@ -526,16 +548,9 @@ for ($i=0; $i < $nbcolonnes; $i++) {
     }
 }
 
-echo '
-                    </tbody>
-                    <tfoot>'."\n";
-
-// Affichage des différentes sommes des colonnes existantes
+//affichage de la ligne contenant les sommes de chaque colonne
 echo '<tr>
-<th scope="row" class="txt-right">';
-// si on a plus de 8 colonnes, on affiche un second bouton "valider mes choix"
-// echo ($nbcolonnes > 8) ? '<input type="submit" name="boutonp" alt="'. _('Validate my choices') .'" class="btn btn-success btn-mini" style="margin-right:50px">' : "";
-echo   _("Addition") .'</th>'."\n";
+<td align="right">'. _("Addition") .'</td>'."\n";
 
 for ($i=0; $i < $nbcolonnes; $i++) {
     if (isset($somme[$i]) === true) {
@@ -548,24 +563,25 @@ for ($i=0; $i < $nbcolonnes; $i++) {
         $affichesomme = '0';
     }
 
-  echo '<td class="somme">'.$affichesomme.'</td>'."\n";
+    echo '<td>'.$affichesomme.'</td>'."\n";
+    
 }
-echo '<td class="somme"></td>
+echo '<td></td>
 </tr><tr>
-<td class="somme"></td>'."\n";
+<td></td>'."\n";
 
-for ($i=0; $i < $nbcolonnes; $i++) {
-    if (isset($somme[$i]) && isset($meilleurecolonne) && $somme[$i] == $meilleurecolonne) {
-        echo '<td class="somme"><img src="'.get_server_name().'images/medaille.png" alt="' . _('Best choice') . '"></td>'."\n";
+for ($i = 0; $i < $nbcolonnes; $i++) {
+    if (isset($somme[$i]) === true && isset($meilleurecolonne) === true && $somme[$i] == $meilleurecolonne){
+        echo '<td><span class="glyphicon glyphicon-star text-warning"></span></td>'."\n";
     } else {
-        echo '<td class="somme"></td>'."\n";
+        echo '<td></td>'."\n";
     }
 }
-echo '<td class="somme"></td>
+echo '<td></td>
 </tr>
-                    </tfoot>
-                </table>
-            </div>'."\n";
+        </tbody>
+    </table>
+    </div>'."\n";
 
 // reformatage des données de la base pour les sujets
 $toutsujet=explode(",",$dsondage->sujet);
@@ -603,19 +619,15 @@ for ($i = 0; $i < $nbcolonnes; $i++) {
 }
 
 $meilleursujet=substr("$meilleursujet", 1);
-$vote_str = _('vote');
-
-if (isset($meilleurecolonne) && $meilleurecolonne > 1) {
-    $vote_str = _('votes');
-}
+$vote_str = (isset($meilleurecolonne) && $meilleurecolonne > 1) ? $vote_str = _('votes') : _('vote');
 
 echo '<p class="affichageresultats">'."\n";
 
-// Affichage du meilleur choix
-if ($compteursujet == "1" && isset($meilleurecolonne)) {
-  echo '<img src="' . get_server_name() . 'images/medaille.png" alt=""> ' . _('The best choice at this time is:') . ' <b>' . stripslashes($meilleursujet) . '</b> ' . _('with') . ' <b>' . $meilleurecolonne .'</b>' . $vote_str . ".\n";
+//affichage de la phrase annoncant le meilleur sujet
+if (isset($meilleurecolonne) && $compteursujet == "1") {
+  echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The best choice at this time is") . ' : <b>' . $meilleursujet . ' </b>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
 } elseif (isset($meilleurecolonne)) {
-  echo '<img src="' . get_server_name() . 'images/medaille.png" alt=""> ' . _('The bests choices at this time are:') . ' <b>' . stripslashes($meilleursujet) . '</b> ' . _('with') . ' <b>' . $meilleurecolonne . '</b>' . $vote_str . ".\n";
+  echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The bests choices at this time are") . ' : <b>' . $meilleursujet . ' </b>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
 }
 
 echo '</p>';
@@ -625,37 +637,42 @@ $sql = 'select * from comments where id_sondage='.$connect->Param('numsondage').
 $sql = $connect->Prepare($sql);
 $comment_user=$connect->Execute($sql, array($numsondage));
 
+echo '
+    <hr />
+    <div class="row">';
+
 if ($comment_user->RecordCount() != 0) {
-    echo '<h3>' . _("Comments of polled people") . '</h3>';
+    echo '<div class="col-md-7"><h3>' . _("Comments of polled people") . ' :</h3>'."\n";
     while($dcomment = $comment_user->FetchNextObject(false)) {
         echo '
-            <div class="comment">
-                <span class="usercomment">'.stripslashes($dcomment->usercomment). ' : </span>
-                <span class="comment">' . stripslashes(nl2br($dcomment->comment)) . '</span>
-            </div>';
-  }
+    <div class="comment">
+        <span class="usercomment">'.stripslashes($dcomment->usercomment). ' :</span>
+        <span class="comment">' . stripslashes(nl2br($dcomment->comment)) . '</span>
+    </div>';
+    }
+    echo '</div>';
 }
 
 //affichage de la case permettant de rajouter un commentaire par les utilisateurs
-$nom = (isset($_SESSION['nom']) === false) ? '' : stripslashes($_SESSION['nom']);
-
-echo '<div class="addcomment">
-    <fieldset><legend>' ._("Add a comment in the poll:") . '</legend>
-        <p><label for="commentator">'. _("Name") .'</label> : 
-        <input type="text" name="commentuser" maxlength="64" id="commentator" value="'.$nom.'" /></p>
-        <p><label for="comment">'. _("Your comment: ") .'</label><br />
-        <textarea id="comment" title="'. _("Write your comment") .'" name="comment" rows="2" cols="40"></textarea></p>
-        <p class="txt-center"><input type="submit" name="ajoutcomment" value="'. _("Send your comment") .'" class="button green"></p>
-    </fieldset>
-</div>
+echo '
+        <div class="col-md-5">
+            <div class="alert alert-info">
+            <fieldset id="add-comment"><legend>' . _("Add a comment in the poll:") . '</legend>
+                <div class="form-group">
+                    <p><label for="commentuser">'. _("Name") .'</label> : <input type=text class="form-control" name="commentuser" id="commentuser" /></p>
+                </div>
+                <div class="form-group">
+                    <p><label for="comment">'. _("Your comment: ") .'</label><br />
+                    <textarea title="'. _("Write your comment") .'" name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea></p>
+                </div>
+                <p class="text-center"><input type="submit" name="ajoutcomment" value="'. _("Send your comment") .'" class="btn btn-success"></p>
+            </fieldset>
+            </div>
+        </div>
+    </div>
 </form>
 
-<a id="bas"></a>
-
-</div>'."\n";
+<a id="bas"></a>';
 
 // Affichage du bandeau de pied
 bandeau_pied();
-
-echo '</body>
-</html>';

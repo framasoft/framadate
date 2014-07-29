@@ -29,12 +29,6 @@ if (is_readable('bandeaux_local.php')) {
 if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION) && !issetAndNoEmpty('commentaires', $_SESSION) && !issetAndNoEmpty('mail', $_SESSION)) {
   
     print_header ( _("Error!") );
-  
-    echo '
-    <body>'."\n";
-  
-    logo();
-    bandeau_tete();
     bandeau_titre(_("Error!"));
     
     echo '
@@ -44,13 +38,8 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
     </div>'."\n";
     
     //bandeau de pied
-    //sur_bandeau_pied();
     bandeau_pied();
   
-    echo '
-    </body>
-</html>';
-
 } else { //sinon on peut afficher le calendrier normalement
     //partie creation du sondage dans la base SQL
     //On prépare les données pour les inserer dans la base
@@ -195,18 +184,11 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
     }
   
     //debut de la page web
-    print_header ( _("Poll dates (2 on 2)") );
-    
-    echo '
-    <body>'."\n";
-  
-    //Debut du formulaire et bandeaux de tete
-    bandeau_tete();
+    print_header ( _("Poll dates (2 on 2)") );  
     bandeau_titre(_("Poll dates (2 on 2)"));
 
     echo '
-    <form name="formulaire" action="'.get_server_name().'choix_date.php" method="POST">
-    <div class="corps">';
+    <form name="formulaire" action="'.get_server_name().'choix_date.php" method="POST">';
     //affichage de l'aide pour les jours
     echo '
         <div class="bodydate information">
@@ -575,16 +557,7 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
         <div class="presentationdatefin">
             <p>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll."). '</p>
             <p>' . _("Then, you will receive quickly an email contening the link to your poll for sending it to the voters.") .'</p>
-        </div>'."\n";
-    //echo'<p class=affichageexport>'."\n";
-    //echo 'Pour finir la cr&eacute;ation du sondage, cliquez sur le bouton <img src="images/add-16.png" alt="ajout"> ci-dessous'."\n";
-    //echo '</p>'."\n";
-
-    //echo '<table>'."\n";
-    //echo '<tr><td>'. _("Back to hours") .'</td><td></td><td><input type="image" name="retourhoraires" src="images/back-32.png"></td></tr>'."\n";
-    //echo'<tr><td>'. _("Create the poll") .'</td><td></td><td><input type="image" name="confirmation" value="Valider la cr&eacute;ation" src="images/add.png"></td></tr>'."\n";
-    //echo '</table>'."\n";
-    
+        </div>'."\n";    
     
     // patch crado : on attribue les noms de boutons avec _x pour faire croire qu'on a cliqué sur une image
     echo '
@@ -593,20 +566,13 @@ if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION)
          
          <div style="clear:both"></div>'."\n";
     }
-  
-    //echo '</tr>'."\n";
-    //echo '</table>'."\n";
+
     echo '<a name="bas"></a>'."\n";
     //fin du formulaire et bandeau de pied
     echo '</form>'."\n";
-    //bandeau de pied
-    //echo '<br /><br /><br /><br />'."\n";
-    echo '</div>
-    </div>'; // class="corps"
+    echo '</div>';
   
     bandeau_pied();
-    echo '</body>'."\n";
-    echo '</html>';
   
     //bouton de nettoyage de tous les jours choisis
     if (issetAndNoEmpty('reset')) {

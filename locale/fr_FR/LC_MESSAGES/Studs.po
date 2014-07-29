@@ -38,6 +38,37 @@ msgstr "Lien d'administration du sondage"
 msgid "Change the language"
 msgstr "Changer la langue"
 
+msgid "Select the language"
+msgstr "Choisir la langue"
+
+msgid "Save"
+msgstr "Enregister"
+
+msgid "Save my choices"
+msgstr "Enregister mes choix"
+
+msgid "Edit the line:"
+msgstr "Modifier la ligne :"
+
+msgid "Remove the line:"
+msgstr "Supprimer la ligne :"
+
+msgid "Initiator's email:"
+msgstr "Email de l'auteur :"
+
+msgid "Yes"
+msgstr "Oui"
+
+msgid "Ifneedbe"
+msgstr "Si nécessaire"
+
+msgid ", ifneedbe"
+msgstr ", si nécessaire"
+
+msgid "No"
+msgstr "Non"
+
+
 #: exportpdf.php:62
 msgid " Convocation"
 msgstr "Convocation"
@@ -683,8 +714,8 @@ msgstr "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce 
 msgid "Edit"
 msgstr "Modifier"
 
-msgid "You can, as well, remove a column or a line with "
-msgstr "Vous avez aussi la possibilit&eacute; d'effacer une colonne ou une ligne avec "
+msgid " remove a column or a line with "
+msgstr " effacer une colonne ou une ligne avec "
 
 msgid "Remove"
 msgstr "Effacer"
@@ -695,7 +726,7 @@ msgstr "Effacer la colonne"
 msgid "Validate"
 msgstr "Valider"
 
-msgid "You can also add a new column with "
+msgid "and add a new column with "
 msgstr "Si vous avez oubli&eacute; de mettre un choix, vous pouvez rajouter une colonne en cliquant sur "
 
 msgid "Add"

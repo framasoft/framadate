@@ -27,11 +27,6 @@ body {
 img {
     border: 0;
 }
-*, *:before, *:after {
-    -webkti-box-sizing:content-box;
-    -moz-box-sizing: content-box;
-    box-sizing:content-box;
-}
 
 /* a11y rules*/
 a:focus {
@@ -393,14 +388,6 @@ div.cadre td:hover.vide {
     opacity: 0.6; 
 }
 
-.resultats tbody tr {
-
-}
-
-.resultats tbody tr:hover {
-/*    opacity: 0.9; */
-}
-
 /*Case de tableau contenant les noms dans affichage de sondage*/
 div.cadre td.nom {
 	background-color: #DDDDDD; 
@@ -514,14 +501,12 @@ p.affichageresultats{
 }
 
 div.comment{
-	
 	margin-top: 10px;
 	border-left: 1px dashed #999;
 	background: #F5F5F5;
-	padding-left: 25px;
 	padding-top: 4px;
 	padding-bottom: 4px;
-	width: inherit;
+	padding-left: 14px;
 }
 
 div.comment span.usercomment{
@@ -677,13 +662,6 @@ li.error {
 	margin-top:1em;
 }
 
-.txt-right {
-	text-align:right !important;
-}
-.txt-center {
-	text-align:center !important;
-}
-
 .sousbandeaulangue select {
 	border: 1px solid white;
 	height: 14px;
@@ -722,4 +700,152 @@ li.error {
 .newmin {
 	width:50px;
 	float:left;
+}
+
+/* Nouvelle version de style.css */
+.container {
+    padding-bottom: 50px; /* à cause du bandeau de pied */
+}
+
+main, header, footer, .container .jumbotron {
+    padding:24px 30px;
+}
+
+.jumbotron h2 {
+    margin-top:0;
+    margin-bottom: 20px;
+}
+
+header .lead {
+    padding:10px 0;
+    margin:0;
+}
+
+#tableContainer {
+    overflow-x:auto;
+    margin:0 auto;    
+}
+
+table.results {
+	margin:0 auto;
+}
+
+table.results > tbody > tr:hover > td,
+table.results > tbody > tr:hover > th {
+    opacity:0.85;
+}
+
+table.results > tbody > tr#vote-form:hover > td,
+table.results > tbody > tr#vote-form:hover > th {
+    opacity:1;
+}
+
+table.results tbody td {
+    text-align:center;
+    padding:1px 5px;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+}
+
+table.results thead th {
+    text-align:center;
+    border:2px solid white;
+    padding:1px 5px;
+    min-width:40px;
+}
+
+table.results thead .btn {
+    margin:0 auto;
+    display:block;
+}
+
+table.results th.rbd.day,
+table.results th.rbd.bg-info,
+table.results td.rbd {
+    border-right: 2px dotted white;
+}
+
+table.results th.bg-primary.month,
+table.results th.day,
+table.results th.bg-info {
+    border-bottom:none;
+    border-top:none;
+    border-right: 2px dotted white;
+    border-left: 2px dotted white;
+}
+
+table.results tbody th.bg-info {
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+    text-align:center;
+}
+
+table.results th.bg-primary.month,
+table.results th.day {
+    text-align:left;
+}
+
+table.results #nom {
+    width:115px;
+}
+
+table.results .btn-link.btn-sm {
+    padding:2px;
+}
+
+.choice {
+    margin:0;
+}
+
+.choice label {
+    font-weight:normal;
+    cursor:pointer;
+    font-size:12px;
+    margin:0;
+}
+
+#vote-form td ul, #vote-form td label {
+    margin:0;
+    font-size:12px;
+}
+
+#vote-form td {
+    border-top:2px solid white;
+}
+
+input[type="radio"]:checked + label {
+    font-weight:bold;
+}
+
+.yes input[type="radio"]:checked + label {
+    color:#3C763D;
+}
+.ifneedbe input[type="radio"]:checked + label {
+    color:#8A6D3B;
+}
+.no input[type="radio"]:checked + label {
+    color:#A94442;
+}
+
+.yes:hover {
+    color:#3C763D;
+    background-color:#DFF0D8;
+}
+.ifneedbe:hover {
+    color:#8A6D3B;
+    background-color:#FCF8E3;
+}
+.no:hover {
+    color:#A94442;
+    background-color:#F2DEDE;
+}
+
+.yes input, .ifneedbe input,.no input {
+    visibility:hidden;
+    margin-left:-15px;
+    margin-top:0;
+}
+
+#admin-link, #public-link {
+    cursor:text;
 }

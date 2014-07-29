@@ -30,11 +30,6 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
 
     print_header(_("Poll subjects (2 on 2)"));
 
-    echo '
-    <body>'."\n";
-    
-    logo();
-    bandeau_tete();
     bandeau_titre(_("Error!"));
     
     echo '
@@ -45,9 +40,6 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
     
     //bandeau de pied
     bandeau_pied();
-    echo '
-    </body>
-</html>';
 
 } else {
     //partie creation du sondage dans la base SQL
@@ -123,14 +115,10 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
     } else {
         print_header( _("Poll subjects (2 on 2)"));
     }
-  
-    echo '<body>
-    <form name="formulaire" action="#bas" method="POST">'."\n";
 
-    bandeau_tete();
     bandeau_titre(_("Poll subjects (2 on 2)"));
   
-    echo '<div class="corps">
+    echo '<form name="formulaire" action="#bas" method="POST">
     <p>'. _("Your poll aim is to make a choice between different subjects.") . '<br />' . _("Enter the subjects to vote for:") .'</p>
     <table>'."\n";
   
@@ -216,13 +204,8 @@ if (!isset($_POST["fin_sondage_autre_x"])) {
     //fin du formulaire et bandeau de pied
     echo '
     </form>
-        <a id="bas"></a>
-    </div>'."\n";
+        <a id="bas"></a>'."\n";
     
     //bandeau de pied
     bandeau_pied();
-    echo '
-    </body>
-</html>';
-
 }

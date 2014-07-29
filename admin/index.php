@@ -51,19 +51,11 @@ include_once __DIR__ . '/../bandeaux.php';
 
 // Affichage des balises standards
 print_header( _("Polls administrator") );
-
-echo '<body>'."\n";
-
-//Affichage des bandeaux et début du formulaire
-bandeau_tete();
 bandeau_titre(_("Polls administrator"));
-sous_bandeau_admin();
-//print_r($_SESSION);
 
 $sondage=$connect->Execute("select * from sondage");
 
 echo'
-    <div class=corps>
     <form action="'.get_server_name().'index.php" method="POST">'."\n";
 // Test et affichage du bouton de confirmation en cas de suppression de sondage
 while($dsondage = $sondage->FetchNextObject(false)) {
@@ -140,13 +132,9 @@ while($dsondage = $sondage->FetchNextObject(false)) {
     $i++;
 }
 
-echo '</table>'."\n";
-// fin du formulaire et de la page web
-echo '</form>
-</div>
-<hr class="separateur" />
-</body>
-</html>';
+echo '</table></form>'."\n";
+
+bandeau_pied(true);
 
 // si on annule la suppression, rafraichissement de la page
 if (issetAndNoEmpty('annulesuppression') === true) {
