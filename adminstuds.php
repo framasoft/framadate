@@ -181,7 +181,9 @@ if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
                     <div class="col-md-7">
                         <input type="text" id="newhour" name="newhour" class="form-control" />
                     </div>
-                </div>
+                </div>';
+    }    
+        echo '                
                 <div class="form-group text-center">
                     <button class="btn btn-default" type="submit" value="retoursondage" name="retoursondage_x">'. _('Back to the poll'). '</button>
                     <button type="submit" name="ajoutercolonne_x" class="btn btn-success">'. _('Add a column'). '</button>
