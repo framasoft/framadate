@@ -11,7 +11,9 @@ Les dernières améliorations d'OpenSondage
 	- Fix bug changement de langues en mode URL rewriting (requête GET passée en formulaire POST)
 	- Fix bug 2 boutons valider lorsqu'on édite un vote
 	- Fix focus javascript sur "Votre nom"
-	- Nettoyage
+	- Nettoyage + Bootstrap
+	- Ajout vote Oui/Non/Si nécessaire
+	- Formulaire simplifié pour l'ajout de colonne date (horaire libre)
 
 	Changelog version 0.7 (mars 2013)
 	- Fix : le sondage supprimé n'était pas forcément le sondage sélectionné (cfévrier)

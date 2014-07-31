@@ -60,17 +60,16 @@ if (strpos($dsondage->sujet,'@') !== false) {
 
 while (	$data=$user_studs->FetchNextObject(false)) {
     // Le nom de l'utilisateur
-    $nombase=str_replace("°","'",$data->nom);
+    $nombase=html_entity_decode(str_replace("°","'",$data->nom));
     $input.=$nombase.';';
     //affichage des resultats
     $ensemblereponses=$data->reponses;
     for ($k=0;$k<$nbcolonnes;$k++) {
         $car=substr($ensemblereponses,$k,1);
-        if ($car=="1") {
-            $input.='OK;';
-            $somme[$k]++;
-        } else {
-            $input.=';';
+        switch ($car) {
+            case "1": $input .= _('Yes').';'; $somme[$k]++; break;
+            case "2": $input .= _('Ifneedbe').';'; break;
+            default: $input .= _('No').';'; break;
         }
     }
 

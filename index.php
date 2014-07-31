@@ -30,19 +30,24 @@ print_header ( _("Home") );
 bandeau_titre(_("Organiser des rendez-vous simplement, librement."));
 
 echo '
-        <div class="index_date">
-            <p><a href="'.get_server_name().'infos_sondage.php?choix_sondage=date" role="button">
-                <img class="opacity" src="'.get_server_name().'images/date.png" alt="" />
-                <br /><span class="button orange bigrounded"><strong><img src="'.get_server_name().'images/calendar-32.png" alt="" />'
-                . _('Schedule an event') . '</strong></span>
-            </a></p>
+        <div class="row text-center">
+            <div class="col-md-6">
+                <p><a href="'.get_server_name().'infos_sondage.php?choix_sondage=date" role="button">
+                    <img class="opacity" src="'.get_server_name().'images/date.png" alt="" />
+                    <br /><span class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-calendar"></span>
+                    '. _('Schedule an event') . '</span>
+                </a></p>
+            </div>
+            <div class="col-md-6">
+                <p><a href="'.get_server_name().'infos_sondage.php?choix_sondage=autre" role="button">
+                    <img alt="" class="opacity" src="'.get_server_name().'images/sondage2.png" />
+                    <br /><span class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-stats"></span>
+                    '. _('Make a poll') . '</span>
+                </a></p>
+            </div>
         </div>
-        <div class="index_sondage">
-            <p><a href="'.get_server_name().'infos_sondage.php?choix_sondage=autre" role="button">
-                <img alt="" class="opacity" src="'.get_server_name().'images/sondage2.png" />
-                <br /><span class="button blue bigrounded"><strong><img src="'.get_server_name().'images/chart-32.png" alt="" />
-                '. _('Make a poll') . '</strong></span>
-            </a></p>
+        <div class="row text-center">
+                <p>'. _("or") .' <a href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("view an example") .'</a></p>
         </div>'."\n";
     
 //bandeau de pied
