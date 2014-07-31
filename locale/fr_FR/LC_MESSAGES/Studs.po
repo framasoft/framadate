@@ -68,6 +68,11 @@ msgstr ", si nécessaire"
 msgid "No"
 msgstr "Non"
 
+msgid "or"
+msgstr "ou"
+
+msgid "view an example"
+msgstr "voir un exemple"
 
 #: exportpdf.php:62
 msgid " Convocation"
@@ -164,8 +169,14 @@ msgid "Removal date (optional)"
 msgstr "Date de fin (facultative)"
 
 #: choix_autre.php:193
-msgid "(DD/MM/YYYY)"
-msgstr "(JJ/MM/AAAA)"
+msgid "(dd/mm/yyyy)"
+msgstr "(jj/mm/aaaa)"
+
+msgid "dd/mm/yyyy"
+msgstr "jj/mm/aaaa"
+
+msgid "Date must be have the format dd/mm/yyyy"
+msgstr "La date doit être au format jj/mm/aaaa"
 
 #: choix_autre.php:196
 #: choix_date.php:554
@@ -194,7 +205,6 @@ msgstr "Vous avez choisi de cr&eacute;er un nouveau sondage."
 
 msgid "Required fields cannot be left blank."
 msgstr "Merci de remplir les champs obligatoires, marqu&eacute;s d'une *."
-
 
 #: infos_sondage.php:130
 msgid "Poll title *: "
@@ -295,7 +305,6 @@ msgstr "Mois suivant"
 msgid "Today"
 msgstr "Aujourd'hui"
 
-
 #: choix_date.php:496
 msgid "Time"
 msgstr "Horaire"
@@ -324,6 +333,9 @@ msgstr "Reporter les horaires du premier jour"
 #: choix_date.php:533
 msgid "Remove all hours"
 msgstr "Effacer tous les horaires"
+
+msgid "Add more hours"
+msgstr "Ajouter des horaires supplémentaires"
 
 #: choix_date.php:539
 msgid "Enter more choices for the voters"
@@ -648,7 +660,7 @@ msgid "You can add a new scheduling date to your poll."
 msgstr "Vous pouvez ajouter une date &agrave; votre sondage."
 
 msgid "If you just want to add a new hour to an existant date, put the same date and choose a new hour."
-msgstr "mettez le jour en entier avec l'horaire ou le cr&eacute;neau suppl&eacute;mentaire et il sera int&eacute;gr&eacute; normalement au sondage existant."
+msgstr "Si vous voulez juste ajouter un horaire à une date existante, mettez la même date et choisissez un autre horaire. Il sera int&eacute;gr&eacute; normalement au sondage existant."
 
 #: adminstuds.php:176
 msgid "Add a date"

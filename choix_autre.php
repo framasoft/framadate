@@ -33,7 +33,7 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
     bandeau_titre(_("Error!"));
     
     echo '
-    <div class="corpscentre">
+    <div class="alert alert-danger">
         <h2>' . _("You haven't filled the first section of the poll creation.") . ' !</h2>
         <p>' . _("Back to the homepage of ") . ' <a href="' . get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
     </div>'."\n";
@@ -49,7 +49,7 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
     $testdate = true;
     $date_selected = '';
   
-    if (isset($_POST["confirmecreation"]) || isset($_POST["confirmecreation_x"])) {
+    if (isset($_POST["confirmecreation"])) {
         //recuperation des données de champs textes
         $toutchoix = '';
         for ($i = 0; $i < $_SESSION["nbrecases"] + 1; $i++) {
@@ -104,12 +104,19 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
         $_SESSION["nbrecases"]=10;
     }
   
-    if (isset($_POST["ajoutcases"]) || isset($_POST["ajoutcases_x"])) {
+    if (isset($_POST["ajoutcases"])) {
         $_SESSION["nbrecases"]=$_SESSION["nbrecases"]+5;
     }
+
+    //test de remplissage des cases
+    $testremplissage = '';
+    for ($i=0;$i<$_SESSION["nbrecases"];$i++) {
+        if (isset($_POST["choix"]) && issetAndNoEmpty($i, $_POST["choix"])) {
+            $testremplissage="ok";
+        }
+    }  
   
-  
-    if( ($testremplissage != "ok" && (isset($_POST["fin_sondage_autre"]) || isset($_POST["fin_sondage_autre_x"]))) || ($testdate === false) || ($erreur_injection) ) {
+    if( ($testremplissage != "ok" && (isset($_POST["fin_sondage_autre"]))) || ($testdate === false) || ($erreur_injection) ) {
 	    // S'il y a des erreurs
         print_header( _("Error!") .' - '. _("Poll subjects (2 on 2)"));
     } else {
@@ -118,91 +125,83 @@ if (issetAndNoEmpty('titre', $_SESSION) === false || issetAndNoEmpty('nom', $_SE
 
     bandeau_titre(_("Poll subjects (2 on 2)"));
   
-    echo '<form name="formulaire" action="#bas" method="POST">
-    <p>'. _("Your poll aim is to make a choice between different subjects.") . '<br />' . _("Enter the subjects to vote for:") .'</p>
-    <table>'."\n";
+    echo '
+    <form name="formulaire" action="#bas" method="POST" class="form-horizontal" role="form">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+        
+            <div class="alert alert-info">
+                <p>'. _("Your poll aim is to make a choice between different subjects.") . '<br />
+                ' . _("Enter the subjects to vote for:") .'</p>
+            </div>'."\n";
   
+    //message d'erreur si aucun champ renseigné
+    if ($testremplissage != "ok" && (isset($_POST["fin_sondage_autre"]))) {
+        echo '<div class="alert alert-danger"><p>' . _("Enter at least one choice") . '</p></div>';
+        $erreur = true;
+    }
+  
+    //message d'erreur si mauvaise date
+    if ($testdate === false) {
+        echo '<div class="alert alert-danger"><p>' . _("Date must be have the format dd/mm/yyyy") . '</p></div>';
+    }
+  
+    if ($erreur_injection) {
+        echo '<div class="alert alert-danger"><p>' . _("Characters \" < and > are not permitted") . '</p></div>';
+    }
+    
     //affichage des cases texte de formulaire
     for ($i = 0; $i < $_SESSION["nbrecases"]; $i++) {
         $j = $i + 1;
         if (isset($_SESSION["choix$i"]) === false) {
             $_SESSION["choix$i"] = '';
         }
-        echo '<tr><td><label for="choix'.$i.'">'. _("Choice") .' '.$j.'</label> : </td><td><input type="text" name="choix[]" size="40" maxlength="40" value="'.str_replace("\\","",$_SESSION["choix$i"]).'" id="choix'.$i.'"></td></tr>'."\n";
+        echo '
+            <div class="form-group">
+                <label for="choix'.$i.'" class="col-sm-2 control-label">'. _("Choice") .' '.$j.'</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="choix[]" size="40" maxlength="40" value="'.str_replace("\\","",$_SESSION["choix$i"]).'" id="choix'.$i.'" />
+                </div>
+            </div>'."\n";
     }
-  
-    echo '</table>'."\n";
   
     //focus javascript sur premiere case
-    echo '
-    <script type="text/javascript">
-        document.formulaire.choix0.focus();
-    </script>'."\n";
+    echo '<script type="text/javascript"> document.formulaire.choix0.focus(); </script>'."\n";
   
     //ajout de cases supplementaires
-    echo '
-    <table><tr>
-        <td>'. _("5 choices more") .'</td><td><input type="image" alt="'. _("5 choices more").'" name="ajoutcases" value="Retour" src="'.get_server_name().'images/add-16.png"></td>
-    </tr></table>'."\n";
+    echo '<p>'. _("5 choices more") .' <button class="btn btn-link" type="submit" title="'. _("5 choices more").'" name="ajoutcases"><span class="glyphicon glyphicon-plus text-success"></span></button></p>'."\n";
   
-  //echo '<table><tr>'."\n";
-  //echo '<td>'. _("Next") .'</td><td><input type="image" name="fin_sondage_autre" value="Cr&eacute;er le sondage" src="images/next-32.png"></td>'."\n";
-  //echo '</tr></table>'."\n";
-
-if (!isset($_POST["fin_sondage_autre_x"])) {
-    echo '
-    <button name="fin_sondage_autre_x" value="'._('Next').'" type="submit" class="button green poursuivre"><strong>'. _('Next') . '</strong> </button>
-    <div style="clear:both"></div>';
-}
-
-    //test de remplissage des cases
-    $testremplissage = '';
-    for ($i=0;$i<$_SESSION["nbrecases"];$i++) {
-        if (isset($_POST["choix"]) && issetAndNoEmpty($i, $_POST["choix"])) {
-            $testremplissage="ok";
-        }
+    if (!isset($_POST["fin_sondage_autre"])) {
+        echo '<p class="text-right"><button name="fin_sondage_autre" value="'._('Next').'" type="submit" class="btn btn-success">'. _('Next') . '</button></p>';
     }
   
-    //message d'erreur si aucun champ renseigné
-    if ($testremplissage != "ok" && (isset($_POST["fin_sondage_autre"]) || isset($_POST["fin_sondage_autre_x"]))) {
-        echo '<p class="error">' . _("Enter at least one choice") . '</p>';
-        $erreur = true;
-    }
-  
-    //message d'erreur si mauvaise date
-    if ($testdate === false) {
-        echo '<p class="error">' . _("Date must be have the format DD/MM/YYYY") . '</p>';
-    }
-  
-    if ($erreur_injection) {
-        echo '<p class="error">' . _("Characters \" < and > are not permitted") . '</p>';
-    }
-  
-    if ((isset($_POST["fin_sondage_autre"]) || isset($_POST["fin_sondage_autre_x"])) && !$erreur && !$erreur_injection) {
+    if ((isset($_POST["fin_sondage_autre"])) && !$erreur && !$erreur_injection) {
         //demande de la date de fin du sondage
         echo '
-    <div class=presentationdatefin>
+    <div class="alert alert-info">
         <p>' . _("Your poll will be automatically removed after 6 months.") . '<br />' . _("You can fix another removal date for it.") .'</p>
-        <label for="champdatefin">'. _("Removal date (optional)") .'</label> :
-        <input type="text" class="champdatefin" id="champdatefin" aria-describedby="dateformat" name="champdatefin" value="'.$date_selected.'" size="10" maxlength="10">
-        <span id="dateformat">'. _("(DD/MM/YYYY)") .'</span>
+        <div class="form-group">
+            <label for="champdatefin" class="col-sm-5 control-label">'. _("Removal date (optional)") .'</label>
+            <div class="col-sm-6">
+                <div class="input-group date">
+                    <input type="text" class="form-control" id="champdatefin" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat" name="champdatefin" value="'.$date_selected.'" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+            </div>
+            <span id="dateformat" class="sr-only">'. _("(DD/MM/YYYY)") .'</span>
+        </div>
     </div>
-    <div class=presentationdatefin>
-        <p class="error">'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll.").'
-        <br /><br />'. _("Then, you will receive quickly an email contening the link to your poll for sending it to the voters.").'</p>
-    </div>'."\n";
+    <div class="alert alert-warning">
+        <p>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll.").'</p>
+        <p>'. _("Then, you will receive quickly an email contening the link to your poll for sending it to the voters.").'</p>
+    </div>
     
-        //echo '<table>'."\n";
-        //echo '<tr><td>'. _("Create the poll") .'</td><td><input type="image" name="confirmecreation" value="Valider la cr&eacute;ation"i src="images/add.png"></td></tr>'."\n";
-        //echo '</table>'."\n";
-    
-        echo '<button name="confirmecreation" value="confirmecreation" type="submit" class="button green poursuivre margin-top"><strong>'. _('Make a poll') . '</strong> </button>';
-        echo '<div style="clear:both"></div>';
+    <p class="text-right"><button name="confirmecreation" value="confirmecreation" type="submit" class="btn btn-success">'. _('Make a poll') . '</button></p>'."\n";
     
     }
   
     //fin du formulaire et bandeau de pied
-    echo '
+    echo '</div>
+    </div>
     </form>
         <a id="bas"></a>'."\n";
     

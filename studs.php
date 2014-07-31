@@ -67,7 +67,7 @@ if(issetAndNoEmpty('export', $_GET) && $dsondage !== false) {
 }
 
 // quand on ajoute un commentaire utilisateur
-if(isset($_POST['ajoutcomment']) || isset($_POST['ajoutcomment_x'])) {
+if(isset($_POST['ajoutcomment'])) {
     if (isset($_SESSION['nom']) && issetAndNoEmpty('commentuser') === false) {
         // Si le nom vient de la session, on le de-htmlentities
         $comment_user = html_entity_decode($_SESSION['nom'], ENT_QUOTES, 'UTF-8');
@@ -109,7 +109,7 @@ $sql = $connect->Prepare($sql);
 $user_studs = $connect->Execute($sql, array($numsondage));
 
 $nbcolonnes = substr_count($dsondage->sujet, ',') + 1;
-if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]))) {
+if (!is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
     //Si le nom est bien entré
     if (issetAndNoEmpty('nom') === false) {
         $err |= NAME_EMPTY;
@@ -267,12 +267,12 @@ $nblignes = $user_studs->RecordCount();
 $testmodifier = false;
 $ligneamodifier = -1;
 for ($i=0;$i<$nblignes;$i++) {
-    if (isset($_POST["modifierligne$i"]) || isset($_POST['modifierligne'.$i.'_x'])) {
+    if (isset($_POST["modifierligne$i"])) {
         $ligneamodifier = $i;
     }
 
     //test pour voir si une ligne est a modifier
-    if (isset($_POST['validermodifier'.$i]) || isset($_POST['validermodifier'.$i.'_x'])) {
+    if (isset($_POST['validermodifier'.$i])) {
         $modifier = $i;
         $testmodifier = true;
     }
@@ -492,7 +492,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
 
     //demande de confirmation pour modification de ligne
     for ($i=0;$i<$nblignes;$i++) {
-        if (isset($_POST["modifierligne$i"]) || isset($_POST['modifierligne'.$i.'_x'])) {
+        if (isset($_POST["modifierligne$i"])) {
             if ($compteur == $i) {
                 echo '<td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="validermodifier'.$compteur.'" title="'. _('Save the choices:') .' '.stripslashes($nombase).'">'. _('Save') .'</button></td>'."\n";
             }
@@ -646,16 +646,19 @@ if ($comment_user->RecordCount() != 0) {
     while($dcomment = $comment_user->FetchNextObject(false)) {
         echo '
     <div class="comment">
-        <span class="usercomment">'.stripslashes($dcomment->usercomment). ' :</span>
+        <b>'.stripslashes($dcomment->usercomment). ' :</b>
         <span class="comment">' . stripslashes(nl2br($dcomment->comment)) . '</span>
     </div>';
     }
-    echo '</div>';
+    echo '</div>
+        <div class="col-md-5 hidden-print">';
+} else {
+    echo '
+        <div class="col-md-6 col-md-offset-3 hidden-print">';
 }
 
 //affichage de la case permettant de rajouter un commentaire par les utilisateurs
 echo '
-        <div class="col-md-5">
             <div class="alert alert-info">
             <fieldset id="add-comment"><legend>' . _("Add a comment in the poll:") . '</legend>
                 <div class="form-group">

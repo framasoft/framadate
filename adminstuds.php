@@ -78,7 +78,7 @@ $dsondage=$sondage->FetchObject(false);
 //si la valeur du nouveau titre est valide et que le bouton est activé
 $adresseadmin = $dsondage->mail_admin;
 
-if (isset($_POST["boutonnouveautitre"]) || isset($_POST["boutonnouveautitre_x"])) {
+if (isset($_POST["boutonnouveautitre"])) {
     if (issetAndNoEmpty('nouveautitre') === false) {
         $err |= TITLE_EMPTY;
     } else {
@@ -99,7 +99,7 @@ if (isset($_POST["boutonnouveautitre"]) || isset($_POST["boutonnouveautitre_x"])
 }
 
 // si le bouton est activé, quelque soit la valeur du champ textarea
-if (isset($_POST["boutonnouveauxcommentaires"]) || isset($_POST["boutonnouveauxcommentaires_x"])) {
+if (isset($_POST["boutonnouveauxcommentaires"])) {
     if (issetAndNoEmpty('nouveautitre') === false) {
         $err |= COMMENT_EMPTY;
     } else {
@@ -121,7 +121,7 @@ if (isset($_POST["boutonnouveauxcommentaires"]) || isset($_POST["boutonnouveauxc
 }
 
 //si la valeur de la nouvelle adresse est valide et que le bouton est activé
-if (isset($_POST["boutonnouvelleadresse"]) || isset($_POST["boutonnouvelleadresse_x"])) {
+if (isset($_POST["boutonnouvelleadresse"])) {
     if (issetAndNoEmpty('nouvelleadresse') === false || validateEmail($_POST["nouvelleadresse"]) === false) {
        $err |= INVALID_EMAIL;
     } else {
@@ -146,7 +146,7 @@ if (isset($_POST["boutonnouvelleadresse"]) || isset($_POST["boutonnouvelleadress
 $dsujet=$sujets->FetchObject(false);
 $dsondage=$sondage->FetchObject(false);
 
-if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
+if (isset($_POST["ajoutsujet"])) {
     print_header('');
 
     bandeau_titre(_("Make your polls"));
@@ -156,24 +156,29 @@ if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
     echo '
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-        <form name="formulaire" class="form-horizontal" action="'.getUrlSondage($numsondageadmin, true).'" method="POST">
-            <h2>' . _("Column's adding") . '</h2>'."\n";
+            <form name="formulaire" class="form-horizontal" action="'.getUrlSondage($numsondageadmin, true).'" method="POST">
+                <h2>' . _("Column's adding") . '</h2>'."\n";
 
     if ($dsondage->format=="A"||$dsondage->format=="A+"){
         echo '
-            <p><label for="nouvellecolonne">' . _("Add a new column") .' :</label><br />
-            <input type="text" id="nouvellecolonne" name="nouvellecolonne" size="40" /></p>'."\n";
+                <div class="form-group">
+                    <label for="nouvellecolonne" class="col-md-6">' . _("Add a new column") .' :</label>
+                    <div class="col-md-6">
+                        <input type="text" id="nouvellecolonne" name="nouvellecolonne" class="form-control" />
+                    </div>
+                </div>'."\n";
     } else {
         //ajout d'une date avec creneau horaire
         echo '
-            <p>'. _("You can add a new scheduling date to your poll.")._("If you just want to add a new hour to an existant date, put the same date and choose a new hour.") .'</p>
+                <p>'. _("You can add a new scheduling date to your poll.")._("If you just want to add a new hour to an existant date, put the same date and choose a new hour.") .'</p>
             
                 <div class="form-group">
                     <label for="newdate" class="col-md-5">'. _("Add a date") .' :</label>
                     <div class="col-md-7">
                         <div class="input-group date">
-                            <input type="text" id="newdate" data-date-format="dd/mm/yyyy" name="newdate" class="form-control" placeholder="jj/mm/aaaa" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <input type="text" id="newdate" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat" name="newdate" class="form-control" placeholder="'. _("dd/mm/yyyy") .'" /><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
+                        <span id="dateformat" class="sr-only">'. _("(DD/MM/YYYY)") .'</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -181,13 +186,15 @@ if (isset($_POST["ajoutsujet"]) || isset($_POST["ajoutsujet_x"])) {
                     <div class="col-md-7">
                         <input type="text" id="newhour" name="newhour" class="form-control" />
                     </div>
-                </div>
-                <div class="form-group text-center">
-                    <button class="btn btn-default" type="submit" value="retoursondage" name="retoursondage_x">'. _('Back to the poll'). '</button>
-                    <button type="submit" name="ajoutercolonne_x" class="btn btn-success">'. _('Add a column'). '</button>
-                </div>
+                </div>';
+    }    
+        echo '
+                <p class="text-center">
+                    <button class="btn btn-default" type="submit" value="retoursondage" name="retoursondage">'. _('Back to the poll'). '</button>
+                    <button type="submit" name="ajoutercolonne" class="btn btn-success">'. _('Add a column'). '</button>
+                </p>
+            </form>
             </div>
-        </form>
         </div>';
 
     bandeau_pied();
@@ -215,7 +222,7 @@ if (isset($_POST["suppressionsondage"])) {
 }
 
 //action si bouton confirmation de suppression est activé
-if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"])) {
+if (isset($_POST["confirmesuppression"])) {
     $nbuser=$user_studs->RecordCount();
     $date=date('H:i:s d/m/Y:');
 
@@ -249,7 +256,7 @@ if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"
 }
 
 // quand on ajoute un commentaire utilisateur
-if (isset($_POST['ajoutcomment']) || isset($_POST['ajoutcomment_x'])) {
+if (isset($_POST['ajoutcomment'])) {
     if (issetAndNoEmpty('commentuser') === false) {
         $err |= COMMENT_USER_EMPTY;
     } else {
@@ -331,8 +338,8 @@ echo '
                     <input class="form-control" id="public-link" type="text" readonly="readonly" value="'.getUrlSondage($dsondage->id_sondage).'" />
                 </div>
                 <div class="form-group col-md-5">
-                    <label for="admin-link">'._("Admin link of the pool") .' <a href="'.getUrlSondage($dsondage->id_sondage, true).'" class="glyphicon glyphicon-link"></a> : </label>
-                    <input class="form-control" id="admin-link" type="text" readonly="readonly" value="'.getUrlSondage($dsondage->id_sondage, true).'" />
+                    <label for="admin-link">'._("Admin link of the pool") .' <a href="'.getUrlSondage($numsondageadmin, true).'" class="glyphicon glyphicon-link"></a> : </label>
+                    <input class="form-control" id="admin-link" type="text" readonly="readonly" value="'.getUrlSondage($numsondageadmin, true).'" />
                 </div>
             </div>
         </div>'."\n"; // .jumbotron
@@ -343,7 +350,7 @@ $nblignes = $user_studs->RecordCount();
 //si il n'y a pas suppression alors on peut afficher normalement le tableau
 
 //action si le bouton participer est cliqué
-if (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"])) {
+if (isset($_POST["boutonp"])) {
     //si on a un nom dans la case texte
     if (issetAndNoEmpty('nom')){
         $nouveauchoix = '';
@@ -383,7 +390,7 @@ if (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"])) {
 
 
 //action quand on ajoute une colonne au format AUTRE
-if (isset($_POST["ajoutercolonne_x"]) && issetAndNoEmpty('nouvellecolonne') && ($dsondage->format == "A" || $dsondage->format == "A+")) {
+if (isset($_POST["ajoutercolonne"]) && issetAndNoEmpty('nouvellecolonne') && ($dsondage->format == "A" || $dsondage->format == "A+")) {
     $nouveauxsujets=$dsujet->sujet;
 
     //on rajoute la valeur a la fin de tous les sujets deja entrés
@@ -404,7 +411,7 @@ if (isset($_POST["ajoutercolonne_x"]) && issetAndNoEmpty('nouvellecolonne') && (
 
 
 //action quand on ajoute une colonne au format DATE
-if (isset($_POST["ajoutercolonne_x"]) && ($dsondage->format == "D" || $dsondage->format == "D+")) {
+if (isset($_POST["ajoutercolonne"]) && ($dsondage->format == "D" || $dsondage->format == "D+")) {
     $nouveauxsujets=$dsujet->sujet;
 
     if (isset($_POST["newdate"]) && $_POST["newdate"] != "vide") {
@@ -498,7 +505,7 @@ if (isset($_POST["ajoutercolonne_x"]) && ($dsondage->format == "D" || $dsondage-
 
 //suppression de ligne dans la base
 for ($i = 0; $i < $nblignes; $i++) {
-    if (isset($_POST["effaceligne$i"]) || isset($_POST['effaceligne'.$i.'_x'])) {
+    if (isset($_POST["effaceligne$i"])) {
         $compteur=0;
         $sql = 'DELETE FROM user_studs WHERE nom = '.$connect->Param('nom').' AND id_users = '.$connect->Param('id_users');
         $sql = $connect->Prepare($sql);
@@ -520,7 +527,7 @@ $sql = $connect->Prepare($sql);
 $comment_user = $connect->Execute($sql, array($numsondage));
 $i = 0;
 while ($dcomment = $comment_user->FetchNextObject(false)) {
-    if (isset($_POST['suppressioncomment'.$i.'_x'])) {
+    if (isset($_POST['suppressioncomment'.$i])) {
         $sql = 'DELETE FROM comments WHERE id_comment = '.$connect->Param('id_comment');
         $sql = $connect->Prepare($sql);
         $connect->Execute($sql, array($dcomment->id_comment));
@@ -535,13 +542,13 @@ $testmodifier = false;
 $testligneamodifier = false;
 
 for ($i = 0; $i < $nblignes; $i++) {
-    if (isset($_POST["modifierligne$i"]) || isset($_POST['modifierligne'.$i.'_x'])) {
+    if (isset($_POST["modifierligne$i"])) {
         $ligneamodifier=$i;
         $testligneamodifier="true";
     }
 
     //test pour voir si une ligne est a modifier
-    if (isset($_POST["validermodifier$i"]) || isset($_POST['validermodifier'.$i.'_x'])) {
+    if (isset($_POST["validermodifier$i"])) {
         $modifier=$i;
         $testmodifier="true";
     }
@@ -579,7 +586,7 @@ if ($testmodifier) {
 
 //suppression de colonnes dans la base
 for ($i = 0; $i < $nbcolonnes; $i++) {
-    if ((isset($_POST["effacecolonne$i"]) || isset($_POST['effacecolonne'.$i.'_x'])) && $nbcolonnes > 1){
+    if ((isset($_POST["effacecolonne$i"])) && $nbcolonnes > 1){
         $toutsujet = explode(",",$dsujet->sujet);
         //sort($toutsujet, SORT_NUMERIC);
         $j = 0;
@@ -842,7 +849,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
                     }
                     $somme[$k]++; break;
                 case "2":  echo '<td class="bg-warning text-warning'.$rbd.'" headers="'.$td_headers[$k].'">(<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only"> ' . _('Yes') . _(', ifneedbe') . '</span></td>'."\n"; break;
-                default: echo '<td class="bg-danger'.$rbd.'" headers="'.$td_headers[$k].'"><span class="sr-only">' . _('No') . '</span></td>'."\n";
+                default: echo '<td class="bg-danger'.$rbd.'" headers="'.$td_headers[$k].'"><span class="sr-only">' . _('No') . '</span></td>'."\n";break;
             }
         }
     } else { //sinon on remplace les choix de l'utilisateur par une ligne de radio pour recuperer de nouvelles valeurs
@@ -880,7 +887,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
                         }
                         $somme[$k]++; break;
                     case "2":  echo '<td class="bg-warning text-warning'.$rbd.'" headers="'.$td_headers[$k].'">(<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only"> ' . _('Yes') . _(', ifneedbe') . '</span></td>'."\n"; break;
-                    default: echo '<td class="bg-danger'.$rbd.'" headers="'.$td_headers[$k].'"><span class="sr-only">' . _('No') . '</span></td>'."\n";
+                    default: echo '<td class="bg-danger'.$rbd.'" headers="'.$td_headers[$k].'"><span class="sr-only">' . _('No') . '</span></td>'."\n";break;
                 }
             }
         }
@@ -894,7 +901,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
 
     //demande de confirmation pour modification de ligne
     for ($i = 0; $i < $nblignes; $i++) {
-        if (isset($_POST["modifierligne$i"]) || isset($_POST['modifierligne'.$i.'_x'])) {
+        if (isset($_POST["modifierligne$i"])) {
             if ($compteur == $i) {
                 echo '<td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="validermodifier'.$compteur.'" title="'. _('Save the choices:') .' '.stripslashes($nombase).'">'. _('Save') .'</button></td>'."\n";
             }
@@ -983,7 +990,7 @@ echo '<td></td>
 
 
 // S'il a oublié de remplir un nom
-if ((isset($_POST["boutonp"]) || isset($_POST["boutonp_x"])) && $_POST["nom"] == "") {
+if ((isset($_POST["boutonp"])) && $_POST["nom"] == "") {
     echo '<tr><td colspan="10"><p class="text-danger">' . _("Enter a name !") . '</p></tr>'."\n";
 }
 
@@ -1048,9 +1055,9 @@ echo '<p class="affichageresultats">'."\n";
 
 //affichage de la phrase annoncant le meilleur sujet
 if (isset($meilleurecolonne) && $compteursujet == "1") {
-  echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The best choice at this time is") . ' : <b>' . $meilleursujet . ' </b>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
+    echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The best choice at this time is") . ' : <b>' . $meilleursujet . ' </b>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
 } elseif (isset($meilleurecolonne)) {
-  echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The bests choices at this time are") . ' : <b>' . $meilleursujet . ' </b>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
+    echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The bests choices at this time are") . ' : <b>' . $meilleursujet . ' </b>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
 }
 
 echo '</p>
@@ -1070,7 +1077,7 @@ echo '
         <p class="text-right"><input type="submit" name="boutonnouveautitre" value="'. _('Save the new title') .'" class="btn btn-success btn-xs" /></p>'."\n";
 
 //si la valeur du nouveau titre est invalide : message d'erreur
-if ((isset($_POST["boutonnouveautitre"]) || isset($_POST["boutonnouveautitre_x"])) && !issetAndNoEmpty('nouveautitre')) {
+if ((isset($_POST["boutonnouveautitre"])) && !issetAndNoEmpty('nouveautitre')) {
     echo '<p class="text-danger">'. _("Enter a new title!") .'</p>'."\n"; // /!\ manque aria-describeby
 }
 
@@ -1081,7 +1088,7 @@ echo '
         <p class="text-right"><input type="submit" name="boutonnouvelleadresse" value="'. _('Save your new email') .'" class="btn btn-success btn-xs" /></p>'."\n";
 
 //si l'adresse est invalide ou le champ vide : message d'erreur
-if ((isset($_POST["boutonnouvelleadresse"]) || isset($_POST["boutonnouvelleadresse_x"])) && !issetAndNoEmpty('nouvelleadresse')) {
+if ((isset($_POST["boutonnouvelleadresse"])) && !issetAndNoEmpty('nouvelleadresse')) {
     echo '<p class="text-danger">'. _("Enter a new email address!") .'</p>'."\n"; // /!\ manque aria-describeby
 }
 
@@ -1110,12 +1117,16 @@ if ($comment_user->RecordCount() != 0) {
         echo '
     <div class="comment">
         <button type="submit" name="suppressioncomment'.$i.'" class="btn btn-link" title="' . _('Remove the comment') . '"><span class="glyphicon glyphicon-remove text-danger"></span></button>
-        <span class="usercomment">'.stripslashes($dcomment->usercomment). ' :</span>
+        <b>'.stripslashes($dcomment->usercomment). ' :</b>
         <span class="comment">' . stripslashes(nl2br($dcomment->comment)) . '</span>
     </div>';
         $i++;
     }
-    echo '</div>';
+    echo '</div>
+        <div class="col-md-5 hidden-print">';
+} else {
+    echo '
+        <div class="col-md-6 col-md-offset-3 hidden-print">';
 }
 
 if (isset($erreur_commentaire_vide) && $erreur_commentaire_vide=="yes") {
@@ -1124,7 +1135,6 @@ if (isset($erreur_commentaire_vide) && $erreur_commentaire_vide=="yes") {
 
 //affichage de la case permettant de rajouter un commentaire par les utilisateurs
 echo '
-    <div class="col-md-5">
             <div class="alert alert-info">
             <fieldset id="add-comment"><legend>' . _("Add a comment in the poll:") . '</legend>
                 <div class="form-group">

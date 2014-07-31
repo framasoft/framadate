@@ -58,14 +58,14 @@ function liste_lang()
 function bandeau_pied($admin=false)
 {
 	echo '
-	    <hr />
     </main>
     <footer>
+	    <hr />
         <ul class="list-inline">';
 	if($admin) {
 		echo '
 		    <li><a class="btn btn-default btn-xs" href="'.str_replace('/admin','',get_server_name()).'">'. _("Home") .'</a></li>
-		    <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','',get_server_name()).'scripts/nettoyage_sondage.php">'. _("Cleaning") .'</a></li>';
+		    <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','',get_server_name()).'admin/nettoyage_sondage.php">'. _("Cleaning") .'</a></li>';
         if (is_readable('logs_studs.txt')) {
             echo '
             <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','',get_server_name()).'admin/logs_studs.txt">'. _("Logs") .'</a></li>';
@@ -73,7 +73,6 @@ function bandeau_pied($admin=false)
 	} else {
 	    echo '
             <li><a class="btn btn-default btn-xs" href="'.get_server_name().'">'. _("Home") .'</a></li>
-            <li><a class="btn btn-default btn-xs" href="' . getUrlSondage('aqg259dth55iuhwm').'">'. _("Example") .'</a></li>
             <li><a class="btn btn-default btn-xs" href="http://contact.framasoft.org">'. _("Contact") .'</a></li>
             <li><a class="btn btn-default btn-xs" href="'.get_server_name().'apropos.php">'. _("About") .'</a></li>';
     }
