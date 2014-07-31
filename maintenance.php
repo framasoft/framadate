@@ -23,7 +23,7 @@ print_header ( _('Maintenance') );
 bandeau_titre( _('Maintenance') );
 
 echo '
-    <div class="corpscentre">
+    <div class="alert alert-warning">
         <h2>'. _('The application') .NOMAPPLICATION . _('is currently under maintenance. ') . '</h2>'
         '<p>' . _('Thank you for your understanding.') . '</p>
     </div>'."\n";

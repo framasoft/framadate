@@ -56,19 +56,16 @@ bandeau_titre(_("Polls administrator"));
 $sondage=$connect->Execute("select * from sondage");
 
 echo'
-    <form action="'.get_server_name().'index.php" method="POST">'."\n";
+    <form action="'.get_server_name().'admin/index.php" method="POST">'."\n";
 // Test et affichage du bouton de confirmation en cas de suppression de sondage
 while($dsondage = $sondage->FetchNextObject(false)) {
     if (issetAndNoEmpty('supprimersondage'.$dsondage->id_sondage) === true) {
-        echo '
-        <table>
-            <tr><td colspan="11">
-                '. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'" :
-                <input type="submit" id="confirmesuppression'.$dsondage->id_sondage.'" name="confirmesuppression'.$dsondage->id_sondage.'" value="'. _("Remove this poll!") .'">
-                <input type="submit" name="annullesuppression" value="'. _("Keep this poll!") .'">
-            </td></tr>
-        </table>
-        <br />'."\n";
+		echo '
+		<div class="alert alert-warning text-center">
+            <h2>'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'</h2>
+            <p><button class="btn btn-default" type="submit" value="1" name="annullesuppression">'._("Keep this poll!").'</button>
+            <button type="submit" name="confirmesuppression'.$dsondage->id_sondage.'" value="1" class="btn btn-danger">'._("Remove this poll!").'</button></p>
+        </div>';
     }
 
     // Traitement de la confirmation de suppression
@@ -89,15 +86,16 @@ $nbsondages=$sondage->RecordCount();
 echo '<p>' . $nbsondages. ' ' . _("polls in the database at this time") .'</p>'."\n";
 
 // tableau qui affiche tous les sondages de la base
-echo '<table border="1">
+echo '<table class="table table-bordered">
     <tr align="center">
 	    <th scope="col">'. _("Poll ID") .'</th>
 	    <th scope="col">'. _("Format") .'</th>
 	    <th scope="col">'. _("Title") .'</th>
 	    <th scope="col">'. _("Author") .'</th>
+	    <th scope="col">'. _("Email") .'</th>
 	    <th scope="col">'. _("Expiration's date") .'</th>
 	    <th scope="col">'. _("Users") .'</th>
-	    <th scope="col" colspan=3>'. _("Actions") .'</th>
+	    <th scope="col" colspan="3">'. _("Actions") .'</th>
 	</tr>'."\n";
 
 $i = 0;
@@ -114,20 +112,21 @@ while($dsondage = $sondage->FetchNextObject(false)) {
         <td>'.$dsondage->id_sondage.'</td>
         <td>'.$dsondage->format.'</td>
         <td>'. stripslashes($dsondage->titre).'</td>
-        <td>'.stripslashes($dsondage->nom_admin).'</td>';
+        <td>'.stripslashes($dsondage->nom_admin).'</td>
+        <td>'.stripslashes($dsondage->mail_admin).'</td>';
 
     if (strtotime($dsondage->date_fin) > time()) {
         echo '
         <td>'.date("d/m/y",strtotime($dsondage->date_fin)).'</td>';
     } else {
         echo '
-        <td><span class="error">'.date("d/m/y",strtotime($dsondage->date_fin)).'</span></td>';
+        <td><span class="text-danger">'.date("d/m/y",strtotime($dsondage->date_fin)).'</span></td>';
     }
     echo '
         <td>'.$nbuser.'</td>
-        <td><a href="'.getUrlSondage($dsondage->id_sondage).'">'. _("See the poll") .'</a></td>
-        <td><a href="'.getUrlSondage($dsondage->id_sondage_admin, true).'">'. _("Change the poll") .'</a></td>
-        <td><input type="submit" name="supprimersondage'.$dsondage->id_sondage.'" value="'. _("Remove the poll") .'"></td>
+        <td><a href="'.getUrlSondage($dsondage->id_sondage).'" class="btn btn-link" title="'. _("See the poll") .'"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+        <td><a href="'.getUrlSondage($dsondage->id_sondage_admin, true).'" class="btn btn-link" title="'. _("Change the poll") .'"><span class="glyphicon glyphicon-pencil"></span></a></td>
+        <td><button type="submit" name="supprimersondage'.$dsondage->id_sondage.'" value="'. _("Remove the poll") .'" class="btn btn-link" title="'. _("Remove the poll") .'"><span class="glyphicon glyphicon-trash text-danger"></span></td>
     </tr>'."\n";
     $i++;
 }

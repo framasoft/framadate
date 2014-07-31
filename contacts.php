@@ -15,6 +15,7 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
+include_once __DIR__ . '/app/inc/functions.php';
 
 session_start();
 
@@ -27,16 +28,12 @@ if (file_exists('bandeaux_local.php')) {
 }
 
 // action du bouton annuler
-if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && isset($_POST['nom']) && !empty($_POST['nom']) && isset($_POST['question']) && !empty($_POST['question'])) {
+if ((isset($_POST['envoiquestion'])) &&
+     isset($_POST['nom']) && !empty($_POST['nom']) &&
+     isset($_POST['adresse_mail']) && !empty($_POST['adresse_mail']) && validateEmail($_POST['adresse_mail']) &&
+     isset($_POST['question']) && !empty($_POST['question'])) {
     $message=str_replace("\\","",$_POST["question"]);
-  
-    //envoi des mails
-
-    if (isset($_POST['adresse_mail']) && !empty($_POST['adresse_mail']) && validateEmail($_POST['adresse_mail'])) {
-      $headers = 'Reply-To: '.$_POST['adresse_mail'];
-    } else {
-        $headers = '' ;
-    }
+    $headers = 'Reply-To: '.$_POST['adresse_mail'];
 
     sendEmail( ADRESSEMAILADMIN, "" . _("[CONTACT] You have sent a question ") . "".NOMAPPLICATION, "" . _("You have a question from a user ") . " ".NOMAPPLICATION."\n\n" . _("User") . " : ".$_POST["nom"]."\n\n" . _("User's email address") . " : $_POST[adresse_mail]\n\n" . _("Message") . " :".$message,$headers );
     if (isset($_POST['adresse_mail']) && !empty($_POST['adresse_mail']) && validateEmail($_POST['adresse_mail'])) {
@@ -44,11 +41,11 @@ if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && isse
     }
   
     //affichage de la page de confirmation d'envoi
-    print_header( _("Make your polls") );
+    print_header(_("Make your polls"));
     bandeau_titre(_("Make your polls"));
 
     echo '
-    <div class=corpscentre>
+    <div class="alert alert-success">
         <h2>' . _("Your message has been sent!") . '</h2>
         <p>' . _("Back to the homepage of ") . ' <a href="' . get_server_name() . '"> ' . NOMAPPLICATION . '</a>.</p>
     </div>'."\n";
@@ -64,40 +61,85 @@ if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && isse
             $_SESSION[$var] = null;
         }
     }
+
+    /*
+     * Préparation des messages d'erreur
+     */
+     
+    $errors = array( 
+        'name' => array (
+            'msg' => '',
+            'aria' => '',
+            'class' => ''
+        ),
+        'email' => array (
+            'msg' => '',
+            'aria' => '',
+            'class' => ''
+        ),
+        'question' => array (
+            'msg' => '',
+            'aria' => '',
+            'class' => ''
+        ),
+        'state' => false
+    );
+
+    if (isset($_POST['envoiquestion']) && $_SESSION["nom"]=="") {
+        $errors['name']['aria'] = 'aria-describeby="#poll_name_error" '; $errors['name']['class'] = ' has-error';
+        $errors['name']['msg'] = '<div class="alert alert-danger" ><p id="contact_name_error">'. _("Enter a name") .'</p></div>';
+        $errors['state'] = true;
+    } 
+
+    if (isset($_POST['envoiquestion']) && ($_SESSION["adresse_mail"] =="" || !validateEmail($_SESSION["adresse_mail"]))) {
+        $errors['email']['aria'] = 'aria-describeby="#poll_email_error" '; $errors['email']['class'] = ' has-error';
+        $errors['email']['msg'] = '<div class="alert alert-danger" ><p id="contact_email_error">'. _("The address is not correct!") .'</p></div>';
+        $errors['state'] = true;
+    }
+    if (isset($_POST['envoiquestion']) && $_SESSION["question"]=="") {
+        $errors['question']['aria'] = 'aria-describeby="#poll_question_error" '; $errors['question']['class'] = ' has-error';
+        $errors['question']['msg'] = '<div class="alert alert-danger" ><p id="contact_question_error">'. _("You must ask a question!") .'</p></div>';
+        $errors['state'] = true;
+    }
   
     //affichage de la page
-    print_header( _("Contact us") );
-    bandeau_titre(_("Contact us"));
-
-    echo '
-    <form name=formulaire action="'.get_server_name().'contacts.php" method="POST">
-        <p>' . _("If you have questions, you can send a message here.") . '</p>
-        <p><label for="nom">' . _("Your name") .' :</label><br />
-        <input type="text" size="40" maxlength="64" id="nom" name="nom" value="'.$_SESSION["nom"].'"></p>';
-
-    if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && $_SESSION["nom"]=="") {
-        echo '<p class="error">'. _("Enter a name") .'</p>'; // /!\ manque un aria-describeby
+    if($errors['state']) {
+        print_header( _("Error!").' - '._("Contact us") );
+    } else {
+        print_header( _("Contact us") );
     }
+        bandeau_titre(_("Contact us"));
 
     echo '
-        <p><label for="adresse_mail">' . _("Your email address ") . ' :</label><br />
-        <input type="text" size="40" maxlength="64" id="adresse_mail" name="adresse_mail" value="'.$_SESSION["adresse_mail"].'"></p>'."\n";
-  
-    if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && empty($_SESSION["adresse_mail"]) === false && validateEmail($_SESSION["adresse_mail"]) === false) {
-        echo '<p class="error">'. _("The address is not correct!") .'</p>'; // /!\ manque un aria-describeby
-    }
-
-    echo '
-        <p><label for="question">' . _("Question") . ' :</label><br />
-        <textarea name="question" id="question" rows="7" cols="40">'.$_SESSION["question"].'</textarea>';
-
-    if ((isset($_POST['envoiquestion']) || isset($_POST['envoiquestion_x'])) && $_SESSION["question"]=="") {
-        echo '<p class="error">Il faut poser une question !</p>'; // /!\ manque un aria-describeby
-    }
-
-    echo '
-        <p><button type="submit" name="envoiquestion" value="'._("Send your question").'" class="button green poursuivre"><strong>'._("Send your question").'</strong></button></p>
-    </form>'."\n";
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form name=formulaire action="'.get_server_name().'contacts.php" method="POST" class="form-horizontal" role="form">
+                <p>' . _("If you have questions, you can send a message here.") . '</p>
+                <div class="form-group'.$errors['name']['class'].'">
+                    <label for="name" class="col-sm-5 control-label">' . _("Your name") .'</label>
+                    <div class="col-sm-7">
+                        <input type="text" maxlength="64" id="name" name="nom" class="form-control" '.$errors['name']['aria'].' value="'.$_SESSION["nom"].'" />
+                    </div>
+                </div>
+                    '.$errors['name']['msg'].'
+                <div class="form-group'.$errors['email']['class'].'">
+                    <label for="email" class="col-sm-5 control-label">' . _("Your email address ") . '</label>
+                    <div class="col-sm-7">
+                        <input type="text" maxlength="64" id="email" name="adresse_mail" class="form-control" '.$errors['email']['aria'].' value="'.$_SESSION["adresse_mail"].'" />
+                    </div>
+                </div>
+                    '.$errors['email']['msg'].'
+                <div class="form-group'.$errors['question']['class'].'">
+                    <label for="question" class="col-sm-5 control-label">' . _("Question") . '</label>
+                    <div class="col-sm-7">
+                        <textarea name="question" id="question" rows="7" class="form-control" '.$errors['question']['aria'].'>'.$_SESSION["question"].'</textarea>
+                    </div>
+                </div>
+                    '.$errors['question']['msg'].'
+                <p class="text-right"><button type="submit" name="envoiquestion" value="'._("Send your question").'" class="btn btn-success">'._("Send your question").'</button></p>
+            </form>
+        </div>
+    </div>'."\n";
     
     //bandeau de pied
     bandeau_pied();

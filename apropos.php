@@ -30,8 +30,6 @@ if (file_exists('bandeaux_local.php')) {
     
     bandeau_titre(_("About"));
 
-//echo '<div class="corps">'."\n";
-
 echo <<<mentions
 <ul>
   <li><a href="#faq">Questions fréquentes</a></li>
@@ -275,7 +273,5 @@ sous la licence logicielle libre <a
  href="http://www.cecill.info/licences.fr.html">CeCILL-B</a>.<br />
 <br />
 mentions;
-
-//echo '</div>'."\n";
 
 bandeau_pied();
