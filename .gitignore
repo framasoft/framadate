@@ -6,5 +6,5 @@ composer.lock
 composer.phar
 framanav
 nav
-variables.php
+app/inc/constants.php
 vendor

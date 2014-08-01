@@ -37,7 +37,7 @@
 //
 //==========================================================================
 
-include_once __DIR__ . '/../app/inc/functions.php';
+include_once __DIR__ . '/../app/inc/init.php';
 
 //recuperation de la date
 $date_courante=date("U");
@@ -50,7 +50,7 @@ while ($dsondage=$sondage->FetchNextObject(false)) {
   if ($date_courante > strtotime($dsondage->date_fin)) {
     //destruction des données dans la base
 
-    if ( remove_sondage( $connect, $dsondage->id_sondage ) ) {
+    if (Utils::remove_sondage($connect, $dsondage->id_sondage)) {
 
       // ecriture des traces dans le fichier de logs
       error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, '../admin/logs_studs.txt');

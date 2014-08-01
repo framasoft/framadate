@@ -15,12 +15,14 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
+namespace Framadate;
+
 session_start();
 
 require_once('php2pdf/phpToPDF.php');
-include_once __DIR__ . '/app/inc/functions.php';
+include_once __DIR__ . '/app/inc/init.php';
 
-$dsondage = get_sondage_from_id($_POST['numsondage']);
+$dsondage = Utils::get_sondage_from_id($_POST['numsondage']);
 $lieureunion=stripcslashes($_POST["lieureunion"]);
 $datereunion=explode("@",$_POST["meilleursujet"]);
 

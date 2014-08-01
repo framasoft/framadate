@@ -15,13 +15,14 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
+namespace Framadate;
 
-include_once __DIR__ . '/app/inc/functions.php';
+include_once __DIR__ . '/app/inc/init.php';
 
 // bandeaux de titre
 function bandeau_titre($titre)
 {
-	$img = ( IMAGE_TITRE ) ? '<img src="'.get_server_name(). IMAGE_TITRE. '" title="'._("Home").' - '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'">' : '';
+	$img = ( IMAGE_TITRE ) ? '<img src="'. Utils::get_server_name(). IMAGE_TITRE. '" title="'._("Home").' - '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'">' : '';
     echo '
     <header role="banner">
         <form method="post" action="">
@@ -30,20 +31,20 @@ function bandeau_titre($titre)
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-default btn-sm" title="'. _("Change the language") .'">OK</button>
                 </span>
-            </div>               
+            </div>
         </form>
-        <h1><a href="'.str_replace('/admin','',get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'">'.$img.'</a></h1>
+        <h1><a href="'.str_replace('/admin','', Utils::get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'">'.$img.'</a></h1>
         <p class="lead"><i>'. $titre .'</i></p>
     </header>
-    <main>';	
+    <main>';
 }
 
 function liste_lang()
 {
     global $ALLOWED_LANGUAGES; global $lang;
-    
+
     $str = '';
-    
+
     foreach ($ALLOWED_LANGUAGES as $k => $v ) {
 	    if (substr($k,0,2)==$lang) {
 		    $str .= '<option lang="'.substr($k,0,2).'" selected value="' . $k . '">' . $v . '</option>' . "\n" ;
@@ -64,21 +65,21 @@ function bandeau_pied($admin=false)
         <ul class="list-inline">';
 	if($admin) {
 		echo '
-		    <li><a class="btn btn-default btn-xs" href="'.str_replace('/admin','',get_server_name()).'">'. _("Home") .'</a></li>
-		    <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','',get_server_name()).'admin/nettoyage_sondage.php">'. _("Cleaning") .'</a></li>';
+		    <li><a class="btn btn-default btn-xs" href="'.str_replace('/admin','', Utils::get_server_name()).'">'. _("Home") .'</a></li>
+		    <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','', Utils::get_server_name()).'admin/nettoyage_sondage.php">'. _("Cleaning") .'</a></li>';
         if (is_readable('logs_studs.txt')) {
             echo '
-            <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','',get_server_name()).'admin/logs_studs.txt">'. _("Logs") .'</a></li>';
-        }    
+            <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','', Utils::get_server_name()).'admin/logs_studs.txt">'. _("Logs") .'</a></li>';
+        }
 	} else {
 	    echo '
-            <li><a class="btn btn-default btn-xs" href="'.get_server_name().'">'. _("Home") .'</a></li>
+            <li><a class="btn btn-default btn-xs" href="'. Utils::get_server_name().'">'. _("Home") .'</a></li>
             <li><a class="btn btn-default btn-xs" href="http://contact.framasoft.org">'. _("Contact") .'</a></li>
-            <li><a class="btn btn-default btn-xs" href="'.get_server_name().'apropos.php">'. _("About") .'</a></li>';
+            <li><a class="btn btn-default btn-xs" href="'. Utils::get_server_name().'apropos.php">'. _("About") .'</a></li>';
     }
-    echo '        
+    echo '
         </ul>
-    </footer>    
+    </footer>
     </div> <!-- .container -->
 </body>
 </html>'."\n";

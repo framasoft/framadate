@@ -15,11 +15,12 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
+namespace Framadate;
 
 session_start();
 
 //setlocale(LC_TIME, "fr_FR");
-include_once __DIR__ . '/app/inc/functions.php';
+include_once __DIR__ . '/app/inc/init.php';
 
 if (file_exists('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
@@ -32,7 +33,7 @@ $numsondageadmin = false;
 $sondage = false;
 
 // recuperation du numero de sondage admin (24 car.) dans l'URL
-if (issetAndNoEmpty('sondage', $_GET) && is_string($_GET['sondage']) && strlen($_GET['sondage']) === 24) {
+if (Utils::issetAndNoEmpty('sondage', $_GET) && is_string($_GET['sondage']) && strlen($_GET['sondage']) === 24) {
     $numsondageadmin=$_GET["sondage"];
     //on découpe le résultat pour avoir le numéro de sondage (16 car.)
     $numsondage=substr($numsondageadmin, 0, 16);
@@ -56,14 +57,14 @@ if (preg_match(";[\w\d]{24};i", $numsondageadmin)) {
 
 //verification de l'existence du sondage, s'il n'existe pas on met une page d'erreur
 if (!$sondage || $sondage->RecordCount() != 1){
-    print_header( _("Error!"));
-  
+    Utils::print_header( _("Error!"));
+
     bandeau_titre(_("Error!"));
 
     echo '
     <div class="alert alert-warning">
         <h2>' . _("This poll doesn't exist !") . '</h2>
-        <p>' . _('Back to the homepage of ') . ' <a href="' . get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
+        <p>' . _('Back to the homepage of ') . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
     </div>'."\n";
 
     bandeau_pied();
@@ -79,7 +80,7 @@ $dsondage=$sondage->FetchObject(false);
 $adresseadmin = $dsondage->mail_admin;
 
 if (isset($_POST["boutonnouveautitre"])) {
-    if (issetAndNoEmpty('nouveautitre') === false) {
+    if (Utils::issetAndNoEmpty('nouveautitre') === false) {
         $err |= TITLE_EMPTY;
     } else {
         //modification de la base SQL avec le nouveau titre
@@ -89,10 +90,10 @@ if (isset($_POST["boutonnouveautitre"])) {
 
         //envoi du mail pour prevenir l'admin de sondage
         if ($connect->Execute($sql, array($nouveautitre, $numsondage))) {
-            sendEmail( $adresseadmin,
+            Utils::sendEmail( $adresseadmin,
                 _("[ADMINISTRATOR] New title for your poll") . ' ' . NOMAPPLICATION,
                 _("You have changed the title of your poll. \nYou can modify this poll with this link") .
-                " :\n\n".getUrlSondage($numsondageadmin, true)."\n\n" .
+                " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . "\n\n" .
                 _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
         }
     }
@@ -100,7 +101,7 @@ if (isset($_POST["boutonnouveautitre"])) {
 
 // si le bouton est activé, quelque soit la valeur du champ textarea
 if (isset($_POST["boutonnouveauxcommentaires"])) {
-    if (issetAndNoEmpty('nouveautitre') === false) {
+    if (Utils::issetAndNoEmpty('nouveautitre') === false) {
         $err |= COMMENT_EMPTY;
     } else {
         $commentaires = htmlentities(html_entity_decode($_POST['nouveauxcommentaires'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
@@ -111,10 +112,10 @@ if (isset($_POST["boutonnouveauxcommentaires"])) {
 
         if ($connect->Execute($sql, array($commentaires, $numsondage))) {
             //envoi du mail pour prevenir l'admin de sondage
-            sendEmail( $adresseadmin,
+            Utils::sendEmail( $adresseadmin,
                 _("[ADMINISTRATOR] New comments for your poll") . ' ' . NOMAPPLICATION,
                 _("You have changed the comments of your poll. \nYou can modify this poll with this link") .
-                " :\n\n".getUrlSondage($numsondageadmin, true)." \n\n" .
+                " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . " \n\n" .
                 _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
         }
     }
@@ -122,7 +123,7 @@ if (isset($_POST["boutonnouveauxcommentaires"])) {
 
 //si la valeur de la nouvelle adresse est valide et que le bouton est activé
 if (isset($_POST["boutonnouvelleadresse"])) {
-    if (issetAndNoEmpty('nouvelleadresse') === false || validateEmail($_POST["nouvelleadresse"]) === false) {
+    if (Utils::issetAndNoEmpty('nouvelleadresse') === false || Utils::validateEmail($_POST["nouvelleadresse"]) === false) {
        $err |= INVALID_EMAIL;
     } else {
         $nouvelleadresse = htmlentities(html_entity_decode($_POST['nouvelleadresse'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
@@ -133,10 +134,10 @@ if (isset($_POST["boutonnouvelleadresse"])) {
 
         if ($connect->Execute($sql, array($nouvelleadresse, $numsondage))) {
             //envoi du mail pour prevenir l'admin de sondage
-            sendEmail( $_POST['nouvelleadresse'],
+            Utils::sendEmail( $_POST['nouvelleadresse'],
                 _("[ADMINISTRATOR] New email address for your poll") . ' ' . NOMAPPLICATION,
                 _("You have changed your email address in your poll. \nYou can modify this poll with this link") .
-                " :\n\n".getUrlSondage($numsondageadmin, true)."\n\n" .
+                " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . "\n\n" .
                 _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
         }
     }
@@ -147,7 +148,7 @@ $dsujet=$sujets->FetchObject(false);
 $dsondage=$sondage->FetchObject(false);
 
 if (isset($_POST["ajoutsujet"])) {
-    print_header('');
+    Utils::print_header('');
 
     bandeau_titre(_("Make your polls"));
 
@@ -156,7 +157,7 @@ if (isset($_POST["ajoutsujet"])) {
     echo '
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-            <form name="formulaire" class="form-horizontal" action="'.getUrlSondage($numsondageadmin, true).'" method="POST">
+            <form name="formulaire" class="form-horizontal" action="' . Utils::getUrlSondage($numsondageadmin, true) . '" method="POST">
                 <h2>' . _("Column's adding") . '</h2>'."\n";
 
     if ($dsondage->format=="A"||$dsondage->format=="A+"){
@@ -171,7 +172,7 @@ if (isset($_POST["ajoutsujet"])) {
         //ajout d'une date avec creneau horaire
         echo '
                 <p>'. _("You can add a new scheduling date to your poll.")._("If you just want to add a new hour to an existant date, put the same date and choose a new hour.") .'</p>
-            
+
                 <div class="form-group">
                     <label for="newdate" class="col-md-5">'. _("Add a date") .' :</label>
                     <div class="col-md-7">
@@ -203,12 +204,12 @@ if (isset($_POST["ajoutsujet"])) {
 }
 
 if (isset($_POST["suppressionsondage"])) {
-    print_header('');
+    Utils::print_header('');
 
     bandeau_titre(_("Confirm removal of your poll"));
-    
+
     echo '
-        <form name="formulaire" action="'.getUrlSondage($numsondageadmin, true).'" method="POST">
+        <form name="formulaire" action="' . Utils::getUrlSondage($numsondageadmin, true) . '" method="POST">
         <div class="alert alert-warning text-center">
             <h2>' . _("Confirm removal of your poll") . '</h2>
             <p><button class="btn btn-default" type="submit" value="" name="annullesuppression">'._("Keep this poll!").'</button>
@@ -226,48 +227,48 @@ if (isset($_POST["confirmesuppression"])) {
     $nbuser=$user_studs->RecordCount();
     $date=date('H:i:s d/m/Y:');
 
-    if ( remove_sondage( $connect, $numsondage ) ) {
+    if (Utils::remove_sondage($connect, $numsondage)) {
         // on ecrit dans le fichier de logs la suppression du sondage
         error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'admin/logs_studs.txt');
 
         //envoi du mail a l'administrateur du sondage
-        sendEmail( $adresseadmin,
+        Utils::sendEmail( $adresseadmin,
             _("[ADMINISTRATOR] Removing of your poll") . ' ' . NOMAPPLICATION,
             _("You have removed your poll. \nYou can make new polls with this link") .
-            " :\n\n".get_server_name()."index.php \n\n" .
+            " :\n\n" . Utils::get_server_name() . "index.php \n\n" .
             _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
 
         //affichage de l'ecran de confirmation de suppression de sondage
-        print_header('');
-        
+        Utils::print_header('');
+
         bandeau_titre(_("Make your polls"));
 
         echo '
         <div class="alert alert-success text-center">
             <h2>' . _("Your poll has been removed!") . '</h2>
-            <p>' . _('Back to the homepage of ') . ' <a href="' . get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
+            <p>' . _('Back to the homepage of ') . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
         </div>
     </form>'."\n";
-    
+
         bandeau_pied();
-        
+
         die();
     }
 }
 
 // quand on ajoute un commentaire utilisateur
 if (isset($_POST['ajoutcomment'])) {
-    if (issetAndNoEmpty('commentuser') === false) {
+    if (Utils::issetAndNoEmpty('commentuser') === false) {
         $err |= COMMENT_USER_EMPTY;
     } else {
         $comment_user = htmlentities(html_entity_decode($_POST["commentuser"], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
     }
 
-    if(issetAndNoEmpty('comment') === false) {
+    if(Utils::issetAndNoEmpty('comment') === false) {
         $err |= COMMENT_EMPTY;
     }
 
-    if (issetAndNoEmpty('comment') && !is_error(COMMENT_EMPTY) && !is_error(NO_POLL) && !is_error(COMMENT_USER_EMPTY)) {
+    if (Utils::issetAndNoEmpty('comment') && !Utils::is_error(COMMENT_EMPTY) && !Utils::is_error(NO_POLL) && !Utils::is_error(COMMENT_USER_EMPTY)) {
         $comment = htmlentities(html_entity_decode($_POST["comment"], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
 
         $sql = 'INSERT INTO comments (id_sondage, comment, usercomment) VALUES ('.
@@ -286,7 +287,7 @@ if (isset($_POST['ajoutcomment'])) {
 
 //s'il existe on affiche la page normale
 // DEBUT DE L'AFFICHAGE DE LA PAGE HTML
-print_header('');
+Utils::print_header('');
 
 bandeau_titre(_("Make your polls"));
 
@@ -302,11 +303,11 @@ echo '
                     <form name="formulaire4" action="#" method="POST">
                     <div class="btn-group pull-right">
                         <button onclick="javascript:print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> ' . _('Print') . '</button>
-                        <button onclick="window.location.href=\''.get_server_name().'exportcsv.php?numsondage=' . $numsondage . '\';return false;" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> ' . _('Export to CSV') . '</button>
+                        <button onclick="window.location.href=\'' . Utils::get_server_name() . 'exportcsv.php?numsondage=' . $numsondage . '\';return false;" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> ' . _('Export to CSV') . '</button>
                         <button type="submit" id="suppressionsondage" name="suppressionsondage" value="" class="btn btn-danger" title="'. _("Remove the poll") .'"><span class="glyphicon glyphicon-trash"></span></button>
                     </div>
                     </form>
-                </div>           
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-5">
@@ -319,7 +320,7 @@ echo '
                         <p class="form-control-static"> '.stripslashes($dsondage->mail_admin).'</p>
                     </div>
                 </div>';
-            
+
 //affichage de la description du sondage
 if ($dsondage->commentaires) {
     $commentaires = $dsondage->commentaires;
@@ -334,12 +335,12 @@ echo '
             </div>
             <div class="row">
                 <div class="form-group col-md-5">
-                    <label for="public-link">'._("Public link of the pool") .' <a href="'.getUrlSondage($dsondage->id_sondage).'" class="glyphicon glyphicon-link"></a> : </label>
-                    <input class="form-control" id="public-link" type="text" readonly="readonly" value="'.getUrlSondage($dsondage->id_sondage).'" />
+                    <label for="public-link">'._("Public link of the pool") .' <a href="' . Utils::getUrlSondage($dsondage->id_sondage) . '" class="glyphicon glyphicon-link"></a> : </label>
+                    <input class="form-control" id="public-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($dsondage->id_sondage) . '" />
                 </div>
                 <div class="form-group col-md-5">
-                    <label for="admin-link">'._("Admin link of the pool") .' <a href="'.getUrlSondage($numsondageadmin, true).'" class="glyphicon glyphicon-link"></a> : </label>
-                    <input class="form-control" id="admin-link" type="text" readonly="readonly" value="'.getUrlSondage($numsondageadmin, true).'" />
+                    <label for="admin-link">'._("Admin link of the pool") .' <a href="' . Utils::getUrlSondage($numsondageadmin, true) . '" class="glyphicon glyphicon-link"></a> : </label>
+                    <input class="form-control" id="admin-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($numsondageadmin, true) . '" />
                 </div>
             </div>
         </div>'."\n"; // .jumbotron
@@ -352,7 +353,7 @@ $nblignes = $user_studs->RecordCount();
 //action si le bouton participer est cliqué
 if (isset($_POST["boutonp"])) {
     //si on a un nom dans la case texte
-    if (issetAndNoEmpty('nom')){
+    if (Utils::issetAndNoEmpty('nom')){
         $nouveauchoix = '';
         $erreur_prenom = false;
 
@@ -364,11 +365,11 @@ if (isset($_POST["boutonp"])) {
                     case 2: $nouveauchoix .= "2";break;
                     default: $nouveauchoix .= "0";break;
                 }
-			}
+            }
         }
 
         $nom = htmlentities(html_entity_decode($_POST["nom"], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
-        
+
         while($user = $user_studs->FetchNextObject(false)) {
             if ($nom == $user->nom){
                 $erreur_prenom="yes";
@@ -390,7 +391,7 @@ if (isset($_POST["boutonp"])) {
 
 
 //action quand on ajoute une colonne au format AUTRE
-if (isset($_POST["ajoutercolonne"]) && issetAndNoEmpty('nouvellecolonne') && ($dsondage->format == "A" || $dsondage->format == "A+")) {
+if (isset($_POST["ajoutercolonne"]) && Utils::issetAndNoEmpty('nouvellecolonne') && ($dsondage->format == "A" || $dsondage->format == "A+")) {
     $nouveauxsujets=$dsujet->sujet;
 
     //on rajoute la valeur a la fin de tous les sujets deja entrés
@@ -403,9 +404,9 @@ if (isset($_POST["ajoutercolonne"]) && issetAndNoEmpty('nouvellecolonne') && ($d
     $sql = $connect->Prepare($sql);
     if ($connect->Execute($sql, array($nouveauxsujets, $numsondage))) {
       //envoi d'un mail pour prévenir l'administrateur du changement
-      sendEmail( "$adresseadmin", "" . _("[ADMINISTRATOR] New column for your poll").NOMAPPLICATION, "" .
+      Utils::sendEmail( "$adresseadmin", "" . _("[ADMINISTRATOR] New column for your poll").NOMAPPLICATION, "" .
           _("You have added a new column in your poll. \nYou can inform the voters of this change with this link") .
-          " : \n\n".getUrlSondage($numsondage)." \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
+          " : \n\n" . Utils::getUrlSondage($numsondage) . " \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
     }
 }
 
@@ -474,7 +475,7 @@ if (isset($_POST["ajoutercolonne"]) && ($dsondage->format == "D" || $dsondage->f
             //parcours de toutes les réponses actuelles
             for ($j = 0; $j < $nbcolonnes; $j++) {
                 $car=substr($ensemblereponses,$j,1);
-   
+
                 //si les reponses ne concerne pas la colonne ajoutée, on concatene
                 if ($j==$cle) {
                     $newcar.="0";
@@ -492,11 +493,11 @@ if (isset($_POST["ajoutercolonne"]) && ($dsondage->format == "D" || $dsondage->f
         //envoi d'un mail pour prévenir l'administrateur du changement
         $adresseadmin = $dsondage->mail_admin;
 
-        sendEmail( $adresseadmin,
+        Utils::sendEmail( $adresseadmin,
             _("[ADMINISTRATOR] New column for your poll"),
             _("You have added a new column in your poll. \nYou can inform the voters of this change with this link").
-            " : \n\n".getUrlSondage($numsondage)." \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
-            
+            " : \n\n" . Utils::getUrlSondage($numsondage) . " \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
+
     } else {
         $erreur_ajout_date="yes";
     }
@@ -652,15 +653,15 @@ if ($sondage !== false) {
     $sql = $connect->Prepare($sql);
     $user_studs = $connect->Execute($sql, array($numsondage));
 } else {
-  
-    print_header(_("Error!"));
-  
+
+    Utils::print_header(_("Error!"));
+
     bandeau_titre(_("Error!"));
-  
+
     echo '
     <div class="alert alert-warning">
         <h2>' . _("This poll doesn't exist !") . '</h2>
-        <p>' . _('Back to the homepage of ') . ' <a href="' . get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
+        <p>' . _('Back to the homepage of ') . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
     </div>'."\n";
 
     bandeau_pied();
@@ -678,7 +679,7 @@ $toutsujet=str_replace("°","'",$toutsujet);
 $nbcolonnes=substr_count($dsujet->sujet,',')+1;
 
 echo '
-<form name="formulaire" action="'.getUrlSondage($numsondageadmin, true).'" method="POST">
+<form name="formulaire" action="' . Utils::getUrlSondage($numsondageadmin, true) . '" method="POST">
 
 <div class="alert alert-info">
     <p>' . _('As poll administrator, you can change all the lines of this poll with this button ').'<span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span>,
@@ -714,7 +715,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
 
 	$border = array();
 	$td_headers = array();
-    
+
     //affichage des mois et années
     $colspan = 1;
     for ($i = 0; $i < count($toutsujet); $i++) {
@@ -734,8 +735,8 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
             $colspan++;
             $border[$i] = false;
         } else {
-			$border[$i] = true; // bordure pour distinguer les mois
-			if ($_SESSION["langue"]=="EN") {
+            $border[$i] = true; // bordure pour distinguer les mois
+            if ($_SESSION["langue"]=="EN") {
                 echo '<th colspan="'.$colspan.'" class="bg-primary month" id="M'.$current.'">'.date("F",$current).' '.strftime("%Y", $current).'</th>'."\n";
             } else {
                 echo '<th colspan="'.$colspan.'" class="bg-primary month" id="M'.$current.'">'.strftime("%B",$current).' '.strftime("%Y", $current).'</th>'."\n";
@@ -744,9 +745,9 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
         }
         $td_headers[$i] = 'M'.$current;
     }
-    
+
     $border[count($border)-1] = false; // suppression de la bordure droite du dernier mois
-    
+
     echo '<th></th>
 </tr><tr>
 <th role="presentation"></th>'."\n";
@@ -829,9 +830,9 @@ $somme[] = 0;
 $compteur = 0;
 
 while ($data = $user_studs->FetchNextObject(false)) {
-    
+
     $ensemblereponses = $data->reponses;
-    
+
     //affichage du nom
     $nombase=str_replace("°","'",$data->nom);
     echo '<tr>
@@ -856,17 +857,17 @@ while ($data = $user_studs->FetchNextObject(false)) {
         //si c'est bien la ligne a modifier on met les radios
         if ($compteur == "$ligneamodifier") {
             for ($j = 0; $j < $nbcolonnes; $j++) {
-                
+
                 $car = substr($ensemblereponses, $j, 1);
-                
+
                 // variable pour afficher la valeur cochée
                 $car_html[0]='value="0"';$car_html[1]='value="1"';$car_html[2]='value="2"';
-                switch ($car) { 
+                switch ($car) {
                     case "1": $car_html[1]='value="1" checked';break;
-                    case "2": $car_html[2]='value="2" checked';break; 
+                    case "2": $car_html[2]='value="2" checked';break;
                     default: $car_html[0]='value="0" checked';break;
                 }
-                    
+
                 echo '<td class="bg-info" headers="'.$td_headers[$j].'">
     <ul class="list-unstyled choice">
         <li class="yes"><input type="radio" id="y-choice-'.$j.'" name="choix'.$j.'" '.$car_html[1].'><label for="y-choice-'.$j.'"> ' . _('Yes') . '</label></li>
@@ -874,7 +875,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
         <li class="no"><input type="radio" id="n-choice-'.$j.'" name="choix'.$j.'" '.$car_html[0].'><label for="n-choice-'.$j.'"> ' . _('No') . '</label></li>
     </ul>
 </td>'."\n";
-                
+
             }
         } else { //sinon on affiche les lignes normales
             for ($k = 0; $k < $nbcolonnes; $k++) {
@@ -972,7 +973,7 @@ for ($i = 0; $i < $nbcolonnes; $i++) {
     }
 
     echo '<td>'.$affichesomme.'</td>'."\n";
-    
+
 }
 echo '<td></td>
 </tr><tr>
@@ -1077,7 +1078,7 @@ echo '
         <p class="text-right"><input type="submit" name="boutonnouveautitre" value="'. _('Save the new title') .'" class="btn btn-success btn-xs" /></p>'."\n";
 
 //si la valeur du nouveau titre est invalide : message d'erreur
-if ((isset($_POST["boutonnouveautitre"])) && !issetAndNoEmpty('nouveautitre')) {
+if ((isset($_POST["boutonnouveautitre"])) && !Utils::issetAndNoEmpty('nouveautitre')) {
     echo '<p class="text-danger">'. _("Enter a new title!") .'</p>'."\n"; // /!\ manque aria-describeby
 }
 
@@ -1088,7 +1089,7 @@ echo '
         <p class="text-right"><input type="submit" name="boutonnouvelleadresse" value="'. _('Save your new email') .'" class="btn btn-success btn-xs" /></p>'."\n";
 
 //si l'adresse est invalide ou le champ vide : message d'erreur
-if ((isset($_POST["boutonnouvelleadresse"])) && !issetAndNoEmpty('nouvelleadresse')) {
+if ((isset($_POST["boutonnouvelleadresse"])) && !Utils::issetAndNoEmpty('nouvelleadresse')) {
     echo '<p class="text-danger">'. _("Enter a new email address!") .'</p>'."\n"; // /!\ manque aria-describeby
 }
 
