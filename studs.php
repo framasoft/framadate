@@ -15,6 +15,8 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
+namespace Framadate;
+
 session_start();
 
 if (file_exists('bandeaux_local.php')) {
@@ -23,29 +25,29 @@ if (file_exists('bandeaux_local.php')) {
     include_once('bandeaux.php');
 }
 
-include_once __DIR__ . '/app/inc/functions.php';
+include_once __DIR__ . '/app/inc/init.php';
 
 // Le fichier studs.php sert a afficher les résultats d'un sondage à un simple utilisateur.
 // C'est également l'interface pour ajouter une valeur à un sondage deja créé.
 $numsondage = false;
 
 //On récupère le numéro de sondage par le lien web.
-if(issetAndNoEmpty('sondage', $_GET) === true) {
+if(Utils::issetAndNoEmpty('sondage', $_GET) === true) {
     $numsondage = $_GET["sondage"];
     $_SESSION["numsondage"] = $numsondage;
 }
 
-if(issetAndNoEmpty('sondage') === true) {
+if(Utils::issetAndNoEmpty('sondage') === true) {
     $numsondage = $_POST["sondage"];
     $_SESSION["numsondage"] = $numsondage;
-} elseif(issetAndNoEmpty('sondage', $_COOKIE) === true) {
+} elseif(Utils::issetAndNoEmpty('sondage', $_COOKIE) === true) {
     $numsondage = $_COOKIE["sondage"];
-} elseif(issetAndNoEmpty('numsondage', $_SESSION) === true) {
+} elseif(Utils::issetAndNoEmpty('numsondage', $_SESSION) === true) {
     $numsondage = $_SESSION["numsondage"];
 }
 
 if ($numsondage !== false) {
-    $dsondage = get_sondage_from_id($numsondage);
+    $dsondage = Utils::get_sondage_from_id($numsondage);
     if($dsondage === false) {
         $err |= NO_POLL;
     }
@@ -54,7 +56,7 @@ if ($numsondage !== false) {
 }
 
 //output a CSV and die()
-if(issetAndNoEmpty('export', $_GET) && $dsondage !== false) {
+if(Utils::issetAndNoEmpty('export', $_GET) && $dsondage !== false) {
     if($_GET['export'] == 'csv') {
         require_once('exportcsv.php');
     }
@@ -62,16 +64,16 @@ if(issetAndNoEmpty('export', $_GET) && $dsondage !== false) {
     if($_GET['export'] == 'ics' && $dsondage->is_date) {
         require_once('exportics.php');
     }
-    
+
     die();
 }
 
 // quand on ajoute un commentaire utilisateur
 if(isset($_POST['ajoutcomment'])) {
-    if (isset($_SESSION['nom']) && issetAndNoEmpty('commentuser') === false) {
+    if (isset($_SESSION['nom']) && Utils::issetAndNoEmpty('commentuser') === false) {
         // Si le nom vient de la session, on le de-htmlentities
         $comment_user = html_entity_decode($_SESSION['nom'], ENT_QUOTES, 'UTF-8');
-    } elseif(issetAndNoEmpty('commentuser')) {
+    } elseif(Utils::issetAndNoEmpty('commentuser')) {
         $comment_user = $_POST["commentuser"];
     } elseif(isset($_POST["commentuser"])) {
         $err |= COMMENT_USER_EMPTY;
@@ -79,11 +81,11 @@ if(isset($_POST['ajoutcomment'])) {
         $comment_user = _('anonyme');
     }
 
-    if(issetAndNoEmpty('comment') === false) {
+    if(Utils::issetAndNoEmpty('comment') === false) {
         $err |= COMMENT_EMPTY;
     }
 
-    if (isset($_POST["comment"]) && !is_error(COMMENT_EMPTY) && !is_error(NO_POLL) && !is_error(COMMENT_USER_EMPTY)) {
+    if (isset($_POST["comment"]) && !Utils::is_error(COMMENT_EMPTY) && !Utils::is_error(NO_POLL) && !Utils::is_error(COMMENT_USER_EMPTY)) {
         // protection contre les XSS : htmlentities
         $comment = htmlentities($_POST['comment'], ENT_QUOTES, 'UTF-8');
         $comment_user = htmlentities($comment_user, ENT_QUOTES, 'UTF-8');
@@ -109,13 +111,13 @@ $sql = $connect->Prepare($sql);
 $user_studs = $connect->Execute($sql, array($numsondage));
 
 $nbcolonnes = substr_count($dsondage->sujet, ',') + 1;
-if (!is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
+if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
     //Si le nom est bien entré
-    if (issetAndNoEmpty('nom') === false) {
+    if (Utils::issetAndNoEmpty('nom') === false) {
         $err |= NAME_EMPTY;
     }
 
-    if(!is_error(NAME_EMPTY) && (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || $_POST["nom"] == $_SESSION["nom"])) {
+    if(!Utils::is_error(NAME_EMPTY) && (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || $_POST["nom"] == $_SESSION["nom"])) {
         $nouveauchoix = '';
         for ($i=0;$i<$nbcolonnes;$i++) {
             // radio checked 1 = Yes, 2 = Ifneedbe, 0 = No
@@ -140,7 +142,7 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
         }
 
         // Ecriture des choix de l'utilisateur dans la base
-        if (!is_error(NAME_TAKEN) && !is_error(NAME_EMPTY)) {
+        if (!Utils::is_error(NAME_TAKEN) && !Utils::is_error(NAME_EMPTY)) {
 
            $sql = 'INSERT INTO user_studs (nom,id_sondage,reponses) VALUES ('.
                $connect->Param('nom').', '.
@@ -152,11 +154,11 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
            $connect->Execute($sql, array($nom, $numsondage, $nouveauchoix));
 
             if ($dsondage->mailsonde || /* compatibility for non boolean DB */ $dsondage->mailsonde=="yes" || $dsondage->mailsonde=="true") {
-                sendEmail( "$dsondage->mail_admin",
+                Utils::sendEmail( "$dsondage->mail_admin",
                    "[".NOMAPPLICATION."] "._("Poll's participation")." : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8')."",
                    html_entity_decode("\"$nom\" ", ENT_QUOTES, 'UTF-8').
                    _("has filled a line.\nYou can find your poll at the link") . " :\n\n".
-                   getUrlSondage($numsondage)." \n\n" .
+                   Utils::getUrlSondage($numsondage) . " \n\n" .
                    _("Thanks for your confidence.") . "\n". NOMAPPLICATION );
             }
         }
@@ -166,9 +168,9 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
 }
 
 if($err != 0) {
-	print_header(_("Error!").' - '.$dsondage->titre);
+	Utils::print_header(_("Error!").' - '.$dsondage->titre);
 } else {
-	print_header($dsondage->titre);
+	Utils::print_header($dsondage->titre);
 }
 
 bandeau_titre(_("Make your polls"));
@@ -177,31 +179,31 @@ if($err != 0) {
     bandeau_titre(_("Error!"));
 
     echo '<div class="alert alert-danger"><ul>'."\n";
-    
-    if(is_error(NAME_EMPTY)) {
+
+    if(Utils::is_error(NAME_EMPTY)) {
         echo '<li>' . _("Enter a name !") . "</li>\n";
     }
-    if(is_error(NAME_TAKEN)) {
+    if(Utils::is_error(NAME_TAKEN)) {
         echo '<li>' . _("The name you've chosen already exist in this poll!") . "</li>\n";
     }
-    if(is_error(COMMENT_EMPTY) || is_error(COMMENT_USER_EMPTY)) {
+    if(Utils::is_error(COMMENT_EMPTY) || Utils::is_error(COMMENT_USER_EMPTY)) {
         echo '<li>' . _("Enter a name and a comment!") . "</li>\n";
     }
-    if(is_error(COMMENT_INSERT_FAILED) ) {
+    if(Utils::is_error(COMMENT_INSERT_FAILED) ) {
         echo '<li>' . _("Failed to insert the comment!") . "</li>\n";
     }
 
     echo '</ul></div>';
 
-    if(is_error(NO_POLL_ID) || is_error(NO_POLL)) {
+    if(Utils::is_error(NO_POLL_ID) || Utils::is_error(NO_POLL)) {
         echo '
     <div class="col-md-6 col-md-offset-3">
         <h2>' . _("This poll doesn't exist !") . '</h2>
-        <p>' . _('Back to the homepage of') . ' <a href="' . get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>   
+        <p>' . _('Back to the homepage of') . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
     </div>'."\n";
-    
+
     bandeau_pied();
-    
+
     die();
   }
 }
@@ -216,7 +218,7 @@ echo '
                 <div class="col-md-5">
                     <div class="btn-group pull-right">
                         <button onclick="javascript:print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> ' . _('Print') . '</button>
-                        <button onclick="window.location.href=\''.get_server_name().'exportcsv.php?numsondage=' . $numsondage . '\';return false;" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> ' . _('Export to CSV') . '</button>
+                        <button onclick="window.location.href=\'' . Utils::get_server_name() . 'exportcsv.php?numsondage=' . $numsondage . '\';return false;" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> ' . _('Export to CSV') . '</button>
                     </div>
                 </div>
             </div>
@@ -227,8 +229,8 @@ echo '
                         <p class="form-control-static"> '.stripslashes($dsondage->nom_admin).'</p>
                     </div>
                     <div class="form-group">
-                        <label for="public-link">'._("Public link of the pool") .' <a href="'.getUrlSondage($dsondage->id_sondage).'" class="glyphicon glyphicon-link"></a> : </label>
-                        <input class="form-control" id="public-link" type="text" readonly="readonly" value="'.getUrlSondage($dsondage->id_sondage).'" />
+                        <label for="public-link">'._("Public link of the pool") .' <a href="' . Utils::getUrlSondage($dsondage->id_sondage) . '" class="glyphicon glyphicon-link"></a> : </label>
+                        <input class="form-control" id="public-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($dsondage->id_sondage) . '" />
                     </div>
                 </div>'."\n";
 
@@ -245,11 +247,11 @@ if ($dsondage->commentaires) {
 echo '
             </div>
         </div>'."\n"; // .jumbotron
-        
-echo ' 
-        <form name="formulaire" action="'.getUrlSondage($dsondage->id_sondage).'#bas" method="POST">
+
+echo '
+        <form name="formulaire" action="' . Utils::getUrlSondage($dsondage->id_sondage) . '#bas" method="POST">
             <input type="hidden" name="sondage" value="' . $numsondage . '"/>
-            
+
             <div class="alert alert-info">
                 <p>' . _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.") . '</p>
             </div>';
@@ -301,7 +303,7 @@ if ($testmodifier) {
             $connect->Execute($sql, array($nouveauchoix, $data->nom, $data->id_users));
 
             if ($dsondage->mailsonde=="yes") {
-                sendEmail( "$dsondage->mail_admin", "[".NOMAPPLICATION."] " . _("Poll's participation") . " : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8'), "\"".html_entity_decode($data->nom, ENT_QUOTES, 'UTF-8')."\""."" . _("has filled a line.\nYou can find your poll at the link") . " :\n\n".getUrlSondage($numsondage)." \n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
+                Utils::sendEmail( "$dsondage->mail_admin", "[".NOMAPPLICATION."] " . _("Poll's participation") . " : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8'), "\"".html_entity_decode($data->nom, ENT_QUOTES, 'UTF-8')."\""."" . _("has filled a line.\nYou can find your poll at the link") . " :\n\n" . Utils::getUrlSondage($numsondage) . " \n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
             }
         }
         $compteur++;
@@ -326,7 +328,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
 
 	$border = array();
 	$td_headers = array();
-    
+
     //affichage des mois et années
     $colspan = 1;
     for ($i = 0; $i < count($toutsujet); $i++) {
@@ -356,9 +358,9 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
         }
         $td_headers[$i] = 'M'.$current;
     }
-    
+
     $border[count($border)-1] = false; // suppression de la bordure droite du dernier mois
-    
+
     echo '<th></th>
 </tr><tr>
 <th></th>'."\n";
@@ -436,7 +438,7 @@ $compteur = 0;
 while ($data = $user_studs->FetchNextObject(false)) {
 
     $ensemblereponses = $data->reponses;
-    
+
     //affichage du nom
     $nombase=str_replace("°","'",$data->nom);
     echo '<tr>
@@ -450,17 +452,17 @@ while ($data = $user_studs->FetchNextObject(false)) {
     for ($k=0; $k < $nbcolonnes; $k++) {
         // on remplace les choix de l'utilisateur par une ligne de checkbox pour recuperer de nouvelles valeurs
         if ($compteur == $ligneamodifier) {
-            
+
             $car = substr($ensemblereponses, $k , 1);
-                
+
                 // variable pour afficher la valeur cochée
                 $car_html[0]='value="0"';$car_html[1]='value="1"';$car_html[2]='value="2"';
-                switch ($car) { 
+                switch ($car) {
                     case "1": $car_html[1]='value="1" checked';break;
-                    case "2": $car_html[2]='value="2" checked';break; 
+                    case "2": $car_html[2]='value="2" checked';break;
                     default: $car_html[0]='value="0" checked';break;
                 }
-                    
+
                 echo '<td class="bg-info" headers="'.$td_headers[$k ].'">
     <ul class="list-unstyled choice">
         <li class="yes"><input type="radio" id="y-choice-'.$k .'" name="choix'.$k .'" '.$car_html[1].'><label for="y-choice-'.$k .'"> ' . _('Yes') . '</label></li>
@@ -564,7 +566,7 @@ for ($i=0; $i < $nbcolonnes; $i++) {
     }
 
     echo '<td>'.$affichesomme.'</td>'."\n";
-    
+
 }
 echo '<td></td>
 </tr><tr>

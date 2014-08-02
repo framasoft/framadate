@@ -15,8 +15,9 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
+namespace Framadate;
 
-include_once __DIR__ . '/app/inc/functions.php';
+include_once __DIR__ . '/app/inc/init.php';
 
 if(!isset($_GET['numsondage']) || ! preg_match(";^[\w\d]{16}$;i", $_GET['numsondage'])) {
     header('Location: studs.php');
@@ -26,7 +27,7 @@ $sql = 'SELECT * FROM user_studs WHERE id_sondage='.$connect->Param('numsondage'
 $sql = $connect->Prepare($sql);
 $user_studs = $connect->Execute($sql, array($_GET['numsondage']));
 
-$dsondage = get_sondage_from_id($_GET['numsondage']);
+$dsondage = Utils::get_sondage_from_id($_GET['numsondage']);
 $nbcolonnes=substr_count($dsondage->sujet,',')+1;
 
 $toutsujet=explode(",",$dsondage->sujet);

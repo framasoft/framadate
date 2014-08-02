@@ -69,11 +69,11 @@ creation_sondage.php
 	Le fichier qui récupérent les informations des pages précédentes pour procéder à l'insertion du nouveau sondage dans la base PostgreSQL
 style.css
 	Le fichier CSS de style pour toute l'application
-variables.php
-	Le fichier contenant les variables à changer en fonction de la machine locale
+app/inc/constants.php
+	Le fichier contenant les constantes à changer en fonction de la machine locale
 app/inc/functions.php
 	Le fichier contenant quelques fonctions récurrentes de l'application
-i18n.php
+app/inc/i18n.php
 	Le fichier contenant quelques fonctions récurrentes de l'application relatives à l'internationalisation
 README
 	Ce fichier

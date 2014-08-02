@@ -15,12 +15,13 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
+namespace Framadate;
 
 if (session_id() == "") {
     session_start();
 }
 
-include_once __DIR__ . '/app/inc/functions.php';
+include_once __DIR__ . '/app/inc/init.php';
 
 
 //Generer une chaine de caractere unique et aleatoire
@@ -32,14 +33,14 @@ function random($car)
     for($i=0; $i<$car; $i++) {
       $string .= $chaine[rand()%strlen($chaine)];
     }
-    
+
     return $string;
 }
 
 function ajouter_sondage()
 {
     global $connect;
-    
+
     $sondage=random(16);
     $sondage_admin=$sondage.random(8);
 
@@ -92,20 +93,20 @@ function ajouter_sondage()
     $message_admin = _("This message should NOT be sended to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
     $message_admin .= " :\n\n"."%s \n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION;
 
-    $message = sprintf($message, getUrlSondage($sondage));
-    $message_admin = sprintf($message_admin, getUrlSondage($sondage_admin, true));
+    $message = sprintf($message, Utils::getUrlSondage($sondage));
+    $message_admin = sprintf($message_admin, Utils::getUrlSondage($sondage_admin, true));
 
-    if (validateEmail($_SESSION['adresse'])) {
-        sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message")  . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message_admin, $_SESSION['adresse'] );
-        sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message, $_SESSION['adresse'] );
+    if (Utils::validateEmail($_SESSION['adresse'])) {
+        Utils::sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message")  . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message_admin, $_SESSION['adresse'] );
+        Utils::sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message, $_SESSION['adresse'] );
     }
 
     $date=date('H:i:s d/m/Y:');
     error_log($date . " CREATION: $sondage\t$_SESSION[formatsondage]\t$_SESSION[nom]\t$_SESSION[adresse]\t \t$_SESSION[toutchoix]\n", 3, 'admin/logs_studs.txt');
-    
-    header("Location:".getUrlSondage($sondage));
-    
+
+    header("Location:".Utils::getUrlSondage($sondage));
+
     exit();
-    
+
     session_unset();
 }

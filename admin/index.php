@@ -41,8 +41,7 @@
 
 session_start();
 
-include_once __DIR__ . '/../variables.php';
-include_once __DIR__ . '/../app/inc/functions.php';
+include_once __DIR__ . '/../app/inc/init.php';
 include_once __DIR__ . '/../bandeaux.php';
 
 // Ce fichier index.php se trouve dans le sous-repertoire ADMIN de Studs. Il sert à afficher l'intranet de studs
@@ -50,16 +49,16 @@ include_once __DIR__ . '/../bandeaux.php';
 // de l'application.
 
 // Affichage des balises standards
-print_header( _("Polls administrator") );
+Utils::print_header( _("Polls administrator") );
 bandeau_titre(_("Polls administrator"));
 
 $sondage=$connect->Execute("select * from sondage");
 
 echo'
-    <form action="'.get_server_name().'admin/index.php" method="POST">'."\n";
+    <form action="' . Utils::get_server_name() . 'admin/index.php" method="POST">'."\n";
 // Test et affichage du bouton de confirmation en cas de suppression de sondage
 while($dsondage = $sondage->FetchNextObject(false)) {
-    if (issetAndNoEmpty('supprimersondage'.$dsondage->id_sondage) === true) {
+    if (Utils::issetAndNoEmpty('supprimersondage'.$dsondage->id_sondage) === true) {
 		echo '
 		<div class="alert alert-warning text-center">
             <h2>'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'</h2>
@@ -69,11 +68,11 @@ while($dsondage = $sondage->FetchNextObject(false)) {
     }
 
     // Traitement de la confirmation de suppression
-    if (issetAndNoEmpty('confirmesuppression'.$dsondage->id_sondage) === true) {
+    if (Utils::issetAndNoEmpty('confirmesuppression'.$dsondage->id_sondage) === true) {
         // On inclut la routine de suppression
         $date=date('H:i:s d/m/Y');
 
-        if ( remove_sondage( $connect, $dsondage->id_sondage ) ) {
+        if (Utils::remove_sondage($connect, $dsondage->id_sondage) {
            // ecriture des traces dans le fichier de logs
            error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'logs_studs.txt');
         }
@@ -124,8 +123,8 @@ while($dsondage = $sondage->FetchNextObject(false)) {
     }
     echo '
         <td>'.$nbuser.'</td>
-        <td><a href="'.getUrlSondage($dsondage->id_sondage).'" class="btn btn-link" title="'. _("See the poll") .'"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-        <td><a href="'.getUrlSondage($dsondage->id_sondage_admin, true).'" class="btn btn-link" title="'. _("Change the poll") .'"><span class="glyphicon glyphicon-pencil"></span></a></td>
+        <td><a href="' . Utils::getUrlSondage($dsondage->id_sondage) . '" class="btn btn-link" title="'. _("See the poll") .'"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+        <td><a href="' . Utils::getUrlSondage($dsondage->id_sondage_admin, true) . '" class="btn btn-link" title="'. _("Change the poll") .'"><span class="glyphicon glyphicon-pencil"></span></a></td>
         <td><button type="submit" name="supprimersondage'.$dsondage->id_sondage.'" value="'. _("Remove the poll") .'" class="btn btn-link" title="'. _("Remove the poll") .'"><span class="glyphicon glyphicon-trash text-danger"></span></td>
     </tr>'."\n";
     $i++;
@@ -136,5 +135,5 @@ echo '</table></form>'."\n";
 bandeau_pied(true);
 
 // si on annule la suppression, rafraichissement de la page
-if (issetAndNoEmpty('annulesuppression') === true) {
+if (Utils::issetAndNoEmpty('annulesuppression') === true) {
 }

@@ -15,9 +15,10 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
+namespace Framadate;
 
 session_start();
-include_once __DIR__ . '/app/inc/functions.php';
+include_once __DIR__ . '/app/inc/init.php';
 
 if (file_exists('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
@@ -39,7 +40,7 @@ foreach ($post_var as $var) {
 // On initialise egalement la session car sinon bonjour les warning :-)
 $session_var = array('choix_sondage', 'titre', 'nom', 'adresse', 'commentaires', 'mailsonde', 'studsplus', );
 foreach ($session_var as $var) {
-    if (issetAndNoEmpty($var, $_SESSION) === false) {
+    if (Utils::issetAndNoEmpty($var, $_SESSION) === false) {
         $_SESSION[$var] = null;
     }
 }
@@ -53,7 +54,7 @@ $cocheplus = '';
 $cochemail = '';
 
 #tests
-if (issetAndNoEmpty("poursuivre")){
+if (Utils::issetAndNoEmpty("poursuivre")){
     $_SESSION["choix_sondage"] = $choix_sondage;
     $_SESSION["titre"] = $titre;
     $_SESSION["nom"] = $nom;
@@ -65,8 +66,8 @@ if (issetAndNoEmpty("poursuivre")){
 
     unset($_SESSION["mailsonde"]);
     $_SESSION["mailsonde"] = ($mailsonde !== null) ? true : false;
- 
-    if (validateEmail($adresse) === false) {
+
+    if (Utils::validateEmail($adresse) === false) {
         $erreur_adresse = true;
     }
 
@@ -96,20 +97,20 @@ if (issetAndNoEmpty("poursuivre")){
         }
 
     } else {
-	  // Title Erreur !
-	  print_header( _("Error!").' - '._("Poll creation (1 on 2)") );
+        // Title Erreur !
+        Utils::print_header( _("Error!").' - '._("Poll creation (1 on 2)") );
     }
 } else {
-	// Title OK (formulaire pas encore rempli)
-	print_header( _("Poll creation (1 on 2)") );
+    // Title OK (formulaire pas encore rempli)
+    Utils::print_header( _("Poll creation (1 on 2)") );
 }
 
 bandeau_titre( _("Poll creation (1 on 2)") );
 
 // premier sondage ? test l'existence des schémas SQL avant d'aller plus loin
-if(!check_table_sondage()) {
+if(!Utils::check_table_sondage()) {
     echo '<div class="alert alert-danger text-center">' . _("STUdS is not properly installed, please check the 'INSTALL' to setup the database before continuing") . "</div>"."\n";
-  
+
     bandeau_pied();
 
     die();
@@ -118,8 +119,8 @@ if(!check_table_sondage()) {
 /*
  * Préparation des messages d'erreur
  */
- 
-$errors = array( 
+
+$errors = array(
     'title' => array (
         'msg' => '',
         'aria' => '',
@@ -142,7 +143,7 @@ $errors = array(
     )
 );
 
-if (!$_SESSION["titre"] && issetAndNoEmpty("poursuivre") ) {
+if (!$_SESSION["titre"] && Utils::issetAndNoEmpty("poursuivre") ) {
     $errors['title']['aria'] = 'aria-describeby="#poll_title_error" '; $errors['title']['class'] = ' has-error';
     $errors['title']['msg'] = '<div class="alert alert-danger" ><p id="poll_title_error">' . _("Enter a title") . '</p></div>';
 } elseif ($erreur_injection_titre) {
@@ -155,7 +156,7 @@ if ($erreur_injection_commentaires) {
     $errors['description']['msg'] = '<div class="alert alert-danger"><p id="poll_comment_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
-if (!$_SESSION["nom"] && issetAndNoEmpty("poursuivre")) {
+if (!$_SESSION["nom"] && Utils::issetAndNoEmpty("poursuivre")) {
     $errors['name']['aria'] = 'aria-describeby="#poll_name_error" '; $errors['name']['class'] = ' has-error';
     $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Enter a name") . '</p></div>';
 } elseif ($erreur_injection_nom) {
@@ -163,12 +164,12 @@ if (!$_SESSION["nom"] && issetAndNoEmpty("poursuivre")) {
 	$errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
-if (!$_SESSION["adresse"] && issetAndNoEmpty("poursuivre")) {
+if (!$_SESSION["adresse"] && Utils::issetAndNoEmpty("poursuivre")) {
     $errors['email']['aria'] = 'aria-describeby="#poll_name_error" '; $errors['email']['class'] = ' has-error';
     $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("Enter an email address") . '</p></div>';
-} elseif ($erreur_adresse && issetAndNoEmpty("poursuivre")) {
+} elseif ($erreur_adresse && Utils::issetAndNoEmpty("poursuivre")) {
 	$errors['email']['aria'] = 'aria-describeby="#poll_email_error" '; $errors['email']['class'] = ' has-error';
-    $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("The address is not correct! (You should enter a valid email address in order to receive the link to your poll)") . '</p></div>'; 
+    $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("The address is not correct! (You should enter a valid email address in order to receive the link to your poll)") . '</p></div>';
 }
 
 /*
@@ -189,7 +190,7 @@ if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
 }
 
 // Checkbox checked ?
-if (!$_SESSION["studsplus"] && !issetAndNoEmpty('creation_sondage_date') && !issetAndNoEmpty('creation_sondage_autre')) {
+if (!$_SESSION["studsplus"] && !Utils::issetAndNoEmpty('creation_sondage_date') && !Utils::issetAndNoEmpty('creation_sondage_autre')) {
     $_SESSION["studsplus"]="+";
 }
 
@@ -212,12 +213,12 @@ if ($_GET['choix_sondage'] == 'date') {
 echo '
 <div class="row">
     <div class="col-md-6 col-md-offset-3" >
-    <form name="formulaire" id="formulaire" action="'.get_server_name().'infos_sondage.php" method="POST" class="form-horizontal" role="form">
-        
+    <form name="formulaire" id="formulaire" action="' . Utils::get_server_name() . 'infos_sondage.php" method="POST" class="form-horizontal" role="form">
+
         <div class="alert alert-info">
             <p>'. _("You are in the poll creation section.").' <br /> '._("Required fields cannot be left blank.") .'</p>
         </div>
-        
+
         <div class="form-group'.$errors['title']['class'].'">
             <label for="poll_title" class="col-sm-5 control-label">' . _("Poll title *: ") . '</label>
             <div class="col-sm-7">
@@ -246,7 +247,7 @@ echo '
             </div>
         </div>
             '.$errors['email']['msg'].'
-        
+
         <div class="form-group">
 			<div class="col-sm-offset-1 col-sm-11">
 			  <div class="checkbox">
@@ -265,14 +266,14 @@ echo '
 			  </div>
 			</div>
 	    </div>
-	    
+
         <p class="text-right">
             <input type="hidden" name="choix_sondage" value="'. $choix_sondage .'"/>
             <button name="poursuivre" value="'. $choix .'" type="submit" class="btn btn-success">'. _('Next') . '</button>
         </p>
-        
+
         <script type="text/javascript"> document.formulaire.titre.focus(); </script>
-        
+
     </form>
     </div>
 </div>';
