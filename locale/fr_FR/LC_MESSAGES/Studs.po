@@ -68,6 +68,15 @@ msgstr ", si nécessaire"
 msgid "No"
 msgstr "Non"
 
+msgid "Vote \"no\" for "
+msgstr "Voter « non » pour "
+
+msgid "Vote \"yes\" for "
+msgstr "Voter « oui » pour "
+
+msgid "Vote \"ifneedbe\" for "
+msgstr "Voter « Si nécessaire » pour "
+
 msgid "or"
 msgstr "ou"
 

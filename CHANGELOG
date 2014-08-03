@@ -14,6 +14,8 @@ Les dernières améliorations d'OpenSondage
 	- Nettoyage + Bootstrap
 	- Ajout vote Oui/Non/Si nécessaire
 	- Formulaire simplifié pour l'ajout de colonne date (horaire libre)
+	- Restructuration
+	- Fix (partiel) bug modification du premier vote en tapant Entrée
 
 	Changelog version 0.7 (mars 2013)
 	- Fix : le sondage supprimé n'était pas forcément le sondage sélectionné (cfévrier)
