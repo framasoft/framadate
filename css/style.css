@@ -198,6 +198,7 @@ table.results tbody th.bg-info {
     border-right: 2px solid white;
     border-left: 2px solid white;
     text-align:center;
+    min-width:150px;
 }
 
 table.results th.bg-primary.month,
@@ -214,17 +215,6 @@ table.results .btn-link.btn-sm {
 }
 
 /* Formulaire de vote */
-.choice {
-    margin:0;
-}
-
-.choice label {
-    font-weight:normal;
-    cursor:pointer;
-    font-size:12px;
-    margin:0;
-}
-
 #vote-form td ul, #vote-form td label {
     margin:0;
     font-size:12px;
@@ -233,7 +223,7 @@ table.results .btn-link.btn-sm {
 #vote-form td {
     border-top:2px solid white;
 }
-
+/*
 input[type="radio"]:checked + label {
     font-weight:bold;
 }
@@ -260,7 +250,7 @@ input[type="radio"]:checked + label {
     color:#A94442;
     background-color:#F2DEDE;
 }
-
+*/
 .yes input, .ifneedbe input,.no input {
     position:absolute;
     left:0;
@@ -268,9 +258,61 @@ input[type="radio"]:checked + label {
     margin-top:0;
 }
 
-.choice input:hover + label, 
 .choice input:focus + label {
-    outline: 1px dotted #000;
+    outline: 2px dotted #000;
+    outline-offset: -2px;
+}
+.choice {
+    width:32px;
+    margin:0 auto !important;
+}
+
+.choice label {
+    cursor:pointer;
+}
+
+.yes .btn, .ifneedbe .btn, .no .btn {
+    width:32px;
+    color:#555;
+}
+
+.yes .btn {
+    border-bottom-right-radius:0px !important;
+    border-bottom-left-radius:0px !important;
+    margin-bottom:-1px !important;
+    margin-top:4px !important;
+}
+
+.ifneedbe .btn {
+    border-radius:0px;
+}
+
+.no .btn{
+    border-top-right-radius:0px !important;
+    border-top-left-radius:0px !important;
+    margin-bottom:4px !important;
+    margin-top:-1px !important;
+}
+
+.yes input[type="radio"]:checked + label { /* =.btn-success.active */
+    color: #FFF;
+    background-color: #449D44;
+    border-color: #398439;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.ifneedbe input[type="radio"]:checked + label { /* =.btn-warning.active */
+    color: #FFF;
+    background-color: #EC971F;
+    border-color: #D58512;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.no input[type="radio"]:checked + label { /* =.btn-danger.active */
+    color: #FFF;
+    background-color: #C9302C;
+    border-color: #AC2925;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
 /* Fix alignement choix_date.php */

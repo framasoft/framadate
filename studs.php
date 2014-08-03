@@ -324,10 +324,11 @@ $toutsujet = explode(",",$dsondage->sujet);
 if ($dsondage->format=="D"||$dsondage->format=="D+") {
     //affichage des sujets du sondage
     echo '<tr>
-<th></th>'."\n";
+<th role="presentation"><button type="submit" class="invisible" name="boutonp" ></button></th>'."\n";
 
 	$border = array();
 	$td_headers = array();
+    $radio_title = array();
 
     //affichage des mois et années
     $colspan = 1;
@@ -357,13 +358,14 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
             $colspan=1;
         }
         $td_headers[$i] = 'M'.$current;
+        $radio_title[$i] = strftime("%B",$current).' '.strftime("%Y", $current);
     }
 
     $border[count($border)-1] = false; // suppression de la bordure droite du dernier mois
 
     echo '<th></th>
 </tr><tr>
-<th></th>'."\n";
+<th role="presentation"></th>'."\n";
 
     //affichage des jours
     $colspan=1;
@@ -386,6 +388,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
             $colspan=1;
         }
         $td_headers[$i] .= ' D'.$current;
+        $radio_title[$i] = strftime("%A %e",$current).' '.$radio_title[$i];
     }
 
     echo '</tr>'."\n";
@@ -401,6 +404,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
             if (isset($heures[1])) {
                 echo '<th class="bg-info'.$rbd.'" id="H'.preg_replace("/[^a-zA-Z0-9]_+/", "", $heures[0].$heures[1]).'">'.$heures[1].'</th>'."\n";
                 $td_headers[$i] .= ' H'.preg_replace("/[^a-zA-Z0-9]_+/", "", $heures[0].$heures[1]);
+                $radio_title[$i] .= ' - '.$heures[1];
             } else {
                 echo '<th class="bg-info'.$rbd.'"></th>'."\n";
             }
@@ -416,11 +420,12 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
 
     //affichage des sujets du sondage
     echo '<tr>
-<th role="presentation"></th>'."\n";
+<th role="presentation"><button type="submit" class="invisible" name="boutonp" ></button></th>'."\n";
 
     for ($i=0; isset($toutsujet[$i]); $i++) {
         echo '<th class="bg-info" id="S'.preg_replace("/[^a-zA-Z0-9]_+/", "", stripslashes($toutsujet[$i])).'">'.stripslashes($toutsujet[$i]).'</th>'."\n";
         $td_headers[$i] .= 'S'.preg_replace("/[^a-zA-Z0-9]_+/", "", stripslashes($toutsujet[$i]));
+        $radio_title[$i] .= stripslashes($toutsujet[$i]);
     }
     echo '<th></th>
 </tr>
@@ -463,13 +468,29 @@ while ($data = $user_studs->FetchNextObject(false)) {
                     default: $car_html[0]='value="0" checked';break;
                 }
 
-                echo '<td class="bg-info" headers="'.$td_headers[$k ].'">
-    <ul class="list-unstyled choice">
-        <li class="yes"><input type="radio" id="y-choice-'.$k .'" name="choix'.$k .'" '.$car_html[1].'><label for="y-choice-'.$k .'"> ' . _('Yes') . '</label></li>
-        <li class="ifneedbe"><input type="radio" id="i-choice-'.$k .'" name="choix'.$k .'" '.$car_html[2].'><label for="i-choice-'.$k .'"> (' . _('Yes') . '<span class="sr-only">' . _(', ifneedbe') . '</span>)</label></li>
-        <li class="no"><input type="radio" id="n-choice-'.$k .'" name="choix'.$k .'" '.$car_html[0].'><label for="n-choice-'.$k .'"> ' . _('No') . '</label></li>
-    </ul>
-</td>'."\n";
+                echo '
+                <td class="bg-info" headers="'.$td_headers[$k ].'">
+                    <ul class="list-unstyled choice">
+                        <li class="yes">
+                            <input type="radio" id="y-choice-'.$k.'" name="choix'.$k.'" '.$car_html[1].' />
+                            <label class="btn btn-default btn-xs" for="y-choice-'.$k.'" title="' . _('Vote "yes" for ') . $radio_title[$k] . '">
+                                <span class="glyphicon glyphicon-ok"></span><span class="sr-only">' . _('Yes') . '</span>
+                            </label>
+                        </li>
+                        <li class="ifneedbe">
+                            <input type="radio" id="i-choice-'.$k.'" name="choix'.$k.'" '.$car_html[2].' />
+                            <label class="btn btn-default btn-xs" for="i-choice-'.$k.'" title="' . _('Vote "ifneedbe" for ') . $radio_title[$k] . '">
+                                (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">' . _('Ifneedbe') . '</span>
+                            </label>
+                        </li>
+                        <li class="no">
+                            <input type="radio" id="n-choice-'.$k.'" name="choix'.$k.'" '.$car_html[0].'/>
+                            <label class="btn btn-default btn-xs" for="n-choice-'.$k.'" title="' . _('Vote "no" for ') . $radio_title[$k] . '">
+                                <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">' . _('No') . '</span>
+                            </label>
+                        </li>                
+                    </ul>
+                </td>'."\n";
 
         } else {
             $rbd = ($border[$k]) ? ' rbd' : '';
@@ -518,13 +539,29 @@ if (( !(USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || !$user_mod) && $li
 
     //une ligne de checkbox pour le choix du nouvel utilisateur
     for ($i = 0; $i < $nbcolonnes; $i++) {
-        echo '<td class="bg-info" headers="'.$td_headers[$i].'">
-    <ul class="list-unstyled choice">
-        <li class="yes"><input type="radio" id="y-choice-'.$i.'" name="choix'.$i.'" value="1" ><label for="y-choice-'.$i.'">' . _('Yes') . '</label></li>
-        <li class="ifneedbe"><input type="radio" id="i-choice-'.$i.'" name="choix'.$i.'" value="2"><label for="i-choice-'.$i.'">(' . _('Yes') . '<span class="sr-only">, ' . _('ifneedbe') . '</span>)</label></li>
-        <li class="no"><input type="radio" id="n-choice-'.$i.'" name="choix'.$i.'" value="0" checked><label for="n-choice-'.$i.'">' . _('No') . '</label></li>
-    </ul>
-</td>'."\n";
+        echo '
+        <td class="bg-info" headers="'.$td_headers[$i].'">
+            <ul class="list-unstyled choice">
+                <li class="yes">
+                    <input type="radio" id="y-choice-'.$i.'" name="choix'.$i.'" value="1" />
+                    <label class="btn btn-default btn-xs" for="y-choice-'.$i.'" title="' . _('Vote "yes" for ') . $radio_title[$i] . '">
+                        <span class="glyphicon glyphicon-ok"></span><span class="sr-only">' . _('Yes') . '</span>
+                    </label>
+                </li>
+                <li class="ifneedbe">
+                    <input type="radio" id="i-choice-'.$i.'" name="choix'.$i.'" value="2" />
+                    <label class="btn btn-default btn-xs" for="i-choice-'.$i.'" title="' . _('Vote "ifneedbe" for ') . $radio_title[$i] . '">
+                        (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">' . _('Ifneedbe') . '</span>
+                    </label>
+                </li>
+                <li class="no">
+                    <input type="radio" id="n-choice-'.$i.'" name="choix'.$i.'" value="0" checked/>
+                    <label class="btn btn-default btn-xs" for="n-choice-'.$i.'" title="' . _('Vote "no" for ') . $radio_title[$i] . '">
+                        <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">' . _('No') . '</span>
+                    </label>
+                </li>                
+            </ul>
+        </td>'."\n";
     }
 
     // Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
