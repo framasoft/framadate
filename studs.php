@@ -1,19 +1,20 @@
 <?php
-/* This software is governed by the CeCILL-B license. If a copy of this license
+/**
+ * This software is governed by the CeCILL-B license. If a copy of this license
  * is not distributed with this file, you can obtain one at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
- * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
  * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
  * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
  *
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
- * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 namespace Framadate;
 
@@ -488,7 +489,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
                             <label class="btn btn-default btn-xs" for="n-choice-'.$k.'" title="' . _('Vote "no" for ') . $radio_title[$k] . '">
                                 <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">' . _('No') . '</span>
                             </label>
-                        </li>                
+                        </li>
                     </ul>
                 </td>'."\n";
 
@@ -559,7 +560,7 @@ if (( !(USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || !$user_mod) && $li
                     <label class="btn btn-default btn-xs" for="n-choice-'.$i.'" title="' . _('Vote "no" for ') . $radio_title[$i] . '">
                         <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">' . _('No') . '</span>
                     </label>
-                </li>                
+                </li>
             </ul>
         </td>'."\n";
     }

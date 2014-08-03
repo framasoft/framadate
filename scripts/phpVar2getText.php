@@ -1,12 +1,30 @@
 <?php
-/*
+/**
+ * This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
+ *
+ * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ *
+ * =============================
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
+ *
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
+ */
+
+ /*
  raphael.droz@gmail.com, dwtfywwi licence , 2010 :
- 
+
  choppe un fichier $vara="traduction"; dans <lang>.inc
  build un assoc array
  preg_replace les appels wrappés dans gettext() dans le php principal
  generate un .po
- 
+
  (
  echo -e "<?php\n\$l = array (";
  sed -n '/^$.*$/s/^$\([^=]\+\)=.\(.*\).;/"\1"=>\x27\2\x27,/p' lang/en.inc;
@@ -87,7 +105,7 @@ foreach (new DirectoryIterator('.') as $fileInfo) {
   if($fileInfo->isDot()) {
     continue;
   }
-  
+
   $name = $fileInfo->getFilename();
   // process php files
   if(!preg_match('/\.php$/' , $name) || preg_match('/phpVar2getText/', $name)) {
@@ -125,7 +143,7 @@ foreach(array('fr_FR','es_ES','de_DE', 'en_GB') as $i) {
     if($f == 'en') {
       $a .= 'msgid "' . $po_ready_v . '"' . "\n" . 'msgstr "' . $po_ready_v . '"' . "\n\n";
     } else {
-      $a .= 'msgid "' . $po_ready_v . '"' . "\n" . 
+      $a .= 'msgid "' . $po_ready_v . '"' . "\n" .
 	/* ${$k} the key (var name) in the orig (EN) array
 	 to look for as a raw $var while the <lang>.inc is included in the context */
 	'msgstr "' .  stripN(addDQ(${$k})) . '"' . "\n\n";
