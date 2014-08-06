@@ -310,7 +310,7 @@
 				this._events = [
 					// For components that are not readonly, allow keyboard nav
 					[this.element.find('input'), {
-						focus: $.proxy(this.show, this),
+						//focus: $.proxy(this.show, this),
 						keyup: $.proxy(function(e){
 							if ($.inArray(e.keyCode, [27,37,39,38,40,32,13,9]) === -1)
 								this.update();

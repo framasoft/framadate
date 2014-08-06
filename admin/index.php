@@ -16,7 +16,7 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-
+namespace Framadate;
 session_start();
 
 include_once __DIR__ . '/../app/inc/init.php';
@@ -37,8 +37,8 @@ echo'
 // Test et affichage du bouton de confirmation en cas de suppression de sondage
 while($dsondage = $sondage->FetchNextObject(false)) {
     if (Utils::issetAndNoEmpty('supprimersondage'.$dsondage->id_sondage) === true) {
-		echo '
-		<div class="alert alert-warning text-center">
+        echo '
+        <div class="alert alert-warning text-center">
             <h2>'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'</h2>
             <p><button class="btn btn-default" type="submit" value="1" name="annullesuppression">'._("Keep this poll!").'</button>
             <button type="submit" name="confirmesuppression'.$dsondage->id_sondage.'" value="1" class="btn btn-danger">'._("Remove this poll!").'</button></p>
@@ -65,15 +65,15 @@ echo '<p>' . $nbsondages. ' ' . _("polls in the database at this time") .'</p>'.
 // tableau qui affiche tous les sondages de la base
 echo '<table class="table table-bordered">
     <tr align="center">
-	    <th scope="col">'. _("Poll ID") .'</th>
-	    <th scope="col">'. _("Format") .'</th>
-	    <th scope="col">'. _("Title") .'</th>
-	    <th scope="col">'. _("Author") .'</th>
-	    <th scope="col">'. _("Email") .'</th>
-	    <th scope="col">'. _("Expiration's date") .'</th>
-	    <th scope="col">'. _("Users") .'</th>
-	    <th scope="col" colspan="3">'. _("Actions") .'</th>
-	</tr>'."\n";
+        <th scope="col">'. _("Poll ID") .'</th>
+        <th scope="col">'. _("Format") .'</th>
+        <th scope="col">'. _("Title") .'</th>
+        <th scope="col">'. _("Author") .'</th>
+        <th scope="col">'. _("Email") .'</th>
+        <th scope="col">'. _("Expiration's date") .'</th>
+        <th scope="col">'. _("Users") .'</th>
+        <th scope="col" colspan="3">'. _("Actions") .'</th>
+    </tr>'."\n";
 
 $i = 0;
 while($dsondage = $sondage->FetchNextObject(false)) {
