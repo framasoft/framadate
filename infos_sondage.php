@@ -68,7 +68,7 @@ if (Utils::issetAndNoEmpty("poursuivre")){
     unset($_SESSION["mailsonde"]);
     $_SESSION["mailsonde"] = ($mailsonde !== null) ? true : false;
 
-    if (Utils::validateEmail($adresse) === false) {
+    if (Utils::isValidEmail($adresse) === false) {
         $erreur_adresse = true;
     }
 

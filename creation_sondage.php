@@ -97,7 +97,7 @@ function ajouter_sondage()
     $message = sprintf($message, Utils::getUrlSondage($sondage));
     $message_admin = sprintf($message_admin, Utils::getUrlSondage($sondage_admin, true));
 
-    if (Utils::validateEmail($_SESSION['adresse'])) {
+    if (Utils::isValidEmail($_SESSION['adresse'])) {
         Utils::sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message")  . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message_admin, $_SESSION['adresse'] );
         Utils::sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message, $_SESSION['adresse'] );
     }

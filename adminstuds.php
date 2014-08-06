@@ -124,7 +124,7 @@ if (isset($_POST["boutonnouveauxcommentaires"])) {
 
 //si la valeur de la nouvelle adresse est valide et que le bouton est activé
 if (isset($_POST["boutonnouvelleadresse"])) {
-    if (Utils::issetAndNoEmpty('nouvelleadresse') === false || Utils::validateEmail($_POST["nouvelleadresse"]) === false) {
+    if (Utils::issetAndNoEmpty('nouvelleadresse') === false || Utils::isValidEmail($_POST["nouvelleadresse"]) === false) {
        $err |= INVALID_EMAIL;
     } else {
         $nouvelleadresse = htmlentities(html_entity_decode($_POST['nouvelleadresse'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
