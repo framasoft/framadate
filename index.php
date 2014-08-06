@@ -44,7 +44,7 @@ echo '
             </div>
             <div class="col-md-6">
                 <p><a href="'.Utils::get_server_name().'infos_sondage.php?choix_sondage=autre" role="button">
-                    <img alt="" class="opacity" src="'.Utils::get_server_name().'images/sondage2.png" />
+                    <img alt="" class="opacity" src="'.Utils::get_server_name().'images/classic.png" />
                     <br /><span class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-stats"></span>
                     '. _('Make a poll') . '</span>
                 </a></p>

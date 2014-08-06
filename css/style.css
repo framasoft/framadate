@@ -1,24 +1,24 @@
-/* This software is governed by the CeCILL-B license. If a copy of this license 
- * is not distributed with this file, you can obtain one at 
+/* This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- * 
+ *
  * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
  * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
- * 
+ *
  * =============================
- * 
- * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
- * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
- * 
+ *
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
 /* Calendrier dans choix_date.php */
 div.calendrier table {
-	border:2px solid #ccf;
-	background-color: #CCF;
+    border:2px solid #ccf;
+    background-color: #CCF;
     margin-left: auto;
     margin-right: auto;
 }
@@ -40,40 +40,40 @@ div.calendrier td.choisi:hover {
 
 /*jour de la semaine dans calendrier*/
 div.calendrier td.joursemaine {
-	width:14%;
-	text-align: center;
-	border: 2px;
-	background-color: white; 
-	height: 40px;
+    width:14%;
+    text-align: center;
+    border: 2px;
+    background-color: white;
+    height: 40px;
 }
 /*jour avant le premier jour du mois dans calendrier*/
 div.calendrier td.avant {
-	text-align: center;
-	border: 2px;
-	font-family:arial;
-	font-size:13px;
-	background-color: #EEEEEE; 
+    text-align: center;
+    border: 2px;
+    font-family:arial;
+    font-size:13px;
+    background-color: #EEEEEE;
 }
 /*jour libre dans calendrier*/
 div.calendrier td.libre {
-	text-align: center;
-	border: 2px;
-	background-color: #66FF99; 
+    text-align: center;
+    border: 2px;
+    background-color: #66FF99;
 }
 /*jour deja selectionné dans calendrier*/
 div.calendrier td.choisi {
-	text-align: center;
-	border: 2px;
-	background-color: #54ADF7;
+    text-align: center;
+    border: 2px;
+    background-color: #54ADF7;
 }
 
 .bouton {
-	border:0px;
-	padding: 12px 30px 6px;
-	margin:0px;
-	cursor:pointer;
-	font-family:arial;
-	font-size:13px;
+    border:0px;
+    padding: 12px 30px 6px;
+    margin:0px;
+    cursor:pointer;
+    font-family:arial;
+    font-size:13px;
 }
 /*les boutons pour choisir un jour non selectionné*/
 .ON {
@@ -88,19 +88,19 @@ div.calendrier td.choisi {
 
 /* Paragraphe sous le sondage */
 p.affichageresultats{
-	text-align: center;
-	font-family:arial;
-	font-size:13px;
+    text-align: center;
+    font-family:arial;
+    font-size:13px;
 }
 
 /* Commentaires */
 div.comment{
-	margin-top: 10px;
-	border-left: 1px dashed #999;
-	background: #F5F5F5;
-	padding-top: 4px;
-	padding-bottom: 4px;
-	padding-left: 14px;
+    margin-top: 10px;
+    border-left: 1px dashed #999;
+    background: #F5F5F5;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 14px;
 }
 
 /* Ajouts après mise en place de Bootstrap */
@@ -143,11 +143,11 @@ header .lead {
 /* Tableau du sondage */
 #tableContainer {
     overflow-x:auto;
-    margin:0 auto;    
+    margin:0 auto;
 }
 
 table.results {
-	margin:0 auto;
+    margin:0 auto;
 }
 
 table.results > tbody > tr:hover > td,
@@ -223,34 +223,7 @@ table.results .btn-link.btn-sm {
 #vote-form td {
     border-top:2px solid white;
 }
-/*
-input[type="radio"]:checked + label {
-    font-weight:bold;
-}
 
-.yes input[type="radio"]:checked + label {
-    color:#3C763D;
-}
-.ifneedbe input[type="radio"]:checked + label {
-    color:#8A6D3B;
-}
-.no input[type="radio"]:checked + label {
-    color:#A94442;
-}
-
-.yes:hover {
-    color:#3C763D;
-    background-color:#DFF0D8;
-}
-.ifneedbe:hover {
-    color:#8A6D3B;
-    background-color:#FCF8E3;
-}
-.no:hover {
-    color:#A94442;
-    background-color:#F2DEDE;
-}
-*/
 .yes input, .ifneedbe input,.no input {
     position:absolute;
     left:0;
@@ -315,8 +288,29 @@ input[type="radio"]:checked + label {
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
-/* Fix alignement choix_date.php */
+/* choix_date.php */
 #selected-days .form-group {
     margin-left:0;
     margin-right:0;
+}
+
+#selected-days legend input {
+    box-shadow: none;
+    border-width:0px;
+    color: #333;
+    font-size: 21px;
+    border-radius:0;
+    margin-bottom:-1px;
+    background:transparent;
+}
+
+#selected-days legend input:hover,
+#selected-days legend input:focus {
+    border-bottom-width:1px;
+    background-color:#E6E6E6;
+}
+
+#selected-days legend .input-group-addon {
+    border:none;
+    background:transparent;
 }

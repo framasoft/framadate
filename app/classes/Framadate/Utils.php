@@ -97,17 +97,6 @@ class Utils
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-accessibility.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.'.$lang.'.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                // Datepicker
-                $(\'.input-group.date\').datepicker({
-                    format: "dd/mm/yyyy",
-                    todayBtn: "linked",
-                    orientation: "top left",
-                    language: "'.$lang.'"
-                });
-            });
-        </script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/core.js"></script>';
         if (file_exists($_SERVER['DOCUMENT_ROOT']."/nav/nav.js")) {
             echo '<script src="/nav/nav.js" id="nav_js" type="text/javascript" charset="utf-8"></script><!-- /Framanav -->';

@@ -92,9 +92,9 @@ if(isset($_POST['ajoutcomment'])) {
         $comment_user = htmlentities($comment_user, ENT_QUOTES, 'UTF-8');
 
         $sql = 'INSERT INTO comments (id_sondage, comment, usercomment) VALUES ('.
-	        $connect->Param('id_sondage').','.
-	        $connect->Param('comment').','.
-	        $connect->Param('comment_user').')';
+            $connect->Param('id_sondage').','.
+            $connect->Param('comment').','.
+            $connect->Param('comment_user').')';
 
         $sql = $connect->Prepare($sql);
         $comments = $connect->Execute($sql, array($numsondage, $comment, $comment_user));
@@ -169,9 +169,9 @@ if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
 }
 
 if($err != 0) {
-	Utils::print_header(_("Error!").' - '.$dsondage->titre);
+    Utils::print_header(_("Error!").' - '.$dsondage->titre);
 } else {
-	Utils::print_header($dsondage->titre);
+    Utils::print_header($dsondage->titre);
 }
 
 bandeau_titre(_("Make your polls"));
@@ -292,7 +292,7 @@ if ($testmodifier) {
                 case 2: $nouveauchoix .= "2";break;
                 default: $nouveauchoix .= "0";break;
             }
-		}
+        }
     }
 
     $compteur=0;
@@ -327,8 +327,8 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     echo '<tr>
 <th role="presentation"><button type="submit" class="invisible" name="boutonp" ></button></th>'."\n";
 
-	$border = array();
-	$td_headers = array();
+    $border = array();
+    $td_headers = array();
     $radio_title = array();
 
     //affichage des mois et années
@@ -350,8 +350,8 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
             $colspan++;
             $border[$i] = false;
         } else {
-			$border[$i] = true; // bordure pour distinguer les mois
-			if ($_SESSION["langue"]=="EN") {
+            $border[$i] = true; // bordure pour distinguer les mois
+            if ($_SESSION["langue"]=="EN") {
                 echo '<th colspan="'.$colspan.'" class="bg-primary month" id="M'.$current.'">'.date("F",$current).' '.strftime("%Y", $current).'</th>'."\n";
             } else {
                 echo '<th colspan="'.$colspan.'" class="bg-primary month" id="M'.$current.'">'.strftime("%B",$current).' '.strftime("%Y", $current).'</th>'."\n";
@@ -369,15 +369,21 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
 <th role="presentation"></th>'."\n";
 
     //affichage des jours
-    $colspan=1;
-    for ($i=0;$i<count($toutsujet);$i++) {
-        $cur = intval($toutsujet[$i]);
-        if (isset($toutsujet[$i+1]) === false) {
-            $next = false;
-        } else {
-            $next = intval($toutsujet[$i+1]);
+    $colspan = 1;
+    for ($i = 0; $i < count($toutsujet); $i++) {
+        $current = $toutsujet[$i];
+
+        if (strpos($toutsujet[$i], '@') !== false) {
+            $current = substr($toutsujet[$i], 0, strpos($toutsujet[$i], '@'));
         }
-        if ($next && strftime("%a %e", $cur) == strftime("%a %e", $next) && strftime("%B", $cur) == strftime("%B", $next)) {
+
+        if (isset($toutsujet[$i+1]) && strpos($toutsujet[$i+1], '@') !== false) {
+            $next = substr($toutsujet[$i+1], 0, strpos($toutsujet[$i+1], '@'));
+        } elseif (isset($toutsujet[$i+1])) {
+            $next = $toutsujet[$i+1];
+        }
+
+        if (isset($toutsujet[$i+1]) && strftime("%a %e",$current)==strftime("%a %e",$next)&&strftime("%B",$current)==strftime("%B",$next)){
             $colspan++;
         } else {
             $rbd = ($border[$i]) ? ' rbd' : '';
@@ -392,7 +398,8 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
         $radio_title[$i] = strftime("%A %e",$current).' '.$radio_title[$i];
     }
 
-    echo '</tr>'."\n";
+        echo '<th></th>
+</tr>'."\n";
 
     //affichage des horaires
     if (strpos($dsondage->sujet, '@') !== false) {
