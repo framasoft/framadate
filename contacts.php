@@ -31,13 +31,13 @@ if (file_exists('bandeaux_local.php')) {
 // action du bouton annuler
 if ((isset($_POST['envoiquestion'])) &&
      isset($_POST['nom']) && !empty($_POST['nom']) &&
-     isset($_POST['adresse_mail']) && !empty($_POST['adresse_mail']) && Utils::validateEmail($_POST['adresse_mail']) &&
+     isset($_POST['adresse_mail']) && !empty($_POST['adresse_mail']) && Utils::isValidEmail($_POST['adresse_mail']) &&
      isset($_POST['question']) && !empty($_POST['question'])) {
     $message=str_replace("\\","",$_POST["question"]);
     $headers = 'Reply-To: '.$_POST['adresse_mail'];
 
     Utils::sendEmail( ADRESSEMAILADMIN, "" . _("[CONTACT] You have sent a question ") . "".NOMAPPLICATION, "" . _("You have a question from a user ") . " ".NOMAPPLICATION."\n\n" . _("User") . " : ".$_POST["nom"]."\n\n" . _("User's email address") . " : $_POST[adresse_mail]\n\n" . _("Message") . " :".$message,$headers );
-    if (isset($_POST['adresse_mail']) && !empty($_POST['adresse_mail']) && Utils::validateEmail($_POST['adresse_mail'])) {
+    if (isset($_POST['adresse_mail']) && !empty($_POST['adresse_mail']) && Utils::isValidEmail($_POST['adresse_mail'])) {
         Utils::sendEmail( "$_POST[adresse_mail]", "" . _("[COPY] Someone has sent a question ") . "".NOMAPPLICATION, "" . _("Here is a copy of your question") . " :\n\n".$message." \n\n" . _("We're going to answer your question shortly.") . "\n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
     }
 
@@ -92,7 +92,7 @@ if ((isset($_POST['envoiquestion'])) &&
         $errors['state'] = true;
     }
 
-    if (isset($_POST['envoiquestion']) && ($_SESSION["adresse_mail"] =="" || !Utils::validateEmail($_SESSION["adresse_mail"]))) {
+    if (isset($_POST['envoiquestion']) && ($_SESSION["adresse_mail"] =="" || !Utils::isValidEmail($_SESSION["adresse_mail"]))) {
         $errors['email']['aria'] = 'aria-describeby="#poll_email_error" '; $errors['email']['class'] = ' has-error';
         $errors['email']['msg'] = '<div class="alert alert-danger" ><p id="contact_email_error">'. _("The address is not correct!") .'</p></div>';
         $errors['state'] = true;
