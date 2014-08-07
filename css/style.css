@@ -29,7 +29,7 @@ div.calendrier td {
 
 div.calendrier td.libre:hover,
 div.calendrier td.choisi:hover {
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 /*entête calendrier */
