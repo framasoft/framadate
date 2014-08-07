@@ -49,7 +49,7 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
         $choixdate='';
         if (Utils::issetAndNoEmpty('totalchoixjour', $_SESSION) === true) {
             for ($i = 0; $i < count($_SESSION["totalchoixjour"]); $i++) {
-                for ($j=0;$j<count($_SESSION['horaires'.$i]);$j++) {
+                for ($j=0;$j< min(count($_SESSION['horaires'.$i]),12);$j++) {
                     if ($_SESSION['horaires'.$i][$j]!="") {
                         array_push($temp_results, $_SESSION["totalchoixjour"][$i].'@'.$_SESSION['horaires'.$i][$j]);
                     } else {
@@ -69,6 +69,11 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
         }
 
         $_SESSION["toutchoix"]=substr($choixdate,1);
+
+        for ($i = 0; $i < count($_SESSION["totalchoixjour"]); $i++) {
+            unset($_SESSION['horaires'.$i]); // session_unset() may not work in ajouter_sondage()
+        }
+        unset($_SESSION["totalchoixjour"]); // session_unset() may not work in ajouter_sondage()
 
         ajouter_sondage();
 
@@ -123,78 +128,44 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
 
     // Step 2/3 : Select dates of the poll
     } else {
-
-       /* // Filled form
-        if (Utils::issetAndNoEmpty('totalchoixjour', $_SESSION)) {
-
-            //affichage de la liste des jours choisis
-            for ($i=0;$i<count($_SESSION["totalchoixjour"]);$i++) {
-                echo '
-                <fieldset>
-                    <div class="form-group">
-                        <legend>
-                            <div class="input-group date col-xs-7">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                                <input type="text" class="form-control" id="day'.$i.'" data-date-format="'. _("dd/mm/yyyy") .'" name="days[]" value="'.strftime( "%d/%m/%Y", $_SESSION["totalchoixjour"][$i]).'" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
-                            </div>
-                        </legend>'."\n";
-
-                //affichage des cases d'horaires
-                for ($j=0;$j<12;$j++) {
-
-                 if ($_SESSION['horaires'.$i][$j]!="" || $j<3) {
-                    echo '
-                        <div class="col-sm-2">
-                            <label for="d'.$i.'-h'.$j.'" class="sr-only control-label">'. _("Time") .' '. ($j+1) .'</label>
-                            <input type="text" class="form-control hours" title="'.strftime(_("%A, den %e. %B %Y"), $_SESSION["totalchoixjour"][$i]).' - '. _("Time") .' '. ($j+1) .'" placeholder="'. _("Time") .' '. ($j+1) .'" maxlength="11" id="d'.$i.'-h'.$j.'" name="horaires'.$i.'[]" value="'.$_SESSION['horaires'.$i][$j].'" />
-                        </div>'."\n";
-                    }
-                }
-
-                echo '
-                        <div class="col-sm-2"><div class="btn-group btn-group-xs" style="margin-top: 5px;">
-                            <button type="button" title="'. _("Remove an hour") .'" class="remove-an-hour btn btn-default"><span class="glyphicon glyphicon-minus text-info"></span></button>
-                            <button type="button" title="'. _("Add an hour") .'" class="add-an-hour btn btn-default"><span class="glyphicon glyphicon-plus text-success"></span></button>
-                        </div></div>
-                    </div>
-                </fieldset>'."\n";
-            }
-        } else {*/
-
-        // Empty form
-        for ($i = 0; $i < count($_SESSION["totalchoixjour"]); $i++) {
-            unset($_SESSION['horaires'.$i]);
-        }
-        unset($_SESSION["totalchoixjour"]);
-
         echo '
             <h2>'. _("Selected days") .' :</h2>
             <div class="alert alert-info">
                 <p>'._("For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)") .'</p>
-            </div>
+            </div>';
+
+            // Fields days : 1 by default
+            $nb_days = (isset($_SESSION["totalchoixjour"])) ? count($_SESSION["totalchoixjour"]) : 1;
+            for ($i=0;$i<$nb_days;$i++) {
+                $day_value = isset($_SESSION["totalchoixjour"][$i]) ? strftime( "%d/%m/%Y", $_SESSION["totalchoixjour"][$i]) : '';
+                echo '
             <fieldset>
                 <div class="form-group">
                     <legend>
                         <div class="input-group date col-xs-7">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                            <input type="text" class="form-control" id="day'.$i.'" data-date-format="'. _("dd/mm/yyyy") .'" name="days[]" value="" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
+                            <input type="text" class="form-control" id="day'.$i.'" data-date-format="'. _("dd/mm/yyyy") .'" name="days[]" value="'.$day_value.'" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
                         </div>
                     </legend>'."\n";
-            // 3 hours fields
-            for ($j=0;$j<3;$j++) {
-                echo '
+
+                // Fields hours : 3 by default
+                for ($j=0;$j<max(count($_SESSION['horaires'.$i]),3);$j++) {
+                    $hour_value = isset($_SESSION['horaires'.$i][$j]) ? $_SESSION['horaires'.$i][$j] : '';
+                    echo '
                     <div class="col-sm-2">
-                        <label for="d0-h'.$j.'" class="sr-only control-label">'. _("Time") .' '. ($j+1) .'</label>
-                        <input type="text" class="form-control hours" title="'.strftime(_("%A, den %e. %B %Y"), $_SESSION["totalchoixjour"][$i]).' - '. _("Time") .' '. ($j+1) .'" placeholder="'. _("Time") .' '. ($j+1) .'" maxlength="11" id="d0-h'.$j.'" name="horaires0[]" value="" />
+                        <label for="d'.$i.'-h'.$j.'" class="sr-only control-label">'. _("Time") .' '. ($j+1) .'</label>
+                        <input type="text" class="form-control hours" title="'.$day_value.' - '. _("Time") .' '. ($j+1) .'" placeholder="'. _("Time") .' '. ($j+1) .'" maxlength="11" id="d'.$i.'-h'.$j.'" name="horaires'.$i.'[]" value="'.$hour_value.'" />
                     </div>'."\n";
-            }
-        echo '
+                }
+                echo '
                     <div class="col-sm-2"><div class="btn-group btn-group-xs" style="margin-top: 5px;">
                         <button type="button" title="'. _("Remove an hour") .'" class="remove-an-hour btn btn-default"><span class="glyphicon glyphicon-minus text-info"></span></button>
                         <button type="button" title="'. _("Add an hour") .'" class="add-an-hour btn btn-default"><span class="glyphicon glyphicon-plus text-success"></span></button>
                     </div></div>
                 </div>
-            </fieldset>
+            </fieldset>';
+            }
+            echo '
             <div class="col-md-6">
                 <button type="button" id="copyhours" class="btn btn-default disabled" title="'. _("Copy hours of the first day") .'"><span class="glyphicon glyphicon-sort-by-attributes-alt text-info"></span></button>
                 <div class="btn-group btn-group">
@@ -212,14 +183,13 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
                         <li><a id="resethours" href="javascript:void(0)">'. _("Remove all hours") .'</a></li>
                     </ul>
                 </div>
-                <button name="choixheures" value="'. _("Next") .'" type="submit" class="btn btn-success">'. _('Next') . '</button>
+                <button name="choixheures" value="'. _("Next") .'" type="submit" class="btn btn-success disabled">'. _('Next') . '</button>
             </div>'."\n";
     }
 
     echo '
         </div>
     </div>
-    <a name="bas"></a>
     </form>'."\n";
 
     bandeau_pied();
