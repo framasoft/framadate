@@ -576,9 +576,6 @@ if (( !(USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || !$user_mod) && $li
     echo '<td><button type="submit" class="btn btn-success btn-sm" name="boutonp" title="'. _('Save my choices') .'">'. _('Save') .'</button></td>
 </tr>'."\n";
 
-    //focus en javascript sur le champ texte pour le nom d'utilisateur
-    echo '<script type="text/javascript">document.formulaire.nom.focus();</script>'."\n";
-
 }
 
 //determination de la meilleure date
@@ -689,7 +686,7 @@ echo '
     <div class="row">';
 
 if ($comment_user->RecordCount() != 0) {
-    echo '<div class="col-md-7"><h3>' . _("Comments of polled people") . ' :</h3>'."\n";
+    echo '<div class="col-md-7"><h3>' . _("Comments of polled people") . '</h3>'."\n";
     while($dcomment = $comment_user->FetchNextObject(false)) {
         echo '
     <div class="comment">
@@ -707,9 +704,9 @@ if ($comment_user->RecordCount() != 0) {
 //affichage de la case permettant de rajouter un commentaire par les utilisateurs
 echo '
             <div class="alert alert-info">
-            <fieldset id="add-comment"><legend>' . _("Add a comment in the poll:") . '</legend>
+            <fieldset id="add-comment"><legend>' . _("Add a comment in the poll") . '</legend>
                 <div class="form-group">
-                    <p><label for="commentuser">'. _("Name") .'</label> : <input type=text class="form-control" name="commentuser" id="commentuser" /></p>
+                    <p><label for="commentuser">'. _("Name") .'</label><input type=text class="form-control" name="commentuser" id="commentuser" /></p>
                 </div>
                 <div class="form-group">
                     <p><label for="comment">'. _("Your comment: ") .'</label><br />

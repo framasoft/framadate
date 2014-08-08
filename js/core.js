@@ -13,9 +13,6 @@ $(document).ready(function() {
     /**
      *  choix_date.php
      **/
-    // start focus on first field day
-    $('#day0').focus();
-
     // Button "Remove all hours"
     $(document).on('click','#resethours', function() {
         $('#selected-days fieldset').each(function() {
@@ -57,7 +54,6 @@ $(document).ready(function() {
         // label, title and placeholder
         var last_hour_label = last_hour.children('.hours').attr('placeholder');
         var hour_text = last_hour_label.substring(0, last_hour_label.indexOf(' '));
-        var last_hour_html = last_hour.html();
 
         // RegEx for multiple replace
         var re_label = new RegExp(last_hour_label, 'g');
@@ -66,7 +62,7 @@ $(document).ready(function() {
         // HTML code of the new hour
         var new_hour_html =
             '<div class="col-md-2">'+
-                last_hour_html.replace(re_label, hour_text+' '+(hj+2))
+                last_hour.html().replace(re_label, hour_text+' '+(hj+2))
                               .replace(re_id,'"d'+di+'-h'+(hj+1)+'"')
                               .replace(/value="(.*)" n/g, 'value="" n')+
             '</div>';
@@ -105,17 +101,16 @@ $(document).ready(function() {
     $('#add-a-day').on('click', function() {
         var nb_days = $('#selected-days fieldset').length;
         var last_day = $('#selected-days fieldset:last');
+        var last_day_title = last_day.find('legend input').attr('title');
 
-        var new_day = last_day.html();
         var re_id_hours = new RegExp('"d'+(nb_days-1)+'-h', 'g');
-        var re_id_day = new RegExp('id="day'+(nb_days-1)+'"', 'g');
-        var re_name_day = new RegExp('name="horaires'+(nb_days-1), 'g');
 
-        var new_day_html = new_day.replace(re_id_hours, '"d'+nb_days+'-h')
-                                  .replace(re_id_day, 'id="day'+nb_days+'"')
-                                  .replace(re_name_day, 'name="horaires'+nb_days)
+        var new_day_html = last_day.html().replace(re_id_hours, '"d'+nb_days+'-h')
+                                  .replace('id="day'+(nb_days-1)+'"', 'id="day'+nb_days+'"')
+                                  .replace('name="horaires'+(nb_days-1), 'name="horaires'+nb_days)
                                   .replace(/value="(.*)" s/g, 'value="" s')
-                                  .replace(/hours" title="(.*)" p/g, 'hours" title="" p');
+                                  .replace(/hours" title="(.*)" p/g, 'hours" title="" p')
+                                  .replace('title="'+last_day_title+'"', 'title="'+last_day_title.substring(0, last_day_title.indexOf(' '))+' '+(nb_days+1)+'"');
 
         last_day.after('<fieldset>'+new_day_html+'</fieldset>');
         $('#day'+(nb_days)).focus();
@@ -197,9 +192,6 @@ $(document).ready(function() {
     /**
      *  choix_autre.php
      **/
-    // start focus on first field choice
-    $('#choice0').focus();
-
     // Button "Add a choice"
     $('#add-a-choice').on('click', function() {
         var nb_choices = $('.choice-field').length;

@@ -105,7 +105,7 @@ function ajouter_sondage()
     $date=date('H:i:s d/m/Y:');
     error_log($date . " CREATION: $sondage\t$_SESSION[formatsondage]\t$_SESSION[nom]\t$_SESSION[adresse]\t \t$_SESSION[toutchoix]\n", 3, 'admin/logs_studs.txt');
 
-    header("Location:".Utils::getUrlSondage($sondage));
+    header("Location:".Utils::getUrlSondage($sondage_admin, true));
 
     exit();
 

@@ -87,19 +87,15 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         }
     }
 
-
-    Utils::print_header( _("Poll subjects (2 on 2)"));
-    bandeau_titre(_("Poll subjects (2 on 2)"));
-
-    echo '
-    <form name="formulaire" action="' . Utils::get_server_name() . 'choix_autre.php" method="POST" class="form-horizontal" role="form">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">';
-
     // Step 3/3 : Confirm poll creation and choose a removal date
     if (isset($_POST["fin_sondage_autre"])) {
-        //demande de la date de fin du sondage
+        Utils::print_header ( _("Removal date and confirmation (3 on 3)") );
+        bandeau_titre(_("Removal date and confirmation (3 on 3)"));
+
         echo '
+    <form name="formulaire" action="' . Utils::get_server_name() . 'choix_autre.php" method="POST" class="form-horizontal" role="form">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
             <div class="alert alert-info">
                 <p>' . _("Your poll will be automatically removed after 6 months.") . '<br />' . _("You can fix another removal date for it.") .'</p>
                 <div class="form-group">
@@ -114,18 +110,29 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
                 </div>
             </div>
             <div class="alert alert-warning">
-                <p>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll.").'</p>
-                <p>'. _("Then, you will receive quickly an email contening the link to your poll for sending it to the voters.").'</p>
+                <p>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll."). '</p>
+                <p>' . _("Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.") .'</p>
             </div>
+            <p class="text-right"><button name="confirmecreation" value="confirmecreation" type="submit" class="btn btn-success">'. _('Make a poll') . '</button></p>
+        </div>
+    </div>
+    </form>'."\n";
 
-            <p class="text-right"><button name="confirmecreation" value="confirmecreation" type="submit" class="btn btn-success">'. _('Make a poll') . '</button></p>'."\n";
+        bandeau_pied();
 
     // Step 2/3 : Select choices of the poll
     } else {
+        Utils::print_header( _("Poll subjects (2 on 3)"));
+        bandeau_titre(_("Poll subjects (2 on 3)"));
+
+        echo '
+    <form name="formulaire" action="' . Utils::get_server_name() . 'choix_autre.php" method="POST" class="form-horizontal" role="form">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">';
         echo '
             <div class="alert alert-info">
-                <p>'. _("Your poll aim is to make a choice between different subjects.") . '<br />
-                ' . _("Enter the subjects to vote for:") .'</p>
+                <p>'. _("To make a generic poll you need to propose at least two choices between differents subjects.") . '</p>
+                <p>'. _("You can add or remove additional choices with the buttons") .' <span class="glyphicon glyphicon-minus text-info"></span> <span class="glyphicon glyphicon-plus text-success"></span></p>
             </div>'."\n";
 
         // Fields choices : 5 by default
@@ -150,13 +157,12 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
             </div>
             <div class="col-md-6 text-right">
                 <button name="fin_sondage_autre" value="'._('Next').'" type="submit" class="btn btn-success disabled">'. _('Next') . '</button>
-            </div>'."\n";
-    }
-
-    echo '
+            </div>
         </div>
     </div>
     </form>'."\n";
 
-    bandeau_pied();
+        bandeau_pied();
+
+    }
 }
