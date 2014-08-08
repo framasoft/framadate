@@ -180,8 +180,8 @@ msgid "Required fields cannot be left blank."
 msgstr "Merci de remplir les champs obligatoires, marqués d'une *."
 
 #: infos_sondage.php:130
-msgid "Poll title *"
-msgstr "Titre du sondage *"
+msgid "Poll title *: "
+msgstr "Titre du sondage * : "
 
 #: infos_sondage.php:132
 msgid "Enter a title"
@@ -194,20 +194,20 @@ msgid "Characters < > and \" are not permitted"
 msgstr "Les caractères < > et \" ne sont pas autorisés !"
 
 #: infos_sondage.php:138
-msgid "Description"
-msgstr "Description"
+msgid "Description: "
+msgstr "Description : "
 
 #: infos_sondage.php:143
-msgid "Your name*"
-msgstr "Votre nom *"
+msgid "Your name*: "
+msgstr "Votre nom * : "
 
 #: infos_sondage.php:149
 msgid "Enter a name"
 msgstr "Il faut remplir un nom !"
 
 #: infos_sondage.php:155
-msgid "Your e-mail address *"
-msgstr "Votre adresse e-mail *"
+msgid "Your e-mail address *: "
+msgstr "Votre adresse e-mail * : "
 
 #: infos_sondage.php:161
 msgid "Enter an email address"
@@ -484,11 +484,11 @@ msgid "Share URL"
 msgstr "URL à communiquer"
 
 #: studs.php:563
-msgid "Add a comment in the poll"
-msgstr "Ajoutez un commentaire à ce sondage"
+msgid "Add a comment in the poll:"
+msgstr "Ajoutez un commentaire à ce sondage :"
 
-msgid "Your comment"
-msgstr "Votre commentaire"
+msgid "Your comment: "
+msgstr "Votre commentaire : "
 
 msgid "Write your comment"
 msgstr "Écrire votre commentaire"
