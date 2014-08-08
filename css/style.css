@@ -124,13 +124,8 @@ main, header, footer, .container .jumbotron {
     opacity: 1;
 }
 
-/* studs.php et adminstuds.php */
 /* Description du sondage */
-.jumbotron h2 {
-    margin-top:0;
-    margin-bottom: 20px;
-}
-
+    /* studs.php et adminstuds.php */
 header .lead {
     padding:10px 0;
     margin:0;
@@ -139,6 +134,67 @@ header .lead {
 #admin-link, #public-link {
     cursor:text;
 }
+
+.jumbotron h2, .jumbotron .h2-form {
+    margin-bottom:20px;
+    margin-top:0px;
+}
+
+
+    /* adminstuds.php */
+#nouveautitre {
+    font-size: 30px;
+}
+
+#nouvelleadresse {
+    font-size: 21px;
+}
+
+#nouveautitre, #nouvelleadresse {
+    box-shadow: none;
+    border-width:0px;
+    color: #333;
+    background:transparent;
+    padding-left:0;
+}
+
+#nouveauxcommentaires {
+    margin-bottom:0;
+    font-size: 21px;
+    font-weight: 200;
+}
+
+#btn-new-desc {
+    border-top: none;
+    border-color : #E3E3E3;
+    border-top-left-radius:0;
+    border-top-right-radius:0;
+}
+
+#btn-new-title,
+#btn-new-email {
+    position:absolute;
+    left:-2000px;
+}
+
+.input-group:hover #nouveautitre,
+#nouveautitre:focus,
+.input-group:hover #nouvelleadresse,
+#nouvelleadresse:focus {
+    border-width:1px;
+    background-color:#fff;
+    padding-left:10px;
+    font-size: 14px;
+}
+
+
+#btn-new-title:focus,#btn-new-title:hover,#btn-new-title:active,
+#btn-new-email:focus,#btn-new-email:hover,#btn-new-email:active,
+.input-group:hover #btn-new-title,
+.input-group:hover #btn-new-email {
+    position:relative !important;
+}
+
 
 /* Tableau du sondage */
 #tableContainer {
@@ -314,3 +370,4 @@ table.results .btn-link.btn-sm {
     border:none;
     background:transparent;
 }
+

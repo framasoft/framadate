@@ -99,14 +99,14 @@ if (Utils::issetAndNoEmpty("poursuivre")){
 
     } else {
         // Title Erreur !
-        Utils::print_header( _("Error!").' - '._("Poll creation (1 on 2)") );
+        Utils::print_header( _("Error!").' - '._("Poll creation (1 on 3)") );
     }
 } else {
     // Title OK (formulaire pas encore rempli)
-    Utils::print_header( _("Poll creation (1 on 2)") );
+    Utils::print_header( _("Poll creation (1 on 3)") );
 }
 
-bandeau_titre( _("Poll creation (1 on 2)") );
+bandeau_titre( _("Poll creation (1 on 3)") );
 
 // premier sondage ? test l'existence des schémas SQL avant d'aller plus loin
 if(!Utils::check_table_sondage()) {
@@ -161,15 +161,15 @@ if (!$_SESSION["nom"] && Utils::issetAndNoEmpty("poursuivre")) {
     $errors['name']['aria'] = 'aria-describeby="#poll_name_error" '; $errors['name']['class'] = ' has-error';
     $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Enter a name") . '</p></div>';
 } elseif ($erreur_injection_nom) {
-	$errors['name']['aria'] = 'aria-describeby="#poll_name_error" '; $errors['name']['class'] = ' has-error';
-	$errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
+    $errors['name']['aria'] = 'aria-describeby="#poll_name_error" '; $errors['name']['class'] = ' has-error';
+    $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
 if (!$_SESSION["adresse"] && Utils::issetAndNoEmpty("poursuivre")) {
     $errors['email']['aria'] = 'aria-describeby="#poll_name_error" '; $errors['email']['class'] = ' has-error';
     $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("Enter an email address") . '</p></div>';
 } elseif ($erreur_adresse && Utils::issetAndNoEmpty("poursuivre")) {
-	$errors['email']['aria'] = 'aria-describeby="#poll_email_error" '; $errors['email']['class'] = ' has-error';
+    $errors['email']['aria'] = 'aria-describeby="#poll_email_error" '; $errors['email']['class'] = ' has-error';
     $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("The address is not correct! (You should enter a valid email address in order to receive the link to your poll)") . '</p></div>';
 }
 
@@ -250,23 +250,23 @@ echo '
             '.$errors['email']['msg'].'
 
         <div class="form-group">
-			<div class="col-sm-offset-1 col-sm-11">
-			  <div class="checkbox">
-				<label>
-				    <input type=checkbox name=studsplus '.$cocheplus.' id="studsplus">'. _(" Voters can modify their vote themselves.") .'
-				</label>
-			  </div>
-			</div>
-	    </div>
-	    <div class="form-group">
-			<div class="col-sm-offset-1 col-sm-11">
-			  <div class="checkbox">
-				<label>
-				    <input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde">'. _(" To receive an email for each new vote.") .'
-				</label>
-			  </div>
-			</div>
-	    </div>
+            <div class="col-sm-offset-1 col-sm-11">
+              <div class="checkbox">
+                <label>
+                    <input type=checkbox name=studsplus '.$cocheplus.' id="studsplus">'. _(" Voters can modify their vote themselves.") .'
+                </label>
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-1 col-sm-11">
+              <div class="checkbox">
+                <label>
+                    <input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde">'. _(" To receive an email for each new vote.") .'
+                </label>
+              </div>
+            </div>
+        </div>
 
         <p class="text-right">
             <input type="hidden" name="choix_sondage" value="'. $choix_sondage .'"/>
