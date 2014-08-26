@@ -23,7 +23,7 @@ include_once __DIR__ . '/app/inc/init.php';
 // bandeaux de titre
 function bandeau_titre($titre)
 {
-	$img = ( IMAGE_TITRE ) ? '<img src="'. Utils::get_server_name(). IMAGE_TITRE. '" title="'._("Home").' - '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'">' : '';
+    $img = ( IMAGE_TITRE ) ? '<img src="'. Utils::get_server_name(). IMAGE_TITRE. '" title="'._("Home").' - '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'">' : '';
     echo '
     <header role="banner">
         <form method="post" action="">
@@ -47,11 +47,11 @@ function liste_lang()
     $str = '';
 
     foreach ($ALLOWED_LANGUAGES as $k => $v ) {
-	    if (substr($k,0,2)==$lang) {
-		    $str .= '<option lang="'.substr($k,0,2).'" selected value="' . $k . '">' . $v . '</option>' . "\n" ;
-	    } else {
-		    $str .= '<option lang="'.substr($k,0,2).'" value="' . $k . '">' . $v . '</option>' . "\n" ;
-	    }
+        if (substr($k,0,2)==$lang) {
+            $str .= '<option lang="'.substr($k,0,2).'" selected value="' . $k . '">' . $v . '</option>' . "\n" ;
+        } else {
+            $str .= '<option lang="'.substr($k,0,2).'" value="' . $k . '">' . $v . '</option>' . "\n" ;
+        }
     }
 
   return $str;
@@ -59,21 +59,20 @@ function liste_lang()
 
 function bandeau_pied($admin=false)
 {
-	echo '
+    echo '
     </main>
     <footer>
-	    <hr />
+        <hr />
         <ul class="list-inline">';
-	if($admin) {
-		echo '
-		    <li><a class="btn btn-default btn-xs" href="'.str_replace('/admin','', Utils::get_server_name()).'">'. _("Home") .'</a></li>
-		    <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','', Utils::get_server_name()).'admin/nettoyage_sondage.php">'. _("Cleaning") .'</a></li>';
+    if($admin) {
+        echo '
+            <li><a class="btn btn-default btn-xs" href="'.str_replace('/admin','', Utils::get_server_name()).'">'. _("Home") .'</a></li>';
         if (is_readable('logs_studs.txt')) {
             echo '
             <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','', Utils::get_server_name()).'admin/logs_studs.txt">'. _("Logs") .'</a></li>';
         }
-	} else {
-	    echo '
+    } else {
+        echo '
             <li><a class="btn btn-default btn-xs" href="'. Utils::get_server_name().'">'. _("Home") .'</a></li>
             <li><a class="btn btn-default btn-xs" href="http://contact.framasoft.org">'. _("Contact") .'</a></li>
             <li><a class="btn btn-default btn-xs" href="'. Utils::get_server_name().'apropos.php">'. _("About") .'</a></li>';

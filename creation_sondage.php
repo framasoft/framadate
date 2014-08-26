@@ -58,8 +58,9 @@ function ajouter_sondage()
 
     if ($_SESSION["formatsondage"]=="D"||$_SESSION["formatsondage"]=="D+") {
         //Calcul de la date de fin du sondage
-        $taille_tableau=sizeof($_SESSION["totalchoixjour"])-1;
-        $date_fin=$_SESSION["totalchoixjour"][$taille_tableau]+200000;
+        $temp_array = array_unique($_SESSION["totalchoixjour"]);
+        sort($temp_array);
+        $date_fin= end($temp_array)+2592000;
     }
 
     if (is_numeric($date_fin) === false) {
@@ -89,10 +90,10 @@ function ajouter_sondage()
     $message = _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
     $message .= "\n\n";
     $message .= stripslashes(html_entity_decode($_SESSION["nom"],ENT_QUOTES,"UTF-8"))." " . _("hast just created a poll called") . " : \"".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES))."\".\n";
-    $message .= _("Thanks for filling the poll at the link above") . " :\n\n%s\n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION;
+    $message .= _("Thanks for filling the poll at the link above") . " :\n\n%s\n\n" . _("Thanks for your confidence.") . ",\n".NOMAPPLICATION;
 
     $message_admin = _("This message should NOT be sended to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
-    $message_admin .= " :\n\n"."%s \n\n" . _("Thanks for your confidence") . ",\n".NOMAPPLICATION;
+    $message_admin .= " :\n\n"."%s \n\n" . _("Thanks for your confidence.") . ",\n".NOMAPPLICATION;
 
     $message = sprintf($message, Utils::getUrlSondage($sondage));
     $message_admin = sprintf($message_admin, Utils::getUrlSondage($sondage_admin, true));
@@ -102,12 +103,10 @@ function ajouter_sondage()
         Utils::sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message, $_SESSION['adresse'] );
     }
 
-    $date=date('H:i:s d/m/Y:');
-    error_log($date . " CREATION: $sondage\t$_SESSION[formatsondage]\t$_SESSION[nom]\t$_SESSION[adresse]\t \t$_SESSION[toutchoix]\n", 3, 'admin/logs_studs.txt');
+    error_log(date('H:i:s d/m/Y:') . ' CREATION: '.$sondage."\t".$_SESSION[formatsondage]."\t".$_SESSION[nom]."\t".$_SESSION[adresse]."\t \t".$_SESSION[toutchoix]."\n", 3, 'admin/logs_studs.txt');
+    Utils::cleaning_polls($connect, 'admin/logs_studs.txt');
 
     header("Location:".Utils::getUrlSondage($sondage_admin, true));
 
     exit();
-
-    session_unset();
 }

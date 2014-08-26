@@ -135,66 +135,37 @@ header .lead {
     cursor:text;
 }
 
-.jumbotron h2, .jumbotron .h2-form {
+.jumbotron h2, .jumbotron .js-title {
     margin-bottom:20px;
     margin-top:0px;
 }
 
-
     /* adminstuds.php */
-#nouveautitre {
-    font-size: 30px;
-}
-
-#nouvelleadresse {
-    font-size: 21px;
-}
-
-#nouveautitre, #nouvelleadresse {
-    box-shadow: none;
-    border-width:0px;
-    color: #333;
-    background:transparent;
-    padding-left:0;
-}
-
-#nouveauxcommentaires {
-    margin-bottom:0;
-    font-size: 21px;
-    font-weight: 200;
-}
-
-#btn-new-desc {
-    border-top: none;
-    border-color : #E3E3E3;
-    border-top-left-radius:0;
-    border-top-right-radius:0;
-}
-
-#btn-new-title,
-#btn-new-email {
+#title-form h2 .btn-edit,
+#email-form .btn-edit,
+#description-form .btn-edit {
     position:absolute;
     left:-2000px;
 }
 
-.input-group:hover #nouveautitre,
-#nouveautitre:focus,
-.input-group:hover #nouvelleadresse,
-#nouvelleadresse:focus {
-    border-width:1px;
-    background-color:#fff;
-    padding-left:10px;
-    font-size: 14px;
-}
-
-
-#btn-new-title:focus,#btn-new-title:hover,#btn-new-title:active,
-#btn-new-email:focus,#btn-new-email:hover,#btn-new-email:active,
-.input-group:hover #btn-new-title,
-.input-group:hover #btn-new-email {
+#title-form .btn-edit:focus,
+#title-form h2:hover .btn-edit,
+#email-form .btn-edit:focus,
+#email-form:hover .btn-edit,
+#description-form .btn-edit:focus,
+#description-form:hover .btn-edit {
     position:relative !important;
+    left:0;
+    padding: 0px 10px;
 }
 
+.js-desc textarea {
+    margin-bottom:5px;
+}
+
+#author-form .form-control-static {
+    margin-bottom:0;
+}
 
 /* Tableau du sondage */
 #tableContainer {

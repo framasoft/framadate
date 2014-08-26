@@ -37,9 +37,7 @@ if ((isset($_POST['envoiquestion'])) &&
     $headers = 'Reply-To: '.$_POST['adresse_mail'];
 
     Utils::sendEmail( ADRESSEMAILADMIN, "" . _("[CONTACT] You have sent a question ") . "".NOMAPPLICATION, "" . _("You have a question from a user ") . " ".NOMAPPLICATION."\n\n" . _("User") . " : ".$_POST["nom"]."\n\n" . _("User's email address") . " : $_POST[adresse_mail]\n\n" . _("Message") . " :".$message,$headers );
-    if (isset($_POST['adresse_mail']) && !empty($_POST['adresse_mail']) && Utils::isValidEmail($_POST['adresse_mail'])) {
-        Utils::sendEmail( "$_POST[adresse_mail]", "" . _("[COPY] Someone has sent a question ") . "".NOMAPPLICATION, "" . _("Here is a copy of your question") . " :\n\n".$message." \n\n" . _("We're going to answer your question shortly.") . "\n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
-    }
+    Utils::sendEmail( "$_POST[adresse_mail]", "" . _("[COPY] Someone has sent a question ") . "".NOMAPPLICATION, "" . _("Here is a copy of your question") . " :\n\n".$message." \n\n" . _("We're going to answer your question shortly.") . "\n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
 
     //affichage de la page de confirmation d'envoi
     Utils::print_header(_("Make your polls"));
@@ -124,7 +122,7 @@ if ((isset($_POST['envoiquestion'])) &&
                 </div>
                     '.$errors['name']['msg'].'
                 <div class="form-group'.$errors['email']['class'].'">
-                    <label for="email" class="col-sm-5 control-label">' . _("Your email address ") . '</label>
+                    <label for="email" class="col-sm-5 control-label">' . _("Your email address") . '</label>
                     <div class="col-sm-7">
                         <input type="text" maxlength="64" id="email" name="adresse_mail" class="form-control" '.$errors['email']['aria'].' value="'.$_SESSION["adresse_mail"].'" />
                     </div>
@@ -142,6 +140,5 @@ if ((isset($_POST['envoiquestion'])) &&
         </div>
     </div>'."\n";
 
-    //bandeau de pied
     bandeau_pied();
 }

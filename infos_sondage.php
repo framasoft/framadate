@@ -27,9 +27,19 @@ if (file_exists('bandeaux_local.php')) {
     include_once('bandeaux.php');
 }
 
+// Type de sondage : <button value="$_SESSION["choix_sondage"]">
+if ((isset($_GET['choix_sondage']) && $_GET['choix_sondage'] == 'date') ||
+    (isset($_POST["choix_sondage"]) && $_POST["choix_sondage"] == 'creation_sondage_date')) {
+    $choix_sondage = "creation_sondage_date";
+    $_SESSION["choix_sondage"] = $choix_sondage;
+} else {
+    $choix_sondage = "creation_sondage_autre";
+    $_SESSION["choix_sondage"] = $choix_sondage;
+}
+
 // On teste toutes les variables pour supprimer l'ensemble des warnings PHP
 // On transforme en entites html les données afin éviter les failles XSS
-$post_var = array('choix_sondage', 'poursuivre', 'titre', 'nom', 'adresse', 'commentaires', 'studsplus', 'mailsonde', 'creation_sondage_date', 'creation_sondage_autre');
+$post_var = array('poursuivre', 'titre', 'nom', 'adresse', 'commentaires', 'studsplus', 'mailsonde', 'creation_sondage_date', 'creation_sondage_autre');
 foreach ($post_var as $var) {
     if (isset($_POST[$var]) === true) {
         $$var = htmlentities($_POST[$var], ENT_QUOTES, 'UTF-8');
@@ -39,7 +49,7 @@ foreach ($post_var as $var) {
 }
 
 // On initialise egalement la session car sinon bonjour les warning :-)
-$session_var = array('choix_sondage', 'titre', 'nom', 'adresse', 'commentaires', 'mailsonde', 'studsplus', );
+$session_var = array('titre', 'nom', 'adresse', 'commentaires', 'mailsonde', 'studsplus', );
 foreach ($session_var as $var) {
     if (Utils::issetAndNoEmpty($var, $_SESSION) === false) {
         $_SESSION[$var] = null;
@@ -56,7 +66,6 @@ $cochemail = '';
 
 #tests
 if (Utils::issetAndNoEmpty("poursuivre")){
-    $_SESSION["choix_sondage"] = $choix_sondage;
     $_SESSION["titre"] = $titre;
     $_SESSION["nom"] = $nom;
     $_SESSION["adresse"] = $adresse;
@@ -110,7 +119,7 @@ bandeau_titre( _("Poll creation (1 on 3)") );
 
 // premier sondage ? test l'existence des schémas SQL avant d'aller plus loin
 if(!Utils::check_table_sondage()) {
-    echo '<div class="alert alert-danger text-center">' . _("STUdS is not properly installed, please check the 'INSTALL' to setup the database before continuing") . "</div>"."\n";
+    echo '<div class="alert alert-danger text-center">' . _("Framadate is not properly installed, please check the 'INSTALL' to setup the database before continuing.") . "</div>"."\n";
 
     bandeau_pied();
 
@@ -203,13 +212,6 @@ if ($_SESSION["mailsonde"]) {
     $cochemail="checked";
 }
 
-// Type de sondage : <button value="$choix">
-if ($_GET['choix_sondage'] == 'date') {
-    $choix = "creation_sondage_date";
-} elseif ($_GET['choix_sondage'] == 'autre') {
-    $choix = "creation_sondage_autre";
-}
-
 // Affichage du formulaire
 echo '
 <div class="row">
@@ -221,28 +223,28 @@ echo '
         </div>
 
         <div class="form-group'.$errors['title']['class'].'">
-            <label for="poll_title" class="col-sm-5 control-label">' . _("Poll title *: ") . '</label>
+            <label for="poll_title" class="col-sm-5 control-label">' . _("Poll title") . ' *</label>
             <div class="col-sm-7">
                 <input id="poll_title" type="text" name="titre" class="form-control" '.$errors['title']['aria'].' maxlength="80" value="'.stripslashes($_SESSION["titre"]).'" />
             </div>
         </div>
             '.$errors['title']['msg'].'
         <div class="form-group'.$errors['description']['class'].'">
-            <label for="poll_comments" class="col-sm-5 control-label">'. _("Description: ") .'</label>
+            <label for="poll_comments" class="col-sm-5 control-label">'. _("Description") .'</label>
             <div class="col-sm-7">
                 <textarea id="poll_comments" name="commentaires" class="form-control" '.$errors['description']['aria'].' rows="5">'.stripslashes($_SESSION["commentaires"]).'</textarea>
             </div>
         </div>
             '.$errors['description']['msg'].'
         <div class="form-group'.$errors['name']['class'].'">
-            <label for="yourname" class="col-sm-5 control-label">'. _("Your name*: ") .'</label>
+            <label for="yourname" class="col-sm-5 control-label">'. _("Your name") .' *</label>
             <div class="col-sm-7">
                 '.$input_name.'
             </div>
         </div>
             '.$errors['name']['msg'].'
         <div class="form-group'.$errors['email']['class'].'">
-            <label for="email" class="col-sm-5 control-label">'. _("Your e-mail address *: ") .'</label>
+            <label for="email" class="col-sm-5 control-label">'. _("Your email address") .' *</label>
             <div class="col-sm-7">
                 '.$input_email.'
             </div>
@@ -253,7 +255,7 @@ echo '
             <div class="col-sm-offset-1 col-sm-11">
               <div class="checkbox">
                 <label>
-                    <input type=checkbox name=studsplus '.$cocheplus.' id="studsplus">'. _(" Voters can modify their vote themselves.") .'
+                    <input type=checkbox name=studsplus '.$cocheplus.' id="studsplus">'. _("Voters can modify their vote themselves.") .'
                 </label>
               </div>
             </div>
@@ -262,7 +264,7 @@ echo '
             <div class="col-sm-offset-1 col-sm-11">
               <div class="checkbox">
                 <label>
-                    <input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde">'. _(" To receive an email for each new vote.") .'
+                    <input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde">'. _("To receive an email for each new vote.") .'
                 </label>
               </div>
             </div>
@@ -270,7 +272,7 @@ echo '
 
         <p class="text-right">
             <input type="hidden" name="choix_sondage" value="'. $choix_sondage .'"/>
-            <button name="poursuivre" value="'. $choix .'" type="submit" class="btn btn-success">'. _('Next') . '</button>
+            <button name="poursuivre" value="'. $choix_sondage .'" type="submit" class="btn btn-success">'. _('Next') . '</button>
         </p>
 
         <script type="text/javascript"> document.formulaire.titre.focus(); </script>

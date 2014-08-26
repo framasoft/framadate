@@ -73,16 +73,17 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         //format du sondage AUTRE
         $_SESSION["formatsondage"]="A".$_SESSION["studsplus"];
 
-        unset($_SESSION['choices']); // session_unset() may not work in ajouter_sondage()
         ajouter_sondage();
 
     }
 
     // recuperation des sujets pour sondage AUTRE
     if (isset($_POST['choices'])) {
+        $k = 0;
         for ($i = 0; $i < count($_POST['choices']); $i++) {
             if (Utils::issetAndNoEmpty($i, $_POST['choices'])) {
-                $_SESSION['choices'][$i]=htmlentities(html_entity_decode($_POST['choices'][$i], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
+                $_SESSION['choices'][$k]=htmlentities(html_entity_decode($_POST['choices'][$i], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
+                $k++;
             }
         }
     }
@@ -106,14 +107,14 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
                             <input type="text" class="form-control" id="champdatefin" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat" name="champdatefin" value="" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
                         </div>
                     </div>
-                    <span id="dateformat" class="sr-only">'. _("(DD/MM/YYYY)") .'</span>
+                    <span id="dateformat" class="sr-only">'. _("(dd/mm/yyyy)") .'</span>
                 </div>
             </div>
             <div class="alert alert-warning">
                 <p>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll."). '</p>
                 <p>' . _("Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.") .'</p>
             </div>
-            <p class="text-right"><button name="confirmecreation" value="confirmecreation" type="submit" class="btn btn-success">'. _('Make a poll') . '</button></p>
+            <p class="text-right"><button name="confirmecreation" value="confirmecreation" type="submit" class="btn btn-success">'. _('Create the poll') . '</button></p>
         </div>
     </div>
     </form>'."\n";
