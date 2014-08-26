@@ -54,5 +54,4 @@ echo '
                 <p>'. _("or") .' <a href="' . Utils::getUrlSondage('aqg259dth55iuhwm').'">'. _("view an example") .'</a></p>
         </div>'."\n";
 
-//bandeau de pied
 bandeau_pied();

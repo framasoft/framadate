@@ -70,26 +70,26 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
 
         $_SESSION["toutchoix"]=substr($choixdate,1);
 
-        for ($i = 0; $i < count($_SESSION["totalchoixjour"]); $i++) {
-            unset($_SESSION['horaires'.$i]); // session_unset() may not work in ajouter_sondage()
-        }
-        unset($_SESSION["totalchoixjour"]); // session_unset() may not work in ajouter_sondage()
-
         ajouter_sondage();
 
     } else {
-
         if (Utils::issetAndNoEmpty('days')) {
             if (!isset($_SESSION["totalchoixjour"])) {
               $_SESSION["totalchoixjour"]=array();
             }
+            $k = 0;
             for ($i = 0; $i < count($_POST["days"]); $i++) {
-                $_SESSION['totalchoixjour'][$i] = mktime(0, 0, 0, substr($_POST["days"][$i],3,2),substr($_POST["days"][$i],0,2),substr($_POST["days"][$i],6,4));
+                if (isset($_POST["days"][$i]) && $_POST["days"][$i] !='') {
+                    $_SESSION['totalchoixjour'][$k] = mktime(0, 0, 0, substr($_POST["days"][$i],3,2),substr($_POST["days"][$i],0,2),substr($_POST["days"][$i],6,4));
 
-                for($j = 0; $j < count($_POST['horaires'.$i]); $j++) {
-                    if ($_POST['horaires'.$i][$j]!="") {
-                        $_SESSION['horaires'.$i][$j] = $_POST['horaires'.$i][$j];
+                    $l = 0;
+                    for($j = 0; $j < count($_POST['horaires'.$i]); $j++) {
+                        if (isset($_POST['horaires'.$i][$j]) && $_POST['horaires'.$i][$j] != '') {
+                            $_SESSION['horaires'.$k][$l] = $_POST['horaires'.$i][$j];
+                            $l++;
+                        }
                     }
+                    $k++;
                 }
             }
         }
@@ -108,14 +108,14 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
         sort($temp_array);
         $removal_date=strftime(_("%A, den %e. %B %Y"), end($temp_array)+2592000);
 
-       echo '
+        echo '
     <form name="formulaire" action="' . Utils::get_server_name() . 'choix_date.php" method="POST" class="form-horizontal" role="form">
     <div class="row" id="selected-days">
         <div class="col-md-8 col-md-offset-2">
             <h2>'. _("Confirm the creation of your poll") .'</h2>
             <div class="alert alert-info">
                 <p>'. _("Your poll will expire automatically 2 days after the last date of your poll.") .'</p>
-                <p>'. _("Removal date") .' : <b> '.$removal_date.'</b></p>
+                <p>'. _("Removal date:") .' <b> '.$removal_date.'</b></p>
             </div>
             <div class="alert alert-warning">
                 <p>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll."). '</p>

@@ -62,10 +62,6 @@ if(Utils::issetAndNoEmpty('export', $_GET) && $dsondage !== false) {
         require_once('exportcsv.php');
     }
 
-    if($_GET['export'] == 'ics' && $dsondage->is_date) {
-        require_once('exportics.php');
-    }
-
     die();
 }
 
@@ -91,16 +87,30 @@ if(isset($_POST['ajoutcomment'])) {
         $comment = htmlentities($_POST['comment'], ENT_QUOTES, 'UTF-8');
         $comment_user = htmlentities($comment_user, ENT_QUOTES, 'UTF-8');
 
-        $sql = 'INSERT INTO comments (id_sondage, comment, usercomment) VALUES ('.
-            $connect->Param('id_sondage').','.
-            $connect->Param('comment').','.
-            $connect->Param('comment_user').')';
+        // Check for doublons
+        $comment_doublon = false;
+        $req = 'SELECT * FROM comments WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_comment';
+        $sql = $connect->Prepare($req);
+        $comment_user_doublon = $connect->Execute($sql, array($numsondage));
+        if ($comment_user_doublon->RecordCount() != 0) {
+            while ( $dcomment_user_doublon=$comment_user_doublon->FetchNextObject(false)) {
+                if($dcomment_user_doublon->comment == $comment && $dcomment_user_doublon->usercomment == $comment_user) {
+                    $comment_doublon = true;
+                };
+            }
+        }
 
-        $sql = $connect->Prepare($sql);
-        $comments = $connect->Execute($sql, array($numsondage, $comment, $comment_user));
+        if(!$comment_doublon) {
+            $req = 'INSERT INTO comments (id_sondage, comment, usercomment) VALUES ('.
+                $connect->Param('id_sondage').','.
+                $connect->Param('comment').','.
+                $connect->Param('comment_user').')';
+            $sql = $connect->Prepare($req);
 
-        if ($comments === false) {
-            $err |= COMMENT_INSERT_FAILED;
+            $comments = $connect->Execute($sql, array($numsondage, $comment, $comment_user));
+            if ($comments === false) {
+                $err |= COMMENT_INSERT_FAILED;
+            }
         }
     }
 }
@@ -170,19 +180,12 @@ if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
 
 if($err != 0) {
     Utils::print_header(_("Error!").' - '.$dsondage->titre);
-} else {
-    Utils::print_header($dsondage->titre);
-}
-
-bandeau_titre(_("Make your polls"));
-
-if($err != 0) {
     bandeau_titre(_("Error!"));
 
-    echo '<div class="alert alert-danger"><ul>'."\n";
+    echo '<div class="alert alert-danger"><ul class="list-unstyled">'."\n";
 
     if(Utils::is_error(NAME_EMPTY)) {
-        echo '<li>' . _("Enter a name !") . "</li>\n";
+        echo '<li>' . _("Enter a name") . "</li>\n";
     }
     if(Utils::is_error(NAME_TAKEN)) {
         echo '<li>' . _("The name you've chosen already exist in this poll!") . "</li>\n";
@@ -203,10 +206,13 @@ if($err != 0) {
         <p>' . _('Back to the homepage of') . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
     </div>'."\n";
 
-    bandeau_pied();
+        bandeau_pied();
 
-    die();
-  }
+        die();
+    }
+} else {
+    Utils::print_header($dsondage->titre);
+    bandeau_titre(_("Make your polls"));
 }
 
 $titre=str_replace("\\","",$dsondage->titre);
@@ -241,27 +247,13 @@ if ($dsondage->commentaires) {
     $commentaires=nl2br(str_replace("\\","",$commentaires));
     echo '
                 <div class="form-group col-md-7">
-                    <label class="control-label">'._("Description: ") .'</label><br />
+                    <label class="control-label">'._("Description") .'</label><br />
                     <p class="form-control-static well">'. $commentaires .'</p>
                 </div>';
 }
 echo '
             </div>
         </div>'."\n"; // .jumbotron
-
-echo '
-        <form name="formulaire" action="' . Utils::getUrlSondage($dsondage->id_sondage) . '#bas" method="POST">
-            <input type="hidden" name="sondage" value="' . $numsondage . '"/>
-
-            <div class="alert alert-info">
-                <p>' . _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.") . '</p>
-            </div>';
-
-// Debut de l'affichage des resultats du sondage
-echo '
-    <div id="tableContainer" class="tableContainer">
-        <table class="results">
-            <thead>';
 
 //On récupere les données et les sujets du sondage
 $nblignes = $user_studs->RecordCount();
@@ -318,128 +310,115 @@ $user_studs = $connect->Execute($sql, array($numsondage));
 
 //reformatage des données des sujets du sondage
 $toutsujet = explode(",",$dsondage->sujet);
-//patch pyg pour réordonner les dates ajoutees a posteriori
-//sort($toutsujet, SORT_NUMERIC);
 
-//si le sondage est un sondage de date
+// Table headers
+$thead = '<thead>';
+
+// Button in the first td to avoid remove col on "Return" keypress)
+$border = array(); // bordure pour distinguer les mois
+$td_headers = array(); // for a11y, headers="M1 D4 H5" on each td
+$radio_title = array(); // date for
+
+// Dates poll
 if ($dsondage->format=="D"||$dsondage->format=="D+") {
-    //affichage des sujets du sondage
-    echo '<tr>
-<th role="presentation"><button type="submit" class="invisible" name="boutonp" ></button></th>'."\n";
 
-    $border = array();
-    $td_headers = array();
-    $radio_title = array();
+    $tr_months = '<tr><th role="presentation"></th>';
+    $tr_days = '<tr><th role="presentation"></th>';
+    $tr_hours = '<tr><th role="presentation"></th>';
 
-    //affichage des mois et années
-    $colspan = 1;
+    // Headers
+    $colspan_month = 1;
+    $colspan_day = 1;
+
     for ($i = 0; $i < count($toutsujet); $i++) {
+
+        $border[$i] = false;
+        $radio_title[$i] = strftime("%A %e %B %Y",$current);
+
+        // Current date
         $current = $toutsujet[$i];
 
-        if (strpos($toutsujet[$i], '@') !== false) {
-            $current = substr($toutsujet[$i], 0, strpos($toutsujet[$i], '@'));
-        }
+        // Months
+        $td_headers[$i] = 'M'.($i+1-$colspan_month);
 
-        if (isset($toutsujet[$i+1]) && strpos($toutsujet[$i+1], '@') !== false) {
-            $next = substr($toutsujet[$i+1], 0, strpos($toutsujet[$i+1], '@'));
-        } elseif (isset($toutsujet[$i+1])) {
-            $next = $toutsujet[$i+1];
-        }
-
-        if (isset($toutsujet[$i+1]) && strftime("%B", $current) == strftime("%B", $next) && strftime("%Y", $current) == strftime("%Y", $next)){
-            $colspan++;
-            $border[$i] = false;
+        if (isset($toutsujet[$i+1]) && strftime("%B", $current) == strftime("%B", $toutsujet[$i+1]) && strftime("%Y", $current) == strftime("%Y", $toutsujet[$i+1])){
+            $colspan_month++;
         } else {
-            $border[$i] = true; // bordure pour distinguer les mois
-            if ($_SESSION["langue"]=="EN") {
-                echo '<th colspan="'.$colspan.'" class="bg-primary month" id="M'.$current.'">'.date("F",$current).' '.strftime("%Y", $current).'</th>'."\n";
-            } else {
-                echo '<th colspan="'.$colspan.'" class="bg-primary month" id="M'.$current.'">'.strftime("%B",$current).' '.strftime("%Y", $current).'</th>'."\n";
-            }
-            $colspan=1;
+            $border[$i] = true;
+            $tr_months .= '<th colspan="'.$colspan_month.'" class="bg-primary month" id="M'.($i+1-$colspan_month).'">'.strftime("%B",$current).' '.strftime("%Y", $current).'</th>';
+            $colspan_month=1;
         }
-        $td_headers[$i] = 'M'.$current;
-        $radio_title[$i] = strftime("%B",$current).' '.strftime("%Y", $current);
+
+        // Days
+        $td_headers[$i] .= ' D'.($i+1-$colspan_day);
+
+        if (isset($toutsujet[$i+1]) && strftime("%a %e",$current)==strftime("%a %e",$toutsujet[$i+1])&&strftime("%B",$current)==strftime("%B",$toutsujet[$i+1])){
+            $colspan_day++;
+        } else {
+            $rbd = ($border[$i]) ? ' rbd' : '';
+            $tr_days .= '<th colspan="'.$colspan_day.'" class="bg-primary day'.$rbd.'" id="D'.($i+1-$colspan_day).'">'.strftime("%a %e",$current).'</th>';
+            $colspan_day=1;
+        }
+
+        // Hours
+        if (strpos($dsondage->sujet,'@') !== false) {
+            $rbd = ($border[$i]) ? ' rbd' : '';
+            $hour = substr($toutsujet[$i], strpos($toutsujet[$i], '@')-count($toutsujet[$i])+2);
+
+            if ($hour != "") {
+                $tr_hours .= '<th class="bg-info'.$rbd.'" id="H'.$i.'">'.$hour.'</th>';
+                $radio_title[$i] .= ' - '.$hour;
+                $td_headers[$i] .= ' H'.$i;
+            } else {
+                $tr_hours .= '<th class="bg-info'.$rbd.'"></th>';
+            }
+        }
     }
 
     $border[count($border)-1] = false; // suppression de la bordure droite du dernier mois
 
-    echo '<th></th>
-</tr><tr>
-<th role="presentation"></th>'."\n";
+    $tr_months .= '<th></th></tr>';
+    $tr_days .= '<th></th></tr>';
+    $tr_hours .= '<th></th></tr>';
 
-    //affichage des jours
-    $colspan = 1;
-    for ($i = 0; $i < count($toutsujet); $i++) {
-        $current = $toutsujet[$i];
+    $thead = "\n".$tr_months."\n".$tr_days."\n".$tr_hours."\n";
 
-        if (strpos($toutsujet[$i], '@') !== false) {
-            $current = substr($toutsujet[$i], 0, strpos($toutsujet[$i], '@'));
-        }
-
-        if (isset($toutsujet[$i+1]) && strpos($toutsujet[$i+1], '@') !== false) {
-            $next = substr($toutsujet[$i+1], 0, strpos($toutsujet[$i+1], '@'));
-        } elseif (isset($toutsujet[$i+1])) {
-            $next = $toutsujet[$i+1];
-        }
-
-        if (isset($toutsujet[$i+1]) && strftime("%a %e",$current)==strftime("%a %e",$next)&&strftime("%B",$current)==strftime("%B",$next)){
-            $colspan++;
-        } else {
-            $rbd = ($border[$i]) ? ' rbd' : '';
-            if ($_SESSION["langue"]=="EN") {
-                echo '<th colspan="'.$colspan.'" class="bg-primary day'.$rbd.'" id="D'.$current.'">'.date("D jS",$current).'</th>'."\n";
-            } else {
-                echo '<th colspan="'.$colspan.'" class="bg-primary day'.$rbd.'" id="D'.$current.'">'.strftime("%a %e",$current).'</th>'."\n";
-            }
-            $colspan=1;
-        }
-        $td_headers[$i] .= ' D'.$current;
-        $radio_title[$i] = strftime("%A %e",$current).' '.$radio_title[$i];
-    }
-
-        echo '<th></th>
-</tr>'."\n";
-
-    //affichage des horaires
-    if (strpos($dsondage->sujet, '@') !== false) {
-        echo '<tr>
-<th role="presentation"></th>'."\n";
-
-        for ($i=0; isset($toutsujet[$i]); $i++) {
-            $rbd = ($border[$i]) ? ' rbd' : '';
-            $heures=explode("@", $toutsujet[$i]);
-            if (isset($heures[1])) {
-                echo '<th class="bg-info'.$rbd.'" id="H'.preg_replace("/[^a-zA-Z0-9]_+/", "", $heures[0].$heures[1]).'">'.$heures[1].'</th>'."\n";
-                $td_headers[$i] .= ' H'.preg_replace("/[^a-zA-Z0-9]_+/", "", $heures[0].$heures[1]);
-                $radio_title[$i] .= ' - '.$heures[1];
-            } else {
-                echo '<th class="bg-info'.$rbd.'"></th>'."\n";
-            }
-        }
-
-        echo '<th></th>
-</tr>
-        </thead>
-        <tbody>'."\n";
-    }
+// Subjects poll
 } else {
-    $toutsujet=str_replace("°","'",$toutsujet);
+    $toutsujet=str_replace("@","<br />",$toutsujet);
 
-    //affichage des sujets du sondage
-    echo '<tr>
-<th role="presentation"><button type="submit" class="invisible" name="boutonp" ></button></th>'."\n";
+    $tr_subjects = '<tr><th role="presentation"></th>';
 
-    for ($i=0; isset($toutsujet[$i]); $i++) {
-        echo '<th class="bg-info" id="S'.preg_replace("/[^a-zA-Z0-9]_+/", "", stripslashes($toutsujet[$i])).'">'.stripslashes($toutsujet[$i]).'</th>'."\n";
-        $td_headers[$i] .= 'S'.preg_replace("/[^a-zA-Z0-9]_+/", "", stripslashes($toutsujet[$i]));
+    for ($i = 0; isset($toutsujet[$i]); $i++) {
+
+        $td_headers[$i]='';$radio_title[$i]=''; // init before concatenate
+
+        // Subjects
+        $tr_subjects .= '<th class="bg-info" id="S'.preg_replace("/[^a-zA-Z0-9]_+/", "", stripslashes($toutsujet[$i])).'">'.stripslashes($toutsujet[$i]).'</th>';
+
+        $border[$i] = false;
+        $td_headers[$i] .= stripslashes($toutsujet[$i]);
         $radio_title[$i] .= stripslashes($toutsujet[$i]);
-    }
-    echo '<th></th>
-</tr>
-        </thead>
-        <tbody>'."\n";
+
+   }
+
+    $thead = $tr_subjects.'<th></th></tr>';
 }
+
+// Print headers
+echo '
+<form name="formulaire" action="' . Utils::getUrlSondage($dsondage->id_sondage) . '" method="POST">
+    <input type="hidden" name="sondage" value="' . $numsondage . '"/>
+
+    <div class="alert alert-info">
+        <p>' . _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.") . '</p>
+    </div>
+    <div id="tableContainer" class="tableContainer">
+        <table class="results">
+            <thead>'. $thead . '</thead>
+        <tbody>';
+
+// Print poll results
 
 //Usager pré-authentifié dans la liste?
 $user_mod = false;
@@ -573,120 +552,88 @@ if (( !(USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || !$user_mod) && $li
     }
 
     // Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
-    echo '<td><button type="submit" class="btn btn-success btn-sm" name="boutonp" title="'. _('Save my choices') .'">'. _('Save') .'</button></td>
+    echo '<td><button type="submit" class="btn btn-success btn-sm" name="boutonp" title="'. _('Save the choices') .'">'. _('Save') .'</button></td>
 </tr>'."\n";
 
 }
 
-//determination de la meilleure date
-// On cherche la meilleure colonne
-for ($i=0; $i < $nbcolonnes; $i++) {
-    if (isset($somme[$i]) === true) {
-        if ($i == "0") {
-            $meilleurecolonne = $somme[$i];
-        }
-
-        if (isset($meilleurecolonne) === false || $somme[$i] > $meilleurecolonne) {
-            $meilleurecolonne = $somme[$i];
-        }
-    }
-}
-
+// Addition and Best choice
 //affichage de la ligne contenant les sommes de chaque colonne
-echo '<tr>
-<td align="right">'. _("Addition") .'</td>'."\n";
+$tr_addition = '<tr><td align="right">'. _("Addition") .'</td>';
+$tr_bestchoice = '<tr><td></td>';
+$meilleurecolonne = 0;
 
-for ($i=0; $i < $nbcolonnes; $i++) {
-    if (isset($somme[$i]) === true) {
-        $affichesomme = $somme[$i];
-
-        if ($affichesomme == "") {
-            $affichesomme = '0';
+for ($i = 0; $i < $nbcolonnes; $i++) {
+    if (isset($somme[$i]) && $somme[$i] > 0 ) {
+        if (isset($somme[$i]) && $somme[$i] > $meilleurecolonne){
+            $meilleurecolonne = $somme[$i];
         }
+        $tr_addition .= '<td>'.$somme[$i].'</td>';
     } else {
-        $affichesomme = '0';
-    }
-
-    echo '<td>'.$affichesomme.'</td>'."\n";
-
-}
-echo '<td></td>
-</tr><tr>
-<td></td>'."\n";
-
-for ($i = 0; $i < $nbcolonnes; $i++) {
-    if (isset($somme[$i]) === true && isset($meilleurecolonne) === true && $somme[$i] == $meilleurecolonne){
-        echo '<td><span class="glyphicon glyphicon-star text-warning"></span></td>'."\n";
-    } else {
-        echo '<td></td>'."\n";
+        $tr_addition .= '<td></td>';
     }
 }
-echo '<td></td>
-</tr>
-        </tbody>
-    </table>
-    </div>'."\n";
+$tr_addition .= '<td></td></tr>';
 
-// reformatage des données de la base pour les sujets
-$toutsujet=explode(",",$dsondage->sujet);
-$toutsujet=str_replace("°","'",$toutsujet);
+//recuperation des valeurs des sujets et adaptation pour affichage
+$toutsujet = explode(",", $dsondage->sujet);
 
-// On compare le nombre de résultat avec le meilleur et si le résultat est égal
-//  on concatene le resultat dans $meilleursujet
-$compteursujet=0;
+$compteursujet = 0;
 $meilleursujet = '';
-
 for ($i = 0; $i < $nbcolonnes; $i++) {
-    if (isset($somme[$i]) && isset($meilleurecolonne) && $somme[$i] == $meilleurecolonne) {
-        $meilleursujet.=", ";
-        if ($dsondage->format=="D"||$dsondage->format=="D+") {
+
+    if (isset($somme[$i]) && $somme[$i] > 0 && $somme[$i] == $meilleurecolonne){
+        $tr_bestchoice .= '<td><span class="glyphicon glyphicon-star text-warning"></span></td>';
+
+        $meilleursujet .= ', ';
+
+        if ($dsondage->format == "D" || $dsondage->format == "D+") {
             $meilleursujetexport = $toutsujet[$i];
-            if (strpos($toutsujet[$i],'@') !== false) {
-                $toutsujetdate=explode("@",$toutsujet[$i]);
-                if ($_SESSION["langue"]=="EN") {
-                    $meilleursujet.=date("l, F jS Y",$toutsujetdate[0])." " . _("for") ." ".$toutsujetdate[1];
-                } else {
-                    $meilleursujet.=strftime(_("%A, den %e. %B %Y"),$toutsujetdate[0]). ' ' . _("for")  . ' ' . $toutsujetdate[1];
-                }
+
+            if (strpos($toutsujet[$i], '@') !== false) {
+                $toutsujetdate = explode("@", $toutsujet[$i]);
+                $meilleursujet .= strftime(_("%A, den %e. %B %Y"),$toutsujetdate[0]). ' - ' . $toutsujetdate[1];
             } else {
-                if ($_SESSION["langue"]=="EN") {
-                    $meilleursujet.=date("l, F jS Y",$toutsujet[$i]);
-                } else {
-                    $meilleursujet.=strftime(_("%A, den %e. %B %Y"),$toutsujet[$i]);
-                }
+                $meilleursujet .= strftime(_("%A, den %e. %B %Y"),$toutsujet[$i]);
             }
         } else {
-            $meilleursujet .= $toutsujet[$i];
+            $meilleursujet.=$toutsujet[$i];
         }
         $compteursujet++;
+
+    } else {
+        $tr_bestchoice .= '<td></td>';
     }
 }
+$tr_bestchoice .= '<td></td></tr>';
 
-$meilleursujet=substr("$meilleursujet", 1);
-$vote_str = (isset($meilleurecolonne) && $meilleurecolonne > 1) ? $vote_str = _('votes') : _('vote');
+$meilleursujet = str_replace("°", "'", substr("$meilleursujet", 1));
+$vote_str = ($meilleurecolonne > 1) ? $vote_str = _('votes') : _('vote');
 
-echo '<p class="affichageresultats">'."\n";
+// Print Addition and Best choice
+echo $tr_addition."\n".$tr_bestchoice.'
+        </tbody>
+    </table>
+    </div>
+    <p class="affichageresultats">'."\n";
 
-//affichage de la phrase annoncant le meilleur sujet
-if (isset($meilleurecolonne) && $compteursujet == "1") {
-  echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The best choice at this time is") . ' : <b>' . $meilleursujet . ' </b>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
-} elseif (isset($meilleurecolonne)) {
-  echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The bests choices at this time are") . ' : <b>' . $meilleursujet . ' </b>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
+if ($compteursujet == 1) {
+    echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The best choice at this time is:") . ' <b>' . $meilleursujet . ' </b>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
+} elseif ($compteursujet > 1) {
+    echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The bests choices at this time are:") . ' <b>' . $meilleursujet . ' </b>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
 }
 
-echo '</p>';
+echo '</p>
+<hr />';
 
-//affichage des commentaires des utilisateurs existants
+// Comments
 $sql = 'select * from comments where id_sondage='.$connect->Param('numsondage').' order by id_comment';
 $sql = $connect->Prepare($sql);
 $comment_user=$connect->Execute($sql, array($numsondage));
 
-echo '
-    <hr />
-    <div class="row">';
-
 if ($comment_user->RecordCount() != 0) {
-    echo '<div class="col-md-7"><h3>' . _("Comments of polled people") . '</h3>'."\n";
+    echo '<div class="row"><h3>' . _("Comments of polled people") . '</h3>'."\n";
+
     while($dcomment = $comment_user->FetchNextObject(false)) {
         echo '
     <div class="comment">
@@ -694,25 +641,21 @@ if ($comment_user->RecordCount() != 0) {
         <span class="comment">' . stripslashes(nl2br($dcomment->comment)) . '</span>
     </div>';
     }
-    echo '</div>
-        <div class="col-md-5 hidden-print">';
-} else {
-    echo '
-        <div class="col-md-6 col-md-offset-3 hidden-print">';
-}
 
-//affichage de la case permettant de rajouter un commentaire par les utilisateurs
+    echo '</div>';
+}
 echo '
-            <div class="alert alert-info">
+        <div class="row hidden-print alert alert-info">
+            <div class="col-md-6 col-md-offset-3">
             <fieldset id="add-comment"><legend>' . _("Add a comment in the poll") . '</legend>
                 <div class="form-group">
-                    <p><label for="commentuser">'. _("Name") .'</label><input type=text class="form-control" name="commentuser" id="commentuser" /></p>
+                    <p><label for="commentuser">'. _("Your name") .'</label><input type=text class="form-control" name="commentuser" id="commentuser" /></p>
                 </div>
                 <div class="form-group">
-                    <p><label for="comment">'. _("Your comment: ") .'</label><br />
-                    <textarea title="'. _("Write your comment") .'" name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea></p>
+                    <p><label for="comment">'. _("Your comment") .'</label><br />
+                    <textarea name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea></p>
                 </div>
-                <p class="text-center"><input type="submit" name="ajoutcomment" value="'. _("Send your comment") .'" class="btn btn-success"></p>
+                <p class="text-center"><input type="submit" name="ajoutcomment" value="'. _("Send the comment") .'" class="btn btn-success"></p>
             </fieldset>
             </div>
         </div>
@@ -721,5 +664,4 @@ echo '
 
 <a id="bas"></a>';
 
-// Affichage du bandeau de pied
 bandeau_pied();

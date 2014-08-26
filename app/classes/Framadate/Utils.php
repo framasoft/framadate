@@ -92,7 +92,6 @@ class Utils
         <link rel="stylesheet" href="' . self::get_server_name() . 'css/style.css">
         <link rel="stylesheet" href="' . self::get_server_name() . 'css/print.css" media="print">
         <script type="text/javascript" src="' . self::get_server_name() . 'js/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="' . self::get_server_name() . 'js/jquery.fixedheadertable.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-accessibility.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>
@@ -136,7 +135,7 @@ class Utils
      * Les en-têtes complémentaires ne sont pas gérés
      *
      */
-    public static function sendEmail( $to, $subject, $body, $headers, $param)
+    public static function sendEmail( $to, $subject, $body, $headers='', $param='')
     {
 
         mb_internal_encoding('UTF-8');
@@ -246,5 +245,19 @@ class Utils
       $connect->CompleteTrans();
 
       return $suppression_OK ;
+    }
+
+    public static function cleaning_polls($connect, $log_txt) {
+        $connect->StartTrans();
+        $req = 'SELECT * FROM sondage WHERE date_fin < NOW()';
+        $sql = $connect->Prepare($req);
+        $cleaning = $connect->Execute($sql);
+
+        while ($dcleaning = $cleaning->FetchNextObject(false)) {
+            if (self::remove_sondage($connect, $dcleaning->id_sondage)) {
+                error_log(date('H:i:s d/m/Y:') . ' EXPIRATION: '. $dcleaning->id_sondage."\t".$dcleaning->format."\t".$dcleaning->nom_admin."\t".$dcleaning->mail_admin."\n", 3, $log_txt);
+            }
+        }
+        $connect->CompleteTrans();
     }
 }

@@ -64,7 +64,7 @@ $(document).ready(function() {
             '<div class="col-md-2">'+
                 last_hour.html().replace(re_label, hour_text+' '+(hj+2))
                               .replace(re_id,'"d'+di+'-h'+(hj+1)+'"')
-                              .replace(/value="(.*)" n/g, 'value="" n')+
+                              .replace(/value="(.*?)"/g, 'value=""')+
             '</div>';
 
         // After 11 + button is disable
@@ -104,12 +104,13 @@ $(document).ready(function() {
         var last_day_title = last_day.find('legend input').attr('title');
 
         var re_id_hours = new RegExp('"d'+(nb_days-1)+'-h', 'g');
+        var re_name_hours = new RegExp('name="horaires'+(nb_days-1), 'g');
 
         var new_day_html = last_day.html().replace(re_id_hours, '"d'+nb_days+'-h')
                                   .replace('id="day'+(nb_days-1)+'"', 'id="day'+nb_days+'"')
-                                  .replace('name="horaires'+(nb_days-1), 'name="horaires'+nb_days)
-                                  .replace(/value="(.*)" s/g, 'value="" s')
-                                  .replace(/hours" title="(.*)" p/g, 'hours" title="" p')
+                                  .replace(re_name_hours, 'name="horaires'+nb_days)
+                                  .replace(/value="(.*?)"/g, 'value=""')
+                                  .replace(/hours" title="(.*?)"/g, 'hours" title="" p')
                                   .replace('title="'+last_day_title+'"', 'title="'+last_day_title.substring(0, last_day_title.indexOf(' '))+' '+(nb_days+1)+'"');
 
         last_day.after('<fieldset>'+new_day_html+'</fieldset>');
@@ -209,7 +210,7 @@ $(document).ready(function() {
         var last_choice_label = last_choice.children('label').text();
         var new_choice_html = new_choice.replace(re_id_choice, '"choice'+nb_choices+'"')
                                         .replace(last_choice_label, choice_text+' '+(nb_choices+1))
-                                        .replace(/value="(.*)" i/g, 'value="" i');
+                                        .replace(/value="(.*?)"/g, 'value=""');
 
         last_choice.after('<div class="form-group choice-field">'+new_choice_html+'</div>');
         $('#choice'+nb_choices).focus();
@@ -248,5 +249,51 @@ $(document).ready(function() {
         SubmitChoicesAvalaible()
     });
     SubmitChoicesAvalaible();
+
+    /**
+     *  adminstuds.php
+     **/
+
+    $('#title-form .btn-edit').on('click', function() {
+        $('#title-form h2').hide();
+        $('.js-title').removeClass("hidden");
+        $('.js-title input').focus();
+        return false;
+    });
+
+    $('#title-form .btn-cancel').on('click', function() {
+        $('#title-form h2').show();
+        $('#title-form .js-title').addClass("hidden");
+        $('#title-form .btn-edit').focus();
+        return false;
+    });
+
+    $('#email-form .btn-edit').on('click', function() {
+        $('#email-form p').hide();
+        $('#email-form .js-email').removeClass("hidden");
+        $('.js-email input').focus();
+        return false;
+    });
+
+    $('#email-form .btn-cancel').on('click', function() {
+        $('#email-form p').show();
+        $('#email-form .js-email').addClass("hidden");
+        $('#email-form .btn-edit').focus();
+        return false;
+    });
+
+    $('#description-form .btn-edit').on('click', function() {
+        $('#description-form .well').hide();
+        $('#description-form .js-desc').removeClass("hidden");
+        $('.js-desc textarea').focus();
+        return false;
+    });
+
+    $('#description-form .btn-cancel').on('click', function() {
+        $('#description-form .well').show();
+        $('#description-form .js-desc').addClass("hidden");
+        $('.js-desc .btn-edit').focus();
+        return false;
+    });
 
 });
