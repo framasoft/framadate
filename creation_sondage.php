@@ -106,6 +106,13 @@ function ajouter_sondage()
     error_log(date('H:i:s d/m/Y:') . ' CREATION: '.$sondage."\t".$_SESSION[formatsondage]."\t".$_SESSION[nom]."\t".$_SESSION[adresse]."\t \t".$_SESSION[toutchoix]."\n", 3, 'admin/logs_studs.txt');
     Utils::cleaning_polls($connect, 'admin/logs_studs.txt');
 
+    // Don't keep days, hours and choices in memory (in order to make new polls)
+    for ($i = 0; $i < count($_SESSION["totalchoixjour"]); $i++) {
+        unset($_SESSION['horaires'.$i]);
+    }
+    unset($_SESSION["totalchoixjour"]);
+    unset($_SESSION['choices']);
+
     header("Location:".Utils::getUrlSondage($sondage_admin, true));
 
     exit();
