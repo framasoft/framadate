@@ -1,0 +1,344 @@
+/* This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ *
+ * =============================
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ *
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ */
+
+/* Calendrier dans choix_date.php */
+div.calendrier table {
+    border:2px solid #ccf;
+    background-color: #CCF;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.calendrier td {
+    height: 40px;
+}
+
+div.calendrier td.libre:hover,
+div.calendrier td.choisi:hover {
+    opacity: 0.8;
+}
+
+/*entête calendrier */
+.choix_date_mois {
+    font-weight: bold;
+    font-size: larger;
+}
+
+/*jour de la semaine dans calendrier*/
+div.calendrier td.joursemaine {
+    width:14%;
+    text-align: center;
+    border: 2px;
+    background-color: white;
+    height: 40px;
+}
+/*jour avant le premier jour du mois dans calendrier*/
+div.calendrier td.avant {
+    text-align: center;
+    border: 2px;
+    font-family:arial;
+    font-size:13px;
+    background-color: #EEEEEE;
+}
+/*jour libre dans calendrier*/
+div.calendrier td.libre {
+    text-align: center;
+    border: 2px;
+    background-color: #66FF99;
+}
+/*jour deja selectionné dans calendrier*/
+div.calendrier td.choisi {
+    text-align: center;
+    border: 2px;
+    background-color: #54ADF7;
+}
+
+.bouton {
+    border:0px;
+    padding: 12px 30px 6px;
+    margin:0px;
+    cursor:pointer;
+    font-family:arial;
+    font-size:13px;
+}
+/*les boutons pour choisir un jour non selectionné*/
+.ON {
+    background-color: #66FF99;
+}
+
+/*les boutons pour deselectionner un jour deja choisi*/
+.OFF {
+    background-color: #54ADF7;
+}
+/* </calendrier> */
+
+/* Paragraphe sous le sondage */
+p.affichageresultats{
+    text-align: center;
+    font-family:arial;
+    font-size:13px;
+}
+
+/* Commentaires */
+div.comment{
+    margin-top: 10px;
+    border-left: 1px dashed #999;
+    background: #F5F5F5;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 14px;
+}
+
+/* Ajouts après mise en place de Bootstrap */
+
+/* Règles générales */
+
+a:focus { /* a11y */
+    outline:#000 dotted 1px;
+}
+
+main, header, footer, .container .jumbotron {
+    padding:24px 30px;
+}
+
+/* Effet sur les images en page d'accueil */
+.opacity {
+    opacity: 0.6;
+}
+
+.opacity:hover {
+    opacity: 1;
+}
+
+/* Description du sondage */
+    /* studs.php et adminstuds.php */
+header .lead {
+    padding:10px 0;
+    margin:0;
+}
+
+#admin-link, #public-link {
+    cursor:text;
+}
+
+.jumbotron h2, .jumbotron .js-title {
+    margin-bottom:20px;
+    margin-top:0px;
+}
+
+    /* adminstuds.php */
+#title-form h2 .btn-edit,
+#email-form .btn-edit,
+#description-form .btn-edit {
+    position:absolute;
+    left:-2000px;
+}
+
+#title-form .btn-edit:focus,
+#title-form h2:hover .btn-edit,
+#email-form .btn-edit:focus,
+#email-form:hover .btn-edit,
+#description-form .btn-edit:focus,
+#description-form:hover .btn-edit {
+    position:relative !important;
+    left:0;
+    padding: 0px 10px;
+}
+
+.js-desc textarea {
+    margin-bottom:5px;
+}
+
+#author-form .form-control-static {
+    margin-bottom:0;
+}
+
+/* Tableau du sondage */
+#tableContainer {
+    overflow-x:auto;
+    margin:0 auto;
+}
+
+table.results {
+    margin:0 auto;
+}
+
+table.results > tbody > tr:hover > td,
+table.results > tbody > tr:hover > th {
+    opacity:0.85;
+}
+
+table.results > tbody > tr#vote-form:hover > td,
+table.results > tbody > tr#vote-form:hover > th {
+    opacity:1;
+}
+
+table.results tbody td {
+    text-align:center;
+    padding:1px 5px;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+}
+
+table.results thead th {
+    text-align:center;
+    border:2px solid white;
+    padding:1px 5px;
+    min-width:40px;
+}
+
+table.results thead .btn {
+    margin:0 auto;
+    display:block;
+}
+
+table.results th.rbd.day,
+table.results th.rbd.bg-info,
+table.results td.rbd {
+    border-right: 2px dotted white;
+}
+
+table.results th.bg-primary.month,
+table.results th.day,
+table.results th.bg-info {
+    border-bottom:none;
+    border-top:none;
+    border-right: 2px dotted white;
+    border-left: 2px dotted white;
+}
+
+table.results tbody th.bg-info {
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+    text-align:center;
+    min-width:150px;
+}
+
+table.results th.bg-primary.month,
+table.results th.day {
+    text-align:left;
+}
+
+table.results #nom {
+    width:115px;
+}
+
+table.results .btn-link.btn-sm {
+    padding:2px;
+}
+
+/* Formulaire de vote */
+#vote-form td ul, #vote-form td label {
+    margin:0;
+    font-size:12px;
+}
+
+#vote-form td {
+    border-top:2px solid white;
+}
+
+.yes input, .ifneedbe input,.no input {
+    position:absolute;
+    left:0;
+    margin-left:-15px;
+    margin-top:0;
+}
+
+.choice input:focus + label {
+    outline: 2px dotted #000;
+    outline-offset: -2px;
+}
+.choice {
+    width:32px;
+    margin:0 auto !important;
+}
+
+.choice label {
+    cursor:pointer;
+}
+
+.yes .btn, .ifneedbe .btn, .no .btn {
+    width:32px;
+    color:#555;
+}
+
+.yes .btn {
+    border-bottom-right-radius:0px !important;
+    border-bottom-left-radius:0px !important;
+    margin-bottom:-1px !important;
+    margin-top:4px !important;
+}
+
+.ifneedbe .btn {
+    border-radius:0px;
+}
+
+.no .btn{
+    border-top-right-radius:0px !important;
+    border-top-left-radius:0px !important;
+    margin-bottom:4px !important;
+    margin-top:-1px !important;
+}
+
+.yes input[type="radio"]:checked + label { /* =.btn-success.active */
+    color: #FFF;
+    background-color: #449D44;
+    border-color: #398439;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.ifneedbe input[type="radio"]:checked + label { /* =.btn-warning.active */
+    color: #FFF;
+    background-color: #EC971F;
+    border-color: #D58512;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.no input[type="radio"]:checked + label { /* =.btn-danger.active */
+    color: #FFF;
+    background-color: #C9302C;
+    border-color: #AC2925;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+/* choix_date.php */
+#selected-days .form-group {
+    margin-left:0;
+    margin-right:0;
+}
+
+#selected-days legend input {
+    box-shadow: none;
+    border-width:0px;
+    color: #333;
+    font-size: 21px;
+    border-radius:0;
+    margin-bottom:-1px;
+    background:transparent;
+}
+
+#selected-days legend input:hover,
+#selected-days legend input:focus {
+    border-bottom-width:1px;
+    background-color:#E6E6E6;
+}
+
+#selected-days legend .input-group-addon {
+    border:none;
+    background:transparent;
+}
+

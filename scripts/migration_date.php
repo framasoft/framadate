@@ -1,41 +1,21 @@
 <?php
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Auteur : Guilhem BORGHESI
-//Création : Février 2008
-//
-//borghesi@unistra.fr
-//
-//Ce logiciel est régi par la licence CeCILL-B soumise au droit français et
-//respectant les principes de diffusion des logiciels libres. Vous pouvez
-//utiliser, modifier et/ou redistribuer ce programme sous les conditions
-//de la licence CeCILL-B telle que diffusée par le CEA, le CNRS et l'INRIA 
-//sur le site "http://www.cecill.info".
-//
-//Le fait que vous puissiez accéder à cet en-tête signifie que vous avez 
-//pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
-//termes. Vous pouvez trouver une copie de la licence dans le fichier LICENCE.
-//
-//==========================================================================
-//
-//Université de Strasbourg - Direction Informatique
-//Author : Guilhem BORGHESI
-//Creation : Feb 2008
-//
-//borghesi@unistra.fr
-//
-//This software is governed by the CeCILL-B license under French law and
-//abiding by the rules of distribution of free software. You can  use, 
-//modify and/ or redistribute the software under the terms of the CeCILL-B
-//license as circulated by CEA, CNRS and INRIA at the following URL
-//"http://www.cecill.info". 
-//
-//The fact that you are presently reading this means that you have had
-//knowledge of the CeCILL-B license and that you accept its terms. You can
-//find a copy of this license in the file LICENSE.
-//
-//==========================================================================
+/**
+ * This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
+ *
+ * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ *
+ * =============================
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
+ *
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
+ */
 
 //ouverture de la connection avec la base SQL
 $connect = pg_connect("host= dbname= user=");
@@ -44,14 +24,14 @@ $sondage=pg_exec($connect, "select * from sondage where format='D' or format='D+
 
 for ($i=0;$i<pg_numrows($sondage);$i++) {
   $dsondage=pg_fetch_object($sondage,$i);
-  
+
   //  print "Pour le sondage ".$dsondage->id_sondage." ";
   $sujets=pg_exec($connect, "select sujet from sujet_studs where id_sondage='$dsondage->id_sondage'");
   $dsujets=pg_fetch_object($sujets,0);
-  
+
   $nouvelledateaffiche="";
   $anciensujethoraires=explode(",",$dsujets->sujet);
-  
+
   for ($j=0;$j<count($anciensujethoraires);$j++) {
     if (strpos('@',$anciensujethoraires[$j]) !== false) {
       $ancientsujet=explode("@",$anciensujethoraires[$j]);
@@ -69,7 +49,7 @@ for ($i=0;$i<pg_numrows($sondage);$i++) {
       }
     }
   }
-  
+
   $nouvelledateaffiche=substr($nouvelledateaffiche,0,-1);
   print $dsujets->sujet.' donne  '.$nouvelledateaffiche.'\n\n';
   //    pg_exec($connect,"update sujet_studs set sujet='$nouvelledateaffiche' where id_sondage='$dsondage->id_sondage'");
