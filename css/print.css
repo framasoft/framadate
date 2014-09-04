@@ -1,0 +1,30 @@
+@import url(./style.css);
+
+body {
+  background:none;
+}
+
+table {
+    page-break-after:always}
+}
+
+table {
+  page-break-inside:auto
+}
+
+tr {
+  page-break-inside:avoid;
+  page-break-after:auto;
+}
+
+thead {
+  display:table-header-group;
+}
+
+tfoot {
+  display:table-footer-group;
+}
+
+@page {
+    size:landscape;
+}

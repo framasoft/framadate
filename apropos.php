@@ -1,24 +1,27 @@
 <?php
-/* This software is governed by the CeCILL-B license. If a copy of this license 
- * is not distributed with this file, you can obtain one at 
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- * 
- * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
- * 
+/**
+ * This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
+ *
+ * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ *
  * =============================
- * 
- * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
- * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
- * 
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
+ *
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
- * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
+namespace Framadate;
+
 session_start();
 
-include_once('variables.php');
-include_once( 'i18n.php' );
+include_once __DIR__ . '/app/inc/init.php';
+
 if (file_exists('bandeaux_local.php')) {
   include_once('bandeaux_local.php');
 } else {
@@ -26,27 +29,8 @@ if (file_exists('bandeaux_local.php')) {
 }
 
 //affichage de la page
-echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
-echo '<html lang="'.$lang.'">'."\n";
-echo '<head>'."\n";
-echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-echo '<title>'._("About").' - '.NOMAPPLICATION.'</title>'."\n";
-echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
-echo '</head>'."\n";
-echo '<body>'."\n";
-
-framanav();
-
-//debut du formulaire
-echo '<form name=formulaire action="apropos.php" method="POST">'."\n";
-
-//bandeaux de tete
-logo();
-bandeau_tete();
+Utils::print_header( _("About") );
 bandeau_titre(_("About"));
-sous_bandeau();
-
-echo '<div class=corps>'."\n";
 
 echo <<<mentions
 <ul>
@@ -292,9 +276,4 @@ sous la licence logicielle libre <a
 <br />
 mentions;
 
-echo '</div>'."\n";
-
-bandeau_pied_mobile();
-echo '</form>'."\n";
-echo '</body>'."\n";
-echo '</html>'."\n";
+bandeau_pied();

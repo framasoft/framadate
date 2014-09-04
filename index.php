@@ -1,74 +1,57 @@
 <?php
-/* This software is governed by the CeCILL-B license. If a copy of this license 
- * is not distributed with this file, you can obtain one at 
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- * 
- * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
- * 
+/**
+ * This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
+ *
+ * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ *
  * =============================
- * 
- * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence 
- * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur 
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
- * 
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
+ *
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
- * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-include_once('fonctions.php');
+namespace Framadate;
+
+use Framadate\Utils;
+
+include_once __DIR__ . '/app/inc/init.php';
+
 if (is_readable('bandeaux_local.php')) {
-  include_once('bandeaux_local.php');
+    include_once('bandeaux_local.php');
 } else {
-  include_once('bandeaux.php');
+    include_once('bandeaux.php');
 }
 
 session_start();
 
-//affichage de la page
-echo '<!DOCTYPE html>'."\n";
-echo '<html lang="'.$lang.'">'."\n";
-echo '<head>'."\n";
-echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-echo '<title>'._("Home").' - '.NOMAPPLICATION.'</title>'."\n";
-echo '<link rel="stylesheet" type="text/css" href="'.get_server_name().'style.css">'."\n";
-echo '</head>'."\n";
-echo '<body>'."\n";
-
-framanav();
-
-//bandeaux de tete
-logo();
-bandeau_tete();
+// affichage de la page
+Utils::print_header( _("Home") );
 bandeau_titre(_("Organiser des rendez-vous simplement, librement."));
-sous_bandeau();
+echo '
+        <div class="row text-center">
+            <div class="col-md-6">
+                <p><a href="'.Utils::get_server_name().'infos_sondage.php?choix_sondage=date" role="button">
+                    <img class="opacity" src="'.Utils::get_server_name().'images/date.png" alt="" />
+                    <br /><span class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-calendar"></span>
+                    '. _('Schedule an event') . '</span>
+                </a></p>
+            </div>
+            <div class="col-md-6">
+                <p><a href="'.Utils::get_server_name().'infos_sondage.php?choix_sondage=autre" role="button">
+                    <img alt="" class="opacity" src="'.Utils::get_server_name().'images/classic.png" />
+                    <br /><span class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-stats"></span>
+                    '. _('Make a poll') . '</span>
+                </a></p>
+            </div>
+        </div>
+        <div class="row text-center">
+                <p>'. _("or") .' <a href="' . Utils::getUrlSondage('aqg259dth55iuhwm').'">'. _("view an example") .'</a></p>
+        </div>'."\n";
 
-echo '<div class=corps>'."\n";
-#echo '<p><b>'.NOMAPPLICATION.'<br />'. _("What is it about?") .'</b></p>';
-#echo '<p>'. _("Making polls to schedule meetings or events, quickly and easily. <br /> You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays.") .'</p>'."\n".'<br />'."\n";
-#echo '<div class="nouveau_sondage"><b>'. _("Make a poll") .'</b>';
-#     '<span>' .
-#     '<a href="/infos_sondage.php"><img alt="' . _('Make a poll') . '" src="images/next-32.png" /></a>' .
-#     '</span>';
-#echo '</div>' . "\n";
-
-echo '<div class="index_date">';
-echo '<p><a href="'.get_server_name().'infos_sondage.php?choix_sondage=date" role="button"><img class="opacity" src="'.get_server_name().'images/date.png" alt="" />';
-echo '<br /><span class="button orange bigrounded"><strong><img src="'.get_server_name().'images/calendar-32.png" alt="" />'
-    . _('Schedule an event') . '</strong></span></a></p>';
-echo '</div>';
-
-echo '<div class="index_sondage">';
-echo '<p><a href="'.get_server_name().'infos_sondage.php?choix_sondage=autre" role="button"><img alt="" class="opacity" src="'.get_server_name().'images/sondage2.png" />';
-echo '<br /><span class="button blue bigrounded"><strong><img src="'.get_server_name().'images/chart-32.png" alt="" />'. _('Make a poll') . '</strong></span></a></p>';
-echo '</div>';
-
-
-echo '<div style="clear:both;"></div>'."\n";
-
-echo '</div>'."\n";
-//bandeau de pied
-//sur_bandeau_pied();
 bandeau_pied();
-
-echo '</body>'."\n";
-echo '</html>'."\n";
