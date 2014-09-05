@@ -322,13 +322,13 @@ msgstr "Vous souhaitez recevoir un mail à chaque participation d'un sondé."
 
 # Errors info_sondage.php
 msgid "Enter a title"
-msgstr "Il faut remplir un titre !"
+msgstr "Il faut saisir un titre !"
 
 msgid "Characters < > and \" are not permitted"
 msgstr "Les caractères < > et \" ne sont pas autorisés !"
 
 msgid "Enter an email address"
-msgstr "Il faut remplir une adresse email !"
+msgstr "Il faut saisir une adresse email !"
 
 msgid "The address is not correct! (You should enter a valid email address in order to receive the link to your poll)"
 msgstr "L'adresse saisie n'est pas correcte ! (Il faut une adresse valide pour recevoir le lien vers le sondage)"
@@ -421,14 +421,14 @@ msgid "Your poll will expire automatically 2 days after the last date of your po
 msgstr "Votre sondage sera automatiquement effacé après la date la plus tardive."
 
 msgid "Removal date:"
-msgstr "Date de destruction :"
+msgstr "Date de suppression :"
 
 # Step 3 choix_autre.php
 msgid "Your poll will be automatically removed after 6 months."
 msgstr "Votre sondage sera automatiquement effacé dans 6 mois."
 
 msgid "You can fix another removal date for it."
-msgstr "Néanmoins vous pouvez décider ci-dessous d'une date plus rapprochée pour la destruction de votre sondage."
+msgstr "Néanmoins vous pouvez décider ci-dessous d'une date plus rapprochée pour la suppression de votre sondage."
 
 msgid "Removal date (optional)"
 msgstr "Date de fin (facultative)"
@@ -575,7 +575,7 @@ msgid "hast just created a poll called"
 msgstr " vient de créer un sondage intitulé "
 
 msgid "Thanks for filling the poll at the link above"
-msgstr "Merci de bien vouloir remplir le sondage à l'adresse suivante"
+msgstr "Merci de bien vouloir participer au sondage à l'adresse suivante"
 
 msgid ""
 "This message should NOT be sended to the polled people. It is private for the poll's creator.\n"
