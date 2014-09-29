@@ -86,13 +86,6 @@ div.calendrier td.choisi {
 }
 /* </calendrier> */
 
-/* Paragraphe sous le sondage */
-p.affichageresultats{
-    text-align: center;
-    font-family:arial;
-    font-size:13px;
-}
-
 /* Commentaires */
 div.comment{
     margin-top: 10px;
@@ -134,10 +127,30 @@ header .lead {
 #admin-link, #public-link {
     cursor:text;
 }
+.admin-link, .public-link,
+.admin-link:hover, .public-link:hover {
+    color:#333;
+    text-decoration:none;
+    border:none;
+}
 
 .jumbotron h2, .jumbotron .js-title {
     margin-bottom:20px;
     margin-top:0px;
+}
+
+h3.control-label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.42857;
+}
+
+caption {
+    padding: 0 10px 10px;
+    font-weight:bold;
 }
 
     /* adminstuds.php */
