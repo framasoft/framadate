@@ -49,14 +49,19 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
         $choixdate='';
         if (Utils::issetAndNoEmpty('totalchoixjour', $_SESSION) === true) {
             for ($i = 0; $i < count($_SESSION["totalchoixjour"]); $i++) {
-                for ($j=0;$j< min(count($_SESSION['horaires'.$i]),12);$j++) {
-                    if ($_SESSION['horaires'.$i][$j]!="") {
-                        array_push($temp_results, $_SESSION["totalchoixjour"][$i].'@'.$_SESSION['horaires'.$i][$j]);
-                    } else {
-                        array_push($temp_results, $_SESSION["totalchoixjour"][$i]);
+                if(count($_SESSION['horaires'.$i])!=0) {
+                    for ($j=0;$j< min(count($_SESSION['horaires'.$i]),12);$j++) {
+                        if ($_SESSION['horaires'.$i][$j]!="") {
+                            array_push($temp_results, $_SESSION["totalchoixjour"][$i].'@'.$_SESSION['horaires'.$i][$j]);
+                        } else {
+                            array_push($temp_results, $_SESSION["totalchoixjour"][$i]);
+                        }
                     }
+                } else {
+                    array_push($temp_results, $_SESSION["totalchoixjour"][$i]);
                 }
             }
+
         }
 
         // Sort and remove doublons
