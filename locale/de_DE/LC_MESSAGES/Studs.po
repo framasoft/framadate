@@ -79,7 +79,7 @@ msgstr "Universit&auml;t Strassburg. Autor : Guilhem BORGHESI. 2008-2009"
 
 #: creation_sondage.php:89
 msgid "For sending to the polled users"
-msgstr "Für Verbreiterung an den Befragten"
+msgstr "Zur Verbreitung für die befragten Benutzer"
 
 #: creation_sondage.php:89
 #: creation_sondage.php:90
@@ -105,11 +105,11 @@ msgstr "Bitte erkundigen Sie die Umfrage an dem folgende Weblink"
 #: creation_sondage.php:89
 #: creation_sondage.php:92
 msgid "Thanks for your confidence"
-msgstr "Danke fur ihr vertrauen"
+msgstr "Danke für ihr Vertrauen"
 
 #: creation_sondage.php:90
 msgid "Author's message"
-msgstr "Fur den Autor reserviert"
+msgstr "Für den Autor reserviert"
 
 #: creation_sondage.php:91
 msgid ""
@@ -117,14 +117,14 @@ msgid ""
 "\n"
 "You can now modify it at the link above"
 msgstr ""
-"Diese Botschaft soll nicht weitergegeben werden, sie ist fur den Autor reserviert.\n"
+"Diese Botschaft soll nicht weitergegeben werden, sie ist für den Autor reserviert.\n"
 "\n"
 "Sie können diese Umfrage an dem folgenden Weblink ändern"
 
 #: choix_date.php:63
 #: choix_autre.php:62
 msgid "You haven't filled the first section of the poll creation."
-msgstr "Die erste Seite wurde nicht ausgefullt"
+msgstr "Die erste Seite wurde nicht ausgefüllt"
 
 #: choix_date.php:64
 #: contacts.php:77
@@ -133,7 +133,7 @@ msgstr "Die erste Seite wurde nicht ausgefullt"
 #: adminstuds.php:79
 #: adminstuds.php:1044
 msgid "Back to the homepage of "
-msgstr "Kehren sie zur Startseite zur&uuml;ck "
+msgstr "Kehren sie zur Startseite zurück "
 
 #: choix_date.php:220
 msgid "Select your dates amoung the free days (green). The selected days are in blue."
@@ -172,7 +172,7 @@ msgstr "Sonntag"
 
 #: choix_date.php:485
 msgid "Selected days"
-msgstr "Gew&auml;lhter Tag"
+msgstr "Gewälhte Tage"
 
 #: choix_date.php:487
 msgid "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)"
@@ -260,7 +260,7 @@ msgstr "Die Schriftzeichen < > und \" sind nicht genehmigt!"
 
 #: infos_sondage.php:136
 msgid "Comments: "
-msgstr "Komentar : "
+msgstr "Kommentar : "
 
 #: infos_sondage.php:141
 msgid "Your name *: "
@@ -277,7 +277,7 @@ msgstr "E-mail Adresse *: "
 
 #: infos_sondage.php:159
 msgid "Enter an email address"
-msgstr "Geben sie eine e-mail Adresse an!"
+msgstr "Geben sie eine E-Mail Adresse an!"
 
 #: infos_sondage.php:162
 msgid "The address is not correct! (You should enter a valid email address in order to receive the link to your poll)"
