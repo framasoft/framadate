@@ -15,76 +15,24 @@
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-/* Calendrier dans choix_date.php */
-div.calendrier table {
-    border:2px solid #ccf;
-    background-color: #CCF;
-    margin-left: auto;
-    margin-right: auto;
+body {
+  font-family: "DejaVu Sans", Verdana, Geneva, sans-serif;
+  color:#333;
+  background:#eee;
 }
 
-div.calendrier td {
-    height: 40px;
+.trait { /* hr */
+    background-color: #EEE;
+    height: 11px;
+    margin:15px 0px;
+    border:none;
 }
 
-div.calendrier td.libre:hover,
-div.calendrier td.choisi:hover {
-    opacity: 0.8;
+.ombre {
+    background-color: #FFF;
+    box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
+    margin:30px auto;
 }
-
-/*entête calendrier */
-.choix_date_mois {
-    font-weight: bold;
-    font-size: larger;
-}
-
-/*jour de la semaine dans calendrier*/
-div.calendrier td.joursemaine {
-    width:14%;
-    text-align: center;
-    border: 2px;
-    background-color: white;
-    height: 40px;
-}
-/*jour avant le premier jour du mois dans calendrier*/
-div.calendrier td.avant {
-    text-align: center;
-    border: 2px;
-    font-family:arial;
-    font-size:13px;
-    background-color: #EEEEEE;
-}
-/*jour libre dans calendrier*/
-div.calendrier td.libre {
-    text-align: center;
-    border: 2px;
-    background-color: #66FF99;
-}
-/*jour deja selectionné dans calendrier*/
-div.calendrier td.choisi {
-    text-align: center;
-    border: 2px;
-    background-color: #54ADF7;
-}
-
-.bouton {
-    border:0px;
-    padding: 12px 30px 6px;
-    margin:0px;
-    cursor:pointer;
-    font-family:arial;
-    font-size:13px;
-}
-/*les boutons pour choisir un jour non selectionné*/
-.ON {
-    background-color: #66FF99;
-}
-
-/*les boutons pour deselectionner un jour deja choisi*/
-.OFF {
-    background-color: #54ADF7;
-}
-/* </calendrier> */
 
 /* Commentaires */
 div.comment{
@@ -108,12 +56,24 @@ main, header, footer, .container .jumbotron {
     padding:24px 30px;
 }
 
-/* Effet sur les images en page d'accueil */
-.opacity {
-    opacity: 0.6;
+.summary h3 {
+    margin-top:0;
 }
 
-.opacity:hover {
+.summary {
+    font-weight:bold;
+}
+
+.summary img {
+    max-width:100px;
+}
+
+/* Effet sur les images en page d'accueil */
+.opacity img {
+    opacity: 0.8;
+}
+
+.opacity:hover img {
     opacity: 1;
 }
 
@@ -146,6 +106,7 @@ h3.control-label {
     font-weight: 700;
     font-size: 14px;
     line-height: 1.42857;
+    margin-top:0;
 }
 
 caption {
@@ -156,7 +117,8 @@ caption {
     /* adminstuds.php */
 #title-form h2 .btn-edit,
 #email-form .btn-edit,
-#description-form .btn-edit {
+#description-form .btn-edit,
+#poll-rules-form .btn-edit {
     position:absolute;
     left:-2000px;
 }
@@ -166,7 +128,9 @@ caption {
 #email-form .btn-edit:focus,
 #email-form:hover .btn-edit,
 #description-form .btn-edit:focus,
-#description-form:hover .btn-edit {
+#description-form:hover .btn-edit,
+#poll-rules-form .btn-edit:focus,
+#poll-rules-form:hover .btn-edit {
     position:relative !important;
     left:0;
     padding: 0px 10px;
@@ -180,10 +144,18 @@ caption {
     margin-bottom:0;
 }
 
+#poll-rules-form p,
+.jumbotron p.well {
+    font-size:16px;
+}
+.jumbotron p {
+    font-weight: normal;
+}
+
 /* Tableau du sondage */
 #tableContainer {
     overflow-x:auto;
-    margin:0 auto;
+    margin:20px auto;
 }
 
 table.results {
@@ -210,8 +182,12 @@ table.results tbody td {
 table.results thead th {
     text-align:center;
     border:2px solid white;
-    padding:1px 5px;
+    padding:5px;
     min-width:40px;
+    font-size:12px;
+    max-width:100px;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 table.results thead .btn {
@@ -308,23 +284,23 @@ table.results .btn-link.btn-sm {
 }
 
 .yes input[type="radio"]:checked + label { /* =.btn-success.active */
-    color: #FFF;
-    background-color: #449D44;
-    border-color: #398439;
+    color: #fff;
+    background-color: #768745;
+    border-color: #67753C;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
 .ifneedbe input[type="radio"]:checked + label { /* =.btn-warning.active */
-    color: #FFF;
-    background-color: #EC971F;
-    border-color: #D58512;
+    color: #fff;
+    background-color: #CF9800;
+    border-color: #BD8A00;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
 .no input[type="radio"]:checked + label { /* =.btn-danger.active */
-    color: #FFF;
-    background-color: #C9302C;
-    border-color: #AC2925;
+    color: #fff;
+    background-color: #BF2511;
+    border-color: #AD220F;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
@@ -354,4 +330,11 @@ table.results .btn-link.btn-sm {
     border:none;
     background:transparent;
 }
+/* choix_autre.php */
+.md-a-img {
+    text-decoration:none !important;
+}
 
+#md-a-imgModal .form-group {
+    margin:10px 0px;
+}

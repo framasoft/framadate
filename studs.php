@@ -320,7 +320,7 @@ $td_headers = array(); // for a11y, headers="M1 D4 H5" on each td
 $radio_title = array(); // date for
 
 // Dates poll
-if ($dsondage->format=="D"||$dsondage->format=="D+") {
+if ($dsondage->format=="D"||$dsondage->format=="D+"||$dsondage->format=="D-") {
 
     $tr_months = '<tr><th role="presentation"></th>';
     $tr_days = '<tr><th role="presentation"></th>';
@@ -366,7 +366,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
             $hour = substr($current, strpos($current, '@')-count($current)+2);
 
             if ($hour != "") {
-                $tr_hours .= '<th class="bg-info'.$rbd.'" id="H'.$i.'">'.$hour.'</th>';
+                $tr_hours .= '<th class="bg-info'.$rbd.'" id="H'.$i.'" title="'.$hour.'">'.$hour.'</th>';
                 $radio_title[$i] .= ' - '.$hour;
                 $td_headers[$i] .= ' H'.$i;
             } else {
@@ -396,11 +396,35 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
         $td_headers[$i]='';$radio_title[$i]=''; // init before concatenate
 
         // Subjects
-        $tr_subjects .= '<th class="bg-info" id="S'.preg_replace("/[^a-zA-Z0-9]_+/", "", stripslashes($toutsujet[$i])).'">'.stripslashes($toutsujet[$i]).'</th>';
+        preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/',$toutsujet[$i],$md_a_img);  // Markdown [![alt](src)](href)
+        preg_match_all('/!\[(.*?)\]\((.*?)\)/',$toutsujet[$i],$md_img);                 // Markdown ![alt](src)
+        preg_match_all('/\[(.*?)\]\((.*?)\)/',$toutsujet[$i],$md_a);                    // Markdown [text](href)
+        if (isset($md_a_img[2][0]) && $md_a_img[2][0]!='' && isset($md_a_img[3][0]) && $md_a_img[3][0]!='') { // [![alt](src)](href)
+
+            $th_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0]!='') ? stripslashes($md_a_img[1][0]) : _("Choice") .' '.($i+1);
+            $th_subject_html = '<a href="'.$md_a_img[3][0].'"><img src="'.$md_a_img[2][0].'" class="img-responsive" alt="'.$th_subject_text.'" /></a>';
+
+        } elseif (isset($md_img[2][0]) && $md_img[2][0]!='') { // ![alt](src)
+
+            $th_subject_text = (isset($md_img[1][0]) && $md_img[1][0]!='') ? stripslashes($md_img[1][0]) : _("Choice") .' '.($i+1);
+            $th_subject_html = '<img src="'.$md_img[2][0].'" class="img-responsive" alt="'.$th_subject_text.'" />';
+
+        } elseif (isset($md_a[2][0]) && $md_a[2][0]!='') { // [text](href)
+
+            $th_subject_text = (isset($md_a[1][0]) && $md_a[1][0]!='') ? stripslashes($md_a[1][0]) : _("Choice") .' '.($i+1);
+            $th_subject_html = '<a href="'.$md_a[2][0].'">'.$th_subject_text.'</a>';
+
+        } else { // text only
+
+            $th_subject_text = stripslashes($toutsujet[$i]);
+            $th_subject_html = $th_subject_text;
+
+        }
+        $tr_subjects .= '<th class="bg-info" id="S'.$i.'" title="'.$th_subject_text.'">'.$th_subject_html.'</th>';
 
         $border[$i] = false;
-        $td_headers[$i] .= stripslashes($toutsujet[$i]);
-        $radio_title[$i] .= stripslashes($toutsujet[$i]);
+        $td_headers[$i] .= 'S'.$i;
+        $radio_title[$i] .= $th_subject_text;
 
    }
 
@@ -411,13 +435,35 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
 echo '
 <form name="formulaire" action="' . Utils::getUrlSondage($dsondage->id_sondage) . '" method="POST">
     <input type="hidden" name="sondage" value="' . $numsondage . '"/>
-
+';
+if ($dsondage->format=="A-" || $dsondage->format=="D-") {
+    echo '
+    <div class="alert alert-danger">
+        <p>' . _("The administrator locked this poll, votes and comments are frozen, it's not possible to participate anymore.") . '</p>
+        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</span></p>
+    </div>';
+} else {
+    echo '
     <div class="alert alert-info">
         <p>' . _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.") . '</p>
+        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</span></p>
+    </div>';
+}
+echo'
+    <div class="hidden row scroll-buttons" aria-hidden="true">
+        <div class="btn-group pull-right">
+            <button class="btn btn-sm btn-link scroll-left" title="' . _('Scroll to the left') . '">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </button>
+            <button class="btn  btn-sm btn-link scroll-right" title="' . _('Scroll to the right') . '">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+        </div>
     </div>
+
     <div id="tableContainer" class="tableContainer">
         <table class="results">
-            <caption>'._('Votes of the poll ').$title.'</caption>
+            <caption class="sr-only">'._('Votes of the poll ').$title.'</caption>
             <thead>'. $thead . '</thead>
         <tbody>';
 
@@ -499,8 +545,12 @@ while ($data = $user_studs->FetchNextObject(false)) {
 
     //a la fin de chaque ligne se trouve les boutons modifier
     if ($compteur != $ligneamodifier && ($dsondage->format=="A+"||$dsondage->format=="D+") && $mod_ok) {
-        echo '<td><button type="submit" class="btn btn-link btn-sm" name="modifierligne'.$compteur.'" title="'. _('Edit the line:') .' '.stripslashes($nombase).'">
-        <span class="glyphicon glyphicon-pencil"></span></button></td>'."\n";
+        echo '
+                <td>
+                    <button type="submit" class="btn btn-link btn-sm" name="modifierligne'.$compteur.'" title="'. _('Edit the line:') .' '.stripslashes($nombase).'">
+                        <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span>
+                    </button>
+                </td>'."\n";
     }
 
     //demande de confirmation pour modification de ligne
@@ -517,7 +567,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
 }
 
 // affichage de la ligne pour un nouvel utilisateur
-if (( !(USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || !$user_mod) && $ligneamodifier==-1) {
+if (( !(USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || !$user_mod) && $ligneamodifier==-1 && ($dsondage->format!="A-" && $dsondage->format!="D-")) {
     //affichage de la case vide de texte pour un nouvel utilisateur
     echo '<tr id="vote-form">
 <td class="bg-info" style="padding:5px">
@@ -562,71 +612,56 @@ if (( !(USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || !$user_mod) && $li
 
 // Addition and Best choice
 //affichage de la ligne contenant les sommes de chaque colonne
-$tr_addition = '<tr><td>'. _("Addition") .'</td>';
-$tr_bestchoice = '<tr><td></td>';
-$meilleurecolonne = 0;
-
+$tr_addition = '<tr id="addition"><td>'. _("Addition") .'</td>';
+$meilleurecolonne = max($somme);
+$compteursujet = 0;
+$meilleursujet = '<ul style="list-style:none">';
 for ($i = 0; $i < $nbcolonnes; $i++) {
     if (isset($somme[$i]) && $somme[$i] > 0 ) {
-        if (isset($somme[$i]) && $somme[$i] > $meilleurecolonne){
-            $meilleurecolonne = $somme[$i];
+        if (in_array($i, array_keys($somme, max($somme)))){
+
+            $tr_addition .= '<td><span class="glyphicon glyphicon-star text-warning"></span><span>'.$somme[$i].'</span></td>';
+
+            $meilleursujet.= '<li><b>'.$radio_title[$i].'</b></li>';
+            $compteursujet++;
+
+        } else {
+            $tr_addition .= '<td>'.$somme[$i].'</td>';
         }
-        $tr_addition .= '<td>'.$somme[$i].'</td>';
     } else {
         $tr_addition .= '<td></td>';
     }
 }
 $tr_addition .= '<td></td></tr>';
 
-//recuperation des valeurs des sujets et adaptation pour affichage
-$toutsujet = explode(",", $dsondage->sujet);
-
-$compteursujet = 0;
-$meilleursujet = '<ul style="list-style:none">';
-for ($i = 0; $i < $nbcolonnes; $i++) {
-
-    if (isset($somme[$i]) && $somme[$i] > 0 && $somme[$i] == $meilleurecolonne){
-        $tr_bestchoice .= '<td><span class="glyphicon glyphicon-star text-warning"></span></td>';
-
-        if ($dsondage->format == "D" || $dsondage->format == "D+") {
-            $meilleursujetexport = $toutsujet[$i];
-
-            if (strpos($toutsujet[$i], '@') !== false) {
-                $toutsujetdate = explode("@", $toutsujet[$i]);
-                $meilleursujet .= '<li><b>'.strftime(_("%A, den %e. %B %Y"),$toutsujetdate[0]). ' - ' . $toutsujetdate[1].'</b></li>';
-            } else {
-                $meilleursujet .= '<li><b>'.strftime(_("%A, den %e. %B %Y"),$toutsujet[$i]).'</b></li>';
-            }
-        } else {
-            $meilleursujet.= '<li><b>'.$toutsujet[$i].'</b></li>';
-        }
-        $compteursujet++;
-
-    } else {
-        $tr_bestchoice .= '<td></td>';
-    }
-}
-$tr_bestchoice .= '<td></td></tr>';
-
 $meilleursujet = str_replace("°", "'", $meilleursujet).'</ul>';
 $vote_str = ($meilleurecolonne > 1) ? $vote_str = _('votes') : _('vote');
 
 // Print Addition and Best choice
-echo $tr_addition."\n".$tr_bestchoice.'
+echo $tr_addition.'
         </tbody>
     </table>
-        <div class="col-sm-4 col-sm-offset-4"><p>'."\n";
+    </div>
+    <div class="row">'."\n";
 
 if ($compteursujet == 1) {
-    echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The best choice at this time is:") . '</p>' . $meilleursujet . '<p>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
+    echo '
+        <div class="col-sm-6 col-sm-offset-3 alert alert-success">
+            <p><span class="glyphicon glyphicon-star text-warning"></span> ' . _("The best choice at this time is:") . '</p>
+            ' . $meilleursujet . '
+            <p>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . '.</p>
+        </div>'."\n";
 } elseif ($compteursujet > 1) {
-    echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The bests choices at this time are:") . '</p>' . $meilleursujet . '<p>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
+    echo '
+        <div class="col-sm-6 col-sm-offset-3 alert alert-success">
+            <p><span class="glyphicon glyphicon-star text-warning"></span> ' . _("The bests choices at this time are:") . '</p>
+            ' . $meilleursujet . '
+            <p>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . '.</p>
+        </div>'."\n";
 }
 
 echo '
-        </p></div>
     </div>
-
     <hr />';
 
 // Comments
@@ -635,7 +670,7 @@ $sql = $connect->Prepare($sql);
 $comment_user=$connect->Execute($sql, array($numsondage));
 
 if ($comment_user->RecordCount() != 0) {
-    echo '<div class="row"><h3>' . _("Comments of polled people") . '</h3>'."\n";
+    echo '<div><h3>' . _("Comments of polled people") . '</h3>'."\n";
 
     while($dcomment = $comment_user->FetchNextObject(false)) {
         echo '
@@ -647,8 +682,10 @@ if ($comment_user->RecordCount() != 0) {
 
     echo '</div>';
 }
+
+if ($dsondage->format!="A-" && $dsondage->format!="D-") {
 echo '
-        <div class="row hidden-print alert alert-info">
+        <div class="hidden-print alert alert-info">
             <div class="col-md-6 col-md-offset-3">
             <fieldset id="add-comment"><legend>' . _("Add a comment in the poll") . '</legend>
                 <div class="form-group">
@@ -661,10 +698,12 @@ echo '
                 <p class="text-center"><input type="submit" name="ajoutcomment" value="'. _("Send the comment") .'" class="btn btn-success"></p>
             </fieldset>
             </div>
-        </div>
-    </div>
-</form>
+            <div class="clearfix"></div>
+        </div>';
+}
 
-<a id="bas"></a>';
+echo '
+    </div>
+</form>';
 
 bandeau_pied();

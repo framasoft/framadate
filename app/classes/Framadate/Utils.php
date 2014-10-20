@@ -90,6 +90,7 @@ class Utils
         <link rel="stylesheet" href="' . self::get_server_name() . 'css/bootstrap-accessibility.css">
         <link rel="stylesheet" href="' . self::get_server_name() . 'css/datepicker3.css">
         <link rel="stylesheet" href="' . self::get_server_name() . 'css/style.css">
+        <link rel="stylesheet" href="' . self::get_server_name() . 'css/frama.css">
         <link rel="stylesheet" href="' . self::get_server_name() . 'css/print.css" media="print">
         <script type="text/javascript" src="' . self::get_server_name() . 'js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap.min.js"></script>
@@ -104,7 +105,7 @@ class Utils
         echo '
     </head>
     <body>
-    <div class="container">';
+    <div class="container ombre">';
 
     }
 
@@ -161,7 +162,7 @@ class Utils
             $replyTo = $headers;
             $headers = ''; // on reinitialise $headers
         } else {
-            $replyTo = ADRESSEEMAILREPONSEAUTO;
+            $replyTo = ADRESSEMAILREPONSEAUTO;
         }
 
         $from = sprintf( "From: %s%s <%s>\n", $encoded_app, $folding, ADRESSEMAILADMIN);
@@ -176,7 +177,7 @@ class Utils
         $headers .= "Content-Type: text/plain; charset=UTF-8\n";
         $headers .= "Content-Transfer-Encoding: 8bit";
 
-        $body = html_entity_decode($body, ENT_QUOTES, 'UTF-8');
+        $body = html_entity_decode($body, ENT_QUOTES, 'UTF-8')._("\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.");
 
         mail($to, $subject, $body, $headers, $param);
     }

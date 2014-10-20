@@ -75,6 +75,19 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
 
         $_SESSION["toutchoix"]=substr($choixdate,1);
 
+        // Expiration date → 6 months after last day if not filled or in bad format
+        $_SESSION["champdatefin"]=end($temp_results)+15552000;
+
+        if (Utils::issetAndNoEmpty('champdatefin')) {
+            $registredate = explode("/",$_POST["champdatefin"]);
+            if (is_array($registredate) == true && count($registredate) == 3) {
+                $time = mktime(0,0,0,$registredate[1],$registredate[0],$registredate[2]);
+                if ($time > time() + (24*60*60)) {
+                    $_SESSION["champdatefin"]=$time;
+                }
+            }
+        }
+
         ajouter_sondage();
 
     } else {
@@ -111,22 +124,50 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
 
         $temp_array = array_unique($_SESSION["totalchoixjour"]);
         sort($temp_array);
-        $removal_date=strftime(_("%A, den %e. %B %Y"), end($temp_array)+2592000);
+        $removal_date=strftime(_("%A, den %e. %B %Y"), end($temp_array)+15552000);
+
+        // Sumary
+        $summary = '<ul>';
+        for ($i=0;$i<count($_SESSION["totalchoixjour"]);$i++) {
+            $summary .= '<li>'.strftime(_("%A, den %e. %B %Y"), $_SESSION["totalchoixjour"][$i]);
+            for ($j=0;$j<count($_SESSION['horaires'.$i]);$j++) {
+                if (isset($_SESSION['horaires'.$i][$j])) {
+                    $summary .= ($j==0) ? ' : ' : ', ';
+                    $summary .= $_SESSION['horaires'.$i][$j];
+                }
+            }
+            $summary .= '</li>'."\n";
+        }
+        $summary .= '</ul>';
 
         echo '
     <form name="formulaire" action="' . Utils::get_server_name() . 'choix_date.php" method="POST" class="form-horizontal" role="form">
     <div class="row" id="selected-days">
         <div class="col-md-8 col-md-offset-2">
             <h2>'. _("Confirm the creation of your poll") .'</h2>
-            <div class="alert alert-info">
-                <p>'. _("Your poll will expire automatically 2 days after the last date of your poll.") .'</p>
-                <p>'. _("Removal date:") .' <b> '.$removal_date.'</b></p>
+            <div class="well summary">
+                <h3>'. _("List of your choices").'</h3>
+                '. $summary .'
+            </div>
+            <div class="alert alert-info clearfix">
+                <p>' . _("Your poll will be automatically removed 6 months after the last date of your poll:") . ' <strong>'.$removal_date.'</strong>.<br />' . _("You can fix another removal date for it.") .'</p>
+                <div class="form-group">
+                    <label for="champdatefin" class="col-sm-5 control-label">'. _("Removal date (optional)") .'</label>
+                    <div class="col-sm-6">
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
+                            <input type="text" class="form-control" id="champdatefin" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat" name="champdatefin" value="" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
+                        </div>
+                    </div>
+                    <span id="dateformat" class="sr-only">'. _("(dd/mm/yyyy)") .'</span>
+                </div>
             </div>
             <div class="alert alert-warning">
                 <p>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll."). '</p>
                 <p>' . _("Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.") .'</p>
             </div>
             <p class="text-right">
+                <button class="btn btn-default" onclick="javascript:window.history.back();" title="'. _('Back to step 2') . '">'. _('Back') . '</button>
                 <button name="confirmation" value="confirmation" type="submit" class="btn btn-success">'. _('Create the poll') . '</button>
             </p>
         </div>
@@ -143,16 +184,16 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
         echo '
     <form name="formulaire" action="' . Utils::get_server_name() . 'choix_date.php" method="POST" class="form-horizontal" role="form">
     <div class="row" id="selected-days">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <h2>'. _("Choose the dates of your poll") .'</h2>
             <div class="alert alert-info">
                 <p>'. _("To schedule an event you need to propose at least two choices (two hours for one day or two days).").'</p>
-                <p>'. _("You can add or remove additionnal days and hours with the buttons") .' <span class="glyphicon glyphicon-minus text-info"></span> <span class="glyphicon glyphicon-plus text-success"></span></p>
+                <p>'. _("You can add or remove additionnal days and hours with the buttons") .' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></p>
                 <p>'. _("For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)").'</p>
             </div>';
 
-        // Fields days : 1 by default
-        $nb_days = (isset($_SESSION["totalchoixjour"])) ? count($_SESSION["totalchoixjour"]) : 1;
+        // Fields days : 3 by default
+        $nb_days = (isset($_SESSION["totalchoixjour"])) ? count($_SESSION["totalchoixjour"]) : 3;
         for ($i=0;$i<$nb_days;$i++) {
             $day_value = isset($_SESSION["totalchoixjour"][$i]) ? strftime( "%d/%m/%Y", $_SESSION["totalchoixjour"][$i]) : '';
             echo '
@@ -161,8 +202,9 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
                     <legend>
                         <div class="input-group date col-xs-7">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                            <input type="text" class="form-control" id="day'.$i.'" title="'. _("Day") .' '. ($i+1) .'" data-date-format="'. _("dd/mm/yyyy") .'" name="days[]" value="'.$day_value.'" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
+                            <input type="text" class="form-control" id="day'.$i.'" title="'. _("Day") .' '. ($i+1) .'" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat'.$i.'" name="days[]" value="'.$day_value.'" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
                         </div>
+                        <span id="dateformat'.$i.'" class="sr-only">'. _("(dd/mm/yyyy)") .'</span>
                     </legend>'."\n";
 
             // Fields hours : 3 by default
@@ -171,26 +213,26 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
                 echo '
                     <div class="col-sm-2">
                         <label for="d'.$i.'-h'.$j.'" class="sr-only control-label">'. _("Time") .' '. ($j+1) .'</label>
-                        <input type="text" class="form-control hours" title="'.$day_value.' - '. _("Time") .' '. ($j+1) .'" placeholder="'. _("Time") .' '. ($j+1) .'" maxlength="11" id="d'.$i.'-h'.$j.'" name="horaires'.$i.'[]" value="'.$hour_value.'" />
+                        <input type="text" class="form-control hours" title="'.$day_value.' - '. _("Time") .' '. ($j+1) .'" placeholder="'. _("Time") .' '. ($j+1) .'" id="d'.$i.'-h'.$j.'" name="horaires'.$i.'[]" value="'.$hour_value.'" />
                     </div>'."\n";
             }
             echo '
                     <div class="col-sm-2"><div class="btn-group btn-group-xs" style="margin-top: 5px;">
-                        <button type="button" title="'. _("Remove an hour") .'" class="remove-an-hour btn btn-default"><span class="glyphicon glyphicon-minus text-info"></span></button>
-                        <button type="button" title="'. _("Add an hour") .'" class="add-an-hour btn btn-default"><span class="glyphicon glyphicon-plus text-success"></span></button>
+                        <button type="button" title="'. _("Remove an hour") .'" class="remove-an-hour btn btn-default"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span></button>
+                        <button type="button" title="'. _("Add an hour") .'" class="add-an-hour btn btn-default"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></button>
                     </div></div>
                 </div>
             </fieldset>';
             }
         echo '
-            <div class="col-md-6">
-                <button type="button" id="copyhours" class="btn btn-default disabled" title="'. _("Copy hours of the first day") .'"><span class="glyphicon glyphicon-sort-by-attributes-alt text-info"></span></button>
+            <div class="col-md-4">
+                <button type="button" id="copyhours" class="btn btn-default disabled" title="'. _("Copy hours of the first day") .'"><span class="glyphicon glyphicon-sort-by-attributes-alt text-info"></span><span class="sr-only">'. _("Copy hours of the first day") .'</span></button>
                 <div class="btn-group btn-group">
-                    <button type="button" id="remove-a-day" class="btn btn-default disabled" title="'. _("Remove a day") .'"><span class="glyphicon glyphicon-minus text-info"></span></button>
-                    <button type="button" id="add-a-day" class="btn btn-default" title="'. _("Add a day") .'"><span class="glyphicon glyphicon-plus text-success"></span></button>
+                    <button type="button" id="remove-a-day" class="btn btn-default disabled" title="'. _("Remove a day") .'"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span></button>
+                    <button type="button" id="add-a-day" class="btn btn-default" title="'. _("Add a day") .'"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></button>
                 </div>
             </div>
-            <div class="col-md-6 text-right">
+            <div class="col-md-8 text-right">
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-remove text-danger"></span> '. _("Remove") . ' <span class="caret"></span>
@@ -200,7 +242,8 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
                         <li><a id="resethours" href="javascript:void(0)">'. _("Remove all hours") .'</a></li>
                     </ul>
                 </div>
-                <button name="choixheures" value="'. _("Next") .'" type="submit" class="btn btn-success disabled">'. _('Next') . '</button>
+                <a class="btn btn-default" href="'.Utils::get_server_name().'infos_sondage.php?choix_sondage=date" title="'. _('Back to step 1') . '">'. _('Back') . '</a>
+                <button name="choixheures" value="'. _("Next") .'" type="submit" class="btn btn-success disabled" title="'. _('Go to step 3') . '">'. _("Next") .'</button>
             </div>
         </div>
     </div>

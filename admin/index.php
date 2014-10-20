@@ -60,7 +60,9 @@ while($dsondage = $sondage->FetchNextObject(false)) {
 $sondage=$connect->Execute("select * from sondage WHERE date_fin > DATE_SUB(now(), INTERVAL 3 MONTH) ORDER BY date_fin ASC");
 $nbsondages=$sondage->RecordCount();
 
-echo '<p>' . $nbsondages. ' ' . _("polls in the database at this time") .'</p>'."\n";
+$btn_logs = (is_readable('logs_studs.txt')) ? '<a role="button" class="btn btn-default btn-xs pull-right" href="'.str_replace('/admin','', Utils::get_server_name()).'admin/logs_studs.txt">'. _("Logs") .'</a>' : '';
+
+echo '<p>' . $nbsondages. ' ' . _("polls in the database at this time") . $btn_logs .'</p>'."\n";
 
 // tableau qui affiche tous les sondages de la base
 echo '<table class="table table-bordered">
@@ -101,9 +103,9 @@ while($dsondage = $sondage->FetchNextObject(false)) {
     }
     echo '
         <td>'.$nbuser.'</td>
-        <td><a href="' . Utils::getUrlSondage($dsondage->id_sondage) . '" class="btn btn-link" title="'. _("See the poll") .'"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-        <td><a href="' . Utils::getUrlSondage($dsondage->id_sondage_admin, true) . '" class="btn btn-link" title="'. _("Change the poll") .'"><span class="glyphicon glyphicon-pencil"></span></a></td>
-        <td><button type="submit" name="supprimersondage'.$dsondage->id_sondage.'" value="'. _("Remove the poll") .'" class="btn btn-link" title="'. _("Remove the poll") .'"><span class="glyphicon glyphicon-trash text-danger"></span></td>
+        <td><a href="' . Utils::getUrlSondage($dsondage->id_sondage) . '" class="btn btn-link" title="'. _("See the poll") .'"><span class="glyphicon glyphicon-eye-open"></span><span class="sr-only">' . _("See the poll") . '</span></a></td>
+        <td><a href="' . Utils::getUrlSondage($dsondage->id_sondage_admin, true) . '" class="btn btn-link" title="'. _("Change the poll") .'"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _("Change the poll") . '</span></a></td>
+        <td><button type="submit" name="supprimersondage'.$dsondage->id_sondage.'" value="'. _("Remove the poll") .'" class="btn btn-link" title="'. _("Remove the poll") .'"><span class="glyphicon glyphicon-trash text-danger"></span><span class="sr-only">' . _("Remove the poll") . '</span></td>
     </tr>'."\n";
     $i++;
 }

@@ -26,8 +26,8 @@ function bandeau_titre($titre)
     $img = ( IMAGE_TITRE ) ? '<img src="'. Utils::get_server_name(). IMAGE_TITRE. '" title="'._("Home").' - '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'">' : '';
     echo '
     <header role="banner">
-        <form method="post" action="">
-            <div class="input-group input-group-sm pull-right col-md-2">
+        <form method="post" action="#">
+            <div class="input-group input-group-sm pull-right col-md-2 col-xs-4">
                 <select name="lang" class="form-control" title="'. _("Select the language") .'" >' . liste_lang() . '</select>
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-default btn-sm" title="'. _("Change the language") .'">OK</button>
@@ -36,8 +36,9 @@ function bandeau_titre($titre)
         </form>
         <h1><a href="'.str_replace('/admin','', Utils::get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'">'.$img.'</a></h1>
         <p class="lead"><i>'. $titre .'</i></p>
+        <hr class="trait" />
     </header>
-    <main>';
+    <main role="main">';
 }
 
 function liste_lang()
@@ -61,25 +62,6 @@ function bandeau_pied($admin=false)
 {
     echo '
     </main>
-    <footer>
-        <hr />
-        <ul class="list-inline">';
-    if($admin) {
-        echo '
-            <li><a class="btn btn-default btn-xs" href="'.str_replace('/admin','', Utils::get_server_name()).'">'. _("Home") .'</a></li>';
-        if (is_readable('logs_studs.txt')) {
-            echo '
-            <li><a role="button" class="btn btn-default btn-xs" href="'.str_replace('/admin','', Utils::get_server_name()).'admin/logs_studs.txt">'. _("Logs") .'</a></li>';
-        }
-    } else {
-        echo '
-            <li><a class="btn btn-default btn-xs" href="'. Utils::get_server_name().'">'. _("Home") .'</a></li>
-            <li><a class="btn btn-default btn-xs" href="http://contact.framasoft.org">'. _("Contact") .'</a></li>
-            <li><a class="btn btn-default btn-xs" href="'. Utils::get_server_name().'apropos.php">'. _("About") .'</a></li>';
-    }
-    echo '
-        </ul>
-    </footer>
     </div> <!-- .container -->
 </body>
 </html>'."\n";

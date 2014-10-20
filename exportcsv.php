@@ -34,44 +34,57 @@ $nbcolonnes=substr_count($dsondage->sujet,',')+1;
 $toutsujet=explode(",",$dsondage->sujet);
 
 //affichage des sujets du sondage
-$input =";";
+$input =",";
 foreach ($toutsujet as $value) {
     if ($dsondage->format=="D"||$dsondage->format=="D+") {
-	    if (strpos($dsondage->sujet,'@') !== false) {
-		    $days=explode("@",$value);
-		    $input.= date("j/n/Y",$days[0]).';';
-	    } else {
-		    $input.= date("j/n/Y",$values).';';
-	    }
+        if (strpos($dsondage->sujet,'@') !== false) {
+            $days=explode("@",$value);
+            $input.= '"'.date("j/n/Y",$days[0]).'",';
+        } else {
+            $input.= '"'.date("j/n/Y",$values).'",';
+        }
     } else {
-        $input.= $value.';';
+
+        preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/',$value,$md_a_img);  // Markdown [![alt](src)](href)
+        preg_match_all('/!\[(.*?)\]\((.*?)\)/',$value,$md_img);                 // Markdown ![alt](src)
+        preg_match_all('/\[(.*?)\]\((.*?)\)/',$value,$md_a);                    // Markdown [text](href)
+        if (isset($md_a_img[2][0]) && $md_a_img[2][0]!='' && isset($md_a_img[3][0]) && $md_a_img[3][0]!='') { // [![alt](src)](href)
+            $subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0]!='') ? stripslashes($md_a_img[1][0]) : _("Choice") .' '.($i+1);
+        } elseif (isset($md_img[2][0]) && $md_img[2][0]!='') { // ![alt](src)
+            $subject_text = (isset($md_img[1][0]) && $md_img[1][0]!='') ? stripslashes($md_img[1][0]) : _("Choice") .' '.($i+1);
+        } elseif (isset($md_a[2][0]) && $md_a[2][0]!='') { // [text](href)
+            $subject_text = (isset($md_a[1][0]) && $md_a[1][0]!='') ? stripslashes($md_a[1][0]) : _("Choice") .' '.($i+1);
+        } else { // text only
+            $subject_text = stripslashes($value);
+        }
+        $input.= '"'.html_entity_decode($subject_text).'",';
     }
 }
 
 $input.="\r\n";
 
 if (strpos($dsondage->sujet,'@') !== false) {
-    $input.=";";
+    $input.=",";
     foreach ($toutsujet as $value) {
         $heures=explode("@",$value);
-        $input.= $heures[1].';';
+        $input.= '"'.$heures[1].'",';
     }
 
     $input.="\r\n";
 }
 
-while (	$data=$user_studs->FetchNextObject(false)) {
+while ( $data=$user_studs->FetchNextObject(false)) {
     // Le nom de l'utilisateur
     $nombase=html_entity_decode(str_replace("°","'",$data->nom));
-    $input.=$nombase.';';
+    $input.= '"'.$nombase.'",';
     //affichage des resultats
     $ensemblereponses=$data->reponses;
     for ($k=0;$k<$nbcolonnes;$k++) {
         $car=substr($ensemblereponses,$k,1);
         switch ($car) {
-            case "1": $input .= _('Yes').';'; $somme[$k]++; break;
-            case "2": $input .= _('Ifneedbe').';'; break;
-            default: $input .= _('No').';'; break;
+            case "1": $input .= '"'._('Yes').'",'; $somme[$k]++; break;
+            case "2": $input .= '"'._('Ifneedbe').'",'; break;
+            default: $input .= '"'._('No').'",'; break;
         }
     }
 
@@ -86,6 +99,6 @@ header( 'Content-Length: '.$filesize );
 header( 'Content-Disposition: attachment; filename="'.$filename.'"' );
 header( 'Cache-Control: max-age=10' );
 
-echo $input;
+echo str_replace('&quot;','""',$input);
 
 die();

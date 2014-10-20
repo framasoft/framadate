@@ -45,27 +45,7 @@ function ajouter_sondage()
     $sondage=random(16);
     $sondage_admin=$sondage.random(8);
 
-    if ($_SESSION["formatsondage"]=="A"||$_SESSION["formatsondage"]=="A+") {
-        //extraction de la date de fin choisie
-        if ($_SESSION["champdatefin"]) {
-            if ($_SESSION["champdatefin"]>time()+250000) {
-                $date_fin=$_SESSION["champdatefin"];
-            }
-        } else {
-            $date_fin=time()+15552000;
-        }
-    }
-
-    if ($_SESSION["formatsondage"]=="D"||$_SESSION["formatsondage"]=="D+") {
-        //Calcul de la date de fin du sondage
-        $temp_array = array_unique($_SESSION["totalchoixjour"]);
-        sort($temp_array);
-        $date_fin= end($temp_array)+2592000;
-    }
-
-    if (is_numeric($date_fin) === false) {
-        $date_fin = time()+15552000;
-    }
+    $date_fin = ($_SESSION["champdatefin"]) ? $_SESSION["champdatefin"] : $date_fin=time()+15552000;
 
     $sql = 'INSERT INTO sondage
           (id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, date_fin, format, mailsonde)
@@ -90,10 +70,10 @@ function ajouter_sondage()
     $message = _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
     $message .= "\n\n";
     $message .= stripslashes(html_entity_decode($_SESSION["nom"],ENT_QUOTES,"UTF-8"))." " . _("hast just created a poll called") . " : \"".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES))."\".\n";
-    $message .= _("Thanks for filling the poll at the link above") . " :\n\n%s\n\n" . _("Thanks for your confidence.") . ",\n".NOMAPPLICATION;
+    $message .= _("Thanks for filling the poll at the link above") . " :\n\n%s\n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION;
 
     $message_admin = _("This message should NOT be sended to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
-    $message_admin .= " :\n\n"."%s \n\n" . _("Thanks for your confidence.") . ",\n".NOMAPPLICATION;
+    $message_admin .= " :\n\n"."%s \n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION;
 
     $message = sprintf($message, Utils::getUrlSondage($sondage));
     $message_admin = sprintf($message_admin, Utils::getUrlSondage($sondage_admin, true));
