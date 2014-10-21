@@ -115,7 +115,7 @@ msgid "Send the poll link to your friends or colleagues"
 msgstr "Envoyez le lien du sondage à vos amis ou collègues"
 
 msgid "Discuss and make a decision"
-msgstr "Discutez et prennez votre décision"
+msgstr "Discutez et prenez votre décision"
 
 msgid "Do you want to "
 msgstr "Voulez-vous "
@@ -134,7 +134,7 @@ msgid " a software developed by the University of Strasbourg. Today, it is devev
 msgstr " un logiciel développé par l'Université de Strasbourg. Aujourd'hui, son développement est assuré par l’association Framasoft"
 
 msgid "This software needs javascript and cookies enabled. It is compatible with the following web browsers:"
-msgstr "Ce logiciel requiert l’activation du javascript et des cookies. Il est compatible avec les navigateurs web suivant :"
+msgstr "Ce logiciel requiert l’activation du javascript et des cookies. Il est compatible avec les navigateurs web suivants :"
 
 msgid "It is governed by the "
 msgstr "Il est régi par la "
@@ -505,7 +505,7 @@ msgid "Add a link or an image"
 msgstr "Ajouter un lien ou une image"
 
 msgid "These fields are optional. You can add a link, an image or both."
-msgstr "Ces champs sont optionnels. Vous pouvez ajouter un lien, une image ou les deux."
+msgstr "Ces champs sont facultatifs. Vous pouvez ajouter un lien, une image ou les deux."
 
 msgid "URL of the image"
 msgstr "URL de l'image"
@@ -615,7 +615,7 @@ msgid ""
 "You can find your poll at the link"
 msgstr ""
 " vient de remplir une ligne.\n"
-"Vous pouvez retrouver votre sondage au lien suivant"
+"Vous pouvez retrouver votre sondage avec le lien suivant"
 
 msgid "Thanks for your confidence."
 msgstr "Merci de votre confiance."
@@ -640,7 +640,7 @@ msgid ""
 "You can modify this poll with this link"
 msgstr ""
 "Vous avez modifié la configuration de votre sondage. \n"
-"Vous pouvez modifier ce sondage au lien suivant"
+"Vous pouvez modifier ce sondage avec le lien suivant"
 
 # Mails creation_sondage.php
 msgid ""
