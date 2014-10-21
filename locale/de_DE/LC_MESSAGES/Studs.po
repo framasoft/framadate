@@ -23,11 +23,11 @@ msgstr "Ihre Umfrage erstellen"
 
 #: bandeaux.php:62
 msgid "Poll dates (2 on 2)"
-msgstr "Terminforschläge (2 / 2)"
+msgstr "Terminvorschläge (2 / 2)"
 
 #: bandeaux.php:65
 msgid "Poll subjects (2 on 2)"
-msgstr "Themaforschläge (2 / 2)"
+msgstr "Themavorschläge (2 / 2)"
 
 #: bandeaux.php:68
 msgid "Polls administrator"
