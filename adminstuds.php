@@ -76,26 +76,36 @@ if (!$sondage || $sondage->RecordCount() != 1){
 $dsujet=$sujets->FetchObject(false);
 $dsondage=$sondage->FetchObject(false);
 
+// Send email (only once during the session) to alert admin of the change he made
+$email_admin = $dsondage->mail_admin;
+function send_mail_admin() {
+    global $email_admin;
+    global $numsondageadmin;
+
+    if(!isset($_SESSION["mail_admin_sent"])) {
+        Utils::sendEmail( $email_admin,
+            _("[ADMINISTRATOR] New settings for your poll") . ' ' . stripslashes( $dsondage->titre ),
+            _("You have changed the settings of your poll. \nYou can modify this poll with this link") .
+              " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . "\n\n" .
+            _("Thanks for your confidence.") . "\n" . NOMAPPLICATION
+            );
+        $_SESSION["mail_admin_sent"]=true;
+    }
+}
 
 //si la valeur du nouveau titre est valide et que le bouton est activé
-$adresseadmin = $dsondage->mail_admin;
-
 if (isset($_POST["boutonnouveautitre"])) {
     if (Utils::issetAndNoEmpty('nouveautitre') === false) {
         $err |= TITLE_EMPTY;
     } else {
-        //modification de la base SQL avec le nouveau titre
+        //Update SQL database with new title
         $nouveautitre = htmlentities(html_entity_decode($_POST['nouveautitre'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
         $sql = 'UPDATE sondage SET titre = '.$connect->Param('nouveautitre').' WHERE id_sondage = '.$connect->Param('numsondage');
         $sql = $connect->Prepare($sql);
 
-        //envoi du mail pour prevenir l'admin de sondage
+        //Email sent to the admin
         if ($connect->Execute($sql, array($nouveautitre, $numsondage))) {
-            Utils::sendEmail( $adresseadmin,
-                _("[ADMINISTRATOR] New title for your poll") . ' ' . NOMAPPLICATION,
-                _("You have changed the title of your poll. \nYou can modify this poll with this link") .
-                " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . "\n\n" .
-                _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
+            send_mail_admin();
         }
     }
 }
@@ -107,17 +117,13 @@ if (isset($_POST["boutonnouveauxcommentaires"])) {
     } else {
         $commentaires = htmlentities(html_entity_decode($_POST['nouveauxcommentaires'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
 
-        //modification de la base SQL avec les nouveaux commentaires
+        //Update SQL database with new description
         $sql = 'UPDATE sondage SET commentaires = '.$connect->Param('commentaires').' WHERE id_sondage = '.$connect->Param('numsondage');
         $sql = $connect->Prepare($sql);
 
+        //Email sent to the admin
         if ($connect->Execute($sql, array($commentaires, $numsondage))) {
-            //envoi du mail pour prevenir l'admin de sondage
-            Utils::sendEmail( $adresseadmin,
-                _("[ADMINISTRATOR] New description of your poll") . ' ' . NOMAPPLICATION,
-                _("You have changed the description of your poll. \nYou can modify this poll with this link") .
-                " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . " \n\n" .
-                _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
+            send_mail_admin();
         }
     }
 }
@@ -129,18 +135,35 @@ if (isset($_POST["boutonnouvelleadresse"])) {
     } else {
         $nouvelleadresse = htmlentities(html_entity_decode($_POST['nouvelleadresse'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
 
-        //modification de la base SQL avec la nouvelle adresse
+        //Update SQL database with new email
         $sql = 'UPDATE sondage SET mail_admin = '.$connect->Param('nouvelleadresse').' WHERE id_sondage = '.$connect->Param('numsondage');
         $sql = $connect->Prepare($sql);
 
+        //Email sent to the admin
         if ($connect->Execute($sql, array($nouvelleadresse, $numsondage))) {
-            //envoi du mail pour prevenir l'admin de sondage
-            Utils::sendEmail( $_POST['nouvelleadresse'],
-                _("[ADMINISTRATOR] New email address for your poll") . ' ' . NOMAPPLICATION,
-                _("You have changed your email address in your poll. \nYou can modify this poll with this link") .
-                " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . "\n\n" .
-                _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
+            send_mail_admin();
         }
+    }
+}
+
+//New poll rules
+if (isset($_POST["btn_poll_rules"])) {
+    echo '<!-- '; print_r($_POST); echo ' -->';
+    if($_POST['poll_rules'] == '+') {
+        $new_poll_rules = substr($dsondage->format, 0, 1).'+';
+    } elseif($_POST['poll_rules'] == '-') {
+        $new_poll_rules = substr($dsondage->format, 0, 1).'-';
+    } else {
+        $new_poll_rules = substr($dsondage->format, 0, 1);
+    }
+
+    //Update SQL database with new rules
+    $sql = 'UPDATE sondage SET format = '.$connect->Param('new_poll_rules').' WHERE id_sondage = '.$connect->Param('numsondage');
+    $sql = $connect->Prepare($sql);
+
+    //Email sent to the admin
+    if ($connect->Execute($sql, array($new_poll_rules, $numsondage))) {
+        send_mail_admin();
     }
 }
 
@@ -161,7 +184,7 @@ if (isset($_POST["ajoutsujet"])) {
             <form name="formulaire" class="form-horizontal" action="' . Utils::getUrlSondage($numsondageadmin, true) . '" method="POST">
                 <h2>' . _("Column's adding") . '</h2>'."\n";
 
-    if ($dsondage->format=="A"||$dsondage->format=="A+"){
+    if (substr($dsondage->format, 0, 1)=="A"){
         echo '
                 <div class="form-group">
                     <label for="nouvellecolonne" class="col-md-6">' . _("Add a column") .' :</label>
@@ -224,6 +247,20 @@ if (isset($_POST["suppressionsondage"])) {
     die();
 }
 
+// Remove all the comments
+if (isset($_POST["removecomments"])) {
+    $sql = 'DELETE FROM comments WHERE id_sondage='.$connect->Param('numsondage');
+    $sql = $connect->Prepare($sql);
+    $cleaning = $connect->Execute($sql, array($numsondage));
+}
+
+// Remove all the votes
+if (isset($_POST["removevotes"])) {
+    $sql = 'DELETE FROM user_studs WHERE id_sondage='.$connect->Param('numsondage');
+    $sql = $connect->Prepare($sql);
+    $cleaning = $connect->Execute($sql, array($numsondage));
+}
+
 //action si bouton confirmation de suppression est activé
 if (isset($_POST["confirmesuppression"])) {
     $nbuser=$user_studs->RecordCount();
@@ -233,13 +270,8 @@ if (isset($_POST["confirmesuppression"])) {
         // on ecrit dans le fichier de logs la suppression du sondage
         error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'admin/logs_studs.txt');
 
-        //envoi du mail a l'administrateur du sondage
-        Utils::sendEmail( $adresseadmin,
-            _("[ADMINISTRATOR] Removing of your poll") . ' ' . NOMAPPLICATION,
-            _("You have removed your poll. \nYou can make new polls with this link") .
-            " :\n\n" . Utils::get_server_name() . "index.php \n\n" .
-            _("Thanks for your confidence.") . "\n" . NOMAPPLICATION );
-
+        // Email sent
+        send_mail_admin();
         //affichage de l'ecran de confirmation de suppression de sondage
         Utils::print_header(_("Your poll has been removed!"));
 
@@ -347,7 +379,7 @@ if (isset($_POST["boutonp"])) {
 
 
 //action quand on ajoute une colonne au format AUTRE
-if (isset($_POST["ajoutercolonne"]) && Utils::issetAndNoEmpty('nouvellecolonne') && ($dsondage->format == "A" || $dsondage->format == "A+")) {
+if (isset($_POST["ajoutercolonne"]) && Utils::issetAndNoEmpty('nouvellecolonne') && (substr($dsondage->format, 0, 1) == "A" )) {
     $nouveauxsujets=$dsujet->sujet;
 
     //on rajoute la valeur a la fin de tous les sujets deja entrés
@@ -359,16 +391,13 @@ if (isset($_POST["ajoutercolonne"]) && Utils::issetAndNoEmpty('nouvellecolonne')
     $sql = 'UPDATE sujet_studs SET sujet = '.$connect->Param('nouveauxsujets').' WHERE id_sondage = '.$connect->Param('numsondage');
     $sql = $connect->Prepare($sql);
     if ($connect->Execute($sql, array($nouveauxsujets, $numsondage))) {
-      //envoi d'un mail pour prévenir l'administrateur du changement
-      Utils::sendEmail( "$adresseadmin", "" . _("[ADMINISTRATOR] New column for your poll").NOMAPPLICATION, "" .
-          _("You have added a new column in your poll. \nYou can inform the voters of this change with this link") .
-          " : \n\n" . Utils::getUrlSondage($numsondage) . " \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
+        send_mail_admin();
     }
 }
 
 
 //action quand on ajoute une colonne au format DATE
-if (isset($_POST["ajoutercolonne"]) && ($dsondage->format == "D" || $dsondage->format == "D+")) {
+if (isset($_POST["ajoutercolonne"]) && (substr($dsondage->format, 0, 1) == "D")) {
     $nouveauxsujets=$dsujet->sujet;
 
     if (isset($_POST["newdate"]) && $_POST["newdate"] != "vide") {
@@ -446,13 +475,8 @@ if (isset($_POST["ajoutercolonne"]) && ($dsondage->format == "D" || $dsondage->f
             }
         }
 
-        //envoi d'un mail pour prévenir l'administrateur du changement
-        $adresseadmin = $dsondage->mail_admin;
-
-        Utils::sendEmail( $adresseadmin,
-            _("[ADMINISTRATOR] New column for your poll"),
-            _("You have added a new column in your poll. \nYou can inform the voters of this change with this link").
-            " : \n\n" . Utils::getUrlSondage($numsondage) . " \n\n " . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
+        //Email sent to the admin
+        send_mail_admin();
 
     } else {
         $erreur_ajout_date="yes";
@@ -644,6 +668,20 @@ $title = (isset($_POST["boutonnouveautitre"]) && Utils::issetAndNoEmpty('nouveau
 $description = (isset($_POST["nouveauxcommentaires"])) ? stripslashes(htmlentities(html_entity_decode($_POST['nouveauxcommentaires'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8')) : stripslashes( $dsondage->commentaires );
 $email_admin = (isset($_POST["boutonnouvelleadresse"]) && Utils::issetAndNoEmpty('nouvelleadresse')) ? htmlentities(html_entity_decode($_POST['nouvelleadresse'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8') : stripslashes( $dsondage->mail_admin );
 
+//Poll format (locked A-/D-, open A/D, editable A+/D+)
+$poll_rules = (isset($_POST["poll_rules"]) && Utils::issetAndNoEmpty('btn_poll_rules')) ? $_POST["poll_rules"] : substr($dsondage->format, 1, 1);
+$poll_rules_opt1 = '';$poll_rules_opt2 = '';$poll_rules_opt3 = '';
+if($poll_rules == '+') {
+    $poll_rules_text = '<span class="glyphicon glyphicon-edit"></span> '. _("Votes are editable");
+    $poll_rules_opt3 = 'selected';
+} elseif($poll_rules == '-') {
+    $poll_rules_text = '<span class="glyphicon glyphicon-lock"></span> '. _("Votes and comments are locked");
+    $poll_rules_opt1 = 'selected';
+} else {
+    $poll_rules_text = '<span class="glyphicon glyphicon-check"></span> '. _("Votes and comments are open");
+    $poll_rules_opt2 = 'selected';
+}
+
 if ($errors!='') {
     Utils::print_header(_("Error!"));
     bandeau_titre(_("Error!"));
@@ -668,8 +706,8 @@ echo '
                         <div class="input-group">
                             <input type="text" class="form-control" id="newtitle" name="nouveautitre" size="40" value="'.$title.'" />
                             <span class="input-group-btn">
-                                <button type="submit" class="btn btn-success" name="boutonnouveautitre" value="1" title="'. _('Save the new title') .'"><span class="glyphicon glyphicon-ok"></span></button>
-                                <button class="btn btn-link btn-cancel" title="'. _('Cancel the title edit') .'"><span class="glyphicon glyphicon-remove"></span></button>
+                                <button type="submit" class="btn btn-success" name="boutonnouveautitre" value="1" title="'. _('Save the new title') .'"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">' . _('Save') . '</span></button>
+                                <button class="btn btn-link btn-cancel" title="'. _('Cancel the title edit') .'"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">' . _('Cancel') . '</span></button>
                             </span>
                         </div>
                     </div>
@@ -678,7 +716,15 @@ echo '
                     <div class="btn-group pull-right">
                         <button onclick="javascript:print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> ' . _('Print') . '</button>
                         <button onclick="window.location.href=\'' . Utils::get_server_name() . 'exportcsv.php?numsondage=' . $numsondage . '\';return false;" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> ' . _('Export to CSV') . '</button>
-                        <button type="submit" id="suppressionsondage" name="suppressionsondage" value="" class="btn btn-danger" title="'. _("Remove the poll") .'"><span class="glyphicon glyphicon-trash"></span></button>
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-trash"></span> <span class="sr-only">' . _("Remove") . '</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><button class="btn btn-link" type="submit" name="removevotes">' . _('Remove all the votes') . '</button></li>
+                            <li><button class="btn btn-link" type="submit" name="removecomments">' . _('Remove all the comments') . '</button></li>
+                            <li class="divider" role="presentation"></li>
+                            <li><button class="btn btn-link" type="submit" id="suppressionsondage" name="suppressionsondage" value="" >'. _("Remove the poll") .'</button></li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -696,8 +742,8 @@ echo '
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="newemail" name="nouvelleadresse" size="40" value="'.$email_admin.'" />
                                     <span class="input-group-btn">
-                                        <button type="submit" name="boutonnouvelleadresse" value="1" class="btn btn-success" title="'. _('Save the adress email') .'"><span class="glyphicon glyphicon-ok"></span></button>
-                                        <button class="btn btn-link btn-cancel" title="'. _('Cancel the adress email edit') .'"><span class="glyphicon glyphicon-remove"></span></button>
+                                        <button type="submit" name="boutonnouvelleadresse" value="1" class="btn btn-success" title="'. _('Save the adress email') .'"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">' . _('Save') . '</span></button>
+                                        <button class="btn btn-link btn-cancel" title="'. _('Cancel the adress email edit') .'"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">' . _('Cancel') . '</span></button>
                                     </span>
                                 </div>
                             </div>
@@ -724,8 +770,29 @@ echo '
                     <input class="form-control" id="admin-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($numsondageadmin, true) . '" />
                 </div>
                 <div class="form-group col-md-2">
-                    <label>'. _("Expiration's date") .'</label>
+                    <h3 class="control-label">'. _("Expiration's date") .'</h3>
                     <p>'.date("d/m/Y",strtotime($dsondage->date_fin)).'</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-md-offset-7" >
+                    <div id="poll-rules-form">
+                        <p class="pull-right">'.$poll_rules_text.'<button class="btn btn-link btn-sm btn-edit" title="'. _('Edit the poll rules') .'"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span></button></p>
+                        <div class="hidden js-poll-rules">
+                            <label class="sr-only" for="newrules">'. _("Poll rules") .'</label>
+                            <div class="input-group">
+                                <select class="form-control" id="newrules" name="poll_rules">
+                                    <option value="-" '.$poll_rules_opt1.'>'. _("Votes and comments are locked") .'</option>
+                                    <option value="0" '.$poll_rules_opt2.'>'. _("Votes and comments are open") .'</option>
+                                    <option value="+" '.$poll_rules_opt3.'>'. _("Votes are editable") .'</option>
+                                </select>
+                                <span class="input-group-btn">
+                                    <button type="submit" name="btn_poll_rules" value="1" class="btn btn-success" title="'. _('Save the new rules') .'"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">' . _('Save') . '</span></button>
+                                    <button class="btn btn-link btn-cancel" title="'. _('Cancel the rules edit') .'"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">' . _('Cancel') . '</span></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -751,7 +818,7 @@ $td_headers = array(); // for a11y, headers="M1 D4 H5" on each td
 $radio_title = array(); // date for
 
 // Dates poll
-if ($dsondage->format=="D"||$dsondage->format=="D+") {
+if (substr($dsondage->format, 0, 1)=="D") {
 
     $tr_months = '<tr><th role="presentation"></th>';
     $tr_days = '<tr><th role="presentation"></th>';
@@ -797,7 +864,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
             $hour = substr($current, strpos($current, '@')-count($current)+2);
 
             if ($hour != "") {
-                $tr_hours .= '<th class="bg-info'.$rbd.'" id="H'.$i.'">'.$hour.'</th>';
+                $tr_hours .= '<th class="bg-info'.$rbd.'" id="H'.$i.'" title="'.$hour.'">'.$hour.'</th>';
                 $radio_title[$i] .= ' - '.$hour;
                 $td_headers[$i] .= ' H'.$i;
             } else {
@@ -808,7 +875,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
         }
 
         // Remove col
-        $tr_add_remove_col .= (count($toutsujet) > 2 ) ? '<td headers="'.$td_headers[$i].'"><button type="submit" name="effacecolonne'.$i.'" class="btn btn-link btn-sm" title="' . _('Remove the column') . ' ' .$radio_title[$i]. '"><span class="glyphicon glyphicon-remove text-danger"></span></button></td>' : '<td role="presentation"></td>';
+        $tr_add_remove_col .= (count($toutsujet) > 2 ) ? '<td headers="'.$td_headers[$i].'"><button type="submit" name="effacecolonne'.$i.'" class="btn btn-link btn-sm" title="' . _('Remove the column') . ' ' .$radio_title[$i]. '"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">'. _("Remove") .'</span></button></td>' : '<td role="presentation"></td>';
 
     }
 
@@ -819,7 +886,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
     $tr_hours .= '<th></th></tr>';
 
     // Add col
-    $tr_add_remove_col .= '<td><button type="submit" name="ajoutsujet" class="btn btn-link btn-sm" title="'. _('Add a column') . '"><span class="glyphicon glyphicon-plus text-success"></span></button></td></tr>';
+    $tr_add_remove_col .= '<td><button type="submit" name="ajoutsujet" class="btn btn-link btn-sm" title="'. _('Add a column') . '"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add a column") .'</span></button></td></tr>';
 
     $thead = "\n".$tr_add_remove_col."\n".$tr_months."\n".$tr_days."\n".$tr_hours."\n";
 
@@ -834,18 +901,42 @@ if ($dsondage->format=="D"||$dsondage->format=="D+") {
         $td_headers[$i]='';$radio_title[$i]=''; // init before concatenate
 
         // Subjects
-        $tr_subjects .= '<th class="bg-info" id="S'.preg_replace("/[^a-zA-Z0-9]_+/", "", stripslashes($toutsujet[$i])).'">'.stripslashes($toutsujet[$i]).'</th>';
+        preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/',$toutsujet[$i],$md_a_img);  // Markdown [![alt](src)](href)
+        preg_match_all('/!\[(.*?)\]\((.*?)\)/',$toutsujet[$i],$md_img);                 // Markdown ![alt](src)
+        preg_match_all('/\[(.*?)\]\((.*?)\)/',$toutsujet[$i],$md_a);                    // Markdown [text](href)
+        if (isset($md_a_img[2][0]) && $md_a_img[2][0]!='' && isset($md_a_img[3][0]) && $md_a_img[3][0]!='') { // [![alt](src)](href)
+
+            $th_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0]!='') ? stripslashes($md_a_img[1][0]) : _("Choice") .' '.($i+1);
+            $th_subject_html = '<a href="'.$md_a_img[3][0].'"><img src="'.$md_a_img[2][0].'" class="img-responsive" alt="'.$th_subject_text.'" /></a>';
+
+        } elseif (isset($md_img[2][0]) && $md_img[2][0]!='') { // ![alt](src)
+
+            $th_subject_text = (isset($md_img[1][0]) && $md_img[1][0]!='') ? stripslashes($md_img[1][0]) : _("Choice") .' '.($i+1);
+            $th_subject_html = '<img src="'.$md_img[2][0].'" class="img-responsive" alt="'.$th_subject_text.'" />';
+
+        } elseif (isset($md_a[2][0]) && $md_a[2][0]!='') { // [text](href)
+
+            $th_subject_text = (isset($md_a[1][0]) && $md_a[1][0]!='') ? stripslashes($md_a[1][0]) : _("Choice") .' '.($i+1);
+            $th_subject_html = '<a href="'.$md_a[2][0].'">'.$th_subject_text.'</a>';
+
+        } else { // text only
+
+            $th_subject_text = stripslashes($toutsujet[$i]);
+            $th_subject_html = $th_subject_text;
+
+        }
+        $tr_subjects .= '<th class="bg-info" id="S'.$i.'" title="'.$th_subject_text.'">'.$th_subject_html.'</th>';
 
         $border[$i] = false;
-        $td_headers[$i] .= stripslashes($toutsujet[$i]);
-        $radio_title[$i] .= stripslashes($toutsujet[$i]);
+        $td_headers[$i] .= 'S'.$i;
+        $radio_title[$i] .= $th_subject_text;
 
         // Remove col
-        $tr_add_remove_col .= '<td headers="'.$td_headers[$i].'"><button type="submit" name="effacecolonne'.$i.'" class="btn btn-link btn-sm" title="' . _('Remove the column') . ' '. $radio_title[$i] .'"><span class="glyphicon glyphicon-remove text-danger"></span></button></td>';
+        $tr_add_remove_col .= '<td headers="'.$td_headers[$i].'"><button type="submit" name="effacecolonne'.$i.'" class="btn btn-link btn-sm" title="' . _('Remove the column') . ' '. $radio_title[$i] .'"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">' . _('Remove') .'</span></button></td>';
     }
 
     // Add col
-    $tr_add_remove_col .= '<td><button type="submit" name="ajoutsujet" class="btn btn-link btn-sm" title="'. _('Add a column') . '"><span class="glyphicon glyphicon-plus text-success"></span></button></td></tr>';
+    $tr_add_remove_col .= '<td><button type="submit" name="ajoutsujet" class="btn btn-link btn-sm" title="'. _('Add a column') . '"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add a column") .'</span></button></td></tr>';
 
     $thead = $tr_add_remove_col.$tr_subjects.'<th></th></tr>';
 }
@@ -859,10 +950,23 @@ echo '
            ' . _(' remove a column or a line with ') . '<span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">' . _('Remove') . '</span>
            ' . _('and add a new column with '). '<span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _('Add a column') . '</span></p>
         <p>' . _('Finally, you can change the informations of this poll like the title, the comments or your email address.') . '</p>
+        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</span></p>
     </div>
+
+    <div class="hidden row scroll-buttons" aria-hidden="true">
+        <div class="btn-group pull-right">
+            <button class="btn btn-sm btn-link scroll-left" title="' . _('Scroll to the left') . '">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </button>
+            <button class="btn  btn-sm btn-link scroll-right" title="' . _('Scroll to the right') . '">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </button>
+        </div>
+    </div>
+
     <div id="tableContainer" class="tableContainer">
     <table class="results">
-        <caption>'._('Votes of the poll ').$title.'</caption>
+        <caption class="sr-only">'._('Votes of the poll ').$title.'</caption>
         <thead>'. $thead . '</thead>
         <tbody>';
 
@@ -953,8 +1057,15 @@ while ($data = $user_studs->FetchNextObject(false)) {
 
     //a la fin de chaque ligne se trouve les boutons modifier
     if (!$testligneamodifier=="true") {
-        echo '<td><button type="submit" class="btn btn-link btn-sm" name="modifierligne'.$compteur.'" title="'. _('Edit the line:') .' '.stripslashes($nombase).'">
-        <span class="glyphicon glyphicon-pencil"></span></button><button type="submit" name="effaceligne'.$compteur.'" title="'. _('Remove the line:') .' '.stripslashes($nombase).'" class="btn btn-link btn-sm"><span class="glyphicon glyphicon-remove text-danger"></span></button></td>'."\n";
+        echo '
+                <td>
+                    <button type="submit" class="btn btn-link btn-sm" name="modifierligne'.$compteur.'" title="'. _('Edit the line:') .' '.stripslashes($nombase).'">
+                        <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span>
+                    </button>
+                    <button type="submit" name="effaceligne'.$compteur.'" title="'. _('Remove the line:') .' '.stripslashes($nombase).'" class="btn btn-link btn-sm">
+                        <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">' . _('Remove') . '</span>
+                    </button>
+                </td>'."\n";
     }
 
     //demande de confirmation pour modification de ligne
@@ -1015,16 +1126,22 @@ if (!$testligneamodifier=="true") {
 
 // Addition and Best choice
 //affichage de la ligne contenant les sommes de chaque colonne
-$tr_addition = '<tr><td>'. _("Addition") .'</td>';
-$tr_bestchoice = '<tr><td></td>';
-$meilleurecolonne = 0;
-
+$tr_addition = '<tr id="addition"><td>'. _("Addition") .'</td>';
+$meilleurecolonne = max($somme);
+$compteursujet = 0;
+$meilleursujet = '<ul style="list-style:none">';
 for ($i = 0; $i < $nbcolonnes; $i++) {
     if (isset($somme[$i]) && $somme[$i] > 0 ) {
-        if (isset($somme[$i]) && $somme[$i] > $meilleurecolonne){
-            $meilleurecolonne = $somme[$i];
+        if (in_array($i, array_keys($somme, max($somme)))){
+
+            $tr_addition .= '<td><span class="glyphicon glyphicon-star text-warning"></span><span>'.$somme[$i].'</span></td>';
+
+            $meilleursujet.= '<li><b>'.$radio_title[$i].'</b></li>';
+            $compteursujet++;
+
+        } else {
+            $tr_addition .= '<td>'.$somme[$i].'</td>';
         }
-        $tr_addition .= '<td>'.$somme[$i].'</td>';
     } else {
         $tr_addition .= '<td></td>';
     }
@@ -1034,67 +1151,49 @@ $tr_addition .= '<td></td></tr>';
 //recuperation des valeurs des sujets et adaptation pour affichage
 $toutsujet = explode(",", $dsujet->sujet);
 
-$compteursujet = 0;
-$meilleursujet = '<ul style="list-style:none">';
-for ($i = 0; $i < $nbcolonnes; $i++) {
-
-    if (isset($somme[$i]) && $somme[$i] > 0 && $somme[$i] == $meilleurecolonne){
-        $tr_bestchoice .= '<td><span class="glyphicon glyphicon-star text-warning"></span></td>';
-
-        if ($dsondage->format == "D" || $dsondage->format == "D+") {
-            $meilleursujetexport = $toutsujet[$i];
-
-            if (strpos($toutsujet[$i], '@') !== false) {
-                $toutsujetdate = explode("@", $toutsujet[$i]);
-                $meilleursujet .= '<li><b>'.strftime(_("%A, den %e. %B %Y"),$toutsujetdate[0]). ' - ' . $toutsujetdate[1].'</b></li>';
-            } else {
-                $meilleursujet .= '<li><b>'.strftime(_("%A, den %e. %B %Y"),$toutsujet[$i]).'</b></li>';
-            }
-        } else {
-            $meilleursujet.= '<li><b>'.$toutsujet[$i].'</b></li>';
-        }
-        $compteursujet++;
-
-    } else {
-        $tr_bestchoice .= '<td></td>';
-    }
-}
-$tr_bestchoice .= '<td></td></tr>';
-
 $meilleursujet = str_replace("°", "'", $meilleursujet).'</ul>';
 $vote_str = ($meilleurecolonne > 1) ? $vote_str = _('votes') : _('vote');
 
 // Print Addition and Best choice
-echo $tr_addition."\n".$tr_bestchoice.'
+echo $tr_addition.'
         </tbody>
     </table>
-        <div class="col-sm-4 col-sm-offset-4"><p>'."\n";
+    </div>
+    <div class="row">'."\n";
 
 if ($compteursujet == 1) {
-    echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The best choice at this time is:") . '</p>' . $meilleursujet . '<p>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
+    echo '
+        <div class="col-sm-6 col-sm-offset-3 alert alert-success">
+            <p><span class="glyphicon glyphicon-star text-warning"></span> ' . _("The best choice at this time is:") . '</p>
+            ' . $meilleursujet . '
+            <p>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . '.</p>
+        </div>'."\n";
 } elseif ($compteursujet > 1) {
-    echo '<span class="glyphicon glyphicon-star text-warning"></span> ' . _("The bests choices at this time are:") . '</p>' . $meilleursujet . '<p>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . ".\n";
+    echo '
+        <div class="col-sm-6 col-sm-offset-3 alert alert-success">
+            <p><span class="glyphicon glyphicon-star text-warning"></span> ' . _("The bests choices at this time are:") . '</p>
+            ' . $meilleursujet . '
+            <p>' . _("with") . ' <b>' . $meilleurecolonne . '</b> ' . $vote_str . '.</p>
+        </div>'."\n";
 }
 
 echo '
-        </p></div>
     </div>
-
     <hr />
-<form name="formulaire4" action="#bas" method="POST">'."\n";
+<form name="formulaire4" action="#" method="POST">'."\n";
 // Commments
 $sql = 'SELECT * FROM comments WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_comment';
 $sql = $connect->Prepare($sql);
 $comment_user = $connect->Execute($sql, array($numsondage));
 
 if ($comment_user->RecordCount() != 0) {
-    echo '<div class="row"><h3>' . _("Comments of polled people") . '</h3>'."\n";
+    echo '<div><h3>' . _("Comments of polled people") . '</h3>'."\n";
 
     $i = 0;
     while ( $dcomment=$comment_user->FetchNextObject(false)) {
         echo '
     <div class="comment">
-        <button type="submit" name="suppressioncomment'.$i.'" class="btn btn-link" title="' . _('Remove the comment') . '"><span class="glyphicon glyphicon-remove text-danger"></span></button>
+        <button type="submit" name="suppressioncomment'.$i.'" class="btn btn-link" title="' . _('Remove the comment') . '"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">' . _('Remove') . '</span></button>
         <b>'.stripslashes($dcomment->usercomment). ' :</b>
         <span class="comment">' . stripslashes(nl2br($dcomment->comment)) . '</span>
     </div>';
@@ -1103,7 +1202,7 @@ if ($comment_user->RecordCount() != 0) {
     echo '</div>';
 }
 echo '
-    <div class="row hidden-print alert alert-info">
+    <div class="hidden-print alert alert-info">
         <div class="col-md-6 col-md-offset-3">
             <fieldset id="add-comment"><legend>' . _("Add a comment in the poll") . '</legend>
                 <div class="form-group">
@@ -1116,9 +1215,8 @@ echo '
                 <p class="text-center"><input type="submit" name="ajoutcomment" value="'. _("Send the comment") .'" class="btn btn-success"></p>
             </fieldset>
         </div>
+        <div class="clearfix"></div>
     </div>
-</form>
-
-<a id="bas"></a>';
+</form>';
 
 bandeau_pied();

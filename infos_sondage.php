@@ -154,31 +154,31 @@ $errors = array(
 );
 
 if (!$_SESSION["titre"] && Utils::issetAndNoEmpty("poursuivre") ) {
-    $errors['title']['aria'] = 'aria-describeby="#poll_title_error" '; $errors['title']['class'] = ' has-error';
+    $errors['title']['aria'] = 'aria-describeby="poll_title_error" '; $errors['title']['class'] = ' has-error';
     $errors['title']['msg'] = '<div class="alert alert-danger" ><p id="poll_title_error">' . _("Enter a title") . '</p></div>';
 } elseif ($erreur_injection_titre) {
-    $errors['title']['aria'] = 'aria-describeby="#poll_title_error" '; $errors['title']['class'] = ' has-error';
+    $errors['title']['aria'] = 'aria-describeby="poll_title_error" '; $errors['title']['class'] = ' has-error';
     $errors['title']['inject'] = '<div class="alert alert-danger"><p id="poll_title_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
 if ($erreur_injection_commentaires) {
-    $errors['description']['aria'] = 'aria-describeby="#poll_comment_error" '; $errors['description']['class'] = ' has-error';
+    $errors['description']['aria'] = 'aria-describeby="poll_comment_error" '; $errors['description']['class'] = ' has-error';
     $errors['description']['msg'] = '<div class="alert alert-danger"><p id="poll_comment_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
 if (!$_SESSION["nom"] && Utils::issetAndNoEmpty("poursuivre")) {
-    $errors['name']['aria'] = 'aria-describeby="#poll_name_error" '; $errors['name']['class'] = ' has-error';
+    $errors['name']['aria'] = 'aria-describeby="poll_name_error" '; $errors['name']['class'] = ' has-error';
     $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Enter a name") . '</p></div>';
 } elseif ($erreur_injection_nom) {
-    $errors['name']['aria'] = 'aria-describeby="#poll_name_error" '; $errors['name']['class'] = ' has-error';
+    $errors['name']['aria'] = 'aria-describeby="poll_name_error" '; $errors['name']['class'] = ' has-error';
     $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
 if (!$_SESSION["adresse"] && Utils::issetAndNoEmpty("poursuivre")) {
-    $errors['email']['aria'] = 'aria-describeby="#poll_name_error" '; $errors['email']['class'] = ' has-error';
+    $errors['email']['aria'] = 'aria-describeby="poll_name_error" '; $errors['email']['class'] = ' has-error';
     $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("Enter an email address") . '</p></div>';
 } elseif ($erreur_adresse && Utils::issetAndNoEmpty("poursuivre")) {
-    $errors['email']['aria'] = 'aria-describeby="#poll_email_error" '; $errors['email']['class'] = ' has-error';
+    $errors['email']['aria'] = 'aria-describeby="poll_email_error" '; $errors['email']['class'] = ' has-error';
     $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("The address is not correct! (You should enter a valid email address in order to receive the link to your poll)") . '</p></div>';
 }
 
@@ -272,7 +272,7 @@ echo '
 
         <p class="text-right">
             <input type="hidden" name="choix_sondage" value="'. $choix_sondage .'"/>
-            <button name="poursuivre" value="'. $choix_sondage .'" type="submit" class="btn btn-success">'. _('Next') . '</button>
+            <button name="poursuivre" value="'. $choix_sondage .'" type="submit" class="btn btn-success" title="'. _('Go to step 2') . '">'. _('Next') . '</button>
         </p>
 
         <script type="text/javascript"> document.formulaire.titre.focus(); </script>

@@ -23,7 +23,15 @@ if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'
 } elseif ( isset($_COOKIE['lang']) && is_string($_COOKIE['lang']) && in_array($_COOKIE['lang'], array_keys($ALLOWED_LANGUAGES)) ) {
     $mlocale = $_COOKIE['lang'] ;
 } else {
-    $mlocale = LANGUE ;
+
+    $mlocale = LANGUE;
+    // Replace config language by browser language if possible
+    foreach ($ALLOWED_LANGUAGES as $k => $v ) {
+        if (substr($k,0,2)==substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2)) {
+            $mlocale = $k;
+        }
+    }
+
 }
 
 $locale = $mlocale . '.utf8';

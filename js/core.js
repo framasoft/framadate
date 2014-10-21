@@ -2,14 +2,56 @@ $(document).ready(function() {
     var lang = $('html').attr('lang');
 
     // Datepicker
-    $('.input-group.date').datepicker({
-        format: "dd/mm/yyyy",
-        todayBtn: "linked",
-        orientation: "top left",
-        autoclose: true,
-        language: lang
+    var framadatepicker = function() {
+        $('.input-group.date').datepicker({
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            orientation: "top left",
+            autoclose: true,
+            language: lang,
+            todayHighlight: true,
+            beforeShowDay: function (date){
+                var $selected_days = new Array();
+                $('#selected-days input[id^="day"]').each(function() {
+                    if($(this).val()!='') {
+                        $selected_days.push($(this).val());
+                    }
+                });
+                for(i = 0; i < $selected_days.length; i++){
+                    var $selected_date = $selected_days[i].split('/');
+
+                    if (date.getFullYear() == $selected_date[2] && (date.getMonth()+1) == $selected_date[1] && date.getDate() == $selected_date[0]){
+                        return {
+                            classes: 'disabled selected'
+                        };
+                    }
+                }
+            }
+        });
+    };
+
+
+    var datepickerfocus = false; // a11y : datepicker not display on focus until there is one click on the button
+
+    $(document).on('click','.input-group.date .input-group-addon', function() {
+        datepickerfocus = true;
+        // Re-init datepicker config before displaying
+        $(this).parent().datepicker(framadatepicker());
+        $(this).parent().datepicker('show');
+
+        // Trick to refresh calendar
+        $('.datepicker-days .prev').trigger('click');
+        $('.datepicker-days .next').trigger('click');
+        // .active must be clicable in order to unfill the form
+        $('.datepicker-days .active').removeClass('disabled');
     });
 
+    $(document).on('focus','.input-group.date input', function() {
+        if(datepickerfocus) {
+            $(this).parent('.input-group.date').datepicker(framadatepicker());
+            $(this).parent('.input-group.date').datepicker('show');
+        }
+    });
     /**
      *  choix_date.php
      **/
@@ -95,6 +137,7 @@ $(document).ready(function() {
                 $(this).addClass('disabled');
             }
         };
+        SubmitDaysAvalaible();
     });
 
     // Button "Add a day"
@@ -116,28 +159,17 @@ $(document).ready(function() {
         last_day.after('<fieldset>'+new_day_html+'</fieldset>');
         $('#day'+(nb_days)).focus();
         $('#remove-a-day, #copyhours').removeClass('disabled');
-
-        // Repeat datepicker init (junk code but it works for added days)
-        $('.input-group.date').datepicker({
-            format: "dd/mm/yyyy",
-            todayBtn: "linked",
-            orientation: "top left",
-            autoclose: true,
-            language: lang
-        });
-
     });
 
     // Button "Remove a day"
     $('#remove-a-day').on('click', function() {
-        var nb_days = $('#selected-days fieldset').length;
-
         $('#selected-days fieldset:last').remove();
+        var nb_days = $('#selected-days fieldset').length;
         $('#day'+(nb_days-1)).focus();
         if ( nb_days == 1) {
             $('#remove-a-day, #copyhours').addClass('disabled');
         };
-
+        SubmitDaysAvalaible();
     });
 
     // Title update on hours and buttons -/+ hours
@@ -180,8 +212,8 @@ $(document).ready(function() {
         }
     }
 
-    $(document).on('change','.hours, #selected-days fieldset legend input', function() {
-        SubmitDaysAvalaible()
+    $(document).on('keyup, change','.hours, #selected-days fieldset legend input', function() {
+        SubmitDaysAvalaible();
     });
     SubmitDaysAvalaible();
 
@@ -220,14 +252,13 @@ $(document).ready(function() {
 
     // Button "Remove a choice"
     $('#remove-a-choice').on('click', function() {
-        var nb_choices = $('.choice-field').length;
-
         $('.choice-field:last').remove();
-        $('#choice'+(nb_choices-2)).focus();
-        if (nb_choices == 3) {
-            $('#remove-a-choice, button[name="fin_sondage_autre"]').addClass('disabled');
+        var nb_choices = $('.choice-field').length;
+        $('#choice'+(nb_choices-1)).focus();
+        if (nb_choices == 2) {
+            $('#remove-a-choice').addClass('disabled');
         };
-
+        SubmitChoicesAvalaible();
     });
 
     // 2 choices filled and you can submit
@@ -245,10 +276,30 @@ $(document).ready(function() {
         }
     }
 
-    $(document).on('change','.choice-field input', function() {
-        SubmitChoicesAvalaible()
+    $(document).on('keyup, change','.choice-field input', function() {
+        SubmitChoicesAvalaible();
     });
     SubmitChoicesAvalaible();
+
+    $(document).on('click', '.md-a-img', function() {
+        $('#md-a-imgModal').modal('show');
+        $('#md-a-imgModal .btn-primary').attr('value',$(this).prev().attr('id'));
+    });
+    $('#md-a-imgModal .btn-primary').on('click', function() {
+        if($('#md-img').val()!='' && $('#md-a').val()!='') {
+            $('#'+$(this).val()).val('[!['+$('#md-text').val()+']('+$('#md-img').val()+')]('+$('#md-a').val()+')');
+        } else if ($('#md-img').val()!='') {
+            $('#'+$(this).val()).val('!['+$('#md-text').val()+']('+$('#md-img').val()+')');
+        } else if ($('#md-a').val()!='') {
+            $('#'+$(this).val()).val('['+$('#md-text').val()+']('+$('#md-a').val()+')');
+        } else {
+            $('#'+$(this).val()).val($('#md-text').val());
+        }
+        $('#md-a-imgModal').modal('hide');
+        $('#md-img').val(''); $('#md-a').val('');$('#md-text').val('');
+    });
+
+
 
     /**
      *  adminstuds.php
@@ -295,5 +346,68 @@ $(document).ready(function() {
         $('.js-desc .btn-edit').focus();
         return false;
     });
+
+    $('#poll-rules-form .btn-edit').on('click', function() {
+        $('#poll-rules-form p').hide();
+        $('#poll-rules-form .js-poll-rules').removeClass("hidden");
+        $('.js-poll-rules select').focus();
+        return false;
+    });
+
+    $('#poll-rules-form .btn-cancel').on('click', function() {
+        $('#poll-rules-form p').show();
+        $('#poll-rules-form .js-poll-rules').addClass("hidden");
+        $('.js-poll-rules .btn-edit').focus();
+        return false;
+    });
+
+    // Horizontal scroll buttons
+    if($('.results').width() > $('.container').width()) {
+        $('.scroll-buttons').removeClass('hidden');
+    }
+
+    var $scroll_page = 1;
+    var $scroll_scale = $('#tableContainer').width()*2/3;
+
+    $('.scroll-left').addClass('disabled');
+
+    $('.scroll-left').click(function(){
+        $('.scroll-right').removeClass('disabled');
+        $( "#tableContainer" ).animate({
+            scrollLeft: $scroll_scale*($scroll_page-1)
+        }, 1000);
+        if($scroll_page == 1) {
+            $(this).addClass('disabled');
+        } else {
+            $scroll_page = $scroll_page-1;
+        }
+        return false;
+    });
+    $('.scroll-right').click(function(){
+        $('.scroll-left').removeClass('disabled');
+        $( "#tableContainer" ).animate({
+            scrollLeft: $scroll_scale*($scroll_page)
+        }, 1000);
+
+        if($scroll_scale*($scroll_page+1) > $( ".results" ).width()) {
+            $(this).addClass('disabled');
+        } else {
+            $scroll_page++;
+        }
+        return false;
+    });
+
+});
+
+// Vote form moving to the top or to the bottom
+$(window).scroll(function() {
+    var $table_offset = $('.results thead').offset();
+    if($table_offset != undefined && $(window).scrollTop() < $table_offset.top) {
+        $('.results tbody').prepend($('#vote-form'));
+        $('#tableContainer').before($('.scroll-buttons'));
+    } else {
+        $('#addition').before($('#vote-form'));
+        $('#tableContainer').after($('.scroll-buttons'));
+    }
 
 });
