@@ -754,7 +754,7 @@ echo '
                     <label for="newdescription">'._("Description") .'</label><button class="btn btn-link btn-sm btn-edit" title="'. _('Edit the description') .'"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span></button><br />
                     <p class="well">'.$description.'</p>
                     <div class="hidden js-desc text-right">
-                        <textarea class="form-control" id="nouveauxcommentaires" name="nouveauxcommentaires" rows="2" cols="40">'.$description.'</textarea>
+                        <textarea class="form-control" id="newdescription" name="nouveauxcommentaires" rows="2" cols="40">'.$description.'</textarea>
                         <button type="submit" id="btn-new-desc" name="boutonnouveauxcommentaires" value="1" class="btn btn-sm btn-success" title="'. _("Save the description") .'">'. _("Save") .'</button>
                         <button class="btn btn-default btn-sm btn-cancel" title="'. _('Cancel the description edit') .'">'. _('Cancel') .'</button>
                     </div>
@@ -950,7 +950,7 @@ echo '
            ' . _(' remove a column or a line with ') . '<span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">' . _('Remove') . '</span>
            ' . _('and add a new column with '). '<span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _('Add a column') . '</span></p>
         <p>' . _('Finally, you can change the informations of this poll like the title, the comments or your email address.') . '</p>
-        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</span></p>
+        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</p>
     </div>
 
     <div class="hidden row scroll-buttons" aria-hidden="true">
@@ -1179,8 +1179,7 @@ if ($compteursujet == 1) {
 
 echo '
     </div>
-    <hr />
-<form name="formulaire4" action="#" method="POST">'."\n";
+    <hr />'."\n";
 // Commments
 $sql = 'SELECT * FROM comments WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_comment';
 $sql = $connect->Prepare($sql);

@@ -236,7 +236,7 @@ echo '
                         <p class="form-control-static"> '.stripslashes($dsondage->nom_admin).'</p>
                     </div>
                     <div class="form-group">
-                        <label for="public-link"><a class="public-link" href="' . Utils::getUrlSondage($dsondage->id_sondage) . '">'._("Public link of the pool") .' <span class="btn-link glyphicon glyphicon-link"></a></label>
+                        <label for="public-link"><a class="public-link" href="' . Utils::getUrlSondage($dsondage->id_sondage) . '">'._("Public link of the pool") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
                         <input class="form-control" id="public-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($dsondage->id_sondage) . '" />
                     </div>
                 </div>'."\n";
@@ -440,13 +440,13 @@ if ($dsondage->format=="A-" || $dsondage->format=="D-") {
     echo '
     <div class="alert alert-danger">
         <p>' . _("The administrator locked this poll, votes and comments are frozen, it's not possible to participate anymore.") . '</p>
-        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</span></p>
+        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</p>
     </div>';
 } else {
     echo '
     <div class="alert alert-info">
         <p>' . _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.") . '</p>
-        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</span></p>
+        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</p>
     </div>';
 }
 echo'
@@ -703,7 +703,6 @@ echo '
 }
 
 echo '
-    </div>
 </form>';
 
 bandeau_pied();
