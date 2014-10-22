@@ -119,7 +119,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
 
             } else { // text only
 
-                $li_subject_text = stripslashes($toutsujet[$i]);
+                $li_subject_text = stripslashes($_SESSION['choices'][$i]);
                 $li_subject_html = $li_subject_text;
 
             }
@@ -188,7 +188,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
                 <label for="choice'.$i.'" class="col-sm-2 control-label">'. _("Choice") .' '.($i+1).'</label>
                 <div class="col-sm-10 input-group">
                     <input type="text" class="form-control" name="choices[]" size="40" value="'.$choice_value.'" id="choice'.$i.'" />
-                    <span class="input-group-addon btn-link md-a-img" title="'. _("Add a link or an image") .'" ><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>
+                    <span class="input-group-addon btn-link md-a-img" title="'. _("Add a link or an image") .' - '. _("Choice") .' '.($i+1).'" ><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>
                 </div>
             </div>'."\n";
         }
