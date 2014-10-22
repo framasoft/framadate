@@ -196,10 +196,10 @@ msgstr "Adresse email"
 msgid "Edit the email adress"
 msgstr "Modifier l'adresse email"
 
-msgid "Save the adress email"
+msgid "Save the email address "
 msgstr "Enregistrer l'adresse email"
 
-msgid "Cancel the adress email edit"
+msgid "Cancel the email address edit"
 msgstr "Annuler le changement d'adresse email"
 
 msgid "Edit the description"

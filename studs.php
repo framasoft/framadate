@@ -47,13 +47,21 @@ if(Utils::issetAndNoEmpty('sondage') === true) {
     $numsondage = $_SESSION["numsondage"];
 }
 
-if ($numsondage !== false) {
-    $dsondage = Utils::get_sondage_from_id($numsondage);
-    if($dsondage === false) {
-        $err |= NO_POLL;
-    }
-} else {
-    $err |= NO_POLL_ID;
+$dsondage = ($numsondage != false) ? Utils::get_sondage_from_id($numsondage) : false;
+if (!$dsondage || $dsondage->id_sondage == ''){
+    Utils::print_header( _("Error!"));
+
+    bandeau_titre(_("Error!"));
+
+    echo '
+    <div class="alert alert-warning">
+        <h2>' . _("This poll doesn't exist !") . '</h2>
+        <p>' . _('Back to the homepage of ') . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
+    </div>'."\n";
+
+    bandeau_pied();
+
+    die();
 }
 
 //output a CSV and die()
@@ -199,17 +207,6 @@ if($err != 0) {
 
     echo '</ul></div>';
 
-    if(Utils::is_error(NO_POLL_ID) || Utils::is_error(NO_POLL)) {
-        echo '
-    <div class="col-md-6 col-md-offset-3">
-        <h2>' . _("This poll doesn't exist !") . '</h2>
-        <p>' . _('Back to the homepage of') . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
-    </div>'."\n";
-
-        bandeau_pied();
-
-        die();
-    }
 } else {
     Utils::print_header(_('Poll').' - '.$dsondage->titre);
     bandeau_titre(_("Make your polls"));

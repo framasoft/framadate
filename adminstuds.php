@@ -742,8 +742,8 @@ echo '
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="newemail" name="nouvelleadresse" size="40" value="'.$email_admin.'" />
                                     <span class="input-group-btn">
-                                        <button type="submit" name="boutonnouvelleadresse" value="1" class="btn btn-success" title="'. _('Save the adress email') .'"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">' . _('Save') . '</span></button>
-                                        <button class="btn btn-link btn-cancel" title="'. _('Cancel the adress email edit') .'"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">' . _('Cancel') . '</span></button>
+                                        <button type="submit" name="boutonnouvelleadresse" value="1" class="btn btn-success" title="'. _('Save the email address ') .'"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">' . _('Save') . '</span></button>
+                                        <button class="btn btn-link btn-cancel" title="'. _('Cancel the email address edit') .'"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">' . _('Cancel') . '</span></button>
                                     </span>
                                 </div>
                             </div>
