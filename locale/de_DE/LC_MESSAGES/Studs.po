@@ -21,6 +21,9 @@ msgstr ""
 msgid "Make your polls"
 msgstr "Erstelle Umfragen für dich"
 
+msgid "Home"
+msgstr "Home"
+
 msgid "Poll"
 msgstr "Umfrage"
 
@@ -44,6 +47,12 @@ msgstr "Bearbeiten"
 
 msgid "Next"
 msgstr "Weiter"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Close"
+msgstr "Close"
 
 msgid "Your name"
 msgstr "Ihr Name"
@@ -79,30 +88,80 @@ msgstr "Sprache wechseln"
 msgid "Select the language"
 msgstr "Sprache wählen"
 
-########### Footer ###########
-msgid "Home"
-msgstr "Home"
-
-msgid "About"
-msgstr "Über"
-
-msgid "Contact"
-msgstr "Kontakt"
-
 ############ Homepage ############
 msgid "Schedule an event"
 msgstr "Erweiterte Umfrage"
 
-msgid "Make a poll"
+msgid "Make a classic poll"
 msgstr "Umfrage"
 
-msgid "or"
-msgstr "oder"
+# 1st section
+msgid "What is that?"
+msgstr "What is that?"
 
-msgid "view an example"
-msgstr "schaue ein Beispiel an"
+msgid "Framadate is an online service for planning an appointment or make a decision quickly and easily. No registration is required."
+msgstr "Framadate is an online service for planning an appointment or make a decision quickly and easily. No registration is required."
+
+msgid "Here is how it works:"
+msgstr "Here is how it works:"
+
+msgid "Make a poll"
+msgstr "Make a poll"
+
+msgid "Define dates or subjects to choose"
+msgstr "Define dates or subjects to choose"
+
+msgid "Send the poll link to your friends or colleagues"
+msgstr "Send the poll link to your friends or colleagues"
+
+msgid "Discuss and make a decision"
+msgstr "Discuss and make a decision"
+
+msgid "Do you want to "
+msgstr "Do you want to "
+
+msgid "view an example?"
+msgstr "schaue ein Beispiel an?"
+
+# 2nd section
+msgid "The software"
+msgstr "The software"
+
+msgid "Framadate was initially based on "
+msgstr "Framadate was initially based on "
+
+msgid " a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft"
+msgstr " a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft"
+
+msgid "This software needs javascript and cookies enabled. It is compatible with the following web browsers:"
+msgstr "This software needs javascript and cookies enabled. It is compatible with the following web browsers:"
+
+msgid "It is governed by the "
+msgstr "It is governed by the "
+
+msgid "CeCILL-B license"
+msgstr "CeCILL-B license"
+
+# 3rd section
+msgid "Cultivate your garden"
+msgstr "Cultivate your garden"
+
+msgid "To participate in the software development, suggest improvements or simply download it, please visit "
+msgstr "To participate in the software development, suggest improvements or simply download it, please visit "
+
+msgid "the development site"
+msgstr "the development site"
+
+msgid "If you want to install the software for your own use and thus increase your independence, we help you on:"
+msgstr "If you want to install the software for your own use and thus increase your independence, we help you on:"
 
 ############## Poll ##############
+msgid "Poll administration"
+msgstr "Poll administration"
+
+msgid "Legend:"
+msgstr "Legend:"
+
 # Jumbotron adminstuds.php (+ studs.php)
 msgid "Back to the poll"
 msgstr "Zurück zur Umfrage"
@@ -158,6 +217,27 @@ msgstr "Öffentlicher Link zur Umfrage"
 msgid "Admin link of the pool"
 msgstr "Administrator Link zur Umfrage"
 
+msgid "Poll rules"
+msgstr "Poll rules"
+
+msgid "Edit the poll rules"
+msgstr "Edit the poll rules"
+
+msgid "Votes and comments are locked"
+msgstr "Votes and comments are locked"
+
+msgid "Votes and comments are open"
+msgstr "Votes and comments are open"
+
+msgid "Votes are editable"
+msgstr "Votes are editable"
+
+msgid "Save the new rules"
+msgstr "Save the new rules"
+
+msgid "Cancel the rules edit"
+msgstr "Cancel the rules edit"
+
 # Help text adminstuds.php
 msgid "As poll administrator, you can change all the lines of this poll with this button "
 msgstr "Als Administrator der Umfrage, können Sie alle Zeilen der Umfrage über diesen Button ändern "
@@ -176,6 +256,9 @@ msgid "If you want to vote in this poll, you have to give your name, choose the 
 msgstr "Wenn Sie bei dieser Umfrage abstimmen möchten, müssen Sie ihren Namen angeben. Wählen Sie die Daten, die für Sie am besten passen und bestätigen Sie diese über den Plus-Button am Ende der Zeile."
 
 # Poll results
+msgid "Votes of the poll "
+msgstr "Votes of the poll "
+
 msgid "Remove the column"
 msgstr "Spalte entfernen"
 
@@ -233,6 +316,15 @@ msgstr "Stimmen"
 msgid "for"
 msgstr "für"
 
+msgid "Remove all the votes"
+msgstr "Remove all the votes"
+
+msgid "Scroll to the left"
+msgstr "Scroll to the left"
+
+msgid "Scroll to the right"
+msgstr "Scroll to the right"
+
 # Comments
 msgid "Comments of polled people"
 msgstr "Kommentare von befragten Personen"
@@ -251,6 +343,9 @@ msgstr "Den Kommentar senden"
 
 msgid "anonyme"
 msgstr "anonym"
+
+msgid "Remove all the comments"
+msgstr "Remove all the comments"
 
 # Add a colum adminstuds.php
 msgid "Column's adding"
@@ -320,6 +415,9 @@ msgstr "Teilnehmer können ihre Antworten verändern"
 msgid "To receive an email for each new vote."
 msgstr "Bei jeder neuen Stimme eine E-Mail erhalten."
 
+msgid "Go to step 2"
+msgstr "Go to step 2"
+
 # Errors info_sondage.php
 msgid "Enter a title"
 msgstr "Einen Titel eingeben"
@@ -336,6 +434,9 @@ msgstr "Die Adresse ist nicht korrekt! (Sie sollten eine funktionierende E-Mail 
 # Error choix_date.php/choix_autre.php
 msgid "You haven't filled the first section of the poll creation."
 msgstr "Sie haben den ersten Teil der Umfrageerstellung nicht ausgefüllt."
+
+msgid "Back to step 1"
+msgstr "Back to step 1"
 
 ########### Step 2 ###########
 # Step 2 choix_date.php
@@ -391,8 +492,29 @@ msgstr "Um eine allgemeine Umfrage zu erstellen, benötigen Sie mindestens zwei 
 msgid "You can add or remove additional choices with the buttons"
 msgstr "Sie können über den Button zusätzliche Auswahlmöglichkeiten hinzufügen oder entfernen"
 
+msgid "It's possible to propose links or images by using "
+msgstr "It's possible to propose links or images by using "
+
+msgid "the Markdown syntax"
+msgstr "the Markdown syntax"
+
 msgid "Choice"
 msgstr "Wahl"
+
+msgid "Add a link or an image"
+msgstr "Add a link or an image"
+
+msgid "These fields are optional. You can add a link, an image or both."
+msgstr "These fields are optional. You can add a link, an image or both."
+
+msgid "URL of the image"
+msgstr "URL of the image"
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Alternative text"
+msgstr "Alternative text"
 
 msgid "Remove a choice"
 msgstr "Eine Auswahl entfernen"
@@ -400,12 +522,21 @@ msgstr "Eine Auswahl entfernen"
 msgid "Add a choice"
 msgstr "Eine Auswahl hinzufügen"
 
+msgid "Back to step 2"
+msgstr "Back to step 2"
+
+msgid "Go to step 3"
+msgstr "Go to step 3"
+
 ########### Step 3 ###########
 msgid "Removal date and confirmation (3 on 3)"
 msgstr "Löschdatum und Bestätigung (3 von 3)"
 
 msgid "Confirm the creation of your poll"
 msgstr "Bestätigen Sie die Erstellung ihrer Umfrage"
+
+msgid "List of your choices"
+msgstr "List of your choices"
 
 msgid "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll."
 msgstr "Wenn Sie die Erstellung ihrer Umfrage bestätigt haben, werden sie automatisch zur Administrationsseite ihrer Umfrage weitergeleitet."
@@ -432,29 +563,6 @@ msgstr "Sie können jedoch auch ein anderes Löschdatum festlegen."
 
 msgid "Removal date (optional)"
 msgstr "Löschdatum (optional)"
-
-########### Contact #########
-msgid "Contact us"
-msgstr "Kontaktieren Sie uns"
-
-msgid "If you have questions, you can send a message here."
-msgstr "Wenn Sie Fragen haben, können Sie diese in dieses Formular eingeben."
-
-msgid "Question"
-msgstr "Frage"
-
-msgid "Send your question"
-msgstr "Ihre Frage senden"
-
-msgid "Your message has been sent!"
-msgstr "Ihre Nachricht wurde gesendet!"
-
-# Errors contact.php
-msgid "The address is not correct!"
-msgstr "Die Adresse ist nicht korrekt!"
-
-msgid "You must ask a question!"
-msgstr "Sie müssen eine Frage stellen!"
 
 ############# Admin #############
 msgid "Polls administrator"
@@ -490,12 +598,8 @@ msgstr "Betrachte die Umfrage"
 msgid "Change the poll"
 msgstr "Ändere die Umfrage"
 
-# Footer
 msgid "Logs"
 msgstr "Verlauf"
-
-msgid "Cleaning"
-msgstr "Ausmisten"
 
 ########### Mails ###########
 # Mails studs.php
@@ -512,56 +616,27 @@ msgstr ""
 msgid "Thanks for your confidence."
 msgstr "Danke für Ihr Vertrauen."
 
+msgid "\n"
+"--\n\n"
+"« La route est longue, mais la voie est libre… »\n"
+"Framasoft ne vit que par vos dons (déductibles des impôts).\n"
+"Merci d'avance pour votre soutien http://soutenir.framasoft.org."
+msgstr "\n"
+"\n"
+"\n"
+"\n"
+" "
+
 # Mails adminstuds.php
-msgid "[ADMINISTRATOR] New title for your poll"
-msgstr "[ADMINISTRATOR] Neuer Titel für Ihre Umfrage "
+msgid "[ADMINISTRATOR] New settings for your poll"
+msgstr "[ADMINISTRATOR] Neuer Einstellungen für Ihre Umfrage "
 
 msgid ""
-"You have changed the title of your poll. \n"
+"You have changed the settings of your poll. \n"
 "You can modify this poll with this link"
 msgstr ""
-"Sie haben den Titel Ihrer Umfrage geändert. \n"
+"Sie haben den Einstellungen Ihrer Umfrage geändert. \n"
 "Sie können Ihre Umfrage unter diesem Link ändern"
-
-msgid "[ADMINISTRATOR] New description for your poll"
-msgstr "[ADMINISTRATOR] Neue Beschreibung für Ihre Umfrage "
-
-msgid ""
-"You have changed the description of your poll. \n"
-"You can modify this poll with this link"
-msgstr ""
-"Sie haben die Beschreibung Ihrer Umfrage geändert. \n"
-"Sie können Ihre Umfrage unter diesem Link ändern"
-
-msgid "[ADMINISTRATOR] New email address for your poll"
-msgstr "[ADMINISTRATOR] Neue E-Mail Adresse für Ihre Umfrage "
-
-msgid ""
-"You have changed your email address in your poll. \n"
-"You can modify this poll with this link"
-msgstr ""
-"Sie haben die E-Mail Adresse für Ihre Umfrage geändert."
-"Sie können Ihre Umfrage unter diesem Link ändern"
-
-msgid "[ADMINISTRATOR] Removing of your poll"
-msgstr "[ADMINISTRATOR] Ihre Umfrage löschen"
-
-msgid ""
-"You have removed your poll. \n"
-"You can make new polls with this link"
-msgstr ""
-"Sie haben Ihre Umfrage gelöscht. \n"
-"Sie können unter diesem Link eine neue Umfrage erstellen"
-
-msgid "[ADMINISTRATOR] New column for your poll"
-msgstr "[ADMINISTRATOR] Neue Spalte für Ihre Umfrage "
-
-msgid ""
-"You have added a new column in your poll. \n"
-"You can inform the voters of this change with this link"
-msgstr ""
-"Sie haben eine neue Spalte zu Ihrer Umfrage hinzugefügt. \n"
-"Sie können die Teilnehmer über die Veränderung mit diesem Link informieren"
 
 # Mails creation_sondage.php
 msgid ""
@@ -591,29 +666,3 @@ msgstr "Nachricht für den Autor "
 
 msgid "For sending to the polled users"
 msgstr "Nachricht für die Teilnehmer"
-
-# Mails contact.php
-msgid "[CONTACT] You have sent a question "
-msgstr "[KONTAKT]  Sie haben eine Frage gesendet"
-
-msgid "You have a question from a user "
-msgstr "Sie haben eine Frage von einem Benutzer "
-
-msgid "User"
-msgstr "Benutzer"
-
-msgid "User's email address"
-msgstr "E-Mail Adresse des Benutzers"
-
-msgid "Message"
-msgstr "Nachricht"
-
-msgid "[COPY] Someone has sent a question "
-msgstr "[KOPIE] Jemand hat eine Frage gestellt "
-
-msgid "Here is a copy of your question"
-msgstr "Hier ist eine Kopier ihrer Frage"
-
-msgid "We're going to answer your question shortly."
-msgstr "Wir versuchen Ihre Frage schnellstmöglich zu beantworten."
-
