@@ -111,7 +111,7 @@ msgstr "Reservado al autor"
 
 #: creation_sondage.php:91
 msgid ""
-"This message should NOT be sended to the polled people. It is private for the poll's creator.\n"
+"This message should NOT be sent to the polled people. It is private for the poll's creator.\n"
 "\n"
 "You can now modify it at the link above"
 msgstr ""

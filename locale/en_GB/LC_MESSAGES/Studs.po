@@ -653,11 +653,11 @@ msgid "Thanks for filling the poll at the link above"
 msgstr "Thanks for filling the poll at the link above"
 
 msgid ""
-"This message should NOT be sended to the polled people. It is private for the poll's creator.\n"
+"This message should NOT be sent to the polled people. It is private for the poll's creator.\n"
 "\n"
 "You can now modify it at the link above"
 msgstr ""
-"This message should NOT be sended to the polled people. It is private for the poll's creator.\n"
+"This message should NOT be sent to the polled people. It is private for the poll's creator.\n"
 "\n"
 "You can now modify it at the link above"
 
