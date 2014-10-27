@@ -211,10 +211,10 @@ msgstr "Die Beschreibung speichern"
 msgid "Cancel the description edit"
 msgstr "Die Änderung der Beschreibung verwerfen"
 
-msgid "Public link of the pool"
+msgid "Public link of the poll"
 msgstr "Öffentlicher Link zur Umfrage"
 
-msgid "Admin link of the pool"
+msgid "Admin link of the poll"
 msgstr "Administrator Link zur Umfrage"
 
 msgid "Poll rules"
