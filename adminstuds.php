@@ -762,11 +762,11 @@ echo '
             </div>
             <div class="row">
                 <div class="form-group col-md-5">
-                    <label for="public-link"><a class="public-link" href="' . Utils::getUrlSondage($dsondage->id_sondage) . '">'._("Public link of the pool") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                    <label for="public-link"><a class="public-link" href="' . Utils::getUrlSondage($dsondage->id_sondage) . '">'._("Public link of the poll") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
                     <input class="form-control" id="public-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($dsondage->id_sondage) . '" />
                 </div>
                 <div class="form-group col-md-5">
-                    <label for="admin-link"><a class="admin-link" href="' . Utils::getUrlSondage($numsondageadmin, true) . '">'._("Admin link of the pool") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                    <label for="admin-link"><a class="admin-link" href="' . Utils::getUrlSondage($numsondageadmin, true) . '">'._("Admin link of the poll") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
                     <input class="form-control" id="admin-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($numsondageadmin, true) . '" />
                 </div>
                 <div class="form-group col-md-2">
