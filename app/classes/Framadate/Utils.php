@@ -175,8 +175,8 @@ class Utils
         $headers .= "Reply-To: $replyTo\n";
         $headers .= "MIME-Version: 1.0\n";
         $headers .= "Content-Type: text/plain; charset=UTF-8\n";
-        $headers .= "Content-Transfer-Encoding: 8bit";
-        $headers .= "Auto-Submitted:auto-generated";
+        $headers .= "Content-Transfer-Encoding: 8bit\n";
+        $headers .= "Auto-Submitted:auto-generated\n";
         $headers .= "Return-Path: <>";
 
         $body = html_entity_decode($body, ENT_QUOTES, 'UTF-8')._("\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.");
