@@ -209,7 +209,7 @@ if($err != 0) {
 
 } else {
     Utils::print_header(_('Poll').' - '.$dsondage->titre);
-    bandeau_titre(_("Make your polls"));
+    bandeau_titre(_('Poll').' - '.$dsondage->titre);
 }
 
 $title=stripslashes(str_replace("\\","",$dsondage->titre));
@@ -217,7 +217,7 @@ echo '
         <div class="jumbotron">
             <div class="row">
                 <div class="col-md-7">
-                    <h2>'.$title.'</h2>
+                    <h3>'.$title.'</h3>
                 </div>
                 <div class="col-md-5">
                     <div class="btn-group pull-right">
@@ -229,7 +229,7 @@ echo '
             <div class="row">
                 <div class="col-md-5">
                     <div class="form-group">
-                        <h3 class="control-label">'. _("Initiator of the poll") .'</h3>
+                        <h4 class="control-label">'. _("Initiator of the poll") .'</h4>
                         <p class="form-control-static"> '.stripslashes($dsondage->nom_admin).'</p>
                     </div>
                     <div class="form-group">
@@ -458,6 +458,7 @@ echo'
         </div>
     </div>
 
+    <h3>'._('Votes of the poll ').'</h3>
     <div id="tableContainer" class="tableContainer">
         <table class="results">
             <caption class="sr-only">'._('Votes of the poll ').$title.'</caption>

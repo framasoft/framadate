@@ -36,7 +36,7 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
 
     echo '
     <div class="alert alter-danger">
-        <h2>' . _("You haven't filled the first section of the poll creation.") . ' !</h2>
+        <h3>' . _("You haven't filled the first section of the poll creation.") . ' !</h3>
         <p>' . _("Back to the homepage of ") . ' ' . '<a href="' . Utils::get_server_name() . '">' . NOMAPPLICATION . '</a>.</p>
     </div>';
 
@@ -144,9 +144,9 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
     <form name="formulaire" action="' . Utils::get_server_name() . 'choix_date.php" method="POST" class="form-horizontal" role="form">
     <div class="row" id="selected-days">
         <div class="col-md-8 col-md-offset-2">
-            <h2>'. _("Confirm the creation of your poll") .'</h2>
+            <h3>'. _("Confirm the creation of your poll") .'</h3>
             <div class="well summary">
-                <h3>'. _("List of your choices").'</h3>
+                <h4>'. _("List of your choices").'</h4>
                 '. $summary .'
             </div>
             <div class="alert alert-info clearfix">
@@ -185,7 +185,7 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
     <form name="formulaire" action="' . Utils::get_server_name() . 'choix_date.php" method="POST" class="form-horizontal" role="form">
     <div class="row" id="selected-days">
         <div class="col-md-10 col-md-offset-1">
-            <h2>'. _("Choose the dates of your poll") .'</h2>
+            <h3>'. _("Choose the dates of your poll") .'</h3>
             <div class="alert alert-info">
                 <p>'. _("To schedule an event you need to propose at least two choices (two hours for one day or two days).").'</p>
                 <p>'. _("You can add or remove additionnal days and hours with the buttons") .' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></p>
@@ -218,8 +218,8 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
             }
             echo '
                     <div class="col-sm-2"><div class="btn-group btn-group-xs" style="margin-top: 5px;">
-                        <button type="button" title="'. _("Remove an hour") .'" class="remove-an-hour btn btn-default"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span></button>
-                        <button type="button" title="'. _("Add an hour") .'" class="add-an-hour btn btn-default"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></button>
+                        <button type="button" title="'. _("Remove an hour") .'" class="remove-an-hour btn btn-default"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove an hour") .'</span></button>
+                        <button type="button" title="'. _("Add an hour") .'" class="add-an-hour btn btn-default"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add an hour") .'</span></button>
                     </div></div>
                 </div>
             </fieldset>';
@@ -228,8 +228,8 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
             <div class="col-md-4">
                 <button type="button" id="copyhours" class="btn btn-default disabled" title="'. _("Copy hours of the first day") .'"><span class="glyphicon glyphicon-sort-by-attributes-alt text-info"></span><span class="sr-only">'. _("Copy hours of the first day") .'</span></button>
                 <div class="btn-group btn-group">
-                    <button type="button" id="remove-a-day" class="btn btn-default disabled" title="'. _("Remove a day") .'"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span></button>
-                    <button type="button" id="add-a-day" class="btn btn-default" title="'. _("Add a day") .'"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></button>
+                    <button type="button" id="remove-a-day" class="btn btn-default disabled" title="'. _("Remove a day") .'"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove a day") .'</span></button>
+                    <button type="button" id="add-a-day" class="btn btn-default" title="'. _("Add a day") .'"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add a day") .'</span></button>
                 </div>
             </div>
             <div class="col-md-8 text-right">

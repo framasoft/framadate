@@ -39,7 +39,7 @@ while($dsondage = $sondage->FetchNextObject(false)) {
     if (Utils::issetAndNoEmpty('supprimersondage'.$dsondage->id_sondage) === true) {
         echo '
         <div class="alert alert-warning text-center">
-            <h2>'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'</h2>
+            <h3>'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'</h3>
             <p><button class="btn btn-default" type="submit" value="1" name="annullesuppression">'._("Keep this poll!").'</button>
             <button type="submit" name="confirmesuppression'.$dsondage->id_sondage.'" value="1" class="btn btn-danger">'._("Remove this poll!").'</button></p>
         </div>';

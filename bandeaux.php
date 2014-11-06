@@ -23,7 +23,7 @@ include_once __DIR__ . '/app/inc/init.php';
 // bandeaux de titre
 function bandeau_titre($titre)
 {
-    $img = ( IMAGE_TITRE ) ? '<img src="'. Utils::get_server_name(). IMAGE_TITRE. '" title="'._("Home").' - '.NOMAPPLICATION.'" alt="'.NOMAPPLICATION.'">' : '';
+    $img = ( IMAGE_TITRE ) ? '<img src="'. Utils::get_server_name(). IMAGE_TITRE. '" alt="'.NOMAPPLICATION.'">' : '';
     echo '
     <header role="banner">
         <form method="post" action="#">
@@ -35,7 +35,7 @@ function bandeau_titre($titre)
             </div>
         </form>
         <h1><a href="'.str_replace('/admin','', Utils::get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'">'.$img.'</a></h1>
-        <p class="lead"><i>'. $titre .'</i></p>
+        <h2 class="lead"><i>'. $titre .'</i></h2>
         <hr class="trait" />
     </header>
     <main role="main">';

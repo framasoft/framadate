@@ -53,7 +53,7 @@ echo '
         <hr />
         <div class="row">
             <div class="col-md-4">
-                <h2>'. _('What is that?') . '</h2>
+                <h3>'. _('What is that?') . '</h3>
                 <p class="text-center"><span class="glyphicon glyphicon-question-sign" style="font-size:50px"></span></p>
                 <p>'. _('Framadate is an online service for planning an appointment or make a decision quickly and easily. No registration is required.') .'</p>
                 <p>'. _('Here is how it works:') . '</p>
@@ -66,7 +66,7 @@ echo '
                 <p>'. _('Do you want to ') . '<a href="' . Utils::getUrlSondage('aqg259dth55iuhwm').'">'. _("view an example?") .'</a></p>
             </div>
             <div class="col-md-4">
-                <h2>'. _('The software') .'</h2>
+                <h3>'. _('The software') .'</h3>
                 <p class="text-center"><span class="glyphicon glyphicon-cloud" style="font-size:50px"></span></p>
                 <p>'. _('Framadate was initially based on '). '<a href="https://sourcesup.cru.fr/projects/studs/">Studs</a>'. _(' a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft') .'.</p>
                 <p>'. _('This software needs javascript and cookies enabled. It is compatible with the following web browsers:') .'</p>
@@ -80,7 +80,7 @@ echo '
                 <p>'. _('It is governed by the ').'<a href="http://www.cecill.info">'. _('CeCILL-B license').'</a>.</p>
             </div>
             <div class="col-md-4">
-                <h2>'. _('Cultivate your garden') .'</h2>
+                <h3>'. _('Cultivate your garden') .'</h3>
                 <p class="text-center"><span class="glyphicon glyphicon-tree-deciduous" style="font-size:50px"></span></p>
                 <p>'. _('To participate in the software development, suggest improvements or simply download it, please visit ') .'<a href="https://git.framasoft.org/framasoft/framadate">'._('the development site').'</a>.</p>
                 <br />
