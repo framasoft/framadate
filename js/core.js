@@ -308,14 +308,14 @@ $(document).ready(function() {
      **/
 
     $('#title-form .btn-edit').on('click', function() {
-        $('#title-form h2').hide();
+        $('#title-form h3').hide();
         $('.js-title').removeClass("hidden");
         $('.js-title input').focus();
         return false;
     });
 
     $('#title-form .btn-cancel').on('click', function() {
-        $('#title-form h2').show();
+        $('#title-form h3').show();
         $('#title-form .js-title').addClass("hidden");
         $('#title-form .btn-edit').focus();
         return false;
