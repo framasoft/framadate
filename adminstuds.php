@@ -690,17 +690,17 @@ if ($errors!='') {
 
 } else {
     Utils::print_header(_('Poll administration').' - '.$title);
-    bandeau_titre(_("Make your polls"));
+    bandeau_titre(_('Poll administration').' - '.$title);
 
    // session_unset();
 }
 
 echo '
     <form name="formulaire4" action="' . Utils::getUrlSondage($numsondageadmin, true) . '" method="POST">
-        <div class="jumbotron">
+        <div class="jumbotron bg-danger">
             <div class="row">
                 <div class="col-md-7" id="title-form">
-                    <h2>'.$title.'<button class="btn btn-link btn-sm btn-edit" title="'. _('Edit the title') .'"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span></button></h2>
+                    <h3>'.$title.'<button class="btn btn-link btn-sm btn-edit" title="'. _('Edit the title') .'"> <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span></button></h3>
                     <div class="hidden js-title">
                         <label class="sr-only" for="newtitle">'. _("Title") .'</label>
                         <div class="input-group">
@@ -732,7 +732,7 @@ echo '
                 <div class="col-md-5">
                     <div class="form-group" >
                         <div id="author-form">
-                            <h3 class="control-label">'. _("Initiator of the poll") .'</h3>
+                            <h4 class="control-label">'. _("Initiator of the poll") .'</h4>
                             <p> '.stripslashes($dsondage->nom_admin).'</p>
                         </div>
                         <div id="email-form">
@@ -770,7 +770,7 @@ echo '
                     <input class="form-control" id="admin-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($numsondageadmin, true) . '" />
                 </div>
                 <div class="form-group col-md-2">
-                    <h3 class="control-label">'. _("Expiration's date") .'</h3>
+                    <h4 class="control-label">'. _("Expiration's date") .'</h4>
                     <p>'.date("d/m/Y",strtotime($dsondage->date_fin)).'</p>
                 </div>
             </div>
@@ -964,6 +964,7 @@ echo '
         </div>
     </div>
 
+    <h3>'._('Votes of the poll ').'</h3>
     <div id="tableContainer" class="tableContainer">
     <table class="results">
         <caption class="sr-only">'._('Votes of the poll ').$title.'</caption>

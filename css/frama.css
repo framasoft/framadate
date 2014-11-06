@@ -3,7 +3,6 @@
 .text-muted a,
 a.text-muted {
   color: #767676;
-  border-color: #767676;
 }
 
 .text-muted a:hover,
@@ -11,78 +10,61 @@ a.text-muted {
 a.text-muted:hover,
 a.text-muted:focus {
   color: #5e5e5e;
-  border-color:#5e5e5e;
-  border-bottom-style:solid;
 }
 .text-primary,
 .text-primary a,
 a.text-primary {
   color: #6A5687;
-  border-color: #6A5687;
 }
 .text-primary a:hover,
 .text-primary a:focus,
 a.text-primary:hover,
 a.text-primary:focus {
   color: #583C66;
-  border-color: #583C66;
-  border-bottom-style:solid;
 }
 .text-success,
 .text-success a,
 a.text-success {
   color: #606E38;
-  border-color: #606E38;
 }
 .text-success a:hover,
 .text-success a:focus,
 a.text-success:hover,
 a.text-success:focus {
   color: #67753C;
-  border-color: #67753C;
-  border-bottom-style:solid;
 }
 .text-info,
 .text-info a,
 a.text-info {
   color: #31748F;
-  border-color: #31748F;
 }
 .text-info a:hover,
 .text-info a:focus,
 a.text-info:hover,
 a.text-info:focus {
   color: #245569;
-  border-color: #31748F;
-  border-bottom-style:solid;
 }
 .text-warning,
 .text-warning a,
 a.text-warning {
   color: #8A6E3B;
-  border-color: #8A6E3B;
 }
 .text-warning a:hover,
 .text-warning a:focus,
 a.text-warning:hover,
 a.text-warning:focus {
   color: #66522C;
-  border-color: #66522C;
-  border-bottom-style:solid;
 }
 .text-danger,
 .text-danger a,
 a.text-danger {
   color: #A94E42;
-  border-color: #A94E42;
 }
 .text-danger a:hover,
 .text-danger a:focus,
 a.text-danger:hover,
 a.text-danger:focus {
   color: #843D34;
-  border-color: #843D34;
-  border-bottom-style:solid;
 }
 
 /* Background */
@@ -92,7 +74,6 @@ a.bg-primary:focus,
 a.bg-primary:hover {
   color: #fff;
   background-color: #6A5687;
-  border-color:#fff;
 }
 .bg-success, a.bg-success:hover {
   background-color: #EAF0D8;
@@ -448,3 +429,8 @@ fieldset[disabled] .btn-link:focus {
     background-color: #767676;
 }
 
+/* Modal header title */
+.modal-header h1,.modal-header h2,.modal-header h3,
+.modal-header h4,.modal-header h5,.modal-header h6 {
+    font-size: 24px;
+}

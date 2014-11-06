@@ -35,7 +35,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
 
     echo '
     <div class="alert alert-danger">
-        <h2>' . _("You haven't filled the first section of the poll creation.") . ' !</h2>
+        <h3>' . _("You haven't filled the first section of the poll creation.") . ' !</h3>
         <p>' . _("Back to the homepage of ") . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
     </div>'."\n";
 
@@ -133,7 +133,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="well summary">
-                <h3>'. _("List of your choices").'</h3>
+                <h4>'. _("List of your choices").'</h4>
                 '. $summary .'
             </div>
             <div class="alert alert-info">

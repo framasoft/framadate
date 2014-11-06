@@ -28,7 +28,7 @@ msgid "Poll"
 msgstr "Sondage"
 
 msgid "Save"
-msgstr "Enregister"
+msgstr "Enregistrer"
 
 msgid "Cancel"
 msgstr "Annuler"

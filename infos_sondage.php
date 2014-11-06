@@ -190,13 +190,13 @@ if (!$_SESSION["adresse"] && Utils::issetAndNoEmpty("poursuivre")) {
 if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
     $input_name = '<input type="hidden" name="nom" value="'.$_SESSION["nom"].'" />'.stripslashes($_SESSION["nom"]);
 } else {
-    $input_name = '<input id="yourname" type="text" name="nom" class="form-control" '.$errors['name']['aria'].' maxlength="40" value="'.stripslashes($_SESSION["nom"]).'" />';
+    $input_name = '<input id="yourname" type="text" name="nom" class="form-control" '.$errors['name']['aria'].' value="'.stripslashes($_SESSION["nom"]).'" />';
 }
 
 if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
     $input_email = '<input type="hidden" name="adresse" value="'.$_SESSION["adresse"].'">'.$_SESSION["adresse"];
 } else {
-    $input_email = '<input id="email" type="text" name="adresse" class="form-control" '.$errors['email']['aria'].' maxlength="64" value="'.$_SESSION["adresse"].'" />';
+    $input_email = '<input id="email" type="text" name="adresse" class="form-control" '.$errors['email']['aria'].' value="'.$_SESSION["adresse"].'" />';
 }
 
 // Checkbox checked ?
@@ -215,7 +215,7 @@ if ($_SESSION["mailsonde"]) {
 // Affichage du formulaire
 echo '
 <div class="row">
-    <div class="col-md-6 col-md-offset-3" >
+    <div class="col-md-8 col-md-offset-2" >
     <form name="formulaire" id="formulaire" action="' . Utils::get_server_name() . 'infos_sondage.php" method="POST" class="form-horizontal" role="form">
 
         <div class="alert alert-info">
@@ -223,29 +223,29 @@ echo '
         </div>
 
         <div class="form-group'.$errors['title']['class'].'">
-            <label for="poll_title" class="col-sm-5 control-label">' . _("Poll title") . ' *</label>
-            <div class="col-sm-7">
-                <input id="poll_title" type="text" name="titre" class="form-control" '.$errors['title']['aria'].' maxlength="80" value="'.stripslashes($_SESSION["titre"]).'" />
+            <label for="poll_title" class="col-sm-4 control-label">' . _("Poll title") . ' *</label>
+            <div class="col-sm-8">
+                <input id="poll_title" type="text" name="titre" class="form-control" '.$errors['title']['aria'].' value="'.stripslashes($_SESSION["titre"]).'" />
             </div>
         </div>
             '.$errors['title']['msg'].'
         <div class="form-group'.$errors['description']['class'].'">
-            <label for="poll_comments" class="col-sm-5 control-label">'. _("Description") .'</label>
-            <div class="col-sm-7">
+            <label for="poll_comments" class="col-sm-4 control-label">'. _("Description") .'</label>
+            <div class="col-sm-8">
                 <textarea id="poll_comments" name="commentaires" class="form-control" '.$errors['description']['aria'].' rows="5">'.stripslashes($_SESSION["commentaires"]).'</textarea>
             </div>
         </div>
             '.$errors['description']['msg'].'
         <div class="form-group'.$errors['name']['class'].'">
-            <label for="yourname" class="col-sm-5 control-label">'. _("Your name") .' *</label>
-            <div class="col-sm-7">
+            <label for="yourname" class="col-sm-4 control-label">'. _("Your name") .' *</label>
+            <div class="col-sm-8">
                 '.$input_name.'
             </div>
         </div>
             '.$errors['name']['msg'].'
         <div class="form-group'.$errors['email']['class'].'">
-            <label for="email" class="col-sm-5 control-label">'. _("Your email address") .' *</label>
-            <div class="col-sm-7">
+            <label for="email" class="col-sm-4 control-label">'. _("Your email address") .' *</label>
+            <div class="col-sm-8">
                 '.$input_email.'
             </div>
         </div>
