@@ -211,10 +211,10 @@ msgstr "Enregistrer la description"
 msgid "Cancel the description edit"
 msgstr "Annuler le changement de description"
 
-msgid "Public link of the pool"
+msgid "Public link of the poll"
 msgstr "Lien public du sondage"
 
-msgid "Admin link of the pool"
+msgid "Admin link of the poll"
 msgstr "Lien d'administration du sondage"
 
 msgid "Poll rules"
@@ -657,7 +657,7 @@ msgid "Thanks for filling the poll at the link above"
 msgstr "Merci de bien vouloir participer au sondage à l'adresse suivante"
 
 msgid ""
-"This message should NOT be sended to the polled people. It is private for the poll's creator.\n"
+"This message should NOT be sent to the polled people. It is private for the poll's creator.\n"
 "\n"
 "You can now modify it at the link above"
 msgstr ""
