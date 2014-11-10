@@ -17,5 +17,9 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
  
- $my_option = "test";
- $your_option = "test2";
+ /**
+ * index.php
+ */
+ $show_what_is_that = true;
+ $show_the_software = true;
+ $show_cultivate_your_garden = true;
