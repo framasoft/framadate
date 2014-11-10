@@ -33,6 +33,7 @@ session_start();
 // affichage de la page
 Utils::print_header( _("Home") );
 bandeau_titre(_("Make your polls"));
+echo "test";
 echo '
         <div class="row">
             <div class="col-md-6 text-center">
