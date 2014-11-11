@@ -175,9 +175,11 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         echo '
             <div class="alert alert-info">
                 <p>'. _("To make a generic poll you need to propose at least two choices between differents subjects.") .'</p>
-                <p>'. _("You can add or remove additional choices with the buttons") .' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></p>
-                <p>'. _("It's possible to propose links or images by using "). '<a href="http://'.$lang.'.wikipedia.org/wiki/Markdown">'. _("the Markdown syntax") .'</a>.</p>
-            </div>'."\n";
+                <p>'. _("You can add or remove additional choices with the buttons") .' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></p>';
+		if(config_get('user_can_add_link_or_url')){		
+            echo '    <p>'. _("It's possible to propose links or images by using "). '<a href="http://'.$lang.'.wikipedia.org/wiki/Markdown">'. _("the Markdown syntax") .'</a>.</p>';
+		}		
+        echo '    </div>'."\n";
 
         // Fields choices : 5 by default
         $nb_choices = (isset($_SESSION['choices'])) ? max(count($_SESSION['choices']), 5) : 5;
@@ -187,9 +189,12 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
             <div class="form-group choice-field">
                 <label for="choice'.$i.'" class="col-sm-2 control-label">'. _("Choice") .' '.($i+1).'</label>
                 <div class="col-sm-10 input-group">
-                    <input type="text" class="form-control" name="choices[]" size="40" value="'.$choice_value.'" id="choice'.$i.'" />
-                    <span class="input-group-addon btn-link md-a-img" title="'. _("Add a link or an image") .' - '. _("Choice") .' '.($i+1).'" ><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>
-                </div>
+                    <input type="text" class="form-control" name="choices[]" size="40" value="'.$choice_value.'" id="choice'.$i.'" />';
+                    if(config_get('user_can_add_link_or_url')){
+						echo '<span class="input-group-addon btn-link md-a-img" title="'. _("Add a link or an image") .' - '. _("Choice") .' '.($i+1).'" ><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>';
+					}
+            echo '
+			</div>
             </div>'."\n";
         }
 
