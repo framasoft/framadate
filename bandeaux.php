@@ -25,16 +25,19 @@ function bandeau_titre($titre)
 {
     $img = ( IMAGE_TITRE ) ? '<img src="'. Utils::get_server_name(). IMAGE_TITRE. '" alt="'.NOMAPPLICATION.'">' : '';
     echo '
-    <header role="banner">
-        <form method="post" action="#">
+    <header role="banner">';
+    if(config_get('show_language_bar_selection')){
+		echo '<form method="post" action="#">
             <div class="input-group input-group-sm pull-right col-md-2 col-xs-4">
                 <select name="lang" class="form-control" title="'. _("Select the language") .'" >' . liste_lang() . '</select>
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-default btn-sm" title="'. _("Change the language") .'">OK</button>
                 </span>
             </div>
-        </form>
-        <h1><a href="'.str_replace('/admin','', Utils::get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'">'.$img.'</a></h1>
+        </form>';
+	}
+    echo '
+		<h1><a href="'.str_replace('/admin','', Utils::get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'">'.$img.'</a></h1>
         <h2 class="lead"><i>'. $titre .'</i></h2>
         <hr class="trait" />
     </header>
