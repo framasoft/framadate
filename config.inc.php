@@ -18,8 +18,29 @@
  */
  
  /**
+ * general configuration
+ */
+ 
+	 //is a smtp server is configured to send e-mail ?
+	 //$use_smtp = true;
+	 
+ /**
  * index.php
  */
- $show_what_is_that = true;
- $show_the_software = true;
- $show_cultivate_your_garden = true;
+ 
+	  //display "how to use" section
+	 $show_what_is_that = true;
+
+	 //display technical information about the software
+	 $show_the_software = true;
+
+	 //display "developpement and administration" information
+	 $show_cultivate_your_garden = true;
+    
+ /**
+ * choix_autre.php
+ */
+	   //default values for the new poll duration (number of days). 
+	  $default_poll_duration = 180;
+  
+  

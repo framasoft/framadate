@@ -57,8 +57,8 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         $temp_results=substr($temp_results,1);
         $_SESSION["toutchoix"]=$temp_results;
 
-        // Expiration date → after 6 months if not filled or in bad format
-        $_SESSION["champdatefin"]=time()+15552000;
+        // Expiration date → the configuration value is used if not filled or in bad format		
+        $_SESSION["champdatefin"]= time()+ (86400 * config_get('default_poll_duration')); //60 secondes * 60 minutes * 24 heures * config
 
         if (Utils::issetAndNoEmpty('champdatefin')) {
             $registredate = explode("/",$_POST["champdatefin"]);
@@ -137,7 +137,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
                 '. $summary .'
             </div>
             <div class="alert alert-info">
-                <p>' . _("Your poll will be automatically removed after 6 months:") . ' <strong>'.$removal_date.'</strong>.<br />' . _("You can fix another removal date for it.") .'</p>
+                <p>' . _("Your poll will be automatically removed after"). " " . config_get('default_poll_duration') . " " . _("days") . ' <strong>'.$removal_date.'</strong>.<br />' . _("You can fix another removal date for it.") .'</p>
                 <div class="form-group">
                     <label for="champdatefin" class="col-sm-5 control-label">'. _("Removal date (optional)") .'</label>
                     <div class="col-sm-6">
