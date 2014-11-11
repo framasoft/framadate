@@ -21,7 +21,6 @@ namespace Framadate;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
-include_once __DIR__ . '/app/inc/functions.inc.php';
 
 if (is_readable('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
