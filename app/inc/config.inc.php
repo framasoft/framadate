@@ -44,7 +44,7 @@
  * choix_autre.php
  */
 	   //default values for the new poll duration (number of days). 
-	  $default_poll_duration = 180;
+	  $default_poll_duration = 10;
   
   	   //user can add link or URL when creating his poll. 
 	  $user_can_add_link_or_url = false;
