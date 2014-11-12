@@ -24,9 +24,6 @@
 	 //use email for polls creation/modification/responses notification
 	 $use_smtp = true;
 	 
-	 //if only one language is allowed in constants.php, $ALLOWED_LANGUAGES, the language selection bar is useless
-	 $show_language_bar_selection = true;
-	 
  /**
  * index.php
  */
