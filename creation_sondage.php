@@ -45,8 +45,9 @@ function ajouter_sondage()
     $sondage=random(16);
     $sondage_admin=$sondage.random(8);
 
-    $date_fin = ($_SESSION["champdatefin"]) ? $_SESSION["champdatefin"] : $date_fin=time()+15552000;
-
+    //$date_fin = ($_SESSION["champdatefin"]) ? $_SESSION["champdatefin"] : $date_fin=time()+ (86400 * config_get('default_poll_duration'));
+	$date_fin = $_SESSION["champdatefin"]; //always provided by choix_autre.php
+	$_SESSION["champdatefin"]=""; //clean param cause 2 polls created by the same user in the same session can be affected by this param during the 2nd creation.
     $sql = 'INSERT INTO sondage
           (id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, date_fin, format, mailsonde)
           VALUES (
