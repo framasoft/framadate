@@ -76,21 +76,25 @@ if (!$sondage || $sondage->RecordCount() != 1){
 $dsujet=$sujets->FetchObject(false);
 $dsondage=$sondage->FetchObject(false);
 
-// Send email (only once during the session) to alert admin of the change he made
+// Send email (only once during the session) to alert admin of the change he made. ==> two modifications (comment, title, description, ...) on differents polls in the same session will generate only one mail. 
 $email_admin = $dsondage->mail_admin;
+$poll_title = $dsondage->titre;
 function send_mail_admin() {
     global $email_admin;
+	global $poll_title;
     global $numsondageadmin;
+		if(config_get('use_smtp')==true){
+			if(!isset($_SESSION["mail_admin_sent"])) { 
+				Utils::sendEmail( $email_admin,
+					_("[ADMINISTRATOR] New settings for your poll") . ' ' . stripslashes( $poll_title ),
+					_("You have changed the settings of your poll. \nYou can modify this poll with this link") .
+					  " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . "\n\n" .
+					_("Thanks for your confidence.") . "\n" . NOMAPPLICATION
+					);
+				$_SESSION["mail_admin_sent"]=true;
+			}
+		}
 
-    if(!isset($_SESSION["mail_admin_sent"])) {
-        Utils::sendEmail( $email_admin,
-            _("[ADMINISTRATOR] New settings for your poll") . ' ' . stripslashes( $dsondage->titre ),
-            _("You have changed the settings of your poll. \nYou can modify this poll with this link") .
-              " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . "\n\n" .
-            _("Thanks for your confidence.") . "\n" . NOMAPPLICATION
-            );
-        $_SESSION["mail_admin_sent"]=true;
-    }
 }
 
 //si la valeur du nouveau titre est valide et que le bouton est activé
@@ -105,8 +109,10 @@ if (isset($_POST["boutonnouveautitre"])) {
 
         //Email sent to the admin
         if ($connect->Execute($sql, array($nouveautitre, $numsondage))) {
-            send_mail_admin();
-        }
+            //if(config_get('use_smtp')==true){
+				send_mail_admin();
+			//}
+		}
     }
 }
 

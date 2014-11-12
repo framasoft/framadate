@@ -21,8 +21,8 @@
  * general configuration
  */
  
-	 //is a smtp server is configured to send e-mail ?
-	 //$use_smtp = true;
+	 //use email for polls creation/modification/responses notification
+	 $use_smtp = true;
 	 
 	 //if only one language is allowed in constants.php, $ALLOWED_LANGUAGES, the language selection bar is useless
 	 $show_language_bar_selection = true;
@@ -44,7 +44,7 @@
  * choix_autre.php
  */
 	   //default values for the new poll duration (number of days). 
-	  $default_poll_duration = 10;
+	  $default_poll_duration = 30;
   
   	   //user can add link or URL when creating his poll. 
 	  $user_can_add_link_or_url = false;
