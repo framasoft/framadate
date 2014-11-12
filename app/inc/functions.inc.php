@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ * Authors of Framadate/OpenSondate: Framasoft (https://git.framasoft.org/framasoft/framadate)
  *
  * =============================
  *
@@ -14,7 +14,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
  *
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
- * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
+ * Auteurs de Framadate/OpenSondage : Framasoft (https://git.framasoft.org/framasoft/framadate)
  */
 	function config_get($p_option){
 		include('config.inc.php');
