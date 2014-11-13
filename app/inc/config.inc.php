@@ -16,34 +16,32 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://git.framasoft.org/framasoft/framadate)
  */
- 
+
  /**
  * general configuration
  */
- 
-	 //use email for polls creation/modification/responses notification
-	 $use_smtp = true;
-	 
+
+    //use email for polls creation/modification/responses notification
+    $use_smtp = true;
+
  /**
  * index.php
  */
- 
-	  //display "how to use" section
-	 $show_what_is_that = true;
 
-	 //display technical information about the software
-	 $show_the_software = true;
+    //display "how to use" section
+    $show_what_is_that = true;
 
-	 //display "developpement and administration" information
-	 $show_cultivate_your_garden = true;
-    
+    //display technical information about the software
+    $show_the_software = true;
+
+    //display "developpement and administration" information
+    $show_cultivate_your_garden = true;
+
  /**
  * choix_autre.php
  */
-	   //default values for the new poll duration (number of days). 
-	  $default_poll_duration = 30;
-  
-  	   //user can add link or URL when creating his poll. 
-	  $user_can_add_link_or_url = false;
-  
-  
+    //default values for the new poll duration (number of days).
+    $default_poll_duration = 30;
+
+    //user can add link or URL when creating his poll.
+    $user_can_add_link_or_url = true;
