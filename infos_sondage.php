@@ -77,9 +77,11 @@ if (Utils::issetAndNoEmpty("poursuivre")){
     unset($_SESSION["mailsonde"]);
     $_SESSION["mailsonde"] = ($mailsonde !== null) ? true : false;
 
-    if (Utils::isValidEmail($adresse) === false) {
-        $erreur_adresse = true;
-    }
+	if (config_get('use_smtp')==true){
+		if (Utils::isValidEmail($adresse) === false) {
+			$erreur_adresse = true;
+		}
+	}
 
     if (preg_match(';<|>|";',$titre)) {
         $erreur_injection_titre = true;
@@ -94,7 +96,14 @@ if (Utils::issetAndNoEmpty("poursuivre")){
     }
 
     // Si pas d'erreur dans l'adresse alors on change de page vers date ou autre
-    if ($titre && $nom && $adresse && !$erreur_adresse && ! $erreur_injection_titre && ! $erreur_injection_commentaires && ! $erreur_injection_nom) {
+	if(config_get('use_smtp')==true){
+		$email_OK = $adresse && !$erreur_adresse;
+	}
+	else{
+		$email_OK = true;
+	}
+	
+    if ($titre && $nom && $email_OK && ! $erreur_injection_titre && ! $erreur_injection_commentaires && ! $erreur_injection_nom) {
 
         if ( $poursuivre == "creation_sondage_date" ) {
             header("Location:choix_date.php");
@@ -242,16 +251,19 @@ echo '
                 '.$input_name.'
             </div>
         </div>
-            '.$errors['name']['msg'].'
-        <div class="form-group'.$errors['email']['class'].'">
-            <label for="email" class="col-sm-4 control-label">'. _("Your email address") .' *</label>
-            <div class="col-sm-8">
-                '.$input_email.'
-            </div>
-        </div>
-            '.$errors['email']['msg'].'
+            '.$errors['name']['msg'];
+		if(config_get('use_smtp')==true){
+			echo '
+				<div class="form-group'.$errors['email']['class'].'">
+					<label for="email" class="col-sm-4 control-label">'. _("Your email address") .' *</label>
+					<div class="col-sm-8">
+						'.$input_email.'
+					</div>
+				</div>
+				'.$errors['email']['msg'];
+		}
 
-        <div class="form-group">
+        echo '<div class="form-group">
             <div class="col-sm-offset-1 col-sm-11">
               <div class="checkbox">
                 <label>
@@ -259,18 +271,20 @@ echo '
                 </label>
               </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-1 col-sm-11">
-              <div class="checkbox">
-                <label>
-                    <input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde">'. _("To receive an email for each new vote.") .'
-                </label>
-              </div>
-            </div>
-        </div>
+        </div>';
+		if(config_get('use_smtp')==true){
+			echo '<div class="form-group">
+				<div class="col-sm-offset-1 col-sm-11">
+				  <div class="checkbox">
+					<label>
+						<input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde">'. _("To receive an email for each new vote.") .'
+					</label>
+				  </div>
+				</div>
+			</div>';
+		}
 
-        <p class="text-right">
+        echo '<p class="text-right">
             <input type="hidden" name="choix_sondage" value="'. $choix_sondage .'"/>
             <button name="poursuivre" value="'. $choix_sondage .'" type="submit" class="btn btn-success" title="'. _('Go to step 2') . '">'. _('Next') . '</button>
         </p>

@@ -173,13 +173,15 @@ if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
            $connect->Execute($sql, array($nom, $numsondage, $nouveauchoix));
 
             if ($dsondage->mailsonde || /* compatibility for non boolean DB */ $dsondage->mailsonde=="yes" || $dsondage->mailsonde=="true") {
-                Utils::sendEmail( "$dsondage->mail_admin",
-                   "[".NOMAPPLICATION."] "._("Poll's participation")." : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8')."",
-                   html_entity_decode("\"$nom\" ", ENT_QUOTES, 'UTF-8').
-                   _("has filled a line.\nYou can find your poll at the link") . " :\n\n".
-                   Utils::getUrlSondage($numsondage) . " \n\n" .
-                   _("Thanks for your confidence.") . "\n". NOMAPPLICATION );
-            }
+				if(config_get('use_smtp')==true){
+					Utils::sendEmail( "$dsondage->mail_admin",
+					   "[".NOMAPPLICATION."] "._("Poll's participation")." : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8')."",
+					   html_entity_decode("\"$nom\" ", ENT_QUOTES, 'UTF-8').
+					   _("has filled a line.\nYou can find your poll at the link") . " :\n\n".
+					   Utils::getUrlSondage($numsondage) . " \n\n" .
+					   _("Thanks for your confidence.") . "\n". NOMAPPLICATION );
+				}
+			}
         }
     } else {
         $err |= NAME_EMPTY;

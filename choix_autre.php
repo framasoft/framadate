@@ -28,7 +28,7 @@ if (file_exists('bandeaux_local.php')) {
 }
 
 // Step 1/3 : error if $_SESSION from info_sondage are not valid
-if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmpty('nom', $_SESSION) === false || Utils::issetAndNoEmpty('adresse', $_SESSION) === false) {
+if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmpty('nom', $_SESSION) === false || ((config_get('use_smtp')) ? Utils::issetAndNoEmpty('adresse', $_SESSION) === false : false)) {
 
     Utils::print_header ( _("Error!") );
     bandeau_titre(_("Error!"));
@@ -57,8 +57,6 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         $temp_results=substr($temp_results,1);
         $_SESSION["toutchoix"]=$temp_results;
 
-        // Expiration date → after 6 months if not filled or in bad format
-        $_SESSION["champdatefin"]=time()+15552000;
 
         if (Utils::issetAndNoEmpty('champdatefin')) {
             $registredate = explode("/",$_POST["champdatefin"]);
@@ -69,7 +67,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
                 }
             }
         }
-
+		
         //format du sondage AUTRE
         $_SESSION["formatsondage"]="A".$_SESSION["studsplus"];
 
@@ -93,9 +91,16 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         Utils::print_header ( _("Removal date and confirmation (3 on 3)") );
         bandeau_titre(_("Removal date and confirmation (3 on 3)"));
 
-        $removal_date=strftime(_("%A, den %e. %B %Y"), time()+15552000);
+		// Expiration date is initialised with config parameter. Value will be modified in step 4 if user has defined an other date		
+		$_SESSION["champdatefin"]= time()+ (86400 * config_get('default_poll_duration')); //60 secondes * 60 minutes * 24 heures * config		
 
-        // Sumary
+		$date_format = _("%A, den %e. %B %Y"); //locale replacement
+		if (strtoupper(substr(PHP_OS,0,3))=='WIN'){ //%e can't be used on Windows platform, use %#d instead
+			$date_format = preg_replace('#(?<!%)((?:%%)*)%e#','\1%#d', $date_format); //replace %e by %#d for windows
+		}
+		$removal_date="(".strftime($date_format, ($_SESSION["champdatefin"])).")";//textual date 
+		
+        // Summary
         $summary = '<ol>';
         for ($i=0;$i<count($_SESSION['choices']);$i++) {
 
@@ -137,7 +142,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
                 '. $summary .'
             </div>
             <div class="alert alert-info">
-                <p>' . _("Your poll will be automatically removed after 6 months:") . ' <strong>'.$removal_date.'</strong>.<br />' . _("You can fix another removal date for it.") .'</p>
+                <p>' . _("Your poll will be automatically removed after"). " " . config_get('default_poll_duration') . " " . _("days") . ' <strong>'.$removal_date.'</strong>.<br />' . _("You can fix another removal date for it.") .'</p>
                 <div class="form-group">
                     <label for="champdatefin" class="col-sm-5 control-label">'. _("Removal date (optional)") .'</label>
                     <div class="col-sm-6">
@@ -175,9 +180,11 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         echo '
             <div class="alert alert-info">
                 <p>'. _("To make a generic poll you need to propose at least two choices between differents subjects.") .'</p>
-                <p>'. _("You can add or remove additional choices with the buttons") .' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></p>
-                <p>'. _("It's possible to propose links or images by using "). '<a href="http://'.$lang.'.wikipedia.org/wiki/Markdown">'. _("the Markdown syntax") .'</a>.</p>
-            </div>'."\n";
+                <p>'. _("You can add or remove additional choices with the buttons") .' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></p>';
+		if(config_get('user_can_add_link_or_url')){		
+            echo '    <p>'. _("It's possible to propose links or images by using "). '<a href="http://'.$lang.'.wikipedia.org/wiki/Markdown">'. _("the Markdown syntax") .'</a>.</p>';
+		}		
+        echo '    </div>'."\n";
 
         // Fields choices : 5 by default
         $nb_choices = (isset($_SESSION['choices'])) ? max(count($_SESSION['choices']), 5) : 5;
@@ -187,9 +194,12 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
             <div class="form-group choice-field">
                 <label for="choice'.$i.'" class="col-sm-2 control-label">'. _("Choice") .' '.($i+1).'</label>
                 <div class="col-sm-10 input-group">
-                    <input type="text" class="form-control" name="choices[]" size="40" value="'.$choice_value.'" id="choice'.$i.'" />
-                    <span class="input-group-addon btn-link md-a-img" title="'. _("Add a link or an image") .' - '. _("Choice") .' '.($i+1).'" ><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>
-                </div>
+                    <input type="text" class="form-control" name="choices[]" size="40" value="'.$choice_value.'" id="choice'.$i.'" />';
+                    if(config_get('user_can_add_link_or_url')){
+						echo '<span class="input-group-addon btn-link md-a-img" title="'. _("Add a link or an image") .' - '. _("Choice") .' '.($i+1).'" ><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>';
+					}
+            echo '
+			</div>
             </div>'."\n";
         }
 
