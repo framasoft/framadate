@@ -252,7 +252,7 @@ class Utils
 
     public static function cleaning_polls($connect, $log_txt) {
         $connect->StartTrans();
-        $req = 'SELECT * FROM sondage WHERE date_fin < NOW() LIMIT 50';
+        $req = 'SELECT * FROM sondage WHERE date_fin < NOW() LIMIT 20';
         $sql = $connect->Prepare($req);
         $cleaning = $connect->Execute($sql);
 
