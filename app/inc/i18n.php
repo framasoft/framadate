@@ -37,15 +37,17 @@ if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'
 }
 
 $locale = $mlocale . '.utf8';//unix format
-if (strtoupper(substr(PHP_OS,0,3))=='WIN'){ //windows locale format, see http://msdn.microsoft.com/en-us/library/39cwe7zf%28v=vs.90%29.aspx
+if (strtoupper(substr(PHP_OS,0,3))=='WIN'){ 
+	 putenv("LC_ALL=$mlocale"); //Windows env. needed to switch between languages
 	 switch ($mlocale){
-		case 'fr_FR' : $locale = "fra";break;
-		case 'en_GB' : $locale = "english";break;
+		case 'fr_FR' : $locale = "fra";break; //$locale in windows locale format, needed to use php function that handle text : strftime()
+		case 'en_GB' : $locale = "english";break; //see http://msdn.microsoft.com/en-us/library/39cwe7zf%28v=vs.90%29.aspx
 		case 'de_DE' : $locale = "deu";break;
 		case 'es_ES' : $locale = "esp";break;
 	 }
 }
-putenv('LANGUAGE=');
+
+putenv('LANGUAGE=');//sert à quoi?
 setlocale(LC_ALL, $locale);
 setlocale(LC_TIME, $locale);
 setlocale(LC_MESSAGES, $locale);
