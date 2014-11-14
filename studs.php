@@ -246,7 +246,7 @@ if ($dsondage->commentaires) {
     $commentaires=nl2br(str_replace("\\","",$commentaires));
     echo '
                 <div class="form-group col-md-7">
-                    <label class="control-label">'._("Description") .'</label><br />
+                    <h4 class="control-label">'._("Description") .'</h4><br />
                     <p class="form-control-static well">'. $commentaires .'</p>
                 </div>';
 }
