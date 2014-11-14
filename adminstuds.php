@@ -79,11 +79,13 @@ $dsondage=$sondage->FetchObject(false);
 // Send email (only once during the session) to alert admin of the change he made. ==> two modifications (comment, title, description, ...) on differents polls in the same session will generate only one mail.
 $email_admin = $dsondage->mail_admin;
 $poll_title = $dsondage->titre;
+$smtp_allowed = $config['use_smtp'];
 function send_mail_admin() {
     global $email_admin;
     global $poll_title;
     global $numsondageadmin;
-        if($config['use_smtp']==true){
+	global $smtp_allowed;
+        if($smtp_allowed==true){
             if(!isset($_SESSION["mail_admin_sent"])) {
                 Utils::sendEmail( $email_admin,
                     _("[ADMINISTRATOR] New settings for your poll") . ' ' . stripslashes( $poll_title ),
