@@ -151,6 +151,7 @@ $(document).ready(function() {
 
         var new_day_html = last_day.html().replace(re_id_hours, '"d'+nb_days+'-h')
                                   .replace('id="day'+(nb_days-1)+'"', 'id="day'+nb_days+'"')
+                                  .replace('for="day'+(nb_days-1)+'"', 'for="day'+nb_days+'"')
                                   .replace(re_name_hours, 'name="horaires'+nb_days)
                                   .replace(/value="(.*?)"/g, 'value=""')
                                   .replace(/hours" title="(.*?)"/g, 'hours" title="" p')
@@ -404,12 +405,11 @@ $(document).ready(function() {
 // Vote form moving to the top or to the bottom
 $(window).scroll(function() {
     var $table_offset = $('.results thead').offset();
-    if($table_offset != undefined && $(window).scrollTop() < $table_offset.top) {
-        $('.results tbody').prepend($('#vote-form'));
-        $('#tableContainer').before($('.scroll-buttons'));
-    } else {
+    if(($table_offset == undefined || $(window).scrollTop() > $table_offset.top) && ($('table.results').height() > $(window).height())) {
         $('#addition').before($('#vote-form'));
         $('#tableContainer').after($('.scroll-buttons'));
+    } else {
+        $('.results tbody').prepend($('#vote-form'));
+        $('#tableContainer').before($('.scroll-buttons'));
     }
-
 });

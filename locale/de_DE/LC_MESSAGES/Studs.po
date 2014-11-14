@@ -60,6 +60,9 @@ msgstr "Ihr Name"
 msgid "Your email address"
 msgstr "Ihre E-Mail Addresse"
 
+msgid "(in the format name@mail.com)"
+msgstr "(in the format name@mail.com)"
+
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -428,8 +431,8 @@ msgstr "Die Zeichen < > und \" sind nicht erlaubt !"
 msgid "Enter an email address"
 msgstr "Sie müssen eine E-Mail Adresse eingeben"
 
-msgid "The address is not correct! (You should enter a valid email address in order to receive the link to your poll)"
-msgstr "Die Adresse ist nicht korrekt! (Sie sollten eine funktionierende E-Mail Adresse angeben, um den Link zu ihrer Umfrage zu erhalten)"
+msgid "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll."
+msgstr "Die Adresse ist nicht korrekt! Sie sollten eine funktionierende E-Mail Adresse angeben, um den Link zu ihrer Umfrage zu erhalten"
 
 # Error choix_date.php/choix_autre.php
 msgid "You haven't filled the first section of the poll creation."

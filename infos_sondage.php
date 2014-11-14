@@ -77,11 +77,11 @@ if (Utils::issetAndNoEmpty("poursuivre")){
     unset($_SESSION["mailsonde"]);
     $_SESSION["mailsonde"] = ($mailsonde !== null) ? true : false;
 
-	if (config_get('use_smtp')==true){
-		if (Utils::isValidEmail($adresse) === false) {
-			$erreur_adresse = true;
-		}
-	}
+    if ($config['use_smtp']==true){
+        if (Utils::isValidEmail($adresse) === false) {
+            $erreur_adresse = true;
+        }
+    }
 
     if (preg_match(';<|>|";',$titre)) {
         $erreur_injection_titre = true;
@@ -96,13 +96,12 @@ if (Utils::issetAndNoEmpty("poursuivre")){
     }
 
     // Si pas d'erreur dans l'adresse alors on change de page vers date ou autre
-	if(config_get('use_smtp')==true){
-		$email_OK = $adresse && !$erreur_adresse;
-	}
-	else{
-		$email_OK = true;
-	}
-	
+    if($config['use_smtp']==true){
+        $email_OK = $adresse && !$erreur_adresse;
+    } else{
+        $email_OK = true;
+    }
+
     if ($titre && $nom && $email_OK && ! $erreur_injection_titre && ! $erreur_injection_commentaires && ! $erreur_injection_nom) {
 
         if ( $poursuivre == "creation_sondage_date" ) {
@@ -188,7 +187,7 @@ if (!$_SESSION["adresse"] && Utils::issetAndNoEmpty("poursuivre")) {
     $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("Enter an email address") . '</p></div>';
 } elseif ($erreur_adresse && Utils::issetAndNoEmpty("poursuivre")) {
     $errors['email']['aria'] = 'aria-describeby="poll_email_error" '; $errors['email']['class'] = ' has-error';
-    $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("The address is not correct! (You should enter a valid email address in order to receive the link to your poll)") . '</p></div>';
+    $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.") . '</p></div>';
 }
 
 /*
@@ -252,18 +251,18 @@ echo '
             </div>
         </div>
             '.$errors['name']['msg'];
-		if(config_get('use_smtp')==true){
-			echo '
-				<div class="form-group'.$errors['email']['class'].'">
-					<label for="email" class="col-sm-4 control-label">'. _("Your email address") .' *</label>
-					<div class="col-sm-8">
-						'.$input_email.'
-					</div>
-				</div>
-				'.$errors['email']['msg'];
-		}
-
-        echo '<div class="form-group">
+if($config['use_smtp']==true){
+    echo '
+        <div class="form-group'.$errors['email']['class'].'">
+            <label for="email" class="col-sm-4 control-label">'. _("Your email address") .' *<br /><span class="small">'. _("(in the format name@mail.com)") .'</span></label>
+            <div class="col-sm-8">
+                '.$input_email.'
+            </div>
+        </div>
+        '.$errors['email']['msg'];
+}
+echo '
+        <div class="form-group">
             <div class="col-sm-offset-1 col-sm-11">
               <div class="checkbox">
                 <label>
@@ -272,19 +271,19 @@ echo '
               </div>
             </div>
         </div>';
-		if(config_get('use_smtp')==true){
-			echo '<div class="form-group">
-				<div class="col-sm-offset-1 col-sm-11">
-				  <div class="checkbox">
-					<label>
-						<input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde">'. _("To receive an email for each new vote.") .'
-					</label>
-				  </div>
-				</div>
-			</div>';
-		}
-
-        echo '<p class="text-right">
+if($config['use_smtp']==true){
+    echo '<div class="form-group">
+        <div class="col-sm-offset-1 col-sm-11">
+          <div class="checkbox">
+            <label>
+                <input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde">'. _("To receive an email for each new vote.") .'
+            </label>
+          </div>
+        </div>
+    </div>';
+}
+echo '
+        <p class="text-right">
             <input type="hidden" name="choix_sondage" value="'. $choix_sondage .'"/>
             <button name="poursuivre" value="'. $choix_sondage .'" type="submit" class="btn btn-success" title="'. _('Go to step 2') . '">'. _('Next') . '</button>
         </p>
@@ -295,5 +294,4 @@ echo '
     </div>
 </div>';
 
-//bandeau de pied
 bandeau_pied();

@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 include_once __DIR__ . '/constants.php';
 include_once __DIR__ . '/i18n.php';
-include_once __DIR__ . '/functions.inc.php';
 
 $connect = NewADOConnection(BASE_TYPE);
 $connect->Connect(SERVEURBASE, USERBASE, USERPASSWD, BASE);

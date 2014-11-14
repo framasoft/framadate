@@ -44,8 +44,6 @@ div.comment{
     padding-left: 14px;
 }
 
-/* Ajouts après mise en place de Bootstrap */
-
 /* Règles générales */
 
 a:focus { /* a11y */
@@ -75,6 +73,10 @@ main, header, footer, .container .jumbotron {
 
 .opacity:hover img {
     opacity: 1;
+}
+
+.home-choice {
+    margin-bottom:50px;
 }
 
 /* Description du sondage */
@@ -115,7 +117,7 @@ caption {
 }
 
     /* adminstuds.php */
-#title-form h2 .btn-edit,
+#title-form h3 .btn-edit,
 #email-form .btn-edit,
 #description-form .btn-edit,
 #poll-rules-form .btn-edit {
@@ -337,4 +339,8 @@ table.results .btn-link.btn-sm {
 
 #md-a-imgModal .form-group {
     margin:10px 0px;
+}
+
+#md-a-imgModalLabel {
+    font-size: 24px;
 }

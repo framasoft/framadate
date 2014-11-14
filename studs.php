@@ -173,15 +173,15 @@ if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
            $connect->Execute($sql, array($nom, $numsondage, $nouveauchoix));
 
             if ($dsondage->mailsonde || /* compatibility for non boolean DB */ $dsondage->mailsonde=="yes" || $dsondage->mailsonde=="true") {
-				if(config_get('use_smtp')==true){
-					Utils::sendEmail( "$dsondage->mail_admin",
-					   "[".NOMAPPLICATION."] "._("Poll's participation")." : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8')."",
-					   html_entity_decode("\"$nom\" ", ENT_QUOTES, 'UTF-8').
-					   _("has filled a line.\nYou can find your poll at the link") . " :\n\n".
-					   Utils::getUrlSondage($numsondage) . " \n\n" .
-					   _("Thanks for your confidence.") . "\n". NOMAPPLICATION );
-				}
-			}
+                if($config['use_smtp']==true){
+                    Utils::sendEmail( "$dsondage->mail_admin",
+                       "[".NOMAPPLICATION."] "._("Poll's participation")." : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8')."",
+                       html_entity_decode("\"$nom\" ", ENT_QUOTES, 'UTF-8').
+                       _("has filled a line.\nYou can find your poll at the link") . " :\n\n".
+                       Utils::getUrlSondage($numsondage) . " \n\n" .
+                       _("Thanks for your confidence.") . "\n". NOMAPPLICATION );
+                }
+            }
         }
     } else {
         $err |= NAME_EMPTY;
@@ -246,7 +246,7 @@ if ($dsondage->commentaires) {
     $commentaires=nl2br(str_replace("\\","",$commentaires));
     echo '
                 <div class="form-group col-md-7">
-                    <label class="control-label">'._("Description") .'</label><br />
+                    <h4 class="control-label">'._("Description") .'</h4><br />
                     <p class="form-control-static well">'. $commentaires .'</p>
                 </div>';
 }
@@ -335,7 +335,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+"||$dsondage->format=="D-") {
         $current = $toutsujet[$i];
 
         $border[$i] = false;
-        $radio_title[$i] = strftime("%A %e %B %Y",$current);
+        $radio_title[$i] = strftime($date_format['txt_short'],$current);
 
         // Months
         $td_headers[$i] = 'M'.($i+1-$colspan_month);
@@ -351,11 +351,11 @@ if ($dsondage->format=="D"||$dsondage->format=="D+"||$dsondage->format=="D-") {
         // Days
         $td_headers[$i] .= ' D'.($i+1-$colspan_day);
 
-        if (isset($toutsujet[$i+1]) && strftime("%a %e",$current)==strftime("%a %e",$toutsujet[$i+1])&&strftime("%B",$current)==strftime("%B",$toutsujet[$i+1])){
+        if (isset($toutsujet[$i+1]) && strftime($date_format['txt_day'],$current)==strftime($date_format['txt_day'],$toutsujet[$i+1])&&strftime("%B",$current)==strftime("%B",$toutsujet[$i+1])){
             $colspan_day++;
         } else {
             $rbd = ($border[$i]) ? ' rbd' : '';
-            $tr_days .= '<th colspan="'.$colspan_day.'" class="bg-primary day'.$rbd.'" id="D'.($i+1-$colspan_day).'">'.strftime("%a %e",$current).'</th>';
+            $tr_days .= '<th colspan="'.$colspan_day.'" class="bg-primary day'.$rbd.'" id="D'.($i+1-$colspan_day).'">'.strftime($date_format['txt_day'],$current).'</th>';
             $colspan_day=1;
         }
 
@@ -439,13 +439,13 @@ if ($dsondage->format=="A-" || $dsondage->format=="D-") {
     echo '
     <div class="alert alert-danger">
         <p>' . _("The administrator locked this poll, votes and comments are frozen, it's not possible to participate anymore.") . '</p>
-        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</p>
+        <p aria-hidden="true"><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</p>
     </div>';
 } else {
     echo '
     <div class="alert alert-info">
         <p>' . _("If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.") . '</p>
-        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</p>
+        <p aria-hidden="true"><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</p>
     </div>';
 }
 echo'
@@ -557,7 +557,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
     for ($i=0;$i<$nblignes;$i++) {
         if (isset($_POST["modifierligne$i"])) {
             if ($compteur == $i) {
-                echo '<td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="validermodifier'.$compteur.'" title="'. _('Save the choices:') .' '.stripslashes($nombase).'">'. _('Save') .'</button></td>'."\n";
+                echo '<td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="validermodifier'.$compteur.'" title="'. _('Save the choices') .' '.stripslashes($nombase).'">'. _('Save') .'</button></td>'."\n";
             }
         }
     }
@@ -662,7 +662,7 @@ if ($compteursujet == 1) {
 
 echo '
     </div>
-    <hr />';
+    <hr role="presentation" />';
 
 // Comments
 $sql = 'select * from comments where id_sondage='.$connect->Param('numsondage').' order by id_comment';

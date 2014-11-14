@@ -76,24 +76,24 @@ if (!$sondage || $sondage->RecordCount() != 1){
 $dsujet=$sujets->FetchObject(false);
 $dsondage=$sondage->FetchObject(false);
 
-// Send email (only once during the session) to alert admin of the change he made. ==> two modifications (comment, title, description, ...) on differents polls in the same session will generate only one mail. 
+// Send email (only once during the session) to alert admin of the change he made. ==> two modifications (comment, title, description, ...) on differents polls in the same session will generate only one mail.
 $email_admin = $dsondage->mail_admin;
 $poll_title = $dsondage->titre;
 function send_mail_admin() {
     global $email_admin;
-	global $poll_title;
+    global $poll_title;
     global $numsondageadmin;
-		if(config_get('use_smtp')==true){
-			if(!isset($_SESSION["mail_admin_sent"])) { 
-				Utils::sendEmail( $email_admin,
-					_("[ADMINISTRATOR] New settings for your poll") . ' ' . stripslashes( $poll_title ),
-					_("You have changed the settings of your poll. \nYou can modify this poll with this link") .
-					  " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . "\n\n" .
-					_("Thanks for your confidence.") . "\n" . NOMAPPLICATION
-					);
-				$_SESSION["mail_admin_sent"]=true;
-			}
-		}
+        if($config['use_smtp']==true){
+            if(!isset($_SESSION["mail_admin_sent"])) {
+                Utils::sendEmail( $email_admin,
+                    _("[ADMINISTRATOR] New settings for your poll") . ' ' . stripslashes( $poll_title ),
+                    _("You have changed the settings of your poll. \nYou can modify this poll with this link") .
+                      " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . "\n\n" .
+                    _("Thanks for your confidence.") . "\n" . NOMAPPLICATION
+                    );
+                $_SESSION["mail_admin_sent"]=true;
+            }
+        }
 
 }
 
@@ -109,10 +109,8 @@ if (isset($_POST["boutonnouveautitre"])) {
 
         //Email sent to the admin
         if ($connect->Execute($sql, array($nouveautitre, $numsondage))) {
-            //if(config_get('use_smtp')==true){
-				send_mail_admin();
-			//}
-		}
+            send_mail_admin();
+        }
     }
 }
 
@@ -757,9 +755,10 @@ echo '
                     </div>
                 </div>
                 <div class="form-group col-md-7" id="description-form">
-                    <label for="newdescription">'._("Description") .'</label><button class="btn btn-link btn-sm btn-edit" title="'. _('Edit the description') .'"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span></button><br />
+                    <h4 class="control-label">'._("Description") .'</h4><button class="btn btn-link btn-sm btn-edit" title="'. _('Edit the description') .'"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span></button><br />
                     <p class="well">'.$description.'</p>
                     <div class="hidden js-desc text-right">
+                        <label class="sr-only" for="newdescription">'._("Description") .'</label>
                         <textarea class="form-control" id="newdescription" name="nouveauxcommentaires" rows="2" cols="40">'.$description.'</textarea>
                         <button type="submit" id="btn-new-desc" name="boutonnouveauxcommentaires" value="1" class="btn btn-sm btn-success" title="'. _("Save the description") .'">'. _("Save") .'</button>
                         <button class="btn btn-default btn-sm btn-cancel" title="'. _('Cancel the description edit') .'">'. _('Cancel') .'</button>
@@ -840,7 +839,7 @@ if (substr($dsondage->format, 0, 1)=="D") {
         $current = $toutsujet[$i];
 
         $border[$i] = false;
-        $radio_title[$i] = strftime("%A %e %B %Y",$current);
+        $radio_title[$i] = strftime($date_format['txt_short'],$current);
 
         // Months
         $td_headers[$i] = 'M'.($i+1-$colspan_month);
@@ -856,11 +855,11 @@ if (substr($dsondage->format, 0, 1)=="D") {
         // Days
         $td_headers[$i] .= ' D'.($i+1-$colspan_day);
 
-        if (isset($toutsujet[$i+1]) && strftime("%a %e",$current)==strftime("%a %e",$toutsujet[$i+1]) && strftime("%B",$current)==strftime("%B",$toutsujet[$i+1])){
+        if (isset($toutsujet[$i+1]) && strftime($date_format['txt_day'],$current)==strftime($date_format['txt_day'],$toutsujet[$i+1]) && strftime("%B",$current)==strftime("%B",$toutsujet[$i+1])){
             $colspan_day++;
         } else {
             $rbd = ($border[$i]) ? ' rbd' : '';
-            $tr_days .= '<th colspan="'.$colspan_day.'" class="bg-primary day'.$rbd.'" id="D'.($i+1-$colspan_day).'">'.strftime("%a %e",$current).'</th>';
+            $tr_days .= '<th colspan="'.$colspan_day.'" class="bg-primary day'.$rbd.'" id="D'.($i+1-$colspan_day).'">'.strftime($date_format['txt_day'],$current).'</th>';
             $colspan_day=1;
         }
 
@@ -956,7 +955,7 @@ echo '
            ' . _(' remove a column or a line with ') . '<span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">' . _('Remove') . '</span>
            ' . _('and add a new column with '). '<span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _('Add a column') . '</span></p>
         <p>' . _('Finally, you can change the informations of this poll like the title, the comments or your email address.') . '</p>
-        <p><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</p>
+        <p aria-hidden="true"><b>' . _('Legend:'). '</b> <span class="glyphicon glyphicon-ok"></span> =' . _('Yes') . ', <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = ' . _('Ifneedbe') . ', <span class="glyphicon glyphicon-ban-circle"></span> = ' . _('No') . '</p>
     </div>
 
     <div class="hidden row scroll-buttons" aria-hidden="true">
@@ -1079,7 +1078,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
     for ($i = 0; $i < $nblignes; $i++) {
         if (isset($_POST["modifierligne$i"])) {
             if ($compteur == $i) {
-                echo '<td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="validermodifier'.$compteur.'" title="'. _('Save the choices:') .' '.stripslashes($nombase).'">'. _('Save') .'</button></td>'."\n";
+                echo '<td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="validermodifier'.$compteur.'" title="'. _('Save the choices') .' '.stripslashes($nombase).'">'. _('Save') .'</button></td>'."\n";
             }
         }
     }
@@ -1186,7 +1185,7 @@ if ($compteursujet == 1) {
 
 echo '
     </div>
-    <hr />'."\n";
+    <hr role="presentation" />'."\n";
 // Commments
 $sql = 'SELECT * FROM comments WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_comment';
 $sql = $connect->Prepare($sql);
