@@ -36,7 +36,15 @@ if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'
 
 }
 
-$locale = $mlocale . '.utf8';
+$locale = $mlocale . '.utf8';//unix format
+if (strtoupper(substr(PHP_OS,0,3))=='WIN'){ //windows locale format, see http://msdn.microsoft.com/en-us/library/39cwe7zf%28v=vs.90%29.aspx
+	 switch ($mlocale){
+		case 'fr_FR' : $locale = "fra";break;
+		case 'en_GB' : $locale = "english";break;
+		case 'de_DE' : $locale = "deu";break;
+		case 'es_ES' : $locale = "esp";break;
+	 }
+}
 putenv('LANGUAGE=');
 setlocale(LC_ALL, $locale);
 setlocale(LC_TIME, $locale);
@@ -48,7 +56,7 @@ bind_textdomain_codeset($domain, 'UTF-8');
 textdomain($domain);
 
 /* temp, for compatibility :*/
-$a = explode('_', $locale);
+$a = explode('_', $mlocale);
 $_SESSION['langue'] = strtoupper($a[0]);
 
 /* <html lang="$lang"> */
