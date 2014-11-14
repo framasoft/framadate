@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-23 20:52+0100\n"
 "PO-Revision-Date: 2014-11-11 20:12+0100\n"
-"Last-Translator: mrB <mr.bricodage@gmail.com>\n"
+"Last-Translator: JosephK\n"
 "Language-Team: JosephK\n"
 "Language: English\n"
 "MIME-Version: 1.0\n"
@@ -59,6 +59,9 @@ msgstr "Your name"
 
 msgid "Your email address"
 msgstr "Your email address"
+
+msgid "(in the format name@mail.com)"
+msgstr "(in the format name@mail.com)"
 
 msgid "Description"
 msgstr "Description"
@@ -434,8 +437,8 @@ msgstr "Characters < > and \" are not permitted"
 msgid "Enter an email address"
 msgstr "Enter an email address"
 
-msgid "The address is not correct! (You should enter a valid email address in order to receive the link to your poll)"
-msgstr "The address is not correct! (You should enter a valid email address in order to receive the link to your poll)"
+msgid "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll."
+msgstr "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll."
 
 # Error choix_date.php/choix_autre.php
 msgid "You haven't filled the first section of the poll creation."
@@ -554,8 +557,11 @@ msgid "Create the poll"
 msgstr "Create the poll"
 
 # Step 3 choix_date.php
-msgid "Your poll will be automatically removed 6 months after the last date of your poll:"
-msgstr "Your poll will be automatically removed 6 months after the last date of your poll:"
+msgid "Your poll will be automatically removed "
+msgstr "Your poll will be automatically removed "
+
+msgid " after the last date of your poll:"
+msgstr " after the last date of your poll:"
 
 msgid "Removal date:"
 msgstr "Removal date:"

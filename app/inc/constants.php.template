@@ -83,3 +83,18 @@ const NO_POLL_ID            = 0x0001000000;
 const INVALID_EMAIL         = 0x0010000000;
 const TITLE_EMPTY           = 0x0100000000;
 const INVALID_DATE          = 0x1000000000;
+
+// Config
+$config = [
+    /* general config */
+    'use_smtp' => true,                     // use email for polls creation/modification/responses notification
+    /* home */
+    'show_what_is_that' => true,            // display "how to use" section
+    'show_the_software' => true,            // display technical information about the software
+    'show_cultivate_your_garden' => true,   // display "developpement and administration" information
+    /* choix_autre.php / choix_date.php */
+    'default_poll_duration' => 180,          // default values for the new poll duration (number of days).
+    /* choix_autre.php */
+    'user_can_add_img_or_link' => true,      // user can add link or URL when creating his poll.
+];
+

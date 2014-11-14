@@ -404,12 +404,11 @@ $(document).ready(function() {
 // Vote form moving to the top or to the bottom
 $(window).scroll(function() {
     var $table_offset = $('.results thead').offset();
-    if($table_offset != undefined && $(window).scrollTop() < $table_offset.top) {
-        $('.results tbody').prepend($('#vote-form'));
-        $('#tableContainer').before($('.scroll-buttons'));
-    } else {
+    if(($table_offset == undefined || $(window).scrollTop() > $table_offset.top) && ($('table.results').height() > $(window).height())) {
         $('#addition').before($('#vote-form'));
         $('#tableContainer').after($('.scroll-buttons'));
+    } else {
+        $('.results tbody').prepend($('#vote-form'));
+        $('#tableContainer').before($('.scroll-buttons'));
     }
-
 });

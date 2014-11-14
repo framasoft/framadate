@@ -76,7 +76,7 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
         $_SESSION["toutchoix"]=substr($choixdate,1);
 
         // Expiration date → 6 months after last day if not filled or in bad format
-        $_SESSION["champdatefin"]=end($temp_results)+15552000;
+        $_SESSION["champdatefin"]=end($temp_results)+(86400 * $config['default_poll_duration']);
 
         if (Utils::issetAndNoEmpty('champdatefin')) {
             $registredate = explode("/",$_POST["champdatefin"]);
@@ -124,12 +124,12 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
 
         $temp_array = array_unique($_SESSION["totalchoixjour"]);
         sort($temp_array);
-        $removal_date=strftime(_("%A, den %e. %B %Y"), end($temp_array)+15552000);
+        $removal_date=strftime($date_format['txt_full'], end($temp_array)+ (86400 * $config['default_poll_duration']));
 
         // Sumary
         $summary = '<ul>';
         for ($i=0;$i<count($_SESSION["totalchoixjour"]);$i++) {
-            $summary .= '<li>'.strftime(_("%A, den %e. %B %Y"), $_SESSION["totalchoixjour"][$i]);
+            $summary .= '<li>'.strftime($date_format['txt_full'], $_SESSION["totalchoixjour"][$i]);
             for ($j=0;$j<count($_SESSION['horaires'.$i]);$j++) {
                 if (isset($_SESSION['horaires'.$i][$j])) {
                     $summary .= ($j==0) ? ' : ' : ', ';
@@ -150,7 +150,7 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
                 '. $summary .'
             </div>
             <div class="alert alert-info clearfix">
-                <p>' . _("Your poll will be automatically removed 6 months after the last date of your poll:") . ' <strong>'.$removal_date.'</strong>.<br />' . _("You can fix another removal date for it.") .'</p>
+                <p>' . _("Your poll will be automatically removed "). $config['default_poll_duration'] . ' ' . _("days") ._(" after the last date of your poll:") . ' <strong>'.$removal_date.'</strong>.<br />' . _("You can fix another removal date for it.") .'</p>
                 <div class="form-group">
                     <label for="champdatefin" class="col-sm-5 control-label">'. _("Removal date (optional)") .'</label>
                     <div class="col-sm-6">
@@ -163,8 +163,12 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
                 </div>
             </div>
             <div class="alert alert-warning">
-                <p>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll."). '</p>
-                <p>' . _("Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.") .'</p>
+                <p>'. _("Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll."). '</p>';
+        if($config['use_smtp']==true){
+            echo '
+                <p>' . _("Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.") .'</p>';
+        }
+        echo '
             </div>
             <p class="text-right">
                 <button class="btn btn-default" onclick="javascript:window.history.back();" title="'. _('Back to step 2') . '">'. _('Back') . '</button>
@@ -200,6 +204,7 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
             <fieldset>
                 <div class="form-group">
                     <legend>
+                        <label class="sr-only" for="day'.$i.'">'. _("Day") .' '. ($i+1) .'</label>
                         <div class="input-group date col-xs-7">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
                             <input type="text" class="form-control" id="day'.$i.'" title="'. _("Day") .' '. ($i+1) .'" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat'.$i.'" name="days[]" value="'.$day_value.'" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
