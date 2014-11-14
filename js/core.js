@@ -151,6 +151,7 @@ $(document).ready(function() {
 
         var new_day_html = last_day.html().replace(re_id_hours, '"d'+nb_days+'-h')
                                   .replace('id="day'+(nb_days-1)+'"', 'id="day'+nb_days+'"')
+                                  .replace('for="day'+(nb_days-1)+'"', 'for="day'+nb_days+'"')
                                   .replace(re_name_hours, 'name="horaires'+nb_days)
                                   .replace(/value="(.*?)"/g, 'value=""')
                                   .replace(/hours" title="(.*?)"/g, 'hours" title="" p')
