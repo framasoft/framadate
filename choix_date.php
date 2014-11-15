@@ -213,8 +213,8 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
                     </legend>'."\n";
 
             // Fields hours : 3 by default
-            for ($j=0;$j<max(count($_SESSION['horaires'.$i]),3);$j++) {
-                $hour_value = isset($_SESSION['horaires'.$i][$j]) ? $_SESSION['horaires'.$i][$j] : '';
+            for ($j=0;$j<max(count(isset($_SESSION["horaires".$i]) ? $_SESSION["horaires".$i] : 0),3);$j++) {
+                $hour_value = isset($_SESSION["horaires".$i][$j]) ? $_SESSION["horaires".$i][$j] : '';
                 echo '
                     <div class="col-sm-2">
                         <label for="d'.$i.'-h'.$j.'" class="sr-only control-label">'. _("Time") .' '. ($j+1) .'</label>
