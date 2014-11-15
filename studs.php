@@ -472,7 +472,7 @@ echo'
 $user_mod = false;
 
 //affichage des resultats actuels
-$somme = array();
+$somme[] = 0;
 $compteur = 0;
 
 while ($data = $user_studs->FetchNextObject(false)) {
