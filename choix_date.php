@@ -124,7 +124,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
 
         $temp_array = array_unique($_SESSION["totalchoixjour"]);
         sort($temp_array);
-        $removal_date=strftime($date_format['txt_full'], end($temp_array)+ (86400 * $config['default_poll_duration']));
+        $removal_date=utf8_encode(strftime($date_format['txt_full'], end($temp_array)+ (86400 * $config['default_poll_duration'])));
 
         // Sumary
         $summary = '<ul>';
