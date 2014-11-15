@@ -29,7 +29,7 @@ if (is_readable('bandeaux_local.php')) {
 }
 
 // Step 1/3 : error if $_SESSION from info_sondage are not valid
-if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adresse', $_SESSION) && !Utils::issetAndNoEmpty('commentaires', $_SESSION) && !Utils::issetAndNoEmpty('mail', $_SESSION)) {
+if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmpty('nom', $_SESSION) === false || (($config['use_smtp']) ? Utils::issetAndNoEmpty('adresse', $_SESSION) === false : false)) {
 
     Utils::print_header ( _("Error!") );
     bandeau_titre(_("Error!"));
