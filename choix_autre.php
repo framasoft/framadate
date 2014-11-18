@@ -94,7 +94,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         // Expiration date is initialised with config parameter. Value will be modified in step 4 if user has defined an other date
         $_SESSION["champdatefin"]= time()+ (86400 * $config['default_poll_duration']); //60 sec * 60 min * 24 hours * config
 
-        $removal_date= strftime($date_format['txt_full'], ($_SESSION["champdatefin"]));//textual date
+        $removal_date= utf8_encode(strftime($date_format['txt_full'], ($_SESSION["champdatefin"])));//textual date
 
         // Summary
         $summary = '<ol>';

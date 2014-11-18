@@ -29,7 +29,7 @@ if (is_readable('bandeaux_local.php')) {
 }
 
 // Step 1/3 : error if $_SESSION from info_sondage are not valid
-if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adresse', $_SESSION) && !Utils::issetAndNoEmpty('commentaires', $_SESSION) && !Utils::issetAndNoEmpty('mail', $_SESSION)) {
+if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmpty('nom', $_SESSION) === false || (($config['use_smtp']) ? Utils::issetAndNoEmpty('adresse', $_SESSION) === false : false)) {
 
     Utils::print_header ( _("Error!") );
     bandeau_titre(_("Error!"));
@@ -124,7 +124,7 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
 
         $temp_array = array_unique($_SESSION["totalchoixjour"]);
         sort($temp_array);
-        $removal_date=strftime($date_format['txt_full'], end($temp_array)+ (86400 * $config['default_poll_duration']));
+        $removal_date=utf8_encode(strftime($date_format['txt_full'], end($temp_array)+ (86400 * $config['default_poll_duration'])));
 
         // Sumary
         $summary = '<ul>';
@@ -213,8 +213,8 @@ if (!Utils::issetAndNoEmpty('nom', $_SESSION) && !Utils::issetAndNoEmpty('adress
                     </legend>'."\n";
 
             // Fields hours : 3 by default
-            for ($j=0;$j<max(count($_SESSION['horaires'.$i]),3);$j++) {
-                $hour_value = isset($_SESSION['horaires'.$i][$j]) ? $_SESSION['horaires'.$i][$j] : '';
+            for ($j=0;$j<max(count(isset($_SESSION["horaires".$i]) ? $_SESSION["horaires".$i] : 0),3);$j++) {
+                $hour_value = isset($_SESSION["horaires".$i][$j]) ? $_SESSION["horaires".$i][$j] : '';
                 echo '
                     <div class="col-sm-2">
                         <label for="d'.$i.'-h'.$j.'" class="sr-only control-label">'. _("Time") .' '. ($j+1) .'</label>

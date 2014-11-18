@@ -79,11 +79,13 @@ $dsondage=$sondage->FetchObject(false);
 // Send email (only once during the session) to alert admin of the change he made. ==> two modifications (comment, title, description, ...) on differents polls in the same session will generate only one mail.
 $email_admin = $dsondage->mail_admin;
 $poll_title = $dsondage->titre;
+$smtp_allowed = $config['use_smtp'];
 function send_mail_admin() {
     global $email_admin;
     global $poll_title;
     global $numsondageadmin;
-        if($config['use_smtp']==true){
+	global $smtp_allowed;
+        if($smtp_allowed==true){
             if(!isset($_SESSION["mail_admin_sent"])) {
                 Utils::sendEmail( $email_admin,
                     _("[ADMINISTRATOR] New settings for your poll") . ' ' . stripslashes( $poll_title ),
@@ -836,45 +838,43 @@ if (substr($dsondage->format, 0, 1)=="D") {
     for ($i = 0; $i < count($toutsujet); $i++) {
 
         // Current date
-        $current = $toutsujet[$i];
-
+        $current = $toutsujet[$i];//format date@hour. ex : 2020292820@10:00
+		$horoCur = explode("@",$current); //horoCur[0] = date, horoCur[1] = hour
+		if (isset($toutsujet[$i+1])){
+			$next = $toutsujet[$i+1];
+			$horoNext = explode("@",$next); 
+		}		
         $border[$i] = false;
-        $radio_title[$i] = strftime($date_format['txt_short'],$current);
+        $radio_title[$i] = strftime($date_format['txt_short'],$horoCur[0]);
 
         // Months
         $td_headers[$i] = 'M'.($i+1-$colspan_month);
 
-        if (isset($toutsujet[$i+1]) && strftime("%B", $current) == strftime("%B", $toutsujet[$i+1]) && strftime("%Y", $current) == strftime("%Y", $toutsujet[$i+1])){
+        if (isset($toutsujet[$i+1]) && strftime("%B", $horoCur[0]) == strftime("%B", $horoNext[0]) && strftime("%Y", $horoCur[0]) == strftime("%Y", $horoNext[0])){
             $colspan_month++;
         } else {
             $border[$i] = true;
-            $tr_months .= '<th colspan="'.$colspan_month.'" class="bg-primary month" id="M'.($i+1-$colspan_month).'">'.strftime("%B",$current).' '.strftime("%Y", $current).'</th>';
+            $tr_months .= '<th colspan="'.$colspan_month.'" class="bg-primary month" id="M'.($i+1-$colspan_month).'">'.strftime("%B",$horoCur[0]).' '.strftime("%Y", $horoCur[0]).'</th>';
             $colspan_month=1;
         }
 
         // Days
         $td_headers[$i] .= ' D'.($i+1-$colspan_day);
 
-        if (isset($toutsujet[$i+1]) && strftime($date_format['txt_day'],$current)==strftime($date_format['txt_day'],$toutsujet[$i+1]) && strftime("%B",$current)==strftime("%B",$toutsujet[$i+1])){
+        if (isset($toutsujet[$i+1]) && strftime($date_format['txt_day'],$horoCur[0])==strftime($date_format['txt_day'],$horoNext[0]) && strftime("%B",$horoCur[0])==strftime("%B",$horoNext[0])){
             $colspan_day++;
         } else {
             $rbd = ($border[$i]) ? ' rbd' : '';
-            $tr_days .= '<th colspan="'.$colspan_day.'" class="bg-primary day'.$rbd.'" id="D'.($i+1-$colspan_day).'">'.strftime($date_format['txt_day'],$current).'</th>';
+            $tr_days .= '<th colspan="'.$colspan_day.'" class="bg-primary day'.$rbd.'" id="D'.($i+1-$colspan_day).'">'.strftime($date_format['txt_day'],$horoCur[0]).'</th>';
             $colspan_day=1;
         }
 
         // Hours
         $rbd = ($border[$i]) ? ' rbd' : '';
-        if (strpos($current,'@') !== false) {
-            $hour = substr($current, strpos($current, '@')-count($current)+2);
-
-            if ($hour != "") {
-                $tr_hours .= '<th class="bg-info'.$rbd.'" id="H'.$i.'" title="'.$hour.'">'.$hour.'</th>';
-                $radio_title[$i] .= ' - '.$hour;
+        if ($horoCur[1] !== "") {
+                $tr_hours .= '<th class="bg-info'.$rbd.'" id="H'.$i.'" title="'.$horoCur[1].'">'.$horoCur[1].'</th>';
+                $radio_title[$i] .= ' - '.$horoCur[1];
                 $td_headers[$i] .= ' H'.$i;
-            } else {
-                $tr_hours .= '<th class="bg-info'.$rbd.'"></th>';
-            }
         } else {
                 $tr_hours .= '<th class="bg-info'.$rbd.'"></th>';
         }
