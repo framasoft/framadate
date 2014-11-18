@@ -156,8 +156,13 @@ caption {
 
 /* Tableau du sondage */
 #tableContainer {
+    overflow-x:hidden;
+    margin:5px auto;
+}
+
+#tableContainer:focus,
+#tableContainer:hover {
     overflow-x:auto;
-    margin:20px auto;
 }
 
 table.results {

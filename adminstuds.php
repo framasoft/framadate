@@ -84,7 +84,7 @@ function send_mail_admin() {
     global $email_admin;
     global $poll_title;
     global $numsondageadmin;
-	global $smtp_allowed;
+    global $smtp_allowed;
         if($smtp_allowed==true){
             if(!isset($_SESSION["mail_admin_sent"])) {
                 Utils::sendEmail( $email_admin,
@@ -839,11 +839,11 @@ if (substr($dsondage->format, 0, 1)=="D") {
 
         // Current date
         $current = $toutsujet[$i];//format date@hour. ex : 2020292820@10:00
-		$horoCur = explode("@",$current); //horoCur[0] = date, horoCur[1] = hour
-		if (isset($toutsujet[$i+1])){
-			$next = $toutsujet[$i+1];
-			$horoNext = explode("@",$next); 
-		}		
+        $horoCur = explode("@",$current); //horoCur[0] = date, horoCur[1] = hour
+        if (isset($toutsujet[$i+1])){
+            $next = $toutsujet[$i+1];
+            $horoNext = explode("@",$next);
+        }
         $border[$i] = false;
         $radio_title[$i] = strftime($date_format['txt_short'],$horoCur[0]);
 
@@ -1169,6 +1169,7 @@ echo $tr_addition.'
 
 if ($compteursujet == 1) {
     echo '
+        <div class="col-sm-12"><h3>' . _("Best choice") . '</h3></div>
         <div class="col-sm-6 col-sm-offset-3 alert alert-success">
             <p><span class="glyphicon glyphicon-star text-warning"></span> ' . _("The best choice at this time is:") . '</p>
             ' . $meilleursujet . '
@@ -1176,6 +1177,7 @@ if ($compteursujet == 1) {
         </div>'."\n";
 } elseif ($compteursujet > 1) {
     echo '
+        <div class="col-sm-12"><h3>' . _("Best choices") . '</h3></div>
         <div class="col-sm-6 col-sm-offset-3 alert alert-success">
             <p><span class="glyphicon glyphicon-star text-warning"></span> ' . _("The bests choices at this time are:") . '</p>
             ' . $meilleursujet . '

@@ -307,6 +307,12 @@ msgstr "Enregister les choix"
 msgid "Addition"
 msgstr "Somme"
 
+msgid "Best choice"
+msgstr "Meilleur choix"
+
+msgid "Best choices"
+msgstr "Meilleurs choix"
+
 msgid "The best choice at this time is:"
 msgstr "Le meilleur choix pour l'instant est :"
 

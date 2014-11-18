@@ -103,7 +103,7 @@ $(document).ready(function() {
 
         // HTML code of the new hour
         var new_hour_html =
-            '<div class="col-md-2">'+
+            '<div class="col-sm-2">'+
                 last_hour.html().replace(re_label, hour_text+' '+(hj+2))
                               .replace(re_id,'"d'+di+'-h'+(hj+1)+'"')
                               .replace(/value="(.*?)"/g, 'value=""')+
@@ -405,7 +405,7 @@ $(document).ready(function() {
 // Vote form moving to the top or to the bottom
 $(window).scroll(function() {
     var $table_offset = $('.results thead').offset();
-    if(($table_offset == undefined || $(window).scrollTop() > $table_offset.top) && ($('table.results').height() > $(window).height())) {
+    if(($table_offset == undefined || $(window).scrollTop() > $table_offset.top+150) && ($('table.results').height()-150 > $(window).height())) {
         $('#addition').before($('#vote-form'));
         $('#tableContainer').after($('.scroll-buttons'));
     } else {
