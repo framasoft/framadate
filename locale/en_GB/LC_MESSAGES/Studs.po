@@ -307,6 +307,12 @@ msgstr "Save the choices"
 msgid "Addition"
 msgstr "Addition"
 
+msgid "Best choice"
+msgstr "Best choices"
+
+msgid "Best choices"
+msgstr "Best choices"
+
 msgid "The best choice at this time is:"
 msgstr "The best choice at this time is:"
 

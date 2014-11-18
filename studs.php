@@ -333,11 +333,11 @@ if ($dsondage->format=="D"||$dsondage->format=="D+"||$dsondage->format=="D-") {
 
         // Current date
         $current = $toutsujet[$i];
-		$horoCur = explode("@",$current); //horoCur[0] = date, horoCur[1] = hour
-		if (isset($toutsujet[$i+1])){
-			$next = $toutsujet[$i+1];
-			$horoNext = explode("@",$next); 
-		}
+        $horoCur = explode("@",$current); //horoCur[0] = date, horoCur[1] = hour
+        if (isset($toutsujet[$i+1])){
+            $next = $toutsujet[$i+1];
+            $horoNext = explode("@",$next);
+        }
 
         $border[$i] = false;
         $radio_title[$i] = strftime($date_format['txt_short'],$horoCur[0]);
@@ -645,6 +645,7 @@ echo $tr_addition.'
 
 if ($compteursujet == 1) {
     echo '
+        <div class="col-sm-12"><h3>' . _("Best choice") . '</h3></div>
         <div class="col-sm-6 col-sm-offset-3 alert alert-success">
             <p><span class="glyphicon glyphicon-star text-warning"></span> ' . _("The best choice at this time is:") . '</p>
             ' . $meilleursujet . '
@@ -652,6 +653,7 @@ if ($compteursujet == 1) {
         </div>'."\n";
 } elseif ($compteursujet > 1) {
     echo '
+        <div class="col-sm-12"><h3>' . _("Best choices") . '</h3></div>
         <div class="col-sm-6 col-sm-offset-3 alert alert-success">
             <p><span class="glyphicon glyphicon-star text-warning"></span> ' . _("The bests choices at this time are:") . '</p>
             ' . $meilleursujet . '
