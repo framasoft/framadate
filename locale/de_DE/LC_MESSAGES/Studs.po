@@ -301,6 +301,12 @@ msgstr "Die Wahl speichern"
 msgid "Addition"
 msgstr "Hinzufügen"
 
+msgid "Best choice"
+msgstr "Bste Wahl"
+
+msgid "Best choices"
+msgstr "Besten Wahlen"
+
 msgid "The best choice at this time is:"
 msgstr "Die beste Wahl ist derzeit:"
 
