@@ -24,6 +24,7 @@ if (session_id() == "") {
 
 include_once __DIR__ . '/app/inc/init.php';
 
+$smtp_allowed = $config['use_smtp'];
 
 //Generer une chaine de caractere unique et aleatoire
 function random($car)
@@ -41,6 +42,7 @@ function random($car)
 function ajouter_sondage()
 {
     global $connect;
+	global $smtp_allowed;
 
     $sondage=random(16);
     $sondage_admin=$sondage.random(8);
@@ -66,8 +68,7 @@ function ajouter_sondage()
     $sql = 'INSERT INTO sujet_studs values ('.$connect->Param('sondage').', '.$connect->Param('choix').')';
     $sql = $connect->Prepare($sql);
     $connect->Execute($sql, array($sondage, $_SESSION['toutchoix']));
-
-    if($config['use_smtp']==true){
+    if($smtp_allowed==true){
         $message = _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
         $message .= "\n\n";
         $message .= stripslashes(html_entity_decode($_SESSION["nom"],ENT_QUOTES,"UTF-8"))." " . _("hast just created a poll called") . " : \"".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES))."\".\n";
@@ -84,7 +85,7 @@ function ajouter_sondage()
             Utils::sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message, $_SESSION['adresse'] );
         }
     }
-    error_log(date('H:i:s d/m/Y:') . ' CREATION: '.$sondage."\t".$_SESSION[formatsondage]."\t".$_SESSION[nom]."\t".$_SESSION[adresse]."\t \t".$_SESSION[toutchoix]."\n", 3, 'admin/logs_studs.txt');
+    error_log(date('H:i:s d/m/Y:') . ' CREATION: '.$sondage."\t".$_SESSION['formatsondage']."\t".$_SESSION['nom']."\t".$_SESSION['adresse']."\t \t".$_SESSION['toutchoix']."\n", 3, 'admin/logs_studs.txt');
     Utils::cleaning_polls($connect, 'admin/logs_studs.txt');
 
     // Don't keep days, hours and choices in memory (in order to make new polls)
