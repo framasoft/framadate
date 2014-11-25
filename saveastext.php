@@ -30,12 +30,13 @@ $user_studs = $connect->Execute($sql, array($_GET['numsondage']));
 
 $dsondage = Utils::get_sondage_from_id($_GET['numsondage']);
 
-$content = _("Title of the poll") ." : ".stripslashes($dsondage->titre).PHP_EOL;
-$content = $content. _("Initiator of the poll") ." : ".stripslashes($dsondage->nom_admin).PHP_EOL;
-$content = $content. _("Description") ." : ".stripslashes($dsondage->commentaires).PHP_EOL;
-$content = $content. _("Public link of the poll") ." : ".Utils::getUrlSondage($dsondage->id_sondage).PHP_EOL ;
-$content = $content. _("Admin link of the poll") ." : ".Utils::getUrlSondage($dsondage->id_sondage_admin,true).PHP_EOL;
-$content = $content. _("Expiration's date") ." : ".date("d/m/Y",$dsondage->date_fin);
+$content = chr(239) . chr(187) . chr(191) ; //UTF-8 BOM
+$content .= _("Title of the poll") ." : ".stripslashes($dsondage->titre).PHP_EOL;
+$content .= _("Initiator of the poll") ." : ".stripslashes($dsondage->nom_admin).PHP_EOL;
+$content .= _("Description") ." : ".stripslashes($dsondage->commentaires).PHP_EOL;
+$content .= _("Public link of the poll") ." : ".Utils::getUrlSondage($dsondage->id_sondage).PHP_EOL ;
+$content .= _("Admin link of the poll") ." : ".Utils::getUrlSondage($dsondage->id_sondage_admin,true).PHP_EOL;
+$content .= _("Expiration's date") ." : ".date("d/m/Y",$dsondage->date_fin);
 $filesize = strlen( $content );
 $filename=$_GET["numsondage"].".txt";
 
