@@ -34,28 +34,28 @@ $numsondage = false;
 
 //On récupère le numéro de sondage par le lien web.
 if(Utils::issetAndNoEmpty('sondage', $_GET) === true) {
-    $numsondage = $_GET["sondage"];
-    $_SESSION["numsondage"] = $numsondage;
+    $numsondage = $_GET['sondage'];
+    $_SESSION['numsondage'] = $numsondage;
 }
 
 if(Utils::issetAndNoEmpty('sondage') === true) {
-    $numsondage = $_POST["sondage"];
-    $_SESSION["numsondage"] = $numsondage;
+    $numsondage = $_POST['sondage'];
+    $_SESSION['numsondage'] = $numsondage;
 } elseif(Utils::issetAndNoEmpty('sondage', $_COOKIE) === true) {
-    $numsondage = $_COOKIE["sondage"];
+    $numsondage = $_COOKIE['sondage'];
 } elseif(Utils::issetAndNoEmpty('numsondage', $_SESSION) === true) {
-    $numsondage = $_SESSION["numsondage"];
+    $numsondage = $_SESSION['numsondage'];
 }
 
 $dsondage = ($numsondage != false) ? Utils::get_sondage_from_id($numsondage) : false;
-if (!$dsondage || $dsondage->id_sondage == ''){
-    Utils::print_header( _("Error!"));
+if (!$dsondage || $dsondage->id_sondage == '') {
+    Utils::print_header( _('Error!'));
 
-    bandeau_titre(_("Error!"));
+    bandeau_titre(_('Error!'));
 
     echo '
     <div class="alert alert-warning">
-        <h2>' . _("This poll doesn't exist !") . '</h2>
+        <h2>' . _('This poll doesn\'t exist !') . '</h2>
         <p>' . _('Back to the homepage of ') . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
     </div>'."\n";
 
@@ -124,7 +124,7 @@ if(isset($_POST['ajoutcomment'])) {
 }
 
 
-// Action quand on clique le bouton participer
+// Action quand on clique sur le bouton participer
 $sql = 'SELECT * FROM user_studs WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_users';
 $sql = $connect->Prepare($sql);
 $user_studs = $connect->Execute($sql, array($numsondage));
@@ -136,20 +136,21 @@ if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
         $err |= NAME_EMPTY;
     }
 
-    if(!Utils::is_error(NAME_EMPTY) && (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || $_POST["nom"] == $_SESSION["nom"])) {
+    if(!Utils::is_error(NAME_EMPTY) && (! ( USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']) ) || $_POST['nom'] == $_SESSION['nom'])) {
         $nouveauchoix = '';
         for ($i=0;$i<$nbcolonnes;$i++) {
             // radio checked 1 = Yes, 2 = Ifneedbe, 0 = No
-            if (isset($_POST["choix$i"])) {
-                switch ($_POST["choix$i"]) {
-                    case 1: $nouveauchoix .= "1";break;
-                    case 2: $nouveauchoix .= "2";break;
-                    default: $nouveauchoix .= "0";break;
+            // TODO reuse getNewChoiceFromPOST of adminstuds.php see 8272e0db84fb65210eddf5a370e0c5a2411fea79
+            if (isset($_POST['choix'. $i])) {
+                switch ($_POST['choix'. $i]) {
+                    case 1:  $nouveauchoix .= '1'; break;
+                    case 2:  $nouveauchoix .= '2'; break;
+                    default: $nouveauchoix .= '0';
                 }
             }
         }
 
-        $nom=substr($_POST["nom"],0,64);
+        $nom = substr($_POST['nom'], 0, 64);
 
         // protection contre les XSS : htmlentities
         $nom = htmlentities($nom, ENT_QUOTES, 'UTF-8');
@@ -172,14 +173,14 @@ if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
            // Todo : Il faudrait lever une erreur en cas d'erreur d'insertion
            $connect->Execute($sql, array($nom, $numsondage, $nouveauchoix));
 
-            if ($dsondage->mailsonde || /* compatibility for non boolean DB */ $dsondage->mailsonde=="yes" || $dsondage->mailsonde=="true") {
+            if ($dsondage->mailsonde || /* compatibility for non boolean DB */ $dsondage->mailsonde=='yes' || $dsondage->mailsonde=='true') {
                 if($config['use_smtp']==true){
-                    Utils::sendEmail( "$dsondage->mail_admin",
-                       "[".NOMAPPLICATION."] "._("Poll's participation")." : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8')."",
+                    Utils::sendEmail( $dsondage->mail_admin,
+                       '['.NOMAPPLICATION.'] '._('Poll\'s participation').' : '.html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8'),
                        html_entity_decode("\"$nom\" ", ENT_QUOTES, 'UTF-8').
-                       _("has filled a line.\nYou can find your poll at the link") . " :\n\n".
+                       _('has filled a line.\nYou can find your poll at the link') . " :\n\n".
                        Utils::getUrlSondage($numsondage) . " \n\n" .
-                       _("Thanks for your confidence.") . "\n". NOMAPPLICATION );
+                       _('Thanks for your confidence.') . "\n". NOMAPPLICATION );
                 }
             }
         }
@@ -189,22 +190,22 @@ if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
 }
 
 if($err != 0) {
-    Utils::print_header(_("Error!").' - '.$dsondage->titre);
-    bandeau_titre(_("Error!"));
+    Utils::print_header(_('Error!').' - '.$dsondage->titre);
+    bandeau_titre(_('Error!'));
 
     echo '<div class="alert alert-danger"><ul class="list-unstyled">'."\n";
 
     if(Utils::is_error(NAME_EMPTY)) {
-        echo '<li>' . _("Enter a name") . "</li>\n";
+        echo '<li>' . _('Enter a name') . "</li>\n";
     }
     if(Utils::is_error(NAME_TAKEN)) {
-        echo '<li>' . _("The name you've chosen already exist in this poll!") . "</li>\n";
+        echo '<li>' . _('The name you\'ve chosen already exist in this poll!') . "</li>\n";
     }
     if(Utils::is_error(COMMENT_EMPTY) || Utils::is_error(COMMENT_USER_EMPTY)) {
-        echo '<li>' . _("Enter a name and a comment!") . "</li>\n";
+        echo '<li>' . _('Enter a name and a comment!') . "</li>\n";
     }
     if(Utils::is_error(COMMENT_INSERT_FAILED) ) {
-        echo '<li>' . _("Failed to insert the comment!") . "</li>\n";
+        echo '<li>' . _('Failed to insert the comment!') . "</li>\n";
     }
 
     echo '</ul></div>';
@@ -243,7 +244,7 @@ echo '
 //affichage de la description du sondage
 if ($dsondage->commentaires) {
     $commentaires = $dsondage->commentaires;
-    $commentaires=nl2br(str_replace("\\","",$commentaires));
+    $commentaires=nl2br(str_replace('\\', '', $commentaires));
     echo '
                 <div class="form-group col-md-7">
                     <h4 class="control-label">'._("Description") .'</h4><br />
@@ -260,12 +261,12 @@ $nblignes = $user_studs->RecordCount();
 //on teste pour voir si une ligne doit etre modifiée
 $testmodifier = false;
 $ligneamodifier = -1;
-for ($i=0;$i<$nblignes;$i++) {
-    if (isset($_POST["modifierligne$i"])) {
+for ($i=0; $i < $nblignes; ++$i) {
+    if (isset($_POST['modifierligne'. $i])) {
         $ligneamodifier = $i;
     }
 
-    //test pour voir si une ligne est a modifier
+    //test pour voir si une ligne est à modifier
     if (isset($_POST['validermodifier'.$i])) {
         $modifier = $i;
         $testmodifier = true;
@@ -274,19 +275,20 @@ for ($i=0;$i<$nblignes;$i++) {
 
 //si le test est valide alors on affiche des checkbox pour entrer de nouvelles valeurs
 if ($testmodifier) {
+    // TODO reuse getNewChoiceFromPOST of adminstuds.php see 8272e0db84fb65210eddf5a370e0c5a2411fea79
     $nouveauchoix = '';
     for ($i=0;$i<$nbcolonnes;$i++) {
         // radio checked 1 = Yes, 2 = Ifneedbe, 0 = No
         if (isset($_POST["choix$i"])) {
             switch ($_POST["choix$i"]) {
-                case 1: $nouveauchoix .= "1";break;
-                case 2: $nouveauchoix .= "2";break;
-                default: $nouveauchoix .= "0";break;
+                case 1: $nouveauchoix .= "1"; break;
+                case 2: $nouveauchoix .= "2"; break;
+                default: $nouveauchoix .= "0";
             }
         }
     }
 
-    $compteur=0;
+    $compteur = 0;
     while ($data = $user_studs->FetchNextObject(false) ) {
         //mise a jour des données de l'utilisateur dans la base SQL
         if ($compteur == $modifier) {
@@ -298,7 +300,7 @@ if ($testmodifier) {
                 Utils::sendEmail( "$dsondage->mail_admin", "[".NOMAPPLICATION."] " . _("Poll's participation") . " : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8'), "\"".html_entity_decode($data->nom, ENT_QUOTES, 'UTF-8')."\""."" . _("has filled a line.\nYou can find your poll at the link") . " :\n\n" . Utils::getUrlSondage($numsondage) . " \n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
             }
         }
-        $compteur++;
+        ++$compteur;
     }
 }
 
@@ -350,7 +352,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+"||$dsondage->format=="D-") {
         } else {
             $border[$i] = true;
             $tr_months .= '<th colspan="'.$colspan_month.'" class="bg-primary month" id="M'.($i+1-$colspan_month).'">'.strftime("%B",$horoCur[0]).' '.strftime("%Y", $horoCur[0]).'</th>';
-            $colspan_month=1;
+            $colspan_month = 1;
         }
 
         // Days
@@ -361,12 +363,12 @@ if ($dsondage->format=="D"||$dsondage->format=="D+"||$dsondage->format=="D-") {
         } else {
             $rbd = ($border[$i]) ? ' rbd' : '';
             $tr_days .= '<th colspan="'.$colspan_day.'" class="bg-primary day'.$rbd.'" id="D'.($i+1-$colspan_day).'">'.strftime($date_format['txt_day'],$horoCur[0]).'</th>';
-            $colspan_day=1;
+            $colspan_day = 1;
         }
 
         // Hours
         $rbd = ($border[$i]) ? ' rbd' : '';
-        if ($horoCur[1] !== "") {
+        if ($horoCur[1] !== '') {
                 $tr_hours .= '<th class="bg-info'.$rbd.'" id="H'.$i.'" title="'.$horoCur[1].'">'.$horoCur[1].'</th>';
                 $radio_title[$i] .= ' - '.$horoCur[1];
                 $td_headers[$i] .= ' H'.$i;
@@ -385,13 +387,14 @@ if ($dsondage->format=="D"||$dsondage->format=="D+"||$dsondage->format=="D-") {
 
 // Subjects poll
 } else {
-    $toutsujet=str_replace("@","<br />",$toutsujet);
+    $toutsujet=str_replace('@','<br />', $toutsujet);
 
     $tr_subjects = '<tr><th role="presentation"></th>';
 
-    for ($i = 0; isset($toutsujet[$i]); $i++) {
+    for ($i = 0; isset($toutsujet[$i]); ++$i) {
 
-        $td_headers[$i]='';$radio_title[$i]=''; // init before concatenate
+        $td_headers[$i]  = '';
+        $radio_title[$i] = ''; // init before concatenate
 
         // Subjects
         preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/',$toutsujet[$i],$md_a_img);  // Markdown [![alt](src)](href)
@@ -498,9 +501,9 @@ while ($data = $user_studs->FetchNextObject(false)) {
                 // variable pour afficher la valeur cochée
                 $car_html[0]='value="0"';$car_html[1]='value="1"';$car_html[2]='value="2"';
                 switch ($car) {
-                    case "1": $car_html[1]='value="1" checked';break;
-                    case "2": $car_html[2]='value="2" checked';break;
-                    default: $car_html[0]='value="0" checked';break;
+                    case '1': $car_html[1]='value="1" checked'; break;
+                    case '2': $car_html[2]='value="2" checked'; break;
+                    default:  $car_html[0]='value="0" checked';
                 }
 
                 echo '
@@ -535,7 +538,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
                     if (isset($somme[$k]) === false) {
                         $somme[$k] = 0;
                     }
-                    $somme[$k]++; break;
+                    ++$somme[$k]; break;
                 case "2":  echo '<td class="bg-warning text-warning'.$rbd.'" headers="'.$td_headers[$k].'">(<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only"> ' . _('Yes') . _(', ifneedbe') . '</span></td>'."\n"; break;
                 default: echo '<td class="bg-danger'.$rbd.'" headers="'.$td_headers[$k].'"><span class="sr-only">' . _('No') . '</span></td>'."\n";
             }
@@ -553,8 +556,8 @@ while ($data = $user_studs->FetchNextObject(false)) {
     }
 
     //demande de confirmation pour modification de ligne
-    for ($i=0;$i<$nblignes;$i++) {
-        if (isset($_POST["modifierligne$i"])) {
+    for ($i=0; $i < $nblignes; ++$i) {
+        if (isset($_POST['modifierligne'. $i])) {
             if ($compteur == $i) {
                 echo '<td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="validermodifier'.$compteur.'" title="'. _('Save the choices') .' '.stripslashes($nombase).'">'. _('Save') .'</button></td>'."\n";
             }
@@ -633,7 +636,7 @@ for ($i = 0; $i < $nbcolonnes; $i++) {
 }
 $tr_addition .= '<td></td></tr>';
 
-$meilleursujet = str_replace("°", "'", $meilleursujet).'</ul>';
+$meilleursujet = str_replace('°', '\'', $meilleursujet).'</ul>';
 $vote_str = ($meilleurecolonne > 1) ? $vote_str = _('votes') : _('vote');
 
 // Print Addition and Best choice
@@ -671,7 +674,7 @@ $sql = $connect->Prepare($sql);
 $comment_user=$connect->Execute($sql, array($numsondage));
 
 if ($comment_user->RecordCount() != 0) {
-    echo '<div><h3>' . _("Comments of polled people") . '</h3>'."\n";
+    echo '<div><h3>' . _('Comments of polled people') . '</h3>'."\n";
 
     while($dcomment = $comment_user->FetchNextObject(false)) {
         echo '
@@ -684,7 +687,7 @@ if ($comment_user->RecordCount() != 0) {
     echo '</div>';
 }
 
-if ($dsondage->format!="A-" && $dsondage->format!="D-") {
+if ($dsondage->format != 'A-' && $dsondage->format != 'D-') {
 echo '
         <div class="hidden-print alert alert-info">
             <div class="col-md-6 col-md-offset-3">
