@@ -8,3 +8,11 @@ framanav
 nav
 app/inc/constants.php
 vendor
+
+# Temp files
+*~
+\#*\#
+
+# Cache
+Thumbs.db
+
