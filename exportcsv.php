@@ -29,9 +29,9 @@ $sql = $connect->Prepare($sql);
 $user_studs = $connect->Execute($sql, array($_GET['numsondage']));
 
 $dsondage = Utils::get_sondage_from_id($_GET['numsondage']);
-$nbcolonnes=substr_count($dsondage->sujet,',')+1;
+$nbColumns = substr_count($dsondage->sujet,',')+1;
 
-$toutsujet=explode(",",$dsondage->sujet);
+$toutsujet=explode(",", $dsondage->sujet);
 
 //affichage des sujets du sondage
 $input =",";
@@ -75,11 +75,11 @@ if (strpos($dsondage->sujet,'@') !== false) {
 
 while ( $data=$user_studs->FetchNextObject(false)) {
     // Le nom de l'utilisateur
-    $nombase=html_entity_decode(str_replace("°","'",$data->nom));
+    $nombase = html_entity_decode(str_replace("°","'",$data->nom));
     $input.= '"'.$nombase.'",';
     //affichage des resultats
     $ensemblereponses=$data->reponses;
-    for ($k=0;$k<$nbcolonnes;$k++) {
+    for ($k=0;$k<$nbColumns;$k++) {
         $car=substr($ensemblereponses,$k,1);
         switch ($car) {
             case "1": $input .= '"'._('Yes').'",'; $somme[$k]++; break;
@@ -92,7 +92,7 @@ while ( $data=$user_studs->FetchNextObject(false)) {
 }
 
 $filesize = strlen( $input );
-$filename=$_GET["numsondage"].".csv";
+$filename = $_GET["numsondage"].".csv";
 
 header( 'Content-Type: text/csv; charset=utf-8' );
 header( 'Content-Length: '.$filesize );

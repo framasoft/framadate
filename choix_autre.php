@@ -44,7 +44,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
 } else {
     // Step 4 : Data prepare before insert in DB
     if (isset($_POST["confirmecreation"])) {
-        //recuperation des données de champs textes
+        // fetch of data of text fields
         $temp_results = '';
         if (isset($_SESSION['choices'])) {
             for ($i = 0; $i < count($_SESSION['choices']); $i++) {
@@ -54,7 +54,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
             }
         }
 
-        $temp_results=substr($temp_results,1);
+        $temp_results = substr($temp_results,1);
         $_SESSION["toutchoix"]=$temp_results;
 
 

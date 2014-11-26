@@ -30,11 +30,11 @@ if (file_exists('bandeaux_local.php')) {
 // Type de sondage : <button value="$_SESSION["choix_sondage"]">
 if ((isset($_GET['choix_sondage']) && $_GET['choix_sondage'] == 'date') ||
     (isset($_POST["choix_sondage"]) && $_POST["choix_sondage"] == 'creation_sondage_date')) {
-    $choix_sondage = "creation_sondage_date";
-    $_SESSION["choix_sondage"] = $choix_sondage;
+    $poll_choice = "creation_sondage_date";
+    $_SESSION["choix_sondage"] = $poll_choice;
 } else {
-    $choix_sondage = "creation_sondage_autre";
-    $_SESSION["choix_sondage"] = $choix_sondage;
+    $poll_choice = "creation_sondage_autre";
+    $_SESSION["choix_sondage"] = $poll_choice;
 }
 
 // On teste toutes les variables pour supprimer l'ensemble des warnings PHP
@@ -95,7 +95,7 @@ if (Utils::issetAndNoEmpty("poursuivre")){
         $erreur_injection_commentaires = true;
     }
 
-    // Si pas d'erreur dans l'adresse alors on change de page vers date ou autre
+    // If there is no error in the adress, we move to page date or autre
     if($config['use_smtp']==true){
         $email_OK = $adresse && !$erreur_adresse;
     } else{
@@ -115,11 +115,11 @@ if (Utils::issetAndNoEmpty("poursuivre")){
         }
 
     } else {
-        // Title Erreur !
+        // Title Error !
         Utils::print_header( _("Error!").' - '._("Poll creation (1 on 3)") );
     }
 } else {
-    // Title OK (formulaire pas encore rempli)
+    // Title OK (form not yet filled)
     Utils::print_header( _("Poll creation (1 on 3)") );
 }
 
@@ -271,7 +271,7 @@ echo '
               </div>
             </div>
         </div>';
-if($config['use_smtp']==true){
+if($config['use_smtp']==true) {
     echo '<div class="form-group">
         <div class="col-sm-offset-1 col-sm-11">
           <div class="checkbox">
@@ -284,8 +284,8 @@ if($config['use_smtp']==true){
 }
 echo '
         <p class="text-right">
-            <input type="hidden" name="choix_sondage" value="'. $choix_sondage .'"/>
-            <button name="poursuivre" value="'. $choix_sondage .'" type="submit" class="btn btn-success" title="'. _('Go to step 2') . '">'. _('Next') . '</button>
+            <input type="hidden" name="choix_sondage" value="'. $poll_choice .'"/>
+            <button name="poursuivre" value="'. $poll_choice .'" type="submit" class="btn btn-success" title="'. _('Go to step 2') . '">'. _('Next') . '</button>
         </p>
 
         <script type="text/javascript"> document.formulaire.titre.focus(); </script>

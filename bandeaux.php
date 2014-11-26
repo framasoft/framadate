@@ -21,13 +21,13 @@ namespace Framadate;
 include_once __DIR__ . '/app/inc/init.php';
 
 // bandeaux de titre
-function bandeau_titre($titre)
+function bandeau_titre($title)
 {
     global $ALLOWED_LANGUAGES;
     $img = ( IMAGE_TITRE ) ? '<img src="'. Utils::get_server_name(). IMAGE_TITRE. '" alt="'.NOMAPPLICATION.'">' : '';
     echo '
     <header role="banner">';
-    if(count($ALLOWED_LANGUAGES)>1){
+    if(count($ALLOWED_LANGUAGES) > 1) {
         echo '<form method="post" action="#">
             <div class="input-group input-group-sm pull-right col-md-2 col-xs-4">
                 <select name="lang" class="form-control" title="'. _("Select the language") .'" >' . liste_lang() . '</select>
@@ -39,7 +39,7 @@ function bandeau_titre($titre)
     }
     echo '
         <h1><a href="'.str_replace('/admin','', Utils::get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'">'.$img.'</a></h1>
-        <h2 class="lead"><i>'. $titre .'</i></h2>
+        <h2 class="lead"><i>'. $title .'</i></h2>
         <hr class="trait" role="presentation" />
     </header>
     <main role="main">';
