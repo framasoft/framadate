@@ -9,6 +9,14 @@ vendor
 cache/
 tpl_c/
 
+# Temp files
+*~
+\#*\#
+
+# Cache
+Thumbs.db
+
+# IDE
 .settings/
 .project
 .idea/
