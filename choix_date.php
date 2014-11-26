@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft https://git.framasoft.org/framasoft/framadate/)
  *
  * =============================
  *
@@ -14,7 +14,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
  *
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
- * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
+ * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft https://git.framasoft.org/framasoft/framadate/)
  */
 use Framadate\Services\LogService;
 use Framadate\Services\PollService;
@@ -41,8 +41,8 @@ if (is_readable('bandeaux_local.php')) {
 // Step 1/4 : error if $_SESSION from info_sondage are not valid
 if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) || ($config['use_smtp'] && !isset($_SESSION['form']->admin_mail))) {
 
-    Utils::print_header ( _("Error!") );
-    bandeau_titre(_("Error!"));
+    Utils::print_header ( _('Error!') );
+    bandeau_titre(_('Error!'));
 
     echo '
     <div class="alert alter-danger">
@@ -151,8 +151,8 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
     // Step 3/4 : Confirm poll creation
     if (!empty($_POST['choixheures']) && !isset($_SESSION['form']->totalchoixjour)) {
 
-        Utils::print_header ( _("Removal date and confirmation (3 on 3)") );
-        bandeau_titre(_("Removal date and confirmation (3 on 3)"));
+        Utils::print_header ( _('Removal date and confirmation (3 on 3)') );
+        bandeau_titre(_('Removal date and confirmation (3 on 3)'));
 
         $_SESSION['form']->sortChoices();
         $last_date = $_SESSION['form']->lastChoice()->getName();
@@ -198,7 +198,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
             </div>
             <div class="alert alert-warning">
                 <p>'. _('Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.'). '</p>';
-        if($config['use_smtp']==true){
+        if($config['use_smtp'] == true) {
             echo '<p>' . _('Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.') .'</p>';
         }
         echo '
@@ -222,7 +222,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
     <form name="formulaire" action="' . Utils::get_server_name() . 'choix_date.php" method="POST" class="form-horizontal" role="form">
     <div class="row" id="selected-days">
         <div class="col-md-10 col-md-offset-1">
-            <h3>'. _("Choose the dates of your poll") .'</h3>
+            <h3>'. _('Choose the dates of your poll') .'</h3>
             <div class="alert alert-info">
                 <p>'. _('To schedule an event you need to propose at least two choices (two hours for one day or two days).').'</p>
                 <p>'. _('You can add or remove additionnal days and hours with the buttons') .' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _('Remove') .'</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _('Add') .'</span></p>
