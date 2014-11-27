@@ -19,8 +19,11 @@
 namespace Framadate;
 
 class Utils {
+	/**
+	 * @return string Server name
+	 */
     public static function get_server_name() {
-        $scheme = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 'on') ? 'https' : 'http';
+        $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
         $port = in_array($_SERVER['SERVER_PORT'], [80, 443]) ? '' : ':' . $_SERVER['SERVER_PORT'];
         $dirname = dirname($_SERVER['SCRIPT_NAME']);
         $dirname = $dirname === '\\' ? '/' : $dirname . '/';
@@ -52,20 +55,16 @@ class Utils {
         echo '<!DOCTYPE html>
     <html lang="' . $lang . '">
     <head>
-        <meta charset="utf-8">';
 
         if (!empty($title)) {
-            echo '<title>' . stripslashes($title) . ' - ' . NOMAPPLICATION . '</title>';
-        } else {
-            echo '<title>' . NOMAPPLICATION . '</title>';
         }
 
         echo '
-        <link rel="stylesheet" href="' . self::get_server_name() . 'css/bootstrap.min.css">
-        <link rel="stylesheet" href="' . self::get_server_name() . 'css/datepicker3.css">
-        <link rel="stylesheet" href="' . self::get_server_name() . 'css/style.css">
-        <link rel="stylesheet" href="' . self::get_server_name() . 'css/frama.css">
-        <link rel="stylesheet" href="' . self::get_server_name() . 'css/print.css" media="print">
+        <link rel="stylesheet" href="' . self::get_server_name() . 'css/bootstrap.min.css" />
+        <link rel="stylesheet" href="' . self::get_server_name() . 'css/datepicker3.css" />
+        <link rel="stylesheet" href="' . self::get_server_name() . 'css/style.css" />
+        <link rel="stylesheet" href="' . self::get_server_name() . 'css/frama.css" />
+        <link rel="stylesheet" href="' . self::get_server_name() . 'css/print.css" media="print" />
         <script type="text/javascript" src="' . self::get_server_name() . 'js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>
@@ -79,7 +78,6 @@ class Utils {
     </head>
     <body>
     <div class="container ombre">';
-
     }
 
     /**
@@ -95,7 +93,6 @@ class Utils {
 
     /**
      * Fonction permettant de générer les URL pour les sondage
-     *
      * @param   string $id L'identifiant du sondage
      * @param   bool $admin True pour générer une URL pour l'administration d'un sondage, False pour un URL publique
      * @return  string            L'url pour le sondage
