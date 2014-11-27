@@ -55,8 +55,12 @@ class Utils {
         echo '<!DOCTYPE html>
     <html lang="' . $lang . '">
     <head>
+        <meta charset="utf-8" />';
 
         if (!empty($title)) {
+            echo '<title>' . stripslashes($title) . ' - ' . NOMAPPLICATION . '</title>';
+        } else {
+            echo '<title>' . NOMAPPLICATION . '</title>';
         }
 
         echo '
