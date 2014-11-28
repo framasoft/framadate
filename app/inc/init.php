@@ -30,8 +30,8 @@ if (ini_get('date.timezone') == '') {
     date_default_timezone_set('Europe/Paris');
 }
 
-include_once __DIR__ . '/constants.php';
-include_once __DIR__ . '/i18n.php';
+require_once __DIR__ . '/constants.php';
+require_once __DIR__ . '/i18n.php';
 
 // Smarty
 require_once __DIR__ . '/../../vendor/smarty/smarty/libs/Smarty.class.php';
