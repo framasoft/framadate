@@ -1,0 +1,11 @@
+header {
+    padding-bottom: 0;
+}
+
+main {
+    padding-top: 0;
+}
+
+fieldset {
+    margin: 1.5em 0;
+}
