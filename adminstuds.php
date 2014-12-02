@@ -871,7 +871,7 @@ if (substr($dsondage->format, 0, 1)=="D") {
 
         // Hours
         $rbd = ($border[$i]) ? ' rbd' : '';
-        if ($horoCur[1] !== "") {
+        if (isset($horoCur[1]) && $horoCur[1] !== "") {
                 $tr_hours .= '<th class="bg-info'.$rbd.'" id="H'.$i.'" title="'.$horoCur[1].'">'.$horoCur[1].'</th>';
                 $radio_title[$i] .= ' - '.$horoCur[1];
                 $td_headers[$i] .= ' H'.$i;
