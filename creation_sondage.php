@@ -41,6 +41,7 @@ function random($car)
 function ajouter_sondage()
 {
     global $connect;
+    global $config;
 
     $sondage=random(16);
     $sondage_admin=$sondage.random(8);
