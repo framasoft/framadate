@@ -44,7 +44,8 @@ function getChoicesFromPOST($nbColumns)
 function getNewChoiceFromChoices($choices)
 {
     if(!is_array($choice)) {
-        throw new Exception('$choices must be a an array');
+    /*    throw new Exception('$choices must be a an array');
+        PHP Fatal error:  Class 'Framadate\Exception' not found */
     }
 
     $newChoice = '';
@@ -886,7 +887,7 @@ if (substr($dsondage->format, 0, 1) == 'D') {
 
         // Hours
         $rbd = ($border[$i]) ? ' rbd' : '';
-        if (isset($horoCur[1]) && $horoCur[1] !== "") {
+        if (isset($horoCur[1]) && $horoCur[1] !== '') {
                 $tr_hours .= '<th class="bg-info'.$rbd.'" id="H'.$i.'" title="'.$horoCur[1].'">'.$horoCur[1].'</th>';
                 $radio_title[$i] .= ' - '.$horoCur[1];
                 $td_headers[$i] .= ' H'.$i;

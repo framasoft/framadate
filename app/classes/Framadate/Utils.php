@@ -20,9 +20,9 @@ namespace Framadate;
 
 class Utils
 {
-	/**
-	 * @return string Server name
-	 */
+    /**
+     * @return string Server name
+     */
     public static function get_server_name()
     {
         $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
@@ -32,9 +32,9 @@ class Utils
         return $scheme . '://' . str_replace('/admin', '', str_replace('//', '/', str_replace('///', '/', $server_name)));
     }
 
-	/**
-	 * Returns a poll or false if it fails
-	 */
+    /**
+     * Returns a poll or false if it fails
+     */
     public static function get_poll_from_id($id)
     {
         global $connect;
@@ -60,15 +60,15 @@ class Utils
 
         return false;
     }
-    
+
     /**
      * Use get_poll_from_id that is fully english name
      * @deprecated
      */
     public static function get_sondage_from_id($id)
     {
-		return get_poll_from_id($id);
-	}
+        return self::get_poll_from_id($id);
+    }
 
     public static function is_error($cerr)
     {
@@ -94,7 +94,7 @@ class Utils
     <head>
         <meta charset="utf-8" />';
 
-		echo '<title>';
+        echo '<title>';
         if (! empty($title)) {
             echo stripslashes($title) . ' - ';
         }
@@ -184,7 +184,7 @@ class Utils
         $headers .= "Auto-Submitted:auto-generated\n";
         $headers .= 'Return-Path: <>';
 
-        $body = html_entity_decode($body, ENT_QUOTES, 'UTF-8'). "\n--\n\n" _('« La route est longue, mais la voie est libre… »') ."\n" . _('Framasoft ne vit que par vos dons (déductibles des impôts).') ."\n". _('Merci d\'avance pour votre soutien http://soutenir.framasoft.org.');
+        $body = html_entity_decode($body, ENT_QUOTES, 'UTF-8'). "\n--\n\n" . _('« La route est longue, mais la voie est libre… »') ."\n" . _('Framasoft ne vit que par vos dons (déductibles des impôts).') ."\n". _('Merci d’avance pour votre soutien http://soutenir.framasoft.org.');
 
         mail($to, $subject, $body, $headers, $param);
     }
@@ -252,12 +252,12 @@ class Utils
 
       return $suppression_OK ;
     }
-	
-	/**
-	 * @param $connect
-	 * @param $log_txt
-	 * @return void
-	 */
+
+    /**
+     * @param $connect
+     * @param $log_txt
+     * @return void
+     */
     public static function cleaning_polls($connect, $log_txt) {
         $connect->StartTrans();
         $req = 'SELECT * FROM sondage WHERE date_fin < NOW() LIMIT 20';
