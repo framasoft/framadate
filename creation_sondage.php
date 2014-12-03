@@ -18,7 +18,7 @@
  */
 namespace Framadate;
 
-if (session_id() == "") {
+if (session_id() == '') {
     session_start();
 }
 
@@ -26,16 +26,23 @@ include_once __DIR__ . '/app/inc/init.php';
 
 
 //Generer une chaine de caractere unique et aleatoire
-function random($car)
+function random_string($length)
 {
-    $string = "";
-    $chaine = "abcdefghijklmnopqrstuvwxyz123456789";
+    $string = '';
+    $chaine = 'abcdefghijklmnopqrstuvwxyz123456789';
     srand((double)microtime()*1000000);
-    for($i=0; $i<$car; $i++) {
+    for($i=0; $i < $length; ++$i) {
       $string .= $chaine[rand()%strlen($chaine)];
     }
-
     return $string;
+}
+
+/**
+ * @deprecated
+ */
+function random($car)
+{
+    return random_string($car);
 }
 
 function ajouter_sondage()
@@ -43,11 +50,11 @@ function ajouter_sondage()
     global $connect;
     global $config;
 
-    $sondage=random(16);
-    $sondage_admin=$sondage.random(8);
+    $poll = random(16);
+    $poll_admin = $poll . random(8);
 
-    $date_fin = $_SESSION["champdatefin"]; // provided by choix_autre.php or choix_date.php
-    $_SESSION["champdatefin"]=""; //clean param cause 2 polls created by the same user in the same session can be affected by this param during the 2nd creation.
+    $date_fin = $_SESSION['champdatefin']; // provided by choix_autre.php or choix_date.php
+    $_SESSION['champdatefin'] = ''; //clean param cause 2 polls created by the same user in the same session can be affected by this param during the 2nd creation.
     $sql = 'INSERT INTO sondage
           (id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, date_fin, format, mailsonde)
           VALUES (
@@ -57,45 +64,55 @@ function ajouter_sondage()
           '.$connect->Param('nom_admin').',
           '.$connect->Param('titre').',
           '.$connect->Param('id_sondage_admin').',
-          FROM_UNIXTIME('.$date_fin.'),
+          FROM_UNIXTIME('. $date_fin .'),
           '.$connect->Param('format').',
           '.$connect->Param('mailsonde').'
           )';
     $sql = $connect->Prepare($sql);
-    $res = $connect->Execute($sql, array($sondage, $_SESSION['commentaires'], $_SESSION['adresse'], $_SESSION['nom'], $_SESSION['titre'], $sondage_admin, $_SESSION['formatsondage'], $_SESSION['mailsonde']));
+    $res = $connect->Execute($sql, array($poll, $_SESSION['commentaires'], $_SESSION['adresse'], $_SESSION['nom'], $_SESSION['titre'], $poll_admin, $_SESSION['formatsondage'], $_SESSION['mailsonde']));
 
-    $sql = 'INSERT INTO sujet_studs values ('.$connect->Param('sondage').', '.$connect->Param('choix').')';
+    $sql = 'INSERT INTO sujet_studs VALUES ('.$connect->Param('sondage').', '.$connect->Param('choix').')';
     $sql = $connect->Prepare($sql);
-    $connect->Execute($sql, array($sondage, $_SESSION['toutchoix']));
+    $connect->Execute($sql, array($poll, $_SESSION['toutchoix']));
 
-    if($config['use_smtp']==true){
-        $message = _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
+    if($config['use_smtp']==true) {
+        $message = _('This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.');
         $message .= "\n\n";
-        $message .= stripslashes(html_entity_decode($_SESSION["nom"],ENT_QUOTES,"UTF-8"))." " . _("hast just created a poll called") . " : \"".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES))."\".\n";
-        $message .= _("Thanks for filling the poll at the link above") . " :\n\n%s\n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION;
+        $message .= stripslashes(html_entity_decode($_SESSION["nom"],ENT_QUOTES,"UTF-8"))." " . _('hast just created a poll called') . ' : "'.stripslashes(htmlspecialchars_decode($_SESSION['titre'],ENT_QUOTES))."\".\n";
+        $message .= _('Thanks for filling the poll at the link above') . " :\n\n%s\n\n" . _('Thanks for your confidence.') ."\n". NOMAPPLICATION;
 
-        $message_admin = _("This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
-        $message_admin .= " :\n\n"."%s \n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION;
+        $message_admin = _('This message should NOT be sent to the polled people. It is private for the poll\'s creator.') ."\n\n" ._('You can now modify it at the link above');
+        $message_admin .= " :\n\n%s \n\n" . _('Thanks for your confidence.') . "\n". NOMAPPLICATION;
 
-        $message = sprintf($message, Utils::getUrlSondage($sondage));
-        $message_admin = sprintf($message_admin, Utils::getUrlSondage($sondage_admin, true));
+        $message = sprintf($message, Utils::getUrlSondage($poll));
+        $message_admin = sprintf($message_admin, Utils::getUrlSondage($poll_admin, true));
 
         if (Utils::isValidEmail($_SESSION['adresse'])) {
-            Utils::sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("Author's message")  . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message_admin, $_SESSION['adresse'] );
-            Utils::sendEmail( "$_SESSION[adresse]", "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"],ENT_QUOTES)), $message, $_SESSION['adresse'] );
+            Utils::sendEmail(
+                "$_SESSION[adresse]",
+                "[".NOMAPPLICATION."][" . _("Author's message")  . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"], ENT_QUOTES)),
+                $message_admin,
+                $_SESSION['adresse']
+            );
+            Utils::sendEmail(
+                "$_SESSION[adresse]",
+                "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($_SESSION["titre"], ENT_QUOTES)),
+                $message,
+                $_SESSION['adresse']
+            );
         }
     }
-    error_log(date('H:i:s d/m/Y:') . ' CREATION: '.$sondage."\t".$_SESSION[formatsondage]."\t".$_SESSION[nom]."\t".$_SESSION[adresse]."\t \t".$_SESSION[toutchoix]."\n", 3, 'admin/logs_studs.txt');
+    error_log(date('H:i:s d/m/Y:') . ' CREATION: '.$poll."\t".$_SESSION[formatsondage]."\t".$_SESSION[nom]."\t".$_SESSION[adresse]."\t \t".$_SESSION[toutchoix]."\n", 3, 'admin/logs_studs.txt');
     Utils::cleaning_polls($connect, 'admin/logs_studs.txt');
 
     // Don't keep days, hours and choices in memory (in order to make new polls)
-    for ($i = 0; $i < count($_SESSION["totalchoixjour"]); $i++) {
+    for ($i = 0; $i < count($_SESSION['totalchoixjour']); ++$i) {
         unset($_SESSION['horaires'.$i]);
     }
-    unset($_SESSION["totalchoixjour"]);
+    unset($_SESSION['totalchoixjour']);
     unset($_SESSION['choices']);
 
-    header("Location:".Utils::getUrlSondage($sondage_admin, true));
+    header('Location:'. Utils::getUrlSondage($poll_admin, true));
 
     exit();
 }
