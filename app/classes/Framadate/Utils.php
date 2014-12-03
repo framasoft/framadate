@@ -19,9 +19,9 @@
 namespace Framadate;
 
 class Utils {
-	/**
-	 * @return string Server name
-	 */
+    /**
+     * @return string Server name
+     */
     public static function get_server_name() {
         $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
         $port = in_array($_SERVER['SERVER_PORT'], [80, 443]) ? '' : ':' . $_SERVER['SERVER_PORT'];
