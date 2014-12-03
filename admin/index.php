@@ -115,6 +115,6 @@ echo '</table></form>'."\n";
 bandeau_pied(true);
 
 // si on annule la suppression, rafraichissement de la page
-if (Utils::issetAndNoEmpty('annulesuppression') === true) {
+/*if (Utils::issetAndNoEmpty('annulesuppression') === true) {
     // TODO
-}
+}*/
