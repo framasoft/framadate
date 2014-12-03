@@ -18,7 +18,7 @@
  */
 namespace Framadate;
 
-session_start();
+include_once __DIR__ . '/app/inc/init.php';
 
 include_once('creation_sondage.php');
 
@@ -29,7 +29,7 @@ if (is_readable('bandeaux_local.php')) {
 }
 
 // Step 1/3 : error if $_SESSION from info_sondage are not valid
-if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmpty('nom', $_SESSION) === false || (($config['use_smtp']) ? Utils::issetAndNoEmpty('adresse', $_SESSION) === false : false)) {
+if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($config['use_smtp']) ? !isset($_SESSION['form']->adresse) : false)) {
 
     Utils::print_header ( _("Error!") );
     bandeau_titre(_("Error!"));
@@ -73,70 +73,103 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
             }
         }
 
-        $_SESSION["toutchoix"]=substr($choixdate,1);
+        $_SESSION['form']->toutchoix=substr($choixdate,1);
 
         // Expiration date → 6 months after last day if not filled or in bad format
-        $_SESSION["champdatefin"]=end($temp_results)+(86400 * $config['default_poll_duration']);
+        $_SESSION['form']->champdatefin=end($temp_results)+(86400 * $config['default_poll_duration']);
 
         if (Utils::issetAndNoEmpty('champdatefin')) {
             $registredate = explode("/",$_POST["champdatefin"]);
             if (is_array($registredate) == true && count($registredate) == 3) {
                 $time = mktime(0,0,0,$registredate[1],$registredate[0],$registredate[2]);
                 if ($time > time() + (24*60*60)) {
-                    $_SESSION["champdatefin"]=$time;
+                    $_SESSION['form']->champdatefin=$time;
                 }
             }
         }
 
-        ajouter_sondage();
+exit('<pre>'.print_r($_SESSION, true).'</pre>');
+        $admin_poll_id = ajouter_sondage(
+            $_SESSION['form']->titre,
+            $_SESSION['form']->commentaires,
+            $_SESSION['form']->nom,
+            $_SESSION['form']->adresse,
+            $_SESSION['form']->formatsondage,
+            $_SESSION['form']->champdatefin,
+            $_SESSION['form']->mailsonde,
+            $_SESSION['form']->toutchoix
+        );
+        
+        unset($_SESSION['form']);
+exit('<pre>'.print_r($_SESSION, true).'</pre>');
+
+    
+        Utils::cleaningOldPolls($connect, 'admin/logs_studs.txt');
+        
+        // TODO cleanup $_SESSION + Redirect
+        
+        // Don't keep days, hours and choices in memory (in order to make new polls)
+        //for ($i = 0; $i < count($_SESSION['totalchoixjour']); $i++) {
+        //        unset($_SESSION['horaires'.$i]);
+        //}
+        //unset($_SESSION['totalchoixjour']);
+        //unset($_SESSION['choices']);
+        
+        //header('Location:' . Utils::getUrlSondage($sondage_admin, true));
+
+        exit;
 
     } else {
+        
         if (Utils::issetAndNoEmpty('days')) {
-            if (!isset($_SESSION["totalchoixjour"])) {
-              $_SESSION["totalchoixjour"]=array();
-            }
-            $k = 0;
-            for ($i = 0; $i < count($_POST["days"]); $i++) {
-                if (isset($_POST["days"][$i]) && $_POST["days"][$i] !='') {
-                    $_SESSION['totalchoixjour'][$k] = mktime(0, 0, 0, substr($_POST["days"][$i],3,2),substr($_POST["days"][$i],0,2),substr($_POST["days"][$i],6,4));
+            
+            // Clear previous choices
+            $_SESSION['form']->clearChoices();
 
-                    $l = 0;
-                    for($j = 0; $j < count($_POST['horaires'.$i]); $j++) {
-                        if (isset($_POST['horaires'.$i][$j]) && $_POST['horaires'.$i][$j] != '') {
-                            $_SESSION['horaires'.$k][$l] = $_POST['horaires'.$i][$j];
-                            $l++;
+            for ($i = 0; $i < count($_POST['days']); $i++) {
+                $day = $_POST['days'][$i];
+                
+                if (!empty($day)) {
+                    // Add choice to Form data
+                    $time = mktime(0, 0, 0, substr($_POST["days"][$i],3,2),substr($_POST["days"][$i],0,2),substr($_POST["days"][$i],6,4));
+                    $choice = new Choice($time);
+                    $_SESSION['form']->addChoice($choice);
+
+                    $schedules = $_POST['horaires'.$i];
+                    for($j = 0; $j < count($schedules); $j++) {
+                        if (!empty($schedules[$j])) {
+                            $choice->addSlot($schedules[$j]);
                         }
                     }
-                    $k++;
                 }
             }
         }
     }
 
     //le format du sondage est DATE
-    $_SESSION["formatsondage"] = "D".$_SESSION["studsplus"];
+    $_SESSION['form']->formatsondage = "D".$_SESSION['form']->studsplus;
 
     // Step 3/3 : Confirm poll creation
-    if (Utils::issetAndNoEmpty('choixheures') && Utils::issetAndNoEmpty('totalchoixjour', $_SESSION)) {
+    if (Utils::issetAndNoEmpty('choixheures') && !isset($_SESSION['form']->totalchoixjour)) {
 
         Utils::print_header ( _("Removal date and confirmation (3 on 3)") );
         bandeau_titre(_("Removal date and confirmation (3 on 3)"));
 
-        $temp_array = array_unique($_SESSION["totalchoixjour"]);
-        sort($temp_array);
-        $removal_date=utf8_encode(strftime($date_format['txt_full'], end($temp_array)+ (86400 * $config['default_poll_duration'])));
+        $_SESSION['form']->sortChoices();
+        $last_date = $_SESSION['form']->lastChoice()->getName();
+        $removal_date = utf8_encode(strftime($date_format['txt_full'], $last_date + (86400 * $config['default_poll_duration'])));
 
-        // Sumary
+        // Summary
         $summary = '<ul>';
-        for ($i=0;$i<count($_SESSION["totalchoixjour"]);$i++) {
-            $summary .= '<li>'.strftime($date_format['txt_full'], $_SESSION["totalchoixjour"][$i]);
-            for ($j=0;$j<count($_SESSION['horaires'.$i]);$j++) {
-                if (isset($_SESSION['horaires'.$i][$j])) {
-                    $summary .= ($j==0) ? ' : ' : ', ';
-                    $summary .= $_SESSION['horaires'.$i][$j];
-                }
+        foreach ($_SESSION['form']->getChoices() as $choice) {
+            $summary .= '<li>'.strftime($date_format['txt_full'], $choice->getName());
+            $first = true;
+            foreach ($choice->getSlots() as $slots) {
+                $summary .= $first ? ' : ' : ', ';
+                $summary .= $slots;
+                    $first = false;
             }
-            $summary .= '</li>'."\n";
+            $summary .= '</li>';
         }
         $summary .= '</ul>';
 
@@ -177,6 +210,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         </div>
     </div>
     </form>'."\n";
+//exit('<pre>POST<br/>'.print_r($_POST, true).'<hr/>SESSION<br/>'.print_r($_SESSION, true).'</pre>');
 
         bandeau_pied();
 

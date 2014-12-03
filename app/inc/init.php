@@ -26,6 +26,14 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 include_once __DIR__ . '/constants.php';
 include_once __DIR__ . '/i18n.php';
 
-$connect = NewADOConnection(BASE_TYPE);
-$connect->Connect(SERVEURBASE, USERBASE, USERPASSWD, BASE);
+use Framadate\FramaDB;
+use Framadate\Form;
+use Framadate\Choice;
+use Framadate\Utils;
+
+if (session_id() == "") {
+    session_start();
+}
+
+$connect = new Framadate\FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
 $err = 0;

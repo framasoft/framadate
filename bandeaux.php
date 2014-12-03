@@ -43,6 +43,14 @@ function bandeau_titre($titre)
         <hr class="trait" role="presentation" />
     </header>
     <main role="main">';
+    
+    global $connect;
+    if ($connect->areTablesCreated()) {
+        echo '<div class="alert alert-danger">'. _('Framadate is not properly installed, please check the "INSTALL" to setup the database before continuing.') .'</div>';
+        bandeau_pied();
+        die();
+    }
+
 }
 
 function liste_lang()

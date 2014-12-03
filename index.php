@@ -18,8 +18,6 @@
  */
 namespace Framadate;
 
-use Framadate\Utils;
-
 include_once __DIR__ . '/app/inc/init.php';
 
 if (is_readable('bandeaux_local.php')) {
@@ -28,12 +26,9 @@ if (is_readable('bandeaux_local.php')) {
     include_once('bandeaux.php');
 }
 
-session_start();
-
 // affichage de la page
 Utils::print_header( _("Home") );
 bandeau_titre(_("Make your polls"));
-
 echo '
         <div class="row">
             <div class="col-md-6 text-center">

@@ -23,9 +23,10 @@ class Utils
     public static function get_server_name()
     {
         $scheme = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 'on') ? 'https' : 'http';
-        $port = in_array($_SERVER['SERVER_PORT'], [80, 443]) ? '/' : ':' . $_SERVER['SERVER_PORT'] . '/';
-        $server_name = $_SERVER['SERVER_NAME'] . $port . dirname($_SERVER['SCRIPT_NAME']) . '/';
-
+        $port = in_array($_SERVER['SERVER_PORT'], [80, 443]) ? '' : ':' . $_SERVER['SERVER_PORT'];
+        $dirname = dirname($_SERVER['SCRIPT_NAME']);
+        $dirname = $dirname === '\\' ? '/' : $dirname . '/';
+        $server_name = $_SERVER['SERVER_NAME'] . $port . $dirname;
         return $scheme . '://' .  str_replace('/admin','',str_replace('//','/',str_replace('///','/',$server_name)));
     }
 
@@ -222,43 +223,41 @@ class Utils
         return $url;
     }
 
-    public static function remove_sondage($connect, $numsondage)
+    /**
+     * Completly delete data about the given poll
+     */
+    public static function removeSondage($poll_id)
     {
-      $connect->StartTrans();
+        global $connect;
 
-      $req = 'DELETE FROM sondage WHERE id_sondage = ' . $connect->Param('numsondage') ;
-      $sql = $connect->Prepare($req);
-      $connect->Execute($sql, [$numsondage]);
+        $prepared = $connect->prepare('DELETE FROM sujet_studs WHERE id_sondage = ?');
+        $prepared->execute(array($poll_id));
 
-      $req = 'DELETE FROM sujet_studs WHERE id_sondage = ' . $connect->Param('numsondage') ;
-      $sql = $connect->Prepare($req);
-      $connect->Execute($sql, [$numsondage]);
+        $prepared = $connect->prepare('DELETE FROM user_studs WHERE id_sondage = ?');
+        $prepared->execute(array($poll_id));
 
-      $req = 'DELETE FROM user_studs WHERE id_sondage = ' . $connect->Param('numsondage') ;
-      $sql = $connect->Prepare($req);
-      $connect->Execute($sql, [$numsondage]);
+        $prepared = $connect->prepare('DELETE FROM comments WHERE id_sondage = ?');
+        $prepared->execute(array($poll_id));
 
-      $req = 'DELETE FROM comments WHERE id_sondage = ' . $connect->Param('numsondage') ;
-      $sql = $connect->Prepare($req);
-      $connect->Execute($sql, [$numsondage]);
-
-      $suppression_OK = ! $connect->HasFailedTrans();
-      $connect->CompleteTrans();
-
-      return $suppression_OK ;
+        $prepared = $connect->prepare('DELETE FROM sondage WHERE id_sondage = ?');
+        $prepared->execute(array($poll_id));
+        
     }
 
-    public static function cleaning_polls($connect, $log_txt) {
-        $connect->StartTrans();
-        $req = 'SELECT * FROM sondage WHERE date_fin < NOW() LIMIT 20';
-        $sql = $connect->Prepare($req);
-        $cleaning = $connect->Execute($sql);
+    public static function cleaningOldPolls($log_txt) {
+        global $connect;
+        
+        $resultSet = $connect->query('SELECT id_sondage, format, nom_admin, mail_admin FROM sondage WHERE date_fin < NOW() LIMIT 20');
+        $toClean = $resultSet->fetchAll(\PDO::FETCH_CLASS);
+        
+        echo '<pre>toClean:'.print_r($toClean, true).'</pre>';
 
-        while ($dcleaning = $cleaning->FetchNextObject(false)) {
-            if (self::remove_sondage($connect, $dcleaning->id_sondage)) {
-                error_log(date('H:i:s d/m/Y:') . ' EXPIRATION: '. $dcleaning->id_sondage."\t".$dcleaning->format."\t".$dcleaning->nom_admin."\t".$dcleaning->mail_admin."\n", 3, $log_txt);
+        $connect->beginTransaction();
+        foreach ($toClean as $row) {
+            if (self::removeSondage($row->id_sondage)) {
+                error_log(date('H:i:s d/m/Y:') . ' EXPIRATION: '. $row->id_sondage."\t".$row->format."\t".$row->nom_admin."\t".$row->mail_admin."\n", 3, $log_txt);
             }
         }
-        $connect->CompleteTrans();
+        $connect->commit();
     }
 }

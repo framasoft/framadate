@@ -18,8 +18,10 @@
  */
 namespace Framadate;
 
-session_start();
 include_once __DIR__ . '/app/inc/init.php';
+if (!isset($_SESSION['form'])) {
+    $_SESSION['form'] = new Form();
+}
 
 if (file_exists('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
@@ -27,14 +29,14 @@ if (file_exists('bandeaux_local.php')) {
     include_once('bandeaux.php');
 }
 
-// Type de sondage : <button value="$_SESSION["choix_sondage"]">
+// Type de sondage : <button value="$_SESSION['form']->choix_sondage">
 if ((isset($_GET['choix_sondage']) && $_GET['choix_sondage'] == 'date') ||
     (isset($_POST["choix_sondage"]) && $_POST["choix_sondage"] == 'creation_sondage_date')) {
     $choix_sondage = "creation_sondage_date";
-    $_SESSION["choix_sondage"] = $choix_sondage;
+    $_SESSION['form']->choix_sondage = $choix_sondage;
 } else {
     $choix_sondage = "creation_sondage_autre";
-    $_SESSION["choix_sondage"] = $choix_sondage;
+    $_SESSION['form']->choix_sondage = $choix_sondage;
 }
 
 // On teste toutes les variables pour supprimer l'ensemble des warnings PHP
@@ -48,14 +50,6 @@ foreach ($post_var as $var) {
     }
 }
 
-// On initialise egalement la session car sinon bonjour les warning :-)
-$session_var = array('titre', 'nom', 'adresse', 'commentaires', 'mailsonde', 'studsplus', );
-foreach ($session_var as $var) {
-    if (Utils::issetAndNoEmpty($var, $_SESSION) === false) {
-        $_SESSION[$var] = null;
-    }
-}
-
 // On initialise également les autres variables
 $erreur_adresse = false;
 $erreur_injection_titre = false;
@@ -66,16 +60,12 @@ $cochemail = '';
 
 #tests
 if (Utils::issetAndNoEmpty("poursuivre")){
-    $_SESSION["titre"] = $titre;
-    $_SESSION["nom"] = $nom;
-    $_SESSION["adresse"] = $adresse;
-    $_SESSION["commentaires"] = $commentaires;
-
-    unset($_SESSION["studsplus"]);
-    $_SESSION["studsplus"] = ($studsplus !== null) ? '+' : $_SESSION["studsplus"] = '';
-
-    unset($_SESSION["mailsonde"]);
-    $_SESSION["mailsonde"] = ($mailsonde !== null) ? true : false;
+    $_SESSION['form']->titre = $titre;
+    $_SESSION['form']->nom = $nom;
+    $_SESSION['form']->adresse = $adresse;
+    $_SESSION['form']->commentaires = $commentaires;
+    $_SESSION['form']->studsplus = ($studsplus !== null) ? '+' : $_SESSION['form']->studsplus = '';
+    $_SESSION['form']->mailsonde = ($mailsonde !== null) ? true : false;
 
     if ($config['use_smtp']==true){
         if (Utils::isValidEmail($adresse) === false) {
@@ -125,15 +115,6 @@ if (Utils::issetAndNoEmpty("poursuivre")){
 
 bandeau_titre( _("Poll creation (1 on 3)") );
 
-// premier sondage ? test l'existence des schémas SQL avant d'aller plus loin
-if(!Utils::check_table_sondage()) {
-    echo '<div class="alert alert-danger text-center">' . _("Framadate is not properly installed, please check the 'INSTALL' to setup the database before continuing.") . "</div>"."\n";
-
-    bandeau_pied();
-
-    die();
-}
-
 /*
  * Préparation des messages d'erreur
  */
@@ -161,7 +142,7 @@ $errors = array(
     )
 );
 
-if (!$_SESSION["titre"] && Utils::issetAndNoEmpty("poursuivre") ) {
+if (!$_SESSION['form']->titre && Utils::issetAndNoEmpty("poursuivre") ) {
     $errors['title']['aria'] = 'aria-describeby="poll_title_error" '; $errors['title']['class'] = ' has-error';
     $errors['title']['msg'] = '<div class="alert alert-danger" ><p id="poll_title_error">' . _("Enter a title") . '</p></div>';
 } elseif ($erreur_injection_titre) {
@@ -174,7 +155,7 @@ if ($erreur_injection_commentaires) {
     $errors['description']['msg'] = '<div class="alert alert-danger"><p id="poll_comment_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
-if (!$_SESSION["nom"] && Utils::issetAndNoEmpty("poursuivre")) {
+if (!$_SESSION['form']->nom && Utils::issetAndNoEmpty("poursuivre")) {
     $errors['name']['aria'] = 'aria-describeby="poll_name_error" '; $errors['name']['class'] = ' has-error';
     $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Enter a name") . '</p></div>';
 } elseif ($erreur_injection_nom) {
@@ -182,7 +163,7 @@ if (!$_SESSION["nom"] && Utils::issetAndNoEmpty("poursuivre")) {
     $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
-if (!$_SESSION["adresse"] && Utils::issetAndNoEmpty("poursuivre")) {
+if (!$_SESSION['form']->adresse && Utils::issetAndNoEmpty("poursuivre")) {
     $errors['email']['aria'] = 'aria-describeby="poll_name_error" '; $errors['email']['class'] = ' has-error';
     $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("Enter an email address") . '</p></div>';
 } elseif ($erreur_adresse && Utils::issetAndNoEmpty("poursuivre")) {
@@ -196,27 +177,27 @@ if (!$_SESSION["adresse"] && Utils::issetAndNoEmpty("poursuivre")) {
 
 // REMOTE_USER ?
 if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
-    $input_name = '<input type="hidden" name="nom" value="'.$_SESSION["nom"].'" />'.stripslashes($_SESSION["nom"]);
+    $input_name = '<input type="hidden" name="nom" value="'.$_SESSION['form']->nom.'" />'.stripslashes($_SESSION['form']->nom);
 } else {
-    $input_name = '<input id="yourname" type="text" name="nom" class="form-control" '.$errors['name']['aria'].' value="'.stripslashes($_SESSION["nom"]).'" />';
+    $input_name = '<input id="yourname" type="text" name="nom" class="form-control" '.$errors['name']['aria'].' value="'.stripslashes($_SESSION['form']->nom).'" />';
 }
 
 if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
-    $input_email = '<input type="hidden" name="adresse" value="'.$_SESSION["adresse"].'">'.$_SESSION["adresse"];
+    $input_email = '<input type="hidden" name="adresse" value="'.$_SESSION['form']->adresse.'">'.$_SESSION['form']->adresse;
 } else {
-    $input_email = '<input id="email" type="text" name="adresse" class="form-control" '.$errors['email']['aria'].' value="'.$_SESSION["adresse"].'" />';
+    $input_email = '<input id="email" type="text" name="adresse" class="form-control" '.$errors['email']['aria'].' value="'.$_SESSION['form']->adresse.'" />';
 }
 
 // Checkbox checked ?
-if (!$_SESSION["studsplus"] && !Utils::issetAndNoEmpty('creation_sondage_date') && !Utils::issetAndNoEmpty('creation_sondage_autre')) {
-    $_SESSION["studsplus"]="+";
+if (!$_SESSION['form']->studsplus && !Utils::issetAndNoEmpty('creation_sondage_date') && !Utils::issetAndNoEmpty('creation_sondage_autre')) {
+    $_SESSION['form']->studsplus="+";
 }
 
-if ($_SESSION["studsplus"]=="+") {
+if ($_SESSION['form']->studsplus=="+") {
     $cocheplus="checked";
 }
 
-if ($_SESSION["mailsonde"]) {
+if ($_SESSION['form']->mailsonde) {
     $cochemail="checked";
 }
 
@@ -233,14 +214,14 @@ echo '
         <div class="form-group'.$errors['title']['class'].'">
             <label for="poll_title" class="col-sm-4 control-label">' . _("Poll title") . ' *</label>
             <div class="col-sm-8">
-                <input id="poll_title" type="text" name="titre" class="form-control" '.$errors['title']['aria'].' value="'.stripslashes($_SESSION["titre"]).'" />
+                <input id="poll_title" type="text" name="titre" class="form-control" '.$errors['title']['aria'].' value="'.stripslashes($_SESSION['form']->titre).'" />
             </div>
         </div>
             '.$errors['title']['msg'].'
         <div class="form-group'.$errors['description']['class'].'">
             <label for="poll_comments" class="col-sm-4 control-label">'. _("Description") .'</label>
             <div class="col-sm-8">
-                <textarea id="poll_comments" name="commentaires" class="form-control" '.$errors['description']['aria'].' rows="5">'.stripslashes($_SESSION["commentaires"]).'</textarea>
+                <textarea id="poll_comments" name="commentaires" class="form-control" '.$errors['description']['aria'].' rows="5">'.stripslashes($_SESSION['form']->commentaires).'</textarea>
             </div>
         </div>
             '.$errors['description']['msg'].'
