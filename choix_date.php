@@ -88,7 +88,6 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
             }
         }
 
-exit('<pre>'.print_r($_SESSION, true).'</pre>');
         $admin_poll_id = ajouter_sondage(
             $_SESSION['form']->titre,
             $_SESSION['form']->commentaires,
@@ -100,23 +99,14 @@ exit('<pre>'.print_r($_SESSION, true).'</pre>');
             $_SESSION['form']->toutchoix
         );
         
+        // Clean Form data in $_SESSION
         unset($_SESSION['form']);
-exit('<pre>'.print_r($_SESSION, true).'</pre>');
 
-    
+        // Delete old polls
         Utils::cleaningOldPolls($connect, 'admin/logs_studs.txt');
         
-        // TODO cleanup $_SESSION + Redirect
-        
-        // Don't keep days, hours and choices in memory (in order to make new polls)
-        //for ($i = 0; $i < count($_SESSION['totalchoixjour']); $i++) {
-        //        unset($_SESSION['horaires'.$i]);
-        //}
-        //unset($_SESSION['totalchoixjour']);
-        //unset($_SESSION['choices']);
-        
-        //header('Location:' . Utils::getUrlSondage($sondage_admin, true));
-
+        // Redirect to poll administration
+        header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
         exit;
 
     } else {
