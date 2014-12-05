@@ -41,7 +41,7 @@ if ((isset($_GET['choix_sondage']) && $_GET['choix_sondage'] == 'date') ||
 
 // On teste toutes les variables pour supprimer l'ensemble des warnings PHP
 // On transforme en entites html les données afin éviter les failles XSS
-$post_var = array('poursuivre', 'titre', 'nom', 'adresse', 'commentaires', 'studsplus', 'mailsonde', 'creation_sondage_date', 'creation_sondage_autre');
+$post_var = array('poursuivre', 'titre', 'nom', 'adresse', 'commentaires', 'editable', 'receiveNewVotes', 'creation_sondage_date', 'creation_sondage_autre');
 foreach ($post_var as $var) {
     if (isset($_POST[$var]) === true) {
         $$var = htmlentities($_POST[$var], ENT_QUOTES, 'UTF-8');
@@ -55,8 +55,6 @@ $erreur_adresse = false;
 $erreur_injection_titre = false;
 $erreur_injection_nom = false;
 $erreur_injection_commentaires = false;
-$cocheplus = '';
-$cochemail = '';
 
 #tests
 if (Utils::issetAndNoEmpty("poursuivre")){
@@ -64,8 +62,8 @@ if (Utils::issetAndNoEmpty("poursuivre")){
     $_SESSION['form']->nom = $nom;
     $_SESSION['form']->adresse = $adresse;
     $_SESSION['form']->commentaires = $commentaires;
-    $_SESSION['form']->studsplus = ($studsplus !== null) ? '+' : $_SESSION['form']->studsplus = '';
-    $_SESSION['form']->mailsonde = ($mailsonde !== null) ? true : false;
+    $_SESSION['form']->editable = ($editable !== null) ? true : false;
+    $_SESSION['form']->receiveNewVotes = ($receiveNewVotes !== null) ? true : false;
 
     if ($config['use_smtp']==true){
         if (Utils::isValidEmail($adresse) === false) {
@@ -86,7 +84,7 @@ if (Utils::issetAndNoEmpty("poursuivre")){
     }
 
     // Si pas d'erreur dans l'adresse alors on change de page vers date ou autre
-    if($config['use_smtp']==true){
+    if($config['use_smtp'] == true){
         $email_OK = $adresse && !$erreur_adresse;
     } else{
         $email_OK = true;
@@ -189,19 +187,15 @@ if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
 }
 
 // Checkbox checked ?
-if (!$_SESSION['form']->studsplus && !Utils::issetAndNoEmpty('creation_sondage_date') && !Utils::issetAndNoEmpty('creation_sondage_autre')) {
-    $_SESSION['form']->studsplus="+";
+if ($_SESSION['form']->editable) {
+    $editable = 'checked';
 }
 
-if ($_SESSION['form']->studsplus=="+") {
-    $cocheplus="checked";
+if ($_SESSION['form']->receiveNewVotes) {
+    $receiveNewVotes = 'checked';
 }
 
-if ($_SESSION['form']->mailsonde) {
-    $cochemail="checked";
-}
-
-// Affichage du formulaire
+// Display form
 echo '
 <div class="row">
     <div class="col-md-8 col-md-offset-2" >
@@ -247,7 +241,7 @@ echo '
             <div class="col-sm-offset-1 col-sm-11">
               <div class="checkbox">
                 <label>
-                    <input type=checkbox name=studsplus '.$cocheplus.' id="studsplus">'. _("Voters can modify their vote themselves.") .'
+                    <input type=checkbox name="editable" '.$editable.' id="editable">'. _("Voters can modify their vote themselves.") .'
                 </label>
               </div>
             </div>
@@ -257,7 +251,7 @@ if($config['use_smtp']==true){
         <div class="col-sm-offset-1 col-sm-11">
           <div class="checkbox">
             <label>
-                <input type=checkbox name=mailsonde '.$cochemail.' id="mailsonde">'. _("To receive an email for each new vote.") .'
+                <input type=checkbox name="receiveNewVotes" '.$receiveNewVotes.' id="receiveNewVotes">'. _("To receive an email for each new vote.") .'
             </label>
           </div>
         </div>

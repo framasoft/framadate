@@ -11,6 +11,8 @@ class FramaDB
     function __construct($connection_string, $user, $password)
     {
         $this->pdo = new \PDO($connection_string, $user, $password);
+        $this->pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
+        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
     function areTablesCreated()

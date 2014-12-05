@@ -45,58 +45,37 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
 } else {
     // Step 4 : Data prepare before insert in DB
     if (Utils::issetAndNoEmpty('confirmation')) {
-        $temp_results = array();
-        $choixdate='';
-        if (Utils::issetAndNoEmpty('totalchoixjour', $_SESSION) === true) {
-            for ($i = 0; $i < count($_SESSION["totalchoixjour"]); $i++) {
-                if(count($_SESSION['horaires'.$i])!=0) {
-                    for ($j=0;$j< min(count($_SESSION['horaires'.$i]),12);$j++) {
-                        if ($_SESSION['horaires'.$i][$j]!="") {
-                            array_push($temp_results, $_SESSION["totalchoixjour"][$i].'@'.$_SESSION['horaires'.$i][$j]);
-                        } else {
-                            array_push($temp_results, $_SESSION["totalchoixjour"][$i]);
-                        }
-                    }
-                } else {
-                    array_push($temp_results, $_SESSION["totalchoixjour"][$i]);
-                }
-            }
 
-        }
-
-        // Sort and remove doublons
-        $temp_results = array_unique($temp_results);
-        sort($temp_results);
-        for ($i=0;$i<count($temp_results);$i++) {
-            if (isset($temp_results[$i])) {
-                $choixdate.=','.$temp_results[$i];
-            }
-        }
-
-        $_SESSION['form']->toutchoix=substr($choixdate,1);
-
-        // Expiration date → 6 months after last day if not filled or in bad format
-        $_SESSION['form']->champdatefin=end($temp_results)+(86400 * $config['default_poll_duration']);
-
-        if (Utils::issetAndNoEmpty('champdatefin')) {
-            $registredate = explode("/",$_POST["champdatefin"]);
-            if (is_array($registredate) == true && count($registredate) == 3) {
-                $time = mktime(0,0,0,$registredate[1],$registredate[0],$registredate[2]);
-                if ($time > time() + (24*60*60)) {
+        // Define expiration date
+        if (!empty($_POST['champdatefin']))
+        {
+            $registredate = explode('/', $_POST['champdatefin']);
+            if (is_array($registredate) && count($registredate) == 3)
+            {
+                $time = mktime(0,0,0, $registredate[1], $registredate[0], $registredate[2]);
+                if ($time > time() + (24*60*60))
+                {
                     $_SESSION['form']->champdatefin=$time;
                 }
             }
+        } 
+        
+        if(empty($_SESSION['form']->champdatefin))
+        {
+            // By default, expiration date is 6 months after last day
+            $_SESSION['form']->champdatefin=end($temp_results)+(86400 * $config['default_poll_duration']);
         }
-
+        
         $admin_poll_id = ajouter_sondage(
             $_SESSION['form']->titre,
             $_SESSION['form']->commentaires,
             $_SESSION['form']->nom,
             $_SESSION['form']->adresse,
             $_SESSION['form']->formatsondage,
+            $_SESSION['form']->editable,
             $_SESSION['form']->champdatefin,
-            $_SESSION['form']->mailsonde,
-            $_SESSION['form']->toutchoix
+            $_SESSION['form']->receiveNewVotes,
+            $_SESSION['form']->getChoices()
         );
         
         // Clean Form data in $_SESSION
@@ -137,9 +116,9 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
     }
 
     //le format du sondage est DATE
-    $_SESSION['form']->formatsondage = "D".$_SESSION['form']->studsplus;
+    $_SESSION['form']->formatsondage = 'D';
 
-    // Step 3/3 : Confirm poll creation
+    // Step 3/4 : Confirm poll creation
     if (Utils::issetAndNoEmpty('choixheures') && !isset($_SESSION['form']->totalchoixjour)) {
 
         Utils::print_header ( _("Removal date and confirmation (3 on 3)") );
@@ -147,7 +126,7 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
 
         $_SESSION['form']->sortChoices();
         $last_date = $_SESSION['form']->lastChoice()->getName();
-        $removal_date = utf8_encode(strftime($date_format['txt_full'], $last_date + (86400 * $config['default_poll_duration'])));
+        $removal_date = $last_date + (86400 * $config['default_poll_duration']);
 
         // Summary
         $summary = '<ul>';
@@ -173,13 +152,13 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
                 '. $summary .'
             </div>
             <div class="alert alert-info clearfix">
-                <p>' . _("Your poll will be automatically removed "). $config['default_poll_duration'] . ' ' . _("days") ._(" after the last date of your poll:") . ' <strong>'.$removal_date.'</strong>.<br />' . _("You can fix another removal date for it.") .'</p>
+                <p>' . _("Your poll will be automatically removed "). $config['default_poll_duration'] . ' ' . _("days") . ' ' ._("after the last date of your poll") . '.<br />' . _("You can fix another removal date for it.") .'</p>
                 <div class="form-group">
-                    <label for="champdatefin" class="col-sm-5 control-label">'. _("Removal date (optional)") .'</label>
+                    <label for="champdatefin" class="col-sm-5 control-label">'. _("Removal date") .'</label>
                     <div class="col-sm-6">
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                            <input type="text" class="form-control" id="champdatefin" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat" name="champdatefin" value="" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
+                            <input type="text" class="form-control" id="champdatefin" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat" name="champdatefin" value="'.strftime('%d/%m/%Y', $removal_date).'" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
                         </div>
                     </div>
                     <span id="dateformat" class="sr-only">'. _("(dd/mm/yyyy)") .'</span>
@@ -200,11 +179,10 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
         </div>
     </div>
     </form>'."\n";
-//exit('<pre>POST<br/>'.print_r($_POST, true).'<hr/>SESSION<br/>'.print_r($_SESSION, true).'</pre>');
 
         bandeau_pied();
 
-    // Step 2/3 : Select dates of the poll
+    // Step 2/4 : Select dates of the poll
     } else {
         Utils::print_header ( _("Poll dates (2 on 3)") );
         bandeau_titre(_("Poll dates (2 on 3)"));

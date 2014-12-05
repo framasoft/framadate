@@ -11,16 +11,16 @@ class Form
     public $formatsondage;
     public $champdatefin;
     public $choix_sondage;
-    public $studsplus;
-    public $mailsonde;
-    public $toutchoix;
-    public $totalchoixjour;
-    public $horaires;
 
     /**
-     * Step of form
+     * Tells if users can modify their choices.
      */
-    public $step = 0;
+    public $editable;
+    
+    /**
+     * If true, notify poll administrator when new vote is made.
+     */
+    public $receiveNewVotes;
 
     /**
      * List of available choices

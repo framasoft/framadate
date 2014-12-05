@@ -38,24 +38,34 @@ function random($car)
     return $string;
 }
 
-function ajouter_sondage($title, $comment, $adminName, $adminMail, $format, $endDate, $mailsonde, $slots)
+function ajouter_sondage($title, $comment, $adminName, $adminMail, $format, $editable, $endDate, $receiveNewVotes, $choices)
 {
     global $connect;
     global $config; 
+    
+    // Generate poll ids
     $poll_id = random(16);
     $admin_poll_id = $poll_id.random(8);
+    
+    // Insert poll + slots
+    $connect->beginTransaction();
 
-    $date_fin = $_SESSION['champdatefin']; // provided by choix_autre.php or choix_date.php
-    $_SESSION['champdatefin'] = ''; //clean param cause 2 polls created by the same user in the same session can be affected by this param during the 2nd creation.
     $sql = 'INSERT INTO sondage
-          (id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, date_fin, format, mailsonde)
-          VALUES (?,?,?,?,?,?,?,?)';
+          (poll_id, admin_poll_id, title, comment, admin_name, admin_mail, end_date, format, editable, receiveNewVotes)
+          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?)';
     $prepared = $connect->prepare($sql);
-    $res = $prepared->execute(array($poll_id, $comment, $adminMail, $adminName, $title, $admin_poll_id, $format, $mailsonde));
+    $prepared->execute(array($poll_id, $admin_poll_id, $title, $comment, $adminName, $adminMail, $endDate, $format, $editable, $receiveNewVotes));
 
-    $prepared = $connect->prepare('INSERT INTO sujet_studs values (?, ?)');
-    $prepared->execute(array($poll_id, $slots));
+    $prepared = $connect->prepare('INSERT INTO sujet_studs (id_sondage, sujet) VALUES (?, ?)');
+    foreach ($choices as $choice) {
+        foreach ($choice->getSlots() as $slot) {
+            $prepared->execute(array($poll_id, $choice->getName().'@'.$slot));
+        }
+    }
 
+    $connect->commit();
+
+    // Send confirmation by mail if enabled
     if($config['use_smtp'] === true){
         $message = _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
         $message .= "\n\n";
@@ -74,7 +84,7 @@ function ajouter_sondage($title, $comment, $adminName, $adminMail, $format, $end
         }
     }
     
-    error_log(date('H:i:s d/m/Y:') . ' CREATION: '.$poll_id."\t".$format."\t".$adminName."\t".$adminMail."\t \t".$slots."\n", 3, 'admin/logs_studs.txt');
+    error_log(date('H:i:s d/m/Y:') . ' CREATION: '.$poll_id."\t".$format."\t".$adminName."\t".$adminMail."\n", 3, 'admin/logs_studs.txt');
 
     return $admin_poll_id;
 }

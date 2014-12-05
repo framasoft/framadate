@@ -23,18 +23,19 @@ CREATE TABLE IF NOT EXISTS `comments` (
 --
 
 CREATE TABLE IF NOT EXISTS `sondage` (
-  `id_sondage` char(16) NOT NULL,
-  `commentaires` text,
-  `mail_admin` varchar(128) DEFAULT NULL,
-  `nom_admin` varchar(64) DEFAULT NULL,
-  `titre` text,
-  `id_sondage_admin` char(24) DEFAULT NULL,
-  `date_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_fin` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `format` varchar(2) DEFAULT NULL,
-  `mailsonde` tinyint(1) DEFAULT '0',
+  `poll_id` char(16) NOT NULL,
+  `admin_poll_id` char(24) DEFAULT NULL,
+  `title` text NOT NULL,
+  `comment` text,
+  `admin_name` varchar(64) DEFAULT NULL,
+  `admin_mail` varchar(128) DEFAULT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `end_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `format` varchar(1) DEFAULT NULL,
+  `editable` tinyint(1) DEFAULT '0',
+  `receiveNewVotes` tinyint(1) DEFAULT '0',
   `statut` int(11) NOT NULL DEFAULT '1' COMMENT '1 = actif ; 0 = inactif ; ',
-  UNIQUE KEY `id_sondage` (`id_sondage`)
+  UNIQUE KEY `poll_id` (`poll_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

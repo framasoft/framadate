@@ -239,7 +239,7 @@ class Utils
         $prepared = $connect->prepare('DELETE FROM comments WHERE id_sondage = ?');
         $prepared->execute(array($poll_id));
 
-        $prepared = $connect->prepare('DELETE FROM sondage WHERE id_sondage = ?');
+        $prepared = $connect->prepare('DELETE FROM sondage WHERE poll_id = ?');
         $prepared->execute(array($poll_id));
         
     }
@@ -247,15 +247,13 @@ class Utils
     public static function cleaningOldPolls($log_txt) {
         global $connect;
         
-        $resultSet = $connect->query('SELECT id_sondage, format, nom_admin, mail_admin FROM sondage WHERE date_fin < NOW() LIMIT 20');
+        $resultSet = $connect->query('SELECT poll_id, format, admin_name FROM sondage WHERE end_date < NOW() LIMIT 20');
         $toClean = $resultSet->fetchAll(\PDO::FETCH_CLASS);
-        
-        echo '<pre>toClean:'.print_r($toClean, true).'</pre>';
 
         $connect->beginTransaction();
         foreach ($toClean as $row) {
-            if (self::removeSondage($row->id_sondage)) {
-                error_log(date('H:i:s d/m/Y:') . ' EXPIRATION: '. $row->id_sondage."\t".$row->format."\t".$row->nom_admin."\t".$row->mail_admin."\n", 3, $log_txt);
+            if (self::removeSondage($row->poll_id)) {
+                error_log(date('H:i:s d/m/Y:') . ' EXPIRATION: '. $row->poll_id."\t".$row->format."\t".$row->admin_name."\n", 3, $log_txt);
             }
         }
         $connect->commit();
