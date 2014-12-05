@@ -24,7 +24,7 @@ const VERSION = 0.8;
 const STUDS_URL = '<www.mydomain.com>';
 
 // Application name
-const NOMAPPLICATION = "<Application name>";
+const NOMAPPLICATION = '<Application name>';
 
 // Database administrator email
 const ADRESSEMAILADMIN = '<email address>';
@@ -36,7 +36,7 @@ const ADRESSEMAILREPONSEAUTO = '<no-reply@mydomain.com>';
 const BASE = '<database name>';
 
 // Database user
-const USERBASE = "<database user>";
+const USERBASE = '<database user>';
 
 // Database password
 const USERPASSWD = '<database password>';
@@ -44,7 +44,7 @@ const USERPASSWD = '<database password>';
 // Database server name, leave empty to use a socket
 const SERVEURBASE = '<database server>';
 
-// Database type (mysql, postgres…) http://phplens.com/lens/adodb/docs-adodb.htm#drivers
+// Database type (pdo, mysql, postgres…) http://phplens.com/lens/adodb/docs-adodb.htm#drivers
 const BASE_TYPE = '<database type>';
 
 // Default Language using POSIX variant of BC P47 standard (choose in $ALLOWED_LANGUAGES)
