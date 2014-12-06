@@ -185,18 +185,19 @@ class Utils
 
     /**
      * Fonction vérifiant l'existance et la valeur non vide d'une clé d'un tableau
+     * @deprecated
      * @param   string  $name       La clé à tester
      * @param   array   $tableau    Le tableau où rechercher la clé ($_POST par défaut)
      * @return  bool                Vrai si la clé existe et renvoie une valeur non vide
      */
-    public static function issetAndNoEmpty($name, $tableau = null)
+    /*public static function issetAndNoEmpty($name, $tableau = null)
     {
         if (is_null($tableau)) {
            $tableau = $_POST;
         }
 
         return isset($tableau[$name]) && ! empty($tableau[$name]);
-    }
+    }*/
 
     /**
      * Fonction permettant de générer les URL pour les sondage
@@ -257,5 +258,12 @@ class Utils
             }
         }
         $connect->commit();
+    }
+    
+    public static function debug($object)
+    {
+        echo '<pre>';
+        print_r($object);
+        echo '</pre>';
     }
 }

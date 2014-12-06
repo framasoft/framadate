@@ -28,7 +28,7 @@ if (is_readable('bandeaux_local.php')) {
     include_once('bandeaux.php');
 }
 
-// Step 1/3 : error if $_SESSION from info_sondage are not valid
+// Step 1/4 : error if $_SESSION from info_sondage are not valid
 if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($config['use_smtp']) ? !isset($_SESSION['form']->adresse) : false)) {
 
     Utils::print_header ( _("Error!") );
@@ -39,6 +39,7 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
         <h3>' . _("You haven't filled the first section of the poll creation.") . ' !</h3>
         <p>' . _("Back to the homepage of ") . ' ' . '<a href="' . Utils::get_server_name() . '">' . NOMAPPLICATION . '</a>.</p>
     </div>';
+    
 
     bandeau_pied();
 
@@ -66,6 +67,7 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
             $_SESSION['form']->champdatefin=end($temp_results)+(86400 * $config['default_poll_duration']);
         }
         
+        // Insert poll in database
         $admin_poll_id = ajouter_sondage(
             $_SESSION['form']->titre,
             $_SESSION['form']->commentaires,

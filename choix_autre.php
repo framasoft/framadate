@@ -18,7 +18,8 @@
  */
 namespace Framadate;
 
-session_start();
+include_once __DIR__ . '/app/inc/init.php';
+
 include_once('creation_sondage.php');
 
 if (file_exists('bandeaux_local.php')) {
@@ -27,82 +28,90 @@ if (file_exists('bandeaux_local.php')) {
     include_once('bandeaux.php');
 }
 
-// Step 1/3 : error if $_SESSION from info_sondage are not valid
-if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmpty('nom', $_SESSION) === false || (($config['use_smtp']) ? Utils::issetAndNoEmpty('adresse', $_SESSION) === false : false)) {
+// Step 1/4 : error if $_SESSION from info_sondage are not valid
+if (empty($_SESSION['form']->titre) || empty($_SESSION['form']->nom) || (($config['use_smtp']) ? empty($_SESSION['form']->adresse) : false)) {
 
     Utils::print_header ( _("Error!") );
     bandeau_titre(_("Error!"));
 
     echo '
     <div class="alert alert-danger">
-        <h3>' . _("You haven't filled the first section of the poll creation.") . ' !</h3>
-        <p>' . _("Back to the homepage of ") . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
+        <h3>' . _('You haven\'t filled the first section of the poll creation.') . ' !</h3>
+        <p>' . _('Back to the homepage of') . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
     </div>'."\n";
 
     bandeau_pied();
 
 } else {
+    
     // Step 4 : Data prepare before insert in DB
-    if (isset($_POST["confirmecreation"])) {
-        //recuperation des données de champs textes
-        $temp_results = '';
-        if (isset($_SESSION['choices'])) {
-            for ($i = 0; $i < count($_SESSION['choices']); $i++) {
-                if ($_SESSION['choices'][$i]!="") {
-                    $temp_results.=','.str_replace(",", " ", htmlentities(html_entity_decode($_SESSION['choices'][$i], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8'));
-                }
+    if (isset($_POST['confirmecreation'])) {
+
+        $registredate = explode('/', $_POST['champdatefin']);
+        if (is_array($registredate) == true && count($registredate) == 3) {
+            $time = mktime(0,0,0,$registredate[1],$registredate[0],$registredate[2]);
+            if ($time > time() + (24*60*60)) {
+                $_SESSION['form']->champdatefin = $time;
             }
         }
 
-        $temp_results=substr($temp_results,1);
-        $_SESSION["toutchoix"]=$temp_results;
+        // format du sondage AUTRE
+        $_SESSION['form']->formatsondage = 'A';
+        
+        // Insert poll in database
+        $admin_poll_id = ajouter_sondage(
+            $_SESSION['form']->titre,
+            $_SESSION['form']->commentaires,
+            $_SESSION['form']->nom,
+            $_SESSION['form']->adresse,
+            $_SESSION['form']->formatsondage,
+            $_SESSION['form']->editable,
+            $_SESSION['form']->champdatefin,
+            $_SESSION['form']->receiveNewVotes,
+            $_SESSION['form']->getChoices()
+        );
+        
+        // Clean Form data in $_SESSION
+        unset($_SESSION['form']);
 
-
-        if (Utils::issetAndNoEmpty('champdatefin')) {
-            $registredate = explode("/",$_POST["champdatefin"]);
-            if (is_array($registredate) == true && count($registredate) == 3) {
-                $time = mktime(0,0,0,$registredate[1],$registredate[0],$registredate[2]);
-                if ($time > time() + (24*60*60)) {
-                    $_SESSION["champdatefin"]=$time;
-                }
-            }
-        }
-
-        //format du sondage AUTRE
-        $_SESSION["formatsondage"]="A".$_SESSION["studsplus"];
-
-        ajouter_sondage();
+        // Delete old polls
+        Utils::cleaningOldPolls($connect, 'admin/logs_studs.txt');
+        
+        // Redirect to poll administration
+        header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
+        exit;
 
     }
 
-    // recuperation des sujets pour sondage AUTRE
-    if (isset($_POST['choices'])) {
-        $k = 0;
-        for ($i = 0; $i < count($_POST['choices']); $i++) {
-            if (Utils::issetAndNoEmpty($i, $_POST['choices'])) {
-                $_SESSION['choices'][$k]=htmlentities(html_entity_decode($_POST['choices'][$i], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
-                $k++;
+    // Step 3/4 : Confirm poll creation and choose a removal date
+    else if (isset($_POST['fin_sondage_autre'])) {
+        Utils::print_header ( _('Removal date and confirmation (3 on 3)') );
+        bandeau_titre(_('Removal date and confirmation (3 on 3)'));
+
+        
+        // Store choices in $_SESSION
+        if (isset($_POST['choices'])) {
+            $_SESSION['form']->clearChoices();
+            foreach ($_POST['choices'] as $c)
+            {
+                if (!empty($c))
+                {
+                    $choice = new Choice(htmlentities(html_entity_decode($c, ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8'));
+                    $_SESSION['form']->addChoice($choice);
+                }
             }
         }
-    }
-
-    // Step 3/3 : Confirm poll creation and choose a removal date
-    if (isset($_POST["fin_sondage_autre"])) {
-        Utils::print_header ( _("Removal date and confirmation (3 on 3)") );
-        bandeau_titre(_("Removal date and confirmation (3 on 3)"));
 
         // Expiration date is initialised with config parameter. Value will be modified in step 4 if user has defined an other date
-        $_SESSION["champdatefin"]= time()+ (86400 * $config['default_poll_duration']); //60 sec * 60 min * 24 hours * config
-
-        $removal_date= utf8_encode(strftime($date_format['txt_full'], ($_SESSION["champdatefin"])));//textual date
+        $_SESSION['form']->champdatefin = time() + (86400 * $config['default_poll_duration']); //60 sec * 60 min * 24 hours * config
 
         // Summary
         $summary = '<ol>';
-        for ($i=0;$i<count($_SESSION['choices']);$i++) {
+        foreach ($_SESSION['form']->getChoices() as $choice) {
 
-            preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/',$_SESSION['choices'][$i],$md_a_img);  // Markdown [![alt](src)](href)
-            preg_match_all('/!\[(.*?)\]\((.*?)\)/',$_SESSION['choices'][$i],$md_img);                 // Markdown ![alt](src)
-            preg_match_all('/\[(.*?)\]\((.*?)\)/',$_SESSION['choices'][$i],$md_a);                    // Markdown [text](href)
+            preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/', $choice->getName(), $md_a_img);  // Markdown [![alt](src)](href)
+            preg_match_all('/!\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_img);                 // Markdown ![alt](src)
+            preg_match_all('/\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_a);                    // Markdown [text](href)
             if (isset($md_a_img[2][0]) && $md_a_img[2][0]!='' && isset($md_a_img[3][0]) && $md_a_img[3][0]!='') { // [![alt](src)](href)
 
                 $li_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0]!='') ? stripslashes($md_a_img[1][0]) : _("Choice") .' '.($i+1);
@@ -120,7 +129,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
 
             } else { // text only
 
-                $li_subject_text = stripslashes($_SESSION['choices'][$i]);
+                $li_subject_text = stripslashes($choice->getName());
                 $li_subject_html = $li_subject_text;
 
             }
@@ -128,6 +137,8 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
             $summary .= '<li>'.$li_subject_html.'</li>'."\n";
         }
         $summary .= '</ol>';
+
+        $end_date_str = utf8_encode(strftime('%d/%M/%Y', $_SESSION['form']->champdatefin));//textual date
 
         echo '
     <form name="formulaire" action="' . Utils::get_server_name() . 'choix_autre.php" method="POST" class="form-horizontal" role="form">
@@ -138,13 +149,13 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
                 '. $summary .'
             </div>
             <div class="alert alert-info">
-                <p>' . _("Your poll will be automatically removed after"). " " . $config['default_poll_duration'] . " " . _("days") . ': <strong>'.$removal_date.'</strong>.<br />' . _("You can fix another removal date for it.") .'</p>
+                <p>' . _('Your poll will be automatically removed after'). ' ' . $config['default_poll_duration'] . ' ' . _('days') . '.<br />' . _("You can fix another removal date for it.") .'</p>
                 <div class="form-group">
                     <label for="champdatefin" class="col-sm-5 control-label">'. _("Removal date (optional)") .'</label>
                     <div class="col-sm-6">
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                            <input type="text" class="form-control" id="champdatefin" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat" name="champdatefin" value="" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
+                            <input type="text" class="form-control" id="champdatefin" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat" name="champdatefin" value="'. $end_date_str .'" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
                         </div>
                     </div>
                     <span id="dateformat" class="sr-only">'. _("(dd/mm/yyyy)") .'</span>
@@ -168,10 +179,10 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
 
         bandeau_pied();
 
-    // Step 2/3 : Select choices of the poll
+    // Step 2/4 : Select choices of the poll
     } else {
-        Utils::print_header( _("Poll subjects (2 on 3)"));
-        bandeau_titre(_("Poll subjects (2 on 3)"));
+        Utils::print_header( _('Poll subjects (2 on 3)'));
+        bandeau_titre(_('Poll subjects (2 on 3)'));
 
         echo '
     <form name="formulaire" action="' . Utils::get_server_name() . 'choix_autre.php" method="POST" class="form-horizontal" role="form">
@@ -187,16 +198,17 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         echo '    </div>'."\n";
 
         // Fields choices : 5 by default
-        $nb_choices = (isset($_SESSION['choices'])) ? max(count($_SESSION['choices']), 5) : 5;
+        $choices = $_SESSION['form']->getChoices();
+        $nb_choices = max(count($choices), 5);
         for ($i = 0; $i < $nb_choices; $i++) {
-            $choice_value = (isset($_SESSION['choices'][$i])) ? str_replace("\\","",$_SESSION['choices'][$i]) : '';
+            $choice = isset($choices[$i]) ? $choices[$i] : new Choice();
             echo '
             <div class="form-group choice-field">
-                <label for="choice'.$i.'" class="col-sm-2 control-label">'. _("Choice") .' '.($i+1).'</label>
+                <label for="choice'.$i.'" class="col-sm-2 control-label">'. _('Choice') .' '.($i+1).'</label>
                 <div class="col-sm-10 input-group">
-                    <input type="text" class="form-control" name="choices[]" size="40" value="'.$choice_value.'" id="choice'.$i.'" />';
+                    <input type="text" class="form-control" name="choices[]" size="40" value="'.$choice->getName().'" id="choice'.$i.'" />';
                     if($config['user_can_add_img_or_link']){
-                        echo '<span class="input-group-addon btn-link md-a-img" title="'. _("Add a link or an image") .' - '. _("Choice") .' '.($i+1).'" ><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>';
+                        echo '<span class="input-group-addon btn-link md-a-img" title="'. _('Add a link or an image') .' - '. _('Choice') .' '.($i+1).'" ><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>';
                     }
             echo '
             </div>
@@ -206,8 +218,8 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         echo '
             <div class="col-md-4">
                 <div class="btn-group btn-group">
-                    <button type="button" id="remove-a-choice" class="btn btn-default" title="'. _("Remove a choice") .'"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span></button>
-                    <button type="button" id="add-a-choice" class="btn btn-default" title="'. _("Add a choice") .'"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></button>
+                    <button type="button" id="remove-a-choice" class="btn btn-default" title="'. _('Remove a choice') .'"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _('Remove') .'</span></button>
+                    <button type="button" id="add-a-choice" class="btn btn-default" title="'. _('Add a choice') .'"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _('Add') .'</span></button>
                 </div>
             </div>
             <div class="col-md-8 text-right">

@@ -57,7 +57,7 @@ $erreur_injection_nom = false;
 $erreur_injection_commentaires = false;
 
 #tests
-if (Utils::issetAndNoEmpty("poursuivre")){
+if (!empty($_POST['poursuivre'])){
     $_SESSION['form']->titre = $titre;
     $_SESSION['form']->nom = $nom;
     $_SESSION['form']->adresse = $adresse;
@@ -140,7 +140,7 @@ $errors = array(
     )
 );
 
-if (!$_SESSION['form']->titre && Utils::issetAndNoEmpty("poursuivre") ) {
+if (!$_SESSION['form']->titre && !empty($_POST['poursuivre'])) {
     $errors['title']['aria'] = 'aria-describeby="poll_title_error" '; $errors['title']['class'] = ' has-error';
     $errors['title']['msg'] = '<div class="alert alert-danger" ><p id="poll_title_error">' . _("Enter a title") . '</p></div>';
 } elseif ($erreur_injection_titre) {
@@ -153,7 +153,7 @@ if ($erreur_injection_commentaires) {
     $errors['description']['msg'] = '<div class="alert alert-danger"><p id="poll_comment_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
-if (!$_SESSION['form']->nom && Utils::issetAndNoEmpty("poursuivre")) {
+if (!$_SESSION['form']->nom && !empty($_POST['poursuivre'])) {
     $errors['name']['aria'] = 'aria-describeby="poll_name_error" '; $errors['name']['class'] = ' has-error';
     $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Enter a name") . '</p></div>';
 } elseif ($erreur_injection_nom) {
@@ -161,10 +161,10 @@ if (!$_SESSION['form']->nom && Utils::issetAndNoEmpty("poursuivre")) {
     $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
-if (!$_SESSION['form']->adresse && Utils::issetAndNoEmpty("poursuivre")) {
+if (!$_SESSION['form']->adresse && !empty($_POST['poursuivre'])) {
     $errors['email']['aria'] = 'aria-describeby="poll_name_error" '; $errors['email']['class'] = ' has-error';
     $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("Enter an email address") . '</p></div>';
-} elseif ($erreur_adresse && Utils::issetAndNoEmpty("poursuivre")) {
+} elseif ($erreur_adresse && !empty($_POST['poursuivre'])) {
     $errors['email']['aria'] = 'aria-describeby="poll_email_error" '; $errors['email']['class'] = ' has-error';
     $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.") . '</p></div>';
 }

@@ -13,7 +13,7 @@ class Choice
      */
     private $slots;
     
-    public function __construct($name)
+    public function __construct($name='')
     {
         $this->name = $name;
         $this->slots = array();
