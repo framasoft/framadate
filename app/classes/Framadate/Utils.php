@@ -30,32 +30,6 @@ class Utils
         return $scheme . '://' .  str_replace('/admin','',str_replace('//','/',str_replace('///','/',$server_name)));
     }
 
-    public static function get_sondage_from_id($id)
-    {
-        global $connect;
-
-        // Open database
-        if (preg_match(';^[\w\d]{16}$;i', $id)) {
-            $sql = 'SELECT sondage.*,sujet_studs.sujet FROM sondage
-                    LEFT OUTER JOIN sujet_studs ON sondage.id_sondage = sujet_studs.id_sondage
-                    WHERE sondage.id_sondage = ' . $connect->Param('id_sondage');
-
-            $sql     = $connect->Prepare($sql);
-            $sondage = $connect->Execute($sql, [$id]);
-
-            if ($sondage === false) {
-                return false;
-            }
-
-            $psondage = $sondage->FetchObject(false);
-            $psondage->date_fin = strtotime($psondage->date_fin);
-
-            return $psondage;
-        }
-
-        return false;
-    }
-
     public static function is_error($cerr)
     {
         global $err;

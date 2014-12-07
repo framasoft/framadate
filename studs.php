@@ -33,22 +33,25 @@ include_once __DIR__ . '/app/inc/init.php';
 $numsondage = false;
 
 //On récupère le numéro de sondage par le lien web.
-if(Utils::issetAndNoEmpty('sondage', $_GET) === true) {
+if(!empty($_GET['sondage'])) {
     $numsondage = $_GET["sondage"];
     $_SESSION["numsondage"] = $numsondage;
 }
 
-if(Utils::issetAndNoEmpty('sondage') === true) {
+if(!empty($_POST['sondage'])) {
     $numsondage = $_POST["sondage"];
     $_SESSION["numsondage"] = $numsondage;
-} elseif(Utils::issetAndNoEmpty('sondage', $_COOKIE) === true) {
+} elseif(!empty($_COOKIE['sondage'])) {
     $numsondage = $_COOKIE["sondage"];
-} elseif(Utils::issetAndNoEmpty('numsondage', $_SESSION) === true) {
+} elseif(!empty($_SESSION['sondage'])) {
     $numsondage = $_SESSION["numsondage"];
 }
 
-$dsondage = ($numsondage != false) ? Utils::get_sondage_from_id($numsondage) : false;
-if (!$dsondage || $dsondage->id_sondage == ''){
+$dsondage = $connect->findPollById($numsondage);
+if ($dsondage){
+    $sujets = $connect->allSujetsByPollId($numsondage);
+    $users = $connect->allUsersByPollId($numsondage);
+} else {
     Utils::print_header( _("Error!"));
 
     bandeau_titre(_("Error!"));
@@ -65,7 +68,7 @@ if (!$dsondage || $dsondage->id_sondage == ''){
 }
 
 //output a CSV and die()
-if(Utils::issetAndNoEmpty('export', $_GET) && $dsondage !== false) {
+if(!empty($_GET['export']) && $dsondage) {
     if($_GET['export'] == 'csv') {
         require_once('exportcsv.php');
     }
@@ -125,14 +128,12 @@ if(isset($_POST['ajoutcomment'])) {
 
 
 // Action quand on clique le bouton participer
-$sql = 'SELECT * FROM user_studs WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_users';
-$sql = $connect->Prepare($sql);
-$user_studs = $connect->Execute($sql, array($numsondage));
+$user_studs = $connect->allUsersByPollId($numsondage);
 
-$nbcolonnes = substr_count($dsondage->sujet, ',') + 1;
+$nbcolonnes = count($sujets);
 if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
     //Si le nom est bien entré
-    if (Utils::issetAndNoEmpty('nom') === false) {
+    if (empty($_POST['nom'])) {
         $err |= NAME_EMPTY;
     }
 
@@ -154,7 +155,7 @@ if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
         // protection contre les XSS : htmlentities
         $nom = htmlentities($nom, ENT_QUOTES, 'UTF-8');
 
-        while($user = $user_studs->FetchNextObject(false)) {
+        foreach ($users as $user) {
             if ($nom == $user->nom) {
                 $err |= NAME_TAKEN;
             }
@@ -163,20 +164,15 @@ if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
         // Ecriture des choix de l'utilisateur dans la base
         if (!Utils::is_error(NAME_TAKEN) && !Utils::is_error(NAME_EMPTY)) {
 
-           $sql = 'INSERT INTO user_studs (nom,id_sondage,reponses) VALUES ('.
-               $connect->Param('nom').', '.
-               $connect->Param('numsondage').', '.
-               $connect->Param('nouveauchoix').')';
-           $sql = $connect->Prepare($sql);
+            // Todo : Il faudrait lever une erreur en cas d'erreur d'insertion
+            $newVote = $connect->insertVote($nom, $numsondage, $nouveauchoix);
+            $user_studs[] = $newVote;
 
-           // Todo : Il faudrait lever une erreur en cas d'erreur d'insertion
-           $connect->Execute($sql, array($nom, $numsondage, $nouveauchoix));
-
-            if ($dsondage->mailsonde || /* compatibility for non boolean DB */ $dsondage->mailsonde=="yes" || $dsondage->mailsonde=="true") {
+            if ($dsondage->receiveNewVotes || /* compatibility for non boolean DB */ $dsondage->receiveNewVotes==="yes" || $dsondage->receiveNewVotes==="true") {
                 if($config['use_smtp']==true){
-                    Utils::sendEmail( "$dsondage->mail_admin",
-                       "[".NOMAPPLICATION."] "._("Poll's participation")." : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8')."",
-                       html_entity_decode("\"$nom\" ", ENT_QUOTES, 'UTF-8').
+                    Utils::sendEmail( $dsondage->admin_mail,
+                       "[".NOMAPPLICATION."] "._("Poll's participation")." : ".html_entity_decode($dsondage->title, ENT_QUOTES, 'UTF-8') . ' ',
+                       html_entity_decode($nom, ENT_QUOTES, 'UTF-8'). ' ' .
                        _("has filled a line.\nYou can find your poll at the link") . " :\n\n".
                        Utils::getUrlSondage($numsondage) . " \n\n" .
                        _("Thanks for your confidence.") . "\n". NOMAPPLICATION );
@@ -186,10 +182,11 @@ if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
     } else {
         $err |= NAME_EMPTY;
     }
+
 }
 
 if($err != 0) {
-    Utils::print_header(_("Error!").' - '.$dsondage->titre);
+    Utils::print_header(_("Error!").' - '.$dsondage->title);
     bandeau_titre(_("Error!"));
 
     echo '<div class="alert alert-danger"><ul class="list-unstyled">'."\n";
@@ -210,11 +207,11 @@ if($err != 0) {
     echo '</ul></div>';
 
 } else {
-    Utils::print_header(_('Poll').' - '.$dsondage->titre);
-    bandeau_titre(_('Poll').' - '.$dsondage->titre);
+    Utils::print_header(_('Poll').' - '.$dsondage->title);
+    bandeau_titre(_('Poll').' - '.$dsondage->title);
 }
 
-$title=stripslashes(str_replace("\\","",$dsondage->titre));
+$title=stripslashes(str_replace("\\","",$dsondage->title));
 echo '
         <div class="jumbotron">
             <div class="row">
@@ -232,18 +229,18 @@ echo '
                 <div class="col-md-5">
                     <div class="form-group">
                         <h4 class="control-label">'. _("Initiator of the poll") .'</h4>
-                        <p class="form-control-static"> '.stripslashes($dsondage->nom_admin).'</p>
+                        <p class="form-control-static"> '.stripslashes($dsondage->admin_name).'</p>
                     </div>
                     <div class="form-group">
-                        <label for="public-link"><a class="public-link" href="' . Utils::getUrlSondage($dsondage->id_sondage) . '">'._("Public link of the poll") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
-                        <input class="form-control" id="public-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($dsondage->id_sondage) . '" />
+                        <label for="public-link"><a class="public-link" href="' . Utils::getUrlSondage($dsondage->poll_id) . '">'._("Public link of the poll") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                        <input class="form-control" id="public-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($dsondage->poll_id) . '" />
                     </div>
                 </div>'."\n";
 
 //affichage de la description du sondage
-if ($dsondage->commentaires) {
-    $commentaires = $dsondage->commentaires;
-    $commentaires=nl2br(str_replace("\\","",$commentaires));
+if ($dsondage->comment) {
+    $commentaires = $dsondage->comment;
+    $commentaires=nl2br(str_replace("\\","",$comment));
     echo '
                 <div class="form-group col-md-7">
                     <h4 class="control-label">'._("Description") .'</h4><br />
@@ -255,7 +252,7 @@ echo '
         </div>'."\n"; // .jumbotron
 
 //On récupere les données et les sujets du sondage
-$nblignes = $user_studs->RecordCount();
+$nblignes = count($users);
 
 //on teste pour voir si une ligne doit etre modifiée
 $testmodifier = false;
@@ -295,20 +292,12 @@ if ($testmodifier) {
             $connect->Execute($sql, array($nouveauchoix, $data->nom, $data->id_users));
 
             if ($dsondage->mailsonde=="yes") {
-                Utils::sendEmail( "$dsondage->mail_admin", "[".NOMAPPLICATION."] " . _("Poll's participation") . " : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8'), "\"".html_entity_decode($data->nom, ENT_QUOTES, 'UTF-8')."\""."" . _("has filled a line.\nYou can find your poll at the link") . " :\n\n" . Utils::getUrlSondage($numsondage) . " \n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
+                Utils::sendEmail( "$dsondage->mail_admin", "[".NOMAPPLICATION."] " . _("Poll's participation") . " : ".html_entity_decode($dsondage->title, ENT_QUOTES, 'UTF-8'), "\"".html_entity_decode($data->nom, ENT_QUOTES, 'UTF-8')."\""."" . _("has filled a line.\nYou can find your poll at the link") . " :\n\n" . Utils::getUrlSondage($numsondage) . " \n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
             }
         }
         $compteur++;
     }
 }
-
-//recuperation des utilisateurs du sondage
-$sql = 'SELECT * FROM user_studs WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_users';
-$sql = $connect->Prepare($sql);
-$user_studs = $connect->Execute($sql, array($numsondage));
-
-//reformatage des données des sujets du sondage
-$toutsujet = explode(",",$dsondage->sujet);
 
 // Table headers
 $thead = '<thead>';
@@ -385,18 +374,17 @@ if ($dsondage->format=="D"||$dsondage->format=="D+"||$dsondage->format=="D-") {
 
 // Subjects poll
 } else {
-    $toutsujet=str_replace("@","<br />",$toutsujet);
 
     $tr_subjects = '<tr><th role="presentation"></th>';
 
-    for ($i = 0; isset($toutsujet[$i]); $i++) {
+    foreach ($sujets as $i=>$sujet) {
 
         $td_headers[$i]='';$radio_title[$i]=''; // init before concatenate
 
         // Subjects
-        preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/',$toutsujet[$i],$md_a_img);  // Markdown [![alt](src)](href)
-        preg_match_all('/!\[(.*?)\]\((.*?)\)/',$toutsujet[$i],$md_img);                 // Markdown ![alt](src)
-        preg_match_all('/\[(.*?)\]\((.*?)\)/',$toutsujet[$i],$md_a);                    // Markdown [text](href)
+        preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/',$sujet->sujet,$md_a_img);  // Markdown [![alt](src)](href)
+        preg_match_all('/!\[(.*?)\]\((.*?)\)/',$sujet->sujet,$md_img);                 // Markdown ![alt](src)
+        preg_match_all('/\[(.*?)\]\((.*?)\)/',$sujet->sujet,$md_a);                    // Markdown [text](href)
         if (isset($md_a_img[2][0]) && $md_a_img[2][0]!='' && isset($md_a_img[3][0]) && $md_a_img[3][0]!='') { // [![alt](src)](href)
 
             $th_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0]!='') ? stripslashes($md_a_img[1][0]) : _("Choice") .' '.($i+1);
@@ -414,7 +402,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+"||$dsondage->format=="D-") {
 
         } else { // text only
 
-            $th_subject_text = stripslashes($toutsujet[$i]);
+            $th_subject_text = stripslashes($sujet->sujet);
             $th_subject_html = $th_subject_text;
 
         }
@@ -431,7 +419,7 @@ if ($dsondage->format=="D"||$dsondage->format=="D+"||$dsondage->format=="D-") {
 
 // Print headers
 echo '
-<form name="formulaire" action="' . Utils::getUrlSondage($dsondage->id_sondage) . '" method="POST">
+<form name="formulaire" action="' . Utils::getUrlSondage($dsondage->poll_id) . '" method="POST">
     <input type="hidden" name="sondage" value="' . $numsondage . '"/>
 ';
 if ($dsondage->format=="A-" || $dsondage->format=="D-") {
@@ -475,12 +463,12 @@ $user_mod = false;
 $somme[] = 0;
 $compteur = 0;
 
-while ($data = $user_studs->FetchNextObject(false)) {
+foreach ($users as $user) {
 
-    $ensemblereponses = $data->reponses;
+    $ensemblereponses = $user->reponses;
 
     //affichage du nom
-    $nombase=str_replace("°","'",$data->nom);
+    $nombase=str_replace("°","'",$user->nom);
     echo '<tr>
 <th class="bg-info">'.stripslashes($nombase).'</th>'."\n";
 
@@ -666,11 +654,9 @@ echo '
     <hr role="presentation" />';
 
 // Comments
-$sql = 'select * from comments where id_sondage='.$connect->Param('numsondage').' order by id_comment';
-$sql = $connect->Prepare($sql);
-$comment_user=$connect->Execute($sql, array($numsondage));
+$comments = $connect->allCommentsByPollId($numsondage);
 
-if ($comment_user->RecordCount() != 0) {
+if (count($comments) != 0) {
     echo '<div><h3>' . _("Comments of polled people") . '</h3>'."\n";
 
     while($dcomment = $comment_user->FetchNextObject(false)) {
