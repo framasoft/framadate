@@ -58,8 +58,19 @@ function ajouter_sondage($title, $comment, $adminName, $adminMail, $format, $edi
 
     $prepared = $connect->prepare('INSERT INTO sujet_studs (id_sondage, sujet) VALUES (?, ?)');
     foreach ($choices as $choice) {
+        $joinedSlots = '';
         foreach ($choice->getSlots() as $slot) {
-            $prepared->execute(array($poll_id, $choice->getName().'@'.$slot));
+            if ($first) {
+                $joinedSlots = $slot;
+                $first = false;
+            } else {
+                $joinedSlots .= ',' . $slot;
+            }
+        }
+        if (empty($joinedSlots)) {
+            $prepared->execute(array($poll_id, $choice->getName()));
+        } else {
+            $prepared->execute(array($poll_id, $choice->getName().'@'.$joinedSlots));
         }
     }
 

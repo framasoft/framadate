@@ -37,5 +37,11 @@ class FramaDB
     function query($sql) {
         return $this->pdo->query($sql);
     }
+    
+    function allComments($poll_id) {
+        $prepared = $this->prepare('SELECT * FROM comments WHERE id_sondage=? ORDER BY id_comment');
+        $prepared->execute(array($poll_id));
+        return $prepared->fetchAll();
+    }
 
 }
