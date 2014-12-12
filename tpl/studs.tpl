@@ -1,6 +1,8 @@
 {include file='head.tpl'}
 {include file='header.tpl'}
 
+<form action="{$poll_id|poll_url}" method="POST">
+
 		{* Global informations about the current poll *}
 		
         <div class="jumbotron">
@@ -143,12 +145,10 @@
 		                		
 		                	{if $poll->active && $poll->editable}
 		                		<td>
-		                			<form action="{$poll_id|poll_url}" method="POST">
-		                				<input type="hidden" name="edit_vote" value="{$vote->id}"/>
-					                    <button type="submit" class="btn btn-link btn-sm" title="{_('Edit the line:')} {$vote->name}">
-					                        <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span>
-					                    </button>
-				                    </form>
+									<input type="hidden" name="edit_vote" value="{$vote->id}"/>
+									<button type="submit" class="btn btn-link btn-sm" name="edit_vote" title="{_('Edit the line:')} {$vote->name}">
+										<span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span>
+									</button>
 				                </td>
 				            {else}
 				            	<td></td>
@@ -159,5 +159,5 @@
 		        </tbody>
 	        </table>
 	    </div>
-
+</form>
 {include file='footer.tpl'}
