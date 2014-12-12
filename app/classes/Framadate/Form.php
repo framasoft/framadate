@@ -16,7 +16,7 @@ class Form
      * Tells if users can modify their choices.
      */
     public $editable;
-    
+
     /**
      * If true, notify poll administrator when new vote is made.
      */
@@ -28,6 +28,7 @@ class Form
     private $choices;
 
     public function __construct(){
+        $this->editable = true;
         $this->clearChoices();
     }
 

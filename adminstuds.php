@@ -29,10 +29,6 @@ if (file_exists('bandeaux_local.php')) {
     include_once('bandeaux.php');
 }
 
-// Initialisation des variables
-$numsondageadmin = false;
-$sondage = false;
-
 // recuperation du numero de sondage admin (24 car.) dans l'URL
 if (!empty($_GET['sondage']) && is_string($_GET['sondage']) && strlen($_GET['sondage']) === 24) {
     $admin_poll_id = $_GET["sondage"];
@@ -45,7 +41,7 @@ if (preg_match(";[\w\d]{24};i", $admin_poll_id)) {
     $prepared->execute(array($admin_poll_id));
     $poll = $prepared->fetch();
     $prepared->closeCursor();
-    
+
     $prepared = $connect->prepare('SELECT * FROM sujet_studs WHERE id_sondage = ?');
     $prepared->execute(array($poll_id));
     $sujets = $prepared->fetchAll();
@@ -79,14 +75,14 @@ $smtp_allowed = $config['use_smtp'];
 function send_mail_admin() {
     global $email_admin;
     global $poll_title;
-    global $numsondageadmin;
+    global $admin_poll_id;
     global $smtp_allowed;
         if($smtp_allowed==true){
             if(!isset($_SESSION['mail_admin_sent'])) {
                 Utils::sendEmail( $email_admin,
                     _("[ADMINISTRATOR] New settings for your poll") . ' ' . stripslashes( $poll_title ),
                     _("You have changed the settings of your poll. \nYou can modify this poll with this link") .
-                      " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . "\n\n" .
+                      " :\n\n" . Utils::getUrlSondage($admin_poll_id, true) . "\n\n" .
                     _("Thanks for your confidence.") . "\n" . NOMAPPLICATION
                     );
                 $_SESSION["mail_admin_sent"]=true;
@@ -106,7 +102,7 @@ if (isset($_POST["boutonnouveautitre"])) {
         $sql = $connect->Prepare($sql);
 
         //Email sent to the admin
-        if ($connect->Execute($sql, array($nouveautitre, $numsondage))) {
+        if ($connect->Execute($sql, array($nouveautitre, $poll_id))) {
             send_mail_admin();
         }
     }
@@ -124,7 +120,7 @@ if (isset($_POST['boutonnouveauxcommentaires'])) {
         $prepared->execute(array($commentaires, $poll_id));
 
         //Email sent to the admin
-        if ($connect->Execute($sql, array($commentaires, $numsondage))) {
+        if ($connect->Execute($sql, array($commentaires, $poll_id))) {
             send_mail_admin();
         }
     }
@@ -176,7 +172,7 @@ if (isset($_POST["btn_poll_rules"])) {
 // $dsondage= $sondage->FetchObject(false);
 
 if (isset($_POST['ajoutsujet'])) {
-    Utils::print_header( _('Add a column') .' - ' . stripslashes( $poll->title));
+    Utils::print_header( _('Add a column') .' - ' . stripslashes($poll->title));
 
     bandeau_titre(_('Make your polls'));
 
@@ -185,10 +181,10 @@ if (isset($_POST['ajoutsujet'])) {
     echo '
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-            <form name="formulaire" class="form-horizontal" action="' . Utils::getUrlSondage($numsondageadmin, true) . '" method="POST">
+            <form name="formulaire" class="form-horizontal" action="' . Utils::getUrlSondage($admin_poll_id, true) . '" method="POST">
                 <h2>' . _("Column's adding") . '</h2>'."\n";
 
-    if (substr($dsondage->format, 0, 1)=="A"){
+    if ($poll->format == "A"){
         echo '
                 <div class="form-group">
                     <label for="nouvellecolonne" class="col-md-6">' . _("Add a column") .' :</label>
@@ -197,7 +193,7 @@ if (isset($_POST['ajoutsujet'])) {
                     </div>
                 </div>'."\n";
     } else {
-        //ajout d'une date avec creneau horaire
+        // ajout d'une date avec creneau horaire
         echo '
                 <p>'. _("You can add a new scheduling date to your poll.").'<br />'._("If you just want to add a new hour to an existant date, put the same date and choose a new hour.") .'</p>
 
@@ -233,12 +229,12 @@ if (isset($_POST['ajoutsujet'])) {
 }
 
 if (isset($_POST["suppressionsondage"])) {
-    Utils::print_header( _("Confirm removal of your poll") .' - ' . stripslashes( $dsondage->titre ));
+    Utils::print_header( _("Confirm removal of your poll") .' - ' . stripslashes( $dsondage->title ));
 
     bandeau_titre(_("Confirm removal of your poll"));
 
     echo '
-        <form name="formulaire" action="' . Utils::getUrlSondage($numsondageadmin, true) . '" method="POST">
+        <form name="formulaire" action="' . Utils::getUrlSondage($admin_poll_id, true) . '" method="POST">
         <div class="alert alert-warning text-center">
             <h2>' . _("Confirm removal of your poll") . '</h2>
             <p><button class="btn btn-default" type="submit" value="" name="annullesuppression">'._("Keep this poll!").'</button>
@@ -255,14 +251,14 @@ if (isset($_POST["suppressionsondage"])) {
 if (isset($_POST['removecomments'])) {
     $sql = 'DELETE FROM comments WHERE id_sondage='.$connect->Param('numsondage');
     $sql = $connect->Prepare($sql);
-    $cleaning = $connect->Execute($sql, array($numsondage));
+    $cleaning = $connect->Execute($sql, array($poll_id));
 }
 
 // Remove all the votes
 if (isset($_POST["removevotes"])) {
     $sql = 'DELETE FROM user_studs WHERE id_sondage='.$connect->Param('numsondage');
     $sql = $connect->Prepare($sql);
-    $cleaning = $connect->Execute($sql, array($numsondage));
+    $cleaning = $connect->Execute($sql, array($poll_id));
 }
 
 //action si bouton confirmation de suppression est activé
@@ -270,7 +266,7 @@ if (isset($_POST["confirmesuppression"])) {
     $nbuser=$user_studs->RecordCount();
     $date=date('H:i:s d/m/Y:');
 
-    if (Utils::remove_sondage($connect, $numsondage)) {
+    if (Utils::remove_sondage($connect, $poll_id)) {
         // on ecrit dans le fichier de logs la suppression du sondage
         error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'admin/logs_studs.txt');
 
@@ -313,7 +309,7 @@ if (isset($_POST['ajoutcomment'])) {
         $comment_doublon = false;
         $req = 'SELECT * FROM comments WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_comment';
         $sql = $connect->Prepare($req);
-        $comment_user_doublon = $connect->Execute($sql, array($numsondage));
+        $comment_user_doublon = $connect->Execute($sql, array($poll_id));
         if ($comment_user_doublon->RecordCount() != 0) {
             while ( $dcomment_user_doublon=$comment_user_doublon->FetchNextObject(false)) {
                 if($dcomment_user_doublon->comment == $comment && $dcomment_user_doublon->usercomment == $comment_user) {
@@ -329,7 +325,7 @@ if (isset($_POST['ajoutcomment'])) {
                 $connect->Param('comment_user').')';
             $sql = $connect->Prepare($req);
 
-            $comments = $connect->Execute($sql, array($numsondage, $comment, $comment_user));
+            $comments = $connect->Execute($sql, array($poll_id, $comment, $comment_user));
             if ($comments === false) {
                 $err |= COMMENT_INSERT_FAILED;
             }
@@ -345,7 +341,7 @@ $nblignes = count($users);
 //action si le bouton participer est cliqué
 if (isset($_POST["boutonp"])) {
     //si on a un nom dans la case texte
-    if (Utils::issetAndNoEmpty('nom')){
+    if (!empty($_POST['nom'])){
         $nouveauchoix = '';
         $erreur_prenom = false;
 
@@ -376,14 +372,14 @@ if (isset($_POST["boutonp"])) {
                 $connect->Param('nouveauchoix').')';
 
             $sql = $connect->Prepare($sql);
-            $connect->Execute($sql, array($nom, $numsondage, $nouveauchoix));
+            $connect->Execute($sql, array($nom, $poll_id, $nouveauchoix));
         }
     }
 }
 
 
 //action quand on ajoute une colonne au format AUTRE
-if (isset($_POST["ajoutercolonne"]) && Utils::issetAndNoEmpty('nouvellecolonne') && (substr($dsondage->format, 0, 1) == "A" )) {
+if (isset($_POST["ajoutercolonne"]) && !empty($_POST['nouvellecolonne']) && $poll->format == "A") {
     $nouveauxsujets=$dsujet->sujet;
 
     //on rajoute la valeur a la fin de tous les sujets deja entrés
@@ -394,23 +390,31 @@ if (isset($_POST["ajoutercolonne"]) && Utils::issetAndNoEmpty('nouvellecolonne')
     //mise a jour avec les nouveaux sujets dans la base
     $sql = 'UPDATE sujet_studs SET sujet = '.$connect->Param('nouveauxsujets').' WHERE id_sondage = '.$connect->Param('numsondage');
     $sql = $connect->Prepare($sql);
-    if ($connect->Execute($sql, array($nouveauxsujets, $numsondage))) {
+    if ($connect->Execute($sql, array($nouveauxsujets, $poll_id))) {
         send_mail_admin();
     }
 }
 
 
-//action quand on ajoute une colonne au format DATE
-if (isset($_POST["ajoutercolonne"]) && (substr($dsondage->format, 0, 1) == "D")) {
-    $nouveauxsujets=$dsujet->sujet;
+// [begin] action quand on ajoute une colonne au format DATE
+if (isset($_POST['ajoutercolonne']) && $dsondage->format == 'D') {
 
-    if (isset($_POST["newdate"]) && $_POST["newdate"] != "vide") {
-        $nouvelledate=mktime(0, 0, 0, substr($_POST["newdate"],3,2), substr($_POST["newdate"],0,2), substr($_POST["newdate"],6,4));
+    if (!empty($_POST["newdate"])) {
+        $new_choice = mktime(0, 0, 0, substr($_POST["newdate"],3,2), substr($_POST["newdate"],0,2), substr($_POST["newdate"],6,4));
 
-        if (isset($_POST["newhour"]) && $_POST["newhour"]!="vide"){
-            $nouvelledate.="@";
-            $nouvelledate.=$_POST["newhour"];
+        if (!empty($_POST["newhour"])){
+            $new_choice .= '@' . $_POST["newhour"];
         }
+
+
+
+
+
+        // TODO OPZ Delete the code below
+        // TODO OPZ Insert new choice
+        // TODO OPZ Update users votes (add "0" in the right column^^)
+
+
 
         //on rajoute la valeur dans les valeurs
         $datesbase = explode(",",$dsujet->sujet);
@@ -444,13 +448,13 @@ if (isset($_POST["ajoutercolonne"]) && (substr($dsondage->format, 0, 1) == "D"))
         //if (isset($erreur_ajout_date) && !$erreur_ajout_date){
             $sql = 'UPDATE sujet_studs SET sujet = '.$connect->Param('dateinsertion').' WHERE id_sondage = '.$connect->Param('numsondage');
             $sql = $connect->Prepare($sql);
-            $connect->Execute($sql, array($dateinsertion, $numsondage));
+            $connect->Execute($sql, array($dateinsertion, $poll_id));
 
             if ($nouvelledate > strtotime($dsondage->date_fin)) {
                 $date_fin=$nouvelledate+200000;
                 $sql = 'UPDATE sondage SET date_fin = '.$connect->Param('date_fin').' WHERE id_sondage = '.$connect->Param('numsondage');
                 $sql = $connect->Prepare($sql);
-                $connect->Execute($sql, array($date_fin, $numsondage));
+                $connect->Execute($sql, array($date_fin, $poll_id));
             }
         //}
 
@@ -486,6 +490,7 @@ if (isset($_POST["ajoutercolonne"]) && (substr($dsondage->format, 0, 1) == "D"))
         $erreur_ajout_date="yes";
     }
 }
+// [end] action quand on ajoute une colonne au format DATE
 
 
 //suppression de ligne dans la base
@@ -508,7 +513,7 @@ for ($i = 0; $i < $nblignes; $i++) {
 // TODO OPZ Revoir toute cette partie suppression d'un commentaire utilisateur
 /*$sql = 'SELECT * FROM comments WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_comment';
 $sql = $connect->Prepare($sql);
-$comment_user = $connect->Execute($sql, array($numsondage));
+$comment_user = $connect->Execute($sql, array($poll_id));
 $i = 0;
 while ($dcomment = $comment_user->FetchNextObject(false)) {
     if (isset($_POST['suppressioncomment'.$i])) {
@@ -571,17 +576,17 @@ if ($testmodifier) {
 //suppression de colonnes dans la base
 for ($i = 0; $i < $nbcolonnes; $i++) {
     if ((isset($_POST["effacecolonne$i"])) && $nbcolonnes > 1){
-        $toutsujet = explode(",",$dsujet->sujet);
+        $sujets = explode(",",$dsujet->sujet);
         //sort($toutsujet, SORT_NUMERIC);
         $j = 0;
         $nouveauxsujets = '';
 
         //parcours de tous les sujets actuels
-        while (isset($toutsujet[$j])) {
+        while (isset($sujets[$j])) {
             //si le sujet n'est pas celui qui a été effacé alors on concatene
             if ($i != $j) {
                 $nouveauxsujets .= ',';
-                $nouveauxsujets .= $toutsujet[$j];
+                $nouveauxsujets .= $sujets[$j];
             }
 
             $j++;
@@ -617,7 +622,7 @@ for ($i = 0; $i < $nbcolonnes; $i++) {
         //mise a jour des sujets dans la base
         $sql = 'UPDATE sujet_studs SET sujet = '.$connect->Param('nouveauxsujets').' WHERE id_sondage = '.$connect->Param('numsondage');
         $sql = $connect->Prepare($sql);
-        $connect->Execute($sql, array($nouveauxsujets, $numsondage));
+        $connect->Execute($sql, array($nouveauxsujets, $poll_id));
     }
 }
 
@@ -625,16 +630,16 @@ for ($i = 0; $i < $nbcolonnes; $i++) {
 // TODO OPZ Déjà fait en début de fichier recuperation des donnes de la base
 /*$sql = 'SELECT * FROM sondage WHERE id_sondage_admin = '.$connect->Param('numsondageadmin');
 $sql = $connect->Prepare($sql);
-$sondage = $connect->Execute($sql, array($numsondageadmin));
+$sondage = $connect->Execute($sql, array($admin_poll_id));
 
 if ($sondage !== false) {
     $sql = 'SELECT * FROM sujet_studs WHERE id_sondage = '.$connect->Param('numsondage');
     $sql = $connect->Prepare($sql);
-    $sujets = $connect->Execute($sql, array($numsondage));
+    $sujets = $connect->Execute($sql, array($poll_id));
 
     $sql = 'SELECT * FROM user_studs WHERE id_sondage = '.$connect->Param('numsondage').' order by id_users';
     $sql = $connect->Prepare($sql);
-    $user_studs = $connect->Execute($sql, array($numsondage));
+    $user_studs = $connect->Execute($sql, array($poll_id));
 } else {
 
     Utils::print_header(_("Error!"));
@@ -672,7 +677,7 @@ $description = (isset($_POST["nouveauxcommentaires"])) ? stripslashes(htmlentiti
 $email_admin = (isset($_POST["boutonnouvelleadresse"]) && !empty($_POST['nouvelleadresse'])) ? htmlentities(html_entity_decode($_POST['nouvelleadresse'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8') : stripslashes( $poll->admin_mail );
 
 //Poll format (locked A-/D-, open A/D, editable A+/D+)
-$poll_rules = (isset($_POST["poll_rules"]) && !empty($_POST['btn_poll_rules'])) ? $_POST["poll_rules"] : substr($poll->format, 1, 1);
+$poll_rules = (isset($_POST["poll_rules"]) && !empty($_POST['btn_poll_rules'])) ? $_POST["poll_rules"] : substr($poll->format, 1, 1); // TODO OPZ Handle comment disabling
 $poll_rules_opt1 = '';$poll_rules_opt2 = '';$poll_rules_opt3 = '';
 if($poll->editable) {
     $poll_rules_text = '<span class="glyphicon glyphicon-edit"></span> '. _("Votes are editable");
@@ -699,7 +704,7 @@ if ($errors!='') {
 }
 
 echo '
-    <form name="formulaire4" action="' . Utils::getUrlSondage($numsondageadmin, true) . '" method="POST">
+    <form name="formulaire4" action="' . Utils::getUrlSondage($admin_poll_id, true) . '" method="POST">
         <div class="jumbotron bg-danger">
             <div class="row">
                 <div class="col-md-7" id="title-form">
@@ -770,7 +775,7 @@ echo '
                     <input class="form-control" id="public-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($poll->poll_id) . '" />
                 </div>
                 <div class="form-group col-md-5">
-                    <label for="admin-link"><a class="admin-link" href="' . Utils::getUrlSondage($numsondageadmin, true) . '">'._("Admin link of the poll") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                    <label for="admin-link"><a class="admin-link" href="' . Utils::getUrlSondage($admin_poll_id, true) . '">'._("Admin link of the poll") .' <span class="btn-link glyphicon glyphicon-link"></span></a></label>
                     <input class="form-control" id="admin-link" type="text" readonly="readonly" value="' . Utils::getUrlSondage($admin_poll_id, true) . '" />
                 </div>
                 <div class="form-group col-md-2">
@@ -802,15 +807,6 @@ echo '
         </div>
     </form>'."\n"; // .jumbotron
 
-// TODO OPZ : Pourquoi ? on recupere les données et les sujets du sondage
-/*$dsujet=$sujets->FetchObject(false);
-$dsondage=$sondage->FetchObject(false);*/
-
-// TODO OPZ : Déjà présent sous la bonne forme : reformatage des données des sujets du sondage
-/*$toutsujet=explode(",",$dsujet->sujet);
-$toutsujet=str_replace("°","'",$toutsujet);
-$nbcolonnes=substr_count($dsujet->sujet,',')+1;*/
-
 // Table headers
 $thead = '<thead>';
 
@@ -821,8 +817,8 @@ $border = array(); // bordure pour distinguer les mois
 $td_headers = array(); // for a11y, headers="M1 D4 H5" on each td
 $radio_title = array(); // date for
 
-// Dates poll
-if (substr($poll->format, 0, 1)=="D") {
+// Display dates poll
+if ($poll->format == "D") {
 
     $tr_months = '<tr><th role="presentation"></th>';
     $tr_days = '<tr><th role="presentation"></th>';
@@ -831,23 +827,22 @@ if (substr($poll->format, 0, 1)=="D") {
     // Headers
     $colspan_month = 1;
     $colspan_day = 1;
-    
-    for ($i = 0; $i < count($sujets); $i++) {
+
+    foreach ($sujets as $i=>$sujet) {
 
         // Current date
-        $current = $toutsujet[$i];//format date@hour. ex : 2020292820@10:00
-        $horoCur = explode("@",$current); //horoCur[0] = date, horoCur[1] = hour
-        if (isset($toutsujet[$i+1])){
-            $next = $toutsujet[$i+1];
-            $horoNext = explode("@",$next);
+        $horoCur = explode('@', $sujet->sujet); //horoCur[0] = date, horoCur[1] = hour
+        if (isset($sujets[$i+1])){
+            $next = $sujets[$i+1]->sujet;
+            $horoNext = explode('@', $next);
         }
         $border[$i] = false;
-        $radio_title[$i] = strftime($date_format['txt_short'],$horoCur[0]);
+        $radio_title[$i] = strftime($date_format['txt_short'], $horoCur[0]);
 
         // Months
         $td_headers[$i] = 'M'.($i+1-$colspan_month);
 
-        if (isset($toutsujet[$i+1]) && strftime("%B", $horoCur[0]) == strftime("%B", $horoNext[0]) && strftime("%Y", $horoCur[0]) == strftime("%Y", $horoNext[0])){
+        if (isset($sujets[$i+1]) && strftime("%B", $horoCur[0]) == strftime("%B", $horoNext[0]) && strftime("%Y", $horoCur[0]) == strftime("%Y", $horoNext[0])){
             $colspan_month++;
         } else {
             $border[$i] = true;
@@ -858,7 +853,7 @@ if (substr($poll->format, 0, 1)=="D") {
         // Days
         $td_headers[$i] .= ' D'.($i+1-$colspan_day);
 
-        if (isset($toutsujet[$i+1]) && strftime($date_format['txt_day'],$horoCur[0])==strftime($date_format['txt_day'],$horoNext[0]) && strftime("%B",$horoCur[0])==strftime("%B",$horoNext[0])){
+        if (isset($sujets[$i+1]) && strftime($date_format['txt_day'],$horoCur[0])==strftime($date_format['txt_day'],$horoNext[0]) && strftime("%B",$horoCur[0])==strftime("%B",$horoNext[0])){
             $colspan_day++;
         } else {
             $rbd = ($border[$i]) ? ' rbd' : '';
@@ -877,7 +872,7 @@ if (substr($poll->format, 0, 1)=="D") {
         }
 
         // Remove col
-        $tr_add_remove_col .= (count($toutsujet) > 2 ) ? '<td headers="'.$td_headers[$i].'"><button type="submit" name="effacecolonne'.$i.'" class="btn btn-link btn-sm" title="' . _('Remove the column') . ' ' .$radio_title[$i]. '"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">'. _("Remove") .'</span></button></td>' : '<td role="presentation"></td>';
+        $tr_add_remove_col .= (count($sujets) > 2 ) ? '<td headers="'.$td_headers[$i].'"><button type="submit" name="effacecolonne'.$i.'" class="btn btn-link btn-sm" title="' . _('Remove the column') . ' ' .$radio_title[$i]. '"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">'. _("Remove") .'</span></button></td>' : '<td role="presentation"></td>';
 
     }
 
@@ -943,7 +938,7 @@ if (substr($poll->format, 0, 1)=="D") {
 
 // Print headers
 echo '
-<form name="formulaire" action="' . Utils::getUrlSondage($numsondageadmin, true) . '" method="POST">
+<form name="formulaire" action="' . Utils::getUrlSondage($admin_poll_id, true) . '" method="POST">
 
     <div class="alert alert-info">
         <p>' . _('As poll administrator, you can change all the lines of this poll with this button ').'<span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span>,

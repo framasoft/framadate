@@ -39,13 +39,13 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
         <h3>' . _("You haven't filled the first section of the poll creation.") . ' !</h3>
         <p>' . _("Back to the homepage of ") . ' ' . '<a href="' . Utils::get_server_name() . '">' . NOMAPPLICATION . '</a>.</p>
     </div>';
-    
+
 
     bandeau_pied();
 
 } else {
     // Step 4 : Data prepare before insert in DB
-    if (Utils::issetAndNoEmpty('confirmation')) {
+    if (!empty($_POST['confirmation'])) {
 
         // Define expiration date
         if (!empty($_POST['champdatefin']))
@@ -59,14 +59,14 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
                     $_SESSION['form']->champdatefin=$time;
                 }
             }
-        } 
-        
+        }
+
         if(empty($_SESSION['form']->champdatefin))
         {
             // By default, expiration date is 6 months after last day
             $_SESSION['form']->champdatefin=end($temp_results)+(86400 * $config['default_poll_duration']);
         }
-        
+
         // Insert poll in database
         $admin_poll_id = ajouter_sondage(
             $_SESSION['form']->titre,
@@ -79,27 +79,27 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
             $_SESSION['form']->receiveNewVotes,
             $_SESSION['form']->getChoices()
         );
-        
+
         // Clean Form data in $_SESSION
         unset($_SESSION['form']);
 
         // Delete old polls
         Utils::cleaningOldPolls($connect, 'admin/logs_studs.txt');
-        
+
         // Redirect to poll administration
         header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
         exit;
 
     } else {
-        
-        if (Utils::issetAndNoEmpty('days')) {
-            
+
+        if (!empty($_POST['days'])) {
+
             // Clear previous choices
             $_SESSION['form']->clearChoices();
 
             for ($i = 0; $i < count($_POST['days']); $i++) {
                 $day = $_POST['days'][$i];
-                
+
                 if (!empty($day)) {
                     // Add choice to Form data
                     $time = mktime(0, 0, 0, substr($_POST["days"][$i],3,2),substr($_POST["days"][$i],0,2),substr($_POST["days"][$i],6,4));
@@ -121,7 +121,7 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
     $_SESSION['form']->formatsondage = 'D';
 
     // Step 3/4 : Confirm poll creation
-    if (Utils::issetAndNoEmpty('choixheures') && !isset($_SESSION['form']->totalchoixjour)) {
+    if (!empty($_POST['choixheures']) && !isset($_SESSION['form']->totalchoixjour)) {
 
         Utils::print_header ( _("Removal date and confirmation (3 on 3)") );
         bandeau_titre(_("Removal date and confirmation (3 on 3)"));

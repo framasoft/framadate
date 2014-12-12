@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `sondage` (
   `format` varchar(1) DEFAULT NULL,
   `editable` tinyint(1) DEFAULT '0',
   `receiveNewVotes` tinyint(1) DEFAULT '0',
+  `active` tinyint(1) DEFAULT '1',
   `statut` int(11) NOT NULL DEFAULT '1' COMMENT '1 = actif ; 0 = inactif ; ',
   UNIQUE KEY `poll_id` (`poll_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

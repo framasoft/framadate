@@ -41,12 +41,12 @@ function random($car)
 function ajouter_sondage($title, $comment, $adminName, $adminMail, $format, $editable, $endDate, $receiveNewVotes, $choices)
 {
     global $connect;
-    global $config; 
-    
+    global $config;
+
     // Generate poll ids
     $poll_id = random(16);
     $admin_poll_id = $poll_id.random(8);
-    
+
     // Insert poll + slots
     $connect->beginTransaction();
 
@@ -58,20 +58,33 @@ function ajouter_sondage($title, $comment, $adminName, $adminMail, $format, $edi
 
     $prepared = $connect->prepare('INSERT INTO sujet_studs (id_sondage, sujet) VALUES (?, ?)');
     foreach ($choices as $choice) {
+
+        // We prepared the slots (joined by comas)
         $joinedSlots = '';
+        $first = true;
         foreach ($choice->getSlots() as $slot) {
-            if ($first) {
-                $joinedSlots = $slot;
-                $first = false;
+
+            // We prepared the slots (joined by comas)
+            $joinedSlots = '';
+            $first = true;
+            foreach ($choice->getSlots() as $slot) {
+                if ($first) {
+                    $joinedSlots = $slot;
+                    $first = false;
+                } else {
+                    $joinedSlots .= ',' . $slot;
+                }
+             }
+
+            // We execute the insertion
+            if (empty($joinedSlots)) {
+                $prepared->execute(array($poll_id, $choice->getName()));
             } else {
-                $joinedSlots .= ',' . $slot;
+                $prepared->execute(array($poll_id, $choice->getName().'@'.$joinedSlots));
             }
+
         }
-        if (empty($joinedSlots)) {
-            $prepared->execute(array($poll_id, $choice->getName()));
-        } else {
-            $prepared->execute(array($poll_id, $choice->getName().'@'.$joinedSlots));
-        }
+
     }
 
     $connect->commit();
@@ -94,7 +107,7 @@ function ajouter_sondage($title, $comment, $adminName, $adminMail, $format, $edi
             Utils::sendEmail( $adminMail, "[".NOMAPPLICATION."][" . _("For sending to the polled users") . "] " . _("Poll") . " : ".stripslashes(htmlspecialchars_decode($title,ENT_QUOTES)), $message, $_SESSION['adresse'] );
         }
     }
-    
+
     error_log(date('H:i:s d/m/Y:') . ' CREATION: '.$poll_id."\t".$format."\t".$adminName."\t".$adminMail."\n", 3, 'admin/logs_studs.txt');
 
     return $admin_poll_id;

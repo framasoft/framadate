@@ -8,3 +8,7 @@ framanav
 nav
 app/inc/constants.php
 vendor
+.settings/
+.project
+cache/
+tpl_c/

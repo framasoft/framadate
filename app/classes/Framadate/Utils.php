@@ -189,9 +189,9 @@ class Utils
             }
         } else {
             if ($admin === true) {
-                $url = str_replace('/admin', '', self::get_server_name()) . 'adminstuds.php?sondage=' . $id;
+                $url = str_replace('/admin', '', self::get_server_name()) . 'adminstuds.php?poll=' . $id;
             } else {
-                $url = str_replace('/admin', '', self::get_server_name()) . 'studs.php?sondage=' . $id;
+                $url = str_replace('/admin', '', self::get_server_name()) . 'studs.php?poll=' . $id;
             }
         }
 
@@ -216,12 +216,12 @@ class Utils
 
         $prepared = $connect->prepare('DELETE FROM sondage WHERE poll_id = ?');
         $prepared->execute(array($poll_id));
-        
+
     }
 
     public static function cleaningOldPolls($log_txt) {
         global $connect;
-        
+
         $resultSet = $connect->query('SELECT poll_id, format, admin_name FROM sondage WHERE end_date < NOW() LIMIT 20');
         $toClean = $resultSet->fetchAll(\PDO::FETCH_CLASS);
 
@@ -233,7 +233,7 @@ class Utils
         }
         $connect->commit();
     }
-    
+
     public static function debug($object)
     {
         echo '<pre>';

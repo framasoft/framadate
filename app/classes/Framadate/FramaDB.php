@@ -61,27 +61,27 @@ class FramaDB
         return $prepared->fetchAll();
     }
 
-    function allUsersByPollId($poll_id) {
+    function allUserVotesByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM user_studs WHERE id_sondage = ? ORDER BY id_users');
         $prepared->execute(array($poll_id));
         return $prepared->fetchAll();
     }
 
-    function allSujetsByPollId($poll_id) {
+    function allSlotsByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM sujet_studs WHERE id_sondage = ? ORDER BY sujet');
         $prepared->execute(array($poll_id));
         return $prepared->fetchAll();
     }
 
-    function insertVote($name, $poll_id, $choice) {
+    function insertVote($name, $poll_id, $votes) {
         $prepared = $this->prepare('INSERT INTO user_studs (nom,id_sondage,reponses) VALUES (?,?,?)');
-        $prepared->execute([$name, $poll_id, $choice]);
+        $prepared->execute([$name, $poll_id, $votes]);
 
         $newVote = new \stdClass();
         $newVote->id_sondage = $poll_id;
         $newVote->id_users = $this->pdo->lastInsertId();
         $newVote->nom = $name;
-        $newVote->reponse = $choice;
+        $newVote->reponse = $votes;
 
         return $newVote;
     }

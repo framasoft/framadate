@@ -20,18 +20,40 @@
 if (ini_get('date.timezone') == '') {
     date_default_timezone_set('Europe/Paris');
 }
+include_once __DIR__ . '/constants.php';
+include_once __DIR__ . '/i18n.php';
+include_once __DIR__ . '/studs.inc.php';
+
 // Autoloading of dependencies with Composer
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-include_once __DIR__ . '/constants.php';
-include_once __DIR__ . '/i18n.php';
+// Smarty
+require_once __DIR__ . '/../../vendor/smarty/smarty/libs/Smarty.class.php';
+$smarty = new \Smarty();
+$smarty->template_dir = 'tpl/';
+$smarty->compile_dir = 'tpl_c/';
+$smarty->cache_dir = 'cache/';
+$smarty->caching = false;
+
+$smarty->assign('APPLICATION_NAME', NOMAPPLICATION);
+$smarty->assign('SERVER_URL', \Framadate\Utils::get_server_name());
+$smarty->assign('TITLE_IMAGE', IMAGE_TITRE);
+$smarty->assign('use_nav_js', file_exists($_SERVER['DOCUMENT_ROOT'] . '/nav/nav.js'));
+$smarty->assign('lang', $lang);
+$smarty->assign('langs', $ALLOWED_LANGUAGES);
+$smarty->assign('day_format', $date_format['txt_day']);
+
+function smarty_modifier_poll_url($poll_id, $admin=false){return \Framadate\Utils::getUrlSondage($poll_id, $admin);}
+//$smarty->registerPlugin('modifier', 'poll_url', 'sqqmarty_modifier_poll_url');
+// End- Smarty
+
 
 use Framadate\FramaDB;
 use Framadate\Form;
 use Framadate\Choice;
 use Framadate\Utils;
 
-if (session_id() == "") {
+if (session_id() == '') {
     session_start();
 }
 
