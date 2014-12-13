@@ -49,6 +49,22 @@ function split_votes($votes) {
     return $splitted;
 }
 
+function computeBestMoments($votes) {
+    $result = [];
+    foreach ($votes as $vote) {
+        $choices = str_split($vote->reponses);
+        foreach ($choices as $i=>$choice) {
+            if (empty($result[$i])) {
+                $result[$i] = 0;
+            }
+            if ($choice == 2) {
+                $result[$i]++;
+            }
+        }
+    }
+    return $result;
+}
+
 /* PAGE */
 /* ---- */
 
@@ -75,8 +91,9 @@ $smarty->assign('poll', $poll);
 $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
 $smarty->assign('slots', split_slots($slots));
 $smarty->assign('votes', split_votes($votes));
+$smarty->assign('best_moments', computeBestMoments($votes));
 $smarty->assign('editingVoteId', 0); // TODO Replace by the right ID
 
-//Utils::debug(split_votes($votes));exit;
+//Utils::debug(computeBestMoments($votes));exit;
 
 $smarty->display('studs.tpl');

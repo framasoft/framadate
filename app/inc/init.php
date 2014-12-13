@@ -41,7 +41,7 @@ $smarty->assign('TITLE_IMAGE', IMAGE_TITRE);
 $smarty->assign('use_nav_js', file_exists($_SERVER['DOCUMENT_ROOT'] . '/nav/nav.js'));
 $smarty->assign('lang', $lang);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);
-$smarty->assign('day_format', $date_format['txt_day']);
+$smarty->assign('date_format', $date_format);
 
 function smarty_modifier_poll_url($poll_id, $admin=false){return \Framadate\Utils::getUrlSondage($poll_id, $admin);}
 //$smarty->registerPlugin('modifier', 'poll_url', 'sqqmarty_modifier_poll_url');
