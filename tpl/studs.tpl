@@ -13,7 +13,7 @@
             <div class="col-md-5">
                 <div class="btn-group pull-right">
                     <button onclick="javascript:print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span>{_('Print')}</button>
-                    <button onclick="window.location.href='{$SERVER_URL}exportcsv.php?poll={$poll_id}';return false;" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span>{_('Export to CSV')}</button>
+                    <a href="{$SERVER_URL}export.php?poll={$poll_id}&mode=csv" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span>{_('Export to CSV')}</a>
                 </div>
             </div>
         </div>
