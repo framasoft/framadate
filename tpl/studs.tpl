@@ -1,6 +1,6 @@
-{include file='head.tpl'}
-{include file='header.tpl'}
+{extends file='page.tpl'}
 
+{block name=main}
 <form action="{$poll_id|poll_url}" method="POST">
 
         {* Global informations about the current poll *}
@@ -258,4 +258,4 @@
             </div>
         {/if}
 </form>
-{include file='footer.tpl'}
+{/block}
