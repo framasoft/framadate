@@ -85,4 +85,9 @@ class FramaDB
         return $newVote;
     }
 
+    function updateVote($poll_id, $vote_id, $choices) {
+        $prepared = $this->prepare('UPDATE user_studs SET reponses = ? WHERE id_sondage = ? AND id_users = ?');
+        return $prepared->execute([$choices, $poll_id, $vote_id]);
+    }
+
 }

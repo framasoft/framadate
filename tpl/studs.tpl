@@ -115,27 +115,27 @@
                             <td class="bg-info" headers="'.$td_headers[$k].'">
                                 <ul class="list-unstyled choice">
                                     <li class="yes">
-                                        <input type="radio" id="y-choice-{$k}" name="choice{$k}" value="2" {if $choice==2}checked {/if}/>
+                                        <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice==2}checked {/if}/>
                                         <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{_('Vote yes for ')} . $radio_title[$k] . '">
                                             <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
-                                        <input type="radio" id="i-choice-{$k}" name="choice{$k}" value="1" {if $choice==1}checked {/if}/>
+                                        <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice==1}checked {/if}/>
                                         <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{_('Vote ifneedbe for ')} . $radio_title[$k] . '">
                                             (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{_('Ifneedbe')}</span>
                                         </label>
                                     </li>
                                     <li class="no">
-                                        <input type="radio" id="n-choice-{$k}" name="choice{$k}" value="0" {if $choice==0}checked {/if}/>
+                                        <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice==0}checked {/if}/>
                                         <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{_('Vote no for ')} . $radio_title[$k] . '">
                                             <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{_('No')}</span>
                                         </label>
                                     </li>
                                 </ul>
                             </td>
-                            <td></td>
                         {/foreach}
+                        <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id}" title="{_('Save the choices')} {$vote->name}">{_('Save')}</button></td>
                     {else}
 
                         {* Voted line *}
@@ -154,8 +154,7 @@
 
                         {if $poll->active && $poll->editable}
                             <td>
-                                <input type="hidden" name="edit_vote" value="{$vote->id}"/>
-                                <button type="submit" class="btn btn-link btn-sm" name="edit_vote" title="{_('Edit the line:')} {$vote->name}">
+                                <button type="submit" class="btn btn-link btn-sm" name="edit_vote" value="{$vote->id}" title="{_('Edit the line:')} {$vote->name}">
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span>
                                 </button>
                             </td>

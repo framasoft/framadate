@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 use Framadate\Services\PollService;
+use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -74,7 +75,7 @@ $pollService = new PollService($connect);
 /* ---- */
 
 if(!empty($_GET['poll'])) {
-    $poll_id = $_GET['poll'];
+    $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9]+$/']]);
 }
 
 
@@ -86,10 +87,43 @@ if (!$poll) {
     exit;
 }
 
+// A vote is going to be edited
+if (!empty($_POST['edit_vote'])) {
+    // TODO Try what does filter_input with a wrong value
+    $editingVoteId = filter_input(INPUT_POST, 'edit_vote', FILTER_VALIDATE_INT);
+} else {
+    $editingVoteId = 0;
+}
+
+
+if (!empty($_POST['save'])) { // Save edition of an old vote
+    $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
+    $newChoices = [];
+
+    // TODO Do this verification into a Service (maybe called 'InputService')
+    foreach($_POST['choices'] as $id=>$choice) {
+        $choice = filter_var($choice, FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
+        if ($choice !== false) {
+            $newChoices[$id] = $choice;
+        }
+    }
+
+    if (count($newChoices) == count($_POST['choices'])) {
+        $result = $pollService->updatePoll($poll_id, $editedVote, $newChoices);
+        if ($result) {
+            $message = ['type'=>'success', 'message'=>_('Update vote successfully!')];
+        } else {
+            $message = ['type'=>'success', 'message'=>_('Update vote successfully!')];
+        }
+    }
+} elseif (isset($_POST[''])) { // Add a new vote
+}
+
 // Retrieve data
 $slots = $pollService->allSlotsByPollId($poll_id);
 $votes = $pollService->allUserVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
+
 
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);
@@ -99,7 +133,7 @@ $smarty->assign('slots', split_slots($slots));
 $smarty->assign('votes', split_votes($votes));
 $smarty->assign('best_moments', computeBestMoments($votes));
 $smarty->assign('comments', $comments);
-$smarty->assign('editingVoteId', 0); // TODO Replace by the right ID
+$smarty->assign('editingVoteId', $editingVoteId);
 
 //Utils::debug(computeBestMoments($votes));exit;
 
