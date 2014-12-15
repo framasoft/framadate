@@ -84,6 +84,7 @@ if (!$poll) {
 // Retrieve data
 $slots = $connect->allSlotsByPollId($poll_id);
 $votes = $connect->allUserVotesByPollId($poll_id);
+$comments = $connect->allCommentsByPollId($poll_id);
 
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);
@@ -92,6 +93,7 @@ $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
 $smarty->assign('slots', split_slots($slots));
 $smarty->assign('votes', split_votes($votes));
 $smarty->assign('best_moments', computeBestMoments($votes));
+$smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', 0); // TODO Replace by the right ID
 
 //Utils::debug(computeBestMoments($votes));exit;

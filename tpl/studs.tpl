@@ -258,5 +258,39 @@
         </div>
     {/if}
 
+    {* Comments *}
+
+    {if $poll->active}
+    <hr role="presentation" />
+
+        {* Comment list *}
+
+        {if $comments|count > 0}
+            {foreach $comments as $comment}
+            <div class="comment">
+                <b>{$comment->usercomment}</b>&nbsp;
+                <span class="comment">{nl2br($comment->comment)}</span>
+            </div>
+            {/foreach}
+        {/if}
+
+        {* Add comment form *}
+
+        <div class="hidden-print alert alert-info">
+            <div class="col-md-6 col-md-offset-3">
+            <fieldset id="add-comment"><legend>{_("Add a comment in the poll")}</legend>
+                <div class="form-group">
+                    <p><label for="commentuser">{_("Your name")}</label><input type=text class="form-control" name="commentuser" id="commentuser" /></p>
+                </div>
+                <div class="form-group">
+                    <p><label for="comment">{_("Your comment")}</label><br />
+                    <textarea name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea></p>
+                </div>
+                <p class="text-center"><input type="submit" name="ajoutcomment" value="{_("Send the comment")}" class="btn btn-success"></p>
+            </fieldset>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    {/if}
 </form>
 {/block}
