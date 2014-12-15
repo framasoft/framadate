@@ -38,8 +38,7 @@ class FramaDB
         return $this->pdo->query($sql);
     }
 
-    function findPollById($poll_id)
-    {
+    function findPollById($poll_id) {
 
         // Open database
         if (preg_match(';^[\w\d]{16}$;i', $poll_id)) {

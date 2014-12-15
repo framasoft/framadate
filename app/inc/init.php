@@ -16,6 +16,8 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
+use Framadate\FramaDB;
+use Framadate\Utils;
 
 if (ini_get('date.timezone') == '') {
     date_default_timezone_set('Europe/Paris');
@@ -36,25 +38,19 @@ $smarty->cache_dir = 'cache/';
 $smarty->caching = false;
 
 $smarty->assign('APPLICATION_NAME', NOMAPPLICATION);
-$smarty->assign('SERVER_URL', \Framadate\Utils::get_server_name());
+$smarty->assign('SERVER_URL', Utils::get_server_name());
 $smarty->assign('TITLE_IMAGE', IMAGE_TITRE);
 $smarty->assign('use_nav_js', file_exists($_SERVER['DOCUMENT_ROOT'] . '/nav/nav.js'));
 $smarty->assign('lang', $lang);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);
 $smarty->assign('date_format', $date_format);
 
-function smarty_modifier_poll_url($poll_id, $admin=false){return \Framadate\Utils::getUrlSondage($poll_id, $admin);}
+function smarty_modifier_poll_url($poll_id, $admin=false){return Utils::getUrlSondage($poll_id, $admin);}
 // End- Smarty
-
-
-use Framadate\FramaDB;
-use Framadate\Form;
-use Framadate\Choice;
-use Framadate\Utils;
 
 if (session_id() == '') {
     session_start();
 }
 
-$connect = new Framadate\FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
+$connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
 $err = 0;

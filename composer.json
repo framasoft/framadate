@@ -4,6 +4,6 @@
     },
 
     "autoload": {
-        "psr-0": {"Framadate": "app/classes/"}
+        "psr-4": {"Framadate\\": "app/classes/Framadate/"}
     }
 }

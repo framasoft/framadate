@@ -16,7 +16,7 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate;
+use Framadate\Services\PollService;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -65,6 +65,11 @@ function computeBestMoments($votes) {
     return $result;
 }
 
+/* Services */
+/*----------*/
+
+$pollService = new PollService($connect);
+
 /* PAGE */
 /* ---- */
 
@@ -73,7 +78,7 @@ if(!empty($_GET['poll'])) {
 }
 
 
-$poll = $connect->findPollById($poll_id);
+$poll = $pollService->findById($poll_id);
 
 if (!$poll) {
     $smarty->assign('error', 'This poll doesn\'t exist');
@@ -82,9 +87,9 @@ if (!$poll) {
 }
 
 // Retrieve data
-$slots = $connect->allSlotsByPollId($poll_id);
-$votes = $connect->allUserVotesByPollId($poll_id);
-$comments = $connect->allCommentsByPollId($poll_id);
+$slots = $pollService->allSlotsByPollId($poll_id);
+$votes = $pollService->allUserVotesByPollId($poll_id);
+$comments = $pollService->allCommentsByPollId($poll_id);
 
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);
