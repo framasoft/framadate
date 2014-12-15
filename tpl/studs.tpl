@@ -209,19 +209,53 @@
 				{/if}
 				
 				{* Line displaying best moments *}
+				{$count_bests = 0}
 				<tr id="addition">
 					<td>{_("Addition")}</td>
 					{$max = max($best_moments)}
 					{foreach $best_moments as $best_moment}
 						{if $max == $best_moment}
-						<td><span class="glyphicon glyphicon-star text-warning"></span><span>{$max}</span></td>
+							{$count_bests = $count_bests +1}
+							<td><span class="glyphicon glyphicon-star text-warning"></span><span>{$max}</span></td>
 						{else}
-						<td></td>
+							<td></td>
 						{/if}
 					{/foreach}
 				</tr>
 		        </tbody>
 	        </table>
 	    </div>
+	    
+	    {* Best votes listing *}
+	    
+		{$max = max($best_moments)}
+	    {if $max > 0}
+		    <div class="row">
+	    	{if $count_bests == 1}
+		    	<div class="col-sm-12"><h3>{_("Best choice")}</h3></div>
+		        <div class="col-sm-6 col-sm-offset-3 alert alert-success">
+		            <p><span class="glyphicon glyphicon-star text-warning"></span>{_("The best choice at this time is:")}</p>
+	    	{elseif $count_bests > 1}
+	    		<div class="col-sm-12"><h3>{_("Best choices")}</h3></div>
+		        <div class="col-sm-6 col-sm-offset-3 alert alert-success">
+		            <p><span class="glyphicon glyphicon-star text-warning"></span>{_("The bests choices at this time are:")}</p>
+	    	{/if}
+	    	
+	    	
+			{$i = 0}
+			<ul style="list-style:none">
+			{foreach $slots as $slot}
+				{foreach $slot->moments as $moment}
+					{if $best_moments[$i] == $max}
+						<li><strong>{$slot->day|date_format:$date_format.txt_full} - {$moment}</strong></li>
+			    	{/if}
+			    	{$i = $i+1}
+			    {/foreach}
+			{/foreach}
+			</ul>
+			    	<p>{_("with")} <b>{$max}</b> {if $max==1}{_('vote')}{else}{_('votes')}{/if}.</p>
+		        </div>
+		    </div>
+		{/if}
 </form>
 {include file='footer.tpl'}
