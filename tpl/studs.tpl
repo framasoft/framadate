@@ -197,7 +197,7 @@
                                 </label>
                             </li>
                             <li class="no">
-                                <input type="radio" id="n-choice{$i}" name="choices[{$i}]" value="0" checked/>
+                                <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0" checked/>
                                 <label class="btn btn-default btn-xs" for="n-choice-{$i}" title="{_('Vote no for')} {$slot->day|date_format:$date_format.txt_short} - {$moment}">
                                     <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{_('No')}</span>
                                 </label>
