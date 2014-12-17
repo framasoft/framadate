@@ -26,6 +26,7 @@ include_once __DIR__ . '/app/inc/init.php';
 /* Variables */
 /* --------- */
 $poll_id = null;
+$poll = null;
 $message = null;
 
 /* Services */
@@ -39,9 +40,8 @@ $inputService = new InputService();
 
 if(!empty($_GET['poll'])) {
     $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9]+$/']]);
+    $poll = $pollService->findById($poll_id);
 }
-
-$poll = $pollService->findById($poll_id);
 
 if (!$poll) {
     $smarty->assign('error', 'This poll doesn\'t exist');
