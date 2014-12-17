@@ -39,19 +39,13 @@ class FramaDB
     }
 
     function findPollById($poll_id) {
+        $prepared = $this->prepare('SELECT * FROM sondage WHERE sondage.poll_id = ?');
 
-        // Open database
-        if (preg_match(';^[\w\d]{16}$;i', $poll_id)) {
-            $prepared = $this->prepare('SELECT * FROM sondage WHERE sondage.poll_id = ?');
+        $prepared->execute([$poll_id]);
+        $poll = $prepared->fetch();
+        $prepared->closeCursor();
 
-            $prepared->execute([$poll_id]);
-            $poll = $prepared->fetch();
-            $prepared->closeCursor();
-
-            return $poll;
-        }
-
-        return null;
+        return $poll;
     }
 
     function allCommentsByPollId($poll_id) {
@@ -72,15 +66,15 @@ class FramaDB
         return $prepared->fetchAll();
     }
 
-    function insertVote($name, $poll_id, $votes) {
-        $prepared = $this->prepare('INSERT INTO user_studs (nom,id_sondage,reponses) VALUES (?,?,?)');
-        $prepared->execute([$name, $poll_id, $votes]);
+    function insertVote($poll_id, $name, $choices) {
+        $prepared = $this->prepare('INSERT INTO user_studs (id_sondage,nom,reponses) VALUES (?,?,?)');
+        $prepared->execute([$poll_id, $name, $choices]);
 
         $newVote = new \stdClass();
         $newVote->id_sondage = $poll_id;
         $newVote->id_users = $this->pdo->lastInsertId();
         $newVote->nom = $name;
-        $newVote->reponse = $votes;
+        $newVote->reponse = $choices;
 
         return $newVote;
     }

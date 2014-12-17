@@ -5,6 +5,10 @@
 
     {* Global informations about the current poll *}
 
+    {if !empty($message)}
+    <div class="alert alert-{$message->type}" role="alert">{$message->message}</div>
+    {/if}
+
     <div class="jumbotron">
         <div class="row">
             <div class="col-md-7">
@@ -12,7 +16,7 @@
             </div>
             <div class="col-md-5">
                 <div class="btn-group pull-right">
-                    <button onclick="javascript:print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span>{_('Print')}</button>
+                    <button onclick="print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span>{_('Print')}</button>
                     <a href="{$SERVER_URL}export.php?poll={$poll_id}&mode=csv" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span>{_('Export to CSV')}</a>
                 </div>
             </div>
@@ -172,7 +176,7 @@
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                            <input type="text" id="nom" name="nom" class="form-control" title="{_('Your name')}" placeholder="{_('Your name')}" />
+                            <input type="text" id="name" name="name" class="form-control" title="{_('Your name')}" placeholder="{_('Your name')}" />
                         </div>
                     </td>
                     {$i = 0}
@@ -181,19 +185,19 @@
                     <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$i}">
                         <ul class="list-unstyled choice">
                             <li class="yes">
-                                <input type="radio" id="y-choice-{$i}" name="choice{$i}" value="2" />
+                                <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
                                 <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{_('Vote yes for')} {$slot->day|date_format:$date_format.txt_short} - {$moment}">
                                     <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Yes')}</span>
                                 </label>
                             </li>
                             <li class="ifneedbe">
-                                <input type="radio" id="i-choice-{$i}" name="choice{$i}" value="1" />
+                                <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1" />
                                 <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{_('Vote ifneedbe for')} {$slot->day|date_format:$date_format.txt_short} - {$moment}">
                                     (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{_('Ifneedbe')}</span>
                                 </label>
                             </li>
                             <li class="no">
-                                <input type="radio" id="n-choice{$i}" name="choice{$i}" value="0" checked/>
+                                <input type="radio" id="n-choice{$i}" name="choices[{$i}]" value="0" checked/>
                                 <label class="btn btn-default btn-xs" for="n-choice-{$i}" title="{_('Vote no for')} {$slot->day|date_format:$date_format.txt_short} - {$moment}">
                                     <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{_('No')}</span>
                                 </label>
@@ -203,7 +207,7 @@
                         {$i = $i+1}
                         {/foreach}
                     {/foreach}
-                    <td><button type="submit" class="btn btn-success btn-sm" name="add_vote" title="{_('Save the choices')}">{_('Save')}</button></td>
+                    <td><button type="submit" class="btn btn-success btn-sm" name="save" title="{_('Save the choices')}">{_('Save')}</button></td>
                 </tr>
             {/if}
 

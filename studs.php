@@ -17,59 +17,21 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 use Framadate\Services\PollService;
+use Framadate\Services\InputService;
 use Framadate\Utils;
+use Framadate\Message;
 
 include_once __DIR__ . '/app/inc/init.php';
 
-/* Functions */
+/* Variables */
 /* --------- */
-
-function split_slots($slots) {
-    $splitted = array();
-    foreach ($slots as $slot) {
-        $ex = explode('@', $slot->sujet);
-        $obj = new \stdClass();
-        $obj->day = $ex[0];
-        $obj->moments = explode(',', $ex[1]);
-
-        $splitted[] = $obj;
-    }
-    return $splitted;
-}
-
-function split_votes($votes) {
-    $splitted = array();
-    foreach ($votes as $vote) {
-        $obj = new \stdClass();
-        $obj->id = $vote->id_users;
-        $obj->name = $vote->nom;
-        $obj->choices = str_split($vote->reponses);
-
-        $splitted[] = $obj;
-    }
-    return $splitted;
-}
-
-function computeBestMoments($votes) {
-    $result = [];
-    foreach ($votes as $vote) {
-        $choices = str_split($vote->reponses);
-        foreach ($choices as $i=>$choice) {
-            if (empty($result[$i])) {
-                $result[$i] = 0;
-            }
-            if ($choice == 2) {
-                $result[$i]++;
-            }
-        }
-    }
-    return $result;
-}
+$message = null;
 
 /* Services */
 /*----------*/
 
 $pollService = new PollService($connect);
+$inputService = new InputService();
 
 /* PAGE */
 /* ---- */
@@ -77,7 +39,6 @@ $pollService = new PollService($connect);
 if(!empty($_GET['poll'])) {
     $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9]+$/']]);
 }
-
 
 $poll = $pollService->findById($poll_id);
 
@@ -96,27 +57,47 @@ if (!empty($_POST['edit_vote'])) {
 }
 
 
+// Something to save (edit or add)
 if (!empty($_POST['save'])) { // Save edition of an old vote
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
-    $newChoices = [];
+    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
 
-    // TODO Do this verification into a Service (maybe called 'InputService')
-    foreach($_POST['choices'] as $id=>$choice) {
-        $choice = filter_var($choice, FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
-        if ($choice !== false) {
-            $newChoices[$id] = $choice;
-        }
+    if (empty($name)) {
+        $message = new Message('danger', _('Name is incorrect.'));
+    }
+    if (count($choices) != count($_POST['choices'])) {
+        $message = new Message('danger', _('There is a problem with your choices.'));
     }
 
-    if (count($newChoices) == count($_POST['choices'])) {
-        $result = $pollService->updatePoll($poll_id, $editedVote, $newChoices);
+    if ($message == null) {
+        // Update vote
+        $result = $pollService->updateVote($poll_id, $editedVote, $choices);
         if ($result) {
-            $message = ['type'=>'success', 'message'=>_('Update vote successfully!')];
+            $message = new Message('success', _('Update vote successfully!'));
         } else {
-            $message = ['type'=>'success', 'message'=>_('Update vote successfully!')];
+            $message = new Message('danger', _('Update vote failed!'));
         }
     }
-} elseif (isset($_POST[''])) { // Add a new vote
+} elseif (isset($_POST['save'])) { // Add a new vote
+    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9_ -]+$/i']]);
+    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
+
+    if (empty($name)) {
+        $message = new Message('danger', _('Name is incorrect.'));
+    }
+    if (count($choices) != count($_POST['choices'])) {
+        $message = new Message('danger', _('There is a problem with your choices.'));
+    }
+
+    if ($message == null) {
+        // Add vote
+        $result = $pollService->addVote($poll_id, $name, $choices);
+        if ($result) {
+            $message = new Message('success', _('Update vote successfully!'));
+        } else {
+            $message = new Message('danger', _('Update vote failed!'));
+        }
+    }
 }
 
 // Retrieve data
@@ -129,11 +110,12 @@ $comments = $pollService->allCommentsByPollId($poll_id);
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('poll', $poll);
 $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
-$smarty->assign('slots', split_slots($slots));
-$smarty->assign('votes', split_votes($votes));
-$smarty->assign('best_moments', computeBestMoments($votes));
+$smarty->assign('slots', $pollService->splitSlots($slots));
+$smarty->assign('votes', $pollService->splitVotes($votes));
+$smarty->assign('best_moments', $pollService->computeBestMoments($votes));
 $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
+$smarty->assign('message', $message);
 
 //Utils::debug(computeBestMoments($votes));exit;
 

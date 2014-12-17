@@ -1,6 +1,5 @@
 .htaccess
-admin/.htaccess
-admin/.htpasswd
+.htpasswd
 admin/logs_studs.txt
 composer.lock
 composer.phar
@@ -8,7 +7,10 @@ framanav
 nav
 app/inc/constants.php
 vendor
-.settings/
-.project
 cache/
 tpl_c/
+
+.settings/
+.project
+.idea/
+*.iml
