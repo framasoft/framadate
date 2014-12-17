@@ -62,8 +62,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
 
-    if (empty($name)) {
-        $message = new Message('danger', _('Name is incorrect.'));
+    if (empty($editedVote)) {
+        $message = new Message('danger', _('Something is going wrong...'));
     }
     if (count($choices) != count($_POST['choices'])) {
         $message = new Message('danger', _('There is a problem with your choices.'));
