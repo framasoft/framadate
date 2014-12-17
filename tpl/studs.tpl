@@ -116,7 +116,7 @@
                     {if $editingVoteId == $vote->id}
                         {foreach $vote->choices as $k=>$choice}
 
-                            <td class="bg-info" headers="'.$td_headers[$k].'">
+                            <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">
                                 <ul class="list-unstyled choice">
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice==2}checked {/if}/>
@@ -207,7 +207,7 @@
                         {$i = $i+1}
                         {/foreach}
                     {/foreach}
-                    <td><button type="submit" class="btn btn-success btn-sm" name="save" title="{_('Save the choices')}">{_('Save')}</button></td>
+                    <td><button type="submit" class="btn btn-success btn-md" name="save" title="{_('Save the choices')}">{_('Save')}</button></td>
                 </tr>
             {/if}
 

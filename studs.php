@@ -48,7 +48,10 @@ if (!$poll) {
     exit;
 }
 
+// -------------------------------
 // A vote is going to be edited
+// -------------------------------
+
 if (!empty($_POST['edit_vote'])) {
     // TODO Try what does filter_input with a wrong value
     $editingVoteId = filter_input(INPUT_POST, 'edit_vote', FILTER_VALIDATE_INT);
@@ -57,7 +60,10 @@ if (!empty($_POST['edit_vote'])) {
 }
 
 
+// -------------------------------
 // Something to save (edit or add)
+// -------------------------------
+
 if (!empty($_POST['save'])) { // Save edition of an old vote
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
