@@ -18,13 +18,14 @@
  */
 use Framadate\Services\PollService;
 use Framadate\Services\InputService;
-use Framadate\Utils;
 use Framadate\Message;
+use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 
 /* Variables */
 /* --------- */
+$poll_id = null;
 $message = null;
 
 /* Services */
@@ -79,9 +80,9 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         // Update vote
         $result = $pollService->updateVote($poll_id, $editedVote, $choices);
         if ($result) {
-            $message = new Message('success', _('Update vote successfully!'));
+            $message = new Message('success', _('Update vote successfully.'));
         } else {
-            $message = new Message('danger', _('Update vote failed!'));
+            $message = new Message('danger', _('Update vote failed.'));
         }
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
@@ -99,11 +100,35 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         // Add vote
         $result = $pollService->addVote($poll_id, $name, $choices);
         if ($result) {
-            $message = new Message('success', _('Update vote successfully!'));
+            $message = new Message('success', _('Update vote successfully.'));
         } else {
-            $message = new Message('danger', _('Update vote failed!'));
+            $message = new Message('danger', _('Update vote failed.'));
         }
     }
+}
+
+// -------------------------------
+// Add a comment
+// -------------------------------
+
+if (isset($_POST['add_comment'])) {
+    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9_ -]+$/i']]);
+    $comment = filter_input(INPUT_POST, 'comment', FILTER_DEFAULT);
+
+    if (empty($name)) {
+        $message = new Message('danger', _('Name is incorrect.'));
+    }
+
+    if ($message == null) {
+        // Add comment
+        $result = $pollService->addComment($poll_id, $name, $comment);
+        if ($result) {
+            $message = new Message('success', _('Comment added.'));
+        } else {
+            $message = new Message('danger', _('Comment failed.'));
+        }
+    }
+
 }
 
 // Retrieve data

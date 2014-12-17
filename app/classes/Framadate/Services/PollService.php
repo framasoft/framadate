@@ -39,6 +39,10 @@ class PollService {
         return $this->connect->insertVote($poll_id, $name, $choices);
     }
 
+    function addComment($poll_id, $name, $comment) {
+        return $this->connect->insertComment($poll_id, $name, $comment);
+    }
+
     function computeBestMoments($votes) {
         $result = [];
         foreach ($votes as $vote) {

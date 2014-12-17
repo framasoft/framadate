@@ -84,4 +84,9 @@ class FramaDB
         return $prepared->execute([$choices, $poll_id, $vote_id]);
     }
 
+    function insertComment($poll_id, $name, $comment) {
+        $prepared = $this->prepare('INSERT INTO comments (id_sondage, usercomment, comment) VALUES (?,?,?)');
+        return $prepared->execute([$poll_id, $name, $comment]);
+    }
+
 }

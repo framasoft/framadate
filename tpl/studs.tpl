@@ -281,19 +281,24 @@
     {* Add comment form *}
 
     <div class="hidden-print alert alert-info">
-        <div class="col-md-6 col-md-offset-3">
-        <fieldset id="add-comment"><legend>{_("Add a comment in the poll")}</legend>
-            <div class="form-group">
-                <p><label for="commentuser">{_("Your name")}</label><input type=text class="form-control" name="commentuser" id="commentuser" /></p>
+        <form action="{$poll_id|poll_url}#comments" method="POST">
+            <div class="col-md-6 col-md-offset-3">
+            <fieldset id="add-comment"><legend>{_("Add a comment to the poll")}</legend>
+                <div class="form-group">
+                    <label for="name" class="control-label">{_("Your name")}</label>
+                    <input type="text" name="name" id="name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="comment" class="control-label">{_("Your comment")}</label>
+                    <textarea name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea>
+                </div>
+                <div class="pull-right">
+                    <input type="submit" name="add_comment" value="{_("Send the comment")}" class="btn btn-success">
+                </div>
+            </fieldset>
             </div>
-            <div class="form-group">
-                <p><label for="comment">{_("Your comment")}</label><br />
-                <textarea name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea></p>
-            </div>
-            <p class="text-center"><input type="submit" name="ajoutcomment" value="{_("Send the comment")}" class="btn btn-success"></p>
-        </fieldset>
-        </div>
-        <div class="clearfix"></div>
+            <div class="clearfix"></div>
+        </form>
     </div>
 {/if}
 {/block}
