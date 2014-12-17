@@ -82,17 +82,6 @@ class Utils
 
     }
 
-    public static function check_table_sondage()
-    {
-        global $connect;
-
-        if (in_array('sondage', $connect->MetaTables('TABLES'))) {
-            return true;
-        }
-
-        return false;
-    }
-
     /**
      * Check if an email address is valid using PHP filters
      *
@@ -158,22 +147,6 @@ class Utils
     }
 
     /**
-     * Fonction vérifiant l'existance et la valeur non vide d'une clé d'un tableau
-     * @deprecated
-     * @param   string  $name       La clé à tester
-     * @param   array   $tableau    Le tableau où rechercher la clé ($_POST par défaut)
-     * @return  bool                Vrai si la clé existe et renvoie une valeur non vide
-     */
-    /*public static function issetAndNoEmpty($name, $tableau = null)
-    {
-        if (is_null($tableau)) {
-           $tableau = $_POST;
-        }
-
-        return isset($tableau[$name]) && ! empty($tableau[$name]);
-    }*/
-
-    /**
      * Fonction permettant de générer les URL pour les sondage
      * @param   string    $id     L'identifiant du sondage
      * @param   bool      $admin  True pour générer une URL pour l'administration d'un sondage, False pour un URL publique
@@ -200,6 +173,7 @@ class Utils
 
     /**
      * Completly delete data about the given poll
+     * TODO Move this function to FramaDB
      */
     public static function removeSondage($poll_id)
     {
@@ -219,6 +193,10 @@ class Utils
 
     }
 
+    /**
+     * Clean old poll (end_date < now).
+     * TODO Move this function to FramaDB
+     */
     public static function cleaningOldPolls($log_txt) {
         global $connect;
 
@@ -234,6 +212,10 @@ class Utils
         $connect->commit();
     }
 
+    /**
+     * This method pretty prints an object to the page framed by pre tags.
+     * @param Object $object The object to print.
+     */
     public static function debug($object)
     {
         echo '<pre>';

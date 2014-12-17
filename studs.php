@@ -148,6 +148,4 @@ $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 
-//Utils::debug(computeBestMoments($votes));exit;
-
 $smarty->display('studs.tpl');
