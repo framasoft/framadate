@@ -28,6 +28,7 @@ include_once __DIR__ . '/app/inc/init.php';
 $poll_id = null;
 $poll = null;
 $message = null;
+$editingVoteId = 0;
 
 /* Services */
 /*----------*/
@@ -56,8 +57,6 @@ if (!$poll) {
 if (!empty($_POST['edit_vote'])) {
     // TODO Try what does filter_input with a wrong value
     $editingVoteId = filter_input(INPUT_POST, 'edit_vote', FILTER_VALIDATE_INT);
-} else {
-    $editingVoteId = 0;
 }
 
 
@@ -81,6 +80,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         $result = $pollService->updateVote($poll_id, $editedVote, $choices);
         if ($result) {
             $message = new Message('success', _('Update vote successfully.'));
+            // TODO Send mail to notify the poll admin
         } else {
             $message = new Message('danger', _('Update vote failed.'));
         }
@@ -101,6 +101,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         $result = $pollService->addVote($poll_id, $name, $choices);
         if ($result) {
             $message = new Message('success', _('Update vote successfully.'));
+            // TODO Send mail to notify the poll admin
         } else {
             $message = new Message('danger', _('Update vote failed.'));
         }
@@ -147,5 +148,6 @@ $smarty->assign('best_moments', $pollService->computeBestMoments($votes));
 $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
+$smarty->assign('admin', false);
 
 $smarty->display('studs.tpl');

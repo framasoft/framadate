@@ -29,6 +29,7 @@ $admin_poll_id = null;
 $poll_id = null;
 $poll = null;
 $message = null;
+$editingVoteId = 0;
 
 /* Services */
 /*----------*/
@@ -58,7 +59,8 @@ $comments = $pollService->allCommentsByPollId($poll_id);
 
 
 // Assign data to template
-$smarty->assign('poll_id', $admin_poll_id);
+$smarty->assign('poll_id', $poll_id);
+$smarty->assign('admin_poll_id', $admin_poll_id);
 $smarty->assign('poll', $poll);
 $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
 $smarty->assign('slots', $pollService->splitSlots($slots));
@@ -67,5 +69,6 @@ $smarty->assign('best_moments', $pollService->computeBestMoments($votes));
 $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
+$smarty->assign('admin', true);
 
 $smarty->display('studs.tpl');
