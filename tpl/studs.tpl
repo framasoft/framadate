@@ -1,78 +1,78 @@
 {extends file='page.tpl'}
 
 {block name=main}
-<form action="{$poll_id|poll_url}" method="POST">
 
-    {* Global informations about the current poll *}
+{* Global informations about the current poll *}
 
-    {if !empty($message)}
-    <div class="alert alert-{$message->type}" role="alert">{$message->message}</div>
-    {/if}
+{if !empty($message)}
+<div class="alert alert-{$message->type}" role="alert">{$message->message}</div>
+{/if}
 
-    <div class="jumbotron">
-        <div class="row">
-            <div class="col-md-7">
-                <h3>{$poll->title}</h3>
-            </div>
-            <div class="col-md-5">
-                <div class="btn-group pull-right">
-                    <button onclick="print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span>{_('Print')}</button>
-                    <a href="{$SERVER_URL}export.php?poll={$poll_id}&mode=csv" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span>{_('Export to CSV')}</a>
-                </div>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-7">
+            <h3>{$poll->title}</h3>
+        </div>
+        <div class="col-md-5">
+            <div class="btn-group pull-right">
+                <button onclick="print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span>{_('Print')}</button>
+                <a href="{$SERVER_URL}export.php?poll={$poll_id}&mode=csv" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span>{_('Export to CSV')}</a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-5">
-                <div class="form-group">
-                    <h4 class="control-label">{_("Initiator of the poll")}</h4>
-                    <p class="form-control-static">{$poll->admin_name}</p>
-                </div>
-                <div class="form-group">
-                    <label for="public-link"><a class="public-link" href="{$poll_id|poll_url}">{_("Public link of the poll")}<span class="btn-link glyphicon glyphicon-link"></span></a></label>
-                    <input class="form-control" id="public-link" type="text" readonly="readonly" value="{$poll_id|poll_url}" />
-                </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <h4 class="control-label">{_("Initiator of the poll")}</h4>
+                <p class="form-control-static">{$poll->admin_name}</p>
             </div>
-
-            {if !empty($poll->comment)}
-            <div class="form-group col-md-7">
-                <h4 class="control-label">{_("Description")}</h4><br />
-                <p class="form-control-static well">{$poll->comment}</p>
+            <div class="form-group">
+                <label for="public-link"><a class="public-link" href="{$poll_id|poll_url}">{_("Public link of the poll")}<span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                <input class="form-control" id="public-link" type="text" readonly="readonly" value="{$poll_id|poll_url}" />
             </div>
-            {/if}
         </div>
-    </div>
 
-    {* Information about voting *}
-
-    {if $poll->active}
-    <div class="alert alert-info">
-        <p>{_("If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.")}</p>
-        <p aria-hidden="true"><b>{_('Legend:')}</b> <span class="glyphicon glyphicon-ok"></span> = {_('Yes')}, <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = {_('Ifneedbe')}, <span class="glyphicon glyphicon-ban-circle"></span> = {_('No')}</p>
-    </div>
-    {else}
-    <div class="alert alert-danger">
-        <p>{_("The administrator locked this poll, votes and comments are frozen, it's not possible to participate anymore.")}</p>
-        <p aria-hidden="true"><b>{_('Legend:')}</b> <span class="glyphicon glyphicon-ok"></span> = {_('Yes')}, <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = {_('Ifneedbe')}, <span class="glyphicon glyphicon-ban-circle"></span> = {_('No')}</p>
-    </div>
-    {/if}
-
-    {* Scroll left and right *}
-
-    <div class="hidden row scroll-buttons" aria-hidden="true">
-        <div class="btn-group pull-right">
-            <button class="btn btn-sm btn-link scroll-left" title="{_('Scroll to the left')}">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </button>
-            <button class="btn  btn-sm btn-link scroll-right" title="{_('Scroll to the right')}">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </button>
+        {if !empty($poll->comment)}
+        <div class="form-group col-md-7">
+            <h4 class="control-label">{_("Description")}</h4><br />
+            <p class="form-control-static well">{$poll->comment}</p>
         </div>
+        {/if}
     </div>
+</div>
 
-    {* Vote table *}
+{* Information about voting *}
 
-    <h3>{_('Votes of the poll')}</h3>
-    <div id="tableContainer" class="tableContainer">
+{if $poll->active}
+<div class="alert alert-info">
+    <p>{_("If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.")}</p>
+    <p aria-hidden="true"><b>{_('Legend:')}</b> <span class="glyphicon glyphicon-ok"></span> = {_('Yes')}, <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = {_('Ifneedbe')}, <span class="glyphicon glyphicon-ban-circle"></span> = {_('No')}</p>
+</div>
+{else}
+<div class="alert alert-danger">
+    <p>{_("The administrator locked this poll, votes and comments are frozen, it's not possible to participate anymore.")}</p>
+    <p aria-hidden="true"><b>{_('Legend:')}</b> <span class="glyphicon glyphicon-ok"></span> = {_('Yes')}, <b>(<span class="glyphicon glyphicon-ok"></span>)</b> = {_('Ifneedbe')}, <span class="glyphicon glyphicon-ban-circle"></span> = {_('No')}</p>
+</div>
+{/if}
+
+{* Scroll left and right *}
+
+<div class="hidden row scroll-buttons" aria-hidden="true">
+    <div class="btn-group pull-right">
+        <button class="btn btn-sm btn-link scroll-left" title="{_('Scroll to the left')}">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+        <button class="btn  btn-sm btn-link scroll-right" title="{_('Scroll to the right')}">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+    </div>
+</div>
+
+{* Vote table *}
+
+<h3>{_('Votes of the poll')}</h3>
+<div id="tableContainer" class="tableContainer">
+    <form action="{$poll_id|poll_url}" method="POST">
         <table class="results">
             <caption class="sr-only">{_('Votes of the poll')} {$poll->title}</caption>
             <thead>
@@ -227,73 +227,73 @@
             </tr>
             </tbody>
         </table>
-    </div>
+    </form>
+</div>
 
-    {* Best votes listing *}
+{* Best votes listing *}
 
-    {$max = max($best_moments)}
-    {if $max > 0}
-        <div class="row">
-        {if $count_bests == 1}
-            <div class="col-sm-12"><h3>{_("Best choice")}</h3></div>
-            <div class="col-sm-6 col-sm-offset-3 alert alert-success">
-                <p><span class="glyphicon glyphicon-star text-warning"></span>{_("The best choice at this time is:")}</p>
-        {elseif $count_bests > 1}
-            <div class="col-sm-12"><h3>{_("Best choices")}</h3></div>
-            <div class="col-sm-6 col-sm-offset-3 alert alert-success">
-                <p><span class="glyphicon glyphicon-star text-warning"></span>{_("The bests choices at this time are:")}</p>
-        {/if}
+{$max = max($best_moments)}
+{if $max > 0}
+    <div class="row">
+    {if $count_bests == 1}
+        <div class="col-sm-12"><h3>{_("Best choice")}</h3></div>
+        <div class="col-sm-6 col-sm-offset-3 alert alert-success">
+            <p><span class="glyphicon glyphicon-star text-warning"></span>{_("The best choice at this time is:")}</p>
+    {elseif $count_bests > 1}
+        <div class="col-sm-12"><h3>{_("Best choices")}</h3></div>
+        <div class="col-sm-6 col-sm-offset-3 alert alert-success">
+            <p><span class="glyphicon glyphicon-star text-warning"></span>{_("The bests choices at this time are:")}</p>
+    {/if}
 
 
-        {$i = 0}
-        <ul style="list-style:none">
-        {foreach $slots as $slot}
-            {foreach $slot->moments as $moment}
-                {if $best_moments[$i] == $max}
-                    <li><strong>{$slot->day|date_format:$date_format.txt_full} - {$moment}</strong></li>
-                {/if}
-                {$i = $i+1}
-            {/foreach}
+    {$i = 0}
+    <ul style="list-style:none">
+    {foreach $slots as $slot}
+        {foreach $slot->moments as $moment}
+            {if $best_moments[$i] == $max}
+                <li><strong>{$slot->day|date_format:$date_format.txt_full} - {$moment}</strong></li>
+            {/if}
+            {$i = $i+1}
         {/foreach}
-        </ul>
-                <p>{_("with")} <b>{$max}</b> {if $max==1}{_('vote')}{else}{_('votes')}{/if}.</p>
-            </div>
+    {/foreach}
+    </ul>
+            <p>{_("with")} <b>{$max}</b> {if $max==1}{_('vote')}{else}{_('votes')}{/if}.</p>
         </div>
+    </div>
+{/if}
+
+{* Comments *}
+
+{if $poll->active}
+<hr role="presentation" id="comments"/>
+
+    {* Comment list *}
+
+    {if $comments|count > 0}
+        {foreach $comments as $comment}
+        <div class="comment">
+            <b>{$comment->usercomment}</b>&nbsp;
+            <span class="comment">{nl2br($comment->comment)}</span>
+        </div>
+        {/foreach}
     {/if}
 
-    {* Comments *}
+    {* Add comment form *}
 
-    {if $poll->active}
-    <hr role="presentation" />
-
-        {* Comment list *}
-
-        {if $comments|count > 0}
-            {foreach $comments as $comment}
-            <div class="comment">
-                <b>{$comment->usercomment}</b>&nbsp;
-                <span class="comment">{nl2br($comment->comment)}</span>
+    <div class="hidden-print alert alert-info">
+        <div class="col-md-6 col-md-offset-3">
+        <fieldset id="add-comment"><legend>{_("Add a comment in the poll")}</legend>
+            <div class="form-group">
+                <p><label for="commentuser">{_("Your name")}</label><input type=text class="form-control" name="commentuser" id="commentuser" /></p>
             </div>
-            {/foreach}
-        {/if}
-
-        {* Add comment form *}
-
-        <div class="hidden-print alert alert-info">
-            <div class="col-md-6 col-md-offset-3">
-            <fieldset id="add-comment"><legend>{_("Add a comment in the poll")}</legend>
-                <div class="form-group">
-                    <p><label for="commentuser">{_("Your name")}</label><input type=text class="form-control" name="commentuser" id="commentuser" /></p>
-                </div>
-                <div class="form-group">
-                    <p><label for="comment">{_("Your comment")}</label><br />
-                    <textarea name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea></p>
-                </div>
-                <p class="text-center"><input type="submit" name="ajoutcomment" value="{_("Send the comment")}" class="btn btn-success"></p>
-            </fieldset>
+            <div class="form-group">
+                <p><label for="comment">{_("Your comment")}</label><br />
+                <textarea name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea></p>
             </div>
-            <div class="clearfix"></div>
+            <p class="text-center"><input type="submit" name="ajoutcomment" value="{_("Send the comment")}" class="btn btn-success"></p>
+        </fieldset>
         </div>
-    {/if}
-</form>
+        <div class="clearfix"></div>
+    </div>
+{/if}
 {/block}
