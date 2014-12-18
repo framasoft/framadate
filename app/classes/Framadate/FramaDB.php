@@ -65,6 +65,12 @@ class FramaDB
         return $poll;
     }
 
+    function updatePoll($poll) {
+        $prepared = $this->prepare('UPDATE sondage SET title=?, admin_mail=?, comment=?, active=?, editable=? WHERE sondage.poll_id = ?');
+
+        return $prepared->execute([$poll->title, $poll->admin_mail, $poll->comment, $poll->active, $poll->editable, $poll->poll_id]);
+    }
+
     function allCommentsByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM comments WHERE id_sondage = ? ORDER BY id_comment');
         $prepared->execute(array($poll_id));

@@ -34,6 +34,10 @@ class PollService {
         return null;
     }
 
+    function updatePoll($poll) {
+        return $this->connect->updatePoll($poll);
+    }
+
     function allCommentsByPollId($poll_id) {
         return $this->connect->allCommentsByPollId($poll_id);
     }

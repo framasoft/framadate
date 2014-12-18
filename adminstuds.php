@@ -40,8 +40,8 @@ $inputService = new InputService();
 /* PAGE */
 /* ---- */
 
-if(!empty($_GET['poll']) && strlen($_GET['poll']) === 24) {
-    $admin_poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9]+$/']]);
+if (!empty($_GET['poll']) && strlen($_GET['poll']) === 24) {
+    $admin_poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^[a-z0-9]+$/']]);
     $poll_id = substr($admin_poll_id, 0, 16);
     $poll = $pollService->findById($poll_id);
 }
@@ -50,6 +50,61 @@ if (!$poll) {
     $smarty->assign('error', 'This poll doesn\'t exist');
     $smarty->display('error.tpl');
     exit;
+}
+
+// -------------------------------
+// Update poll info
+// -------------------------------
+if (isset($_POST['update_poll_info'])) {
+    $updated = false;
+    $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'comment', 'rules']);
+
+    // Update the right poll field
+    if ($field == 'title') {
+        $title = $filter_input(INPUT_POST, 'title', FILTER_DEFAULT);
+        if ($title) {
+            $poll->title = $title;
+            $updated = true;
+        }
+    } elseif ($field == 'admin_mail') {
+        $admin_mail = filter_input(INPUT_POST, 'admin_mail', FILTER_VALIDATE_EMAIL);
+        if ($admin_mail) {
+            $poll->admin_mail = $admin_mail;
+            $updated = true;
+        }
+    } elseif ($field == 'comment') {
+        $comment = filter_input(INPUT_POST, 'comment', FILTER_DEFAULT);
+        if ($comment) {
+            $poll->comment = $comment;
+            $updated = true;
+        }
+    } elseif ($field == 'rules') {
+        $rules = filter_input(INPUT_POST, 'rules', FILTER_DEFAULT);
+        switch ($rules) {
+            case 0:
+                $poll->active = false;
+                $poll->editable = false;
+                $updated = true;
+                break;
+            case 1:
+                $poll->active = true;
+                $poll->editable = false;
+                $updated = true;
+                break;
+            case 2:
+                $poll->active = true;
+                $poll->editable = true;
+                $updated = true;
+                break;
+        }
+    }
+
+    // Update poll in database
+    if ($updated && $pollService->updatePoll($poll)) {
+        $message = new Message('success', _('Poll saved.'));
+    } else {
+        $message = new Message('danger', _('Failed to save poll.'));
+    }
 }
 
 // Retrieve data
