@@ -1,9 +1,10 @@
 {* TODO Add a form maybe *}
 {$admin = $admin|default:false}
-<form action="{$admin_poll_id|poll_url:true}" method="POST" id="title-form">
+
+{if $admin}<form action="{$admin_poll_id|poll_url:true}" method="POST">{/if}
     <div class="jumbotron{if $admin} bg-danger{/if}">
         <div class="row">
-            <div class="col-md-7">
+            <div id="title-form" class="col-md-7">
                 <h3>{$poll->title}{if $admin} <button class="btn btn-link btn-sm btn-edit" title="{_('Edit the title')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button>{/if}</h3>
                 {if $admin}
                     <div class="hidden js-title">
@@ -24,7 +25,7 @@
                     <a href="{$SERVER_URL}export.php?poll={$poll_id}&mode=csv" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> {_('Export to CSV')}</a>
                     {if $admin}
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-trash"></span> <span class="sr-only">' . _("Remove") . '</span> <span class="caret"></span>
+                            <span class="glyphicon glyphicon-trash"></span> <span class="sr-only">{_("Remove")}</span> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><button class="btn btn-link" type="submit" name="remove_all_votes">{_('Remove all the votes') }</button></li>
@@ -40,11 +41,32 @@
             <div class="form-group col-md-5">
                 <h4 class="control-label">{_("Initiator of the poll")}</h4>
                 <p class="form-control-static">{$poll->admin_name}</p>
+                {if $admin}
+                    <div id="email-form">
+                        <p>{$poll->admin_mail} <button class="btn btn-link btn-sm btn-edit" title="{_('Edit the email adress')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button></p>
+                        <div class="hidden js-email">
+                            <label class="sr-only" for="newemail">{_("Email adress")}</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="admin_mail" size="40" value="{$poll->admin_mail}" />
+                                <span class="input-group-btn">
+                                    <button type="submit" name="update_poll_info" value="admin_mail" class="btn btn-success" title="{_('Save the email address ')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Save')}</span></button>
+                                    <button class="btn btn-link btn-cancel" title="{_('Cancel the email address edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{_('Cancel')}</span></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                {/if}
             </div>
             {if !empty($poll->comment)}
-                <div class="form-group col-md-7">
-                    <h4 class="control-label">{_("Description")}</h4><br />
+                <div class="form-group col-md-7" id="description-form">
+                    <h4 class="control-label">{_("Description")}{if $admin}<button class="btn btn-link btn-sm btn-edit" title="{_('Edit the description')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button>{/if}</h4>
                     <p class="form-control-static well">{$poll->comment}</p>
+                    <div class="hidden js-desc text-right">
+                        <label class="sr-only" for="newdescription">'._("Description") .'</label>
+                        <textarea class="form-control" id="newdescription" name="comment" rows="2" cols="40">{$poll->comment}</textarea>
+                        <button type="submit" id="btn-new-desc" name="update_poll_info" value="comment" class="btn btn-sm btn-success" title="{_("Save the description")}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Save')}</span></button>
+                        <button class="btn btn-default btn-sm btn-cancel" title="{_('Cancel the description edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{_('Cancel')}</span></button>
+                    </div>
                 </div>
             {/if}
         </div>
@@ -66,4 +88,4 @@
             {/if}
         </div>
     </div>
-</form>
+{if $admin}</form>{/if}
