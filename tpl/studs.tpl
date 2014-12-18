@@ -8,7 +8,7 @@
 
 {* Global informations about the current poll *}
 
-{include 'part/poll_info.tpl'}
+{include 'part/poll_info.tpl' admin=$admin}
 
 {* Information about voting *}
 
