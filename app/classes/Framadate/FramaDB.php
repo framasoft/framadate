@@ -112,4 +112,9 @@ class FramaDB
         return $prepared->execute([$poll_id, $name, $comment]);
     }
 
+    function deleteComment($poll_id, $comment_id) {
+        $prepared = $this->prepare('DELETE FROM comments WHERE id_sondage = ? AND id_comment = ?');
+        return $prepared->execute([$poll_id, $comment_id]);
+    }
+
 }

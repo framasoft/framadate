@@ -55,6 +55,7 @@ if (!$poll) {
 // -------------------------------
 // Update poll info
 // -------------------------------
+
 if (isset($_POST['update_poll_info'])) {
     $updated = false;
     $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'comment', 'rules']);
@@ -104,6 +105,19 @@ if (isset($_POST['update_poll_info'])) {
         $message = new Message('success', _('Poll saved.'));
     } else {
         $message = new Message('danger', _('Failed to save poll.'));
+    }
+}
+
+// -------------------------------
+// Delete a comment
+// -------------------------------
+if (!empty($_POST['delete_comment'])) {
+    $comment_id = filter_input(INPUT_POST, 'delete_comment', FILTER_VALIDATE_INT);
+
+    if ($pollService->deleteComment($poll_id, $comment_id)) {
+        $message = new Message('success', _('Comment deleted.'));
+    } else {
+        $message = new Message('danger', _('Failed to delete the comment.'));
     }
 }
 
