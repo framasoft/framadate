@@ -1,3 +1,7 @@
+{if !is_array($best_moments) || empty($best_moments)}
+    {$best_moments = [0]}
+{/if}
+
 <h3>{_('Votes of the poll')}</h3>
 
 <div id="tableContainer" class="tableContainer">
@@ -142,18 +146,20 @@
 
             {* Line displaying best moments *}
             {$count_bests = 0}
-            <tr id="addition">
-                <td>{_("Addition")}</td>
-                {$max = max($best_moments)}
-                {foreach $best_moments as $best_moment}
-                    {if $max == $best_moment}
-                        {$count_bests = $count_bests +1}
-                        <td><span class="glyphicon glyphicon-star text-warning"></span><span>{$max}</span></td>
-                    {else}
-                        <td></td>
-                    {/if}
-                {/foreach}
-            </tr>
+            {$max = max($best_moments)}
+            {if $max > 0}
+                <tr id="addition">
+                    <td>{_("Addition")}</td>
+                    {foreach $best_moments as $best_moment}
+                        {if $max == $best_moment}
+                            {$count_bests = $count_bests +1}
+                            <td><span class="glyphicon glyphicon-star text-warning"></span><span>{$max}</span></td>
+                        {else}
+                            <td></td>
+                        {/if}
+                    {/foreach}
+                </tr>
+            {/if}
             </tbody>
         </table>
     </form>
