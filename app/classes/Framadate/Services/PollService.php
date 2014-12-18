@@ -60,6 +60,10 @@ class PollService {
         return $this->connect->insertVote($poll_id, $name, $choices);
     }
 
+    function cleanVotes($admin_poll_id, $poll_id) {
+        $this->connect->deleteVotesByAdminPollId($admin_poll_id, $poll_id);
+    }
+
     function addComment($poll_id, $name, $comment) {
         return $this->connect->insertComment($poll_id, $name, $comment);
     }

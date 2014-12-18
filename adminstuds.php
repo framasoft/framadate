@@ -53,6 +53,13 @@ if (!$poll) {
 }
 
 // -------------------------------
+// Remove all votes
+// -------------------------------
+if (isset($_POST['remove_all_votes'])) {
+    $pollService->cleanVotes($admin_poll_id, $poll_id);
+}
+
+// -------------------------------
 // Update poll info
 // -------------------------------
 
@@ -111,6 +118,7 @@ if (isset($_POST['update_poll_info'])) {
 // -------------------------------
 // Delete a comment
 // -------------------------------
+
 if (!empty($_POST['delete_comment'])) {
     $comment_id = filter_input(INPUT_POST, 'delete_comment', FILTER_VALIDATE_INT);
 

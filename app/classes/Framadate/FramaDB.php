@@ -102,6 +102,20 @@ class FramaDB
         return $newVote;
     }
 
+    function deleteVotesByAdminPollId($admin_poll_id, $poll_id) {
+        $prepared = $this->prepare('SELECT 1 FROM sondage WHERE admin_poll_id = ? AND poll_id = ?');
+        $prepared->execute([$admin_poll_id, $poll_id]);
+        $count = $prepared->rowCount();
+        $prepared->closeCursor();
+
+        if ($count === 1) {
+            $prepared = $this->prepare('DELETE FROM user_studs WHERE id_sondage = ?');
+            return $prepared->execute([$poll_id]);
+        } else {
+            return null;
+        }
+    }
+
     function updateVote($poll_id, $vote_id, $choices) {
         $prepared = $this->prepare('UPDATE user_studs SET reponses = ? WHERE id_sondage = ? AND id_users = ?');
         return $prepared->execute([$choices, $poll_id, $vote_id]);
