@@ -87,5 +87,43 @@
                 </div>
             {/if}
         </div>
+        {if admin}
+            <div class="row">
+                <div class="col-md-5 col-md-offset-7" >
+                    <div id="poll-rules-form">
+                        {if $poll->active}
+                            {if $poll->editable}
+                                {$rule_id = 2}
+                                {$rule_icon = '<span class="glyphicon glyphicon-edit"></span>'}
+                                {$rule_txt = _('Votes are editable')}
+                            {else}
+                                {$rule_id = 1}
+                                {$rule_icon = '<span class="glyphicon glyphicon-check"></span>'}
+                                {$rule_txt = _('Votes and comments are open')}
+                            {/if}
+                        {else}
+                            {$rule_id = 0}
+                            {$rule_icon = '<span class="glyphicon glyphicon-lock"></span>'}
+                            {$rule_txt = _('Votes and comments are locked')}
+                        {/if}
+                        <p class="pull-right">{$rule_icon} {$rule_txt}<button class="btn btn-link btn-sm btn-edit" title="{_('Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button></p>
+                        <div class="hidden js-poll-rules">
+                            <label class="sr-only" for="newrules">{_("Poll rules")}</label>
+                            <div class="input-group">
+                                <select class="form-control" id="rules" name="rules">
+                                    <option value="0"{if $rule_id==0} selected="selected"{/if}>{_("Votes and comments are locked")}</option>
+                                    <option value="1"{if $rule_id==1} selected="selected"{/if}>{_("Votes and comments are open")}</option>
+                                    <option value="2"{if $rule_id==2} selected="selected"{/if}>{_("Votes are editable")}</option>
+                                </select>
+                                <span class="input-group-btn">
+                                    <button type="submit" name="update_poll_info" value="rules" class="btn btn-success" title="{_('Save the new rules')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Save')}</span></button>
+                                    <button class="btn btn-link btn-cancel" title="{_('Cancel the rules edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{_('Cancel')}</span></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/if}
     </div>
 {if $admin}</form>{/if}
