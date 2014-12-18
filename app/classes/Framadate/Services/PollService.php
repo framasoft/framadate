@@ -60,8 +60,14 @@ class PollService {
         return $this->connect->insertVote($poll_id, $name, $choices);
     }
 
+    /**
+     * Remove all votes of a poll.
+     *
+     * @param $poll_id int The ID a the poll
+     * @return bool|null true is action succeeded
+     */
     function cleanVotes($poll_id) {
-        $this->connect->deleteVotesByAdminPollId($poll_id);
+        return $this->connect->deleteVotesByAdminPollId($poll_id);
     }
 
     function addComment($poll_id, $name, $comment) {
@@ -72,8 +78,14 @@ class PollService {
         return $this->connect->deleteComment($poll_id, $comment_id);
     }
 
+    /**
+     * Remove all comments of a poll.
+     *
+     * @param $poll_id int The ID a the poll
+     * @return bool|null true is action succeeded
+     */
     function cleanComments($poll_id) {
-        $this->connect->deleteCommentssByAdminPollId($poll_id);
+        return $this->connect->deleteCommentssByAdminPollId($poll_id);
     }
 
     function computeBestMoments($votes) {

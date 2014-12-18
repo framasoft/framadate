@@ -53,20 +53,6 @@ if (!$poll) {
 }
 
 // -------------------------------
-// Remove all votes
-// -------------------------------
-if (isset($_POST['remove_all_votes'])) {
-    $pollService->cleanVotes($poll_id);
-}
-
-// -------------------------------
-// Remove all comments
-// -------------------------------
-if (isset($_POST['remove_all_comments'])) {
-    $pollService->cleanComments($poll_id);
-}
-
-// -------------------------------
 // Update poll info
 // -------------------------------
 
@@ -136,6 +122,30 @@ if (!empty($_POST['delete_comment'])) {
     }
 }
 
+// -------------------------------
+// Remove all votes
+// -------------------------------
+if (isset($_POST['remove_all_votes'])) {
+    $pollService->cleanVotes($poll_id);
+}
+
+// -------------------------------
+// Remove all comments
+// -------------------------------
+if (isset($_POST['remove_all_comments'])) {
+    $smarty->assign('poll_id', $poll_id);
+    $smarty->assign('admin_poll_id', $admin_poll_id);
+    $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
+    $smarty->display('confirm/delete_comment.tpl');
+    exit;
+}
+if (isset($_POST['confirm_remove_all_comments'])) {
+    if ($pollService->cleanComments($poll_id)) {
+        $message = new Message('success', _('All comments deleted.'));
+    } else {
+        $message = new Message('danger', _('Failed to delete all comments.'));
+    }
+}
 
 // -------------------------------
 // Delete the entire poll
@@ -144,6 +154,7 @@ if (!empty($_POST['delete_comment'])) {
 if (isset($_POST['delete_poll'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
+    $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
     $smarty->display('confirm/delete_poll.tpl');
     exit;
 }
