@@ -178,6 +178,9 @@ msgstr "Retour au sondage"
 msgid "Print"
 msgstr "Imprimer"
 
+msgid "Export poll information"
+msgstr "Exporter les infos du sondage"
+
 msgid "Export to CSV"
 msgstr "Export en CSV"
 

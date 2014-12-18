@@ -33,15 +33,16 @@ $nbcolonnes=substr_count($dsondage->sujet,',')+1;
 
 $toutsujet=explode(",",$dsondage->sujet);
 
+$input = chr(239) . chr(187) . chr(191) ; //UTF-8 BOM
 //affichage des sujets du sondage
-$input =",";
+$input .= CSV_SEPARATOR;
 foreach ($toutsujet as $value) {
     if ($dsondage->format=="D"||$dsondage->format=="D+") {
         if (strpos($dsondage->sujet,'@') !== false) {
             $days=explode("@",$value);
-            $input.= '"'.date("j/n/Y",$days[0]).'",';
+            $input.= '"'.date("j/n/Y",$days[0]).Chr(34).CSV_SEPARATOR;
         } else {
-            $input.= '"'.date("j/n/Y",$values).'",';
+            $input.= '"'.date("j/n/Y",$values).Chr(34).CSV_SEPARATOR;
         }
     } else {
 
@@ -57,7 +58,7 @@ foreach ($toutsujet as $value) {
         } else { // text only
             $subject_text = stripslashes($value);
         }
-        $input.= '"'.html_entity_decode($subject_text).'",';
+        $input.= '"'.html_entity_decode($subject_text).Chr(34).CSV_SEPARATOR;
     }
 }
 
@@ -76,15 +77,15 @@ if (strpos($dsondage->sujet,'@') !== false) {
 while ( $data=$user_studs->FetchNextObject(false)) {
     // Le nom de l'utilisateur
     $nombase=html_entity_decode(str_replace("°","'",$data->nom));
-    $input.= '"'.$nombase.'",';
+    $input.= '"'.$nombase.Chr(34).CSV_SEPARATOR;
     //affichage des resultats
     $ensemblereponses=$data->reponses;
     for ($k=0;$k<$nbcolonnes;$k++) {
         $car=substr($ensemblereponses,$k,1);
         switch ($car) {
-            case "1": $input .= '"'._('Yes').'",'; $somme[$k]++; break;
-            case "2": $input .= '"'._('Ifneedbe').'",'; break;
-            default: $input .= '"'._('No').'",'; break;
+            case "1": $input .= Chr(34)._('Yes').Chr(34).CSV_SEPARATOR; break;
+            case "2": $input .= Chr(34)._('Ifneedbe').Chr(34).CSV_SEPARATOR; break;
+            default: $input .= Chr(34)._('No').Chr(34).CSV_SEPARATOR; break;
         }
     }
 
@@ -99,6 +100,7 @@ header( 'Content-Length: '.$filesize );
 header( 'Content-Disposition: attachment; filename="'.$filename.'"' );
 header( 'Cache-Control: max-age=10' );
 
-echo str_replace('&quot;','""',$input);
+$input = html_entity_decode($input);
+echo $input;
 
 die();

@@ -721,7 +721,7 @@ echo '
     <form name="formulaire4" action="' . Utils::getUrlSondage($numsondageadmin, true) . '" method="POST">
         <div class="jumbotron bg-danger">
             <div class="row">
-                <div class="col-md-7" id="title-form">
+                <div class="col-md-6" id="title-form">
                     <h3>'.$title.'<button class="btn btn-link btn-sm btn-edit" title="'. _('Edit the title') .'"> <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _('Edit') . '</span></button></h3>
                     <div class="hidden js-title">
                         <label class="sr-only" for="newtitle">'. _("Title") .'</label>
@@ -734,10 +734,10 @@ echo '
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="btn-group pull-right">
                         <button onclick="javascript:print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> ' . _('Print') . '</button>
-                        <button onclick="window.location.href=\'' . Utils::get_server_name() . 'exportcsv.php?numsondage=' . $numsondage . '\';return false;" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> ' . _('Export to CSV') . '</button>
+                        <button onclick="window.location.href=\'' . Utils::get_server_name() . 'saveastext.php?numsondage=' . $numsondage . '\';return false;" class="btn btn-default"><span class="glyphicon glyphicon-export"></span> ' . _('Export poll information') . '</button>
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-trash"></span> <span class="sr-only">' . _('Remove') . '</span> <span class="caret"></span>
                         </button>
@@ -989,6 +989,15 @@ echo '
     </div>
 
     <h3>'._('Votes of the poll ').'</h3>
+	
+	<div class="row">
+		<div class="col-md-12">
+			<div class="btn-group pull-right">
+				<button onclick="window.location.href=\'' . Utils::get_server_name() . 'exportcsv.php?numsondage=' . $numsondage . '\';return false;" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> ' . _('Export to CSV') . '</button>
+			</div>
+ 		</div>
+ 	</div>
+	
     <div id="tableContainer" class="tableContainer">
     <table class="results">
         <caption class="sr-only">'._('Votes of the poll ').$title.'</caption>

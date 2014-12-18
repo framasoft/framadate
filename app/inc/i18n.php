@@ -42,7 +42,7 @@ if (strtoupper(substr(PHP_OS,0,3))=='WIN'){
 	 switch ($mlocale){
 		case 'fr_FR' : $locale = "fra";break; //$locale in windows locale format, needed to use php function that handle text : strftime()
 		case 'en_GB' : $locale = "english";break; //see http://msdn.microsoft.com/en-us/library/39cwe7zf%28v=vs.90%29.aspx
-		case 'de_DE' : $locale = "deu";break;
+		case 'de_DE' : $locale = "deu";break; //doesn't work with PHP > 5.5. See bug #66265 from php.net bugtracker
 		case 'es_ES' : $locale = "esp";break;
 	 }
 }
