@@ -136,6 +136,21 @@ if (!empty($_POST['delete_comment'])) {
     }
 }
 
+
+// -------------------------------
+// Delete the entire poll
+// -------------------------------
+
+if (isset($_POST['delete_poll'])) {
+    $smarty->assign('poll_id', $poll_id);
+    $smarty->assign('admin_poll_id', $admin_poll_id);
+    $smarty->display('confirm/delete_poll.tpl');
+    exit;
+}
+if (isset($_POST['confirm_delete_poll'])) {
+    // TODO
+}
+
 // Retrieve data
 $slots = $pollService->allSlotsByPollId($poll_id);
 $votes = $pollService->allUserVotesByPollId($poll_id);
