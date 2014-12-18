@@ -102,18 +102,26 @@ class FramaDB
         return $newVote;
     }
 
-    function deleteVotesByAdminPollId($admin_poll_id, $poll_id) {
-        $prepared = $this->prepare('SELECT 1 FROM sondage WHERE admin_poll_id = ? AND poll_id = ?');
-        $prepared->execute([$admin_poll_id, $poll_id]);
-        $count = $prepared->rowCount();
-        $prepared->closeCursor();
+    /**
+     * Delete all votes of a given poll.
+     *
+     * @param $poll_id int The ID of the given poll.
+     * @return bool|null true if action succeeded.
+     */
+    function deleteVotesByAdminPollId($poll_id) {
+        $prepared = $this->prepare('DELETE FROM user_studs WHERE id_sondage = ?');
+        return $prepared->execute([$poll_id]);
+    }
 
-        if ($count === 1) {
-            $prepared = $this->prepare('DELETE FROM user_studs WHERE id_sondage = ?');
-            return $prepared->execute([$poll_id]);
-        } else {
-            return null;
-        }
+    /**
+     * Delete all comments of a given poll.
+     *
+     * @param $poll_id int The ID of the given poll.
+     * @return bool|null true if action succeeded.
+     */
+    function deleteCommentssByAdminPollId($poll_id) {
+        $prepared = $this->prepare('DELETE FROM comments WHERE id_sondage = ?');
+        return $prepared->execute([$poll_id]);
     }
 
     function updateVote($poll_id, $vote_id, $choices) {

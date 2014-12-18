@@ -60,8 +60,8 @@ class PollService {
         return $this->connect->insertVote($poll_id, $name, $choices);
     }
 
-    function cleanVotes($admin_poll_id, $poll_id) {
-        $this->connect->deleteVotesByAdminPollId($admin_poll_id, $poll_id);
+    function cleanVotes($poll_id) {
+        $this->connect->deleteVotesByAdminPollId($poll_id);
     }
 
     function addComment($poll_id, $name, $comment) {
@@ -70,6 +70,10 @@ class PollService {
 
     function deleteComment($poll_id, $comment_id) {
         return $this->connect->deleteComment($poll_id, $comment_id);
+    }
+
+    function cleanComments($poll_id) {
+        $this->connect->deleteCommentssByAdminPollId($poll_id);
     }
 
     function computeBestMoments($votes) {

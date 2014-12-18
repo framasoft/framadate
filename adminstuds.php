@@ -56,7 +56,14 @@ if (!$poll) {
 // Remove all votes
 // -------------------------------
 if (isset($_POST['remove_all_votes'])) {
-    $pollService->cleanVotes($admin_poll_id, $poll_id);
+    $pollService->cleanVotes($poll_id);
+}
+
+// -------------------------------
+// Remove all comments
+// -------------------------------
+if (isset($_POST['remove_all_comments'])) {
+    $pollService->cleanComments($poll_id);
 }
 
 // -------------------------------
