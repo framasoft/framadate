@@ -87,7 +87,7 @@
                 </div>
             {/if}
         </div>
-        {if admin}
+        {if $admin}
             <div class="row">
                 <div class="col-md-5 col-md-offset-7" >
                     <div id="poll-rules-form">
