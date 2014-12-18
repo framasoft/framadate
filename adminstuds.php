@@ -43,7 +43,7 @@ function getChoicesFromPOST($nbColumns)
 
 function getNewChoiceFromChoices($choices)
 {
-    if(!is_array($choice)) {
+    if(!is_array($choices)) {
     /*    throw new Exception('$choices must be a an array');
         PHP Fatal error:  Class 'Framadate\Exception' not found */
     }
@@ -870,7 +870,7 @@ if (substr($dsondage->format, 0, 1) == 'D') {
             $colspan_month++;
         } else {
             $border[$i] = true;
-            $tr_months .= '<th colspan="'.$colspan_month.'" class="bg-primary month" id="M'.($i+1-$colspan_month).'">'.strftime("%B",$horoCur[0]).' '.strftime("%Y", $horoCur[0]).'</th>';
+            $tr_months .= '<th colspan="'.$colspan_month.'" class="bg-primary month" id="M'.($i+1-$colspan_month).'">'.utf8_encode(strftime("%B",$horoCur[0])).' '.strftime("%Y", $horoCur[0]).'</th>';
             $colspan_month = 1;
         }
 
@@ -1172,7 +1172,7 @@ for ($i = 0; $i < $nbcolonnes; $i++) {
 
             $tr_addition .= '<td><span class="glyphicon glyphicon-star text-warning"></span><span>'.$somme[$i].'</span></td>';
 
-            $meilleursujet.= '<li><b>'.$radio_title[$i].'</b></li>';
+            $meilleursujet.= '<li><b>'.utf8_encode($radio_title[$i]).'</b></li>';
             ++$compteursujet;
 
         } else {

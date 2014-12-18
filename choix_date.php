@@ -136,7 +136,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
 
         // Sumary
         $summary = '<ul>';
-        for ($i=0; $i < count($_SESSION['totalchoixjour']); ++$i) {
+        for ($i=0; $i < count($_SESSION['totalchoixjour']); ++$i) { 
             $summary .= '<li>'.strftime($date_format['txt_full'], $_SESSION["totalchoixjour"][$i]);
             for ($j=0; $j < count($_SESSION['horaires'.$i]); ++$j) {
                 if (isset($_SESSION['horaires'.$i][$j])) {
@@ -155,7 +155,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
             <h3>'. _("Confirm the creation of your poll") .'</h3>
             <div class="well summary">
                 <h4>'. _('List of your choices').'</h4>
-                '. $summary .'
+                '. utf8_encode($summary) .'
             </div>
             <div class="alert alert-info clearfix">
                 <p>' . _("Your poll will be automatically removed "). $config['default_poll_duration'] . ' ' . _("days") ._(" after the last date of your poll:") . ' <strong>'.$removal_date.'</strong>.<br />' . _("You can fix another removal date for it.") .'</p>
