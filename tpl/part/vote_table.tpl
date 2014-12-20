@@ -9,6 +9,23 @@
         <table class="results">
             <caption class="sr-only">{_('Votes of the poll')} {$poll->title}</caption>
             <thead>
+            {if $admin}
+                <tr>
+                    <th role="presentation"></th>
+                    {$headersDCount=0}
+                    {foreach $slots as $slot}
+                        {foreach $slot->moments as $id=>$moment}
+                            <td headers="M{$slot@key} D{$headersDCount} H{$headersDCount}">
+                                <button type="submit" name="delete_column" value="{$slot->day}@{$moment}" class="btn btn-link btn-sm" title="{_('Remove the column')} {$slot->day|date_format:$date_format.txt_short} - {$moment}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
+                            </td>
+                            {$headersDCount = $headersDCount+1}
+                        {/foreach}
+                    {/foreach}
+                    <td>
+                        <button type="submit" name="add_slot" class="btn btn-link btn-sm" title="{_('Add a column')}"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{_("Add a column")}</span></button>
+                    </td>
+                </tr>
+            {/if}
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
