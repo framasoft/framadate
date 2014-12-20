@@ -57,6 +57,7 @@ class PollService {
     }
 
     function addComment($poll_id, $name, $comment) {
+        // TODO Check if there is no duplicate before to add a new comment
         return $this->connect->insertComment($poll_id, $name, $comment);
     }
 

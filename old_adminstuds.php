@@ -18,56 +18,6 @@
  */
 namespace Framadate;
 
-session_start();
-
-//setlocale(LC_TIME, "fr_FR");
-include_once __DIR__ . '/app/inc/init.php';
-
-if (file_exists('bandeaux_local.php')) {
-    include_once('bandeaux_local.php');
-} else {
-    include_once('bandeaux.php');
-}
-
-// recuperation du numero de sondage admin (24 car.) dans l'URL
-if (!empty($_GET['sondage']) && is_string($_GET['sondage']) && strlen($_GET['sondage']) === 24) {
-    $admin_poll_id = $_GET["sondage"];
-    // on découpe le résultat pour avoir le numéro de sondage (16 car.)
-    $poll_id = substr($admin_poll_id, 0, 16);
-}
-
-if (preg_match(";[\w\d]{24};i", $admin_poll_id)) {
-    $prepared = $connect->prepare('SELECT * FROM sondage WHERE admin_poll_id = ?');
-    $prepared->execute(array($admin_poll_id));
-    $poll = $prepared->fetch();
-    $prepared->closeCursor();
-
-    $prepared = $connect->prepare('SELECT * FROM sujet_studs WHERE id_sondage = ?');
-    $prepared->execute(array($poll_id));
-    $sujets = $prepared->fetchAll();
-
-    $prepared = $connect->prepare('SELECT * FROM user_studs WHERE id_sondage = ? order by id_users');
-    $prepared->execute(array($poll_id));
-    $users = $prepared->fetchAll();
-}
-
-//verification de l'existence du sondage, s'il n'existe pas on met une page d'erreur
-if (!$poll || !$sujets) {
-    Utils::print_header( _('Error!'));
-
-    bandeau_titre(_('Error!'));
-
-    echo '
-    <div class="alert alert-warning">
-        <h2>' . _('This poll doesn\'t exist !') . '</h2>
-        <p>' . _('Back to the homepage of ') . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
-    </div>'."\n";
-
-    bandeau_pied();
-
-    die();
-}
-
 // Send email (only once during the session) to alert admin of the change he made. ==> two modifications (comment, title, description, ...) on differents polls in the same session will generate only one mail.
 $email_admin = $poll->admin_mail;
 $poll_title = $poll->title;
@@ -91,80 +41,6 @@ function send_mail_admin() {
 
 }
 
-//si la valeur du nouveau titre est valide et que le bouton est activé
-if (isset($_POST["boutonnouveautitre"])) {
-    if (Utils::issetAndNoEmpty('nouveautitre') === false) {
-        $err |= TITLE_EMPTY;
-    } else {
-        //Update SQL database with new title
-        $nouveautitre = htmlentities(html_entity_decode($_POST['nouveautitre'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
-        $sql = 'UPDATE sondage SET titre = '.$connect->Param('nouveautitre').' WHERE id_sondage = '.$connect->Param('numsondage');
-        $sql = $connect->Prepare($sql);
-
-        //Email sent to the admin
-        if ($connect->Execute($sql, array($nouveautitre, $poll_id))) {
-            send_mail_admin();
-        }
-    }
-}
-
-// si le bouton est activé, quelque soit la valeur du champ textarea
-if (isset($_POST['boutonnouveauxcommentaires'])) {
-    if (empty($_POST['nouveautitre'])) {
-        $err |= COMMENT_EMPTY;
-    } else {
-        $commentaires = htmlentities(html_entity_decode($_POST['nouveauxcommentaires'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
-
-        //Update SQL database with new description
-        $prepared = $connect->prepare('UPDATE sondage SET commentaires = ? WHERE id_sondage = ?');
-        $prepared->execute(array($commentaires, $poll_id));
-
-        //Email sent to the admin
-        if ($connect->Execute($sql, array($commentaires, $poll_id))) {
-            send_mail_admin();
-        }
-    }
-}
-
-//si la valeur de la nouvelle adresse est valide et que le bouton est activé
-if (isset($_POST["boutonnouvelleadresse"])) {
-    if (empty($_POST['nouvelleadresse']) || Utils::isValidEmail($_POST["nouvelleadresse"]) === false) {
-       $err |= INVALID_EMAIL;
-    } else {
-        $nouvelleadresse = htmlentities(html_entity_decode($_POST['nouvelleadresse'], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
-
-        //Update SQL database with new email
-        $prepared = $connect->prepare('UPDATE sondage SET mail_admin = ? WHERE id_sondage = ?');
-        $executed = $prepared->execute(array($nouvelleadresse, $poll_id));
-
-        //Email sent to the admin
-        if ($executed) {
-            send_mail_admin();
-        }
-    }
-}
-
-// TODO OPZ : Revoir ce que fait ce truc exactament
-//New poll rules
-if (isset($_POST["btn_poll_rules"])) {
-    echo '<!-- '; print_r($_POST); echo ' -->';
-    if($_POST['poll_rules'] == '+') {
-        $new_poll_rules = substr($dsondage->format, 0, 1).'+';
-    } elseif($_POST['poll_rules'] == '-') {
-        $new_poll_rules = substr($dsondage->format, 0, 1).'-';
-    } else {
-        $new_poll_rules = substr($dsondage->format, 0, 1);
-    }
-
-    //Update SQL database with new rules
-    $prepared = $connect->prepare('UPDATE sondage SET format = ? WHERE id_sondage = ?');
-    $executed = $prepared->execute(array($new_poll_rules, $poll_id));
-
-    //Email sent to the admin
-    if ($executed) {
-        send_mail_admin();
-    }
-}
 
 // reload
 // TODO OPZ Pourquoi recharger
@@ -228,39 +104,6 @@ if (isset($_POST['ajoutsujet'])) {
     die();
 }
 
-if (isset($_POST["suppressionsondage"])) {
-    Utils::print_header( _("Confirm removal of your poll") .' - ' . stripslashes( $dsondage->title ));
-
-    bandeau_titre(_("Confirm removal of your poll"));
-
-    echo '
-        <form name="formulaire" action="' . Utils::getUrlSondage($admin_poll_id, true) . '" method="POST">
-        <div class="alert alert-warning text-center">
-            <h2>' . _("Confirm removal of your poll") . '</h2>
-            <p><button class="btn btn-default" type="submit" value="" name="annullesuppression">'._("Keep this poll!").'</button>
-            <button type="submit" name="confirmesuppression" value="" class="btn btn-danger">'._("Remove this poll!").'</button></p>
-        </div>
-        </form>';
-
-    bandeau_pied();
-
-    die();
-}
-
-// Remove all the comments
-if (isset($_POST['removecomments'])) {
-    $sql = 'DELETE FROM comments WHERE id_sondage='.$connect->Param('numsondage');
-    $sql = $connect->Prepare($sql);
-    $cleaning = $connect->Execute($sql, array($poll_id));
-}
-
-// Remove all the votes
-if (isset($_POST["removevotes"])) {
-    $sql = 'DELETE FROM user_studs WHERE id_sondage='.$connect->Param('numsondage');
-    $sql = $connect->Prepare($sql);
-    $cleaning = $connect->Execute($sql, array($poll_id));
-}
-
 //action si bouton confirmation de suppression est activé
 if (isset($_POST["confirmesuppression"])) {
     $nbuser=$user_studs->RecordCount();
@@ -290,92 +133,11 @@ if (isset($_POST["confirmesuppression"])) {
     }
 }
 
-// quand on ajoute un commentaire utilisateur
-if (isset($_POST['ajoutcomment'])) {
-    if (empty($_POST['commentuser'])) {
-        $err |= COMMENT_USER_EMPTY;
-    } else {
-        $comment_user = htmlentities(html_entity_decode($_POST["commentuser"], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
-    }
-
-    if(empty($_POST['comment'])) {
-        $err |= COMMENT_EMPTY;
-    }
-
-    if (!empty($_POST['comment']) && !Utils::is_error(COMMENT_EMPTY) && !Utils::is_error(NO_POLL) && !Utils::is_error(COMMENT_USER_EMPTY)) {
-        $comment = htmlentities(html_entity_decode($_POST["comment"], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
-
-        // Check for doublons
-        $comment_doublon = false;
-        $req = 'SELECT * FROM comments WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_comment';
-        $sql = $connect->Prepare($req);
-        $comment_user_doublon = $connect->Execute($sql, array($poll_id));
-        if ($comment_user_doublon->RecordCount() != 0) {
-            while ( $dcomment_user_doublon=$comment_user_doublon->FetchNextObject(false)) {
-                if($dcomment_user_doublon->comment == $comment && $dcomment_user_doublon->usercomment == $comment_user) {
-                    $comment_doublon = true;
-                };
-            }
-        }
-
-        if(!$comment_doublon) {
-            $req = 'INSERT INTO comments (id_sondage, comment, usercomment) VALUES ('.
-                $connect->Param('id_sondage').','.
-                $connect->Param('comment').','.
-                $connect->Param('comment_user').')';
-            $sql = $connect->Prepare($req);
-
-            $comments = $connect->Execute($sql, array($poll_id, $comment, $comment_user));
-            if ($comments === false) {
-                $err |= COMMENT_INSERT_FAILED;
-            }
-        }
-    }
-}
-
 $nbcolonnes = count($sujets);
 $nblignes = count($users);
 
 //si il n'y a pas suppression alors on peut afficher normalement le tableau
 
-//action si le bouton participer est cliqué
-if (isset($_POST["boutonp"])) {
-    //si on a un nom dans la case texte
-    if (!empty($_POST['nom'])){
-        $nouveauchoix = '';
-        $erreur_prenom = false;
-
-        for ($i=0;$i<$nbcolonnes;$i++){
-            // radio checked 1 = Yes, 2 = Ifneedbe, 0 = No
-            if (isset($_POST["choix$i"])) {
-                switch ($_POST["choix$i"]) {
-                    case 1: $nouveauchoix .= "1";break;
-                    case 2: $nouveauchoix .= "2";break;
-                    default: $nouveauchoix .= "0";break;
-                }
-            }
-        }
-
-        $nom = htmlentities(html_entity_decode($_POST["nom"], ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8');
-
-        while($user = $user_studs->FetchNextObject(false)) {
-            if ($nom == $user->nom){
-                $erreur_prenom="yes";
-            }
-        }
-
-        // Ecriture des choix de l'utilisateur dans la base
-        if (!$erreur_prenom) {
-            $sql = 'INSERT INTO user_studs (nom, id_sondage, reponses) VALUES ('.
-                $connect->Param('nom').','.
-                $connect->Param('numsondage').','.
-                $connect->Param('nouveauchoix').')';
-
-            $sql = $connect->Prepare($sql);
-            $connect->Execute($sql, array($nom, $poll_id, $nouveauchoix));
-        }
-    }
-}
 
 
 //action quand on ajoute une colonne au format AUTRE

@@ -110,6 +110,10 @@ if (isset($_POST['update_poll_info'])) {
     }
 }
 
+// TODO Handle Add/Edit vote form
+
+// TODO Handle Add comment form
+
 // -------------------------------
 // Delete a comment
 // -------------------------------
