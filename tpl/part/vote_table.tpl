@@ -5,7 +5,7 @@
 <h3>{_('Votes of the poll')}</h3>
 
 <div id="tableContainer" class="tableContainer">
-    <form action="{$poll_id|poll_url}" method="POST">
+    <form action="" method="POST">
         <table class="results">
             <caption class="sr-only">{_('Votes of the poll')} {$poll->title}</caption>
             <thead>
@@ -94,6 +94,11 @@
                                 <button type="submit" class="btn btn-link btn-sm" name="edit_vote" value="{$vote->id}" title="{_('Edit the line:')} {$vote->name}">
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span>
                                 </button>
+                                {if $admin}
+                                    <button type="submit" class="btn btn-link btn-sm" name="delete_vote" value="{$vote->id}" title="{_('Remove the line:')} {$vote->name}">
+                                        <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span>
+                                    </button>
+                                {/if}
                             </td>
                         {else}
                             <td></td>

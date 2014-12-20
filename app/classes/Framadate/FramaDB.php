@@ -102,6 +102,11 @@ class FramaDB
         return $newVote;
     }
 
+    function deleteVote($poll_id, $vote_id) {
+        $prepared = $this->prepare('DELETE FROM user_studs WHERE id_sondage = ? AND id_users = ?');
+        return $prepared->execute([$poll_id, $vote_id]);
+    }
+
     /**
      * Delete all votes of a given poll.
      *
@@ -119,7 +124,7 @@ class FramaDB
      * @param $poll_id int The ID of the given poll.
      * @return bool|null true if action succeeded.
      */
-    function deleteCommentssByAdminPollId($poll_id) {
+    function deleteCommentsByAdminPollId($poll_id) {
         $prepared = $this->prepare('DELETE FROM comments WHERE id_sondage = ?');
         return $prepared->execute([$poll_id]);
     }

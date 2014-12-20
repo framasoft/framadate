@@ -115,16 +115,14 @@ if (isset($_POST['update_poll_info'])) {
 // TODO Handle Add comment form
 
 // -------------------------------
-// Delete a comment
+// Delete a votes
 // -------------------------------
-
-if (!empty($_POST['delete_comment'])) {
-    $comment_id = filter_input(INPUT_POST, 'delete_comment', FILTER_VALIDATE_INT);
-
-    if ($adminPollService->deleteComment($poll_id, $comment_id)) {
-        $message = new Message('success', _('Comment deleted.'));
+if (!empty($_POST['delete_vote'])) {
+    $vote_id = filter_input(INPUT_POST, 'delete_vote', FILTER_VALIDATE_INT);
+    if ($adminPollService->deleteVote($poll_id, $vote_id)) {
+        $message = new Message('success', _('Vote delete.'));
     } else {
-        $message = new Message('danger', _('Failed to delete the comment.'));
+        $message = new Message('danger', _('Failed to delete the vote.'));
     }
 }
 
@@ -140,6 +138,20 @@ if (isset($_POST['remove_all_votes'])) {
 }
 if (isset($_POST['confirm_remove_all_votes'])) {
     $adminPollService->cleanVotes($poll_id);
+}
+
+// -------------------------------
+// Delete a comment
+// -------------------------------
+
+if (!empty($_POST['delete_comment'])) {
+    $comment_id = filter_input(INPUT_POST, 'delete_comment', FILTER_VALIDATE_INT);
+
+    if ($adminPollService->deleteComment($poll_id, $comment_id)) {
+        $message = new Message('success', _('Comment deleted.'));
+    } else {
+        $message = new Message('danger', _('Failed to delete the comment.'));
+    }
 }
 
 // -------------------------------
