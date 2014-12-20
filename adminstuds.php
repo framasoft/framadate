@@ -110,9 +110,62 @@ if (isset($_POST['update_poll_info'])) {
     }
 }
 
-// TODO Handle Add/Edit vote form
+// -------------------------------
+// A vote is going to be edited
+// -------------------------------
 
-// TODO Handle Add comment form
+if (!empty($_POST['edit_vote'])) {
+    // TODO Try what does filter_input with a wrong value
+    $editingVoteId = filter_input(INPUT_POST, 'edit_vote', FILTER_VALIDATE_INT);
+}
+
+// -------------------------------
+// Something to save (edit or add)
+// -------------------------------
+
+if (!empty($_POST['save'])) { // Save edition of an old vote
+    $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
+    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
+
+    if (empty($editedVote)) {
+        $message = new Message('danger', _('Something is going wrong...'));
+    }
+    if (count($choices) != count($_POST['choices'])) {
+        $message = new Message('danger', _('There is a problem with your choices.'));
+    }
+
+    if ($message == null) {
+        // Update vote
+        $result = $pollService->updateVote($poll_id, $editedVote, $choices);
+        if ($result) {
+            $message = new Message('success', _('Update vote successfully.'));
+            // TODO Send mail to notify the poll admin
+        } else {
+            $message = new Message('danger', _('Update vote failed.'));
+        }
+    }
+} elseif (isset($_POST['save'])) { // Add a new vote
+    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9_ -]+$/i']]);
+    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
+
+    if (empty($name)) {
+        $message = new Message('danger', _('Name is incorrect.'));
+    }
+    if (count($choices) != count($_POST['choices'])) {
+        $message = new Message('danger', _('There is a problem with your choices.'));
+    }
+
+    if ($message == null) {
+        // Add vote
+        $result = $pollService->addVote($poll_id, $name, $choices);
+        if ($result) {
+            $message = new Message('success', _('Update vote successfully.'));
+            // TODO Send mail to notify the poll admin
+        } else {
+            $message = new Message('danger', _('Update vote failed.'));
+        }
+    }
+}
 
 // -------------------------------
 // Delete a votes
@@ -138,6 +191,30 @@ if (isset($_POST['remove_all_votes'])) {
 }
 if (isset($_POST['confirm_remove_all_votes'])) {
     $adminPollService->cleanVotes($poll_id);
+}
+
+// -------------------------------
+// Add a comment
+// -------------------------------
+
+if (isset($_POST['add_comment'])) {
+    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9_ -]+$/i']]);
+    $comment = filter_input(INPUT_POST, 'comment', FILTER_DEFAULT);
+
+    if (empty($name)) {
+        $message = new Message('danger', _('Name is incorrect.'));
+    }
+
+    if ($message == null) {
+        // Add comment
+        $result = $pollService->addComment($poll_id, $name, $comment);
+        if ($result) {
+            $message = new Message('success', _('Comment added.'));
+        } else {
+            $message = new Message('danger', _('Comment failed.'));
+        }
+    }
+
 }
 
 // -------------------------------
