@@ -64,7 +64,7 @@ if (isset($_POST['update_poll_info'])) {
 
     // Update the right poll field
     if ($field == 'title') {
-        $title = $filter_input(INPUT_POST, 'title', FILTER_DEFAULT);
+        $title = filter_input(INPUT_POST, 'title', FILTER_DEFAULT);
         if ($title) {
             $poll->title = $title;
             $updated = true;
