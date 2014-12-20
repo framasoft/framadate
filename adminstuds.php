@@ -145,7 +145,7 @@ if (isset($_POST['remove_all_comments'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
-    $smarty->display('confirm/delete_comment.tpl');
+    $smarty->display('confirm/delete_comments.tpl');
     exit;
 }
 if (isset($_POST['confirm_remove_all_comments'])) {
