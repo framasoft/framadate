@@ -128,6 +128,13 @@ if (!empty($_POST['delete_comment'])) {
 // Remove all votes
 // -------------------------------
 if (isset($_POST['remove_all_votes'])) {
+    $smarty->assign('poll_id', $poll_id);
+    $smarty->assign('admin_poll_id', $admin_poll_id);
+    $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
+    $smarty->display('confirm/delete_votes.tpl');
+    exit;
+}
+if (isset($_POST['confirm_remove_all_votes'])) {
     $adminPollService->cleanVotes($poll_id);
 }
 
