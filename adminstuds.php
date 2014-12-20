@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 use Framadate\Services\PollService;
+use Framadate\Services\AdminPollService;
 use Framadate\Services\InputService;
 use Framadate\Message;
 use Framadate\Utils;
@@ -35,6 +36,7 @@ $editingVoteId = 0;
 /*----------*/
 
 $pollService = new PollService($connect);
+$adminPollService = new AdminPollService($connect);
 $inputService = new InputService();
 
 /* PAGE */
@@ -101,7 +103,7 @@ if (isset($_POST['update_poll_info'])) {
     }
 
     // Update poll in database
-    if ($updated && $pollService->updatePoll($poll)) {
+    if ($updated && $adminPollService->updatePoll($poll)) {
         $message = new Message('success', _('Poll saved.'));
     } else {
         $message = new Message('danger', _('Failed to save poll.'));
@@ -115,7 +117,7 @@ if (isset($_POST['update_poll_info'])) {
 if (!empty($_POST['delete_comment'])) {
     $comment_id = filter_input(INPUT_POST, 'delete_comment', FILTER_VALIDATE_INT);
 
-    if ($pollService->deleteComment($poll_id, $comment_id)) {
+    if ($adminPollService->deleteComment($poll_id, $comment_id)) {
         $message = new Message('success', _('Comment deleted.'));
     } else {
         $message = new Message('danger', _('Failed to delete the comment.'));
@@ -126,7 +128,7 @@ if (!empty($_POST['delete_comment'])) {
 // Remove all votes
 // -------------------------------
 if (isset($_POST['remove_all_votes'])) {
-    $pollService->cleanVotes($poll_id);
+    $adminPollService->cleanVotes($poll_id);
 }
 
 // -------------------------------
@@ -140,7 +142,7 @@ if (isset($_POST['remove_all_comments'])) {
     exit;
 }
 if (isset($_POST['confirm_remove_all_comments'])) {
-    if ($pollService->cleanComments($poll_id)) {
+    if ($adminPollService->cleanComments($poll_id)) {
         $message = new Message('success', _('All comments deleted.'));
     } else {
         $message = new Message('danger', _('Failed to delete all comments.'));
