@@ -55,7 +55,6 @@ if (!$poll) {
 // -------------------------------
 
 if (!empty($_POST['edit_vote'])) {
-    // TODO Try what does filter_input with a wrong value
     $editingVoteId = filter_input(INPUT_POST, 'edit_vote', FILTER_VALIDATE_INT);
 }
 

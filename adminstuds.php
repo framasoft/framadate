@@ -36,7 +36,7 @@ $editingVoteId = 0;
 /*----------*/
 
 $pollService = new PollService($connect);
-$adminPollService = new AdminPollService($connect);
+$adminPollService = new AdminPollService($connect, $pollService);
 $inputService = new InputService();
 
 /* PAGE */
@@ -115,7 +115,6 @@ if (isset($_POST['update_poll_info'])) {
 // -------------------------------
 
 if (!empty($_POST['edit_vote'])) {
-    // TODO Try what does filter_input with a wrong value
     $editingVoteId = filter_input(INPUT_POST, 'edit_vote', FILTER_VALIDATE_INT);
 }
 
@@ -170,6 +169,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 // -------------------------------
 // Delete a votes
 // -------------------------------
+
 if (!empty($_POST['delete_vote'])) {
     $vote_id = filter_input(INPUT_POST, 'delete_vote', FILTER_VALIDATE_INT);
     if ($adminPollService->deleteVote($poll_id, $vote_id)) {
@@ -182,6 +182,7 @@ if (!empty($_POST['delete_vote'])) {
 // -------------------------------
 // Remove all votes
 // -------------------------------
+
 if (isset($_POST['remove_all_votes'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
@@ -234,6 +235,7 @@ if (!empty($_POST['delete_comment'])) {
 // -------------------------------
 // Remove all comments
 // -------------------------------
+
 if (isset($_POST['remove_all_comments'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
@@ -262,6 +264,20 @@ if (isset($_POST['delete_poll'])) {
 }
 if (isset($_POST['confirm_delete_poll'])) {
     // TODO
+}
+
+// -------------------------------
+// Delete a slot
+// -------------------------------
+
+if (!empty($_POST['delete_column'])) {
+    $column = filter_input(INPUT_POST, 'delete_column', FILTER_DEFAULT);
+
+    if ($adminPollService->deleteSlot($poll_id, $column)) {
+        $message = new Message('success', _('Column deleted.'));
+    } else {
+        $message = new Message('danger', _('Failed to delete the column.'));
+    }
 }
 
 // Retrieve data

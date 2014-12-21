@@ -18,23 +18,20 @@
  */
 namespace Framadate;
 
-class FramaDB
-{
+class FramaDB {
     /**
      * PDO Object, connection to database.
      */
     private $pdo = null;
 
-    function __construct($connection_string, $user, $password)
-    {
+    function __construct($connection_string, $user, $password) {
         $this->pdo = new \PDO($connection_string, $user, $password);
         $this->pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-    function areTablesCreated()
-    {
-        $result= $this->pdo->query('SHOW TABLES');
+    function areTablesCreated() {
+        $result = $this->pdo->query('SHOW TABLES');
         $schemas = $result->fetchAll(\PDO::FETCH_COLUMN);
         return !empty(array_diff($schemas, ['comments', 'sondage', 'sujet_studs', 'user_studs']));
     }
@@ -116,6 +113,42 @@ class FramaDB
     function deleteVotesByAdminPollId($poll_id) {
         $prepared = $this->prepare('DELETE FROM user_studs WHERE id_sondage = ?');
         return $prepared->execute([$poll_id]);
+    }
+
+    /**
+     * Delete all votes made on given moment index.
+     *
+     * @param $poll_id int The ID of the poll
+     * @param $index int The index of the vote into the poll
+     * @return bool|null true if action succeeded.
+     */
+    function deleteVotesByIndex($poll_id, $index) {
+        $prepared = $this->prepare('UPDATE user_studs SET reponses = CONCAT(SUBSTR(reponses, 1, ?), SUBSTR(reponses, ?)) WHERE id_sondage = ?');
+        return $prepared->execute([$index, $index + 2, $poll_id]);
+    }
+
+    /**
+     * Update a slot into a poll.
+     *
+     * @param $poll_id int The ID of the poll
+     * @param $datetime int The datetime of the slot to update
+     * @param $newValue mixed The new value of the entire slot
+     * @return bool|null true if action succeeded.
+     */
+    function updateSlot($poll_id, $datetime, $newValue) {
+        $prepared = $this->prepare('UPDATE sujet_studs SET sujet = ? WHERE id_sondage = ? AND SUBSTRING_INDEX(sujet, \'@\', 1) = ?');
+        return $prepared->execute([$newValue, $poll_id, $datetime]);
+    }
+
+    /**
+     * Delete a entire slot from a poll.
+     *
+     * @param $poll_id int The ID of the poll
+     * @param $datetime mixed The datetime of the slot
+     */
+    function deleteSlot($poll_id, $datetime) {
+        $prepared = $this->prepare('DELETE FROM sujet_studs WHERE id_sondage = ? AND SUBSTRING_INDEX(sujet, \'@\', 1) = ?');
+        $prepared->execute([$poll_id, $datetime]);
     }
 
     /**
