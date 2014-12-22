@@ -280,6 +280,18 @@ if (!empty($_POST['delete_column'])) {
     }
 }
 
+// -------------------------------
+// Delete a slot
+// -------------------------------
+
+if (isset($_POST['add_slot'])) {
+    $smarty->assign('poll_id', $poll_id);
+    $smarty->assign('admin_poll_id', $admin_poll_id);
+    $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
+    $smarty->display('add_slot.tpl');
+    exit;
+}
+
 // Retrieve data
 $slots = $pollService->allSlotsByPollId($poll_id);
 $votes = $pollService->allUserVotesByPollId($poll_id);
