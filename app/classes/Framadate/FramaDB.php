@@ -48,6 +48,18 @@ class FramaDB {
         $this->pdo->commit();
     }
 
+    function rollback() {
+        $this->pdo->rollback();
+    }
+
+    function errorCode() {
+        return $this->pdo->errorCode();
+    }
+
+    function errorInfo() {
+        return $this->pdo->errorInfo();
+    }
+
     function query($sql) {
         return $this->pdo->query($sql);
     }
@@ -63,7 +75,7 @@ class FramaDB {
     }
 
     function updatePoll($poll) {
-        $prepared = $this->prepare('UPDATE sondage SET title=?, admin_mail=?, comment=?, active=?, editable=? WHERE sondage.poll_id = ?');
+        $prepared = $this->prepare('UPDATE sondage SET title=?, admin_mail=?, comment=?, active=?, editable=? WHERE poll_id = ?');
 
         return $prepared->execute([$poll->title, $poll->admin_mail, $poll->comment, $poll->active, $poll->editable, $poll->poll_id]);
     }
@@ -84,6 +96,11 @@ class FramaDB {
         $prepared = $this->prepare('SELECT * FROM sujet_studs WHERE id_sondage = ? ORDER BY sujet');
         $prepared->execute(array($poll_id));
         return $prepared->fetchAll();
+    }
+
+    function insertDefaultVote($poll_id, $insert_position) {
+        $prepared = $this->prepare('UPDATE user_studs SET reponses = CONCAT(SUBSTRING(reponses, 1, ?), "0", SUBSTRING(reponses, ?)) WHERE id_sondage = ?');
+        return $prepared->execute([$insert_position, $insert_position + 1, $poll_id]);
     }
 
     function insertVote($poll_id, $name, $choices) {

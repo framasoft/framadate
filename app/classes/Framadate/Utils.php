@@ -214,7 +214,7 @@ class Utils
 
     /**
      * This method pretty prints an object to the page framed by pre tags.
-     * @param Object $object The object to print.
+     * @param mixed $object The object to print.
      */
     public static function debug($object)
     {
