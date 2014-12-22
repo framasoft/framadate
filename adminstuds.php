@@ -138,7 +138,6 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         $result = $pollService->updateVote($poll_id, $editedVote, $choices);
         if ($result) {
             $message = new Message('success', _('Update vote successfully.'));
-            // TODO Send mail to notify the poll admin
         } else {
             $message = new Message('danger', _('Update vote failed.'));
         }
@@ -159,7 +158,6 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         $result = $pollService->addVote($poll_id, $name, $choices);
         if ($result) {
             $message = new Message('success', _('Update vote successfully.'));
-            // TODO Send mail to notify the poll admin
         } else {
             $message = new Message('danger', _('Update vote failed.'));
         }
