@@ -33,7 +33,7 @@ class FramaDB {
     function areTablesCreated() {
         $result = $this->pdo->query('SHOW TABLES');
         $schemas = $result->fetchAll(\PDO::FETCH_COLUMN);
-        return !empty(array_diff($schemas, ['comments', 'sondage', 'sujet_studs', 'user_studs']));
+        return 0 != count(array_diff($schemas, ['comments', 'sondage', 'sujet_studs', 'user_studs']));
     }
 
     function prepare($sql) {
@@ -125,6 +125,35 @@ class FramaDB {
     function deleteVotesByIndex($poll_id, $index) {
         $prepared = $this->prepare('UPDATE user_studs SET reponses = CONCAT(SUBSTR(reponses, 1, ?), SUBSTR(reponses, ?)) WHERE id_sondage = ?');
         return $prepared->execute([$index, $index + 2, $poll_id]);
+    }
+
+    /**
+     * Find the slot into poll for a given datetime.
+     *
+     * @param $poll_id int The ID of the poll
+     * @param $datetime int The datetime of the slot
+     * @return mixed Object The slot found, or null
+     */
+    function findSlotByPollIdAndDatetime($poll_id, $datetime) {
+        $prepared = $this->prepare('SELECT * FROM sujet_studs WHERE id_sondage = ? AND SUBSTRING_INDEX(sujet, \'@\', 1) = ?');
+
+        $prepared->execute([$poll_id, $datetime]);
+        $slot = $prepared->fetch();
+        $prepared->closeCursor();
+
+        return $slot;
+    }
+
+    /**
+     * Insert a new slot into a given poll.
+     *
+     * @param $poll_id int The ID of the poll
+     * @param $slot mixed The value of the slot
+     * @return bool true if action succeeded
+     */
+    function insertSlot($poll_id, $slot) {
+        $prepared = $this->prepare('INSERT INTO sujet_studs (id_sondage, sujet) VALUES (?,?)');
+        return $prepared->execute([$poll_id, $slot]);
     }
 
     /**

@@ -106,5 +106,30 @@ class AdminPollService {
         $this->connect->commit();
     }
 
+    public function addSlot($poll_id, $newdate, $newmoment) {
+        $ex = explode('/', $newdate);
+        $datetime = mktime(0,0,0, $ex[1], $ex[0], $ex[2]);
+
+        $slot = $this->connect->findSlotByPollIdAndDatetime($poll_id, $datetime);
+
+        if ($slot != null) {
+            // Update found slot
+            $moments = explode('@', $slot->sujet)[1];
+            foreach ($moments as $moment) {
+                if ($moment == $newmoment) {
+                    return false;
+                }
+            }
+            // TODO Implements
+
+        } else {
+            // TODO Found index of insertion, in order to update user votes
+            $this->connect->insertSlot($poll_id, $datetime . '@' . $newmoment);
+        }
+
+        return true;
+
+    }
+
 }
  

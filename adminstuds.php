@@ -291,6 +291,16 @@ if (isset($_POST['add_slot'])) {
     $smarty->display('add_slot.tpl');
     exit;
 }
+if (isset($_POST['confirm_add_slot'])) {
+    $newdate = filter_input(INPUT_POST, 'newdate', FILTER_DEFAULT);
+    $newmoment = filter_input(INPUT_POST, 'newmoment', FILTER_DEFAULT);
+
+    if ($adminPollService->addSlot($poll_id, $newdate, $newmoment)) {
+        $message = new Message('success', _('Column added.'));
+    } else {
+        $message = new Message('danger', _('Failed to add the column.'));
+    }
+}
 
 // Retrieve data
 $slots = $pollService->allSlotsByPollId($poll_id);

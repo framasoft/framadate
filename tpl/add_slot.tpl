@@ -16,16 +16,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="newhour" class="col-md-4">{_("Time")}</label>
+                <label for="newmoment" class="col-md-4">{_("Time")}</label>
                 <div class="col-md-8">
-                    <input type="text" id="newhour" name="newhour" class="form-control" />
+                    <input type="text" id="newmoment" name="newmoment" class="form-control" />
                 </div>
             </div>
-            <div class="pull-right">
+            <div class="form-group">
                 <button class="btn btn-default" type="submit" name="back">{_('Back to the poll')}</button>
                 <button type="submit" name="confirm_add_slot" class="btn btn-success">{_('Add a column')}</button>
             </div>
-            <div class="clearfix"></div>
         </div>
     </form>
 {/block}
