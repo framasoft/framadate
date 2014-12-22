@@ -45,6 +45,10 @@ class Utils
         return (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || isset($_SESSION['nom']);
     }
 
+    /**
+     * @param string $title
+     * @deprecated
+     */
     public static function print_header($title = '')
     {
         global $lang;
@@ -87,6 +91,7 @@ class Utils
      *
      * @param   string  $email  Email address to check
      * @return  bool    True if valid. False if not valid.
+     * @deprecated
      */
     public static function isValidEmail($email)
     {
@@ -96,7 +101,7 @@ class Utils
     /**
      * Envoi un courrier avec un codage correct de To et Subject
      * Les en-têtes complémentaires ne sont pas gérés
-     *
+     * @deprecated
      */
     public static function sendEmail( $to, $subject, $body, $headers='', $param='')
     {
@@ -175,8 +180,7 @@ class Utils
      * Completly delete data about the given poll
      * TODO Move this function to FramaDB
      */
-    public static function removeSondage($poll_id)
-    {
+    public static function removeSondage($poll_id) {
         global $connect;
 
         $prepared = $connect->prepare('DELETE FROM sujet_studs WHERE id_sondage = ?');
@@ -195,7 +199,7 @@ class Utils
 
     /**
      * Clean old poll (end_date < now).
-     * TODO Move this function to FramaDB
+     * TODO Move this function to PurgePollService
      */
     public static function cleaningOldPolls($log_txt) {
         global $connect;
@@ -216,8 +220,7 @@ class Utils
      * This method pretty prints an object to the page framed by pre tags.
      * @param mixed $object The object to print.
      */
-    public static function debug($object)
-    {
+    public static function debug($object) {
         echo '<pre>';
         print_r($object);
         echo '</pre>';

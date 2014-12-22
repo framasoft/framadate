@@ -18,6 +18,7 @@
  */
 use Framadate\Services\PollService;
 use Framadate\Services\InputService;
+use Framadate\Services\MailService;
 use Framadate\Message;
 use Framadate\Utils;
 
@@ -25,6 +26,7 @@ include_once __DIR__ . '/app/inc/init.php';
 
 /* Variables */
 /* --------- */
+
 $poll_id = null;
 $poll = null;
 $message = null;
@@ -35,6 +37,31 @@ $editingVoteId = 0;
 
 $pollService = new PollService($connect);
 $inputService = new InputService();
+$mailService = new MailService($config['use_smtp']);
+
+/* Functions */
+/*-----------*/
+
+/**
+ * Send a notification to the poll admin to notify him about an update.
+ *
+ * @param $poll Object The poll
+ * @param $mailService MailService The mail service
+ */
+function sendUpdateNotification($poll, $mailService) {
+    if ($poll->receiveNewVotes && !isset($_SESSION['mail_sent'][$poll->poll_id])) {
+
+        $subject = '[' . NOMAPPLICATION . '] ' . _('Poll\'s participation') . ' : ' . html_entity_decode($poll->title, ENT_QUOTES, 'UTF-8');
+        $message = html_entity_decode('"$nom" ', ENT_QUOTES, 'UTF-8') .
+            _('has filled a line.\nYou can find your poll at the link') . " :\n\n" .
+            Utils::getUrlSondage($poll->admin_poll_id, true) . " \n\n" .
+            _('Thanks for your confidence.') . "\n" . NOMAPPLICATION;
+
+        $mailService->send($poll->admin_mail, $subject, $message);
+
+        $_SESSION["mail_sent"][$poll->poll_id] = true;
+    }
+}
 
 /* PAGE */
 /* ---- */
@@ -79,7 +106,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         $result = $pollService->updateVote($poll_id, $editedVote, $choices);
         if ($result) {
             $message = new Message('success', _('Update vote successfully.'));
-            // TODO Send mail to notify the poll admin
+            sendUpdateNotification($poll, $mailService);
         } else {
             $message = new Message('danger', _('Update vote failed.'));
         }
@@ -100,7 +127,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         $result = $pollService->addVote($poll_id, $name, $choices);
         if ($result) {
             $message = new Message('success', _('Update vote successfully.'));
-            // TODO Send mail to notify the poll admin
+            sendUpdateNotification($poll, $mailService);
         } else {
             $message = new Message('danger', _('Update vote failed.'));
         }
