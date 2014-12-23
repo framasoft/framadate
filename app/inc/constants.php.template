@@ -32,20 +32,14 @@ const ADRESSEMAILADMIN = '<email address>';
 // Email for automatic responses (you should set it to "no-reply")
 const ADRESSEMAILREPONSEAUTO = '<no-reply@mydomain.com>';
 
-// Database name
-const BASE = '<database name>';
-
 // Database user
-const USERBASE = '<database user>';
+const DB_USER= '<database user>';
 
 // Database password
-const USERPASSWD = '<database password>';
+const DB_PASSWORD = '<database password>';
 
 // Database server name, leave empty to use a socket
-const SERVEURBASE = '<database server>';
-
-// Database type (pdo, mysql, postgres…) http://phplens.com/lens/adodb/docs-adodb.htm#drivers
-const BASE_TYPE = '<database type>';
+const DB_CONNECTION_STRING = 'mysql:host=<database host>;dbname=<database name>;port=<database port>';
 
 // Default Language using POSIX variant of BC P47 standard (choose in $ALLOWED_LANGUAGES)
 const LANGUE = 'fr_FR';
@@ -93,8 +87,8 @@ $config = [
     'show_the_software' => true,            // display technical information about the software
     'show_cultivate_your_garden' => true,   // display "developpement and administration" information
     /* choix_autre.php / choix_date.php */
-    'default_poll_duration' => 180,          // default values for the new poll duration (number of days).
+    'default_poll_duration' => 180,         // default values for the new poll duration (number of days).
     /* choix_autre.php */
-    'user_can_add_img_or_link' => true,      // user can add link or URL when creating his poll.
+    'user_can_add_img_or_link' => true,     // user can add link or URL when creating his poll.
 ];
 
