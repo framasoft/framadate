@@ -127,7 +127,7 @@ class FramaDB {
      * @param $poll_id int The ID of the given poll.
      * @return bool|null true if action succeeded.
      */
-    function deleteVotesByAdminPollId($poll_id) {
+    function deleteVotesByPollId($poll_id) {
         $prepared = $this->prepare('DELETE FROM user_studs WHERE id_sondage = ?');
         return $prepared->execute([$poll_id]);
     }
@@ -197,13 +197,18 @@ class FramaDB {
         $prepared->execute([$poll_id, $datetime]);
     }
 
+    function deleteSlotsByPollId($poll_id) {
+        $prepared = $this->prepare('DELETE FROM sujet_studs WHERE id_sondage = ?');
+        $prepared->execute([$poll_id]);
+    }
+
     /**
      * Delete all comments of a given poll.
      *
      * @param $poll_id int The ID of the given poll.
      * @return bool|null true if action succeeded.
      */
-    function deleteCommentsByAdminPollId($poll_id) {
+    function deleteCommentsByPollId($poll_id) {
         $prepared = $this->prepare('DELETE FROM comments WHERE id_sondage = ?');
         return $prepared->execute([$poll_id]);
     }
@@ -221,6 +226,11 @@ class FramaDB {
     function deleteComment($poll_id, $comment_id) {
         $prepared = $this->prepare('DELETE FROM comments WHERE id_sondage = ? AND id_comment = ?');
         return $prepared->execute([$poll_id, $comment_id]);
+    }
+
+    function deleteByPollId($poll_id) {
+        $prepared = $this->prepare('DELETE FROM sondage WHERE poll_id = ?');
+        $prepared->execute([$poll_id]);
     }
 
 }

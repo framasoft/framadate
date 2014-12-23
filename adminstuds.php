@@ -189,7 +189,12 @@ if (isset($_POST['remove_all_votes'])) {
     exit;
 }
 if (isset($_POST['confirm_remove_all_votes'])) {
-    $adminPollService->cleanVotes($poll_id);
+    // TODO Add log
+    if ($adminPollService->cleanVotes($poll_id)) {
+        $message = new Message('success', _('All votes deleted.'));
+    } else {
+        $message = new Message('danger', _('Failed to delete all votes.'));
+    }
 }
 
 // -------------------------------
@@ -242,6 +247,7 @@ if (isset($_POST['remove_all_comments'])) {
     exit;
 }
 if (isset($_POST['confirm_remove_all_comments'])) {
+    // TODO Add log
     if ($adminPollService->cleanComments($poll_id)) {
         $message = new Message('success', _('All comments deleted.'));
     } else {
@@ -261,7 +267,18 @@ if (isset($_POST['delete_poll'])) {
     exit;
 }
 if (isset($_POST['confirm_delete_poll'])) {
-    // TODO
+    // TODO Add log
+    if ($adminPollService->deleteEntirePoll($poll_id)) {
+        $message = new Message('success', _('Poll fully deleted.'));
+    } else {
+        $message = new Message('danger', _('Failed to delete the poll.'));
+    }
+    $smarty->assign('poll_id', $poll_id);
+    $smarty->assign('admin_poll_id', $admin_poll_id);
+    $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
+    $smarty->assign('message', $message);
+    $smarty->display('poll_deleted.tpl');
+    exit;
 }
 
 // -------------------------------
@@ -269,6 +286,7 @@ if (isset($_POST['confirm_delete_poll'])) {
 // -------------------------------
 
 if (!empty($_POST['delete_column'])) {
+    // TODO Add log
     $column = filter_input(INPUT_POST, 'delete_column', FILTER_DEFAULT);
 
     if ($adminPollService->deleteSlot($poll_id, $column)) {

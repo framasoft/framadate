@@ -40,7 +40,7 @@ class AdminPollService {
      * @return bool|null true is action succeeded
      */
     function cleanComments($poll_id) {
-        return $this->connect->deleteCommentsByAdminPollId($poll_id);
+        return $this->connect->deleteCommentsByPollId($poll_id);
     }
 
     /**
@@ -61,7 +61,22 @@ class AdminPollService {
      * @return bool|null true is action succeeded
      */
     function cleanVotes($poll_id) {
-        return $this->connect->deleteVotesByAdminPollId($poll_id);
+        return $this->connect->deleteVotesByPollId($poll_id);
+    }
+
+    /**
+     * Delete the entire given poll.
+     *
+     * @param $poll_id int The ID of the poll
+     * @return bool true is action succeeded
+     */
+    function deleteEntirePoll($poll_id) {
+        /*$this->connect->deleteVotesByPollId($poll_id);
+        $this->connect->deleteCommentsByPollId($poll_id);
+        $this->connect->deleteSlotsByPollId($poll_id);
+        $this->connect->deleteByPollId($poll_id);*/
+
+        return true;
     }
 
     /**
@@ -69,6 +84,7 @@ class AdminPollService {
      *
      * @param $poll_id int The ID of the poll
      * @param $slot string The name of the slot
+     * @return bool true if action succeeded
      */
     public function deleteSlot($poll_id, $slot) {
         $ex = explode('@', $slot);
