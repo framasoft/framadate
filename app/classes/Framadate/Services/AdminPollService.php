@@ -107,6 +107,8 @@ class AdminPollService {
             $this->connect->deleteSlot($poll_id, $datetime);
         }
         $this->connect->commit();
+
+        return true;
     }
 
     /**
