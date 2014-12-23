@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `sondage` (
 --
 
 CREATE TABLE IF NOT EXISTS `sujet_studs` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `id_sondage` char(16) NOT NULL,
   `sujet` text,
   KEY `id_sondage` (`id_sondage`)
