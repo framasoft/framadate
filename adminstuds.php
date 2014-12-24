@@ -19,6 +19,7 @@
 use Framadate\Services\PollService;
 use Framadate\Services\AdminPollService;
 use Framadate\Services\InputService;
+use Framadate\Services\LogService;
 use Framadate\Message;
 use Framadate\Utils;
 
@@ -35,8 +36,9 @@ $editingVoteId = 0;
 /* Services */
 /*----------*/
 
+$logService = new LogService();
 $pollService = new PollService($connect);
-$adminPollService = new AdminPollService($connect, $pollService);
+$adminPollService = new AdminPollService($connect, $pollService, $logService);
 $inputService = new InputService();
 
 /* PAGE */
@@ -267,7 +269,6 @@ if (isset($_POST['delete_poll'])) {
     exit;
 }
 if (isset($_POST['confirm_delete_poll'])) {
-    // TODO Add log
     if ($adminPollService->deleteEntirePoll($poll_id)) {
         $message = new Message('success', _('Poll fully deleted.'));
     } else {

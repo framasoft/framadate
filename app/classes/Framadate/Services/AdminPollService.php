@@ -12,10 +12,12 @@ class AdminPollService {
 
     private $connect;
     private $pollService;
+    private $logService;
 
-    function __construct($connect, $pollService) {
+    function __construct($connect, $pollService, $logService) {
         $this->connect = $connect;
         $this->pollService = $pollService;
+        $this->logService = $logService;
     }
 
     function updatePoll($poll) {
@@ -71,6 +73,8 @@ class AdminPollService {
      * @return bool true is action succeeded
      */
     function deleteEntirePoll($poll_id) {
+        $poll = $this->connect->findPollById($poll_id);
+        $this->logService->log("DELETE_POLL", "id$poll->poll_id, format:$poll->format, $poll->admin_name, $poll->admin_mail");
         /*$this->connect->deleteVotesByPollId($poll_id);
         $this->connect->deleteCommentsByPollId($poll_id);
         $this->connect->deleteSlotsByPollId($poll_id);
