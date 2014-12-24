@@ -26,6 +26,12 @@ class PollService {
         $this->connect = $connect;
     }
 
+    /**
+     * Find a poll from its ID.
+     *
+     * @param $poll_id int The ID of the poll
+     * @return \stdClass|null The found poll, or null
+     */
     function findById($poll_id) {
         if (preg_match('/^[\w\d]{16}$/i', $poll_id)) {
             return $this->connect->findPollById($poll_id);

@@ -36,7 +36,7 @@ $editingVoteId = 0;
 /* Services */
 /*----------*/
 
-$logService = new LogService();
+$logService = new LogService(LOG_FILE);
 $pollService = new PollService($connect);
 $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $inputService = new InputService();
@@ -191,7 +191,6 @@ if (isset($_POST['remove_all_votes'])) {
     exit;
 }
 if (isset($_POST['confirm_remove_all_votes'])) {
-    // TODO Add log
     if ($adminPollService->cleanVotes($poll_id)) {
         $message = new Message('success', _('All votes deleted.'));
     } else {
@@ -249,7 +248,6 @@ if (isset($_POST['remove_all_comments'])) {
     exit;
 }
 if (isset($_POST['confirm_remove_all_comments'])) {
-    // TODO Add log
     if ($adminPollService->cleanComments($poll_id)) {
         $message = new Message('success', _('All comments deleted.'));
     } else {
@@ -287,7 +285,6 @@ if (isset($_POST['confirm_delete_poll'])) {
 // -------------------------------
 
 if (!empty($_POST['delete_column'])) {
-    // TODO Add log
     $column = filter_input(INPUT_POST, 'delete_column', FILTER_DEFAULT);
 
     if ($adminPollService->deleteSlot($poll_id, $column)) {

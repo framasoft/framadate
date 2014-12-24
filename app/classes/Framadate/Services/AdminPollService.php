@@ -42,6 +42,7 @@ class AdminPollService {
      * @return bool|null true is action succeeded
      */
     function cleanComments($poll_id) {
+        $this->logService->log("CLEAN_COMMENTS", "id:$poll_id");
         return $this->connect->deleteCommentsByPollId($poll_id);
     }
 
@@ -63,6 +64,7 @@ class AdminPollService {
      * @return bool|null true is action succeeded
      */
     function cleanVotes($poll_id) {
+        $this->logService->log("CLEAN_VOTES", "id:$poll_id");
         return $this->connect->deleteVotesByPollId($poll_id);
     }
 
@@ -74,7 +76,7 @@ class AdminPollService {
      */
     function deleteEntirePoll($poll_id) {
         $poll = $this->connect->findPollById($poll_id);
-        $this->logService->log("DELETE_POLL", "id$poll->poll_id, format:$poll->format, $poll->admin_name, $poll->admin_mail");
+        $this->logService->log("DELETE_POLL", "id:$poll->poll_id, format:$poll->format, admin:$poll->admin_name, mail:$poll->admin_mail");
         /*$this->connect->deleteVotesByPollId($poll_id);
         $this->connect->deleteCommentsByPollId($poll_id);
         $this->connect->deleteSlotsByPollId($poll_id);
@@ -91,6 +93,7 @@ class AdminPollService {
      * @return bool true if action succeeded
      */
     public function deleteSlot($poll_id, $slot) {
+        $this->logService->log("DELETE_SLOT", "id:$poll_id, slot:" . json_encode($slot));
         $ex = explode('@', $slot);
         $datetime = $ex[0];
         $moment = $ex[1];
