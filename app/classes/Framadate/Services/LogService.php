@@ -21,7 +21,7 @@ class LogService {
      * @param $message string some message
      */
     function log($tag, $message) {
-        error_log('[' . $tag . '] ' . $message . "\n", 3, $this->output);
+        error_log(date('H:i:s d/m/Y:') . '[' . $tag . '] ' . $message . "\n", 3, $this->output);
     }
 
 }

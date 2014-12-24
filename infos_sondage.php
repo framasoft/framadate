@@ -58,10 +58,10 @@ $erreur_injection_commentaires = false;
 
 #tests
 if (!empty($_POST['poursuivre'])){
-    $_SESSION['form']->titre = $titre;
-    $_SESSION['form']->nom = $nom;
-    $_SESSION['form']->adresse = $adresse;
-    $_SESSION['form']->commentaires = $commentaires;
+    $_SESSION['form']->title = $titre;
+    $_SESSION['form']->admin_name = $nom;
+    $_SESSION['form']->admin_mail = $adresse;
+    $_SESSION['form']->description = $commentaires;
     $_SESSION['form']->editable = ($editable !== null) ? true : false;
     $_SESSION['form']->receiveNewVotes = ($receiveNewVotes !== null) ? true : false;
 
@@ -140,7 +140,7 @@ $errors = array(
     )
 );
 
-if (!$_SESSION['form']->titre && !empty($_POST['poursuivre'])) {
+if (!$_SESSION['form']->title && !empty($_POST['poursuivre'])) {
     $errors['title']['aria'] = 'aria-describeby="poll_title_error" '; $errors['title']['class'] = ' has-error';
     $errors['title']['msg'] = '<div class="alert alert-danger" ><p id="poll_title_error">' . _("Enter a title") . '</p></div>';
 } elseif ($erreur_injection_titre) {
@@ -153,7 +153,7 @@ if ($erreur_injection_commentaires) {
     $errors['description']['msg'] = '<div class="alert alert-danger"><p id="poll_comment_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
-if (!$_SESSION['form']->nom && !empty($_POST['poursuivre'])) {
+if (!$_SESSION['form']->admin_name && !empty($_POST['poursuivre'])) {
     $errors['name']['aria'] = 'aria-describeby="poll_name_error" '; $errors['name']['class'] = ' has-error';
     $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Enter a name") . '</p></div>';
 } elseif ($erreur_injection_nom) {
@@ -161,7 +161,7 @@ if (!$_SESSION['form']->nom && !empty($_POST['poursuivre'])) {
     $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
 }
 
-if (!$_SESSION['form']->adresse && !empty($_POST['poursuivre'])) {
+if (!$_SESSION['form']->admin_mail && !empty($_POST['poursuivre'])) {
     $errors['email']['aria'] = 'aria-describeby="poll_name_error" '; $errors['email']['class'] = ' has-error';
     $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("Enter an email address") . '</p></div>';
 } elseif ($erreur_adresse && !empty($_POST['poursuivre'])) {
@@ -175,15 +175,15 @@ if (!$_SESSION['form']->adresse && !empty($_POST['poursuivre'])) {
 
 // REMOTE_USER ?
 if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
-    $input_name = '<input type="hidden" name="nom" value="'.$_SESSION['form']->nom.'" />'.stripslashes($_SESSION['form']->nom);
+    $input_name = '<input type="hidden" name="nom" value="'.$_SESSION['form']->admin_name.'" />'.stripslashes($_SESSION['form']->admin_name);
 } else {
-    $input_name = '<input id="yourname" type="text" name="nom" class="form-control" '.$errors['name']['aria'].' value="'.stripslashes($_SESSION['form']->nom).'" />';
+    $input_name = '<input id="yourname" type="text" name="nom" class="form-control" '.$errors['name']['aria'].' value="'.stripslashes($_SESSION['form']->admin_name).'" />';
 }
 
 if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
-    $input_email = '<input type="hidden" name="adresse" value="'.$_SESSION['form']->adresse.'">'.$_SESSION['form']->adresse;
+    $input_email = '<input type="hidden" name="adresse" value="'.$_SESSION['form']->admin_mail.'">'.$_SESSION['form']->admin_mail;
 } else {
-    $input_email = '<input id="email" type="text" name="adresse" class="form-control" '.$errors['email']['aria'].' value="'.$_SESSION['form']->adresse.'" />';
+    $input_email = '<input id="email" type="text" name="adresse" class="form-control" '.$errors['email']['aria'].' value="'.$_SESSION['form']->admin_mail.'" />';
 }
 
 // Checkbox checked ?
@@ -208,14 +208,14 @@ echo '
         <div class="form-group'.$errors['title']['class'].'">
             <label for="poll_title" class="col-sm-4 control-label">' . _("Poll title") . ' *</label>
             <div class="col-sm-8">
-                <input id="poll_title" type="text" name="titre" class="form-control" '.$errors['title']['aria'].' value="'.stripslashes($_SESSION['form']->titre).'" />
+                <input id="poll_title" type="text" name="titre" class="form-control" '.$errors['title']['aria'].' value="'.stripslashes($_SESSION['form']->title).'" />
             </div>
         </div>
             '.$errors['title']['msg'].'
         <div class="form-group'.$errors['description']['class'].'">
             <label for="poll_comments" class="col-sm-4 control-label">'. _("Description") .'</label>
             <div class="col-sm-8">
-                <textarea id="poll_comments" name="commentaires" class="form-control" '.$errors['description']['aria'].' rows="5">'.stripslashes($_SESSION['form']->commentaires).'</textarea>
+                <textarea id="poll_comments" name="commentaires" class="form-control" '.$errors['description']['aria'].' rows="5">'.stripslashes($_SESSION['form']->description).'</textarea>
             </div>
         </div>
             '.$errors['description']['msg'].'

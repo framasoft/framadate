@@ -18,12 +18,18 @@
  */
 namespace Framadate\Services;
 
+use Framadate\Form;
+use Framadate\FramaDB;
+use Framadate\Utils;
+
 class PollService {
 
     private $connect;
+    private $logService;
 
-    function __construct($connect) {
+    function __construct(FramaDB $connect, LogService $logService) {
         $this->connect = $connect;
+        $this->logService = $logService;
     }
 
     /**
@@ -54,11 +60,13 @@ class PollService {
 
     public function updateVote($poll_id, $vote_id, $choices) {
         $choices = implode($choices);
+
         return $this->connect->updateVote($poll_id, $vote_id, $choices);
     }
 
     function addVote($poll_id, $name, $choices) {
         $choices = implode($choices);
+
         return $this->connect->insertVote($poll_id, $name, $choices);
     }
 
@@ -71,7 +79,7 @@ class PollService {
         $result = [];
         foreach ($votes as $vote) {
             $choices = str_split($vote->reponses);
-            foreach ($choices as $i=>$choice) {
+            foreach ($choices as $i => $choice) {
                 if (empty($result[$i])) {
                     $result[$i] = 0;
                 }
@@ -80,6 +88,7 @@ class PollService {
                 }
             }
         }
+
         return $result;
     }
 
@@ -93,6 +102,7 @@ class PollService {
 
             $splitted[] = $obj;
         }
+
         return $splitted;
     }
 
@@ -106,6 +116,71 @@ class PollService {
 
             $splitted[] = $obj;
         }
+
         return $splitted;
+    }
+
+    /**
+     * @param Form $form
+     * @return string
+     */
+    function createPoll(Form $form) {
+
+        // Generate poll IDs
+        $poll_id = $this->random(16);
+        $admin_poll_id = $poll_id . $this->random(8);
+
+        // Insert poll + slots
+        $this->connect->beginTransaction();
+
+        $sql = 'INSERT INTO sondage
+          (poll_id, admin_poll_id, title, comment, admin_name, admin_mail, end_date, format, editable, receiveNewVotes)
+          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?)';
+        $prepared = $this->connect->prepare($sql);
+        $prepared->execute(array($poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, $form->editable, $form->receiveNewVotes));
+
+        $prepared = $this->connect->prepare('INSERT INTO sujet_studs (id_sondage, sujet) VALUES (?, ?)');
+
+        foreach ($form->getChoices() as $choice) {
+
+            // We prepared the slots (joined by comas)
+            $joinedSlots = '';
+            $first = true;
+            foreach ($choice->getSlots() as $slot) {
+                if ($first) {
+                    $joinedSlots = $slot;
+                    $first = false;
+                } else {
+                    $joinedSlots .= ',' . $slot;
+                }
+            }
+
+            // We execute the insertion
+            if (empty($joinedSlots)) {
+                $prepared->execute(array($poll_id, $choice->getName()));
+            } else {
+                $prepared->execute(array($poll_id, $choice->getName() . '@' . $joinedSlots));
+            }
+
+        }
+
+        $this->connect->commit();
+
+        $this->logService->log('CREATE_POLL', ' id:' . $poll_id . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
+
+
+        return [$poll_id, $admin_poll_id];
+    }
+
+    private function random($car) {
+        // TODO Better random ?
+        $string = '';
+        $chaine = 'abcdefghijklmnopqrstuvwxyz123456789';
+        srand((double)microtime() * 1000000);
+        for ($i = 0; $i < $car; $i++) {
+            $string .= $chaine[rand() % strlen($chaine)];
+        }
+
+        return $string;
     }
 }

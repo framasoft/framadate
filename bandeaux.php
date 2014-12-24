@@ -16,7 +16,7 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate;
+use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 

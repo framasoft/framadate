@@ -16,11 +16,19 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate;
+use Framadate\Services\LogService;
+use Framadate\Services\PollService;
+use Framadate\Services\MailService;
+use Framadate\Utils;
+use Framadate\Choice;
 
 include_once __DIR__ . '/app/inc/init.php';
 
-include_once('creation_sondage.php');
+/* Service */
+/*---------*/
+$logService = new LogService(LOG_FILE);
+$pollService = new PollService($connect, $logService);
+$mailService = new MailService($config['use_smtp']);
 
 if (is_readable('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
@@ -29,7 +37,7 @@ if (is_readable('bandeaux_local.php')) {
 }
 
 // Step 1/4 : error if $_SESSION from info_sondage are not valid
-if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($config['use_smtp']) ? !isset($_SESSION['form']->adresse) : false)) {
+if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) || ($config['use_smtp'] && !isset($_SESSION['form']->admin_mail))) {
 
     Utils::print_header ( _("Error!") );
     bandeau_titre(_("Error!"));
@@ -56,34 +64,46 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
                 $time = mktime(0,0,0, $registredate[1], $registredate[0], $registredate[2]);
                 if ($time > time() + (24*60*60))
                 {
-                    $_SESSION['form']->champdatefin=$time;
+                    $_SESSION['form']->end_date=$time;
                 }
             }
         }
 
-        if(empty($_SESSION['form']->champdatefin))
-        {
+        if(empty($_SESSION['form']->end_date)) {
             // By default, expiration date is 6 months after last day
-            $_SESSION['form']->champdatefin=end($temp_results)+(86400 * $config['default_poll_duration']);
+            $_SESSION['form']->end_date=end($temp_results)+(86400 * $config['default_poll_duration']);
         }
 
         // Insert poll in database
-        $admin_poll_id = ajouter_sondage(
-            $_SESSION['form']->titre,
-            $_SESSION['form']->commentaires,
-            $_SESSION['form']->nom,
-            $_SESSION['form']->adresse,
-            $_SESSION['form']->formatsondage,
-            $_SESSION['form']->editable,
-            $_SESSION['form']->champdatefin,
-            $_SESSION['form']->receiveNewVotes,
-            $_SESSION['form']->getChoices()
-        );
+        $ids = $pollService->createPoll($_SESSION['form']);
+        $poll_id = $ids[0];
+        $admin_poll_id = $ids[1];
+
+
+        // Send confirmation by mail if enabled
+        if ($config['use_smtp'] === true) {
+            $message = _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
+            $message .= "\n\n";
+            $message .= stripslashes(html_entity_decode($_SESSION['form']->admin_name, ENT_QUOTES, "UTF-8")) . ' ' . _("hast just created a poll called") . ' : "' . stripslashes(htmlspecialchars_decode($_SESSION['form']->title, ENT_QUOTES)) . "\".\n";
+            $message .= _('Thanks for filling the poll at the link above') . " :\n\n%s\n\n" . _('Thanks for your confidence.') . "\n" . NOMAPPLICATION;
+
+            $message_admin = _("This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
+            $message_admin .= " :\n\n" . "%s \n\n" . _('Thanks for your confidence.') . "\n" . NOMAPPLICATION;
+
+            $message = sprintf($message, Utils::getUrlSondage($poll_id));
+            $message_admin = sprintf($message_admin, Utils::getUrlSondage($admin_poll_id, true));
+
+            if ($mailService->isValidEmail($_SESSION['form']->admin_mail)) {
+                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . _('Author\'s message') . '] ' . _('Poll') . ' : ' . stripslashes(htmlspecialchars_decode($_SESSION['form']->title, ENT_QUOTES)), $message_admin);
+                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . _('For sending to the polled users') . '] ' . _('Poll') . ' : ' . stripslashes(htmlspecialchars_decode($_SESSION['form']->title, ENT_QUOTES)), $message);
+            }
+        }
 
         // Clean Form data in $_SESSION
         unset($_SESSION['form']);
 
         // Delete old polls
+        // TODO Create a PurgeService
         Utils::cleaningOldPolls($connect, 'admin/logs_studs.txt');
 
         // Redirect to poll administration
@@ -118,7 +138,7 @@ if (!isset($_SESSION['form']->titre) || !isset($_SESSION['form']->nom) || (($con
     }
 
     //le format du sondage est DATE
-    $_SESSION['form']->formatsondage = 'D';
+    $_SESSION['form']->format = 'D';
 
     // Step 3/4 : Confirm poll creation
     if (!empty($_POST['choixheures']) && !isset($_SESSION['form']->totalchoixjour)) {

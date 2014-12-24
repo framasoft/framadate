@@ -37,7 +37,7 @@ $editingVoteId = 0;
 /*----------*/
 
 $logService = new LogService(LOG_FILE);
-$pollService = new PollService($connect);
+$pollService = new PollService($connect, $logService);
 $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $inputService = new InputService();
 

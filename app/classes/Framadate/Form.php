@@ -21,12 +21,12 @@ namespace Framadate;
 class Form
 {
 
-    public $titre;
-    public $commentaires;
-    public $nom;
-    public $adresse;
-    public $formatsondage;
-    public $champdatefin;
+    public $title;
+    public $description;
+    public $admin_name;
+    public $admin_mail;
+    public $format;
+    public $end_date;
     public $choix_sondage;
 
     /**

@@ -20,8 +20,6 @@ namespace Framadate;
 
 include_once __DIR__ . '/app/inc/init.php';
 
-include_once('creation_sondage.php');
-
 if (file_exists('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
 } else {
