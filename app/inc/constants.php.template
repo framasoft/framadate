@@ -67,6 +67,9 @@ const URL_PROPRE = false;
 // Use REMOTE_USER data provided by web server
 const USE_REMOTE_USER =  true;
 
+// Path to the log file
+const LOG_FILE = 'admin/stdout.log';
+
 const COMMENT_EMPTY         = 0x0000000001;
 const COMMENT_USER_EMPTY    = 0x0000000010;
 const COMMENT_INSERT_FAILED = 0x0000000100;
