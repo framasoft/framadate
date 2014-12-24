@@ -14,8 +14,14 @@ class LogService {
         $this->output = $output;
     }
 
+    /**
+     * Log a message to the log file.
+     *
+     * @param $tag string A tag is used to quickly found a message when reading log file
+     * @param $message string some message
+     */
     function log($tag, $message) {
-        error_log('[' . $tag . '] ' . $message, 3, $this->output);
+        error_log('[' . $tag . '] ' . $message . "\n", 3, $this->output);
     }
 
 }
