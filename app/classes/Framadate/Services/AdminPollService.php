@@ -77,10 +77,12 @@ class AdminPollService {
     function deleteEntirePoll($poll_id) {
         $poll = $this->connect->findPollById($poll_id);
         $this->logService->log("DELETE_POLL", "id:$poll->poll_id, format:$poll->format, admin:$poll->admin_name, mail:$poll->admin_mail");
-        /*$this->connect->deleteVotesByPollId($poll_id);
+
+        // Delete the entire poll
+        $this->connect->deleteVotesByPollId($poll_id);
         $this->connect->deleteCommentsByPollId($poll_id);
         $this->connect->deleteSlotsByPollId($poll_id);
-        $this->connect->deleteByPollId($poll_id);*/
+        $this->connect->deleteByPollId($poll_id);
 
         return true;
     }

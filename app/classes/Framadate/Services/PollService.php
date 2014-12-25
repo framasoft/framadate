@@ -176,9 +176,9 @@ class PollService {
         // TODO Better random ?
         $string = '';
         $chaine = 'abcdefghijklmnopqrstuvwxyz123456789';
-        srand((double)microtime() * 1000000);
+        mt_srand();
         for ($i = 0; $i < $car; $i++) {
-            $string .= $chaine[rand() % strlen($chaine)];
+            $string .= $chaine[mt_rand() % strlen($chaine)];
         }
 
         return $string;
