@@ -75,7 +75,7 @@ class PollService {
         return $this->connect->insertComment($poll_id, $name, $comment);
     }
 
-    function computeBestMoments($votes) {
+    function computeBestChoices($votes) {
         $result = [];
         foreach ($votes as $vote) {
             $choices = str_split($vote->reponses);

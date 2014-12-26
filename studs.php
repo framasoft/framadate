@@ -171,7 +171,7 @@ $smarty->assign('poll', $poll);
 $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
 $smarty->assign('votes', $pollService->splitVotes($votes));
-$smarty->assign('best_moments', $pollService->computeBestMoments($votes));
+$smarty->assign('best_choices', $pollService->computeBestChoices($votes));
 $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);

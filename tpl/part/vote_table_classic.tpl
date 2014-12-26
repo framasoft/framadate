@@ -1,5 +1,5 @@
-{if !is_array($best_moments) || empty($best_moments)}
-    {$best_moments = [0]}
+{if !is_array($best_choices) || empty($best_choices)}
+    {$best_choices = [0]}
 {/if}
 
 <h3>{_('Votes of the poll')}</h3>
@@ -138,12 +138,12 @@
 
             {* Line displaying best moments *}
             {$count_bests = 0}
-            {$max = max($best_moments)}
+            {$max = max($best_choices)}
             {if $max > 0}
                 <tr id="addition">
                     <td>{_("Addition")}</td>
-                    {foreach $best_moments as $best_moment}
-                        {if $max == $best_moment}
+                    {foreach $best_choices as $best_choice}
+                        {if $max == $best_choice}
                             {$count_bests = $count_bests +1}
                             <td><span class="glyphicon glyphicon-star text-warning"></span><span>{$max}</span></td>
                         {else}
@@ -159,7 +159,7 @@
 
 {* Best votes listing *}
 
-{$max = max($best_moments)}
+{$max = max($best_choices)}
 {if $max > 0}
     <div class="row">
     {if $count_bests == 1}
@@ -176,12 +176,10 @@
             {$i = 0}
             <ul style="list-style:none">
                 {foreach $slots as $slot}
-                    {foreach $slot->moments as $moment}
-                        {if $best_moments[$i] == $max}
-                            <li><strong>{$slot->sujet}</strong></li>
-                        {/if}
-                        {$i = $i+1}
-                    {/foreach}
+                    {if $best_choices[$i] == $max}
+                        <li><strong>{$slot->sujet}</strong></li>
+                    {/if}
+                    {$i = $i+1}
                 {/foreach}
             </ul>
             <p>{_("with")} <b>{$max}</b> {if $max==1}{_('vote')}{else}{_('votes')}{/if}.</p>
