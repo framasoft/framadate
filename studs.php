@@ -169,7 +169,7 @@ $comments = $pollService->allCommentsByPollId($poll_id);
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('poll', $poll);
 $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
-$smarty->assign('slots', $pollService->splitSlots($slots));
+$smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
 $smarty->assign('votes', $pollService->splitVotes($votes));
 $smarty->assign('best_moments', $pollService->computeBestMoments($votes));
 $smarty->assign('comments', $comments);
