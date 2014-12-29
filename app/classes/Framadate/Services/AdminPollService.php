@@ -1,6 +1,7 @@
 <?php
 namespace Framadate\Services;
 
+use Framadate\FramaDB;
 use Framadate\Utils;
 
 /**
@@ -14,7 +15,7 @@ class AdminPollService {
     private $pollService;
     private $logService;
 
-    function __construct($connect, $pollService, $logService) {
+    function __construct(FramaDB $connect, PollService $pollService, LogService $logService) {
         $this->connect = $connect;
         $this->pollService = $pollService;
         $this->logService = $logService;
@@ -64,7 +65,7 @@ class AdminPollService {
      * @return bool|null true is action succeeded
      */
     function cleanVotes($poll_id) {
-        $this->logService->log("CLEAN_VOTES", "id:$poll_id");
+        $this->logService->log('CLEAN_VOTES', 'id:' . $poll_id);
         return $this->connect->deleteVotesByPollId($poll_id);
     }
 
@@ -76,13 +77,13 @@ class AdminPollService {
      */
     function deleteEntirePoll($poll_id) {
         $poll = $this->connect->findPollById($poll_id);
-        $this->logService->log("DELETE_POLL", "id:$poll->poll_id, format:$poll->format, admin:$poll->admin_name, mail:$poll->admin_mail");
+        $this->logService->log('DELETE_POLL', "id:$poll->poll_id, format:$poll->format, admin:$poll->admin_name, mail:$poll->admin_mail");
 
         // Delete the entire poll
         $this->connect->deleteVotesByPollId($poll_id);
         $this->connect->deleteCommentsByPollId($poll_id);
         $this->connect->deleteSlotsByPollId($poll_id);
-        $this->connect->deleteByPollId($poll_id);
+        $this->connect->deletePollById($poll_id);
 
         return true;
     }
@@ -95,7 +96,7 @@ class AdminPollService {
      * @return bool true if action succeeded
      */
     public function deleteSlot($poll_id, $slot) {
-        $this->logService->log("DELETE_SLOT", "id:$poll_id, slot:" . json_encode($slot));
+        $this->logService->log('DELETE_SLOT', 'id:' . $poll_id . ', slot:' . json_encode($slot));
         $ex = explode('@', $slot);
         $datetime = $ex[0];
         $moment = $ex[1];

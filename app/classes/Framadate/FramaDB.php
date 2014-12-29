@@ -33,6 +33,7 @@ class FramaDB {
     function areTablesCreated() {
         $result = $this->pdo->query('SHOW TABLES');
         $schemas = $result->fetchAll(\PDO::FETCH_COLUMN);
+
         return 0 != count(array_diff($schemas, ['comments', 'sondage', 'sujet_studs', 'user_studs']));
     }
 
@@ -83,23 +84,27 @@ class FramaDB {
     function allCommentsByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM comments WHERE id_sondage = ? ORDER BY id_comment');
         $prepared->execute(array($poll_id));
+
         return $prepared->fetchAll();
     }
 
     function allUserVotesByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM user_studs WHERE id_sondage = ? ORDER BY id_users');
         $prepared->execute(array($poll_id));
+
         return $prepared->fetchAll();
     }
 
     function allSlotsByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM sujet_studs WHERE id_sondage = ? ORDER BY sujet');
         $prepared->execute(array($poll_id));
+
         return $prepared->fetchAll();
     }
 
     function insertDefaultVote($poll_id, $insert_position) {
         $prepared = $this->prepare('UPDATE user_studs SET reponses = CONCAT(SUBSTRING(reponses, 1, ?), "0", SUBSTRING(reponses, ?)) WHERE id_sondage = ?');
+
         return $prepared->execute([$insert_position, $insert_position + 1, $poll_id]);
     }
 
@@ -118,6 +123,7 @@ class FramaDB {
 
     function deleteVote($poll_id, $vote_id) {
         $prepared = $this->prepare('DELETE FROM user_studs WHERE id_sondage = ? AND id_users = ?');
+
         return $prepared->execute([$poll_id, $vote_id]);
     }
 
@@ -129,6 +135,7 @@ class FramaDB {
      */
     function deleteVotesByPollId($poll_id) {
         $prepared = $this->prepare('DELETE FROM user_studs WHERE id_sondage = ?');
+
         return $prepared->execute([$poll_id]);
     }
 
@@ -141,6 +148,7 @@ class FramaDB {
      */
     function deleteVotesByIndex($poll_id, $index) {
         $prepared = $this->prepare('UPDATE user_studs SET reponses = CONCAT(SUBSTR(reponses, 1, ?), SUBSTR(reponses, ?)) WHERE id_sondage = ?');
+
         return $prepared->execute([$index, $index + 2, $poll_id]);
     }
 
@@ -170,6 +178,7 @@ class FramaDB {
      */
     function insertSlot($poll_id, $slot) {
         $prepared = $this->prepare('INSERT INTO sujet_studs (id_sondage, sujet) VALUES (?,?)');
+
         return $prepared->execute([$poll_id, $slot]);
     }
 
@@ -183,6 +192,7 @@ class FramaDB {
      */
     function updateSlot($poll_id, $datetime, $newValue) {
         $prepared = $this->prepare('UPDATE sujet_studs SET sujet = ? WHERE id_sondage = ? AND SUBSTRING_INDEX(sujet, \'@\', 1) = ?');
+
         return $prepared->execute([$newValue, $poll_id, $datetime]);
     }
 
@@ -199,7 +209,7 @@ class FramaDB {
 
     function deleteSlotsByPollId($poll_id) {
         $prepared = $this->prepare('DELETE FROM sujet_studs WHERE id_sondage = ?');
-        $prepared->execute([$poll_id]);
+        return $prepared->execute([$poll_id]);
     }
 
     /**
@@ -210,27 +220,43 @@ class FramaDB {
      */
     function deleteCommentsByPollId($poll_id) {
         $prepared = $this->prepare('DELETE FROM comments WHERE id_sondage = ?');
+
         return $prepared->execute([$poll_id]);
     }
 
     function updateVote($poll_id, $vote_id, $choices) {
         $prepared = $this->prepare('UPDATE user_studs SET reponses = ? WHERE id_sondage = ? AND id_users = ?');
+
         return $prepared->execute([$choices, $poll_id, $vote_id]);
     }
 
     function insertComment($poll_id, $name, $comment) {
         $prepared = $this->prepare('INSERT INTO comments (id_sondage, usercomment, comment) VALUES (?,?,?)');
+
         return $prepared->execute([$poll_id, $name, $comment]);
     }
 
     function deleteComment($poll_id, $comment_id) {
         $prepared = $this->prepare('DELETE FROM comments WHERE id_sondage = ? AND id_comment = ?');
+
         return $prepared->execute([$poll_id, $comment_id]);
     }
 
-    function deleteByPollId($poll_id) {
+    function deletePollById($poll_id) {
         $prepared = $this->prepare('DELETE FROM sondage WHERE poll_id = ?');
-        $prepared->execute([$poll_id]);
+        return $prepared->execute([$poll_id]);
+    }
+
+    /**
+     * Find old polls. Limit: 20.
+     *
+     * @return array Array of old polls
+     */
+    public function findOldPolls() {
+        $prepared = $this->prepare('SELECT * FROM sondage WHERE end_date < NOW() LIMIT 20');
+        $prepared->execute([]);
+
+        return $prepared->fetchAll();
     }
 
 }

@@ -133,6 +133,7 @@ class PollService {
         // Insert poll + slots
         $this->connect->beginTransaction();
 
+        // TODO Extract this to FramaDB (or repository layer)
         $sql = 'INSERT INTO sondage
           (poll_id, admin_poll_id, title, comment, admin_name, admin_mail, end_date, format, editable, receiveNewVotes)
           VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?)';
@@ -166,7 +167,7 @@ class PollService {
 
         $this->connect->commit();
 
-        $this->logService->log('CREATE_POLL', ' id:' . $poll_id . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
+        $this->logService->log('CREATE_POLL', 'id:' . $poll_id . 'title: ' . $form->title . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
 
 
         return [$poll_id, $admin_poll_id];

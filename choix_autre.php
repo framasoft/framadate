@@ -19,6 +19,7 @@
 use Framadate\Services\LogService;
 use Framadate\Services\PollService;
 use Framadate\Services\MailService;
+use Framadate\Services\PurgeService;
 use Framadate\Utils;
 use Framadate\Choice;
 
@@ -29,6 +30,7 @@ include_once __DIR__ . '/app/inc/init.php';
 $logService = new LogService(LOG_FILE);
 $pollService = new PollService($connect, $logService);
 $mailService = new MailService($config['use_smtp']);
+$purgeService = new PurgeService($connect, $logService);
 
 if (file_exists('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
@@ -95,8 +97,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         unset($_SESSION['form']);
 
         // Delete old polls
-        // TODO Create a PurgeService
-        Utils::cleaningOldPolls($connect, 'admin/logs_studs.txt');
+        $purgeService->purgeOldPolls();
 
         // Redirect to poll administration
         header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
