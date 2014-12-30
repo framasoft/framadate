@@ -92,14 +92,14 @@ class AdminPollService {
      * Delete a slot from a poll.
      *
      * @param $poll_id int The ID of the poll
-     * @param $slot string The name of the slot
+     * @param $slot object The slot informations (datetime + moment)
      * @return bool true if action succeeded
      */
-    public function deleteSlot($poll_id, $slot) {
+    public function deleteDateSlot($poll_id, $slot) {
         $this->logService->log('DELETE_SLOT', 'id:' . $poll_id . ', slot:' . json_encode($slot));
-        $ex = explode('@', $slot);
-        $datetime = $ex[0];
-        $moment = $ex[1];
+
+        $datetime = $slot->title;
+        $moment = $slot->moment;
 
         $slots = $this->pollService->allSlotsByPollId($poll_id);
 
@@ -131,6 +131,31 @@ class AdminPollService {
         } else {
             $this->connect->deleteSlot($poll_id, $datetime);
         }
+        $this->connect->commit();
+
+        return true;
+    }
+
+    public function deleteClassicSlot($poll_id, $slot_title) {
+        $this->logService->log('DELETE_SLOT', 'id:' . $poll_id . ', slot:' . $slot_title);
+
+        $slots = $this->pollService->allSlotsByPollId($poll_id);
+
+        $index = 0;
+        $indexToDelete = -1;
+
+        // Search the index of the slot to delete
+        foreach ($slots as $aSlot) {
+            if ($slot_title == $aSlot->title) {
+                $indexToDelete = $index;
+            }
+            $index++;
+        }
+
+        // Remove votes
+        $this->connect->beginTransaction();
+        $this->connect->deleteVotesByIndex($poll_id, $indexToDelete);
+        $this->connect->deleteSlot($poll_id, $slot_title);
         $this->connect->commit();
 
         return true;

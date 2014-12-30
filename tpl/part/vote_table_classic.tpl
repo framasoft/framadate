@@ -14,7 +14,7 @@
                     <th role="presentation"></th>
                     {foreach $slots as $id=>$slot}
                         <td headers="C{$id}">
-                            <button type="submit" name="delete_column" value="{$slot->id}" class="btn btn-link btn-sm" title="{_('Remove the column')} {$slot->title}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
+                            <button type="submit" name="delete_column" value="{$slot->title}" class="btn btn-link btn-sm" title="{_('Remove the column')} {$slot->title}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
                         </td>
                     {/foreach}
                     <td>

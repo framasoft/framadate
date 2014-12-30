@@ -287,7 +287,19 @@ if (isset($_POST['confirm_delete_poll'])) {
 if (!empty($_POST['delete_column'])) {
     $column = filter_input(INPUT_POST, 'delete_column', FILTER_DEFAULT);
 
-    if ($adminPollService->deleteSlot($poll_id, $column)) {
+    if ($poll->format === 'D') {
+        $ex = explode('@', $column);
+
+        $slot = new stdClass();
+        $slot->title = $ex[0];
+        $slot->moment = $ex[1];
+
+        $result = $adminPollService->deleteDateSlot($poll_id, $slot);
+    } else {
+        $result = $adminPollService->deleteClassicSlot($poll_id, $column);
+    }
+
+    if ($result) {
         $message = new Message('success', _('Column deleted.'));
     } else {
         $message = new Message('danger', _('Failed to delete the column.'));
