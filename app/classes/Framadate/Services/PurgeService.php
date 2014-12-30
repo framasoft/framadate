@@ -30,10 +30,10 @@ class PurgeService {
             $this->logService->log('EXPIRATION', 'Going to purge ' . $count . ' poll(s)...');
 
             foreach ($oldPolls as $poll) {
-                if ($this->purgePollById($poll->poll_id)) {
-                    $this->logService->log('EXPIRATION_SUCCESS', 'id: ' . $poll->poll_id . ', title:' . $poll->title . ', format: '.$poll->format . ', admin: ' . $poll->admin_name);
+                if ($this->purgePollById($poll->id)) {
+                    $this->logService->log('EXPIRATION_SUCCESS', 'id: ' . $poll->id . ', title:' . $poll->title . ', format: '.$poll->format . ', admin: ' . $poll->admin_name);
                 } else {
-                    $this->logService->log('EXPIRATION_FAILED', 'id: ' . $poll->poll_id . ', title:' . $poll->title . ', format: '.$poll->format . ', admin: ' . $poll->admin_name);
+                    $this->logService->log('EXPIRATION_FAILED', 'id: ' . $poll->id . ', title:' . $poll->title . ', format: '.$poll->format . ', admin: ' . $poll->admin_name);
                 }
             }
         }
@@ -48,11 +48,19 @@ class PurgeService {
      * @return bool true is action succeeded
      */
     function purgePollById($poll_id) {
-        $done = false;
-        $done |= $this->connect->deleteCommentsByPollId($poll_id);
-        $done |= $this->connect->deleteVotesByPollId($poll_id);
-        $done |= $this->connect->deleteSlotsByPollId($poll_id);
-        $done |= $this->connect->deletePollById($poll_id);
+        $done = true;
+
+        $this->connect->beginTransaction();
+        $done &= $this->connect->deleteCommentsByPollId($poll_id);
+        $done &= $this->connect->deleteVotesByPollId($poll_id);
+        $done &= $this->connect->deleteSlotsByPollId($poll_id);
+        $done &= $this->connect->deletePollById($poll_id);
+
+        if ($done) {
+            $this->connect->commit();
+        } else {
+            $this->connect->rollback();
+        }
 
         return $done;
     }

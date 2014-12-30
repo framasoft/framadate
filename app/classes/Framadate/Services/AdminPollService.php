@@ -77,7 +77,7 @@ class AdminPollService {
      */
     function deleteEntirePoll($poll_id) {
         $poll = $this->connect->findPollById($poll_id);
-        $this->logService->log('DELETE_POLL', "id:$poll->poll_id, format:$poll->format, admin:$poll->admin_name, mail:$poll->admin_mail");
+        $this->logService->log('DELETE_POLL', "id:$poll->id, format:$poll->format, admin:$poll->admin_name, mail:$poll->admin_mail");
 
         // Delete the entire poll
         $this->connect->deleteVotesByPollId($poll_id);
@@ -109,11 +109,10 @@ class AdminPollService {
 
         // Search the index of the slot to delete
         foreach ($slots as $aSlot) {
-            $ex = explode('@', $aSlot->sujet);
-            $moments = explode(',', $ex[1]);
+            $moments = explode(',', $aSlot->moments);
 
             foreach ($moments as $rowMoment) {
-                if ($datetime == $ex[0]) {
+                if ($datetime == $aSlot->title) {
                     if ($moment == $rowMoment) {
                         $indexToDelete = $index;
                     } else {
@@ -128,7 +127,7 @@ class AdminPollService {
         $this->connect->beginTransaction();
         $this->connect->deleteVotesByIndex($poll_id, $indexToDelete);
         if (count($newMoments) > 0) {
-            $this->connect->updateSlot($poll_id, $datetime, $datetime . '@' . implode(',', $newMoments));
+            $this->connect->updateSlot($poll_id, $datetime, implode(',', $newMoments));
         } else {
             $this->connect->deleteSlot($poll_id, $datetime);
         }
@@ -145,14 +144,11 @@ class AdminPollService {
      * </ul>
      *
      * @param $poll_id int The ID of the poll
-     * @param $new_date string The date (format: d/m/Y)
+     * @param $datetime int The datetime
      * @param $new_moment string The moment's name
      * @return bool true if added
      */
-    public function addSlot($poll_id, $new_date, $new_moment) {
-        $ex = explode('/', $new_date);
-        $datetime = mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]);
-
+    public function addSlot($poll_id, $datetime, $new_moment) {
         $slots = $this->connect->allSlotsByPollId($poll_id);
         $result = $this->findInsertPosition($slots, $datetime, $new_moment);
 
@@ -164,9 +160,7 @@ class AdminPollService {
             return false;
         } elseif ($result->slot != null) {
             $slot = $result->slot;
-
-            $joined_moments = explode('@', $slot->sujet)[1];
-            $moments = explode(',', $joined_moments);
+            $moments = explode(',', $slot->moments);
 
             // Check if moment already exists (maybe not necessary)
             if (in_array($new_moment, $moments)) {
@@ -176,10 +170,10 @@ class AdminPollService {
             // Update found slot
             $moments[] = $new_moment;
             sort($moments);
-            $this->connect->updateSlot($poll_id, $datetime, $datetime . '@' . implode(',', $moments));
+            $this->connect->updateSlot($poll_id, $datetime, implode(',', $moments));
 
         } else {
-            $this->connect->insertSlot($poll_id, $datetime . '@' . $new_moment);
+            $this->connect->insertSlot($poll_id, $datetime, $new_moment);
         }
 
         $this->connect->insertDefaultVote($poll_id, $result->insert);
@@ -209,9 +203,8 @@ class AdminPollService {
         $i = 0;
 
         foreach ($slots as $slot) {
-            $ex = explode('@', $slot->sujet);
-            $rowDatetime = $ex[0];
-            $moments = explode(',', $ex[1]);
+            $rowDatetime = $slot->title;
+            $moments = explode(',', $slot->moments);
 
             if ($datetime == $rowDatetime) {
                 $result->slot = $slot;

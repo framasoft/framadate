@@ -78,7 +78,7 @@ class PollService {
     function computeBestChoices($votes) {
         $result = [];
         foreach ($votes as $vote) {
-            $choices = str_split($vote->reponses);
+            $choices = str_split($vote->choices);
             foreach ($choices as $i => $choice) {
                 if (empty($result[$i])) {
                     $result[$i] = 0;
@@ -95,10 +95,9 @@ class PollService {
     function splitSlots($slots) {
         $splitted = array();
         foreach ($slots as $slot) {
-            $ex = explode('@', $slot->sujet);
             $obj = new \stdClass();
-            $obj->day = $ex[0];
-            $obj->moments = explode(',', $ex[1]);
+            $obj->day = $slot->title;
+            $obj->moments = explode(',', $slot->moments);
 
             $splitted[] = $obj;
         }
@@ -110,9 +109,9 @@ class PollService {
         $splitted = array();
         foreach ($votes as $vote) {
             $obj = new \stdClass();
-            $obj->id = $vote->id_users;
-            $obj->name = $vote->nom;
-            $obj->choices = str_split($vote->reponses);
+            $obj->id = $vote->id;
+            $obj->name = $vote->name;
+            $obj->choices = str_split($vote->choices);
 
             $splitted[] = $obj;
         }
@@ -134,13 +133,13 @@ class PollService {
         $this->connect->beginTransaction();
 
         // TODO Extract this to FramaDB (or repository layer)
-        $sql = 'INSERT INTO sondage
-          (poll_id, admin_poll_id, title, comment, admin_name, admin_mail, end_date, format, editable, receiveNewVotes)
+        $sql = 'INSERT INTO poll
+          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes)
           VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?)';
         $prepared = $this->connect->prepare($sql);
         $prepared->execute(array($poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, $form->editable, $form->receiveNewVotes));
 
-        $prepared = $this->connect->prepare('INSERT INTO sujet_studs (id_sondage, sujet) VALUES (?, ?)');
+        $prepared = $this->connect->prepare('INSERT INTO slot (poll_id, title, moments) VALUES (?, ?, ?)');
 
         foreach ($form->getChoices() as $choice) {
 
@@ -158,16 +157,16 @@ class PollService {
 
             // We execute the insertion
             if (empty($joinedSlots)) {
-                $prepared->execute(array($poll_id, $choice->getName()));
+                $prepared->execute(array($poll_id, $choice->getName(), null));
             } else {
-                $prepared->execute(array($poll_id, $choice->getName() . '@' . $joinedSlots));
+                $prepared->execute(array($poll_id, $choice->getName(), $joinedSlots));
             }
 
         }
 
         $this->connect->commit();
 
-        $this->logService->log('CREATE_POLL', 'id:' . $poll_id . 'title: ' . $form->title . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
+        $this->logService->log('CREATE_POLL', 'id:' . $poll_id . ', title: ' . $form->title . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
 
 
         return [$poll_id, $admin_poll_id];

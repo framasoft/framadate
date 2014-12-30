@@ -14,7 +14,7 @@
                     <th role="presentation"></th>
                     {foreach $slots as $id=>$slot}
                         <td headers="C{$id}">
-                            <button type="submit" name="delete_column" value="{$slot->sujet}" class="btn btn-link btn-sm" title="{_('Remove the column')} {$slot->sujet}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
+                            <button type="submit" name="delete_column" value="{$slot->id}" class="btn btn-link btn-sm" title="{_('Remove the column')} {$slot->title}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
                         </td>
                     {/foreach}
                     <td>
@@ -25,7 +25,7 @@
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
-                    <th class="bg-info" id="H{$id}">{$slot->sujet}</th>
+                    <th class="bg-info" id="H{$id}">{$slot->title}</th>
                 {/foreach}
                 <th></th>
             </tr>
@@ -113,19 +113,19 @@
                             <ul class="list-unstyled choice">
                                 <li class="yes">
                                     <input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2" />
-                                    <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{_('Vote yes for')} {$slot->sujet}">
+                                    <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{_('Vote yes for')} {$slot->title}">
                                         <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Yes')}</span>
                                     </label>
                                 </li>
                                 <li class="ifneedbe">
                                     <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1" />
-                                    <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{_('Vote ifneedbe for')} {$slot->sujet}">
+                                    <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{_('Vote ifneedbe for')} {$slot->title}">
                                         (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{_('Ifneedbe')}</span>
                                     </label>
                                 </li>
                                 <li class="no">
                                     <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value="0" checked/>
-                                    <label class="btn btn-default btn-xs" for="n-choice-{$id}" title="{_('Vote no for')} {$slot->sujet}">
+                                    <label class="btn btn-default btn-xs" for="n-choice-{$id}" title="{_('Vote no for')} {$slot->title}">
                                         <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{_('No')}</span>
                                     </label>
                                 </li>
@@ -177,7 +177,7 @@
             <ul style="list-style:none">
                 {foreach $slots as $slot}
                     {if $best_choices[$i] == $max}
-                        <li><strong>{$slot->sujet}</strong></li>
+                        <li><strong>{$slot->title}</strong></li>
                     {/if}
                     {$i = $i+1}
                 {/foreach}

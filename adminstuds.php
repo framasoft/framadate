@@ -301,15 +301,24 @@ if (!empty($_POST['delete_column'])) {
 if (isset($_POST['add_slot'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
+    $smarty->assign('format', $poll->format);
     $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
     $smarty->display('add_slot.tpl');
     exit;
 }
 if (isset($_POST['confirm_add_slot'])) {
-    $newdate = filter_input(INPUT_POST, 'newdate', FILTER_DEFAULT);
-    $newmoment = filter_input(INPUT_POST, 'newmoment', FILTER_DEFAULT);
+    if ($poll->format === 'D') {
+        $newdate = filter_input(INPUT_POST, 'newdate', FILTER_DEFAULT);
+        $newmoment = filter_input(INPUT_POST, 'newmoment', FILTER_DEFAULT);
 
-    if ($adminPollService->addSlot($poll_id, $newdate, $newmoment)) {
+        $ex = explode('/', $newdate);
+        $result = $adminPollService->addSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
+    } else {
+        $newslot = filter_input(INPUT_POST, 'choice', FILTER_DEFAULT);
+        $result = $adminPollService->addSlot($poll_id,$newslot, null);
+    }
+
+    if ($result) {
         $message = new Message('success', _('Column added.'));
     } else {
         $message = new Message('danger', _('Failed to add the column.'));

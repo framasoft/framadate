@@ -50,7 +50,7 @@ $mailService = new MailService($config['use_smtp']);
  * @param $mailService MailService The mail service
  */
 function sendUpdateNotification($poll, $mailService) {
-    if ($poll->receiveNewVotes && !isset($_SESSION['mail_sent'][$poll->poll_id])) {
+    if ($poll->receiveNewVotes && !isset($_SESSION['mail_sent'][$poll->id])) {
 
         $subject = '[' . NOMAPPLICATION . '] ' . _('Poll\'s participation') . ' : ' . html_entity_decode($poll->title, ENT_QUOTES, 'UTF-8');
         $message = html_entity_decode('"$nom" ', ENT_QUOTES, 'UTF-8') .
@@ -60,7 +60,7 @@ function sendUpdateNotification($poll, $mailService) {
 
         $mailService->send($poll->admin_mail, $subject, $message);
 
-        $_SESSION["mail_sent"][$poll->poll_id] = true;
+        $_SESSION["mail_sent"][$poll->id] = true;
     }
 }
 
