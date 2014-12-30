@@ -18,7 +18,7 @@
  */
 
 // FRAMADATE version
-const VERSION = 0.8;
+const VERSION = 0.9;
 
 // Server name
 const STUDS_URL = '<www.mydomain.com>';
