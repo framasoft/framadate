@@ -73,40 +73,64 @@ CREATE TABLE IF NOT EXISTS `vote` (
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
+-- --------------------------------------------------------
 
 --
--- Data for Name: poll; Type: TABLE DATA;
+-- Migrate data from `sondage` to `poll`
 --
 
 INSERT INTO `poll`
-(`id`, `description`, `admin_mail`, `admin_name`, `title`, `admin_id`, `end_date`, `format`)
-VALUES
-  ('aqg259dth55iuhwm', 'Repas de Noel du service', 'Stephanie@retaillard.com', 'Stephanie', 'Repas de Noel',
-   'aqg259dth55iuhwmy9d8jlwk', FROM_UNIXTIME('1627100361'), 'D');
+(`id`, `admin_id`, `title`, `description`, `admin_name`, `admin_mail`, `creation_date`, `end_date`, `format`, `editable`, `receiveNewVotes`, `active`)
+  SELECT
+    `id_sondage`,
+    `id_sondage_admin`,
+    `titre`,
+    `commentaires`,
+    `nom_admin`,
+    `mail_admin`,
+    `titre`,
+    `date_creation`,
+    `date_fin`,
+    SUBSTR(`format`, 1, 1) AS `format`,
+    CASE SUBSTR(`format`, 2, 1)
+    WHEN '+' THEN 1
+    ELSE 0 END             AS `editable`,
+    `mailsonde`,
+    CASE SUBSTR(`format`, 2, 1)
+    WHEN '-' THEN 0
+    ELSE 1 END             AS `active`
+  FROM sondage;
+
+-- --------------------------------------------------------
 
 --
--- Data for Name: slot; Type: TABLE DATA;
+-- Migrate data from `sujet_studs` to `slot`
 --
 
-INSERT INTO `slot` (`poll_id`, `title`, `moments`) VALUES
-  ('aqg259dth55iuhwm', '1225839600', '12h,19h'),
-  ('aqg259dth55iuhwm', '1226012400', '12h,19h'),
-  ('aqg259dth55iuhwm', '1226876400', '12h,19h'),
-  ('aqg259dth55iuhwm', '1227826800', '12h,19h');
+-- TODO Migrate this, is not so simple
+/*INSERT INTO `slot`
+(`poll_id`, `title`, `moments`)
+    SELECT `id_sondage`,
+      FROM `user_studs`;*/
+
+-- --------------------------------------------------------
 
 --
--- Data for Name: vote; Type: TABLE DATA;
+-- Migrate data from `comments` to `comment`
 --
 
-INSERT INTO `vote` (`name`, `poll_id`, `choices`) VALUES
-  ('marcel', 'aqg259dth55iuhwm', '02202222'),
-  ('paul', 'aqg259dth55iuhwm', '20220202'),
-  ('sophie', 'aqg259dth55iuhwm', '22202200'),
-  ('barack', 'aqg259dth55iuhwm', '02200000'),
-  ('takashi', 'aqg259dth55iuhwm', '00002202'),
-  ('albert', 'aqg259dth55iuhwm', '20202200'),
-  ('alfred', 'aqg259dth55iuhwm', '02200200'),
-  ('marcs', 'aqg259dth55iuhwm', '02000020'),
-  ('laure', 'aqg259dth55iuhwm', '00220000'),
-  ('benda', 'aqg259dth55iuhwm', '22022022'),
-  ('albert', 'aqg259dth55iuhwm', '22222200');
+INSERT INTO `comment`
+(`poll_id`, `name`, `comment`)
+  SELECT `id_sondage`, `usercomment`, `comment`
+  FROM `comments`;
+
+-- --------------------------------------------------------
+
+--
+-- Migrate data from `user_studs` to `vote`
+--
+
+INSERT INTO `vote`
+(`poll_id`, `name`, `choices`)
+  SELECT `id_sondage`, `nom`, REPLACE(REPLACE(REPLACE(`reponses`, '1', 'X'), '2', '1'), 'X', 2)
+  FROM `user_studs`;
