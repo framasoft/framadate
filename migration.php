@@ -18,10 +18,11 @@ $migrations = [
 // Check if MIGRATION_TABLE already exists
 $tables = $connect->allTables();
 $pdo = $connect->getPDO();
+$prefixedMigrationTable = Utils::table(MIGRATION_TABLE);
 
-if (!in_array(MIGRATION_TABLE, $tables)) {
+if (!in_array($prefixedMigrationTable, $tables)) {
     $pdo->exec('
-CREATE TABLE IF NOT EXISTS `' . MIGRATION_TABLE . '` (
+CREATE TABLE IF NOT EXISTS `' . $prefixedMigrationTable . '` (
   `id`   INT(11)  UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` TEXT              NOT NULL,
   `execute_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -30,11 +31,11 @@ CREATE TABLE IF NOT EXISTS `' . MIGRATION_TABLE . '` (
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;');
 
-    output('Table ' . MIGRATION_TABLE . ' created.');
+    output('Table ' . $prefixedMigrationTable . ' created.');
 }
 
-$selectStmt = $pdo->prepare('SELECT id FROM ' . MIGRATION_TABLE . ' WHERE name=?');
-$insertStmt = $pdo->prepare('INSERT INTO ' . MIGRATION_TABLE . ' (name) VALUES (?)');
+$selectStmt = $pdo->prepare('SELECT id FROM ' . $prefixedMigrationTable . ' WHERE name=?');
+$insertStmt = $pdo->prepare('INSERT INTO ' . $prefixedMigrationTable . ' (name) VALUES (?)');
 $countSucceeded = 0;
 $countFailed = 0;
 $countSkipped = 0;

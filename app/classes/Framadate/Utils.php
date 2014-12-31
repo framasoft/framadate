@@ -124,46 +124,6 @@ class Utils
     }
 
     /**
-     * Completly delete data about the given poll
-     * TODO Move this function to FramaDB
-     */
-    public static function removeSondage($poll_id) {
-        global $connect;
-
-        $prepared = $connect->prepare('DELETE FROM sujet_studs WHERE id_sondage = ?');
-        $prepared->execute(array($poll_id));
-
-        $prepared = $connect->prepare('DELETE FROM user_studs WHERE id_sondage = ?');
-        $prepared->execute(array($poll_id));
-
-        $prepared = $connect->prepare('DELETE FROM comments WHERE id_sondage = ?');
-        $prepared->execute(array($poll_id));
-
-        $prepared = $connect->prepare('DELETE FROM sondage WHERE poll_id = ?');
-        $prepared->execute(array($poll_id));
-
-    }
-
-    /**
-     * Clean old poll (end_date < now).
-     * TODO Move this function to PurgePollService
-     */
-    public static function cleaningOldPolls($log_txt) {
-        global $connect;
-
-        $resultSet = $connect->query('SELECT poll_id, format, admin_name FROM sondage WHERE end_date < NOW() LIMIT 20');
-        $toClean = $resultSet->fetchAll(\PDO::FETCH_CLASS);
-
-        $connect->beginTransaction();
-        foreach ($toClean as $row) {
-            if (self::removeSondage($row->poll_id)) {
-                error_log(date('H:i:s d/m/Y:') . ' EXPIRATION: '. $row->poll_id."\t".$row->format."\t".$row->admin_name."\n", 3, $log_txt);
-            }
-        }
-        $connect->commit();
-    }
-
-    /**
      * This method pretty prints an object to the page framed by pre tags.
      * @param mixed $object The object to print.
      */
@@ -171,5 +131,9 @@ class Utils
         echo '<pre>';
         print_r($object);
         echo '</pre>';
+    }
+
+    public static function table($tableName) {
+        return TABLENAME_PREFIX . $tableName;
     }
 }

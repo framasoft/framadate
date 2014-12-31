@@ -1,6 +1,8 @@
 <?php
 namespace Framadate\Migration;
 
+use Framadate\Utils;
+
 /**
  * This class executes the aciton in database to migrate data from version 0.8 to 0.9.
  *
@@ -11,6 +13,12 @@ class From_0_8_to_0_9_Migration implements Migration {
     function __construct() {
     }
 
+    /**
+     * This methode is called only one time in the migration page.
+     *
+     * @param \PDO $pdo The connection to database
+     * @return bool true is the execution succeeded
+     */
     function execute(\PDO $pdo) {
         $this->createPollTable($pdo);
         $this->migrateFromSondageToPoll($pdo);
@@ -31,7 +39,7 @@ class From_0_8_to_0_9_Migration implements Migration {
 
     private function createPollTable(\PDO $pdo) {
         $pdo->exec('
-CREATE TABLE IF NOT EXISTS `poll` (
+CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
   `id`              CHAR(16)  NOT NULL,
   `admin_id`        CHAR(24)  NOT NULL,
   `title`           TEXT      NOT NULL,
@@ -52,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `poll` (
 
     private function migrateFromSondageToPoll(\PDO $pdo) {
         $pdo->exec('
-INSERT INTO `poll`
+INSERT INTO `' . Utils::table('poll') . '`
 (`id`, `admin_id`, `title`, `description`, `admin_name`, `admin_mail`, `creation_date`, `end_date`, `format`, `editable`, `receiveNewVotes`, `active`)
   SELECT
     `id_sondage`,
@@ -76,7 +84,7 @@ INSERT INTO `poll`
 
     private function createSlotTable(\PDO $pdo) {
         $pdo->exec('
-CREATE TABLE IF NOT EXISTS `slot` (
+CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `poll_id` CHAR(16)         NOT NULL,
   `title`   TEXT,
@@ -98,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `slot` (
             $slots = array_merge($slots, $newSlots);
         }
 
-        $prepared = $pdo->prepare('INSERT INTO slot (`poll_id`, `title`, `moments`) VALUE (?,?,?)');
+        $prepared = $pdo->prepare('INSERT INTO ' . Utils::table('slot') . ' (`poll_id`, `title`, `moments`) VALUE (?,?,?)');
         foreach ($slots as $slot) {
             $prepared->execute([$slot->poll_id, $slot->title, $slot->moments]);
         }
@@ -106,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `slot` (
 
     private function createCommentTable(\PDO $pdo) {
         $pdo->exec('
-CREATE TABLE IF NOT EXISTS `comment` (
+CREATE TABLE IF NOT EXISTS `' . Utils::table('comment') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `poll_id` CHAR(16)         NOT NULL,
   `name`    TEXT,
@@ -120,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
 
     private function migrateFromCommentsToComment(\PDO $pdo) {
         $pdo->exec('
-INSERT INTO `comment`
+INSERT INTO `' . Utils::table('comment') . '`
 (`poll_id`, `name`, `comment`)
   SELECT
     `id_sondage`,
@@ -131,7 +139,7 @@ INSERT INTO `comment`
 
     private function createVoteTable(\PDO $pdo) {
         $pdo->exec('
-CREATE TABLE IF NOT EXISTS `vote` (
+CREATE TABLE IF NOT EXISTS `' . Utils::table('vote') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `poll_id` CHAR(16)         NOT NULL,
   `name`    VARCHAR(64)      NOT NULL,
@@ -145,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `vote` (
 
     private function migrateFromUserStudsToVote(\PDO $pdo) {
         $pdo->exec('
-INSERT INTO `vote`
+INSERT INTO `' . Utils::table('vote') . '`
 (`poll_id`, `name`, `choices`)
   SELECT
     `id_sondage`,

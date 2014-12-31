@@ -44,6 +44,9 @@ const DB_CONNECTION_STRING = 'mysql:host=<database host>;dbname=<database name>;
 // Name of the table that store migration script already executed
 const MIGRATION_TABLE = 'framadate_migration';
 
+// Table name prefix
+const TABLENAME_PREFIX = 'fd_';
+
 // Default Language using POSIX variant of BC P47 standard (choose in $ALLOWED_LANGUAGES)
 const LANGUE = 'fr_FR';
 
