@@ -11,9 +11,9 @@ function output($msg) {
 
 // List a Migration sub classes to execute
 $migrations = [
-    new From_0_8_to_0_9_Migration(),
     new From_0_8_to_0_9_Migration()
 ];
+// ---------------------------------------
 
 // Check if MIGRATION_TABLE already exists
 $tables = $connect->allTables();
@@ -35,6 +35,9 @@ CREATE TABLE IF NOT EXISTS `' . MIGRATION_TABLE . '` (
 
 $selectStmt = $pdo->prepare('SELECT id FROM ' . MIGRATION_TABLE . ' WHERE name=?');
 $insertStmt = $pdo->prepare('INSERT INTO ' . MIGRATION_TABLE . ' (name) VALUES (?)');
+$countSucceeded = 0;
+$countFailed = 0;
+$countSkipped = 0;
 
 // Loop on every Migration sub classes
 foreach ($migrations as $migration) {
@@ -42,7 +45,7 @@ foreach ($migrations as $migration) {
 
     // Check if $className is a Migration sub class
     if (!$migration instanceof Migration) {
-        output('The class '. $className . ' is not a sub class of Framadate\\Migration\\Migration.');
+        output('The class ' . $className . ' is not a sub class of Framadate\\Migration\\Migration.');
         exit;
     }
 
@@ -53,8 +56,22 @@ foreach ($migrations as $migration) {
 
     if (!$executed) {
         $migration->execute($pdo);
-        $insertStmt->execute([$className]);
-        output('Migration done: ' . $className);
+        if ($insertStmt->execute([$className])) {
+            $countSucceeded++;
+            output('Migration done: ' . $className);
+        } else {
+            $countFailed++;
+            output('Migration failed: ' . $className);
+        }
+    } else {
+        $countSkipped++;
     }
 
 }
+
+$countTotal = $countSucceeded + $countFailed + $countSkipped;
+
+output('Summary<hr/>');
+output('Success: ' . $countSucceeded . ' / ' . $countTotal);
+output('Fail: ' . $countFailed . ' / ' . $countTotal);
+output('Skipped: ' . $countSkipped . ' / ' . $countTotal);
