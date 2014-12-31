@@ -45,7 +45,9 @@ function bandeau_titre($titre)
     <main role="main">';
     
     global $connect;
-    if ($connect->areTablesCreated()) {
+    $tables = $connect->allTables();
+    $diff = array_diff($tables, ['comment', 'poll', 'slot', 'vote']);
+    if (0 != count($diff)) {
         echo '<div class="alert alert-danger">'. _('Framadate is not properly installed, please check the "INSTALL" to setup the database before continuing.') .'</div>';
         bandeau_pied();
         die();

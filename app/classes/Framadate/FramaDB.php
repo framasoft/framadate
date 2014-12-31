@@ -30,11 +30,23 @@ class FramaDB {
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-    function areTablesCreated() {
+    /**
+     * @return \PDO Connection to database
+     */
+    function getPDO() {
+        return $this->pdo;
+    }
+
+    /**
+     * Find all tables in database.
+     *
+     * @return array The array of table names
+     */
+    function allTables() {
         $result = $this->pdo->query('SHOW TABLES');
         $schemas = $result->fetchAll(\PDO::FETCH_COLUMN);
 
-        return 0 != count(array_diff($schemas, ['comment', 'poll', 'slot', 'vote']));
+        return $schemas;
     }
 
     function prepare($sql) {
