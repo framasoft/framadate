@@ -24,6 +24,8 @@ class From_0_8_to_0_9_Migration implements Migration {
         $this->createVoteTable($pdo);
         $this->migrateFromUserStudsToVote($pdo);
 
+        $this->dropOldTables($pdo);
+
         return true;
     }
 
@@ -87,7 +89,19 @@ CREATE TABLE IF NOT EXISTS `slot` (
     }
 
     private function migrateFromSujetStudsToSlot(\PDO $pdo) {
-        // TODO Implements
+        $stmt = $pdo->query('SELECT * FROM sujet_studs');
+        $sujets = $stmt->fetchAll();
+        $slots = [];
+
+        foreach ($sujets as $sujet) {
+            $newSlots = $this->transformSujetToSlot($sujet);
+            $slots = array_merge($slots, $newSlots);
+        }
+
+        $prepared = $pdo->prepare('INSERT INTO slot (`poll_id`, `title`, `moments`) VALUE (?,?,?)');
+        foreach ($slots as $slot) {
+            $prepared->execute([$slot->poll_id, $slot->title, $slot->moments]);
+        }
     }
 
     private function createCommentTable(\PDO $pdo) {
@@ -138,6 +152,34 @@ INSERT INTO `vote`
     `nom`,
     REPLACE(REPLACE(REPLACE(`reponses`, 1, \'X\'), 2, 1), \'X\', 2)
   FROM `user_studs`');
+    }
+
+    private function transformSujetToSlot($sujet) {
+        $slots = [];
+        $ex = explode(',', $sujet->sujet);
+        $lastSlot = null;
+
+        foreach ($ex as $atomicSlot) {
+            $values = explode('@', $atomicSlot);
+            if ($lastSlot == null || $lastSlot->title !== $values[0]) {
+                $lastSlot = new \stdClass();
+                $lastSlot->poll_id = $sujet->id_sondage;
+                $lastSlot->title = $values[0];
+                $lastSlot->moments = count($values) == 2 ? $values[1] : null;
+                $slots[] = $lastSlot;
+            } else {
+                $lastSlot->moments .= ',' . $values[1];
+            }
+        }
+
+        return $slots;
+    }
+
+    private function dropOldTables(\PDO $pdo) {
+        $pdo->exec('DROP TABLE `comments`');
+        $pdo->exec('DROP TABLE `sujet_studs`');
+        $pdo->exec('DROP TABLE `user_studs`');
+        $pdo->exec('DROP TABLE `sondage`');
     }
 
 }
