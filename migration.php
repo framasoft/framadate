@@ -1,4 +1,5 @@
 <?php
+use Framadate\Migration\From_0_0_to_0_8_Migration;
 use Framadate\Migration\From_0_8_to_0_9_Migration;
 use Framadate\Migration\Migration;
 use Framadate\Utils;
@@ -11,6 +12,7 @@ function output($msg) {
 
 // List a Migration sub classes to execute
 $migrations = [
+    new From_0_0_to_0_8_Migration(),
     new From_0_8_to_0_9_Migration()
 ];
 // ---------------------------------------
