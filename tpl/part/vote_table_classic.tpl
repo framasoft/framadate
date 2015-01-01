@@ -25,7 +25,7 @@
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
-                    <th class="bg-info" id="H{$id}">{$slot->title}</th>
+                    <th class="bg-info" id="H{$id}">{$slot->title|markdown}</th>
                 {/foreach}
                 <th></th>
             </tr>

@@ -45,6 +45,7 @@ $smarty->assign('langs', $ALLOWED_LANGUAGES);
 $smarty->assign('date_format', $date_format);
 
 function smarty_modifier_poll_url($poll_id, $admin=false){return Utils::getUrlSondage($poll_id, $admin);}
+function smarty_modifier_markdown($md) {return Utils::markdown($md);}
 // End- Smarty
 
 if (session_id() == '') {
