@@ -39,7 +39,7 @@ class MailService {
             $headers .= "Auto-Submitted:auto-generated\n";
             $headers .= 'Return-Path: <>';
 
-            $body = html_entity_decode($body, ENT_QUOTES, 'UTF-8') . _('\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d\'avance pour votre soutien http://soutenir.framasoft.org.');
+            $body = html_entity_decode($body, ENT_QUOTES, 'UTF-8') . _("\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.");
 
             mail($to, $subject, $body, $headers, $param);
         }
