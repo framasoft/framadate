@@ -37,14 +37,14 @@ if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'
 }
 
 $locale = $mlocale . '.utf8';//unix format
-if (strtoupper(substr(PHP_OS,0,3))=='WIN'){ 
-	 putenv("LC_ALL=$mlocale"); //Windows env. needed to switch between languages
-	 switch ($mlocale){
-		case 'fr_FR' : $locale = "fra";break; //$locale in windows locale format, needed to use php function that handle text : strftime()
-		case 'en_GB' : $locale = "english";break; //see http://msdn.microsoft.com/en-us/library/39cwe7zf%28v=vs.90%29.aspx
-		case 'de_DE' : $locale = "deu";break;
-		case 'es_ES' : $locale = "esp";break;
-	 }
+if (strtoupper(substr(PHP_OS,0,3))=='WIN'){
+    putenv("LC_ALL=$mlocale"); //Windows env. needed to switch between languages
+    switch ($mlocale){
+        case 'fr_FR' : $locale = "fra";break; //$locale in windows locale format, needed to use php function that handle text : strftime()
+        case 'en_GB' : $locale = "english";break; //see http://msdn.microsoft.com/en-us/library/39cwe7zf%28v=vs.90%29.aspx
+        case 'de_DE' : $locale = "deu";break;
+        case 'es_ES' : $locale = "esp";break;
+    }
 }
 
 putenv('LANGUAGE=');//sert à quoi?
@@ -66,14 +66,12 @@ $lang = ($_SESSION['langue']!='') ? strtolower($_SESSION['langue']) : 'fr';
 
 
 /* Date Format */
-$date_format['txt_full'] = _("%A, den %e. %B %Y"); //summary in choix_date.php and removal date in choix_(date|autre).php
-$date_format['txt_short'] = "%A %e %B %Y"; // radio title
-$date_format['txt_day'] = "%a %e";
-$date_format['txt_date'] = _("%Y-%m-%d");
+$date_format['txt_full'] = _('%A, den %e. %B %Y'); //summary in choix_date.php and removal date in choix_(date|autre).php
+$date_format['txt_short'] = _('%A %e %B %Y'); // radio title
+$date_format['txt_day'] = _('%a %e');
+$date_format['txt_date'] = _('%Y-%m-%d');
 if (strtoupper(substr(PHP_OS,0,3))=='WIN'){ //%e can't be used on Windows platform, use %#d instead
     foreach($date_format as $k => $v) {
         $date_format[$k] = preg_replace('#(?<!%)((?:%%)*)%e#','\1%#d', $v); //replace %e by %#d for windows
     }
 }
-
-

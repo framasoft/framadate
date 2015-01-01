@@ -1,10 +1,10 @@
     <header role="banner">
     {if count($langs)>1}
-        <form method="post" action="#">
+        <form method="post" action="">
             <div class="input-group input-group-sm pull-right col-md-2 col-xs-4">
                 <select name="lang" class="form-control" title="${_("Select the language")}" >
                 {foreach $langs as $lang_key=>$lang_value}
-                	<option lang="{$lang_key|truncate:2:''}" selected value="{$lang_key}">{$lang_value}</option>
+                    <option lang="{substr($lang_key, 0, 2)}" {if substr($lang_key, 0, 2)==$lang}selected{/if} value="{$lang_key}">{$lang_value}</option>
                 {/foreach}
                 </select>
                 <span class="input-group-btn">

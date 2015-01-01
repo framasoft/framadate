@@ -19,21 +19,26 @@
 use Framadate\FramaDB;
 use Framadate\Utils;
 
+if (session_id() == '') {
+    session_start();
+}
+
 if (ini_get('date.timezone') == '') {
     date_default_timezone_set('Europe/Paris');
 }
+
 include_once __DIR__ . '/constants.php';
-include_once __DIR__ . '/i18n.php';
 
 // Autoloading of dependencies with Composer
 require_once __DIR__ . '/../../vendor/autoload.php';
+include_once __DIR__ . '/i18n.php';
 
 // Smarty
 require_once __DIR__ . '/../../vendor/smarty/smarty/libs/Smarty.class.php';
 $smarty = new \Smarty();
-$smarty->template_dir = 'tpl/';
-$smarty->compile_dir = 'tpl_c/';
-$smarty->cache_dir = 'cache/';
+$smarty->setTemplateDir('tpl/');
+$smarty->setCompileDir('tpl_c/');
+$smarty->setCacheDir('cache/');
 $smarty->caching = false;
 
 $smarty->assign('APPLICATION_NAME', NOMAPPLICATION);
@@ -47,10 +52,6 @@ $smarty->assign('date_format', $date_format);
 function smarty_modifier_poll_url($poll_id, $admin=false){return Utils::getUrlSondage($poll_id, $admin);}
 function smarty_modifier_markdown($md) {return Utils::markdown($md);}
 // End- Smarty
-
-if (session_id() == '') {
-    session_start();
-}
 
 $connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
 $err = 0;
