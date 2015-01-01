@@ -145,9 +145,9 @@
                     {foreach $best_choices as $best_choice}
                         {if $max == $best_choice}
                             {$count_bests = $count_bests +1}
-                            <td><span class="glyphicon glyphicon-star text-warning"></span><span>{$max}</span></td>
+                            <td><span class="glyphicon glyphicon-star text-warning"></span>{$best_choice}</td>
                         {else}
-                            <td></td>
+                            <td>{$best_choice}</td>
                         {/if}
                     {/foreach}
                 </tr>
@@ -165,11 +165,11 @@
     {if $count_bests == 1}
     <div class="col-sm-12"><h3>{_("Best choice")}</h3></div>
     <div class="col-sm-6 col-sm-offset-3 alert alert-success">
-        <p><span class="glyphicon glyphicon-star text-warning"></span>{_("The best choice at this time is:")}</p>
+        <p><span class="glyphicon glyphicon-star text-warning"></span>{_('The best choice at this time is:')}</p>
         {elseif $count_bests > 1}
         <div class="col-sm-12"><h3>{_("Best choices")}</h3></div>
         <div class="col-sm-6 col-sm-offset-3 alert alert-success">
-            <p><span class="glyphicon glyphicon-star text-warning"></span>{_("The bests choices at this time are:")}</p>
+            <p><span class="glyphicon glyphicon-star text-warning"></span>{_('The bests choices at this time are:')}</p>
             {/if}
 
 
@@ -182,7 +182,7 @@
                     {$i = $i+1}
                 {/foreach}
             </ul>
-            <p>{_("with")} <b>{$max}</b> {if $max==1}{_('vote')}{else}{_('votes')}{/if}.</p>
+            <p>{_('with')} <b>{$max}</b> {if $max==1}{_('vote')}{else}{_('votes')}{/if}.</p>
         </div>
     </div>
 {/if}
