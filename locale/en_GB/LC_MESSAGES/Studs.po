@@ -66,8 +66,8 @@ msgstr "(in the format name@mail.com)"
 msgid "Description"
 msgstr "Description"
 
-msgid "Back to the homepage of "
-msgstr "Back to the homepage of "
+msgid "Back to the homepage of"
+msgstr "Back to the homepage of"
 
 msgid "Error!"
 msgstr "Error!"
@@ -248,14 +248,14 @@ msgid "Cancel the rules edit"
 msgstr "Cancel the rules edit"
 
 # Help text adminstuds.php
-msgid "As poll administrator, you can change all the lines of this poll with this button "
-msgstr "As poll administrator, you can change all the lines of this poll with this button "
+msgid "As poll administrator, you can change all the lines of this poll with this button"
+msgstr "As poll administrator, you can change all the lines of this poll with this button"
 
-msgid " remove a column or a line with "
-msgstr " remove a column or a line with "
+msgid "remove a column or a line with"
+msgstr "remove a column or a line with"
 
-msgid "and add a new column with "
-msgstr "and add a new column with "
+msgid "and add a new column with"
+msgstr "and add a new column with"
 
 msgid "Finally, you can change the informations of this poll like the title, the comments or your email address."
 msgstr "Finally, you can change the informations of this poll like the title, the comments or your email address."

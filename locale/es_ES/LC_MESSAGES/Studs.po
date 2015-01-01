@@ -130,7 +130,7 @@ msgstr "Usted no habia llenado la primera pagina dela encuesta"
 #: choix_autre.php:63
 #: adminstuds.php:79
 #: adminstuds.php:1044
-msgid "Back to the homepage of "
+msgid "Back to the homepage of"
 msgstr "Retroceder al inicio de"
 
 #: choix_date.php:220
@@ -612,8 +612,8 @@ msgstr ""
 "Usted puede cambiar su encuesta al enlace siguiente"
 
 #: adminstuds.php:582
-msgid "As poll administrator, you can change all the lines of this poll with this button : "
-msgstr "En calidad de administrador, Usted puede cambiar todas la l&iacute;neas de este encuesta con este botón :"
+msgid "As poll administrator, you can change all the lines of this poll with this button"
+msgstr "En calidad de administrador, Usted puede cambiar todas la l&iacute;neas de este encuesta con este botón"
 
 msgid "Edit"
 msgstr "Cambio"
