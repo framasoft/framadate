@@ -1,9 +1,27 @@
 <?php
 namespace Framadate\Migration;
 
+use Framadate\Utils;
+
 class From_0_0_to_0_8_Migration implements Migration {
 
     function __construct() {
+    }
+
+    /**
+     * This method could check if the execute method should be called.
+     * It is called before the execute method.
+     *
+     * @param \PDO $pdo The connection to database
+     * @return bool true is the Migration should be executed.
+     */
+    function preCondition(\PDO $pdo) {
+        $stmt = $pdo->query('SHOW TABLES');
+        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+
+        // Check if there is no tables but the MIGRATION_TABLE one
+        $diff = array_diff($tables, [Utils::table(MIGRATION_TABLE)]);
+        return count($diff) === 0;
     }
 
     /**

@@ -57,7 +57,7 @@ foreach ($migrations as $migration) {
     $executed = $selectStmt->rowCount();
     $selectStmt->closeCursor();
 
-    if (!$executed) {
+    if (!$executed && $migration->preCondition($pdo)) {
         $migration->execute($pdo);
         if ($insertStmt->execute([$className])) {
             $countSucceeded++;
