@@ -16,89 +16,103 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate;
+use Framadate\Services\LogService;
+use Framadate\Services\PollService;
+use Framadate\Services\InputService;
+use Framadate\Services\MailService;
+use Framadate\Message;
+use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 
-if(!isset($_GET['numsondage']) || ! preg_match(";^[\w\d]{16}$;i", $_GET['numsondage'])) {
-    header('Location: studs.php');
+ob_start();
+
+/* Variables */
+/* --------- */
+
+$poll_id = null;
+$poll = null;
+
+/* Services */
+/*----------*/
+
+$logService = new LogService(LOG_FILE);
+$pollService = new PollService($connect, $logService);
+
+/* PAGE */
+/* ---- */
+
+if (!empty($_GET['poll'])) {
+    $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^[a-z0-9]+$/']]);
+    $poll = $pollService->findById($poll_id);
 }
 
-$sql = 'SELECT * FROM user_studs WHERE id_sondage='.$connect->Param('numsondage').' ORDER BY id_users';
-$sql = $connect->Prepare($sql);
-$user_studs = $connect->Execute($sql, array($_GET['numsondage']));
+if (!$poll) {
+    $smarty->assign('error', 'This poll doesn\'t exist');
+    $smarty->display('error.tpl');
+    exit;
+}
 
-$dsondage = Utils::get_sondage_from_id($_GET['numsondage']);
-$nbcolonnes=substr_count($dsondage->sujet,',')+1;
 
-$toutsujet=explode(",",$dsondage->sujet);
+$slots = $pollService->allSlotsByPollId($poll_id);
+$votes = $pollService->allVotesByPollId($poll_id);
 
-//affichage des sujets du sondage
-$input =",";
-foreach ($toutsujet as $value) {
-    if ($dsondage->format=="D"||$dsondage->format=="D+") {
-        if (strpos($dsondage->sujet,'@') !== false) {
-            $days=explode("@",$value);
-            $input.= '"'.date("j/n/Y",$days[0]).'",';
-        } else {
-            $input.= '"'.date("j/n/Y",$values).'",';
-        }
-    } else {
+// CSV header
+if ($poll->format === 'D') {
+    $titles_line = ',';
+    $moments_line = ',';
+    foreach ($slots as $slot) {
+        $title = Utils::csvEscape(strftime($date_format['txt_date'], $slot->title));
+        $moments = explode(',', $slot->moments);
 
-        preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/',$value,$md_a_img);  // Markdown [![alt](src)](href)
-        preg_match_all('/!\[(.*?)\]\((.*?)\)/',$value,$md_img);                 // Markdown ![alt](src)
-        preg_match_all('/\[(.*?)\]\((.*?)\)/',$value,$md_a);                    // Markdown [text](href)
-        if (isset($md_a_img[2][0]) && $md_a_img[2][0]!='' && isset($md_a_img[3][0]) && $md_a_img[3][0]!='') { // [![alt](src)](href)
-            $subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0]!='') ? stripslashes($md_a_img[1][0]) : _("Choice") .' '.($i+1);
-        } elseif (isset($md_img[2][0]) && $md_img[2][0]!='') { // ![alt](src)
-            $subject_text = (isset($md_img[1][0]) && $md_img[1][0]!='') ? stripslashes($md_img[1][0]) : _("Choice") .' '.($i+1);
-        } elseif (isset($md_a[2][0]) && $md_a[2][0]!='') { // [text](href)
-            $subject_text = (isset($md_a[1][0]) && $md_a[1][0]!='') ? stripslashes($md_a[1][0]) : _("Choice") .' '.($i+1);
-        } else { // text only
-            $subject_text = stripslashes($value);
-        }
-        $input.= '"'.html_entity_decode($subject_text).'",';
+        $titles_line .= str_repeat($title . ',', count($moments));
+        $moments_line .= implode(',', array_map('\Framadate\Utils::csvEscape', $moments)) . ',';
     }
-}
-
-$input.="\r\n";
-
-if (strpos($dsondage->sujet,'@') !== false) {
-    $input.=",";
-    foreach ($toutsujet as $value) {
-        $heures=explode("@",$value);
-        $input.= '"'.$heures[1].'",';
+    echo $titles_line . "\r\n";
+    echo $moments_line . "\r\n";
+} else {
+    echo ',';
+    foreach ($slots as $slot) {
+        echo Utils::markdown($slot->title, true) . ',';
     }
-
-    $input.="\r\n";
+    echo "\r\n";
 }
+// END - CSV header
 
-while ( $data=$user_studs->FetchNextObject(false)) {
-    // Le nom de l'utilisateur
-    $nombase=html_entity_decode(str_replace("°","'",$data->nom));
-    $input.= '"'.$nombase.'",';
-    //affichage des resultats
-    $ensemblereponses=$data->reponses;
-    for ($k=0;$k<$nbcolonnes;$k++) {
-        $car=substr($ensemblereponses,$k,1);
-        switch ($car) {
-            case "1": $input .= '"'._('Yes').'",'; $somme[$k]++; break;
-            case "2": $input .= '"'._('Ifneedbe').'",'; break;
-            default: $input .= '"'._('No').'",'; break;
+// Vote lines
+foreach ($votes as $vote) {
+    echo Utils::csvEscape($vote->name) . ',';
+    $choices = str_split($vote->choices);
+    foreach ($choices as $choice) {
+        switch ($choice) {
+            case 0:
+                $text = _('No');
+                break;
+            case 1:
+                $text = _('Ifneedbe');
+                break;
+            case 2:
+                $text = _('Yes');
+                break;
+            default:
+                $text = 'unkown';
         }
+        echo Utils::csvEscape($text);
+        echo ',';
     }
-
-    $input.="\r\n";
+    echo "\r\n";
 }
+// END - Vote lines
 
-$filesize = strlen( $input );
-$filename=$_GET["numsondage"].".csv";
+// HTTP headers
+$content = ob_get_clean();
+$filesize = strlen($content);
+$filename = Utils::cleanFilename($poll->title) . '.csv';
 
-header( 'Content-Type: text/csv; charset=utf-8' );
-header( 'Content-Length: '.$filesize );
-header( 'Content-Disposition: attachment; filename="'.$filename.'"' );
-header( 'Cache-Control: max-age=10' );
+header('Content-Type: text/csv; charset=utf-8');
+header('Content-Length: ' . $filesize);
+header('Content-Disposition: attachment; filename="' . $filename . '"');
+header('Cache-Control: max-age=10');
+// END - HTTP headers
 
-echo str_replace('&quot;','""',$input);
-
-die();
+echo $content;

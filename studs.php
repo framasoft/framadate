@@ -35,6 +35,7 @@ $editingVoteId = 0;
 
 /* Services */
 /*----------*/
+
 $logService = new LogService(LOG_FILE);
 $pollService = new PollService($connect, $logService);
 $inputService = new InputService();
@@ -161,7 +162,7 @@ if (isset($_POST['add_comment'])) {
 
 // Retrieve data
 $slots = $pollService->allSlotsByPollId($poll_id);
-$votes = $pollService->allUserVotesByPollId($poll_id);
+$votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
 
 

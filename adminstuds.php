@@ -339,7 +339,7 @@ if (isset($_POST['confirm_add_slot'])) {
 
 // Retrieve data
 $slots = $pollService->allSlotsByPollId($poll_id);
-$votes = $pollService->allUserVotesByPollId($poll_id);
+$votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
 
 

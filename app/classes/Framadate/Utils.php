@@ -133,7 +133,7 @@ class Utils {
         return TABLENAME_PREFIX . $tableName;
     }
 
-    public static function markdown($md) {
+    public static function markdown($md, $clear) {
         preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/', $md, $md_a_img); // Markdown [![alt](src)](href)
         preg_match_all('/!\[(.*?)\]\((.*?)\)/', $md, $md_img); // Markdown ![alt](src)
         preg_match_all('/\[(.*?)\]\((.*?)\)/', $md, $md_a); // Markdown [text](href)
@@ -159,6 +159,21 @@ class Utils {
 
         }
 
-        return $html;
+        return $clear ? $text : $html;
+    }
+
+    public static function csvEscape($text) {
+        $escaped = str_replace('"', '""', $text);
+        $escaped = str_replace("\r\n", '', $escaped);
+        $escaped = str_replace("\n", '', $escaped);
+
+        return '"' . $escaped . '"';
+    }
+
+    public static function cleanFilename($title) {
+        $cleaned = preg_replace('[^a-zA-Z0-9._-]', '_', $title);
+        $cleaned = preg_replace(' {2,}', ' ', $cleaned);
+
+        return $cleaned;
     }
 }

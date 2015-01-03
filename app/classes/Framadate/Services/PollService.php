@@ -50,7 +50,7 @@ class PollService {
         return $this->connect->allCommentsByPollId($poll_id);
     }
 
-    function allUserVotesByPollId($poll_id) {
+    function allVotesByPollId($poll_id) {
         return $this->connect->allUserVotesByPollId($poll_id);
     }
 
