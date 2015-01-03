@@ -19,6 +19,7 @@
 namespace Framadate;
 
 include_once __DIR__ . '/app/inc/init.php';
+
 if (!isset($_SESSION['form'])) {
     $_SESSION['form'] = new Form();
 }

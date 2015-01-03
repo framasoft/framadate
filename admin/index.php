@@ -17,7 +17,6 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 namespace Framadate;
-session_start();
 
 include_once __DIR__ . '/../app/inc/init.php';
 include_once __DIR__ . '/../bandeaux.php';

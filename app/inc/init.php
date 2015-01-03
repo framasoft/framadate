@@ -19,6 +19,9 @@
 use Framadate\FramaDB;
 use Framadate\Utils;
 
+// Autoloading of dependencies with Composer
+require_once __DIR__ . '/../../vendor/autoload.php';
+
 if (session_id() == '') {
     session_start();
 }
@@ -28,9 +31,6 @@ if (ini_get('date.timezone') == '') {
 }
 
 include_once __DIR__ . '/constants.php';
-
-// Autoloading of dependencies with Composer
-require_once __DIR__ . '/../../vendor/autoload.php';
 include_once __DIR__ . '/i18n.php';
 
 // Smarty
