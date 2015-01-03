@@ -49,8 +49,14 @@ $smarty->assign('lang', $lang);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);
 $smarty->assign('date_format', $date_format);
 
-function smarty_modifier_poll_url($poll_id, $admin=false){return Utils::getUrlSondage($poll_id, $admin);}
-function smarty_modifier_markdown($md) {return Utils::markdown($md);}
+function smarty_modifier_poll_url($poll_id, $admin = false) {
+    return Utils::getUrlSondage($poll_id, $admin);
+}
+
+function smarty_modifier_markdown($md, $clear = false) {
+    return Utils::markdown($md, $clear);
+}
+
 // End- Smarty
 
 $connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);

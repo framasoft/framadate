@@ -177,7 +177,7 @@
             <ul style="list-style:none">
                 {foreach $slots as $slot}
                     {if $best_choices[$i] == $max}
-                        <li><strong>{$slot->title}</strong></li>
+                        <li><strong>{$slot->title|markdown:true}</strong></li>
                     {/if}
                     {$i = $i+1}
                 {/foreach}
