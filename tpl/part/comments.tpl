@@ -1,4 +1,4 @@
-<hr role="presentation" id="comments"/>
+<hr role="presentation" id="comments" class="hidden-print"/>
 <form action="#comments" method="POST">
 
     {* Comment list *}

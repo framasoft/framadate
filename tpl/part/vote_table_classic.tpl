@@ -10,7 +10,7 @@
             <caption class="sr-only">{_('Votes of the poll')} {$poll->title}</caption>
             <thead>
             {if $admin}
-                <tr>
+                <tr class="hidden-print">
                     <th role="presentation"></th>
                     {foreach $slots as $id=>$slot}
                         <td headers="C{$id}">

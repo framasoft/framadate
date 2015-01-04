@@ -1,6 +1,6 @@
     <header role="banner">
     {if count($langs)>1}
-        <form method="post" action="">
+        <form method="post" action="" class="hidden-print">
             <div class="input-group input-group-sm pull-right col-md-2 col-xs-4">
                 <select name="lang" class="form-control" title="${_("Select the language")}" >
                 {foreach $langs as $lang_key=>$lang_value}

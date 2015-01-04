@@ -19,7 +19,7 @@
                     </div>
                 {/if}
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5 hidden-print">
                 <div class="btn-group pull-right">
                     <button onclick="print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> {_('Print')}</button>
                     <a href="{$SERVER_URL}exportcsv.php?poll={$poll_id}" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> {_('Export to CSV')}</a>
