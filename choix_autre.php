@@ -53,6 +53,8 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
     bandeau_pied();
 
 } else {
+    $min_time = time() + 86400;
+    $max_time = time() + (86400 * $config['default_poll_duration']);
 
     // Step 4 : Data prepare before insert in DB
     if (isset($_POST['confirmecreation'])) {
@@ -174,7 +176,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         }
         $summary .= '</ol>';
 
-        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $_SESSION['form']->end_date)); //textual date
+        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_time)); //textual date
 
         echo '
     <form name="formulaire" action="' . Utils::get_server_name() . 'choix_autre.php" method="POST" class="form-horizontal" role="form">

@@ -54,13 +54,14 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
     bandeau_pied();
 
 } else {
+    $min_time = time() + 86400;
+    $max_time = time() + (86400 * $config['default_poll_duration']);
+
     // Step 4 : Data prepare before insert in DB
     if (!empty($_POST['confirmation'])) {
 
         // Define expiration date
         $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
-        $min_time = time() + (24 * 60 * 60);
-        $max_time = time() + (86400 * $config['default_poll_duration']);
 
         if (!empty($enddate)) {
             $registredate = explode('/', $enddate);
@@ -172,7 +173,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         }
         $summary .= '</ul>';
 
-        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $_SESSION['form']->end_date)); //textual date
+        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_time)); //textual date
 
         echo '
     <form name="formulaire" action="' . Utils::get_server_name() . 'choix_date.php" method="POST" class="form-horizontal" role="form">
