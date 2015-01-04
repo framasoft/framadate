@@ -567,7 +567,7 @@ msgstr "Löschdatum:"
 msgid "Your poll will be automatically removed after 6 months."
 msgstr "Ihre Umfrage wird automatisch nach 6 Monaten gelöscht."
 
-msgid "You can fix another removal date for it."
+msgid "You can set a closer removal date for it."
 msgstr "Sie können jedoch auch ein anderes Löschdatum festlegen."
 
 msgid "Removal date (optional)"

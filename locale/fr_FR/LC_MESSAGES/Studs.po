@@ -576,8 +576,8 @@ msgstr "Date de suppression :"
 msgid "Your poll will be automatically removed after"
 msgstr "Votre sondage sera automatiquement effacé dans"
 
-msgid "You can fix another removal date for it."
-msgstr "Néanmoins vous pouvez décider ci-dessous d'une date plus rapprochée pour la suppression de votre sondage."
+msgid "You can set a closer removal date for it."
+msgstr "Vous pouvez décider d'une date de suppression plus proche."
 
 msgid "Removal date (optional)"
 msgstr "Date de fin (facultative)"

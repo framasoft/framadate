@@ -58,22 +58,29 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
     if (!empty($_POST['confirmation'])) {
 
         // Define expiration date
-        if (!empty($_POST['champdatefin']))
-        {
-            $registredate = explode('/', $_POST['champdatefin']);
-            if (is_array($registredate) && count($registredate) == 3)
-            {
-                $time = mktime(0,0,0, $registredate[1], $registredate[0], $registredate[2]);
-                if ($time > time() + (24*60*60))
-                {
-                    $_SESSION['form']->end_date=$time;
+        $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
+        $min_time = time() + (24 * 60 * 60);
+        $max_time = time() + (86400 * $config['default_poll_duration']);
+
+        if (!empty($enddate)) {
+            $registredate = explode('/', $enddate);
+
+            if (is_array($registredate) && count($registredate) == 3) {
+                $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
+
+                if ($time < $min_time) {
+                    $_SESSION['form']->end_date = $min_time;
+                } elseif ($max_time < $time) {
+                    $_SESSION['form']->end_date = $max_time;
+                } else {
+                    $_SESSION['form']->end_date = $time;
                 }
             }
         }
 
-        if(empty($_SESSION['form']->end_date)) {
+        if (empty($_SESSION['form']->end_date)) {
             // By default, expiration date is 6 months after last day
-            $_SESSION['form']->end_date=end($temp_results)+(86400 * $config['default_poll_duration']);
+            $_SESSION['form']->end_date = $max_time;
         }
 
         // Insert poll in database
@@ -165,6 +172,8 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         }
         $summary .= '</ul>';
 
+        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $_SESSION['form']->end_date)); //textual date
+
         echo '
     <form name="formulaire" action="' . Utils::get_server_name() . 'choix_date.php" method="POST" class="form-horizontal" role="form">
     <div class="row" id="selected-days">
@@ -175,13 +184,13 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
                 '. $summary .'
             </div>
             <div class="alert alert-info clearfix">
-                <p>' . _('Your poll will be automatically removed '). $config['default_poll_duration'] . ' ' . _("days") . ' ' ._('after the last date of your poll') . '.<br />' . _('You can fix another removal date for it.') .'</p>
+                <p>' . _('Your poll will be automatically removed '). $config['default_poll_duration'] . ' ' . _('days') . ' ' ._('after the last date of your poll') . '.<br />' . _('You can set a closer removal date for it.') .'</p>
                 <div class="form-group">
-                    <label for="champdatefin" class="col-sm-5 control-label">'. _('Removal date') .'</label>
+                    <label for="enddate" class="col-sm-5 control-label">'. _('Removal date') .'</label>
                     <div class="col-sm-6">
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                            <input type="text" class="form-control" id="champdatefin" data-date-format="'. _("dd/mm/yyyy") .'" aria-describedby="dateformat" name="champdatefin" value="'.strftime('%d/%m/%Y', $removal_date).'" size="10" maxlength="10" placeholder="'. _('dd/mm/yyyy') .'" />
+                            <input type="text" class="form-control" id="enddate" data-date-format="'. _('dd/mm/yyyy') .'" aria-describedby="dateformat" name="enddate" value="'.$end_date_str.'" size="10" maxlength="10" placeholder="'. _('dd/mm/yyyy') .'" />
                         </div>
                     </div>
                     <span id="dateformat" class="sr-only">'. _("(dd/mm/yyyy)") .'</span>

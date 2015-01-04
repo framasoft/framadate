@@ -526,7 +526,7 @@ msgid "Characters \" < and > are not permitted"
 msgstr "Los caracteres \" < y > no estan autorizados!"
 
 #: choix_autre.php:191
-msgid "Your poll will be automatically removed after 6 months.<br> You can fix another removal date for it."
+msgid "Your poll will be automatically removed after 6 months.<br> You can set a closer removal date for it."
 msgstr "Su encuesta ser&aacute; automaticamente borrado dentro de 6 meses.<br> Mientras, usted puede cambiar este fecha aqu&iacute;."
 
 #: choix_autre.php:193
