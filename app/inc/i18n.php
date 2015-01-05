@@ -50,7 +50,7 @@ if (strtoupper(substr(PHP_OS,0,3))=='WIN'){
 putenv('LANGUAGE=');//sert à quoi?
 setlocale(LC_ALL, $locale);
 setlocale(LC_TIME, $locale);
-//setlocale(LC_MESSAGES, $locale);
+setlocale(5, $locale); // 5 = LC_MESSAGES (but LC_MESSAGES is not always present)
 
 $domain = 'Studs';
 bindtextdomain($domain, 'locale');
