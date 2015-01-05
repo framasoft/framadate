@@ -16,6 +16,7 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft https://git.framasoft.org/framasoft/framadate/)
  */
+use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\PollService;
 use Framadate\Services\MailService;
@@ -31,6 +32,7 @@ $logService = new LogService(LOG_FILE);
 $pollService = new PollService($connect, $logService);
 $mailService = new MailService($config['use_smtp']);
 $purgeService = new PurgeService($connect, $logService);
+$inputService = new InputService();
 
 if (is_readable('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
@@ -135,7 +137,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
                     $choice = new Choice($time);
                     $_SESSION['form']->addChoice($choice);
 
-                    $schedules = $_POST['horaires'.$i];
+                    $schedules = $inputService->filterArray($_POST['horaires'.$i], FILTER_DEFAULT);
                     for($j = 0; $j < count($schedules); $j++) {
                         if (!empty($schedules[$j])) {
                             $choice->addSlot($schedules[$j]);

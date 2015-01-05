@@ -29,7 +29,7 @@ class InputService {
      * This method filter an array calling "filter_var" on each items.
      * Only items validated are added at their own indexes, the others are not returned.
      */
-    function filterArray(array $arr, $type, $options) {
+    function filterArray(array $arr, $type, $options = null) {
         $newArr = [];
 
         foreach($arr as $id=>$item) {

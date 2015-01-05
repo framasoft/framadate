@@ -40,16 +40,15 @@ if ((isset($_GET['choix_sondage']) && $_GET['choix_sondage'] == 'date') ||
     $_SESSION['form']->choix_sondage = $choix_sondage;
 }
 
-// On teste toutes les variables pour supprimer l'ensemble des warnings PHP
-// On transforme en entites html les données afin éviter les failles XSS
-$post_var = array('poursuivre', 'titre', 'nom', 'adresse', 'commentaires', 'editable', 'receiveNewVotes', 'creation_sondage_date', 'creation_sondage_autre');
-foreach ($post_var as $var) {
-    if (isset($_POST[$var]) === true) {
-        $$var = htmlentities($_POST[$var], ENT_QUOTES, 'UTF-8');
-    } else {
-        $$var = null;
-    }
-}
+// We clean the data
+$poursuivre = filter_input(INPUT_POST, 'poursuivre', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(creation_sondage_date|creation_sondage_autre)$/']]);
+$titre = filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_STRING);
+$nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
+$adresse = filter_input(INPUT_POST, 'adresse', FILTER_VALIDATE_EMAIL);
+$commentaires = filter_input(INPUT_POST, 'commentaires', FILTER_SANITIZE_STRING);
+$editable = filter_input(INPUT_POST, 'editable', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(on|off|true|false|1|0)$/']]);
+$receiveNewVotes = filter_input(INPUT_POST, 'receiveNewVotes', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(on|off|true|false|1|0)$/']]);
+
 
 // On initialise également les autres variables
 $erreur_adresse = false;

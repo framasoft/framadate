@@ -134,7 +134,8 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
             $_SESSION['form']->clearChoices();
             foreach ($_POST['choices'] as $c) {
                 if (!empty($c)) {
-                    $choice = new Choice(htmlentities(html_entity_decode($c, ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8'));
+                    $c = filter_var($c, FILTER_SANITIZE_STRING);
+                    $choice = new Choice($c);
                     $_SESSION['form']->addChoice($choice);
                 }
             }
