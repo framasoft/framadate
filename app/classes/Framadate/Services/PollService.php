@@ -75,6 +75,10 @@ class PollService {
         return $this->connect->insertComment($poll_id, $name, $comment);
     }
 
+    public function countVotesByPollId($poll_id) {
+        return $this->connect->countVotesByPollId($poll_id);
+    }
+
     function computeBestChoices($votes) {
         $result = [];
         foreach ($votes as $vote) {

@@ -274,4 +274,21 @@ class FramaDB {
         return $prepared->fetchAll();
     }
 
+    public function findAllPolls() {
+        $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' ORDER BY end_date ASC');
+        $prepared->execute([]);
+
+        return $prepared->fetchAll();
+    }
+
+    public function countVotesByPollId($poll_id) {
+        $prepared = $this->prepare('SELECT count(1) nb FROM ' . Utils::table('vote') . ' WHERE poll_id = ?');
+
+        $prepared->execute([$poll_id]);
+        $result = $prepared->fetch();
+        $prepared->closeCursor();
+
+        return $result->nb;
+    }
+
 }

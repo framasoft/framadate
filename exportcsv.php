@@ -36,7 +36,7 @@ $poll = null;
 /* Services */
 /*----------*/
 
-$logService = new LogService(LOG_FILE);
+$logService = new LogService();
 $pollService = new PollService($connect, $logService);
 
 /* PAGE */

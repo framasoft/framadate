@@ -8,10 +8,7 @@ namespace Framadate\Services;
  */
 class LogService {
 
-    private $output;
-
-    function __construct($output) {
-        $this->output = $output;
+    function __construct() {
     }
 
     /**
@@ -21,7 +18,7 @@ class LogService {
      * @param $message string some message
      */
     function log($tag, $message) {
-        error_log(date('Ymd His') . ' [' . $tag . '] ' . $message . "\n", 3, $this->output);
+        error_log(date('Ymd His') . ' [' . $tag . '] ' . $message . "\n", 3, LOG_FILE);
     }
 
 }
