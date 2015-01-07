@@ -30,15 +30,17 @@ if (ini_get('date.timezone') == '') {
     date_default_timezone_set('Europe/Paris');
 }
 
+define('ROOT_DIR', __DIR__ . '/../../');
+
 require_once __DIR__ . '/constants.php';
 require_once __DIR__ . '/i18n.php';
 
 // Smarty
 require_once __DIR__ . '/../../vendor/smarty/smarty/libs/Smarty.class.php';
 $smarty = new \Smarty();
-$smarty->setTemplateDir('tpl/');
-$smarty->setCompileDir('tpl_c/');
-$smarty->setCacheDir('cache/');
+$smarty->setTemplateDir(ROOT_DIR . '/tpl/');
+$smarty->setCompileDir(ROOT_DIR . '/tpl_c/');
+$smarty->setCacheDir(ROOT_DIR . '/cache/');
 $smarty->caching = false;
 
 $smarty->assign('APPLICATION_NAME', NOMAPPLICATION);
@@ -55,6 +57,10 @@ function smarty_modifier_poll_url($poll_id, $admin = false) {
 
 function smarty_modifier_markdown($md, $clear = false) {
     return Utils::markdown($md, $clear);
+}
+
+function smarty_modifier_resource($link) {
+    return Utils::get_server_name() . $link;
 }
 
 // End- Smarty

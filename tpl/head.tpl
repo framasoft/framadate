@@ -9,19 +9,19 @@
             <title>{$APPLICATION_NAME}</title>
         {/if}
 
-        <link rel="stylesheet" href="{$SERVER_URL}css/bootstrap.min.css">
-        <link rel="stylesheet" href="{$SERVER_URL}css/datepicker3.css">
-        <link rel="stylesheet" href="{$SERVER_URL}css/style.css">
-        <link rel="stylesheet" href="{$SERVER_URL}css/frama.css">
-        <link rel="stylesheet" href="{$SERVER_URL}css/print.css" media="print">
-        <script type="text/javascript" src="{$SERVER_URL}js/jquery-1.11.1.min.js"></script>
-        <script type="text/javascript" src="{$SERVER_URL}js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="{$SERVER_URL}js/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="{$SERVER_URL}js/locales/bootstrap-datepicker.{$lang}.js"></script>
-        <script type="text/javascript" src="{$SERVER_URL}js/core.js"></script>
+        <link rel="stylesheet" href="{'css/bootstrap.min.css'|resource}">
+        <link rel="stylesheet" href="{'css/datepicker3.css'|resource}">
+        <link rel="stylesheet" href="{'css/style.css'|resource}">
+        <link rel="stylesheet" href="{'css/frama.css'|resource}">
+        <link rel="stylesheet" href="{'css/print.css'|resource}" media="print">
+        <script type="text/javascript" src="{'js/jquery-1.11.1.min.js'|resource}"></script>
+        <script type="text/javascript" src="{'js/bootstrap.min.js'|resource}"></script>
+        <script type="text/javascript" src="{'js/bootstrap-datepicker.js'|resource}"></script>
+        <script type="text/javascript" src="{"js/locales/bootstrap-datepicker.$lang.js"|resource}"></script>
+        <script type="text/javascript" src="{'js/core.js'|resource}"></script>
         
         {if !empty($nav_js)}
-            <script src="/nav/nav.js" id="nav_js" type="text/javascript" charset="utf-8"></script><!-- /Framanav -->
+            <script src="{'nav/nav.js'|resource}" id="nav_js" type="text/javascript" charset="utf-8"></script><!-- /Framanav -->
         {/if}
 
     </head>

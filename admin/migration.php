@@ -4,11 +4,7 @@ use Framadate\Migration\From_0_8_to_0_9_Migration;
 use Framadate\Migration\Migration;
 use Framadate\Utils;
 
-include_once __DIR__ . '/app/inc/init.php';
-
-function output($msg) {
-    echo $msg . '<br/>';
-}
+include_once __DIR__ . '/../app/inc/init.php';
 
 // List a Migration sub classes to execute
 $migrations = [
@@ -43,12 +39,15 @@ $countFailed = 0;
 $countSkipped = 0;
 
 // Loop on every Migration sub classes
+$success = [];
+$fail = [];
 foreach ($migrations as $migration) {
     $className = get_class($migration);
 
     // Check if $className is a Migration sub class
     if (!$migration instanceof Migration) {
-        output('The class ' . $className . ' is not a sub class of Framadate\\Migration\\Migration.');
+        $smarty->assign('error', 'The class ' . $className . ' is not a sub class of Framadate\\Migration\\Migration.');
+        $smarty->display('error.tpl');
         exit;
     }
 
@@ -61,10 +60,10 @@ foreach ($migrations as $migration) {
         $migration->execute($pdo);
         if ($insertStmt->execute([$className])) {
             $countSucceeded++;
-            output('Migration done: ' . $className);
+            $success[] = $className;
         } else {
             $countFailed++;
-            output('Migration failed: ' . $className);
+            $fail[] = $className;
         }
     } else {
         $countSkipped++;
@@ -74,7 +73,14 @@ foreach ($migrations as $migration) {
 
 $countTotal = $countSucceeded + $countFailed + $countSkipped;
 
-output('Summary<hr/>');
-output('Success: ' . $countSucceeded . ' / ' . $countTotal);
-output('Fail: ' . $countFailed . ' / ' . $countTotal);
-output('Skipped: ' . $countSkipped . ' / ' . $countTotal);
+$smarty->assign('success', $success);
+$smarty->assign('fail', $fail);
+
+$smarty->assign('countSucceeded', $countSucceeded);
+$smarty->assign('countFailed', $countFailed);
+$smarty->assign('countSkipped', $countSkipped);
+$smarty->assign('countTotal', $countTotal);
+
+$smarty->assign('title', _('Migration'));
+
+$smarty->display('admin/migration.tpl');
