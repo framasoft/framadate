@@ -364,6 +364,20 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#expiration-form .btn-edit').on('click', function() {
+        $('#expiration-form p').hide();
+        $('.js-expiration').removeClass("hidden");
+        $('.js-expiration input').focus();
+        return false;
+    });
+
+    $('#expiration-form .btn-cancel').on('click', function() {
+        $('#expiration-form p').show();
+        $('#expiration-form .js-expiration').addClass("hidden");
+        $('#expiration-form .btn-edit').focus();
+        return false;
+    });
+
     // Horizontal scroll buttons
     if($('.results').width() > $('.container').width()) {
         $('.scroll-buttons').removeClass('hidden');

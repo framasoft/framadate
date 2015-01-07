@@ -12,8 +12,8 @@
                         <div class="input-group">
                             <input type="text" class="form-control" id="newtitle" name="title" size="40" value="{$poll->title}" />
                             <span class="input-group-btn">
-                                <button type="submit" class="btn btn-success" name="update_poll_info" value="title" title="'{_('Save the new title')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Save')}</span></button>
-                                <button class="btn btn-link btn-cancel" title="#_('Cancel the title edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{_('Cancel')}</span></button>
+                                <button type="submit" class="btn btn-success" name="update_poll_info" value="title" title="{_('Save the new title')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Save')}</span></button>
+                                <button class="btn btn-link btn-cancel" title="{_('Cancel the title edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{_('Cancel')}</span></button>
                             </span>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                             <li><button class="btn btn-link" type="submit" name="remove_all_votes">{_('Remove all the votes') }</button></li>
                             <li><button class="btn btn-link" type="submit" name="remove_all_comments">{_('Remove all the comments')}</button></li>
                             <li class="divider" role="presentation"></li>
-                            <li><button class="btn btn-link" type="submit" name="delete_poll">{_("Remove the poll")}</button></li>
+                            <li><button class="btn btn-link" type="submit" name="delete_poll">{_('Remove the poll')}</button></li>
                         </ul>
                     {/if}
                 </div>
@@ -62,7 +62,7 @@
                     <h4 class="control-label">{_("Description")}{if $admin}<button class="btn btn-link btn-sm btn-edit" title="{_('Edit the description')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button>{/if}</h4>
                     <p class="form-control-static well">{$poll->comment}</p>
                     <div class="hidden js-desc text-right">
-                        <label class="sr-only" for="newdescription">'._("Description") .'</label>
+                        <label class="sr-only" for="newdescription">{_("Description")}</label>
                         <textarea class="form-control" id="newdescription" name="comment" rows="2" cols="40">{$poll->comment}</textarea>
                         <button type="submit" id="btn-new-desc" name="update_poll_info" value="comment" class="btn btn-sm btn-success" title="{_("Save the description")}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Save')}</span></button>
                         <button class="btn btn-default btn-sm btn-cancel" title="{_('Cancel the description edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{_('Cancel')}</span></button>
@@ -72,24 +72,36 @@
         </div>
 
         <div class="row">
-            <div class="form-group form-group {if $admin}col-md-5{else}col-md-6{/if}">
+            <div class="form-group form-group {if $admin}col-md-4{else}col-md-6{/if}">
                 <label for="public-link"><a class="public-link" href="{$poll_id|poll_url}">{_("Public link of the poll")} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
                 <input class="form-control" id="public-link" type="text" readonly="readonly" value="{$poll_id|poll_url}" />
             </div>
             {if $admin}
-                <div class="form-group col-md-5">
+                <div class="form-group col-md-4">
                     <label for="admin-link"><a class="admin-link" href="{$admin_poll_id|poll_url:true}">{_("Admin link of the poll")} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
                     <input class="form-control" id="admin-link" type="text" readonly="readonly" value="{$admin_poll_id|poll_url:true}" />
                 </div>
-                <div class="form-group col-md-2">
+                <div id="expiration-form" class="form-group col-md-4">
                     <h4 class="control-label">{_("Expiration's date")}</h4>
-                    <p>{$poll->end_date|date_format:$date_format['txt_date']}</p>
+                    <p>{$poll->end_date|date_format:$date_format['txt_date']}{if $admin} <button class="btn btn-link btn-sm btn-edit" title="{_('Edit the email adress')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button>{/if}</p>
+                    {if $admin}
+                        <div class="hidden js-expiration">
+                            <label class="sr-only" for="newtitle">{_("Title")}</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="newtitle" name="expiration_date" size="40" value="{$poll->end_date|date_format:$date_format['txt_date']}" />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-success" name="update_poll_info" value="expiration_date" title="{_('Save the new expiration date')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Save')}</span></button>
+                                    <button class="btn btn-link btn-cancel" title="{_('Cancel the expiration date edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{_('Cancel')}</span></button>
+                                </span>
+                            </div>
+                        </div>
+                    {/if}
                 </div>
             {/if}
         </div>
         {if $admin}
             <div class="row">
-                <div class="col-md-5 col-md-offset-7" >
+                <div class="col-md-4 col-md-offset-8" >
                     <div id="poll-rules-form">
                         {if $poll->active}
                             {if $poll->editable}
@@ -106,7 +118,7 @@
                             {$rule_icon = '<span class="glyphicon glyphicon-lock"></span>'}
                             {$rule_txt = _('Votes and comments are locked')}
                         {/if}
-                        <p class="pull-right">{$rule_icon} {$rule_txt}<button class="btn btn-link btn-sm btn-edit" title="{_('Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button></p>
+                        <p class="">{$rule_icon} {$rule_txt}<button class="btn btn-link btn-sm btn-edit" title="{_('Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button></p>
                         <div class="hidden js-poll-rules">
                             <label class="sr-only" for="rules">{_("Poll rules")}</label>
                             <div class="input-group">
