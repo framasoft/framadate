@@ -27,6 +27,7 @@ include_once __DIR__ . '/app/inc/init.php';
 
 /* Variables */
 /* --------- */
+
 $admin_poll_id = null;
 $poll_id = null;
 $poll = null;
