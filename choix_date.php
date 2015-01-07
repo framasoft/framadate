@@ -140,7 +140,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
                     $schedules = $inputService->filterArray($_POST['horaires'.$i], FILTER_DEFAULT);
                     for($j = 0; $j < count($schedules); $j++) {
                         if (!empty($schedules[$j])) {
-                            $choice->addSlot($schedules[$j]);
+                            $choice->addSlot(strip_tags($schedules[$j]));
                         }
                     }
                 }

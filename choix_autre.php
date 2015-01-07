@@ -134,7 +134,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
             $_SESSION['form']->clearChoices();
             foreach ($_POST['choices'] as $c) {
                 if (!empty($c)) {
-                    $c = filter_var($c, FILTER_SANITIZE_STRING);
+                    $c = strip_tags($c);
                     $choice = new Choice($c);
                     $_SESSION['form']->addChoice($choice);
                 }

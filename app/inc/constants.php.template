@@ -55,6 +55,11 @@ $ALLOWED_LANGUAGES = [
     'de_DE' => 'Deutsch',
 ];
 
+// Regex
+const POLL_REGEX = '/^[a-z0-9]+$/';
+const CHOICE_REGEX = '/^[012]$/';
+const NAME_REGEX = '/^[ a-z0-9_ -]+$/i';
+
 // Path to logo
 const LOGOBANDEAU = '<relative path to the logo file>';
 

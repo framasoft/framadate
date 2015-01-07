@@ -53,7 +53,7 @@ $mailService = new MailService($config['use_smtp']);
 function sendUpdateNotification($poll, $mailService) {
     if ($poll->receiveNewVotes && !isset($_SESSION['mail_sent'][$poll->id])) {
 
-        $subject = '[' . NOMAPPLICATION . '] ' . _('Poll\'s participation') . ' : ' . html_entity_decode($poll->title, ENT_QUOTES, 'UTF-8');
+        $subject = '[' . NOMAPPLICATION . '] ' . _('Poll\'s participation') . ' : ' . $poll->title;
         $message = html_entity_decode('"$nom" ', ENT_QUOTES, 'UTF-8') .
             _('has filled a line.\nYou can find your poll at the link') . " :\n\n" .
             Utils::getUrlSondage($poll->admin_poll_id, true) . " \n\n" .
@@ -68,8 +68,8 @@ function sendUpdateNotification($poll, $mailService) {
 /* PAGE */
 /* ---- */
 
-if(!empty($_GET['poll'])) {
-    $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9]+$/']]);
+if (!empty($_GET['poll'])) {
+    $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
     $poll = $pollService->findById($poll_id);
 }
 
@@ -94,7 +94,7 @@ if (!empty($_POST['edit_vote'])) {
 
 if (!empty($_POST['save'])) { // Save edition of an old vote
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
-    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
+    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
     if (empty($editedVote)) {
         $message = new Message('danger', _('Something is going wrong...'));
@@ -114,8 +114,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         }
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
-    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9_ -]+$/i']]);
-    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
+    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
     if (empty($name)) {
         $message = new Message('danger', _('Name is incorrect.'));
@@ -141,8 +141,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 // -------------------------------
 
 if (isset($_POST['add_comment'])) {
-    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9_ -]+$/i']]);
-    $comment = filter_input(INPUT_POST, 'comment', FILTER_DEFAULT);
+    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+    $comment = strip_tags($_POST['comment']);
 
     if (empty($name)) {
         $message = new Message('danger', _('Name is incorrect.'));

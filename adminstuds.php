@@ -46,7 +46,7 @@ $inputService = new InputService();
 /* ---- */
 
 if (!empty($_GET['poll']) && strlen($_GET['poll']) === 24) {
-    $admin_poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^[a-z0-9]+$/']]);
+    $admin_poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
     $poll_id = substr($admin_poll_id, 0, 16);
     $poll = $pollService->findById($poll_id);
 }
@@ -67,7 +67,7 @@ if (isset($_POST['update_poll_info'])) {
 
     // Update the right poll field
     if ($field == 'title') {
-        $title = filter_input(INPUT_POST, 'title', FILTER_DEFAULT);
+        $title = strip_tags($_POST['title']);
         if ($title) {
             $poll->title = $title;
             $updated = true;
@@ -79,13 +79,13 @@ if (isset($_POST['update_poll_info'])) {
             $updated = true;
         }
     } elseif ($field == 'comment') {
-        $comment = filter_input(INPUT_POST, 'comment', FILTER_DEFAULT);
+        $comment = strip_tags($_POST['comment']);
         if ($comment) {
             $poll->comment = $comment;
             $updated = true;
         }
     } elseif ($field == 'rules') {
-        $rules = filter_input(INPUT_POST, 'rules', FILTER_DEFAULT);
+        $rules = strip_tags($_POST['rules']);
         switch ($rules) {
             case 0:
                 $poll->active = false;
@@ -127,7 +127,7 @@ if (!empty($_POST['edit_vote'])) {
 
 if (!empty($_POST['save'])) { // Save edition of an old vote
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
-    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
+    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
     if (empty($editedVote)) {
         $message = new Message('danger', _('Something is going wrong...'));
@@ -146,8 +146,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         }
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
-    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9_ -]+$/i']]);
-    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[012]$/']]);
+    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
     if (empty($name)) {
         $message = new Message('danger', _('Name is incorrect.'));
@@ -204,8 +204,8 @@ if (isset($_POST['confirm_remove_all_votes'])) {
 // -------------------------------
 
 if (isset($_POST['add_comment'])) {
-    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options'=>['regexp'=>'/^[a-z0-9_ -]+$/i']]);
-    $comment = filter_input(INPUT_POST, 'comment', FILTER_DEFAULT);
+    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+    $comment = strip_tags($_POST['comment']);
 
     if (empty($name)) {
         $message = new Message('danger', _('Name is incorrect.'));
@@ -308,7 +308,7 @@ if (!empty($_POST['delete_column'])) {
 }
 
 // -------------------------------
-// Delete a slot
+// Add a slot
 // -------------------------------
 
 if (isset($_POST['add_slot'])) {
@@ -321,14 +321,14 @@ if (isset($_POST['add_slot'])) {
 }
 if (isset($_POST['confirm_add_slot'])) {
     if ($poll->format === 'D') {
-        $newdate = filter_input(INPUT_POST, 'newdate', FILTER_DEFAULT);
-        $newmoment = filter_input(INPUT_POST, 'newmoment', FILTER_DEFAULT);
+        $newdate = strip_tags($_POST['newdate']);
+        $newmoment = strip_tags($_POST['newmoment']);
 
         $ex = explode('/', $newdate);
         $result = $adminPollService->addSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
     } else {
-        $newslot = filter_input(INPUT_POST, 'choice', FILTER_DEFAULT);
-        $result = $adminPollService->addSlot($poll_id,$newslot, null);
+        $newslot = strip_tags($_POST['choice']);
+        $result = $adminPollService->addSlot($poll_id, $newslot, null);
     }
 
     if ($result) {
