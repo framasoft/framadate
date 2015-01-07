@@ -45,9 +45,9 @@
                     <div id="email-form">
                         <p>{$poll->admin_mail} <button class="btn btn-link btn-sm btn-edit" title="{_('Edit the email adress')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button></p>
                         <div class="hidden js-email">
-                            <label class="sr-only" for="newemail">{_("Email adress")}</label>
+                            <label class="sr-only" for="admin_mail">{_("Email adress")}</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="admin_mail" size="40" value="{$poll->admin_mail}" />
+                                <input type="text" class="form-control" id="admin_mail" name="admin_mail" size="40" value="{$poll->admin_mail}" />
                                 <span class="input-group-btn">
                                     <button type="submit" name="update_poll_info" value="admin_mail" class="btn btn-success" title="{_('Save the email address ')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Save')}</span></button>
                                     <button class="btn btn-link btn-cancel" title="{_('Cancel the email address edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{_('Cancel')}</span></button>
@@ -108,7 +108,7 @@
                         {/if}
                         <p class="pull-right">{$rule_icon} {$rule_txt}<button class="btn btn-link btn-sm btn-edit" title="{_('Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button></p>
                         <div class="hidden js-poll-rules">
-                            <label class="sr-only" for="newrules">{_("Poll rules")}</label>
+                            <label class="sr-only" for="rules">{_("Poll rules")}</label>
                             <div class="input-group">
                                 <select class="form-control" id="rules" name="rules">
                                     <option value="0"{if $rule_id==0} selected="selected"{/if}>{_("Votes and comments are locked")}</option>
