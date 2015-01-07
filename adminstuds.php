@@ -126,6 +126,7 @@ if (!empty($_POST['edit_vote'])) {
 // -------------------------------
 
 if (!empty($_POST['save'])) { // Save edition of an old vote
+    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
@@ -138,7 +139,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 
     if ($message == null) {
         // Update vote
-        $result = $pollService->updateVote($poll_id, $editedVote, $choices);
+        $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices);
         if ($result) {
             $message = new Message('success', _('Update vote successfully.'));
         } else {

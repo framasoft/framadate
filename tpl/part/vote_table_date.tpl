@@ -61,9 +61,15 @@
                 <tr>
                     {* Edited line *}
 
-                    <th class="bg-info">{$vote->name}</th>
-
                     {if $editingVoteId == $vote->id}
+
+                        <td class="bg-info" style="padding:5px">
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="text" id="name" name="name" value="{$vote->name}" class="form-control" title="{_('Your name')}" placeholder="{_('Your name')}" />
+                            </div>
+                        </td>
+
                         {foreach $vote->choices as $k=>$choice}
 
                             <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">
@@ -93,6 +99,8 @@
                     {else}
 
                         {* Voted line *}
+
+                        <th class="bg-info">{$vote->name}</th>
 
                         {foreach $vote->choices as $k=>$choice}
 

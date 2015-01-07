@@ -58,10 +58,10 @@ class PollService {
         return $this->connect->allSlotsByPollId($poll_id);
     }
 
-    public function updateVote($poll_id, $vote_id, $choices) {
+    public function updateVote($poll_id, $vote_id, $name, $choices) {
         $choices = implode($choices);
 
-        return $this->connect->updateVote($poll_id, $vote_id, $choices);
+        return $this->connect->updateVote($poll_id, $vote_id, $name, $choices);
     }
 
     function addVote($poll_id, $name, $choices) {

@@ -238,10 +238,10 @@ class FramaDB {
         return $prepared->execute([$poll_id]);
     }
 
-    function updateVote($poll_id, $vote_id, $choices) {
-        $prepared = $this->prepare('UPDATE ' . Utils::table('vote') . ' SET choices = ? WHERE poll_id = ? AND id = ?');
+    function updateVote($poll_id, $vote_id, $name, $choices) {
+        $prepared = $this->prepare('UPDATE ' . Utils::table('vote') . ' SET choices = ?, name = ? WHERE poll_id = ? AND id = ?');
 
-        return $prepared->execute([$choices, $poll_id, $vote_id]);
+        return $prepared->execute([$choices, $name, $poll_id, $vote_id]);
     }
 
     function insertComment($poll_id, $name, $comment) {
