@@ -63,7 +63,7 @@ if (!$poll) {
 
 if (isset($_POST['update_poll_info'])) {
     $updated = false;
-    $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'comment', 'rules', 'expiration_date']);
+    $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'comment', 'rules', 'expiration_date', 'name']);
 
     // Update the right poll field
     if ($field == 'title') {
@@ -108,6 +108,12 @@ if (isset($_POST['update_poll_info'])) {
         $expiration_date = strtotime($expiration_date);
         if ($expiration_date) {
             $poll->end_date = $expiration_date;
+            $updated = true;
+        }
+    } elseif ($field == 'name') {
+        $admin_name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+        if ($admin_name) {
+            $poll->admin_name = $admin_name;
             $updated = true;
         }
     }

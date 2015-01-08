@@ -322,6 +322,20 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#name-form .btn-edit').on('click', function() {
+        $('#name-form p').hide();
+        $('.js-name').removeClass("hidden");
+        $('.js-name input').focus();
+        return false;
+    });
+
+    $('#name-form .btn-cancel').on('click', function() {
+        $('#name-form p').show();
+        $('#name-form .js-name').addClass("hidden");
+        $('#name-form .btn-edit').focus();
+        return false;
+    });
+
     $('#email-form .btn-edit').on('click', function() {
         $('#email-form p').hide();
         $('#email-form .js-email').removeClass("hidden");

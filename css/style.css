@@ -121,7 +121,8 @@ caption {
 #email-form .btn-edit,
 #description-form .btn-edit,
 #poll-rules-form .btn-edit,
-#expiration-form .btn-edit {
+#expiration-form .btn-edit,
+#name-form .btn-edit {
     position:absolute;
     left:-2000px;
 }
@@ -135,7 +136,9 @@ caption {
 #poll-rules-form .btn-edit:focus,
 #poll-rules-form:hover .btn-edit,
 #expiration-form .btn-edit:focus,
-#expiration-form:hover .btn-edit {
+#expiration-form:hover .btn-edit,
+#name-form .btn-edit:focus,
+#name-form:hover .btn-edit {
     position:relative !important;
     left:0;
     padding: 0px 10px;

@@ -88,9 +88,9 @@ class FramaDB {
     }
 
     function updatePoll($poll) {
-        $prepared = $this->prepare('UPDATE ' . Utils::table('poll') . ' SET title=?, admin_mail=?, description=?, end_date=FROM_UNIXTIME(?), active=?, editable=? WHERE id = ?');
+        $prepared = $this->prepare('UPDATE ' . Utils::table('poll') . ' SET title=?, admin_name=?, admin_mail=?, description=?, end_date=FROM_UNIXTIME(?), active=?, editable=? WHERE id = ?');
 
-        return $prepared->execute([$poll->title, $poll->admin_mail, $poll->description, $poll->end_date, $poll->active, $poll->editable, $poll->id]);
+        return $prepared->execute([$poll->title, $poll->admin_name, $poll->admin_mail, $poll->description, $poll->end_date, $poll->active, $poll->editable, $poll->id]);
     }
 
     function allCommentsByPollId($poll_id) {
