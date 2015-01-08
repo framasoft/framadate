@@ -81,9 +81,6 @@ msgstr "dd/mm/yyyy"
 msgid "%A, den %e. %B %Y"
 msgstr "%A, den %e. %B %Y"
 
-msgid "Expiration's date"
-msgstr "Expiration's date"
-
 msgid "days"
 msgstr "days"
 
@@ -199,6 +196,15 @@ msgstr "Cancel the title edit"
 msgid "Initiator of the poll"
 msgstr "Initiator of the poll"
 
+msgid "Edit the name"
+msgstr "Edit the name"
+
+msgid "Save the new name"
+msgstr "Save the new name"
+
+msgid "Cancel the name edit"
+msgstr "Cancel the name edit"
+
 msgid "Email"
 msgstr "Email"
 
@@ -225,6 +231,18 @@ msgstr "Public link of the poll"
 
 msgid "Admin link of the poll"
 msgstr "Admin link of the poll"
+
+msgid "Expiration's date"
+msgstr "Expiration's date"
+
+msgid "Edit the expiration's date"
+msgstr "Edit the expiration's date"
+
+msgid "Save the new expiration's date"
+msgstr "Save the new expiration's date"
+
+msgid "Cancel the expiration's date edit"
+msgstr "Cancel the expiration's date edit"
 
 msgid "Poll rules"
 msgstr "Poll rules"
@@ -583,8 +601,11 @@ msgid "Removal date (optional)"
 msgstr "Removal date (optional)"
 
 ############# Admin #############
-msgid "Polls administrator"
-msgstr "Polls administrator"
+msgid "Polls"
+msgstr "Polls"
+
+msgid "Migration"
+msgstr "Migration"
 
 msgid "Confirm removal of the poll "
 msgstr "Confirm removal of the poll "
@@ -618,6 +639,27 @@ msgstr "Change the poll"
 
 msgid "Logs"
 msgstr "Logs"
+
+msgid "Summary"
+msgstr "Summary"
+
+msgid "Success"
+msgstr "Success"
+
+msgid "Fail"
+msgstr "Fail"
+
+msgid "Nothing"
+msgstr "Nothing"
+
+msgid "Succeeded:"
+msgstr "Succeeded:"
+
+msgid "Failed:"
+msgstr "Failed:"
+
+msgid "Skipped:"
+msgstr "Skipped:"
 
 ########### Mails ###########
 # Mails studs.php

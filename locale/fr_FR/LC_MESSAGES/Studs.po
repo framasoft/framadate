@@ -81,9 +81,6 @@ msgstr "jj/mm/aaaa"
 msgid "%A, den %e. %B %Y"
 msgstr "%A %e %B %Y"
 
-msgid "Expiration's date"
-msgstr "Date d'expiration"
-
 msgid "days"
 msgstr "jours"
 
@@ -199,6 +196,15 @@ msgstr "Annuler le changement de titre"
 msgid "Initiator of the poll"
 msgstr "Auteur du sondage"
 
+msgid "Edit the name"
+msgstr "Modification de l'auteur"
+
+msgid "Save the new name"
+msgstr "Enregistrer l'auteur"
+
+msgid "Cancel the name edit"
+msgstr "Annuler le changement d'auteur"
+
 msgid "Email"
 msgstr "Courriel"
 
@@ -225,6 +231,18 @@ msgstr "Lien public du sondage"
 
 msgid "Admin link of the poll"
 msgstr "Lien d'administration du sondage"
+
+msgid "Expiration's date"
+msgstr "Date d'expiration"
+
+msgid "Edit the expiration's date"
+msgstr "Modifier la date d'expiration"
+
+msgid "Save the new expiration's date"
+msgstr "Enregistrer la date d'expiration"
+
+msgid "Cancel the expiration's date edit"
+msgstr "Annuler le changement de date d'expiration"
 
 msgid "Poll rules"
 msgstr "Permissions du sondage"
@@ -583,8 +601,11 @@ msgid "Removal date (optional)"
 msgstr "Date de fin (facultative)"
 
 ############# Admin #############
-msgid "Polls administrator"
-msgstr "Administrateur de la base"
+msgid "Polls"
+msgstr "Sondages"
+
+msgid "Migration"
+msgstr "Migration"
 
 msgid "Confirm removal of the poll "
 msgstr "Confirmer la suppression du sondage "
@@ -618,6 +639,27 @@ msgstr "Modifier le sondage"
 
 msgid "Logs"
 msgstr "Historique"
+
+msgid "Summary"
+msgstr "Résumé"
+
+msgid "Success"
+msgstr "Réussite"
+
+msgid "Fail"
+msgstr "Échèc"
+
+msgid "Nothing"
+msgstr "Rien"
+
+msgid "Succeeded:"
+msgstr "Réussit:"
+
+msgid "Failed:"
+msgstr "Échoué:"
+
+msgid "Skipped:"
+msgstr "Passé:"
 
 ########### Mails ###########
 # Mails studs.php

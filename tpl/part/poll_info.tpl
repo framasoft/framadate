@@ -99,10 +99,10 @@
                 </div>
                 <div id="expiration-form" class="form-group col-md-4">
                     <h4 class="control-label">{_('Expiration\'s date')}</h4>
-                    <p>{$poll->end_date|date_format:$date_format['txt_date']}{if $admin} <button class="btn btn-link btn-sm btn-edit" title="{_('Edit the email adress')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button>{/if}</p>
+                    <p>{$poll->end_date|date_format:$date_format['txt_date']}{if $admin} <button class="btn btn-link btn-sm btn-edit" title="{_('Edit the expiration\'s date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span></button>{/if}</p>
                     {if $admin}
                         <div class="hidden js-expiration">
-                            <label class="sr-only" for="newexpirationdate">{_("Expiration\'s date")}</label>
+                            <label class="sr-only" for="newexpirationdate">{_('Expiration\'s date')}</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="newexpirationdate" name="expiration_date" size="40" value="{$poll->end_date|date_format:$date_format['txt_date']}" />
                                 <span class="input-group-btn">
