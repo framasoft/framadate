@@ -20,6 +20,7 @@
 use Framadate\Services\AdminPollService;
 use Framadate\Services\LogService;
 use Framadate\Services\PollService;
+use Framadate\Services\SecurityService;
 use Framadate\Services\SuperAdminService;
 use Framadate\Utils;
 
@@ -39,18 +40,19 @@ $logService = new LogService();
 $pollService = new PollService($connect, $logService);
 $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $superAdminService = new SuperAdminService($connect);
+$securityService = new SecurityService();
 
 /* PAGE */
 /* ---- */
 
-if (!empty($_POST['delete_poll'])) {
-    $delete_id = filter_input(INPUT_POST, 'delete_poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^[a-z0-9]+$/']]);
+if (!empty($_POST['delete_poll']) && $securityService->checkCsrf('admin', $_POST['csrf'])) {
+    $delete_id = filter_input(INPUT_POST, 'delete_poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
     $poll_to_delete = $pollService->findById($delete_id);
 }
 
 // Traitement de la confirmation de suppression
-if (!empty($_POST['delete_confirm'])) {
-    $poll_id = filter_input(INPUT_POST, 'delete_confirm', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^[a-z0-9]+$/']]);
+if (!empty($_POST['delete_confirm']) && $securityService->checkCsrf('admin', $_POST['csrf'])) {
+    $poll_id = filter_input(INPUT_POST, 'delete_confirm', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
     $adminPollService->deleteEntirePoll($poll_id);
 }
 
@@ -60,5 +62,6 @@ $polls = $superAdminService->findAllPolls();
 $smarty->assign('polls', $polls);
 $smarty->assign('poll_to_delete', $poll_to_delete);
 $smarty->assign('log_file', is_readable('../' . LOG_FILE) ? LOG_FILE : null);
+$smarty->assign('crsf', $securityService->getToken('admin'));
 
 $smarty->display('admin/polls.tpl');

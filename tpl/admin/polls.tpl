@@ -2,6 +2,7 @@
 
 {block 'admin_main'}
     <form action="" method="POST">
+        <input type="hidden" name="csrf" value="{$crsf}"/>
         {if $poll_to_delete}
             <div class="alert alert-warning text-center">
                 <h3>{_("Confirm removal of the poll ")}"{$poll_to_delete->id}"</h3>

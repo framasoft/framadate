@@ -3,18 +3,32 @@ namespace Framadate\Security;
 
 class Token {
 
-    private $tokan_name;
     private $time;
     private $value;
 
-    function __construct($tokan_name, $time) {
-       $this->tokan_name = $tokan_name;
-       $this->time = $time;
-       $this->value = $this->generate();
+    function __construct() {
+        $this->time = time() + TOKEN_TIME;
+        $this->value = $this->generate();
     }
 
     private function generate() {
-        // TODO
+        return sha1(uniqid(mt_rand(), true));
+    }
+
+    public function getTime() {
+        return $this->time;
+    }
+
+    public function getValue() {
+        return $this->value;
+    }
+
+    public function isGone() {
+        return $this->time < time();
+    }
+
+    public function check($value) {
+        return $value === $this->value;
     }
 
 }
