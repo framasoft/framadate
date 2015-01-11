@@ -2,7 +2,7 @@
 
 {block name=main}
     <div class="alert alert-warning">
-        <h2>{$error}</h2>
-        <p>{_('Back to the homepage of')} <a href="{$SERVER_URL}">{$APPLICATION_NAME}</a></p>
+        <h2>{$error|html}</h2>
+        <p>{_('Back to the homepage of')} <a href="{$SERVER_URL|html}">{$APPLICATION_NAME|html}</a></p>
     </div>
 {/block}

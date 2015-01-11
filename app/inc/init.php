@@ -17,7 +17,6 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 use Framadate\FramaDB;
-use Framadate\Utils;
 
 // Autoloading of dependencies with Composer
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -36,34 +35,8 @@ require_once __DIR__ . '/constants.php';
 require_once __DIR__ . '/i18n.php';
 
 // Smarty
-require_once __DIR__ . '/../../vendor/smarty/smarty/libs/Smarty.class.php';
-$smarty = new \Smarty();
-$smarty->setTemplateDir(ROOT_DIR . '/tpl/');
-$smarty->setCompileDir(ROOT_DIR . '/tpl_c/');
-$smarty->setCacheDir(ROOT_DIR . '/cache/');
-$smarty->caching = false;
+require_once __DIR__ . '/smarty.php';
 
-$smarty->assign('APPLICATION_NAME', NOMAPPLICATION);
-$smarty->assign('SERVER_URL', Utils::get_server_name());
-$smarty->assign('TITLE_IMAGE', IMAGE_TITRE);
-$smarty->assign('use_nav_js', file_exists($_SERVER['DOCUMENT_ROOT'] . '/nav/nav.js'));
-$smarty->assign('lang', $lang);
-$smarty->assign('langs', $ALLOWED_LANGUAGES);
-$smarty->assign('date_format', $date_format);
-
-function smarty_modifier_poll_url($poll_id, $admin = false) {
-    return Utils::getUrlSondage($poll_id, $admin);
-}
-
-function smarty_modifier_markdown($md, $clear = false) {
-    return Utils::markdown($md, $clear);
-}
-
-function smarty_modifier_resource($link) {
-    return Utils::get_server_name() . $link;
-}
-
-// End- Smarty
-
+// Connection to database
 $connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
 $err = 0;

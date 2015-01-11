@@ -7,7 +7,7 @@
 <div id="tableContainer" class="tableContainer">
     <form action="" method="POST">
         <table class="results">
-            <caption class="sr-only">{_('Votes of the poll')} {$poll->title}</caption>
+            <caption class="sr-only">{_('Votes of the poll')} {$poll->title|html}</caption>
             <thead>
             {if $admin}
                 <tr class="hidden-print">
@@ -16,7 +16,7 @@
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $id=>$moment}
                             <td headers="M{$slot@key} D{$headersDCount} H{$headersDCount}">
-                                <button type="submit" name="delete_column" value="{$slot->day}@{$moment}" class="btn btn-link btn-sm" title="{_('Remove the column')} {$slot->day|date_format:$date_format.txt_short} - {$moment}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
+                                <button type="submit" name="delete_column" value="{$slot->day|html}@{$moment|html}" class="btn btn-link btn-sm" title="{_('Remove the column')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
                             </td>
                             {$headersDCount = $headersDCount+1}
                         {/foreach}
@@ -29,7 +29,7 @@
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
-                    <th colspan="{$slot->moments|count}" class="bg-primary month" id="M{$id}">{$slot->day|date_format:'%B %Y'}</th>
+                    <th colspan="{$slot->moments|count}" class="bg-primary month" id="M{$id}">{$slot->day|date_format:'%B %Y'|html}</th>
                     {for $foo=0 to ($slot->moments|count)-1}
                         {append var='headersM' value=$id}
                     {/for}
@@ -39,7 +39,7 @@
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
-                    <th colspan="{$slot->moments|count}" class="bg-primary day" id="D{$id}">{$slot->day|date_format:$date_format.txt_day}</th>
+                    <th colspan="{$slot->moments|count}" class="bg-primary day" id="D{$id}">{$slot->day|date_format:$date_format.txt_day|html}</th>
                 {/foreach}
                 <th></th>
             </tr>
@@ -48,7 +48,7 @@
                 {$headersDCount=0}
                 {foreach $slots as $slot}
                     {foreach $slot->moments as $id=>$moment}
-                        <th colspan="1" class="bg-info" id="H{$headersDCount}">{$moment}</th>
+                        <th colspan="1" class="bg-info" id="H{$headersDCount}">{$moment|html}</th>
                         {append var='headersD' value=$headersDCount}
                         {$headersDCount = $headersDCount+1}
                     {/foreach}
@@ -66,7 +66,7 @@
                         <td class="bg-info" style="padding:5px">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" id="name" name="name" value="{$vote->name}" class="form-control" title="{_('Your name')}" placeholder="{_('Your name')}" />
+                                <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{_('Your name')}" placeholder="{_('Your name')}" />
                             </div>
                         </td>
 
@@ -76,31 +76,31 @@
                                 <ul class="list-unstyled choice">
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice==2}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{_('Vote yes for ')} . $radio_title[$k] . '">
+                                        <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{_('Vote yes for ')} . $radio_title[$k] . '">{* TODO Replace $radio_title *}
                                             <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
                                         <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice==1}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{_('Vote ifneedbe for ')} . $radio_title[$k] . '">
+                                        <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{_('Vote ifneedbe for ')} . $radio_title[$k] . '">{* TODO Replace $radio_title *}
                                             (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{_('Ifneedbe')}</span>
                                         </label>
                                     </li>
                                     <li class="no">
                                         <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice==0}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{_('Vote no for ')} . $radio_title[$k] . '">
+                                        <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{_('Vote no for ')} . $radio_title[$k] . '">{* TODO Replace $radio_title *}
                                             <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{_('No')}</span>
                                         </label>
                                     </li>
                                 </ul>
                             </td>
                         {/foreach}
-                        <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id}" title="{_('Save the choices')} {$vote->name}">{_('Save')}</button></td>
+                        <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{_('Save the choices')} {$vote->name|html}">{_('Save')}</button></td>
                     {else}
 
                         {* Voted line *}
 
-                        <th class="bg-info">{$vote->name}</th>
+                        <th class="bg-info">{$vote->name|html}</th>
 
                         {foreach $vote->choices as $k=>$choice}
 
@@ -116,11 +116,11 @@
 
                         {if $active && $poll->editable}
                             <td>
-                                <button type="submit" class="btn btn-link btn-sm" name="edit_vote" value="{$vote->id}" title="{_('Edit the line:')} {$vote->name}">
+                                <button type="submit" class="btn btn-link btn-sm" name="edit_vote" value="{$vote->id|html}" title="{_('Edit the line:')} {$vote->name|html}">
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span>
                                 </button>
                                 {if $admin}
-                                    <button type="submit" class="btn btn-link btn-sm" name="delete_vote" value="{$vote->id}" title="{_('Remove the line:')} {$vote->name}">
+                                    <button type="submit" class="btn btn-link btn-sm" name="delete_vote" value="{$vote->id|html}" title="{_('Remove the line:')} {$vote->name|html}">
                                         <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span>
                                     </button>
                                 {/if}
@@ -149,19 +149,19 @@
                                 <ul class="list-unstyled choice">
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
-                                        <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{_('Vote yes for')} {$slot->day|date_format:$date_format.txt_short} - {$moment}">
+                                        <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{_('Vote yes for')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
                                         <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1" />
-                                        <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{_('Vote ifneedbe for')} {$slot->day|date_format:$date_format.txt_short} - {$moment}">
+                                        <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{_('Vote ifneedbe for')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{_('Ifneedbe')}</span>
                                         </label>
                                     </li>
                                     <li class="no">
                                         <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0" checked/>
-                                        <label class="btn btn-default btn-xs" for="n-choice-{$i}" title="{_('Vote no for')} {$slot->day|date_format:$date_format.txt_short} - {$moment}">
+                                        <label class="btn btn-default btn-xs" for="n-choice-{$i}" title="{_('Vote no for')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{_('No')}</span>
                                         </label>
                                     </li>
@@ -183,9 +183,9 @@
                     {foreach $best_choices as $best_moment}
                         {if $max == $best_moment}
                             {$count_bests = $count_bests +1}
-                            <td><i class="glyphicon glyphicon-star text-warning"></i>{$best_moment}</td>
+                            <td><i class="glyphicon glyphicon-star text-warning"></i>{$best_moment|html}</td>
                         {else}
-                            <td>{$best_moment}</td>
+                            <td>{$best_moment|html}</td>
                         {/if}
                     {/foreach}
                 </tr>
@@ -201,11 +201,11 @@
 {if $max > 0}
     <div class="row">
     {if $count_bests == 1}
-    <div class="col-sm-12"><h3>{_("Best choice")}</h3></div>
+    <div class="col-sm-12"><h3>{_('Best choice')}</h3></div>
     <div class="col-sm-6 col-sm-offset-3 alert alert-success">
         <p><span class="glyphicon glyphicon-star text-warning"></span>{_('The best choice at this time is:')}</p>
         {elseif $count_bests > 1}
-        <div class="col-sm-12"><h3>{_("Best choices")}</h3></div>
+        <div class="col-sm-12"><h3>{_('Best choices')}</h3></div>
         <div class="col-sm-6 col-sm-offset-3 alert alert-success">
             <p><span class="glyphicon glyphicon-star text-warning"></span>{_('The bests choices at this time are:')}</p>
             {/if}
@@ -216,13 +216,13 @@
                 {foreach $slots as $slot}
                     {foreach $slot->moments as $moment}
                         {if $best_choices[$i] == $max}
-                            <li><strong>{$slot->day|date_format:$date_format.txt_full} - {$moment}</strong></li>
+                            <li><strong>{$slot->day|date_format:$date_format.txt_full|html} - {$moment|html}</strong></li>
                         {/if}
                         {$i = $i+1}
                     {/foreach}
                 {/foreach}
             </ul>
-            <p>{_('with')} <b>{$max}</b> {if $max==1}{_('vote')}{else}{_('votes')}{/if}.</p>
+            <p>{_('with')} <b>{$max|html}</b> {if $max==1}{_('vote')}{else}{_('votes')}{/if}.</p>
         </div>
     </div>
 {/if}

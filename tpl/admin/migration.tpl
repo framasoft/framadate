@@ -4,17 +4,17 @@
     <div class="row">
         <div class="col-xs-12 col-md-4">
             <h2>{_('Summary')}</h2>
-            {_('Succeeded:')} <span class="label label-warning">{$countSucceeded} / {$countTotal}</span>
+            {_('Succeeded:')} <span class="label label-warning">{$countSucceeded|html} / {$countTotal|html}</span>
             <br/>
-            {_('Failed:')} <span class="label label-danger">{$countFailed} / {$countTotal}</span>
+            {_('Failed:')} <span class="label label-danger">{$countFailed|html} / {$countTotal|html}</span>
             <br/>
-            {_('Skipped:')} <span class="label label-info">{$countSkipped} / {$countTotal}</span>
+            {_('Skipped:')} <span class="label label-info">{$countSkipped|html} / {$countTotal|html}</span>
         </div>
         <div class="col-xs-12 col-md-4">
             <h2>{_('Success')}</h2>
             <ul>
                 {foreach $success as $s}
-                    <li>{$s}</li>
+                    <li>{$s|html}</li>
                     {foreachelse}
                     <li>{_('Nothing')}</li>
                 {/foreach}
@@ -25,7 +25,7 @@
             <h2>{_('Fail')}</h2>
             <ul>
                 {foreach $fail as $f}
-                    <li>{$f}</li>
+                    <li>{$f|html}</li>
                     {foreachelse}
                     <li>{_('Nothing')}</li>
                 {/foreach}

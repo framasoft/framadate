@@ -4,9 +4,9 @@
         <meta charset="utf-8">
 
         {if !empty($title)}
-            <title>{$title} - {$APPLICATION_NAME}</title>
+            <title>{$title|html} - {$APPLICATION_NAME|html}</title>
         {else}
-            <title>{$APPLICATION_NAME}</title>
+            <title>{$APPLICATION_NAME|html}</title>
         {/if}
 
         <link rel="stylesheet" href="{'css/bootstrap.min.css'|resource}">

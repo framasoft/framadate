@@ -211,8 +211,8 @@ msgstr "Email"
 msgid "Edit the email adress"
 msgstr "Edit the email adress"
 
-msgid "Save the email address "
-msgstr "Save the email address "
+msgid "Save the email address"
+msgstr "Save the email address"
 
 msgid "Cancel the email address edit"
 msgstr "Cancel the email address edit"

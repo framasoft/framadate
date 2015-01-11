@@ -211,7 +211,7 @@ msgstr "Courriel"
 msgid "Edit the email adress"
 msgstr "Modifier le courriel"
 
-msgid "Save the email address "
+msgid "Save the email address"
 msgstr "Enregistrer le courriel"
 
 msgid "Cancel the email address edit"

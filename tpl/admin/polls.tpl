@@ -5,12 +5,12 @@
         <input type="hidden" name="csrf" value="{$crsf}"/>
         {if $poll_to_delete}
             <div class="alert alert-warning text-center">
-                <h3>{_("Confirm removal of the poll ")}"{$poll_to_delete->id}"</h3>
+                <h3>{_("Confirm removal of the poll ")}"{$poll_to_delete->id|html}"</h3>
 
                 <p>
                     <button class="btn btn-default" type="submit" value="1"
                             name="annullesuppression">{_('Keep this poll!')}</button>
-                    <button type="submit" name="delete_confirm" value="{$poll_to_delete->id}"
+                    <button type="submit" name="delete_confirm" value="{$poll_to_delete->id|html}"
                             class="btn btn-danger">{_('Remove this poll!')}</button>
                 </p>
             </div>
@@ -36,17 +36,17 @@
             </tr>
             {foreach $polls as $poll}
                 <tr align="center">
-                    <td>{$poll->id}</td>
+                    <td>{$poll->id|html}</td>
                     <td>
                         {if $poll->format === 'D'}
-                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><span class="sr-only">{ _('Date')}</span>
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><span class="sr-only">{_('Date')}</span>
                         {else}
                         <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><span class="sr-only">{_('Classic')}</span>
                         {/if}
                     </td>
-                    <td>{htmlentities($poll->title)}</td>
-                    <td>{htmlentities($poll->admin_name)}</td>
-                    <td>{htmlentities($poll->admin_mail)}</td>
+                    <td>{$poll->title|html}</td>
+                    <td>{$poll->admin_name|html}</td>
+                    <td>{$poll->admin_mail|html}</td>
 
                     {if strtotime($poll->end_date) > time()}
                     <td>{date('d/m/y', strtotime($poll->end_date))}</td>
@@ -54,9 +54,9 @@
                     <td><span class="text-danger">{strtotime($poll->end_date)|date_format:'d/m/Y'}</span></td>
                     {/if}
                     <td>TODO</td>
-                    <td><a href="{$poll->id|poll_url}" class="btn btn-link" title="{_('See the poll')}"><span class="glyphicon glyphicon-eye-open"></span><span class="sr-only">{_('See the poll')}</span></a></td>
-                    <td><a href="{$poll->admin_id|poll_url:true}" class="btn btn-link" title="{_('Change the poll')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Change the poll')}</span></a></td>
-                    <td><button type="submit" name="delete_poll" value="{$poll->id}" class="btn btn-link" title="{_('Remove the poll')}"><span class="glyphicon glyphicon-trash text-danger"></span><span class="sr-only">{_('Remove the poll')}</span></td>
+                    <td><a href="{$poll->id|poll_url|html}" class="btn btn-link" title="{_('See the poll')}"><span class="glyphicon glyphicon-eye-open"></span><span class="sr-only">{_('See the poll')}</span></a></td>
+                    <td><a href="{$poll->admin_id|poll_url:true|html}" class="btn btn-link" title="{_('Change the poll')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Change the poll')}</span></a></td>
+                    <td><button type="submit" name="delete_poll" value="{$poll->id|html}" class="btn btn-link" title="{_('Remove the poll')}"><span class="glyphicon glyphicon-trash text-danger"></span><span class="sr-only">{_('Remove the poll')}</span></td>
                 </tr>
             {/foreach}
         </table>

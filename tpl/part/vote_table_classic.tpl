@@ -7,14 +7,14 @@
 <div id="tableContainer" class="tableContainer">
     <form action="" method="POST">
         <table class="results">
-            <caption class="sr-only">{_('Votes of the poll')} {$poll->title}</caption>
+            <caption class="sr-only">{_('Votes of the poll')} {$poll->title|html}</caption>
             <thead>
             {if $admin}
                 <tr class="hidden-print">
                     <th role="presentation"></th>
                     {foreach $slots as $id=>$slot}
                         <td headers="C{$id}">
-                            <button type="submit" name="delete_column" value="{$slot->title}" class="btn btn-link btn-sm" title="{_('Remove the column')} {$slot->title}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
+                            <button type="submit" name="delete_column" value="{$slot->title|html}" class="btn btn-link btn-sm" title="{_('Remove the column')} {$slot->title|html}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
                         </td>
                     {/foreach}
                     <td>
@@ -25,7 +25,7 @@
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
-                    <th class="bg-info" id="H{$id}">{$slot->title|markdown}</th>
+                    <th class="bg-info" id="H{$id}">{$slot->title|html|markdown}</th>
                 {/foreach}
                 <th></th>
             </tr>
@@ -40,7 +40,7 @@
                         <td class="bg-info" style="padding:5px">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="text" id="name" name="name" value="{$vote->name}" class="form-control" title="{_('Your name')}" placeholder="{_('Your name')}" />
+                                <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{_('Your name')}" placeholder="{_('Your name')}" />
                             </div>
                         </td>
 
@@ -50,31 +50,31 @@
                                 <ul class="list-unstyled choice">
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2" {if $choice==2}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{_('Vote yes for ')} . $radio_title[$id] . '">
+                                        <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{_('Vote yes for ')} . $radio_title[$id] . '">{* TODO Replace $radio_title *}
                                             <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
                                         <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1" {if $choice==1}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{_('Vote ifneedbe for ')} . $radio_title[$id] . '">
+                                        <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{_('Vote ifneedbe for ')} . $radio_title[$id] . '">{* TODO Replace $radio_title *}
                                             (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{_('Ifneedbe')}</span>
                                         </label>
                                     </li>
                                     <li class="no">
                                         <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value="0" {if $choice==0}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="n-choice-{$id}" title="{_('Vote no for ')} . $radio_title[$id] . '">
+                                        <label class="btn btn-default btn-xs" for="n-choice-{$id}" title="{_('Vote no for ')} . $radio_title[$id] . '">{* TODO Replace $radio_title *}
                                             <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{_('No')}</span>
                                         </label>
                                     </li>
                                 </ul>
                             </td>
                         {/foreach}
-                        <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id}" title="{_('Save the choices')} {$vote->name}">{_('Save')}</button></td>
+                        <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{_('Save the choices')} {$vote->name|html}">{_('Save')}</button></td>
                     {else}
 
                         {* Voted line *}
 
-                        <th class="bg-info">{$vote->name}</th>
+                        <th class="bg-info">{$vote->name|html}</th>
 
                         {foreach $vote->choices as $choice}
 
@@ -90,11 +90,11 @@
 
                         {if $active && $poll->editable}
                             <td>
-                                <button type="submit" class="btn btn-link btn-sm" name="edit_vote" value="{$vote->id}" title="{_('Edit the line:')} {$vote->name}">
+                                <button type="submit" class="btn btn-link btn-sm" name="edit_vote" value="{$vote->id|html}" title="{_('Edit the line:')} {$vote->name|html}">
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span>
                                 </button>
                                 {if $admin}
-                                    <button type="submit" class="btn btn-link btn-sm" name="delete_vote" value="{$vote->id}" title="{_('Remove the line:')} {$vote->name}">
+                                    <button type="submit" class="btn btn-link btn-sm" name="delete_vote" value="{$vote->id|html}" title="{_('Remove the line:')} {$vote->name|html}">
                                         <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span>
                                     </button>
                                 {/if}
@@ -121,19 +121,19 @@
                             <ul class="list-unstyled choice">
                                 <li class="yes">
                                     <input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2" />
-                                    <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{_('Vote yes for')} {$slot->title}">
+                                    <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{_('Vote yes for')} {$slot->title|html}">
                                         <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Yes')}</span>
                                     </label>
                                 </li>
                                 <li class="ifneedbe">
                                     <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1" />
-                                    <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{_('Vote ifneedbe for')} {$slot->title}">
+                                    <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{_('Vote ifneedbe for')} {$slot->title|html}">
                                         (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{_('Ifneedbe')}</span>
                                     </label>
                                 </li>
                                 <li class="no">
                                     <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value="0" checked/>
-                                    <label class="btn btn-default btn-xs" for="n-choice-{$id}" title="{_('Vote no for')} {$slot->title}">
+                                    <label class="btn btn-default btn-xs" for="n-choice-{$id}" title="{_('Vote no for')} {$slot->title|html}">
                                         <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{_('No')}</span>
                                     </label>
                                 </li>
@@ -153,9 +153,9 @@
                     {foreach $best_choices as $best_choice}
                         {if $max == $best_choice}
                             {$count_bests = $count_bests +1}
-                            <td><span class="glyphicon glyphicon-star text-warning"></span>{$best_choice}</td>
+                            <td><span class="glyphicon glyphicon-star text-warning"></span>{$best_choice|html}</td>
                         {else}
-                            <td>{$best_choice}</td>
+                            <td>{$best_choice|html}</td>
                         {/if}
                     {/foreach}
                 </tr>
@@ -185,12 +185,12 @@
             <ul style="list-style:none">
                 {foreach $slots as $slot}
                     {if $best_choices[$i] == $max}
-                        <li><strong>{$slot->title|markdown:true}</strong></li>
+                        <li><strong>{$slot->title|html|markdown:true}</strong></li>
                     {/if}
                     {$i = $i+1}
                 {/foreach}
             </ul>
-            <p>{_('with')} <b>{$max}</b> {if $max==1}{_('vote')}{else}{_('votes')}{/if}.</p>
+            <p>{_('with')} <b>{$max|html}</b> {if $max==1}{_('vote')}{else}{_('votes')}{/if}.</p>
         </div>
     </div>
 {/if}

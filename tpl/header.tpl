@@ -4,7 +4,7 @@
             <div class="input-group input-group-sm pull-right col-md-2 col-xs-4">
                 <select name="lang" class="form-control" title="{_("Select the language")}" >
                 {foreach $langs as $lang_key=>$lang_value}
-                    <option lang="{substr($lang_key, 0, 2)}" {if substr($lang_key, 0, 2)==$lang}selected{/if} value="{$lang_key}">{$lang_value}</option>
+                    <option lang="{substr($lang_key, 0, 2)}" {if substr($lang_key, 0, 2)==$lang}selected{/if} value="{$lang_key|html}">{$lang_value|html}</option>
                 {/foreach}
                 </select>
                 <span class="input-group-btn">
@@ -14,8 +14,8 @@
         </form>
     {/if}
 
-        <h1><a href="{$SERVER_URL}" title="{_("Home")} - {$APPLICATION_NAME}"><img src="{$TITLE_IMAGE|resource}" alt="{$APPLICATION_NAME}"/></a></h1>
-        {if !empty($title)}<h2 class="lead"><i>{$title}</i></h2>{/if}
+        <h1><a href="{$SERVER_URL|html}" title="{_("Home")} - {$APPLICATION_NAME|html}"><img src="{$TITLE_IMAGE|resource}" alt="{$APPLICATION_NAME|html}"/></a></h1>
+        {if !empty($title)}<h2 class="lead"><i>{$title|html}</i></h2>{/if}
         <hr class="trait" role="presentation" />
     </header>
     <main role="main">

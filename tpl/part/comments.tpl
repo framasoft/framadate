@@ -8,10 +8,10 @@
         {foreach $comments as $comment}
             <div class="comment">
                 {if $admin}
-                    <button type="submit" name="delete_comment" value="{$comment->id}" class="btn btn-link" title="{_('Remove the comment')}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
+                    <button type="submit" name="delete_comment" value="{$comment->id|html}" class="btn btn-link" title="{_('Remove the comment')}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
                 {/if}
-                <b>{$comment->name}</b>&nbsp;
-                <span class="comment">{nl2br($comment->comment)}</span>
+                <b>{$comment->name|html}</b>&nbsp;
+                <span class="comment">{nl2br($comment->comment|html)}</span>
             </div>
         {/foreach}
     {/if}
