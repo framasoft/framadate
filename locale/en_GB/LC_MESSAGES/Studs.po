@@ -265,6 +265,9 @@ msgstr "Save the new rules"
 msgid "Cancel the rules edit"
 msgstr "Cancel the rules edit"
 
+msgid "The name is invalid."
+msgstr "Le nom n'est pas valide."
+
 # Help text adminstuds.php
 msgid "As poll administrator, you can change all the lines of this poll with this button"
 msgstr "As poll administrator, you can change all the lines of this poll with this button"

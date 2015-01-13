@@ -265,6 +265,9 @@ msgstr "Enregistrer les nouvelles permissions"
 msgid "Cancel the rules edit"
 msgstr "Annuler le changement de permissions"
 
+msgid "The name is invalid."
+msgstr "Le nom n'est pas valide."
+
 # Help text adminstuds.php
 msgid "As poll administrator, you can change all the lines of this poll with this button"
 msgstr "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec ce bouton"
@@ -670,7 +673,7 @@ msgid ""
 "has filled a line.\n"
 "You can find your poll at the link"
 msgstr ""
-" vient de remplir une ligne.\n"
+"vient de remplir une ligne.\n"
 "Vous pouvez retrouver votre sondage avec le lien suivant"
 
 msgid "Thanks for your confidence."

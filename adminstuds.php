@@ -165,7 +165,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
     if (empty($name)) {
-        $message = new Message('danger', _('Name is incorrect.'));
+        $message = new Message('danger', _('The name is invalid.'));
     }
     if (count($choices) != count($_POST['choices'])) {
         $message = new Message('danger', _('There is a problem with your choices.'));
@@ -223,7 +223,7 @@ if (isset($_POST['add_comment'])) {
     $comment = strip_tags($_POST['comment']);
 
     if (empty($name)) {
-        $message = new Message('danger', _('Name is incorrect.'));
+        $message = new Message('danger', _('The name is invalid.'));
     }
 
     if ($message == null) {
