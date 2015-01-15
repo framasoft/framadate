@@ -463,18 +463,16 @@ if (isset($_POST['ajoutercolonne']) && (substr($dsondage->format, 0, 1) == 'D'))
         $dateinsertion = substr($dateinsertion, 1);
 
         //mise a jour avec les nouveaux sujets dans la base
-        //if (isset($erreur_ajout_date) && !$erreur_ajout_date){
-            $sql = 'UPDATE sujet_studs SET sujet = '.$connect->Param('dateinsertion').' WHERE id_sondage = '.$connect->Param('numsondage');
-            $sql = $connect->Prepare($sql);
-            $connect->Execute($sql, array($dateinsertion, $numsondage));
+        $sql = 'UPDATE sujet_studs SET sujet = '.$connect->Param('dateinsertion').' WHERE id_sondage = '.$connect->Param('numsondage');
+        $sql = $connect->Prepare($sql);
+        $connect->Execute($sql, array($dateinsertion, $numsondage));
 
-            if ($nouvelledate > strtotime($dsondage->date_fin)) {
-                $date_fin=$nouvelledate+200000;
-                $sql = 'UPDATE sondage SET date_fin = '.$connect->Param('date_fin').' WHERE id_sondage = '.$connect->Param('numsondage');
-                $sql = $connect->Prepare($sql);
-                $connect->Execute($sql, array($date_fin, $numsondage));
-            }
-        //}
+        if ($nouvelledate > strtotime($dsondage->date_fin)) {
+            $date_fin=$nouvelledate+200000;
+            $sql = 'UPDATE sondage SET date_fin = '.$connect->Param('date_fin').' WHERE id_sondage = '.$connect->Param('numsondage');
+            $sql = $connect->Prepare($sql);
+            $connect->Execute($sql, array($date_fin, $numsondage));
+        }
 
         //mise a jour des reponses actuelles correspondant au sujet ajouté
         $sql = 'UPDATE user_studs SET reponses = '.$connect->Param('reponses').' WHERE nom = '.$connect->Param('nom').' AND id_users='.$connect->Param('id_users');
@@ -496,9 +494,7 @@ if (isset($_POST['ajoutercolonne']) && (substr($dsondage->format, 0, 1) == 'D'))
             }
 
             //mise a jour des reponses utilisateurs dans la base
-            if (isset($erreur_ajout_date) && !$erreur_ajout_date) {
-                $connect->Execute($sql, array($newcar, $data->nom, $data->id_users));
-            }
+            $connect->Execute($sql, array($newcar, $data->nom, $data->id_users));
         }
 
         //Email sent to the admin
