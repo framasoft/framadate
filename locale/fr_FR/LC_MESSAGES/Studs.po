@@ -458,8 +458,8 @@ msgstr "Aller à l'étape 2"
 msgid "Enter a title"
 msgstr "Il faut saisir un titre !"
 
-msgid "Characters < > and \" are not permitted"
-msgstr "Les caractères < > et \" ne sont pas autorisés !"
+msgid "Something is wrong with the format"
+msgstr "Quelque chose ne va pas avec le format"
 
 msgid "Enter an email address"
 msgstr "Il faut saisir une adresse électronique !"

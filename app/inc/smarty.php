@@ -46,5 +46,5 @@ function smarty_modifier_resource($link) {
 }
 
 function smarty_modifier_html($html) {
-    return htmlentities($html, ENT_HTML5 | ENT_QUOTES);
+    return Utils::htmlEscape($html);
 }

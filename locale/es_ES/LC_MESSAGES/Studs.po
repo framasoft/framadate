@@ -255,8 +255,8 @@ msgstr "Introducza un t&iacute;tulo"
 #: infos_sondage.php:133
 #: infos_sondage.php:138
 #: infos_sondage.php:150
-msgid "Characters < > and \" are not permitted"
-msgstr "Los caracteres < > y \" no estan autorizados!"
+msgid "Something is wrong with the format"
+msgstr "Something is wrong with the format"
 
 #: infos_sondage.php:136
 msgid "Comments: "

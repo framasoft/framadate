@@ -163,6 +163,10 @@ class Utils {
         return $clear ? $text : $html;
     }
 
+    public static function htmlEscape($html) {
+        return htmlentities($html, ENT_HTML5 | ENT_QUOTES);
+    }
+
     public static function csvEscape($text) {
         $escaped = str_replace('"', '""', $text);
         $escaped = str_replace("\r\n", '', $escaped);

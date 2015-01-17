@@ -431,8 +431,8 @@ msgstr "Weiter zum 2. Schritt"
 msgid "Enter a title"
 msgstr "Titel eingeben"
 
-msgid "Characters < > and \" are not permitted"
-msgstr "Die Zeichen < > und \" sind nicht erlaubt !"
+msgid "Something is wrong with the format"
+msgstr "Something is wrong with the format"
 
 msgid "Enter an email address"
 msgstr "Sie müssen eine E-Mail Adresse eingeben"
