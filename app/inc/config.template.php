@@ -17,9 +17,6 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-// FRAMADATE version
-const VERSION = '0.9.1';
-
 // Application name
 const NOMAPPLICATION = '<Application name>';
 
@@ -55,12 +52,6 @@ $ALLOWED_LANGUAGES = [
     'de_DE' => 'Deutsch',
 ];
 
-// Regex
-const POLL_REGEX = '/^[a-z0-9]+$/';
-const CHOICE_REGEX = '/^[012]$/';
-const NAME_REGEX = '/^[áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœa-z0-9_ -]+$/i';
-const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/';
-
 // Path to logo
 const LOGOBANDEAU = '<relative path to the logo file>';
 
@@ -78,17 +69,6 @@ const USE_REMOTE_USER =  true;
 
 // Path to the log file
 const LOG_FILE = 'admin/stdout.log';
-
-const COMMENT_EMPTY         = 0x0000000001;
-const COMMENT_USER_EMPTY    = 0x0000000010;
-const COMMENT_INSERT_FAILED = 0x0000000100;
-const NAME_EMPTY            = 0x0000001000;
-const NAME_TAKEN            = 0x0000010000;
-const NO_POLL               = 0x0000100000;
-const NO_POLL_ID            = 0x0001000000;
-const INVALID_EMAIL         = 0x0010000000;
-const TITLE_EMPTY           = 0x0100000000;
-const INVALID_DATE          = 0x1000000000;
 
 // Config
 $config = [

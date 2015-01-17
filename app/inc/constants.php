@@ -16,28 +16,27 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-use Framadate\FramaDB;
 
-// Autoloading of dependencies with Composer
-require_once __DIR__ . '/../../vendor/autoload.php';
+// FRAMADATE version
+const VERSION = '0.9.1';
 
-if (session_id() == '') {
-    session_start();
-}
+// Regex
+const POLL_REGEX = '/^[a-z0-9]+$/';
+const CHOICE_REGEX = '/^[012]$/';
+const NAME_REGEX = '/^[áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœa-z0-9_ -]+$/i';
+const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/';
 
-if (ini_get('date.timezone') == '') {
-    date_default_timezone_set('Europe/Paris');
-}
+// CSRF (300s = 5min)
+const TOKEN_TIME = 300;
 
-define('ROOT_DIR', __DIR__ . '/../../');
-
-require_once __DIR__ . '/constants.php';
-require_once __DIR__ . '/config.php';
-require_once __DIR__ . '/i18n.php';
-
-// Smarty
-require_once __DIR__ . '/smarty.php';
-
-// Connection to database
-$connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
-$err = 0;
+// Errors
+const COMMENT_EMPTY         = 0x0000000001;
+const COMMENT_USER_EMPTY    = 0x0000000010;
+const COMMENT_INSERT_FAILED = 0x0000000100;
+const NAME_EMPTY            = 0x0000001000;
+const NAME_TAKEN            = 0x0000010000;
+const NO_POLL               = 0x0000100000;
+const NO_POLL_ID            = 0x0001000000;
+const INVALID_EMAIL         = 0x0010000000;
+const TITLE_EMPTY           = 0x0100000000;
+const INVALID_DATE          = 0x1000000000;
