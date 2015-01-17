@@ -18,7 +18,7 @@
  */
 
 // FRAMADATE version
-const VERSION = 0.9;
+const VERSION = '0.9.1';
 
 // Application name
 const NOMAPPLICATION = '<Application name>';
@@ -59,6 +59,7 @@ $ALLOWED_LANGUAGES = [
 const POLL_REGEX = '/^[a-z0-9]+$/';
 const CHOICE_REGEX = '/^[012]$/';
 const NAME_REGEX = '/^[áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœa-z0-9_ -]+$/i';
+const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/';
 
 // Path to logo
 const LOGOBANDEAU = '<relative path to the logo file>';

@@ -138,10 +138,10 @@ class PollService {
 
         // TODO Extract this to FramaDB (or repository layer)
         $sql = 'INSERT INTO ' . Utils::table('poll') . '
-          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes)
-          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?)';
+          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments)
+          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?)';
         $prepared = $this->connect->prepare($sql);
-        $prepared->execute(array($poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, $form->editable, $form->receiveNewVotes));
+        $prepared->execute(array($poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, $form->editable, $form->receiveNewVotes, $form->receiveNewComments));
 
         $prepared = $this->connect->prepare('INSERT INTO ' . Utils::table('slot') . ' (poll_id, title, moments) VALUES (?, ?, ?)');
 

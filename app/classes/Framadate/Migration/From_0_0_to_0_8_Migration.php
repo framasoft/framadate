@@ -75,4 +75,3 @@ CREATE TABLE IF NOT EXISTS `user_studs` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;');
     }
 }
- 

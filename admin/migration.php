@@ -1,6 +1,7 @@
 <?php
 use Framadate\Migration\From_0_0_to_0_8_Migration;
 use Framadate\Migration\From_0_8_to_0_9_Migration;
+use Framadate\Migration\From_0_9_to_0_9_1_Migration;
 use Framadate\Migration\Migration;
 use Framadate\Utils;
 
@@ -9,7 +10,8 @@ include_once __DIR__ . '/../app/inc/init.php';
 // List a Migration sub classes to execute
 $migrations = [
     new From_0_0_to_0_8_Migration(),
-    new From_0_8_to_0_9_Migration()
+    new From_0_8_to_0_9_Migration(),
+    new From_0_9_to_0_9_1_Migration()
 ];
 // ---------------------------------------
 
@@ -28,8 +30,6 @@ CREATE TABLE IF NOT EXISTS `' . $prefixedMigrationTable . '` (
 )
   ENGINE = MyISAM
   DEFAULT CHARSET = utf8;');
-
-    output('Table ' . $prefixedMigrationTable . ' created.');
 }
 
 $selectStmt = $pdo->prepare('SELECT id FROM ' . $prefixedMigrationTable . ' WHERE name=?');

@@ -25,6 +25,12 @@ use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 
+/* Constants */
+/* --------- */
+const UPDATE_VOTE = 1;
+const ADD_VOTE = 2;
+const ADD_COMMENT = 3;
+
 /* Variables */
 /* --------- */
 
@@ -49,19 +55,36 @@ $mailService = new MailService($config['use_smtp']);
  *
  * @param $poll stdClass The poll
  * @param $mailService MailService The mail service
+ * @param $name string The name user who triggered the notification
+ * @param $type int cf: Constants on the top of this page
  */
-function sendUpdateNotification($poll, $mailService) {
-    if ($poll->receiveNewVotes && !isset($_SESSION['mail_sent'][$poll->id])) {
+function sendUpdateNotification($poll, $mailService, $name, $type) {
+    if (!isset($_SESSION['mail_sent'])) {
+        $_SESSION['mail_sent'] = [];
+    }
+
+    if ($poll->receiveNewVotes && (!isset($_SESSION['mail_sent'][$poll->id]) || $_SESSION['mail_sent'][$poll->id] !== true)) {
 
         $subject = '[' . NOMAPPLICATION . '] ' . _('Poll\'s participation') . ' : ' . $poll->title;
-        $message = html_entity_decode('"$nom" ', ENT_QUOTES, 'UTF-8') .
-            _('has filled a line.\nYou can find your poll at the link') . " :\n\n" .
-            Utils::getUrlSondage($poll->admin_poll_id, true) . " \n\n" .
-            _('Thanks for your confidence.') . "\n" . NOMAPPLICATION;
+
+        $message = $name . ' ';
+        switch ($type) {
+            case UPDATE_VOTE:
+                $message .= _('updated a vote.\nYou can find your poll at the link') . " :\n\n";
+                break;
+            case ADD_VOTE:
+                $message .= _('filled a vote.\nYou can find your poll at the link') . " :\n\n";
+                break;
+            case ADD_COMMENT:
+                $message .= _('wrote a comment.\nYou can find your poll at the link') . " :\n\n";
+                break;
+        }
+        $message .= Utils::getUrlSondage($poll->admin_id, true) . "\n\n";
+        $message .= _('Thanks for your confidence.') . "\n" . NOMAPPLICATION;
 
         $mailService->send($poll->admin_mail, $subject, $message);
 
-        $_SESSION["mail_sent"][$poll->id] = true;
+        $_SESSION['mail_sent'][$poll->id] = true;
     }
 }
 
@@ -108,7 +131,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices);
         if ($result) {
             $message = new Message('success', _('Update vote successfully.'));
-            sendUpdateNotification($poll, $mailService);
+            sendUpdateNotification($poll, $mailService, $name, UPDATE_VOTE);
         } else {
             $message = new Message('danger', _('Update vote failed.'));
         }
@@ -129,7 +152,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         $result = $pollService->addVote($poll_id, $name, $choices);
         if ($result) {
             $message = new Message('success', _('Update vote successfully.'));
-            sendUpdateNotification($poll, $mailService);
+            sendUpdateNotification($poll, $mailService, $name, ADD_VOTE);
         } else {
             $message = new Message('danger', _('Update vote failed.'));
         }
@@ -153,6 +176,7 @@ if (isset($_POST['add_comment'])) {
         $result = $pollService->addComment($poll_id, $name, $comment);
         if ($result) {
             $message = new Message('success', _('Comment added.'));
+            sendUpdateNotification($poll, $mailService, $name, ADD_COMMENT);
         } else {
             $message = new Message('danger', _('Comment failed.'));
         }

@@ -42,12 +42,13 @@ if ((isset($_GET['choix_sondage']) && $_GET['choix_sondage'] == 'date') ||
 
 // We clean the data
 $poursuivre = filter_input(INPUT_POST, 'poursuivre', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(creation_sondage_date|creation_sondage_autre)$/']]);
-$titre = filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_STRING);
-$nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING);
-$adresse = filter_input(INPUT_POST, 'adresse', FILTER_VALIDATE_EMAIL);
-$commentaires = filter_input(INPUT_POST, 'commentaires', FILTER_SANITIZE_STRING);
-$editable = filter_input(INPUT_POST, 'editable', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(on|off|true|false|1|0)$/']]);
-$receiveNewVotes = filter_input(INPUT_POST, 'receiveNewVotes', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(on|off|true|false|1|0)$/']]);
+$title = filter_input(INPUT_POST, 'titre', FILTER_SANITIZE_STRING);
+$name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+$address = filter_input(INPUT_POST, 'adresse', FILTER_VALIDATE_EMAIL);
+$description = filter_input(INPUT_POST, 'commentaires', FILTER_SANITIZE_STRING);
+$editable = filter_input(INPUT_POST, 'editable', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
+$receiveNewVotes = filter_input(INPUT_POST, 'receiveNewVotes', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
+$receiveNewComments = filter_input(INPUT_POST, 'receiveNewComments', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
 
 
 // On initialise également les autres variables
@@ -58,60 +59,61 @@ $erreur_injection_commentaires = false;
 
 #tests
 if (!empty($_POST['poursuivre'])){
-    $_SESSION['form']->title = $titre;
-    $_SESSION['form']->admin_name = $nom;
-    $_SESSION['form']->admin_mail = $adresse;
-    $_SESSION['form']->description = $commentaires;
+    $_SESSION['form']->title = $title;
+    $_SESSION['form']->admin_name = $name;
+    $_SESSION['form']->admin_mail = $address;
+    $_SESSION['form']->description = $description;
     $_SESSION['form']->editable = ($editable !== null) ? true : false;
     $_SESSION['form']->receiveNewVotes = ($receiveNewVotes !== null) ? true : false;
+    $_SESSION['form']->receiveNewComments = ($receiveNewComments !== null) ? true : false;
 
     if ($config['use_smtp']==true){
-        if (Utils::isValidEmail($adresse) === false) {
+        if (Utils::isValidEmail($address) === false) {
             $erreur_adresse = true;
         }
     }
 
-    if (preg_match(';<|>|";',$titre)) {
+    if (preg_match(';<|>|";',$title)) {
         $erreur_injection_titre = true;
     }
 
-    if (preg_match(';<|>|";',$nom)) {
+    if (preg_match(';<|>|";',$name)) {
         $erreur_injection_nom = true;
     }
 
-    if (preg_match(';<|>|";',$commentaires)) {
+    if (preg_match(';<|>|";',$description)) {
         $erreur_injection_commentaires = true;
     }
 
     // Si pas d'erreur dans l'adresse alors on change de page vers date ou autre
     if($config['use_smtp'] == true){
-        $email_OK = $adresse && !$erreur_adresse;
+        $email_OK = $address && !$erreur_adresse;
     } else{
         $email_OK = true;
     }
 
-    if ($titre && $nom && $email_OK && ! $erreur_injection_titre && ! $erreur_injection_commentaires && ! $erreur_injection_nom) {
+    if ($title && $name && $email_OK && ! $erreur_injection_titre && ! $erreur_injection_commentaires && ! $erreur_injection_nom) {
 
-        if ( $poursuivre == "creation_sondage_date" ) {
-            header("Location:choix_date.php");
+        if ( $poursuivre == 'creation_sondage_date' ) {
+            header('Location:choix_date.php');
             exit();
         }
 
-        if ( $poursuivre == "creation_sondage_autre" ) {
-            header("Location:choix_autre.php");
+        if ( $poursuivre == 'creation_sondage_autre' ) {
+            header('Location:choix_autre.php');
             exit();
         }
 
     } else {
         // Title Erreur !
-        Utils::print_header( _("Error!").' - '._("Poll creation (1 on 3)") );
+        Utils::print_header( _('Error!').' - '._('Poll creation (1 on 3)') );
     }
 } else {
     // Title OK (formulaire pas encore rempli)
-    Utils::print_header( _("Poll creation (1 on 3)") );
+    Utils::print_header( _('Poll creation (1 on 3)') );
 }
 
-bandeau_titre( _("Poll creation (1 on 3)") );
+bandeau_titre( _('Poll creation (1 on 3)') );
 
 /*
  * Préparation des messages d'erreur
@@ -141,32 +143,39 @@ $errors = array(
 );
 
 if (!$_SESSION['form']->title && !empty($_POST['poursuivre'])) {
-    $errors['title']['aria'] = 'aria-describeby="poll_title_error" '; $errors['title']['class'] = ' has-error';
-    $errors['title']['msg'] = '<div class="alert alert-danger" ><p id="poll_title_error">' . _("Enter a title") . '</p></div>';
+    $errors['title']['aria'] = 'aria-describeby="poll_title_error" ';
+    $errors['title']['class'] = ' has-error';
+    $errors['title']['msg'] = '<div class="alert alert-danger" ><p id="poll_title_error">' . _('Enter a title') . '</p></div>';
 } elseif ($erreur_injection_titre) {
-    $errors['title']['aria'] = 'aria-describeby="poll_title_error" '; $errors['title']['class'] = ' has-error';
-    $errors['title']['inject'] = '<div class="alert alert-danger"><p id="poll_title_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
+    $errors['title']['aria'] = 'aria-describeby="poll_title_error" ';
+    $errors['title']['class'] = ' has-error';
+    $errors['title']['inject'] = '<div class="alert alert-danger"><p id="poll_title_error">' . _('Characters < > and " are not permitted') . '</p></div>';
 }
 
 if ($erreur_injection_commentaires) {
-    $errors['description']['aria'] = 'aria-describeby="poll_comment_error" '; $errors['description']['class'] = ' has-error';
-    $errors['description']['msg'] = '<div class="alert alert-danger"><p id="poll_comment_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
+    $errors['description']['aria'] = 'aria-describeby="poll_comment_error" ';
+    $errors['description']['class'] = ' has-error';
+    $errors['description']['msg'] = '<div class="alert alert-danger"><p id="poll_comment_error">' . _('Characters < > and " are not permitted') . '</p></div>';
 }
 
 if (!$_SESSION['form']->admin_name && !empty($_POST['poursuivre'])) {
-    $errors['name']['aria'] = 'aria-describeby="poll_name_error" '; $errors['name']['class'] = ' has-error';
-    $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Enter a name") . '</p></div>';
+    $errors['name']['aria'] = 'aria-describeby="poll_name_error" ';
+    $errors['name']['class'] = ' has-error';
+    $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _('Enter a name') . '</p></div>';
 } elseif ($erreur_injection_nom) {
-    $errors['name']['aria'] = 'aria-describeby="poll_name_error" '; $errors['name']['class'] = ' has-error';
-    $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _("Characters < > and \" are not permitted") . '</p></div>';
+    $errors['name']['aria'] = 'aria-describeby="poll_name_error" ';
+    $errors['name']['class'] = ' has-error';
+    $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _('Characters < > and " are not permitted') . '</p></div>';
 }
 
 if (!$_SESSION['form']->admin_mail && !empty($_POST['poursuivre'])) {
-    $errors['email']['aria'] = 'aria-describeby="poll_name_error" '; $errors['email']['class'] = ' has-error';
-    $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("Enter an email address") . '</p></div>';
+    $errors['email']['aria'] = 'aria-describeby="poll_name_error" ';
+    $errors['email']['class'] = ' has-error';
+    $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _('Enter an email address') . '</p></div>';
 } elseif ($erreur_adresse && !empty($_POST['poursuivre'])) {
-    $errors['email']['aria'] = 'aria-describeby="poll_email_error" '; $errors['email']['class'] = ' has-error';
-    $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _("The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.") . '</p></div>';
+    $errors['email']['aria'] = 'aria-describeby="poll_email_error" ';
+    $errors['email']['class'] = ' has-error';
+    $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _('The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.') . '</p></div>';
 }
 
 /*
@@ -175,9 +184,9 @@ if (!$_SESSION['form']->admin_mail && !empty($_POST['poursuivre'])) {
 
 // REMOTE_USER ?
 if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
-    $input_name = '<input type="hidden" name="nom" value="'.$_SESSION['form']->admin_name.'" />'.stripslashes($_SESSION['form']->admin_name);
+    $input_name = '<input type="hidden" name="name" value="'.$_SESSION['form']->admin_name.'" />'.$_SESSION['form']->admin_name;
 } else {
-    $input_name = '<input id="yourname" type="text" name="nom" class="form-control" '.$errors['name']['aria'].' value="'.stripslashes($_SESSION['form']->admin_name).'" />';
+    $input_name = '<input id="yourname" type="text" name="name" class="form-control" '.$errors['name']['aria'].' value="'.$_SESSION['form']->admin_name.'" />';
 }
 
 if (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) {
@@ -195,6 +204,10 @@ if ($_SESSION['form']->receiveNewVotes) {
     $receiveNewVotes = 'checked';
 }
 
+if ($_SESSION['form']->receiveNewComments) {
+    $receiveNewComments = 'checked';
+}
+
 // Display form
 echo '
 <div class="row">
@@ -202,25 +215,25 @@ echo '
     <form name="formulaire" id="formulaire" action="' . Utils::get_server_name() . 'infos_sondage.php" method="POST" class="form-horizontal" role="form">
 
         <div class="alert alert-info">
-            <p>'. _("You are in the poll creation section.").' <br /> '._("Required fields cannot be left blank.") .'</p>
+            <p>'. _('You are in the poll creation section.').' <br /> '._('Required fields cannot be left blank.') .'</p>
         </div>
 
         <div class="form-group'.$errors['title']['class'].'">
-            <label for="poll_title" class="col-sm-4 control-label">' . _("Poll title") . ' *</label>
+            <label for="poll_title" class="col-sm-4 control-label">' . _('Poll title') . ' *</label>
             <div class="col-sm-8">
-                <input id="poll_title" type="text" name="titre" class="form-control" '.$errors['title']['aria'].' value="'.stripslashes($_SESSION['form']->title).'" />
+                <input id="poll_title" type="text" name="titre" class="form-control" '.$errors['title']['aria'].' value="'.$_SESSION['form']->title.'" />
             </div>
         </div>
             '.$errors['title']['msg'].'
         <div class="form-group'.$errors['description']['class'].'">
-            <label for="poll_comments" class="col-sm-4 control-label">'. _("Description") .'</label>
+            <label for="poll_comments" class="col-sm-4 control-label">'. _('Description') .'</label>
             <div class="col-sm-8">
-                <textarea id="poll_comments" name="commentaires" class="form-control" '.$errors['description']['aria'].' rows="5">'.stripslashes($_SESSION['form']->description).'</textarea>
+                <textarea id="poll_comments" name="commentaires" class="form-control" '.$errors['description']['aria'].' rows="5">'.$_SESSION['form']->description.'</textarea>
             </div>
         </div>
             '.$errors['description']['msg'].'
         <div class="form-group'.$errors['name']['class'].'">
-            <label for="yourname" class="col-sm-4 control-label">'. _("Your name") .' *</label>
+            <label for="yourname" class="col-sm-4 control-label">'. _('Your name') .' *</label>
             <div class="col-sm-8">
                 '.$input_name.'
             </div>
@@ -229,7 +242,7 @@ echo '
 if($config['use_smtp']==true){
     echo '
         <div class="form-group'.$errors['email']['class'].'">
-            <label for="email" class="col-sm-4 control-label">'. _("Your email address") .' *<br /><span class="small">'. _("(in the format name@mail.com)") .'</span></label>
+            <label for="email" class="col-sm-4 control-label">'. _('Your email address') .' *<br /><span class="small">'. _('(in the format name@mail.com)') .'</span></label>
             <div class="col-sm-8">
                 '.$input_email.'
             </div>
@@ -238,20 +251,29 @@ if($config['use_smtp']==true){
 }
 echo '
         <div class="form-group">
-            <div class="col-sm-offset-1 col-sm-11">
+            <div class="col-sm-offset-4 col-sm-8">
               <div class="checkbox">
                 <label>
-                    <input type=checkbox name="editable" '.$editable.' id="editable">'. _("Voters can modify their vote themselves.") .'
+                    <input type=checkbox name="editable" '.$editable.' id="editable">'. _('Voters can modify their vote themselves.') .'
                 </label>
               </div>
             </div>
         </div>';
 if($config['use_smtp']==true){
     echo '<div class="form-group">
-        <div class="col-sm-offset-1 col-sm-11">
+        <div class="col-sm-offset-4 col-sm-8">
           <div class="checkbox">
             <label>
-                <input type=checkbox name="receiveNewVotes" '.$receiveNewVotes.' id="receiveNewVotes">'. _("To receive an email for each new vote.") .'
+                <input type=checkbox name="receiveNewVotes" '.$receiveNewVotes.' id="receiveNewVotes">'. _('To receive an email for each new vote.') .'
+            </label>
+          </div>
+        </div>
+    </div>';
+    echo '<div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+          <div class="checkbox">
+            <label>
+                <input type=checkbox name="receiveNewComments" '.$receiveNewComments.' id="receiveNewComments">'. _('To receive an email for each new comment.') .'
             </label>
           </div>
         </div>
@@ -263,7 +285,7 @@ echo '
             <button name="poursuivre" value="'. $choix_sondage .'" type="submit" class="btn btn-success" title="'. _('Go to step 2') . '">'. _('Next') . '</button>
         </p>
 
-        <script type="text/javascript"> document.formulaire.titre.focus(); </script>
+        <script type="text/javascript">document.formulaire.title.focus();</script>
 
     </form>
     </div>

@@ -40,6 +40,11 @@ class Form
     public $receiveNewVotes;
 
     /**
+     * If true, notify poll administrator when new comment is posted.
+     */
+    public $receiveNewComments;
+
+    /**
      * List of available choices
      */
     private $choices;

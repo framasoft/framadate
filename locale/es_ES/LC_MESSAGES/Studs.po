@@ -393,10 +393,24 @@ msgstr "Participaci&oacute;n a la encuesta"
 #: studs.php:171
 #: studs.php:211
 msgid ""
-"has filled a line.\n"
+"filled a vote.\n"
 "You can find your poll at the link"
 msgstr ""
 "acaba de llenar una l&iacute;nea.\n"
+"Usted puede retroceder a su encuesta con el enlace siguiente"
+
+msgid ""
+"updated a vote.\n"
+"You can find your poll at the link"
+msgstr ""
+"updated a vote.\n"
+"Usted puede retroceder a su encuesta con el enlace siguiente"
+
+msgid ""
+"wrote a comment.\n"
+"You can find your poll at the link"
+msgstr ""
+"wrote a comment.\n"
 "Usted puede retroceder a su encuesta con el enlace siguiente"
 
 #: studs.php:246

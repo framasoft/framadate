@@ -207,4 +207,3 @@ INSERT INTO `' . Utils::table('vote') . '`
     }
 
 }
- 
