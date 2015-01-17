@@ -21,7 +21,7 @@ asort($ALLOWED_LANGUAGES);
 
 if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'], array_keys($ALLOWED_LANGUAGES)) ) {
     $mlocale = $_POST['lang'] ;
-    setcookie('lang' , $_POST['lang'], time()+60*5);
+    setcookie('lang' , $_POST['lang'], time()+60*5, '/');
 } elseif ( isset($_COOKIE['lang']) && is_string($_COOKIE['lang']) && in_array($_COOKIE['lang'], array_keys($ALLOWED_LANGUAGES)) ) {
     $mlocale = $_COOKIE['lang'] ;
 } else {
