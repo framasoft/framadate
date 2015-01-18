@@ -73,7 +73,6 @@ $smarty->assign('count', $count);
 $smarty->assign('page', $page);
 $smarty->assign('pages', ceil($count / POLLS_PER_PAGE));
 $smarty->assign('poll_to_delete', $poll_to_delete);
-$smarty->assign('log_file', is_readable('../' . LOG_FILE) ? LOG_FILE : null);
 $smarty->assign('crsf', $securityService->getToken('admin'));
 
 $smarty->display('admin/polls.tpl');

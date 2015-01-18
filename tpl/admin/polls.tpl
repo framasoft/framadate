@@ -19,9 +19,6 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 {$polls|count} {_('polls in the database at this time')}
-                {if $log_file}
-                    <a role="button" class="btn btn-default btn-xs pull-right" href="{$log_file|resource}">{_('Logs')}</a>
-                {/if}
             </div>
 
 

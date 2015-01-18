@@ -19,6 +19,10 @@
 
 require_once '../app/inc/init.php';
 
+ob_start();
+is_readable('../' . LOG_FILE) ? readfile('../' . LOG_FILE) : null;
+$content = ob_get_clean();
+
 $smarty->assign('title', _('Administration'));
-$smarty->assign('logsAreReadable', is_readable('../' . LOG_FILE));
-$smarty->display('admin/index.tpl');
+$smarty->assign('logs', $content);
+$smarty->display('admin/logs.tpl');
