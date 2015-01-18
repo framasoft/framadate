@@ -52,7 +52,7 @@
                     {else}
                     <td><span class="text-danger">{strtotime($poll->end_date)|date_format:'d/m/Y'}</span></td>
                     {/if}
-                    <td>TODO</td>
+                    <td>{$poll->votes|html}</td>
                     <td>{$poll->id|html}</td>
                     <td><a href="{$poll->id|poll_url|html}" class="btn btn-link" title="{_('See the poll')}"><span class="glyphicon glyphicon-eye-open"></span><span class="sr-only">{_('See the poll')}</span></a></td>
                     <td><a href="{$poll->admin_id|poll_url:true|html}" class="btn btn-link" title="{_('Change the poll')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Change the poll')}</span></a></td>

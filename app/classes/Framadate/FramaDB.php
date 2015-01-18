@@ -283,7 +283,12 @@ class FramaDB {
      */
     public function findAllPolls($start, $limit) {
         // Polls
-        $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' ORDER BY title ASC LIMIT :start, :limit');
+        $prepared = $this->prepare('
+SELECT p.*,
+       (SELECT count(1) FROM ' . Utils::table('vote') . ' v WHERE p.id=v.poll_id) votes
+  FROM ' . Utils::table('poll') . ' p
+ ORDER BY p.title ASC
+ LIMIT :start, :limit');
         $prepared->bindParam(':start', $start, PDO::PARAM_INT);
         $prepared->bindParam(':limit', $limit, PDO::PARAM_INT);
         $prepared->execute();
