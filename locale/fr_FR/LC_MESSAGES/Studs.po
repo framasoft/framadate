@@ -664,6 +664,9 @@ msgstr "Échoué:"
 msgid "Skipped:"
 msgstr "Passé:"
 
+msgid "Pages:"
+msgstr "Pages :"
+
 ########### Mails ###########
 # Mails studs.php
 msgid "Poll's participation"

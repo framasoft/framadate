@@ -610,6 +610,30 @@ msgstr "Umfrage ändern"
 msgid "Logs"
 msgstr "Verlauf"
 
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+msgid "Success"
+msgstr "Erfolg"
+
+msgid "Fail"
+msgstr "scheitern"
+
+msgid "Nothing"
+msgstr "Nichts"
+
+msgid "Succeeded:"
+msgstr "Erfolgreich:"
+
+msgid "Failed:"
+msgstr "fehlgeschlagen:"
+
+msgid "Skipped:"
+msgstr "übersprungene:"
+
+msgid "Pages:"
+msgstr "Seiten:"
+
 ########### Mails ###########
 # Mails studs.php
 msgid "Poll's participation"

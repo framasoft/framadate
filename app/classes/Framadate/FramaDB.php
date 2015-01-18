@@ -18,6 +18,8 @@
  */
 namespace Framadate;
 
+use PDO;
+
 class FramaDB {
     /**
      * PDO Object, connection to database.
@@ -274,11 +276,26 @@ class FramaDB {
         return $prepared->fetchAll();
     }
 
-    public function findAllPolls() {
-        $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' ORDER BY end_date ASC');
-        $prepared->execute([]);
+    /**
+     * @param $start int The index of the first poll to return
+     * @param $limit int The limit size
+     * @return array
+     */
+    public function findAllPolls($start, $limit) {
+        // Polls
+        $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' ORDER BY title ASC LIMIT :start, :limit');
+        $prepared->bindParam(':start', $start, PDO::PARAM_INT);
+        $prepared->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $prepared->execute();
+        $polls = $prepared->fetchAll();
 
-        return $prepared->fetchAll();
+        // Total count
+        $prepared = $this->prepare('SELECT count(1) nb FROM ' . Utils::table('poll'));
+        $prepared->execute();
+        $count = $prepared->fetch();
+        $prepared->closeCursor();
+
+        return ['polls' => $polls, 'count' => $count->nb];
     }
 
     public function countVotesByPollId($poll_id) {

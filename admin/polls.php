@@ -27,6 +27,8 @@ use Framadate\Utils;
 include_once __DIR__ . '/../app/inc/init.php';
 include_once __DIR__ . '/../bandeaux.php';
 
+const POLLS_PER_PAGE = 10;
+
 /* Variables */
 /* --------- */
 
@@ -42,6 +44,11 @@ $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $superAdminService = new SuperAdminService($connect);
 $securityService = new SecurityService();
 
+/* GET */
+/*-----*/
+$page = (int)filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT);
+$page = ($page >= 1) ? $page : 1;
+
 /* PAGE */
 /* ---- */
 
@@ -56,10 +63,15 @@ if (!empty($_POST['delete_confirm']) && $securityService->checkCsrf('admin', $_P
     $adminPollService->deleteEntirePoll($poll_id);
 }
 
-$polls = $superAdminService->findAllPolls();
+$found = $superAdminService->findAllPolls($page-1, POLLS_PER_PAGE);
+$polls = $found['polls'];
+$count = $found['count'];
 
 // Assign data to template
 $smarty->assign('polls', $polls);
+$smarty->assign('count', $count);
+$smarty->assign('page', $page);
+$smarty->assign('pages', ceil($count / POLLS_PER_PAGE));
 $smarty->assign('poll_to_delete', $poll_to_delete);
 $smarty->assign('log_file', is_readable('../' . LOG_FILE) ? LOG_FILE : null);
 $smarty->assign('crsf', $securityService->getToken('admin'));
