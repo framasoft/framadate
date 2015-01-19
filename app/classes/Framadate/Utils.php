@@ -50,10 +50,10 @@ class Utils {
      * @deprecated
      */
     public static function print_header($title = '') {
-        global $lang;
+        global $html_lang;
 
         echo '<!DOCTYPE html>
-    <html lang="' . $lang . '">
+    <html lang="' . $html_lang . '">
     <head>
         <meta charset="utf-8" />';
 
@@ -72,7 +72,7 @@ class Utils {
         <script type="text/javascript" src="' . self::get_server_name() . 'js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.' . $lang . '.js"></script>
+        <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.' . $html_lang . '.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/core.js"></script>';
         if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/nav/nav.js")) {
             echo '<script src="/nav/nav.js" id="nav_js" type="text/javascript" charset="utf-8"></script><!-- /Framanav -->';

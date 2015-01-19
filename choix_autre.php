@@ -232,7 +232,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
                 <p>' . _("To make a generic poll you need to propose at least two choices between differents subjects.") . '</p>
                 <p>' . _("You can add or remove additional choices with the buttons") . ' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">' . _("Remove") . '</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">' . _("Add") . '</span></p>';
         if ($config['user_can_add_img_or_link']) {
-            echo '    <p>' . _("It's possible to propose links or images by using ") . '<a href="http://' . $lang . '.wikipedia.org/wiki/Markdown">' . _("the Markdown syntax") . '</a>.</p>';
+            echo '    <p>' . _("It's possible to propose links or images by using ") . '<a href="http://' . $html_lang . '.wikipedia.org/wiki/Markdown">' . _("the Markdown syntax") . '</a>.</p>';
         }
         echo '    </div>' . "\n";
 

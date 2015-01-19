@@ -30,7 +30,7 @@ $smarty->assign('SERVER_URL', Utils::get_server_name());
 $smarty->assign('SCRIPT_NAME', $_SERVER['SCRIPT_NAME']);
 $smarty->assign('TITLE_IMAGE', IMAGE_TITRE);
 $smarty->assign('use_nav_js', file_exists($_SERVER['DOCUMENT_ROOT'] . '/nav/nav.js'));
-$smarty->assign('lang', $lang);
+$smarty->assign('html_lang', $html_lang);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);
 $smarty->assign('date_format', $date_format);
 

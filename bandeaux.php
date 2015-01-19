@@ -57,12 +57,12 @@ function bandeau_titre($titre)
 
 function liste_lang()
 {
-    global $ALLOWED_LANGUAGES; global $lang;
+    global $ALLOWED_LANGUAGES; global $html_lang;
 
     $str = '';
 
     foreach ($ALLOWED_LANGUAGES as $k => $v ) {
-        if (substr($k,0,2)==$lang) {
+        if (substr($k,0,2)==$html_lang) {
             $str .= '<option lang="'.substr($k,0,2).'" selected value="' . $k . '">' . $v . '</option>' . "\n" ;
         } else {
             $str .= '<option lang="'.substr($k,0,2).'" value="' . $k . '">' . $v . '</option>' . "\n" ;
