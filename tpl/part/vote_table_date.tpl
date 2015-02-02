@@ -29,7 +29,7 @@
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
-                    <th colspan="{$slot->moments|count}" class="bg-primary month" id="M{$id}">{$slot->day|date_format:'%B %Y'|html}</th>
+                    <th colspan="{$slot->moments|count}" class="bg-primary month" id="M{$id}">{$slot->day|date_format:$date_format.txt_year_month|html}</th>
                     {for $foo=0 to ($slot->moments|count)-1}
                         {append var='headersM' value=$id}
                     {/for}
@@ -40,6 +40,9 @@
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
                     <th colspan="{$slot->moments|count}" class="bg-primary day" id="D{$id}">{$slot->day|date_format:$date_format.txt_day|html}</th>
+                    {for $foo=0 to ($slot->moments|count)-1}
+                        {append var='headersD' value=$id}
+                    {/for}
                 {/foreach}
                 <th></th>
             </tr>
@@ -49,7 +52,7 @@
                 {foreach $slots as $slot}
                     {foreach $slot->moments as $id=>$moment}
                         <th colspan="1" class="bg-info" id="H{$headersDCount}">{$moment|html}</th>
-                        {append var='headersD' value=$headersDCount}
+                        {append var='headersH' value=$headersDCount}
                         {$headersDCount = $headersDCount+1}
                     {/foreach}
                 {/foreach}
@@ -72,7 +75,7 @@
 
                         {foreach $vote->choices as $k=>$choice}
 
-                            <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">
+                            <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$headersH[$k]}">
                                 <ul class="list-unstyled choice">
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice==2}checked {/if}/>
@@ -145,7 +148,7 @@
                     {$i = 0}
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $moment}
-                            <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$i}">
+                            <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$headersH[$i]}">
                                 <ul class="list-unstyled choice">
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />

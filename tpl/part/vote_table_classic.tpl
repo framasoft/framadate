@@ -25,7 +25,7 @@
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
-                    <th class="bg-info" id="H{$id}">{$slot->title|html|markdown}</th>
+                    <th class="bg-info" id="C{$id}">{$slot->title|html|markdown}</th>
                 {/foreach}
                 <th></th>
             </tr>
@@ -76,7 +76,7 @@
 
                         <th class="bg-info">{$vote->name|html}</th>
 
-                        {foreach $vote->choices as $choice}
+                        {foreach $vote->choices as $id=>$choice}
 
                             {if $choice==2}
                                 <td class="bg-success text-success" headers="C{$id}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Yes')}</span></td>

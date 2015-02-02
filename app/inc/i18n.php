@@ -72,6 +72,7 @@ $date_format['txt_full'] = _('%A, den %e. %B %Y'); //summary in choix_date.php a
 $date_format['txt_short'] = _('%A %e %B %Y'); // radio title
 $date_format['txt_day'] = _('%a %e');
 $date_format['txt_date'] = _('%Y-%m-%d');
+$date_format['txt_year_month'] = _('%B %Y');
 if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') { //%e can't be used on Windows platform, use %#d instead
     foreach ($date_format as $k => $v) {
         $date_format[$k] = preg_replace('#(?<!%)((?:%%)*)%e#', '\1%#d', $v); //replace %e by %#d for windows
