@@ -52,7 +52,7 @@ if (!empty($_GET['poll']) && strlen($_GET['poll']) === 24) {
 }
 
 if (!$poll) {
-    $smarty->assign('error', 'This poll doesn\'t exist');
+    $smarty->assign('error', _('This poll doesn\'t exist !'));
     $smarty->display('error.tpl');
     exit;
 }

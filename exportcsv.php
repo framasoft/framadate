@@ -48,7 +48,7 @@ if (!empty($_GET['poll'])) {
 }
 
 if (!$poll) {
-    $smarty->assign('error', 'This poll doesn\'t exist');
+    $smarty->assign('error', _('This poll doesn\'t exist !'));
     $smarty->display('error.tpl');
     exit;
 }
