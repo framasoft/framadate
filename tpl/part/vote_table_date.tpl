@@ -28,8 +28,23 @@
             {/if}
             <tr>
                 <th role="presentation"></th>
+                {$count_same = 0}
+                {$previous = 0}
                 {foreach $slots as $id=>$slot}
-                    <th colspan="{$slot->moments|count}" class="bg-primary month" id="M{$id}">{$slot->day|date_format:$date_format.txt_year_month|html}</th>
+                    {$display = $slot->day|date_format:$date_format.txt_year_month|html}
+                    {if $previous !== 0 && $previous != $display}
+                        <th colspan="{$count_same}" class="bg-primary month" id="M{$id}">{$previous}</th>
+                        {$count_same = 0}
+                    {/if}
+
+                    {$count_same = $count_same + $slot->moments|count}
+
+                    {if $slot@last}
+                        <th colspan="{$count_same}" class="bg-primary month" id="M{$id}">{$display}</th>
+                    {/if}
+
+                    {$previous = $display}
+
                     {for $foo=0 to ($slot->moments|count)-1}
                         {append var='headersM' value=$id}
                     {/for}
