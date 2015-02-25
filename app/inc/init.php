@@ -23,16 +23,9 @@ if (ini_get('date.timezone') == '') {
 // Autoloading of dependencies with Composer
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-require_once __DIR__ . '/constants.php';
-require_once __DIR__ . '/i18n.php';
+include_once __DIR__ . '/constants.php';
+include_once __DIR__ . '/i18n.php';
 
 $connect = NewADOConnection(BASE_TYPE);
-
-if ('pdo' === BASE_TYPE) {
-    $database_host = 'mysql:host='.SERVEURBASE;
-} else {
-    $database_host = SERVEURBASE;
-}
-
-$connect->Connect($database_host, USERBASE, USERPASSWD, BASE);
+$connect->Connect(SERVEURBASE, USERBASE, USERPASSWD, BASE);
 $err = 0;

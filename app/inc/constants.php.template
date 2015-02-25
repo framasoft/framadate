@@ -20,8 +20,11 @@
 // FRAMADATE version
 const VERSION = 0.8;
 
+// Server name
+const STUDS_URL = '<www.mydomain.com>';
+
 // Application name
-const NOMAPPLICATION = '<Application name>';
+const NOMAPPLICATION = "<Application name>";
 
 // Database administrator email
 const ADRESSEMAILADMIN = '<email address>';
@@ -33,7 +36,7 @@ const ADRESSEMAILREPONSEAUTO = '<no-reply@mydomain.com>';
 const BASE = '<database name>';
 
 // Database user
-const USERBASE = '<database user>';
+const USERBASE = "<database user>";
 
 // Database password
 const USERPASSWD = '<database password>';
