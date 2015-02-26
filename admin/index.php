@@ -27,10 +27,10 @@ include_once __DIR__ . '/../bandeaux.php';
 // de l'application.
 
 // Affichage des balises standards
-Utils::print_header( _('Polls administrator') );
-bandeau_titre(_('Polls administrator'));
+Utils::print_header( _("Polls administrator") );
+bandeau_titre(_("Polls administrator"));
 
-$sondage=$connect->Execute('SELECT * FROM sondage');
+$sondage=$connect->Execute("select * from sondage");
 
 echo'
     <form action="' . Utils::get_server_name() . 'admin/index.php" method="POST">'."\n";
@@ -40,15 +40,15 @@ while($dsondage = $sondage->FetchNextObject(false)) {
         echo '
         <div class="alert alert-warning text-center">
             <h3>'. _("Confirm removal of the poll ") .'"'.$dsondage->id_sondage.'</h3>
-            <p><button class="btn btn-default" type="submit" value="1" name="annullesuppression">'._('Keep this poll!').'</button>
-            <button type="submit" name="confirmesuppression'.$dsondage->id_sondage.'" value="1" class="btn btn-danger">'._('Remove this poll!').'</button></p>
+            <p><button class="btn btn-default" type="submit" value="1" name="annullesuppression">'._("Keep this poll!").'</button>
+            <button type="submit" name="confirmesuppression'.$dsondage->id_sondage.'" value="1" class="btn btn-danger">'._("Remove this poll!").'</button></p>
         </div>';
     }
 
     // Traitement de la confirmation de suppression
     if (Utils::issetAndNoEmpty('confirmesuppression'.$dsondage->id_sondage) === true) {
         // On inclut la routine de suppression
-        $date = date('H:i:s d/m/Y');
+        $date=date('H:i:s d/m/Y');
 
         if (Utils::remove_sondage($connect, $dsondage->id_sondage)) {
            // ecriture des traces dans le fichier de logs
@@ -57,7 +57,7 @@ while($dsondage = $sondage->FetchNextObject(false)) {
     }
 }
 
-$sondage=$connect->Execute('SELECT * FROM sondage WHERE date_fin > DATE_SUB(now(), INTERVAL 3 MONTH) ORDER BY date_fin ASC');
+$sondage=$connect->Execute("select * from sondage WHERE date_fin > DATE_SUB(now(), INTERVAL 3 MONTH) ORDER BY date_fin ASC");
 $nbsondages=$sondage->RecordCount();
 
 $btn_logs = (is_readable('logs_studs.txt')) ? '<a role="button" class="btn btn-default btn-xs pull-right" href="'.str_replace('/admin','', Utils::get_server_name()).'admin/logs_studs.txt">'. _("Logs") .'</a>' : '';
@@ -67,24 +67,24 @@ echo '<p>' . $nbsondages. ' ' . _("polls in the database at this time") . $btn_l
 // tableau qui affiche tous les sondages de la base
 echo '<table class="table table-bordered">
     <tr align="center">
-        <th scope="col">'. _('Poll ID') .'</th>
-        <th scope="col">'. _('Format') .'</th>
-        <th scope="col">'. _('Title') .'</th>
-        <th scope="col">'. _('Author') .'</th>
-        <th scope="col">'. _('Email') .'</th>
-        <th scope="col">'. _('Expiration\'s date') .'</th>
-        <th scope="col">'. _('Users') .'</th>
-        <th scope="col" colspan="3">'. _('Actions') .'</th>
+        <th scope="col">'. _("Poll ID") .'</th>
+        <th scope="col">'. _("Format") .'</th>
+        <th scope="col">'. _("Title") .'</th>
+        <th scope="col">'. _("Author") .'</th>
+        <th scope="col">'. _("Email") .'</th>
+        <th scope="col">'. _("Expiration's date") .'</th>
+        <th scope="col">'. _("Users") .'</th>
+        <th scope="col" colspan="3">'. _("Actions") .'</th>
     </tr>'."\n";
 
 $i = 0;
 while($dsondage = $sondage->FetchNextObject(false)) {
     /* possible en 1 bonne requête dans $sondage */
-    $subjects = $connect->Execute("SELECT * FROM sujet_studs WHERE id_sondage='$dsondage->id_sondage'");
-    $dsujets = $subjects->FetchObject(false);
+    $sujets=$connect->Execute( "select * from sujet_studs where id_sondage='$dsondage->id_sondage'");
+    $dsujets=$sujets->FetchObject(false);
 
-    $user_studs = $connect->Execute("SELECT * from user_studs WHERE id_sondage='$dsondage->id_sondage'");
-    $nb_users = $user_studs->RecordCount();
+    $user_studs=$connect->Execute( "select * from user_studs where id_sondage='$dsondage->id_sondage'");
+    $nbuser=$user_studs->RecordCount();
 
     echo '
     <tr align="center">
@@ -95,26 +95,21 @@ while($dsondage = $sondage->FetchNextObject(false)) {
         <td>'.stripslashes($dsondage->mail_admin).'</td>';
 
     if (strtotime($dsondage->date_fin) > time()) {
-        echo '<td>'.date('d/m/y', strtotime($dsondage->date_fin)).'</td>';
+        echo '
+        <td>'.date("d/m/y",strtotime($dsondage->date_fin)).'</td>';
     } else {
-        echo '<td><span class="text-danger">'
-            . date('d/m/y', strtotime($dsondage->date_fin))
-            . '</span></td>';
+        echo '
+        <td><span class="text-danger">'.date("d/m/y",strtotime($dsondage->date_fin)).'</span></td>';
     }
     echo '
-        <td>'.$nb_users.'</td>
-        <td><a href="' . Utils::getUrlSondage($dsondage->id_sondage) . '" class="btn btn-link" title="'. _('See the poll') .'"><span class="glyphicon glyphicon-eye-open"></span><span class="sr-only">' . _('See the poll') . '</span></a></td>
-        <td><a href="' . Utils::getUrlSondage($dsondage->id_sondage_admin, true) . '" class="btn btn-link" title="'. _('Change the poll') .'"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _("Change the poll") . '</span></a></td>
-        <td><button type="submit" name="supprimersondage'.$dsondage->id_sondage.'" value="'. _('Remove the poll') .'" class="btn btn-link" title="'. _("Remove the poll") .'"><span class="glyphicon glyphicon-trash text-danger"></span><span class="sr-only">' . _('Remove the poll') . '</span></td>
+        <td>'.$nbuser.'</td>
+        <td><a href="' . Utils::getUrlSondage($dsondage->id_sondage) . '" class="btn btn-link" title="'. _("See the poll") .'"><span class="glyphicon glyphicon-eye-open"></span><span class="sr-only">' . _("See the poll") . '</span></a></td>
+        <td><a href="' . Utils::getUrlSondage($dsondage->id_sondage_admin, true) . '" class="btn btn-link" title="'. _("Change the poll") .'"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">' . _("Change the poll") . '</span></a></td>
+        <td><button type="submit" name="supprimersondage'.$dsondage->id_sondage.'" value="'. _("Remove the poll") .'" class="btn btn-link" title="'. _("Remove the poll") .'"><span class="glyphicon glyphicon-trash text-danger"></span><span class="sr-only">' . _("Remove the poll") . '</span></td>
     </tr>'."\n";
-    ++$i;
+    $i++;
 }
 
 echo '</table></form>'."\n";
 
 bandeau_pied(true);
-
-// si on annule la suppression, rafraichissement de la page
-/*if (Utils::issetAndNoEmpty('annulesuppression') === true) {
-    // TODO
-}*/

@@ -455,7 +455,7 @@ msgstr "Umfragedaten (2 von 3)"
 msgid "Choose the dates of your poll"
 msgstr "Wählen Sie Terminmöglichkeiten für Ihre Umfrage"
 
-msgid "To schedule an event you need to propose at least two choices (two hours for one day or two days)."
+msgid "To schedule an event, it's better to propose at least two choices (two hours for one day or two days)."
 msgstr "Um eine Umfrage für einen Termin zu erstellen, müssen Sie mindestens zwei Auswahlmöglichkeiten angeben (zwei verschiedene Zeiten an einem Tag oder zwei Tage)."
 
 msgid "You can add or remove additionnal days and hours with the buttons"
@@ -495,7 +495,7 @@ msgstr "Alle Uhrzeiten entfernen"
 msgid "Poll subjects (2 on 3)"
 msgstr "Umfragethemen (2 von 3)"
 
-msgid "To make a generic poll you need to propose at least two choices between differents subjects."
+msgid "To make a generic poll, it's better to propose at least two choices between differents subjects."
 msgstr "Um eine allgemeine Umfrage zu erstellen, benötigen Sie mindestens zwei Auswahlmöglichkeiten zwischen verschiedenen Themen."
 
 msgid "You can add or remove additional choices with the buttons"

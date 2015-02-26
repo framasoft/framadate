@@ -461,8 +461,8 @@ msgstr "Poll dates (2 on 3)"
 msgid "Choose the dates of your poll"
 msgstr "Choose the dates of your poll"
 
-msgid "To schedule an event you need to propose at least two choices (two hours for one day or two days)."
-msgstr "To schedule an event you need to propose at least two choices (two hours for one day or two days)."
+msgid "To schedule an event, it's better to propose at least two choices (two hours for one day or two days)."
+msgstr "To schedule an event, it's better to propose at least two choices (two hours for one day or two days)."
 
 msgid "You can add or remove additionnal days and hours with the buttons"
 msgstr "You can add or remove additionnal days and hours with the buttons"
@@ -501,8 +501,8 @@ msgstr "Remove all hours"
 msgid "Poll subjects (2 on 3)"
 msgstr "Poll subjects (2 on 3)"
 
-msgid "To make a generic poll you need to propose at least two choices between differents subjects."
-msgstr "To make a generic poll you need to propose at least two choices between differents subjects."
+msgid "To make a generic poll, it's better to propose at least two choices between differents subjects."
+msgstr "To make a generic poll, it's better to propose at least two choices between differents subjects."
 
 msgid "You can add or remove additional choices with the buttons"
 msgstr "You can add or remove additional choices with the buttons"

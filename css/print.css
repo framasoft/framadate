@@ -4,12 +4,16 @@ body {
   background:none;
 }
 
-table {
-    page-break-after:always}
+.jumbotron {
+    page-break-after:always;
 }
 
 table {
-  page-break-inside:auto
+    page-break-after:always;
+}
+
+table {
+  page-break-inside:auto;
 }
 
 tr {
@@ -23,6 +27,26 @@ thead {
 
 tfoot {
   display:table-footer-group;
+}
+
+#tableContainer {
+    overflow-x:visible !important;
+}
+
+#vote-form, .scroll-buttons, form .alert.alert-info {
+    display:none;
+}
+
+table.results td {
+    border:2px solid #333;
+}
+
+table.results tr td:last-child {
+    display:none;
+}
+
+.container {
+    width:auto;
 }
 
 @page {

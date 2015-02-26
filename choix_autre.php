@@ -179,7 +179,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         <div class="col-md-8 col-md-offset-2">';
         echo '
             <div class="alert alert-info">
-                <p>'. _("To make a generic poll you need to propose at least two choices between differents subjects.") .'</p>
+                <p>'. _("To make a generic poll, it's better to propose at least two choices between differents subjects.") .'</p>
                 <p>'. _("You can add or remove additional choices with the buttons") .' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></p>';
         if($config['user_can_add_img_or_link']){
             echo '    <p>'. _("It's possible to propose links or images by using "). '<a href="http://'.$lang.'.wikipedia.org/wiki/Markdown">'. _("the Markdown syntax") .'</a>.</p>';

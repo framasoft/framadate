@@ -461,8 +461,8 @@ msgstr "Choix des dates (2 sur 3)"
 msgid "Choose the dates of your poll"
 msgstr "Choisissez les dates de votre sondage"
 
-msgid "To schedule an event you need to propose at least two choices (two hours for one day or two days)."
-msgstr "Pour créer un sondage spécial dates vous devez proposer au moins deux choix (deux horaires pour une même journée ou deux jours)."
+msgid "To schedule an event, it's better to propose at least two choices (two hours for one day or two days)."
+msgstr "Pour créer un sondage spécial dates,  il est préférable de proposer au moins deux choix (deux horaires pour une même journée ou deux jours)."
 
 msgid "You can add or remove additionnal days and hours with the buttons"
 msgstr "Vous pouvez ajouter ou supprimer des jours et horaires supplémentaires avec les boutons"
@@ -501,8 +501,8 @@ msgstr "Effacer tous les horaires"
 msgid "Poll subjects (2 on 3)"
 msgstr "Choix des sujets (2 sur 3)"
 
-msgid "To make a generic poll you need to propose at least two choices between differents subjects."
-msgstr "Pour créer un sondage classique, vous devez proposer au moins deux choix différents."
+msgid "To make a generic poll, it's better to propose at least two choices between differents subjects."
+msgstr "Pour créer un sondage classique, il est préférable de proposer au moins deux choix différents."
 
 msgid "You can add or remove additional choices with the buttons"
 msgstr "Vous pouvez ajouter ou supprimer des choix supplémentaires avec les boutons"
@@ -580,7 +580,7 @@ msgid "You can fix another removal date for it."
 msgstr "Néanmoins vous pouvez décider ci-dessous d'une date plus rapprochée pour la suppression de votre sondage."
 
 msgid "Removal date (optional)"
-msgstr "Date de fin (facultative)"
+msgstr "Date de suppression (facultative)"
 
 ############# Admin #############
 msgid "Polls administrator"
