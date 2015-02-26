@@ -84,10 +84,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
     }
 
     private function migrateFromSondageToPoll(\PDO $pdo) {
-        $pdo->exec('
-INSERT INTO `' . Utils::table('poll') . '`
-(`id`, `admin_id`, `title`, `description`, `admin_name`, `admin_mail`, `creation_date`, `end_date`, `format`, `editable`, `receiveNewVotes`, `active`)
-  SELECT
+        $select = $pdo->query('
+SELECT
     `id_sondage`,
     `id_sondage_admin`,
     `titre`,
@@ -105,6 +103,28 @@ INSERT INTO `' . Utils::table('poll') . '`
     WHEN \'-\' THEN 0
     ELSE 1 END             AS `active`
   FROM sondage');
+
+        $insert = $pdo->prepare('
+INSERT INTO `' . Utils::table('poll') . '`
+(`id`, `admin_id`, `title`, `description`, `admin_name`, `admin_mail`, `creation_date`, `end_date`, `format`, `editable`, `receiveNewVotes`, `active`)
+VALUE (?,?,?,?,?,?,?,?,?,?,?,?)');
+
+        while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
+            $insert->execute([
+                $row->id_sondage,
+                $row->id_sondage_admin,
+                html_entity_decode($row->titre),
+                html_entity_decode($row->commentaires),
+                html_entity_decode($row->nom_admin),
+                html_entity_decode($row->mail_admin),
+                $row->date_creation,
+                $row->date_fin,
+                $row->format,
+                $row->editable,
+                $row->mailsonde,
+                $row->active
+            ]);
+        }
     }
 
     private function createSlotTable(\PDO $pdo) {
@@ -152,14 +172,24 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('comment') . '` (
     }
 
     private function migrateFromCommentsToComment(\PDO $pdo) {
-        $pdo->exec('
-INSERT INTO `' . Utils::table('comment') . '`
-(`poll_id`, `name`, `comment`)
-  SELECT
+        $select = $pdo->query('
+SELECT
     `id_sondage`,
     `usercomment`,
     `comment`
   FROM `comments`');
+
+        $insert = $pdo->prepare('
+INSERT INTO `' . Utils::table('comment') . '` (`poll_id`, `name`, `comment`)
+VALUE (?,?,?)');
+
+        while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
+            $insert->execute([
+                $row->id_sondage,
+                html_entity_decode($row->usercomment),
+                html_entity_decode($row->comment)
+            ]);
+        }
     }
 
     private function createVoteTable(\PDO $pdo) {
