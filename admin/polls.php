@@ -27,7 +27,7 @@ use Framadate\Utils;
 include_once __DIR__ . '/../app/inc/init.php';
 include_once __DIR__ . '/../bandeaux.php';
 
-const POLLS_PER_PAGE = 10;
+const POLLS_PER_PAGE = 30;
 
 /* Variables */
 /* --------- */

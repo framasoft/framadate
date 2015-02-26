@@ -18,7 +18,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                {$polls|count} {_('polls in the database at this time')}
+                {$polls|count} / {$count} {_('polls in the database at this time')}
             </div>
 
 
