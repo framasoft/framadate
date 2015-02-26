@@ -25,6 +25,8 @@ use Framadate\Utils;
 
 include_once __DIR__ . '/../app/inc/init.php';
 
+set_time_limit(300);
+
 // List a Migration sub classes to execute
 $migrations = [
     new From_0_0_to_0_8_Migration(),
