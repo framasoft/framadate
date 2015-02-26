@@ -880,7 +880,7 @@ if (substr($dsondage->format, 0, 1)=="D") {
         }
 
         // Remove col
-        $tr_add_remove_col .= (count($toutsujet) > 2 ) ? '<td headers="'.$td_headers[$i].'"><button type="submit" name="effacecolonne'.$i.'" class="btn btn-link btn-sm" title="' . _('Remove the column') . ' ' .$radio_title[$i]. '"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">'. _("Remove") .'</span></button></td>' : '<td role="presentation"></td>';
+        $tr_add_remove_col .= (count($toutsujet) > 1 ) ? '<td headers="'.$td_headers[$i].'"><button type="submit" name="effacecolonne'.$i.'" class="btn btn-link btn-sm" title="' . _('Remove the column') . ' ' .$radio_title[$i]. '"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">'. _("Remove") .'</span></button></td>' : '<td role="presentation"></td>';
 
     }
 

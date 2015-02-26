@@ -191,7 +191,7 @@ if (Utils::issetAndNoEmpty('titre', $_SESSION) === false || Utils::issetAndNoEmp
         <div class="col-md-10 col-md-offset-1">
             <h3>'. _("Choose the dates of your poll") .'</h3>
             <div class="alert alert-info">
-                <p>'. _("To schedule an event you need to propose at least two choices (two hours for one day or two days).").'</p>
+                <p>'. _("To schedule an event, it's better to propose at least two choices (two hours for one day or two days).").'</p>
                 <p>'. _("You can add or remove additionnal days and hours with the buttons") .' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove") .'</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add") .'</span></p>
                 <p>'. _("For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)").'</p>
             </div>';
