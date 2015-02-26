@@ -80,10 +80,10 @@ foreach ($migrations as $migration) {
         $migration->execute($pdo);
         if ($insertStmt->execute([$className])) {
             $countSucceeded++;
-            $success[] = $className;
+            $success[] = $migration->description();
         } else {
             $countFailed++;
-            $fail[] = $className;
+            $fail[] = $migration->description();
         }
     } else {
         $countSkipped++;
@@ -100,6 +100,7 @@ $smarty->assign('countSucceeded', $countSucceeded);
 $smarty->assign('countFailed', $countFailed);
 $smarty->assign('countSkipped', $countSkipped);
 $smarty->assign('countTotal', $countTotal);
+$smarty->assign('time', $total_time = round((microtime(true)-$_SERVER['REQUEST_TIME_FLOAT']), 4));
 
 $smarty->assign('title', _('Migration'));
 

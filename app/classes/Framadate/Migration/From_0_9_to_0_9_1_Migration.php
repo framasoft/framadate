@@ -14,6 +14,15 @@ class From_0_9_to_0_9_1_Migration implements Migration {
     }
 
     /**
+     * This method should describe in english what is the purpose of the migration class.
+     *
+     * @return string The description of the migration class
+     */
+    function description() {
+        return "From 0.9 to 0.9.1";
+    }
+
+    /**
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
@@ -24,7 +33,7 @@ class From_0_9_to_0_9_1_Migration implements Migration {
         $stmt = $pdo->query('SHOW TABLES');
         $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
 
-        // Check if tables of v0.8 are presents
+        // Check if tables of v0.9 are presents
         $diff = array_diff([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')], $tables);
         return count($diff) === 0;
     }

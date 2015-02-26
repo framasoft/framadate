@@ -14,6 +14,15 @@ class From_0_8_to_0_9_Migration implements Migration {
     }
 
     /**
+     * This method should describe in english what is the purpose of the migration class.
+     *
+     * @return string The description of the migration class
+     */
+    function description() {
+        return "From 0.8 to 0.9";
+    }
+
+    /**
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
@@ -37,16 +46,16 @@ class From_0_8_to_0_9_Migration implements Migration {
      */
     function execute(\PDO $pdo) {
         $this->createPollTable($pdo);
-        $this->migrateFromSondageToPoll($pdo);
-
-        $this->createSlotTable($pdo);
-        $this->migrateFromSujetStudsToSlot($pdo);
-
         $this->createCommentTable($pdo);
-        $this->migrateFromCommentsToComment($pdo);
-
+        $this->createSlotTable($pdo);
         $this->createVoteTable($pdo);
+
+        $pdo->beginTransaction();
+        $this->migrateFromSondageToPoll($pdo);
+        $this->migrateFromCommentsToComment($pdo);
+        $this->migrateFromSujetStudsToSlot($pdo);
         $this->migrateFromUserStudsToVote($pdo);
+        $pdo->commit();
 
         $this->dropOldTables($pdo);
 
@@ -124,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
 
         $prepared = $pdo->prepare('INSERT INTO ' . Utils::table('slot') . ' (`poll_id`, `title`, `moments`) VALUE (?,?,?)');
         foreach ($slots as $slot) {
-            $prepared->execute([$slot->poll_id, $slot->title, $slot->moments]);
+            $prepared->execute([$slot->poll_id, $slot->title, !empty($slot->moments) ? $slot->moments : null]);
         }
     }
 
@@ -181,18 +190,26 @@ INSERT INTO `' . Utils::table('vote') . '`
     private function transformSujetToSlot($sujet) {
         $slots = [];
         $ex = explode(',', $sujet->sujet);
+        $isDatePoll = strpos($sujet->sujet, '@');
         $lastSlot = null;
 
         foreach ($ex as $atomicSlot) {
-            $values = explode('@', $atomicSlot);
-            if ($lastSlot == null || $lastSlot->title !== $values[0]) {
-                $lastSlot = new \stdClass();
-                $lastSlot->poll_id = $sujet->id_sondage;
-                $lastSlot->title = $values[0];
-                $lastSlot->moments = count($values) == 2 ? $values[1] : null;
-                $slots[] = $lastSlot;
-            } else {
-                $lastSlot->moments .= ',' . $values[1];
+            if ($isDatePoll === false) { // Classic poll
+                $slot = new \stdClass();
+                $slot->poll_id = $sujet->id_sondage;
+                $slot->title = $atomicSlot;
+                $slots[] = $slot;
+            } else { // Date poll
+                $values = explode('@', $atomicSlot);
+                if ($lastSlot == null || $lastSlot->title !== $values[0]) {
+                    $lastSlot = new \stdClass();
+                    $lastSlot->poll_id = $sujet->id_sondage;
+                    $lastSlot->title = $values[0];
+                    $lastSlot->moments = count($values) == 2 ? $values[1] : '-';
+                    $slots[] = $lastSlot;
+                } else {
+                    $lastSlot->moments .= ',' . (count($values) == 2 ? $values[1] : '-');
+                }
             }
         }
 
@@ -205,5 +222,4 @@ INSERT INTO `' . Utils::table('vote') . '`
         $pdo->exec('DROP TABLE `user_studs`');
         $pdo->exec('DROP TABLE `sondage`');
     }
-
 }

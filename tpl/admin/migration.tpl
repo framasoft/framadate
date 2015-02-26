@@ -31,5 +31,9 @@
                 {/foreach}
             </ul>
         </div>
+
+        <div class="col-xs-12 well well-sm">
+            {_('Page generated in')} {$time} {_('secondes')}
+        </div>
     </div>
 {/block}

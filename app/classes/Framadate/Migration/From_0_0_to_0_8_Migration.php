@@ -9,6 +9,15 @@ class From_0_0_to_0_8_Migration implements Migration {
     }
 
     /**
+     * This method should describe in english what is the purpose of the migration class.
+     *
+     * @return string The description of the migration class
+     */
+    function description() {
+        return "First installation of the Framadate application (v0.8)";
+    }
+
+    /**
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
