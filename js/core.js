@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var lang = $('html').attr('lang');
-
+    
     // Datepicker
     var framadatepicker = function() {
         $('.input-group.date').datepicker({
@@ -32,13 +32,25 @@ $(document).ready(function() {
 
 
     var datepickerfocus = false; // a11y : datepicker not display on focus until there is one click on the button
-
+    var lastDate = new Date();
+    
     $(document).on('click','.input-group.date .input-group-addon', function() {
         datepickerfocus = true;
         // Re-init datepicker config before displaying
         $(this).parent().datepicker(framadatepicker());
         $(this).parent().datepicker('show');
-
+        
+        // Trick to keep the last datepicker view
+        if ($(this).parent().find('input').val() == '') {
+            $('.input-group.date input').each(function(){
+                if($(this).val()!='') {
+                    lastDate = $(this).val();
+                }
+            });
+            $(this).parent().datepicker('setDate', lastDate);
+            $(this).parent().datepicker('setDate', '');
+        }
+        
         // Trick to refresh calendar
         $('.datepicker-days .prev').trigger('click');
         $('.datepicker-days .next').trigger('click');
@@ -48,8 +60,9 @@ $(document).ready(function() {
 
     $(document).on('focus','.input-group.date input', function() {
         if(datepickerfocus) {
-            $(this).parent('.input-group.date').datepicker(framadatepicker());
-            $(this).parent('.input-group.date').datepicker('show');
+            // unfocus and click instead (because we are not in a11y mode anymore)
+            $(this).blur();
+            $(this).parent().find('.input-group-addon').trigger('click');
         }
     });
     /**
