@@ -113,10 +113,10 @@ VALUE (?,?,?,?,?,?,?,?,?,?,?,?)');
             $insert->execute([
                 $row->id_sondage,
                 $row->id_sondage_admin,
-                html_entity_decode($row->titre),
-                html_entity_decode($row->commentaires),
-                html_entity_decode($row->nom_admin),
-                html_entity_decode($row->mail_admin),
+                $this->unescape($row->titre),
+                $this->unescape($row->commentaires),
+                $this->unescape($row->nom_admin),
+                $this->unescape($row->mail_admin),
                 $row->date_creation,
                 $row->date_fin,
                 $row->format,
@@ -153,7 +153,11 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
 
         $prepared = $pdo->prepare('INSERT INTO ' . Utils::table('slot') . ' (`poll_id`, `title`, `moments`) VALUE (?,?,?)');
         foreach ($slots as $slot) {
-            $prepared->execute([$slot->poll_id, $slot->title, !empty($slot->moments) ? $slot->moments : null]);
+            $prepared->execute([
+                $slot->poll_id,
+                $this->unescape($slot->title),
+                !empty($slot->moments) ? $this->unescape($slot->moments) : null
+            ]);
         }
     }
 
@@ -186,8 +190,8 @@ VALUE (?,?,?)');
         while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
             $insert->execute([
                 $row->id_sondage,
-                html_entity_decode($row->usercomment),
-                html_entity_decode($row->comment)
+                $this->unescape($row->usercomment),
+                $this->unescape($row->comment)
             ]);
         }
     }
@@ -207,14 +211,24 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('vote') . '` (
     }
 
     private function migrateFromUserStudsToVote(\PDO $pdo) {
-        $pdo->exec('
-INSERT INTO `' . Utils::table('vote') . '`
-(`poll_id`, `name`, `choices`)
-  SELECT
+        $select = $pdo->query('
+SELECT
     `id_sondage`,
     `nom`,
-    REPLACE(REPLACE(REPLACE(`reponses`, 1, \'X\'), 2, 1), \'X\', 2)
+    REPLACE(REPLACE(REPLACE(`reponses`, 1, \'X\'), 2, 1), \'X\', 2) reponses
   FROM `user_studs`');
+
+        $insert = $pdo->prepare('
+INSERT INTO `' . Utils::table('vote') . '` (`poll_id`, `name`, `choices`)
+VALUE (?,?,?)');
+
+        while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
+            $insert->execute([
+                                 $row->id_sondage,
+                                 $this->unescape($row->nom),
+                                 $row->reponses
+                             ]);
+        }
     }
 
     private function transformSujetToSlot($sujet) {
@@ -251,5 +265,9 @@ INSERT INTO `' . Utils::table('vote') . '`
         $pdo->exec('DROP TABLE `sujet_studs`');
         $pdo->exec('DROP TABLE `user_studs`');
         $pdo->exec('DROP TABLE `sondage`');
+    }
+
+    private function unescape($value) {
+        return stripslashes(html_entity_decode($value, ENT_QUOTES));
     }
 }
