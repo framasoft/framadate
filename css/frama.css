@@ -435,3 +435,8 @@ fieldset[disabled] .btn-link:focus {
 .modal-header h4,.modal-header h5,.modal-header h6 {
     font-size: 24px;
 }
+
+/* Admin > Polls */
+.table-polls .cell-format {
+    vertical-align: middle
+}

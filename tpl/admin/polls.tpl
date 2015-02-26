@@ -22,10 +22,10 @@
             </div>
 
 
-            <table class="table table-bordered">
+            <table class="table table-bordered table-polls">
                 <tr align="center">
+                    <th scope="col"></th>
                     <th scope="col">{_('Title')}</th>
-                    <th scope="col">{_('Format')}</th>
                     <th scope="col">{_('Author')}</th>
                     <th scope="col">{_('Email')}</th>
                     <th scope="col">{_('Expiration\'s date')}</th>
@@ -35,14 +35,14 @@
                 </tr>
                 {foreach $polls as $poll}
                     <tr align="center">
-                        <td>{$poll->title|html}</td>
-                        <td>
+                        <td class="cell-format">
                             {if $poll->format === 'D'}
                             <span class="glyphicon glyphicon-calendar" aria-hidden="true" title="{_('Date')}"></span><span class="sr-only">{_('Date')}</span>
                             {else}
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true" title="{_('Classic')}"></span><span class="sr-only">{_('Classic')}</span>
                             {/if}
                         </td>
+                        <td>{$poll->title|html}</td>
                         <td>{$poll->admin_name|html}</td>
                         <td>{$poll->admin_mail|html}</td>
 
