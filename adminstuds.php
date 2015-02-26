@@ -401,15 +401,15 @@ if (isset($_POST["ajoutercolonne"]) && Utils::issetAndNoEmpty('nouvellecolonne')
     }
 }
 
-
+$erreur_ajout_date = false;
 //action quand on ajoute une colonne au format DATE
 if (isset($_POST["ajoutercolonne"]) && (substr($dsondage->format, 0, 1) == "D")) {
     $nouveauxsujets=$dsujet->sujet;
 
-    if (isset($_POST["newdate"]) && $_POST["newdate"] != "vide") {
+    if (isset($_POST["newdate"]) && $_POST["newdate"] != "") {
         $nouvelledate=mktime(0, 0, 0, substr($_POST["newdate"],3,2), substr($_POST["newdate"],0,2), substr($_POST["newdate"],6,4));
 
-        if (isset($_POST["newhour"]) && $_POST["newhour"]!="vide"){
+        if (isset($_POST["newhour"]) && $_POST["newhour"]!=""){
             $nouvelledate.="@";
             $nouvelledate.=$_POST["newhour"];
         }
@@ -443,18 +443,18 @@ if (isset($_POST["ajoutercolonne"]) && (substr($dsondage->format, 0, 1) == "D"))
         $dateinsertion = substr("$dateinsertion", 1);
 
         //mise a jour avec les nouveaux sujets dans la base
-        //if (isset($erreur_ajout_date) && !$erreur_ajout_date){
-            $sql = 'UPDATE sujet_studs SET sujet = '.$connect->Param('dateinsertion').' WHERE id_sondage = '.$connect->Param('numsondage');
-            $sql = $connect->Prepare($sql);
-            $connect->Execute($sql, array($dateinsertion, $numsondage));
+        
+        $sql = 'UPDATE sujet_studs SET sujet = '.$connect->Param('dateinsertion').' WHERE id_sondage = '.$connect->Param('numsondage');
+        $sql = $connect->Prepare($sql);
+        $connect->Execute($sql, array($dateinsertion, $numsondage));
 
-            if ($nouvelledate > strtotime($dsondage->date_fin)) {
-                $date_fin=$nouvelledate+200000;
-                $sql = 'UPDATE sondage SET date_fin = '.$connect->Param('date_fin').' WHERE id_sondage = '.$connect->Param('numsondage');
-                $sql = $connect->Prepare($sql);
-                $connect->Execute($sql, array($date_fin, $numsondage));
-            }
-        //}
+        /* Doesn't work → 30/11/-0001
+        if ($nouvelledate > strtotime($dsondage->date_fin)) {
+            $date_fin=$nouvelledate+200000;
+            $sql = 'UPDATE sondage SET date_fin = '.$connect->Param('date_fin').' WHERE id_sondage = '.$connect->Param('numsondage');
+            $sql = $connect->Prepare($sql);
+            $connect->Execute($sql, array($date_fin, $numsondage));
+        }*/
 
         //mise a jour des reponses actuelles correspondant au sujet ajouté
         $sql = 'UPDATE user_studs SET reponses = '.$connect->Param('reponses').' WHERE nom = '.$connect->Param('nom').' AND id_users='.$connect->Param('id_users');
@@ -485,7 +485,7 @@ if (isset($_POST["ajoutercolonne"]) && (substr($dsondage->format, 0, 1) == "D"))
         send_mail_admin();
 
     } else {
-        $erreur_ajout_date="yes";
+        $erreur_ajout_date = true;
     }
 }
 
