@@ -194,6 +194,8 @@ $comments = $pollService->allCommentsByPollId($poll_id);
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('poll', $poll);
 $smarty->assign('title', _('Poll') . ' - ' . $poll->title);
+$smarty->assign('expired', $poll->end_date < time());
+$smarty->assign('deletion_date', $poll->end_date + PURGE_DELAY * 86400);
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
 $smarty->assign('votes', $pollService->splitVotes($votes));
 $smarty->assign('best_choices', $pollService->computeBestChoices($votes));

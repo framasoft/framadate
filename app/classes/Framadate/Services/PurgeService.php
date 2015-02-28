@@ -38,7 +38,7 @@ class PurgeService {
             }
         }
 
-        return false;
+        return $count;
     }
 
     /**

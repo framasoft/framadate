@@ -270,7 +270,7 @@ class FramaDB {
      * @return array Array of old polls
      */
     public function findOldPolls() {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE end_date < NOW() AND end_date != 0 LIMIT 20');
+        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE DATE_ADD(`end_date`, INTERVAL ' . PURGE_DELAY . ' DAY) < NOW() AND `end_date` != 0 LIMIT 20');
         $prepared->execute([]);
 
         return $prepared->fetchAll();

@@ -23,7 +23,7 @@ class AdminPollService {
 
     function updatePoll($poll) {
         global $config;
-        if ($poll->end_date <= strtotime($poll->creation_date) + (86400 * $config['default_poll_duration'])) {
+        if ($poll->end_date > $poll->creation_date && $poll->end_date <= strtotime($poll->creation_date) + (86400 * $config['default_poll_duration'])) {
             return $this->connect->updatePoll($poll);
         } else {
             return false;

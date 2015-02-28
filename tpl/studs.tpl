@@ -11,11 +11,17 @@
 {include 'part/poll_info.tpl' admin=$admin}
 
 {* Information about voting *}
-
-{if $admin}
-    {include 'part/poll_hint_admin.tpl'}
+{if $expired}
+    <div class="alert alert-danger">
+        <p>{_('The poll is expired, it will be deleted soon.')}</p>
+        <p>{_('Deletion date:')} {$deletion_date|date_format:$date_format['txt_short']|html}</p>
+    </div>
 {else}
-    {include 'part/poll_hint.tpl' active=$poll->active}
+    {if $admin}
+        {include 'part/poll_hint_admin.tpl'}
+    {else}
+        {include 'part/poll_hint.tpl' active=$poll->active}
+    {/if}
 {/if}
 
 {* Scroll left and right *}

@@ -70,6 +70,9 @@ const USE_REMOTE_USER =  true;
 // Path to the log file
 const LOG_FILE = 'admin/stdout.log';
 
+// Days (after expiration date) before purge a poll
+const PURGE_DELAY = 60;
+
 // Config
 $config = [
     /* general config */

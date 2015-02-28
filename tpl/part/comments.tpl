@@ -7,7 +7,7 @@
         <h3>{_("Comments of polled people")}</h3>
         {foreach $comments as $comment}
             <div class="comment">
-                {if $admin}
+                {if $admin && !$expired}
                     <button type="submit" name="delete_comment" value="{$comment->id|html}" class="btn btn-link" title="{_('Remove the comment')}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{_('Remove')}</span></button>
                 {/if}
                 <b>{$comment->name|html}</b>&nbsp;
@@ -17,7 +17,7 @@
     {/if}
 
     {* Add comment form *}
-    {if $active}
+    {if $active && !$expired}
         <div class="hidden-print alert alert-info">
             <div class="col-md-6 col-md-offset-3">
                 <fieldset id="add-comment"><legend>{_("Add a comment to the poll")}</legend>

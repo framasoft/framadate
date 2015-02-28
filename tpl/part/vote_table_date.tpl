@@ -9,7 +9,7 @@
         <table class="results">
             <caption class="sr-only">{_('Votes of the poll')} {$poll->title|html}</caption>
             <thead>
-            {if $admin}
+            {if $admin && !$expired}
                 <tr class="hidden-print">
                     <th role="presentation"></th>
                     {$headersDCount=0}
@@ -79,7 +79,7 @@
                 <tr>
                     {* Edited line *}
 
-                    {if $editingVoteId == $vote->id}
+                    {if $editingVoteId == $vote->id && !$expired}
 
                         <td class="bg-info" style="padding:5px">
                             <div class="input-group input-group-sm">
@@ -132,7 +132,7 @@
 
                         {/foreach}
 
-                        {if $active && $poll->editable}
+                        {if $active && $poll->editable && !$expired}
                             <td>
                                 <button type="submit" class="btn btn-link btn-sm" name="edit_vote" value="{$vote->id|html}" title="{_('Edit the line:')} {$vote->name|html}">
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{_('Edit')}</span>
@@ -152,7 +152,7 @@
 
             {* Line to add a new vote *}
 
-            {if $active && $editingVoteId == 0}
+            {if $active && $editingVoteId == 0 && !$expired}
                 <tr id="vote-form">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">
