@@ -38,13 +38,34 @@ function random($car)
     return $string;
 }
 
+// Like function get_sondage_from_id()
+function check_poll_id($id)
+{
+    global $connect;
+
+    $sql = 'SELECT `id_sondage` FROM sondage`id_sondage` = ' . $connect->Param('id_sondage') ;
+    $sql     = $connect->Prepare($sql);
+    $poll = $connect->Execute($sql, [$id]);
+
+    if ($poll === false) {
+        return false;
+    }
+
+    $dbpoll = $poll->FetchObject(false);
+
+    return $dbpoll->id_sondage;
+}
+
 function ajouter_sondage()
 {
     global $connect;
     global $config;
 
-    $sondage=random(16);
-    $sondage_admin=$sondage.random(8);
+    $sondage = random(16);
+    while(check_poll_id($sondage) == $sondage) {
+        $sondage = random(16);
+    }
+    $sondage_admin = $sondage.random(8);
 
     $date_fin = $_SESSION["champdatefin"]; // provided by choix_autre.php or choix_date.php
     $_SESSION["champdatefin"]=""; //clean param cause 2 polls created by the same user in the same session can be affected by this param during the 2nd creation.
