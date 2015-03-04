@@ -27,7 +27,7 @@ function bandeau_titre($titre)
     $img = ( IMAGE_TITRE ) ? '<img src="'. Utils::get_server_name(). IMAGE_TITRE. '" alt="'.NOMAPPLICATION.'">' : '';
     echo '
     <header role="banner">';
-    if(count($ALLOWED_LANGUAGES)>1){
+    if(count($ALLOWED_LANGUAGES) > 1){
         echo '<form method="post" action="" class="hidden-print">
             <div class="input-group input-group-sm pull-right col-md-2 col-xs-4">
                 <select name="lang" class="form-control" title="'. _("Select the language") .'" >' . liste_lang() . '</select>
@@ -38,7 +38,7 @@ function bandeau_titre($titre)
         </form>';
     }
     echo '
-        <h1><a href="'.str_replace('/admin','', Utils::get_server_name()).'" title="'._("Home").' - '.NOMAPPLICATION.'">'.$img.'</a></h1>
+        <h1><a href="' . Utils::get_server_name() . '" title="' . _('Home') . ' - ' . NOMAPPLICATION . '">' . $img . '</a></h1>
         <h2 class="lead"><i>'. $titre .'</i></h2>
         <hr class="trait" role="presentation" />
     </header>
@@ -72,7 +72,7 @@ function liste_lang()
   return $str;
 }
 
-function bandeau_pied($admin=false)
+function bandeau_pied()
 {
     echo '
     </main>

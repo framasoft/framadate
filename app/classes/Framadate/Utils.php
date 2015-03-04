@@ -23,13 +23,14 @@ class Utils {
      * @return string Server name
      */
     public static function get_server_name() {
-        $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
+        $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
         $port = in_array($_SERVER['SERVER_PORT'], [80, 443]) ? '' : ':' . $_SERVER['SERVER_PORT'];
         $dirname = dirname($_SERVER['SCRIPT_NAME']);
         $dirname = $dirname === '\\' ? '/' : $dirname . '/';
+        $dirname = str_replace('/admin', '', $dirname);
         $server_name = $_SERVER['SERVER_NAME'] . $port . $dirname;
 
-        return $scheme . '://' . str_replace('/admin', '', str_replace('//', '/', str_replace('///', '/', $server_name)));
+        return $scheme . '://' .  preg_replace('//+', '/', $server_name);
     }
 
     public static function is_error($cerr) {
