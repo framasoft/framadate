@@ -454,6 +454,9 @@ msgstr "To receive an email for each new vote."
 msgid "Go to step 2"
 msgstr "Go to step 2"
 
+msgid "Javascript is disabled on your browser. Its activation is required to create a poll."
+msgstr "Javascript is disabled on your browser. Its activation is required to create a poll."
+
 # Errors info_sondage.php
 msgid "Enter a title"
 msgstr "Enter a title"

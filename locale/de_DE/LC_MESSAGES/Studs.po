@@ -427,6 +427,9 @@ msgstr "Bei jeder neuen Abstimmung eine E-Mail erhalten."
 msgid "Go to step 2"
 msgstr "Weiter zum 2. Schritt"
 
+msgid "Javascript is disabled on your browser. Its activation is required to create a poll."
+msgstr "Javascript ist in Ihrem Browser deaktiviert. Seine Aktivierung ist erforderlich, um eine Umfrage zu erstellen."
+
 # Errors info_sondage.php
 msgid "Enter a title"
 msgstr "Titel eingeben"

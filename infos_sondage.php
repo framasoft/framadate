@@ -215,7 +215,7 @@ if ($_SESSION['form']->receiveNewComments) {
 
 // Display form
 echo '
-<div class="row">
+<div class="row" style="display:none" id="form-block">
     <div class="col-md-8 col-md-offset-2" >
     <form name="formulaire" id="formulaire" action="' . Utils::get_server_name() . 'infos_sondage.php" method="POST" class="form-horizontal" role="form">
 
@@ -295,5 +295,17 @@ echo '
     </form>
     </div>
 </div>';
+
+echo '
+<script>
+    document.getElementById("form-block").setAttribute("style", "");
+</script>
+<noscript>
+    <div class="alert alert-danger">'.
+        _('Javascript is disabled on your browser. Its activation is required to create a poll.')
+    .'</div>
+</noscript>
+';
+
 
 bandeau_pied();
