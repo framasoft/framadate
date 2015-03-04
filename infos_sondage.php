@@ -294,17 +294,43 @@ echo '
 
     </form>
     </div>
-</div>';
+</div>
+<noscript>
+    <div class="alert alert-danger">'.
+    _('Javascript is disabled on your browser. Its activation is required to create a poll.')
+    .'</div>
+</noscript>
+<div id="cookie-warning" class="alert alert-danger" style="display:none">'.
+    _('Cookies are disabled on your browser. Theirs activation is required to create a poll.')
+    .'</div>
+';
 
 echo '
 <script>
-    document.getElementById("form-block").setAttribute("style", "");
+    // Check Javascript is enabled, if it is it will execute this script
+    (function() {
+        // Check cookies are enabled too
+        var cookieEnabled = function() {
+            var cookieEnabled = navigator.cookieEnabled;
+
+            // if not IE4+ nor NS6+
+            if (!cookieEnabled && typeof navigator.cookieEnabled === "undefined"){
+                document.cookie = "testcookie"
+                cookieEnabled = document.cookie.indexOf("testcookie") != -1;
+            }
+
+            return cookieEnabled;
+        }
+
+        if (cookieEnabled()) {
+            // Show the form block
+            document.getElementById("form-block").setAttribute("style", "");
+        } else {
+            // Show the warning about cookies
+            document.getElementById("cookie-warning").setAttribute("style", "");
+        }
+    })();
 </script>
-<noscript>
-    <div class="alert alert-danger">'.
-        _('Javascript is disabled on your browser. Its activation is required to create a poll.')
-    .'</div>
-</noscript>
 ';
 
 

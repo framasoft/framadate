@@ -457,6 +457,9 @@ msgstr "Go to step 2"
 msgid "Javascript is disabled on your browser. Its activation is required to create a poll."
 msgstr "Javascript is disabled on your browser. Its activation is required to create a poll."
 
+msgid "Cookies are disabled on your browser. Theirs activation is required to create a poll."
+msgstr "Cookies are disabled on your browser. Theirs activation is required to create a poll."
+
 # Errors info_sondage.php
 msgid "Enter a title"
 msgstr "Enter a title"
