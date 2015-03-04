@@ -47,7 +47,7 @@ a.text-info:focus {
 .text-warning,
 .text-warning a,
 a.text-warning {
-  color: #8A6E3B;
+  color: #C05827;
 }
 .text-warning a:hover,
 .text-warning a:focus,
@@ -85,7 +85,7 @@ a.bg-primary:hover {
   background-color: #FCF3E3;
 }
 .bg-danger,a.bg-danger:hover {
-  background-color: #F2E7E5;
+  background-color: #FDE0DC;
 }
 
 /* Alerts */
@@ -210,6 +210,7 @@ fieldset[disabled] .btn-primary.active {
     color: #fff;
     background-color: #849551;
     border-color: #748544;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.7);
 }
 .btn-success:hover,
 .btn-success:focus,
@@ -433,4 +434,9 @@ fieldset[disabled] .btn-link:focus {
 .modal-header h1,.modal-header h2,.modal-header h3,
 .modal-header h4,.modal-header h5,.modal-header h6 {
     font-size: 24px;
+}
+
+/* Admin > Polls */
+.table-polls .cell-format {
+    vertical-align: middle
 }

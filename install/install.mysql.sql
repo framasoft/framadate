@@ -1,100 +1,112 @@
--- Base de données: `opensondage`
+-- --------------------------------------------------------
+
 --
+-- Table structure `poll`
+--
+
+CREATE TABLE IF NOT EXISTS `poll` (
+  `id`              CHAR(16)  NOT NULL,
+  `admin_id`        CHAR(24)  NOT NULL,
+  `title`           TEXT      NOT NULL,
+  `description`     TEXT,
+  `admin_name`      VARCHAR(64) DEFAULT NULL,
+  `admin_mail`      VARCHAR(128) DEFAULT NULL,
+  `creation_date`   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `end_date`        TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `format`          VARCHAR(1) DEFAULT NULL,
+  `editable`        TINYINT(1) DEFAULT '0',
+  `receiveNewVotes` TINYINT(1) DEFAULT '0',
+  `active`          TINYINT(1) DEFAULT '1',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `comments`
+-- Table structure `slot`
 --
 
-CREATE TABLE IF NOT EXISTS `comments` (
-  `id_comment` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `id_sondage` char(16) NOT NULL,
-  `comment` text NOT NULL,
-  `usercomment` text,
-  PRIMARY KEY (`id_comment`),
-  KEY `id_sondage` (`id_sondage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `slot` (
+  `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `poll_id` CHAR(16)         NOT NULL,
+  `title`   TEXT,
+  `moments` TEXT,
+  PRIMARY KEY (`id`),
+  KEY `poll_id` (`poll_id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sondage`
+-- Table structure `comment`
 --
 
-CREATE TABLE IF NOT EXISTS `sondage` (
-  `id_sondage` char(16) NOT NULL,
-  `commentaires` text,
-  `mail_admin` varchar(128) DEFAULT NULL,
-  `nom_admin` varchar(64) DEFAULT NULL,
-  `titre` text,
-  `id_sondage_admin` char(24) DEFAULT NULL,
-  `date_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_fin` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `format` varchar(2) DEFAULT NULL,
-  `mailsonde` tinyint(1) DEFAULT '0',
-  `statut` int(11) NOT NULL DEFAULT '1' COMMENT '1 = actif ; 0 = inactif ; ',
-  UNIQUE KEY `id_sondage` (`id_sondage`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `comment` (
+  `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `poll_id` CHAR(16)         NOT NULL,
+  `name`    TEXT,
+  `comment` TEXT             NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `poll_id` (`poll_id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `sujet_studs`
+-- Table structure `vote`
 --
 
-CREATE TABLE IF NOT EXISTS `sujet_studs` (
-  `id_sondage` char(16) NOT NULL,
-  `sujet` text,
-  KEY `id_sondage` (`id_sondage`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `vote` (
+  `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `poll_id` CHAR(16)         NOT NULL,
+  `name`    VARCHAR(64)      NOT NULL,
+  `choices` TEXT             NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `poll_id` (`poll_id`)
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
--- --------------------------------------------------------
 
 --
--- Structure de la table `user_studs`
+-- Data for Name: poll; Type: TABLE DATA;
 --
 
-CREATE TABLE IF NOT EXISTS `user_studs` (
-  `id_users` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `nom` varchar(64) NOT NULL,
-  `id_sondage` char(16) NOT NULL,
-  `reponses` text NOT NULL,
-  PRIMARY KEY (`id_users`),
-  KEY `id_sondage` (`id_sondage`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=160284 ;
-
-
-
-INSERT INTO `sondage`
-(`id_sondage`, `commentaires`, `mail_admin`, `nom_admin`,
-	     `titre`, `id_sondage_admin`,
-	     `date_fin`, `format`)
+INSERT INTO `poll`
+(`id`, `description`, `admin_mail`, `admin_name`, `title`, `admin_id`, `end_date`, `format`)
 VALUES
-('aqg259dth55iuhwm','Repas de Noel du service','Stephanie@retaillard.com','Stephanie',
-			   'Repas de Noel','aqg259dth55iuhwmy9d8jlwk',
-			   FROM_UNIXTIME('1627100361'),'D+');
+  ('aqg259dth55iuhwm', 'Repas de Noel du service', 'Stephanie@retaillard.com', 'Stephanie', 'Repas de Noel',
+   'aqg259dth55iuhwmy9d8jlwk', FROM_UNIXTIME('1627100361'), 'D');
 
 --
--- Data for Name: sujet_studs; Type: TABLE DATA;
+-- Data for Name: slot; Type: TABLE DATA;
 --
 
-INSERT INTO `sujet_studs` (`id_sondage`, `sujet`) VALUES
-('aqg259dth55iuhwm','1225839600@12h,1225839600@19h,1226012400@12h,1226012400@19h,1226876400@12h,1226876400@19h,1227049200@12h,1227049200@19h,1227826800@12h,1227826800@19h');
+INSERT INTO `slot` (`poll_id`, `title`, `moments`) VALUES
+  ('aqg259dth55iuhwm', '1225839600', '12h,19h'),
+  ('aqg259dth55iuhwm', '1226012400', '12h,19h'),
+  ('aqg259dth55iuhwm', '1226876400', '12h,19h'),
+  ('aqg259dth55iuhwm', '1227826800', '12h,19h');
 
 --
--- Data for Name: user_studs; Type: TABLE DATA;
+-- Data for Name: vote; Type: TABLE DATA;
 --
 
-INSERT INTO `user_studs` (`nom`, `id_sondage`, `reponses`, `id_users`) VALUES
-('marcel','aqg259dth55iuhwm','0110111101','933'),
-('paul','aqg259dth55iuhwm','1011010111','935'),
-('sophie','aqg259dth55iuhwm','1110110000','945'),
-('barack','aqg259dth55iuhwm','0110000','948'),
-('takashi','aqg259dth55iuhwm','0000110100','951'),
-('albert','aqg259dth55iuhwm','1010110','975'),
-('alfred','aqg259dth55iuhwm','0110010','1135'),
-('marcs','aqg259dth55iuhwm','0100001010','1143'),
-('laure','aqg259dth55iuhwm','0011000','1347'),
-('benda','aqg259dth55iuhwm','1101101100','1667'),
-('Albert','aqg259dth55iuhwm','1111110011','1668');
+INSERT INTO `vote` (`name`, `poll_id`, `choices`) VALUES
+  ('marcel', 'aqg259dth55iuhwm', '02202222'),
+  ('paul', 'aqg259dth55iuhwm', '20220202'),
+  ('sophie', 'aqg259dth55iuhwm', '22202200'),
+  ('barack', 'aqg259dth55iuhwm', '02200000'),
+  ('takashi', 'aqg259dth55iuhwm', '00002202'),
+  ('albert', 'aqg259dth55iuhwm', '20202200'),
+  ('alfred', 'aqg259dth55iuhwm', '02200200'),
+  ('marcs', 'aqg259dth55iuhwm', '02000020'),
+  ('laure', 'aqg259dth55iuhwm', '00220000'),
+  ('benda', 'aqg259dth55iuhwm', '22022022'),
+  ('albert', 'aqg259dth55iuhwm', '22222200');

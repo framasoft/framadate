@@ -130,7 +130,7 @@ msgstr "Usted no habia llenado la primera pagina dela encuesta"
 #: choix_autre.php:63
 #: adminstuds.php:79
 #: adminstuds.php:1044
-msgid "Back to the homepage of "
+msgid "Back to the homepage of"
 msgstr "Retroceder al inicio de"
 
 #: choix_date.php:220
@@ -255,8 +255,8 @@ msgstr "Introducza un t&iacute;tulo"
 #: infos_sondage.php:133
 #: infos_sondage.php:138
 #: infos_sondage.php:150
-msgid "Characters < > and \" are not permitted"
-msgstr "Los caracteres < > y \" no estan autorizados!"
+msgid "Something is wrong with the format"
+msgstr "Something is wrong with the format"
 
 #: infos_sondage.php:136
 msgid "Comments: "
@@ -393,10 +393,24 @@ msgstr "Participaci&oacute;n a la encuesta"
 #: studs.php:171
 #: studs.php:211
 msgid ""
-"has filled a line.\n"
+"filled a vote.\n"
 "You can find your poll at the link"
 msgstr ""
 "acaba de llenar una l&iacute;nea.\n"
+"Usted puede retroceder a su encuesta con el enlace siguiente"
+
+msgid ""
+"updated a vote.\n"
+"You can find your poll at the link"
+msgstr ""
+"updated a vote.\n"
+"Usted puede retroceder a su encuesta con el enlace siguiente"
+
+msgid ""
+"wrote a comment.\n"
+"You can find your poll at the link"
+msgstr ""
+"wrote a comment.\n"
 "Usted puede retroceder a su encuesta con el enlace siguiente"
 
 #: studs.php:246
@@ -526,7 +540,7 @@ msgid "Characters \" < and > are not permitted"
 msgstr "Los caracteres \" < y > no estan autorizados!"
 
 #: choix_autre.php:191
-msgid "Your poll will be automatically removed after 6 months.<br> You can fix another removal date for it."
+msgid "Your poll will be automatically removed after 6 months.<br> You can set a closer removal date for it."
 msgstr "Su encuesta ser&aacute; automaticamente borrado dentro de 6 meses.<br> Mientras, usted puede cambiar este fecha aqu&iacute;."
 
 #: choix_autre.php:193
@@ -612,8 +626,8 @@ msgstr ""
 "Usted puede cambiar su encuesta al enlace siguiente"
 
 #: adminstuds.php:582
-msgid "As poll administrator, you can change all the lines of this poll with this button : "
-msgstr "En calidad de administrador, Usted puede cambiar todas la l&iacute;neas de este encuesta con este botón :"
+msgid "As poll administrator, you can change all the lines of this poll with this button"
+msgstr "En calidad de administrador, Usted puede cambiar todas la l&iacute;neas de este encuesta con este botón"
 
 msgid "Edit"
 msgstr "Cambio"

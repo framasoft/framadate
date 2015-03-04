@@ -17,14 +17,8 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-// FRAMADATE version
-const VERSION = 0.8;
-
-// Server name
-const STUDS_URL = '<www.mydomain.com>';
-
 // Application name
-const NOMAPPLICATION = "<Application name>";
+const NOMAPPLICATION = '<Application name>';
 
 // Database administrator email
 const ADRESSEMAILADMIN = '<email address>';
@@ -32,20 +26,20 @@ const ADRESSEMAILADMIN = '<email address>';
 // Email for automatic responses (you should set it to "no-reply")
 const ADRESSEMAILREPONSEAUTO = '<no-reply@mydomain.com>';
 
-// Database name
-const BASE = '<database name>';
-
 // Database user
-const USERBASE = "<database user>";
+const DB_USER= '<database user>';
 
 // Database password
-const USERPASSWD = '<database password>';
+const DB_PASSWORD = '<database password>';
 
 // Database server name, leave empty to use a socket
-const SERVEURBASE = '<database server>';
+const DB_CONNECTION_STRING = 'mysql:host=<database host>;dbname=<database name>;port=<database port>';
 
-// Database type (mysql, postgres…) http://phplens.com/lens/adodb/docs-adodb.htm#drivers
-const BASE_TYPE = '<database type>';
+// Name of the table that store migration script already executed
+const MIGRATION_TABLE = 'framadate_migration';
+
+// Table name prefix
+const TABLENAME_PREFIX = 'fd_';
 
 // Default Language using POSIX variant of BC P47 standard (choose in $ALLOWED_LANGUAGES)
 const LANGUE = 'fr_FR';
@@ -73,16 +67,11 @@ const URL_PROPRE = false;
 // Use REMOTE_USER data provided by web server
 const USE_REMOTE_USER =  true;
 
-const COMMENT_EMPTY         = 0x0000000001;
-const COMMENT_USER_EMPTY    = 0x0000000010;
-const COMMENT_INSERT_FAILED = 0x0000000100;
-const NAME_EMPTY            = 0x0000001000;
-const NAME_TAKEN            = 0x0000010000;
-const NO_POLL               = 0x0000100000;
-const NO_POLL_ID            = 0x0001000000;
-const INVALID_EMAIL         = 0x0010000000;
-const TITLE_EMPTY           = 0x0100000000;
-const INVALID_DATE          = 0x1000000000;
+// Path to the log file
+const LOG_FILE = 'admin/stdout.log';
+
+// Days (after expiration date) before purge a poll
+const PURGE_DELAY = 60;
 
 // Config
 $config = [
@@ -93,8 +82,8 @@ $config = [
     'show_the_software' => true,            // display technical information about the software
     'show_cultivate_your_garden' => true,   // display "developpement and administration" information
     /* choix_autre.php / choix_date.php */
-    'default_poll_duration' => 180,          // default values for the new poll duration (number of days).
+    'default_poll_duration' => 180,         // default values for the new poll duration (number of days).
     /* choix_autre.php */
-    'user_can_add_img_or_link' => true,      // user can add link or URL when creating his poll.
+    'user_can_add_img_or_link' => true,     // user can add link or URL when creating his poll.
 ];
 

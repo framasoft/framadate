@@ -66,7 +66,7 @@ msgstr "(au format nom@mail.com)"
 msgid "Description"
 msgstr "Description"
 
-msgid "Back to the homepage of "
+msgid "Back to the homepage of"
 msgstr "Retourner à la page d'accueil de"
 
 msgid "Error!"
@@ -80,9 +80,6 @@ msgstr "jj/mm/aaaa"
 
 msgid "%A, den %e. %B %Y"
 msgstr "%A %e %B %Y"
-
-msgid "Expiration's date"
-msgstr "Date d'expiration"
 
 msgid "days"
 msgstr "jours"
@@ -199,13 +196,22 @@ msgstr "Annuler le changement de titre"
 msgid "Initiator of the poll"
 msgstr "Auteur du sondage"
 
+msgid "Edit the name"
+msgstr "Modification de l'auteur"
+
+msgid "Save the new name"
+msgstr "Enregistrer l'auteur"
+
+msgid "Cancel the name edit"
+msgstr "Annuler le changement d'auteur"
+
 msgid "Email"
 msgstr "Courriel"
 
 msgid "Edit the email adress"
 msgstr "Modifier le courriel"
 
-msgid "Save the email address "
+msgid "Save the email address"
 msgstr "Enregistrer le courriel"
 
 msgid "Cancel the email address edit"
@@ -225,6 +231,18 @@ msgstr "Lien public du sondage"
 
 msgid "Admin link of the poll"
 msgstr "Lien d'administration du sondage"
+
+msgid "Expiration's date"
+msgstr "Date d'expiration"
+
+msgid "Edit the expiration's date"
+msgstr "Modifier la date d'expiration"
+
+msgid "Save the new expiration's date"
+msgstr "Enregistrer la date d'expiration"
+
+msgid "Cancel the expiration's date edit"
+msgstr "Annuler le changement de date d'expiration"
 
 msgid "Poll rules"
 msgstr "Permissions du sondage"
@@ -247,15 +265,18 @@ msgstr "Enregistrer les nouvelles permissions"
 msgid "Cancel the rules edit"
 msgstr "Annuler le changement de permissions"
 
+msgid "The name is invalid."
+msgstr "Le nom n'est pas valide."
+
 # Help text adminstuds.php
-msgid "As poll administrator, you can change all the lines of this poll with this button "
-msgstr "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec ce bouton "
+msgid "As poll administrator, you can change all the lines of this poll with this button"
+msgstr "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec ce bouton"
 
-msgid " remove a column or a line with "
-msgstr " effacer une colonne ou une ligne avec "
+msgid "remove a column or a line with"
+msgstr "effacer une colonne ou une ligne avec"
 
-msgid "and add a new column with "
-msgstr "et si vous avez oublié de saisir un choix, vous pouvez rajouter une colonne en cliquant sur "
+msgid "and add a new column with"
+msgstr "et si vous avez oublié de saisir un choix, vous pouvez rajouter une colonne en cliquant sur"
 
 msgid "Finally, you can change the informations of this poll like the title, the comments or your email address."
 msgstr "Vous pouvez enfin également modifier les informations relatives à ce sondage comme le titre, les commentaires ou encore votre courriel."
@@ -437,8 +458,8 @@ msgstr "Aller à l'étape 2"
 msgid "Enter a title"
 msgstr "Il faut saisir un titre !"
 
-msgid "Characters < > and \" are not permitted"
-msgstr "Les caractères < > et \" ne sont pas autorisés !"
+msgid "Something is wrong with the format"
+msgstr "Quelque chose ne va pas avec le format"
 
 msgid "Enter an email address"
 msgstr "Il faut saisir une adresse électronique !"
@@ -461,8 +482,8 @@ msgstr "Choix des dates (2 sur 3)"
 msgid "Choose the dates of your poll"
 msgstr "Choisissez les dates de votre sondage"
 
-msgid "To schedule an event, it's better to propose at least two choices (two hours for one day or two days)."
-msgstr "Pour créer un sondage spécial dates,  il est préférable de proposer au moins deux choix (deux horaires pour une même journée ou deux jours)."
+msgid "To schedule an event you need to propose at least two choices (two hours for one day or two days)."
+msgstr "Pour créer un sondage spécial dates vous devez proposer au moins deux choix (deux horaires pour une même journée ou deux jours)."
 
 msgid "You can add or remove additionnal days and hours with the buttons"
 msgstr "Vous pouvez ajouter ou supprimer des jours et horaires supplémentaires avec les boutons"
@@ -501,8 +522,8 @@ msgstr "Effacer tous les horaires"
 msgid "Poll subjects (2 on 3)"
 msgstr "Choix des sujets (2 sur 3)"
 
-msgid "To make a generic poll, it's better to propose at least two choices between differents subjects."
-msgstr "Pour créer un sondage classique, il est préférable de proposer au moins deux choix différents."
+msgid "To make a generic poll you need to propose at least two choices between differents subjects."
+msgstr "Pour créer un sondage classique, vous devez proposer au moins deux choix différents."
 
 msgid "You can add or remove additional choices with the buttons"
 msgstr "Vous pouvez ajouter ou supprimer des choix supplémentaires avec les boutons"
@@ -576,15 +597,18 @@ msgstr "Date de suppression :"
 msgid "Your poll will be automatically removed after"
 msgstr "Votre sondage sera automatiquement effacé dans"
 
-msgid "You can fix another removal date for it."
-msgstr "Néanmoins vous pouvez décider ci-dessous d'une date plus rapprochée pour la suppression de votre sondage."
+msgid "You can set a closer removal date for it."
+msgstr "Vous pouvez décider d'une date de suppression plus proche."
 
 msgid "Removal date (optional)"
-msgstr "Date de suppression (facultative)"
+msgstr "Date de fin (facultative)"
 
 ############# Admin #############
-msgid "Polls administrator"
-msgstr "Administrateur de la base"
+msgid "Polls"
+msgstr "Sondages"
+
+msgid "Migration"
+msgstr "Migration"
 
 msgid "Confirm removal of the poll "
 msgstr "Confirmer la suppression du sondage "
@@ -619,16 +643,54 @@ msgstr "Modifier le sondage"
 msgid "Logs"
 msgstr "Historique"
 
+msgid "Summary"
+msgstr "Résumé"
+
+msgid "Success"
+msgstr "Réussite"
+
+msgid "Fail"
+msgstr "Échèc"
+
+msgid "Nothing"
+msgstr "Rien"
+
+msgid "Succeeded:"
+msgstr "Réussit:"
+
+msgid "Failed:"
+msgstr "Échoué:"
+
+msgid "Skipped:"
+msgstr "Passé:"
+
+msgid "Pages:"
+msgstr "Pages :"
+
 ########### Mails ###########
 # Mails studs.php
 msgid "Poll's participation"
 msgstr "Participation au sondage"
 
 msgid ""
-"has filled a line.\n"
+"filled a vote.\n"
 "You can find your poll at the link"
 msgstr ""
-" vient de remplir une ligne.\n"
+"vient de voter.\n"
+"Vous pouvez retrouver votre sondage avec le lien suivant"
+
+msgid ""
+"updated a vote.\n"
+"You can find your poll at the link"
+msgstr ""
+"vient de mettre à jour un vote.\n"
+"Vous pouvez retrouver votre sondage avec le lien suivant"
+
+msgid ""
+"vient de rédiger un commentaire.\n"
+"You can find your poll at the link"
+msgstr ""
+"wrote a comment.\n"
 "Vous pouvez retrouver votre sondage avec le lien suivant"
 
 msgid "Thanks for your confidence."

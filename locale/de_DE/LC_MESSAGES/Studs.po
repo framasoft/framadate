@@ -66,7 +66,7 @@ msgstr "(Format: name@mail.com)"
 msgid "Description"
 msgstr "Beschreibung"
 
-msgid "Back to the homepage of "
+msgid "Back to the homepage of"
 msgstr "Zurück zur Homepage von "
 
 msgid "Error!"
@@ -242,14 +242,14 @@ msgid "Cancel the rules edit"
 msgstr "Neue Regeln nicht speichern"
 
 # Help text adminstuds.php
-msgid "As poll administrator, you can change all the lines of this poll with this button "
-msgstr "Als Administrator der Umfrage, können Sie alle Zeilen der Umfrage über diesen Button ändern "
+msgid "As poll administrator, you can change all the lines of this poll with this button"
+msgstr "Als Administrator der Umfrage, können Sie alle Zeilen der Umfrage über diesen Button ändern"
 
-msgid " remove a column or a line with "
-msgstr " Zeile oder Spalte entfernen mit "
+msgid "remove a column or a line with"
+msgstr "Zeile oder Spalte entfernen mit"
 
-msgid "and add a new column with "
-msgstr "und neue Spalte hinzufügen mit "
+msgid "and add a new column with"
+msgstr "und neue Spalte hinzufügen mit"
 
 msgid "Finally, you can change the informations of this poll like the title, the comments or your email address."
 msgstr "Sie können auch die Informationen dieser Umfrage wie Titel, Kommentare oder E-Mail Adresse ändern."
@@ -431,8 +431,8 @@ msgstr "Weiter zum 2. Schritt"
 msgid "Enter a title"
 msgstr "Titel eingeben"
 
-msgid "Characters < > and \" are not permitted"
-msgstr "Die Zeichen < > und \" sind nicht erlaubt !"
+msgid "Something is wrong with the format"
+msgstr "Something is wrong with the format"
 
 msgid "Enter an email address"
 msgstr "Sie müssen eine E-Mail Adresse eingeben"
@@ -455,7 +455,7 @@ msgstr "Umfragedaten (2 von 3)"
 msgid "Choose the dates of your poll"
 msgstr "Wählen Sie Terminmöglichkeiten für Ihre Umfrage"
 
-msgid "To schedule an event, it's better to propose at least two choices (two hours for one day or two days)."
+msgid "To schedule an event you need to propose at least two choices (two hours for one day or two days)."
 msgstr "Um eine Umfrage für einen Termin zu erstellen, müssen Sie mindestens zwei Auswahlmöglichkeiten angeben (zwei verschiedene Zeiten an einem Tag oder zwei Tage)."
 
 msgid "You can add or remove additionnal days and hours with the buttons"
@@ -495,7 +495,7 @@ msgstr "Alle Uhrzeiten entfernen"
 msgid "Poll subjects (2 on 3)"
 msgstr "Umfragethemen (2 von 3)"
 
-msgid "To make a generic poll, it's better to propose at least two choices between differents subjects."
+msgid "To make a generic poll you need to propose at least two choices between differents subjects."
 msgstr "Um eine allgemeine Umfrage zu erstellen, benötigen Sie mindestens zwei Auswahlmöglichkeiten zwischen verschiedenen Themen."
 
 msgid "You can add or remove additional choices with the buttons"
@@ -567,7 +567,7 @@ msgstr "Löschdatum:"
 msgid "Your poll will be automatically removed after 6 months."
 msgstr "Ihre Umfrage wird automatisch nach 6 Monaten gelöscht."
 
-msgid "You can fix another removal date for it."
+msgid "You can set a closer removal date for it."
 msgstr "Sie können auch ein anderes Löschdatum festlegen."
 
 msgid "Removal date (optional)"
@@ -610,16 +610,54 @@ msgstr "Umfrage ändern"
 msgid "Logs"
 msgstr "Verlauf"
 
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+msgid "Success"
+msgstr "Erfolg"
+
+msgid "Fail"
+msgstr "scheitern"
+
+msgid "Nothing"
+msgstr "Nichts"
+
+msgid "Succeeded:"
+msgstr "Erfolgreich:"
+
+msgid "Failed:"
+msgstr "fehlgeschlagen:"
+
+msgid "Skipped:"
+msgstr "übersprungene:"
+
+msgid "Pages:"
+msgstr "Seiten:"
+
 ########### Mails ###########
 # Mails studs.php
 msgid "Poll's participation"
 msgstr "Beteiligung an der Umfrage"
 
 msgid ""
-"has filled a line.\n"
+"filled a vote.\n"
 "You can find your poll at the link"
 msgstr ""
-" hat eine Zeile ausgefüllt.\n"
+"hat eine Zeile ausgefüllt.\n"
+"Sie finden Ihre Umfrage unter dem folgenden Link:"
+
+msgid ""
+"updated a vote.\n"
+"You can find your poll at the link"
+msgstr ""
+"updated a vote.\n"
+"Sie finden Ihre Umfrage unter dem folgenden Link:"
+
+msgid ""
+"wrote a comment.\n"
+"You can find your poll at the link"
+msgstr ""
+"wrote a comment.\n"
 "Sie finden Ihre Umfrage unter dem folgenden Link:"
 
 msgid "Thanks for your confidence."

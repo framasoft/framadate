@@ -16,16 +16,28 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
+use Framadate\FramaDB;
+
+// Autoloading of dependencies with Composer
+require_once __DIR__ . '/../../vendor/autoload.php';
+
+if (session_id() == '') {
+    session_start();
+}
 
 if (ini_get('date.timezone') == '') {
     date_default_timezone_set('Europe/Paris');
 }
-// Autoloading of dependencies with Composer
-require_once __DIR__ . '/../../vendor/autoload.php';
 
-include_once __DIR__ . '/constants.php';
-include_once __DIR__ . '/i18n.php';
+define('ROOT_DIR', __DIR__ . '/../../');
 
-$connect = NewADOConnection(BASE_TYPE);
-$connect->Connect(SERVEURBASE, USERBASE, USERPASSWD, BASE);
+require_once __DIR__ . '/constants.php';
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/i18n.php';
+
+// Smarty
+require_once __DIR__ . '/smarty.php';
+
+// Connection to database
+$connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
 $err = 0;

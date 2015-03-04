@@ -120,7 +120,9 @@ caption {
 #title-form h3 .btn-edit,
 #email-form .btn-edit,
 #description-form .btn-edit,
-#poll-rules-form .btn-edit {
+#poll-rules-form .btn-edit,
+#expiration-form .btn-edit,
+#name-form .btn-edit {
     position:absolute;
     left:-2000px;
 }
@@ -132,7 +134,11 @@ caption {
 #description-form .btn-edit:focus,
 #description-form:hover .btn-edit,
 #poll-rules-form .btn-edit:focus,
-#poll-rules-form:hover .btn-edit {
+#poll-rules-form:hover .btn-edit,
+#expiration-form .btn-edit:focus,
+#expiration-form:hover .btn-edit,
+#name-form .btn-edit:focus,
+#name-form:hover .btn-edit {
     position:relative !important;
     left:0;
     padding: 0px 10px;
@@ -245,18 +251,13 @@ table.results .btn-link.btn-sm {
 
 #vote-form td {
     border-top:2px solid white;
-    vertical-align:top;
 }
 
 .yes input, .ifneedbe input,.no input {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0px;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0px, 0px, 0px, 0px);
-    border: 0px none;
+    position:absolute;
+    left:0;
+    margin-left:-15px;
+    margin-top:0;
 }
 
 .choice input:focus + label {
@@ -274,47 +275,45 @@ table.results .btn-link.btn-sm {
 
 .yes .btn, .ifneedbe .btn, .no .btn {
     width:32px;
+    color:#555;
 }
 
-.yes .btn,.yes .btn:hover {
+.yes .btn {
     border-bottom-right-radius:0px !important;
     border-bottom-left-radius:0px !important;
     margin-bottom:-1px !important;
     margin-top:4px !important;
-    color:#677835;
 }
 
-.ifneedbe .btn,.ifneedbe .btn:hover {
+.ifneedbe .btn {
     border-radius:0px;
-    color:#C48A1B;
 }
 
-.no .btn,.no .btn:hover{
+.no .btn{
     border-top-right-radius:0px !important;
     border-top-left-radius:0px !important;
     margin-bottom:4px !important;
     margin-top:-1px !important;
-    color:#AD220F;
 }
 
 .yes input[type="radio"]:checked + label { /* =.btn-success.active */
-    color: #FFF;
-    background-color: #7D8C3F;
-    border-color: #7D8C3F;
+    color: #fff;
+    background-color: #768745;
+    border-color: #67753C;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
 .ifneedbe input[type="radio"]:checked + label { /* =.btn-warning.active */
-    color: #FFF;
-    background-color: #C48A1B;
-    border-color: #C48A1B;
+    color: #fff;
+    background-color: #CF9800;
+    border-color: #BD8A00;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
 .no input[type="radio"]:checked + label { /* =.btn-danger.active */
-    color: #FFF;
-    background-color: #B82E12;
-    border-color: #B82E12;
+    color: #fff;
+    background-color: #BF2511;
+    border-color: #AD220F;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 

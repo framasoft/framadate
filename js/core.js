@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var lang = $('html').attr('lang');
-    
+
     // Datepicker
     var framadatepicker = function() {
         $('.input-group.date').datepicker({
@@ -32,25 +32,13 @@ $(document).ready(function() {
 
 
     var datepickerfocus = false; // a11y : datepicker not display on focus until there is one click on the button
-    var lastDate = new Date();
-    
+
     $(document).on('click','.input-group.date .input-group-addon', function() {
         datepickerfocus = true;
         // Re-init datepicker config before displaying
         $(this).parent().datepicker(framadatepicker());
         $(this).parent().datepicker('show');
-        
-        // Trick to keep the last datepicker view
-        if ($(this).parent().find('input').val() == '') {
-            $('.input-group.date input').each(function(){
-                if($(this).val()!='') {
-                    lastDate = $(this).val();
-                }
-            });
-            $(this).parent().datepicker('setDate', lastDate);
-            $(this).parent().datepicker('setDate', '');
-        }
-        
+
         // Trick to refresh calendar
         $('.datepicker-days .prev').trigger('click');
         $('.datepicker-days .next').trigger('click');
@@ -60,9 +48,8 @@ $(document).ready(function() {
 
     $(document).on('focus','.input-group.date input', function() {
         if(datepickerfocus) {
-            // unfocus and click instead (because we are not in a11y mode anymore)
-            $(this).blur();
-            $(this).parent().find('.input-group-addon').trigger('click');
+            $(this).parent('.input-group.date').datepicker(framadatepicker());
+            $(this).parent('.input-group.date').datepicker('show');
         }
     });
     /**
@@ -201,17 +188,25 @@ $(document).ready(function() {
         });
     });
 
-    // 1 day filled and you can submit
+    // 1 day and 2 hours or 2 days and you can submit
     function SubmitDaysAvalaible() {
         var nb_filled_days = 0;
+        var nb_filled_hours = 0;
 
         $('#selected-days fieldset legend input').each(function() {
             if($(this).val()!='') {
                 nb_filled_days++;
             }
         });
+        $('#selected-days .hours').each(function() {
+            if($(this).val()!='') {
+                nb_filled_hours++;
+            }
+        });
 
-        if (nb_filled_days>0) {
+        if (nb_filled_days>1) {
+            $('button[name="choixheures"]').removeClass('disabled');
+        } else if (nb_filled_hours>1 && nb_filled_days==1)  {
             $('button[name="choixheures"]').removeClass('disabled');
         } else {
             $('button[name="choixheures"]').addClass('disabled');
@@ -223,8 +218,8 @@ $(document).ready(function() {
     });
     SubmitDaysAvalaible();
 
-    // 1 days and you can remove a day or copy hours
-    if($('#selected-days fieldset').length>0) {
+    // 2 days and you can remove a day or copy hours
+    if($('#selected-days fieldset').length>1) {
         $('#remove-a-day, #copyhours').removeClass('disabled');
     }
 
@@ -261,13 +256,13 @@ $(document).ready(function() {
         $('.choice-field:last').remove();
         var nb_choices = $('.choice-field').length;
         $('#choice'+(nb_choices-1)).focus();
-        if (nb_choices == 1) {
+        if (nb_choices == 2) {
             $('#remove-a-choice').addClass('disabled');
         };
         SubmitChoicesAvalaible();
     });
 
-    // 1 choice filled and you can submit
+    // 2 choices filled and you can submit
     function SubmitChoicesAvalaible() {
         var nb_filled_choices = 0;
         $('.choice-field input').each(function() {
@@ -275,7 +270,7 @@ $(document).ready(function() {
                 nb_filled_choices++;
             }
         });
-        if(nb_filled_choices>0) {
+        if(nb_filled_choices>1) {
             $('button[name="fin_sondage_autre"]').removeClass('disabled');
         } else {
             $('button[name="fin_sondage_autre"]').addClass('disabled');
@@ -327,6 +322,20 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#name-form .btn-edit').on('click', function() {
+        $('#name-form p').hide();
+        $('.js-name').removeClass("hidden");
+        $('.js-name input').focus();
+        return false;
+    });
+
+    $('#name-form .btn-cancel').on('click', function() {
+        $('#name-form p').show();
+        $('#name-form .js-name').addClass("hidden");
+        $('#name-form .btn-edit').focus();
+        return false;
+    });
+
     $('#email-form .btn-edit').on('click', function() {
         $('#email-form p').hide();
         $('#email-form .js-email').removeClass("hidden");
@@ -366,6 +375,20 @@ $(document).ready(function() {
         $('#poll-rules-form p').show();
         $('#poll-rules-form .js-poll-rules').addClass("hidden");
         $('.js-poll-rules .btn-edit').focus();
+        return false;
+    });
+
+    $('#expiration-form .btn-edit').on('click', function() {
+        $('#expiration-form p').hide();
+        $('.js-expiration').removeClass("hidden");
+        $('.js-expiration input').focus();
+        return false;
+    });
+
+    $('#expiration-form .btn-cancel').on('click', function() {
+        $('#expiration-form p').show();
+        $('#expiration-form .js-expiration').addClass("hidden");
+        $('#expiration-form .btn-edit').focus();
         return false;
     });
 

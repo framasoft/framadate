@@ -1,12 +1,13 @@
 .htaccess
-admin/.htaccess
-admin/.htpasswd
+.htpasswd
 admin/logs_studs.txt
 composer.phar
 framanav
 nav
-app/inc/constants.php
+app/inc/config.php
 vendor
+cache/
+tpl_c/
 
 # Temp files
 *~
@@ -15,3 +16,8 @@ vendor
 # Cache
 Thumbs.db
 
+# IDE
+.settings/
+.project
+.idea/
+*.iml

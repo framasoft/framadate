@@ -18,45 +18,21 @@
  */
 namespace Framadate;
 
-class Utils
-{
-    public static function get_server_name()
-    {
-        $scheme = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 'on') ? 'https' : 'http';
-        $port = in_array($_SERVER['SERVER_PORT'], [80, 443]) ? '/' : ':' . $_SERVER['SERVER_PORT'] . '/';
-        $server_name = $_SERVER['SERVER_NAME'] . $port . dirname($_SERVER['SCRIPT_NAME']) . '/';
+class Utils {
+    /**
+     * @return string Server name
+     */
+    public static function get_server_name() {
+        $scheme = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
+        $port = in_array($_SERVER['SERVER_PORT'], [80, 443]) ? '' : ':' . $_SERVER['SERVER_PORT'];
+        $dirname = dirname($_SERVER['SCRIPT_NAME']);
+        $dirname = $dirname === '\\' ? '/' : $dirname . '/';
+        $server_name = $_SERVER['SERVER_NAME'] . $port . $dirname;
 
-        return $scheme . '://' .  str_replace('/admin','',str_replace('//','/',str_replace('///','/',$server_name)));
+        return $scheme . '://' . str_replace('/admin', '', str_replace('//', '/', str_replace('///', '/', $server_name)));
     }
 
-    public static function get_sondage_from_id($id)
-    {
-        global $connect;
-
-        // Open database
-        if (preg_match(';^[\w\d]{16}$;i', $id)) {
-            $sql = 'SELECT sondage.*,sujet_studs.sujet FROM sondage
-                    LEFT OUTER JOIN sujet_studs ON sondage.id_sondage = sujet_studs.id_sondage
-                    WHERE sondage.id_sondage = ' . $connect->Param('id_sondage');
-
-            $sql     = $connect->Prepare($sql);
-            $sondage = $connect->Execute($sql, [$id]);
-
-            if ($sondage === false) {
-                return false;
-            }
-
-            $psondage = $sondage->FetchObject(false);
-            $psondage->date_fin = strtotime($psondage->date_fin);
-
-            return $psondage;
-        }
-
-        return false;
-    }
-
-    public static function is_error($cerr)
-    {
+    public static function is_error($cerr) {
         global $err;
         if ($err == 0) {
             return false;
@@ -65,38 +41,40 @@ class Utils
         return ($err & $cerr) != 0;
     }
 
-    public static function is_user()
-    {
+    public static function is_user() {
         return (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || isset($_SESSION['nom']);
     }
 
-    public static function print_header($title = '')
-    {
-        global $lang;
+    /**
+     * @param string $title
+     * @deprecated
+     */
+    public static function print_header($title = '') {
+        global $html_lang;
 
         echo '<!DOCTYPE html>
-    <html lang="'.$lang.'">
+    <html lang="' . $html_lang . '">
     <head>
-        <meta charset="utf-8">';
+        <meta charset="utf-8" />';
 
-        if (! empty($title)) {
+        if (!empty($title)) {
             echo '<title>' . stripslashes($title) . ' - ' . NOMAPPLICATION . '</title>';
         } else {
             echo '<title>' . NOMAPPLICATION . '</title>';
         }
 
         echo '
-        <link rel="stylesheet" href="' . self::get_server_name() . 'css/bootstrap.min.css">
-        <link rel="stylesheet" href="' . self::get_server_name() . 'css/datepicker3.css">
-        <link rel="stylesheet" href="' . self::get_server_name() . 'css/style.css">
-        <link rel="stylesheet" href="' . self::get_server_name() . 'css/frama.css">
-        <link rel="stylesheet" href="' . self::get_server_name() . 'css/print.css" media="print">
+        <link rel="stylesheet" href="' . self::get_server_name() . 'css/bootstrap.min.css" />
+        <link rel="stylesheet" href="' . self::get_server_name() . 'css/datepicker3.css" />
+        <link rel="stylesheet" href="' . self::get_server_name() . 'css/style.css" />
+        <link rel="stylesheet" href="' . self::get_server_name() . 'css/frama.css" />
+        <link rel="stylesheet" href="' . self::get_server_name() . 'css/print.css" media="print" />
         <script type="text/javascript" src="' . self::get_server_name() . 'js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.'.$lang.'.js"></script>
+        <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.' . $html_lang . '.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/core.js"></script>';
-        if (file_exists($_SERVER['DOCUMENT_ROOT']."/nav/nav.js")) {
+        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/nav/nav.js")) {
             echo '<script src="/nav/nav.js" id="nav_js" type="text/javascript" charset="utf-8"></script><!-- /Framanav -->';
         }
 
@@ -104,107 +82,26 @@ class Utils
     </head>
     <body>
     <div class="container ombre">';
-
-    }
-
-    public static function check_table_sondage()
-    {
-        global $connect;
-
-        if (in_array('sondage', $connect->MetaTables('TABLES'))) {
-            return true;
-        }
-
-        return false;
     }
 
     /**
      * Check if an email address is valid using PHP filters
      *
-     * @param   string  $email  Email address to check
+     * @param   string $email Email address to check
      * @return  bool    True if valid. False if not valid.
+     * @deprecated
      */
-    public static function isValidEmail($email)
-    {
+    public static function isValidEmail($email) {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
     /**
-     * Envoi un courrier avec un codage correct de To et Subject
-     * Les en-têtes complémentaires ne sont pas gérés
-     *
-     */
-    public static function sendEmail( $to, $subject, $body, $headers='', $param='')
-    {
-
-        mb_internal_encoding('UTF-8');
-
-        $subject = mb_encode_mimeheader(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'), 'UTF-8', 'B', "\n", 9);
-
-        $encoded_app = mb_encode_mimeheader(NOMAPPLICATION, 'UTF-8', 'B', "\n", 6);
-        $size_encoded_app = (6 + strlen($encoded_app)) % 75;
-        $size_admin_email = strlen(ADRESSEMAILADMIN);
-
-        if (($size_encoded_app + $size_admin_email + 9) > 74 ) {
-            $folding = "\n";
-        } else {
-            $folding = '';
-        };
-
-        /*
-           Si $headers ne contient qu'une adresse email, on la considère comme
-           adresse de reply-to, sinon on met l'adresse de no-reply definie
-           dans constants.php
-        */
-        if (self::isValidEmail($headers)) {
-            $replyTo = $headers;
-            $headers = ''; // on reinitialise $headers
-        } else {
-            $replyTo = ADRESSEMAILREPONSEAUTO;
-        }
-
-        $from = sprintf( "From: %s%s <%s>\n", $encoded_app, $folding, ADRESSEMAILADMIN);
-
-        if ($headers) {
-            $headers .= "\n" ;
-        }
-
-        $headers .= $from;
-        $headers .= "Reply-To: $replyTo\n";
-        $headers .= "MIME-Version: 1.0\n";
-        $headers .= "Content-Type: text/plain; charset=UTF-8\n";
-        $headers .= "Content-Transfer-Encoding: 8bit\n";
-        $headers .= "Auto-Submitted:auto-generated\n";
-        $headers .= "Return-Path: <>";
-
-        $body = html_entity_decode($body, ENT_QUOTES, 'UTF-8')._("\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.");
-
-        mail($to, $subject, $body, $headers, $param);
-    }
-
-    /**
-     * Fonction vérifiant l'existance et la valeur non vide d'une clé d'un tableau
-     * @param   string  $name       La clé à tester
-     * @param   array   $tableau    Le tableau où rechercher la clé ($_POST par défaut)
-     * @return  bool                Vrai si la clé existe et renvoie une valeur non vide
-     */
-    public static function issetAndNoEmpty($name, $tableau = null)
-    {
-        if (is_null($tableau)) {
-           $tableau = $_POST;
-        }
-
-        return isset($tableau[$name]) && ! empty($tableau[$name]);
-    }
-
-    /**
      * Fonction permettant de générer les URL pour les sondage
-     * @param   string    $id     L'identifiant du sondage
-     * @param   bool      $admin  True pour générer une URL pour l'administration d'un sondage, False pour un URL publique
+     * @param   string $id L'identifiant du sondage
+     * @param   bool $admin True pour générer une URL pour l'administration d'un sondage, False pour un URL publique
      * @return  string            L'url pour le sondage
      */
-    public static function getUrlSondage($id, $admin = false)
-    {
+    public static function getUrlSondage($id, $admin = false) {
         if (URL_PROPRE) {
             if ($admin === true) {
                 $url = str_replace('/admin', '', self::get_server_name()) . $id . '/admin';
@@ -213,52 +110,75 @@ class Utils
             }
         } else {
             if ($admin === true) {
-                $url = str_replace('/admin', '', self::get_server_name()) . 'adminstuds.php?sondage=' . $id;
+                $url = str_replace('/admin', '', self::get_server_name()) . 'adminstuds.php?poll=' . $id;
             } else {
-                $url = str_replace('/admin', '', self::get_server_name()) . 'studs.php?sondage=' . $id;
+                $url = str_replace('/admin', '', self::get_server_name()) . 'studs.php?poll=' . $id;
             }
         }
 
         return $url;
     }
 
-    public static function remove_sondage($connect, $numsondage)
-    {
-      $connect->StartTrans();
-
-      $req = 'DELETE FROM sondage WHERE id_sondage = ' . $connect->Param('numsondage') ;
-      $sql = $connect->Prepare($req);
-      $connect->Execute($sql, [$numsondage]);
-
-      $req = 'DELETE FROM sujet_studs WHERE id_sondage = ' . $connect->Param('numsondage') ;
-      $sql = $connect->Prepare($req);
-      $connect->Execute($sql, [$numsondage]);
-
-      $req = 'DELETE FROM user_studs WHERE id_sondage = ' . $connect->Param('numsondage') ;
-      $sql = $connect->Prepare($req);
-      $connect->Execute($sql, [$numsondage]);
-
-      $req = 'DELETE FROM comments WHERE id_sondage = ' . $connect->Param('numsondage') ;
-      $sql = $connect->Prepare($req);
-      $connect->Execute($sql, [$numsondage]);
-
-      $suppression_OK = ! $connect->HasFailedTrans();
-      $connect->CompleteTrans();
-
-      return $suppression_OK ;
+    /**
+     * This method pretty prints an object to the page framed by pre tags.
+     *
+     * @param mixed $object The object to print.
+     */
+    public static function debug($object) {
+        echo '<pre>';
+        print_r($object);
+        echo '</pre>';
     }
 
-    public static function cleaning_polls($connect, $log_txt) {
-        $connect->StartTrans();
-        $req = 'SELECT * FROM sondage WHERE date_fin < NOW() AND date_fin != 0 LIMIT 20';
-        $sql = $connect->Prepare($req);
-        $cleaning = $connect->Execute($sql);
+    public static function table($tableName) {
+        return TABLENAME_PREFIX . $tableName;
+    }
 
-        while ($dcleaning = $cleaning->FetchNextObject(false)) {
-            if (self::remove_sondage($connect, $dcleaning->id_sondage)) {
-                error_log(date('H:i:s d/m/Y:') . ' EXPIRATION: '. $dcleaning->id_sondage."\t".$dcleaning->format."\t".$dcleaning->nom_admin."\t".$dcleaning->mail_admin."\n", 3, $log_txt);
-            }
+    public static function markdown($md, $clear) {
+        preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/', $md, $md_a_img); // Markdown [![alt](src)](href)
+        preg_match_all('/!\[(.*?)\]\((.*?)\)/', $md, $md_img); // Markdown ![alt](src)
+        preg_match_all('/\[(.*?)\]\((.*?)\)/', $md, $md_a); // Markdown [text](href)
+        if (isset($md_a_img[2][0]) && $md_a_img[2][0] != '' && isset($md_a_img[3][0]) && $md_a_img[3][0] != '') { // [![alt](src)](href)
+
+            $text = stripslashes($md_a_img[1][0]);
+            $html = '<a href="' . $md_a_img[3][0] . '"><img src="' . $md_a_img[2][0] . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" /></a>';
+
+        } elseif (isset($md_img[2][0]) && $md_img[2][0] != '') { // ![alt](src)
+
+            $text = stripslashes($md_img[1][0]);
+            $html = '<img src="' . $md_img[2][0] . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" />';
+
+        } elseif (isset($md_a[2][0]) && $md_a[2][0] != '') { // [text](href)
+
+            $text = stripslashes($md_a[1][0]);
+            $html = '<a href="' . $md_a[2][0] . '">' . $text . '</a>';
+
+        } else { // text only
+
+            $text = stripslashes($md);
+            $html = $text;
+
         }
-        $connect->CompleteTrans();
+
+        return $clear ? $text : $html;
+    }
+
+    public static function htmlEscape($html) {
+        return htmlentities($html, ENT_HTML5 | ENT_QUOTES);
+    }
+
+    public static function csvEscape($text) {
+        $escaped = str_replace('"', '""', $text);
+        $escaped = str_replace("\r\n", '', $escaped);
+        $escaped = str_replace("\n", '', $escaped);
+
+        return '"' . $escaped . '"';
+    }
+
+    public static function cleanFilename($title) {
+        $cleaned = preg_replace('[^a-zA-Z0-9._-]', '_', $title);
+        $cleaned = preg_replace(' {2,}', ' ', $cleaned);
+
+        return $cleaned;
     }
 }
