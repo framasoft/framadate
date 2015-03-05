@@ -30,7 +30,7 @@ class Utils {
         $dirname = str_replace('/admin', '', $dirname);
         $server_name = $_SERVER['SERVER_NAME'] . $port . $dirname;
 
-        return $scheme . '://' .  preg_replace('//+', '/', $server_name);
+        return $scheme . '://' .  preg_replace('#//+#', '/', $server_name);
     }
 
     public static function is_error($cerr) {
