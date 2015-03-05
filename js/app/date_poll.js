@@ -174,41 +174,7 @@
 
     // Title update on hours and buttons -/+ hours
 
-    var leftPad = function(text, pad) {
-        return text ? pad.substring(0, pad.length - text.length) + text : text;
-    };
-
-    $(document).on('change', '#selected-days legend input', function () {
-        // Complete field if needed
-        var val = $(this).val();
-        var capture = /([0-9]+)(?:\/([0-9]+))?/.exec(val);
-
-        if (capture) {
-            var inputDay = leftPad(capture[1], "00"); // 5->05, 15->15
-            var inputMonth = leftPad(capture[2], "00"); // 3->03, 11->11
-            var inputDate = null;
-            var now = new Date();
-
-            if (inputMonth) {
-                inputDate = new Date(now.getFullYear() + '-' + inputMonth + '-' + inputDay);
-
-                // If new date is before now, add 1 year
-                if (inputDate < now) {
-                    inputDate.setFullYear(now.getFullYear() + 1);
-                }
-            } else {
-                inputDate = new Date(now.getFullYear() + '-' + leftPad(""+(now.getMonth() + 1), "00") + '-' + inputDay);
-
-                // If new date is before now, add 1 month
-                if (inputDate < now) {
-                    inputDate.setMonth(now.getMonth() + 1);
-                }
-
-            }
-
-            $(this).val(inputDate.toLocaleFormat("%d/%m/%Y"));
-        }
-
+    $(document).on('change', '.input-group.date input', function () {
         // Define title on hours fields using the value of the new date
         $selected_days.find('.hours').each(function () {
             $(this).attr('title', $(this).parents('fieldset').find('legend input').val() + ' - ' + $(this).attr('placeholder'));
