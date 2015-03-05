@@ -1,14 +1,32 @@
 <?php
+/**
+ * This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
+ *
+ * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ *
+ * =============================
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
+ *
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
+ */
 namespace Framadate\Migration;
 
 use Framadate\Utils;
 
 /**
- * This class executes the aciton in database to migrate data from version 0.9 to 0.9.1.
+ * This migration adds the field receiveNewComments on the poll table.
  *
  * @package Framadate\Migration
+ * @version 0.9
  */
-class From_0_9_to_0_9_1_Migration implements Migration {
+class AddColumn_receiveNewComments_For_0_9 implements Migration {
 
     function __construct() {
     }
@@ -19,7 +37,7 @@ class From_0_9_to_0_9_1_Migration implements Migration {
      * @return string The description of the migration class
      */
     function description() {
-        return "From 0.9 to 0.9.1";
+        return "Add column \"receiveNewComments\" for version 0.9";
     }
 
     /**
