@@ -218,7 +218,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 
     // Step 2/4 : Select dates of the poll
     } else {
-        Utils::print_header ( _('Poll dates (2 on 3)') );
+        Utils::print_header(_('Poll dates (2 on 3)'));
         bandeau_titre(_('Poll dates (2 on 3)'));
 
         echo '
@@ -234,7 +234,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 
         // Fields days : 3 by default
         $nb_days = (isset($_SESSION['totalchoixjour'])) ? count($_SESSION['totalchoixjour']) : 3;
-        for ($i=0;$i<$nb_days;$i++) {
+        for ($i = 0; $i < $nb_days; $i++) {
             $day_value = isset($_SESSION['totalchoixjour'][$i]) ? strftime('%d/%m/%Y', $_SESSION['totalchoixjour'][$i]) : '';
             echo '
             <fieldset>
@@ -243,13 +243,14 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
                         <label class="sr-only" for="day'.$i.'">'. _('Day') .' '. ($i+1) .'</label>
                         <div class="input-group date col-xs-7">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                            <input type="text" class="form-control" id="day'.$i.'" title="'. _("Day") .' '. ($i+1) .'" data-date-format="'. _('dd/mm/yyyy') .'" aria-describedby="dateformat'.$i.'" name="days[]" value="'.$day_value.'" size="10" maxlength="10" placeholder="'. _("dd/mm/yyyy") .'" />
+                            <input type="text" class="form-control" id="day'.$i.'" title="'. _('Day') .' '. ($i+1) .'" data-date-format="'. _('dd/mm/yyyy') .'" aria-describedby="dateformat'.$i.'" name="days[]" value="'.$day_value.'" size="10" maxlength="10" placeholder="'. _('dd/mm/yyyy') .'" />
                         </div>
                         <span id="dateformat'.$i.'" class="sr-only">'. _('(dd/mm/yyyy)') .'</span>
                     </legend>'."\n";
 
             // Fields hours : 3 by default
-            for ($j=0;$j<max(count(isset($_SESSION['horaires'.$i]) ? $_SESSION['horaires'.$i] : 0),3);$j++) {
+            $moments = isset($_SESSION['horaires' . $i]) ? $_SESSION['horaires' . $i] : [];
+            for ($j = 0; $j < max(count($moments), 3); $j++) {
                 $hour_value = isset($_SESSION['horaires'.$i][$j]) ? $_SESSION['horaires'.$i][$j] : '';
                 echo '
                     <div class="col-sm-2">
@@ -259,8 +260,8 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
             }
             echo '
                     <div class="col-sm-2"><div class="btn-group btn-group-xs" style="margin-top: 5px;">
-                        <button type="button" title="'. _("Remove an hour") .'" class="remove-an-hour btn btn-default"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove an hour") .'</span></button>
-                        <button type="button" title="'. _("Add an hour") .'" class="add-an-hour btn btn-default"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add an hour") .'</span></button>
+                        <button type="button" title="'. _('Remove an hour') .'" class="remove-an-hour btn btn-default"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">'. _("Remove an hour") .'</span></button>
+                        <button type="button" title="'. _('Add an hour') .'" class="add-an-hour btn btn-default"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">'. _("Add an hour") .'</span></button>
                     </div></div>
                 </div>
             </fieldset>';
@@ -284,7 +285,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
                     </ul>
                 </div>
                 <a class="btn btn-default" href="'.Utils::get_server_name().'infos_sondage.php?choix_sondage=date" title="'. _('Back to step 1') . '">'. _('Back') . '</a>
-                <button name="choixheures" value="'. _('Next') .'" type="submit" class="btn btn-success disabled" title="'. _('Go to step 3') . '">'. _("Next") .'</button>
+                <button name="choixheures" value="'. _('Next') .'" type="submit" class="btn btn-success disabled" title="'. _('Go to step 3') . '">'. _('Next') .'</button>
             </div>
         </div>
     </div>
