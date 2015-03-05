@@ -296,7 +296,11 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
             </div>
         </div>
     </div>
-    </form>' . "\n";
+    </form>
+
+    <script type="text/javascript" src="js/app/framadatepicker.js"></script>
+    <script type="text/javascript" src="js/app/classic_poll.js"></script>
+    ' . "\n";
 
         bandeau_pied();
 

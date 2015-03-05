@@ -36,4 +36,5 @@
             </div>
         </div>
     </form>
+    <script type="text/javascript" src="js/app/framadatepicker.js"></script>
 {/block}

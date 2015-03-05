@@ -288,7 +288,11 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
             </div>
         </div>
     </div>
-    </form>'."\n";
+    </form>
+
+    <script type="text/javascript" src="js/app/framadatepicker.js"></script>
+    <script type="text/javascript" src="js/app/date_poll.js"></script>
+    '."\n";
 
         bandeau_pied();
 
