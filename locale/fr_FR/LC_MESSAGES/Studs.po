@@ -268,6 +268,21 @@ msgstr "Annuler le changement de permissions"
 msgid "The name is invalid."
 msgstr "Le nom n'est pas valide."
 
+msgid "Keep votes"
+msgstr "Garder les votes"
+
+msgid "Remove all votes!"
+msgstr "Supprimer les votes!"
+
+msgid "Keep comments"
+msgstr "Garder les commentaires"
+
+msgid "Remove all comments!"
+msgstr "Supprimer les commentaires!"
+
+msgid "Keep this poll"
+msgstr "Garder ce sondage"
+
 # Help text adminstuds.php
 msgid "As poll administrator, you can change all the lines of this poll with this button"
 msgstr "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec ce bouton"

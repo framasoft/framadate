@@ -268,6 +268,21 @@ msgstr "Cancel the rules edit"
 msgid "The name is invalid."
 msgstr "Le nom n'est pas valide."
 
+msgid "Keep votes"
+msgstr "Keep votes"
+
+msgid "Remove all votes!"
+msgstr "Remove all votes!"
+
+msgid "Keep comments"
+msgstr "Keep comments"
+
+msgid "Remove all comments!"
+msgstr "Remove all comments!"
+
+msgid "Keep this poll"
+msgstr "Keep this poll"
+
 # Help text adminstuds.php
 msgid "As poll administrator, you can change all the lines of this poll with this button"
 msgstr "As poll administrator, you can change all the lines of this poll with this button"

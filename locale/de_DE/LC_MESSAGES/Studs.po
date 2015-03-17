@@ -241,6 +241,21 @@ msgstr "Neue Regeln speichern"
 msgid "Cancel the rules edit"
 msgstr "Neue Regeln nicht speichern"
 
+msgid "Keep votes"
+msgstr "Halten Stimmen"
+
+msgid "Remove all votes!"
+msgstr "Entfernen Sie alle Stimmen!"
+
+msgid "Keep comments"
+msgstr "Halten Sie Kommentare"
+
+msgid "Remove all comments!"
+msgstr "Entfernen Sie alle Kommentare!"
+
+msgid "Keep this poll"
+msgstr "Halten Sie diese Umfrage"
+
 # Help text adminstuds.php
 msgid "As poll administrator, you can change all the lines of this poll with this button"
 msgstr "Als Administrator der Umfrage, können Sie alle Zeilen der Umfrage über diesen Button ändern"
@@ -425,7 +440,7 @@ msgid "To receive an email for each new vote."
 msgstr "Bei jeder neuen Abstimmung eine E-Mail erhalten."
 
 msgid "To receive an email for each new comment."
-msgstr "To receive an email for each new comment."
+msgstr "Um eine E-Mail für jede neue Kommentar zu empfangen."
 
 msgid "Go to step 2"
 msgstr "Weiter zum 2. Schritt"
