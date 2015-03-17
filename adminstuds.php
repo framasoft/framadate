@@ -63,7 +63,7 @@ if (!$poll) {
 
 if (isset($_POST['update_poll_info'])) {
     $updated = false;
-    $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'comment', 'rules', 'expiration_date', 'name']);
+    $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'description', 'rules', 'expiration_date', 'name']);
 
     // Update the right poll field
     if ($field == 'title') {
@@ -78,10 +78,10 @@ if (isset($_POST['update_poll_info'])) {
             $poll->admin_mail = $admin_mail;
             $updated = true;
         }
-    } elseif ($field == 'comment') {
-        $comment = strip_tags($_POST['comment']);
-        if ($comment) {
-            $poll->comment = $comment;
+    } elseif ($field == 'description') {
+        $description = strip_tags($_POST['description']);
+        if ($description) {
+            $poll->description = $description;
             $updated = true;
         }
     } elseif ($field == 'rules') {

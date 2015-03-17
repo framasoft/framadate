@@ -80,8 +80,8 @@
                 {if $admin && !$expired}
                 <div class="hidden js-desc text-right">
                     <label class="sr-only" for="newdescription">{_('Description')}</label>
-                    <textarea class="form-control" id="newdescription" name="comment" rows="2" cols="40">{$poll->description|html}</textarea>
-                    <button type="submit" id="btn-new-desc" name="update_poll_info" value="comment" class="btn btn-sm btn-success" title="{_('Save the description')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Save')}</span></button>
+                    <textarea class="form-control" id="newdescription" name="description" rows="2" cols="40">{$poll->description|html}</textarea>
+                    <button type="submit" id="btn-new-desc" name="update_poll_info" value="description" class="btn btn-sm btn-success" title="{_('Save the description')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{_('Save')}</span></button>
                     <button class="btn btn-default btn-sm btn-cancel" title="{_('Cancel the description edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{_('Cancel')}</span></button>
                 </div>
                 {/if}
