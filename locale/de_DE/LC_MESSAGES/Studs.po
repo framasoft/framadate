@@ -424,6 +424,9 @@ msgstr "Teilnehmer können ihre Antworten verändern"
 msgid "To receive an email for each new vote."
 msgstr "Bei jeder neuen Abstimmung eine E-Mail erhalten."
 
+msgid "To receive an email for each new comment."
+msgstr "To receive an email for each new comment."
+
 msgid "Go to step 2"
 msgstr "Weiter zum 2. Schritt"
 

@@ -451,6 +451,9 @@ msgstr "Voters can modify their vote themselves."
 msgid "To receive an email for each new vote."
 msgstr "To receive an email for each new vote."
 
+msgid "To receive an email for each new comment."
+msgstr "To receive an email for each new comment."
+
 msgid "Go to step 2"
 msgstr "Go to step 2"
 
