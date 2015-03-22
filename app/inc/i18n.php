@@ -17,52 +17,23 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
+// Sort languages
 asort($ALLOWED_LANGUAGES);
 
+// Prepare I18N instance
+$i18n = \o80\i18n\I18N::instance();
+$i18n->setDefaultLang(DEFAULT_LANGUAGE);
+$i18n->setPath(__DIR__ . '/../../locale');
+
+// Change langauge when user asked for it
 if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'], array_keys($ALLOWED_LANGUAGES))) {
-    $mlocale = $_POST['lang'];
+    $locale = $_POST['lang'];
     $_SESSION['lang'] = $_POST['lang'];
-} elseif (isset($_SESSION['lang']) && is_string($_SESSION['lang']) && in_array($_SESSION['lang'], array_keys($ALLOWED_LANGUAGES))) {
-    $mlocale = $_SESSION['lang'];
+} elseif (!empty($_SESSION['lang'])) {
+    $locale = $_SESSION['lang'];
 } else {
-
-    $mlocale = LANGUE;
-    // Replace config language by browser language if possible
-    foreach ($ALLOWED_LANGUAGES as $k => $v) {
-        if (substr($k, 0, 2) == substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2)) {
-            $mlocale = $k;
-            break;
-        }
-    }
-
+    $locale = DEFAULT_LANGUAGE;
 }
-
-/* Tell PHP which locale to use */
-$domain = 'Studs';
-$locale = $mlocale . '.utf8'; //unix format
-
-if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
-    putenv("LC_ALL=$mlocale"); //Windows env. needed to switch between languages
-    switch ($mlocale) {
-        case 'fr_FR' :
-            $locale = "fra";
-            break; //$locale in windows locale format, needed to use php function that handle text : strftime()
-        case 'en_GB' :
-            $locale = "english";
-            break; //see http://msdn.microsoft.com/en-us/library/39cwe7zf%28v=vs.90%29.aspx
-        case 'de_DE' :
-            $locale = "deu";
-            break;
-        case 'es_ES' :
-            $locale = "esp";
-            break;
-    }
-}
-putenv('LANG=' . $locale);
-setlocale(LC_ALL, $locale);
-bindtextdomain($domain, ROOT_DIR . 'locale');
-bind_textdomain_codeset($domain, 'UTF-8');
-textdomain($domain);
 
 /* <html lang="$html_lang"> */
 $html_lang = substr($locale, 0, 2);
