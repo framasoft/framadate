@@ -27,7 +27,8 @@
     "for": "à",
     "Yes": "Oui",
     "Ifneedbe": "Si nécessaire",
-    "No": "Non"
+    "No": "Non",
+    "Legend:": "Légende :"
   },
   "Date" : {
     "(dd/mm/yyyy)": "(jj/mm/aaaa)",
@@ -35,8 +36,8 @@
     "%A, den %e. %B %Y": "%A %e %B %Y"
   },
   "Language selector": {
-    "Change the language": "Changer la langue",
-    "Select the language": "Choisir la langue"
+    "Select the language": "Choisir la langue",
+    "Change the language": "Changer la langue"
   },
   "Homepage": {
     "Schedule an event": "Créer un sondage spécial dates",
@@ -67,12 +68,10 @@
     "the development site": "le site de développement",
     "If you want to install the software for your own use and thus increase your independence, we help you on:": "Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :"
   },
-  "Poll": {
-    "Poll administration": "Administration du sondage",
-    "Legend:": "Légende :"
+  "": {
+    "Poll administration": "Administration du sondage"
   },
   "PollInfo": {
-    "Back to the poll": "Retour au sondage",
     "Remove the poll": "Supprimer le sondage",
     "Remove all the comments": "Supprimer tous les commentaires",
     "Remove all the votes": "Supprimer tous les votes",
@@ -111,19 +110,9 @@
     "Keep comments": "Garder les commentaires",
     "Keep this poll": "Garder ce sondage"
   },
-  "Help text adminstuds.php": {
-    "As poll administrator, you can change all the lines of this poll with this button": "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec ce bouton",
-    "remove a column or a line with": "effacer une colonne ou une ligne avec",
-    "and add a new column with": "et si vous avez oublié de saisir un choix, vous pouvez rajouter une colonne en cliquant sur",
-    "Finally, you can change the informations of this poll like the title, the comments or your email address.": "Vous pouvez enfin également modifier les informations relatives à ce sondage comme le titre, les commentaires ou encore votre courriel."
-  },
-  "Help text studs.php": {
-    "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Pour participer à ce sondage, veuillez entrer votre nom, choisir toutes les valeurs qui vous conviennent et valider votre choix avec le bouton en bout de ligne."
-  },
   "Poll results": {
     "Votes of the poll": "Votes du sondage",
     "Remove the column": "Effacer la colonne",
-    "Add a column": "Ajouter une colonne",
     "Edit the line:": "Modifier la ligne :",
     "Remove the line:": "Supprimer la ligne :",
     "Vote no for ": "Voter « non » pour ",
@@ -144,21 +133,42 @@
     "Add a comment to the poll": "Ajouter un commentaire au sondage",
     "Your comment": "Votre commentaire",
     "Send the comment": "Envoyer le commentaire",
-    "anonyme": "anonyme"
+    "anonyme": "anonyme",
+    "Comment added": "Commentaire ajouté"
   },
   "studs": {
+    "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Pour participer à ce sondage, veuillez entrer votre nom, choisir toutes les valeurs qui vous conviennent et valider votre choix avec le bouton en bout de ligne.",
+    "POLL_LOCKED_WARNING":"L'administrateur a verrouillé ce sondage. Les votes et commentaires sont gelés, il n'est plus possible de participer",
     "The poll is expired, it will be deleted soon.": "Le sondage a expiré, il sera bientôt supprimé.",
     "Deletion date:": "Date de suppression :"
   },
   "adminstuds": {
+    "As poll administrator, you can change all the lines of this poll with this button": "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec ce bouton",
+    "remove a column or a line with": "effacer une colonne ou une ligne avec",
+    "and add a new column with": "et si vous avez oublié de saisir un choix, vous pouvez rajouter une colonne en cliquant sur",
+    "Finally, you can change the informations of this poll like the title, the comments or your email address.": "Vous pouvez enfin également modifier les informations relatives à ce sondage comme le titre, les commentaires ou encore votre courriel.",
     "Column's adding": "Ajout de colonne",
     "You can add a new scheduling date to your poll.": "Vous pouvez ajouter une date à votre sondage.",
     "If you just want to add a new hour to an existant date, put the same date and choose a new hour.": "Si vous voulez juste ajouter un horaire à une date existante, mettez la même date et choisissez un autre horaire. Il sera intégré normalement au sondage existant.",
-    "Confirm removal of your poll": "Confirmer la suppression de votre sondage",
-    "Remove this poll!": "Je supprime ce sondage !",
-    "Keep this poll!": "Je garde ce sondage !",
+    "Confirm removal of the poll": "Confirmer la suppression du sondage",
+    "Remove the poll": "Je supprime le sondage",
+    "Keep the poll": "Je garde le sondage",
     "Your poll has been removed!": "Votre sondage a été supprimé !",
-    "Poll saved.": "Sondage sauvegardé."
+    "Poll saved": "Sondage sauvegardé",
+    "Vote added": "Vote ajouté",
+    "Vote updated": "Vote mis à jour",
+    "Vote deleted": "Vote supprimé",
+    "All votes deleted": "Tous les votes ont été supprimés",
+    "Back to the poll": "Retour au sondage",
+    "Add a column": "Ajouter une colonne",
+    "Choice added": "Choix ajouté",
+    "Confirm removal of all votes of the poll": "Confirmer la suppression de tous les votes de ce sondage",
+    "Keep the votes": "Garder les votes",
+    "Remove the votes": "Supprimer les votes",
+    "Confirm removal of all comments of the poll": "Confirmer la suppression de tous les commentaires de ce sondage",
+    "Keep the comments": "Garder les commentaires",
+    "Remove the comments": "Supprimer les commentaires",
+    "The poll has been deleted": "Le sondage a été supprimé"
   },
   "Step 1": {
     "Poll creation (1 on 3)": "Création de sondage (1 sur 3)",
@@ -272,6 +282,8 @@
     "Characters \\u0022  '  < et > are not permitted": "Les caractères \\u0022  '  < et > ne sont pas autorisés !",
     "The date is not correct !": "La date choisie n'est pas correcte !",
     "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "Framadate n'est pas installé correctement, lisez le fichier INSTALL pour configurer la base de données avant de continuer.",
-    "Failed to save poll.": "Echèc de la sauvegarde du sondage."
+    "Failed to save poll": "Echèc de la sauvegarde du sondage",
+    "Update vote failed": "Mise à jour du vote échoué",
+    "Adding vote failed": "Ajout d'un vote échoué"
   }
 }
