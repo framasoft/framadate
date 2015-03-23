@@ -64,9 +64,9 @@
                 {__('Admin\\Pages:')}
                 {for $p=1 to $pages}
                     {if $p===$page}
-                        <a href="{$SERVER_URL}{$SCRIPT_NAME}?page={$p}" class="btn btn-danger" disabled="disabled">{$p}</a>
+                        <a href="{$SERVER_URL}admin/polls.php?page={$p}" class="btn btn-danger" disabled="disabled">{$p}</a>
                     {else}
-                        <a href="{$SERVER_URL}{$SCRIPT_NAME}?page={$p}" class="btn btn-info">{$p}</a>
+                        <a href="{$SERVER_URL}admin/polls.php?page={$p}" class="btn btn-info">{$p}</a>
                     {/if}
                 {/for}
             </div>
