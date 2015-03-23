@@ -75,4 +75,6 @@ $smarty->assign('pages', ceil($count / POLLS_PER_PAGE));
 $smarty->assign('poll_to_delete', $poll_to_delete);
 $smarty->assign('crsf', $securityService->getToken('admin'));
 
+$smarty->assign('title', __('Admin\\Polls'));
+
 $smarty->display('admin/polls.tpl');

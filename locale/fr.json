@@ -28,7 +28,11 @@
     "Yes": "Oui",
     "Ifneedbe": "Si nécessaire",
     "No": "Non",
-    "Legend:": "Légende :"
+    "Legend:": "Légende :",
+    "Date": "Date",
+    "Classic": "Classique",
+    "Page generated in": "Page généré en",
+    "secondes": "secondes"
   },
   "Date" : {
     "(dd/mm/yyyy)": "(jj/mm/aaaa)",
@@ -151,7 +155,7 @@
     "You can add a new scheduling date to your poll.": "Vous pouvez ajouter une date à votre sondage.",
     "If you just want to add a new hour to an existant date, put the same date and choose a new hour.": "Si vous voulez juste ajouter un horaire à une date existante, mettez la même date et choisissez un autre horaire. Il sera intégré normalement au sondage existant.",
     "Confirm removal of the poll": "Confirmer la suppression du sondage",
-    "Remove the poll": "Je supprime le sondage",
+    "Delete the poll": "Je supprime le sondage",
     "Keep the poll": "Je garde le sondage",
     "Your poll has been removed!": "Votre sondage a été supprimé !",
     "Poll saved": "Sondage sauvegardé",
@@ -227,19 +231,22 @@
     "Removal date:": "Date de suppression :"
   },
   "Admin": {
+    "Back to administration": "Retour à l'administration",
     "Polls": "Sondages",
     "Migration": "Migration",
-    "Confirm removal of the poll": "Confirmer la suppression du sondage",
-    "polls in the database at this time": "sondages dans la base actuellement",
+    "Purge": "Purge",
+    "Logs": "Historique",
     "Poll ID": "ID sondage",
     "Format": "Format",
     "Title": "Titre",
     "Author": "Auteur",
+    "Email": "Courriel",
+    "Expiration date": "Date d'expiration",
     "Users": "Utilisateurs",
     "Actions": "Actions",
     "See the poll": "Voir le sondage",
     "Change the poll": "Modifier le sondage",
-    "Logs": "Historique",
+    "Deleted the poll": "Supprimer le sondage",
     "Summary": "Résumé",
     "Success": "Réussite",
     "Fail": "Échèc",
@@ -247,7 +254,10 @@
     "Succeeded:": "Réussit:",
     "Failed:": "Échoué:",
     "Skipped:": "Passé:",
-    "Pages:": "Pages :"
+    "Pages:": "Pages :",
+    "Confirm removal of the poll": "Confirmer la suppression du sondage",
+    "polls in the database at this time": "sondages dans la base actuellement",
+    "Purge the polls": "Purger les sondages"
   },
   "Mail": {
     "Poll's participation": "Participation au sondage",
