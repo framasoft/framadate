@@ -18,7 +18,6 @@
         "Description": "Beschreibung",
         "Back to the homepage of": "Zurück zur Homepage von ",
         "Error!": "Fehler!",
-        "(dd/mm/yyyy)": "(tt/mm/jjjj)",
         "dd/mm/yyyy": "tt/mm/jjjj",
         "%A, den %e. %B %Y": "%A %e %B %Y",
         "Expiration's date": "Verfallsdatum"

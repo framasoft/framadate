@@ -196,7 +196,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
                             <input type="text" class="form-control" id="enddate" data-date-format="'. __('Date\\dd/mm/yyyy') .'" aria-describedby="dateformat" name="enddate" value="'.$end_date_str.'" size="10" maxlength="10" placeholder="'. __('dd/mm/yyyy') .'" />
                         </div>
                     </div>
-                    <span id="dateformat" class="sr-only">'. __("Date\\(dd/mm/yyyy)") .'</span>
+                    <span id="dateformat" class="sr-only">('. __("Date\\dd/mm/yyyy") .')</span>
                 </div>
             </div>
             <div class="alert alert-warning">
@@ -245,7 +245,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
                             <input type="text" class="form-control" id="day'.$i.'" title="'. __('Generic\\Day') .' '. ($i+1) .'" data-date-format="'. __('Date\\dd/mm/yyyy') .'" aria-describedby="dateformat'.$i.'" name="days[]" value="'.$day_value.'" size="10" maxlength="10" placeholder="'. __('Date\\dd/mm/yyyy') .'" />
                         </div>
-                        <span id="dateformat'.$i.'" class="sr-only">'. __('Date\\(dd/mm/yyyy)') .'</span>
+                        <span id="dateformat'.$i.'" class="sr-only">('. __('Date\\dd/mm/yyyy') .')</span>
                     </legend>'."\n";
 
             // Fields hours : 3 by default

@@ -13,7 +13,7 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                             <input type="text" id="newdate" data-date-format="{__('Date\\dd/mm/yyyy')}" aria-describedby="dateformat" name="newdate" class="form-control" placeholder="{__('Date\\dd/mm/yyyy')}" />
                         </div>
-                        <span id="dateformat" class="sr-only">{__('Date\\(dd/mm/yyyy)')}</span>
+                        <span id="dateformat" class="sr-only">({__('Date\\dd/mm/yyyy')})</span>
                     </div>
                 </div>
                 <div class="form-group">

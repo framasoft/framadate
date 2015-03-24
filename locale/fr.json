@@ -32,12 +32,18 @@
     "Date": "Date",
     "Classic": "Classique",
     "Page generated in": "Page généré en",
-    "secondes": "secondes"
+    "secondes": "secondes",
+    "Choice": "Choix",
+    "Link": "Lien"
   },
   "Date" : {
-    "(dd/mm/yyyy)": "(jj/mm/aaaa)",
     "dd/mm/yyyy": "jj/mm/aaaa",
-    "%A, den %e. %B %Y": "%A %e %B %Y"
+    "%A, den %e. %B %Y": "%A %e %B %Y",
+    "FULL": "%A, den %e. %B %Y",
+    "SHORT": "%A %e %B %Y",
+    "DAY": "%a %e",
+    "DATE": "%Y-%m-%d",
+    "MONTH_YEAR": "%B %Y"
   },
   "Language selector": {
     "Select the language": "Choisir la langue",
@@ -116,12 +122,11 @@
   },
   "Poll results": {
     "Votes of the poll": "Votes du sondage",
-    "Remove the column": "Effacer la colonne",
     "Edit the line:": "Modifier la ligne :",
     "Remove the line:": "Supprimer la ligne :",
-    "Vote no for ": "Voter « non » pour ",
-    "Vote yes for ": "Voter « oui » pour ",
-    "Vote ifneedbe for ": "Voter « Si nécessaire » pour ",
+    "Vote no for": "Voter « non » pour",
+    "Vote yes for": "Voter « oui » pour",
+    "Vote ifneedbe for": "Voter « Si nécessaire » pour",
     "Save the choices": "Enregister les choix",
     "Addition": "Somme",
     "Best choice": "Meilleur choix",
@@ -165,6 +170,7 @@
     "All votes deleted": "Tous les votes ont été supprimés",
     "Back to the poll": "Retour au sondage",
     "Add a column": "Ajouter une colonne",
+    "Remove the column": "Effacer la colonne",
     "Choice added": "Choix ajouté",
     "Confirm removal of all votes of the poll": "Confirmer la suppression de tous les votes de ce sondage",
     "Keep the votes": "Garder les votes",
@@ -206,13 +212,11 @@
     "Poll subjects (2 on 3)": "Choix des sujets (2 sur 3)",
     "To make a generic poll you need to propose at least two choices between differents subjects.": "Pour créer un sondage classique, vous devez proposer au moins deux choix différents.",
     "You can add or remove additional choices with the buttons": "Vous pouvez ajouter ou supprimer des choix supplémentaires avec les boutons",
-    "It's possible to propose links or images by using ": "Il est possible d’insérer des liens ou des images en utilisant ",
+    "It's possible to propose links or images by using": "Il est possible d’insérer des liens ou des images en utilisant ",
     "the Markdown syntax": "la syntaxe Markdown",
-    "Choice": "Choix",
     "Add a link or an image": "Ajouter un lien ou une image",
     "These fields are optional. You can add a link, an image or both.": "Ces champs sont facultatifs. Vous pouvez ajouter un lien, une image ou les deux.",
     "URL of the image": "URL de l'image",
-    "Link": "Lien",
     "Alternative text": "Texte alternatif",
     "Remove a choice": "Supprimer le dernier choix",
     "Add a choice": "Ajouter un choix"
@@ -225,7 +229,7 @@
     "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "Une fois que vous aurez confirmé la création du sondage, vous serez redirigé automatiquement vers la page d'administration de votre sondage.",
     "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "En même temps, vous recevrez deux courriels : l'un contenant le lien vers votre sondage pour le faire suivre aux futurs sondés, l'autre contenant le lien vers la page d'administraion du sondage.",
     "Create the poll": "Créer le sondage",
-    "Your poll will be automatically removed ": "Votre sondage sera automatiquement effacé ",
+    "Your poll will be automatically removed after": "Votre sondage sera automatiquement effacé après",
     "after the last date of your poll:": "après la date la plus tardive :",
     "You can set a closer removal date for it.": "Vous pouvez décider d'une date de suppression plus proche.",
     "Removal date:": "Date de suppression :"
