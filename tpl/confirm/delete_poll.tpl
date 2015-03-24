@@ -5,7 +5,7 @@
     <div class="alert alert-danger text-center">
         <h2>{__('adminstuds\\Confirm removal of the poll')}</h2>
         <p><button class="btn btn-default" type="submit" name="cancel">{__('adminstuds\\Keep the poll')}</button>
-            <button type="submit" name="confirm_delete_poll" class="btn btn-danger">{__('adminstuds\\Remove the poll')}</button></p>
+            <button type="submit" name="confirm_delete_poll" class="btn btn-danger">{__('PollInfo\\Remove the poll')}</button></p>
     </div>
 </form>
 {/block}

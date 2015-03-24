@@ -187,7 +187,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
                 '. $summary .'
             </div>
             <div class="alert alert-info clearfix">
-                <p>' . __('Step 3\\Your poll will be automatically removed '). $config['default_poll_duration'] . ' ' . __('Generic\\days') . ' ' .__('Step 3\\after the last date of your poll:') . '<br />' . __('Step 3\\You can set a closer removal date for it.') .'</p>
+                <p>' . __('Step 3\\Your poll will be automatically removed after') . ' ' . $config['default_poll_duration'] . ' ' . __('Generic\\days') . ' ' .__('Step 3\\after the last date of your poll:') . '<br />' . __('Step 3\\You can set a closer removal date for it.') .'</p>
                 <div class="form-group">
                     <label for="enddate" class="col-sm-5 control-label">'. __('Step 3\\Removal date:') .'</label>
                     <div class="col-sm-6">

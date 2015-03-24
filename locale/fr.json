@@ -36,7 +36,7 @@
     "Choice": "Choix",
     "Link": "Lien"
   },
-  "Date" : {
+  "Date": {
     "dd/mm/yyyy": "jj/mm/aaaa",
     "%A, den %e. %B %Y": "%A %e %B %Y",
     "FULL": "%A, den %e. %B %Y",
@@ -78,9 +78,6 @@
     "the development site": "le site de développement",
     "If you want to install the software for your own use and thus increase your independence, we help you on:": "Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :"
   },
-  "": {
-    "Poll administration": "Administration du sondage"
-  },
   "PollInfo": {
     "Remove the poll": "Supprimer le sondage",
     "Remove all the comments": "Supprimer tous les commentaires",
@@ -104,8 +101,8 @@
     "Cancel the description edit": "Annuler le changement de description",
     "Public link of the poll": "Lien public du sondage",
     "Admin link of the poll": "Lien d'administration du sondage",
-    "Expiration's date": "Date d'expiration",
-    "Edit the expiration's date": "Modifier la date d'expiration",
+    "Expiration date": "Date d'expiration",
+    "Edit the expiration date": "Modifier la date d'expiration",
     "Save the new expiration date": "Enregistrer la date d'expiration",
     "Cancel the expiration date edit": "Annuler le changement de date d'expiration",
     "Poll rules": "Permissions du sondage",
@@ -115,10 +112,7 @@
     "Votes are editable": "Les votes sont modifiables",
     "Save the new rules": "Enregistrer les nouvelles permissions",
     "Cancel the rules edit": "Annuler le changement de permissions",
-    "The name is invalid.": "Le nom n'est pas valide.",
-    "Keep votes": "Garder les votes",
-    "Keep comments": "Garder les commentaires",
-    "Keep this poll": "Garder ce sondage"
+    "The name is invalid.": "Le nom n'est pas valide."
   },
   "Poll results": {
     "Votes of the poll": "Votes du sondage",
@@ -147,7 +141,7 @@
   },
   "studs": {
     "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Pour participer à ce sondage, veuillez entrer votre nom, choisir toutes les valeurs qui vous conviennent et valider votre choix avec le bouton en bout de ligne.",
-    "POLL_LOCKED_WARNING":"L'administrateur a verrouillé ce sondage. Les votes et commentaires sont gelés, il n'est plus possible de participer",
+    "POLL_LOCKED_WARNING": "L'administrateur a verrouillé ce sondage. Les votes et commentaires sont gelés, il n'est plus possible de participer",
     "The poll is expired, it will be deleted soon.": "Le sondage a expiré, il sera bientôt supprimé.",
     "Deletion date:": "Date de suppression :"
   },
@@ -178,7 +172,10 @@
     "Confirm removal of all comments of the poll": "Confirmer la suppression de tous les commentaires de ce sondage",
     "Keep the comments": "Garder les commentaires",
     "Remove the comments": "Supprimer les commentaires",
-    "The poll has been deleted": "Le sondage a été supprimé"
+    "The poll has been deleted": "Le sondage a été supprimé",
+    "Keep votes": "Garder les votes",
+    "Keep comments": "Garder les commentaires",
+    "Keep this poll": "Garder ce sondage"
   },
   "Step 1": {
     "Poll creation (1 on 3)": "Création de sondage (1 sur 3)",
@@ -267,7 +264,7 @@
     "Poll's participation": "Participation au sondage",
     "filled a vote.\nYou can find your poll at the link": "vient de voter.\nVous pouvez retrouver votre sondage avec le lien suivant",
     "updated a vote.\nYou can find your poll at the link": "vient de mettre à jour un vote.\nVous pouvez retrouver votre sondage avec le lien suivant",
-    "vient de rédiger un commentaire.\nYou can find your poll at the link": "wrote a comment.\nVous pouvez retrouver votre sondage avec le lien suivant",
+    "wrote a comment.\nYou can find your poll at the link": "vient de rédiger un commentaire.\nVous pouvez retrouver votre sondage avec le lien suivant",
     "Thanks for your confidence.": "Merci de votre confiance.",
     "\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.": "\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.",
     "[ADMINISTRATOR] New settings for your poll": "[ADMINISTRATEUR] Changement de configuration du sondage",
@@ -293,8 +290,6 @@
     "The name you've chosen already exist in this poll!": "Le nom que vous avez choisi existe déjà !",
     "Enter a name and a comment!": "Merci de remplir les deux champs !",
     "Failed to insert the comment!": "Échec à l'insertion du commentaire !",
-    "Characters \\u0022  '  < et > are not permitted": "Les caractères \\u0022  '  < et > ne sont pas autorisés !",
-    "The date is not correct !": "La date choisie n'est pas correcte !",
     "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "Framadate n'est pas installé correctement, lisez le fichier INSTALL pour configurer la base de données avant de continuer.",
     "Failed to save poll": "Echèc de la sauvegarde du sondage",
     "Update vote failed": "Mise à jour du vote échoué",

@@ -96,19 +96,19 @@
                                 <ul class="list-unstyled choice">
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice==2}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{__('Poll results\\Vote yes for')} {$slots_raw[$k]}">
+                                        <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{__('Poll results\\Vote yes for')|html} {$slots_raw[$k]}">
                                             <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic\\Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
                                         <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice==1}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{__('Poll results\\Vote ifneedbe for')} {$slots_raw[$k]}">
+                                        <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{__('Poll results\\Vote ifneedbe for')|html} {$slots_raw[$k]}">
                                             (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{__('Generic\\Ifneedbe')}</span>
                                         </label>
                                     </li>
                                     <li class="no">
                                         <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice==0}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{__('Poll results\\Vote no for')} {$slots_raw[$k]}">
+                                        <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{__('Poll results\\Vote no for')|html} {$slots_raw[$k]}">
                                             <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{__('Generic\\No')}</span>
                                         </label>
                                     </li>
@@ -169,19 +169,19 @@
                                 <ul class="list-unstyled choice">
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
-                                        <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results\\Vote yes for')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                        <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results\\Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic\\Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
                                         <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1" />
-                                        <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results\\Vote ifneedbe for')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                        <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results\\Vote ifneedbe for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{__('Generic\\Ifneedbe')}</span>
                                         </label>
                                     </li>
                                     <li class="no">
                                         <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0" checked/>
-                                        <label class="btn btn-default btn-xs" for="n-choice-{$i}" title="{__('Poll results\\Vote no for')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                        <label class="btn btn-default btn-xs" for="n-choice-{$i}" title="{__('Poll results\\Vote no for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{__('Generic\\No')}</span>
                                         </label>
                                     </li>
