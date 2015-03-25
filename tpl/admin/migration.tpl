@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-xs-12 well well-sm">
-            {__('Generic\\Page generated in')} {$time} {__('Generic\\secondes')}
+            {__('Generic\\Page generated in')} {$time} {__('Generic\\seconds')}
         </div>
     </div>
 {/block}
