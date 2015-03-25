@@ -99,11 +99,11 @@
                     <input class="form-control" id="admin-link" type="text" readonly="readonly" value="{$admin_poll_id|poll_url:true|html}" />
                 </div>
                 <div id="expiration-form" class="form-group col-md-4">
-                    <h4 class="control-label">{__('PollInfo\\Expiration\'s date')}</h4>
-                    <p>{$poll->end_date|date_format:$date_format['txt_date']|html}{if !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo\\Edit the expiration\'s date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic\\Edit')}</span></button>{/if}</p>
+                    <h4 class="control-label">{__('PollInfo\\Expiration date')}</h4>
+                    <p>{$poll->end_date|date_format:$date_format['txt_date']|html}{if !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo\\Edit the expiration date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic\\Edit')}</span></button>{/if}</p>
                     {if !$expired}
                         <div class="hidden js-expiration">
-                            <label class="sr-only" for="newexpirationdate">{__('PollInfo\\Expiration\'s date')}</label>
+                            <label class="sr-only" for="newexpirationdate">{__('PollInfo\\Expiration date')}</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="newexpirationdate" name="expiration_date" size="40" value="{$poll->end_date|date_format:$date_format['txt_date']|html}" />
                                 <span class="input-group-btn">
