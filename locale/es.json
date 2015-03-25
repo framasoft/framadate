@@ -1,425 +1,298 @@
 {
-    ": bandeaux.php:59": {
-        "Make your polls": "Encuestas para la universidad"
+    "Generic": {
+        "Make your polls": "Encuestas para la universidad",
+        "Home": "Inicio",
+        "Poll": "ES_Sondage",
+        "Save": "ES_Enregistrer",
+        "Cancel": "Cancelar",
+        "Add": "Añadir",
+        "Remove": "ES_Effacer",
+        "Validate": "ES_Valider",
+        "Edit": "Cambio",
+        "Next": "Seguir",
+        "Back": "ES_Précédent",
+        "Close": "ES_Fermer",
+        "Your name": "Su nombre",
+        "Your email address": "Su dirección electrónica ",
+        "(in the format name@mail.com)": "ES_(au format nom@mail.com)",
+        "Description": "ES_Description",
+        "Back to the homepage of": "Retroceder al inicio de",
+        "days": "ES_jours",
+        "months": "ES_mois",
+        "Day": "ES_Jour",
+        "Time": "Horario",
+        "with": "ES_avec",
+        "vote": "voto",
+        "votes": "votos",
+        "for": "por",
+        "Yes": "ES_Oui",
+        "Ifneedbe": "ES_Si nécessaire",
+        "No": "ES_Non",
+        "Legend:": "ES_Légende :",
+        "Date": "ES_Date",
+        "Classic": "ES_Classique",
+        "Page generated in": "ES_Page générée en",
+        "seconds": "ES_secondes",
+        "Choice": "Opciòn",
+        "Link": "ES_Lien"
     },
-    ": bandeaux.php:62": {
-        "Poll dates (2 on 2)": "Elecci\u0026oacute;n de d\u0026iacute;s (2 de 2)"
+    "Date": {
+        "dd/mm/yyyy": "ES_jj/mm/aaaa",
+        "%A, den %e. %B %Y": "%A %e de %B %Y",
+        "FULL": "ES_%A, den %e. %B %Y",
+        "SHORT": "ES_%A %e %B %Y",
+        "DAY": "ES_%a %e",
+        "DATE": "ES_%Y-%m-%d",
+        "MONTH_YEAR": "ES_%B %Y"
     },
-    ": bandeaux.php:65": {
-        "Poll subjects (2 on 2)": "Elecci\u0026oacute;n de temas (2 de 2)"
+    "Language selector": {
+        "Select the language": "ES_Choisir la langue",
+        "Change the language": "ES_Changer la langue"
     },
-    ": bandeaux.php:68": {
-        "Polls administrator": "Administrador de la base"
+    "Homepage": {
+        "Schedule an event": "Encuesta para planificar un evento",
+        "Make a classic poll": "ES_Créer un sondage classique"
     },
-    ": bandeaux.php:71": {
-        "Contact us": "Cont\u0026aacute;ctenos"
+    "1st section": {
+        "What is that?": "ES_Prise en main",
+        "Framadate is an online service for planning an appointment or make a decision quickly and easily. No registration is required.": "ES_Framadate est un service en ligne permettant de planifier un rendez-vous ou prendre des décisions rapidement et simplement. Aucune inscription préalable n’est nécessaire.",
+        "Here is how it works:": "ES_Voici comment ça fonctionne :",
+        "Make a poll": "Crear una encuesta",
+        "Define dates or subjects to choose": "ES_Déterminez les dates ou les sujets à choisir",
+        "Send the poll link to your friends or colleagues": "ES_Envoyez le lien du sondage à vos amis ou collègues",
+        "Discuss and make a decision": "ES_Discutez et prenez votre décision",
+        "Do you want to ": "ES_Voulez-vous ",
+        "view an example?": "ES_voir un exemple ?"
     },
-    ": bandeaux.php:77": {
-        "Error!": "Error!"
+    "2nd section": {
+        "The software": "ES_Le logiciel",
+        "Framadate was initially based on ": "ES_Framadate est initialement basé sur ",
+        " a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft": "ES_ un logiciel développé par l'Université de Strasbourg. Aujourd'hui, son développement est assuré par l’association Framasoft",
+        "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "ES_Ce logiciel requiert l’activation du javascript et des cookies. Il est compatible avec les navigateurs web suivants :",
+        "It is governed by the ": "ES_Il est régi par la ",
+        "CeCILL-B license": "ES_licence CeCILL-B"
     },
-    ": bandeaux.php:80": {},
-    ": bandeaux.php:98": {
-        "About": "Informaciones generales"
+    "3rd section": {
+        "Cultivate your garden": "ES_Cultivez votre jardin",
+        "To participate in the software development, suggest improvements or simply download it, please visit ": "ES_Pour participer au développement du logiciel, proposer des améliorations ou simplement le télécharger, rendez-vous sur ",
+        "the development site": "ES_le site de développement",
+        "If you want to install the software for your own use and thus increase your independence, we help you on:": "ES_Si vous souhaitez installer ce logiciel pour votre propre usage et ainsi gagner en autonomie, nous vous aidons sur :"
     },
-    ": bandeaux.php:94": {},
-    ": bandeaux.php:108": {},
-    ": bandeaux.php:119": {
-        "Home": "Inicio"
+    "PollInfo": {
+        "Remove the poll": "Borrada de encuesta",
+        "Remove all the comments": "ES_Supprimer tous les commentaires",
+        "Remove all the votes": "ES_Supprimer tous les votes",
+        "Print": "ES_Imprimer",
+        "Export to CSV": "ES_Export en CSV",
+        "Title": "ES_Titre du sondage",
+        "Edit the title": "ES_Modifier le titre",
+        "Save the new title": "ES_Enregistrer le nouveau titre",
+        "Cancel the title edit": "ES_Annuler le changement de titre",
+        "Initiator of the poll": "Autor dela encuesta",
+        "Edit the name": "ES_Modification de l'auteur",
+        "Save the new name": "ES_Enregistrer l'auteur",
+        "Cancel the name edit": "ES_Annuler le changement d'auteur",
+        "Email": "ES_Courriel",
+        "Edit the email adress": "ES_Modifier le courriel",
+        "Save the email address": "ES_Enregistrer le courriel",
+        "Cancel the email address edit": "ES_Annuler le changement de courriel",
+        "Edit the description": "ES_Modifier la description",
+        "Save the description": "ES_Enregistrer la description",
+        "Cancel the description edit": "ES_Annuler le changement de description",
+        "Public link of the poll": "ES_Lien public du sondage",
+        "Admin link of the poll": "ES_Lien d'administration du sondage",
+        "Expiration date": "ES_Date d'expiration",
+        "Edit the expiration date": "ES_Modifier la date d'expiration",
+        "Save the new expiration date": "ES_Enregistrer la date d'expiration",
+        "Cancel the expiration date edit": "ES_Annuler le changement de date d'expiration",
+        "Poll rules": "ES_Permissions du sondage",
+        "Edit the poll rules": "ES_Modifier les permissions du sondage",
+        "Votes and comments are locked": "ES_Les votes et commentaires sont verrouillés",
+        "Votes and comments are open": "ES_Les votes et commentaires sont ouverts",
+        "Votes are editable": "ES_Les votes sont modifiables",
+        "Save the new rules": "ES_Enregistrer les nouvelles permissions",
+        "Cancel the rules edit": "ES_Annuler le changement de permissions",
+        "The name is invalid.": "ES_Le nom n'est pas valide."
     },
-    ": bandeaux.php:95": {
-        "Example": "Ejemplo"
+    "Poll results": {
+        "Votes of the poll": "ES_Votes du sondage",
+        "Edit the line:": "ES_Modifier la ligne :",
+        "Remove the line:": "ES_Supprimer la ligne :",
+        "Vote no for": "ES_Voter « non » pour",
+        "Vote yes for": "ES_Voter « oui » pour",
+        "Vote ifneedbe for": "ES_Voter « Si nécessaire » pour",
+        "Save the choices": "ES_Enregister les choix",
+        "Addition": "Suma",
+        "Best choice": "ES_Meilleur choix",
+        "Best choices": "ES_Meilleurs choix",
+        "The best choice at this time is:": "ES_Le meilleur choix pour l'instant est :",
+        "The bests choices at this time are:": "ES_Les meilleurs choix pour l'instant sont :",
+        "Scroll to the left": "ES_Faire défiler à gauche",
+        "Scroll to the right": "ES_Faire défiler à droite"
     },
-    ": bandeaux.php:96": {
-        "Contact": "Cont\u0026aacute;ctenos"
+    "Comments": {
+        "Comments of polled people": "ES_Commentaires de sondés",
+        "Remove the comment": "ES_Supprimer le commentaire",
+        "Add a comment to the poll": "ES_Ajouter un commentaire au sondage",
+        "Your comment": "ES_Votre commentaire",
+        "Send the comment": "ES_Envoyer le commentaire",
+        "anonyme": "ES_anonyme",
+        "Comment added": "ES_Commentaire ajouté"
     },
-    ": bandeaux.php:99": {
-        "Admin": "Admin"
+    "studs": {
+        "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Para participar a esta encuesta, introduzca su nombre, elige todas las valores que son apriopriadas y validar su seleccion con el botón verde a la fin de línea.",
+        "POLL_LOCKED_WARNING": "ES_L'administrateur a verrouillé ce sondage. Les votes et commentaires sont gelés, il n'est plus possible de participer",
+        "The poll is expired, it will be deleted soon.": "ES_Le sondage a expiré, il sera bientôt supprimé.",
+        "Deletion date:": "ES_Date de suppression :"
     },
-    ": bandeaux.php:109": {
-        "Logs": "Hist\u0026oacute;rico"
+    "adminstuds": {
+        "As poll administrator, you can change all the lines of this poll with this button": "En calidad de administrador, Usted puede cambiar todas la líneas de este encuesta con este botón",
+        "remove a column or a line with": "ES_effacer une colonne ou une ligne avec",
+        "and add a new column with": "ES_et si vous avez oublié de saisir un choix, vous pouvez rajouter une colonne en cliquant sur",
+        "Finally, you can change the informations of this poll like the title, the comments or your email address.": "Para acabar, Usted puede cambiar las informaciones relativas a su encuesta como el titulo, los comentarios o ademas su dirección electrónica.",
+        "Column's adding": "Añadido de columna",
+        "You can add a new scheduling date to your poll.": "ES_Vous pouvez ajouter une date à votre sondage.",
+        "If you just want to add a new hour to an existant date, put the same date and choose a new hour.": "ES_Si vous voulez juste ajouter un horaire à une date existante, mettez la même date et choisissez un autre horaire. Il sera intégré normalement au sondage existant.",
+        "Confirm removal of the poll": "Confirmar el borrado dela encuesta",
+        "Delete the poll": "ES_Je supprime le sondage",
+        "Keep the poll": "ES_Je garde le sondage",
+        "Your poll has been removed!": "Su encuesta ha sido borrado!",
+        "Poll saved": "ES_Sondage sauvegardé",
+        "Vote added": "ES_Vote ajouté",
+        "Vote updated": "ES_Vote mis à jour",
+        "Vote deleted": "ES_Vote supprimé",
+        "All votes deleted": "ES_Tous les votes ont été supprimés",
+        "Back to the poll": "ES_Retour au sondage",
+        "Add a column": "ES_Ajouter une colonne",
+        "Remove the column": "ES_Effacer la colonne",
+        "Choice added": "ES_Choix ajouté",
+        "Confirm removal of all votes of the poll": "ES_Confirmer la suppression de tous les votes de ce sondage",
+        "Keep the votes": "ES_Garder les votes",
+        "Remove the votes": "ES_Supprimer les votes",
+        "Confirm removal of all comments of the poll": "ES_Confirmer la suppression de tous les commentaires de ce sondage",
+        "Keep the comments": "ES_Garder les commentaires",
+        "Remove the comments": "ES_Supprimer les commentaires",
+        "The poll has been deleted": "ES_Le sondage a été supprimé",
+        "Keep votes": "ES_Garder les votes",
+        "Keep comments": "ES_Garder les commentaires",
+        "Keep this poll": "Dejar este encuesta!"
     },
-    ": bandeaux.php:110": {
-        "Cleaning": "Limpieza"
+    "Step 1": {
+        "Poll creation (1 on 3)": "ES_Création de sondage (1 sur 3)",
+        "You are in the poll creation section.": "Usted ha eligiendo de crear une nueva encuesta!",
+        "Required fields cannot be left blank.": "Gracias por completar los campos con una *.",
+        "Poll title": "ES_Titre du sondage",
+        "Voters can modify their vote themselves.": " Los encuentados pueden cambiar su línea ellos mismos.",
+        "To receive an email for each new vote.": " Usted quiere recibir un correo electónico cada vez que alguien participe a la encuesta.",
+        "To receive an email for each new comment.": "ES_Recevoir un courriel à chaque commentaire.",
+        "Go to step 2": "ES_Aller à l'étape 2"
     },
-    ": bandeaux.php:129": {},
-    ": bandeaux.php:135": {
-        "Universit\u0026eacute; de Strasbourg. Creation: Guilhem BORGHESI. 2008-2009": "Universit\u0026eacute; de Strasbourg. Creaci\u0026oacute;n: Guilhem BORGHESI. 2008-2009"
+    "Step 2": {
+        "Back to step 1": "ES_Revenir à l’étape 1",
+        "Go to step 3": "ES_Aller à l’étape 3"
     },
-    ": creation_sondage.php:89": {},
-    ": creation_sondage.php:90": {
-        "Author's message": "Reservado al autor"
-    },
-    ": creation_sondage.php:92": {
-        "Thanks for your confidence": "Gracias por su confianza"
-    },
-    ": creation_sondage.php:91": {},
-    ": choix_date.php:63": {},
-    ": choix_autre.php:62": {
-        "You haven't filled the first section of the poll creation.": "Usted no habia llenado la primera pagina dela encuesta"
-    },
-    ": choix_date.php:64": {},
-    ": contacts.php:77": {},
-    ": studs.php:88": {},
-    ": choix_autre.php:63": {},
-    ": adminstuds.php:79": {},
-    ": adminstuds.php:1044": {
-        "Back to the homepage of": "Retroceder al inicio de"
-    },
-    ": choix_date.php:220": {
-        "Select your dates amoung the free days (green). The selected days are in blue.": "Seleccionar sus fechas entre los d\u0026iacute;as disponibles que aparecen en verde. Cuando son seleccionados los d\u0026iacute;as aparecen en azul.",
-        "You can unselect a day previously selected by clicking again on it.": "Usted puede egalemente borrar d\u0026iacute;as en seleccionarlos de nuevo."
-    },
-    ": choix_date.php:233": {
-        "sunday": "domingo"
-    },
-    ": choix_date.php:485": {
-        "Selected days": "D\u0026iacute;as seleccionados"
-    },
-    ": choix_date.php:487": {
-        "For each selected day, you can choose, or not, meeting hours (e.g.: \\\u00228h\\\u0022, \\\u00228:30\\\u0022, \\\u00228h-10h\\\u0022, \\\u0022evening\\\u0022, etc.)": "Para alg\u0026uacute;n d\u0026iacute;a que hab\u0026iacute;a seleccionado, Usted puede escoger, o no, de horas de reuni\u0026oacute;n (e.g.: \\\u00228h\\\u0022, \\\u00228:30\\\u0022, \\\u00228h-10h\\\u0022, etc.)"
-    },
-    ": choix_date.php:494": {
-        "Time": "Horario"
-    },
-    ": choix_date.php:522": {
-        "Bad format!": "Formato incorrecto !"
-    },
-    ": choix_date.php:531": {
+    "Step 2 date": {
+        "Poll dates (2 on 3)": "ES_Choix des dates (2 sur 3)",
+        "Choose the dates of your poll": "ES_Choisissez les dates de votre sondage",
+        "To schedule an event you need to propose at least two choices (two hours for one day or two days).": "ES_Pour créer un sondage spécial dates vous devez proposer au moins deux choix (deux horaires pour une même journée ou deux jours).",
+        "You can add or remove additionnal days and hours with the buttons": "ES_Vous pouvez ajouter ou supprimer des jours et horaires supplémentaires avec les boutons",
+        "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)": "ES_Pour chacun des jours sélectionnés, vous avez la possibilité de choisir ou non, des heures de réunion (par exemple : \"8h\", \"8:30\", \"8h-10h\", \"soir\", etc.)",
+        "Remove an hour": "ES_Supprimer le dernier horaire",
+        "Add an hour": "ES_Ajouter un horaire",
+        "Copy hours of the first day": "ES_Reporter les horaires du premier jour sur les autres jours",
+        "Remove a day": "ES_Supprimer le dernier jour",
+        "Add a day": "ES_Ajouter un jour",
+        "Remove all days": "ES_Effacer tous les jours",
         "Remove all hours": "Borrar todos los horarios"
     },
-    ": choix_date.php:533": {},
-    ": choix_autre.php:167": {
-        "Next": "Seguir"
-    },
-    ": choix_date.php:537": {
-        "Enter more choices for the voters": "Introduzca m\u0026aacute;s posibilidades por la encuesta!"
-    },
-    ": choix_date.php:549": {
-        "Removal date": "Fecha de borrado"
-    },
-    ": choix_date.php:552": {},
-    ": choix_autre.php:196": {
-        "Once you have confirmed the creation of your poll, you will be automatically redirected on the page of your poll.": "Cuando Usted confirmar\u0026agrave; la creacion de su encuesta, Usted ser\u0026agrave; automaticamente redigiriendo a la pagina de su encuesta.",
-        "Then, you will receive quickly an email contening the link to your poll for sending it to the voters.": "Alora, Usted recibir\u0026agrave; rapidamente uno correo electrinico conteniendo el enlace de su encuesta para darlo a los encuestados."
-    },
-    ": choix_date.php:558": {
-        "Back to hours": "Retroceder a los horarios"
-    },
-    ": choix_date.php:559": {},
-    ": choix_autre.php:201": {
-        "Create the poll": "Crear la encuesta"
-    },
-    ": infos_sondage.php:119": {
-        "Poll creation (1 on 2)": "Creaci\u0026oacute;n de encuesta (1 de 2)"
-    },
-    ": infos_sondage.php:123": {
-        "You are in the poll creation section.": "Usted ha eligiendo de crear une nueva encuesta!",
-        "Required fields cannot be left blank.": "Gracias por completar los campos con una *."
-    },
-    ": infos_sondage.php:128": {
-        "Poll title *: ": "T\u0026iacute;tulo dela encuesta *: "
-    },
-    ": infos_sondage.php:130": {
-        "Enter a title": "Introducza un t\u0026iacute;tulo"
-    },
-    ": infos_sondage.php:133": {},
-    ": infos_sondage.php:138": {},
-    ": infos_sondage.php:150": {
-        "Something is wrong with the format": "Something is wrong with the format"
-    },
-    ": infos_sondage.php:136": {
-        "Comments: ": "Comentarios : "
-    },
-    ": infos_sondage.php:141": {
-        "Your name*: ": "Su nombre *: "
-    },
-    ": infos_sondage.php:147": {},
-    ": contacts.php:119": {
-        "Enter a name": "Introduzca un nombre"
-    },
-    ": infos_sondage.php:153": {
-        "Your e-mail address *: ": "Su direcci\u0026oacute;n electr\u0026oacute;nica *: "
-    },
-    ": infos_sondage.php:159": {
-        "Enter an email address": "Introduzca una direcci\u0026oacute;n electr\u0026oacute;nica"
-    },
-    ": infos_sondage.php:162": {
-        "The address is not correct! (You should enter a valid email address in order to receive the link to your poll)": "La direcci\u0026oacute;n electr\u0026oacute;nica no est\u0026aacute; correcta! (Introduzca una direcci\u0026oacute;n electr\u0026oacute;nica valida para recibir el enlace de su encuesta)"
-    },
-    ": infos_sondage.php:173": {
-        "The fields marked with * are required!": "Los campos con una * estan obligatorios!"
-    },
-    ": infos_sondage.php:179": {
-        " Voters can modify their vote themselves.": " Los encuentados pueden cambiar su l\u0026iacute;nea ellos mismos."
-    },
-    ": infos_sondage.php:181": {
-        " To receive an email for each new vote.": " Usted quiere recibir un correo elect\u0026oacute;nico cada vez que alguien participe a la encuesta."
-    },
-    ": infos_sondage.php:185": {
-        "Schedule an event": "Encuesta para planificar un evento"
-    },
-    ": infos_sondage.php:187": {
-        "Make a choice": "Encuesta para otras cosas"
-    },
-    ": infos_sondage.php:188": {},
-    ": index.php:73": {
-        "Make a poll": "Crear una encuesta"
-    },
-    ": contacts.php:56": {
-        "Message": "Mensaje"
-    },
-    ": contacts.php:59": {},
-    ": studs.php:171": {},
-    ": studs.php:211": {},
-    ": adminstuds.php:273": {},
-    ": adminstuds.php:379": {},
-    ": adminstuds.php:500": {},
-    ": adminstuds.php:510": {},
-    ": adminstuds.php:522": {},
-    ": adminstuds.php:1022": {},
-    ": contacts.php:76": {
-        "Your message has been sent!": "Su mensaje ha sido buen expedido!"
-    },
-    ": contacts.php:113": {
-        "If you have questions, you can send a message here.": "Para todas preguntas, Usted puede dejar un mensaje con este pagina."
-    },
-    ": contacts.php:115": {
-        "Your name": "Su nombre"
-    },
-    ": contacts.php:123": {
-        "Your email address ": "Su direcci\u0026oacute;n electr\u0026oacute;nica "
-    },
-    ": contacts.php:129": {
-        "Question": "Pregunta"
-    },
-    ": contacts.php:138": {
-        "Send your question": "Enviar su pregunta"
-    },
-    ": studs.php:87": {},
-    ": adminstuds.php:78": {
-        "This poll doesn't exist !": "Este encuesta no existe!"
-    },
-    ": studs.php:118": {},
-    ": studs.php:246": {},
-    ": adminstuds.php:567": {
-        "Initiator of the poll": "Autor dela encuesta"
-    },
-    ": studs.php:250": {},
-    ": studs.php:540": {},
-    ": adminstuds.php:571": {},
-    ": adminstuds.php:964": {
-        "Comments": "Comentarios"
-    },
-    ": studs.php:261": {
-        "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Para participar a esta encuesta, introduzca su nombre, elige todas las valores que son apriopriadas y validar su seleccion con el bot\u0026oacute;n verde a la fin de l\u0026iacute;nea."
-    },
-    ": studs.php:445": {},
-    ": adminstuds.php:806": {
-        "Addition": "Suma"
-    },
-    ": studs.php:473": {},
-    ": adminstuds.php:836": {
-        "Enter a name !": "Introduzca un nombre!"
-    },
-    ": studs.php:476": {},
-    ": adminstuds.php:841": {
-        "The name you've chosen already exist in this poll!": "El nombre entrado existe ya!"
-    },
-    ": studs.php:479": {},
-    ": adminstuds.php:846": {
-        "Characters \\\u0022  '  < et > are not permitted": "Los caracteres \\\u0022 ' < y > no estan autorizados!"
-    },
-    ": studs.php:503": {},
-    ": studs.php:505": {},
-    ": adminstuds.php:876": {},
-    ": adminstuds.php:878": {
-        "for": "por"
-    },
-    ": studs.php:511": {
-        "%A, den %e. %B %Y": "%A %e de %B %Y"
-    },
-    ": studs.php:522": {},
-    ": adminstuds.php:899": {
-        "vote": "voto"
-    },
-    ": studs.php:524": {},
-    ": adminstuds.php:901": {
-        "votes": "votos"
-    },
-    ": studs.php:528": {},
-    ": adminstuds.php:905": {},
-    ": studs.php:531": {},
-    ": adminstuds.php:908": {
-        "The bests choices at this time are": "Los mejores elecciones por el momento estan"
-    },
-    ": studs.php:548": {},
-    ": adminstuds.php:974": {
-        "Enter a name and a comment!": "Introduzca su nombre y un comentario!"
-    },
-    ": studs.php:552": {},
-    ": adminstuds.php:978": {
-        "Add a comment in the poll": "Dejar un comentario en la encuesta"
-    },
-    ": studs.php:555": {},
-    ": adminstuds.php:979": {
-        "Name": "Su nombre"
-    },
-    ": studs.php:563": {
-        "Export: Spreadsheet": "Exportar : Hoja de c\u0026aacute;lculo"
-    },
-    ": studs.php:565": {
-        "Agenda": "Agenda"
-    },
-    ": index.php:70": {
-        "What is it about?": "\u0026iquest;Por qu\u0026eacute; esto?"
-    },
-    ": index.php:71": {
-        "Making polls to schedule meetings or events, quickly and easily. <br> You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays.": "Hacer encuestas para planificar un evento como una reun\u0026iacute;on de trabajo o una sortida al cine. Sirve de definir la mejora fecha por todos. <br>Usted puede tambi\u0026eacute;n utilizarlo para espicificar su preferencia entre pel\u0026iacute;culas, destinos de viaje o cualquier otra selecci\u0026oacute;n."
-    },
-    ": choix_autre.php:144": {
-        "Your poll aim is to make a choice between different subjects.<br>Enter the subjects to vote for:": "Usted ha eligiendo de crear une nueva encuesta!<br>Introducza las differentes opciones :"
-    },
-    ": choix_autre.php:150": {
-        "Choice": "Opci\u0026ograve;n"
-    },
-    ": choix_autre.php:162": {
-        "5 choices more": "Para a\u0026ntilde;adir 5 campos de texto"
-    },
-    ": choix_autre.php:177": {
-        "Enter at least one choice": "Introduzca por lo menos un campo!"
-    },
-    ": choix_autre.php:182": {
-        "Characters \\\u0022 < and > are not permitted": "Los caracteres \\\u0022 < y > no estan autorizados!"
-    },
-    ": choix_autre.php:191": {
-        "Your poll will be automatically removed after 6 months.<br> You can set a closer removal date for it.": "Su encuesta ser\u0026aacute; automaticamente borrado dentro de 6 meses.<br> Mientras, usted puede cambiar este fecha aqu\u0026iacute;."
-    },
-    ": choix_autre.php:193": {
-        "(DD/MM/YYYY)": "(DD/MM/AAAA)"
-    },
-    ": adminstuds.php:114": {
-        "Column's adding": "A\u0026ntilde;adido de columna"
-    },
-    ": adminstuds.php:117": {
-        "Add a new column": "Para a\u0026ntilde;adir una columna"
-    },
-    ": adminstuds.php:121": {
-        "You can add a new scheduling date to your poll.<br> If you just want to add a new hour to an existant date, put the same date and choose a new hour.": "Usted puede a\u0026ntilde;adir una fecha por su encuesta. Si la fecha existe ya y que usted vuele solamente a\u0026ntilde;adire un horario,<br> pone la fecha entera con el nuevo horario o el nuevo hueco y fuera normalemente a\u0026ntilde;ado a la encuesta."
-    },
-    ": adminstuds.php:122": {
-        "Add a date": "Para a\u0026ntilde;adir una fecha"
-    },
-    ": adminstuds.php:143": {
-        "Add a start hour (optional)": "Para a\u0026ntilde;adir un horario de principio (optional)"
-    },
-    ": adminstuds.php:157": {
-        "Add a end hour (optional)": "Para a\u0026ntilde;adir un horario de fin (optional)"
-    },
-    ": adminstuds.php:378": {
-        "[ADMINISTRATOR] New column for your poll": "[ADMINISTRADOR] A\u0026ntilde;ado de una nueva columna a la encuesta"
-    },
-    ": adminstuds.php:498": {
-        "[ADMINISTRATOR] New title for your poll": "[ADMINISTRADOR] Cambio del titulo dela encuesta"
-    },
-    ": adminstuds.php:499": {},
-    ": adminstuds.php:520": {
-        "[ADMINISTRATOR] New email address for your poll": "[ADMINISTRADOR] Cambio de su Direcci\u0026oacute;n electr\u0026oacute;nica"
-    },
-    ": adminstuds.php:521": {},
-    ": adminstuds.php:582": {
-        "As poll administrator, you can change all the lines of this poll with this button": "En calidad de administrador, Usted puede cambiar todas la l\u0026iacute;neas de este encuesta con este botón",
-        "Edit": "Cambio",
-        "You can, as well, remove a column or a line.": "Usted puede tambi\u0026eacute;n borrar una columna o una l\u0026iacute;nea con ",
-        "Cancel": "Cancelar",
-        "You can also add a new column with ": "Usted puede a\u0026ntilde;adir une nueva columna con ",
-        "Add": "Añadir",
-        "Finally, you can change the informations of this poll like the title, the comments or your email address.": "Para acabar, Usted puede cambiar las informaciones relativas a su encuesta como el titulo, los comentarios o ademas su direcci\u0026oacute;n electr\u0026oacute;nica."
-    },
-    ": adminstuds.php:851": {
-        "The date is not correct !": "La fecha no esta correcta!"
-    },
-    ": adminstuds.php:916": {
-        "Poll's management": "Administraci\u0026oacute;n de su encuesta"
-    },
-    ": adminstuds.php:921": {
-        "Change the title": "Cambiar el titulo dela encuesta"
-    },
-    ": adminstuds.php:928": {
-        "Generate the convocation letter (.PDF), choose the place to meet and validate": "Producir la letra de convocaci\u0026oacute;n (en PDF), elige un lugar de reuni\u0026oacute;n y valida"
-    },
-    ": adminstuds.php:939": {
-        "Enter a meeting place!": "Introduzca un lugar de reuni\u0026oacute;n !"
-    },
-    ": adminstuds.php:944": {
-        "Enter a new title!": "Introduzca un nuevo titulo!"
-    },
-    ": adminstuds.php:948": {
-        "Change the comments": "Cambiar los commentarios dela encuesta"
-    },
-    ": adminstuds.php:952": {
-        "Change your email address": "Cambiar su direcci\u0026oacute;n eletr\u0026oacute;nica"
-    },
-    ": adminstuds.php:956": {
-        "Enter a new email address!": "Introduzca una nuva direcci\u0026oacute;n eletr\u0026oacute;nica!"
-    },
-    ": adminstuds.php:985": {
-        "Remove the poll": "Borrada de encuesta"
-    },
-    ": adminstuds.php:988": {
-        "Remove this poll!": "Borrar este encuesta!"
-    },
-    ": adminstuds.php:989": {
-        "Keep this poll!": "Dejar este encuesta!"
-    },
-    ": adminstuds.php:1043": {
-        "Your poll has been removed!": "Su encuesta ha sido borrado!"
-    },
-    ": admin/index.php:82": {
-        "Confirm removal of the poll ": "Confirmar el borrado dela encuesta"
-    },
-    ": admin/index.php:112": {
-        "polls in the database at this time": "encuestas en la basa por el momento"
-    },
-    ": admin/index.php:117": {
-        "Actions": "Acciones"
-    },
-    ": admin/index.php:140": {
-        "See the poll": "Ver la encuesta"
-    },
-    ": admin/index.php:141": {
-        "Change the poll": "Cambiar la encuesta"
-    },
-    "~ msgid \u0022january\u0022": {},
-    "~ msgstr \u0022enero\u0022": {},
-    "~ msgid \u0022february\u0022": {},
-    "~ msgstr \u0022febrero\u0022": {},
-    "~ msgid \u0022march\u0022": {},
-    "~ msgstr \u0022marzo\u0022": {},
-    "~ msgid \u0022april\u0022": {},
-    "~ msgstr \u0022abril\u0022": {},
-    "~ msgid \u0022may\u0022": {},
-    "~ msgstr \u0022mayo\u0022": {},
-    "~ msgid \u0022june\u0022": {},
-    "~ msgstr \u0022junio\u0022": {},
-    "~ msgid \u0022july\u0022": {},
-    "~ msgstr \u0022julio\u0022": {},
-    "~ msgid \u0022august\u0022": {},
-    "~ msgstr \u0022agosto\u0022": {},
-    "~ msgid \u0022september\u0022": {},
-    "~ msgstr \u0022septiembre\u0022": {},
-    "~ msgid \u0022october\u0022": {},
-    "~ msgstr \u0022octubre\u0022": {},
-    "~ msgid \u0022november\u0022": {},
-    "~ msgstr \u0022noviembre\u0022": {},
-    "~ msgid \u0022december\u0022": {},
-    "~ msgstr \u0022diciembre\u0022": {},
-    "~ msgid \u0022Sources\u0022": {},
-    "~ msgstr \u0022Fuentes\u0022": {},
-    "~ msgid \u0022Back\u0022": {},
-    "~ msgstr \u0022Retroceder\u0022": {},
-    "~ msgid \u0022\u0022": {},
-    "~ \u0022Here are the <a href=\\\u0022http://sourcesup.cru.fr/frs/?\u0022": {},
-    "~ \u0022group_id=621\\\u0022>sources</a> of \u0022": {},
-    "~ msgstr \u0022\u0022": {},
-    "~ \u0022Las <a href=\\\u0022http://sourcesup.cru.fr/frs/?group_id=621\\\u0022>fuentes</a> de \u0022": {}
+    "Step 2 classic": {
+        "Poll subjects (2 on 3)": "ES_Choix des sujets (2 sur 3)",
+        "To make a generic poll you need to propose at least two choices between differents subjects.": "ES_Pour créer un sondage classique, vous devez proposer au moins deux choix différents.",
+        "You can add or remove additional choices with the buttons": "ES_Vous pouvez ajouter ou supprimer des choix supplémentaires avec les boutons",
+        "It's possible to propose links or images by using": "ES_Il est possible d’insérer des liens ou des images en utilisant ",
+        "the Markdown syntax": "ES_la syntaxe Markdown",
+        "Add a link or an image": "ES_Ajouter un lien ou une image",
+        "These fields are optional. You can add a link, an image or both.": "ES_Ces champs sont facultatifs. Vous pouvez ajouter un lien, une image ou les deux.",
+        "URL of the image": "ES_URL de l'image",
+        "Alternative text": "ES_Texte alternatif",
+        "Remove a choice": "ES_Supprimer le dernier choix",
+        "Add a choice": "ES_Ajouter un choix"
+    },
+    "Step 3": {
+        "Back to step 2": "ES_Revenir à l’étape 2",
+        "Removal date and confirmation (3 on 3)": "ES_Date d'expiration et confirmation (3 sur 3)",
+        "Confirm the creation of your poll": "ES_Confirmez la création de votre sondage",
+        "List of your choices": "ES_Liste de vos choix",
+        "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "ES_Une fois que vous aurez confirmé la création du sondage, vous serez redirigé automatiquement vers la page d'administration de votre sondage.",
+        "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "ES_En même temps, vous recevrez deux courriels : l'un contenant le lien vers votre sondage pour le faire suivre aux futurs sondés, l'autre contenant le lien vers la page d'administraion du sondage.",
+        "Create the poll": "Crear la encuesta",
+        "Your poll will be automatically removed after": "ES_Votre sondage sera automatiquement effacé après",
+        "after the last date of your poll:": "ES_après la date la plus tardive :",
+        "You can set a closer removal date for it.": "ES_Vous pouvez décider d'une date de suppression plus proche.",
+        "Removal date:": "ES_Date de suppression :"
+    },
+    "Admin": {
+        "Back to administration": "ES_Retour à l'administration",
+        "Polls": "ES_Sondages",
+        "Migration": "ES_Migration",
+        "Purge": "ES_Purge",
+        "Logs": "Histórico",
+        "Poll ID": "ES_ID sondage",
+        "Format": "ES_Format",
+        "Title": "ES_Titre",
+        "Author": "ES_Auteur",
+        "Email": "ES_Courriel",
+        "Expiration date": "ES_Date d'expiration",
+        "Users": "ES_Utilisateurs",
+        "Actions": "Acciones",
+        "See the poll": "Ver la encuesta",
+        "Change the poll": "Cambiar la encuesta",
+        "Deleted the poll": "ES_Supprimer le sondage",
+        "Summary": "ES_Résumé",
+        "Success": "ES_Réussite",
+        "Fail": "ES_Échèc",
+        "Nothing": "ES_Rien",
+        "Succeeded:": "ES_Réussit:",
+        "Failed:": "ES_Échoué:",
+        "Skipped:": "ES_Passé:",
+        "Pages:": "ES_Pages :",
+        "Confirm removal of the poll": "Confirmar el borrado dela encuesta",
+        "polls in the database at this time": "encuestas en la basa por el momento",
+        "Purge the polls": "ES_Purger les sondages"
+    },
+    "Mail": {
+        "Poll's participation": "ES_Participation au sondage",
+        "filled a vote.\nYou can find your poll at the link": "ES_vient de voter.\nVous pouvez retrouver votre sondage avec le lien suivant",
+        "updated a vote.\nYou can find your poll at the link": "ES_vient de mettre à jour un vote.\nVous pouvez retrouver votre sondage avec le lien suivant",
+        "wrote a comment.\nYou can find your poll at the link": "ES_vient de rédiger un commentaire.\nVous pouvez retrouver votre sondage avec le lien suivant",
+        "Thanks for your confidence.": "ES_Merci de votre confiance.",
+        "\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.": "ES_\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.",
+        "[ADMINISTRATOR] New settings for your poll": "ES_[ADMINISTRATEUR] Changement de configuration du sondage",
+        "You have changed the settings of your poll. \nYou can modify this poll with this link": "ES_Vous avez modifié la configuration de votre sondage. \nVous pouvez modifier ce sondage avec le lien suivant",
+        "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.": "ES_Ceci est le message qui doit être envoyé aux sondés. \nVous pouvez maintenant transmettre ce message à toutes les personnes susceptibles de participer au vote.",
+        "hast just created a poll called": "ES_ vient de créer un sondage intitulé ",
+        "Thanks for filling the poll at the link above": "ES_Merci de bien vouloir participer au sondage à l'adresse suivante",
+        "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "ES_Ce message ne doit PAS être diffusé aux sondés. Il est réservé à l'auteur du sondage.\n\nVous pouvez modifier ce sondage à l'adresse suivante ",
+        "Author's message": "Reservado al autor",
+        "For sending to the polled users": "ES_Pour diffusion aux sondés"
+    },
+    "Error": {
+        "Error!": "Error!",
+        "Enter a title": "Introducza un título",
+        "Something is wrong with the format": "Something is wrong with the format",
+        "Enter an email address": "Introduzca una dirección electrónica",
+        "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.": "ES_L'adresse saisie n'est pas correcte ! Il faut une adresse électronique valide (par exemple r.stallman@outlock.com) pour recevoir le lien vers le sondage.",
+        "You haven't filled the first section of the poll creation.": "Usted no habia llenado la primera pagina dela encuesta",
+        "Javascript is disabled on your browser. Its activation is required to create a poll.": "ES_Javascript est désactivé sur votre navigateur. Son activation est requise pour la création d'un sondage.",
+        "Cookies are disabled on your browser. Theirs activation is required to create a poll.": "ES_Les cookies sont désactivés sur votre navigateur. Leur activation est requise pour la création d'un sondage.",
+        "This poll doesn't exist !": "Este encuesta no existe!",
+        "Enter a name": "Introduzca un nombre",
+        "The name you've chosen already exist in this poll!": "El nombre entrado existe ya!",
+        "Enter a name and a comment!": "Introduzca su nombre y un comentario!",
+        "Failed to insert the comment!": "ES_Échec à l'insertion du commentaire !",
+        "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "ES_Framadate n'est pas installé correctement, lisez le fichier INSTALL pour configurer la base de données avant de continuer.",
+        "Failed to save poll": "ES_Echèc de la sauvegarde du sondage",
+        "Update vote failed": "ES_Mise à jour du vote échoué",
+        "Adding vote failed": "ES_Ajout d'un vote échoué"
+    }
 }
