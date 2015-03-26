@@ -45,7 +45,7 @@
 
 <div class="hidden">
     <p id="parameter_name_regex">{$parameter_name_regex}</p>
-    <p id="parameter_name_error">{$parameter_name_error}</p>
+    <p id="parameter_name_error">{__('Error','Name is incorrect.')|var_dump}</p>
 </div>
 
 
