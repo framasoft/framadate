@@ -1,26 +1,81 @@
-[![](https://git.framasoft.org/assets/logo-black-f52905a40830b30aa287f784b537c823.png)](https://git.framasoft.org)
+# Présentation du projet
 
-![English:](http://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/20px-Flag_of_the_United_Kingdom.svg.png) **Framasoft uses GitLab** for the development of its free softwares. Our Github repositories are only mirrors.
+![Gitlab](https://git.framasoft.org/assets/logo-black-f52905a40830b30aa287f784b537c823.png)[https://git.framasoft.org](https://git.framasoft.org)
+
+![English](http://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/20px-Flag_of_the_United_Kingdom.svg.png) **Framasoft uses GitLab** for the development of its free softwares. Our Github repositories are only mirrors.
 If you want to work with us, **fork us on [git.framasoft.org](https://git.framasoft.org)**. (no registration needed, you can sign in with your Github account)
 
-![Français :](http://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/20px-Flag_of_France.svg.png) **Framasoft utilise GitLab** pour le développement de ses logiciels libres. Nos dépôts Github ne sont que des mirroirs.
+![Français](http://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/20px-Flag_of_France.svg.png) **Framasoft utilise GitLab** pour le développement de ses logiciels libres. Nos dépôts Github ne sont que des mirroirs.
 Si vous souhaitez travailler avec nous, **forkez-nous sur [git.framasoft.org](https://git.framasoft.org)**. (l'inscription n'est pas nécessaire, vous pouvez vous connecter avec votre compte Github)
-* * *
 
-Framadate est un fork du projet STUdS : https://sourcesup.cru.fr/projects/studs/
+---
 
-Framadate est le projet qui motorise framadate.org pour framasoft.org
+# Validations des pages
+Toutes les pages sont validées HTML 4.01 Strict.
+Le CSS est validé CSS 2.1.
+
+# Technologies utilisées
+* PHP 5.4.4, php-gettext
+* PostgreSQL, mysql
+* Apache
+* iCalcreator
+* POedit
+* Icônes : Deleket (http://deleket.deviantart.com/) et DryIcons (http://dryicons.com)
+
+# Compatibilités des navigateurs
+_Dernière mise à jour le 21 avril 2014_
+
+| Navigateur | Version testée          |
+|------------|-------------------------|
+| Firefox    | Ubuntu 13.10/FF28       |
+| Chrome     | Ubuntu 13.10/Chromium33 |
+| Opera      | (non testé)             |
+| Konqueror  | (non testé)             |
+| Links      | (non testé, inutile)    |
+| Safari     | (non testé)             |
+| IE         | Win7/IE9                |
+
+# Comment contribuer
+
+## De votre côté
+
+1. Créer un compte sur [https://git.framasoft.org](https://git.framasoft.org)
+1. Créer un fork du projet principal : [Créer le fork](https://git.framasoft.org/framasoft/framadate/fork/new)
+1. Créer une branche nommée feature/[Description]
+    * Où [Description] est une description en anglais très courte de ce qui va être fait
+1. Faire des commits dans votre branche
+1. Pusher la branche sur votre fork
+1. Demander une merge request
+
+## La suite se passe de notre côté
+
+1. Quelqu'un relira votre travail
+    * Essayez de rendre ce travail plus facile en organisant vos commits
+1. S'il y a des remarques sur le travail, le relecteur fera des commentaires sur la merge request
+1. Si la merge request lui semble correcte il peut merger votre travail avec la branche **develop**
+
+## Corrections suite à une relecture
+
+La relecture de la merge request peut vous amener à faire des corrections.
+Vous pouvez faire ces corrections dans votre branche, ce qui aura pour effet de les ajouter à la merge request.
+
+## Comprendre le code
+
+Un fichier est dédié à l'appréhension du code de framadate : [Document technique](doc/TECHNICAL.md).
+
+---
+
+Framadate est un fork du projet [STUdS](https://sourcesup.cru.fr/projects/studs/), il motorise framadate.org pour framasoft.org
 
 Les auteurs principaux de Framadate sont :
-- Simon LEBLANC
-- Pierre-Yves GOSSET
+* Simon LEBLANC
+* Pierre-Yves GOSSET
 
 Les auteurs principaux du projet STUdS sont :
-- Guilhem BORGHESI
-- Raphaël DROZ
+* Guilhem BORGHESI
+* Raphaël DROZ
 
-
-==========================================================================
+---
 
 Université de Strasbourg - Direction Informatique
 Auteur : Guilhem BORGHESI
@@ -38,7 +93,7 @@ Le fait que vous puissiez accéder à cet en-tête signifie que vous avez
 pris connaissance de la licence CeCILL-B, et que vous en avez accepté les
 termes. Vous pouvez trouver une copie de la licence dans le fichier LICENCE.
 
-==========================================================================
+---
 
 Université de Strasbourg - Direction Informatique
 Author : Guilhem BORGHESI
@@ -56,130 +111,11 @@ The fact that you are presently reading this means that you have had
 knowledge of the CeCILL-B license and that you accept its terms. You can
 find a copy of this license in the file LICENSE.
 
-==========================================================================
+---
 
-=============================================================================
-Fichiers de l'application
-=============================================================================
+    Janvier 2008
+    Guilhem BORGHESI
+    Université de Strasbourg
 
-index.php
-    La page d'accueil de STUdS
-studs.php
-    La page de présentation de sondage
-adminstuds.php
-    La page d'administration réservée à l'auteur du sondage
-infos_sondage.php
-    La page (1/2) de création de sondage récupérant les informations générales
-choix_date.php
-    La page de création (2/2) pour un sondage pour déterminer une date
-choix_autre.php
-    La page de création (2/2) pour un sondage sur un sujet quelconque
-creation_sondage.php
-    Le fichier qui récupérent les informations des pages précédentes pour procéder à l'insertion du nouveau sondage dans la base PostgreSQL
-style.css
-    Le fichier CSS de style pour toute l'application
-app/inc/constants.php
-    Le fichier contenant les constantes à changer en fonction de la machine locale
-app/inc/functions.php
-    Le fichier contenant quelques fonctions récurrentes de l'application
-app/inc/i18n.php
-    Le fichier contenant quelques fonctions récurrentes de l'application relatives à l'internationalisation
-README
-    Ce fichier
-INSTALL
-    Le fichier contenant les informations d'installation sur l'application
-CHANGELOG
-    Le fichier contenant toutes les modifications de l'application entre les différentes versions
-contacts.php
-    La page permettant aux usagers de poser une question à l'administrateur de l'application
-apropos.php
-    La page expliquant les détails techniques relatifs à l'application et les dernieres modifications et celles à venir sur l'application
-bandeaux.php
-    Le fichier contenant tous les bandeaux des pages PHP de l'application
-favicon.ico
-    L'icone de favoris de l'application
-sources.php
-    La page qui propose les sources de l'application
-exportics.php
-    Le fichier d'export de la meilleure date au format iCAL (fichier .ICS)
-exportcsv.php
-    Le fichier d'export de tous le tableau des participants avec leurs réponses dans un tableur (format .CSV)
-exportpdf.php
-    Le fichier d'export de la lettre de convocation que le créateur du sondage pourra envoyer aux participants (format .PDF)
-
-admin/
-    Le répertoire réservé à l'administrateur de l'application
-admin/.htaccess
-    Le fichier gérant les droits restreints du répertoire ADMIN
-admin/.htpasswd
-    Le fichier contenant les passwd des logins ayant accès au répertoire ADMIN
-admin/index.php
-    La page présentant tous les sondages actuellement dans la base à l'administrateur
-admin/log_studs.txt
-    Le fichier contenant un historique de toutes les creations/suppressions de sondage dans la base
-
-errors/
-    Le répertoire contenant toutes les pages d'erreurs
-errors/error-forbidden.php
-    La page qui indique dans la charte graphique de l'application l'erreur "501 forbidden"
-errors/maintenance.php
-    La page qui indique que l'application est en maintenance temporaire
-
-export/
-    Le répertoire qui contient tous les exports ICS
-
-iCalcreator/
-    Le répertoire qui contient les librairies d'export en iCal
-
-php2pdf/
-    Le répertoire qui contient les librairies d'export en PDF
-
-scripts/
-    Le répertoire qui contient tous les scripts de l'application
-
-sources/
-    Le répertoire qui contient les sources de l'application disponible sur la page sources.php
-
-locale/
-    Le répertoire qui contient les fichiers de traduction modifiables (.po) et compilés (.mo)
-    au format gettext
-
-=============================================================================
-    Validations des pages
-=============================================================================
-
-Toutes les pages de STUdS sont validées HTML 4.01 Strict.
-La CSS de STUdS est validée CSS 2.1.
-
-=============================================================================
-Technologies utilisées
-=============================================================================
-
-- PHP 5.4.4, php-fpdf, php-adodb, php-gettext
-- PostgreSQL, mysql
-- Apache
-- iCalcreator
-- POedit
-- Icônes : Deleket (http://deleket.deviantart.com/) et DryIcons (http://dryicons.com)
-
-=============================================================================
-Compatibilités des navigateurs
-Dernière mise à jour le 21 avril 2014
-=============================================================================
-
-- Firefox : Ubuntu 13.10/FF28
-- Chrome : Ubuntu 13.10/Chromium33
-- Opera (non testé)
-- Konqueror
-- Links (non testé, inutile)
-- Safari (non testé)
-- IE : Win7/IE9
-
------------------
-Janvier 2008
-Guilhem BORGHESI
-Université de Strasbourg
-
-Mai 2010
-Raphaël DROZ, raphael.droz@gmail.com
-
+    Mai 2010
+    Raphaël DROZ, raphael.droz@gmail.com
