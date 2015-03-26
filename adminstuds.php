@@ -373,5 +373,6 @@ $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 $smarty->assign('admin', true);
+$smarty->assign('parameter_name_regex', NAME_REGEX);
 
 $smarty->display('studs.tpl');

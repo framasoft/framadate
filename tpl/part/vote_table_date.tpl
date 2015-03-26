@@ -5,7 +5,7 @@
 <h3>{__('Poll results\\Votes of the poll')}</h3>
 
 <div id="tableContainer" class="tableContainer">
-    <form action="" method="POST">
+    <form action="" method="POST" id="poll_form">
         <table class="results">
             <caption class="sr-only">{__('Poll results\\Votes of the poll')} {$poll->title|html}</caption>
             <thead>
