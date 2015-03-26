@@ -6,13 +6,16 @@
 
 {block name=main}
 
+
     <div id="message-container">
         {if !empty($message)}
             <div class="alert alert-dismissible alert-{$message->type|html}" role="alert">{$message->message|html}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
         {/if}
     </div>
+    <div id="nameErrorMessage" class="hidden alert alert-dismissible alert-danger" role="alert">{__('PollInfo\\The name is invalid.')}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
 
-{* Global informations about the current poll *}
+
+    {* Global informations about the current poll *}
 
 {include 'part/poll_info.tpl' admin=$admin}
 
@@ -45,7 +48,6 @@
 
 <div class="hidden">
     <p id="parameter_name_regex">{$parameter_name_regex}</p>
-    <p id="parameter_name_error">{__('Error','Name is incorrect.')|var_dump}</p>
 </div>
 
 

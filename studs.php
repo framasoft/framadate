@@ -203,5 +203,6 @@ $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 $smarty->assign('admin', false);
 $smarty->assign('parameter_name_regex', NAME_REGEX);
+$smarty->assign('parameter_name_error', _('Name is incorrect.'));
 
 $smarty->display('studs.tpl');

@@ -6,12 +6,10 @@ $(document).ready(function() {
         var regex = new RegExp(regexContent[1], regexContent[2]);
         if (name.length == 0 || !regex.test(name)) {
             event.preventDefault();
-            var errorMessage = $("#parameter_name_error").text();
-            var addedDiv = "<div class='alert alert-dismissible alert-danger' role='alert'>";
-            addedDiv += errorMessage;
-            addedDiv += "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+            var newMessage =  $("#nameErrorMessage").clone();
             $("#message-container").empty();
-            $("#message-container").append(addedDiv);
+            $("#message-container").append(newMessage);
+            newMessage.removeClass("hidden");
             $('html, body').animate({
                 scrollTop: $("#message-container").offset().top
             }, 750);
