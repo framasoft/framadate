@@ -91,7 +91,7 @@ function send_mail_admin() {
                     _("[ADMINISTRATOR] New settings for your poll") . ' ' . stripslashes( $poll_title ),
                     _("You have changed the settings of your poll. \nYou can modify this poll with this link") .
                       " :\n\n" . Utils::getUrlSondage($numsondageadmin, true) . "\n\n" .
-                    _("Thanks for your confidence.") . "\n" . NOMAPPLICATION
+                    _("Thanks for your trust.") . "\n" . NOMAPPLICATION
                     );
                 $_SESSION["mail_admin_sent"]=true;
             }
