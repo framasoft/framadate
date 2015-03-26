@@ -7,7 +7,7 @@
     <form action="" method="POST">
         <input type="hidden" name="csrf" value="{$crsf}"/>
         <div class="text-center">
-            <button type="submit" name="action" value="purge" class="btn btn-warning">{_('Purge all polls')} <span class="glyphicon glyphicon-trash text-danger"></span><span class="sr-only">{_('Purge all polls')}</span></button>
+            <button type="submit" name="action" value="purge" class="btn btn-warning">{__('Admin\\Purge the polls')} <span class="glyphicon glyphicon-trash text-danger"></span></button>
         </div>
     </form>
 {/block}

@@ -1,6 +1,19 @@
-Les dernières améliorations d'OpenSondage
+# Changelog de framadate
+
+## Version 0.9 (... JosephK - OlivierPerez)
+    - Technique : Réorganisation des classes
+    - Technique : Découpage en MVC sur la majeur partie de framadate + Installation de Smarty
+    - Technique : Refonte de la partie données + Rempalcement de Adodb par PDO
+    - Amélioration : Refonte de l'administration
+    - Amélioration : Notification de l'utilisation si JAvascript ou les cookies sont désactivés
+    - Amélioration : Découpage en 2 options pour recevoir ou non les nouveaux vote et commentaires
+    - Amélioration : Utilisation de jetons CSRF sur certaines actions
+    - Fix : Purge en 2 étapes. 1. Verrouillage du sondage, 2. 60 jours plus tard suppression du sondage
+    - Fix : Correction de la date d'expiration qui devient nulle quand on ajoute une colonne
+    - Fix : clic/focus sur oui/non/si nécessaire → retour à gauche de la barre de scroll sur Chromium
+    - Fix : Correction sur le choix de la date
     
-    Changelog version 0.8 (juillet 2014 Pascal Chevrel - Armony Altinier - JosephK)
+## Version 0.8 (juillet 2014 Pascal Chevrel - Armony Altinier - JosephK)
 	- Améliorations sur l'accessibilité
 	- Améliorations sur l'ergonomie
 	- Améliorations sur l'internationalisation (nombreuses phrases en français dans le code)
@@ -17,7 +30,7 @@ Les dernières améliorations d'OpenSondage
 	- Restructuration
 	- Fix (partiel) bug modification du premier vote en tapant Entrée
 
-	Changelog version 0.7 (mars 2013)
+## Version 0.7 (mars 2013)
 	- Fix : le sondage supprimé n'était pas forcément le sondage sélectionné (cfévrier)
 	- Fix : suppression de STUDS_DIR pour éviter toute confusion
 	- Fix : corrections l'en-tete et de l'encodage des e-mails (cfévrier)
@@ -30,9 +43,8 @@ Les dernières améliorations d'OpenSondage
 	- Amélioration : possibilité de faire des liens directs vers les types de sondages à créer (pascalchevrel)
 	- Amélioration : meilleure intégration de la framanav (pyg)
 	- Amélioration : nombreuses modifications CSS pour un meilleur affichage (pyg)
-	
 
-	Changelog des 22 et 23 juin (pyg@framasoft.net)
+## Changelog des 22 et 23 juin (pyg@framasoft.net)
 	- très nombreuses modifications CSS
 	- ajout de buttons.css pour des boutons plus propres 
 	- ajout de print.css pour une impression sans la classe "corps"
@@ -47,24 +59,23 @@ Les dernières améliorations d'OpenSondage
 	- modification du titre en image
 	- ajout de htmlspecialchars_decode avec param ENT_QUOTES pour l'envoi des emails
 
-	Changelog du 21 juin 2011 (pyg@framasoft.net)
+## Changelog du 21 juin 2011 (pyg@framasoft.net)
 	- très nombreuses modifications CSS
 	- modification adminstuds.php : ajout de classes aux formulaires et ajout de stripslashes à l'affichage (TODO: à généraliser)
 	- modification infos_sondages.php : simplification du tableau de choix, ajouts de CSS, ajouts de labels pour faciliter la selection
-	
 
-	Changelog version 0.6.7 (mai 2011)
+## Changelog version 0.6.7 (mai 2011)
 	- fork du projet STUdS (https://sourcesup.cru.fr/projects/studs/) de la version trunk du 15 mai 2011)
-        - reprise par Simon Leblanc
-        - nettoyage du code (indentation, cohérence de la convention de codage)
-        - suppression des warning php
-        - résolution d'une faille de sécurité par injection SQL
-        - résolution d'une faille de sécurité par injection mail
-        - correction dans le fichier de langue (merci à Julien Reitzel)
-        - possibilité de mettre un texte libre pour les horaires
-        - version Framasoft
+    - reprise par Simon Leblanc
+    - nettoyage du code (indentation, cohérence de la convention de codage)
+    - suppression des warning php
+    - résolution d'une faille de sécurité par injection SQL
+    - résolution d'une faille de sécurité par injection mail
+    - correction dans le fichier de langue (merci à Julien Reitzel)
+    - possibilité de mettre un texte libre pour les horaires
+    - version Framasoft
 
-Les dernières améliorations de STUdS
+# Les dernières améliorations de STUdS
 	Changelog version 0.6.6 (XXX 2011) :
 	- internationalisation avec gettext
 	- abstraction de la base de données avec ADOdb

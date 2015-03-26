@@ -14,7 +14,10 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
  */
-
+@font-face {
+    font-family: "DejaVu Sans";
+    src: url('../fonts/DejaVuSans.ttf');
+}
 body {
   font-family: "DejaVu Sans", Verdana, Geneva, sans-serif;
   color:#333;

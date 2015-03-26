@@ -110,14 +110,14 @@ if (!empty($_POST['poursuivre'])) {
 
     } else {
         // Title Erreur !
-        Utils::print_header( _('Error!').' - '._('Poll creation (1 on 3)') );
+        Utils::print_header( __('Generic\\Error!').' - '.__('Step 1\\Poll creation (1 on 3)') );
     }
 } else {
     // Title OK (formulaire pas encore rempli)
-    Utils::print_header( _('Poll creation (1 on 3)') );
+    Utils::print_header( __('Step 1\\Poll creation (1 on 3)') );
 }
 
-bandeau_titre( _('Poll creation (1 on 3)') );
+bandeau_titre( __('Step 1\\Poll creation (1 on 3)') );
 
 /*
  * Préparation des messages d'erreur
@@ -150,37 +150,37 @@ if (!empty($_POST['poursuivre'])) {
     if (empty($_POST['title'])) {
         $errors['title']['aria'] = 'aria-describeby="poll_title_error" ';
         $errors['title']['class'] = ' has-error';
-        $errors['title']['msg'] = '<div class="alert alert-danger" ><p id="poll_title_error">' . _('Enter a title') . '</p></div>';
+        $errors['title']['msg'] = '<div class="alert alert-danger" ><p id="poll_title_error">' . __('Error\\Enter a title') . '</p></div>';
     } elseif ($error_on_title) {
         $errors['title']['aria'] = 'aria-describeby="poll_title_error" ';
         $errors['title']['class'] = ' has-error';
-        $errors['title']['msg'] = '<div class="alert alert-danger"><p id="poll_title_error">' . _('Something is wrong with the format') . '</p></div>';
+        $errors['title']['msg'] = '<div class="alert alert-danger"><p id="poll_title_error">' . __('Error\\Something is wrong with the format') . '</p></div>';
     }
 
     if ($error_on_description) {
         $errors['description']['aria'] = 'aria-describeby="poll_comment_error" ';
         $errors['description']['class'] = ' has-error';
-        $errors['description']['msg'] = '<div class="alert alert-danger"><p id="poll_comment_error">' . _('Something is wrong with the format') . '</p></div>';
+        $errors['description']['msg'] = '<div class="alert alert-danger"><p id="poll_comment_error">' . __('Error\\Something is wrong with the format') . '</p></div>';
     }
 
     if (empty($_POST['name'])) {
         $errors['name']['aria'] = 'aria-describeby="poll_name_error" ';
         $errors['name']['class'] = ' has-error';
-        $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _('Enter a name') . '</p></div>';
+        $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . __('Error\\Enter a name') . '</p></div>';
     } elseif ($error_on_name) {
         $errors['name']['aria'] = 'aria-describeby="poll_name_error" ';
         $errors['name']['class'] = ' has-error';
-        $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . _('Something is wrong with the format') . '</p></div>';
+        $errors['name']['msg'] = '<div class="alert alert-danger"><p id="poll_name_error">' . __('Error\\Something is wrong with the format') . '</p></div>';
     }
 
     if (empty($_POST['mail'])) {
         $errors['email']['aria'] = 'aria-describeby="poll_name_error" ';
         $errors['email']['class'] = ' has-error';
-        $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _('Enter an email address') . '</p></div>';
+        $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . __('Error\\Enter an email address') . '</p></div>';
     } elseif ($error_on_mail) {
         $errors['email']['aria'] = 'aria-describeby="poll_email_error" ';
         $errors['email']['class'] = ' has-error';
-        $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . _('The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.') . '</p></div>';
+        $errors['email']['msg'] = '<div class="alert alert-danger"><p id="poll_email_error">' . __('Error\\The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.') . '</p></div>';
     }
 }
 /*
@@ -215,30 +215,30 @@ if ($_SESSION['form']->receiveNewComments) {
 
 // Display form
 echo '
-<div class="row">
+<div class="row" style="display:none" id="form-block">
     <div class="col-md-8 col-md-offset-2" >
     <form name="formulaire" id="formulaire" action="' . Utils::get_server_name() . 'infos_sondage.php" method="POST" class="form-horizontal" role="form">
 
         <div class="alert alert-info">
-            <p>'. _('You are in the poll creation section.').' <br /> '._('Required fields cannot be left blank.') .'</p>
+            <p>'. __('Step 1\\You are in the poll creation section.').' <br /> '.__('Step 1\\Required fields cannot be left blank.') .'</p>
         </div>
 
         <div class="form-group'.$errors['title']['class'].'">
-            <label for="poll_title" class="col-sm-4 control-label">' . _('Poll title') . ' *</label>
+            <label for="poll_title" class="col-sm-4 control-label">' . __('Step 1\\Poll title') . ' *</label>
             <div class="col-sm-8">
                 <input id="poll_title" type="text" name="title" class="form-control" '.$errors['title']['aria'].' value="'. fromPostOrEmpty('title') .'" />
             </div>
         </div>
             '.$errors['title']['msg'].'
         <div class="form-group'.$errors['description']['class'].'">
-            <label for="poll_comments" class="col-sm-4 control-label">'. _('Description') .'</label>
+            <label for="poll_comments" class="col-sm-4 control-label">'. __('Generic\\Description') .'</label>
             <div class="col-sm-8">
                 <textarea id="poll_comments" name="description" class="form-control" '.$errors['description']['aria'].' rows="5">'. fromPostOrEmpty('description') .'</textarea>
             </div>
         </div>
             '.$errors['description']['msg'].'
         <div class="form-group'.$errors['name']['class'].'">
-            <label for="yourname" class="col-sm-4 control-label">'. _('Your name') .' *</label>
+            <label for="yourname" class="col-sm-4 control-label">'. __('Generic\\Your name') .' *</label>
             <div class="col-sm-8">
                 '.$input_name.'
             </div>
@@ -247,7 +247,7 @@ echo '
 if ($config['use_smtp']==true) {
     echo '
         <div class="form-group'.$errors['email']['class'].'">
-            <label for="email" class="col-sm-4 control-label">'. _('Your email address') .' *<br /><span class="small">'. _('(in the format name@mail.com)') .'</span></label>
+            <label for="email" class="col-sm-4 control-label">'. __('Generic\\Your email address') .' *<br /><span class="small">'. __('Generic\\(in the format name@mail.com)') .'</span></label>
             <div class="col-sm-8">
                 '.$input_email.'
             </div>
@@ -259,7 +259,7 @@ echo '
             <div class="col-sm-offset-4 col-sm-8">
               <div class="checkbox">
                 <label>
-                    <input type=checkbox name="editable" '.$editable.' id="editable">'. _('Voters can modify their vote themselves.') .'
+                    <input type=checkbox name="editable" '.$editable.' id="editable">'. __('Step 1\\Voters can modify their vote themselves.') .'
                 </label>
               </div>
             </div>
@@ -269,7 +269,7 @@ if ($config['use_smtp']==true) {
         <div class="col-sm-offset-4 col-sm-8">
           <div class="checkbox">
             <label>
-                <input type=checkbox name="receiveNewVotes" '.$receiveNewVotes.' id="receiveNewVotes">'. _('To receive an email for each new vote.') .'
+                <input type=checkbox name="receiveNewVotes" '.$receiveNewVotes.' id="receiveNewVotes">'. __('Step 1\\To receive an email for each new vote.') .'
             </label>
           </div>
         </div>
@@ -278,7 +278,7 @@ if ($config['use_smtp']==true) {
         <div class="col-sm-offset-4 col-sm-8">
           <div class="checkbox">
             <label>
-                <input type=checkbox name="receiveNewComments" '.$receiveNewComments.' id="receiveNewComments">'. _('To receive an email for each new comment.') .'
+                <input type=checkbox name="receiveNewComments" '.$receiveNewComments.' id="receiveNewComments">'. __('Step 1\\To receive an email for each new comment.') .'
             </label>
           </div>
         </div>
@@ -287,13 +287,51 @@ if ($config['use_smtp']==true) {
 echo '
         <p class="text-right">
             <input type="hidden" name="choix_sondage" value="'. $choix_sondage .'"/>
-            <button name="poursuivre" value="'. $choix_sondage .'" type="submit" class="btn btn-success" title="'. _('Go to step 2') . '">'. _('Next') . '</button>
+            <button name="poursuivre" value="'. $choix_sondage .'" type="submit" class="btn btn-success" title="'. __('Step 1\\Go to step 2') . '">'. __('Generic\\Next') . '</button>
         </p>
 
         <script type="text/javascript">document.formulaire.title.focus();</script>
 
     </form>
     </div>
-</div>';
+</div>
+<noscript>
+    <div class="alert alert-danger">'.
+    __('Step 1\\Javascript is disabled on your browser. Its activation is required to create a poll.')
+    .'</div>
+</noscript>
+<div id="cookie-warning" class="alert alert-danger" style="display:none">'.
+    __('Step 1\\Cookies are disabled on your browser. Theirs activation is required to create a poll.')
+    .'</div>
+';
+
+echo '
+<script>
+    // Check Javascript is enabled, if it is it will execute this script
+    (function() {
+        // Check cookies are enabled too
+        var cookieEnabled = function() {
+            var cookieEnabled = navigator.cookieEnabled;
+
+            // if not IE4+ nor NS6+
+            if (!cookieEnabled && typeof navigator.cookieEnabled === "undefined"){
+                document.cookie = "testcookie"
+                cookieEnabled = document.cookie.indexOf("testcookie") != -1;
+            }
+
+            return cookieEnabled;
+        }
+
+        if (cookieEnabled()) {
+            // Show the form block
+            document.getElementById("form-block").setAttribute("style", "");
+        } else {
+            // Show the warning about cookies
+            document.getElementById("cookie-warning").setAttribute("style", "");
+        }
+    })();
+</script>
+';
+
 
 bandeau_pied();
