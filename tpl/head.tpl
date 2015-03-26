@@ -24,6 +24,8 @@
             <script src="{'nav/nav.js'|resource}" id="nav_js" type="text/javascript" charset="utf-8"></script><!-- /Framanav -->
         {/if}
 
+        {block name="header"}{/block}
+
     </head>
     <body>
     <div class="container ombre">
