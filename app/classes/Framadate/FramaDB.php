@@ -277,20 +277,29 @@ class FramaDB {
     }
 
     /**
+     * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>...]
      * @param $start int The index of the first poll to return
      * @param $limit int The limit size
      * @return array
      */
-    public function findAllPolls($start, $limit) {
+    public function findAllPolls($search, $start, $limit) {
         // Polls
         $prepared = $this->prepare('
 SELECT p.*,
        (SELECT count(1) FROM `' . Utils::table('vote') . '` v WHERE p.id=v.poll_id) votes
-  FROM ' . Utils::table('poll') . ' p
+  FROM `' . Utils::table('poll') . '` p
+ WHERE (:id = "" OR p.id LIKE :id)
+   AND (:title = "" OR p.title LIKE :title)
+   AND (:name = "" OR p.admin_name LIKE :name)
  ORDER BY p.title ASC
- LIMIT :start, :limit');
-        $prepared->bindParam(':start', $start, PDO::PARAM_INT);
-        $prepared->bindParam(':limit', $limit, PDO::PARAM_INT);
+ ');
+
+        $poll = $search['poll'] . '%';
+        $title = '%' . $search['title'] . '%';
+        $name = '%' . $search['name'] . '%';
+        $prepared->bindParam(':id', $poll, PDO::PARAM_STR);
+        $prepared->bindParam(':title', $title, PDO::PARAM_STR);
+        $prepared->bindParam(':name', $name, PDO::PARAM_STR);
         $prepared->execute();
         $polls = $prepared->fetchAll();
 
@@ -299,7 +308,7 @@ SELECT p.*,
         $count = $stmt->fetch();
         $stmt->closeCursor();
 
-        return ['polls' => $polls, 'count' => $count->nb];
+        return ['polls' => array_slice($polls,$start, $limit), 'count' => $prepared->rowCount(), 'total' => $count->nb];
     }
 
     public function countVotesByPollId($poll_id) {

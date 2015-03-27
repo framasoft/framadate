@@ -34,7 +34,8 @@
     "Page generated in": "Page generated in",
     "seconds": "seconds",
     "Choice": "Choice",
-    "Link": "Link"
+    "Link": "Link",
+    "Search": "Search"
   },
   "Date" : {
     "dd/mm/yyyy": "jj/mm/aaaa",
@@ -244,7 +245,7 @@
     "Author": "Author",
     "Email": "Courriel",
     "Expiration date": "Date d'expiration",
-    "Users": "Users",
+    "Votes": "Votes",
     "Actions": "Actions",
     "See the poll": "See the poll",
     "Change the poll": "Change the poll",

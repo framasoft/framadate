@@ -19,13 +19,13 @@ class SuperAdminService {
     /**
      * Return the list of all polls.
      *
-     * @param $page int The page index (O = first page)
-     * @param $limit int The limit size
-     * @return array ['polls' => The {$limit} polls, 'count' => Total count]
-     * polls, 'count' => Total count]
+     * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>...]
+     * @param int $page The page index (O = first page)
+     * @param int $limit The limit size
+     * @return array ['polls' => The {$limit} polls, 'count' => Entries found by the query, 'total' => Total count]
      */
-    public function findAllPolls($page, $limit) {
-        return $this->connect->findAllPolls($page * $limit, $limit);
+    public function findAllPolls($search, $page, $limit) {
+        return $this->connect->findAllPolls($search, $page * $limit, $limit);
     }
 
 }

@@ -34,7 +34,8 @@
     "Page generated in": "Page générée en",
     "seconds": "secondes",
     "Choice": "Choix",
-    "Link": "Lien"
+    "Link": "Lien",
+    "Search": "Chercher"
   },
   "Date": {
     "dd/mm/yyyy": "jj/mm/aaaa",
@@ -242,8 +243,8 @@
     "Title": "Titre",
     "Author": "Auteur",
     "Email": "Courriel",
-    "Expiration date": "Date d'expiration",
-    "Users": "Utilisateurs",
+    "Expiration date": "Expiration",
+    "Votes": "Votes",
     "Actions": "Actions",
     "See the poll": "Voir le sondage",
     "Change the poll": "Modifier le sondage",
