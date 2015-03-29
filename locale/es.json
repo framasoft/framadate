@@ -62,15 +62,15 @@
         "Define dates or subjects to choose": "ES_Déterminez les dates ou les sujets à choisir",
         "Send the poll link to your friends or colleagues": "ES_Envoyez le lien du sondage à vos amis ou collègues",
         "Discuss and make a decision": "ES_Discutez et prenez votre décision",
-        "Do you want to ": "ES_Voulez-vous ",
+        "Do you want to": "ES_Voulez-vous",
         "view an example?": "ES_voir un exemple ?"
     },
     "2nd section": {
         "The software": "ES_Le logiciel",
         "Framadate was initially based on ": "ES_Framadate est initialement basé sur ",
-        " a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft": "ES_ un logiciel développé par l'Université de Strasbourg. Aujourd'hui, son développement est assuré par l’association Framasoft",
+        "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": "ES_ un logiciel développé par l'Université de Strasbourg. Aujourd'hui, son développement est assuré par l’association Framasoft.",
         "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "ES_Ce logiciel requiert l’activation du javascript et des cookies. Il est compatible avec les navigateurs web suivants :",
-        "It is governed by the ": "ES_Il est régi par la ",
+        "It is governed by the": "ES_Il est régi par la",
         "CeCILL-B license": "ES_licence CeCILL-B"
     },
     "3rd section": {
