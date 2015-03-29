@@ -36,6 +36,7 @@
     </div>
 
     <form action="" method="POST">
+        <input type="hidden" name="csrf" value="{$crsf}"/>
         {if $poll_to_delete}
             <div class="alert alert-warning text-center">
                 <h3>{__('adminstuds\\Confirm removal of the poll')} "{$poll_to_delete->id|html}"</h3>
