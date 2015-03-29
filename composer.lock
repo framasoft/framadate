@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/olivierperez/o80-i18n.git",
-                "reference": "45335ac7a2d24d8ed85861f737758c15cd4f52f6"
+                "reference": "830112445b557068b9fe02b576d5cf770fcdf037"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/olivierperez/o80-i18n/zipball/45335ac7a2d24d8ed85861f737758c15cd4f52f6",
-                "reference": "45335ac7a2d24d8ed85861f737758c15cd4f52f6",
+                "url": "https://api.github.com/repos/olivierperez/o80-i18n/zipball/830112445b557068b9fe02b576d5cf770fcdf037",
+                "reference": "830112445b557068b9fe02b576d5cf770fcdf037",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
                 "internationalization",
                 "php"
             ],
-            "time": "2015-03-21 22:37:40"
+            "time": "2015-03-27 19:37:27"
         },
         {
             "name": "smarty/smarty",

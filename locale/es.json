@@ -34,7 +34,8 @@
         "Page generated in": "ES_Page générée en",
         "seconds": "ES_secondes",
         "Choice": "Opciòn",
-        "Link": "ES_Lien"
+        "Link": "ES_Lien",
+        "Search": "Búsqueda"
     },
     "Date": {
         "dd/mm/yyyy": "ES_jj/mm/aaaa",
@@ -243,7 +244,7 @@
         "Author": "ES_Auteur",
         "Email": "ES_Courriel",
         "Expiration date": "ES_Date d'expiration",
-        "Users": "ES_Utilisateurs",
+        "Votes": "Votos",
         "Actions": "Acciones",
         "See the poll": "Ver la encuesta",
         "Change the poll": "Cambiar la encuesta",

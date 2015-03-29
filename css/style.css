@@ -358,3 +358,8 @@ table.results .btn-link.btn-sm {
 #md-a-imgModalLabel {
     font-size: 24px;
 }
+
+/* Admin */
+#poll_search {
+    cursor: pointer;
+}

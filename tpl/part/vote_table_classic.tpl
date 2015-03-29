@@ -69,7 +69,7 @@
                                 </ul>
                             </td>
                         {/foreach}
-                        <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results\\Save the choices')} {$vote->name|html}">{__('Generic\\Save')}</button></td>
+                        <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs check-name" name="save" value="{$vote->id|html}" title="{__('Poll results\\Save the choices')} {$vote->name|html}">{__('Generic\\Save')}</button></td>
                     {else}
 
                         {* Voted line *}
@@ -140,7 +140,7 @@
                             </ul>
                         </td>
                     {/foreach}
-                    <td><button type="submit" class="btn btn-success btn-md" name="save" title="{__('Poll results\\Save the choices')}">{__('Generic\\Save')}</button></td>
+                    <td><button type="submit" class="btn btn-success btn-md check-name" name="save" title="{__('Poll results\\Save the choices')}">{__('Generic\\Save')}</button></td>
                 </tr>
             {/if}
 
