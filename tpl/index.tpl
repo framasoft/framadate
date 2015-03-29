@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-6 text-center">
             <p class="home-choice">
-                <a href="{$SERVER_URL}infos_sondage.php?choix_sondage=date" class="opacity" role="button">
+                <a href="{$SERVER_URL}create_poll.php?type=date" class="opacity" role="button">
                     <img class="img-responsive center-block" src="{'images/date.png'|resource}" alt=""/>
                     <br/>
                     <span class="btn btn-primary btn-lg">
@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-6 text-center">
             <p class="home-choice">
-                <a href="{$SERVER_URL}infos_sondage.php?choix_sondage=autre" class="opacity" role="button">
+                <a href="{$SERVER_URL}create_poll.php?type=autre" class="opacity" role="button">
                     <img alt="" class="img-responsive center-block" src="{'images/classic.png'|resource}"/>
                     <br/>
                     <span class="btn btn-info btn-lg">

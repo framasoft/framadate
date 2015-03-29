@@ -178,7 +178,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_time)); //textual date
 
         echo '
-    <form name="formulaire" action="' . Utils::get_server_name() . 'choix_date.php" method="POST" class="form-horizontal" role="form">
+    <form name="formulaire" action="' . Utils::get_server_name() . 'create_date_poll.php" method="POST" class="form-horizontal" role="form">
     <div class="row" id="selected-days">
         <div class="col-md-8 col-md-offset-2">
             <h3>'. __('Step 3\\Confirm the creation of your poll') .'</h3>
@@ -222,7 +222,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         bandeau_titre(__('Step 2 date\\Poll dates (2 on 3)'));
 
         echo '
-    <form name="formulaire" action="' . Utils::get_server_name() . 'choix_date.php" method="POST" class="form-horizontal" role="form">
+    <form name="formulaire" action="' . Utils::get_server_name() . 'create_date_poll.php" method="POST" class="form-horizontal" role="form">
     <div class="row" id="selected-days">
         <div class="col-md-10 col-md-offset-1">
             <h3>'. __('Step 2 date\\Choose the dates of your poll') .'</h3>

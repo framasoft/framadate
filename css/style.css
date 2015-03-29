@@ -320,7 +320,7 @@ table.results .btn-link.btn-sm {
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
-/* choix_date.php */
+/* create_date_poll.php */
 #selected-days .form-group {
     margin-left:0;
     margin-right:0;
@@ -346,7 +346,7 @@ table.results .btn-link.btn-sm {
     border:none;
     background:transparent;
 }
-/* choix_autre.php */
+/* create_classic_poll.php */
 .md-a-img {
     text-decoration:none !important;
 }

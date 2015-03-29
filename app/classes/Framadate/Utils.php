@@ -182,4 +182,8 @@ class Utils {
 
         return $cleaned;
     }
+
+    public static function fromPostOrEmpty($postKey) {
+        return !empty($_POST[$postKey]) ? Utils::htmlEscape($_POST[$postKey]) : '';
+    }
 }

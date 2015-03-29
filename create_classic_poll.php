@@ -180,7 +180,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_time)); //textual date
 
         echo '
-    <form name="formulaire" action="' . Utils::get_server_name() . 'choix_autre.php" method="POST" class="form-horizontal" role="form">
+    <form name="formulaire" action="' . Utils::get_server_name() . 'create_classic_poll.php" method="POST" class="form-horizontal" role="form">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="well summary">
@@ -224,7 +224,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         bandeau_titre(__('Step 2 classic\\Poll subjects (2 on 3)'));
 
         echo '
-    <form name="formulaire" action="' . Utils::get_server_name() . 'choix_autre.php" method="POST" class="form-horizontal" role="form">
+    <form name="formulaire" action="' . Utils::get_server_name() . 'create_classic_poll.php" method="POST" class="form-horizontal" role="form">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">';
         echo '

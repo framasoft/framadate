@@ -39,7 +39,7 @@ if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'
 $html_lang = substr($locale, 0, 2);
 
 /* Date Format */
-$date_format['txt_full'] = __('Date\\FULL'); //summary in choix_date.php and removal date in choix_(date|autre).php
+$date_format['txt_full'] = __('Date\\FULL'); //summary in create_date_poll.php and removal date in choix_(date|autre).php
 $date_format['txt_short'] = __('Date\\SHORT'); // radio title
 $date_format['txt_day'] = __('Date\\DAY');
 $date_format['txt_date'] = __('Date\\DATE');

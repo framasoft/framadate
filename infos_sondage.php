@@ -99,12 +99,12 @@ if (!empty($_POST['poursuivre'])) {
     if ($title && $name && $email_OK && ! $error_on_title && ! $error_on_description && ! $error_on_name) {
 
         if ( $poursuivre == 'creation_sondage_date' ) {
-            header('Location:choix_date.php');
+            header('Location:create_date_poll.php');
             exit();
         }
 
         if ( $poursuivre == 'creation_sondage_autre' ) {
-            header('Location:choix_autre.php');
+            header('Location:create_classic_poll.php');
             exit();
         }
 
