@@ -277,12 +277,12 @@ class FramaDB {
     }
 
     /**
+     * Search polls in databse.
+     *
      * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>...]
-     * @param $start int The index of the first poll to return
-     * @param $limit int The limit size
-     * @return array
+     * @return array The found polls
      */
-    public function findAllPolls($search, $start, $limit) {
+    public function findAllPolls($search) {
         // Polls
         $prepared = $this->prepare('
 SELECT p.*,
@@ -301,14 +301,22 @@ SELECT p.*,
         $prepared->bindParam(':title', $title, PDO::PARAM_STR);
         $prepared->bindParam(':name', $name, PDO::PARAM_STR);
         $prepared->execute();
-        $polls = $prepared->fetchAll();
 
+        return $prepared->fetchAll();
+    }
+
+    /**
+     * Get the total number of polls in databse.
+     *
+     * @return int The number of polls
+     */
+    public function countPolls() {
         // Total count
         $stmt = $this->query('SELECT count(1) nb FROM `' . Utils::table('poll') . '`');
         $count = $stmt->fetch();
         $stmt->closeCursor();
 
-        return ['polls' => array_slice($polls,$start, $limit), 'count' => $prepared->rowCount(), 'total' => $count->nb];
+        return $count->nb;
     }
 
     public function countVotesByPollId($poll_id) {

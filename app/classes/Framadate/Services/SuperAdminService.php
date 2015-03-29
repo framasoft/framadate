@@ -25,7 +25,12 @@ class SuperAdminService {
      * @return array ['polls' => The {$limit} polls, 'count' => Entries found by the query, 'total' => Total count]
      */
     public function findAllPolls($search, $page, $limit) {
-        return $this->connect->findAllPolls($search, $page * $limit, $limit);
+        $start = $page * $limit;
+        $polls = $this->connect->findAllPolls($search);
+        $total = $this->connect->countPolls();
+
+
+        return ['polls' => array_slice($polls, $start, $limit), 'count' => count($polls), 'total' => $total];
     }
 
 }
