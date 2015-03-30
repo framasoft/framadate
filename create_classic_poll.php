@@ -262,7 +262,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
                 </div>
             </div>
             <div class="col-md-8 text-right">
-                <a class="btn btn-default" href="' . Utils::get_server_name() . 'infos_sondage.php?choix_sondage=autre" title="' . __('Step 2', 'Back to step 1') . '">' . __('Generic', 'Back') . '</a>
+                <a class="btn btn-default" href="' . Utils::get_server_name() . 'create_poll.php?type=classic" title="' . __('Step 2', 'Back to step 1') . '">' . __('Generic', 'Back') . '</a>
                 <button name="fin_sondage_autre" value="' . __('Generic', 'Next') . '" type="submit" class="btn btn-success disabled" title="' . __('Step 2', 'Go to step 3') . '">' . __('Generic', 'Next') . '</button>
             </div>
         </div>

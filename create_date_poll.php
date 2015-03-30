@@ -284,7 +284,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
                         <li><a id="resethours" href="javascript:void(0)">'. __('Step 2 date', 'Remove all hours') .'</a></li>
                     </ul>
                 </div>
-                <a class="btn btn-default" href="'.Utils::get_server_name().'infos_sondage.php?choix_sondage=date" title="'. __('Step 2', 'Back to step 1') . '">'. __('Generic', 'Back') . '</a>
+                <a class="btn btn-default" href="'.Utils::get_server_name().'create_poll.php?type=date" title="'. __('Step 2', 'Back to step 1') . '">'. __('Generic', 'Back') . '</a>
                 <button name="choixheures" value="'. __('Generic', 'Next') .'" type="submit" class="btn btn-success disabled" title="'. __('Step 2', 'Go to step 3') . '">'. __('Generic', 'Next') .'</button>
             </div>
         </div>

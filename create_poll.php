@@ -136,7 +136,6 @@ $errors = array(
     )
 );
 
-// TODO Move it to TPL
 if (!empty($_POST[GO_TO_STEP_2])) {
     if (empty($_POST['title'])) {
         $errors['title']['aria'] = 'aria-describeby="poll_title_error" ';
@@ -198,13 +197,13 @@ $smarty->assign('use_smtp', $config['use_smtp']);
 $smarty->assign('goToStep2', GO_TO_STEP_2);
 
 $smarty->assign('poll_type', $poll_type);
-$smarty->assign('poll_title', Utils::fromPostOrEmpty('title'));
-$smarty->assign('poll_description', Utils::fromPostOrEmpty('description'));
-$smarty->assign('poll_name', Utils::fromPostOrEmpty('name'));
-$smarty->assign('poll_mail', Utils::fromPostOrEmpty('mail'));
-$smarty->assign('poll_editable', Utils::fromPostOrEmpty('editable'));
-$smarty->assign('poll_receiveNewVotes', Utils::fromPostOrEmpty('receiveNewVotes'));
-$smarty->assign('poll_receiveNewComments', Utils::fromPostOrEmpty('receiveNewComments'));
+$smarty->assign('poll_title', Utils::fromPostOrDefault('title', $_SESSION['form']->title));
+$smarty->assign('poll_description', Utils::fromPostOrDefault('description', $_SESSION['form']->description));
+$smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
+$smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));
+$smarty->assign('poll_editable', Utils::fromPostOrDefault('editable', $_SESSION['form']->editable));
+$smarty->assign('poll_receiveNewVotes', Utils::fromPostOrDefault('receiveNewVotes', $_SESSION['form']->receiveNewVotes));
+$smarty->assign('poll_receiveNewComments', Utils::fromPostOrDefault('receiveNewComments', $_SESSION['form']->receiveNewComments));
 $smarty->assign('form', $_SESSION['form']);
 
 $smarty->display('create_poll.tpl');
