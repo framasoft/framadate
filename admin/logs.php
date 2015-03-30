@@ -26,6 +26,6 @@ $content = ob_get_clean();
 $smarty->assign('title', _('Administration'));
 $smarty->assign('logs', $content);
 
-$smarty->assign('title', __('Admin\\Logs'));
+$smarty->assign('title', __('Admin', 'Logs'));
 
 $smarty->display('admin/logs.tpl');

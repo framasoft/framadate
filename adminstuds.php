@@ -52,7 +52,7 @@ if (!empty($_GET['poll']) && strlen($_GET['poll']) === 24) {
 }
 
 if (!$poll) {
-    $smarty->assign('error', __('Error\\This poll doesn\'t exist !'));
+    $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
     $smarty->display('error.tpl');
     exit;
 }
@@ -120,9 +120,9 @@ if (isset($_POST['update_poll_info'])) {
 
     // Update poll in database
     if ($updated && $adminPollService->updatePoll($poll)) {
-        $message = new Message('success', __('adminstuds\\Poll saved'));
+        $message = new Message('success', __('adminstuds', 'Poll saved'));
     } else {
-        $message = new Message('danger', __('Error\\Failed to save poll'));
+        $message = new Message('danger', __('Error', 'Failed to save poll'));
         $poll = $pollService->findById($poll_id);
     }
 }
@@ -145,19 +145,19 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
     if (empty($editedVote)) {
-        $message = new Message('danger', __('Error\\Something is going wrong...'));
+        $message = new Message('danger', __('Error', 'Something is going wrong...'));
     }
     if (count($choices) != count($_POST['choices'])) {
-        $message = new Message('danger', __('Error\\There is a problem with your choices'));
+        $message = new Message('danger', __('Error', 'There is a problem with your choices'));
     }
 
     if ($message == null) {
         // Update vote
         $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices);
         if ($result) {
-            $message = new Message('success', __('adminstuds\\Vote updated'));
+            $message = new Message('success', __('adminstuds', 'Vote updated'));
         } else {
-            $message = new Message('danger', __('Error\\Update vote failed'));
+            $message = new Message('danger', __('Error', 'Update vote failed'));
         }
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
@@ -165,19 +165,19 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
     if (empty($name)) {
-        $message = new Message('danger', __('Error\\The name is invalid'));
+        $message = new Message('danger', __('Error', 'The name is invalid'));
     }
     if (count($choices) != count($_POST['choices'])) {
-        $message = new Message('danger', __('Error\\There is a problem with your choices'));
+        $message = new Message('danger', __('Error', 'There is a problem with your choices'));
     }
 
     if ($message == null) {
         // Add vote
         $result = $pollService->addVote($poll_id, $name, $choices);
         if ($result) {
-            $message = new Message('success', __('adminstuds\\Vote added'));
+            $message = new Message('success', __('adminstuds', 'Vote added'));
         } else {
-            $message = new Message('danger', __('Error\\Adding vote failed'));
+            $message = new Message('danger', __('Error', 'Adding vote failed'));
         }
     }
 }
@@ -189,9 +189,9 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 if (!empty($_POST['delete_vote'])) {
     $vote_id = filter_input(INPUT_POST, 'delete_vote', FILTER_VALIDATE_INT);
     if ($adminPollService->deleteVote($poll_id, $vote_id)) {
-        $message = new Message('success', __('adminstuds\\Vote deleted'));
+        $message = new Message('success', __('adminstuds', 'Vote deleted'));
     } else {
-        $message = new Message('danger', __('Error\\Failed to delete the vote'));
+        $message = new Message('danger', __('Error', 'Failed to delete the vote'));
     }
 }
 
@@ -202,15 +202,15 @@ if (!empty($_POST['delete_vote'])) {
 if (isset($_POST['remove_all_votes'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
-    $smarty->assign('title', __('Generic\\Poll') . ' - ' . $poll->title);
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
     $smarty->display('confirm/delete_votes.tpl');
     exit;
 }
 if (isset($_POST['confirm_remove_all_votes'])) {
     if ($adminPollService->cleanVotes($poll_id)) {
-        $message = new Message('success', __('adminstuds\\All votes deleted'));
+        $message = new Message('success', __('adminstuds', 'All votes deleted'));
     } else {
-        $message = new Message('danger', __('Error\\Failed to delete all votes'));
+        $message = new Message('danger', __('Error', 'Failed to delete all votes'));
     }
 }
 
@@ -223,16 +223,16 @@ if (isset($_POST['add_comment'])) {
     $comment = strip_tags($_POST['comment']);
 
     if (empty($name)) {
-        $message = new Message('danger', __('Error\\The name is invalid'));
+        $message = new Message('danger', __('Error', 'The name is invalid'));
     }
 
     if ($message == null) {
         // Add comment
         $result = $pollService->addComment($poll_id, $name, $comment);
         if ($result) {
-            $message = new Message('success', __('Comments\\Comment added'));
+            $message = new Message('success', __('Comments', 'Comment added'));
         } else {
-            $message = new Message('danger', __('Error\\Comment failed'));
+            $message = new Message('danger', __('Error', 'Comment failed'));
         }
     }
 
@@ -246,9 +246,9 @@ if (!empty($_POST['delete_comment'])) {
     $comment_id = filter_input(INPUT_POST, 'delete_comment', FILTER_VALIDATE_INT);
 
     if ($adminPollService->deleteComment($poll_id, $comment_id)) {
-        $message = new Message('success', __('adminstuds\\Comment deleted'));
+        $message = new Message('success', __('adminstuds', 'Comment deleted'));
     } else {
-        $message = new Message('danger', __('Error\\Failed to delete the comment'));
+        $message = new Message('danger', __('Error', 'Failed to delete the comment'));
     }
 }
 
@@ -259,15 +259,15 @@ if (!empty($_POST['delete_comment'])) {
 if (isset($_POST['remove_all_comments'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
-    $smarty->assign('title', __('Generic\\Poll') . ' - ' . $poll->title);
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
     $smarty->display('confirm/delete_comments.tpl');
     exit;
 }
 if (isset($_POST['confirm_remove_all_comments'])) {
     if ($adminPollService->cleanComments($poll_id)) {
-        $message = new Message('success', __('All comments deleted'));
+        $message = new Message('success', __('adminstuds', 'All comments deleted'));
     } else {
-        $message = new Message('danger', __('Error\\Failed to delete all comments'));
+        $message = new Message('danger', __('Error', 'Failed to delete all comments'));
     }
 }
 
@@ -278,19 +278,19 @@ if (isset($_POST['confirm_remove_all_comments'])) {
 if (isset($_POST['delete_poll'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
-    $smarty->assign('title', __('Generic\\Poll') . ' - ' . $poll->title);
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
     $smarty->display('confirm/delete_poll.tpl');
     exit;
 }
 if (isset($_POST['confirm_delete_poll'])) {
     if ($adminPollService->deleteEntirePoll($poll_id)) {
-        $message = new Message('success', __('Generic\\Poll fully deleted'));
+        $message = new Message('success', __('adminstuds', 'Poll fully deleted'));
     } else {
-        $message = new Message('danger', __('Error\\Failed to delete the poll'));
+        $message = new Message('danger', __('Error', 'Failed to delete the poll'));
     }
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
-    $smarty->assign('title', __('Generic\\Poll') . ' - ' . $poll->title);
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
     $smarty->assign('message', $message);
     $smarty->display('poll_deleted.tpl');
     exit;
@@ -316,9 +316,9 @@ if (!empty($_POST['delete_column'])) {
     }
 
     if ($result) {
-        $message = new Message('success', __('Column deleted'));
+        $message = new Message('success', __('adminstuds', 'Column deleted'));
     } else {
-        $message = new Message('danger', __('Error\\Failed to delete the column'));
+        $message = new Message('danger', __('Error', 'Failed to delete the column'));
     }
 }
 
@@ -330,7 +330,7 @@ if (isset($_POST['add_slot'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('format', $poll->format);
-    $smarty->assign('title', __('Generic\\Poll') . ' - ' . $poll->title);
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
     $smarty->display('add_slot.tpl');
     exit;
 }
@@ -347,9 +347,9 @@ if (isset($_POST['confirm_add_slot'])) {
     }
 
     if ($result) {
-        $message = new Message('success', __('adminstuds\\Choice added'));
+        $message = new Message('success', __('adminstuds', 'Choice added'));
     } else {
-        $message = new Message('danger', __('Error\\Failed to add the column'));
+        $message = new Message('danger', __('Error', 'Failed to add the column'));
     }
 }
 
@@ -363,7 +363,7 @@ $comments = $pollService->allCommentsByPollId($poll_id);
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('admin_poll_id', $admin_poll_id);
 $smarty->assign('poll', $poll);
-$smarty->assign('title', __('Generic\\Poll') . ' - ' . $poll->title);
+$smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
 $smarty->assign('expired', strtotime($poll->end_date) < time());
 $smarty->assign('deletion_date', $poll->end_date + PURGE_DELAY * 86400);
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);

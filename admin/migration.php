@@ -102,6 +102,6 @@ $smarty->assign('countSkipped', $countSkipped);
 $smarty->assign('countTotal', $countTotal);
 $smarty->assign('time', $total_time = round((microtime(true)-$_SERVER['REQUEST_TIME_FLOAT']), 4));
 
-$smarty->assign('title', __('Admin\\Migration'));
+$smarty->assign('title', __('Admin', 'Migration'));
 
 $smarty->display('admin/migration.tpl');
