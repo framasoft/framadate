@@ -3,5 +3,5 @@ Allow: /
 Allow: /index.php
 Allow: /apropos.php
 Allow: /contacts.php
-Allow: /infos_sondage.php
+Allow: /create_poll.php
 Disallow: /*

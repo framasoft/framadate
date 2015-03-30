@@ -12,7 +12,7 @@
             <div class="alert alert-dismissible alert-{$message->type|html}" role="alert">{$message->message|html}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
         {/if}
     </div>
-    <div id="nameErrorMessage" class="hidden alert alert-dismissible alert-danger" role="alert">{__('PollInfo\\The name is invalid.')}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+    <div id="nameErrorMessage" class="hidden alert alert-dismissible alert-danger" role="alert">{__('PollInfo', 'The name is invalid.')}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
 
 
     {* Global informations about the current poll *}
@@ -22,8 +22,8 @@
 {* Information about voting *}
 {if $expired}
     <div class="alert alert-danger">
-        <p>{__('studs\\The poll is expired, it will be deleted soon.')}</p>
-        <p>{__('studs\\Deletion date:')} {$deletion_date|date_format:$date_format['txt_short']|html}</p>
+        <p>{__('studs', 'The poll is expired, it will be deleted soon.')}</p>
+        <p>{__('studs', 'Deletion date:')} {$deletion_date|date_format:$date_format['txt_short']|html}</p>
     </div>
 {else}
     {if $admin}
@@ -37,10 +37,10 @@
 
 <div class="hidden row scroll-buttons" aria-hidden="true">
     <div class="btn-group pull-right">
-        <button class="btn btn-sm btn-link scroll-left" title="{__('Poll results\\Scroll to the left')}">
+        <button class="btn btn-sm btn-link scroll-left" title="{__('Poll results', 'Scroll to the left')}">
             <span class="glyphicon glyphicon-chevron-left"></span>
         </button>
-        <button class="btn  btn-sm btn-link scroll-right" title="{__('Poll results\\Scroll to the right')}">
+        <button class="btn  btn-sm btn-link scroll-right" title="{__('Poll results', 'Scroll to the right')}">
             <span class="glyphicon glyphicon-chevron-right"></span>
         </button>
     </div>

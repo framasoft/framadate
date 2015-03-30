@@ -62,15 +62,15 @@
         "Define dates or subjects to choose": "ES_Déterminez les dates ou les sujets à choisir",
         "Send the poll link to your friends or colleagues": "ES_Envoyez le lien du sondage à vos amis ou collègues",
         "Discuss and make a decision": "ES_Discutez et prenez votre décision",
-        "Do you want to ": "ES_Voulez-vous ",
+        "Do you want to": "ES_Voulez-vous",
         "view an example?": "ES_voir un exemple ?"
     },
     "2nd section": {
         "The software": "ES_Le logiciel",
         "Framadate was initially based on ": "ES_Framadate est initialement basé sur ",
-        " a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft": "ES_ un logiciel développé par l'Université de Strasbourg. Aujourd'hui, son développement est assuré par l’association Framasoft",
+        "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": "ES_ un logiciel développé par l'Université de Strasbourg. Aujourd'hui, son développement est assuré par l’association Framasoft.",
         "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "ES_Ce logiciel requiert l’activation du javascript et des cookies. Il est compatible avec les navigateurs web suivants :",
-        "It is governed by the ": "ES_Il est régi par la ",
+        "It is governed by the": "ES_Il est régi par la",
         "CeCILL-B license": "ES_licence CeCILL-B"
     },
     "3rd section": {
@@ -160,6 +160,7 @@
         "Your poll has been removed!": "Su encuesta ha sido borrado!",
         "Poll saved": "ES_Sondage sauvegardé",
         "Vote added": "ES_Vote ajouté",
+        "Poll fully deleted": "ES_Sondage complètement supprimé",
         "Vote updated": "ES_Vote mis à jour",
         "Vote deleted": "ES_Vote supprimé",
         "All votes deleted": "ES_Tous les votes ont été supprimés",
@@ -173,6 +174,8 @@
         "Confirm removal of all comments of the poll": "ES_Confirmer la suppression de tous les commentaires de ce sondage",
         "Keep the comments": "ES_Garder les commentaires",
         "Remove the comments": "ES_Supprimer les commentaires",
+        "Comment deleted": "ES_Commentaire supprimé",
+        "All comments deleted": "ES_Tous les commentaires ont été supprimés",
         "The poll has been deleted": "ES_Le sondage a été supprimé",
         "Keep votes": "ES_Garder les votes",
         "Keep comments": "ES_Garder les commentaires",

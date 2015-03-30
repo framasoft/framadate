@@ -53,6 +53,6 @@ if ($action === 'purge' && $securityService->checkCsrf('admin', $_POST['csrf']))
 $smarty->assign('message', $message);
 $smarty->assign('crsf', $securityService->getToken('admin'));
 
-$smarty->assign('title', __('Admin\\Purge'));
+$smarty->assign('title', __('Admin', 'Purge'));
 
 $smarty->display('admin/purge.tpl');

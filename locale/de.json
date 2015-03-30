@@ -62,15 +62,15 @@
         "Define dates or subjects to choose": "Datum- oder Auswahlmöglichkeiten definieren",
         "Send the poll link to your friends or colleagues": "Link zur Umfrage an Ihre Freunde oder Kollegen schicken",
         "Discuss and make a decision": "Besprechen und Entscheidung treffen",
-        "Do you want to ": "Wollen Sie sich ",
+        "Do you want to": "Wollen Sie sich",
         "view an example?": "einen Beispiel ansehen?"
     },
     "2nd section": {
         "The software": "Die Software",
         "Framadate was initially based on ": "Framadate war am Anfang auf ",
-        " a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft": " basiert, eine von der Straßburg-Universität entwickelte Software. Heutzutage wird sie von der Framasoft-Vereinigung entwickelt.",
+        "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": "basiert, eine von der Straßburg-Universität entwickelte Software. Heutzutage wird sie von der Framasoft-Vereinigung entwickelt.",
         "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "Für diese Software müssen Javascript und Cookie aktiviert sein. Sie ist mit den folgenden Browsers kompatibel:",
-        "It is governed by the ": "Sie ist lizenziert unter der ",
+        "It is governed by the": "Sie ist lizenziert unter der",
         "CeCILL-B license": "CeCILL-B Lizenz"
     },
     "3rd section": {
@@ -161,6 +161,7 @@
         "Poll saved": "Umfrage gespeichert",
         "Vote added": "vote hinzugefügt",
         "Vote updated": "vote aktualisiert",
+        "Poll fully deleted": "Umfrage vollständig gelöscht",
         "Vote deleted": "vote gelöscht",
         "All votes deleted": "Alle Stimmen werden gelöscht",
         "Back to the poll": "Zurück zur Umfrage",
@@ -173,6 +174,8 @@
         "Confirm removal of all comments of the poll": "Entfernen aller Kommentare der Umfrage bestätigen",
         "Keep the comments": "Halten Sie die Kommentare",
         "Remove the comments": "Entfernen Sie die Kommentare",
+        "Comment deleted": "Kommentar gelöscht",
+        "All comments deleted": "Alle Kommentare gelöscht",
         "The poll has been deleted": "Die Umfrage wurde gelöscht",
         "Keep votes": "Halten Stimmen",
         "Keep comments": "Halten Sie Kommentare",

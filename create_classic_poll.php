@@ -125,8 +125,8 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
 
     } // Step 3/4 : Confirm poll creation and choose a removal date
     else if (isset($_POST['fin_sondage_autre'])) {
-        Utils::print_header(__('Step 3\\Removal date and confirmation (3 on 3)'));
-        bandeau_titre(__('Step 3\\Removal date and confirmation (3 on 3)'));
+        Utils::print_header(__('Step 3', 'Removal date and confirmation (3 on 3)'));
+        bandeau_titre(__('Step 3', 'Removal date and confirmation (3 on 3)'));
 
 
         // Store choices in $_SESSION
@@ -153,17 +153,17 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
             preg_match_all('/\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_a); // Markdown [text](href)
             if (isset($md_a_img[2][0]) && $md_a_img[2][0] != '' && isset($md_a_img[3][0]) && $md_a_img[3][0] != '') { // [![alt](src)](href)
 
-                $li_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0] != '') ? stripslashes($md_a_img[1][0]) : __('Generic\\Choice') . ' ' . ($i + 1);
+                $li_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0] != '') ? stripslashes($md_a_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
                 $li_subject_html = '<a href="' . $md_a_img[3][0] . '"><img src="' . $md_a_img[2][0] . '" class="img-responsive" alt="' . $li_subject_text . '" /></a>';
 
             } elseif (isset($md_img[2][0]) && $md_img[2][0] != '') { // ![alt](src)
 
-                $li_subject_text = (isset($md_img[1][0]) && $md_img[1][0] != '') ? stripslashes($md_img[1][0]) : __('Generic\\Choice') . ' ' . ($i + 1);
+                $li_subject_text = (isset($md_img[1][0]) && $md_img[1][0] != '') ? stripslashes($md_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
                 $li_subject_html = '<img src="' . $md_img[2][0] . '" class="img-responsive" alt="' . $li_subject_text . '" />';
 
             } elseif (isset($md_a[2][0]) && $md_a[2][0] != '') { // [text](href)
 
-                $li_subject_text = (isset($md_a[1][0]) && $md_a[1][0] != '') ? stripslashes($md_a[1][0]) : __('Generic\\Choice') . ' ' . ($i + 1);
+                $li_subject_text = (isset($md_a[1][0]) && $md_a[1][0] != '') ? stripslashes($md_a[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
                 $li_subject_html = '<a href="' . $md_a[2][0] . '">' . $li_subject_text . '</a>';
 
             } else { // text only
@@ -180,37 +180,37 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_time)); //textual date
 
         echo '
-    <form name="formulaire" action="' . Utils::get_server_name() . 'choix_autre.php" method="POST" class="form-horizontal" role="form">
+    <form name="formulaire" action="' . Utils::get_server_name() . 'create_classic_poll.php" method="POST" class="form-horizontal" role="form">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="well summary">
-                <h4>' . __('Step 3\\List of your choices') . '</h4>
+                <h4>' . __('Step 3', 'List of your choices') . '</h4>
                 ' . $summary . '
             </div>
             <div class="alert alert-info">
-                <p>' . __('Step 3\\Your poll will be automatically removed after') . ' ' . $config['default_poll_duration'] . ' ' . __('Generic\\days') . '.<br />' . __('Step 3\\You can set a closer removal date for it.') . '</p>
+                <p>' . __('Step 3', 'Your poll will be automatically removed after') . ' ' . $config['default_poll_duration'] . ' ' . __('Generic', 'days') . '.<br />' . __('Step 3', 'You can set a closer removal date for it.') . '</p>
                 <div class="form-group">
-                    <label for="enddate" class="col-sm-5 control-label">' . __('Step 3\\Removal date:') . '</label>
+                    <label for="enddate" class="col-sm-5 control-label">' . __('Step 3', 'Removal date:') . '</label>
                     <div class="col-sm-6">
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                            <input type="text" class="form-control" id="enddate" data-date-format="' . __('Date\\dd/mm/yyyy') . '" aria-describedby="dateformat" name="enddate" value="' . $end_date_str . '" size="10" maxlength="10" placeholder="' . __("dd/mm/yyyy") . '" />
+                            <input type="text" class="form-control" id="enddate" data-date-format="' . __('Date', 'dd/mm/yyyy') . '" aria-describedby="dateformat" name="enddate" value="' . $end_date_str . '" size="10" maxlength="10" placeholder="' . __("dd/mm/yyyy") . '" />
                         </div>
                     </div>
-                    <span id="dateformat" class="sr-only">' . __('Date\\dd/mm/yyyy') . '</span>
+                    <span id="dateformat" class="sr-only">' . __('Date', 'dd/mm/yyyy') . '</span>
                 </div>
             </div>
             <div class="alert alert-warning">
-                <p>' . __('Step 3\\Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.') . '</p>';
+                <p>' . __('Step 3', 'Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.') . '</p>';
         if ($config['use_smtp'] == true) {
             echo '
-                <p>' . __('Step 3\\Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.') . '</p>';
+                <p>' . __('Step 3', 'Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.') . '</p>';
         }
         echo '
             </div>
             <p class="text-right">
-                <button class="btn btn-default" onclick="javascript:window.history.back();" title="' . __('Step 3\\Back to step 2') . '">' . __('Generic\\Back') . '</button>
-                <button name="confirmecreation" value="confirmecreation" type="submit" class="btn btn-success">' . __('Step 3\\Create the poll') . '</button>
+                <button class="btn btn-default" onclick="javascript:window.history.back();" title="' . __('Step 3', 'Back to step 2') . '">' . __('Generic', 'Back') . '</button>
+                <button name="confirmecreation" value="confirmecreation" type="submit" class="btn btn-success">' . __('Step 3', 'Create the poll') . '</button>
             </p>
         </div>
     </div>
@@ -220,19 +220,19 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
 
         // Step 2/4 : Select choices of the poll
     } else {
-        Utils::print_header(__('Step 2 classic\\Poll subjects (2 on 3)'));
-        bandeau_titre(__('Step 2 classic\\Poll subjects (2 on 3)'));
+        Utils::print_header(__('Step 2 classic', 'Poll subjects (2 on 3)'));
+        bandeau_titre(__('Step 2 classic', 'Poll subjects (2 on 3)'));
 
         echo '
-    <form name="formulaire" action="' . Utils::get_server_name() . 'choix_autre.php" method="POST" class="form-horizontal" role="form">
+    <form name="formulaire" action="' . Utils::get_server_name() . 'create_classic_poll.php" method="POST" class="form-horizontal" role="form">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">';
         echo '
             <div class="alert alert-info">
-                <p>' . __('Step 2 classic\\To make a generic poll you need to propose at least two choices between differents subjects.') . '</p>
-                <p>' . __('Step 2 classic\\You can add or remove additional choices with the buttons') . ' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">' . __('Generic\\Remove') . '</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">' . __('Generic\\Add') . '</span></p>';
+                <p>' . __('Step 2 classic', 'To make a generic poll you need to propose at least two choices between differents subjects.') . '</p>
+                <p>' . __('Step 2 classic', 'You can add or remove additional choices with the buttons') . ' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">' . __('Generic', 'Remove') . '</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">' . __('Generic', 'Add') . '</span></p>';
         if ($config['user_can_add_img_or_link']) {
-            echo '    <p>' . __('Step 2 classic\\It\'s possible to propose links or images by using') . ' <a href="http://' . $html_lang . '.wikipedia.org/wiki/Markdown">' . __('Step 2 classic\\the Markdown syntax') . '</a>.</p>';
+            echo '    <p>' . __('Step 2 classic', 'It\'s possible to propose links or images by using') . ' <a href="http://' . $html_lang . '.wikipedia.org/wiki/Markdown">' . __('Step 2 classic', 'the Markdown syntax') . '</a>.</p>';
         }
         echo '    </div>' . "\n";
 
@@ -243,11 +243,11 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
             $choice = isset($choices[$i]) ? $choices[$i] : new Choice();
             echo '
             <div class="form-group choice-field">
-                <label for="choice' . $i . '" class="col-sm-2 control-label">' . __('Generic\\Choice') . ' ' . ($i + 1) . '</label>
+                <label for="choice' . $i . '" class="col-sm-2 control-label">' . __('Generic', 'Choice') . ' ' . ($i + 1) . '</label>
                 <div class="col-sm-10 input-group">
                     <input type="text" class="form-control" name="choices[]" size="40" value="' . $choice->getName() . '" id="choice' . $i . '" />';
             if ($config['user_can_add_img_or_link']) {
-                echo '<span class="input-group-addon btn-link md-a-img" title="' . __('Step 2 classic\\Add a link or an image') . ' - ' . __('Generic\\Choice') . ' ' . ($i + 1) . '" ><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>';
+                echo '<span class="input-group-addon btn-link md-a-img" title="' . __('Step 2 classic', 'Add a link or an image') . ' - ' . __('Generic', 'Choice') . ' ' . ($i + 1) . '" ><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>';
             }
             echo '
             </div>
@@ -257,13 +257,13 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         echo '
             <div class="col-md-4">
                 <div class="btn-group btn-group">
-                    <button type="button" id="remove-a-choice" class="btn btn-default" title="' . __('Step 2 classic\\Remove a choice') . '"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">' . __('Generic\\Remove') . '</span></button>
-                    <button type="button" id="add-a-choice" class="btn btn-default" title="' . __('Step 2 classic\\Add a choice') . '"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">' . __('Generic\\Add') . '</span></button>
+                    <button type="button" id="remove-a-choice" class="btn btn-default" title="' . __('Step 2 classic', 'Remove a choice') . '"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">' . __('Generic', 'Remove') . '</span></button>
+                    <button type="button" id="add-a-choice" class="btn btn-default" title="' . __('Step 2 classic', 'Add a choice') . '"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">' . __('Generic', 'Add') . '</span></button>
                 </div>
             </div>
             <div class="col-md-8 text-right">
-                <a class="btn btn-default" href="' . Utils::get_server_name() . 'infos_sondage.php?choix_sondage=autre" title="' . __('Step 2\\Back to step 1') . '">' . __('Generic\\Back') . '</a>
-                <button name="fin_sondage_autre" value="' . __('Generic\\Next') . '" type="submit" class="btn btn-success disabled" title="' . __('Step 2\\Go to step 3') . '">' . __('Generic\\Next') . '</button>
+                <a class="btn btn-default" href="' . Utils::get_server_name() . 'create_poll.php?type=classic" title="' . __('Step 2', 'Back to step 1') . '">' . __('Generic', 'Back') . '</a>
+                <button name="fin_sondage_autre" value="' . __('Generic', 'Next') . '" type="submit" class="btn btn-success disabled" title="' . __('Step 2', 'Go to step 3') . '">' . __('Generic', 'Next') . '</button>
             </div>
         </div>
     </div>
@@ -271,27 +271,27 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">' . __('Generic\\Close') . '</span></button>
-                    <p class="modal-title" id="md-a-imgModalLabel">' . __('Step 2 classic\\Add a link or an image') . '</p>
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">' . __('Generic', 'Close') . '</span></button>
+                    <p class="modal-title" id="md-a-imgModalLabel">' . __('Step 2 classic', 'Add a link or an image') . '</p>
                 </div>
                 <div class="modal-body">
-                    <p class="alert alert-info">' . __('Step 2 classic\\These fields are optional. You can add a link, an image or both.') . '</p>
+                    <p class="alert alert-info">' . __('Step 2 classic', 'These fields are optional. You can add a link, an image or both.') . '</p>
                     <div class="form-group">
-                        <label for="md-img"><span class="glyphicon glyphicon-picture"></span> ' . __('Step 2 classic\\URL of the image') . '</label>
+                        <label for="md-img"><span class="glyphicon glyphicon-picture"></span> ' . __('Step 2 classic', 'URL of the image') . '</label>
                         <input id="md-img" type="text" placeholder="http://…" class="form-control" size="40" />
                     </div>
                     <div class="form-group">
-                        <label for="md-a"><span class="glyphicon glyphicon-link"></span> ' . __('Generic\\Link') . '</label>
+                        <label for="md-a"><span class="glyphicon glyphicon-link"></span> ' . __('Generic', 'Link') . '</label>
                         <input id="md-a" type="text" placeholder="http://…" class="form-control" size="40" />
                     </div>
                     <div class="form-group">
-                        <label for="md-text">' . __('Step 2 classic\\Alternative text') . '</label>
+                        <label for="md-text">' . __('Step 2 classic', 'Alternative text') . '</label>
                         <input id="md-text" type="text" class="form-control" size="40" />
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">' . __('Generic\\Cancel') . '</button>
-                    <button type="button" class="btn btn-primary">' . __('Generic\\Add') . '</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">' . __('Generic', 'Cancel') . '</button>
+                    <button type="button" class="btn btn-primary">' . __('Generic', 'Add') . '</button>
                 </div>
             </div>
         </div>

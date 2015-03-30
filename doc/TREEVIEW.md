@@ -27,11 +27,11 @@ Here are the main files and directories you need to know in order to develop on 
     * La page de présentation de sondage
 * adminstuds.php
     * La page d'administration réservée à l'auteur du sondage
-* infos_sondage.php
+* create_poll.php
     * La page (1/2) de création de sondage récupérant les informations générales
-* choix_date.php
+* create_date_poll.php
     * La page de création (2/2) pour un sondage pour déterminer une date
-* choix_autre.php
+* crete_classic_poll.php
     * La page de création (2/2) pour un sondage sur un sujet quelconque
 * creation_sondage.php
     * Le fichier qui récupérent les informations des pages précédentes pour procéder à l'insertion du nouveau sondage dans la base PostgreSQL
