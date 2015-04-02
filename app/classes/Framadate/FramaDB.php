@@ -122,15 +122,16 @@ class FramaDB {
         return $prepared->execute([$insert_position, $insert_position + 1, $poll_id]);
     }
 
-    function insertVote($poll_id, $name, $choices) {
-        $prepared = $this->prepare('INSERT INTO `' . Utils::table('vote') . '` (poll_id, name, choices) VALUES (?,?,?)');
-        $prepared->execute([$poll_id, $name, $choices]);
+    function insertVote($poll_id, $name, $choices, $token) {
+        $prepared = $this->prepare('INSERT INTO `' . Utils::table('vote') . '` (poll_id, name, choices, uniqId) VALUES (?,?,?,?)');
+        $prepared->execute([$poll_id, $name, $choices, $token]);
 
         $newVote = new \stdClass();
         $newVote->poll_id = $poll_id;
         $newVote->id = $this->pdo->lastInsertId();
         $newVote->name = $name;
         $newVote->choices = $choices;
+        $newVote->token = $token;
 
         return $newVote;
     }

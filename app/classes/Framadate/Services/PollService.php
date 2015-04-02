@@ -21,6 +21,7 @@ namespace Framadate\Services;
 use Framadate\Form;
 use Framadate\FramaDB;
 use Framadate\Utils;
+use Framadate\Security\Token;
 
 class PollService {
 
@@ -66,8 +67,8 @@ class PollService {
 
     function addVote($poll_id, $name, $choices) {
         $choices = implode($choices);
-
-        return $this->connect->insertVote($poll_id, $name, $choices);
+        $token = $this->random(16);
+        return $this->connect->insertVote($poll_id, $name, $choices, $token);
     }
 
     function addComment($poll_id, $name, $comment) {
@@ -176,15 +177,8 @@ class PollService {
         return [$poll_id, $admin_poll_id];
     }
 
-    private function random($car) {
-        // TODO Better random ?
-        $string = '';
-        $chaine = 'abcdefghijklmnopqrstuvwxyz123456789';
-        mt_srand();
-        for ($i = 0; $i < $car; $i++) {
-            $string .= $chaine[mt_rand() % strlen($chaine)];
-        }
-
-        return $string;
+    private function random($length) {
+        return Token::getToken($length);
     }
+
 }

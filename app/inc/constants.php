@@ -21,7 +21,7 @@
 const VERSION = '0.9';
 
 // Regex
-const POLL_REGEX = '/^[a-z0-9]+$/';
+const POLL_REGEX = '/^[a-zA-Z0-9]+$/';
 const CHOICE_REGEX = '/^[012]$/';
 const NAME_REGEX = '/^[áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœa-z0-9_ -]+$/i';
 const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/';
