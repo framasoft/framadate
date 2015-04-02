@@ -21,18 +21,19 @@ namespace Framadate\Services;
 use Framadate\Form;
 use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
-use Framadate\Utils;
 
 class PollService {
 
     private $connect;
     private $logService;
     private $pollRepository;
+    private $slotRepository;
 
     function __construct(FramaDB $connect, LogService $logService) {
         $this->connect = $connect;
         $this->logService = $logService;
         $this->pollRepository = RepositoryFactory::pollRepository();
+        $this->slotRepository = RepositoryFactory::slotRepository();
     }
 
     /**
@@ -43,7 +44,7 @@ class PollService {
      */
     function findById($poll_id) {
         if (preg_match('/^[\w\d]{16}$/i', $poll_id)) {
-            return $this->connect->findPollById($poll_id);
+            return $this->pollRepository->findById($poll_id);
         }
 
         return null;
@@ -58,7 +59,7 @@ class PollService {
     }
 
     function allSlotsByPollId($poll_id) {
-        return $this->connect->allSlotsByPollId($poll_id);
+        return $this->slotRepository->listByPollId($poll_id);
     }
 
     public function updateVote($poll_id, $vote_id, $name, $choices) {
@@ -80,6 +81,29 @@ class PollService {
 
     public function countVotesByPollId($poll_id) {
         return $this->connect->countVotesByPollId($poll_id);
+    }
+
+    /**
+     * @param Form $form
+     * @return string
+     */
+    function createPoll(Form $form) {
+
+        // Generate poll IDs, loop while poll ID already exists
+        do {
+            $poll_id = $this->random(16);
+        } while ($this->pollRepository->existsById($poll_id));
+        $admin_poll_id = $poll_id . $this->random(8);
+
+        // Insert poll + slots
+        $this->pollRepository->beginTransaction();
+        $this->pollRepository->insertPoll($poll_id, $admin_poll_id, $form);
+        $this->slotRepository->insertSlots($poll_id, $form->getChoices());
+        $this->pollRepository->commit();
+
+        $this->logService->log('CREATE_POLL', 'id:' . $poll_id . ', title: ' . $form->title . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
+
+        return array($poll_id, $admin_poll_id);
     }
 
     function computeBestChoices($votes) {
@@ -124,30 +148,6 @@ class PollService {
         }
 
         return $splitted;
-    }
-
-    /**
-     * @param Form $form
-     * @return string
-     */
-    function createPoll(Form $form) {
-
-        // Generate poll IDs, loop while poll ID already exists
-        do {
-            $poll_id = $this->random(16);
-        } while ($this->connect->existsById($poll_id));
-        $admin_poll_id = $poll_id . $this->random(8);
-
-        // Insert poll + slots
-        $this->pollRepository->beginTransaction();
-        $this->pollRepository->insertPoll($poll_id, $admin_poll_id, $form);
-        $this->pollRepository->insertSlots($poll_id, $form->getChoices());
-        $this->pollRepository->commit();
-
-        $this->logService->log('CREATE_POLL', 'id:' . $poll_id . ', title: ' . $form->title . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
-
-
-        return array($poll_id, $admin_poll_id);
     }
 
     private function random($car) {

@@ -79,30 +79,6 @@ class FramaDB {
         return $this->pdo->query($sql);
     }
 
-    function findPollById($poll_id) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE id = ?');
-
-        $prepared->execute(array($poll_id));
-        $poll = $prepared->fetch();
-        $prepared->closeCursor();
-
-        return $poll;
-    }
-
-    public function existsById($poll_id) {
-        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE id = ?');
-
-        $prepared->execute(array($poll_id));
-
-        return $prepared->rowCount() > 0;
-    }
-
-    function updatePoll($poll) {
-        $prepared = $this->prepare('UPDATE `' . Utils::table('poll') . '` SET title=?, admin_name=?, admin_mail=?, description=?, end_date=?, active=?, editable=? WHERE id = ?');
-
-        return $prepared->execute([$poll->title, $poll->admin_name, $poll->admin_mail, $poll->description, $poll->end_date, $poll->active, $poll->editable, $poll->id]);
-    }
-
     function allCommentsByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('comment') . '` WHERE poll_id = ? ORDER BY id');
         $prepared->execute(array($poll_id));
@@ -112,13 +88,6 @@ class FramaDB {
 
     function allUserVotesByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('vote') . '` WHERE poll_id = ? ORDER BY id');
-        $prepared->execute(array($poll_id));
-
-        return $prepared->fetchAll();
-    }
-
-    function allSlotsByPollId($poll_id) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? ORDER BY title');
         $prepared->execute(array($poll_id));
 
         return $prepared->fetchAll();

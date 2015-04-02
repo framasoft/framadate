@@ -1,69 +1,44 @@
 <?php
 namespace Framadate\Repositories;
 
-use Framadate\FramaDB;
 use Framadate\Utils;
 
-class PollRepository {
+class PollRepository extends AbstractRepository {
 
-    /**
-     * @var FramaDB
-     */
-    private $connect;
-
-    /**
-     * PollRepository constructor.
-     * @param FramaDB $connect
-     */
-    function __construct($connect) {
-        $this->connect = $connect;
-    }
-
-    public function beginTransaction() {
-        $this->connect->beginTransaction();
-    }
-
-    public function commit() {
-        $this->connect->commit();
+    function __construct(FramaDB $connect) {
+        parent::__construct($connect);
     }
 
     public function insertPoll($poll_id, $admin_poll_id, $form) {
         $sql = 'INSERT INTO `' . Utils::table('poll') . '`
           (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments)
           VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?)';
-        $prepared = $this->connect->prepare($sql);
+        $prepared = $this->prepare($sql);
         $prepared->execute(array($poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, $form->editable, $form->receiveNewVotes, $form->receiveNewComments));
     }
 
-    /**
-     * @param int $poll_id
-     * @param array $choices
-     */
-    public function insertSlots($poll_id, $choices) {
-        $prepared = $this->connect->prepare('INSERT INTO ' . Utils::table('slot') . ' (poll_id, title, moments) VALUES (?, ?, ?)');
+    function findById($poll_id) {
+        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
-        foreach ($choices as $choice) {
+        $prepared->execute(array($poll_id));
+        $poll = $prepared->fetch();
+        $prepared->closeCursor();
 
-            // We prepared the slots (joined by comas)
-            $joinedSlots = '';
-            $first = true;
-            foreach ($choice->getSlots() as $slot) {
-                if ($first) {
-                    $joinedSlots = $slot;
-                    $first = false;
-                } else {
-                    $joinedSlots .= ',' . $slot;
-                }
-            }
+        return $poll;
+    }
 
-            // We execute the insertion
-            if (empty($joinedSlots)) {
-                $prepared->execute(array($poll_id, $choice->getName(), null));
-            } else {
-                $prepared->execute(array($poll_id, $choice->getName(), $joinedSlots));
-            }
+    public function existsById($poll_id) {
+        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
-        }
+        $prepared->execute(array($poll_id));
+
+        return $prepared->rowCount() > 0;
+    }
+
+    function update($poll) {
+        $prepared = $this->prepare('UPDATE `' . Utils::table('poll') . '` SET title=?, admin_name=?, admin_mail=?, description=?, end_date=?, active=?, editable=? WHERE id = ?');
+
+        return $prepared->execute([$poll->title, $poll->admin_name, $poll->admin_mail, $poll->description, $poll->end_date, $poll->active, $poll->editable, $poll->id]);
     }
 
 }

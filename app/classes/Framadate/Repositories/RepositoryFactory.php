@@ -23,12 +23,14 @@ use Framadate\FramaDB;
 class RepositoryFactory {
 
     private static $connect;
+
     private static $pollRepository;
+    private static $slotRepository;
 
     /**
      * @param FramaDB $connect
      */
-    static function init($connect) {
+    static function init(FramaDB $connect) {
         self::$connect = $connect;
     }
 
@@ -41,6 +43,17 @@ class RepositoryFactory {
         }
 
         return self::$pollRepository;
+    }
+
+    /**
+     * @return SlotRepository The singleton of SlotRepository
+     */
+    static function slotRepository() {
+        if (self::$slotRepository == null) {
+            self::$slotRepository = new SlotRepository(self::$connect);
+        }
+
+        return self::$slotRepository;
     }
 
 }
