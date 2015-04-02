@@ -34,6 +34,16 @@ $smarty->assign('html_lang', $html_lang);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);
 $smarty->assign('date_format', $date_format);
 
+if ($_SERVER['FRAMADATE_DEVMODE']) {
+    $smarty->force_compile = true;
+    $smarty->compile_check = true;
+
+} else {
+    $smarty->force_compile = false;
+    $smarty->compile_check = false;
+}
+
+
 function smarty_modifier_poll_url($poll_id, $admin = false) {
     return Utils::getUrlSondage($poll_id, $admin);
 }
