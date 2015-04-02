@@ -14,8 +14,10 @@ class AdminPollService {
     private $connect;
     private $pollService;
     private $logService;
+
     private $pollRepository;
     private $slotRepository;
+    private $voteRepository;
     private $commentRepository;
 
     function __construct(FramaDB $connect, PollService $pollService, LogService $logService) {
@@ -24,6 +26,7 @@ class AdminPollService {
         $this->logService = $logService;
         $this->pollRepository = RepositoryFactory::pollRepository();
         $this->slotRepository = RepositoryFactory::slotRepository();
+        $this->voteRepository = RepositoryFactory::voteRepository();
         $this->commentRepository = RepositoryFactory::commentRepository();
     }
 
@@ -44,7 +47,7 @@ class AdminPollService {
      * @return mixed true is action succeeded
      */
     function deleteComment($poll_id, $comment_id) {
-        return $this->commentRepository->delete($poll_id, $comment_id);
+        return $this->commentRepository->deleteById($poll_id, $comment_id);
     }
 
     /**
@@ -66,7 +69,7 @@ class AdminPollService {
      * @return mixed true is action succeeded
      */
     function deleteVote($poll_id, $vote_id) {
-        return $this->connect->deleteVote($poll_id, $vote_id);
+        return $this->voteRepository->deleteById($poll_id, $vote_id);
     }
 
     /**
@@ -77,7 +80,7 @@ class AdminPollService {
      */
     function cleanVotes($poll_id) {
         $this->logService->log('CLEAN_VOTES', 'id:' . $poll_id);
-        return $this->connect->deleteVotesByPollId($poll_id);
+        return $this->voteRepository->deleteByPollId($poll_id);
     }
 
     /**
@@ -91,10 +94,10 @@ class AdminPollService {
         $this->logService->log('DELETE_POLL', "id:$poll->id, format:$poll->format, admin:$poll->admin_name, mail:$poll->admin_mail");
 
         // Delete the entire poll
-        $this->connect->deleteVotesByPollId($poll_id);
+        $this->voteRepository->deleteByPollId($poll_id);
         $this->commentRepository->deleteByPollId($poll_id);
-        $this->connect->deleteSlotsByPollId($poll_id);
-        $this->connect->deletePollById($poll_id);
+        $this->slotRepository->deleteByPollId($poll_id);
+        $this->pollRepository->deleteById($poll_id);
 
         return true;
     }
@@ -136,11 +139,11 @@ class AdminPollService {
 
         // Remove votes
         $this->connect->beginTransaction();
-        $this->connect->deleteVotesByIndex($poll_id, $indexToDelete);
+        $this->voteRepository->deleteByIndex($poll_id, $indexToDelete);
         if (count($newMoments) > 0) {
-            $this->connect->updateSlot($poll_id, $datetime, implode(',', $newMoments));
+            $this->slotRepository->update($poll_id, $datetime, implode(',', $newMoments));
         } else {
-            $this->connect->deleteSlot($poll_id, $datetime);
+            $this->slotRepository->deleteByDateTime($poll_id, $datetime);
         }
         $this->connect->commit();
 
@@ -165,8 +168,8 @@ class AdminPollService {
 
         // Remove votes
         $this->connect->beginTransaction();
-        $this->connect->deleteVotesByIndex($poll_id, $indexToDelete);
-        $this->connect->deleteSlot($poll_id, $slot_title);
+        $this->voteRepository->deleteByIndex($poll_id, $indexToDelete);
+        $this->slotRepository->deleteByDateTime($poll_id, $slot_title);
         $this->connect->commit();
 
         return true;
@@ -206,13 +209,13 @@ class AdminPollService {
             // Update found slot
             $moments[] = $new_moment;
             sort($moments);
-            $this->connect->updateSlot($poll_id, $datetime, implode(',', $moments));
+            $this->slotRepository->update($poll_id, $datetime, implode(',', $moments));
 
         } else {
-            $this->connect->insertSlot($poll_id, $datetime, $new_moment);
+            $this->slotRepository->insert($poll_id, $datetime, $new_moment);
         }
 
-        $this->connect->insertDefaultVote($poll_id, $result->insert);
+        $this->voteRepository->insertDefault($poll_id, $result->insert);
 
         // Commit transaction
         $this->connect->commit();

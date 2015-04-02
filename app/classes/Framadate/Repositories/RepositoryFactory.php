@@ -26,6 +26,7 @@ class RepositoryFactory {
 
     private static $pollRepository;
     private static $slotRepository;
+    private static $voteRepository;
     private static $commentRepository;
 
     /**
@@ -55,6 +56,17 @@ class RepositoryFactory {
         }
 
         return self::$slotRepository;
+    }
+
+    /**
+     * @return VoteRepository The singleton of VoteRepository
+     */
+    static function voteRepository() {
+        if (self::$voteRepository == null) {
+            self::$voteRepository = new VoteRepository(self::$connect);
+        }
+
+        return self::$voteRepository;
     }
 
     /**

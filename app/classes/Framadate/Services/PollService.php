@@ -26,8 +26,10 @@ class PollService {
 
     private $connect;
     private $logService;
+
     private $pollRepository;
     private $slotRepository;
+    private $voteRepository;
     private $commentRepository;
 
     function __construct(FramaDB $connect, LogService $logService) {
@@ -35,6 +37,7 @@ class PollService {
         $this->logService = $logService;
         $this->pollRepository = RepositoryFactory::pollRepository();
         $this->slotRepository = RepositoryFactory::slotRepository();
+        $this->voteRepository = RepositoryFactory::voteRepository();
         $this->commentRepository = RepositoryFactory::commentRepository();
     }
 
@@ -53,11 +56,11 @@ class PollService {
     }
 
     function allCommentsByPollId($poll_id) {
-        return $this->commentRepository->allCommentsByPollId($poll_id);
+        return $this->commentRepository->findAllByPollId($poll_id);
     }
 
     function allVotesByPollId($poll_id) {
-        return $this->connect->allUserVotesByPollId($poll_id);
+        return $this->voteRepository->allUserVotesByPollId($poll_id);
     }
 
     function allSlotsByPollId($poll_id) {
@@ -67,13 +70,13 @@ class PollService {
     public function updateVote($poll_id, $vote_id, $name, $choices) {
         $choices = implode($choices);
 
-        return $this->connect->updateVote($poll_id, $vote_id, $name, $choices);
+        return $this->voteRepository->update($poll_id, $vote_id, $name, $choices);
     }
 
     function addVote($poll_id, $name, $choices) {
         $choices = implode($choices);
 
-        return $this->connect->insertVote($poll_id, $name, $choices);
+        return $this->voteRepository->insert($poll_id, $name, $choices);
     }
 
     function addComment($poll_id, $name, $comment) {
@@ -85,7 +88,7 @@ class PollService {
     }
 
     public function countVotesByPollId($poll_id) {
-        return $this->connect->countVotesByPollId($poll_id);
+        return $this->voteRepository->countByPollId($poll_id);
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 namespace Framadate\Services;
 
-use Framadate\FramaDB;
+use Framadate\Repositories\RepositoryFactory;
 
 /**
  * The class provides action for application administrators.
@@ -10,10 +10,10 @@ use Framadate\FramaDB;
  */
 class SuperAdminService {
 
-    private $connect;
+    private $pollRepository;
 
-    function __construct(FramaDB $connect) {
-        $this->connect = $connect;
+    function __construct() {
+        $this->pollRepository = RepositoryFactory::pollRepository();
     }
 
     /**
@@ -26,8 +26,8 @@ class SuperAdminService {
      */
     public function findAllPolls($search, $page, $limit) {
         $start = $page * $limit;
-        $polls = $this->connect->findAllPolls($search);
-        $total = $this->connect->countPolls();
+        $polls = $this->pollRepository->findAll($search);
+        $total = $this->pollRepository->count();
 
 
         return ['polls' => array_slice($polls, $start, $limit), 'count' => count($polls), 'total' => $total];

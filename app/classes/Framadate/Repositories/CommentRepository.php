@@ -10,7 +10,7 @@ class CommentRepository extends AbstractRepository {
         parent::__construct($connect);
     }
 
-    function allCommentsByPollId($poll_id) {
+    function findAllByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('comment') . '` WHERE poll_id = ? ORDER BY id');
         $prepared->execute(array($poll_id));
 
@@ -31,7 +31,7 @@ class CommentRepository extends AbstractRepository {
         return $prepared->execute([$poll_id, $name, $comment]);
     }
 
-    function delete($poll_id, $comment_id) {
+    function deleteById($poll_id, $comment_id) {
         $prepared = $this->prepare('DELETE FROM `' . Utils::table('comment') . '` WHERE poll_id = ? AND id = ?');
 
         return $prepared->execute([$poll_id, $comment_id]);
@@ -50,7 +50,7 @@ class CommentRepository extends AbstractRepository {
     }
 
     public function exists($poll_id, $name, $comment) {
-        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('comment') . '` WHERE poll_id = ? QND name = ? AND comment = ?');
+        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('comment') . '` WHERE poll_id = ? AND name = ? AND comment = ?');
         $prepared->execute(array($poll_id, $name, $comment));
 
         return $prepared->rowCount() > 0;
