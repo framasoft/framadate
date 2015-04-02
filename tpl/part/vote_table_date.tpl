@@ -5,7 +5,7 @@
 <h3>{__('Poll results', 'Votes of the poll')}</h3>
 
 <div id="tableContainer" class="tableContainer">
-    <form action="" method="POST" id="poll_form">
+    <form action="{poll_url id=$poll_id}" method="POST" id="poll_form">
         <table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes of the poll')} {$poll->title|html}</caption>
             <thead>
@@ -81,7 +81,7 @@
                 <tr>
                     {* Edited line *}
 
-                    {if $editingVoteId == $vote->id && !$expired}
+                    {if $editingVoteId === $vote->uniqId && !$expired}
 
                         <td class="bg-info" style="padding:5px">
                             <div class="input-group input-group-sm">
@@ -136,9 +136,9 @@
 
                         {if $active && $poll->editable && !$expired}
                             <td>
-                                <button type="submit" class="btn btn-link btn-sm" name="edit_vote" value="{$vote->id|html}" title="{__('Poll results', 'Edit the line:')} {$vote->name|html}">
+                                <a href="{poll_url id=$poll->id vote_id=$vote->uniqId}" class="btn btn-link btn-sm" title="{__('Poll results', 'Edit the line:')|escape} {$vote->name|html}">
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span>
-                                </button>
+                                </a>
                                 {if $admin}
                                     <button type="submit" class="btn btn-link btn-sm" name="delete_vote" value="{$vote->id|html}" title="{__('Poll results', 'Remove the line:')} {$vote->name|html}">
                                         <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span>
@@ -154,7 +154,7 @@
 
             {* Line to add a new vote *}
 
-            {if $active && $editingVoteId == 0 && !$expired}
+            {if $active && $editingVoteId === 0 && !$expired}
                 <tr id="vote-form">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">

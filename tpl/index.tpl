@@ -51,7 +51,7 @@
                 {if $demo_poll != null}
                 <p>
                     {__('1st section', 'Do you want to')}
-                    <a href="{'aqg259dth55iuhwm'|poll_url}">{__('1st section', 'view an example?')}</a>
+                    <a href="{poll_url id='aqg259dth55iuhwm'}">{__('1st section', 'view an example?')}</a>
                 </p>
                 {/if}
             </div>

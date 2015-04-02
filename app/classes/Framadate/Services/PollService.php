@@ -116,6 +116,7 @@ class PollService {
             $obj = new \stdClass();
             $obj->id = $vote->id;
             $obj->name = $vote->name;
+            $obj->uniqId = $vote->uniqId;
             $obj->choices = str_split($vote->choices);
 
             $splitted[] = $obj;

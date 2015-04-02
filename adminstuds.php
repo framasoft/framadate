@@ -45,10 +45,16 @@ $inputService = new InputService();
 /* PAGE */
 /* ---- */
 
-if (!empty($_GET['poll']) && strlen($_GET['poll']) === 24) {
-    $admin_poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-    $poll_id = substr($admin_poll_id, 0, 16);
-    $poll = $pollService->findById($poll_id);
+if (!empty($_POST['poll']) || !empty($_GET['poll'])) {
+    if (!empty($_POST['poll']))
+        $inputType = INPUT_POST;
+    else
+        $inputType = INPUT_GET;
+    $admin_poll_id = filter_input($inputType, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+    if (strlen($admin_poll_id) === 24) {
+        $poll_id = substr($admin_poll_id, 0, 16);
+        $poll = $pollService->findById($poll_id);
+    }
 }
 
 if (!$poll) {
@@ -131,8 +137,8 @@ if (isset($_POST['update_poll_info'])) {
 // A vote is going to be edited
 // -------------------------------
 
-if (!empty($_POST['edit_vote'])) {
-    $editingVoteId = filter_input(INPUT_POST, 'edit_vote', FILTER_VALIDATE_INT);
+if (!empty($_GET['vote'])) {
+    $editingVoteId = filter_input(INPUT_GET, 'vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
 }
 
 // -------------------------------
