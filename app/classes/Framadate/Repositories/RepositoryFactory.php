@@ -26,6 +26,7 @@ class RepositoryFactory {
 
     private static $pollRepository;
     private static $slotRepository;
+    private static $commentRepository;
 
     /**
      * @param FramaDB $connect
@@ -54,6 +55,17 @@ class RepositoryFactory {
         }
 
         return self::$slotRepository;
+    }
+
+    /**
+     * @return CommentRepository The singleton of CommentRepository
+     */
+    static function commentRepository() {
+        if (self::$commentRepository == null) {
+            self::$commentRepository = new CommentRepository(self::$connect);
+        }
+
+        return self::$commentRepository;
     }
 
 }

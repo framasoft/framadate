@@ -79,13 +79,6 @@ class FramaDB {
         return $this->pdo->query($sql);
     }
 
-    function allCommentsByPollId($poll_id) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('comment') . '` WHERE poll_id = ? ORDER BY id');
-        $prepared->execute(array($poll_id));
-
-        return $prepared->fetchAll();
-    }
-
     function allUserVotesByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('vote') . '` WHERE poll_id = ? ORDER BY id');
         $prepared->execute(array($poll_id));
@@ -205,34 +198,10 @@ class FramaDB {
         return $prepared->execute([$poll_id]);
     }
 
-    /**
-     * Delete all comments of a given poll.
-     *
-     * @param $poll_id int The ID of the given poll.
-     * @return bool|null true if action succeeded.
-     */
-    function deleteCommentsByPollId($poll_id) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('comment') . '` WHERE poll_id = ?');
-
-        return $prepared->execute([$poll_id]);
-    }
-
     function updateVote($poll_id, $vote_id, $name, $choices) {
         $prepared = $this->prepare('UPDATE `' . Utils::table('vote') . '` SET choices = ?, name = ? WHERE poll_id = ? AND id = ?');
 
         return $prepared->execute([$choices, $name, $poll_id, $vote_id]);
-    }
-
-    function insertComment($poll_id, $name, $comment) {
-        $prepared = $this->prepare('INSERT INTO `' . Utils::table('comment') . '` (poll_id, name, comment) VALUES (?,?,?)');
-
-        return $prepared->execute([$poll_id, $name, $comment]);
-    }
-
-    function deleteComment($poll_id, $comment_id) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('comment') . '` WHERE poll_id = ? AND id = ?');
-
-        return $prepared->execute([$poll_id, $comment_id]);
     }
 
     function deletePollById($poll_id) {

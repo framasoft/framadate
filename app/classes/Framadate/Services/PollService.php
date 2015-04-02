@@ -28,12 +28,14 @@ class PollService {
     private $logService;
     private $pollRepository;
     private $slotRepository;
+    private $commentRepository;
 
     function __construct(FramaDB $connect, LogService $logService) {
         $this->connect = $connect;
         $this->logService = $logService;
         $this->pollRepository = RepositoryFactory::pollRepository();
         $this->slotRepository = RepositoryFactory::slotRepository();
+        $this->commentRepository = RepositoryFactory::commentRepository();
     }
 
     /**
@@ -51,7 +53,7 @@ class PollService {
     }
 
     function allCommentsByPollId($poll_id) {
-        return $this->connect->allCommentsByPollId($poll_id);
+        return $this->commentRepository->allCommentsByPollId($poll_id);
     }
 
     function allVotesByPollId($poll_id) {
@@ -75,8 +77,11 @@ class PollService {
     }
 
     function addComment($poll_id, $name, $comment) {
-        // TODO Check if there is no duplicate before to add a new comment
-        return $this->connect->insertComment($poll_id, $name, $comment);
+        if ($this->commentRepository->exists($poll_id, $name, $comment)) {
+            return true;
+        } else {
+            return $this->commentRepository->insert($poll_id, $name, $comment);
+        }
     }
 
     public function countVotesByPollId($poll_id) {

@@ -2,7 +2,7 @@
 namespace Framadate\Services;
 
 use Framadate\FramaDB;
-use Framadate\Utils;
+use Framadate\Repositories\RepositoryFactory;
 
 /**
  * Class AdminPollService
@@ -14,17 +14,23 @@ class AdminPollService {
     private $connect;
     private $pollService;
     private $logService;
+    private $pollRepository;
+    private $slotRepository;
+    private $commentRepository;
 
     function __construct(FramaDB $connect, PollService $pollService, LogService $logService) {
         $this->connect = $connect;
         $this->pollService = $pollService;
         $this->logService = $logService;
+        $this->pollRepository = RepositoryFactory::pollRepository();
+        $this->slotRepository = RepositoryFactory::slotRepository();
+        $this->commentRepository = RepositoryFactory::commentRepository();
     }
 
     function updatePoll($poll) {
         global $config;
         if ($poll->end_date > $poll->creation_date && $poll->end_date <= strtotime($poll->creation_date) + (86400 * $config['default_poll_duration'])) {
-            return $this->connect->updatePoll($poll);
+            return $this->pollRepository->update($poll);
         } else {
             return false;
         }
@@ -38,7 +44,7 @@ class AdminPollService {
      * @return mixed true is action succeeded
      */
     function deleteComment($poll_id, $comment_id) {
-        return $this->connect->deleteComment($poll_id, $comment_id);
+        return $this->commentRepository->delete($poll_id, $comment_id);
     }
 
     /**
@@ -49,7 +55,7 @@ class AdminPollService {
      */
     function cleanComments($poll_id) {
         $this->logService->log("CLEAN_COMMENTS", "id:$poll_id");
-        return $this->connect->deleteCommentsByPollId($poll_id);
+        return $this->commentRepository->deleteByPollId($poll_id);
     }
 
     /**
@@ -81,12 +87,12 @@ class AdminPollService {
      * @return bool true is action succeeded
      */
     function deleteEntirePoll($poll_id) {
-        $poll = $this->connect->findPollById($poll_id);
+        $poll = $this->pollRepository->findById($poll_id);
         $this->logService->log('DELETE_POLL', "id:$poll->id, format:$poll->format, admin:$poll->admin_name, mail:$poll->admin_mail");
 
         // Delete the entire poll
         $this->connect->deleteVotesByPollId($poll_id);
-        $this->connect->deleteCommentsByPollId($poll_id);
+        $this->commentRepository->deleteByPollId($poll_id);
         $this->connect->deleteSlotsByPollId($poll_id);
         $this->connect->deletePollById($poll_id);
 
@@ -179,7 +185,7 @@ class AdminPollService {
      * @return bool true if added
      */
     public function addSlot($poll_id, $datetime, $new_moment) {
-        $slots = $this->connect->allSlotsByPollId($poll_id);
+        $slots = $this->slotRepository->listByPollId($poll_id);
         $result = $this->findInsertPosition($slots, $datetime, $new_moment);
 
         // Begin transaction
