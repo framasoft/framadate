@@ -20,16 +20,19 @@ namespace Framadate\Services;
 
 use Framadate\Form;
 use Framadate\FramaDB;
+use Framadate\Repositories\RepositoryFactory;
 use Framadate\Utils;
 
 class PollService {
 
     private $connect;
     private $logService;
+    private $pollRepository;
 
     function __construct(FramaDB $connect, LogService $logService) {
         $this->connect = $connect;
         $this->logService = $logService;
+        $this->pollRepository = RepositoryFactory::pollRepository();
     }
 
     /**
@@ -136,46 +139,15 @@ class PollService {
         $admin_poll_id = $poll_id . $this->random(8);
 
         // Insert poll + slots
-        $this->connect->beginTransaction();
-
-        // TODO Extract this to FramaDB (or repository layer)
-        $sql = 'INSERT INTO ' . Utils::table('poll') . '
-          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments)
-          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?)';
-        $prepared = $this->connect->prepare($sql);
-        $prepared->execute(array($poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, $form->editable, $form->receiveNewVotes, $form->receiveNewComments));
-
-        $prepared = $this->connect->prepare('INSERT INTO ' . Utils::table('slot') . ' (poll_id, title, moments) VALUES (?, ?, ?)');
-
-        foreach ($form->getChoices() as $choice) {
-
-            // We prepared the slots (joined by comas)
-            $joinedSlots = '';
-            $first = true;
-            foreach ($choice->getSlots() as $slot) {
-                if ($first) {
-                    $joinedSlots = $slot;
-                    $first = false;
-                } else {
-                    $joinedSlots .= ',' . $slot;
-                }
-            }
-
-            // We execute the insertion
-            if (empty($joinedSlots)) {
-                $prepared->execute(array($poll_id, $choice->getName(), null));
-            } else {
-                $prepared->execute(array($poll_id, $choice->getName(), $joinedSlots));
-            }
-
-        }
-
-        $this->connect->commit();
+        $this->pollRepository->beginTransaction();
+        $this->pollRepository->insertPoll($poll_id, $admin_poll_id, $form);
+        $this->pollRepository->insertSlots($poll_id, $form->getChoices());
+        $this->pollRepository->commit();
 
         $this->logService->log('CREATE_POLL', 'id:' . $poll_id . ', title: ' . $form->title . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
 
 
-        return [$poll_id, $admin_poll_id];
+        return array($poll_id, $admin_poll_id);
     }
 
     private function random($car) {
