@@ -82,11 +82,19 @@ class FramaDB {
     function findPollById($poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
-        $prepared->execute([$poll_id]);
+        $prepared->execute(array($poll_id));
         $poll = $prepared->fetch();
         $prepared->closeCursor();
 
         return $poll;
+    }
+
+    public function existsById($poll_id) {
+        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE id = ?');
+
+        $prepared->execute(array($poll_id));
+
+        return $prepared->rowCount() > 0;
     }
 
     function updatePoll($poll) {

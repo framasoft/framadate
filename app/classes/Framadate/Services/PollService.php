@@ -129,8 +129,10 @@ class PollService {
      */
     function createPoll(Form $form) {
 
-        // Generate poll IDs
-        $poll_id = $this->random(16);
+        // Generate poll IDs, loop while poll ID already exists
+        do {
+            $poll_id = $this->random(16);
+        } while ($this->connect->existsById($poll_id));
         $admin_poll_id = $poll_id . $this->random(8);
 
         // Insert poll + slots
