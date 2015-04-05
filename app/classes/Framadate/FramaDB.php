@@ -131,7 +131,7 @@ class FramaDB {
         $newVote->id = $this->pdo->lastInsertId();
         $newVote->name = $name;
         $newVote->choices = $choices;
-        $newVote->token = $token;
+        $newVote->uniqId = $token;
 
         return $newVote;
     }

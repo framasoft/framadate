@@ -9,7 +9,7 @@
 
     <div id="message-container">
         {if !empty($message)}
-            <div class="alert alert-dismissible alert-{$message->type|html}" role="alert">{$message->message|html}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+            <div class="alert alert-dismissible alert-{$message->type|html}" role="alert">{$message->message|html}{if $message->link != null}<br/><a href="{$message->link}">{$message->link}</a>{/if}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
         {/if}
     </div>
     <div id="nameErrorMessage" class="hidden alert alert-dismissible alert-danger" role="alert">{__('PollInfo', 'The name is invalid.')}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>

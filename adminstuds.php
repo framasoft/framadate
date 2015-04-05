@@ -22,6 +22,7 @@ use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Message;
 use Framadate\Utils;
+use Framadate\Editable;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -95,17 +96,22 @@ if (isset($_POST['update_poll_info'])) {
         switch ($rules) {
             case 0:
                 $poll->active = false;
-                $poll->editable = false;
+                $poll->editable = Editable::NOT_EDITABLE;
                 $updated = true;
                 break;
             case 1:
                 $poll->active = true;
-                $poll->editable = false;
+                $poll->editable = Editable::NOT_EDITABLE;
                 $updated = true;
                 break;
             case 2:
                 $poll->active = true;
-                $poll->editable = true;
+                $poll->editable = Editable::EDITABLE_BY_ALL;
+                $updated = true;
+                break;
+            case 3:
+                $poll->active = true;
+                $poll->editable = Editable::EDITABLE_BY_OWN;
                 $updated = true;
                 break;
         }

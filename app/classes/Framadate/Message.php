@@ -22,10 +22,12 @@ class Message {
 
     var $type;
     var $message;
+    var $link;
 
-    function __construct($type, $message) {
+    function __construct($type, $message, $link=null) {
         $this->type = $type;
         $this->message = $message;
+        $this->link = $link;
     }
 
 }

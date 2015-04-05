@@ -110,7 +110,7 @@ class Utils {
             } else {
                 $url = str_replace('/admin', '', self::get_server_name()) . $id;
                 if ($vote_id != '') {
-                    $url .= '/vote/'.$vote_id;
+                    $url .= '/vote/'.$vote_id."#edit";
                 }
             }
         } else {
@@ -119,7 +119,7 @@ class Utils {
             } else {
                 $url = str_replace('/admin', '', self::get_server_name()) . 'studs.php?poll=' . $id;
                 if ($vote_id != '') {
-                    $url .= '&vote='.$vote_id;
+                    $url .= '&vote='.$vote_id."#edit";
                 }
             }
         }

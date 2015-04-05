@@ -47,8 +47,8 @@ if ($_SERVER['FRAMADATE_DEVMODE']) {
 
 function smarty_function_poll_url($params, Smarty_Internal_Template $template) {
     $poll_id =  filter_var($params['id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-    $admin =  $params['admin']?true:false;
-    $vote_unique_id = filter_var($params['vote_id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+    $admin =  (isset($params['admin']) && $params['admin']) ? true : false;
+    $vote_unique_id = isset($params['vote_id']) ? filter_var($params['vote_id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]) : '';
 
     // If filter_var fails (i.e.: hack tentative), it will return false. At least no leak is possible from this.
 

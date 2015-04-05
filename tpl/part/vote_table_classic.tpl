@@ -37,7 +37,7 @@
 
                     {if $editingVoteId === $vote->uniqId}
                         <td class="bg-info" style="padding:5px">
-                            <div class="input-group input-group-sm">
+                            <div class="input-group input-group-sm" id="edit">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
                                 <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Genric', 'Your name')}" placeholder="{__('Genric', 'Your name')}" />
                             </div>
@@ -86,7 +86,7 @@
 
                         {/foreach}
 
-                        {if $active && $poll->editable && !$expired}
+                        {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin)}
                             <td>
                                 <a href="{poll_url id=$poll->id vote_id=$vote->uniqId}" class="btn btn-link btn-sm" title="{__('Poll results', 'Edit the line:')|html} {$vote->name|html}">
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span>

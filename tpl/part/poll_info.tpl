@@ -144,6 +144,7 @@
                                     <option value="0"{if $rule_id==0} selected="selected"{/if}>{__('PollInfo', 'Votes and comments are locked')}</option>
                                     <option value="1"{if $rule_id==1} selected="selected"{/if}>{__('PollInfo', 'Votes and comments are open')}</option>
                                     <option value="2"{if $rule_id==2} selected="selected"{/if}>{__('PollInfo', 'Votes are editable')}</option>
+                                    <option value="3"{if $rule_id==3} selected="selected"{/if}>{__('PollInfo', 'Votes are editable solely by their owner.')}</option>
                                 </select>
                                 <span class="input-group-btn">
                                     <button type="submit" name="update_poll_info" value="rules" class="btn btn-success" title="{__('PollInfo', 'Save the new rules')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Save')}</span></button>

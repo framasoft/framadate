@@ -111,6 +111,7 @@
         "Votes and comments are locked": "ES_Les votes et commentaires sont verrouillés",
         "Votes and comments are open": "ES_Les votes et commentaires sont ouverts",
         "Votes are editable": "ES_Les votes sont modifiables",
+        "Votes are editable solely by their owner.": "ES_Les votes sont modifiables uniquement par leur créateur",
         "Save the new rules": "ES_Enregistrer les nouvelles permissions",
         "Cancel the rules edit": "ES_Annuler le changement de permissions",
         "The name is invalid.": "ES_Le nom n'est pas valide."
@@ -144,7 +145,8 @@
         "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Para participar a esta encuesta, introduzca su nombre, elige todas las valores que son apriopriadas y validar su seleccion con el botón verde a la fin de línea.",
         "POLL_LOCKED_WARNING": "ES_L'administrateur a verrouillé ce sondage. Les votes et commentaires sont gelés, il n'est plus possible de participer",
         "The poll is expired, it will be deleted soon.": "ES_Le sondage a expiré, il sera bientôt supprimé.",
-        "Deletion date:": "ES_Date de suppression :"
+        "Deletion date:": "ES_Date de suppression :",
+        "Your vote has been registered successfully, but be careful : regarding this poll options, you need to keep this personal link to edit your own vote : ": "ES_Votre vote a bien été pris en compte, mais faites attention : ce sondage n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; conservez le précieusement ! "
     },
     "adminstuds": {
         "As poll administrator, you can change all the lines of this poll with this button": "En calidad de administrador, Usted puede cambiar todas la líneas de este encuesta con este botón",
