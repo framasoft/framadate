@@ -49,6 +49,7 @@ $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
 $editable = filter_input(INPUT_POST, 'editable', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => EDITABLE_CHOICE_REGEX]]);
 $receiveNewVotes = filter_input(INPUT_POST, 'receiveNewVotes', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
 $receiveNewComments = filter_input(INPUT_POST, 'receiveNewComments', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
+$hidden = filter_input(INPUT_POST, 'hidden', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
 
 
 // On initialise �galement les autres variables
@@ -57,7 +58,7 @@ $error_on_title = false;
 $error_on_name = false;
 $error_on_description = false;
 
-//
+
 if (!empty($_POST[GO_TO_STEP_2])) {
     $_SESSION['form']->title = $title;
     $_SESSION['form']->admin_name = $name;
@@ -66,6 +67,7 @@ if (!empty($_POST[GO_TO_STEP_2])) {
     $_SESSION['form']->editable = $editable;
     $_SESSION['form']->receiveNewVotes = ($receiveNewVotes !== null);
     $_SESSION['form']->receiveNewComments = ($receiveNewComments !== null);
+    $_SESSION['form']->hidden = ($hidden !== null);
 
     if ($config['use_smtp'] == true) {
         if (empty($mail)) {
@@ -175,15 +177,6 @@ if (!empty($_POST[GO_TO_STEP_2])) {
     }
 }
 
-// Checkbox checked ?
-if ($_SESSION['form']->receiveNewVotes) {
-    $receiveNewVotes = 'checked';
-}
-
-if ($_SESSION['form']->receiveNewComments) {
-    $receiveNewComments = 'checked';
-}
-
 $useRemoteUser = USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']);
 
 $smarty->assign('title', $title);
@@ -200,6 +193,7 @@ $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']-
 $smarty->assign('poll_editable', Utils::fromPostOrDefault('editable', $_SESSION['form']->editable));
 $smarty->assign('poll_receiveNewVotes', Utils::fromPostOrDefault('receiveNewVotes', $_SESSION['form']->receiveNewVotes));
 $smarty->assign('poll_receiveNewComments', Utils::fromPostOrDefault('receiveNewComments', $_SESSION['form']->receiveNewComments));
+$smarty->assign('poll_hidden', Utils::fromPostOrDefault('hidden', $_SESSION['form']->hidden));
 $smarty->assign('form', $_SESSION['form']);
 
 $smarty->display('create_poll.tpl');

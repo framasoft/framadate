@@ -48,6 +48,12 @@ class Form
     public $receiveNewComments;
 
     /**
+     * If true, only the poll maker can see the poll's results
+     * @var boolean
+     */
+    public $hidden;
+
+    /**
      * List of available choices
      */
     private $choices;

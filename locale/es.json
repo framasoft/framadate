@@ -193,6 +193,7 @@
         "Voters can modify their vote themselves.": "Los encuentados pueden cambiar su línea ellos mismos.",
         "To receive an email for each new vote.": "Usted quiere recibir un correo electónico cada vez que alguien participe a la encuesta.",
         "To receive an email for each new comment.": "ES_Recevoir un courriel à chaque commentaire.",
+        "Only the poll maker can see the poll's results.": "ES_Seul le créateur du sondage peut voir les résultats.",
         "Go to step 2": "ES_Aller à l'étape 2"
     },
     "Step 2": {
@@ -301,6 +302,7 @@
         "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "ES_Framadate n'est pas installé correctement, lisez le fichier INSTALL pour configurer la base de données avant de continuer.",
         "Failed to save poll": "ES_Echèc de la sauvegarde du sondage",
         "Update vote failed": "ES_Mise à jour du vote échoué",
-        "Adding vote failed": "ES_Ajout d'un vote échoué"
+        "Adding vote failed": "ES_Ajout d'un vote échoué",
+        "You can't create a poll with hidden results with the following edition option : ": "ES_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
     }
 }

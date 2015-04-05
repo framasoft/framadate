@@ -194,6 +194,7 @@
     "Voters can modify their vote themselves.": "Voters can modify their vote themselves.",
     "To receive an email for each new vote.": "To receive an email for each new vote.",
     "To receive an email for each new comment.": "To receive an email for each new comment.",
+    "Only the poll maker can see the poll's results.": "Only the poll maker can see the poll's results.",
     "Go to step 2": "Go to step 2"
   },
   "Step 2": {
@@ -302,6 +303,7 @@
     "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "Framadate is not properly installed, please check the 'INSTALL' to setup the database before continuing.",
     "Failed to save poll": "Failed to save poll",
     "Update vote failed": "Update vote failed",
-    "Adding vote failed": "Adding vote failed"
+    "Adding vote failed": "Adding vote failed",
+    "You can't create a poll with hidden results with the following edition option : ": "You can't create a poll with hidden results with the following edition option : "
   }
 }
