@@ -186,8 +186,10 @@
         "You are in the poll creation section.": "Usted ha eligiendo de crear une nueva encuesta!",
         "Required fields cannot be left blank.": "Gracias por completar los campos con una *.",
         "Poll title": "ES_Titre du sondage",
-        "Voters can modify their vote themselves.": " Los encuentados pueden cambiar su línea ellos mismos.",
-        "To receive an email for each new vote.": " Usted quiere recibir un correo electónico cada vez que alguien participe a la encuesta.",
+        "Votes cannot be modified.": "ES_Aucun vote ne peut être modifié",
+        "All voters can modify any vote.": "ES_Tous les sondés peuvent modifier tous les votes",
+        "Voters can modify their vote themselves.": "Los encuentados pueden cambiar su línea ellos mismos.",
+        "To receive an email for each new vote.": "Usted quiere recibir un correo electónico cada vez que alguien participe a la encuesta.",
         "To receive an email for each new comment.": "ES_Recevoir un courriel à chaque commentaire.",
         "Go to step 2": "ES_Aller à l'étape 2"
     },

@@ -18,6 +18,8 @@
  */
 namespace Framadate;
 
+use Framadate\Editable;
+
 class Form
 {
 
@@ -31,6 +33,7 @@ class Form
 
     /**
      * Tells if users can modify their choices.
+     * @var \Framadate\Editable
      */
     public $editable;
 
@@ -50,7 +53,7 @@ class Form
     private $choices;
 
     public function __construct(){
-        $this->editable = true;
+        $this->editable = Editable::NOT_EDITABLE;
         $this->clearChoices();
     }
 

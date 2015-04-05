@@ -90,9 +90,17 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
-                        <div class="checkbox">
+                        <div class="radio">
                             <label>
-                                <input type=checkbox name="editable" {if $poll_editable}checked{/if} id="editable">
+                                <input type="radio" name="editable" {if empty($poll_editable) or $poll_editable==constant("Framadate\Editable::NOT_EDITABLE")}checked{/if} value="{constant("Framadate\Editable::NOT_EDITABLE")}">
+                                {__('Step 1', 'Votes cannot be modified.')}
+                            </label>
+                            <label>
+                                <input type="radio" name="editable" {if $poll_editable==constant("Framadate\Editable::EDITABLE_BY_ALL")}checked{/if} value="{constant("Framadate\Editable::EDITABLE_BY_ALL")}">
+                                {__('Step 1', 'All voters can modify any vote.')}
+                            </label>
+                            <label>
+                                <input type="radio" name="editable" {if $poll_editable==constant("Framadate\Editable::EDITABLE_BY_OWN")}checked{/if} value="{constant("Framadate\Editable::EDITABLE_BY_OWN")}">
                                 {__('Step 1', 'Voters can modify their vote themselves.')}
                             </label>
                         </div>

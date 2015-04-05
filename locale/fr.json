@@ -186,7 +186,9 @@
     "You are in the poll creation section.": "Vous avez choisi de créer un nouveau sondage.",
     "Required fields cannot be left blank.": "Merci de remplir les champs obligatoires, marqués d'une *.",
     "Poll title": "Titre du sondage",
-    "Voters can modify their vote themselves.": "Vous souhaitez que les sondés puissent modifier leur ligne eux-mêmes.",
+    "Votes cannot be modified.": "Aucun vote ne peut être modifié",
+    "All voters can modify any vote.": "Tous les sondés peuvent modifier tous les votes",
+    "Voters can modify their vote themselves.": "Chaque sondé peut modifier son propre vote.",
     "To receive an email for each new vote.": "Recevoir un courriel à chaque participation d'un sondé.",
     "To receive an email for each new comment.": "Recevoir un courriel à chaque commentaire.",
     "Go to step 2": "Aller à l'étape 2"
