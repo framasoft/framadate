@@ -15,7 +15,7 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-$(document).ready(function() {
+$(document).ready(function () {
     var init_datepicker = function () {
         $('.input-group.date').datepicker({
             format: "dd/mm/yyyy",
@@ -25,16 +25,19 @@ $(document).ready(function() {
             language: lang,
             todayHighlight: true,
             beforeShowDay: function (date) {
-                var $selected_days = [];
+                // Retrieve selected dates from text fields
+                var selected_days = [];
                 $('#selected-days').find('input[id^="day"]').each(function () {
                     if ($(this).val() != '') {
-                        $selected_days.push($(this).val());
+                        selected_days.push($(this).val());
                     }
                 });
-                for (var i = 0; i < $selected_days.length; i++) {
-                    var $selected_date = $selected_days[i].split('/');
 
-                    if (date.getFullYear() == $selected_date[2] && (date.getMonth() + 1) == $selected_date[1] && date.getDate() == $selected_date[0]) {
+                // Disable selected dates in DatePicker
+                for (var i = 0; i < selected_days.length; i++) {
+                    var selected_date = selected_days[i].split('/');
+
+                    if (date.getFullYear() == selected_date[2] && (date.getMonth() + 1) == selected_date[1] && date.getDate() == selected_date[0]) {
                         return {
                             classes: 'disabled selected'
                         };
@@ -44,16 +47,26 @@ $(document).ready(function() {
         });
     };
 
+    $(document).on('click', '.input-group.date .input-group-addon', function () {
+        // Re-init datepicker config before displaying
+        init_datepicker();
+        $(this).parent().datepicker('show');
+
+        // Trick to refresh calendar
+        $('.datepicker-days .prev').trigger('click');
+        $('.datepicker-days .next').trigger('click');
+    });
+
     // Complete the date fields when use partialy fill it (eg: 15/01 could become 15/01/2016)
 
-    var leftPad = function(text, pad) {
+    var leftPad = function (text, pad) {
         return text ? pad.substring(0, pad.length - text.length) + text : text;
     };
 
     $(document).on('change', '.input-group.date input', function () {
         // Complete field if needed
         var val = $(this).val();
-        var capture = /([0-9]+)(?:\/([0-9]+))?/.exec(val);
+        var capture = /^([0-9]+)(?:\/([0-9]+))?$/.exec(val);
 
         if (capture) {
             var inputDay = leftPad(capture[1], "00"); // 5->05, 15->15
