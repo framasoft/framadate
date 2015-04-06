@@ -59,7 +59,7 @@ class Form
     private $choices;
 
     public function __construct(){
-        $this->editable = Editable::NOT_EDITABLE;
+        $this->editable = Editable::EDITABLE_BY_ALL;
         $this->clearChoices();
     }
 
