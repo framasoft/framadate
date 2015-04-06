@@ -118,14 +118,41 @@
         </div>
         {if $admin}
             <div class="row">
-                <div class="col-md-4 col-md-offset-8" >
+                <div class="col-md-4 col-md-offset-4" >
+                    <div id="poll-hidden-form">
+                        {if $poll->hidden}
+                            {$hidden_icon = "glyphicon-eye-close"}
+                            {$hidden_text = __('PollInfo', 'Results are hidden.')}
+                        {else}
+                            {$hidden_icon = "glyphicon-eye-open"}
+                            {$hidden_text = __('PollInfo', 'Results are visible.')}
+                        {/if}
+                        <p class=""><span class="glyphicon {$hidden_icon}"> </span> {$hidden_text}<button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
+                        <div class="hidden js-poll-hidden">
+                            <div class="input-group">
+                                <input type="checkbox" id="hidden" name="hidden" {if $poll->hidden}checked="checked"{/if}/>
+                                <label for="hidden">{__('PollInfo', 'Results are hidden.')}</label>
+                                <span class="input-group-btn">
+                                    <button type="submit" name="update_poll_info" value="hidden" class="btn btn-success" title="{__('PollInfo', 'Save the new rules')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Save')}</span></button>
+                                    <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the rules edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{__('Generic', 'Cancel')}</span></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" >
                     <div id="poll-rules-form">
                         {if $poll->active}
                             {if $poll->editable}
-                                {$rule_id = 2}
+                                {if $poll->editable == constant("Framadate\Editable::EDITABLE_BY_ALL")}
+                                    {$rule_id = 2}
+                                    {$rule_txt = __('PollInfo', 'Votes are editable')}
+                                {else}
+                                    {$rule_id = 3}
+                                    {$rule_txt = __('PollInfo', 'Votes are editable solely by their owner.')}
+                                {/if}
                                 {$rule_icon = '<span class="glyphicon glyphicon-edit"></span>'}
-                                {$rule_txt = __('PollInfo', 'Votes are editable')}
-                            {else}
+                                {else}
                                 {$rule_id = 1}
                                 {$rule_icon = '<span class="glyphicon glyphicon-check"></span>'}
                                 {$rule_txt = __('PollInfo', 'Votes and comments are open')}

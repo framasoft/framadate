@@ -115,7 +115,9 @@
     "Votes are editable solely by their owner.": "Votes are editable solely by their owner",
     "Save the new rules": "Save the new rules",
     "Cancel the rules edit": "Cancel the rules edit",
-    "The name is invalid.": "The name is invalid."
+    "The name is invalid.": "The name is invalid.",
+    "Results are hidden.": "Results are hidden.",
+    "Results are visible.": "Results are visible."
   },
   "Poll results": {
     "Votes of the poll": "Votes of the poll",

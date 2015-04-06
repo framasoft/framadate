@@ -114,7 +114,9 @@
         "Votes are editable solely by their owner.": "ES_Les votes sont modifiables uniquement par leur créateur",
         "Save the new rules": "ES_Enregistrer les nouvelles permissions",
         "Cancel the rules edit": "ES_Annuler le changement de permissions",
-        "The name is invalid.": "ES_Le nom n'est pas valide."
+        "The name is invalid.": "ES_Le nom n'est pas valide.",
+        "Results are hidden.": "ES_Les résultats sont cachés.",
+        "Results are visible.": "ES_Les résultats sont visibles."
     },
     "Poll results": {
         "Votes of the poll": "ES_Votes du sondage",

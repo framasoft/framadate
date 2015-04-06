@@ -114,7 +114,9 @@
         "Votes are editable solely by their owner.": "DE_Les votes sont modifiables uniquement par leur créateur",
         "Save the new rules": "Neue Regeln speichern",
         "Cancel the rules edit": "Neue Regeln nicht speichern",
-        "The name is invalid.": "Der Name ist ungültig."
+        "The name is invalid.": "Der Name ist ungültig.",
+        "Results are hidden.": "DE_Les résultats sont cachés.",
+        "Results are visible.": "DE_Les résultats sont visibles."
     },
     "Poll results": {
         "Votes of the poll": "Abstimmungen der Umfrage ",
@@ -302,7 +304,7 @@
         "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "Framadate ist nicht richtig installiert, überprüfen Sie bitte die Schaltfläche \"INSTALL\", um das Setup der Datenbank, bevor Sie fortfahren.",
         "Failed to save poll": "Fehlgeschlagen Umfrage sparen",
         "Update vote failed": "Update vote failed",
-        "Adding vote failed": "Adding vote failed"
+        "Adding vote failed": "Adding vote failed",
         "You can't create a poll with hidden results with the following edition option : ": "DE_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
     }
 }

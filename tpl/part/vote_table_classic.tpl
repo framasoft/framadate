@@ -2,7 +2,7 @@
     {$best_choices = [0]}
 {/if}
 
-<h3>{__('Poll results', 'Votes of the poll')}</h3>
+<h3>{__('Poll results', 'Votes of the poll')} {if $hidden}<i>({__('PollInfo', 'Results are hidden.')})</i>{/if}</h3>
 
 <div id="tableContainer" class="tableContainer">
     <form action="{poll_url id=$poll_id}" method="POST"  id="poll_form">
@@ -69,7 +69,7 @@
                             </td>
                         {/foreach}
                         <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
-                    {else}
+                    {elseif !$hidden}
                         {* Voted line *}
 
                         <th class="bg-info">{$vote->name|html}</th>
@@ -142,55 +142,58 @@
                 </tr>
             {/if}
 
-            {* Line displaying best moments *}
-            {$count_bests = 0}
-            {$max = max($best_choices)}
-            {if $max > 0}
-                <tr id="addition">
-                    <td>{__('Poll results', 'Addition')}</td>
-                    {foreach $best_choices as $best_choice}
-                        {if $max == $best_choice}
-                            {$count_bests = $count_bests +1}
-                            <td><span class="glyphicon glyphicon-star text-warning"></span>{$best_choice|html}</td>
-                        {elseif $best_choice > 0}
-                            <td>{$best_choice|html}</td>
-                        {else}
-                            <td></td>
-                        {/if}
-                    {/foreach}
-                </tr>
+            {if !$hidden}
+                {* Line displaying best moments *}
+                {$count_bests = 0}
+                {$max = max($best_choices)}
+                {if $max > 0}
+                    <tr id="addition">
+                        <td>{__('Poll results', 'Addition')}</td>
+                        {foreach $best_choices as $best_choice}
+                            {if $max == $best_choice}
+                                {$count_bests = $count_bests +1}
+                                <td><span class="glyphicon glyphicon-star text-warning"></span>{$best_choice|html}</td>
+                            {elseif $best_choice > 0}
+                                <td>{$best_choice|html}</td>
+                            {else}
+                                <td></td>
+                            {/if}
+                        {/foreach}
+                    </tr>
+                {/if}
             {/if}
             </tbody>
         </table>
     </form>
 </div>
 
-{* Best votes listing *}
-
-{$max = max($best_choices)}
-{if $max > 0}
-    <div class="row">
-    {if $count_bests == 1}
-    <div class="col-sm-12"><h3>{__('Poll results', 'Best choice')}</h3></div>
-    <div class="col-sm-6 col-sm-offset-3 alert alert-success">
-        <p><span class="glyphicon glyphicon-star text-warning"></span>{__('Poll results', 'The best choice at this time is:')}</p>
-        {elseif $count_bests > 1}
-        <div class="col-sm-12"><h3>{__('Poll results', 'Best choices')}</h3></div>
+{if !$hidden}
+    {* Best votes listing *}
+    {$max = max($best_choices)}
+    {if $max > 0}
+        <div class="row">
+        {if $count_bests == 1}
+        <div class="col-sm-12"><h3>{__('Poll results', 'Best choice')}</h3></div>
         <div class="col-sm-6 col-sm-offset-3 alert alert-success">
-            <p><span class="glyphicon glyphicon-star text-warning"></span>{__('Poll results', 'The bests choices at this time are:')}</p>
-            {/if}
+            <p><span class="glyphicon glyphicon-star text-warning"></span>{__('Poll results', 'The best choice at this time is:')}</p>
+            {elseif $count_bests > 1}
+            <div class="col-sm-12"><h3>{__('Poll results', 'Best choices')}</h3></div>
+            <div class="col-sm-6 col-sm-offset-3 alert alert-success">
+                <p><span class="glyphicon glyphicon-star text-warning"></span>{__('Poll results', 'The bests choices at this time are:')}</p>
+                {/if}
 
 
-            {$i = 0}
-            <ul style="list-style:none">
-                {foreach $slots as $slot}
-                    {if $best_choices[$i] == $max}
-                        <li><strong>{$slot->title|html|markdown:true}</strong></li>
-                    {/if}
-                    {$i = $i+1}
-                {/foreach}
-            </ul>
-            <p>{__('Generic', 'with')} <b>{$max|html}</b> {if $max==1}{__('Generic', 'vote')}{else}{__('Generic', 'votes')}{/if}.</p>
+                {$i = 0}
+                <ul style="list-style:none">
+                    {foreach $slots as $slot}
+                        {if $best_choices[$i] == $max}
+                            <li><strong>{$slot->title|html|markdown:true}</strong></li>
+                        {/if}
+                        {$i = $i+1}
+                    {/foreach}
+                </ul>
+                <p>{__('Generic', 'with')} <b>{$max|html}</b> {if $max==1}{__('Generic', 'vote')}{else}{__('Generic', 'votes')}{/if}.</p>
+            </div>
         </div>
-    </div>
+    {/if}
 {/if}

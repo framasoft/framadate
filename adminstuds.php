@@ -70,7 +70,7 @@ if (!$poll) {
 
 if (isset($_POST['update_poll_info'])) {
     $updated = false;
-    $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'description', 'rules', 'expiration_date', 'name']);
+    $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'description', 'rules', 'expiration_date', 'name', 'hidden']);
 
     // Update the right poll field
     if ($field == 'title') {
@@ -126,6 +126,13 @@ if (isset($_POST['update_poll_info'])) {
         $admin_name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
         if ($admin_name) {
             $poll->admin_name = $admin_name;
+            $updated = true;
+        }
+    } elseif ($field == 'hidden') {
+        $hidden = filter_input(INPUT_POST, 'hidden', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
+        $hidden = $hidden==null?false:true;
+        if ($hidden != $poll->hidden) {
+            $poll->hidden = $hidden;
             $updated = true;
         }
     }
