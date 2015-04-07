@@ -52,7 +52,7 @@ $poll_to_delete = null;
 $logService = new LogService();
 $pollService = new PollService($connect, $logService);
 $adminPollService = new AdminPollService($connect, $pollService, $logService);
-$superAdminService = new SuperAdminService($connect);
+$superAdminService = new SuperAdminService();
 $securityService = new SecurityService();
 
 /* GET */

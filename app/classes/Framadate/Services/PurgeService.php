@@ -1,6 +1,7 @@
 <?php
 namespace Framadate\Services;
 use Framadate\FramaDB;
+use Framadate\Repositories\RepositoryFactory;
 
 /**
  * This service helps to purge data.
@@ -9,12 +10,18 @@ use Framadate\FramaDB;
  */
 class PurgeService {
 
-    private $connect;
     private $logService;
+    private $pollRepository;
+    private $slotRepository;
+    private $voteRepository;
+    private $commentRepository;
 
     function __construct(FramaDB $connect, LogService $logService) {
-        $this->connect = $connect;
         $this->logService = $logService;
+        $this->pollRepository = RepositoryFactory::pollRepository();
+        $this->slotRepository = RepositoryFactory::slotRepository();
+        $this->voteRepository = RepositoryFactory::voteRepository();
+        $this->commentRepository = RepositoryFactory::commentRepository();
     }
 
     /**
@@ -23,7 +30,7 @@ class PurgeService {
      * @return bool true is action succeeded
      */
     function purgeOldPolls() {
-        $oldPolls = $this->connect->findOldPolls();
+        $oldPolls = $this->pollRepository->findOldPolls();
         $count = count($oldPolls);
 
         if ($count > 0) {
@@ -50,16 +57,16 @@ class PurgeService {
     function purgePollById($poll_id) {
         $done = true;
 
-        $this->connect->beginTransaction();
-        $done &= $this->connect->deleteCommentsByPollId($poll_id);
-        $done &= $this->connect->deleteVotesByPollId($poll_id);
-        $done &= $this->connect->deleteSlotsByPollId($poll_id);
-        $done &= $this->connect->deletePollById($poll_id);
+        $this->pollRepository->beginTransaction();
+        $done &= $this->commentRepository->deleteByPollId($poll_id);
+        $done &= $this->voteRepository->deleteByPollId($poll_id);
+        $done &= $this->slotRepository->deleteByPollId($poll_id);
+        $done &= $this->pollRepository->deleteById($poll_id);
 
         if ($done) {
-            $this->connect->commit();
+            $this->pollRepository->commit();
         } else {
-            $this->connect->rollback();
+            $this->pollRepository->rollback();
         }
 
         return $done;

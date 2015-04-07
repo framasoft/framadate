@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 use Framadate\FramaDB;
+use Framadate\Repositories\RepositoryFactory;
 
 // Autoloading of dependencies with Composer
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -41,4 +42,5 @@ require_once __DIR__ . '/smarty.php';
 
 // Connection to database
 $connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
+RepositoryFactory::init($connect);
 $err = 0;

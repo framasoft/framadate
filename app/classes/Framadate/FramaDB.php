@@ -328,5 +328,8 @@ SELECT p.*,
         $prepared->closeCursor();
 
         return $result->nb;
+}
+    public function lastInsertId() {
+        return $this->pdo->lastInsertId();
     }
 }

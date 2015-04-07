@@ -21,7 +21,6 @@ use Framadate\Services\AdminPollService;
 use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Message;
-use Framadate\Utils;
 use Framadate\Editable;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -113,7 +112,6 @@ if (isset($_POST['update_poll_info'])) {
         }
     } elseif ($field == 'expiration_date') {
         $expiration_date = filter_input(INPUT_POST, 'expiration_date', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]+[-/][0-9]+[-/][0-9]+#']]);
-        $expiration_date = strtotime($expiration_date);
         if ($expiration_date) {
             $poll->end_date = $expiration_date;
             $updated = true;

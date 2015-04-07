@@ -28,6 +28,10 @@ class InputService {
     /**
      * This method filter an array calling "filter_var" on each items.
      * Only items validated are added at their own indexes, the others are not returned.
+     * @param array $arr The array to filter
+     * @param int $type The type of filter to apply
+     * @param array|null $options The associative array of options
+     * @return array The filtered array
      */
     function filterArray(array $arr, $type, $options = null) {
         $newArr = [];
