@@ -1,6 +1,6 @@
 .htaccess
 .htpasswd
-admin/logs_studs.txt
+admin/stdout.log
 composer.phar
 framanav
 nav
