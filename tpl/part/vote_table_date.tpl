@@ -85,6 +85,7 @@
                         <td class="bg-info" style="padding:5px">
                             <div class="input-group input-group-sm" id="edit">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
                                 <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                             </div>
                         </td>
