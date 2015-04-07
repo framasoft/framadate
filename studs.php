@@ -136,7 +136,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             if ($poll->editable == Editable::EDITABLE_BY_OWN) {
                 $editedVoteUniqId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
                 $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqId);
-                $message = new Message('success', __('studs', "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:"), $urlEditVote);
+                $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
             } else {
                 $message = new Message('success', __('studs', 'Update vote succeeded'));
             }
@@ -162,7 +162,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         if ($result) {
             if ($poll->editable == Editable::EDITABLE_BY_OWN) {
                 $urlEditVote = Utils::getUrlSondage($poll_id, false, $result->uniqId);
-                $message = new Message('success', __('studs', "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:"), $urlEditVote);
+                $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
             } else {
                 $message = new Message('success', __('studs', 'Update vote succeeded'));
             }
