@@ -35,7 +35,7 @@ $smarty->assign('langs', $ALLOWED_LANGUAGES);
 $smarty->assign('date_format', $date_format);
 
 // Dev Mode
-if ($_SERVER['FRAMADATE_DEVMODE']) {
+if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {
     $smarty->force_compile = true;
     $smarty->compile_check = true;
 
