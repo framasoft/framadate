@@ -16,20 +16,7 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate;
 
 include_once __DIR__ . '/app/inc/init.php';
 
-include_once('bandeaux.php');
-
-Utils::print_header ( _('Maintenance') );
-bandeau_titre( _('Maintenance') );
-
-echo '
-    <div class="alert alert-warning">
-        <h2>'. _('The application') .NOMAPPLICATION . _('is currently under maintenance. ') . '</h2>'
-        '<p>' . _('Thank you for your understanding.') . '</p>
-    </div>'."\n";
-
-// Affichage du bandeau de pied
-bandeau_pied();
+$smarty->display('maintenance.tpl');

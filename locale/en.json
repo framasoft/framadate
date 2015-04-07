@@ -50,6 +50,11 @@
     "Select the language": "Select the language",
     "Change the language": "Change the language"
   },
+  "Maintenance": {
+    "The application": "The application",
+    "is currently under maintenance.": "is currently under maintenance.",
+    "Thank you for your understanding.": "Thank you for your understanding."
+  },
   "Homepage": {
     "Schedule an event": "Schedule an event",
     "Make a classic poll": "Make a classic poll"
