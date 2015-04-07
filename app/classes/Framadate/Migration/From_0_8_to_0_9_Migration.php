@@ -37,7 +37,7 @@ class From_0_8_to_0_9_Migration implements Migration {
      * @return string The description of the migration class
      */
     function description() {
-        return "From 0.8 to 0.9";
+        return 'From 0.8 to 0.9';
     }
 
     /**

@@ -37,7 +37,7 @@ class AddColumn_receiveNewComments_For_0_9 implements Migration {
      * @return string The description of the migration class
      */
     function description() {
-        return "Add column \"receiveNewComments\" for version 0.9";
+        return 'Add column "receiveNewComments" for version 0.9';
     }
 
     /**
