@@ -43,7 +43,7 @@ $pollService = new PollService($connect, $logService);
 /* ---- */
 
 if (!empty($_GET['poll'])) {
-    $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^[a-z0-9]+$/']]);
+    $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
     $poll = $pollService->findById($poll_id);
 }
 

@@ -78,9 +78,7 @@ class PollService {
     function addVote($poll_id, $name, $choices) {
         $choices = implode($choices);
         $token = $this->random(16);
-        return $this->connect->insertVote($poll_id, $name, $choices, $token);
-
-        return $this->voteRepository->insert($poll_id, $name, $choices);
+        return $this->voteRepository->insert($poll_id, $name, $choices, $token);
     }
 
     function addComment($poll_id, $name, $comment) {
@@ -89,10 +87,6 @@ class PollService {
         } else {
             return $this->commentRepository->insert($poll_id, $name, $comment);
         }
-    }
-
-    public function countVotesByPollId($poll_id) {
-        return $this->voteRepository->countByPollId($poll_id);
     }
 
     /**

@@ -23,15 +23,16 @@ class VoteRepository extends AbstractRepository {
         return $prepared->execute([$insert_position, $insert_position + 1, $poll_id]);
     }
 
-    function insert($poll_id, $name, $choices) {
-        $prepared = $this->prepare('INSERT INTO `' . Utils::table('vote') . '` (poll_id, name, choices) VALUES (?,?,?)');
-        $prepared->execute([$poll_id, $name, $choices]);
+    function insert($poll_id, $name, $choices, $token) {
+        $prepared = $this->prepare('INSERT INTO `' . Utils::table('vote') . '` (poll_id, name, choices, uniqId) VALUES (?,?,?,?)');
+        $prepared->execute([$poll_id, $name, $choices, $token]);
 
         $newVote = new \stdClass();
         $newVote->poll_id = $poll_id;
         $newVote->id = $this->lastInsertId();
         $newVote->name = $name;
         $newVote->choices = $choices;
+        $newVote->uniqId = $token;
 
         return $newVote;
     }
@@ -71,16 +72,6 @@ class VoteRepository extends AbstractRepository {
         $prepared = $this->prepare('UPDATE `' . Utils::table('vote') . '` SET choices = ?, name = ? WHERE poll_id = ? AND id = ?');
 
         return $prepared->execute([$choices, $name, $poll_id, $vote_id]);
-    }
-
-    public function countByPollId($poll_id) {
-        $prepared = $this->prepare('SELECT count(1) nb FROM `' . Utils::table('vote') . '` WHERE poll_id = ?');
-
-        $prepared->execute([$poll_id]);
-        $result = $prepared->fetch();
-        $prepared->closeCursor();
-
-        return $result->nb;
     }
 
 }
