@@ -48,7 +48,7 @@ if (!empty($_GET['poll'])) {
 }
 
 if (!$poll) {
-    $smarty->assign('error', _('This poll doesn\'t exist !'));
+    $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
     $smarty->display('error.tpl');
     exit;
 }
@@ -86,13 +86,13 @@ foreach ($votes as $vote) {
     foreach ($choices as $choice) {
         switch ($choice) {
             case 0:
-                $text = _('No');
+                $text = __('Generic', 'No');
                 break;
             case 1:
-                $text = _('Ifneedbe');
+                $text = __('Generic', 'Ifneedbe');
                 break;
             case 2:
-                $text = _('Yes');
+                $text = __('Generic', 'Yes');
                 break;
             default:
                 $text = 'unkown';

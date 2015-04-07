@@ -148,7 +148,8 @@
         "POLL_LOCKED_WARNING": "Die Administration gesperrt diese Umfrage. Bewertungen und Kommentare werden eingefroren, es ist nicht mehr möglich, teilzunehmen",
         "The poll is expired, it will be deleted soon.": "Die Umfrage ist abgelaufen, es wird bald gelöscht werden.",
         "Deletion date:": "Löschdatum:",
-        "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "DE_Votre vote a bien été pris en compte, mais faites attention : ce sondage n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; conservez le précieusement ! "
+        "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "DE_Votre vote a bien été pris en compte, mais faites attention : ce sondage n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; conservez le précieusement ! ",
+        "Update vote succeeded": "Update Abstimmung gelungen"
     },
     "adminstuds": {
         "As poll administrator, you can change all the lines of this poll with this button": "Als Administrator der Umfrage, können Sie alle Zeilen der Umfrage über diesen Button ändern",
@@ -244,6 +245,7 @@
     },
     "Admin": {
         "Back to administration": "Zurück zur Verwaltung",
+        "Administration": "Verwaltung",
         "Polls": "Umfragen",
         "Migration": "Migration",
         "Purge": "Säuberung",
@@ -267,6 +269,7 @@
         "Failed:": "fehlgeschlagen:",
         "Skipped:": "übersprungene:",
         "Pages:": "Seiten:",
+        "Purged:": "gespült :",
         "Confirm removal of the poll": "Bestätigen Sie die Löschung ihrer Umfrage",
         "polls in the database at this time": "Umfragen derzeit in der Datenbank",
         "Purge the polls": "TRANSLATE_ Purge the polls"
@@ -290,14 +293,17 @@
     "Error": {
         "Error!": "Fehler!",
         "Enter a title": "Titel eingeben",
+        "Something is going wrong...": "Etwas falsch läuft...",
         "Something is wrong with the format": "Something is wrong with the format",
         "Enter an email address": "Sie müssen eine E-Mail-Adresse eingeben",
         "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.": "Die Adresse ist nicht korrekt! Sie sollten eine funktionierende E-Mail-Adresse angeben, um den Link zu ihrer Umfrage zu erhalten",
+        "There is a problem with your choices": "Es gibt ein Problem mit der Auswahl",
         "You haven't filled the first section of the poll creation.": "Sie haben den ersten Teil der Umfrageerstellung nicht ausgefüllt.",
         "Javascript is disabled on your browser. Its activation is required to create a poll.": "Javascript ist in Ihrem Browser deaktiviert. Seine Aktivierung ist erforderlich, um eine Umfrage zu erstellen.",
         "Cookies are disabled on your browser. Theirs activation is required to create a poll.": "Cookies werden auf Ihrem Browser deaktiviert. Deren Aktivierung ist erforderlich, um eine Umfrage zu erstellen.",
         "This poll doesn't exist !": "Diese Umfrage existiert nicht!",
         "Enter a name": "Geben Sie einen Namen ein",
+        "Name is incorrect": "Name ist falsch",
         "The name you've chosen already exist in this poll!": "Der von Ihnen eingegebenen Name existiert bereits in dieser Umfrage",
         "Enter a name and a comment!": "Geben Sie einen Namen und ein Kommentar ein!",
         "Failed to insert the comment!": "Einfügen des Kommentars gescheitert!",
@@ -305,6 +311,7 @@
         "Failed to save poll": "Fehlgeschlagen Umfrage sparen",
         "Update vote failed": "Update vote failed",
         "Adding vote failed": "Adding vote failed",
+        "Comment failed": "Kommentar gescheitert",
         "You can't create a poll with hidden results with the following edition option:": "DE_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
     }
 }

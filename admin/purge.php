@@ -46,7 +46,7 @@ $action = filter_input(INPUT_POST, 'action', FILTER_VALIDATE_REGEXP, ['options' 
 
 if ($action === 'purge' && $securityService->checkCsrf('admin', $_POST['csrf'])) {
     $count = $purgeService->purgeOldPolls();
-    $message = _('Purged:') . ' ' . $count;
+    $message = __('Admin', 'Purged:') . ' ' . $count;
 }
 
 // Assign data to template

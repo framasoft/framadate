@@ -66,22 +66,22 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
 
     if ($poll->receiveNewVotes && (!isset($_SESSION['mail_sent'][$poll->id]) || $_SESSION['mail_sent'][$poll->id] !== true)) {
 
-        $subject = '[' . NOMAPPLICATION . '] ' . _('Poll\'s participation') . ' : ' . $poll->title;
+        $subject = '[' . NOMAPPLICATION . '] ' . __('Mail', 'Poll\'s participation') . ' : ' . $poll->title;
 
         $message = $name . ' ';
         switch ($type) {
             case UPDATE_VOTE:
-                $message .= _('updated a vote.\nYou can find your poll at the link') . " :\n\n";
+                $message .= __('Mail', "updated a vote.\nYou can find your poll at the link") . " :\n\n";
                 break;
             case ADD_VOTE:
-                $message .= _('filled a vote.\nYou can find your poll at the link') . " :\n\n";
+                $message .= __('Mail', "filled a vote.\nYou can find your poll at the link") . " :\n\n";
                 break;
             case ADD_COMMENT:
-                $message .= _('wrote a comment.\nYou can find your poll at the link') . " :\n\n";
+                $message .= __('Mail', "wrote a comment.\nYou can find your poll at the link") . " :\n\n";
                 break;
         }
         $message .= Utils::getUrlSondage($poll->admin_id, true) . "\n\n";
-        $message .= _('Thanks for your confidence.') . "\n" . NOMAPPLICATION;
+        $message .= __('Mail', 'Thanks for your confidence.') . "\n" . NOMAPPLICATION;
 
         $mailService->send($poll->admin_mail, $subject, $message);
 
@@ -100,7 +100,7 @@ if (!empty($_GET['poll'])) {
 }
 
 if (!$poll) {
-    $smarty->assign('error', _('This poll doesn\'t exist !'));
+    $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
     $smarty->display('error.tpl');
     exit;
 }
@@ -123,10 +123,10 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
     if (empty($editedVote)) {
-        $message = new Message('danger', _('Something is going wrong...'));
+        $message = new Message('danger', __('Error', 'Something is going wrong...'));
     }
     if (count($choices) != count($_POST['choices'])) {
-        $message = new Message('danger', _('There is a problem with your choices.'));
+        $message = new Message('danger', __('Error', 'There is a problem with your choices'));
     }
 
     if ($message == null) {
@@ -138,11 +138,11 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
                 $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqId);
                 $message = new Message('success', __('studs', "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:"), $urlEditVote);
             } else {
-                $message = new Message('success', _('Update vote successfully.'));
+                $message = new Message('success', __('studs', 'Update vote succeeded'));
             }
             sendUpdateNotification($poll, $mailService, $name, UPDATE_VOTE);
         } else {
-            $message = new Message('danger', _('Update vote failed.'));
+            $message = new Message('danger', __('Error', 'Update vote failed'));
         }
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
@@ -150,10 +150,10 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
     if (empty($name)) {
-        $message = new Message('danger', _('Name is incorrect.'));
+        $message = new Message('danger', __('Error', 'Name is incorrect'));
     }
     if (count($choices) != count($_POST['choices'])) {
-        $message = new Message('danger', _('There is a problem with your choices.'));
+        $message = new Message('danger', __('There is a problem with your choices'));
     }
 
     if ($message == null) {
@@ -164,11 +164,11 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
                 $urlEditVote = Utils::getUrlSondage($poll_id, false, $result->uniqId);
                 $message = new Message('success', __('studs', "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:"), $urlEditVote);
             } else {
-                $message = new Message('success', _('Update vote successfully.'));
+                $message = new Message('success', __('studs', 'Update vote succeeded'));
             }
             sendUpdateNotification($poll, $mailService, $name, ADD_VOTE);
         } else {
-            $message = new Message('danger', _('Update vote failed.'));
+            $message = new Message('danger', __('Error', 'Update vote failed'));
         }
     }
 }
@@ -182,17 +182,17 @@ if (isset($_POST['add_comment'])) {
     $comment = strip_tags($_POST['comment']);
 
     if (empty($name)) {
-        $message = new Message('danger', _('Name is incorrect.'));
+        $message = new Message('danger', __('Error', 'Name is incorrect'));
     }
 
     if ($message == null) {
         // Add comment
         $result = $pollService->addComment($poll_id, $name, $comment);
         if ($result) {
-            $message = new Message('success', _('Comment added.'));
+            $message = new Message('success', __('Comments', 'Comment added'));
             sendUpdateNotification($poll, $mailService, $name, ADD_COMMENT);
         } else {
-            $message = new Message('danger', _('Comment failed.'));
+            $message = new Message('danger', __('Error', 'Comment failed'));
         }
     }
 
@@ -206,7 +206,7 @@ $comments = $pollService->allCommentsByPollId($poll_id);
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('poll', $poll);
-$smarty->assign('title', _('Poll') . ' - ' . $poll->title);
+$smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
 $smarty->assign('expired', strtotime($poll->end_date) < time());
 $smarty->assign('deletion_date', $poll->end_date + PURGE_DELAY * 86400);
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);

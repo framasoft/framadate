@@ -148,7 +148,8 @@
     "POLL_LOCKED_WARNING": "L'administrateur a verrouillé ce sondage. Les votes et commentaires sont gelés, il n'est plus possible de participer",
     "The poll is expired, it will be deleted soon.": "Le sondage a expiré, il sera bientôt supprimé.",
     "Deletion date:": "Date de suppression :",
-    "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Votre vote a bien été pris en compte, mais faites attention : ce sondage n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; conservez le précieusement ! "
+    "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Votre vote a bien été pris en compte, mais faites attention : ce sondage n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; conservez le précieusement ! ",
+    "Update vote succeeded": "Mise à jour du vote réussi"
   },
   "adminstuds": {
     "As poll administrator, you can change all the lines of this poll with this button": "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec ce bouton",
@@ -244,6 +245,7 @@
   },
   "Admin": {
     "Back to administration": "Retour à l'administration",
+    "Administration": "Administration",
     "Polls": "Sondages",
     "Migration": "Migration",
     "Purge": "Purge",
@@ -267,6 +269,7 @@
     "Failed:": "Échoué:",
     "Skipped:": "Passé:",
     "Pages:": "Pages :",
+    "Purged:": "Purgés :",
     "Confirm removal of the poll": "Confirmer la suppression du sondage",
     "polls in the database at this time": "sondages dans la base actuellement",
     "Purge the polls": "Purger les sondages"
@@ -290,14 +293,17 @@
   "Error": {
     "Error!": "Erreur !",
     "Enter a title": "Il faut saisir un titre !",
+    "Something is going wrong...": "Quelque chose ne va pas...",
     "Something is wrong with the format": "Quelque chose ne va pas avec le format",
     "Enter an email address": "Il faut saisir une adresse électronique !",
     "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.": "L'adresse saisie n'est pas correcte ! Il faut une adresse électronique valide (par exemple r.stallman@outlock.com) pour recevoir le lien vers le sondage.",
+    "There is a problem with your choices": "Il y a un problème avec vos choix",
     "You haven't filled the first section of the poll creation.": "Vous n'avez pas renseigné la première page du sondage",
     "Javascript is disabled on your browser. Its activation is required to create a poll.": "Javascript est désactivé sur votre navigateur. Son activation est requise pour la création d'un sondage.",
     "Cookies are disabled on your browser. Theirs activation is required to create a poll.": "Les cookies sont désactivés sur votre navigateur. Leur activation est requise pour la création d'un sondage.",
     "This poll doesn't exist !": "Ce sondage n'existe pas !",
     "Enter a name": "Vous n'avez pas saisi de nom !",
+    "Name is incorrect": "Le nom est pas correct",
     "The name you've chosen already exist in this poll!": "Le nom que vous avez choisi existe déjà !",
     "Enter a name and a comment!": "Merci de remplir les deux champs !",
     "Failed to insert the comment!": "Échec à l'insertion du commentaire !",
@@ -305,6 +311,7 @@
     "Failed to save poll": "Echèc de la sauvegarde du sondage",
     "Update vote failed": "Mise à jour du vote échoué",
     "Adding vote failed": "Ajout d'un vote échoué",
+    "Comment failed": "Commentaire échoué",
     "You can't create a poll with hidden results with the following edition option:": "Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
   }
 }
