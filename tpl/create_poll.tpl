@@ -146,7 +146,7 @@
                             </div>
                             <div id="hiddenWithBadEditionModeError" class="alert alert-danger hidden">
                                 <p>
-                                    {__('Error', "You can't create a poll with hidden results with the following edition option : ")}"{__('Step 1', 'All voters can modify any vote.')}"
+                                    {__('Error', "You can't create a poll with hidden results with the following edition option:")}"{__('Step 1', 'All voters can modify any vote.')}"
                                 </p>
                             </div>
                         </div>

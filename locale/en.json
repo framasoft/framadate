@@ -149,7 +149,7 @@
     "POLL_LOCKED_WARNING": "The administration locked this poll. Votes and comments are frozen, it is no longer possible to participate",
     "The poll is expired, it will be deleted soon.":  "The poll is expired, it will be deleted soon.",
     "Deletion date:": "Deletion date:",
-    "Your vote has been registered successfully, but be careful : regarding this poll options, you need to keep this personal link to edit your own vote : ": "Your vote has been registered successfully, but be careful : regarding this poll options, you need to keep this personal link to edit your own vote : "
+    "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote."
   },
   "adminstuds": {
     "As poll administrator, you can change all the lines of this poll with this button": "As poll administrator, you can change all the lines of this poll with this button",
@@ -306,6 +306,6 @@
     "Failed to save poll": "Failed to save poll",
     "Update vote failed": "Update vote failed",
     "Adding vote failed": "Adding vote failed",
-    "You can't create a poll with hidden results with the following edition option : ": "You can't create a poll with hidden results with the following edition option : "
+    "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following edition option: "
   }
 }

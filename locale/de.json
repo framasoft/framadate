@@ -148,7 +148,7 @@
         "POLL_LOCKED_WARNING": "Die Administration gesperrt diese Umfrage. Bewertungen und Kommentare werden eingefroren, es ist nicht mehr möglich, teilzunehmen",
         "The poll is expired, it will be deleted soon.": "Die Umfrage ist abgelaufen, es wird bald gelöscht werden.",
         "Deletion date:": "Löschdatum:",
-        "Your vote has been registered successfully, but be careful : regarding this poll options, you need to keep this personal link to edit your own vote : ": "DE_Votre vote a bien été pris en compte, mais faites attention : ce sondage n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; conservez le précieusement ! "
+        "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "DE_Votre vote a bien été pris en compte, mais faites attention : ce sondage n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; conservez le précieusement ! "
     },
     "adminstuds": {
         "As poll administrator, you can change all the lines of this poll with this button": "Als Administrator der Umfrage, können Sie alle Zeilen der Umfrage über diesen Button ändern",
@@ -305,6 +305,6 @@
         "Failed to save poll": "Fehlgeschlagen Umfrage sparen",
         "Update vote failed": "Update vote failed",
         "Adding vote failed": "Adding vote failed",
-        "You can't create a poll with hidden results with the following edition option : ": "DE_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
+        "You can't create a poll with hidden results with the following edition option:": "DE_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
     }
 }
