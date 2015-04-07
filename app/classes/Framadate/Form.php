@@ -18,6 +18,8 @@
  */
 namespace Framadate;
 
+use Framadate\Editable;
+
 class Form
 {
 
@@ -31,6 +33,7 @@ class Form
 
     /**
      * Tells if users can modify their choices.
+     * @var \Framadate\Editable
      */
     public $editable;
 
@@ -45,12 +48,18 @@ class Form
     public $receiveNewComments;
 
     /**
+     * If true, only the poll maker can see the poll's results
+     * @var boolean
+     */
+    public $hidden;
+
+    /**
      * List of available choices
      */
     private $choices;
 
     public function __construct(){
-        $this->editable = true;
+        $this->editable = Editable::EDITABLE_BY_ALL;
         $this->clearChoices();
     }
 

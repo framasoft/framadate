@@ -37,7 +37,7 @@ class From_0_0_to_0_8_Migration implements Migration {
      * @return string The description of the migration class
      */
     function description() {
-        return "First installation of the Framadate application (v0.8)";
+        return 'First installation of the Framadate application (v0.8)';
     }
 
     /**

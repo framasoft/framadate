@@ -111,9 +111,12 @@
         "Votes and comments are locked": "ES_Les votes et commentaires sont verrouillés",
         "Votes and comments are open": "ES_Les votes et commentaires sont ouverts",
         "Votes are editable": "ES_Les votes sont modifiables",
+        "Votes are editable solely by their owner.": "ES_Les votes sont modifiables uniquement par leur créateur",
         "Save the new rules": "ES_Enregistrer les nouvelles permissions",
         "Cancel the rules edit": "ES_Annuler le changement de permissions",
-        "The name is invalid.": "ES_Le nom n'est pas valide."
+        "The name is invalid.": "ES_Le nom n'est pas valide.",
+        "Results are hidden.": "ES_Les résultats sont cachés.",
+        "Results are visible.": "ES_Les résultats sont visibles."
     },
     "Poll results": {
         "Votes of the poll": "ES_Votes du sondage",
@@ -144,7 +147,8 @@
         "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Para participar a esta encuesta, introduzca su nombre, elige todas las valores que son apriopriadas y validar su seleccion con el botón verde a la fin de línea.",
         "POLL_LOCKED_WARNING": "ES_L'administrateur a verrouillé ce sondage. Les votes et commentaires sont gelés, il n'est plus possible de participer",
         "The poll is expired, it will be deleted soon.": "ES_Le sondage a expiré, il sera bientôt supprimé.",
-        "Deletion date:": "ES_Date de suppression :"
+        "Deletion date:": "ES_Date de suppression :",
+        "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "ES_Votre vote a bien été pris en compte, mais faites attention : ce sondage n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; conservez le précieusement ! "
     },
     "adminstuds": {
         "As poll administrator, you can change all the lines of this poll with this button": "En calidad de administrador, Usted puede cambiar todas la líneas de este encuesta con este botón",
@@ -186,9 +190,12 @@
         "You are in the poll creation section.": "Usted ha eligiendo de crear une nueva encuesta!",
         "Required fields cannot be left blank.": "Gracias por completar los campos con una *.",
         "Poll title": "ES_Titre du sondage",
-        "Voters can modify their vote themselves.": " Los encuentados pueden cambiar su línea ellos mismos.",
-        "To receive an email for each new vote.": " Usted quiere recibir un correo electónico cada vez que alguien participe a la encuesta.",
+        "Votes cannot be modified.": "ES_Aucun vote ne peut être modifié",
+        "All voters can modify any vote.": "ES_Tous les sondés peuvent modifier tous les votes",
+        "Voters can modify their vote themselves.": "Los encuentados pueden cambiar su línea ellos mismos.",
+        "To receive an email for each new vote.": "Usted quiere recibir un correo electónico cada vez que alguien participe a la encuesta.",
         "To receive an email for each new comment.": "ES_Recevoir un courriel à chaque commentaire.",
+        "Only the poll maker can see the poll's results.": "ES_Seul le créateur du sondage peut voir les résultats.",
         "Go to step 2": "ES_Aller à l'étape 2"
     },
     "Step 2": {
@@ -297,6 +304,7 @@
         "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "ES_Framadate n'est pas installé correctement, lisez le fichier INSTALL pour configurer la base de données avant de continuer.",
         "Failed to save poll": "ES_Echèc de la sauvegarde du sondage",
         "Update vote failed": "ES_Mise à jour du vote échoué",
-        "Adding vote failed": "ES_Ajout d'un vote échoué"
+        "Adding vote failed": "ES_Ajout d'un vote échoué",
+        "You can't create a poll with hidden results with the following edition option:": "ES_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
     }
 }

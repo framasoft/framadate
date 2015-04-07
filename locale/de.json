@@ -111,9 +111,12 @@
         "Votes and comments are locked": "Abstimmungen und Kommentare sind gesperrt",
         "Votes and comments are open": "Abstimmungen und Kommentare sind möglich",
         "Votes are editable": "Die Abstimmungen können geändert werden",
+        "Votes are editable solely by their owner.": "DE_Les votes sont modifiables uniquement par leur créateur",
         "Save the new rules": "Neue Regeln speichern",
         "Cancel the rules edit": "Neue Regeln nicht speichern",
-        "The name is invalid.": "Der Name ist ungültig."
+        "The name is invalid.": "Der Name ist ungültig.",
+        "Results are hidden.": "DE_Les résultats sont cachés.",
+        "Results are visible.": "DE_Les résultats sont visibles."
     },
     "Poll results": {
         "Votes of the poll": "Abstimmungen der Umfrage ",
@@ -144,7 +147,8 @@
         "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Wenn Sie bei dieser Umfrage abstimmen möchten, müssen Sie ihren Namen angeben. Wählen Sie die Optionen, die für Sie am besten passen und bestätigen Sie diese über den Plus-Button am Ende der Zeile.",
         "POLL_LOCKED_WARNING": "Die Administration gesperrt diese Umfrage. Bewertungen und Kommentare werden eingefroren, es ist nicht mehr möglich, teilzunehmen",
         "The poll is expired, it will be deleted soon.": "Die Umfrage ist abgelaufen, es wird bald gelöscht werden.",
-        "Deletion date:": "Löschdatum:"
+        "Deletion date:": "Löschdatum:",
+        "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "DE_Votre vote a bien été pris en compte, mais faites attention : ce sondage n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; conservez le précieusement ! "
     },
     "adminstuds": {
         "As poll administrator, you can change all the lines of this poll with this button": "Als Administrator der Umfrage, können Sie alle Zeilen der Umfrage über diesen Button ändern",
@@ -186,9 +190,12 @@
         "You are in the poll creation section.": "Sie können hier Umfragen erstellen",
         "Required fields cannot be left blank.": "Mit * markierte Felder müssen ausgefüllt sein.",
         "Poll title": "Umfragetitel",
+        "Votes cannot be modified.": "DE_Aucun vote ne peut être modifié",
+        "All voters can modify any vote.": "DE_Tous les sondés peuvent modifier tous les votes",
         "Voters can modify their vote themselves.": "Teilnehmer können ihre Antworten verändern",
         "To receive an email for each new vote.": "Bei jeder neuen Abstimmung eine E-Mail erhalten.",
         "To receive an email for each new comment.": "Um eine E-Mail für jede neue Kommentar zu empfangen.",
+        "Only the poll maker can see the poll's results.": "DE_Seul le créateur du sondage peut voir les résultats.",
         "Go to step 2": "Weiter zum 2. Schritt"
     },
     "Step 2": {
@@ -297,6 +304,7 @@
         "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "Framadate ist nicht richtig installiert, überprüfen Sie bitte die Schaltfläche \"INSTALL\", um das Setup der Datenbank, bevor Sie fortfahren.",
         "Failed to save poll": "Fehlgeschlagen Umfrage sparen",
         "Update vote failed": "Update vote failed",
-        "Adding vote failed": "Adding vote failed"
+        "Adding vote failed": "Adding vote failed",
+        "You can't create a poll with hidden results with the following edition option:": "DE_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
     }
 }

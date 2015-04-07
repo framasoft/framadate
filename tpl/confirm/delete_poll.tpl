@@ -1,7 +1,7 @@
 {extends file='page.tpl'}
 
 {block name=main}
-<form action="{$admin_poll_id|poll_url:true|html}" method="POST">
+<form action="{poll_url id=$admin_poll_id admin=true}" method="POST">
     <div class="alert alert-danger text-center">
         <h2>{__('adminstuds', 'Confirm removal of the poll')}</h2>
         <p><button class="btn btn-default" type="submit" name="cancel">{__('adminstuds', 'Keep the poll')}</button>

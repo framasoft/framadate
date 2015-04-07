@@ -1,6 +1,6 @@
 {$admin = $admin|default:false}
 
-{if $admin}<form action="{$admin_poll_id|poll_url:true}" method="POST">{/if}
+{if $admin}<form action="{poll_url id=$admin_poll_id admin=true}" method="POST">{/if}
     <div class="jumbotron{if $admin} bg-danger{/if}">
         <div class="row">
             <div id="title-form" class="col-md-7">
@@ -90,13 +90,13 @@
 
         <div class="row">
             <div class="form-group form-group {if $admin}col-md-4{else}col-md-6{/if}">
-                <label for="public-link"><a class="public-link" href="{$poll_id|poll_url|html}">{__('PollInfo', 'Public link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
-                <input class="form-control" id="public-link" type="text" readonly="readonly" value="{$poll_id|poll_url}" />
+                <label for="public-link"><a class="public-link" href="{poll_url id=$poll_id}">{__('PollInfo', 'Public link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                <input class="form-control" id="public-link" type="text" readonly="readonly" value="{poll_url id=$poll_id}" />
             </div>
             {if $admin}
                 <div class="form-group col-md-4">
-                    <label for="admin-link"><a class="admin-link" href="{$admin_poll_id|poll_url:true|html}">{__('PollInfo', 'Admin link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
-                    <input class="form-control" id="admin-link" type="text" readonly="readonly" value="{$admin_poll_id|poll_url:true|html}" />
+                    <label for="admin-link"><a class="admin-link" href="{poll_url id=$admin_poll_id admin=true}">{__('PollInfo', 'Admin link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                    <input class="form-control" id="admin-link" type="text" readonly="readonly" value="{poll_url id=$admin_poll_id admin=true}" />
                 </div>
                 <div id="expiration-form" class="form-group col-md-4">
                     <h4 class="control-label">{__('PollInfo', 'Expiration date')}</h4>
@@ -118,14 +118,41 @@
         </div>
         {if $admin}
             <div class="row">
-                <div class="col-md-4 col-md-offset-8" >
+                <div class="col-md-4 col-md-offset-4" >
+                    <div id="poll-hidden-form">
+                        {if $poll->hidden}
+                            {$hidden_icon = "glyphicon-eye-close"}
+                            {$hidden_text = __('PollInfo', 'Results are hidden.')}
+                        {else}
+                            {$hidden_icon = "glyphicon-eye-open"}
+                            {$hidden_text = __('PollInfo', 'Results are visible.')}
+                        {/if}
+                        <p class=""><span class="glyphicon {$hidden_icon}"> </span> {$hidden_text}<button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
+                        <div class="hidden js-poll-hidden">
+                            <div class="input-group">
+                                <input type="checkbox" id="hidden" name="hidden" {if $poll->hidden}checked="checked"{/if}/>
+                                <label for="hidden">{__('PollInfo', 'Results are hidden.')}</label>
+                                <span class="input-group-btn">
+                                    <button type="submit" name="update_poll_info" value="hidden" class="btn btn-success" title="{__('PollInfo', 'Save the new rules')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Save')}</span></button>
+                                    <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the rules edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{__('Generic', 'Cancel')}</span></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" >
                     <div id="poll-rules-form">
                         {if $poll->active}
                             {if $poll->editable}
-                                {$rule_id = 2}
+                                {if $poll->editable == constant("Framadate\Editable::EDITABLE_BY_ALL")}
+                                    {$rule_id = 2}
+                                    {$rule_txt = __('PollInfo', 'Votes are editable')}
+                                {else}
+                                    {$rule_id = 3}
+                                    {$rule_txt = __('PollInfo', 'Votes are editable solely by their owner.')}
+                                {/if}
                                 {$rule_icon = '<span class="glyphicon glyphicon-edit"></span>'}
-                                {$rule_txt = __('PollInfo', 'Votes are editable')}
-                            {else}
+                                {else}
                                 {$rule_id = 1}
                                 {$rule_icon = '<span class="glyphicon glyphicon-check"></span>'}
                                 {$rule_txt = __('PollInfo', 'Votes and comments are open')}
@@ -144,6 +171,7 @@
                                     <option value="0"{if $rule_id==0} selected="selected"{/if}>{__('PollInfo', 'Votes and comments are locked')}</option>
                                     <option value="1"{if $rule_id==1} selected="selected"{/if}>{__('PollInfo', 'Votes and comments are open')}</option>
                                     <option value="2"{if $rule_id==2} selected="selected"{/if}>{__('PollInfo', 'Votes are editable')}</option>
+                                    <option value="3"{if $rule_id==3} selected="selected"{/if}>{__('PollInfo', 'Votes are editable solely by their owner.')}</option>
                                 </select>
                                 <span class="input-group-btn">
                                     <button type="submit" name="update_poll_info" value="rules" class="btn btn-success" title="{__('PollInfo', 'Save the new rules')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Save')}</span></button>

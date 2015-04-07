@@ -22,6 +22,7 @@ use Framadate\Services\InputService;
 use Framadate\Services\MailService;
 use Framadate\Message;
 use Framadate\Utils;
+use Framadate\Editable;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -93,7 +94,9 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
 
 if (!empty($_GET['poll'])) {
     $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-    $poll = $pollService->findById($poll_id);
+    if (strlen($poll_id) === 16) {
+        $poll = $pollService->findById($poll_id);
+    }
 }
 
 if (!$poll) {
@@ -106,8 +109,8 @@ if (!$poll) {
 // A vote is going to be edited
 // -------------------------------
 
-if (!empty($_POST['edit_vote'])) {
-    $editingVoteId = filter_input(INPUT_POST, 'edit_vote', FILTER_VALIDATE_INT);
+if (!empty($_GET['vote'])) {
+    $editingVoteId = filter_input(INPUT_GET, 'vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
 }
 
 // -------------------------------
@@ -130,7 +133,13 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         // Update vote
         $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices);
         if ($result) {
-            $message = new Message('success', _('Update vote successfully.'));
+            if ($poll->editable == Editable::EDITABLE_BY_OWN) {
+                $editedVoteUniqId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+                $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqId);
+                $message = new Message('success', __('studs', "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:"), $urlEditVote);
+            } else {
+                $message = new Message('success', _('Update vote successfully.'));
+            }
             sendUpdateNotification($poll, $mailService, $name, UPDATE_VOTE);
         } else {
             $message = new Message('danger', _('Update vote failed.'));
@@ -151,7 +160,12 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         // Add vote
         $result = $pollService->addVote($poll_id, $name, $choices);
         if ($result) {
-            $message = new Message('success', _('Update vote successfully.'));
+            if ($poll->editable == Editable::EDITABLE_BY_OWN) {
+                $urlEditVote = Utils::getUrlSondage($poll_id, false, $result->uniqId);
+                $message = new Message('success', __('studs', "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:"), $urlEditVote);
+            } else {
+                $message = new Message('success', _('Update vote successfully.'));
+            }
             sendUpdateNotification($poll, $mailService, $name, ADD_VOTE);
         } else {
             $message = new Message('danger', _('Update vote failed.'));
@@ -202,6 +216,7 @@ $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 $smarty->assign('admin', false);
+$smarty->assign('hidden', $poll->hidden);
 $smarty->assign('parameter_name_regex', NAME_REGEX);
 
 $smarty->display('studs.tpl');

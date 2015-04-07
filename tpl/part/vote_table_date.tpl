@@ -2,10 +2,10 @@
     {$best_choices = [0]}
 {/if}
 
-<h3>{__('Poll results', 'Votes of the poll')}</h3>
+<h3>{__('Poll results', 'Votes of the poll')} {if $hidden}<i>({__('PollInfo', 'Results are hidden.')})</i>{/if}</h3>
 
 <div id="tableContainer" class="tableContainer">
-    <form action="" method="POST" id="poll_form">
+    <form action="{poll_url id=$poll_id}" method="POST" id="poll_form">
         <table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes of the poll')} {$poll->title|html}</caption>
             <thead>
@@ -81,11 +81,11 @@
                 <tr>
                     {* Edited line *}
 
-                    {if $editingVoteId == $vote->id && !$expired}
-
+                    {if $editingVoteId === $vote->uniqId && !$expired}
                         <td class="bg-info" style="padding:5px">
-                            <div class="input-group input-group-sm">
+                            <div class="input-group input-group-sm" id="edit">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
                                 <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                             </div>
                         </td>
@@ -115,8 +115,8 @@
                                 </ul>
                             </td>
                         {/foreach}
-                        <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs  check-name" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
-                    {else}
+                        <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
+                    {elseif !$hidden}
 
                         {* Voted line *}
 
@@ -134,11 +134,11 @@
 
                         {/foreach}
 
-                        {if $active && $poll->editable && !$expired}
+                        {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin)}
                             <td>
-                                <button type="submit" class="btn btn-link btn-sm" name="edit_vote" value="{$vote->id|html}" title="{__('Poll results', 'Edit the line:')} {$vote->name|html}">
+                                <a href="{poll_url id=$poll->id vote_id=$vote->uniqId}" class="btn btn-link btn-sm" title="{__('Poll results', 'Edit the line:')|escape} {$vote->name|html}">
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span>
-                                </button>
+                                </a>
                                 {if $admin}
                                     <button type="submit" class="btn btn-link btn-sm" name="delete_vote" value="{$vote->id|html}" title="{__('Poll results', 'Remove the line:')} {$vote->name|html}">
                                         <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span>
@@ -154,7 +154,7 @@
 
             {* Line to add a new vote *}
 
-            {if $active && $editingVoteId == 0 && !$expired}
+            {if $active && $editingVoteId === 0 && !$expired}
                 <tr id="vote-form">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">
@@ -190,61 +190,64 @@
                             {$i = $i+1}
                         {/foreach}
                     {/foreach}
-                    <td><button type="submit" class="btn btn-success btn-md check-name" name="save" title="{__('Poll results', 'Save the choices')}">{__('Generic', 'Save')}</button></td>
+                    <td><button type="submit" class="btn btn-success btn-md" name="save" title="{__('Poll results', 'Save the choices')}">{__('Generic', 'Save')}</button></td>
                 </tr>
             {/if}
 
-            {* Line displaying best moments *}
-            {$count_bests = 0}
-            {$max = max($best_choices)}
-            {if $max > 0}
-                <tr id="addition">
-                    <td>{__('Poll results', 'Addition')}</td>
-                    {foreach $best_choices as $best_moment}
-                        {if $max == $best_moment}
-                            {$count_bests = $count_bests +1}
-                            <td><i class="glyphicon glyphicon-star text-warning"></i>{$best_moment|html}</td>
-                        {elseif $best_moment > 0}
-                            <td>{$best_moment|html}</td>
-                        {else}
-                            <td></td>
-                        {/if}
-                    {/foreach}
-                </tr>
+            {if !$hidden}
+                {* Line displaying best moments *}
+                {$count_bests = 0}
+                {$max = max($best_choices)}
+                {if $max > 0}
+                    <tr id="addition">
+                        <td>{__('Poll results', 'Addition')}</td>
+                        {foreach $best_choices as $best_moment}
+                            {if $max == $best_moment}
+                                {$count_bests = $count_bests +1}
+                                <td><i class="glyphicon glyphicon-star text-warning"></i>{$best_moment|html}</td>
+                            {elseif $best_moment > 0}
+                                <td>{$best_moment|html}</td>
+                            {else}
+                                <td></td>
+                            {/if}
+                        {/foreach}
+                    </tr>
+                {/if}
             {/if}
             </tbody>
         </table>
     </form>
 </div>
 
-{* Best votes listing *}
-
-{$max = max($best_choices)}
-{if $max > 0}
-    <div class="row">
-    {if $count_bests == 1}
-    <div class="col-sm-12"><h3>{__('Poll results', 'Best choice')}</h3></div>
-    <div class="col-sm-6 col-sm-offset-3 alert alert-success">
-        <p><span class="glyphicon glyphicon-star text-warning"></span>{__('Poll results', 'The best choice at this time is:')}</p>
-        {elseif $count_bests > 1}
-        <div class="col-sm-12"><h3>{__('Poll results', 'Best choices')}</h3></div>
+{if !$hidden}
+    {* Best votes listing *}
+    {$max = max($best_choices)}
+    {if $max > 0}
+        <div class="row">
+        {if $count_bests == 1}
+        <div class="col-sm-12"><h3>{__('Poll results', 'Best choice')}</h3></div>
         <div class="col-sm-6 col-sm-offset-3 alert alert-success">
-            <p><span class="glyphicon glyphicon-star text-warning"></span>{__('Poll results', 'The bests choices at this time are:')}</p>
-            {/if}
+            <p><span class="glyphicon glyphicon-star text-warning"></span>{__('Poll results', 'The best choice at this time is:')}</p>
+            {elseif $count_bests > 1}
+            <div class="col-sm-12"><h3>{__('Poll results', 'Best choices')}</h3></div>
+            <div class="col-sm-6 col-sm-offset-3 alert alert-success">
+                <p><span class="glyphicon glyphicon-star text-warning"></span>{__('Poll results', 'The bests choices at this time are:')}</p>
+                {/if}
 
 
-            {$i = 0}
-            <ul style="list-style:none">
-                {foreach $slots as $slot}
-                    {foreach $slot->moments as $moment}
-                        {if $best_choices[$i] == $max}
-                            <li><strong>{$slot->day|date_format:$date_format.txt_full|html} - {$moment|html}</strong></li>
-                        {/if}
-                        {$i = $i+1}
+                {$i = 0}
+                <ul style="list-style:none">
+                    {foreach $slots as $slot}
+                        {foreach $slot->moments as $moment}
+                            {if $best_choices[$i] == $max}
+                                <li><strong>{$slot->day|date_format:$date_format.txt_full|html} - {$moment|html}</strong></li>
+                            {/if}
+                            {$i = $i+1}
+                        {/foreach}
                     {/foreach}
-                {/foreach}
-            </ul>
-            <p>{__('Generic', 'with')} <b>{$max|html}</b> {if $max==1}{__('Generic', 'vote')}{else}{__('Generic', 'votes')}{/if}.</p>
+                </ul>
+                <p>{__('Generic', 'with')} <b>{$max|html}</b> {if $max==1}{__('Generic', 'vote')}{else}{__('Generic', 'votes')}{/if}.</p>
+            </div>
         </div>
-    </div>
+    {/if}
 {/if}

@@ -1,3 +1,4 @@
+<?php
 /**
  * This software is governed by the CeCILL-B license. If a copy of this license
  * is not distributed with this file, you can obtain one at
@@ -16,23 +17,21 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-$(document).ready(function () {
+namespace Framadate;
 
-    $("#poll_form").submit(function (event) {
-        var name = $("#name").val();
-        var regexContent = $("#parameter_name_regex").text().split("/");
-        var regex = new RegExp(regexContent[1], regexContent[2]);
 
-        if (name.length == 0 || !regex.test(name)) {
-            event.preventDefault();
-            var newMessage = $("#nameErrorMessage").clone();
-            $("#message-container").empty();
-            $("#message-container").append(newMessage);
-            newMessage.removeClass("hidden");
-            $('html, body').animate({
-                scrollTop: $("#message-container").offset().top
-            }, 750);
-        }
-    });
+/**
+ * Class Editable
+ *
+ * Is used to specify the poll's edition permissions.
+ * @TODO : wait to use the SplEnum
+ *
+ * @package Framadate
+ */
+class Editable { // extends SplEnum
+    const __default = self::EDITABLE_BY_ALL;
 
-});
+    const NOT_EDITABLE = 0;
+    const EDITABLE_BY_ALL = 1;
+    const EDITABLE_BY_OWN = 2;
+}

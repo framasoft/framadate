@@ -76,6 +76,20 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#poll-hidden-form .btn-edit').on('click', function() {
+        $('#poll-hidden-form p').hide();
+        $('#poll-hidden-form .js-poll-hidden').removeClass("hidden");
+        $('.js-poll-hidden input[type=checkbox]').focus();
+        return false;
+    });
+
+    $('#poll-hidden-form .btn-cancel').on('click', function() {
+        $('#poll-hidden-form p').show();
+        $('#poll-hidden-form .js-poll-hidden').addClass("hidden");
+        $('.js-poll-hidden .btn-edit').focus();
+        return false;
+    });
+
     $('#expiration-form .btn-edit').on('click', function() {
         $('#expiration-form p').hide();
         $('.js-expiration').removeClass("hidden");

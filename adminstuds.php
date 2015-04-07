@@ -22,6 +22,7 @@ use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Message;
 use Framadate\Utils;
+use Framadate\Editable;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -45,10 +46,12 @@ $inputService = new InputService();
 /* PAGE */
 /* ---- */
 
-if (!empty($_GET['poll']) && strlen($_GET['poll']) === 24) {
+if (!empty($_GET['poll'])) {
     $admin_poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-    $poll_id = substr($admin_poll_id, 0, 16);
-    $poll = $pollService->findById($poll_id);
+    if (strlen($admin_poll_id) === 24) {
+        $poll_id = substr($admin_poll_id, 0, 16);
+        $poll = $pollService->findById($poll_id);
+    }
 }
 
 if (!$poll) {
@@ -63,7 +66,7 @@ if (!$poll) {
 
 if (isset($_POST['update_poll_info'])) {
     $updated = false;
-    $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'description', 'rules', 'expiration_date', 'name']);
+    $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'description', 'rules', 'expiration_date', 'name', 'hidden']);
 
     // Update the right poll field
     if ($field == 'title') {
@@ -89,17 +92,22 @@ if (isset($_POST['update_poll_info'])) {
         switch ($rules) {
             case 0:
                 $poll->active = false;
-                $poll->editable = false;
+                $poll->editable = Editable::NOT_EDITABLE;
                 $updated = true;
                 break;
             case 1:
                 $poll->active = true;
-                $poll->editable = false;
+                $poll->editable = Editable::NOT_EDITABLE;
                 $updated = true;
                 break;
             case 2:
                 $poll->active = true;
-                $poll->editable = true;
+                $poll->editable = Editable::EDITABLE_BY_ALL;
+                $updated = true;
+                break;
+            case 3:
+                $poll->active = true;
+                $poll->editable = Editable::EDITABLE_BY_OWN;
                 $updated = true;
                 break;
         }
@@ -114,6 +122,13 @@ if (isset($_POST['update_poll_info'])) {
         $admin_name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
         if ($admin_name) {
             $poll->admin_name = $admin_name;
+            $updated = true;
+        }
+    } elseif ($field == 'hidden') {
+        $hidden = filter_input(INPUT_POST, 'hidden', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
+        $hidden = $hidden==null?false:true;
+        if ($hidden != $poll->hidden) {
+            $poll->hidden = $hidden;
             $updated = true;
         }
     }
@@ -131,8 +146,8 @@ if (isset($_POST['update_poll_info'])) {
 // A vote is going to be edited
 // -------------------------------
 
-if (!empty($_POST['edit_vote'])) {
-    $editingVoteId = filter_input(INPUT_POST, 'edit_vote', FILTER_VALIDATE_INT);
+if (!empty($_GET['vote'])) {
+    $editingVoteId = filter_input(INPUT_GET, 'vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
 }
 
 // -------------------------------
@@ -373,6 +388,7 @@ $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 $smarty->assign('admin', true);
+$smarty->assign('hidden', $poll->hidden);
 $smarty->assign('parameter_name_regex', NAME_REGEX);
 
 $smarty->display('studs.tpl');

@@ -4,20 +4,21 @@
  * is not distributed with this file, you can obtain one at
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
- * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaï¿½l DROZ
  * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
- * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * Ce logiciel est rï¿½gi par la licence CeCILL-B. Si une copie de cette licence
  * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
  *
- * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaï¿½l DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
 use Framadate\Form;
+use Framadate\Editable;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -45,26 +46,28 @@ $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
 $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
 $mail = filter_input(INPUT_POST, 'mail', FILTER_VALIDATE_EMAIL);
 $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
-$editable = filter_input(INPUT_POST, 'editable', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
+$editable = filter_input(INPUT_POST, 'editable', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => EDITABLE_CHOICE_REGEX]]);
 $receiveNewVotes = filter_input(INPUT_POST, 'receiveNewVotes', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
 $receiveNewComments = filter_input(INPUT_POST, 'receiveNewComments', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
+$hidden = filter_input(INPUT_POST, 'hidden', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
 
 
-// On initialise également les autres variables
+// On initialise ï¿½galement les autres variables
 $error_on_mail = false;
 $error_on_title = false;
 $error_on_name = false;
 $error_on_description = false;
 
-//
+
 if (!empty($_POST[GO_TO_STEP_2])) {
     $_SESSION['form']->title = $title;
     $_SESSION['form']->admin_name = $name;
     $_SESSION['form']->admin_mail = $mail;
     $_SESSION['form']->description = $description;
-    $_SESSION['form']->editable = ($editable !== null);
+    $_SESSION['form']->editable = $editable;
     $_SESSION['form']->receiveNewVotes = ($receiveNewVotes !== null);
     $_SESSION['form']->receiveNewComments = ($receiveNewComments !== null);
+    $_SESSION['form']->hidden = ($hidden !== null);
 
     if ($config['use_smtp'] == true) {
         if (empty($mail)) {
@@ -174,20 +177,6 @@ if (!empty($_POST[GO_TO_STEP_2])) {
     }
 }
 
-// Checkbox checked ?
-if ($_SESSION['form']->editable) {
-    $editable = 'checked';
-}
-
-if ($_SESSION['form']->receiveNewVotes) {
-    $receiveNewVotes = 'checked';
-}
-
-if ($_SESSION['form']->receiveNewComments) {
-    $receiveNewComments = 'checked';
-}
-
-
 $useRemoteUser = USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']);
 
 $smarty->assign('title', $title);
@@ -204,6 +193,7 @@ $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']-
 $smarty->assign('poll_editable', Utils::fromPostOrDefault('editable', $_SESSION['form']->editable));
 $smarty->assign('poll_receiveNewVotes', Utils::fromPostOrDefault('receiveNewVotes', $_SESSION['form']->receiveNewVotes));
 $smarty->assign('poll_receiveNewComments', Utils::fromPostOrDefault('receiveNewComments', $_SESSION['form']->receiveNewComments));
+$smarty->assign('poll_hidden', Utils::fromPostOrDefault('hidden', $_SESSION['form']->hidden));
 $smarty->assign('form', $_SESSION['form']);
 
 $smarty->display('create_poll.tpl');

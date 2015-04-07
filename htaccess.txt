@@ -1,0 +1,13 @@
+######################
+# .htaccess example. #
+######################
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+
+  RewriteRule ^([a-zA-Z0-9]{16})$ studs.php?poll=$1
+  RewriteRule ^([a-zA-Z0-9]{16})/vote/([a-zA-Z0-9]{16})$ studs.php?poll=$1&vote_id=$2
+  RewriteRule ^([a-zA-Z0-9]{24})/admin$ adminstuds.php?poll=$1
+</IfModule>

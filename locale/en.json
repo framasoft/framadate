@@ -112,9 +112,12 @@
     "Votes and comments are locked": "Votes and comments are locked",
     "Votes and comments are open": "Votes and comments are open",
     "Votes are editable": "Votes are editable",
+    "Votes are editable solely by their owner.": "Votes are editable solely by their owner",
     "Save the new rules": "Save the new rules",
     "Cancel the rules edit": "Cancel the rules edit",
-    "The name is invalid.": "The name is invalid."
+    "The name is invalid.": "The name is invalid.",
+    "Results are hidden.": "Results are hidden.",
+    "Results are visible.": "Results are visible."
   },
   "Poll results": {
     "Votes of the poll": "Votes of the poll",
@@ -145,7 +148,8 @@
     "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.",
     "POLL_LOCKED_WARNING": "The administration locked this poll. Votes and comments are frozen, it is no longer possible to participate",
     "The poll is expired, it will be deleted soon.":  "The poll is expired, it will be deleted soon.",
-    "Deletion date:": "Deletion date:"
+    "Deletion date:": "Deletion date:",
+    "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote."
   },
   "adminstuds": {
     "As poll administrator, you can change all the lines of this poll with this button": "As poll administrator, you can change all the lines of this poll with this button",
@@ -187,9 +191,12 @@
     "You are in the poll creation section.": "You are in the poll creation section.",
     "Required fields cannot be left blank.": "Required fields cannot be left blank.",
     "Poll title": "Poll title",
+    "Votes cannot be modified.": "Votes cannot be modified",
+    "All voters can modify any vote.": "All voters can modify any vote.",
     "Voters can modify their vote themselves.": "Voters can modify their vote themselves.",
     "To receive an email for each new vote.": "To receive an email for each new vote.",
     "To receive an email for each new comment.": "To receive an email for each new comment.",
+    "Only the poll maker can see the poll's results.": "Only the poll maker can see the poll's results.",
     "Go to step 2": "Go to step 2"
   },
   "Step 2": {
@@ -298,6 +305,7 @@
     "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "Framadate is not properly installed, please check the 'INSTALL' to setup the database before continuing.",
     "Failed to save poll": "Failed to save poll",
     "Update vote failed": "Update vote failed",
-    "Adding vote failed": "Adding vote failed"
+    "Adding vote failed": "Adding vote failed",
+    "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following edition option: "
   }
 }

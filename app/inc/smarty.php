@@ -34,8 +34,25 @@ $smarty->assign('html_lang', $html_lang);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);
 $smarty->assign('date_format', $date_format);
 
-function smarty_modifier_poll_url($poll_id, $admin = false) {
-    return Utils::getUrlSondage($poll_id, $admin);
+// Dev Mode
+if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {
+    $smarty->force_compile = true;
+    $smarty->compile_check = true;
+
+} else {
+    $smarty->force_compile = false;
+    $smarty->compile_check = false;
+}
+
+
+function smarty_function_poll_url($params, Smarty_Internal_Template $template) {
+    $poll_id =  filter_var($params['id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+    $admin =  (isset($params['admin']) && $params['admin']) ? true : false;
+    $vote_unique_id = isset($params['vote_id']) ? filter_var($params['vote_id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]) : '';
+
+    // If filter_var fails (i.e.: hack tentative), it will return false. At least no leak is possible from this.
+
+    return Utils::getUrlSondage($poll_id, $admin, $vote_unique_id);
 }
 
 function smarty_modifier_markdown($md, $clear = false) {

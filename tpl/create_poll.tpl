@@ -1,5 +1,9 @@
 {extends file='page.tpl'}
 
+{block name="header"}
+    <script src="{"js/app/create_poll.js"|resource}" type="text/javascript"></script>
+{/block}
+
 {block name=main}
     <div class="row" style="display:none" id="form-block">
         <div class="col-md-8 col-md-offset-2">
@@ -90,9 +94,17 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
-                        <div class="checkbox">
+                        <div class="radio">
                             <label>
-                                <input type=checkbox name="editable" {if $poll_editable}checked{/if} id="editable">
+                                <input type="radio" name="editable" {if empty($poll_editable) or $poll_editable==constant("Framadate\Editable::NOT_EDITABLE")}checked{/if} value="{constant("Framadate\Editable::NOT_EDITABLE")}">
+                                {__('Step 1', 'Votes cannot be modified.')}
+                            </label>
+                            <label>
+                                <input type="radio" name="editable" id="editableByAll" {if $poll_editable==constant("Framadate\Editable::EDITABLE_BY_ALL")}checked{/if} value="{constant("Framadate\Editable::EDITABLE_BY_ALL")}">
+                                {__('Step 1', 'All voters can modify any vote.')}
+                            </label>
+                            <label>
+                                <input type="radio" name="editable" {if $poll_editable==constant("Framadate\Editable::EDITABLE_BY_OWN")}checked{/if} value="{constant("Framadate\Editable::EDITABLE_BY_OWN")}">
                                 {__('Step 1', 'Voters can modify their vote themselves.')}
                             </label>
                         </div>
@@ -105,7 +117,7 @@
                         <div class="col-sm-offset-4 col-sm-8">
                             <div class="checkbox">
                                 <label>
-                                    <input type=checkbox name="receiveNewVotes" {if $poll_receiveNewVotes}checked{/if}
+                                    <input type="checkbox" name="receiveNewVotes" {if $poll_receiveNewVotes}checked{/if}
                                     id="receiveNewVotes">
                                     {__('Step 1', 'To receive an email for each new vote.')}
                                 </label>
@@ -116,10 +128,26 @@
                         <div class="col-sm-offset-4 col-sm-8">
                             <div class="checkbox">
                                 <label>
-                                    <input type=checkbox name="receiveNewComments" {if $poll_receiveNewComments}checked{/if}
+                                    <input type="checkbox" name="receiveNewComments" {if $poll_receiveNewComments}checked{/if}
                                     id="receiveNewComments">
                                     {__('Step 1', 'To receive an email for each new comment.')}
                                 </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="hidden" {if $poll_hidden}checked{/if}
+                                    id="hidden">
+                                    {__('Step 1', "Only the poll maker can see the poll's results.")}
+                                </label>
+                            </div>
+                            <div id="hiddenWithBadEditionModeError" class="alert alert-danger hidden">
+                                <p>
+                                    {__('Error', "You can't create a poll with hidden results with the following edition option:")}"{__('Step 1', 'All voters can modify any vote.')}"
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -150,30 +178,4 @@
     <div id="cookie-warning" class="alert alert-danger" style="display:none">
         {__('Step 1', 'Cookies are disabled on your browser. Theirs activation is required to create a poll.')}
     </div>
-    <script>
-        {* TODO Put this in a JS file *}
-        // Check Javascript is enabled, if it is it will execute this script
-        (function () {
-            // Check cookies are enabled too
-            var cookieEnabled = function () {
-                var cookieEnabled = navigator.cookieEnabled;
-
-                // if not IE4+ nor NS6+
-                if (!cookieEnabled && typeof navigator.cookieEnabled === "undefined") {
-                    document.cookie = "testcookie";
-                    cookieEnabled = document.cookie.indexOf("testcookie") != -1;
-                }
-
-                return cookieEnabled;
-            };
-
-            if (cookieEnabled()) {
-                // Show the form block
-                document.getElementById("form-block").setAttribute("style", "");
-            } else {
-                // Show the warning about cookies
-                document.getElementById("cookie-warning").setAttribute("style", "");
-            }
-        })();
-    </script>
 {/block}

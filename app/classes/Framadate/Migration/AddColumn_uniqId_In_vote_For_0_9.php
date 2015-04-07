@@ -21,12 +21,12 @@ namespace Framadate\Migration;
 use Framadate\Utils;
 
 /**
- * This migration adds the field receiveNewComments on the poll table.
+ * This migration adds the field uniqId on the vote table.
  *
  * @package Framadate\Migration
  * @version 0.9
  */
-class AddColumn_receiveNewComments_For_0_9 implements Migration {
+class AddColumn_uniqId_In_vote_For_0_9 implements Migration {
 
     function __construct() {
     }
@@ -37,7 +37,7 @@ class AddColumn_receiveNewComments_For_0_9 implements Migration {
      * @return string The description of the migration class
      */
     function description() {
-        return 'Add column "receiveNewComments" for version 0.9';
+        return 'Add column "uniqId" in table "vote" for version 0.9';
     }
 
     /**
@@ -70,9 +70,10 @@ class AddColumn_receiveNewComments_For_0_9 implements Migration {
 
     private function alterPollTable(\PDO $pdo) {
         $pdo->exec('
-ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `receiveNewComments` TINYINT(1) DEFAULT \'0\'
-        AFTER `receiveNewVotes`');
+        ALTER TABLE `' . Utils::table('vote') . '`
+        ADD `uniqId` CHAR(16) NOT NULL
+        AFTER `id`,
+        ADD INDEX (`uniqId`) ;');
     }
 
 }

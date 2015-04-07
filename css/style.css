@@ -124,6 +124,7 @@ caption {
 #email-form .btn-edit,
 #description-form .btn-edit,
 #poll-rules-form .btn-edit,
+#poll-hidden-form .btn-edit,
 #expiration-form .btn-edit,
 #name-form .btn-edit {
     position:absolute;
@@ -138,6 +139,8 @@ caption {
 #description-form:hover .btn-edit,
 #poll-rules-form .btn-edit:focus,
 #poll-rules-form:hover .btn-edit,
+#poll-hidden-form .btn-edit:focus,
+#poll-hidden-form:hover .btn-edit,
 #expiration-form .btn-edit:focus,
 #expiration-form:hover .btn-edit,
 #name-form .btn-edit:focus,
@@ -155,7 +158,7 @@ caption {
     margin-bottom:0;
 }
 
-#poll-rules-form p,
+#poll-rules-form p, #poll-hidden-form p,
 .jumbotron p.well {
     font-size:16px;
 }

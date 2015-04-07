@@ -97,23 +97,30 @@ class Utils {
     }
 
     /**
-     * Fonction permettant de générer les URL pour les sondage
-     * @param   string $id L'identifiant du sondage
-     * @param   bool $admin True pour générer une URL pour l'administration d'un sondage, False pour un URL publique
-     * @return  string            L'url pour le sondage
+     * Function allowing to generate poll's url
+     * @param   string $id The poll's id
+     * @param   bool $admin True to generate an admin URL, false for a public one
+     * @param   string $vote_id (optional) The vote's unique id
+     * @return  string The poll's URL.
      */
-    public static function getUrlSondage($id, $admin = false) {
+    public static function getUrlSondage($id, $admin = false, $vote_id='') {
         if (URL_PROPRE) {
             if ($admin === true) {
                 $url = str_replace('/admin', '', self::get_server_name()) . $id . '/admin';
             } else {
                 $url = str_replace('/admin', '', self::get_server_name()) . $id;
+                if ($vote_id != '') {
+                    $url .= '/vote/'.$vote_id."#edit";
+                }
             }
         } else {
             if ($admin === true) {
                 $url = str_replace('/admin', '', self::get_server_name()) . 'adminstuds.php?poll=' . $id;
             } else {
                 $url = str_replace('/admin', '', self::get_server_name()) . 'studs.php?poll=' . $id;
+                if ($vote_id != '') {
+                    $url .= '&vote='.$vote_id."#edit";
+                }
             }
         }
 
