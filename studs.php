@@ -92,13 +92,11 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
 /* PAGE */
 /* ---- */
 
-if (!empty($_POST['poll']) || !empty($_GET['poll'])) {
-    if (!empty($_POST['poll']))
-        $inputType = INPUT_POST;
-    else
-        $inputType = INPUT_GET;
-    $poll_id = filter_input($inputType, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-    $poll = $pollService->findById($poll_id);
+if (!empty($_GET['poll'])) {
+    $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+    if (strlen($poll_id) === 16) {
+        $poll = $pollService->findById($poll_id);
+    }
 }
 
 if (!$poll) {
