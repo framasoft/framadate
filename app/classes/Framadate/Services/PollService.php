@@ -112,6 +112,10 @@ class PollService {
         return array($poll_id, $admin_poll_id);
     }
 
+    public function findAllByAdminMail($mail) {
+        return $this->pollRepository->findAllByAdminMail($mail);
+    }
+
     function computeBestChoices($votes) {
         $result = [];
         foreach ($votes as $vote) {

@@ -35,7 +35,8 @@
         "seconds": "ES_secondes",
         "Choice": "Opciòn",
         "Link": "ES_Lien",
-        "Search": "Búsqueda"
+        "Search": "Búsqueda",
+        "Creation date:": "ES_Date de création :"
     },
     "Date": {
         "dd/mm/yyyy": "ES_jj/mm/aaaa",
@@ -52,7 +53,8 @@
     },
     "Homepage": {
         "Schedule an event": "Encuesta para planificar un evento",
-        "Make a classic poll": "ES_Créer un sondage classique"
+        "Make a classic poll": "ES_Créer un sondage classique",
+        "Where are my polls": "ES_Où sont mes sondages"
     },
     "Maintenance": {
         "The application": "ES_L'application",
@@ -279,13 +281,18 @@
         "polls in the database at this time": "encuestas en la basa por el momento",
         "Purge the polls": "ES_Purger les sondages"
     },
+    "FindPolls": {
+        "Here are your polls": "ES_Voici tes sondages",
+        "Send me my polls": "ES_Envoyer mes sondages",
+        "Polls sent": "ES_Sondages envoyés"
+    },
     "Mail": {
         "Poll's participation": "ES_Participation au sondage",
         "filled a vote.\nYou can find your poll at the link": "ES_vient de voter.\nVous pouvez retrouver votre sondage avec le lien suivant",
         "updated a vote.\nYou can find your poll at the link": "ES_vient de mettre à jour un vote.\nVous pouvez retrouver votre sondage avec le lien suivant",
         "wrote a comment.\nYou can find your poll at the link": "ES_vient de rédiger un commentaire.\nVous pouvez retrouver votre sondage avec le lien suivant",
         "Thanks for your confidence.": "ES_Merci de votre confiance.",
-        "\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.": "ES_\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.",
+        "FOOTER": "",
         "[ADMINISTRATOR] New settings for your poll": "ES_[ADMINISTRATEUR] Changement de configuration du sondage",
         "You have changed the settings of your poll. \nYou can modify this poll with this link": "ES_Vous avez modifié la configuration de votre sondage. \nVous pouvez modifier ce sondage avec le lien suivant",
         "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.": "ES_Ceci est le message qui doit être envoyé aux sondés. \nVous pouvez maintenant transmettre ce message à toutes les personnes susceptibles de participer au vote.",
@@ -302,6 +309,7 @@
         "Something is wrong with the format": "Something is wrong with the format",
         "Enter an email address": "Introduzca una dirección electrónica",
         "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.": "ES_L'adresse saisie n'est pas correcte ! Il faut une adresse électronique valide (par exemple r.stallman@outlock.com) pour recevoir le lien vers le sondage.",
+        "No polls found": "ES_Aucun sondage n'a été trouvé",
         "There is a problem with your choices": "ES_Il y a un problème avec vos choix",
         "You haven't filled the first section of the poll creation.": "Usted no habia llenado la primera pagina dela encuesta",
         "Javascript is disabled on your browser. Its activation is required to create a poll.": "ES_Javascript est désactivé sur votre navigateur. Son activation est requise pour la création d'un sondage.",

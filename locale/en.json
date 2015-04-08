@@ -35,7 +35,8 @@
     "seconds": "seconds",
     "Choice": "Choice",
     "Link": "Link",
-    "Search": "Search"
+    "Search": "Search",
+    "Creation date:": "Creation date:"
   },
   "Date" : {
     "dd/mm/yyyy": "jj/mm/aaaa",
@@ -48,7 +49,8 @@
   },
   "Language selector": {
     "Select the language": "Select the language",
-    "Change the language": "Change the language"
+    "Change the language": "Change the language",
+    "Where are my polls": "Where are my polls"
   },
   "Maintenance": {
     "The application": "The application",
@@ -279,13 +281,18 @@
     "polls in the database at this time": "polls in the database at this time",
     "Purge the polls": "Purge the polls"
   },
+  "FindPolls": {
+    "Here are your polls": "Here are your polls",
+    "Send me my polls": "Send me my polls",
+    "Polls sent": "Polls sent"
+  },
   "Mail" : {
     "Poll's participation": "Poll's participation",
     "filled a vote.\nYou can find your poll at the link": "filled a vote.\nYou can find your poll at the link",
     "updated a vote.\nYou can find your poll at the link": "updated a vote.\nYou can find your poll at the link",
     "wrote a comment.\nYou can find your poll at the link": "wrote a comment.\nYou can find your poll at the link",
     "Thanks for your confidence.": "Thanks for your confidence.",
-    "\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.": "\n\n\n\n",
+    "FOOTER": "",
     "[ADMINISTRATOR] New settings for your poll": "[ADMINISTRATOR] New settings for your poll",
     "You have changed the settings of your poll. \nYou can modify this poll with this link": "You have changed the settings of your poll. \nYou can modify this poll with this link",
     "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.":"This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.",
@@ -302,6 +309,7 @@
     "Something is wrong with the format": "Something is wrong with the format",
     "Enter an email address": "Enter an email address",
     "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.": "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.",
+    "No polls found": "No polls found",
     "There is a problem with your choices": "There is a problem with your choices",
     "You haven't filled the first section of the poll creation.": "You haven't filled the first section of the poll creation.",
     "Javascript is disabled on your browser. Its activation is required to create a poll.": "Javascript is disabled on your browser. Its activation is required to create a poll.",

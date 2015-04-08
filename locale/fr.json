@@ -35,7 +35,8 @@
     "seconds": "secondes",
     "Choice": "Choix",
     "Link": "Lien",
-    "Search": "Chercher"
+    "Search": "Chercher",
+    "Creation date:": "Date de création :"
   },
   "Date": {
     "dd/mm/yyyy": "jj/mm/aaaa",
@@ -52,7 +53,8 @@
   },
   "Homepage": {
     "Schedule an event": "Créer un sondage spécial dates",
-    "Make a classic poll": "Créer un sondage classique"
+    "Make a classic poll": "Créer un sondage classique",
+    "Where are my polls": "Où sont mes sondages"
   },
   "Maintenance": {
     "The application": "L'application",
@@ -279,13 +281,18 @@
     "polls in the database at this time": "sondages dans la base actuellement",
     "Purge the polls": "Purger les sondages"
   },
+  "FindPolls": {
+    "Here are your polls": "Voici tes sondages",
+    "Send me my polls": "Envoyer mes sondages",
+    "Polls sent": "Sondages envoyés"
+  },
   "Mail": {
     "Poll's participation": "Participation au sondage",
     "filled a vote.\nYou can find your poll at the link": "vient de voter.\nVous pouvez retrouver votre sondage avec le lien suivant",
     "updated a vote.\nYou can find your poll at the link": "vient de mettre à jour un vote.\nVous pouvez retrouver votre sondage avec le lien suivant",
     "wrote a comment.\nYou can find your poll at the link": "vient de rédiger un commentaire.\nVous pouvez retrouver votre sondage avec le lien suivant",
     "Thanks for your confidence.": "Merci de votre confiance.",
-    "\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.": "\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.",
+    "FOOTER": "<hr/><br/>« La route est longue, mais la voie est libre… »<br/>Framasoft ne vit que par vos dons (déductibles des impôts).<br/>Merci d'avance pour votre soutien http://soutenir.framasoft.org.",
     "[ADMINISTRATOR] New settings for your poll": "[ADMINISTRATEUR] Changement de configuration du sondage",
     "You have changed the settings of your poll. \nYou can modify this poll with this link": "Vous avez modifié la configuration de votre sondage. \nVous pouvez modifier ce sondage avec le lien suivant",
     "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.": "Ceci est le message qui doit être envoyé aux sondés. \nVous pouvez maintenant transmettre ce message à toutes les personnes susceptibles de participer au vote.",
@@ -302,6 +309,7 @@
     "Something is wrong with the format": "Quelque chose ne va pas avec le format",
     "Enter an email address": "Il faut saisir une adresse électronique !",
     "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.": "L'adresse saisie n'est pas correcte ! Il faut une adresse électronique valide (par exemple r.stallman@outlock.com) pour recevoir le lien vers le sondage.",
+    "No polls found": "Aucun sondage n'a été trouvé",
     "There is a problem with your choices": "Il y a un problème avec vos choix",
     "You haven't filled the first section of the poll creation.": "Vous n'avez pas renseigné la première page du sondage",
     "Javascript is disabled on your browser. Its activation is required to create a poll.": "Javascript est désactivé sur votre navigateur. Son activation est requise pour la création d'un sondage.",

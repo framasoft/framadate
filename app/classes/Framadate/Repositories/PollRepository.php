@@ -91,6 +91,19 @@ SELECT p.*,
     }
 
     /**
+     * Find all polls that are created with the given admin mail.
+     *
+     * @param string $mail Email address of the poll admin
+     * @return array The list of matching polls
+     */
+    public function findAllByAdminMail($mail) {
+        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_mail = :admin_mail');
+        $prepared->execute(array('admin_mail' => $mail));
+
+        return $prepared->fetchAll();
+    }
+
+    /**
      * Get the total number of polls in databse.
      *
      * @return int The number of polls
