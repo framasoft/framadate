@@ -1,17 +1,32 @@
 # Changelog de framadate
 
-## Version 0.9 (... JosephK - OlivierPerez)
+## Version 0.9 (... JosephK - OlivierPerez - Antonin)
     - Technique : Réorganisation des classes
-    - Technique : Découpage en MVC sur la majeur partie de framadate + Installation de Smarty
-    - Technique : Refonte de la partie données + Rempalcement de Adodb par PDO
+    - Technique : Découpage en MVC + Installation de Smarty
+    - Technique : Refonte de l'accès aux données + Remplacement de Adodb par PDO
+    - Technique : Définition claire des couches Service et Repository
+    - Technique : Utilisation de la librairie open source o80-i18n pour la gestion des langue
     - Amélioration : Refonte de l'administration
+    - Amélioration : Formulaire de recherche pour trouver des sondages
     - Amélioration : Notification de l'utilisation si JAvascript ou les cookies sont désactivés
     - Amélioration : Découpage en 2 options pour recevoir ou non les nouveaux vote et commentaires
     - Amélioration : Utilisation de jetons CSRF sur certaines actions
-    - Fix : Purge en 2 étapes. 1. Verrouillage du sondage, 2. 60 jours plus tard suppression du sondage
-    - Fix : Correction de la date d'expiration qui devient nulle quand on ajoute une colonne
+    - Amélioration : Nouvelle option de sondage "Chaque participant peut modifier son propre vote"
+    - Amélioration : Nouvelle option de sondage "Vote caché, seul le créateur du sondage peu voir les résultats"
+    - Amélioration : Auto-cmoplétion des champs de dates (15/5 peut devenir 15/05/2015 ou 15/05/2016 en fonction de la date actuelle)
+    - Amélioration : Nouvelle page pour retrouver ses sondages par mail
+    - Amélioration : Mise à jour des fichiers .md pour faciliter la collaboration
+    - Amélioration : Le nom de l'auteur et la date d'expiration sont modifiables
+    - Amélioration : Le nom de vote est modifiable
+    - Fix : Purge en 2 étapes → 1. Verrouillage du sondage → 2. 60 jours plus tard suppression du sondage
+    - Fix : Date d'expiration qui devient nulle quand on ajoute une colonne
     - Fix : clic/focus sur oui/non/si nécessaire → retour à gauche de la barre de scroll sur Chromium
-    - Fix : Correction sur le choix de la date
+    - Fix : Perte de ses votes quand le nom entré n'est pas valide
+    - Fix : Certains sondages sont créé avec un ID déjà existant
+    - Fix : 2 choix minimum sont nécessaires pour créer un sondage
+    - Fix : Ajout de la police d'écriture Déjà Vu
+    - Fix : Mémorisation de la langue entre l'application et l'administration
+    - Fix : Bug à la création d'un sondage sans Javascript ou sans Cookies
     
 ## Version 0.8 (juillet 2014 Pascal Chevrel - Armony Altinier - JosephK)
 	- Améliorations sur l'accessibilité
