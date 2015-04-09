@@ -57,7 +57,7 @@ class AddColumn_hidden_In_poll_For_0_9 implements Migration {
     }
 
     /**
-     * This methode is called only one time in the migration page.
+     * This method is called only one time in the migration page.
      *
      * @param \PDO $pdo The connection to database
      * @return bool true is the execution succeeded

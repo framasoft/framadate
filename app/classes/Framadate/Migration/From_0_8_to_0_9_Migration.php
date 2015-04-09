@@ -57,7 +57,7 @@ class From_0_8_to_0_9_Migration implements Migration {
     }
 
     /**
-     * This methode is called only one time in the migration page.
+     * This method is called only one time in the migration page.
      *
      * @param \PDO $pdo The connection to database
      * @return bool true is the execution succeeded
