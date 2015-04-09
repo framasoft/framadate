@@ -211,6 +211,10 @@
         "To receive an email for each new vote": "Usted quiere recibir un correo electónico cada vez que alguien participe a la encuesta",
         "To receive an email for each new comment": "ES_Recevoir un courriel à chaque commentaire",
         "Only the poll maker can see the poll's results": "ES_Seul le créateur du sondage peut voir les résultats",
+        "Use a password to restrict access.": "ES_Utiliser un mot de passe pour restreindre l'accès au sondage.",
+        "The results are publicly visible.": "ES_Les résultats sont visibles sans mot de passe.",
+        "Poll password": "ES_Mot de passe",
+        "Confirm password": "ES_Confirmer votre mot de passe.",
         "Go to step 2": "ES_Aller à l'étape 2"
     },
     "Step 2": {
@@ -338,6 +342,9 @@
         "You can't create a poll with hidden results with the following edition option:": "ES_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
         "Failed to delete column": "Error al eliminar la columna",
         "MISSING_VALUES": "Los valores perdidos",
-        "CANT_CONNECT_TO_DATABASE": "No se puede conectar a la base de datos"
+        "CANT_CONNECT_TO_DATABASE": "No se puede conectar a la base de datos",
+	"Password is empty": "ES_Le mot de passe est vide.",
+        "Passwords do not match": "ES_Les mot de passes ne correspondent pas."
+    
     }
 }

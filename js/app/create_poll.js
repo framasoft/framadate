@@ -18,6 +18,9 @@
 
 $(document).ready(function () {
 
+    /**
+     * Error check when submitting form
+     */
     $("#formulaire").submit(function (event) {
         var isHidden = $("#hidden").prop('checked');
         var isOptionAllUserCanModifyEverything = $("#editableByAll").is(":checked");
@@ -27,6 +30,18 @@ $(document).ready(function () {
             $("#hiddenWithBadEditionModeError").removeClass("hidden");
         } else {
             $("#hiddenWithBadEditionModeError").addClass("hidden");
+        }
+    });
+
+    /**
+     * Hide/Show password options
+     */
+    var usePassword = $("#use_password");
+    usePassword.change(function(){
+        if (usePassword.prop("checked")) {
+            $("#password_options").removeClass("hidden");
+        } else {
+            $("#password_options").addClass("hidden");
         }
     });
 

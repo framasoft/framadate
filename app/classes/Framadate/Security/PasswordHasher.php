@@ -15,7 +15,7 @@ class PasswordHasher {
     /**
      * Hash a password
      *
-     * @param $password the password to hash.
+     * @param string $password the password to hash.
      * @return false|string the hashed password, or false on failure. The used algorithm, cost and salt are returned as part of the hash.
      */
     public static function hash($password) {
@@ -25,8 +25,8 @@ class PasswordHasher {
     /**
      * Verify a password with a hash
      *
-     * @param $password the password to verify
-     * @param $hash the hash to compare.
+     * @param string $password the password to verify
+     * @param string $hash the hash to compare.
      * @return bool
      */
     public static function verify($password, $hash) {

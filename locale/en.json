@@ -211,6 +211,10 @@
     "To receive an email for each new vote": "Receive an email for each new vote",
     "To receive an email for each new comment": "Receive an email for each new comment",
     "Only the poll maker can see the poll's results": "Only the poll maker can see the poll results",
+    "Use a password to restrict access.": "Use a password to restrict access.",
+    "The results are publicly visible.": "The results are publicly visible.",
+    "Poll password": "Password",
+    "Confirm password": "Confirmer votre mot de passe.",
     "Go to step 2": "Go to step 2"
   },
   "Step 2": {
@@ -272,9 +276,9 @@
     "Expiration date": "Expiry date",
     "Votes": "Votes",
     "Actions": "Actions",
-    "See the poll": "Go to poll",
-    "Change the poll": "Change poll",
-    "Deleted the poll": "Delete the poll",
+    "See the poll": "See the poll",
+    "Change the poll": "Change the poll",
+    "Deleted the poll": "Deleted the poll",
     "Summary": "Summary",
     "Success": "Success",
     "Fail": "Fail",
@@ -338,6 +342,8 @@
     "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following option: ",
     "Failed to delete column": "Failed to delete column",
     "MISSING_VALUES": "Missing values",
-    "CANT_CONNECT_TO_DATABASE": "Unable to connect to database"
+    "CANT_CONNECT_TO_DATABASE": "Unable to connect to database",
+    "Password is empty": "Password is empty.",
+    "Passwords do not match": "Passwords do not match."
   }
 }

@@ -211,6 +211,10 @@
         "To receive an email for each new vote": "Bei jeder neuen Wertung eine E-Mail erhalten",
         "To receive an email for each new comment": "Bei jedem neuen Kommentar eine E-Mail erhalten",
         "Only the poll maker can see the poll's results": "Einzig der Autor der Abstimmung kann die Ergebnisse einsehen.",
+        "Use a password to restrict access.": "DE_Utiliser un mot de passe pour restreindre l'accès au sondage.",
+        "The results are publicly visible.": "DE_Les résultats sont visibles sans mot de passe.",
+        "Poll password": "DE_Mot de passe",
+        "Confirm password": "DE_Confirmer votre mot de passe.",
         "Go to step 2": "Weiter zum 2. Schritt"
     },
     "Step 2": {
@@ -338,6 +342,9 @@
         "You can't create a poll with hidden results with the following edition option:": "Sie können mit der folgenden Editier-Option keine Umfrage mit versteckten Ergebnissen erzeugen:",
         "Failed to delete column": "Löschen der Spalte fehlgeschlagen",
         "MISSING_VALUES": "Fehlende Werte",
-        "CANT_CONNECT_TO_DATABASE": "Kann nicht mit der Datenbank verbinden"
+        "CANT_CONNECT_TO_DATABASE": "Kann nicht mit der Datenbank verbinden",
+	"Password is empty": "DE_Le mot de passe est vide.",
+        "Passwords do not match": "DE_Les mot de passes ne correspondent pas."
+
     }
 }
