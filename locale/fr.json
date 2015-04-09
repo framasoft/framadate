@@ -202,6 +202,10 @@
     "To receive an email for each new vote.": "Recevoir un courriel à chaque participation d'un sondé.",
     "To receive an email for each new comment.": "Recevoir un courriel à chaque commentaire.",
     "Only the poll maker can see the poll's results.": "Seul le créateur du sondage peut voir les résultats.",
+    "Use a password to restrict access.": "Utiliser un mot de passe pour restreindre l'accès au sondage.",
+    "The results are publicly visible.": "Les résultats sont visibles sans mot de passe.",
+    "Poll password": "Mot de passe",
+    "Confirm password": "Confirmer votre mot de passe.",
     "Go to step 2": "Aller à l'étape 2"
   },
   "Step 2": {
@@ -317,6 +321,8 @@
     "Update vote failed": "Mise à jour du vote échoué",
     "Adding vote failed": "Ajout d'un vote échoué",
     "Comment failed": "Commentaire échoué",
-    "You can't create a poll with hidden results with the following edition option:": "Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
+    "You can't create a poll with hidden results with the following edition option:": "Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
+    "Password is empty": "Le mot de passe est vide.",
+    "Passwords do not match": "Les mot de passes ne correspondent pas."
   }
 }

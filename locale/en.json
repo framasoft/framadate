@@ -202,6 +202,10 @@
     "To receive an email for each new vote.": "To receive an email for each new vote.",
     "To receive an email for each new comment.": "To receive an email for each new comment.",
     "Only the poll maker can see the poll's results.": "Only the poll maker can see the poll's results.",
+    "Use a password to restrict access.": "Use a password to restrict access.",
+    "The results are publicly visible.": "The results are publicly visible.",
+    "Poll password": "Password",
+    "Confirm password": "Confirmer votre mot de passe.",
     "Go to step 2": "Go to step 2"
   },
   "Step 2": {
@@ -318,5 +322,7 @@
     "Adding vote failed": "Adding vote failed",
     "Comment failed": "Comment failed",
     "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following edition option: "
+    "Password is empty": "Password is empty.",
+    "Passwords do not match": "Passwords do not match."
   }
 }
