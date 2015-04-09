@@ -12,7 +12,8 @@
     "require": {
         "smarty/smarty": "3.1.21",
         "o80/i18n": "dev-develop",
-        "phpmailer/phpmailer": "~5.2"
+        "phpmailer/phpmailer": "~5.2",
+	"ircmaxell/password-compat": "dev-master"
     },
 
     "require-dev": {
