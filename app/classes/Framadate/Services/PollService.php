@@ -22,7 +22,6 @@ use Framadate\Form;
 use Framadate\FramaDB;
 use Framadate\Utils;
 use Framadate\Security\Token;
-use Framadate\Security\PasswordHasher;
 use Framadate\Repositories\RepositoryFactory;
 
 class PollService {
@@ -120,18 +119,9 @@ class PollService {
         } while ($this->pollRepository->existsById($poll_id));
         $admin_poll_id = $poll_id . $this->random(8);
 
-        // Password hash, if needed
-        if ($form->use_password) {
-            $password_hash = PasswordHasher::hash($form->password);
-            $results_publicly_visible = $form->results_publicly_visible;
-        } else {
-            $password_hash = null;
-            $results_publicly_visible = null;
-        }
-
         // Insert poll + slots
         $this->pollRepository->beginTransaction();
-        $this->pollRepository->insertPoll($poll_id, $admin_poll_id, $form, $password_hash, $results_publicly_visible);
+        $this->pollRepository->insertPoll($poll_id, $admin_poll_id, $form);
         $this->slotRepository->insertSlots($poll_id, $form->getChoices());
         $this->pollRepository->commit();
 
