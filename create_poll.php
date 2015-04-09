@@ -19,6 +19,7 @@
 
 use Framadate\Form;
 use Framadate\Services\InputService;
+use Framadate\Editable;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -60,12 +61,18 @@ if ($goToStep2) {
     $receiveNewVotes = isset($_POST['receiveNewVotes']) ? $inputService->filterBoolean($_POST['receiveNewVotes']) : false;
     $receiveNewComments = isset($_POST['receiveNewComments']) ? $inputService->filterBoolean($_POST['receiveNewComments']) : false;
     $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
+    $use_password = filter_input(INPUT_POST, 'use_password', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
+    $password = isset($_POST['password'])?$_POST['password']:null;
+    $password_repeat = isset($_POST['password_repeat'])?$_POST['password_repeat']:null;
+    $results_publicly_visible = filter_input(INPUT_POST, 'results_publicly_visible', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
 
     // On initialise également les autres variables
     $error_on_mail = false;
     $error_on_title = false;
     $error_on_name = false;
     $error_on_description = false;
+    $error_on_password = false;
+    $error_on_password_repeat = false;
 
     $_SESSION['form']->title = $title;
     $_SESSION['form']->admin_name = $name;
@@ -75,6 +82,10 @@ if ($goToStep2) {
     $_SESSION['form']->receiveNewVotes = $receiveNewVotes;
     $_SESSION['form']->receiveNewComments = $receiveNewComments;
     $_SESSION['form']->hidden = $hidden;
+    $_SESSION['form']->use_password = ($use_password !== null);
+    $_SESSION['form']->password = $password;
+    $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
+
 
     if ($config['use_smtp'] == true) {
         if (empty($mail)) {
@@ -101,7 +112,16 @@ if ($goToStep2) {
         $email_OK = true;
     }
 
-    if ($title && $name && $email_OK && !$error_on_title && !$error_on_description && !$error_on_name) {
+    if ($use_password) {
+        if (empty($password)) {
+            $error_on_password = true;
+        } else if ($password != $password_repeat) {
+            $error_on_password_repeat = true;
+        }
+    }
+
+    if ($title && $name && $email_OK && !$error_on_title && !$error_on_description && !$error_on_name
+        && !$error_on_password && !$error_on_password_repeat) {
 
         if ($goToStep2 == 'date') {
             header('Location:create_date_poll.php');
@@ -140,6 +160,16 @@ $errors = array(
         'class' => ''
     ),
     'email' => array(
+        'msg' => '',
+        'aria' => '',
+        'class' => ''
+    ),
+    'password' => array(
+        'msg' => '',
+        'aria' => '',
+        'class' => ''
+    ),
+    'password_repeat' => array(
         'msg' => '',
         'aria' => '',
         'class' => ''
@@ -182,6 +212,17 @@ if (!empty($_POST[GO_TO_STEP_2])) {
         $errors['email']['class'] = ' has-error';
         $errors['email']['msg'] = __('Error', 'The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.');
     }
+
+    if ($error_on_password) {
+        $errors['password']['aria'] = 'aria-describeby="poll_password_error" ';
+        $errors['password']['class'] = ' has-error';
+        $errors['password']['msg'] = __('Error', 'Password is empty');
+    }
+    if ($error_on_password_repeat) {
+        $errors['password_repeat']['aria'] = 'aria-describeby="poll_password_repeat_error" ';
+        $errors['password_repeat']['class'] = ' has-error';
+        $errors['password_repeat']['msg'] = __('Error', 'Passwords do not match');
+    }
 }
 
 $useRemoteUser = USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']);
@@ -201,6 +242,9 @@ $smarty->assign('poll_editable', Utils::fromPostOrDefault('editable', $_SESSION[
 $smarty->assign('poll_receiveNewVotes', Utils::fromPostOrDefault('receiveNewVotes', $_SESSION['form']->receiveNewVotes));
 $smarty->assign('poll_receiveNewComments', Utils::fromPostOrDefault('receiveNewComments', $_SESSION['form']->receiveNewComments));
 $smarty->assign('poll_hidden', Utils::fromPostOrDefault('hidden', $_SESSION['form']->hidden));
+$smarty->assign('poll_use_password', Utils::fromPostOrDefault('use_password', $_SESSION['form']->use_password));
+$smarty->assign('poll_results_publicly_visible', Utils::fromPostOrDefault('results_publicly_visible', $_SESSION['form']->results_publicly_visible));
+$smarty->assign('poll_password', Utils::fromPostOrDefault('password', $_SESSION['form']->password));
 $smarty->assign('form', $_SESSION['form']);
 
 $smarty->display('create_poll.tpl');
