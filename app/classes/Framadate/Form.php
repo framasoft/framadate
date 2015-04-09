@@ -60,10 +60,10 @@ class Form
     public $use_password;
 
     /**
-     * The password needed to access the poll, if $use_password is set to true
+     * The password needed to access the poll, hashed. Only used if $use_password is set to true
      * @var string
      */
-    public $password;
+    public $password_hash;
 
     /**
      * If true, the polls results will be also visible for those without password

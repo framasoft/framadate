@@ -20,6 +20,7 @@
 use Framadate\Form;
 use Framadate\Editable;
 use Framadate\Utils;
+use Framadate\Security\PasswordHasher;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -75,7 +76,6 @@ if (!empty($_POST[GO_TO_STEP_2])) {
     $_SESSION['form']->receiveNewComments = ($receiveNewComments !== null);
     $_SESSION['form']->hidden = ($hidden !== null);
     $_SESSION['form']->use_password = ($use_password !== null);
-    $_SESSION['form']->password = $password;
     $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
 
     if ($config['use_smtp'] == true) {
@@ -113,6 +113,14 @@ if (!empty($_POST[GO_TO_STEP_2])) {
 
     if ($title && $name && $email_OK && !$error_on_title && !$error_on_description && !$error_on_name
         && !$error_on_password && !$error_on_password_repeat) {
+
+        // If no errors, we hash the password if needed
+        if ($_SESSION['form']->use_password) {
+            $_SESSION['form']->password_hash = PasswordHasher::hash($password);
+        } else {
+            $_SESSION['form']->password_hash = null;
+            $_SESSION['form']->results_publicly_visible = null;
+        }
 
         if ($goToStep2 == 'date') {
             header('Location:create_date_poll.php');
@@ -235,7 +243,6 @@ $smarty->assign('poll_receiveNewComments', Utils::fromPostOrDefault('receiveNewC
 $smarty->assign('poll_hidden', Utils::fromPostOrDefault('hidden', $_SESSION['form']->hidden));
 $smarty->assign('poll_use_password', Utils::fromPostOrDefault('use_password', $_SESSION['form']->use_password));
 $smarty->assign('poll_results_publicly_visible', Utils::fromPostOrDefault('results_publicly_visible', $_SESSION['form']->results_publicly_visible));
-$smarty->assign('poll_password', Utils::fromPostOrDefault('password', $_SESSION['form']->password));
 $smarty->assign('form', $_SESSION['form']);
 
 $smarty->display('create_poll.tpl');
