@@ -43,7 +43,7 @@ function rcopy($src, $dst) {
         }
     }
     closedir($dir);
-    return $copied;
+    return !!$copied;
 }
 
 function rrmdir($dir) {
@@ -56,6 +56,22 @@ function rrmdir($dir) {
 
 function copyDependencyToBuild($dirname) {
     return @mkdir(BUILD_VENDOR . $dirname, 755, true) && @rcopy(VENDOR . $dirname, BUILD_VENDOR . $dirname);
+}
+
+function copyFiles($files, &$result) {
+    foreach ($files as $key => $file) {
+        if (is_int($key)) {
+            $key = $file;
+        }
+
+        if (is_dir(ROOT . '/' . $key)) {
+            $result->$key = @rcopy(ROOT . '/' . $key, BUILD . '/' . $file);
+        } elseif (is_file(ROOT . '/' . $key)) {
+            $result->$key = @copy(ROOT . '/' . $key, BUILD . '/' . $file);
+        }
+
+        i($result->$key, $key);
+    }
 }
 
 function zip($source, $destination) {
@@ -139,27 +155,14 @@ i($result->autoload, 'autoload');
 // Copy assets
 
 d('# Assets');
-
-$assets = array('css', 'fonts', 'images', 'js');
-
-foreach ($assets as $asset) {
-    $result->$asset = @rcopy(ROOT . '/' . $asset, BUILD . '/' . $asset);
-    i($result->$asset, $asset);
-}
+copyFiles(array('css', 'fonts', 'images', 'js'), $result);
 
 // Copy sources
 
 d('# Source directories');
-
-$dirs = array('admin', 'app', 'locale', 'tpl');
-
-foreach ($dirs as $dir) {
-    $result->$dir = @rcopy(ROOT . '/' . $dir, BUILD . '/' . $dir);
-    i($result->$dir, $dir);
-}
+copyFiles(array('admin', 'app', 'locale', 'tpl'), $result);
 
 d('# Source files');
-
 $files = array(
     'adminstuds.php',
     'bandeaux.php',
@@ -179,16 +182,16 @@ $files = array(
     'robots.txt',
     'studs.php'
 );
-
-foreach ($files as $file) {
-    $result->$file = @copy(ROOT . '/' . $file, BUILD . '/' . $file);
-    i($result->$file, $file);
-}
+copyFiles($files, $result);
 
 // Zip Dist
 $output = DIST . '/framadate-' . VERSION . '-' . date('Ymd') . '.zip';
 zip(BUILD, $output);
 rrmdir(BUILD);
+
+if (isset($_GET['verbose'])) {
+    var_dump($result);
+}
 
 d('--------');
 d('Distribution file: ' . realpath($output));
