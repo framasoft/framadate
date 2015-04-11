@@ -106,21 +106,21 @@ class Utils {
     public static function getUrlSondage($id, $admin = false, $vote_id='') {
         if (URL_PROPRE) {
             if ($admin === true) {
-                $url = str_replace('/admin', '', self::get_server_name()) . $id . '/admin';
+                $url = self::get_server_name() . $id . '/admin';
             } else {
-                $url = str_replace('/admin', '', self::get_server_name()) . $id;
-                if ($vote_id != '') {
-                    $url .= '/vote/'.$vote_id."#edit";
-                }
+                $url =  self::get_server_name() . $id;
+            }
+            if ($vote_id != '') {
+                $url .= '/vote/'.$vote_id."#edit";
             }
         } else {
             if ($admin === true) {
-                $url = str_replace('/admin', '', self::get_server_name()) . 'adminstuds.php?poll=' . $id;
+                $url = self::get_server_name() . 'adminstuds.php?poll=' . $id;
             } else {
-                $url = str_replace('/admin', '', self::get_server_name()) . 'studs.php?poll=' . $id;
-                if ($vote_id != '') {
-                    $url .= '&vote='.$vote_id."#edit";
-                }
+                $url = self::get_server_name() . 'studs.php?poll=' . $id;
+            }
+            if ($vote_id != '') {
+                $url .= '&vote='.$vote_id."#edit";
             }
         }
 

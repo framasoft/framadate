@@ -5,7 +5,7 @@
 <h3>{__('Poll results', 'Votes of the poll')} {if $hidden}<i>({__('PollInfo', 'Results are hidden.')})</i>{/if}</h3>
 
 <div id="tableContainer" class="tableContainer">
-    <form action="{poll_url id=$poll_id}" method="POST"  id="poll_form">
+    <form action="{if $admin}{poll_url id=$admin_poll_id admin=true}{else}{poll_url id=$poll_id}{/if}" method="POST"  id="poll_form">
         <table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes of the poll')} {$poll->title|html}</caption>
             <thead>
@@ -89,7 +89,7 @@
 
                         {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin)}
                             <td>
-                                <a href="{poll_url id=$poll->id vote_id=$vote->uniqId}" class="btn btn-link btn-sm" title="{__('Poll results', 'Edit the line:')|html} {$vote->name|html}">
+                                <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-link btn-sm" title="{__('Poll results', 'Edit the line:')|html} {$vote->name|html}">
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span>
                                 </a>
                                 {if $admin}
