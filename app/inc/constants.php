@@ -33,15 +33,3 @@ const EDITABLE_CHOICE_REGEX = '/^[0-2]$/';
 
 // CSRF (300s = 5min)
 const TOKEN_TIME = 300;
-
-// Errors
-const COMMENT_EMPTY         = 0x0000000001;
-const COMMENT_USER_EMPTY    = 0x0000000010;
-const COMMENT_INSERT_FAILED = 0x0000000100;
-const NAME_EMPTY            = 0x0000001000;
-const NAME_TAKEN            = 0x0000010000;
-const NO_POLL               = 0x0000100000;
-const NO_POLL_ID            = 0x0001000000;
-const INVALID_EMAIL         = 0x0010000000;
-const TITLE_EMPTY           = 0x0100000000;
-const INVALID_DATE          = 0x1000000000;
