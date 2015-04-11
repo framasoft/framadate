@@ -89,11 +89,14 @@ class InputService {
      * @return string|null
      */
     private function returnIfNotBlank($filtered) {
-        if ($filtered && !empty(str_replace(' ', '', $filtered))) {
-            return $filtered;
-        } else {
-            return null;
+        if ($filtered) {
+            $withoutSpaces = str_replace(' ', '', $filtered);
+            if (!empty($withoutSpaces)) {
+                return $filtered;
+            }
         }
+
+        return null;
     }
 
 }
