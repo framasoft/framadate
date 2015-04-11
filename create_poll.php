@@ -108,7 +108,7 @@ if (!empty($_POST[GO_TO_STEP_2])) {
 
     } else {
         // Title Erreur !
-        $title = __('Generic', 'Error!') . ' - ' . __('Step 1', 'Poll creation (1 on 3)');
+        $title = __('Error', 'Error!') . ' - ' . __('Step 1', 'Poll creation (1 on 3)');
     }
 } else {
     // Title OK (formulaire pas encore rempli)
