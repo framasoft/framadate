@@ -26,20 +26,20 @@ body {
 
 .trait { /* hr */
     background-color: #EEE;
-    height: 11px;
-    margin:15px 0px;
-    border:none;
+    height: 5px;
+    margin: 5px 0;
+    border: none;
 }
 
 .ombre {
     background-color: #FFF;
     box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
-    margin:30px auto;
+    margin: 15px auto 30px;
 }
 
 /* Commentaires */
 div.comment{
-    margin-top: 10px;
+    margin-bottom: 10px;
     border-left: 1px dashed #999;
     background: #F5F5F5;
     padding-top: 4px;
@@ -53,8 +53,20 @@ a:focus { /* a11y */
     outline:#000 dotted 1px;
 }
 
-main, header, footer, .container .jumbotron {
-    padding:24px 30px;
+header, footer {
+}
+main {
+    margin-top: 20px;
+}
+header h1 {
+    margin-top: 0;
+}
+.container {
+    padding:30px;
+}
+.container .jumbotron {
+    padding:20px 20px;
+    border-radius: 2px;
 }
 
 .summary h4 {
@@ -67,6 +79,10 @@ main, header, footer, .container .jumbotron {
 
 .summary img {
     max-width:100px;
+}
+
+.alert {
+    border-radius: 2px;
 }
 
 /* Effet sur les images en page d'accueil */
@@ -285,19 +301,19 @@ table.results .btn-link.btn-sm {
 }
 
 .yes .btn {
-    border-bottom-right-radius:0px !important;
-    border-bottom-left-radius:0px !important;
+    border-bottom-right-radius:0 !important;
+    border-bottom-left-radius:0 !important;
     margin-bottom:-1px !important;
     margin-top:4px !important;
 }
 
 .ifneedbe .btn {
-    border-radius:0px;
+    border-radius: 0;
 }
 
 .no .btn{
-    border-top-right-radius:0px !important;
-    border-top-left-radius:0px !important;
+    border-top-right-radius:0 !important;
+    border-top-left-radius:0 !important;
     margin-bottom:4px !important;
     margin-top:-1px !important;
 }
@@ -331,7 +347,7 @@ table.results .btn-link.btn-sm {
 
 #selected-days legend input {
     box-shadow: none;
-    border-width:0px;
+    border-width:0;
     color: #333;
     font-size: 21px;
     border-radius:0;

@@ -18,7 +18,7 @@
 
     {* Add comment form *}
     {if $active && !$expired}
-        <div class="hidden-print alert alert-info">
+        <div class="hidden-print jumbotron">
             <div class="col-md-6 col-md-offset-3">
                 <fieldset id="add-comment"><legend>{__('Comments', 'Add a comment to the poll')}</legend>
                     <div class="form-group">
