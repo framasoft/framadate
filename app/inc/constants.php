@@ -21,10 +21,14 @@
 const VERSION = '0.9';
 
 // Regex
-const POLL_REGEX = '/^[a-zA-Z0-9]+$/';
+const POLL_REGEX = '/^[a-z0-9]+$/i';
 const CHOICE_REGEX = '/^[012]$/';
 const NAME_REGEX = '/^[áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœa-z0-9_ -]+$/i';
-const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/';
+const TITLE_REGEX = '/^[áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœa-z0-9\\/ &"\'(_)=~#{|`^@}$[\\]\\\\,;:!?.*-]+$/i';
+const DESCRIPTION_REGEX = "/^[áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœa-z0-9\\/ &\"'(_)=~#{|`^@}$[\\]\\\\,;:!?.*\n-]+$/i";
+const COMMENT_REGEX = DESCRIPTION_REGEX;
+const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/i';
+const BOOLEAN_TRUE_REGEX = '/^(on|true|1)$/i';
 const EDITABLE_CHOICE_REGEX = '/^[0-2]$/';
 
 // CSRF (300s = 5min)

@@ -18,12 +18,21 @@
  */
 
 use Framadate\Form;
-use Framadate\Editable;
+use Framadate\Services\InputService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 
 const GO_TO_STEP_2 = 'gotostep2';
+
+
+/* Services */
+/*----------*/
+
+$inputService = new InputService();
+
+/* PAGE */
+/* ---- */
 
 if (!isset($_SESSION['form'])) {
     $_SESSION['form'] = new Form();
@@ -42,32 +51,30 @@ if (isset($_GET['type']) && $_GET['type'] == 'date' ||
 
 // We clean the data
 $goToStep2 = filter_input(INPUT_POST, GO_TO_STEP_2, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(date|classic)$/']]);
-$title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
-$name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
-$mail = filter_input(INPUT_POST, 'mail', FILTER_VALIDATE_EMAIL);
-$description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
-$editable = filter_input(INPUT_POST, 'editable', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => EDITABLE_CHOICE_REGEX]]);
-$receiveNewVotes = filter_input(INPUT_POST, 'receiveNewVotes', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
-$receiveNewComments = filter_input(INPUT_POST, 'receiveNewComments', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
-$hidden = filter_input(INPUT_POST, 'hidden', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
+if ($goToStep2) {
+    $title = $inputService->filterTitle($_POST['title']);
+    $name = $inputService->filterName($_POST['name']);
+    $mail = $inputService->filterMail($_POST['mail']);
+    $description = $inputService->filterDescription($_POST['description']);
+    $editable = $inputService->filterEditable($_POST['editable']);
+    $receiveNewVotes = isset($_POST['receiveNewVotes']) ? $inputService->filterBoolean($_POST['receiveNewVotes']) : false;
+    $receiveNewComments = isset($_POST['receiveNewComments']) ? $inputService->filterBoolean($_POST['receiveNewComments']) : false;
+    $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
 
+    // On initialise également les autres variables
+    $error_on_mail = false;
+    $error_on_title = false;
+    $error_on_name = false;
+    $error_on_description = false;
 
-// On initialise �galement les autres variables
-$error_on_mail = false;
-$error_on_title = false;
-$error_on_name = false;
-$error_on_description = false;
-
-
-if (!empty($_POST[GO_TO_STEP_2])) {
     $_SESSION['form']->title = $title;
     $_SESSION['form']->admin_name = $name;
     $_SESSION['form']->admin_mail = $mail;
     $_SESSION['form']->description = $description;
     $_SESSION['form']->editable = $editable;
-    $_SESSION['form']->receiveNewVotes = ($receiveNewVotes !== null);
-    $_SESSION['form']->receiveNewComments = ($receiveNewComments !== null);
-    $_SESSION['form']->hidden = ($hidden !== null);
+    $_SESSION['form']->receiveNewVotes = $receiveNewVotes;
+    $_SESSION['form']->receiveNewComments = $receiveNewComments;
+    $_SESSION['form']->hidden = $hidden;
 
     if ($config['use_smtp'] == true) {
         if (empty($mail)) {

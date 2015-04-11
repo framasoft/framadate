@@ -50,4 +50,33 @@ class InputService {
         return in_array($value, $allowedValues, true) ? $value : null;
     }
 
+    public function filterTitle($title) {
+        return filter_var($title, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => TITLE_REGEX]]);
+    }
+
+    public function filterName($name) {
+        return filter_var($name, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+    }
+
+    public function filterMail($mail) {
+        return filter_var($mail, FILTER_VALIDATE_EMAIL);
+    }
+
+    public function filterDescription($description) {
+        $description = str_replace("\r\n", "\n", $description);
+        return filter_var($description, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => DESCRIPTION_REGEX]]);
+    }
+
+    public function filterBoolean($boolean) {
+        return !!filter_var($boolean, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_TRUE_REGEX]]);
+    }
+
+    public function filterEditable($editable) {
+        return filter_var($editable, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => EDITABLE_CHOICE_REGEX]]);
+    }
+
+    public function filterComment($comment) {
+        return filter_var($comment, FILTER_SANITIZE_STRING);
+    }
+
 }

@@ -69,19 +69,19 @@ if (isset($_POST['update_poll_info'])) {
 
     // Update the right poll field
     if ($field == 'title') {
-        $title = strip_tags($_POST['title']);
+        $title = $inputService->filterTitle($_POST['title']);
         if ($title) {
             $poll->title = $title;
             $updated = true;
         }
     } elseif ($field == 'admin_mail') {
-        $admin_mail = filter_input(INPUT_POST, 'admin_mail', FILTER_VALIDATE_EMAIL);
+        $admin_mail = $inputService->filterMail($_POST['admin_mail']);
         if ($admin_mail) {
             $poll->admin_mail = $admin_mail;
             $updated = true;
         }
     } elseif ($field == 'description') {
-        $description = strip_tags($_POST['description']);
+        $description = $inputService->filterDescription($_POST['description']);
         if ($description) {
             $poll->description = $description;
             $updated = true;
@@ -117,14 +117,13 @@ if (isset($_POST['update_poll_info'])) {
             $updated = true;
         }
     } elseif ($field == 'name') {
-        $admin_name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+        $admin_name = $inputService->filterName($_POST['name']);
         if ($admin_name) {
             $poll->admin_name = $admin_name;
             $updated = true;
         }
     } elseif ($field == 'hidden') {
-        $hidden = filter_input(INPUT_POST, 'hidden', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
-        $hidden = $hidden==null?false:true;
+        $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
         if ($hidden != $poll->hidden) {
             $poll->hidden = $hidden;
             $updated = true;
@@ -153,7 +152,7 @@ if (!empty($_GET['vote'])) {
 // -------------------------------
 
 if (!empty($_POST['save'])) { // Save edition of an old vote
-    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+    $name = $inputService->filterName($_POST['name']);
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
@@ -174,7 +173,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         }
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
-    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+    $name = $inputService->filterName($_POST['name']);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
     if (empty($name)) {
@@ -232,8 +231,8 @@ if (isset($_POST['confirm_remove_all_votes'])) {
 // -------------------------------
 
 if (isset($_POST['add_comment'])) {
-    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
-    $comment = strip_tags($_POST['comment']);
+    $name = $inputService->filterName($_POST['name']);
+    $comment = $inputService->filterComment($_POST['comment']);
 
     if (empty($name)) {
         $message = new Message('danger', __('Error', 'The name is invalid'));

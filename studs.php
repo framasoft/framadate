@@ -118,7 +118,7 @@ if (!empty($_GET['vote'])) {
 // -------------------------------
 
 if (!empty($_POST['save'])) { // Save edition of an old vote
-    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+    $name = $inputService->filterName($_POST['name']);
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
@@ -146,7 +146,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         }
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
-    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+    $name = $inputService->filterName($_POST['name']);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
 
     if (empty($name)) {
@@ -178,8 +178,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 // -------------------------------
 
 if (isset($_POST['add_comment'])) {
-    $name = filter_input(INPUT_POST, 'name', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
-    $comment = strip_tags($_POST['comment']);
+    $name = $inputService->filterName($_POST['name']);
+    $comment = $inputService->filterComment($_POST['comment']);
 
     if (empty($name)) {
         $message = new Message('danger', __('Error', 'Name is incorrect'));

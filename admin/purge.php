@@ -39,7 +39,8 @@ $securityService = new SecurityService();
 
 /* POST */
 /*-----*/
-$action = filter_input(INPUT_POST, 'action', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+
+$action = $inputService->filterName($_POST['action']);
 
 /* PAGE */
 /* ---- */
