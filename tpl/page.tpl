@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{$html_lang}">
+<html lang="{$locale}">
 <head>
     <meta charset="utf-8">
 

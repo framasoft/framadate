@@ -17,9 +17,6 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-// Sort languages
-asort($ALLOWED_LANGUAGES);
-
 // Prepare I18N instance
 $i18n = \o80\i18n\I18N::instance();
 $i18n->setDefaultLang(DEFAULT_LANGUAGE);
@@ -27,16 +24,12 @@ $i18n->setPath(__DIR__ . '/../../locale');
 
 // Change langauge when user asked for it
 if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'], array_keys($ALLOWED_LANGUAGES))) {
-    $locale = $_POST['lang'];
     $_SESSION['lang'] = $_POST['lang'];
-} elseif (!empty($_SESSION['lang'])) {
-    $locale = $_SESSION['lang'];
-} else {
-    $locale = DEFAULT_LANGUAGE;
 }
 
 /* <html lang="$html_lang"> */
-$html_lang = substr($locale, 0, 2);
+$i18n->get('Something, just to load the dictionary');
+$locale = $i18n->getLoadedLang();
 
 /* Date Format */
 $date_format['txt_full'] = __('Date', 'FULL'); //summary in create_date_poll.php and removal date in choix_(date|autre).php
