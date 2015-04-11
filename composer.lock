@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "35bdfd24b481ad94a99b6fd67499aba9",
+    "hash": "4771fa2616869cff821e2bf1daa6245c",
     "packages": [
         {
             "name": "o80/i18n",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/olivierperez/o80-i18n.git",
-                "reference": "669befcdadf3a745193792f51e97af1e70b3e614"
+                "reference": "27ad49063797169878605e310d42d2de618ff695"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/olivierperez/o80-i18n/zipball/669befcdadf3a745193792f51e97af1e70b3e614",
-                "reference": "669befcdadf3a745193792f51e97af1e70b3e614",
+                "url": "https://api.github.com/repos/olivierperez/o80-i18n/zipball/27ad49063797169878605e310d42d2de618ff695",
+                "reference": "27ad49063797169878605e310d42d2de618ff695",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
                 "internationalization",
                 "php"
             ],
-            "time": "2015-03-30 22:20:26"
+            "time": "2015-04-11 20:55:50"
         },
         {
             "name": "smarty/smarty",
