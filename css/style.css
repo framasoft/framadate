@@ -68,6 +68,9 @@ header h1 {
     padding:20px 20px;
     border-radius: 2px;
 }
+.container .jumbotron p {
+    font-size: 1em;
+}
 
 .summary h4 {
     margin-top:0;
