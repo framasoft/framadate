@@ -51,11 +51,13 @@ class InputService {
     }
 
     public function filterTitle($title) {
-        return filter_var($title, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => TITLE_REGEX]]);
+        $filtered = filter_var($title, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => TITLE_REGEX]]);
+        return $this->returnIfNotBlank($filtered);
     }
 
     public function filterName($name) {
-        return filter_var($name, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+        $filtered = filter_var($name, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+        return $this->returnIfNotBlank($filtered);
     }
 
     public function filterMail($mail) {
@@ -76,7 +78,22 @@ class InputService {
     }
 
     public function filterComment($comment) {
-        return filter_var($comment, FILTER_SANITIZE_STRING);
+        $filtered = filter_var($comment, FILTER_SANITIZE_STRING);
+        return $this->returnIfNotBlank($filtered);
+    }
+
+    /**
+     * Return the value if it's not blank.
+     *
+     * @param string $filtered The value
+     * @return string|null
+     */
+    private function returnIfNotBlank($filtered) {
+        if ($filtered && !empty(str_replace(' ', '', $filtered))) {
+            return $filtered;
+        } else {
+            return null;
+        }
     }
 
 }

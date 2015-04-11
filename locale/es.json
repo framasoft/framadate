@@ -119,7 +119,6 @@
         "Votes are editable solely by their owner.": "ES_Les votes sont modifiables uniquement par leur créateur",
         "Save the new rules": "ES_Enregistrer les nouvelles permissions",
         "Cancel the rules edit": "ES_Annuler le changement de permissions",
-        "The name is invalid.": "ES_Le nom n'est pas valide.",
         "Results are hidden.": "ES_Les résultats sont cachés.",
         "Results are visible.": "ES_Les résultats sont visibles."
     },
@@ -308,7 +307,7 @@
         "Cookies are disabled on your browser. Theirs activation is required to create a poll.": "ES_Les cookies sont désactivés sur votre navigateur. Leur activation est requise pour la création d'un sondage.",
         "This poll doesn't exist !": "Este encuesta no existe!",
         "Enter a name": "Introduzca un nombre",
-        "Name is incorrect": "ES_Le nom est pas correct",
+        "The name is invalid.": "ES_Le nom n'est pas valide.",
         "The name you've chosen already exist in this poll!": "El nombre entrado existe ya!",
         "Enter a name and a comment!": "Introduzca su nombre y un comentario!",
         "Failed to insert the comment!": "ES_Échec à l'insertion du commentaire !",

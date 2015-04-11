@@ -119,7 +119,6 @@
     "Votes are editable solely by their owner.": "Votes are editable solely by their owner",
     "Save the new rules": "Save the new rules",
     "Cancel the rules edit": "Cancel the rules edit",
-    "The name is invalid.": "The name is invalid.",
     "Results are hidden.": "Results are hidden.",
     "Results are visible.": "Results are visible."
   },
@@ -308,7 +307,7 @@
     "Cookies are disabled on your browser. Theirs activation is required to create a poll.": "Cookies are disabled on your browser. Theirs activation is required to create a poll.",
     "This poll doesn't exist !": "This poll doesn't exist !",
     "Enter a name": "Enter a name",
-    "Name is incorrect": "Name is incorrect",
+    "The name is invalid.": "The name is invalid.",
     "The name you've chosen already exist in this poll!": "The name you've chosen already exist in this poll!",
     "Enter a name and a comment!": "Enter a name and a comment!",
     "Failed to insert the comment!": "Failed to insert the comment!",

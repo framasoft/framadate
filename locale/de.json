@@ -119,7 +119,6 @@
         "Votes are editable solely by their owner.": "DE_Les votes sont modifiables uniquement par leur créateur",
         "Save the new rules": "Neue Regeln speichern",
         "Cancel the rules edit": "Neue Regeln nicht speichern",
-        "The name is invalid.": "Der Name ist ungültig.",
         "Results are hidden.": "DE_Les résultats sont cachés.",
         "Results are visible.": "DE_Les résultats sont visibles."
     },
@@ -308,7 +307,7 @@
         "Cookies are disabled on your browser. Theirs activation is required to create a poll.": "Cookies werden auf Ihrem Browser deaktiviert. Deren Aktivierung ist erforderlich, um eine Umfrage zu erstellen.",
         "This poll doesn't exist !": "Diese Umfrage existiert nicht!",
         "Enter a name": "Geben Sie einen Namen ein",
-        "Name is incorrect": "Name ist falsch",
+        "The name is invalid.": "Der Name ist ungültig.",
         "The name you've chosen already exist in this poll!": "Der von Ihnen eingegebenen Name existiert bereits in dieser Umfrage",
         "Enter a name and a comment!": "Geben Sie einen Namen und ein Kommentar ein!",
         "Failed to insert the comment!": "Einfügen des Kommentars gescheitert!",
