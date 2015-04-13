@@ -17,7 +17,7 @@
     <script type="text/javascript" src="{'js/jquery-1.11.1.min.js'|resource}"></script>
     <script type="text/javascript" src="{'js/bootstrap.min.js'|resource}"></script>
     <script type="text/javascript" src="{'js/bootstrap-datepicker.js'|resource}"></script>
-    <script type="text/javascript" src="{"js/locales/bootstrap-datepicker.$html_lang.js"|resource}"></script>
+    <script type="text/javascript" src="{"js/locales/bootstrap-datepicker.$locale.js"|resource}"></script>
     <script type="text/javascript" src="{'js/core.js'|resource}"></script>
 
     {if !empty($nav_js)}

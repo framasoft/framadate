@@ -31,7 +31,7 @@
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
-                    <th class="bg-info" id="C{$id}">{$slot->title|html|markdown}</th>
+                    <th class="bg-info" id="C{$id}">{$slot->title|markdown}</th>
                 {/foreach}
                 <th></th>
             </tr>
@@ -196,7 +196,7 @@
                 <ul style="list-style:none">
                     {foreach $slots as $slot}
                         {if $best_choices[$i] == $max}
-                            <li><strong>{$slot->title|html|markdown:true}</strong></li>
+                            <li><strong>{$slot->title|markdown:true}</strong></li>
                         {/if}
                         {$i = $i+1}
                     {/foreach}
