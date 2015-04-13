@@ -49,8 +49,7 @@
   },
   "Language selector": {
     "Select the language": "Select the language",
-    "Change the language": "Change the language",
-    "Where are my polls": "Where are my polls"
+    "Change the language": "Change the language"
   },
   "Maintenance": {
     "The application": "The application",
@@ -59,7 +58,8 @@
   },
   "Homepage": {
     "Schedule an event": "Schedule an event",
-    "Make a classic poll": "Make a classic poll"
+    "Make a classic poll": "Make a classic poll",
+    "Where are my polls": "Where are my polls"
   },
   "1st section": {
     "What is that?": "What is that?",
