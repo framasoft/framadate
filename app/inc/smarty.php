@@ -48,11 +48,13 @@ if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {
 function smarty_function_poll_url($params, Smarty_Internal_Template $template) {
     $poll_id =  filter_var($params['id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
     $admin =  (isset($params['admin']) && $params['admin']) ? true : false;
+    $action =  (isset($params['action']) && !empty($params['action'])) ? Utils::htmlEscape($params['action']) : false;
+    $action_value = (isset($params['action_value']) && !empty($params['action_value'])) ? Utils::htmlEscape($params['action_value']) : false;
     $vote_unique_id = isset($params['vote_id']) ? filter_var($params['vote_id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]) : '';
 
     // If filter_var fails (i.e.: hack tentative), it will return false. At least no leak is possible from this.
 
-    return Utils::getUrlSondage($poll_id, $admin, $vote_unique_id);
+    return Utils::getUrlSondage($poll_id, $admin, $vote_unique_id, $action, $action_value);
 }
 
 function smarty_modifier_markdown($md, $clear = false) {

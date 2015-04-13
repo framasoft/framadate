@@ -14,11 +14,17 @@
                     <th role="presentation"></th>
                     {foreach $slots as $id=>$slot}
                         <td headers="C{$id}">
-                            <button type="submit" name="delete_column" value="{$slot->title|html}" class="btn btn-link btn-sm" title="{__('adminstuds', 'Remove the column')} {$slot->title|html}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Genric', 'Remove')}</span></button>
-                        </td>
+                            <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->title}"
+                               class="btn btn-link btn-sm" title="{__('adminstuds', 'Remove the column')} {$slot->title|html}">
+                                <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Genric', 'Remove')}</span>
+                            </a>
+                            </td>
                     {/foreach}
                     <td>
-                        <button type="submit" name="add_slot" class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')}"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{__('Poll results', 'Add a column')}</span></button>
+                        <a href="{poll_url id=$admin_poll_id admin=true action='add_slot' action_value=true}"
+                           class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')} {$slot->title|html}">
+                            <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{__('Poll results', 'Add a column')}</span>
+                        </a>
                     </td>
                 </tr>
             {/if}
@@ -93,9 +99,11 @@
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span>
                                 </a>
                                 {if $admin}
-                                    <button type="submit" class="btn btn-link btn-sm" name="delete_vote" value="{$vote->id|html}" title="{__('Poll results', 'Remove the line:')|html} {$vote->name|html}">
+                                    <a href="{poll_url id=$admin_poll_id admin=true action='delete_vote' action_value=$vote->id}"
+                                       class="btn btn-link btn-sm"
+                                       title="{__('Poll results', 'Remove the line:')} {$vote->name|html}">
                                         <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span>
-                                    </button>
+                                    </a>
                                 {/if}
                             </td>
                         {else}
