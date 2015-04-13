@@ -27,7 +27,7 @@ if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'
     $_SESSION['lang'] = $_POST['lang'];
 }
 
-/* <html lang="$html_lang"> */
+/* <html lang="$locale"> */
 $i18n->get('Something, just to load the dictionary');
 $locale = $i18n->getLoadedLang();
 
