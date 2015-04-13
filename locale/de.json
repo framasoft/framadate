@@ -35,7 +35,8 @@
         "seconds": "Sekunden",
         "Choice": "Wahl",
         "Link": "Link",
-        "Search": "Suche"
+        "Search": "Suche",
+        "Creation date:": "Erstellungsdatum:"
     },
     "Date": {
         "dd/mm/yyyy": "jj/mm/aaaa",
@@ -52,7 +53,8 @@
     },
     "Homepage": {
         "Schedule an event": "Termin finden",
-        "Make a classic poll": "Klassische Umfrage"
+        "Make a classic poll": "Klassische Umfrage",
+        "Where are my polls": "Wo sind meine Umfragen"
     },
     "Maintenance": {
         "The application": "die Anwendung",
@@ -116,11 +118,11 @@
         "Votes and comments are locked": "Abstimmungen und Kommentare sind gesperrt",
         "Votes and comments are open": "Abstimmungen und Kommentare sind möglich",
         "Votes are editable": "Die Abstimmungen können geändert werden",
-        "Votes are editable solely by their owner.": "DE_Les votes sont modifiables uniquement par leur créateur",
+        "Votes are editable solely by their owner.": "Stimmen sind nur editierbar von ihrem Eigentümer",
         "Save the new rules": "Neue Regeln speichern",
         "Cancel the rules edit": "Neue Regeln nicht speichern",
-        "Results are hidden.": "DE_Les résultats sont cachés.",
-        "Results are visible.": "DE_Les résultats sont visibles."
+        "Results are hidden.": "Ergebnisse werden ausgeblendet.",
+        "Results are visible.": "Ergebnisse sind sichtbar."
     },
     "Poll results": {
         "Votes of the poll": "Abstimmungen der Umfrage ",
@@ -278,19 +280,24 @@
         "polls in the database at this time": "Umfragen derzeit in der Datenbank",
         "Purge the polls": "TRANSLATE_ Purge the polls"
     },
+    "FindPolls": {
+        "Here are your polls": "Hier sind Ihre Umfragen",
+        "Send me my polls": "Senden Sie mir mein Umfragen",
+        "Polls sent": "Umfragen geschickt"
+    },
     "Mail": {
         "Poll's participation": "Beteiligung an der Umfrage",
-        "filled a vote.\nYou can find your poll at the link": "füllte eine Stimme.\nSie können Ihre Umfrage unter dem Link zu finden",
-        "updated a vote.\nYou can find your poll at the link": "eine Abstimmung regelmäßig aktualisiert.\nSie können Ihre Umfrage unter dem Link zu finden",
-        "wrote a comment.\nYou can find your poll at the link": "hat einen Kommentar. Sie können Ihre Umfrage unter dem Link zu finden",
+        "filled a vote.\nYou can find your poll at the link": "füllte eine Stimme.<br/>Sie können Ihre Umfrage unter dem Link zu finden",
+        "updated a vote.\nYou can find your poll at the link": "eine Abstimmung regelmäßig aktualisiert.<br/>Sie können Ihre Umfrage unter dem Link zu finden",
+        "wrote a comment.\nYou can find your poll at the link": "hat einen Kommentar.<br/>Sie können Ihre Umfrage unter dem Link zu finden",
         "Thanks for your confidence.": "Danke für Ihr Vertrauen.",
-        "\n--\n\n« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.": "",
+        "FOOTER": "",
         "[ADMINISTRATOR] New settings for your poll": "[ADMINISTRATOR] Neue Einstellungen für Ihre Umfrage ",
-        "You have changed the settings of your poll. \nYou can modify this poll with this link": "Sie haben die Einstellungen Ihrer Umfrage verändert.\nSie können diese Umfrage mit diesem Link ändern",
-        "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.": "Dies ist die Botschaft, die Sie zu den Menschen, die Sie abfragen möchten senden.\nNun haben Sie diese Nachricht an alle, die Sie abfragen möchten senden.",
+        "You have changed the settings of your poll. \nYou can modify this poll with this link": "Sie haben die Einstellungen Ihrer Umfrage verändert.<br/>Sie können diese Umfrage mit diesem Link ändern",
+        "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.": "Dies ist die Botschaft, die Sie zu den Menschen, die Sie abfragen möchten senden.<br/>Nun haben Sie diese Nachricht an alle, die Sie abfragen möchten senden.",
         "hast just created a poll called": " hat eine Umfrage erstellt - Name folgt: ",
         "Thanks for filling the poll at the link above": "Danke, dass Sie die Umfrage unter dem obrigen Link ausgefüllt haben",
-        "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "Diese Meldung sollte nicht auf die befragten Personen gesendet werden. Es ist privat für die Umfrage Schöpfer.\n\nSie können nun ändern sie unter dem Link oben",
+        "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "Diese Meldung sollte nicht auf die befragten Personen gesendet werden. Es ist privat für die Umfrage Schöpfer.<br/><br/>Sie können nun ändern sie unter dem Link oben",
         "Author's message": "Nachricht vom Autor ",
         "For sending to the polled users": "Nachricht für die Teilnehmer"
     },
@@ -301,6 +308,7 @@
         "Something is wrong with the format": "Something is wrong with the format",
         "Enter an email address": "Sie müssen eine E-Mail-Adresse eingeben",
         "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.": "Die Adresse ist nicht korrekt! Sie sollten eine funktionierende E-Mail-Adresse angeben, um den Link zu ihrer Umfrage zu erhalten",
+        "No polls found": "Keine Umfragen gefunden",
         "There is a problem with your choices": "Es gibt ein Problem mit der Auswahl",
         "You haven't filled the first section of the poll creation.": "Sie haben den ersten Teil der Umfrageerstellung nicht ausgefüllt.",
         "Javascript is disabled on your browser. Its activation is required to create a poll.": "Javascript ist in Ihrem Browser deaktiviert. Seine Aktivierung ist erforderlich, um eine Umfrage zu erstellen.",
@@ -316,6 +324,6 @@
         "Update vote failed": "Update vote failed",
         "Adding vote failed": "Adding vote failed",
         "Comment failed": "Kommentar gescheitert",
-        "You can't create a poll with hidden results with the following edition option:": "DE_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
+        "You can't create a poll with hidden results with the following edition option:": "Sie können nicht eine Umfrage erstellen mit versteckten Ergebnisse mit der folgenden Ausgabe-Option:"
     }
 }

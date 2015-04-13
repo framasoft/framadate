@@ -95,19 +95,19 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         // Send confirmation by mail if enabled
         if ($config['use_smtp'] === true) {
             $message = __('Mail', "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
-            $message .= "\n\n";
-            $message .= stripslashes(html_entity_decode($_SESSION['form']->admin_name, ENT_QUOTES, 'UTF-8')) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . stripslashes(htmlspecialchars_decode($_SESSION['form']->title, ENT_QUOTES)) . "\".\n";
-            $message .= __('Mail', 'Thanks for filling the poll at the link above') . " :\n\n%s\n\n" . __('Mail', 'Thanks for your confidence.') . "\n" . NOMAPPLICATION;
+            $message .= '<br/><br/>';
+            $message .= Utils::htmlEscape($_SESSION['form']->admin_name) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlEscape($_SESSION['form']->title) . '".<br/>';
+            $message .= __('Mail', 'Thanks for filling the poll at the link above') . ' :<br/><br/>%s<br/><br/>' . __('Mail', 'Thanks for your confidence.') . '<br/>' . NOMAPPLICATION;
 
             $message_admin = __('Mail', "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
-            $message_admin .= " :\n\n" . "%s \n\n" . __('Mail', 'Thanks for your confidence.') . "\n" . NOMAPPLICATION;
+            $message_admin .= ' :<br/><br/>%s<br/><br/>' . __('Mail', 'Thanks for your confidence.') . '<br/>' . NOMAPPLICATION;
 
             $message = sprintf($message, Utils::getUrlSondage($poll_id));
             $message_admin = sprintf($message_admin, Utils::getUrlSondage($admin_poll_id, true));
 
             if ($mailService->isValidEmail($_SESSION['form']->admin_mail)) {
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ' : ' . stripslashes(htmlspecialchars_decode($_SESSION['form']->title, ENT_QUOTES)), $message_admin);
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ' : ' . stripslashes(htmlspecialchars_decode($_SESSION['form']->title, ENT_QUOTES)), $message);
+                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ' : ' . Utils::htmlEscape($_SESSION['form']->title), $message_admin);
+                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ' : ' . Utils::htmlEscape($_SESSION['form']->title), $message);
             }
         }
 

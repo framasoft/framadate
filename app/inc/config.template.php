@@ -41,8 +41,8 @@ const MIGRATION_TABLE = 'framadate_migration';
 // Table name prefix
 const TABLENAME_PREFIX = 'fd_';
 
-// Default Language using POSIX variant of BC P47 standard (choose in $ALLOWED_LANGUAGES)
-const DEFAULT_LANGUAGE = 'fr_FR';
+// Default Language
+const DEFAULT_LANGUAGE = 'fr';
 
 // List of supported languages, fake constant as arrays can be used as constants only in PHP >=5.6
 $ALLOWED_LANGUAGES = [
