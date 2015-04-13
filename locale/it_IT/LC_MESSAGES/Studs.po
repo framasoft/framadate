@@ -1,0 +1,686 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Framadate 0.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-23 20:52+0100\n"
+"PO-Revision-Date: 2015-04-13 11:30+0100\n"
+"Last-Translator: Nikko\n"
+"Language-Team: Nikko\n"
+"Language: Italian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: Italy\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _\n"
+"X-Poedit-Basepath: /var/www/studs\n"
+"X-Poedit-SearchPath-0: .\n"
+
+########### Generic ###########
+msgid "Make your polls"
+msgstr "Organizzare degli appuntamenti semplicemente,liberamente."
+
+msgid "Home"
+msgstr "Home Page"
+
+msgid "Poll"
+msgstr "Sondaggio"
+
+msgid "Save"
+msgstr "Salvare"
+
+msgid "Cancel"
+msgstr "Annullare"
+
+msgid "Add"
+msgstr "Aggiungere"
+
+msgid "Remove"
+msgstr "Cancellare"
+
+msgid "Validate"
+msgstr "Confermare"
+
+msgid "Edit"
+msgstr "Modificare"
+
+msgid "Next"
+msgstr "Continua"
+
+msgid "Back"
+msgstr "Precedente"
+
+msgid "Close"
+msgstr "Chiuedere"
+
+msgid "Your name"
+msgstr "Il vostro nome"
+
+msgid "Your email address"
+msgstr "Il vostro indirizzo e-mail"
+
+msgid "(in the format name@mail.com)"
+msgstr "(nel formato nome@mail.com)"
+
+msgid "descrizione"
+msgstr "Descrizione"
+
+msgid "Back to the homepage of "
+msgstr "Ritornare all'home page"
+
+msgid "Error!"
+msgstr "Errore!"
+
+msgid "(dd/mm/yyyy)"
+msgstr "(gg/mm/aaaa)"
+
+msgid "dd/mm/yyyy"
+msgstr "gg/mm/aaaa"
+
+msgid "%A, den %e. %B %Y"
+msgstr "%A %e %B %Y"
+
+msgid "Expiration's date"
+msgstr "Data di scadenza"
+
+msgid "days"
+msgstr "giorni"
+
+msgid "months"
+msgstr "mesi"
+
+########### Language selector ###########
+msgid "Change the language"
+msgstr "Cambiare la lingua"
+
+msgid "Select the language"
+msgstr "Scegliere la lingua"
+
+############ Homepage ############
+msgid "Schedule an event"
+msgstr "Creare un evento"
+
+msgid "Make a classic poll"
+msgstr "Creare un sondaggio"
+
+# 1st section
+msgid "What is that?"
+msgstr "Cos'è?"
+
+msgid "Framadate is an online service for planning an appointment or make a decision quickly and easily. No registration is required."
+msgstr "Framadate è un servizio online per pianificare un appuntamento o prendere una decisione velocemente e facilmente. Non è richiesta nessuna registrazione."
+
+msgid "Here is how it works:"
+msgstr "Ecco come funziona:"
+
+msgid "Make a poll"
+msgstr "Create un sondaggio"
+
+msgid "Define dates or subjects to choose"
+msgstr "Definite le date o il titolo"
+
+msgid "Send the poll link to your friends or colleagues"
+msgstr "Inviate il ling ai vostri amici o colleghi"
+
+msgid "Discuss and make a decision"
+msgstr "Discutete e prendete la vostra decisione"
+
+msgid "Do you want to "
+msgstr "Volete "
+
+msgid "view an example?"
+msgstr "vedere un esempio?"
+
+# 2nd section
+msgid "The software"
+msgstr "Il software"
+
+msgid "Framadate was initially based on "
+msgstr "Framadate si basa su "
+
+msgid " a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft"
+msgstr " un software sviluppato dall'Università of Strasburgo. Oggi il suo sviluppo è portato avanti dall'associazione Framasoft"
+
+msgid "This software needs javascript and cookies enabled. It is compatible with the following web browsers:"
+msgstr "Questo software richiede l'attivazione di javascript e dei cookies. È compatibile con i seguenti web browser:"
+
+msgid "It is governed by the "
+msgstr "È  disciplinato dalla "
+
+msgid "CeCILL-B license"
+msgstr "licenza CeCILL-B"
+
+# 3rd section
+msgid "Cultivate your garden"
+msgstr "Coltivate il vostro giardino"
+
+msgid "To participate in the software development, suggest improvements or simply download it, please visit "
+msgstr "Per partecipare allo sviluppo del software, proporre dei miglioramenti o semplicemente scaricarlo, si può accedere al"
+
+msgid "the development site"
+msgstr "sito di sviluppo"
+
+msgid "If you want to install the software for your own use and thus increase your independence, we help you on:"
+msgstr "Se voleste installare questo software per un vostro utilizzo e quindi aumentare la vostra autonomia, vi potremmo aiutare su:"
+
+############## Poll ##############
+msgid "Poll administration"
+msgstr "Amministrazione del sondaggio"
+
+msgid "Legend:"
+msgstr "Lgenda:"
+
+# Jumbotron adminstuds.php (+ studs.php)
+msgid "Back to the poll"
+msgstr "Torna al sondaggio"
+
+msgid "Print"
+msgstr "Stampare"
+
+msgid "Export to CSV"
+msgstr "Esportare in CSV"
+
+msgid "Remove the poll"
+msgstr "Eliminare il sondaggio"
+
+msgid "Title of the poll"
+msgstr "Titolo del sondaggio"
+
+msgid "Edit the title"
+msgstr "Modificare il titolo"
+
+msgid "Save the new title"
+msgstr "Salvare il nuovo titolo"
+
+msgid "Cancel the title edit"
+msgstr "Annullare la modifica del titolo"
+
+msgid "Initiator of the poll"
+msgstr "Autore del sondaggio"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Edit the email adress"
+msgstr "Modificare l'email"
+
+msgid "Save the email address "
+msgstr "Salvare l'email"
+
+msgid "Cancel the email address edit"
+msgstr "Annullare la modifica dell'email"
+
+msgid "Edit the description"
+msgstr "Modificare la descrizione"
+
+msgid "Save the description"
+msgstr "Salvare la descrizione"
+
+msgid "Cancel the description edit"
+msgstr "Annullare la modifica della descrizione"
+
+msgid "Public link of the poll"
+msgstr "Link pubblico del sondaggio"
+
+msgid "Admin link of the poll"
+msgstr "Link per amministrare il sondaggio"
+
+msgid "Poll rules"
+msgstr "Permessi del sondaggio"
+
+msgid "Edit the poll rules"
+msgstr "Modificare i permessi del sondaggio"
+
+msgid "Votes and comments are locked"
+msgstr "I voti e i commenti sono bloccati"
+
+msgid "Votes and comments are open"
+msgstr "I voti e i commenti sono permessi"
+
+msgid "Votes are editable"
+msgstr " I voti sono modificabili"
+
+msgid "Save the new rules"
+msgstr "Salvare i nuovi permessi"
+
+msgid "Cancel the rules edit"
+msgstr "Annullare le modifica dei permessi"
+
+# Help text adminstuds.php
+msgid "As poll administrator, you can change all the lines of this poll with this button "
+msgstr "Essendo l'amministratore, potete modificare tutte le righe di questo sondaggio con questo pulsante"
+
+msgid " remove a column or a line with "
+msgstr " cancellare una colonna o una riga con "
+
+msgid "and add a new column with "
+msgstr "e se vi foste dimenticati di inserire una scelta, potreste aggiungere una colonna cliccando su"
+
+msgid "Finally, you can change the informations of this poll like the title, the comments or your email address."
+msgstr "Potete infine modificare le informazioni relative a questo sondaggio come il titolo, i commenti o la vostra email."
+
+# Help text studs.php
+msgid "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line."
+msgstr "Per partecipare a questo sondaggio, è necessario inserire vostro nome, scegliere tutti i parametri che preferite e confermare la vostra scelta con il pulsante alla fine della riga."
+
+# Poll results
+msgid "Votes of the poll "
+msgstr "Voti del sondaggio "
+
+msgid "Remove the column"
+msgstr "Cancellare la colonna"
+
+msgid "Add a column"
+msgstr "Aggiungere una colonna"
+
+msgid "Edit the line:"
+msgstr "Modificare la riga :"
+
+msgid "Remove the line:"
+msgstr "Eliminare la riga :"
+
+msgid "Yes"
+msgstr "Sì"
+
+msgid "Ifneedbe"
+msgstr "Se necessario"
+
+msgid ", ifneedbe"
+msgstr ", se necessario"
+
+msgid "No"
+msgstr "No"
+
+msgid "Vote \"no\" for "
+msgstr "Voter « non » per "
+
+msgid "Vote \"yes\" for "
+msgstr "Scegliere « sì » per "
+
+msgid "Vote \"ifneedbe\" for "
+msgstr "Scegliere « Se necessario » per "
+
+msgid "Save the choices"
+msgstr "Salvare le scelte"
+
+msgid "Addition"
+msgstr "Somma"
+
+msgid "Best choice"
+msgstr "Scelta migliore"
+
+msgid "Best choices"
+msgstr "Scelte migliori"
+
+msgid "The best choice at this time is:"
+msgstr "La migliore scelta per ora è :"
+
+msgid "The bests choices at this time are:"
+msgstr "Le migliori scelte per ora sono :"
+
+msgid "with"
+msgstr "con"
+
+msgid "vote"
+msgstr "voto"
+
+msgid "votes"
+msgstr "voti"
+
+msgid "for"
+msgstr "per"
+
+msgid "Remove all the votes"
+msgstr "Eliminare tutti i voti"
+
+msgid "Scroll to the left"
+msgstr "Spostare a sinistra"
+
+msgid "Scroll to the right"
+msgstr "Spostare a destra"
+
+# Comments
+msgid "Comments of polled people"
+msgstr "Commenti dei partecipanti"
+
+msgid "Remove the comment"
+msgstr "Eliminare il commento"
+
+msgid "Add a comment in the poll"
+msgstr "Aggiungere un commento al sondaggio"
+
+msgid "Your comment"
+msgstr "Il vostro commento"
+
+msgid "Send the comment"
+msgstr "Inviare il commento"
+
+msgid "anonyme"
+msgstr "anonimo"
+
+msgid "Remove all the comments"
+msgstr "Eliminare tutti i commenti"
+
+# Add a colum adminstuds.php
+msgid "Column's adding"
+msgstr "Aggiunta di una colonna"
+
+msgid "You can add a new scheduling date to your poll."
+msgstr "Potete aggiungere una data al vostro sondaggio."
+
+msgid "If you just want to add a new hour to an existant date, put the same date and choose a new hour."
+msgstr "Se voleste aggiungere solo un orario a una data già presente, potreste inserire la stessa data et scegliere un altro orario. Sarà aggiunto al sondaggio esistente."
+
+# Remove poll adminstuds.php
+msgid "Confirm removal of your poll"
+msgstr "Confermare l'eliminazione del vostro sondaggio"
+
+msgid "Remove this poll!"
+msgstr "Elimino questo sondaggio !"
+
+msgid "Keep this poll!"
+msgstr "Mantengo questo sondaggio !"
+
+msgid "Your poll has been removed!"
+msgstr "Il vostro sondaggio è stato eliminato !"
+
+# Errors adminstuds.php/studs
+msgid "This poll doesn't exist !"
+msgstr "Questo sondaggio non esiste più !"
+
+msgid "Enter a name"
+msgstr "Non avete inserito il nome !"
+
+msgid "The name you've chosen already exist in this poll!"
+msgstr "Il nome che avete scelto esiste già !"
+
+msgid "Enter a name and a comment!"
+msgstr "Inserire un nome e un commento!"
+
+msgid "Failed to insert the comment!"
+msgstr "Errore nell'inserimento del commento !"
+
+msgid "Characters \"  '  < et > are not permitted"
+msgstr "I caratteri \"  '  < e > non sono permessi!"
+
+msgid "The date is not correct !"
+msgstr "La data scelta non è corretta!"
+
+########### Step 1 ###########
+# Step 1 info_sondaggio.php
+msgid "Poll creation (1 on 3)"
+msgstr "Creazione del sondaggio (1 sur 3)"
+
+msgid "Framadate is not properly installed, please check the 'INSTALL' to setup the database before continuing."
+msgstr "Framadate non è installato correttamente, controllare il file INSTALL per configurare il database prima di continuare."
+
+msgid "You are in the poll creation section."
+msgstr "Avete scelto di creare un nuovo sondaggio."
+
+msgid "Required fields cannot be left blank."
+msgstr "Riempire i campi obbligatori, segnati con *."
+
+msgid "Poll title"
+msgstr "Titolo del sondaggio"
+
+msgid "Voters can modify their vote themselves."
+msgstr "I partecipanti possono modificare il loro voto in autonomia."
+
+msgid "To receive an email for each new vote."
+msgstr "Per ricevere un'email per ogni voto nuovo"
+
+msgid "Go to step 2"
+msgstr "Andare al punto 2"
+
+# Errors info_sondaggio.php
+msgid "Enter a title"
+msgstr "È necessario inserire un titolo !"
+
+msgid "Characters < > and \" are not permitted"
+msgstr "I caratteri < > e \" non sono permessi !"
+
+msgid "Enter an email address"
+msgstr "È necessario inserire un indirizzo e-mail!"
+
+msgid "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll."
+msgstr "L'indirizzo inserito non è corretto ! È necessario un indirizzo e-mail valido (per esempio r.stallman@outlock.com) per ricevere il link del sondaggio."
+
+# Error scelta_date.php/scelta_autre.php
+msgid "You haven't filled the first section of the poll creation."
+msgstr "Non avete completato la prima pagina del sondaggio"
+
+msgid "Back to step 1"
+msgstr "Torna al punto 1"
+
+########### Step 2 ###########
+# Step 2 choix_date.php
+msgid "Poll dates (2 on 3)"
+msgstr "Scelta delle date (2 di 3)"
+
+msgid "Choose the dates of your poll"
+msgstr "Scegliete le date del vostro sondaggio"
+
+msgid "To schedule an event, it's better to propose at least two choices (two hours for one day or two days)."
+msgstr "Per creare un evento,  è meglio proporre almeno 2 scelte (2 orari per lo stesso giorno o 2 giorni)."
+
+msgid "You can add or remove additionnal days and hours with the buttons"
+msgstr "Potete aggiungere o eliminare dei giorni et orari ulteriori con i pulsanti"
+
+msgid "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)"
+msgstr "Per ogni giorno selezionato, avete la possibilità di scegliere o meno, le ore dell'incontro (per esempio : \"8h\", \"8:30\", \"8h-10h\", \"sera\", etc.)"
+
+msgid "Day"
+msgstr "GIorno"
+
+msgid "Time"
+msgstr "Orario"
+
+msgid "Remove an hour"
+msgstr "Eliminare l'ultimo orario"
+
+msgid "Add an hour"
+msgstr "Aggiungere un orario"
+
+msgid "Copy hours of the first day"
+msgstr "Copiare gli orari del primo giorno"
+
+msgid "Remove a day"
+msgstr "Eliminare l'ultimo giorno"
+
+msgid "Add a day"
+msgstr "Aggiungere un giorno"
+
+msgid "Remove all days"
+msgstr "Cancellare tutti i giorni"
+
+msgid "Remove all hours"
+msgstr "Cancellare tutti gli orari"
+
+# Step 2 choix_autre.php
+msgid "Poll subjects (2 on 3)"
+msgstr "Scelta dei suggetti (2 sur 3)"
+
+msgid "To make a generic poll, it's better to propose at least two choices between differents subjects."
+msgstr "Per creare un sondaggio, è meglio proporre almeno due scelte diverse."
+
+msgid "You can add or remove additional choices with the buttons"
+msgstr "Potete aggiungere o eliminare delle scelte ulteriori con i pulsanti"
+
+msgid "It's possible to propose links or immagines by using "
+msgstr "È possibile inserire dei links o delle immagini utilizzano "
+
+msgid "the Markdown syntax"
+msgstr "la sintassi Markdown"
+
+msgid "Choice"
+msgstr "Scelta"
+
+msgid "Add a link or an immagine"
+msgstr "Aggiungere un link o un'immagine"
+
+msgid "These fields are optional. You can add a link, an immagine or both."
+msgstr "Questi campi sono facoltativi. Potete aggiungere un link, un'immagine o entrambi."
+
+msgid "URL of the immagine"
+msgstr "URL dell'immagine"
+
+msgid "Link"
+msgstr "Link"
+
+msgid "Alternative text"
+msgstr "Testo alternativo"
+
+msgid "Remove a choice"
+msgstr "Eliminare l'ultima scelta"
+
+msgid "Add a choice"
+msgstr "Aggiungere un scelta"
+
+msgid "Back to step 2"
+msgstr "Torna al punto 2"
+
+msgid "Go to step 3"
+msgstr "Andare al punto 3"
+
+########### Step 3 ###########
+msgid "Removal date and confirmation (3 on 3)"
+msgstr "Data di scadenza e conferma (3 sur 3)"
+
+msgid "Confirm the creation of your poll"
+msgstr "Confermate la creazione del vostro sondaggio"
+
+msgid "List of your choices"
+msgstr "Liste delle vostre scelte"
+
+msgid "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll."
+msgstr "Un volta che avrete confermato la creazione del sondaggio, sarete rediretti automaticamente sulla pagina di amministrazione del vostro sondaggio."
+
+msgid "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll."
+msgstr "Nello stesso momento, riceverete 2 email : una con il Link verso il vostro sondaggio da inoltrare ai partecipanti, l'altra con il Link verso la pagina di amministrazione del sondaggio."
+
+msgid "Create the poll"
+msgstr "Creare le sondaggio"
+
+# Step 3 scelta_date.php
+msgid "Your poll will be automatically removed "
+msgstr "Il vostro sondaggio sarà automaticamente cancellato "
+
+msgid " after the last date of your poll:"
+msgstr " dopo l'ultima data :"
+
+msgid "Removal date:"
+msgstr "Data di eliminazione :"
+
+# Step 3 choix_autre.php
+msgid "Your poll will be automatically removed after"
+msgstr "Il vostro sondaggio sarà automaticamente cancellato entro"
+
+msgid "You can fix another removal date for it."
+msgstr "Potete scegliere una data più ravvicinata per l'eliminazione del vostro sondaggio."
+
+msgid "Removal date (optional)"
+msgstr "Date di eliminazione (facoltativo)"
+
+############# Admin #############
+msgid "Polls administrator"
+msgstr "Amministratore del sondaggio"
+
+msgid "Confirm removal of the poll "
+msgstr "Confermare l'eliminazione del sondaggio "
+
+msgid "polls in the database at this time"
+msgstr "sondaggi presenti nel database attualmente"
+
+msgid "Poll ID"
+msgstr "ID sondaggio"
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "Title"
+msgstr "Titolo"
+
+msgid "Author"
+msgstr "Autore"
+
+msgid "Users"
+msgstr "Utenti"
+
+msgid "Actions"
+msgstr "Azioni"
+
+msgid "See the poll"
+msgstr "Vedere il sondaggio"
+
+msgid "Change the poll"
+msgstr "Modificare il sondaggio"
+
+msgid "Logs"
+msgstr "Log"
+
+########### Mails ###########
+# Mails studs.php
+msgid "Poll's participation"
+msgstr "Partecipazione al sondaggio"
+
+msgid ""
+"has filled a line.\n"
+"You can find your poll at the link"
+msgstr ""
+" ha riempito una riga.\n"
+"Potete trovare il vostro sondaggio con il Link seguente"
+
+msgid "Thanks for your trust."
+msgstr "Grazie per la vostra fiducia."
+
+msgid "\n"
+"--\n\n"
+"« La route est longue, mais la voie est libre… »\n"
+"Framasoft ne vit que par vos dons (déductibles des impôts).\n"
+"Merci d'avance pour votre soutien http://soutenir.framasoft.org."
+msgstr "\n"
+"--\n\n"
+"« La strada è lunga, ma la vita è libera… »\n"
+"Framasoft vive solo grazie alle vostre donazioni (deducibili dalle tasse).\n"
+"Grazie ancora per il vostro supporto http://soutenir.framasoft.org."
+
+# Mails adminstuds.php
+msgid "[ADMINISTRATOR] New settings for your poll"
+msgstr "[AMMINISTRATORE] Modifica di configurazione del sondaggio"
+
+msgid ""
+"You have changed the settings of your poll. \n"
+"You can modify this poll with this link"
+msgstr ""
+"Avete modificato la configurazione del vostro sondaggio. \n"
+"Potete modificare questo sondaggio con le Link seguente"
+
+# Mails creation_sondaggio.php
+msgid ""
+"This is the message you have to send to the people you want to poll. \n"
+"Now, you have to send this message to everyone you want to poll."
+msgstr ""
+"Questo è il messaggio che deve essere inviato ai partecipanti. \n"
+"Potete ora inviare questo messaggio a tutte le persone a cui volete chiedere il voto."
+
+msgid "hast just created a poll called"
+msgstr "È stato creato un sondaggio intitolato "
+
+msgid "Thanks for filling the poll at the link above"
+msgstr "Vi chiediamo di partecipare al sondaggio all'indirizzo seguente"
+
+msgid ""
+"This message should NOT be sent to the polled people. It is private for the poll's creator.\n"
+"\n"
+"You can now modify it at the link above"
+msgstr ""
+"Questo messaggio NON deve essere diffuso ai partecipanti. È riservato all'autore del sondaggio.\n"
+"\n"
+"Potete modificare questo sondaggio all'indirizzo seguente "
+
+msgid "Author's message"
+msgstr "Riservato all'autore"
+
+msgid "For sending to the polled users"
+msgstr "Per diffondere ai partecipanti al sondaggio"

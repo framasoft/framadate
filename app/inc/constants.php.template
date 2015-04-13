@@ -56,6 +56,7 @@ $ALLOWED_LANGUAGES = [
     'en_GB' => 'English',
     'es_ES' => 'Español',
     'de_DE' => 'Deutsch',
+    'it_IT' => 'Italiano',
 ];
 
 // Path to logo

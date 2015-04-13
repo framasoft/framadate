@@ -82,7 +82,7 @@ while ( $data=$user_studs->FetchNextObject(false)) {
     for ($k=0;$k<$nbcolonnes;$k++) {
         $car=substr($ensemblereponses,$k,1);
         switch ($car) {
-            case "1": $input .= '"'._('Yes').'",'; $somme[$k]++; break;
+            case "1": $input .= '"'._('Yes').'",'; break;
             case "2": $input .= '"'._('Ifneedbe').'",'; break;
             default: $input .= '"'._('No').'",'; break;
         }

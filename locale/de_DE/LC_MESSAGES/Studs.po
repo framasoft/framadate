@@ -622,7 +622,7 @@ msgstr ""
 " hat eine Zeile ausgefüllt.\n"
 "Sie finden Ihre Umfrage unter dem folgenden Link:"
 
-msgid "Thanks for your confidence."
+msgid "Thanks for your trust."
 msgstr "Danke für Ihr Vertrauen."
 
 msgid "\n"

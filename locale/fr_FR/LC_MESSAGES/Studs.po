@@ -631,7 +631,7 @@ msgstr ""
 " vient de remplir une ligne.\n"
 "Vous pouvez retrouver votre sondage avec le lien suivant"
 
-msgid "Thanks for your confidence."
+msgid "Thanks for your trust."
 msgstr "Merci de votre confiance."
 
 msgid "\n"
