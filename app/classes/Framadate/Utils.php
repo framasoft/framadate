@@ -30,7 +30,7 @@ class Utils {
         $dirname = str_replace('/admin', '', $dirname);
         $server_name = $_SERVER['SERVER_NAME'] . $port . $dirname;
 
-        return $scheme . '://' .  preg_replace('#//+#', '/', $server_name);
+        return $scheme . '://' . preg_replace('#//+#', '/', $server_name);
     }
 
     public static function is_error($cerr) {
@@ -103,15 +103,15 @@ class Utils {
      * @param   string $vote_id (optional) The vote's unique id
      * @return  string The poll's URL.
      */
-    public static function getUrlSondage($id, $admin = false, $vote_id='') {
+    public static function getUrlSondage($id, $admin = false, $vote_id = '') {
         if (URL_PROPRE) {
             if ($admin === true) {
                 $url = self::get_server_name() . $id . '/admin';
             } else {
-                $url =  self::get_server_name() . $id;
+                $url = self::get_server_name() . $id;
             }
             if ($vote_id != '') {
-                $url .= '/vote/'.$vote_id."#edit";
+                $url .= '/vote/' . $vote_id . "#edit";
             }
         } else {
             if ($admin === true) {
@@ -120,7 +120,7 @@ class Utils {
                 $url = self::get_server_name() . 'studs.php?poll=' . $id;
             }
             if ($vote_id != '') {
-                $url .= '&vote='.$vote_id."#edit";
+                $url .= '&vote=' . $vote_id . "#edit";
             }
         }
 
@@ -148,22 +148,22 @@ class Utils {
         preg_match_all('/\[(.*?)\]\((.*?)\)/', $md, $md_a); // Markdown [text](href)
         if (isset($md_a_img[2][0]) && $md_a_img[2][0] != '' && isset($md_a_img[3][0]) && $md_a_img[3][0] != '') { // [![alt](src)](href)
 
-            $text = stripslashes($md_a_img[1][0]);
-            $html = '<a href="' . $md_a_img[3][0] . '"><img src="' . $md_a_img[2][0] . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" /></a>';
+            $text = self::htmlEscape($md_a_img[1][0]);
+            $html = '<a href="' . self::htmlEscape($md_a_img[3][0]) . '"><img src="' . self::htmlEscape($md_a_img[2][0]) . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" /></a>';
 
         } elseif (isset($md_img[2][0]) && $md_img[2][0] != '') { // ![alt](src)
 
-            $text = stripslashes($md_img[1][0]);
-            $html = '<img src="' . $md_img[2][0] . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" />';
+            $text = self::htmlEscape($md_img[1][0]);
+            $html = '<img src="' . self::htmlEscape($md_img[2][0]) . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" />';
 
         } elseif (isset($md_a[2][0]) && $md_a[2][0] != '') { // [text](href)
 
-            $text = stripslashes($md_a[1][0]);
+            $text = self::htmlEscape($md_a[1][0]);
             $html = '<a href="' . $md_a[2][0] . '">' . $text . '</a>';
 
         } else { // text only
 
-            $text = stripslashes($md);
+            $text = self::htmlEscape($md);
             $html = $text;
 
         }
