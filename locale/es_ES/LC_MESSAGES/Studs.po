@@ -102,7 +102,7 @@ msgstr "Gracias de llenar esta encuesta al enlace siguiente"
 
 #: creation_sondage.php:89
 #: creation_sondage.php:92
-msgid "Thanks for your confidence"
+msgid "Thanks for your trust"
 msgstr "Gracias por su confianza"
 
 #: creation_sondage.php:90
@@ -349,7 +349,7 @@ msgstr "Nos tomaremos en cuenta vuestro mensaje rapidamente."
 #: adminstuds.php:510
 #: adminstuds.php:522
 #: adminstuds.php:1022
-msgid "Thanks for your confidence."
+msgid "Thanks for your trust."
 msgstr "Gracias por su confianza."
 
 #: contacts.php:76

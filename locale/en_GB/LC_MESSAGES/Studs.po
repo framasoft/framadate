@@ -631,8 +631,8 @@ msgstr ""
 "has filled a line.\n"
 "You can find your poll at the link"
 
-msgid "Thanks for your confidence."
-msgstr "Thanks for your confidence."
+msgid "Thanks for your trust."
+msgstr "Thanks for your trust."
 
 msgid ""
 "\n"

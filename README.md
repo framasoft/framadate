@@ -25,11 +25,11 @@ Auteurs de Framadate/OpenSondage : [Framasoft](https://git.framasoft.org/framaso
 
 * * * 
 
-#Framadate
+# Framadate
 [Framadate](https://framadate.org) est un fork du projet [STUdS](https://sourcesup.cru.fr/projects/studs/).  
 Il est développé par l'association [Framasoft](http://framasoft.org).
 
-##Fichiers de l'application
+## Fichiers de l'application
 
 ### Administration
 * `/admin`  
@@ -99,7 +99,7 @@ Il est développé par l'association [Framasoft](http://framasoft.org).
 * `CHANGELOG.md`  
     Le fichier contenant la liste des principale modifications de l'application entre les différentes versions
     
-##Technologies utilisées
+## Technologies utilisées
 
 - PHP 5.4.4, php-adodb, php-gettext, composer
 - Bootstrap, jQuery, Bootstrap Datepicker
@@ -107,7 +107,7 @@ Il est développé par l'association [Framasoft](http://framasoft.org).
 - Nginx, Apache
 - POedit
 
-##Compatibilités des navigateurs
+## Compatibilités des navigateurs
 (Dernière mise à jour le 21 avril 2014)
 
 - Firefox : Ubuntu 13.10/FF28

@@ -179,7 +179,7 @@ if (!Utils::is_error(NO_POLL) && (isset($_POST["boutonp"]))) {
                        html_entity_decode("\"$nom\" ", ENT_QUOTES, 'UTF-8').
                        _("has filled a line.\nYou can find your poll at the link") . " :\n\n".
                        Utils::getUrlSondage($numsondage) . " \n\n" .
-                       _("Thanks for your confidence.") . "\n". NOMAPPLICATION );
+                       _("Thanks for your trust.") . "\n". NOMAPPLICATION );
                 }
             }
         }
@@ -295,7 +295,7 @@ if ($testmodifier) {
             $connect->Execute($sql, array($nouveauchoix, $data->nom, $data->id_users));
 
             if ($dsondage->mailsonde=="yes") {
-                Utils::sendEmail( "$dsondage->mail_admin", "[".NOMAPPLICATION."] " . _("Poll's participation") . " : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8'), "\"".html_entity_decode($data->nom, ENT_QUOTES, 'UTF-8')."\""."" . _("has filled a line.\nYou can find your poll at the link") . " :\n\n" . Utils::getUrlSondage($numsondage) . " \n\n" . _("Thanks for your confidence.") . "\n".NOMAPPLICATION );
+                Utils::sendEmail( "$dsondage->mail_admin", "[".NOMAPPLICATION."] " . _("Poll's participation") . " : ".html_entity_decode($dsondage->titre, ENT_QUOTES, 'UTF-8'), "\"".html_entity_decode($data->nom, ENT_QUOTES, 'UTF-8')."\""."" . _("has filled a line.\nYou can find your poll at the link") . " :\n\n" . Utils::getUrlSondage($numsondage) . " \n\n" . _("Thanks for your trust.") . "\n".NOMAPPLICATION );
             }
         }
         $compteur++;
