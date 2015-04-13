@@ -43,7 +43,7 @@ function check_poll_id($id)
 {
     global $connect;
 
-    $sql = 'SELECT `id_sondage` FROM sondage`id_sondage` = ' . $connect->Param('id_sondage') ;
+    $sql = 'SELECT `id_sondage` FROM sondage WHERE `id_sondage` = ' . $connect->Param('id_sondage') ;
     $sql     = $connect->Prepare($sql);
     $poll = $connect->Execute($sql, [$id]);
 
