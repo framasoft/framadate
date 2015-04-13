@@ -198,8 +198,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 // Delete a votes
 // -------------------------------
 
-if (!empty($_POST['delete_vote'])) {
-    $vote_id = filter_input(INPUT_POST, 'delete_vote', FILTER_VALIDATE_INT);
+if (!empty($_GET['delete_vote'])) {
+    $vote_id = filter_input(INPUT_GET, 'delete_vote', FILTER_VALIDATE_INT);
     if ($adminPollService->deleteVote($poll_id, $vote_id)) {
         $message = new Message('success', __('adminstuds', 'Vote deleted'));
     } else {
@@ -312,8 +312,8 @@ if (isset($_POST['confirm_delete_poll'])) {
 // Delete a slot
 // -------------------------------
 
-if (!empty($_POST['delete_column'])) {
-    $column = filter_input(INPUT_POST, 'delete_column', FILTER_DEFAULT);
+if (!empty($_GET['delete_column'])) {
+    $column = filter_input(INPUT_GET, 'delete_column', FILTER_DEFAULT);
 
     if ($poll->format === 'D') {
         $ex = explode('@', $column);
@@ -338,7 +338,7 @@ if (!empty($_POST['delete_column'])) {
 // Add a slot
 // -------------------------------
 
-if (isset($_POST['add_slot'])) {
+if (isset($_GET['add_slot'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('format', $poll->format);

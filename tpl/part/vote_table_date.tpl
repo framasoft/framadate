@@ -17,13 +17,20 @@
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $id=>$moment}
                             <td headers="M{$slot@key} D{$headersDCount} H{$headersDCount}">
-                                <button type="submit" name="delete_column" value="{$slot->day|html}@{$moment|html}" class="btn btn-link btn-sm" title="{__('adminstuds', 'Remove the column')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span></button>
+                                <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->day|cat:'@'|cat:$moment}"
+                                   class="btn btn-link btn-sm"
+                                   title="{__('adminstuds', 'Remove the column')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                    <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Genric', 'Remove')}</span>
+                                </a>
                             </td>
                             {$headersDCount = $headersDCount+1}
                         {/foreach}
                     {/foreach}
                     <td>
-                        <button type="submit" name="add_slot" class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')}"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{__('Poll results', 'Add a column')}</span></button>
+                        <a href="{poll_url id=$admin_poll_id admin=true action='add_slot' action_value=true}"
+                           class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')} {$slot->title|html}">
+                            <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{__('Poll results', 'Add a column')}</span>
+                        </a>
                     </td>
                 </tr>
             {/if}
@@ -141,9 +148,11 @@
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span>
                                 </a>
                                 {if $admin}
-                                    <button type="submit" class="btn btn-link btn-sm" name="delete_vote" value="{$vote->id|html}" title="{__('Poll results', 'Remove the line:')} {$vote->name|html}">
+                                    <a href="{poll_url id=$admin_poll_id admin=true action='delete_vote' action_value=$vote->id}"
+                                       class="btn btn-link btn-sm"
+                                       title="{__('Poll results', 'Remove the line:')} {$vote->name|html}">
                                         <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span>
-                                    </button>
+                                    </a>
                                 {/if}
                             </td>
                         {else}

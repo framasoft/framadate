@@ -103,7 +103,7 @@ class Utils {
      * @param   string $vote_id (optional) The vote's unique id
      * @return  string The poll's URL.
      */
-    public static function getUrlSondage($id, $admin = false, $vote_id = '') {
+    public static function getUrlSondage($id, $admin = false, $vote_id = '', $action = null, $action_value = null) {
         if (URL_PROPRE) {
             if ($admin === true) {
                 $url = self::get_server_name() . $id . '/admin';
@@ -113,6 +113,9 @@ class Utils {
             if ($vote_id != '') {
                 $url .= '/vote/' . $vote_id . "#edit";
             }
+            if ($action != null && $action_value != null) {
+                $url .= '/action/' . $action . '/' . $action_value;
+            }
         } else {
             if ($admin === true) {
                 $url = self::get_server_name() . 'adminstuds.php?poll=' . $id;
@@ -121,6 +124,9 @@ class Utils {
             }
             if ($vote_id != '') {
                 $url .= '&vote=' . $vote_id . "#edit";
+            }
+            if ($action != null && $action_value != null)  {
+                $url .= '&' . $action . "=" . $action_value;
             }
         }
 

@@ -8,6 +8,7 @@
   RewriteCond %{REQUEST_FILENAME} -d
 
   RewriteRule ^([a-zA-Z0-9]{16})$ studs.php?poll=$1
+  RewriteRule ^([a-zA-Z0-9]{16})/action/([a-zA-Z]+)/(.+)$ studs.php?poll=$1&$2=$3
   RewriteRule ^([a-zA-Z0-9]{16})/vote/([a-zA-Z0-9]{16})$ studs.php?poll=$1&vote_id=$2
   RewriteRule ^([a-zA-Z0-9]{24})/admin$ adminstuds.php?poll=$1
 </IfModule>
