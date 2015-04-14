@@ -41,7 +41,7 @@
   "Date" : {
     "dd/mm/yyyy": "jj/mm/aaaa",
     "%A, den %e. %B %Y": "%A %e %B %Y",
-    "FULL": "%A, den %e. %B %Y",
+    "FULL": "%A, %B %e, %Y",
     "SHORT": "%A %e %B %Y",
     "DAY": "%a %e",
     "DATE": "%Y-%m-%d",
