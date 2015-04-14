@@ -14,7 +14,7 @@ class MailService {
     }
 
     function send($to, $subject, $body, $param = '') {
-        if($this->smtp_allowed == true) {
+        if ($this->smtp_allowed == true) {
             mb_internal_encoding('UTF-8');
 
             $subject = mb_encode_mimeheader(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'), 'UTF-8', 'B', "\n", 9);
@@ -39,7 +39,7 @@ class MailService {
             $headers .= "Auto-Submitted:auto-generated\n";
             $headers .= 'Return-Path: <>';
 
-            $body = html_entity_decode($body, ENT_QUOTES, 'UTF-8') . __('Mail', 'FOOTER');
+            $body = $body . '<br/><br/>' . __('Mail', 'Thanks for your trust.') . '<br/>' . NOMAPPLICATION . '<hr/>' . __('Mail', 'FOOTER');
 
             mail($to, $subject, $body, $headers, $param);
         }
