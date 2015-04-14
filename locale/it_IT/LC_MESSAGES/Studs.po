@@ -63,7 +63,7 @@ msgstr "Il vostro indirizzo e-mail"
 msgid "(in the format name@mail.com)"
 msgstr "(nel formato nome@mail.com)"
 
-msgid "descrizione"
+msgid "Description"
 msgstr "Descrizione"
 
 msgid "Back to the homepage of "
@@ -121,7 +121,7 @@ msgid "Define dates or subjects to choose"
 msgstr "Definite le date o il titolo"
 
 msgid "Send the poll link to your friends or colleagues"
-msgstr "Inviate il ling ai vostri amici o colleghi"
+msgstr "Inviate il link ai vostri amici o colleghi"
 
 msgid "Discuss and make a decision"
 msgstr "Discutete e prendete la vostra decisione"
@@ -140,7 +140,7 @@ msgid "Framadate was initially based on "
 msgstr "Framadate si basa su "
 
 msgid " a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft"
-msgstr " un software sviluppato dall'Università of Strasburgo. Oggi il suo sviluppo è portato avanti dall'associazione Framasoft"
+msgstr " un software sviluppato dall'Università di Strasburgo. Oggi il suo sviluppo è portato avanti dall'associazione Framasoft"
 
 msgid "This software needs javascript and cookies enabled. It is compatible with the following web browsers:"
 msgstr "Questo software richiede l'attivazione di javascript e dei cookies. È compatibile con i seguenti web browser:"
@@ -156,7 +156,7 @@ msgid "Cultivate your garden"
 msgstr "Coltivate il vostro giardino"
 
 msgid "To participate in the software development, suggest improvements or simply download it, please visit "
-msgstr "Per partecipare allo sviluppo del software, proporre dei miglioramenti o semplicemente scaricarlo, si può accedere al"
+msgstr "Per partecipare allo sviluppo del software, proporre dei miglioramenti o semplicemente scaricarlo, si può accedere al "
 
 msgid "the development site"
 msgstr "sito di sviluppo"
@@ -410,7 +410,7 @@ msgstr "La data scelta non è corretta!"
 ########### Step 1 ###########
 # Step 1 info_sondaggio.php
 msgid "Poll creation (1 on 3)"
-msgstr "Creazione del sondaggio (1 sur 3)"
+msgstr "Creazione del sondaggio (1 di 3)"
 
 msgid "Framadate is not properly installed, please check the 'INSTALL' to setup the database before continuing."
 msgstr "Framadate non è installato correttamente, controllare il file INSTALL per configurare il database prima di continuare."
@@ -499,7 +499,7 @@ msgstr "Cancellare tutti gli orari"
 
 # Step 2 choix_autre.php
 msgid "Poll subjects (2 on 3)"
-msgstr "Scelta dei suggetti (2 sur 3)"
+msgstr "Scelta dei suggetti (2 di 3)"
 
 msgid "To make a generic poll, it's better to propose at least two choices between differents subjects."
 msgstr "Per creare un sondaggio, è meglio proporre almeno due scelte diverse."
@@ -545,7 +545,7 @@ msgstr "Andare al punto 3"
 
 ########### Step 3 ###########
 msgid "Removal date and confirmation (3 on 3)"
-msgstr "Data di scadenza e conferma (3 sur 3)"
+msgstr "Data di scadenza e conferma (3 di 3)"
 
 msgid "Confirm the creation of your poll"
 msgstr "Confermate la creazione del vostro sondaggio"
