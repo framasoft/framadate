@@ -120,7 +120,11 @@ header .lead {
 
 .jumbotron h3, .jumbotron .js-title {
     margin-bottom:20px;
-    margin-top:0px;
+    margin-top:0;
+}
+
+.poll-description {
+    font-family: inherit;
 }
 
 h4.control-label {
@@ -166,7 +170,7 @@ caption {
 #name-form:hover .btn-edit {
     position:relative !important;
     left:0;
-    padding: 0px 10px;
+    padding: 0 10px;
 }
 
 .js-desc textarea {
@@ -325,21 +329,21 @@ table.results .btn-link.btn-sm {
     color: #fff;
     background-color: #768745;
     border-color: #67753C;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
 .ifneedbe input[type="radio"]:checked + label { /* =.btn-warning.active */
     color: #fff;
     background-color: #CF9800;
     border-color: #BD8A00;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
 .no input[type="radio"]:checked + label { /* =.btn-danger.active */
     color: #fff;
     background-color: #BF2511;
     border-color: #AD220F;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.125) inset;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
 /* create_date_poll.php */
@@ -374,7 +378,7 @@ table.results .btn-link.btn-sm {
 }
 
 #md-a-imgModal .form-group {
-    margin:10px 0px;
+    margin:10px 0;
 }
 
 #md-a-imgModalLabel {

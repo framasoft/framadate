@@ -37,9 +37,9 @@
             </div>
         </div>
         <div class="row"> {* Admin name + email | Description *}
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-4">
                 <div id="name-form">
-                    <h4 class="control-label">{__('PollInfo', 'Initiator of the poll')}</h4>
+                    <label class="control-label">{__('PollInfo', 'Initiator of the poll')}</label>
                     <p class="form-control-static">{$poll->admin_name|html}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the name')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
                     {if $admin && !$expired}
                     <div class="hidden js-name">
@@ -72,9 +72,9 @@
                 </div>
                 {/if}
             </div>
-            <div class="form-group col-md-7" id="description-form">
-                <h4 class="control-label">{__('Generic', 'Description')}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the description')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</h4>
-                <p class="form-control-static well">{$poll->description|html}</p>
+            <div class="form-group col-md-8" id="description-form">
+                <label class="control-label">{__('Generic', 'Description')}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the description')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</label>
+                <pre class="form-control-static well poll-description">{$poll->description|html}</pre>
                 {if $admin && !$expired}
                     <div class="hidden js-desc text-right">
                         <label class="sr-only" for="newdescription">{__('Generic', 'Description')}</label>
@@ -99,7 +99,7 @@
                     <input class="form-control" id="admin-link" type="text" readonly="readonly" value="{poll_url id=$admin_poll_id admin=true}" />
                 </div>
                 <div id="expiration-form" class="form-group col-md-4">
-                    <h4 class="control-label">{__('PollInfo', 'Expiration date')}</h4>
+                    <label class="control-label">{__('PollInfo', 'Expiration date')}</label>
                     <p>{$poll->end_date|date_format:$date_format['txt_date']|html}{if !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiration date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
                     {if !$expired}
                         <div class="hidden js-expiration">
