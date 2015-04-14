@@ -81,7 +81,7 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
                 break;
         }
         $message .= Utils::getUrlSondage($poll->admin_id, true) . "\n\n";
-        $message .= __('Mail', 'Thanks for your confidence.') . "\n" . NOMAPPLICATION;
+        $message .= __('Mail', 'Thanks for your trust.') . "\n" . NOMAPPLICATION;
 
         $mailService->send($poll->admin_mail, $subject, $message);
 

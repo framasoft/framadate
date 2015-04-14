@@ -97,10 +97,10 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
             $message = __('Mail', "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
             $message .= '<br/><br/>';
             $message .= Utils::htmlEscape($_SESSION['form']->admin_name) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlEscape($_SESSION['form']->title) . '".<br/>';
-            $message .= __('Mail', 'Thanks for filling the poll at the link above') . ' :<br/><br/>%s<br/><br/>' . __('Mail', 'Thanks for your confidence.') . '<br/>' . NOMAPPLICATION;
+            $message .= __('Mail', 'Thanks for filling the poll at the link above') . ' :<br/><br/>%s<br/><br/>' . __('Mail', 'Thanks for your trust.') . '<br/>' . NOMAPPLICATION;
 
             $message_admin = __('Mail', "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
-            $message_admin .= ' :<br/><br/>%s<br/><br/>' . __('Mail', 'Thanks for your confidence.') . '<br/>' . NOMAPPLICATION;
+            $message_admin .= ' :<br/><br/>%s<br/><br/>' . __('Mail', 'Thanks for your trust.') . '<br/>' . NOMAPPLICATION;
 
             $message = sprintf($message, Utils::getUrlSondage($poll_id));
             $message_admin = sprintf($message_admin, Utils::getUrlSondage($admin_poll_id, true));
