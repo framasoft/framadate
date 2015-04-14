@@ -78,7 +78,8 @@ class InputService {
     }
 
     public function filterComment($comment) {
-        $filtered = filter_var($comment, FILTER_SANITIZE_STRING);
+        $comment = str_replace("\r\n", "\n", $comment);
+        $filtered =  filter_var($comment, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => COMMENT_REGEX]]);
         return $this->returnIfNotBlank($filtered);
     }
 
