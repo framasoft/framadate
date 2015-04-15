@@ -142,6 +142,11 @@ caption {
     font-weight:bold;
 }
 
+.results a.btn-default.btn-sm {
+    padding: 3px 7px;
+    font-size: 0.7em;
+}
+
     /* adminstuds.php */
 #title-form h3 .btn-edit,
 #email-form .btn-edit,

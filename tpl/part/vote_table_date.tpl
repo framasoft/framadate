@@ -144,12 +144,12 @@
 
                         {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin)}
                             <td>
-                                <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-link btn-sm" title="{__('Poll results', 'Edit the line:')|escape} {$vote->name|html}">
+                                <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__('Poll results', 'Edit the line:')|escape} {$vote->name|html}">
                                     <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span>
                                 </a>
                                 {if $admin}
                                     <a href="{poll_url id=$admin_poll_id admin=true action='delete_vote' action_value=$vote->id}"
-                                       class="btn btn-link btn-sm"
+                                       class="btn btn-default btn-sm"
                                        title="{__('Poll results', 'Remove the line:')} {$vote->name|html}">
                                         <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span>
                                     </a>
