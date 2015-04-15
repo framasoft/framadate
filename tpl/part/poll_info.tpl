@@ -72,7 +72,7 @@
                 </div>
                 {/if}
             </div>
-            {if $admin || !empty(preg_replace('/[ \r\n]/', '', $poll->description))}
+            {if $admin || preg_match('/[^ \r\n]/', $poll->description)}
                 <div class="form-group col-md-8" id="description-form">
                     <label class="control-label">{__('Generic', 'Description')}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the description')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</label>
                     <pre class="form-control-static well poll-description">{$poll->description|html}</pre>
