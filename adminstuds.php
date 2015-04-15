@@ -328,7 +328,7 @@ if (!empty($_GET['delete_column'])) {
     }
 
     if ($result) {
-        $message = new Message('success', __('adminstuds', 'Column deleted'));
+        $message = new Message('success', __('adminstuds', 'Column removed'));
     } else {
         $message = new Message('danger', __('Error', 'Failed to delete the column'));
     }

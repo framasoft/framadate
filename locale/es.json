@@ -178,6 +178,7 @@
         "Back to the poll": "ES_Retour au sondage",
         "Add a column": "ES_Ajouter une colonne",
         "Remove the column": "ES_Effacer la colonne",
+        "Column removed": "ES_Colonne supprimée",
         "Choice added": "ES_Choix ajouté",
         "Confirm removal of all votes of the poll": "ES_Confirmer la suppression de tous les votes de ce sondage",
         "Keep the votes": "ES_Garder les votes",
