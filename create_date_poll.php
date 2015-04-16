@@ -232,6 +232,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 
         // Display step 2
         $smarty->assign('title', __('Step 2 date', 'Poll dates (2 on 3)'));
+        $smarty->assign('choices', $_SESSION['form']->getChoices());
 
         $smarty->display('create_date_poll_step_2.tpl');
 
