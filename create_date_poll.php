@@ -43,17 +43,9 @@ if (is_readable('bandeaux_local.php')) {
 // Step 1/4 : error if $_SESSION from info_sondage are not valid
 if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) || ($config['use_smtp'] && !isset($_SESSION['form']->admin_mail))) {
 
-    Utils::print_header ( __('Error', 'Error!') );
-    bandeau_titre(__('Error', 'Error!'));
-
-    echo '
-    <div class="alert alter-danger">
-        <h3>' . __('Error', 'You haven\'t filled the first section of the poll creation.') . ' !</h3>
-        <p>' . __('Error', 'Back to the homepage of') . ' ' . '<a href="' . Utils::get_server_name() . '">' . NOMAPPLICATION . '</a>.</p>
-    </div>';
-
-
-    bandeau_pied();
+    $smarty->assign('title', __('Error', 'Error!'));
+    $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation.'));
+    $smarty->display('error.tpl');
 
 } else {
     $min_time = time() + 86400;
