@@ -46,10 +46,11 @@ const DEFAULT_LANGUAGE = 'fr';
 
 // List of supported languages, fake constant as arrays can be used as constants only in PHP >=5.6
 $ALLOWED_LANGUAGES = [
-    'fr_FR' => 'Français',
-    'en_GB' => 'English',
-    'es_ES' => 'Español',
-    'de_DE' => 'Deutsch',
+    'fr' => 'Français',
+    'en' => 'English',
+    'es' => 'Español',
+    'de' => 'Deutsch',
+    'it' => 'Italiano',
 ];
 
 // Path to logo
