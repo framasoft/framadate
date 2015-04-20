@@ -20,6 +20,7 @@ use Framadate\Services\LogService;
 use Framadate\Services\PollService;
 use Framadate\Services\InputService;
 use Framadate\Services\MailService;
+use Framadate\Services\RestrictedAccessService;
 use Framadate\Message;
 use Framadate\Utils;
 use Framadate\Editable;
@@ -47,6 +48,7 @@ $logService = new LogService();
 $pollService = new PollService($connect, $logService);
 $inputService = new InputService();
 $mailService = new MailService($config['use_smtp']);
+$restrictedAccessService = new RestrictedAccessService();
 
 /* Functions */
 /*-----------*/
@@ -104,6 +106,37 @@ if (!$poll) {
     $smarty->display('error.tpl');
     exit;
 }
+
+/* RESTRICTED ACCESS */
+/* ----------------- */
+
+$is_restricted = false;
+$has_access = true;
+if ($poll->password_hash != null) {
+    $is_restricted = true;
+    $login_message = null;
+
+    if (isset($_POST['password'])) {
+        if ($restrictedAccessService->compareAccess($poll, $_POST['password'])) {
+            $login_message = new Message("success", __("Restricted poll", "The poll access is authorised."));
+        } else {
+            $login_message = new Message("danger", __("Restricted poll", "Wrong password."));
+        }
+    }
+
+    $has_access = $restrictedAccessService->hasAccess($poll->id);
+    $smarty->assign("login_message", $login_message);
+
+
+    if (!$poll->results_publicly_visible && !$has_access) {
+        $smarty->assign("poll", $poll);
+        $smarty->assign("has_access", $has_access);
+        $smarty->display("poll_access_page.tpl");
+        exit;
+    }
+}
+
+
 
 // -------------------------------
 // A vote is going to be edited
@@ -217,6 +250,10 @@ $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 $smarty->assign('admin', false);
 $smarty->assign('hidden', $poll->hidden);
+$smarty->assign('is_restricted', $is_restricted);
+$smarty->assign('has_access', $has_access);
 $smarty->assign('parameter_name_regex', NAME_REGEX);
+$smarty->assign('login_message_danger', new Message("danger", "There is an error"));
+$smarty->assign('login_message_ok', new Message("success", "There is no problem !"));
 
 $smarty->display('studs.tpl');

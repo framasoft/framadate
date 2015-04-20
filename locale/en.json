@@ -123,6 +123,15 @@
     "Results are hidden.": "Results are hidden.",
     "Results are visible.": "Results are visible."
   },
+  "Restricted poll": {
+    "Password": "Password",
+    "The poll access is authorised.": "The poll access is authorised.",
+    "Wrong password.": "Wrong password.",
+    "Access to the results of a poll restricted by password.": "Access to the results of a poll restricted by password.",
+    "The access to the poll is restricted to the results": "The access to the poll is restricted to the results",
+    "The poll access is restricted.": "The poll access is restricted.",
+    "Submit": "Submit"
+  },
   "Poll results": {
     "Votes of the poll": "Votes of the poll",
     "Edit the line:": "Edit the line:",

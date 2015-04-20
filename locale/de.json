@@ -123,6 +123,15 @@
         "Results are hidden.": "DE_Les résultats sont cachés.",
         "Results are visible.": "DE_Les résultats sont visibles."
     },
+    "Restricted poll": {
+        "Password": "DE_Mot de passe",
+        "The poll access is authorised.": "DE_L'accès au sondage est authorisé.",
+        "Wrong password.": "DE_Mauvais mot de passe.",
+        "Access to the results of a poll restricted by password.": "DE_Accès aux résultats d'un sondage protégé par mot de passe.",
+        "The access to the poll is restricted to the results": "DE_L'accès au sondage est limité a la visualisation des résultats.",
+        "The poll access is restricted.": "DE_L'accès au sondage est restreint.",
+        "Submit": "DE_Accèder"
+    },
     "Poll results": {
         "Votes of the poll": "Abstimmungen der Umfrage ",
         "Edit the line:": "Zeile bearbeiten:",

@@ -51,8 +51,12 @@
 </div>
 
 
-{* Vote table *}
+{* Restricted access *}
+{if $is_restricted}
+    {include 'part/poll_access.tpl'}
+{/if}
 
+{* Vote table *}
 {if $poll->format === 'D'}
     {include 'part/vote_table_date.tpl' active=$poll->active}
 {else}
@@ -60,7 +64,8 @@
 {/if}
 
 {* Comments *}
-
-{include 'part/comments.tpl' active=$poll->active comments=$comments}
+{if $has_access}
+    {include 'part/comments.tpl' active=$poll->active comments=$comments}
+{/if}
 
 {/block}

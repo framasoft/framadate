@@ -35,7 +35,7 @@
                 <tr>
                     {* Edited line *}
 
-                    {if $editingVoteId === $vote->uniqId}
+                    {if $editingVoteId === $vote->uniqId && $has_access}
                         <td class="bg-info" style="padding:5px">
                             <div class="input-group input-group-sm" id="edit">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
@@ -107,7 +107,7 @@
 
             {* Line to add a new vote *}
 
-            {if $active && $editingVoteId === 0 && !$expired}
+            {if $active && $editingVoteId === 0 && !$expired && $has_access}
                 <tr id="vote-form">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">
