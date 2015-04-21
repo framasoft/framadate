@@ -56,6 +56,12 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
     $min_time = time() + 86400;
     $max_time = time() + (86400 * $config['default_poll_duration']);
 
+    // The poll format is AUTRE (other)
+    if ($_SESSION['form']->format !== 'A') {
+        $_SESSION['form']->format = 'A';
+        $_SESSION['form']->clearChoices();
+    }
+
     // Step 4 : Data prepare before insert in DB
     if (isset($_POST['confirmecreation'])) {
 
@@ -85,9 +91,6 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
             $_SESSION['form']->end_date = $max_time;
         }
 
-        // format du sondage AUTRE
-        $_SESSION['form']->format = 'A';
-
         // Insert poll in database
         $ids = $pollService->createPoll($_SESSION['form']);
         $poll_id = $ids[0];
@@ -98,7 +101,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         if ($config['use_smtp'] === true) {
             $message = __('Mail', "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
             $message .= '<br/><br/>';
-            $message .= Utils::htmlEscape($_SESSION['form']->admin_name) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlEscape($_SESSION['form']->title, ENT_QUOTES) . '".<br/>';
+            $message .= Utils::htmlEscape($_SESSION['form']->admin_name) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlEscape($_SESSION['form']->title) . '".<br/>';
             $message .= __('Mail', 'Thanks for filling the poll at the link above') . ' :<br/><br/>%s';
 
             $message_admin = __('Mail', "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");

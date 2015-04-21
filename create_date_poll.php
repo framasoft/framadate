@@ -50,6 +50,12 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 } else {
     $min_time = time() + 86400;
 
+    // The poll format is DATE
+    if ($_SESSION['form']->format !== 'D') {
+        $_SESSION['form']->format = 'D';
+        $_SESSION['form']->clearChoices();
+    }
+
     // Step 4 : Data prepare before insert in DB
     if (!empty($_POST['confirmation'])) {
 
@@ -143,9 +149,6 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
             }
         }
     }
-
-    //le format du sondage est DATE
-    $_SESSION['form']->format = 'D';
 
     // Step 3/4 : Confirm poll creation
     if (!empty($_POST['choixheures']) && !isset($_SESSION['form']->totalchoixjour)) {
