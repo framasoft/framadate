@@ -49,13 +49,17 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 
 } else {
     $min_time = time() + 86400;
-    $max_time = time() + (86400 * $config['default_poll_duration']);
 
     // Step 4 : Data prepare before insert in DB
     if (!empty($_POST['confirmation'])) {
 
         // Define expiration date
         $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
+
+        // Max archive date
+        $_SESSION['form']->sortChoices();
+        $last_date = $_SESSION['form']->lastChoice()->getName();
+        $max_archiving_date = $last_date + (86400 * $config['default_poll_duration']);
 
         if (!empty($enddate)) {
             $registredate = explode('/', $enddate);
@@ -65,8 +69,8 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 
                 if ($time < $min_time) {
                     $_SESSION['form']->end_date = $min_time;
-                } elseif ($max_time < $time) {
-                    $_SESSION['form']->end_date = $max_time;
+                } elseif ($max_archiving_date < $time) {
+                    $_SESSION['form']->end_date = $max_archiving_date;
                 } else {
                     $_SESSION['form']->end_date = $time;
                 }
@@ -75,7 +79,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 
         if (empty($_SESSION['form']->end_date)) {
             // By default, expiration date is 6 months after last day
-            $_SESSION['form']->end_date = $max_time;
+            $_SESSION['form']->end_date = $max_archiving_date;
         }
 
         // Insert poll in database
@@ -151,11 +155,13 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 
         $_SESSION['form']->sortChoices();
         $last_date = $_SESSION['form']->lastChoice()->getName();
-        $removal_date = $last_date + (86400 * $config['default_poll_duration']);
+        $max_archiving_date = $last_date + (86400 * $config['default_poll_duration']);
+        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_archiving_date)); // textual date
 
         // Summary
         $summary = '<ul>';
-        foreach ($_SESSION['form']->getChoices() as $choice) {
+        $choices = $_SESSION['form']->getChoices();
+        foreach ($choices as $choice) {
             $summary .= '<li>'.strftime($date_format['txt_full'], $choice->getName());
             $first = true;
             foreach ($choice->getSlots() as $slots) {
@@ -167,7 +173,6 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         }
         $summary .= '</ul>';
 
-        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_time)); //textual date
 
         echo '
     <form name="formulaire" action="' . Utils::get_server_name() . 'create_date_poll.php" method="POST" class="form-horizontal" role="form">
