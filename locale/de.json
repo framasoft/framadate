@@ -245,10 +245,10 @@
         "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "Wenn Sie die Erstellung ihrer Umfrage bestätigt haben, werden sie automatisch zur Administrationsseite ihrer Umfrage weitergeleitet.",
         "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "Danach werden Sie zwei E-Mails erhalten: die Eine enthält den Link zur Umfrage für die Teilnehmer, die Andere enthält den Link zur Administrationsseite ihrer Umfrage.",
         "Create the poll": "Umfrage erstellen",
-        "Your poll will be automatically removed after": "Ihre Umfrage wird automatisch nach entfernt werden",
-        "after the last date of your poll:": "nach dem letzten Tag Ihrer Umfrage:",
-        "You can set a closer removal date for it.": "Sie können auch ein anderes Löschdatum festlegen.",
-        "Removal date:": "Löschdatum:"
+        "Your poll will automatically be archived": "Ihre Umfrage wird automatisch archiviert werden",
+        "after the last date of your poll.": "nach dem letzten Tag der Ihren Pool.",
+        "You can set a closer archiving date for it.": "Sie können eine engere Archivierungsdatum für sie einzustellen.",
+        "Archiving date:": "Archivierungsdatum:"
     },
     "Admin": {
         "Back to administration": "Zurück zur Verwaltung",

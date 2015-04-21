@@ -188,9 +188,10 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
                 ' . $summary . '
             </div>
             <div class="alert alert-info">
-                <p>' . __('Step 3', 'Your poll will be automatically removed after') . ' ' . $config['default_poll_duration'] . ' ' . __('Generic', 'days') . '.<br />' . __('Step 3', 'You can set a closer removal date for it.') . '</p>
+                <p>' . __('Step 3', 'Your poll will automatically be archived') . ' ' . $config['default_poll_duration'] . ' ' . __('Generic', 'days') . ' ' .__('Step 3', 'after the last date of your poll.') . '
+                <br />' . __('Step 3', 'You can set a closer archiving date for it.') . '</p>
                 <div class="form-group">
-                    <label for="enddate" class="col-sm-5 control-label">' . __('Step 3', 'Removal date:') . '</label>
+                    <label for="enddate" class="col-sm-5 control-label">' . __('Step 3', 'Archiving date:') . '</label>
                     <div class="col-sm-6">
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>

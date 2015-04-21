@@ -245,10 +245,10 @@
     "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.",
     "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.",
     "Create the poll": "Create the poll",
-    "Your poll will be automatically removed after": "Your poll will be automatically removed after",
-    "after the last date of your poll:": "after the last date of your poll:",
-    "You can set a closer removal date for it.": "You can set a closer removal date for it.",
-    "Removal date:": "Removal date:"
+    "Your poll will automatically be archived": "Your poll will automatically be archived",
+    "after the last date of your poll.": "after the last date of your poll.",
+    "You can set a closer archiving date for it.": "You can set a closer archiving date for it.",
+    "Archiving date:": "Date d'archivage :"
   },
   "Admin": {
     "Back to administration": "Back to administration",
