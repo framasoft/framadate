@@ -27,6 +27,8 @@
     - Fix : Ajout de la police d'écriture Déjà Vu
     - Fix : Mémorisation de la langue entre l'application et l'administration
     - Fix : Bug à la création d'un sondage sans Javascript ou sans Cookies
+    - Fix : Erreur d'url avec les noms de domaine contenant "admin"
+    - Fix : Mise à jour de la doc d'installation
     
 ## Version 0.8 (juillet 2014 Pascal Chevrel - Armony Altinier - JosephK)
 	- Améliorations sur l'accessibilité

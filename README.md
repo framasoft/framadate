@@ -10,18 +10,6 @@ Si vous souhaitez travailler avec nous, **forkez-nous sur [git.framasoft.org](ht
 
 ---
 
-# Validations des pages
-Toutes les pages sont validées HTML 4.01 Strict.
-Le CSS est validé CSS 2.1.
-
-# Technologies utilisées
-* PHP 5.4.4, php-gettext
-* PostgreSQL, mysql
-* Apache
-* iCalcreator
-* POedit
-* Icônes : Deleket (http://deleket.deviantart.com/) et DryIcons (http://dryicons.com)
-
 # Compatibilités des navigateurs
 _Dernière mise à jour le 21 avril 2014_
 
@@ -34,6 +22,10 @@ _Dernière mise à jour le 21 avril 2014_
 | Links      | (non testé, inutile)    |
 | Safari     | (non testé)             |
 | IE         | Win7/IE9                |
+
+# Installation
+
+Un fichier est dédié à l'installation de framadate : [INSTALL.md](INSTALL.md).
 
 # Comment contribuer
 
@@ -62,6 +54,22 @@ Vous pouvez faire ces corrections dans votre branche, ce qui aura pour effet de 
 ## Comprendre le code
 
 Un fichier est dédié à l'appréhension du code de framadate : [Document technique](doc/TECHNICAL.md).
+
+# Traductions
+
+Les traductions se trouvent dans le dossier `locale`. Chaque langue est dans un fichier JSON différent organisé par section.
+
+# Synthèses des librairies utilisées
+
+[Smarty](http://www.smarty.net/),
+gestion des templates pour PHP
+
+[o80-i18n](https://github.com/olivierperez/o80-i18n),
+système d'internationalisation
+
+[PHP 5.4.4](http://php.net)
+
+PostgreSQL ou MySQL
 
 ---
 
