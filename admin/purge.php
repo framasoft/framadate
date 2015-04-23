@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
+use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\PurgeService;
 use Framadate\Services\SecurityService;
@@ -36,11 +37,12 @@ $message = null;
 $logService = new LogService();
 $purgeService = new PurgeService($connect, $logService);
 $securityService = new SecurityService();
+$inputService = new InputService();
 
 /* POST */
 /*-----*/
 
-$action = $inputService->filterName($_POST['action']);
+$action = $inputService->filterName(isset($_POST['action']) ? $_POST['action'] : null);
 
 /* PAGE */
 /* ---- */
