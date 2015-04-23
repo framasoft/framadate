@@ -75,6 +75,10 @@ class PollService {
     }
 
     function addVote($poll_id, $name, $choices) {
+        if ($this->voteRepository->existsByPollIdAndName($poll_id, $name)) {
+            return false;
+        }
+
         $choices = implode($choices);
         $token = $this->random(16);
         return $this->voteRepository->insert($poll_id, $name, $choices, $token);

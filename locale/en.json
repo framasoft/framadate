@@ -155,7 +155,8 @@
     "The poll is expired, it will be deleted soon.":  "The poll is expired, it will be deleted soon.",
     "Deletion date:": "Deletion date:",
     "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote.",
-    "Update vote succeeded": "Update vote succeeded"
+    "Update vote succeeded": "Update vote succeeded",
+    "Adding the vote succeeded": "Adding the vote succeeded"
   },
   "adminstuds": {
     "As poll administrator, you can change all the lines of this poll with this button": "As poll administrator, you can change all the lines of this poll with this button",

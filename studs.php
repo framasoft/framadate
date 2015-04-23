@@ -163,11 +163,11 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
                 $urlEditVote = Utils::getUrlSondage($poll_id, false, $result->uniqId);
                 $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
             } else {
-                $message = new Message('success', __('studs', 'Update vote succeeded'));
+                $message = new Message('success', __('studs', 'Adding the vote succeeded'));
             }
             sendUpdateNotification($poll, $mailService, $name, ADD_VOTE);
         } else {
-            $message = new Message('danger', __('Error', 'Update vote failed'));
+            $message = new Message('danger', __('Error', 'Adding vote failed'));
         }
     }
 }

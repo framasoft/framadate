@@ -155,7 +155,8 @@
     "The poll is expired, it will be deleted soon.": "Le sondage a expiré, il sera bientôt supprimé.",
     "Deletion date:": "Date de suppression :",
     "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Votre vote a bien été pris en compte, mais faites attention : ce sondage n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; conservez le précieusement ! ",
-    "Update vote succeeded": "Mise à jour du vote réussi"
+    "Update vote succeeded": "Mise à jour du vote réussi",
+    "Adding the vote succeeded": "Ajout du vote réussi"
   },
   "adminstuds": {
     "As poll administrator, you can change all the lines of this poll with this button": "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec ce bouton",
