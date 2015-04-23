@@ -88,6 +88,10 @@ header h1 {
     border-radius: 2px;
 }
 
+.very-small {
+    font-size: 70%;
+}
+
 /* Effet sur les images en page d'accueil */
 .opacity img {
     opacity: 0.8;

@@ -207,16 +207,16 @@
             {if !$hidden}
                 {* Line displaying best moments *}
                 {$count_bests = 0}
-                {$max = max($best_choices)}
+                {$max = max($best_choices['y'])}
                 {if $max > 0}
                     <tr id="addition">
                         <td>{__('Poll results', 'Addition')}</td>
-                        {foreach $best_choices as $best_moment}
+                        {foreach $best_choices['y'] as $i=>$best_moment}
                             {if $max == $best_moment}
                                 {$count_bests = $count_bests +1}
-                                <td><i class="glyphicon glyphicon-star text-warning"></i>{$best_moment|html}</td>
+                                <td class="text-danger"><i class="glyphicon glyphicon-star text-warning"></i>{$best_moment|html}{if $best_choices['inb'][$i]>0}<span class="very-small text-muted"> (+{$best_choices['inb'][$i]|html})</span>{/if}</td>
                             {elseif $best_moment > 0}
-                                <td>{$best_moment|html}</td>
+                                <td>{$best_moment|html}{if $best_choices['inb'][$i]>0}<span class="very-small text-muted"> (+{$best_choices['inb'][$i]|html})</span>{/if}</td>
                             {else}
                                 <td></td>
                             {/if}
@@ -231,7 +231,7 @@
 
 {if !$hidden}
     {* Best votes listing *}
-    {$max = max($best_choices)}
+    {$max = max($best_choices['y'])}
     {if $max > 0}
         <div class="row">
         {if $count_bests == 1}
@@ -249,7 +249,7 @@
                 <ul style="list-style:none">
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $moment}
-                            {if $best_choices[$i] == $max}
+                            {if $best_choices['y'][$i] == $max}
                                 <li><strong>{$slot->day|date_format:$date_format.txt_full|html} - {$moment|html}</strong></li>
                             {/if}
                             {$i = $i+1}

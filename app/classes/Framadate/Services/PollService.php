@@ -20,9 +20,8 @@ namespace Framadate\Services;
 
 use Framadate\Form;
 use Framadate\FramaDB;
-use Framadate\Utils;
-use Framadate\Security\Token;
 use Framadate\Repositories\RepositoryFactory;
+use Framadate\Security\Token;
 
 class PollService {
 
@@ -117,15 +116,19 @@ class PollService {
     }
 
     function computeBestChoices($votes) {
-        $result = [];
+        $result = ['y' => [0], 'inb' => [0]];
         foreach ($votes as $vote) {
             $choices = str_split($vote->choices);
             foreach ($choices as $i => $choice) {
-                if (empty($result[$i])) {
-                    $result[$i] = 0;
+                if (!isset($result['y'][$i])) {
+                    $result['inb'][$i] = 0;
+                    $result['y'][$i] = 0;
+                }
+                if ($choice == 1) {
+                    $result['inb'][$i]++;
                 }
                 if ($choice == 2) {
-                    $result[$i]++;
+                    $result['y'][$i]++;
                 }
             }
         }

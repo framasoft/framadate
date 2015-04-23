@@ -154,16 +154,16 @@
             {if !$hidden}
                 {* Line displaying best moments *}
                 {$count_bests = 0}
-                {$max = max($best_choices)}
+                {$max = max($best_choices['y'])}
                 {if $max > 0}
                     <tr id="addition">
                         <td>{__('Poll results', 'Addition')}</td>
-                        {foreach $best_choices as $best_choice}
+                        {foreach $best_choices['y'] as $i=>$best_choice}
                             {if $max == $best_choice}
                                 {$count_bests = $count_bests +1}
-                                <td><span class="glyphicon glyphicon-star text-warning"></span>{$best_choice|html}</td>
+                                <td><span class="glyphicon glyphicon-star text-warning"></span>{$best_choice|html}{if $best_choices['inb'][$i]>0}<span class="very-small text-muted"> (+{$best_choices['inb'][$i]|html})</span>{/if}</td>
                             {elseif $best_choice > 0}
-                                <td>{$best_choice|html}</td>
+                                <td>{$best_choice|html}{if $best_choices['inb'][$i]>0}<span class="very-small text-muted"> (+{$best_choices['inb'][$i]|html})</span>{/if}</td>
                             {else}
                                 <td></td>
                             {/if}
@@ -178,7 +178,7 @@
 
 {if !$hidden}
     {* Best votes listing *}
-    {$max = max($best_choices)}
+    {$max = max($best_choices['y'])}
     {if $max > 0}
         <div class="row">
         {if $count_bests == 1}
@@ -195,7 +195,7 @@
                 {$i = 0}
                 <ul style="list-style:none">
                     {foreach $slots as $slot}
-                        {if $best_choices[$i] == $max}
+                        {if $best_choices['y'][$i] == $max}
                             <li><strong>{$slot->title|markdown:true}</strong></li>
                         {/if}
                         {$i = $i+1}
