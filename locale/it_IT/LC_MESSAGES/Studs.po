@@ -6,7 +6,7 @@ msgstr ""
 "PO-Revision-Date: 2015-05-08 23:37+0100\n"
 "Last-Translator: lamessen <nico@lamessen.fr>\n"
 "Language-Team: Nikko\n"
-"Language: it\n"
+"Language: Italian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Poedit 1.7.6\n"
 "X-Poedit-SearchPath-0: .\n"
 
-# ########## Generic ###########
+########### Generic ###########
 msgid "Make your polls"
 msgstr "Organizzare degli appuntamenti semplicemente,liberamente."
 
@@ -89,14 +89,14 @@ msgstr "giorni"
 msgid "months"
 msgstr "mesi"
 
-# ########## Language selector ###########
+########### Language selector ###########
 msgid "Change the language"
 msgstr "Cambiare la lingua"
 
 msgid "Select the language"
 msgstr "Scegliere la lingua"
 
-# ########### Homepage ############
+############ Homepage ############
 msgid "Schedule an event"
 msgstr "Creare un evento"
 
@@ -163,7 +163,7 @@ msgstr "sito di sviluppo"
 msgid "If you want to install the software for your own use and thus increase your independence, we help you on:"
 msgstr "Se voleste installare questo software per un vostro utilizzo e quindi aumentare la vostra autonomia, vi potremmo aiutare su:"
 
-# ############# Poll ##############
+############## Poll ##############
 msgid "Poll administration"
 msgstr "Amministrazione del sondaggio"
 
@@ -406,7 +406,7 @@ msgstr "I caratteri \"  '  < e > non sono permessi!"
 msgid "The date is not correct !"
 msgstr "La data scelta non è corretta!"
 
-# ########## Step 1 ###########
+########### Step 1 ###########
 # Step 1 info_sondaggio.php
 msgid "Poll creation (1 on 3)"
 msgstr "Creazione del sondaggio (1 di 3)"
@@ -452,7 +452,7 @@ msgstr "Non avete completato la prima pagina del sondaggio"
 msgid "Back to step 1"
 msgstr "Torna al punto 1"
 
-# ########## Step 2 ###########
+########### Step 2 ###########
 # Step 2 choix_date.php
 msgid "Poll dates (2 on 3)"
 msgstr "Scelta delle date (2 di 3)"
@@ -542,7 +542,7 @@ msgstr "Torna al punto 2"
 msgid "Go to step 3"
 msgstr "Andare al punto 3"
 
-# ########## Step 3 ###########
+########### Step 3 ###########
 msgid "Removal date and confirmation (3 on 3)"
 msgstr "Data di scadenza e conferma (3 di 3)"
 
@@ -581,7 +581,7 @@ msgstr "Potete scegliere una data più ravvicinata per l'eliminazione del vostro
 msgid "Removal date (optional)"
 msgstr "Date di eliminazione (facoltativo)"
 
-# ############ Admin #############
+############# Admin #############
 msgid "Polls administrator"
 msgstr "Amministratore del sondaggio"
 
@@ -618,7 +618,7 @@ msgstr "Modificare il sondaggio"
 msgid "Logs"
 msgstr "Log"
 
-# ########## Mails ###########
+########### Mails ###########
 # Mails studs.php
 msgid "Poll's participation"
 msgstr "Partecipazione al sondaggio"
