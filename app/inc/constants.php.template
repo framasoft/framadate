@@ -21,7 +21,10 @@
 const VERSION = 0.8;
 
 // Server name
-const STUDS_URL = '<www.mydomain.com>';
+// Fully qualified domain name of your webserver.
+// If this is unset or empty, the servername is determined automatically.
+// You *have to set this* if you are running Framedate behind a reverse proxy.
+//const STUDS_URL = 'www.mydomain.com';
 
 // Application name
 const NOMAPPLICATION = "<Application name>";
