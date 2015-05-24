@@ -15,10 +15,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-3 text-center">
-                <button type="submit" class="btn btn-warning btn-lg">
-                    <span class="glyphicon glyphicon-search"></span>
-                    {__('FindPolls', 'Send me my polls')}
-                </button>
+                <button type="submit" class="btn btn-success">{__('FindPolls', 'Send me my polls')}</button>
             </div>
         </div>
     </form>
