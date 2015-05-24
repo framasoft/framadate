@@ -47,7 +47,7 @@ $(document).ready(function () {
         });
     };
 
-    $(document).on('click', '.input-group.date .input-group-addon', function () {
+    $(document).on('click', '.input-group.date .input-group-addon, .input-group.date input', function () {
         // Re-init datepicker config before displaying
         init_datepicker();
         $(this).parent().datepicker('show');
