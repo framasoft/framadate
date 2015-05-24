@@ -2,7 +2,7 @@
 
 {block 'admin_main'}
     {if $message}
-        <div class="alert alert-dismissible alert-info" role="alert">{$message|html}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+        <div class="alert alert-dismissible alert-info" role="alert">{$message|html}<button type="button" class="close" data-dismiss="alert" aria-label="{__('Generic', 'CLose')}"><span aria-hidden="true">&times;</span></button></div>
     {/if}
     <form action="" method="POST">
         <input type="hidden" name="csrf" value="{$crsf}"/>
