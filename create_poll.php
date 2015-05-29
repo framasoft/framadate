@@ -90,7 +90,7 @@ if ($goToStep2) {
         $error_on_name = true;
     }
 
-    if ($description !== $_POST['description']) {
+    if ($description === false) {
         $error_on_description = true;
     }
 

@@ -117,6 +117,10 @@ class AdminPollService {
 
         $slots = $this->pollService->allSlotsByPollId($poll_id);
 
+        if (count($slots) === 1) {
+            return false;
+        }
+
         $index = 0;
         $indexToDelete = -1;
         $newMoments = [];
@@ -154,6 +158,10 @@ class AdminPollService {
         $this->logService->log('DELETE_SLOT', 'id:' . $poll_id . ', slot:' . $slot_title);
 
         $slots = $this->pollService->allSlotsByPollId($poll_id);
+
+        if (count($slots) === 1) {
+            return false;
+        }
 
         $index = 0;
         $indexToDelete = -1;

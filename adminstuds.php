@@ -153,7 +153,8 @@ if (isset($_POST['update_poll_info'])) {
                 break;
         }
     } elseif ($field == 'expiration_date') {
-        $expiration_date = filter_input(INPUT_POST, 'expiration_date', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]+[-/][0-9]+[-/][0-9]+#']]);
+        $expiration_date = filter_input(INPUT_POST, 'expiration_date', FILTER_VALIDATE_REGEXP,
+            ['options' => ['regexp' => '#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#']]);
         if ($expiration_date) {
             $poll->end_date = $expiration_date;
             $updated = true;
@@ -374,7 +375,7 @@ if (!empty($_GET['delete_column'])) {
     if ($result) {
         $message = new Message('success', __('adminstuds', 'Column removed'));
     } else {
-        $message = new Message('danger', __('Error', 'Failed to delete the column'));
+        $message = new Message('danger', __('Error', 'Failed to delete column'));
     }
 }
 
