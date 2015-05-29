@@ -51,8 +51,7 @@ class InputService {
     }
 
     public function filterTitle($title) {
-        $filtered = filter_var($title, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => TITLE_REGEX]]);
-        return $this->returnIfNotBlank($filtered);
+        return $this->returnIfNotBlank($title);
     }
 
     public function filterName($name) {
@@ -66,7 +65,7 @@ class InputService {
 
     public function filterDescription($description) {
         $description = str_replace("\r\n", "\n", $description);
-        return filter_var($description, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => DESCRIPTION_REGEX]]);
+        return $description;
     }
 
     public function filterBoolean($boolean) {
@@ -79,8 +78,7 @@ class InputService {
 
     public function filterComment($comment) {
         $comment = str_replace("\r\n", "\n", $comment);
-        $filtered =  filter_var($comment, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => COMMENT_REGEX]]);
-        return $this->returnIfNotBlank($filtered);
+        return $this->returnIfNotBlank($comment);
     }
 
     /**

@@ -11,7 +11,7 @@
                     <button type="submit" name="delete_comment" value="{$comment->id|html}" class="btn btn-link" title="{__('Comments', 'Remove the comment')}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span></button>
                 {/if}
                 <b>{$comment->name|html}</b>&nbsp;
-                <span class="comment">{nl2br($comment->comment|html)}</span>
+                <span class="comment">{$comment->comment|escape|nl2br}</span>
             </div>
         {/foreach}
     {/if}
