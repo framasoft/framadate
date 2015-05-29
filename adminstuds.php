@@ -111,7 +111,8 @@ if (isset($_POST['update_poll_info'])) {
                 break;
         }
     } elseif ($field == 'expiration_date') {
-        $expiration_date = filter_input(INPUT_POST, 'expiration_date', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]+[-/][0-9]+[-/][0-9]+#']]);
+        $expiration_date = filter_input(INPUT_POST, 'expiration_date', FILTER_VALIDATE_REGEXP,
+            ['options' => ['regexp' => '#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#']]);
         if ($expiration_date) {
             $poll->end_date = $expiration_date;
             $updated = true;
