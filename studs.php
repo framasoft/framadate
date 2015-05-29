@@ -64,7 +64,7 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
         $_SESSION['mail_sent'] = [];
     }
 
-    if ($poll->receiveNewVotes && (!isset($_SESSION['mail_sent'][$poll->id]) || $_SESSION['mail_sent'][$poll->id] !== true)) {
+    if ($poll->receiveNewVotes) {
 
         $subject = '[' . NOMAPPLICATION . '] ' . __('Mail', 'Poll\'s participation') . ' : ' . $poll->title;
 
@@ -82,9 +82,8 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
         }
         $message .= Utils::getUrlSondage($poll->admin_id, true) . "\n\n";
 
-        $mailService->send($poll->admin_mail, $subject, $message);
-
-        $_SESSION['mail_sent'][$poll->id] = true;
+        $messageTypeKey = $type . '-' . $poll->id;
+        $mailService->send($messageTypeKey, $poll->admin_mail, $subject, $message);
     }
 }
 
