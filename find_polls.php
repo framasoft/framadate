@@ -43,7 +43,7 @@ if (!empty($_POST['mail'])) {
             $smarty->assign('polls', $polls);
             $body = $smarty->fetch('mail/find_polls.tpl');
 
-            $mailService->send($mail, __('Homepage', 'Where are my polls'), $body);
+            $mailService->send($mail, __('Homepage', 'Where are my polls'), $body, 'SEND_POLLS');
             $message = new Message('success', __('FindPolls', 'Polls sent'));
         } else {
             $message = new Message('warning', __('Error', 'No polls found'));
