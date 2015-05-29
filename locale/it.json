@@ -326,6 +326,7 @@
     "Update vote failed": "IT_Mise à jour du vote échoué",
     "Adding vote failed": "IT_Ajout d'un vote échoué",
     "Comment failed": "IT_Commentaire échoué",
-    "You can't create a poll with hidden results with the following edition option:": "IT_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
+    "You can't create a poll with hidden results with the following edition option:": "IT_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
+    "Failed to delete column": "Impossibile eliminare colonna"
   }
 }
