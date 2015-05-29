@@ -322,7 +322,7 @@
     "Enter a name and a comment!": "Inserire un nome e un commento!",
     "Failed to insert the comment!": "Errore nell'inserimento del commento !",
     "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "IT_Framadate n'est pas installé correctement, lisez le fichier INSTALL pour configurer la base de données avant de continuer.",
-    "Failed to save poll": "IT_Echèc de la sauvegarde du sondage",
+    "Failed to save poll": "IT_Echec de la sauvegarde du sondage",
     "Update vote failed": "IT_Mise à jour du vote échoué",
     "Adding vote failed": "IT_Ajout d'un vote échoué",
     "Comment failed": "IT_Commentaire échoué",

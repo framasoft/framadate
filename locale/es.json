@@ -322,7 +322,7 @@
         "Enter a name and a comment!": "Introduzca su nombre y un comentario!",
         "Failed to insert the comment!": "ES_Échec à l'insertion du commentaire !",
         "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "ES_Framadate n'est pas installé correctement, lisez le fichier INSTALL pour configurer la base de données avant de continuer.",
-        "Failed to save poll": "ES_Echèc de la sauvegarde du sondage",
+        "Failed to save poll": "ES_Echec de la sauvegarde du sondage",
         "Update vote failed": "ES_Mise à jour du vote échoué",
         "Adding vote failed": "ES_Ajout d'un vote échoué",
         "Comment failed": "ES_Commentaire échoué",
