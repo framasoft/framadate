@@ -151,7 +151,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         $message = new Message('danger', __('Error', 'The name is invalid.'));
     }
     if (count($choices) != count($_POST['choices'])) {
-        $message = new Message('danger', __('There is a problem with your choices'));
+        $message = new Message('danger', __('Error', 'There is a problem with your choices'));
     }
 
     if ($message == null) {

@@ -18,8 +18,6 @@
  */
 namespace Framadate;
 
-use Framadate\Editable;
-
 class Form
 {
 

@@ -17,9 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-use Framadate\Services\LogService;
 use Framadate\Services\PollService;
-use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 
