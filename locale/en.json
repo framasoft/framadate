@@ -200,11 +200,11 @@
     "Required fields cannot be left blank.": "Required fields cannot be left blank.",
     "Poll title": "Poll title",
     "Votes cannot be modified.": "Votes cannot be modified",
-    "All voters can modify any vote.": "All voters can modify any vote.",
-    "Voters can modify their vote themselves.": "Voters can modify their vote themselves.",
-    "To receive an email for each new vote.": "To receive an email for each new vote.",
-    "To receive an email for each new comment.": "To receive an email for each new comment.",
-    "Only the poll maker can see the poll's results.": "Only the poll maker can see the poll's results.",
+    "All voters can modify any vote": "All voters can modify any vote",
+    "Voters can modify their vote themselves": "Voters can modify their vote themselves",
+    "To receive an email for each new vote": "To receive an email for each new vote",
+    "To receive an email for each new comment": "To receive an email for each new comment",
+    "Only the poll maker can see the poll's results": "Only the poll maker can see the poll's results",
     "Go to step 2": "Go to step 2"
   },
   "Step 2": {

@@ -200,11 +200,11 @@
         "Required fields cannot be left blank.": "Mit * markierte Felder müssen ausgefüllt sein.",
         "Poll title": "Umfragetitel",
         "Votes cannot be modified.": "DE_Aucun vote ne peut être modifié",
-        "All voters can modify any vote.": "DE_Tous les sondés peuvent modifier tous les votes",
-        "Voters can modify their vote themselves.": "Teilnehmer können ihre Antworten verändern",
-        "To receive an email for each new vote.": "Bei jeder neuen Abstimmung eine E-Mail erhalten.",
-        "To receive an email for each new comment.": "Um eine E-Mail für jede neue Kommentar zu empfangen.",
-        "Only the poll maker can see the poll's results.": "DE_Seul le créateur du sondage peut voir les résultats.",
+        "All voters can modify any vote": "DE_Tous les sondés peuvent modifier tous les votes",
+        "Voters can modify their vote themselves": "Teilnehmer können ihre Antworten verändern",
+        "To receive an email for each new vote": "Bei jeder neuen Abstimmung eine E-Mail erhalten",
+        "To receive an email for each new comment": "Um eine E-Mail für jede neue Kommentar zu empfangen",
+        "Only the poll maker can see the poll's results": "DE_Seul le créateur du sondage peut voir les résultats",
         "Go to step 2": "Weiter zum 2. Schritt"
     },
     "Step 2": {
