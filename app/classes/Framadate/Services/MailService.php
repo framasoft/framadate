@@ -20,7 +20,7 @@ class MailService {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
-    function send($to, $subject, $body, $param = '', $msgKey = null) {
+    function send($to, $subject, $body, $msgKey = null) {
         if ($this->smtp_allowed == true && $this->canSendMsg($msgKey)) {
             mb_internal_encoding('UTF-8');
 
@@ -54,7 +54,7 @@ class MailService {
 
             // Send mail
 
-            $this->sendMail($to, $subject, $body, $param, $msgKey, $headers);
+            $this->sendMail($to, $subject, $body, $msgKey, $headers);
         }
     }
 
@@ -69,8 +69,8 @@ class MailService {
         return !isset($_SESSION[self::MAILSERVICE_KEY][$msgKey]) || time() - $_SESSION[self::MAILSERVICE_KEY][$msgKey] > self::DELAY_BEFORE_RESEND;
     }
 
-    private function sendMail($to, $subject, $body, $param, $msgKey, $headers) {
-        mail($to, $subject, $body, $headers, $param);
+    private function sendMail($to, $subject, $body, $msgKey, $headers) {
+        mail($to, $subject, $body, $headers, '');
 
         // Log
 
