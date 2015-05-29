@@ -12,7 +12,7 @@ class MailServiceUnitTest extends FramaTestCase {
     function should_send_a_2nd_mail_after_a_good_interval() {
         // Given
         $mailService = new MailService(true);
-        $_SESSION[MailService::MAILSERVICE_KEY] = [self::MSG_KEY => time() - 500];
+        $_SESSION[MailService::MAILSERVICE_KEY] = [self::MSG_KEY => time() - 1000];
 
         // When
         $canSendMsg = $mailService->canSendMsg(self::MSG_KEY);
@@ -27,7 +27,7 @@ class MailServiceUnitTest extends FramaTestCase {
     function should_not_send_2_mails_in_a_short_interval() {
         // Given
         $mailService = new MailService(true);
-        $_SESSION[MailService::MAILSERVICE_KEY] = [self::MSG_KEY => time() + 500];
+        $_SESSION[MailService::MAILSERVICE_KEY] = [self::MSG_KEY => time()];
 
         // When
         $canSendMsg = $mailService->canSendMsg(self::MSG_KEY);

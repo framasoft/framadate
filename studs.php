@@ -83,7 +83,7 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
         $message .= Utils::getUrlSondage($poll->admin_id, true) . "\n\n";
 
         $messageTypeKey = $type . '-' . $poll->id;
-        $mailService->send($messageTypeKey, $poll->admin_mail, $subject, $message);
+        $mailService->send($poll->admin_mail, $subject, $message, '', $messageTypeKey);
     }
 }
 

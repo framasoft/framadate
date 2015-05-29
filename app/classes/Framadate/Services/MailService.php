@@ -9,7 +9,10 @@ class MailService {
 
     const MAILSERVICE_KEY = 'mailservice';
 
+    private $logService;
+
     function __construct($smtp_allowed) {
+        $this->logService = new LogService();
         $this->smtp_allowed = $smtp_allowed;
     }
 
@@ -51,11 +54,7 @@ class MailService {
 
             // Send mail
 
-            mail($to, $subject, $body, $headers, $param);
-
-            // Set date before resend in sessions
-
-            $_SESSION[self::MAILSERVICE_KEY][$msgKey] = time() + self::DELAY_BEFORE_RESEND;
+            $this->sendMail($to, $subject, $body, $param, $msgKey, $headers);
         }
     }
 
@@ -67,7 +66,19 @@ class MailService {
         if (!isset($_SESSION[self::MAILSERVICE_KEY])) {
             $_SESSION[self::MAILSERVICE_KEY] = [];
         }
-        return !isset($_SESSION[self::MAILSERVICE_KEY][$msgKey]) || $_SESSION[self::MAILSERVICE_KEY][$msgKey] < time();
+        return !isset($_SESSION[self::MAILSERVICE_KEY][$msgKey]) || time() - $_SESSION[self::MAILSERVICE_KEY][$msgKey] > self::DELAY_BEFORE_RESEND;
+    }
+
+    private function sendMail($to, $subject, $body, $param, $msgKey, $headers) {
+        mail($to, $subject, $body, $headers, $param);
+
+        // Log
+
+        $this->logService->log('MAIL', 'Mail sent to: ' . $to . ', key: ' . $msgKey);
+
+        // Store the mail sending date
+
+        $_SESSION[self::MAILSERVICE_KEY][$msgKey] = time();
     }
 
 }
