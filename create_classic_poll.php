@@ -198,7 +198,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
                     <div class="col-sm-6">
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                            <input type="text" class="form-control" id="enddate" data-date-format="' . __('Date', 'dd/mm/yyyy') . '" aria-describedby="dateformat" name="enddate" value="' . $end_date_str . '" size="10" maxlength="10" placeholder="' . __("dd/mm/yyyy") . '" />
+                            <input type="text" class="form-control" id="enddate" data-date-format="' . __('Date', 'dd/mm/yyyy') . '" aria-describedby="dateformat" name="enddate" value="' . $end_date_str . '" size="10" maxlength="10" placeholder="' . __('Date', 'dd/mm/yyyy') . '" />
                         </div>
                     </div>
                     <span id="dateformat" class="sr-only">' . __('Date', 'dd/mm/yyyy') . '</span>
