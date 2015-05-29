@@ -189,7 +189,6 @@
     "Remove the comments": "Eliminare i commenti",
     "Comment deleted": "Commento rimosso",
     "All comments deleted": "Tutti i commenti sono stati cancellati",
-    "The poll has been deleted": "Il sondaggio è stato eliminato",
     "Keep votes": "Tenere voti",
     "Keep comments": "Tenere commenti",
     "Keep this poll": "Mantengo questo sondaggio !"
@@ -289,9 +288,12 @@
   },
   "Mail": {
     "Poll's participation": "Partecipazione al sondaggio",
+    "Notification of poll": "Notifica di sondaggio",
     "filled a vote.\nYou can find your poll at the link": "IT_vient de voter.\nVous pouvez retrouver votre sondage avec le lien suivant",
     "updated a vote.\nYou can find your poll at the link": "IT_vient de mettre à jour un vote.\nVous pouvez retrouver votre sondage avec le lien suivant",
     "wrote a comment.\nYou can find your poll at the link": "IT_vient de rédiger un commentaire.\nVous pouvez retrouver votre sondage avec le lien suivant",
+    "Someone just change your poll available at the following link %s.": "Qualcuno basta cambiare il vostro sondaggio disponibile al seguente link <a href=\"%1$s\">%1$s</a>.",
+    "Someone just delete your poll %s.": "Qualcuno ha appena cancellare il tuo sondaggio \"%s\".",
     "Thanks for your trust.": "Grazie per la vostra fiducia.",
     "FOOTER": "IT_« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.",
     "[ADMINISTRATOR] New settings for your poll": "[AMMINISTRATORE] Modifica di configurazione del sondaggio",

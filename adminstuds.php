@@ -16,14 +16,21 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-use Framadate\Services\PollService;
+use Framadate\Editable;
+use Framadate\Message;
 use Framadate\Services\AdminPollService;
 use Framadate\Services\InputService;
 use Framadate\Services\LogService;
-use Framadate\Message;
-use Framadate\Editable;
+use Framadate\Services\MailService;
+use Framadate\Services\PollService;
+use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
+
+/* Constants */
+/* --------- */
+const UPDATE_POLL = 1;
+const DELETED_POLL = 2;
 
 /* Variables */
 /* --------- */
@@ -41,6 +48,41 @@ $logService = new LogService();
 $pollService = new PollService($connect, $logService);
 $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $inputService = new InputService();
+$mailService = new MailService($config['use_smtp']);
+
+/* Functions */
+/*-----------*/
+
+/**
+ * Send a notification to the poll admin to notify him about an update.
+ *
+ * @param stdClass $poll The poll
+ * @param MailService $mailService The mail service
+ * @param int $type cf: Constants on the top of this page
+ */
+function sendUpdateNotification($poll, $mailService, $type) {
+    if (!isset($_SESSION['mail_sent'])) {
+        $_SESSION['mail_sent'] = [];
+    }
+
+    if ($poll->receiveNewVotes) {
+
+        $subject = '[' . NOMAPPLICATION . '] ' . __('Mail', 'Notification of poll') . ' : ' . $poll->title;
+
+        $message = '';
+        switch ($type) {
+            case UPDATE_POLL:
+                $message = __f('Mail', 'Someone just change your poll available at the following link %s.', Utils::getUrlSondage($poll->admin_id, true)) . "\n\n";
+                break;
+            case DELETED_POLL:
+                $message = __f('Mail', 'Someone just delete your poll %s.', Utils::htmlEscape($poll->title)) . "\n\n";
+                break;
+        }
+
+        $messageTypeKey = $type . '-' . $poll->id;
+        $mailService->send($poll->admin_mail, $subject, $message, $messageTypeKey);
+    }
+}
 
 /* PAGE */
 /* ---- */
@@ -133,6 +175,7 @@ if (isset($_POST['update_poll_info'])) {
     // Update poll in database
     if ($updated && $adminPollService->updatePoll($poll)) {
         $message = new Message('success', __('adminstuds', 'Poll saved'));
+        sendUpdateNotification($poll, $mailService, UPDATE_POLL);
     } else {
         $message = new Message('danger', __('Error', 'Failed to save poll'));
         $poll = $pollService->findById($poll_id);
@@ -297,6 +340,7 @@ if (isset($_POST['delete_poll'])) {
 if (isset($_POST['confirm_delete_poll'])) {
     if ($adminPollService->deleteEntirePoll($poll_id)) {
         $message = new Message('success', __('adminstuds', 'Poll fully deleted'));
+        sendUpdateNotification($poll, $mailService, DELETED_POLL);
     } else {
         $message = new Message('danger', __('Error', 'Failed to delete the poll'));
     }
