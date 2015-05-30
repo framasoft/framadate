@@ -105,17 +105,17 @@ class AdminPollService {
     /**
      * Delete a slot from a poll.
      *
-     * @param $poll_id int The ID of the poll
-     * @param $slot object The slot informations (datetime + moment)
+     * @param object $poll The ID of the poll
+     * @param object $slot The slot informations (datetime + moment)
      * @return bool true if action succeeded
      */
-    public function deleteDateSlot($poll_id, $slot) {
-        $this->logService->log('DELETE_SLOT', 'id:' . $poll_id . ', slot:' . json_encode($slot));
+    public function deleteDateSlot($poll, $slot) {
+        $this->logService->log('DELETE_SLOT', 'id:' . $poll->id . ', slot:' . json_encode($slot));
 
         $datetime = $slot->title;
         $moment = $slot->moment;
 
-        $slots = $this->pollService->allSlotsByPollId($poll_id);
+        $slots = $this->pollService->allSlotsByPoll($poll);
 
         if (count($slots) === 1) {
             return false;
@@ -143,21 +143,21 @@ class AdminPollService {
 
         // Remove votes
         $this->connect->beginTransaction();
-        $this->voteRepository->deleteByIndex($poll_id, $indexToDelete);
+        $this->voteRepository->deleteByIndex($poll->id, $indexToDelete);
         if (count($newMoments) > 0) {
-            $this->slotRepository->update($poll_id, $datetime, implode(',', $newMoments));
+            $this->slotRepository->update($poll->id, $datetime, implode(',', $newMoments));
         } else {
-            $this->slotRepository->deleteByDateTime($poll_id, $datetime);
+            $this->slotRepository->deleteByDateTime($poll->id, $datetime);
         }
         $this->connect->commit();
 
         return true;
     }
 
-    public function deleteClassicSlot($poll_id, $slot_title) {
-        $this->logService->log('DELETE_SLOT', 'id:' . $poll_id . ', slot:' . $slot_title);
+    public function deleteClassicSlot($poll, $slot_title) {
+        $this->logService->log('DELETE_SLOT', 'id:' . $poll->id . ', slot:' . $slot_title);
 
-        $slots = $this->pollService->allSlotsByPollId($poll_id);
+        $slots = $this->pollService->allSlotsByPoll($poll);
 
         if (count($slots) === 1) {
             return false;
@@ -176,15 +176,15 @@ class AdminPollService {
 
         // Remove votes
         $this->connect->beginTransaction();
-        $this->voteRepository->deleteByIndex($poll_id, $indexToDelete);
-        $this->slotRepository->deleteByDateTime($poll_id, $slot_title);
+        $this->voteRepository->deleteByIndex($poll->id, $indexToDelete);
+        $this->slotRepository->deleteByDateTime($poll->id, $slot_title);
         $this->connect->commit();
 
         return true;
     }
 
     /**
-     * Add a new slot to the poll. And insert default values for user's votes.
+     * Add a new slot to a date poll. And insert default values for user's votes.
      * <ul>
      *  <li>Create a new slot if no one exists for the given date</li>
      *  <li>Create a new moment if a slot already exists for the given date</li>
@@ -195,7 +195,7 @@ class AdminPollService {
      * @param $new_moment string The moment's name
      * @return bool true if added
      */
-    public function addSlot($poll_id, $datetime, $new_moment) {
+    public function addDateSlot($poll_id, $datetime, $new_moment) {
         $slots = $this->slotRepository->listByPollId($poll_id);
         $result = $this->findInsertPosition($slots, $datetime, $new_moment);
 
@@ -224,6 +224,44 @@ class AdminPollService {
         }
 
         $this->voteRepository->insertDefault($poll_id, $result->insert);
+
+        // Commit transaction
+        $this->connect->commit();
+
+        return true;
+
+    }
+
+    /**
+     * Add a new slot to a classic poll. And insert default values for user's votes.
+     * <ul>
+     *  <li>Create a new slot if no one exists for the given title</li>
+     * </ul>
+     *
+     * @param $poll_id int The ID of the poll
+     * @param $title int The title
+     * @return bool true if added
+     */
+    public function addClassicSlot($poll_id, $title) {
+        $slots = $this->slotRepository->listByPollId($poll_id);
+
+        // Check if slot already exists
+        $titles = array_map(function ($slot) {
+            return $slot->title;
+        }, $slots);
+        if (in_array($title, $titles)) {
+            // The moment already exists
+            return false;
+        }
+
+
+        // Begin transaction
+        $this->connect->beginTransaction();
+
+        // New slot
+        $this->slotRepository->insert($poll_id, $title, null);
+        // Set default votes
+        $this->voteRepository->insertDefault($poll_id, count($slots));
 
         // Commit transaction
         $this->connect->commit();

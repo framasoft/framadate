@@ -51,7 +51,7 @@ if (!$poll) {
 }
 
 
-$slots = $pollService->allSlotsByPollId($poll_id);
+$slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
 
 // CSV header

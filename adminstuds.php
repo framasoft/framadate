@@ -367,9 +367,9 @@ if (!empty($_GET['delete_column'])) {
         $slot->title = $ex[0];
         $slot->moment = $ex[1];
 
-        $result = $adminPollService->deleteDateSlot($poll_id, $slot);
+        $result = $adminPollService->deleteDateSlot($poll, $slot);
     } else {
-        $result = $adminPollService->deleteClassicSlot($poll_id, $column);
+        $result = $adminPollService->deleteClassicSlot($poll, $column);
     }
 
     if ($result) {
@@ -397,10 +397,10 @@ if (isset($_POST['confirm_add_slot'])) {
         $newmoment = strip_tags($_POST['newmoment']);
 
         $ex = explode('/', $newdate);
-        $result = $adminPollService->addSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
+        $result = $adminPollService->addDateSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
     } else {
         $newslot = strip_tags($_POST['choice']);
-        $result = $adminPollService->addSlot($poll_id, $newslot, null);
+        $result = $adminPollService->addClassicSlot($poll_id, $newslot);
     }
 
     if ($result) {
@@ -411,7 +411,7 @@ if (isset($_POST['confirm_add_slot'])) {
 }
 
 // Retrieve data
-$slots = $pollService->allSlotsByPollId($poll_id);
+$slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
 

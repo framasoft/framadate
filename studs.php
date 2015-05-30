@@ -197,7 +197,7 @@ if (isset($_POST['add_comment'])) {
 }
 
 // Retrieve data
-$slots = $pollService->allSlotsByPollId($poll_id);
+$slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
 
