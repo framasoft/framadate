@@ -28,10 +28,20 @@
         });
         if (nb_filled_choices >= 1) {
             $('button[name="fin_sondage_autre"]').removeClass('disabled');
+            return true;
         } else {
             $('button[name="fin_sondage_autre"]').addClass('disabled');
+            return false;
         }
     };
+
+    // Handle form submission
+    $(document.formulaire).on('submit', function (e) {
+        if (!submitChoicesAvalaible()) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
 
     // Button "Add a choice"
 
