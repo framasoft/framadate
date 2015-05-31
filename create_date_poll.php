@@ -221,17 +221,15 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
     } else {
 
         // Prefill form->choices
-        if (count($_SESSION['form']->getChoices()) == 0) {
-            $c = new Choice('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $_SESSION['form']->addChoice($c);
-            $c = new Choice('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $_SESSION['form']->addChoice($c);
+        foreach ($_SESSION['form']->getChoices() as $c) {
+            $count = 3 - count($c->getSlots());
+            for($i=0; $i< $count; $i++) {
+                $c->addSlot('');
+            }
+        }
+
+        $count = 3 - count($_SESSION['form']->getChoices());
+        for($i=0; $i< $count; $i++) {
             $c = new Choice('');
             $c->addSlot('');
             $c->addSlot('');
