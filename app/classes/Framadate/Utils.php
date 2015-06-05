@@ -24,7 +24,11 @@ class Utils
     {
         $scheme = (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == 'on') ? 'https' : 'http';
         $port = in_array($_SERVER['SERVER_PORT'], [80, 443]) ? '/' : ':' . $_SERVER['SERVER_PORT'] . '/';
-        $server_name = $_SERVER['SERVER_NAME'] . $port . dirname($_SERVER['SCRIPT_NAME']) . '/';
+        $script_dirname = dirname($_SERVER['SCRIPT_NAME']);
+        if ($script_dirname === DIRECTORY_SEPARATOR) {
+            $script_dirname = '';
+        }
+        $server_name = $_SERVER['SERVER_NAME'] . $port . $script_dirname . '/';
 
         return $scheme . '://' .  str_replace('/admin','',str_replace('//','/',str_replace('///','/',$server_name)));
     }
