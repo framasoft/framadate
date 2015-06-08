@@ -557,7 +557,7 @@ msgid "Once you have confirmed the creation of your poll, you will be automatica
 msgstr "Une fois que vous aurez confirmé la création du sondage, vous serez redirigé automatiquement vers la page d'administration de votre sondage."
 
 msgid "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll."
-msgstr "En même temps, vous recevrez deux courriels : l'un contenant le lien vers votre sondage pour le faire suivre aux futurs sondés, l'autre contenant le lien vers la page d'administraion du sondage."
+msgstr "En même temps, vous recevrez deux courriels : l'un contenant le lien vers votre sondage pour le faire suivre aux futurs sondés, l'autre contenant le lien vers la page d'administration du sondage."
 
 msgid "Create the poll"
 msgstr "Créer le sondage"
