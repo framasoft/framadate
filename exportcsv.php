@@ -18,9 +18,6 @@
  */
 use Framadate\Services\LogService;
 use Framadate\Services\PollService;
-use Framadate\Services\InputService;
-use Framadate\Services\MailService;
-use Framadate\Message;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -54,7 +51,7 @@ if (!$poll) {
 }
 
 
-$slots = $pollService->allSlotsByPollId($poll_id);
+$slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
 
 // CSV header

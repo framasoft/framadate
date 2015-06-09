@@ -42,10 +42,20 @@ $(document).ready(function () {
 
         if (nb_filled_days >= 1 && nb_filled_hours >= 1) {
             $('button[name="choixheures"]').removeClass('disabled');
+            return true;
         } else {
             $('button[name="choixheures"]').addClass('disabled');
+            return false;
         }
     };
+
+    // Handle form submission
+    $(document.formulaire).on('submit', function (e) {
+        if (!submitDaysAvalaible()) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
 
     // Button "Remove all hours"
 

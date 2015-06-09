@@ -189,7 +189,6 @@
         "Remove the comments": "ES_Supprimer les commentaires",
         "Comment deleted": "ES_Commentaire supprimé",
         "All comments deleted": "ES_Tous les commentaires ont été supprimés",
-        "The poll has been deleted": "ES_Le sondage a été supprimé",
         "Keep votes": "ES_Garder les votes",
         "Keep comments": "ES_Garder les commentaires",
         "Keep this poll": "Dejar este encuesta!"
@@ -200,11 +199,11 @@
         "Required fields cannot be left blank.": "Gracias por completar los campos con una *.",
         "Poll title": "ES_Titre du sondage",
         "Votes cannot be modified.": "ES_Aucun vote ne peut être modifié",
-        "All voters can modify any vote.": "ES_Tous les sondés peuvent modifier tous les votes",
-        "Voters can modify their vote themselves.": "Los encuentados pueden cambiar su línea ellos mismos.",
-        "To receive an email for each new vote.": "Usted quiere recibir un correo electónico cada vez que alguien participe a la encuesta.",
-        "To receive an email for each new comment.": "ES_Recevoir un courriel à chaque commentaire.",
-        "Only the poll maker can see the poll's results.": "ES_Seul le créateur du sondage peut voir les résultats.",
+        "All voters can modify any vote": "ES_Tous les sondés peuvent modifier tous les votes",
+        "Voters can modify their vote themselves": "Los encuentados pueden cambiar su línea ellos mismos",
+        "To receive an email for each new vote": "Usted quiere recibir un correo electónico cada vez que alguien participe a la encuesta",
+        "To receive an email for each new comment": "ES_Recevoir un courriel à chaque commentaire",
+        "Only the poll maker can see the poll's results": "ES_Seul le créateur du sondage peut voir les résultats",
         "Go to step 2": "ES_Aller à l'étape 2"
     },
     "Step 2": {
@@ -244,7 +243,7 @@
         "Confirm the creation of your poll": "ES_Confirmez la création de votre sondage",
         "List of your choices": "ES_Liste de vos choix",
         "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "ES_Une fois que vous aurez confirmé la création du sondage, vous serez redirigé automatiquement vers la page d'administration de votre sondage.",
-        "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "ES_En même temps, vous recevrez deux courriels : l'un contenant le lien vers votre sondage pour le faire suivre aux futurs sondés, l'autre contenant le lien vers la page d'administraion du sondage.",
+        "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "ES_En même temps, vous recevrez deux courriels : l'un contenant le lien vers votre sondage pour le faire suivre aux futurs sondés, l'autre contenant le lien vers la page d'administration du sondage.",
         "Create the poll": "Crear la encuesta",
         "Your poll will automatically be archived": "ES_Votre sondage sera automatiquement archivé",
         "after the last date of your poll.": "ES_après la date la plus tardive.",
@@ -288,10 +287,13 @@
         "Polls sent": "ES_Sondages envoyés"
     },
     "Mail": {
-        "Poll's participation": "ES_Participation au sondage",
+        "Poll's participation": "Participación Encuesta",
+        "Notification of poll": "Notificación de la encuesta",
         "filled a vote.\nYou can find your poll at the link": "ES_vient de voter.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",
         "updated a vote.\nYou can find your poll at the link": "ES_vient de mettre à jour un vote.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",
         "wrote a comment.\nYou can find your poll at the link": "ES_vient de rédiger un commentaire.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",
+        "Someone just change your poll available at the following link %s.": "Alguien acaba de cambiar su encuesta disponible en el siguiente enlace <a href=\"%1$s\">%1$s</a>.",
+        "Someone just delete your poll %s.": "Alguien acaba de borrar tu encuesta \"%s\".",
         "Thanks for your trust.": "ES_Merci de votre confiance.",
         "FOOTER": "",
         "[ADMINISTRATOR] New settings for your poll": "ES_[ADMINISTRATEUR] Changement de configuration du sondage",
@@ -306,8 +308,8 @@
     "Error": {
         "Error!": "Error!",
         "Enter a title": "Introducza un título",
-        "Something is going wrong...": "ES_Quelque chose ne va pas...",
-        "Something is wrong with the format": "Something is wrong with the format",
+        "Something is going wrong...": "Algo va mal...",
+        "Something is wrong with the format": "Algo está mal con el formato",
         "Enter an email address": "Introduzca una dirección electrónica",
         "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.": "ES_L'adresse saisie n'est pas correcte ! Il faut une adresse électronique valide (par exemple r.stallman@outlock.com) pour recevoir le lien vers le sondage.",
         "No polls found": "ES_Aucun sondage n'a été trouvé",
@@ -322,10 +324,11 @@
         "Enter a name and a comment!": "Introduzca su nombre y un comentario!",
         "Failed to insert the comment!": "ES_Échec à l'insertion du commentaire !",
         "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "ES_Framadate n'est pas installé correctement, lisez le fichier INSTALL pour configurer la base de données avant de continuer.",
-        "Failed to save poll": "ES_Echèc de la sauvegarde du sondage",
+        "Failed to save poll": "ES_Echec de la sauvegarde du sondage",
         "Update vote failed": "ES_Mise à jour du vote échoué",
         "Adding vote failed": "ES_Ajout d'un vote échoué",
         "Comment failed": "ES_Commentaire échoué",
-        "You can't create a poll with hidden results with the following edition option:": "ES_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
+        "You can't create a poll with hidden results with the following edition option:": "ES_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
+        "Failed to delete column": "Error al eliminar la columna"
     }
 }

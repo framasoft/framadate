@@ -11,7 +11,7 @@
                     <button type="submit" name="delete_comment" value="{$comment->id|html}" class="btn btn-link" title="{__('Comments', 'Remove the comment')}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span></button>
                 {/if}
                 <b>{$comment->name|html}</b>&nbsp;
-                <span class="comment">{nl2br($comment->comment|html)}</span>
+                <span class="comment">{$comment->comment|escape|nl2br}</span>
             </div>
         {/foreach}
     {/if}
@@ -22,8 +22,8 @@
             <div class="col-md-6 col-md-offset-3">
                 <fieldset id="add-comment"><legend>{__('Comments', 'Add a comment to the poll')}</legend>
                     <div class="form-group">
-                        <label for="name" class="control-label">{__('Generic', 'Your name')}</label>
-                        <input type="text" name="name" id="name" class="form-control" />
+                        <label for="comment_name" class="control-label">{__('Generic', 'Your name')}</label>
+                        <input type="text" name="name" id="comment_name" class="form-control" />
                     </div>
                     <div class="form-group">
                         <label for="comment" class="control-label">{__('Comments', 'Your comment')}</label>

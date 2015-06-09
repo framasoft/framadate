@@ -16,14 +16,21 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-use Framadate\Services\PollService;
+use Framadate\Editable;
+use Framadate\Message;
 use Framadate\Services\AdminPollService;
 use Framadate\Services\InputService;
 use Framadate\Services\LogService;
-use Framadate\Message;
-use Framadate\Editable;
+use Framadate\Services\MailService;
+use Framadate\Services\PollService;
+use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
+
+/* Constants */
+/* --------- */
+const UPDATE_POLL = 1;
+const DELETED_POLL = 2;
 
 /* Variables */
 /* --------- */
@@ -41,6 +48,41 @@ $logService = new LogService();
 $pollService = new PollService($connect, $logService);
 $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $inputService = new InputService();
+$mailService = new MailService($config['use_smtp']);
+
+/* Functions */
+/*-----------*/
+
+/**
+ * Send a notification to the poll admin to notify him about an update.
+ *
+ * @param stdClass $poll The poll
+ * @param MailService $mailService The mail service
+ * @param int $type cf: Constants on the top of this page
+ */
+function sendUpdateNotification($poll, $mailService, $type) {
+    if (!isset($_SESSION['mail_sent'])) {
+        $_SESSION['mail_sent'] = [];
+    }
+
+    if ($poll->receiveNewVotes) {
+
+        $subject = '[' . NOMAPPLICATION . '] ' . __('Mail', 'Notification of poll') . ' : ' . $poll->title;
+
+        $message = '';
+        switch ($type) {
+            case UPDATE_POLL:
+                $message = __f('Mail', 'Someone just change your poll available at the following link %s.', Utils::getUrlSondage($poll->admin_id, true)) . "\n\n";
+                break;
+            case DELETED_POLL:
+                $message = __f('Mail', 'Someone just delete your poll %s.', Utils::htmlEscape($poll->title)) . "\n\n";
+                break;
+        }
+
+        $messageTypeKey = $type . '-' . $poll->id;
+        $mailService->send($poll->admin_mail, $subject, $message, $messageTypeKey);
+    }
+}
 
 /* PAGE */
 /* ---- */
@@ -111,7 +153,8 @@ if (isset($_POST['update_poll_info'])) {
                 break;
         }
     } elseif ($field == 'expiration_date') {
-        $expiration_date = filter_input(INPUT_POST, 'expiration_date', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]+[-/][0-9]+[-/][0-9]+#']]);
+        $expiration_date = filter_input(INPUT_POST, 'expiration_date', FILTER_VALIDATE_REGEXP,
+            ['options' => ['regexp' => '#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#']]);
         if ($expiration_date) {
             $poll->end_date = $expiration_date;
             $updated = true;
@@ -133,6 +176,7 @@ if (isset($_POST['update_poll_info'])) {
     // Update poll in database
     if ($updated && $adminPollService->updatePoll($poll)) {
         $message = new Message('success', __('adminstuds', 'Poll saved'));
+        sendUpdateNotification($poll, $mailService, UPDATE_POLL);
     } else {
         $message = new Message('danger', __('Error', 'Failed to save poll'));
         $poll = $pollService->findById($poll_id);
@@ -297,6 +341,7 @@ if (isset($_POST['delete_poll'])) {
 if (isset($_POST['confirm_delete_poll'])) {
     if ($adminPollService->deleteEntirePoll($poll_id)) {
         $message = new Message('success', __('adminstuds', 'Poll fully deleted'));
+        sendUpdateNotification($poll, $mailService, DELETED_POLL);
     } else {
         $message = new Message('danger', __('Error', 'Failed to delete the poll'));
     }
@@ -322,15 +367,15 @@ if (!empty($_GET['delete_column'])) {
         $slot->title = $ex[0];
         $slot->moment = $ex[1];
 
-        $result = $adminPollService->deleteDateSlot($poll_id, $slot);
+        $result = $adminPollService->deleteDateSlot($poll, $slot);
     } else {
-        $result = $adminPollService->deleteClassicSlot($poll_id, $column);
+        $result = $adminPollService->deleteClassicSlot($poll, $column);
     }
 
     if ($result) {
         $message = new Message('success', __('adminstuds', 'Column removed'));
     } else {
-        $message = new Message('danger', __('Error', 'Failed to delete the column'));
+        $message = new Message('danger', __('Error', 'Failed to delete column'));
     }
 }
 
@@ -352,10 +397,10 @@ if (isset($_POST['confirm_add_slot'])) {
         $newmoment = strip_tags($_POST['newmoment']);
 
         $ex = explode('/', $newdate);
-        $result = $adminPollService->addSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
+        $result = $adminPollService->addDateSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
     } else {
         $newslot = strip_tags($_POST['choice']);
-        $result = $adminPollService->addSlot($poll_id, $newslot, null);
+        $result = $adminPollService->addClassicSlot($poll_id, $newslot);
     }
 
     if ($result) {
@@ -366,7 +411,7 @@ if (isset($_POST['confirm_add_slot'])) {
 }
 
 // Retrieve data
-$slots = $pollService->allSlotsByPollId($poll_id);
+$slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
 
@@ -377,7 +422,7 @@ $smarty->assign('admin_poll_id', $admin_poll_id);
 $smarty->assign('poll', $poll);
 $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
 $smarty->assign('expired', strtotime($poll->end_date) < time());
-$smarty->assign('deletion_date', $poll->end_date + PURGE_DELAY * 86400);
+$smarty->assign('deletion_date', strtotime($poll->end_date) + PURGE_DELAY * 86400);
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
 $smarty->assign('votes', $pollService->splitVotes($votes));
 $smarty->assign('best_choices', $pollService->computeBestChoices($votes));

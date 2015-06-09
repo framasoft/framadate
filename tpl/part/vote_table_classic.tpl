@@ -38,85 +38,86 @@
             </thead>
             <tbody>
             {foreach $votes as $vote}
-                <tr>
-                    {* Edited line *}
 
-                    {if $editingVoteId === $vote->uniqId}
-                        <td class="bg-info" style="padding:5px">
-                            <div class="input-group input-group-sm" id="edit">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                                <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
-                                <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Genric', 'Your name')}" placeholder="{__('Genric', 'Your name')}" />
-                            </div>
+                {if $editingVoteId === $vote->uniqId} {* Edited line *}
+
+                <tr class="hidden-print">
+                    <td class="bg-info" style="padding:5px">
+                        <div class="input-group input-group-sm" id="edit">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
+                            <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Genric', 'Your name')}" placeholder="{__('Genric', 'Your name')}" />
+                        </div>
+                    </td>
+
+                    {foreach $vote->choices as $id=>$choice}
+
+                        <td class="bg-info" headers="C{$id}">
+                            <ul class="list-unstyled choice">
+                                <li class="yes">
+                                    <input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2" {if $choice==2}checked {/if}/>
+                                    <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{__('Poll results', 'Vote yes for')|html} {$slots[$id]->title|html}">
+                                        <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Genric', 'Yes')}</span>
+                                    </label>
+                                </li>
+                                <li class="ifneedbe">
+                                    <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1" {if $choice==1}checked {/if}/>
+                                    <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slots[$id]->title|html}">
+                                        (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{__('Genric', 'Ifneedbe')}</span>
+                                    </label>
+                                </li>
+                                <li class="no">
+                                    <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value="0" {if $choice==0}checked {/if}/>
+                                    <label class="btn btn-default btn-xs" for="n-choice-{$id}" title="{__('Poll results', 'Vote no for')|html} {$slots[$id]->title|html}">
+                                        <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{__('Genric', 'No')}</span>
+                                    </label>
+                                </li>
+                            </ul>
                         </td>
+                    {/foreach}
+                    <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
+                </tr>
+                {elseif !$hidden} {* Voted line *}
+                <tr>
 
-                        {foreach $vote->choices as $id=>$choice}
+                    <th class="bg-info">{$vote->name|html}</th>
 
-                            <td class="bg-info" headers="C{$id}">
-                                <ul class="list-unstyled choice">
-                                    <li class="yes">
-                                        <input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2" {if $choice==2}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{__('Poll results', 'Vote yes for')|html} {$slots[$id]->title|html}">
-                                            <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Genric', 'Yes')}</span>
-                                        </label>
-                                    </li>
-                                    <li class="ifneedbe">
-                                        <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1" {if $choice==1}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slots[$id]->title|html}">
-                                            (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{__('Genric', 'Ifneedbe')}</span>
-                                        </label>
-                                    </li>
-                                    <li class="no">
-                                        <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value="0" {if $choice==0}checked {/if}/>
-                                        <label class="btn btn-default btn-xs" for="n-choice-{$id}" title="{__('Poll results', 'Vote no for')|html} {$slots[$id]->title|html}">
-                                            <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{__('Genric', 'No')}</span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </td>
-                        {/foreach}
-                        <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
-                    {elseif !$hidden}
-                        {* Voted line *}
+                    {foreach $vote->choices as $id=>$choice}
 
-                        <th class="bg-info">{$vote->name|html}</th>
-
-                        {foreach $vote->choices as $id=>$choice}
-
-                            {if $choice==2}
-                                <td class="bg-success text-success" headers="C{$id}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Yes')}</span></td>
-                            {elseif $choice==1}
-                                <td class="bg-warning text-warning" headers="C{$id}">(<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span></td>
-                            {else}
-                                <td class="bg-danger" headers="C{$id}"><span class="sr-only">{__('Generic', 'No')}</span></td>
-                            {/if}
-
-                        {/foreach}
-
-                        {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin)}
-                            <td>
-                                <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__('Poll results', 'Edit the line:')|html} {$vote->name|html}">
-                                    <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span>
-                                </a>
-                                {if $admin}
-                                    <a href="{poll_url id=$admin_poll_id admin=true action='delete_vote' action_value=$vote->id}"
-                                       class="btn btn-default btn-sm"
-                                       title="{__('Poll results', 'Remove the line:')} {$vote->name|html}">
-                                        <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span>
-                                    </a>
-                                {/if}
-                            </td>
+                        {if $choice==2}
+                            <td class="bg-success text-success" headers="C{$id}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Yes')}</span></td>
+                        {elseif $choice==1}
+                            <td class="bg-warning text-warning" headers="C{$id}">(<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span></td>
                         {else}
-                            <td></td>
+                            <td class="bg-danger" headers="C{$id}"><span class="sr-only">{__('Generic', 'No')}</span></td>
                         {/if}
+
+                    {/foreach}
+
+                    {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin)}
+                        <td class="hidden-print">
+                            <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__('Poll results', 'Edit the line:')|html} {$vote->name|html}">
+                                <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span>
+                            </a>
+                            {if $admin}
+                                <a href="{poll_url id=$admin_poll_id admin=true action='delete_vote' action_value=$vote->id}"
+                                   class="btn btn-default btn-sm"
+                                   title="{__('Poll results', 'Remove the line:')} {$vote->name|html}">
+                                    <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span>
+                                </a>
+                            {/if}
+                        </td>
+                    {else}
+                        <td></td>
                     {/if}
                 </tr>
+                {/if}
             {/foreach}
 
             {* Line to add a new vote *}
 
             {if $active && $editingVoteId === 0 && !$expired}
-                <tr id="vote-form">
+                <tr id="vote-form" class="hidden-print">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>

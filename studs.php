@@ -64,7 +64,7 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
         $_SESSION['mail_sent'] = [];
     }
 
-    if ($poll->receiveNewVotes && (!isset($_SESSION['mail_sent'][$poll->id]) || $_SESSION['mail_sent'][$poll->id] !== true)) {
+    if ($poll->receiveNewVotes) {
 
         $subject = '[' . NOMAPPLICATION . '] ' . __('Mail', 'Poll\'s participation') . ' : ' . $poll->title;
 
@@ -82,9 +82,8 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
         }
         $message .= Utils::getUrlSondage($poll->admin_id, true) . "\n\n";
 
-        $mailService->send($poll->admin_mail, $subject, $message);
-
-        $_SESSION['mail_sent'][$poll->id] = true;
+        $messageTypeKey = $type . '-' . $poll->id;
+        $mailService->send($poll->admin_mail, $subject, $message, $messageTypeKey);
     }
 }
 
@@ -152,7 +151,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         $message = new Message('danger', __('Error', 'The name is invalid.'));
     }
     if (count($choices) != count($_POST['choices'])) {
-        $message = new Message('danger', __('There is a problem with your choices'));
+        $message = new Message('danger', __('Error', 'There is a problem with your choices'));
     }
 
     if ($message == null) {
@@ -198,7 +197,7 @@ if (isset($_POST['add_comment'])) {
 }
 
 // Retrieve data
-$slots = $pollService->allSlotsByPollId($poll_id);
+$slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
 
@@ -207,7 +206,7 @@ $smarty->assign('poll_id', $poll_id);
 $smarty->assign('poll', $poll);
 $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
 $smarty->assign('expired', strtotime($poll->end_date) < time());
-$smarty->assign('deletion_date', $poll->end_date + PURGE_DELAY * 86400);
+$smarty->assign('deletion_date', strtotime($poll->end_date) + PURGE_DELAY * 86400);
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
 $smarty->assign('votes', $pollService->splitVotes($votes));
 $smarty->assign('best_choices', $pollService->computeBestChoices($votes));

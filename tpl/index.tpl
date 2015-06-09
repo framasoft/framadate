@@ -29,8 +29,6 @@
         <div class="col-md-6 col-md-offset-3 text-center">
             <p class="home-choice">
                 <a href="{$SERVER_URL}find_polls.php" class="opacity" role="button">
-                    <img alt="" class="img-responsive center-block" src="{'images/question.png'|resource}"/>
-                    <br/>
                     <span class="btn btn-warning btn-lg">
                         <span class="glyphicon glyphicon-search"></span>
                         {__('Homepage', 'Where are my polls')}

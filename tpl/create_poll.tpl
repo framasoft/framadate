@@ -102,11 +102,11 @@
                             </label>
                             <label>
                                 <input type="radio" name="editable" id="editableByAll" {if $poll_editable==constant("Framadate\Editable::EDITABLE_BY_ALL")}checked{/if} value="{constant("Framadate\Editable::EDITABLE_BY_ALL")}">
-                                {__('Step 1', 'All voters can modify any vote.')}
+                                {__('Step 1', 'All voters can modify any vote')}
                             </label>
                             <label>
                                 <input type="radio" name="editable" {if $poll_editable==constant("Framadate\Editable::EDITABLE_BY_OWN")}checked{/if} value="{constant("Framadate\Editable::EDITABLE_BY_OWN")}">
-                                {__('Step 1', 'Voters can modify their vote themselves.')}
+                                {__('Step 1', 'Voters can modify their vote themselves')}
                             </label>
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                                 <label>
                                     <input type="checkbox" name="receiveNewVotes" {if $poll_receiveNewVotes}checked{/if}
                                     id="receiveNewVotes">
-                                    {__('Step 1', 'To receive an email for each new vote.')}
+                                    {__('Step 1', 'To receive an email for each new vote')}
                                 </label>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                                 <label>
                                     <input type="checkbox" name="receiveNewComments" {if $poll_receiveNewComments}checked{/if}
                                     id="receiveNewComments">
-                                    {__('Step 1', 'To receive an email for each new comment.')}
+                                    {__('Step 1', 'To receive an email for each new comment')}
                                 </label>
                             </div>
                         </div>
@@ -142,12 +142,12 @@
                                 <label>
                                     <input type="checkbox" name="hidden" {if $poll_hidden}checked{/if}
                                     id="hidden">
-                                    {__('Step 1', "Only the poll maker can see the poll's results.")}
+                                    {__('Step 1', 'Only the poll maker can see the poll\'s results')}
                                 </label>
                             </div>
                             <div id="hiddenWithBadEditionModeError" class="alert alert-danger hidden">
                                 <p>
-                                    {__('Error', "You can't create a poll with hidden results with the following edition option:")}"{__('Step 1', 'All voters can modify any vote.')}"
+                                    {__('Error', 'You can\'t create a poll with hidden results with the following edition option:')}"{__('Step 1', 'All voters can modify any vote')}"
                                 </p>
                             </div>
                         </div>

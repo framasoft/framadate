@@ -189,7 +189,6 @@
     "Remove the comments": "Eliminare i commenti",
     "Comment deleted": "Commento rimosso",
     "All comments deleted": "Tutti i commenti sono stati cancellati",
-    "The poll has been deleted": "Il sondaggio è stato eliminato",
     "Keep votes": "Tenere voti",
     "Keep comments": "Tenere commenti",
     "Keep this poll": "Mantengo questo sondaggio !"
@@ -200,11 +199,11 @@
     "Required fields cannot be left blank.": "Riempire i campi obbligatori, segnati con *.",
     "Poll title": "Titolo del sondaggio",
     "Votes cannot be modified.": "No voto non può essere modificato",
-    "All voters can modify any vote.": "Tutti i sondaggi possono cambiare tutti i voti",
-    "Voters can modify their vote themselves.": "I partecipanti possono modificare il loro voto in autonomia.",
-    "To receive an email for each new vote.": "Per ricevere un'email per ogni voto nuovo",
-    "To receive an email for each new comment.": "Ricevi una e-mail ogni commento.",
-    "Only the poll maker can see the poll's results.": "Solo il creatore sondaggio possono vedere i risultati.",
+    "All voters can modify any vote": "Tutti i sondaggi possono cambiare tutti i voti",
+    "Voters can modify their vote themselves": "I partecipanti possono modificare il loro voto in autonomia",
+    "To receive an email for each new vote": "Per ricevere un'email per ogni voto nuovo",
+    "To receive an email for each new comment": "Ricevi una e-mail ogni commento",
+    "Only the poll maker can see the poll's results": "Solo il creatore sondaggio possono vedere i risultati",
     "Go to step 2": "Andare al punto 2"
   },
   "Step 2": {
@@ -245,7 +244,7 @@
     "List of your choices": "Liste delle vostre scelte",
     "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "Un volta che avrete confermato la creazione del sondaggio, sarete rediretti automaticamente sulla pagina di amministrazione del vostro sondaggio.",
     "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "Nello stesso momento, riceverete 2 email : una con il Link verso il vostro sondaggio da inoltrare ai partecipanti, l'altra con il Link verso la pagina di amministrazione del sondaggio.",
-    "Create the poll": "Creare le sondaggio",
+    "Create the poll": "Creare il sondaggio",
     "Your poll will automatically be archived": "La vostra indagine verrà archiviata automaticamente",
     "after the last date of your poll.": "dopo l'ultima data.",
     "You can set a closer archiving date for it.": "Si può decidere su una data più vicina di archiviazione.",
@@ -289,9 +288,12 @@
   },
   "Mail": {
     "Poll's participation": "Partecipazione al sondaggio",
+    "Notification of poll": "Notifica di sondaggio",
     "filled a vote.\nYou can find your poll at the link": "IT_vient de voter.\nVous pouvez retrouver votre sondage avec le lien suivant",
     "updated a vote.\nYou can find your poll at the link": "IT_vient de mettre à jour un vote.\nVous pouvez retrouver votre sondage avec le lien suivant",
     "wrote a comment.\nYou can find your poll at the link": "IT_vient de rédiger un commentaire.\nVous pouvez retrouver votre sondage avec le lien suivant",
+    "Someone just change your poll available at the following link %s.": "Qualcuno basta cambiare il vostro sondaggio disponibile al seguente link <a href=\"%1$s\">%1$s</a>.",
+    "Someone just delete your poll %s.": "Qualcuno ha appena cancellare il tuo sondaggio \"%s\".",
     "Thanks for your trust.": "Grazie per la vostra fiducia.",
     "FOOTER": "IT_« La route est longue, mais la voie est libre… »\nFramasoft ne vit que par vos dons (déductibles des impôts).\nMerci d'avance pour votre soutien http://soutenir.framasoft.org.",
     "[ADMINISTRATOR] New settings for your poll": "[AMMINISTRATORE] Modifica di configurazione del sondaggio",
@@ -322,10 +324,11 @@
     "Enter a name and a comment!": "Inserire un nome e un commento!",
     "Failed to insert the comment!": "Errore nell'inserimento del commento !",
     "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "IT_Framadate n'est pas installé correctement, lisez le fichier INSTALL pour configurer la base de données avant de continuer.",
-    "Failed to save poll": "IT_Echèc de la sauvegarde du sondage",
+    "Failed to save poll": "IT_Echec de la sauvegarde du sondage",
     "Update vote failed": "IT_Mise à jour du vote échoué",
     "Adding vote failed": "IT_Ajout d'un vote échoué",
     "Comment failed": "IT_Commentaire échoué",
-    "You can't create a poll with hidden results with the following edition option:": "IT_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : "
+    "You can't create a poll with hidden results with the following edition option:": "IT_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
+    "Failed to delete column": "Impossibile eliminare colonna"
   }
 }

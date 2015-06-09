@@ -61,7 +61,7 @@ class SlotRepository extends AbstractRepository {
     }
 
     function listByPollId($poll_id) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? ORDER BY title');
+        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? ORDER BY id');
         $prepared->execute(array($poll_id));
 
         return $prepared->fetchAll();

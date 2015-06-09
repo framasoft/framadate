@@ -2,7 +2,7 @@
 
 {block name=main}
     {if !empty($message)}
-        <div class="alert alert-dismissible alert-{$message->type|html}" role="alert">{$message->message|html}{if $message->link != null}<br/><a href="{$message->link}">{$message->link}</a>{/if}<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+        <div class="alert alert-dismissible alert-{$message->type|html}" role="alert">{$message->message|html}{if $message->link != null}<br/><a href="{$message->link}">{$message->link}</a>{/if}<button type="button" class="close" data-dismiss="alert" aria-label="{__('Generic', 'CLose')}"><span aria-hidden="true">&times;</span></button></div>
     {/if}
     <form action="" method="post">
         <div class="row">
@@ -15,10 +15,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-3 text-center">
-                <button type="submit" class="btn btn-warning btn-lg">
-                    <span class="glyphicon glyphicon-search"></span>
-                    {__('FindPolls', 'Send me my polls')}
-                </button>
+                <button type="submit" class="btn btn-success">{__('FindPolls', 'Send me my polls')}</button>
             </div>
         </div>
     </form>

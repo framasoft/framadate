@@ -21,7 +21,6 @@ use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\PurgeService;
 use Framadate\Services\SecurityService;
-use Framadate\Utils;
 
 include_once __DIR__ . '/../app/inc/init.php';
 include_once __DIR__ . '/../bandeaux.php';

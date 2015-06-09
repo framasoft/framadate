@@ -64,8 +64,16 @@ class PollService {
         return $this->voteRepository->allUserVotesByPollId($poll_id);
     }
 
-    function allSlotsByPollId($poll_id) {
-        return $this->slotRepository->listByPollId($poll_id);
+    function allSlotsByPoll($poll) {
+        $slots = $this->slotRepository->listByPollId($poll->id);
+        if ($poll->format == 'D') {
+            uasort($slots, function ($a, $b) {
+                return $a->title > $b->title;
+            });
+            return $slots;
+        } else {
+            return $slots;
+        }
     }
 
     public function updateVote($poll_id, $vote_id, $name, $choices) {

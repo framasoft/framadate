@@ -189,7 +189,6 @@
     "All comments deleted": "All comments deleted",
     "Keep the comments": "Keep the comments",
     "Remove the comments": "Remove the comments",
-    "The poll has been deleted": "The poll has been deleted",
     "Keep votes": "Keep votes",
     "Keep comments": "Keep comments",
     "Keep this poll": "Keep this poll"
@@ -200,11 +199,11 @@
     "Required fields cannot be left blank.": "Required fields cannot be left blank.",
     "Poll title": "Poll title",
     "Votes cannot be modified.": "Votes cannot be modified",
-    "All voters can modify any vote.": "All voters can modify any vote.",
-    "Voters can modify their vote themselves.": "Voters can modify their vote themselves.",
-    "To receive an email for each new vote.": "To receive an email for each new vote.",
-    "To receive an email for each new comment.": "To receive an email for each new comment.",
-    "Only the poll maker can see the poll's results.": "Only the poll maker can see the poll's results.",
+    "All voters can modify any vote": "All voters can modify any vote",
+    "Voters can modify their vote themselves": "Voters can modify their vote themselves",
+    "To receive an email for each new vote": "To receive an email for each new vote",
+    "To receive an email for each new comment": "To receive an email for each new comment",
+    "Only the poll maker can see the poll's results": "Only the poll maker can see the poll's results",
     "Go to step 2": "Go to step 2"
   },
   "Step 2": {
@@ -289,9 +288,12 @@
   },
   "Mail" : {
     "Poll's participation": "Poll's participation",
+    "Notification of poll": "Notification of poll",
     "filled a vote.\nYou can find your poll at the link": "filled a vote.<br/>You can find your poll at the link",
     "updated a vote.\nYou can find your poll at the link": "updated a vote.<br/>You can find your poll at the link",
     "wrote a comment.\nYou can find your poll at the link": "wrote a comment.<br/>You can find your poll at the link",
+    "Someone just change your poll available at the following link %s.": "Someone just change your poll available at the following link <a href=\"%1$s\">%1$s</a>.",
+    "Someone just delete your poll %s.": "Someone just delete your poll \"%s\".",
     "Thanks for your trust.": "Thanks for your trust.",
     "FOOTER": "",
     "[ADMINISTRATOR] New settings for your poll": "[ADMINISTRATOR] New settings for your poll",
@@ -326,6 +328,7 @@
     "Update vote failed": "Update vote failed",
     "Adding vote failed": "Adding vote failed",
     "Comment failed": "Comment failed",
-    "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following edition option: "
+    "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following edition option: ",
+    "Failed to delete column": "Failed to delete column"
   }
 }

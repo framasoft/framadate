@@ -14,6 +14,10 @@
         "o80/i18n": "dev-develop"
     },
 
+    "require-dev": {
+        "phpunit/phpunit": "^4.5"
+    },
+
     "autoload": {
         "psr-4": {
             "Framadate\\": "app/classes/Framadate/"

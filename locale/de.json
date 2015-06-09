@@ -189,7 +189,6 @@
         "Remove the comments": "Entfernen Sie die Kommentare",
         "Comment deleted": "Kommentar gelöscht",
         "All comments deleted": "Alle Kommentare gelöscht",
-        "The poll has been deleted": "Die Umfrage wurde gelöscht",
         "Keep votes": "Halten Stimmen",
         "Keep comments": "Halten Sie Kommentare",
         "Keep this poll": "Halten Sie diese Umfrage"
@@ -200,11 +199,11 @@
         "Required fields cannot be left blank.": "Mit * markierte Felder müssen ausgefüllt sein.",
         "Poll title": "Umfragetitel",
         "Votes cannot be modified.": "DE_Aucun vote ne peut être modifié",
-        "All voters can modify any vote.": "DE_Tous les sondés peuvent modifier tous les votes",
-        "Voters can modify their vote themselves.": "Teilnehmer können ihre Antworten verändern",
-        "To receive an email for each new vote.": "Bei jeder neuen Abstimmung eine E-Mail erhalten.",
-        "To receive an email for each new comment.": "Um eine E-Mail für jede neue Kommentar zu empfangen.",
-        "Only the poll maker can see the poll's results.": "DE_Seul le créateur du sondage peut voir les résultats.",
+        "All voters can modify any vote": "DE_Tous les sondés peuvent modifier tous les votes",
+        "Voters can modify their vote themselves": "Teilnehmer können ihre Antworten verändern",
+        "To receive an email for each new vote": "Bei jeder neuen Abstimmung eine E-Mail erhalten",
+        "To receive an email for each new comment": "Um eine E-Mail für jede neue Kommentar zu empfangen",
+        "Only the poll maker can see the poll's results": "DE_Seul le créateur du sondage peut voir les résultats",
         "Go to step 2": "Weiter zum 2. Schritt"
     },
     "Step 2": {
@@ -289,9 +288,12 @@
     },
     "Mail": {
         "Poll's participation": "Beteiligung an der Umfrage",
+        "Notification of poll": "Mitteilung bezüglich der Umfrage",
         "filled a vote.\nYou can find your poll at the link": "füllte eine Stimme.<br/>Sie können Ihre Umfrage unter dem Link zu finden",
         "updated a vote.\nYou can find your poll at the link": "eine Abstimmung regelmäßig aktualisiert.<br/>Sie können Ihre Umfrage unter dem Link zu finden",
         "wrote a comment.\nYou can find your poll at the link": "hat einen Kommentar.<br/>Sie können Ihre Umfrage unter dem Link zu finden",
+        "Someone just change your poll available at the following link %s.": "Jemand ändern Sie einfach Ihre Umfrage finden Sie unter dem folgenden Link <a href=\"%1$s\">%1$s</a>.",
+        "Someone just delete your poll %s.": "Jemand hat gerade Ihre Umfrage löschen \"%s\".",
         "Thanks for your trust.": "Danke für Ihr Vertrauen.",
         "FOOTER": "",
         "[ADMINISTRATOR] New settings for your poll": "[ADMINISTRATOR] Neue Einstellungen für Ihre Umfrage ",
@@ -326,6 +328,7 @@
         "Update vote failed": "Update vote failed",
         "Adding vote failed": "Adding vote failed",
         "Comment failed": "Kommentar gescheitert",
-        "You can't create a poll with hidden results with the following edition option:": "Sie können nicht eine Umfrage erstellen mit versteckten Ergebnisse mit der folgenden Ausgabe-Option:"
+        "You can't create a poll with hidden results with the following edition option:": "Sie können nicht eine Umfrage erstellen mit versteckten Ergebnisse mit der folgenden Ausgabe-Option:",
+        "Failed to delete column": "Fehler beim Spalte löschen"
     }
 }

@@ -194,7 +194,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
                     <div class="col-sm-6">
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                            <input type="text" class="form-control" id="enddate" data-date-format="'. __('Date', 'dd/mm/yyyy') .'" aria-describedby="dateformat" name="enddate" value="'.$end_date_str.'" size="10" maxlength="10" placeholder="'. __('dd/mm/yyyy') .'" />
+                            <input type="text" class="form-control" id="enddate" data-date-format="'. __('Date', 'dd/mm/yyyy') .'" aria-describedby="dateformat" name="enddate" value="'.$end_date_str.'" size="10" maxlength="10" placeholder="'. __('Date', 'dd/mm/yyyy') .'" />
                         </div>
                     </div>
                     <span id="dateformat" class="sr-only">('. __('Date', 'dd/mm/yyyy') .')</span>
@@ -221,17 +221,15 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
     } else {
 
         // Prefill form->choices
-        if (count($_SESSION['form']->getChoices()) == 0) {
-            $c = new Choice('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $_SESSION['form']->addChoice($c);
-            $c = new Choice('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $_SESSION['form']->addChoice($c);
+        foreach ($_SESSION['form']->getChoices() as $c) {
+            $count = 3 - count($c->getSlots());
+            for($i=0; $i< $count; $i++) {
+                $c->addSlot('');
+            }
+        }
+
+        $count = 3 - count($_SESSION['form']->getChoices());
+        for($i=0; $i< $count; $i++) {
             $c = new Choice('');
             $c->addSlot('');
             $c->addSlot('');
