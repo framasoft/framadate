@@ -281,6 +281,18 @@ table.results .btn-link.btn-sm {
     padding:2px;
 }
 
+#addition {
+    vertical-align:top;
+}
+
+#showChart {
+    margin-top:30px;
+}
+
+#Chart {
+    padding-right:30px;
+}
+
 /* Formulaire de vote */
 #vote-form td ul, #vote-form td label {
     margin:0;

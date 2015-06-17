@@ -135,10 +135,14 @@
     "Addition": "Somme",
     "Best choice": "Meilleur choix",
     "Best choices": "Meilleurs choix",
-    "The best choice at this time is:": "Le meilleur choix pour l'instant est :",
-    "The bests choices at this time are:": "Les meilleurs choix pour l'instant sont :",
+    "The best choice at this time is:": "Pour l'instant, le choix ayant reçu le plus grand nombre de votes est :",
+    "The bests choices at this time are:": "Pour l'instant, les choix ayant reçu le plus grand nombre de votes sont :",
     "Scroll to the left": "Faire défiler à gauche",
-    "Scroll to the right": "Faire défiler à droite"
+    "Scroll to the right": "Faire défiler à droite",
+    "polled user": "votant",
+    "polled users": "votants",
+    "Display the chart of the results": "Afficher le graphique des résultats",
+    "Chart": "Graphique"
   },
   "Comments": {
     "Comments of polled people": "Commentaires de sondés",

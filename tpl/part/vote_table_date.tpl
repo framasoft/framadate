@@ -20,7 +20,7 @@
                                 <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->day|cat:'@'|cat:$moment}"
                                    class="btn btn-link btn-sm"
                                    title="{__('adminstuds', 'Remove the column')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
-                                    <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Genric', 'Remove')}</span>
+                                    <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span>
                                 </a>
                             </td>
                             {$headersDCount = $headersDCount+1}
@@ -213,13 +213,15 @@
                 {$max = max($best_choices['y'])}
                 {if $max > 0}
                     <tr id="addition">
-                        <td>{__('Poll results', 'Addition')}</td>
+                        <td>{__('Poll results', 'Addition')}<br/>{$votes|count} {if ($votes|count)==1}{__('Poll results', 'polled user')}{else}{__('Poll results', 'polled users')}{/if}</td>
                         {foreach $best_choices['y'] as $i=>$best_moment}
                             {if $max == $best_moment}
                                 {$count_bests = $count_bests +1}
-                                <td class="text-danger"><i class="glyphicon glyphicon-star text-warning"></i>{$best_moment|html}{if $best_choices['inb'][$i]>0}<span class="very-small text-muted"> (+{$best_choices['inb'][$i]|html})</span>{/if}</td>
+                                <td><i class="glyphicon glyphicon-star text-info"></i><span class="yes-count">{$best_moment|html}</span>{if $best_choices['inb'][$i]>0}<br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>{/if}</td>
                             {elseif $best_moment > 0}
-                                <td>{$best_moment|html}{if $best_choices['inb'][$i]>0}<span class="very-small text-muted"> (+{$best_choices['inb'][$i]|html})</span>{/if}</td>
+                                <td><span class="yes-count">{$best_moment|html}</span>{if $best_choices['inb'][$i]>0}<br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>{/if}</td>
+                            {elseif $best_choices['inb'][$i]>0}
+                                <td><br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span></td>
                             {else}
                                 <td></td>
                             {/if}
@@ -232,6 +234,80 @@
     </form>
 </div>
 
+{if !$hidden && $max > 0}
+    <div class="row" aria-hidden="true">
+        <div class="col-xs-12">
+            <p class="text-center" id="showChart">
+                <button class="btn btn-lg btn-default">
+                    <span class="fa fa-fw fa-bar-chart"></span> {__('Poll results', 'Display the chart of the results')}
+                </button>
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#showChart').on('click', function() {
+                $('#showChart').after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>");
+                $('#showChart').remove();
+                               
+                var resIfneedbe = [];
+                var resYes = [];
+            
+                $('#addition').find('td').each(function (colIndex) {
+                    if($(this).find('.inb-count').text()!='') {
+                        resIfneedbe.push($(this).find('.inb-count').text())
+                    } else {
+                        resIfneedbe.push(0);
+                    }
+                    if($(this).find('.yes-count').text()!='') {
+                        resYes.push($(this).find('.yes-count').text())
+                    } else {
+                        resYes.push(0);
+                    }
+                });
+                var cols = [
+                {foreach $slots as $slot}
+                    {foreach $slot->moments as $moment}
+                        $('<div/>').html('{$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}').text(), 
+                    {/foreach}
+                {/foreach}
+                ];
+
+                resIfneedbe.shift(); resIfneedbe.pop();
+                resYes.shift(); resYes.pop();
+                console.log(resYes);
+                console.log(resIfneedbe);
+                var barChartData = {
+                    labels : cols,
+                    datasets : [
+                    {
+                        label: "{__('Generic', 'Ifneedbe')}",
+                        fillColor : "rgba(255,207,79,0.8)",
+                        highlightFill: "rgba(255,207,79,1)",
+                        barShowStroke : false,
+                        data : resIfneedbe
+                    },
+                    {
+                        label: "{__('Generic', 'Yes')}",
+                        fillColor : "rgba(103,120,53,0.8)",
+                        highlightFill : "rgba(103,120,53,1)",
+                        barShowStroke : false,
+                        data : resYes
+                    }
+                    ]
+                };
+
+                var ctx = document.getElementById("Chart").getContext("2d");
+                window.myBar = new Chart(ctx).StackedBar(barChartData, {
+                    responsive : true
+                });
+                return false;
+            });
+        });
+    </script>
+    
+{/if}
+
 {if !$hidden}
     {* Best votes listing *}
     {$max = max($best_choices['y'])}
@@ -239,12 +315,12 @@
         <div class="row">
         {if $count_bests == 1}
         <div class="col-sm-12"><h3>{__('Poll results', 'Best choice')}</h3></div>
-        <div class="col-sm-6 col-sm-offset-3 alert alert-success">
-            <p><span class="glyphicon glyphicon-star text-warning"></span>{__('Poll results', 'The best choice at this time is:')}</p>
+        <div class="col-sm-6 col-sm-offset-3 alert alert-info">
+            <p><i class="glyphicon glyphicon-star text-info"></i> {__('Poll results', 'The best choice at this time is:')}</p>
             {elseif $count_bests > 1}
             <div class="col-sm-12"><h3>{__('Poll results', 'Best choices')}</h3></div>
-            <div class="col-sm-6 col-sm-offset-3 alert alert-success">
-                <p><span class="glyphicon glyphicon-star text-warning"></span>{__('Poll results', 'The bests choices at this time are:')}</p>
+            <div class="col-sm-6 col-sm-offset-3 alert alert-info">
+                <p><i class="glyphicon glyphicon-star text-info"></i> {__('Poll results', 'The bests choices at this time are:')}</p>
                 {/if}
 
 
