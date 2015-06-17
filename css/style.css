@@ -328,22 +328,25 @@ table.results .btn-link.btn-sm {
     color:#555;
 }
 
-.yes .btn {
+.yes .btn,.yes .btn:hover {
     border-bottom-right-radius:0 !important;
     border-bottom-left-radius:0 !important;
     margin-bottom:-1px !important;
     margin-top:4px !important;
+    color: #677835;
 }
 
-.ifneedbe .btn {
+.ifneedbe .btn,.ifneedbe .btn:hover {
     border-radius: 0;
+    color: #C48A1B;
 }
 
-.no .btn{
+.no .btn,.no .btn:hover{
     border-top-right-radius:0 !important;
     border-top-left-radius:0 !important;
     margin-bottom:4px !important;
     margin-top:-1px !important;
+    color: #AD220F;
 }
 
 .yes input[type="radio"]:checked + label { /* =.btn-success.active */
@@ -365,6 +368,67 @@ table.results .btn-link.btn-sm {
     background-color: #BF2511;
     border-color: #AD220F;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+/* Button and results "No" */
+.no .btn.startunchecked {
+    box-shadow:none !important;
+    color:#AD220F !important;
+    background:#fff !important;
+    border-color:#bdbdbd !important;
+}
+
+.no .btn.startunchecked:hover {
+    background-color: #E0E0E0 !important;
+    border-color: #949494 !important;
+}
+
+table.results .bg-danger .glyphicon {
+    opacity:0;
+  
+    -moz-animation-name: hideNoIcon;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: ease-in;
+    -moz-animation-duration: 2s;
+
+    -webkit-animation-name: hideNoIcon;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-duration: 2s;
+
+    animation-name: hideNoIcon;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
+}
+
+@-moz-keyframes hideNoIcon {
+    0% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+    }
+}
+@-webkit-keyframes hideNoIcon {
+    0% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+    }
+}
+@keyframes hideNoIcon {
+    0% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+    }
+}
+
+table.results > tbody > tr:hover > td .glyphicon {
+    opacity:1
 }
 
 /* create_date_poll.php */

@@ -20,7 +20,7 @@
                                 <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->day|cat:'@'|cat:$moment}"
                                    class="btn btn-link btn-sm"
                                    title="{__('adminstuds', 'Remove the column')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
-                                    <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span>
+                                    <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                                 </a>
                             </td>
                             {$headersDCount = $headersDCount+1}
@@ -29,7 +29,7 @@
                     <td>
                         <a href="{poll_url id=$admin_poll_id admin=true action='add_slot' action_value=true}"
                            class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')} {$slot->day|html}">
-                            <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{__('Poll results', 'Add a column')}</span>
+                            <i class="glyphicon glyphicon-plus text-success"></i><span class="sr-only">{__('Poll results', 'Add a column')}</span>
                         </a>
                     </td>
                 </tr>
@@ -92,7 +92,7 @@
                 <tr class="hidden-print">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm" id="edit">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
                             <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                         </div>
@@ -105,19 +105,19 @@
                                 <li class="yes">
                                     <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice==2}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{__('Poll results', 'Vote yes for')|html} {$slots_raw[$k]}">
-                                        <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Yes')}</span>
+                                        <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                     </label>
                                 </li>
                                 <li class="ifneedbe">
                                     <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice==1}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slots_raw[$k]}">
-                                        (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
+                                        (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                     </label>
                                 </li>
                                 <li class="no">
                                     <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice==0}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{__('Poll results', 'Vote no for')|html} {$slots_raw[$k]}">
-                                        <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{__('Generic', 'No')}</span>
+                                        <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
                             </ul>
@@ -136,11 +136,11 @@
                     {foreach $vote->choices as $k=>$choice}
 
                         {if $choice==2}
-                            <td class="bg-success text-success" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Yes')}</span></td>
+                            <td class="bg-success text-success" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span></td>
                         {elseif $choice==1}
-                            <td class="bg-warning text-warning" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">(<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span></td>
+                            <td class="bg-warning text-warning" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">(<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span></td>
                         {else}
-                            <td class="bg-danger" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><span class="sr-only">{__('Generic', 'No')}</span></td>
+                            <td class="bg-danger text-danger" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span></td>
                         {/if}
 
                     {/foreach}
@@ -148,13 +148,13 @@
                     {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin)}
                         <td class="hidden-print">
                             <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__('Poll results', 'Edit the line:')|escape} {$vote->name|html}">
-                                <span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span>
+                                <i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>
                             </a>
                             {if $admin}
                                 <a href="{poll_url id=$admin_poll_id admin=true action='delete_vote' action_value=$vote->id}"
                                    class="btn btn-default btn-sm"
                                    title="{__('Poll results', 'Remove the line:')} {$vote->name|html}">
-                                    <span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span>
+                                    <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                                 </a>
                             {/if}
                         </td>
@@ -171,7 +171,7 @@
                 <tr id="vote-form" class="hidden-print">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                         </div>
                     </td>
@@ -183,19 +183,19 @@
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
                                         <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
-                                            <span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Yes')}</span>
+                                            <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
                                         <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1" />
                                         <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
-                                            (<span class="glyphicon glyphicon-ok"></span>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
+                                            (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                         </label>
                                     </li>
                                     <li class="no">
                                         <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0" checked/>
-                                        <label class="btn btn-default btn-xs" for="n-choice-{$i}" title="{__('Poll results', 'Vote no for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
-                                            <span class="glyphicon glyphicon-ban-circle"></span><span class="sr-only">{__('Generic', 'No')}</span>
+                                        <label class="btn btn-default btn-xs startunchecked" for="n-choice-{$i}" title="{__('Poll results', 'Vote no for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                            <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                         </label>
                                     </li>
                                 </ul>
@@ -275,8 +275,7 @@
 
                 resIfneedbe.shift(); resIfneedbe.pop();
                 resYes.shift(); resYes.pop();
-                console.log(resYes);
-                console.log(resIfneedbe);
+
                 var barChartData = {
                     labels : cols,
                     datasets : [
