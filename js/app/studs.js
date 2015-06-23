@@ -35,4 +35,14 @@ $(document).ready(function () {
         }
     });
 
+    $('.choice input:radio').on('change', function(){
+      $(this).parent().parent().find('.startunchecked').removeClass('startunchecked');
+    });
+    $('.startunchecked').on('click', function(){
+      $(this).removeClass('startunchecked');
+    });
+    $('.no input').on('focus', function(){
+      $(this).next().removeClass('startunchecked');
+    });
+
 });

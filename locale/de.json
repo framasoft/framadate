@@ -139,6 +139,10 @@
         "The bests choices at this time are:": "Die beste Optionen sind derzeit:",
         "Scroll to the left": "Links scrollen",
         "Scroll to the right": "Rechts scrollen"
+        "polled user": "DE_votant",
+        "polled users": "DE_votants",
+        "Display the chart of the results": "DE_Afficher le graphique des résultats",
+        "Chart": "DE_Graphique"
     },
     "Comments": {
         "Comments of polled people": "Kommentare von Teilnehmer",
