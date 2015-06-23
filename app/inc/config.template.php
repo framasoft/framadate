@@ -17,6 +17,11 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
+// Fully qualified domain name of your webserver.
+// If this is unset or empty, the servername is determined automatically.
+// You *have to set this* if you are running Framedate behind a reverse proxy.
+// const APP_URL = '<www.mydomain.fr>';
+
 // Application name
 const NOMAPPLICATION = '<Application name>';
 
