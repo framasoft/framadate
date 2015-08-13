@@ -80,7 +80,8 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
                 $message .= __('Mail', "wrote a comment.\nYou can find your poll at the link") . " :\n\n";
                 break;
         }
-        $message .= Utils::getUrlSondage($poll->admin_id, true) . "\n\n";
+        $urlSondage = Utils::getUrlSondage($poll->admin_id, true);
+        $message .= '<a href="' . $urlSondage . '">' . $urlSondage . '</a>' . "\n\n";
 
         $messageTypeKey = $type . '-' . $poll->id;
         $mailService->send($poll->admin_mail, $subject, $message, $messageTypeKey);
