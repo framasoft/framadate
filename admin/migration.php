@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `' . $prefixedMigrationTable . '` (
   DEFAULT CHARSET = utf8;');
 }
 
-$selectStmt = $pdo->prepare('SELECT id FROM ' . $prefixedMigrationTable . ' WHERE name=?');
-$insertStmt = $pdo->prepare('INSERT INTO ' . $prefixedMigrationTable . ' (name) VALUES (?)');
+$selectStmt = $pdo->prepare('SELECT id FROM `' . $prefixedMigrationTable . '` WHERE name=?');
+$insertStmt = $pdo->prepare('INSERT INTO `' . $prefixedMigrationTable . '` (name) VALUES (?)');
 $countSucceeded = 0;
 $countFailed = 0;
 $countSkipped = 0;
