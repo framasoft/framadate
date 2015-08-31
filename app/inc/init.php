@@ -34,13 +34,15 @@ if (ini_get('date.timezone') == '') {
 define('ROOT_DIR', __DIR__ . '/../../');
 
 require_once __DIR__ . '/constants.php';
-require_once __DIR__ . '/config.php';
+@include_once __DIR__ . '/config.php';
 require_once __DIR__ . '/i18n.php';
 
 // Smarty
 require_once __DIR__ . '/smarty.php';
 
 // Connection to database
-$connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
-RepositoryFactory::init($connect);
+if (is_file(__DIR__ . '/config.php')) {
+    $connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
+    RepositoryFactory::init($connect);
+}
 $err = 0;

@@ -23,22 +23,22 @@
 // const APP_URL = '<www.mydomain.fr>';
 
 // Application name
-const NOMAPPLICATION = '<Application name>';
+const NOMAPPLICATION = 'Développement OPZ';
 
 // Database administrator email
-const ADRESSEMAILADMIN = '<email address>';
+const ADRESSEMAILADMIN = 'framadate-dev@olivierperez.fr';
 
 // Email for automatic responses (you should set it to "no-reply")
-const ADRESSEMAILREPONSEAUTO = '<no-reply@mydomain.com>';
+const ADRESSEMAILREPONSEAUTO = 'no-reply@olivierperez.fr';
 
 // Database user
-const DB_USER= '<database user>';
+const DB_USER= 'dev_framadate';
 
 // Database password
-const DB_PASSWORD = '<database password>';
+const DB_PASSWORD = 'dev_framadate';
 
 // Database server name, leave empty to use a socket
-const DB_CONNECTION_STRING = 'mysql:host=<database host>;dbname=<database name>;port=<database port>';
+const DB_CONNECTION_STRING = 'mysql:host=localhost;dbname=framadate_dev;port=3306';
 
 // Name of the table that store migration script already executed
 const MIGRATION_TABLE = 'framadate_migration';
@@ -46,7 +46,7 @@ const MIGRATION_TABLE = 'framadate_migration';
 // Table name prefix
 const TABLENAME_PREFIX = 'fd_';
 
-// Default Language
+// Default Language using POSIX variant of BC P47 standard (choose in $ALLOWED_LANGUAGES)
 const DEFAULT_LANGUAGE = 'fr';
 
 // List of supported languages, fake constant as arrays can be used as constants only in PHP >=5.6
@@ -76,7 +76,7 @@ const PURGE_DELAY = 60;
 // Config
 $config = [
     /* general config */
-    'use_smtp' => true,                     // use email for polls creation/modification/responses notification
+    'use_smtp' => false,                     // use email for polls creation/modification/responses notification
     /* home */
     'show_what_is_that' => true,            // display "how to use" section
     'show_the_software' => true,            // display technical information about the software
@@ -86,4 +86,3 @@ $config = [
     /* create_classic_poll.php */
     'user_can_add_img_or_link' => true,     // user can add link or URL when creating his poll.
 ];
-

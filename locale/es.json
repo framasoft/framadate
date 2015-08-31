@@ -261,6 +261,7 @@
         "Migration": "ES_Migration",
         "Purge": "ES_Purge",
         "Logs": "Histórico",
+        "Installation": "Instalación",
         "Poll ID": "ES_ID sondage",
         "Format": "ES_Format",
         "Title": "ES_Titre",
