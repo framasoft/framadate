@@ -32,7 +32,7 @@ $pollService = new PollService($connect, $logService);
 $mailService = new MailService($config['use_smtp']);
 $purgeService = new PurgeService($connect, $logService);
 
-if (file_exists('bandeaux_local.php')) {
+if (is_file('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
 } else {
     include_once('bandeaux.php');

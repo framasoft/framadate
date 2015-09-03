@@ -20,23 +20,9 @@
 use Framadate\Services\InstallService;
 use Framadate\Utils;
 
-// Define values in place of config.php (that does not exists yet)
-const NOMAPPLICATION = 'Framadate';
-const DEFAULT_LANGUAGE = 'fr';
-const IMAGE_TITRE = 'images/logo-framadate.png';
-const LOG_FILE = 'admin/stdout.log';
-$ALLOWED_LANGUAGES = [
-    'fr' => 'Français',
-    'en' => 'English',
-    'es' => 'Español',
-    'de' => 'Deutsch',
-    'it' => 'Italiano',
-];
-
 require_once '../app/inc/init.php';
-define('CONF_FILENAME', ROOT_DIR . '/app/inc/config.php');
 
-if (file_exists(CONF_FILENAME)) {
+if (is_file(CONF_FILENAME)) {
     header(('Location: ' . Utils::get_server_name()));
     exit;
 }
@@ -48,7 +34,7 @@ if (!empty($_POST)) {
     $result = $installService->install($_POST, $smarty);
 
     if ($result['status'] === 'OK') {
-        header(('Location: ' . Utils::get_server_name() . '/admin/migration.php'));
+        header(('Location: ' . Utils::get_server_name() . 'admin/migration.php'));
         exit;
     } else {
         $error = __('Error', $result['code']);

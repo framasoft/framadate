@@ -18,8 +18,14 @@
  */
 
 use Framadate\Services\PollService;
+use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
+
+if (!is_file(CONF_FILENAME)) {
+    header(('Location: ' . Utils::get_server_name() . 'admin/install.php'));
+    exit;
+}
 
 /* SERVICES */
 /* -------- */

@@ -32,17 +32,31 @@ if (ini_get('date.timezone') == '') {
 }
 
 define('ROOT_DIR', __DIR__ . '/../../');
+define('CONF_FILENAME', ROOT_DIR . '/app/inc/config.php');
 
-require_once __DIR__ . '/constants.php';
-@include_once __DIR__ . '/config.php';
-require_once __DIR__ . '/i18n.php';
+if (is_file(CONF_FILENAME)) {
 
-// Smarty
-require_once __DIR__ . '/smarty.php';
+    require_once __DIR__ . '/constants.php';
+    @include_once __DIR__ . '/config.php';
 
-// Connection to database
-if (is_file(__DIR__ . '/config.php')) {
+    // Connection to database
     $connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
     RepositoryFactory::init($connect);
+    $err = 0;
+} else {
+    define('NOMAPPLICATION', 'Framadate');
+    define('DEFAULT_LANGUAGE', 'fr');
+    define('IMAGE_TITRE', 'images/logo-framadate.png');
+    define('LOG_FILE', 'admin/stdout.log');
+    $ALLOWED_LANGUAGES = [
+        'fr' => 'Français',
+        'en' => 'English',
+        'es' => 'Español',
+        'de' => 'Deutsch',
+        'it' => 'Italiano',
+    ];
 }
-$err = 0;
+
+require_once __DIR__ . '/i18n.php';
+// Smarty
+require_once __DIR__ . '/smarty.php';
