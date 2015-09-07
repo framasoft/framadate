@@ -36,7 +36,7 @@ class InstallService {
             ),
         'Database configuration' =>
             array(
-                'dbConnectionString' => 'mysql:host=HOST;dbname=SCHEMA;port=3306',
+                'dbConnectionString' => 'mysql:host=<HOST>;dbname=<SCHEMA>;port=3306',
                 'dbUser' => 'root',
                 'dbPassword' => '',
                 'dbPrefix' => 'fd_',
@@ -131,6 +131,10 @@ class InstallService {
             'status' => 'ERROR',
             'code' => $msg
         );
+    }
+
+    public function getFields() {
+        return $this->fields;
     }
 
 }

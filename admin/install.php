@@ -28,9 +28,9 @@ if (is_file(CONF_FILENAME)) {
 }
 
 $error = null;
+$installService = new InstallService();
 
 if (!empty($_POST)) {
-    $installService = new InstallService();
     $result = $installService->install($_POST, $smarty);
 
     if ($result['status'] === 'OK') {
@@ -43,5 +43,5 @@ if (!empty($_POST)) {
 
 $smarty->assign('error', $error);
 $smarty->assign('title', __('Admin', 'Installation'));
-$smarty->assign('logsAreReadable', is_readable('../' . LOG_FILE));
+$smarty->assign('fields', $installService->getFields());
 $smarty->display('admin/install.tpl');
