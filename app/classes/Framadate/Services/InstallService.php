@@ -61,9 +61,6 @@ class InstallService {
             return $this->error('CANT_CONNECT_TO_DATABASE');
         }
 
-        // Create database schema
-        $this->createDatabaseSchema($connect);
-
         // Write configuration to conf.php file
         $this->writeConfiguration($smarty);
 
@@ -96,21 +93,6 @@ class InstallService {
      */
     function writeToFile($content) {
         file_put_contents(CONF_FILENAME, $content);
-    }
-
-    /**
-     * Execute SQL installation scripts.
-     *
-     * @param \PDO $connect
-     */
-    function createDatabaseSchema($connect) {
-        $dir = opendir(ROOT_DIR . '/install/');
-        while ($dir && ($file = readdir($dir)) !== false) {
-            if ($file !== '.' && $file !== '..' && strpos($file, '.mysql.auto.sql')) {
-                $statement = file_get_contents(ROOT_DIR . '/install/' . $file);
-                $connect->exec($statement);
-            }
-        }
     }
 
     /**
