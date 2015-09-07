@@ -31,7 +31,8 @@ $error = null;
 $installService = new InstallService();
 
 if (!empty($_POST)) {
-    $result = $installService->install($_POST, $smarty);
+    $installService->updateFields($_POST);
+    $result = $installService->install($smarty);
 
     if ($result['status'] === 'OK') {
         header(('Location: ' . Utils::get_server_name() . 'admin/migration.php'));

@@ -26,34 +26,37 @@ use Smarty;
 class InstallService {
 
     private $fields = array(
-        'General' =>
-            array(
-                'appName' => 'Framadate',
-                'appMail' => '',
-                'responseMail' => '',
-                'defaultLanguage' => 'fr',
-                'cleanUrl' => true
-            ),
-        'Database configuration' =>
-            array(
-                'dbConnectionString' => 'mysql:host=<HOST>;dbname=<SCHEMA>;port=3306',
-                'dbUser' => 'root',
-                'dbPassword' => '',
-                'dbPrefix' => 'fd_',
-                'migrationTable' => 'framadate_migration'
-            )
+        // General
+        'appName' => 'Framadate',
+        'appMail' => '',
+        'responseMail' => '',
+        'defaultLanguage' => 'fr',
+        'cleanUrl' => true,
+
+        // Database configuration
+        'dbConnectionString' => 'mysql:host=<HOST>;dbname=<SCHEMA>;port=3306',
+        'dbUser' => 'root',
+        'dbPassword' => '',
+        'dbPrefix' => 'fd_',
+        'migrationTable' => 'framadate_migration'
     );
 
     function __construct() {}
 
-    public function install($data, Smarty &$smarty) {
+    public function updateFields($data) {
+        foreach ($data as $field => $value) {
+            $this->fields[$field] = $value;
+        }
+    }
+
+    public function install(Smarty &$smarty) {
         // Check values are present
-        if (empty($data['appName']) || empty($data['appMail']) || empty($data['defaultLanguage']) || empty($data['dbConnectionString']) || empty($data['dbUser'])) {
+        if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dbConnectionString']) || empty($this->fields['dbUser'])) {
             return $this->error('MISSING_VALUES');
         }
 
         // Connect to database
-        $connect = $this->connectTo($data['dbConnectionString'], $data['dbUser'], $data['dbPassword']);
+        $connect = $this->connectTo($this->fields['dbConnectionString'], $this->fields['dbUser'], $this->fields['dbPassword']);
         if (!$connect) {
             return $this->error('CANT_CONNECT_TO_DATABASE');
         }
@@ -62,7 +65,7 @@ class InstallService {
         $this->createDatabaseSchema($connect);
 
         // Write configuration to conf.php file
-        $this->writeConfiguration($data, $smarty);
+        $this->writeConfiguration($smarty);
 
         return $this->ok();
     }
@@ -78,11 +81,9 @@ class InstallService {
         }
     }
 
-    function writeConfiguration($data, Smarty &$smarty) {
-        foreach($this->fields as $groupKey=>$group) {
-            foreach ($group as $field=>$value) {
-                $smarty->assign($field, $data[$field]);
-            }
+    function writeConfiguration(Smarty &$smarty) {
+        foreach($this->fields as $field=>$value) {
+            $smarty->assign($field, $value);
         }
 
         $content = $smarty->fetch('admin/config.tpl');
