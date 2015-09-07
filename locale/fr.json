@@ -36,7 +36,8 @@
     "Choice": "Choix",
     "Link": "Lien",
     "Search": "Chercher",
-    "Creation date:": "Date de création :"
+    "Creation date:": "Date de création :",
+    "ASTERISK": "*"
   },
   "Date": {
     "dd/mm/yyyy": "jj/mm/aaaa",
@@ -261,6 +262,7 @@
     "Migration": "Migration",
     "Purge": "Purge",
     "Logs": "Historique",
+    "Installation": "Installation",
     "Poll ID": "ID sondage",
     "Format": "Format",
     "Title": "Titre",
@@ -309,6 +311,21 @@
     "Author's message": "Réservé à l'auteur",
     "For sending to the polled users": "Pour diffusion aux sondés"
   },
+  "Installation": {
+    "AppMail": "Adresse mail de l'application",
+    "AppName": "Nom de l'application",
+    "CleanUrl": "URL propres",
+    "Database": "Base de données",
+    "DbConnectionString": "Chaîne de connexion",
+    "DbPassword": "Mot de passe",
+    "DbPrefix": "Préfixe",
+    "DbUser": "Utilisateur",
+    "DefaultLanguage": "Langue par défaut",
+    "General": "Général",
+    "Install": "Installer",
+    "MigrationTable": "Table de migration",
+    "ResponseMail": "Mail de réponse"
+  },
   "Error": {
     "Error!": "Erreur !",
     "Enter a title": "Il faut saisir un titre !",
@@ -333,6 +350,8 @@
     "Adding vote failed": "Ajout d'un vote échoué",
     "Comment failed": "Commentaire échoué",
     "You can't create a poll with hidden results with the following edition option:": "Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
-    "Failed to delete column": "Échec de la suppression de colonne"
+    "Failed to delete column": "Échec de la suppression de colonne",
+    "MISSING_VALUES": "Il manque des valeurs",
+    "CANT_CONNECT_TO_DATABASE": "Impossible de se connecter à la base de données"
   }
 }

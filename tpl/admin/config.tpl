@@ -4,16 +4,16 @@
  * is not distributed with this file, you can obtain one at
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
- * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and RaphaÃ«l DROZ
+ * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
  * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
- * Ce logiciel est rÃ©gi par la licence CeCILL-B. Si une copie de cette licence
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
  * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
  *
- * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et RaphaÃ«l DROZ
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
@@ -23,37 +23,37 @@
 // const APP_URL = '<www.mydomain.fr>';
 
 // Application name
-const NOMAPPLICATION = '<Application name>';
+const NOMAPPLICATION = '{$appName}';
 
 // Database administrator email
-const ADRESSEMAILADMIN = '<email address>';
+const ADRESSEMAILADMIN = '{$appMail}';
 
 // Email for automatic responses (you should set it to "no-reply")
-const ADRESSEMAILREPONSEAUTO = '<no-reply@mydomain.com>';
-
-// Database user
-const DB_USER= '<database user>';
-
-// Database password
-const DB_PASSWORD = '<database password>';
+const ADRESSEMAILREPONSEAUTO = '{$responseMail}';
 
 // Database server name, leave empty to use a socket
-const DB_CONNECTION_STRING = 'mysql:host=<database host>;dbname=<database name>;port=<database port>';
+const DB_CONNECTION_STRING = '{$dbConnectionString}';
 
-// Name of the table that store migration script already executed
-const MIGRATION_TABLE = 'framadate_migration';
+// Database user
+const DB_USER= '{$dbUser}';
+
+// Database password
+const DB_PASSWORD = '{$dbPassword}';
 
 // Table name prefix
-const TABLENAME_PREFIX = 'fd_';
+const TABLENAME_PREFIX = '{$dbPrefix}';
+
+// Name of the table that store migration script already executed
+const MIGRATION_TABLE = '{$migrationTable}';
 
 // Default Language
-const DEFAULT_LANGUAGE = 'fr';
+const DEFAULT_LANGUAGE = '{$defaultLanguage}';
 
 // List of supported languages, fake constant as arrays can be used as constants only in PHP >=5.6
 $ALLOWED_LANGUAGES = [
-    'fr' => 'FranÃ§ais',
+    'fr' => 'Français',
     'en' => 'English',
-    'es' => 'EspaÃ±ol',
+    'es' => 'Español',
     'de' => 'Deutsch',
     'it' => 'Italiano',
 ];
@@ -62,7 +62,7 @@ $ALLOWED_LANGUAGES = [
 const IMAGE_TITRE = 'images/logo-framadate.png';
 
 // Clean URLs, boolean
-const URL_PROPRE = false;
+const URL_PROPRE = {if in_array($cleanUrl, array('1', 'on', 'true'))}true{else}false{/if};
 
 // Use REMOTE_USER data provided by web server
 const USE_REMOTE_USER =  true;
