@@ -3,21 +3,21 @@ msgstr ""
 "Project-Id-Version: Framadate 0.8\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-23 20:52+0100\n"
-"PO-Revision-Date: 2014-11-11 20:12+0100\n"
+"PO-Revision-Date: 2015-09-11 22:17+0200\n"
 "Last-Translator: JosephK\n"
 "Language-Team: JosephK\n"
-"Language: English\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: UNITED KINGDOM\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _\n"
 "X-Poedit-Basepath: /var/www/studs\n"
+"X-Generator: Poedit 1.8.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
 
-########### Generic ###########
+# ########## Generic ###########
 msgid "Make your polls"
 msgstr "Make your polls"
 
@@ -79,10 +79,10 @@ msgid "dd/mm/yyyy"
 msgstr "dd/mm/yyyy"
 
 msgid "%A, den %e. %B %Y"
-msgstr "%A, den %e. %B %Y"
+msgstr "%A, %e %B %Y"
 
 msgid "Expiration's date"
-msgstr "Expiration's date"
+msgstr "Expiry"
 
 msgid "days"
 msgstr "days"
@@ -90,14 +90,14 @@ msgstr "days"
 msgid "months"
 msgstr "months"
 
-########### Language selector ###########
+# ########## Language selector ###########
 msgid "Change the language"
-msgstr "Change the language"
+msgstr "Change language"
 
 msgid "Select the language"
-msgstr "Select the language"
+msgstr "Select language"
 
-############ Homepage ############
+# ########### Homepage ############
 msgid "Schedule an event"
 msgstr "Schedule an event"
 
@@ -109,7 +109,7 @@ msgid "What is that?"
 msgstr "What is that?"
 
 msgid "Framadate is an online service for planning an appointment or make a decision quickly and easily. No registration is required."
-msgstr "Framadate is an online service for planning an appointment or make a decision quickly and easily. No registration is required."
+msgstr "Framadate is an online service for planning an appointment or making a decision quickly and easily. No registration is required."
 
 msgid "Here is how it works:"
 msgstr "Here is how it works:"
@@ -118,7 +118,7 @@ msgid "Make a poll"
 msgstr "Make a poll"
 
 msgid "Define dates or subjects to choose"
-msgstr "Define dates or subjects to choose"
+msgstr "Define dates or subjects to choose from"
 
 msgid "Send the poll link to your friends or colleagues"
 msgstr "Send the poll link to your friends or colleagues"
@@ -140,13 +140,13 @@ msgid "Framadate was initially based on "
 msgstr "Framadate was initially based on "
 
 msgid " a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft"
-msgstr " a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft"
+msgstr " software developed by the University of Strasbourg. Today, it is developed by the Framasoft association"
 
 msgid "This software needs javascript and cookies enabled. It is compatible with the following web browsers:"
-msgstr "This software needs javascript and cookies enabled. It is compatible with the following web browsers:"
+msgstr "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers: "
 
 msgid "It is governed by the "
-msgstr "It is governed by the "
+msgstr "It is licensed under the "
 
 msgid "CeCILL-B license"
 msgstr "CeCILL-B license"
@@ -162,9 +162,9 @@ msgid "the development site"
 msgstr "the development site"
 
 msgid "If you want to install the software for your own use and thus increase your independence, we help you on:"
-msgstr "If you want to install the software for your own use and thus increase your independence, we help you on:"
+msgstr "If you want to install the software for your own use and thus increase your independence, we can help you at:"
 
-############## Poll ##############
+# ############# Poll ##############
 msgid "Poll administration"
 msgstr "Poll administration"
 
@@ -197,7 +197,7 @@ msgid "Cancel the title edit"
 msgstr "Cancel the title edit"
 
 msgid "Initiator of the poll"
-msgstr "Initiator of the poll"
+msgstr "Poll creator"
 
 msgid "Email"
 msgstr "Email"
@@ -221,10 +221,10 @@ msgid "Cancel the description edit"
 msgstr "Cancel the description edit"
 
 msgid "Public link of the poll"
-msgstr "Public link of the poll"
+msgstr "Public link "
 
 msgid "Admin link of the poll"
-msgstr "Admin link of the poll"
+msgstr "Admin link "
 
 msgid "Poll rules"
 msgstr "Poll rules"
@@ -233,13 +233,13 @@ msgid "Edit the poll rules"
 msgstr "Edit the poll rules"
 
 msgid "Votes and comments are locked"
-msgstr "Votes and comments are locked"
+msgstr "Votes and comments are closed"
 
 msgid "Votes and comments are open"
 msgstr "Votes and comments are open"
 
 msgid "Votes are editable"
-msgstr "Votes are editable"
+msgstr "Votes can be modified"
 
 msgid "Save the new rules"
 msgstr "Save the new rules"
@@ -249,7 +249,7 @@ msgstr "Cancel the rules edit"
 
 # Help text adminstuds.php
 msgid "As poll administrator, you can change all the lines of this poll with this button "
-msgstr "As poll administrator, you can change all the lines of this poll with this button "
+msgstr "As poll administrator, you can change all the lines of the poll with this button "
 
 msgid " remove a column or a line with "
 msgstr " remove a column or a line with "
@@ -258,18 +258,18 @@ msgid "and add a new column with "
 msgstr "and add a new column with "
 
 msgid "Finally, you can change the informations of this poll like the title, the comments or your email address."
-msgstr "Finally, you can change the informations of this poll like the title, the comments or your email address."
+msgstr "Finally, you can change the information of this poll like the title, the comments or your email address."
 
 # Help text studs.php
 msgid "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line."
-msgstr "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line."
+msgstr "If you would like to vote in this poll, give your name, select your responses and confirm with the plus button at the end of the line."
 
 # Poll results
 msgid "Votes of the poll "
-msgstr "Votes of the poll "
+msgstr "Votes for this poll "
 
 msgid "Remove the column"
-msgstr "Remove the column"
+msgstr "Remove column"
 
 msgid "Add a column"
 msgstr "Add a column"
@@ -305,7 +305,7 @@ msgid "Save the choices"
 msgstr "Save the choices"
 
 msgid "Addition"
-msgstr "Addition"
+msgstr "Total"
 
 msgid "Best choice"
 msgstr "Best choices"
@@ -317,7 +317,7 @@ msgid "The best choice at this time is:"
 msgstr "The best choice at this time is:"
 
 msgid "The bests choices at this time are:"
-msgstr "The bests choices at this time are:"
+msgstr "The best choices at this time are:"
 
 msgid "with"
 msgstr "with"
@@ -342,35 +342,35 @@ msgstr "Scroll to the right"
 
 # Comments
 msgid "Comments of polled people"
-msgstr "Comments of polled people"
+msgstr "Comments"
 
 msgid "Remove the comment"
-msgstr "Remove the comment"
+msgstr "Remove comment"
 
 msgid "Add a comment in the poll"
-msgstr "Add a comment in the poll"
+msgstr "Add a comment to the poll"
 
 msgid "Your comment"
 msgstr "Your comment"
 
 msgid "Send the comment"
-msgstr "Send the comment"
+msgstr "Submit comment"
 
 msgid "anonyme"
-msgstr "anonyme"
+msgstr "anonymous"
 
 msgid "Remove all the comments"
 msgstr "Remove all the comments"
 
 # Add a colum adminstuds.php
 msgid "Column's adding"
-msgstr "Column's adding"
+msgstr "Column total"
 
 msgid "You can add a new scheduling date to your poll."
-msgstr "You can add a new scheduling date to your poll."
+msgstr "You can add a new date to your poll."
 
 msgid "If you just want to add a new hour to an existant date, put the same date and choose a new hour."
-msgstr "If you just want to add a new hour to an existant date, put the same date and choose a new hour."
+msgstr "If you just want to add a new time slot to an existing date, enter the same date and choose a new time."
 
 # Remove poll adminstuds.php
 msgid "Confirm removal of your poll"
@@ -387,7 +387,7 @@ msgstr "Your poll has been removed!"
 
 # Errors adminstuds.php/studs
 msgid "This poll doesn't exist !"
-msgstr "This poll doesn't exist !"
+msgstr "The poll you requested doesn't exist!"
 
 msgid "Enter a name"
 msgstr "Enter a name"
@@ -402,18 +402,18 @@ msgid "Failed to insert the comment!"
 msgstr "Failed to insert the comment!"
 
 msgid "Characters \"  '  < et > are not permitted"
-msgstr "Characters \"  '  < et > are not permitted"
+msgstr "Characters \"  '  < and > are not permitted"
 
 msgid "The date is not correct !"
-msgstr "The date is not correct !"
+msgstr "The date is invalid!"
 
-########### Step 1 ###########
+# ########## Step 1 ###########
 # Step 1 info_sondage.php
 msgid "Poll creation (1 on 3)"
 msgstr "Poll creation (1 on 3)"
 
 msgid "Framadate is not properly installed, please check the 'INSTALL' to setup the database before continuing."
-msgstr "Framadate is not properly installed, please check the 'INSTALL' to setup the database before continuing."
+msgstr "Framadate is not properly installed, please refer to the 'INSTALL' file to setup the database before continuing."
 
 msgid "You are in the poll creation section."
 msgstr "You are in the poll creation section."
@@ -428,7 +428,7 @@ msgid "Voters can modify their vote themselves."
 msgstr "Voters can modify their vote themselves."
 
 msgid "To receive an email for each new vote."
-msgstr "To receive an email for each new vote."
+msgstr "Receive an email for each new vote."
 
 msgid "Go to step 2"
 msgstr "Go to step 2"
@@ -444,16 +444,16 @@ msgid "Enter an email address"
 msgstr "Enter an email address"
 
 msgid "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll."
-msgstr "The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll."
+msgstr "The address is invalid. You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll."
 
 # Error choix_date.php/choix_autre.php
 msgid "You haven't filled the first section of the poll creation."
-msgstr "You haven't filled the first section of the poll creation."
+msgstr "You haven't filled in the first section of the poll creation page."
 
 msgid "Back to step 1"
 msgstr "Back to step 1"
 
-########### Step 2 ###########
+# ########## Step 2 ###########
 # Step 2 choix_date.php
 msgid "Poll dates (2 on 3)"
 msgstr "Poll dates (2 on 3)"
@@ -462,13 +462,13 @@ msgid "Choose the dates of your poll"
 msgstr "Choose the dates of your poll"
 
 msgid "To schedule an event, it's better to propose at least two choices (two hours for one day or two days)."
-msgstr "To schedule an event, it's better to propose at least two choices (two hours for one day or two days)."
+msgstr "To schedule an event, it's better to propose at least two choices (two times for one day or two days)."
 
 msgid "You can add or remove additionnal days and hours with the buttons"
-msgstr "You can add or remove additionnal days and hours with the buttons"
+msgstr "You can add or remove additional dates and times with the buttons"
 
 msgid "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)"
-msgstr "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)"
+msgstr "For each selected day, you can optionally choose meeting times (e.g., \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)"
 
 msgid "Day"
 msgstr "Day"
@@ -477,35 +477,35 @@ msgid "Time"
 msgstr "Time"
 
 msgid "Remove an hour"
-msgstr "Remove an hour"
+msgstr "Remove a time slot"
 
 msgid "Add an hour"
-msgstr "Add an hour"
+msgstr "Add a time slot"
 
 msgid "Copy hours of the first day"
-msgstr "Copy hours of the first day"
+msgstr "Copy times from the first day"
 
 msgid "Remove a day"
-msgstr "Remove a day"
+msgstr "Remove a date"
 
 msgid "Add a day"
-msgstr "Add a day"
+msgstr "Add a date"
 
 msgid "Remove all days"
-msgstr "Remove all days"
+msgstr "Remove all dates"
 
 msgid "Remove all hours"
-msgstr "Remove all hours"
+msgstr "Remove all times"
 
 # Step 2 choix_autre.php
 msgid "Poll subjects (2 on 3)"
 msgstr "Poll subjects (2 on 3)"
 
 msgid "To make a generic poll, it's better to propose at least two choices between differents subjects."
-msgstr "To make a generic poll, it's better to propose at least two choices between differents subjects."
+msgstr "To make a generic poll, it's better to provide at least two choices between different subjects."
 
 msgid "You can add or remove additional choices with the buttons"
-msgstr "You can add or remove additional choices with the buttons"
+msgstr "You can add or remove additional options with the buttons"
 
 msgid "It's possible to propose links or images by using "
 msgstr "It's possible to propose links or images by using "
@@ -543,7 +543,7 @@ msgstr "Back to step 2"
 msgid "Go to step 3"
 msgstr "Go to step 3"
 
-########### Step 3 ###########
+# ########## Step 3 ###########
 msgid "Removal date and confirmation (3 on 3)"
 msgstr "Removal date and confirmation (3 on 3)"
 
@@ -554,10 +554,10 @@ msgid "List of your choices"
 msgstr "List of your choices"
 
 msgid "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll."
-msgstr "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll."
+msgstr "Once you have confirmed the creation of your poll, you will be automatically redirected to the poll's administration page."
 
 msgid "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll."
-msgstr "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll."
+msgstr "You will soon receive two emails: one containing the link to your poll for sending to the voters, the other containing the link to the poll's administration page."
 
 msgid "Create the poll"
 msgstr "Create the poll"
@@ -577,12 +577,12 @@ msgid "Your poll will be automatically removed after"
 msgstr "Your poll will be automatically removed after"
 
 msgid "You can fix another removal date for it."
-msgstr "You can fix another removal date for it."
+msgstr "You can optionally set a different removal date."
 
 msgid "Removal date (optional)"
 msgstr "Removal date (optional)"
 
-############# Admin #############
+# ############ Admin #############
 msgid "Polls administrator"
 msgstr "Polls administrator"
 
@@ -619,7 +619,7 @@ msgstr "Change the poll"
 msgid "Logs"
 msgstr "Logs"
 
-########### Mails ###########
+# ########## Mails ###########
 # Mails studs.php
 msgid "Poll's participation"
 msgstr "Poll's participation"
@@ -628,8 +628,8 @@ msgid ""
 "has filled a line.\n"
 "You can find your poll at the link"
 msgstr ""
-"has filled a line.\n"
-"You can find your poll at the link"
+"has responded.\n"
+"You can visit your poll with the link"
 
 msgid "Thanks for your trust."
 msgstr "Thanks for your trust."
@@ -657,28 +657,28 @@ msgid ""
 "You can modify this poll with this link"
 msgstr ""
 "You have changed the settings of your poll. \n"
-"You can modify this poll with this link"
+"You can modify the poll with this link"
 
 # Mails creation_sondage.php
 msgid ""
 "This is the message you have to send to the people you want to poll. \n"
 "Now, you have to send this message to everyone you want to poll."
 msgstr ""
-"This is the message you have to send to the people you want to poll. \n"
+"This is the message to send to the people you want to poll. \n"
 "Now, you have to send this message to everyone you want to poll."
 
 msgid "hast just created a poll called"
 msgstr "has just created a poll called"
 
 msgid "Thanks for filling the poll at the link above"
-msgstr "Thanks for filling the poll at the link above"
+msgstr "Please fill in the poll at the link above"
 
 msgid ""
 "This message should NOT be sent to the polled people. It is private for the poll's creator.\n"
 "\n"
 "You can now modify it at the link above"
 msgstr ""
-"This message should NOT be sent to the polled people. It is private for the poll's creator.\n"
+"This message should NOT be sent to the polled people. It is the private link for the poll creator.\n"
 "\n"
 "You can now modify it at the link above"
 
@@ -687,4 +687,3 @@ msgstr "Author's message"
 
 msgid "For sending to the polled users"
 msgstr "For sending to the polled users"
-
