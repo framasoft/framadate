@@ -65,9 +65,11 @@ class PollRepository extends AbstractRepository {
      * Search polls in databse.
      *
      * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>...]
+     * @param int $start The number of first entry to select
+     * @param int $limit The number of entries to find
      * @return array The found polls
      */
-    public function findAll($search) {
+    public function findAll($search, $start, $limit) {
         // Polls
         $prepared = $this->prepare('
 SELECT p.*,
@@ -77,6 +79,7 @@ SELECT p.*,
    AND (:title = "" OR p.title LIKE :title)
    AND (:name = "" OR p.admin_name LIKE :name)
  ORDER BY p.title ASC
+ LIMIT :start, :limit
  ');
 
         $poll = $search['poll'] . '%';
@@ -85,6 +88,8 @@ SELECT p.*,
         $prepared->bindParam(':id', $poll, PDO::PARAM_STR);
         $prepared->bindParam(':title', $title, PDO::PARAM_STR);
         $prepared->bindParam(':name', $name, PDO::PARAM_STR);
+        $prepared->bindParam(':start', $start, PDO::PARAM_INT);
+        $prepared->bindParam(':limit', $limit, PDO::PARAM_INT);
         $prepared->execute();
 
         return $prepared->fetchAll();
@@ -106,13 +111,33 @@ SELECT p.*,
     /**
      * Get the total number of polls in databse.
      *
+     * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>...]
      * @return int The number of polls
      */
-    public function count() {
+    public function count($search = null) {
         // Total count
-        $stmt = $this->query('SELECT count(1) nb FROM `' . Utils::table('poll') . '`');
-        $count = $stmt->fetch();
-        $stmt->closeCursor();
+        $prepared = $this->prepare('
+SELECT count(1) nb
+  FROM `' . Utils::table('poll') . '` p
+ WHERE (:id = "" OR p.id LIKE :id)
+   AND (:title = "" OR p.title LIKE :title)
+   AND (:name = "" OR p.admin_name LIKE :name)
+ ORDER BY p.title ASC');
+
+        $poll = $search == null ? '' : $search['poll'] . '%';
+        $title = $search == null ? '' : '%' . $search['title'] . '%';
+        $name = $search == null ? '' : '%' . $search['name'] . '%';
+        $prepared->bindParam(':id', $poll, PDO::PARAM_STR);
+        $prepared->bindParam(':title', $title, PDO::PARAM_STR);
+        $prepared->bindParam(':name', $name, PDO::PARAM_STR);
+
+        $prepared->execute();
+        $count = $prepared->fetch();
+
+        /*echo '---';
+        print_r($count);
+        echo '---';
+        exit;*/
 
         return $count->nb;
     }
