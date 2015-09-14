@@ -129,6 +129,8 @@ header .lead {
 
 .poll-description {
     font-family: inherit;
+    white-space: pre-wrap;
+    word-break: initial;
 }
 
 h4.control-label {
