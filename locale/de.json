@@ -36,7 +36,8 @@
         "Choice": "Wahl",
         "Link": "Link",
         "Search": "Suche",
-        "Creation date:": "Erstellungsdatum:"
+        "Creation date:": "Erstellungsdatum:",
+        "ASTERISK": "*"
     },
     "Date": {
         "dd/mm/yyyy": "jj/mm/aaaa",
@@ -125,7 +126,7 @@
         "Results are visible.": "Ergebnisse sind sichtbar."
     },
     "Poll results": {
-        "Votes of the poll": "Abstimmungen der Umfrage ",
+        "Votes of the poll": "Abstimmungen der Umfrage",
         "Edit the line:": "Zeile bearbeiten:",
         "Remove the line:": "Zeile entfernen:",
         "Vote no for": "Nein stimmen für",
@@ -138,7 +139,7 @@
         "The best choice at this time is:": "Die beste Option ist derzeit:",
         "The bests choices at this time are:": "Die beste Optionen sind derzeit:",
         "Scroll to the left": "Links scrollen",
-        "Scroll to the right": "Rechts scrollen"
+        "Scroll to the right": "Rechts scrollen",
         "polled user": "DE_votant",
         "polled users": "DE_votants",
         "Display the chart of the results": "DE_Afficher le graphique des résultats",
@@ -334,6 +335,8 @@
         "Adding vote failed": "Adding vote failed",
         "Comment failed": "Kommentar gescheitert",
         "You can't create a poll with hidden results with the following edition option:": "Sie können nicht eine Umfrage erstellen mit versteckten Ergebnisse mit der folgenden Ausgabe-Option:",
-        "Failed to delete column": "Fehler beim Spalte löschen"
+        "Failed to delete column": "Fehler beim Spalte löschen",
+        "MISSING_VALUES": "Fehlende Angaben",
+        "CANT_CONNECT_TO_DATABASE": "Kann nicht zur Datenbank verbinden"
     }
 }

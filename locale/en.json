@@ -36,7 +36,8 @@
     "Choice": "Choice",
     "Link": "Link",
     "Search": "Search",
-    "Creation date:": "Creation date:"
+    "Creation date:": "Creation date:",
+    "ASTERISK": "*"
   },
   "Date" : {
     "dd/mm/yyyy": "jj/mm/aaaa",
@@ -138,7 +139,7 @@
     "The best choice at this time is:": "The best choice at this time is:",
     "The bests choices at this time are:": "The bests choices at this time are:",
     "Scroll to the left": "Scroll to the left",
-    "Scroll to the right": "Scroll to the right"
+    "Scroll to the right": "Scroll to the right",
     "Display the chart of the results": "Display the chart of the results",
     "Chart": "Chart"
   },
@@ -332,6 +333,8 @@
     "Adding vote failed": "Adding vote failed",
     "Comment failed": "Comment failed",
     "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following edition option: ",
-    "Failed to delete column": "Failed to delete column"
+    "Failed to delete column": "Failed to delete column",
+    "MISSING_VALUES": "Missing values",
+    "CANT_CONNECT_TO_DATABASE": "Unable to connect to database"
   }
 }
