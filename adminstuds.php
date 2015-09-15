@@ -67,7 +67,7 @@ function sendUpdateNotification($poll, $mailService, $type) {
 
     if ($poll->receiveNewVotes) {
 
-        $subject = '[' . NOMAPPLICATION . '] ' . __('Mail', 'Notification of poll') . ' : ' . $poll->title;
+        $subject = '[' . NOMAPPLICATION . '] ' . __('Mail', 'Notification of poll') . ': ' . $poll->title;
 
         $message = '';
         switch ($type) {

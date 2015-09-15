@@ -108,8 +108,8 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
             $message_admin = sprintf($message_admin, Utils::getUrlSondage($admin_poll_id, true));
 
             if ($mailService->isValidEmail($_SESSION['form']->admin_mail)) {
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ' : ' . Utils::htmlEscape($_SESSION['form']->title), $message_admin);
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ' : ' . Utils::htmlEscape($_SESSION['form']->title), $message);
+                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($_SESSION['form']->title), $message_admin);
+                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($_SESSION['form']->title), $message);
             }
         }
 
@@ -168,7 +168,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
             $summary .= '<li>'.strftime($date_format['txt_full'], $choice->getName());
             $first = true;
             foreach ($choice->getSlots() as $slots) {
-                $summary .= $first ? ' : ' : ', ';
+                $summary .= $first ? ': ' : ', ';
                 $summary .= $slots;
                     $first = false;
             }
