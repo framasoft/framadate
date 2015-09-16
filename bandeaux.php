@@ -24,7 +24,7 @@ include_once __DIR__ . '/app/inc/init.php';
 function bandeau_titre($titre)
 {
     global $ALLOWED_LANGUAGES;
-    $img = ( IMAGE_TITRE ) ? '<img src="'. Utils::get_server_name(). IMAGE_TITRE. '" alt="'.NOMAPPLICATION.'">' : '';
+    $img = ( IMAGE_TITRE ) ? '<img src="'. Utils::get_server_name(). IMAGE_TITRE. '" alt="'.NOMAPPLICATION.'" class="img-responsive">' : '';
     echo '
     <header role="banner">';
     if(count($ALLOWED_LANGUAGES) > 1){
