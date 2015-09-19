@@ -62,7 +62,6 @@ INNER JOIN (
 		GROUP BY s.poll_id
 		ORDER BY s.poll_id) inn ON inn.poll_id = v.poll_id
 	WHERE LENGTH(v.choices) != inn.slots_count
-	LIMIT 0,1
 ) computed ON fv.id = computed.id
 SET fv.choices = computed.new_choices');
     }
