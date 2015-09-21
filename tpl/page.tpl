@@ -20,14 +20,13 @@
     <script type="text/javascript" src="{"js/locales/bootstrap-datepicker.$locale.js"|resource}"></script>
     <script type="text/javascript" src="{'js/core.js'|resource}"></script>
 
-    {if $use_nav_js}
-        <script src="{'nav/nav.js'|resource}" id="nav_js" type="text/javascript" charset="utf-8"></script><!-- /Framanav -->
-    {/if}
-
     {block name="header"}{/block}
 
 </head>
 <body>
+{if $use_nav_js}
+    <script src="https://n2.framasoft.org/nav/nav.js" type="text/javascript"></script>
+{/if}
 <div class="container ombre">
 
 {include file='header.tpl'}
