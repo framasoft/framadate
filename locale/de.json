@@ -64,19 +64,19 @@
     },
     "1st section": {
         "What is that?": "Was ist das?",
-        "Framadate is an online service for planning an appointment or make a decision quickly and easily. No registration is required.": "Framadate ist ein Online-Dienst, das Ihnen hilft, Termine zu finden oder Entscheidungen schnell und einfach zu treffen. Keine Registrierung ist erforderlich. ",
+        "Framadate is an online service for planning an appointment or make a decision quickly and easily. No registration is required.": "Framadate ist ein Online-Dienst, der Ihnen bei der Absprache von Terminen oder der Entscheidungsfindung hilft. Es ist keinerlei Registrierung ist erforderlich. ",
         "Here is how it works:": "So geht es:",
         "Make a poll": "Umfrage erstellen",
-        "Define dates or subjects to choose": "Datum- oder Auswahlmöglichkeiten definieren",
+        "Define dates or subjects to choose": "Zeitpunkte oder andere Alternativen zur Auswahl stellen",
         "Send the poll link to your friends or colleagues": "Link zur Umfrage an Ihre Freunde oder Kollegen schicken",
-        "Discuss and make a decision": "Besprechen und Entscheidung treffen",
+        "Discuss and make a decision": "Besprechen und Entscheidungen treffen",
         "Do you want to": "Wollen Sie sich",
-        "view an example?": "einen Beispiel ansehen?"
+        "view an example?": "ein Beispiel ansehen?"
     },
     "2nd section": {
         "The software": "Die Software",
-        "Framadate was initially based on ": "Framadate war am Anfang auf ",
-        "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": "basiert, eine von der Straßburg-Universität entwickelte Software. Heutzutage wird sie von der Framasoft-Vereinigung entwickelt.",
+        "Framadate was initially based on ": "Framadate basierte zunächst auf ",
+        "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": ", einer von der Universität von Straßburg entwickelten Software. Heute wird sie vom Verein Framasoft weiterentwickelt.",
         "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "Für diese Software müssen Javascript und Cookie aktiviert sein. Sie ist mit den folgenden Browsers kompatibel:",
         "It is governed by the": "Sie ist lizenziert unter der",
         "CeCILL-B license": "CeCILL-B Lizenz"
