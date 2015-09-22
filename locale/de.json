@@ -77,15 +77,15 @@
         "The software": "Die Software",
         "Framadate was initially based on ": "Framadate basierte zunächst auf ",
         "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": ", einer von der Universität von Straßburg entwickelten Software. Heute wird sie vom Verein Framasoft weiterentwickelt.",
-        "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "Für diese Software müssen Javascript und Cookie aktiviert sein. Sie ist mit den folgenden Browsers kompatibel:",
+        "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "Javascript und Cookie aktiviert sein, damit Framadate funktioniert. Die Software ist mit den folgenden Browsern kompatibel:",
         "It is governed by the": "Sie ist lizenziert unter der",
         "CeCILL-B license": "CeCILL-B Lizenz"
     },
     "3rd section": {
         "Cultivate your garden": "Bestellen Sie ihren Garten",
-        "To participate in the software development, suggest improvements or simply download it, please visit ": "Um zur Software-Entwicklung teilzunehmen, Verbesserungen vorzuschlagen oder um sie herunterzuladen, gehen Sie auf ",
-        "the development site": "die Entwicklung-Seite",
-        "If you want to install the software for your own use and thus increase your independence, we help you on:": "Wenn Sie die Software für Ihre eigene Nutzung installieren möchten und Ihre Eigenständigkeit erhöhen, helfen wir Sie auf:"
+        "To participate in the software development, suggest improvements or simply download it, please visit ": "Um an der Entwicklung der Software teilzunehmen, Verbesserungen vorzuschlagen oder um sie herunterzuladen, rufen sie diese Seite auf: ",
+        "the development site": "die Seite der Entwickler",
+        "If you want to install the software for your own use and thus increase your independence, we help you on:": "Wenn Sie die Software für die eigene Nutzung installieren und damit Ihre Unabhängigkeit erhöhen möchten, helfen wir Ihnen auf:"
     },
     "PollInfo": {
         "Remove the poll": "Umfrage löschen",
