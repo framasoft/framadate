@@ -218,7 +218,7 @@
     "Step 2 date": {
         "Poll dates (2 on 3)": "Umfragedaten (2 von 3)",
         "Choose the dates of your poll": "Wählen Sie Terminmöglichkeiten für Ihre Umfrage",
-        "To schedule an event you need to propose at least two choices (two hours for one day or two days).": "Um eine Umfrage für einen Termin zu erstellen, müssen Sie mindestens AdministrationsseiteAdministrationsseiteAdministrationsseitezweiAdAd Auswahlmöglichkeiten angeben (AdministrationsseiteAdministrationsseiteAdministrationsseitezweiAdAd verschiedene Zeiten an einem Tag oder AdministrationsseiteAdministrationsseiteAdministrationsseitezweiAdAd Tage).",
+        "To schedule an event you need to propose at least two choices (two hours for one day or two days).": "Um eine Terminabsprache zu konfigurieren, müssen Sie mindestens zwei alternative Zeitpunkte vorschlagen (zwei Uhrzeiten am gleichen Tag oder verschiedene Tage).",
         "You can add or remove additionnal days and hours with the buttons": "Sie können weitere Tage und Uhrzeiten über diesen Button hinzufügen oder entfernen",
         "For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)": "TRANSLATE_ For each selected day, you can choose, or not, meeting hours (e.g.: \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)",
         "Remove an hour": "Eine Uhrzeit entfernen",
@@ -231,7 +231,7 @@
     },
     "Step 2 classic": {
         "Poll subjects (2 on 3)": "Umfragegegenstand (2 von 3)",
-        "To make a generic poll you need to propose at least two choices between differents subjects.": "Um eine gewöhnliche Umfrage zu erstellen, müssen Sie mindestens AdministrationsseiteAdministrationsseiteAdministrationsseitezweiAdAd Alternativen zur Auswahl stellen.",
+        "To make a generic poll you need to propose at least two choices between differents subjects.": "Um eine gewöhnliche Umfrage zu erstellen, müssen Sie mindestens zwei Alternativen zur Auswahl stellen.",
         "You can add or remove additional choices with the buttons": "Um Auswahlmöglichkeiten hinzuzufügen oder zu entfernen, verwenden Sie die Buttons",
         "It's possible to propose links or images by using": "Sie haben die Möglichkeit, auch Links oder Bilder vorzuschlagen; verwenden Sie dazu",
         "the Markdown syntax": "Markdown Syntax",
@@ -248,7 +248,7 @@
         "Confirm the creation of your poll": "Bestätigen Sie die Erstellung ihrer Umfrage",
         "List of your choices": "Liste Ihrer Auswahlmöglichkeiten",
         "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "Wenn Sie die Erzeugung ihrer Umfrage bestätigt haben, werden sie automatisch zur Administrationsseite ihrer Umfrage weitergeleitet.",
-        "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "Sie werden AdministrationsseiteAdministrationsseitezweiAdAd E-Mails erhalten: die Eine enthält den Link zur Umfrage für die Teilnehmer, die Andere dem zur Administrationsseite für Ihre Umfrage.",
+        "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "Sie werden zwei E-Mails erhalten: die Eine enthält den Link zur Umfrage für die Teilnehmer, die andere den zur Administrationsseite für Ihre Umfrage.",
         "Create the poll": "Umfrage erstellen",
         "Your poll will automatically be archived": "Ihre Umfrage wird automatisch für",
         "after the last date of your poll.": "nach dem letzten Tag der Abstimmung archiviert werden.",
