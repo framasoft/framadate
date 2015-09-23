@@ -111,8 +111,8 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
             $message_admin = sprintf($message_admin, Utils::getUrlSondage($admin_poll_id, true));
 
             if ($mailService->isValidEmail($_SESSION['form']->admin_mail)) {
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ' : ' . Utils::htmlEscape($_SESSION['form']->title), $message_admin);
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ' : ' . Utils::htmlEscape($_SESSION['form']->title), $message);
+                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($_SESSION['form']->title), $message_admin);
+                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($_SESSION['form']->title), $message);
             }
         }
 
