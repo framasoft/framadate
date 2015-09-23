@@ -293,8 +293,8 @@
         "Polls sent": "ES_Sondages envoyés"
     },
     "Mail": {
-        "Poll's participation": "Participación Encuesta",
-        "Notification of poll": "Notificación de la encuesta",
+        "Poll's participation: %s": "Participación Encuesta: %s",
+        "Notification of poll: %s": "Notificación de la encuesta: %s",
         "filled a vote.\nYou can find your poll at the link": "ES_vient de voter.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",
         "updated a vote.\nYou can find your poll at the link": "ES_vient de mettre à jour un vote.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",
         "wrote a comment.\nYou can find your poll at the link": "ES_vient de rédiger un commentaire.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",

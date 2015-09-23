@@ -293,8 +293,8 @@
     "Polls sent": "IT_Sondages envoyés"
   },
   "Mail": {
-    "Poll's participation": "Partecipazione al sondaggio",
-    "Notification of poll": "Notifica di sondaggio",
+    "Poll's participation: %s": "Partecipazione al sondaggio: %s",
+    "Notification of poll: %s": "Notifica di sondaggio: %s",
     "filled a vote.\nYou can find your poll at the link": "IT_vient de voter.\nVous pouvez retrouver votre sondage avec le lien suivant",
     "updated a vote.\nYou can find your poll at the link": "IT_vient de mettre à jour un vote.\nVous pouvez retrouver votre sondage avec le lien suivant",
     "wrote a comment.\nYou can find your poll at the link": "IT_vient de rédiger un commentaire.\nVous pouvez retrouver votre sondage avec le lien suivant",
