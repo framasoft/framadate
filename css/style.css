@@ -304,7 +304,9 @@ table.results .btn-link.btn-sm {
 #vote-form td {
     border-top:2px solid white;
 }
-
+#vote-form td:first-child {
+    min-width: 180px;
+}
 .yes input, .ifneedbe input,.no input {
     position:absolute;
     left:0;
