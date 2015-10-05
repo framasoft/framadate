@@ -112,8 +112,7 @@ class Utils {
             }
             if ($vote_id != '') {
                 $url .= '/vote/' . $vote_id . "#edit";
-            }
-            if ($action != null && $action_value != null) {
+            } elseif ($action != null && $action_value != null) {
                 $url .= '/action/' . $action . '/' . $action_value;
             }
         } else {
@@ -124,8 +123,7 @@ class Utils {
             }
             if ($vote_id != '') {
                 $url .= '&vote=' . $vote_id . "#edit";
-            }
-            if ($action != null && $action_value != null)  {
+            } elseif ($action != null && $action_value != null)  {
                 $url .= '&' . $action . "=" . $action_value;
             }
         }
