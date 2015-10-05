@@ -199,6 +199,8 @@ class AdminPollService {
      * @return bool true if added
      */
     public function addDateSlot($poll_id, $datetime, $new_moment) {
+        $this->logService->log('ADD_SLOT', 'id:' . $poll_id . ', datetime:' . $datetime . ', moment:' . $new_moment);
+
         $slots = $this->slotRepository->listByPollId($poll_id);
         $result = $this->findInsertPosition($slots, $datetime, $new_moment);
 
@@ -246,6 +248,8 @@ class AdminPollService {
      * @return bool true if added
      */
     public function addClassicSlot($poll_id, $title) {
+        $this->logService->log('ADD_SLOT', 'id:' . $poll_id . ', title:' . $title);
+
         $slots = $this->slotRepository->listByPollId($poll_id);
 
         // Check if slot already exists
