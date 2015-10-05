@@ -394,12 +394,12 @@ if (isset($_GET['add_slot'])) {
 if (isset($_POST['confirm_add_slot'])) {
     if ($poll->format === 'D') {
         $newdate = strip_tags($_POST['newdate']);
-        $newmoment = strip_tags($_POST['newmoment']);
+        $newmoment = str_replace(',', '-', strip_tags($_POST['newmoment']));
 
         $ex = explode('/', $newdate);
         $result = $adminPollService->addDateSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
     } else {
-        $newslot = strip_tags($_POST['choice']);
+        $newslot = str_replace(',', '-', strip_tags($_POST['choice']));
         $result = $adminPollService->addClassicSlot($poll_id, $newslot);
     }
 
