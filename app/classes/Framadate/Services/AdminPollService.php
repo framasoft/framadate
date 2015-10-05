@@ -117,7 +117,10 @@ class AdminPollService {
 
         $slots = $this->pollService->allSlotsByPoll($poll);
 
-        if (count($slots) === 1) {
+        // We can't delete the last slot
+        if ($poll->format == 'D' && count($slots) === 1 && strpos($slots[0]->moments, ',') === -1) {
+            return false;
+        } elseif ($poll->format == 'A' && count($slots) === 1) {
             return false;
         }
 
