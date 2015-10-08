@@ -31,7 +31,7 @@ Les tables de l'applications sont décrites plus loin dans ce fichier dans la pa
 
 # Installation
 
-Pour installer l'application Framadate, rendez-vous sur la page http://monsite/install.php et remplisez le formulaire.
+Pour installer l'application Framadate, rendez-vous sur la page http://monsite/admin/install.php et remplisez le formulaire.
 
 Une fois le formulaire rempli et envoyé, un script va générer le fichier `app/inc/config.php` puis vous rediriger vers la page de migration.
 
