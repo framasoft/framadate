@@ -216,6 +216,5 @@ $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 $smarty->assign('admin', false);
 $smarty->assign('hidden', $poll->hidden);
-$smarty->assign('parameter_name_regex', NAME_REGEX);
 
 $smarty->display('studs.tpl');

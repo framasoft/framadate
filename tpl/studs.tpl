@@ -48,10 +48,6 @@
     </div>
 </div>
 
-<div class="hidden">
-    <p id="parameter_name_regex">{$parameter_name_regex}</p>
-</div>
-
 
 {* Vote table *}
 
