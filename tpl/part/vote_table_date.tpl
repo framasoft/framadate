@@ -2,7 +2,10 @@
     {$best_choices = [0]}
 {/if}
 
-<h3>{__('Poll results', 'Votes of the poll')} {if $hidden}<i>({__('PollInfo', 'Results are hidden.')})</i>{/if}</h3>
+<h3>
+    {__('Poll results', 'Votes of the poll')} {if $hidden}<i>({__('PollInfo', 'Results are hidden.')})</i>{/if}
+    <a href="" data-toggle="modal" data-target="#hint_modal"><i class="glyphicon glyphicon-info-sign"></i></a>
+</h3>
 
 
 <div id="tableContainer" class="tableContainer">
