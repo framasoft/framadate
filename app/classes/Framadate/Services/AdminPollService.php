@@ -202,7 +202,7 @@ class AdminPollService {
         $this->logService->log('ADD_SLOT', 'id:' . $poll_id . ', datetime:' . $datetime . ', moment:' . $new_moment);
 
         $slots = $this->slotRepository->listByPollId($poll_id);
-        $result = $this->findInsertPosition($slots, $datetime, $new_moment);
+        $result = $this->findInsertPosition($slots, $datetime);
 
         // Begin transaction
         $this->connect->beginTransaction();
@@ -221,7 +221,6 @@ class AdminPollService {
 
             // Update found slot
             $moments[] = $new_moment;
-            sort($moments);
             $this->slotRepository->update($poll_id, $datetime, implode(',', $moments));
 
         } else {
@@ -284,10 +283,9 @@ class AdminPollService {
      *
      * @param $slots array All the slots of the poll
      * @param $datetime int The datetime of the new slot
-     * @param $moment string The moment's name
      * @return null|\stdClass An object like this one: {insert:X, slot:Y} where Y can be null.
      */
-    private function findInsertPosition($slots, $datetime, $moment) {
+    private function findInsertPosition($slots, $datetime) {
         $result = new \stdClass();
         $result->slot = null;
         $result->insert = -1;
@@ -299,21 +297,10 @@ class AdminPollService {
             $moments = explode(',', $slot->moments);
 
             if ($datetime == $rowDatetime) {
-                $result->slot = $slot;
-
-                foreach ($moments as $rowMoment) {
-                    $strcmp = strcmp($moment, $rowMoment);
-                    if ($strcmp < 0) {
-                        // Here we have to insert at First place or middle of the slot
-                        break(2);
-                    } elseif ($strcmp == 0) {
-                        // Here we dont have to insert at all
-                        return null;
-                    }
-                    $i++;
-                }
+                $i += count($moments);
 
                 // Here we have to insert at the end of a slot
+                $result->slot = $slot;
                 $result->insert = $i;
                 break;
             } elseif ($datetime < $rowDatetime) {

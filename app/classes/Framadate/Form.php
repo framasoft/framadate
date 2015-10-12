@@ -80,9 +80,4 @@ class Form
         usort($this->choices, array('Framadate\Choice', 'compare'));
     }
 
-    public function lastChoice()
-    {
-        return end($this->choices);
-    }
-
 }
