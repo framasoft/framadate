@@ -53,8 +53,9 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
     bandeau_pied();
 
 } else {
-    $min_time = time() + 86400;
-    $max_time = time() + (86400 * $config['default_poll_duration']);
+    // Min/Max archive date
+    $min_expiry_time = $pollService->minExpiryDate();
+    $max_expiry_time = $pollService->maxExpiryDate();
 
     // The poll format is AUTRE (other)
     if ($_SESSION['form']->format !== 'A') {
@@ -67,8 +68,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
 
         // Define expiration date
         $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
-        $min_time = time() + (24 * 60 * 60);
-        $max_time = time() + (86400 * $config['default_poll_duration']);
+        $min_expiry_time = time() + (24 * 60 * 60);
 
         if (!empty($enddate)) {
             $registredate = explode('/', $enddate);
@@ -76,10 +76,10 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
             if (is_array($registredate) && count($registredate) == 3) {
                 $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
 
-                if ($time < $min_time) {
-                    $_SESSION['form']->end_date = $min_time;
-                } elseif ($max_time < $time) {
-                    $_SESSION['form']->end_date = $max_time;
+                if ($time < $min_expiry_time) {
+                    $_SESSION['form']->end_date = $min_expiry_time;
+                } elseif ($max_expiry_time < $time) {
+                    $_SESSION['form']->end_date = $max_expiry_time;
                 } else {
                     $_SESSION['form']->end_date = $time;
                 }
@@ -88,7 +88,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
 
         if (empty($_SESSION['form']->end_date)) {
             // By default, expiration date is 6 months after last day
-            $_SESSION['form']->end_date = $max_time;
+            $_SESSION['form']->end_date = $max_expiry_time;
         }
 
         // Insert poll in database
@@ -145,7 +145,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         }
 
         // Expiration date is initialised with config parameter. Value will be modified in step 4 if user has defined an other date
-        $_SESSION['form']->end_date = time() + (86400 * $config['default_poll_duration']); //60 sec * 60 min * 24 hours * config
+        $_SESSION['form']->end_date = $max_expiry_time; //60 sec * 60 min * 24 hours * config
 
         // Summary
         $summary = '<ol>';
@@ -180,7 +180,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         }
         $summary .= '</ol>';
 
-        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_time)); //textual date
+        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_expiry_time)); //textual date
 
         echo '
     <form name="formulaire" action="' . Utils::get_server_name() . 'create_classic_poll.php" method="POST" class="form-horizontal" role="form">
