@@ -48,7 +48,9 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
     $smarty->display('error.tpl');
 
 } else {
-    $min_time = time() + 86400;
+    // Min/Max archive date
+    $min_expiry_time = $pollService->minExpiryDate();
+    $max_expiry_time = $pollService->maxExpiryDate();
 
     // The poll format is DATE
     if ($_SESSION['form']->format !== 'D') {
@@ -62,10 +64,6 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         // Define expiration date
         $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
 
-        // Max archive date
-        $_SESSION['form']->sortChoices();
-        $last_date = $_SESSION['form']->lastChoice()->getName();
-        $max_archiving_date = $last_date + (86400 * $config['default_poll_duration']);
 
         if (!empty($enddate)) {
             $registredate = explode('/', $enddate);
@@ -73,10 +71,10 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
             if (is_array($registredate) && count($registredate) == 3) {
                 $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
 
-                if ($time < $min_time) {
-                    $_SESSION['form']->end_date = $min_time;
-                } elseif ($max_archiving_date < $time) {
-                    $_SESSION['form']->end_date = $max_archiving_date;
+                if ($time < $min_expiry_time) {
+                    $_SESSION['form']->end_date = $min_expiry_time;
+                } elseif ($max_expiry_time < $time) {
+                    $_SESSION['form']->end_date = $max_expiry_time;
                 } else {
                     $_SESSION['form']->end_date = $time;
                 }
@@ -85,7 +83,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 
         if (empty($_SESSION['form']->end_date)) {
             // By default, expiration date is 6 months after last day
-            $_SESSION['form']->end_date = $max_archiving_date;
+            $_SESSION['form']->end_date = $max_expiry_time;
         }
 
         // Insert poll in database
@@ -156,10 +154,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         Utils::print_header ( __('Step 3', 'Removal date and confirmation (3 on 3)') );
         bandeau_titre(__('Step 3', 'Removal date and confirmation (3 on 3)'));
 
-        $_SESSION['form']->sortChoices();
-        $last_date = $_SESSION['form']->lastChoice()->getName();
-        $max_archiving_date = $last_date + (86400 * $config['default_poll_duration']);
-        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_archiving_date)); // textual date
+        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_expiry_time)); // textual date
 
         // Summary
         $summary = '<ul>';
@@ -187,7 +182,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
                 '. $summary .'
             </div>
             <div class="alert alert-info clearfix">
-                <p>' . __('Step 3', 'Your poll will automatically be archived') . ' ' . $config['default_poll_duration'] . ' ' . __('Generic', 'days') . ' ' .__('Step 3', 'after the last date of your poll.') . '
+                <p>' . __f('Step 3', 'Your poll will be automatically archived in %d days.', $config['default_poll_duration']) . '
                 <br />' . __('Step 3', 'You can set a closer archiving date for it.') .'</p>
                 <div class="form-group">
                     <label for="enddate" class="col-sm-5 control-label">'. __('Step 3', 'Archiving date:') .'</label>
