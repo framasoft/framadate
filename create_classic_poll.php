@@ -68,7 +68,6 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
 
         // Define expiration date
         $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
-        $min_expiry_time = time() + (24 * 60 * 60);
 
         if (!empty($enddate)) {
             $registredate = explode('/', $enddate);
@@ -145,7 +144,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         }
 
         // Expiration date is initialised with config parameter. Value will be modified in step 4 if user has defined an other date
-        $_SESSION['form']->end_date = $max_expiry_time; //60 sec * 60 min * 24 hours * config
+        $_SESSION['form']->end_date = $max_expiry_time;
 
         // Summary
         $summary = '<ol>';
