@@ -22,6 +22,7 @@ use Framadate\Migration\From_0_8_to_0_9_Migration;
 use Framadate\Migration\AddColumn_receiveNewComments_For_0_9;
 use Framadate\Migration\AddColumn_uniqId_In_vote_For_0_9;
 use Framadate\Migration\AddColumn_hidden_In_poll_For_0_9;
+use Framadate\Migration\Alter_Comment_table_for_name_length;
 use Framadate\Migration\Migration;
 use Framadate\Utils;
 
@@ -36,6 +37,7 @@ $migrations = [
     new AddColumn_receiveNewComments_For_0_9(),
     new AddColumn_uniqId_In_vote_For_0_9(),
     new AddColumn_hidden_In_poll_For_0_9(),
+    new Alter_Comment_table_for_name_length(),
 ];
 // ---------------------------------------
 
