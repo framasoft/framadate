@@ -136,23 +136,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-8">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="hidden" {if $poll_hidden}checked{/if}
-                                    id="hidden">
-                                    {__('Step 1', 'Only the poll maker can see the poll\'s results')}
-                                </label>
-                            </div>
-                            <div id="hiddenWithBadEditionModeError" class="alert alert-danger hidden">
-                                <p>
-                                    {__('Error', 'You can\'t create a poll with hidden results with the following edition option:')}"{__('Step 1', 'All voters can modify any vote')}"
-                                </p>
-                            </div>
+                {/if}
+
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="hidden" {if $poll_hidden}checked{/if}
+                                id="hidden">
+                                {__('Step 1', 'Only the poll maker can see the poll\'s results')}
+                            </label>
+                        </div>
+                        <div id="hiddenWithBadEditionModeError" class="alert alert-danger hidden">
+                            <p>
+                                {__('Error', 'You can\'t create a poll with hidden results with the following edition option:')}"{__('Step 1', 'All voters can modify any vote')}"
+                            </p>
                         </div>
                     </div>
-                {/if}
+                </div>
+
 
 
 
