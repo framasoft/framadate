@@ -65,15 +65,7 @@ class PollService {
     }
 
     function allSlotsByPoll($poll) {
-        $slots = $this->slotRepository->listByPollId($poll->id);
-        if ($poll->format == 'D') {
-            uasort($slots, function ($a, $b) {
-                return $a->title > $b->title;
-            });
-            return $slots;
-        } else {
-            return $slots;
-        }
+        return $this->slotRepository->listByPollId($poll->id);
     }
 
     public function updateVote($poll_id, $vote_id, $name, $choices) {
@@ -178,6 +170,21 @@ class PollService {
 
     private function random($length) {
         return Token::getToken($length);
+    }
+
+    /**
+     * @return int The max timestamp allowed for expiry date
+     */
+    public function maxExpiryDate() {
+        global $config;
+        return time() + (86400 * $config['default_poll_duration']);
+    }
+
+    /**
+     * @return int The min timestamp allowed for expiry date
+     */
+    public function minExpiryDate() {
+        return time() + 86400;
     }
 
 }
