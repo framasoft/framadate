@@ -20,10 +20,9 @@ $(document).ready(function () {
 
     $("#poll_form").submit(function (event) {
         var name = $("#name").val();
-        var regexContent = $("#parameter_name_regex").text().split("/");
-        var regex = new RegExp(regexContent[1], regexContent[2]);
+        name = name.trim();
 
-        if (name.length == 0 || !regex.test(name)) {
+        if (name.length == 0) {
             event.preventDefault();
             var newMessage = $("#nameErrorMessage").clone();
             $("#message-container").empty();

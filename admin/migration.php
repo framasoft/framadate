@@ -24,7 +24,9 @@ use Framadate\Migration\AddColumn_uniqId_In_vote_For_0_9;
 use Framadate\Migration\AddColumn_hidden_In_poll_For_0_9;
 use Framadate\Migration\Alter_Comment_table_for_name_length;
 use Framadate\Migration\Alter_Comment_table_adding_date;
+use Framadate\Migration\Generate_uniqId_for_old_votes;
 use Framadate\Migration\Migration;
+use Framadate\Migration\RPadVotes_from_0_8;
 use Framadate\Utils;
 
 include_once __DIR__ . '/../app/inc/init.php';
@@ -38,8 +40,10 @@ $migrations = [
     new AddColumn_receiveNewComments_For_0_9(),
     new AddColumn_uniqId_In_vote_For_0_9(),
     new AddColumn_hidden_In_poll_For_0_9(),
+    new Generate_uniqId_for_old_votes(),
+    new RPadVotes_from_0_8(),
     new Alter_Comment_table_for_name_length(),
-    new Alter_Comment_table_adding_date(),
+    new Alter_Comment_table_adding_date()
 ];
 // ---------------------------------------
 
@@ -60,8 +64,8 @@ CREATE TABLE IF NOT EXISTS `' . $prefixedMigrationTable . '` (
   DEFAULT CHARSET = utf8;');
 }
 
-$selectStmt = $pdo->prepare('SELECT id FROM ' . $prefixedMigrationTable . ' WHERE name=?');
-$insertStmt = $pdo->prepare('INSERT INTO ' . $prefixedMigrationTable . ' (name) VALUES (?)');
+$selectStmt = $pdo->prepare('SELECT id FROM `' . $prefixedMigrationTable . '` WHERE name=?');
+$insertStmt = $pdo->prepare('INSERT INTO `' . $prefixedMigrationTable . '` (name) VALUES (?)');
 $countSucceeded = 0;
 $countFailed = 0;
 $countSkipped = 0;

@@ -36,7 +36,8 @@
     "Choice": "Choix",
     "Link": "Lien",
     "Search": "Chercher",
-    "Creation date:": "Date de création :"
+    "Creation date:": "Date de création :",
+    "ASTERISK": "*"
   },
   "Date": {
     "dd/mm/yyyy": "jj/mm/aaaa",
@@ -55,7 +56,7 @@
   "Homepage": {
     "Schedule an event": "Créer un sondage spécial dates",
     "Make a classic poll": "Créer un sondage classique",
-    "Where are my polls": "Où sont mes sondages"
+    "Where are my polls": "Où sont mes sondages ?"
   },
   "Maintenance": {
     "The application": "L'application",
@@ -262,6 +263,7 @@
     "Migration": "Migration",
     "Purge": "Purge",
     "Logs": "Historique",
+    "Installation": "Installation",
     "Poll ID": "ID sondage",
     "Format": "Format",
     "Title": "Titre",
@@ -292,8 +294,8 @@
     "Polls sent": "Sondages envoyés"
   },
   "Mail": {
-    "Poll's participation": "Participation au sondage",
-    "Notification of poll": "Notification d'un sondage",
+    "Poll's participation: %s": "Participation au sondage : %s",
+    "Notification of poll: %s": "Notification d'un sondage : %s",
     "filled a vote.\nYou can find your poll at the link": "vient de voter.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",
     "updated a vote.\nYou can find your poll at the link": "vient de mettre à jour un vote.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",
     "wrote a comment.\nYou can find your poll at the link": "vient de rédiger un commentaire.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",
@@ -309,6 +311,21 @@
     "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "Ce message ne doit PAS être diffusé aux sondés. Il est réservé à l'auteur du sondage.<br/><br/>Vous pouvez modifier ce sondage à l'adresse suivante ",
     "Author's message": "Réservé à l'auteur",
     "For sending to the polled users": "Pour diffusion aux sondés"
+  },
+  "Installation": {
+    "AppMail": "Adresse mail de l'application",
+    "AppName": "Nom de l'application",
+    "CleanUrl": "URL propres",
+    "Database": "Base de données",
+    "DbConnectionString": "Chaîne de connexion",
+    "DbPassword": "Mot de passe",
+    "DbPrefix": "Préfixe",
+    "DbUser": "Utilisateur",
+    "DefaultLanguage": "Langue par défaut",
+    "General": "Général",
+    "Install": "Installer",
+    "MigrationTable": "Table de migration",
+    "ResponseMail": "Mail de réponse"
   },
   "Error": {
     "Error!": "Erreur !",
@@ -334,6 +351,8 @@
     "Adding vote failed": "Ajout d'un vote échoué",
     "Comment failed": "Commentaire échoué",
     "You can't create a poll with hidden results with the following edition option:": "Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
-    "Failed to delete column": "Échec de la suppression de colonne"
+    "Failed to delete column": "Échec de la suppression de colonne",
+    "MISSING_VALUES": "Il manque des valeurs",
+    "CANT_CONNECT_TO_DATABASE": "Impossible de se connecter à la base de données"
   }
 }

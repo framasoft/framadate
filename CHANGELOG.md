@@ -19,6 +19,7 @@
     - Amélioration : Le nom de l'auteur et la date d'expiration sont modifiables
     - Amélioration : Le nom de vote est modifiable
     - Amélioration : Affichage du comptage des "Si nécessaire" entre parenthèses
+    - Amélioration : Page d'installation
     - Fix : Purge en 2 étapes → 1. Verrouillage du sondage → 2. 60 jours plus tard suppression du sondage
     - Fix : Date d'expiration qui devient nulle quand on ajoute une colonne
     - Fix : clic/focus sur oui/non/si nécessaire → retour à gauche de la barre de scroll sur Chromium

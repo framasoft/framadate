@@ -26,11 +26,12 @@ class SuperAdminService {
      */
     public function findAllPolls($search, $page, $limit) {
         $start = $page * $limit;
-        $polls = $this->pollRepository->findAll($search);
+        $polls = $this->pollRepository->findAll($search, $start, $limit);
+        $count = $this->pollRepository->count($search);
         $total = $this->pollRepository->count();
 
 
-        return ['polls' => array_slice($polls, $start, $limit), 'count' => count($polls), 'total' => $total];
+        return ['polls' => $polls, 'count' => $count, 'total' => $total];
     }
 
 }

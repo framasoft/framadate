@@ -192,19 +192,23 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#showChart').on('click', function() {
-                $('#showChart').after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>");
-                $('#showChart').remove();
+                $('#showChart')
+                        .after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>")
+                        .remove();
                 
                 var resIfneedbe = [];
                 var resYes = [];
             
-                $('#addition').find('td').each(function (colIndex) {
-                    if($(this).find('.inb-count').text()!='' && $(this).find('.inb-count').text()!=undefined) {
+                $('#addition').find('td').each(function () {
+                    var inbCountText = $(this).find('.inb-count').text();
+                    if(inbCountText != '' && inbCountText != undefined) {
                         resIfneedbe.push($(this).find('.inb-count').html())
                     } else {
                         resIfneedbe.push(0);
                     }
-                    if($(this).find('.yes-count').text()!='' && $(this).find('.yes-count').text()!=undefined) {
+
+                    var yesCountText = $(this).find('.yes-count').text();
+                    if(yesCountText != '' && yesCountText != undefined) {
                         resYes.push($(this).find('.yes-count').html())
                     } else {
                         resYes.push(0);
@@ -216,8 +220,8 @@
                 {/foreach}
                 ];
 
-                resIfneedbe.shift(); resIfneedbe.pop();
-                resYes.shift(); resYes.pop();
+                resIfneedbe.shift();
+                resYes.shift();
 
                 var barChartData = {
                     labels : cols,

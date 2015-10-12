@@ -53,7 +53,7 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                {$count} / {$total} {__('Admin', 'polls in the database at this time')}
+                {if $count == $total}{$count}{else}{$count} / {$total}{/if} {__('Admin', 'polls in the database at this time')}
             </div>
 
             <table class="table table-bordered table-polls">

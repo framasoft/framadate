@@ -67,7 +67,7 @@ function sendUpdateNotification($poll, $mailService, $type) {
 
     if ($poll->receiveNewVotes) {
 
-        $subject = '[' . NOMAPPLICATION . '] ' . __('Mail', 'Notification of poll') . ' : ' . $poll->title;
+        $subject = '[' . NOMAPPLICATION . '] ' . __f('Mail', 'Notification of poll: %s', $poll->title);
 
         $message = '';
         switch ($type) {
@@ -394,12 +394,12 @@ if (isset($_GET['add_slot'])) {
 if (isset($_POST['confirm_add_slot'])) {
     if ($poll->format === 'D') {
         $newdate = strip_tags($_POST['newdate']);
-        $newmoment = strip_tags($_POST['newmoment']);
+        $newmoment = str_replace(',', '-', strip_tags($_POST['newmoment']));
 
         $ex = explode('/', $newdate);
         $result = $adminPollService->addDateSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
     } else {
-        $newslot = strip_tags($_POST['choice']);
+        $newslot = str_replace(',', '-', strip_tags($_POST['choice']));
         $result = $adminPollService->addClassicSlot($poll_id, $newslot);
     }
 
@@ -431,6 +431,5 @@ $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 $smarty->assign('admin', true);
 $smarty->assign('hidden', false);
-$smarty->assign('parameter_name_regex', NAME_REGEX);
 
 $smarty->display('studs.tpl');

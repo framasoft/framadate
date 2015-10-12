@@ -66,7 +66,7 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
 
     if ($poll->receiveNewVotes) {
 
-        $subject = '[' . NOMAPPLICATION . '] ' . __('Mail', 'Poll\'s participation') . ' : ' . $poll->title;
+        $subject = '[' . NOMAPPLICATION . '] ' . __f('Mail', 'Poll\'s participation: %s', $poll->title);
 
         $message = $name . ' ';
         switch ($type) {
@@ -80,7 +80,8 @@ function sendUpdateNotification($poll, $mailService, $name, $type) {
                 $message .= __('Mail', "wrote a comment.\nYou can find your poll at the link") . " :\n\n";
                 break;
         }
-        $message .= Utils::getUrlSondage($poll->admin_id, true) . "\n\n";
+        $urlSondage = Utils::getUrlSondage($poll->admin_id, true);
+        $message .= '<a href="' . $urlSondage . '">' . $urlSondage . '</a>' . "\n\n";
 
         $messageTypeKey = $type . '-' . $poll->id;
         $mailService->send($poll->admin_mail, $subject, $message, $messageTypeKey);
@@ -215,6 +216,5 @@ $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 $smarty->assign('admin', false);
 $smarty->assign('hidden', $poll->hidden);
-$smarty->assign('parameter_name_regex', NAME_REGEX);
 
 $smarty->display('studs.tpl');

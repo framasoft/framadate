@@ -17,7 +17,7 @@
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $id=>$moment}
                             <td headers="M{$slot@key} D{$headersDCount} H{$headersDCount}">
-                                <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->day|cat:'@'|cat:$moment}"
+                                <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->day|cat:'@'|cat:urlencode($moment)}"
                                    class="btn btn-link btn-sm"
                                    title="{__('adminstuds', 'Remove the column')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                     <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
@@ -247,20 +247,23 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#showChart').on('click', function() {
-                $('#showChart').after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>");
-                $('#showChart').remove();
+                $('#showChart')
+                        .after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>")
+                        .remove();
                                
                 var resIfneedbe = [];
                 var resYes = [];
             
-                $('#addition').find('td').each(function (colIndex) {
-                    if($(this).find('.inb-count').text()!='') {
-                        resIfneedbe.push($(this).find('.inb-count').text())
+                $('#addition').find('td').each(function () {
+                    var inbCountText = $(this).find('.inb-count').text();
+                    if(inbCountText != '' && inbCountText != undefined) {
+                        resIfneedbe.push(inbCountText)
                     } else {
                         resIfneedbe.push(0);
                     }
-                    if($(this).find('.yes-count').text()!='') {
-                        resYes.push($(this).find('.yes-count').text())
+                    var yesCountText = $(this).find('.yes-count').text();
+                    if(yesCountText != '' && yesCountText != undefined) {
+                        resYes.push(yesCountText)
                     } else {
                         resYes.push(0);
                     }
@@ -273,8 +276,8 @@
                 {/foreach}
                 ];
 
-                resIfneedbe.shift(); resIfneedbe.pop();
-                resYes.shift(); resYes.pop();
+                resIfneedbe.shift();
+                resYes.shift();
 
                 var barChartData = {
                     labels : cols,

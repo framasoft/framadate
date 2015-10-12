@@ -166,7 +166,9 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
 
         foreach ($sujets as $sujet) {
             $newSlots = $this->transformSujetToSlot($sujet);
-            $slots = array_merge($slots, $newSlots);
+            foreach ($newSlots as $newSlot) {
+                $slots[] = $newSlot;
+            }
         }
 
         $prepared = $pdo->prepare('INSERT INTO ' . Utils::table('slot') . ' (`poll_id`, `title`, `moments`) VALUE (?,?,?)');

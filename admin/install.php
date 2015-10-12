@@ -17,15 +17,32 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-// FRAMADATE version
-const VERSION = '0.9';
+use Framadate\Services\InstallService;
+use Framadate\Utils;
 
-// Regex
-const POLL_REGEX = '/^[a-z0-9]+$/i';
-const CHOICE_REGEX = '/^[012]$/';
-const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/i';
-const BOOLEAN_TRUE_REGEX = '/^(on|true|1)$/i';
-const EDITABLE_CHOICE_REGEX = '/^[0-2]$/';
+require_once '../app/inc/init.php';
 
-// CSRF (300s = 5min)
-const TOKEN_TIME = 300;
+if (is_file(CONF_FILENAME)) {
+    header(('Location: ' . Utils::get_server_name()));
+    exit;
+}
+
+$error = null;
+$installService = new InstallService();
+
+if (!empty($_POST)) {
+    $installService->updateFields($_POST);
+    $result = $installService->install($smarty);
+
+    if ($result['status'] === 'OK') {
+        header(('Location: ' . Utils::get_server_name() . 'admin/migration.php'));
+        exit;
+    } else {
+        $error = __('Error', $result['code']);
+    }
+}
+
+$smarty->assign('error', $error);
+$smarty->assign('title', __('Admin', 'Installation'));
+$smarty->assign('fields', $installService->getFields());
+$smarty->display('admin/install.tpl');

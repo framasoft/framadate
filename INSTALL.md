@@ -1,8 +1,4 @@
-# Paramètres
-
-Le fichier `app/inc/config.template.php` contient le paramétrage par défaut de
-l'application Framadate. Pour personnaliser votre installation, copiez
-ce fichier sous le nom `app/inc/config.php` et modifiez ce dernier.
+# Pré-installation
 
 ## Base de données
 
@@ -33,13 +29,17 @@ Les tables de l'applications sont décrites plus loin dans ce fichier dans la pa
     GRANT ALL PRIVILEGES ON `framadate_db`.* TO 'framadate_user'@'localhost';
 ```
 
-### Création des tables
+# Installation
 
-Pour lancer la création des tables, rendez-vous sur la page `admin/` puis allez dans la partie `Migration`.
+Pour installer l'application Framadate, rendez-vous sur la page http://monsite/admin/install.php et remplisez le formulaire.
 
-Cette page est chargée :
-* soit de créer les tables si c'est votre première installation ;
-* soit de mettre à jour l'application si vous avez installé une nouvelle version.
+Une fois le formulaire rempli et envoyé, un script va générer le fichier `app/inc/config.php` puis vous rediriger vers la page de migration.
+
+La page de migration s'occupe :
+- D'installer toute la base de données (tables + données d'exemple)
+- De mettre à jour la base de données lors des mises à jour de l'applciation.
+
+! Attention, le chargement de la page de migration peu prendre du temps étant donné qu'elle applique toutes les mises à jours requises !
 
 # Accès à la page administrateur
 

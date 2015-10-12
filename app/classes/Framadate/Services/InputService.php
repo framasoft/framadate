@@ -55,7 +55,7 @@ class InputService {
     }
 
     public function filterName($name) {
-        $filtered = filter_var($name, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => NAME_REGEX]]);
+        $filtered = trim($name);
         return $this->returnIfNotBlank($filtered);
     }
 

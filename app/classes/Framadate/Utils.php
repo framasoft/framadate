@@ -28,7 +28,7 @@ class Utils {
         $dirname = dirname($_SERVER['SCRIPT_NAME']);
         $dirname = $dirname === '\\' ? '/' : $dirname . '/';
         $dirname = str_replace('/admin', '', $dirname);
-        $server_name = $_SERVER['SERVER_NAME'] . $port . $dirname;
+        $server_name = (defined('APP_URL') ? APP_URL : $_SERVER['SERVER_NAME']) . $port . $dirname;
 
         return $scheme . '://' . preg_replace('#//+#', '/', $server_name);
     }
@@ -75,7 +75,7 @@ class Utils {
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.' . $locale . '.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/core.js"></script>';
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/nav/nav.js")) {
+        if (is_file($_SERVER['DOCUMENT_ROOT'] . "/nav/nav.js")) {
             echo '<script src="/nav/nav.js" id="nav_js" type="text/javascript" charset="utf-8"></script><!-- /Framanav -->';
         }
 
@@ -112,8 +112,7 @@ class Utils {
             }
             if ($vote_id != '') {
                 $url .= '/vote/' . $vote_id . "#edit";
-            }
-            if ($action != null && $action_value != null) {
+            } elseif ($action != null && $action_value != null) {
                 $url .= '/action/' . $action . '/' . $action_value;
             }
         } else {
@@ -124,8 +123,7 @@ class Utils {
             }
             if ($vote_id != '') {
                 $url .= '&vote=' . $vote_id . "#edit";
-            }
-            if ($action != null && $action_value != null)  {
+            } elseif ($action != null && $action_value != null)  {
                 $url .= '&' . $action . "=" . $action_value;
             }
         }

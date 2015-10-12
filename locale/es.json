@@ -36,7 +36,8 @@
         "Choice": "Opciòn",
         "Link": "ES_Lien",
         "Search": "Búsqueda",
-        "Creation date:": "ES_Date de création :"
+        "Creation date:": "ES_Date de création :",
+        "ASTERISK": "*"
     },
     "Date": {
         "dd/mm/yyyy": "ES_jj/mm/aaaa",
@@ -55,7 +56,7 @@
     "Homepage": {
         "Schedule an event": "Encuesta para planificar un evento",
         "Make a classic poll": "ES_Créer un sondage classique",
-        "Where are my polls": "ES_Où sont mes sondages"
+        "Where are my polls": "ES_Où sont mes sondages ?"
     },
     "Maintenance": {
         "The application": "ES_L'application",
@@ -139,7 +140,7 @@
         "The best choice at this time is:": "ES_Le meilleur choix pour l'instant est :",
         "The bests choices at this time are:": "ES_Les meilleurs choix pour l'instant sont :",
         "Scroll to the left": "ES_Faire défiler à gauche",
-        "Scroll to the right": "ES_Faire défiler à droite"
+        "Scroll to the right": "ES_Faire défiler à droite",
         "polled user": "ES_votant",
         "polled users": "ES_votants",
         "Display the chart of the results": "ES_Afficher le graphique des résultats",
@@ -262,6 +263,7 @@
         "Migration": "ES_Migration",
         "Purge": "ES_Purge",
         "Logs": "Histórico",
+        "Installation": "Instalación",
         "Poll ID": "ES_ID sondage",
         "Format": "ES_Format",
         "Title": "ES_Titre",
@@ -292,8 +294,8 @@
         "Polls sent": "ES_Sondages envoyés"
     },
     "Mail": {
-        "Poll's participation": "Participación Encuesta",
-        "Notification of poll": "Notificación de la encuesta",
+        "Poll's participation: %s": "Participación Encuesta: %s",
+        "Notification of poll: %s": "Notificación de la encuesta: %s",
         "filled a vote.\nYou can find your poll at the link": "ES_vient de voter.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",
         "updated a vote.\nYou can find your poll at the link": "ES_vient de mettre à jour un vote.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",
         "wrote a comment.\nYou can find your poll at the link": "ES_vient de rédiger un commentaire.<br/>Vous pouvez retrouver votre sondage avec le lien suivant",
@@ -334,6 +336,8 @@
         "Adding vote failed": "ES_Ajout d'un vote échoué",
         "Comment failed": "ES_Commentaire échoué",
         "You can't create a poll with hidden results with the following edition option:": "ES_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
-        "Failed to delete column": "Error al eliminar la columna"
+        "Failed to delete column": "Error al eliminar la columna",
+        "MISSING_VALUES": "Los valores perdidos",
+        "CANT_CONNECT_TO_DATABASE": "No se puede conectar a la base de datos"
     }
 }
