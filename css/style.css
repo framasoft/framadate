@@ -47,6 +47,13 @@ div.comment{
     padding-left: 14px;
 }
 
+.comment_date {
+    font-style: italic;
+    font-size: 12px;
+    letter-spacing: -0.7px;
+    color: grey;
+}
+
 /* Règles générales */
 
 a:focus { /* a11y */

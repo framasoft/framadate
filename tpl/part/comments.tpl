@@ -10,6 +10,7 @@
                 {if $admin && !$expired}
                     <button type="submit" name="delete_comment" value="{$comment->id|html}" class="btn btn-link" title="{__('Comments', 'Remove the comment')}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span></button>
                 {/if}
+                <span class="comment_date">{$comment->date|date_format:$date_format['txt_datetime_short']}</span>
                 <b>{$comment->name|html}</b>&nbsp;
                 <span class="comment">{$comment->comment|escape|nl2br}</span>
             </div>
