@@ -37,6 +37,7 @@ $date_format['txt_short'] = __('Date', 'SHORT'); // radio title
 $date_format['txt_day'] = __('Date', 'DAY');
 $date_format['txt_date'] = __('Date', 'DATE');
 $date_format['txt_month_year'] = __('Date', 'MONTH_YEAR');
+$date_format['txt_datetime_short'] = __('Date', 'DATETIME');
 if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') { //%e can't be used on Windows platform, use %#d instead
     foreach ($date_format as $k => $v) {
         $date_format[$k] = preg_replace('#(?<!%)((?:%%)*)%e#', '\1%#d', $v); //replace %e by %#d for windows

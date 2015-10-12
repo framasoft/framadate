@@ -45,7 +45,8 @@
     "SHORT": "%A %e %B %Y",
     "DAY": "%a %e",
     "DATE": "%Y-%m-%d",
-    "MONTH_YEAR": "%B %Y"
+    "MONTH_YEAR": "%B %Y",
+    "DATETIME": "%m/%d/%Y %H:%M"
   },
   "Language selector": {
     "Select the language": "Select the language",

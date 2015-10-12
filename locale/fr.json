@@ -45,7 +45,8 @@
     "SHORT": "%A %e %B %Y",
     "DAY": "%a %e",
     "DATE": "%Y-%m-%d",
-    "MONTH_YEAR": "%B %Y"
+    "MONTH_YEAR": "%B %Y",
+    "DATETIME": "%d-%m-%Y %H:%M"
   },
   "Language selector": {
     "Select the language": "Choisir la langue",
@@ -274,7 +275,7 @@
     "Deleted the poll": "Supprimer le sondage",
     "Summary": "Résumé",
     "Success": "Réussite",
-    "Fail": "Échèc",
+    "Fail": "Échec",
     "Nothing": "Rien",
     "Succeeded:": "Réussit:",
     "Failed:": "Échoué:",
