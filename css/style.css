@@ -353,10 +353,24 @@ table.results .btn-link.btn-sm {
     color: #AD220F;
 }
 
+ .yes div label.check {
+    color: #fff;
+    background-color: #768745;
+    border-color: #67753C;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
 .yes input[type="radio"]:checked + label { /* =.btn-success.active */
     color: #fff;
     background-color: #768745;
     border-color: #67753C;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.ifneedbe div label.check { 
+    color: #fff;
+    background-color: #CF9800;
+    border-color: #BD8A00;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
@@ -367,11 +381,22 @@ table.results .btn-link.btn-sm {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
+.no div label.check { 
+    color: #fff;
+    background-color: #BF2511;
+    border-color: #AD220F;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
 .no input[type="radio"]:checked + label { /* =.btn-danger.active */
     color: #fff;
     background-color: #BF2511;
     border-color: #AD220F;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.radiohidden {
+    display: none;
 }
 
 /* Button and results "No" */
@@ -477,4 +502,8 @@ table.results > tbody > tr:hover > td .glyphicon {
 /* Admin */
 #poll_search {
     cursor: pointer;
+}
+
+.form_inputname {
+	min-width:60px;
 }

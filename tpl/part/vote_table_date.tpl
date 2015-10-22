@@ -94,33 +94,36 @@
                         <div class="input-group input-group-sm" id="edit">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
-                            <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
+                            <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control form_inputname" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                         </div>
                     </td>
 
                     {foreach $vote->choices as $k=>$choice}
 
                         <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$headersH[$k]}">
-                            <ul class="list-unstyled choice">
-                                <li class="yes">
-                                    <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice==2}checked {/if}/>
-                                    <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{__('Poll results', 'Vote yes for')|html} {$slots_raw[$k]}">
-                                        <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
-                                    </label>
-                                </li>
-                                <li class="ifneedbe">
-                                    <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice==1}checked {/if}/>
-                                    <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slots_raw[$k]}">
-                                        (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
-                                    </label>
-                                </li>
-                                <li class="no">
-                                    <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice==0}checked {/if}/>
-                                    <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{__('Poll results', 'Vote no for')|html} {$slots_raw[$k]}">
-                                        <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
-                                    </label>
-                                </li>
-                            </ul>
+								<input class="radiohidden" type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" />
+								<input class="radiohidden" type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" />
+								<input class="radiohidden" type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" checked/>
+                                <ul class="list-unstyled choice">
+                                    <li class="yes">
+                                        <div id="y-display-{$k}" data-value="{$k}" data-type="y"/>
+                                        <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                            <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
+                                        </label>
+                                    </li>
+                                    <li class="ifneedbe">
+                                        <div id="i-display-{$k}" data-value="{$k}"  data-type="i"/>
+                                        <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                            (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
+                                        </label>
+                                    </li>
+                                    <li class="no">
+                                        <div id="n-display-{$k}" data-value="{$k}"  data-type="n"/>
+                                        <label class="btn btn-default btn-xs startunchecked" for="n-choice-{$k}" title="{__('Poll results', 'Vote no for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                            <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
+                                        </label>
+                                    </li>
+                                </ul>
                         </td>
                     {/foreach}
                     <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
@@ -179,21 +182,24 @@
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $moment}
                             <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$headersH[$i]}">
+								<input class="radiohidden" type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
+								<input class="radiohidden" type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1" />
+								<input class="radiohidden" type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0" checked/>
                                 <ul class="list-unstyled choice">
                                     <li class="yes">
-                                        <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
+                                        <div id="y-display-{$i}" data-value="{$i}" data-type="y"/>
                                         <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
-                                        <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1" />
+                                        <div id="i-display-{$i}" data-value="{$i}"  data-type="i"/>
                                         <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                         </label>
                                     </li>
                                     <li class="no">
-                                        <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0" checked/>
+                                        <div id="n-display-{$i}" data-value="{$i}"  data-type="n"/>
                                         <label class="btn btn-default btn-xs startunchecked" for="n-choice-{$i}" title="{__('Poll results', 'Vote no for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                         </label>
