@@ -44,4 +44,36 @@ $(document).ready(function () {
       $(this).next().removeClass('startunchecked');
     });
 
+    var form = $('#comment_form');
+
+    form.submit(function(event) {
+        event.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: form.attr('action'),
+            data: form.serialize(),
+            dataType: 'json',
+            success: function(data)
+            {
+                $('#comment').val("");
+
+                if (data.result) {
+                    $("#comments_list").replaceWith(data.comments);
+                    var lastComment = $("#comments_list").find("div.comment").last();
+                    lastComment.effect('highlight', {color: 'green'}, 401);
+                    $('html, body').animate({
+                        scrollTop: $("#comments_alerts").offset().top
+                    }, 750);
+                } else {
+                    var newMessage = $("#genericErrorTemplate").clone();
+                    newMessage.find(".contents").text(data.message.message);
+                    $("#comments_alerts").empty().append(newMessage);
+                }
+            }
+        });
+
+        return false;
+    });
+
 });

@@ -1,9 +1,12 @@
 {extends file='page.tpl'}
 
 {block name="header"}
+    <script src="{"js/jquery-ui.min.js"|resource}" type="text/javascript"></script>
     <script src="{"js/Chart.min.js"|resource}" type="text/javascript"></script>
     <script src="{"js/Chart.StackedBar.js"|resource}" type="text/javascript"></script>
     <script src="{"js/app/studs.js"|resource}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{'css/jquery-ui.min.css'|resource}">
+
 {/block}
 
 {block name=main}
@@ -15,6 +18,7 @@
         {/if}
     </div>
     <div id="nameErrorMessage" class="hidden alert alert-dismissible alert-danger hidden-print" role="alert">{__('Error', 'The name is invalid.')}<button type="button" class="close" data-dismiss="alert" aria-label="{__('Generic', 'CLose')}"><span aria-hidden="true">&times;</span></button></div>
+    <div id="genericErrorTemplate" class="hidden alert alert-dismissible alert-danger hidden-print" role="alert"><span class="contents"></span><button type="button" class="close" data-dismiss="alert" aria-label="{__('Generic', 'CLose')}"><span aria-hidden="true">&times;</span></button></div>
 
 
     {* Global informations about the current poll *}
