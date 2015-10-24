@@ -5,11 +5,11 @@ body {
 }
 
 table {
-    page-break-after:always}
+    page-break-after:always;
 }
 
 table {
-  page-break-inside:auto
+  page-break-inside:auto;
 }
 
 tr {
