@@ -139,7 +139,7 @@ if (isset($_POST['update_poll_info'])) {
     // Update poll in database
     if ($updated && $adminPollService->updatePoll($poll)) {
         $message = new Message('success', __('adminstuds', 'Poll saved'));
-        $notificationService->sendUpdateNotification($poll, $notificationService::UPDATE_POLL);
+        $notificationService->sendUpdateNotification($poll, NotificationService::UPDATE_POLL);
     } else {
         $message = new Message('danger', __('Error', 'Failed to save poll'));
         $poll = $pollService->findById($poll_id);
@@ -304,7 +304,7 @@ if (isset($_POST['delete_poll'])) {
 if (isset($_POST['confirm_delete_poll'])) {
     if ($adminPollService->deleteEntirePoll($poll_id)) {
         $message = new Message('success', __('adminstuds', 'Poll fully deleted'));
-        $notificationService->sendUpdateNotification($poll, $notificationService::DELETED_POLL);
+        $notificationService->sendUpdateNotification($poll, NotificationService::DELETED_POLL);
     } else {
         $message = new Message('danger', __('Error', 'Failed to delete the poll'));
     }

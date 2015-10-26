@@ -96,7 +96,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             } else {
                 $message = new Message('success', __('studs', 'Update vote succeeded'));
             }
-            $notificationService->sendUpdateNotification($poll, $notificationService::UPDATE_VOTE, $name);
+            $notificationService->sendUpdateNotification($poll, NotificationService::UPDATE_VOTE, $name);
         } else {
             $message = new Message('danger', __('Error', 'Update vote failed'));
         }
@@ -122,7 +122,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             } else {
                 $message = new Message('success', __('studs', 'Adding the vote succeeded'));
             }
-            $notificationService->sendUpdateNotification($poll, $notificationService::ADD_VOTE, $name);
+            $notificationService->sendUpdateNotification($poll, NotificationService::ADD_VOTE, $name);
         } else {
             $message = new Message('danger', __('Error', 'Adding vote failed'));
         }
@@ -146,7 +146,7 @@ if (isset($_POST['add_comment'])) {
         $result = $pollService->addComment($poll_id, $name, $comment);
         if ($result) {
             $message = new Message('success', __('Comments', 'Comment added'));
-            $notificationService->sendUpdateNotification($poll, $notificationService::ADD_COMMENT, $name);
+            $notificationService->sendUpdateNotification($poll, NotificationService::ADD_COMMENT, $name);
         } else {
             $message = new Message('danger', __('Error', 'Comment failed'));
         }
