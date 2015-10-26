@@ -308,10 +308,14 @@ table.results .btn-link.btn-sm {
     min-width: 180px;
 }
 .yes input, .ifneedbe input,.no input {
-    position:absolute;
-    left:0;
-    margin-left:-15px;
-    margin-top:0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0px, 0px, 0px, 0px);
+    border: 0px none;
 }
 
 .choice input:focus + label {
