@@ -18,18 +18,19 @@
 
 $(document).ready(function () {
 
-    $("#poll_form").submit(function (event) {
-        var name = $("#name").val();
-        name = name.trim();
+    $('#poll_form').submit(function (event) {
+        var name = $('#name').val().trim();
 
         if (name.length == 0) {
             event.preventDefault();
-            var newMessage = $("#nameErrorMessage").clone();
-            $("#message-container").empty();
-            $("#message-container").append(newMessage);
-            newMessage.removeClass("hidden");
+            var newMessage = $('#nameErrorMessage').clone();
+            var messageContainer = $('#message-container');
+            messageContainer
+                .empty()
+                .append(newMessage);
+            newMessage.removeClass('hidden');
             $('html, body').animate({
-                scrollTop: $("#message-container").offset().top
+                scrollTop: messageContainer.offset().top
             }, 750);
         }
     });
@@ -42,6 +43,48 @@ $(document).ready(function () {
     });
     $('.no input').on('focus', function(){
       $(this).next().removeClass('startunchecked');
+    });
+
+    var form = $('#comment_form');
+    form.submit(function(event) {
+        event.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: form.attr('action'),
+            data: form.serialize(),
+            dataType: 'json',
+            success: function(data)
+            {
+                $('#comment').val('');
+
+                if (data.result) {
+                    $('#comments_list')
+                        .replaceWith(data.comments);
+                    var lastComment = $('#comments_list')
+                        .find('div.comment')
+                        .last();
+                    lastComment.effect('highlight', {color: 'green'}, 401);
+                    $('html, body').animate({
+                        scrollTop: lastComment.offset().top
+                    }, 750);
+                } else {
+                    var newMessage = $('#genericErrorTemplate').clone();
+                    newMessage
+                        .find('.contents')
+                        .text(data.message.message);
+                    var commentsAlert = $('#comments_alerts');
+                    commentsAlert
+                        .empty()
+                        .append(newMessage);
+                    $('html, body').animate({
+                        scrollTop: commentsAlert.offset().top
+                    }, 750);
+                }
+            }
+        });
+
+        return false;
     });
 
 });
