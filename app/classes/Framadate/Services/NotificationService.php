@@ -36,31 +36,33 @@ class NotificationService {
 
         if ($poll->receiveNewVotes) {
 
-            if (self::isParticipation($type))
+            if (self::isParticipation($type)) {
                 $translationString = 'Poll\'s participation: %s';
-            else
+            } else {
                 $translationString = 'Notification of poll: %s';
+            }
 
             $subject = '[' . NOMAPPLICATION . '] ' . __f('Mail', $translationString, $poll->title);
 
 
             $message = '';
-            if (self::isParticipation($type))
-                $message .= $name . ' ';
 
             $urlSondage = Utils::getUrlSondage($poll->admin_id, true);
             $link = '<a href="' . $urlSondage . '">' . $urlSondage . '</a>' . "\n\n";
 
             switch ($type) {
                 case self::UPDATE_VOTE:
+                    $message .= $name . ' ';
                     $message .= __('Mail', "updated a vote.\nYou can find your poll at the link") . " :\n\n";
                     $message .= $link;
                     break;
                 case self::ADD_VOTE:
+                    $message .= $name . ' ';
                     $message .= __('Mail', "filled a vote.\nYou can find your poll at the link") . " :\n\n";
                     $message .= $link;
                     break;
                 case self::ADD_COMMENT:
+                    $message .= $name . ' ';
                     $message .= __('Mail', "wrote a comment.\nYou can find your poll at the link") . " :\n\n";
                     $message .= $link;
                     break;
