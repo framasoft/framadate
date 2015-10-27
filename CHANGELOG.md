@@ -1,6 +1,19 @@
 # Changelog de framadate
 
-## Version 0.9 (... JosephK - OlivierPerez - Antonin)
+## Version 0.9.1 (JosephK - Olivier - Antonin - Michael - Paul)
+    - Fix : Correction des lenteurs de défilement
+    - Fix : Arrêt du défilement auto à gauche qu'on clique sur un choix
+    - Fix : Traductions Français/Anglais/Allemand
+    - Fix : Fin du tri automatique des colonnes (ex: 10h < 9h)
+    - Fix : Option à la création masquée dans certains cas
+    - Fix : Le nom peut maintenant contenir des caractères spéciaux (ex: , - ')
+    - Fix : Correction mineure de la doc d'installation
+    - Fix : Interdiction du caractère "," dans choix d'un vote
+    - Fix : Correction de la suppression de choix contenant des caractères spéciaux
+    - Fix : Correction du contrôle pour empêcher de supprimer le dernier choix d'un sondage
+    - Fix : Taille du champs "Votre nom" agrandie
+    - Technique : Ajout de logs
+## Version 0.9 (JosephK - Olivier - Antonin - ...)
     - Technique : Réorganisation des classes
     - Technique : Découpage en MVC + Installation de Smarty
     - Technique : Refonte de l'accès aux données + Remplacement de Adodb par PDO
