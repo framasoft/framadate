@@ -1,5 +1,15 @@
 # Changelog de framadate
 
+## Version 1.0 (Olivier - Antonin - Luc)
+    - Technique : Travail sur le service des notifications
+    - Technique : Prise en compte de l'entête X-Forwarded-Proto
+    - Technique : Utilisation de PHPMailer pour l'envoi de mails
+    - Amélioration : Conserver les votes en cours lors que l'utilisateur envoie un commentaire
+    - Amélioration : Les mails sont envoyés en multipart pour les lecteurs ne supportant pas HMTL
+    - Amélioration : Masquer l'encart au dessus du tableau des votes, maintenant visible grâce à un bouton
+    - Amélioration : Les commentaires sont horodatés
+    - Amélioration : Auto wrapping de la description du sondage
+
 ## Version 0.9.1 (JosephK - Olivier - Antonin - Michael - Paul)
     - Fix : Correction des lenteurs de défilement
     - Fix : Arrêt du défilement auto à gauche qu'on clique sur un choix
