@@ -156,6 +156,13 @@
         "anonyme": "ES_anonyme",
         "Comment added": "ES_Commentaire ajouté"
     },
+    "Password": {
+        "Password": "ES_Mot de passe",
+        "Wrong password": "ES_Mot de passe incorrect.",
+        "Submit access": "ES_Accèder",
+        "You have to provide a password to access the poll.": "ES_Vous devez donner le mot de passe pour avoir accès à ce sondage.",
+        "You have to provide a password so you can participate to the poll.": "ES_Vous devez donner le mot de passe pour pouvoir participer à ce sondage."
+    },
     "studs": {
         "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Para participar a esta encuesta, introduzca su nombre, elige todas las valores que son apriopriadas y validar su seleccion con el botón verde a la fin de línea.",
         "POLL_LOCKED_WARNING": "ES_L'administrateur a verrouillé ce sondage. Les votes et commentaires sont gelés, il n'est plus possible de participer",

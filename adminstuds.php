@@ -371,5 +371,7 @@ $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 $smarty->assign('admin', true);
 $smarty->assign('hidden', false);
+$smarty->assign('accessGranted', true);
+$smarty->assign('resultPubliclyVisible', true);
 
 $smarty->display('studs.tpl');

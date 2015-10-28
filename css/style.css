@@ -489,3 +489,9 @@ table.results > tbody > tr:hover > td .glyphicon {
 #poll_search {
     cursor: pointer;
 }
+
+/* Studs */
+.password_request {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
