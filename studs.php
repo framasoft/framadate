@@ -128,29 +128,6 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         }
     }
 }
-
-// -------------------------------
-// Add a comment
-// -------------------------------
-
-if (isset($_POST['add_comment'])) {
-    $name = $inputService->filterName($_POST['name']);
-    $comment = $inputService->filterComment($_POST['comment']);
-
-    if ($name == null) {
-        $message = new Message('danger', __('Error', 'The name is invalid.'));
-    }
-
-    if ($message == null) {
-        // Add comment
-        $result = $pollService->addComment($poll_id, $name, $comment);
-        if ($result) {
-            $message = new Message('success', __('Comments', 'Comment added'));
-            $notificationService->sendUpdateNotification($poll, NotificationService::ADD_COMMENT, $name);
-        } else {
-            $message = new Message('danger', __('Error', 'Comment failed'));
-        }
-    }
 }
 
 // Retrieve data
