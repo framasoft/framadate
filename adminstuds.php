@@ -91,7 +91,7 @@ if (!empty($_GET['poll'])) {
     $admin_poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
     if (strlen($admin_poll_id) === 24) {
         $poll_id = substr($admin_poll_id, 0, 16);
-        $poll = $pollService->findById($poll_id);
+        $poll = $pollService->findByAdminId($admin_poll_id);
     }
 }
 
