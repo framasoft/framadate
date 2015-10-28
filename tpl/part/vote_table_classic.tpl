@@ -97,7 +97,7 @@
 
                     {/foreach}
 
-                    {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin)}
+                    {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin) && $accessGranted}
                         <td class="hidden-print">
                             <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__('Poll results', 'Edit the line:')|html} {$vote->name|html}">
                                 <i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>
@@ -119,7 +119,7 @@
 
             {* Line to add a new vote *}
 
-            {if $active && $editingVoteId === 0 && !$expired}
+            {if $active && $editingVoteId === 0 && !$expired && $accessGranted}
                 <tr id="vote-form" class="hidden-print">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">

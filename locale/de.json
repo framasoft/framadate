@@ -156,6 +156,13 @@
         "anonyme": "anonym",
         "Comment added": "Kommentar hinzugefügt"
     },
+    "Password": {
+        "Password": "DE_Mot de passe",
+        "Wrong password": "DE_Mot de passe incorrect.",
+        "Submit access": "DE_Accèder",
+        "You have to provide a password to access the poll.": "DE_Vous devez donner le mot de passe pour avoir accès à ce sondage.",
+        "You have to provide a password so you can participate to the poll.": "DE_Vous devez donner le mot de passe pour pouvoir participer à ce sondage."
+    },
     "studs": {
         "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Wenn Sie an dieser Umfrage teilnehmen möchten, müssen Sie ihren Namen angeben, die Auswahl treffen, die Ihnen am ehesten zusagt und mit dem Plus-Button am Ende der Zeile bestätigen.",
         "POLL_LOCKED_WARNING": "Die Abstimmung wurde vom Administrator gesperrt. Bewertungen und Kommentare werden eingefroren; es ist nicht mehr möglich, teilzunehmen",

@@ -2,6 +2,7 @@
 namespace Framadate\Services;
 
 use Framadate\Security\Token;
+use Framadate\Security\PasswordHasher;
 
 class SecurityService {
 
@@ -46,6 +47,47 @@ class SecurityService {
         }
 
         return $checked;
+    }
+
+    /**
+     * Verify if the current session allows to access given poll.
+     *
+     * @param $poll \stdClass The poll which we seek access
+     * @return bool true if the current session can access this poll
+     */
+    public function canAccessPoll($poll) {
+        if (is_null($poll->password_hash)) {
+            return true;
+        }
+
+        $this->ensureSessionPollSecurityIsCreated();
+
+        $currentPassword = isset($_SESSION['poll_security'][$poll->id]) ? $_SESSION['poll_security'][$poll->id] : null;
+        if (!empty($currentPassword) && PasswordHasher::verify($currentPassword, $poll->password_hash)) {
+            return true;
+        } else {
+            unset($_SESSION['poll_security'][$poll->id]);
+            return false;
+        }
+    }
+
+    /**
+     * Submit to the session a poll password
+     *
+     * @param $poll \stdClass The poll which we seek access
+     * @param $password string the password to compare
+     */
+    public function submitPollAccess($poll, $password) {
+        if (!empty($password)) {
+            $this->ensureSessionPollSecurityIsCreated();
+            $_SESSION['poll_security'][$poll->id] = $password;
+        }
+    }
+
+    private function ensureSessionPollSecurityIsCreated() {
+        if (!isset($_SESSION['poll_security'])) {
+            $_SESSION['poll_security'] = array();
+        }
     }
 
 }

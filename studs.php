@@ -21,6 +21,7 @@ use Framadate\Services\PollService;
 use Framadate\Services\InputService;
 use Framadate\Services\MailService;
 use Framadate\Services\NotificationService;
+use Framadate\Services\SecurityService;
 use Framadate\Message;
 use Framadate\Utils;
 use Framadate\Editable;
@@ -34,6 +35,11 @@ $poll_id = null;
 $poll = null;
 $message = null;
 $editingVoteId = 0;
+$accessGranted = true;
+$resultPubliclyVisible = true;
+$slots = array();
+$votes = array();
+$comments = array();
 
 /* Services */
 /*----------*/
@@ -43,6 +49,7 @@ $pollService = new PollService($connect, $logService);
 $inputService = new InputService();
 $mailService = new MailService($config['use_smtp']);
 $notificationService = new NotificationService($mailService);
+$securityService = new SecurityService();
 
 
 /* PAGE */
@@ -62,78 +69,114 @@ if (!$poll) {
 }
 
 // -------------------------------
-// A vote is going to be edited
+// Password verification
 // -------------------------------
 
-if (!empty($_GET['vote'])) {
-    $editingVoteId = filter_input(INPUT_GET, 'vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+// TEMP, for testing purpose
+if (isset($_GET['reset']) && $_GET['reset']) {
+    unset($_SESSION['poll_security']);
 }
 
-// -------------------------------
-// Something to save (edit or add)
-// -------------------------------
+if (!is_null($poll->password_hash)) {
 
-if (!empty($_POST['save'])) { // Save edition of an old vote
-    $name = $inputService->filterName($_POST['name']);
-    $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
-    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
-
-    if (empty($editedVote)) {
-        $message = new Message('danger', __('Error', 'Something is going wrong...'));
-    }
-    if (count($choices) != count($_POST['choices'])) {
-        $message = new Message('danger', __('Error', 'There is a problem with your choices'));
+    // If we came from password submission
+    $password = isset($_POST['password']) ? $_POST['password'] : null;
+    if (!empty($password)) {
+        $securityService->submitPollAccess($poll, $password);
     }
 
-    if ($message == null) {
-        // Update vote
-        $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices);
-        if ($result) {
-            if ($poll->editable == Editable::EDITABLE_BY_OWN) {
-                $editedVoteUniqId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-                $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqId);
-                $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
-            } else {
-                $message = new Message('success', __('studs', 'Update vote succeeded'));
-            }
-            $notificationService->sendUpdateNotification($poll, NotificationService::UPDATE_VOTE, $name);
-        } else {
-            $message = new Message('danger', __('Error', 'Update vote failed'));
-        }
+    if (!$securityService->canAccessPoll($poll)) {
+        $accessGranted = false;
     }
-} elseif (isset($_POST['save'])) { // Add a new vote
-    $name = $inputService->filterName($_POST['name']);
-    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
+    $resultPubliclyVisible = $poll->results_publicly_visible;
 
-    if ($name == null) {
-        $message = new Message('danger', __('Error', 'The name is invalid.'));
-    }
-    if (count($choices) != count($_POST['choices'])) {
-        $message = new Message('danger', __('Error', 'There is a problem with your choices'));
-    }
-
-    if ($message == null) {
-        // Add vote
-        $result = $pollService->addVote($poll_id, $name, $choices);
-        if ($result) {
-            if ($poll->editable == Editable::EDITABLE_BY_OWN) {
-                $urlEditVote = Utils::getUrlSondage($poll_id, false, $result->uniqId);
-                $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
-            } else {
-                $message = new Message('success', __('studs', 'Adding the vote succeeded'));
-            }
-            $notificationService->sendUpdateNotification($poll, NotificationService::ADD_VOTE, $name);
-        } else {
-            $message = new Message('danger', __('Error', 'Adding vote failed'));
-        }
+    if (!$accessGranted && !empty($password)) {
+        $message = new Message('danger', __('Password', 'Wrong password'));
+    } else if (!$accessGranted && !$resultPubliclyVisible) {
+        $message = new Message('danger', __('Password', 'You have to provide a password to access the poll.'));
+    } else if (!$accessGranted && $resultPubliclyVisible) {
+        $message = new Message('danger', __('Password', 'You have to provide a password so you can participate to the poll.'));
     }
 }
+
+// We allow actions only if access is granted
+if ($accessGranted) {
+
+    // -------------------------------
+    // A vote is going to be edited
+    // -------------------------------
+
+    if (!empty($_GET['vote'])) {
+        $editingVoteId = filter_input(INPUT_GET, 'vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+    }
+
+    // -------------------------------
+    // Something to save (edit or add)
+    // -------------------------------
+
+    if (!empty($_POST['save'])) { // Save edition of an old vote
+        $name = $inputService->filterName($_POST['name']);
+        $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
+        $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
+
+        if (empty($editedVote)) {
+            $message = new Message('danger', __('Error', 'Something is going wrong...'));
+        }
+        if (count($choices) != count($_POST['choices'])) {
+            $message = new Message('danger', __('Error', 'There is a problem with your choices'));
+        }
+
+        if ($message == null) {
+            // Update vote
+            $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices);
+            if ($result) {
+                if ($poll->editable == Editable::EDITABLE_BY_OWN) {
+                    $editedVoteUniqId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+                    $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqId);
+                    $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
+                } else {
+                    $message = new Message('success', __('studs', 'Update vote succeeded'));
+                }
+                $notificationService->sendUpdateNotification($poll, NotificationService::UPDATE_VOTE, $name);
+            } else {
+                $message = new Message('danger', __('Error', 'Update vote failed'));
+            }
+        }
+    } elseif (isset($_POST['save'])) { // Add a new vote
+        $name = $inputService->filterName($_POST['name']);
+        $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
+
+        if ($name == null) {
+            $message = new Message('danger', __('Error', 'The name is invalid.'));
+        }
+        if (count($choices) != count($_POST['choices'])) {
+            $message = new Message('danger', __('Error', 'There is a problem with your choices'));
+        }
+
+        if ($message == null) {
+            // Add vote
+            $result = $pollService->addVote($poll_id, $name, $choices);
+            if ($result) {
+                if ($poll->editable == Editable::EDITABLE_BY_OWN) {
+                    $urlEditVote = Utils::getUrlSondage($poll_id, false, $result->uniqId);
+                    $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
+                } else {
+                    $message = new Message('success', __('studs', 'Adding the vote succeeded'));
+                }
+                $notificationService->sendUpdateNotification($poll, NotificationService::ADD_VOTE, $name);
+            } else {
+                $message = new Message('danger', __('Error', 'Adding vote failed'));
+            }
+        }
+    }
 }
 
 // Retrieve data
-$slots = $pollService->allSlotsByPoll($poll);
-$votes = $pollService->allVotesByPollId($poll_id);
-$comments = $pollService->allCommentsByPollId($poll_id);
+if ($resultPubliclyVisible) {
+    $slots = $pollService->allSlotsByPoll($poll);
+    $votes = $pollService->allVotesByPollId($poll_id);
+    $comments = $pollService->allCommentsByPollId($poll_id);
+}
 
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);
@@ -149,5 +192,7 @@ $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 $smarty->assign('admin', false);
 $smarty->assign('hidden', $poll->hidden);
+$smarty->assign('accessGranted', $accessGranted);
+$smarty->assign('resultPubliclyVisible', $resultPubliclyVisible);
 
 $smarty->display('studs.tpl');

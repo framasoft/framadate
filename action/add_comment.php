@@ -21,6 +21,7 @@ use Framadate\Services\PollService;
 use Framadate\Services\InputService;
 use Framadate\Services\MailService;
 use Framadate\Services\NotificationService;
+use Framadate\Services\SecurityService;
 use Framadate\Message;
 use Framadate\Utils;
 use Framadate\Editable;
@@ -34,6 +35,7 @@ $poll_id = null;
 $poll = null;
 $message = null;
 $result = false;
+$comments = array();
 
 /* Services */
 /*----------*/
@@ -43,7 +45,7 @@ $pollService = new PollService($connect, $logService);
 $inputService = new InputService();
 $mailService = new MailService($config['use_smtp']);
 $notificationService = new NotificationService($mailService);
-
+$securityService = new SecurityService();
 
 /* PAGE */
 /* ---- */
@@ -57,7 +59,9 @@ if (!empty($_POST['poll'])) {
 
 if (!$poll) {
     $message = new Message('error',  __('Error', 'This poll doesn\'t exist !'));
-} else {
+} else if ($poll && !$securityService->canAccessPoll($poll)) {
+    $message = new Message('error',  __('Password', 'Wrong password'));
+} else if ($poll) {
     $name = $inputService->filterName($_POST['name']);
     $comment = $inputService->filterComment($_POST['comment']);
 
@@ -75,9 +79,8 @@ if (!$poll) {
             $message = new Message('danger', __('Error', 'Comment failed'));
         }
     }
+    $comments = $pollService->allCommentsByPollId($poll_id);
 }
-
-$comments = $pollService->allCommentsByPollId($poll_id);
 
 $smarty->error_reporting = E_ALL & ~E_NOTICE;
 $smarty->assign('comments', $comments);

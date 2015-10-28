@@ -3,12 +3,11 @@
 {* Comment list *}
 {include 'part/comments_list.tpl'}
 
-<form action="action/add_comment.php" method="POST" id="comment_form">
+{* Add comment form *}
+{if $active && !$expired && $accessGranted}
+    <form action="action/add_comment.php" method="POST" id="comment_form">
 
-    <input type="hidden" name="poll" value="{$poll_id}"/>
-
-    {* Add comment form *}
-    {if $active && !$expired}
+        <input type="hidden" name="poll" value="{$poll_id}"/>
         <div class="hidden-print jumbotron">
             <div class="col-md-6 col-md-offset-3">
                 <fieldset id="add-comment"><legend>{__('Comments', 'Add a comment to the poll')}</legend>
@@ -21,11 +20,11 @@
                         <textarea name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea>
                     </div>
                     <div class="pull-right">
-                        <input type="submit" name="add_comment" value="{__('Comments', 'Send the comment')}" class="btn btn-success">
+                        <input type="submit" id="add_comment" name="add_comment" value="{__('Comments', 'Send the comment')}" class="btn btn-success">
                     </div>
                 </fieldset>
             </div>
             <div class="clearfix"></div>
         </div>
-    {/if}
-</form>
+    </form>
+{/if}

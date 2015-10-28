@@ -156,6 +156,13 @@
     "anonyme": "anonyme",
     "Comment added": "Comment saved"
   },
+  "Password": {
+    "Password": "Password",
+    "Wrong password": "Wrong password",
+    "Submit access": "Submit access",
+    "You have to provide a password to access the poll.": "You have to provide a password to access the poll.",
+    "You have to provide a password so you can participate to the poll.": "You have to provide a password so you can participate to the poll."
+  },
   "studs": {
     "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "If you want to vote in this poll, you have to give your name, make your choice, and submit it with the plus button at the end of the line.",
     "POLL_LOCKED_WARNING": "The administrator locked this poll. Votes and comments are frozen, it is no longer possible to participate",
