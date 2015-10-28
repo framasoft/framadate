@@ -16,6 +16,15 @@
                             <input type="text" name="poll" id="poll" class="form-control"
                                    value="{$search['poll']|html}"/>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="title" class="control-label">{__('Admin', 'Title')}</label>
+                            <input type="text" name="title" id="title" class="form-control"
+                                   value="{$search['title']|html}"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="name" class="control-label">{__('Admin', 'Author')}</label>
                             <input type="text" name="name" id="name" class="form-control"
@@ -24,9 +33,9 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="title" class="control-label">{__('Admin', 'Title')}</label>
-                            <input type="text" name="title" id="title" class="form-control"
-                                   value="{$search['title']|html}"/>
+                            <label for="mail" class="control-label">{__('Admin', 'Email')}</label>
+                            <input type="text" name="mail" id="mail" class="form-control"
+                                   value="{$search['mail']|html}"/>
                         </div>
                     </div>
                 </div>
