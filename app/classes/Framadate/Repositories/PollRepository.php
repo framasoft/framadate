@@ -64,7 +64,7 @@ class PollRepository extends AbstractRepository {
     /**
      * Search polls in databse.
      *
-     * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>...]
+     * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>..., 'mail'=>...]
      * @param int $start The number of first entry to select
      * @param int $limit The number of entries to find
      * @return array The found polls
@@ -78,6 +78,7 @@ SELECT p.*,
  WHERE (:id = "" OR p.id LIKE :id)
    AND (:title = "" OR p.title LIKE :title)
    AND (:name = "" OR p.admin_name LIKE :name)
+   AND (:mail = "" OR p.admin_mail LIKE :mail)
  ORDER BY p.title ASC
  LIMIT :start, :limit
  ');
@@ -85,9 +86,11 @@ SELECT p.*,
         $poll = $search['poll'] . '%';
         $title = '%' . $search['title'] . '%';
         $name = '%' . $search['name'] . '%';
+        $mail = '%' . $search['mail'] . '%';
         $prepared->bindParam(':id', $poll, PDO::PARAM_STR);
         $prepared->bindParam(':title', $title, PDO::PARAM_STR);
         $prepared->bindParam(':name', $name, PDO::PARAM_STR);
+        $prepared->bindParam(':mail', $mail, PDO::PARAM_STR);
         $prepared->bindParam(':start', $start, PDO::PARAM_INT);
         $prepared->bindParam(':limit', $limit, PDO::PARAM_INT);
         $prepared->execute();

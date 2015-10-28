@@ -64,6 +64,7 @@ $page = ($page >= 1) ? $page : 1;
 $search['poll'] = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
 $search['title'] = filter_input(INPUT_GET, 'title', FILTER_SANITIZE_STRING);
 $search['name'] = filter_input(INPUT_GET, 'name', FILTER_SANITIZE_STRING);
+$search['mail'] = filter_input(INPUT_GET, 'mail', FILTER_SANITIZE_STRING);
 
 /* PAGE */
 /* ---- */

@@ -19,7 +19,7 @@ class SuperAdminService {
     /**
      * Return the list of all polls.
      *
-     * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>...]
+     * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>..., 'mail'=>...]
      * @param int $page The page index (O = first page)
      * @param int $limit The limit size
      * @return array ['polls' => The {$limit} polls, 'count' => Entries found by the query, 'total' => Total count]
