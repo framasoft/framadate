@@ -56,6 +56,14 @@ class PollService {
         return null;
     }
 
+    public function findByAdminId($admin_poll_id) {
+        if (preg_match('/^[\w\d]{24}$/i', $admin_poll_id)) {
+            return $this->pollRepository->findByAdminId($admin_poll_id);
+        }
+
+        return null;
+    }
+
     function allCommentsByPollId($poll_id) {
         return $this->commentRepository->findAllByPollId($poll_id);
     }
