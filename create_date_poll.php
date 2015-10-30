@@ -133,6 +133,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 
                 if (!empty($day)) {
                     // Add choice to Form data
+                    // TODO Fix the parse
                     $time = mktime(0, 0, 0, substr($_POST["days"][$i],3,2),substr($_POST["days"][$i],0,2),substr($_POST["days"][$i],6,4));
                     $choice = new Choice($time);
                     $_SESSION['form']->addChoice($choice);
@@ -154,7 +155,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         Utils::print_header ( __('Step 3', 'Removal date and confirmation (3 on 3)') );
         bandeau_titre(__('Step 3', 'Removal date and confirmation (3 on 3)'));
 
-        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_expiry_time)); // textual date
+        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); // textual date
 
         // Summary
         $summary = '<ul>';

@@ -18,7 +18,7 @@
 $(document).ready(function () {
     var init_datepicker = function () {
         $('.input-group.date').datepicker({
-            format: "dd/mm/yyyy",
+            format: window.date_formats.DATEPICKER || "dd/mm/yyyy",
             todayBtn: "linked",
             orientation: "top left",
             autoclose: true,

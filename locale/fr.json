@@ -42,13 +42,17 @@
   },
   "Date": {
     "dd/mm/yyyy": "jj/mm/aaaa",
+    "datepicker": "dd/mm/yyyy",
     "%A, den %e. %B %Y": "%A %e %B %Y",
     "FULL": "%A %e %B %Y",
     "SHORT": "%A %e %B %Y",
     "DAY": "%a %e",
-    "DATE": "%Y-%m-%d",
+    "DATE": "%d/%m/%Y",
     "MONTH_YEAR": "%B %Y",
-    "DATETIME": "%d-%m-%Y %H:%M"
+    "DATETIME": "%d-%m-%Y %H:%M",
+    "Add range dates": "Ajout d'un intervalle de dates",
+    "Start date": "Date de début",
+    "End date": "Date de fin"
   },
   "Language selector": {
     "Select the language": "Choisir la langue",
