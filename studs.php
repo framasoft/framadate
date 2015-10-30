@@ -72,11 +72,6 @@ if (!$poll) {
 // Password verification
 // -------------------------------
 
-// TEMP, for testing purpose
-if (isset($_GET['reset']) && $_GET['reset']) {
-    unset($_SESSION['poll_security']);
-}
-
 if (!is_null($poll->password_hash)) {
 
     // If we came from password submission
