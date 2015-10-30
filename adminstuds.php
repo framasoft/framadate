@@ -24,7 +24,7 @@ use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\PollService;
 use Framadate\Services\NotificationService;
-use Framadate\Utils;
+use  Framadate\Security\PasswordHasher;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -71,7 +71,8 @@ if ($poll) {
 
 if (isset($_POST['update_poll_info'])) {
     $updated = false;
-    $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'description', 'rules', 'expiration_date', 'name', 'hidden']);
+    $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'description',
+        'rules', 'expiration_date', 'name', 'hidden', 'removePassword', 'password']);
 
     // Update the right poll field
     if ($field == 'title') {
@@ -133,6 +134,24 @@ if (isset($_POST['update_poll_info'])) {
         $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
         if ($hidden != $poll->hidden) {
             $poll->hidden = $hidden;
+            $updated = true;
+        }
+    } elseif ($field == 'removePassword') {
+        $removePassword = isset($_POST['removePassword']) ? $inputService->filterBoolean($_POST['removePassword']) : false;
+        if ($removePassword) {
+            $poll->results_publicly_visible = false;
+            $poll->password_hash = null;
+            $updated = true;
+        }
+    } elseif ($field == 'password') {
+        $password = isset($_POST['password']) ? $_POST['password'] : null;
+        $resultsPubliclyVisible = isset($_POST['resultsPubliclyVisible']) ? $inputService->filterBoolean($_POST['resultsPubliclyVisible']) : false;
+        if (!empty($password)) {
+            $poll->password_hash =  PasswordHasher::hash($password);
+            $updated = true;
+        }
+        if ($resultsPubliclyVisible != $poll->results_publicly_visible) {
+            $poll->results_publicly_visible = $resultsPubliclyVisible;
             $updated = true;
         }
     }

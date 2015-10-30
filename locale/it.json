@@ -125,7 +125,11 @@
     "Save the new rules": "Salvare i nuovi permessi",
     "Cancel the rules edit": "Annullare le modifica dei permessi",
     "Results are hidden.": "I risultati sono nascosti.",
-    "Results are visible.": "I risultati sono visibili."
+    "Results are visible.": "I risultati sono visibili.",
+    "Password protected.": "IT_Protégé par mot de passe.",
+    "Votes protected by password.": "IT_Votes protégés par mot de passe.",
+    "No password.": "IT_Pas de mot de passe",
+    "Remove password.": "IT_Supprimer le mot de passe."
   },
   "Poll results": {
     "Votes of the poll": "Voti del sondaggio ",

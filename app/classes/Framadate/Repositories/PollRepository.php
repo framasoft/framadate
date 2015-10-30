@@ -48,9 +48,9 @@ class PollRepository extends AbstractRepository {
     }
 
     function update($poll) {
-        $prepared = $this->prepare('UPDATE `' . Utils::table('poll') . '` SET title=?, admin_name=?, admin_mail=?, description=?, end_date=?, active=?, editable=?, hidden=? WHERE id = ?');
+        $prepared = $this->prepare('UPDATE `' . Utils::table('poll') . '` SET title=?, admin_name=?, admin_mail=?, description=?, end_date=?, active=?, editable=?, hidden=?, password_hash=?, results_publicly_visible=? WHERE id = ?');
 
-        return $prepared->execute([$poll->title, $poll->admin_name, $poll->admin_mail, $poll->description, $poll->end_date, $poll->active, $poll->editable, $poll->hidden, $poll->id]);
+        return $prepared->execute([$poll->title, $poll->admin_name, $poll->admin_mail, $poll->description, $poll->end_date, $poll->active, $poll->editable, $poll->hidden, $poll->password_hash, $poll->results_publicly_visible, $poll->id]);
     }
 
     function deleteById($poll_id) {
