@@ -136,7 +136,7 @@
                             </div>
                         </div>
                     </div>
-                  {/if}
+                {/if}
 
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
