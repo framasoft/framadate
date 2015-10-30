@@ -61,7 +61,7 @@ if (!$poll) {
     $message = new Message('error',  __('Error', 'This poll doesn\'t exist !'));
 } else if ($poll && !$securityService->canAccessPoll($poll)) {
     $message = new Message('error',  __('Password', 'Wrong password'));
-} else if ($poll) {
+} else {
     $name = $inputService->filterName($_POST['name']);
     $comment = $inputService->filterComment($_POST['comment']);
 
