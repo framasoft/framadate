@@ -36,9 +36,8 @@ $(document).ready(function () {
     /**
      * Hide/Show password options
      */
-    var usePassword = $("#use_password");
-    usePassword.change(function(){
-        if (usePassword.prop("checked")) {
+    $("#use_password").change(function(){
+        if ($(this).prop("checked")) {
             $("#password_options").removeClass("hidden");
         } else {
             $("#password_options").addClass("hidden");
