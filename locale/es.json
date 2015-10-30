@@ -222,10 +222,10 @@
         "To receive an email for each new vote": "Usted quiere recibir un correo electónico cada vez que alguien participe a la encuesta",
         "To receive an email for each new comment": "ES_Recevoir un courriel à chaque commentaire",
         "Only the poll maker can see the poll's results": "ES_Seul le créateur du sondage peut voir les résultats",
-        "Use a password to restrict access.": "ES_Utiliser un mot de passe pour restreindre l'accès au sondage.",
-        "The results are publicly visible.": "ES_Les résultats sont visibles sans mot de passe.",
+        "Use a password to restrict access": "ES_Utiliser un mot de passe pour restreindre l'accès au sondage",
+        "The results are publicly visible": "ES_Les résultats sont visibles sans mot de passe",
         "Poll password": "ES_Mot de passe",
-        "Confirm password": "ES_Confirmer votre mot de passe.",
+        "Confirm password": "ES_Confirmer votre mot de passe",
         "Go to step 2": "ES_Aller à l'étape 2"
     },
     "Step 2": {

@@ -161,7 +161,7 @@
                             <label>
                                 <input type="checkbox" name="use_password" {if $poll_use_password}checked{/if}
                                        id="use_password">
-                                {__('Step 1', "Use a password to restrict access.")}
+                                {__('Step 1', "Use a password to restrict access")}
                             </label>
                         </div>
                     </div>
@@ -193,7 +193,7 @@
                                 <label>
                                     <input type="checkbox" name="results_publicly_visible"
                                            {if $poll_results_publicly_visible}checked{/if} id="results_publicly_visible"/>
-                                    {__('Step 1', "The results are publicly visible.")}
+                                    {__('Step 1', "The results are publicly visible")}
                                 </label>
                             </div>
                         </div>

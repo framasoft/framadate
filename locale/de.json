@@ -221,11 +221,11 @@
         "Voters can modify their vote themselves": "Teilnehmer können ihre Wertungen verändern",
         "To receive an email for each new vote": "Bei jeder neuen Wertung eine E-Mail erhalten",
         "To receive an email for each new comment": "Bei jedem neuen Kommentar eine E-Mail erhalten",
-        "Only the poll maker can see the poll's results": "Einzig der Autor der Abstimmung kann die Ergebnisse einsehen.",
-        "Use a password to restrict access.": "DE_Utiliser un mot de passe pour restreindre l'accès au sondage.",
-        "The results are publicly visible.": "DE_Les résultats sont visibles sans mot de passe.",
+        "Only the poll maker can see the poll's results": "Einzig der Autor der Abstimmung kann die Ergebnisse einsehen",
+        "Use a password to restrict access": "DE_Utiliser un mot de passe pour restreindre l'accès au sondage",
+        "The results are publicly visible": "DE_Les résultats sont visibles sans mot de passe",
         "Poll password": "DE_Mot de passe",
-        "Confirm password": "DE_Confirmer votre mot de passe.",
+        "Confirm password": "DE_Confirmer votre mot de passe",
         "Go to step 2": "Weiter zum 2. Schritt"
     },
     "Step 2": {

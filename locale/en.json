@@ -222,10 +222,10 @@
     "To receive an email for each new vote": "Receive an email for each new vote",
     "To receive an email for each new comment": "Receive an email for each new comment",
     "Only the poll maker can see the poll's results": "Only the poll maker can see the poll results",
-    "Use a password to restrict access.": "Use a password to restrict access.",
-    "The results are publicly visible.": "The results are publicly visible.",
+    "Use a password to restrict access": "Use a password to restrict access",
+    "The results are publicly visible": "The results are publicly visible",
     "Poll password": "Password",
-    "Confirm password": "Confirmer votre mot de passe.",
+    "Confirm password": "Confirmer votre mot de passe",
     "Go to step 2": "Go to step 2"
   },
   "Step 2": {

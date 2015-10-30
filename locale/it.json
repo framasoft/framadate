@@ -222,6 +222,10 @@
     "To receive an email for each new vote": "Per ricevere un'email per ogni voto nuovo",
     "To receive an email for each new comment": "Ricevi una e-mail ogni commento",
     "Only the poll maker can see the poll's results": "Solo il creatore sondaggio possono vedere i risultati",
+    "Use a password to restrict access": "ES_Utiliser un mot de passe pour restreindre l'accès au sondage",
+    "The results are publicly visible": "ES_Les résultats sont visibles sans mot de passe",
+    "Poll password": "ES_Mot de passe",
+    "Confirm password": "ES_Confirmer votre mot de passe",
     "Go to step 2": "Andare al punto 2"
   },
   "Step 2": {
