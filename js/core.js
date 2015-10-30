@@ -104,6 +104,35 @@ $(document).ready(function() {
         return false;
     });
 
+
+    $('#password-form .btn-edit').on('click', function() {
+        $('#password-form p').hide();
+        $('#password-form .js-password').removeClass('hidden');
+        $('#password').focus();
+        return false;
+    });
+
+    $('#password-form .btn-cancel').on('click', function() {
+        $('#password-form p').show();
+        $('#password-form .js-password').addClass('hidden');
+        $('.js-password .btn-edit').focus();
+        return false;
+    });
+
+    // Hiding other field when the admin wants to remove the password protection
+    var removePassword = $('#removePassword');
+    removePassword.on('click', function() {
+        var removeButton =  removePassword.siblings('button');
+        if (removePassword.is(":checked")) {
+            $('#password_information').addClass('hidden');
+            removeButton.removeClass('hidden');
+        } else {
+            $('#password_information').removeClass('hidden');
+            removeButton.addClass('hidden');
+        }
+        removeButton.focus();
+    });
+
     // Horizontal scroll buttons
     if($('.results').width() > $('.container').width()) {
         $('.scroll-buttons').removeClass('hidden');

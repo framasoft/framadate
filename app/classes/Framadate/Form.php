@@ -52,6 +52,24 @@ class Form
     public $hidden;
 
     /**
+     * If true, a password will be needed to access the poll
+     * @var boolean
+     */
+    public $use_password;
+
+    /**
+     * The password needed to access the poll, hashed. Only used if $use_password is set to true
+     * @var string
+     */
+    public $password_hash;
+
+    /**
+     * If true, the polls results will be also visible for those without password
+     * @var boolean
+     */
+    public $results_publicly_visible;
+
+    /**
      * List of available choices
      */
     private $choices;

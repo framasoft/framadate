@@ -125,7 +125,11 @@
     "Save the new rules": "Salvare i nuovi permessi",
     "Cancel the rules edit": "Annullare le modifica dei permessi",
     "Results are hidden.": "I risultati sono nascosti.",
-    "Results are visible.": "I risultati sono visibili."
+    "Results are visible.": "I risultati sono visibili.",
+    "Password protected.": "IT_Protégé par mot de passe.",
+    "Votes protected by password.": "IT_Votes protégés par mot de passe.",
+    "No password.": "IT_Pas de mot de passe",
+    "Remove password.": "IT_Supprimer le mot de passe."
   },
   "Poll results": {
     "Votes of the poll": "Voti del sondaggio ",
@@ -155,6 +159,13 @@
     "Send the comment": "Inviare il commento",
     "anonyme": "anonimo",
     "Comment added": "Commento aggiunto"
+  },
+  "Password": {
+    "Password": "IT_Mot de passe",
+    "Wrong password": "IT_Mot de passe incorrect.",
+    "Submit access": "IT_Accèder",
+    "You have to provide a password to access the poll.": "IT_Vous devez donner le mot de passe pour avoir accès à ce sondage.",
+    "You have to provide a password so you can participate to the poll.": "IT_Vous devez donner le mot de passe pour pouvoir participer à ce sondage."
   },
   "studs": {
     "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Per partecipare a questo sondaggio, è necessario inserire vostro nome, scegliere tutti i parametri che preferite e confermare la vostra scelta con il pulsante alla fine della riga.",
@@ -211,6 +222,10 @@
     "To receive an email for each new vote": "Per ricevere un'email per ogni voto nuovo",
     "To receive an email for each new comment": "Ricevi una e-mail ogni commento",
     "Only the poll maker can see the poll's results": "Solo il creatore sondaggio possono vedere i risultati",
+    "Use a password to restrict access": "ES_Utiliser un mot de passe pour restreindre l'accès au sondage",
+    "The results are publicly visible": "ES_Les résultats sont visibles sans mot de passe",
+    "Poll password": "ES_Mot de passe",
+    "Confirm password": "ES_Confirmer votre mot de passe",
     "Go to step 2": "Andare al punto 2"
   },
   "Step 2": {

@@ -125,7 +125,11 @@
         "Save the new rules": "ES_Enregistrer les nouvelles permissions",
         "Cancel the rules edit": "ES_Annuler le changement de permissions",
         "Results are hidden.": "ES_Les résultats sont cachés.",
-        "Results are visible.": "ES_Les résultats sont visibles."
+        "Results are visible.": "ES_Les résultats sont visibles.",
+        "Password protected.": "ES_Protégé par mot de passe.",
+        "Votes protected by password.": "ES_Votes protégés par mot de passe.",
+        "No password.": "ES_Pas de mot de passe",
+        "Remove password.": "ES_Supprimer le mot de passe."
     },
     "Poll results": {
         "Votes of the poll": "ES_Votes du sondage",
@@ -155,6 +159,13 @@
         "Send the comment": "ES_Envoyer le commentaire",
         "anonyme": "ES_anonyme",
         "Comment added": "ES_Commentaire ajouté"
+    },
+    "Password": {
+        "Password": "ES_Mot de passe",
+        "Wrong password": "ES_Mot de passe incorrect.",
+        "Submit access": "ES_Accèder",
+        "You have to provide a password to access the poll.": "ES_Vous devez donner le mot de passe pour avoir accès à ce sondage.",
+        "You have to provide a password so you can participate to the poll.": "ES_Vous devez donner le mot de passe pour pouvoir participer à ce sondage."
     },
     "studs": {
         "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Para participar a esta encuesta, introduzca su nombre, elige todas las valores que son apriopriadas y validar su seleccion con el botón verde a la fin de línea.",
@@ -211,6 +222,10 @@
         "To receive an email for each new vote": "Usted quiere recibir un correo electónico cada vez que alguien participe a la encuesta",
         "To receive an email for each new comment": "ES_Recevoir un courriel à chaque commentaire",
         "Only the poll maker can see the poll's results": "ES_Seul le créateur du sondage peut voir les résultats",
+        "Use a password to restrict access": "ES_Utiliser un mot de passe pour restreindre l'accès au sondage",
+        "The results are publicly visible": "ES_Les résultats sont visibles sans mot de passe",
+        "Poll password": "ES_Mot de passe",
+        "Confirm password": "ES_Confirmer votre mot de passe",
         "Go to step 2": "ES_Aller à l'étape 2"
     },
     "Step 2": {
@@ -338,6 +353,9 @@
         "You can't create a poll with hidden results with the following edition option:": "ES_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
         "Failed to delete column": "Error al eliminar la columna",
         "MISSING_VALUES": "Los valores perdidos",
-        "CANT_CONNECT_TO_DATABASE": "No se puede conectar a la base de datos"
+        "CANT_CONNECT_TO_DATABASE": "No se puede conectar a la base de datos",
+	"Password is empty": "ES_Le mot de passe est vide.",
+        "Passwords do not match": "ES_Les mot de passes ne correspondent pas."
+    
     }
 }

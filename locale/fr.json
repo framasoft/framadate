@@ -125,7 +125,11 @@
     "Save the new rules": "Enregistrer les nouvelles permissions",
     "Cancel the rules edit": "Annuler le changement de permissions",
     "Results are hidden.": "Les résultats sont cachés.",
-    "Results are visible.": "Les résultats sont visibles."
+    "Results are visible.": "Les résultats sont visibles.",
+    "Password protected.": "Protégé par mot de passe.",
+    "Votes protected by password.": "Votes protégés par mot de passe.",
+    "No password.": "Pas de mot de passe",
+    "Remove password.": "Supprimer le mot de passe."
   },
   "Poll results": {
     "Votes of the poll": "Votes du sondage",
@@ -155,6 +159,13 @@
     "Send the comment": "Envoyer le commentaire",
     "anonyme": "anonyme",
     "Comment added": "Commentaire ajouté"
+  },
+  "Password": {
+    "Password": "Mot de passe",
+    "Wrong password": "Mot de passe incorrect.",
+    "Submit access": "Accèder",
+    "You have to provide a password to access the poll.": "Vous devez donner le mot de passe pour avoir accès à ce sondage.",
+    "You have to provide a password so you can participate to the poll.": "Vous devez donner le mot de passe pour pouvoir participer à ce sondage."
   },
   "studs": {
     "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Pour participer à ce sondage, veuillez entrer votre nom, choisir toutes les valeurs qui vous conviennent et valider votre choix avec le bouton en bout de ligne.",
@@ -211,6 +222,10 @@
     "To receive an email for each new vote": "Recevoir un courriel à chaque participation d'un sondé",
     "To receive an email for each new comment": "Recevoir un courriel à chaque commentaire",
     "Only the poll maker can see the poll's results": "Seul le créateur du sondage peut voir les résultats",
+    "Use a password to restrict access": "Utiliser un mot de passe pour restreindre l'accès au sondage",
+    "The results are publicly visible": "Les résultats sont visibles sans mot de passe",
+    "Poll password": "Mot de passe",
+    "Confirm password": "Confirmer votre mot de passe   ",
     "Go to step 2": "Aller à l'étape 2"
   },
   "Step 2": {
@@ -263,7 +278,6 @@
     "Migration": "Migration",
     "Purge": "Purge",
     "Logs": "Historique",
-    "Installation": "Installation",
     "Poll ID": "ID sondage",
     "Format": "Format",
     "Title": "Titre",
@@ -353,6 +367,8 @@
     "You can't create a poll with hidden results with the following edition option:": "Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
     "Failed to delete column": "Échec de la suppression de colonne",
     "MISSING_VALUES": "Il manque des valeurs",
-    "CANT_CONNECT_TO_DATABASE": "Impossible de se connecter à la base de données"
+    "CANT_CONNECT_TO_DATABASE": "Impossible de se connecter à la base de données",
+    "Password is empty": "Le mot de passe est vide.",
+    "Passwords do not match": "Les mots de passe ne correspondent pas."
   }
 }

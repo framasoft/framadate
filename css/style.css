@@ -167,6 +167,7 @@ caption {
 #poll-rules-form .btn-edit,
 #poll-hidden-form .btn-edit,
 #expiration-form .btn-edit,
+#password-form .btn-edit,
 #name-form .btn-edit {
     position:absolute;
     left:-2000px;
@@ -184,6 +185,8 @@ caption {
 #poll-hidden-form:hover .btn-edit,
 #expiration-form .btn-edit:focus,
 #expiration-form:hover .btn-edit,
+#password-form .btn-edit:focus,
+#password-form:hover .btn-edit,
 #name-form .btn-edit:focus,
 #name-form:hover .btn-edit {
     position:relative !important;
@@ -488,4 +491,14 @@ table.results > tbody > tr:hover > td .glyphicon {
 /* Admin */
 #poll_search {
     cursor: pointer;
+}
+
+/* Studs */
+.password_request {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#password-form .btn-cancel {
+    float: right;
 }

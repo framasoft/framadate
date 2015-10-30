@@ -49,7 +49,7 @@
                     </div>
                 {/if}
 
-                <div class="form-group '.$errors['name']['class'].'">
+                <div class="form-group {$errors['name']['class']}">
                     <label for="yourname" class="col-sm-4 control-label">{__('Generic', 'Your name')} *</label>
 
                     <div class="col-sm-8">
@@ -69,7 +69,7 @@
                 {/if}
 
                 {if $use_smtp}
-                    <div class="form-group '.$errors['email']['class'].'">
+                    <div class="form-group {$errors['email']['class']}">
                         <label for="email" class="col-sm-4 control-label">
                             {__('Generic', 'Your email address')} *<br/>
                             <span class="small">{__('Generic', '(in the format name@mail.com)')}</span>
@@ -144,18 +144,61 @@
                             <label>
                                 <input type="checkbox" name="hidden" {if $poll_hidden}checked{/if}
                                 id="hidden">
-                                {__('Step 1', 'Only the poll maker can see the poll\'s results')}
+                                {__('Step 1', "Only the poll maker can see the poll's results")}
                             </label>
                         </div>
                         <div id="hiddenWithBadEditionModeError" class="alert alert-danger hidden">
                             <p>
-                                {__('Error', 'You can\'t create a poll with hidden results with the following edition option:')}"{__('Step 1', 'All voters can modify any vote')}"
+                                {__('Error', "You can't create a poll with hidden results with the following edition option:")}"{__('Step 1', 'All voters can modify any vote')}"
                             </p>
                         </div>
                     </div>
                 </div>
 
-
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="use_password" {if $poll_use_password}checked{/if}
+                                       id="use_password">
+                                {__('Step 1', "Use a password to restrict access")}
+                            </label>
+                        </div>
+                    </div>
+                    <div id="password_options"{if !$poll_use_password} class="hidden"{/if}>
+                        <label for="poll_password" class="col-sm-4 control-label">{__('Step 1', 'Poll password')}</label>
+                        <div class="col-sm-8">
+                            <input id="poll_password" type="password" name="password" class="form-control" {$errors['password']['aria']}/>
+                        </div>
+                        {if !empty($errors['password']['msg'])}
+                            <div class="alert alert-danger">
+                                <p id="poll_password_error">
+                                    {$errors['password']['msg']}
+                                </p>
+                            </div>
+                        {/if}
+                        <label for="poll_password_repeat" class="col-sm-4 control-label">{__('Step 1', 'Confirm password')}</label>
+                        <div class="col-sm-8">
+                            <input id="poll_password_repeat" type="password" name="password_repeat" class="form-control" {$errors['password_repeat']['aria']}/>
+                        </div>
+                        {if !empty($errors['password_repeat']['msg'])}
+                            <div class="alert alert-danger">
+                                <p id="poll_password_repeat_error">
+                                    {$errors['password_repeat']['msg']}
+                                </p>
+                            </div>
+                        {/if}
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="results_publicly_visible"
+                                           {if $poll_results_publicly_visible}checked{/if} id="results_publicly_visible"/>
+                                    {__('Step 1', "The results are publicly visible")}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
 

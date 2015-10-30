@@ -20,8 +20,9 @@ namespace Framadate\Services;
 
 use Framadate\Form;
 use Framadate\FramaDB;
-use Framadate\Repositories\RepositoryFactory;
+use Framadate\Utils;
 use Framadate\Security\Token;
+use Framadate\Repositories\RepositoryFactory;
 
 class PollService {
 

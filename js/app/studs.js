@@ -49,40 +49,45 @@ $(document).ready(function () {
     form.submit(function(event) {
         event.preventDefault();
 
-        $.ajax({
-            type: 'POST',
-            url: form.attr('action'),
-            data: form.serialize(),
-            dataType: 'json',
-            success: function(data)
-            {
-                $('#comment').val('');
-
-                if (data.result) {
-                    $('#comments_list')
-                        .replaceWith(data.comments);
-                    var lastComment = $('#comments_list')
-                        .find('div.comment')
-                        .last();
-                    lastComment.effect('highlight', {color: 'green'}, 401);
-                    $('html, body').animate({
-                        scrollTop: lastComment.offset().top
-                    }, 750);
-                } else {
-                    var newMessage = $('#genericErrorTemplate').clone();
-                    newMessage
-                        .find('.contents')
-                        .text(data.message.message);
-                    var commentsAlert = $('#comments_alerts');
-                    commentsAlert
-                        .empty()
-                        .append(newMessage);
-                    $('html, body').animate({
-                        scrollTop: commentsAlert.offset().top
-                    }, 750);
+        if ($('#comment').val()) {
+            $('#add_comment').attr("disabled", "disabled");
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: form.serialize(),
+                dataType: 'json',
+                success: function(data)
+                {
+                    $('#comment').val('');
+                    if (data.result) {
+                        $('#comments_list')
+                            .replaceWith(data.comments);
+                        var lastComment = $('#comments_list')
+                            .find('div.comment')
+                            .last();
+                        lastComment.effect('highlight', {color: 'green'}, 401);
+                        $('html, body').animate({
+                            scrollTop: lastComment.offset().top
+                        }, 750);
+                    } else {
+                        var newMessage = $('#genericErrorTemplate').clone();
+                        newMessage
+                            .find('.contents')
+                            .text(data.message.message);
+                        var commentsAlert = $('#comments_alerts');
+                        commentsAlert
+                            .empty()
+                            .append(newMessage);
+                        $('html, body').animate({
+                            scrollTop: commentsAlert.offset().top
+                        }, 750);
+                    }
+                },
+                complete: function() {
+                    $('#add_comment').removeAttr("disabled");
                 }
-            }
-        });
+            });
+        }
 
         return false;
     });
