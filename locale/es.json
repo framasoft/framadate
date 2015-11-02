@@ -43,6 +43,7 @@
     "Date": {
         "dd/mm/yyyy": "ES_jj/mm/aaaa",
         "datepicker": "yyyy-mm-dd",
+        "datetime_parseformat": "Y-m-d",
         "%A, den %e. %B %Y": "%A %e de %B %Y",
         "FULL": "ES_%A, den %e. %B %Y",
         "SHORT": "ES_%A %e %B %Y",

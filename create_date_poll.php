@@ -133,8 +133,8 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 
                 if (!empty($day)) {
                     // Add choice to Form data
-                    // TODO Fix the parse
-                    $time = mktime(0, 0, 0, substr($_POST["days"][$i],3,2),substr($_POST["days"][$i],0,2),substr($_POST["days"][$i],6,4));
+                    $date = DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $_POST['days'][$i])->setTime(0, 0, 0);
+                    $time = $date->getTimestamp();
                     $choice = new Choice($time);
                     $_SESSION['form']->addChoice($choice);
 

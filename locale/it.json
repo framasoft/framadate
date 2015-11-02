@@ -43,6 +43,7 @@
   "Date": {
     "dd/mm/yyyy": "gg/mm/aaaa",
     "datepicker": "gg/mm/yyyy",
+    "datetime_parseformat": "g/m/Y",
     "%A, den %e. %B %Y": "%A %e %B %Y",
     "FULL": "%A %e %B %Y",
     "SHORT": "%A %e %B %Y",
