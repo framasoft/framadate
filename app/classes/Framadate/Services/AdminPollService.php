@@ -277,34 +277,29 @@ class AdminPollService {
      *
      * @param $slots array All the slots of the poll
      * @param $datetime int The datetime of the new slot
-     * @return null|\stdClass An object like this one: {insert:X, slot:Y} where Y can be null.
+     * @return \stdClass An object like this one: {insert:X, slot:Y} where Y can be null.
      */
     private function findInsertPosition($slots, $datetime) {
         $result = new \stdClass();
         $result->slot = null;
-        $result->insert = -1;
-
-        $i = 0;
+        $result->insert = 0;
 
         foreach ($slots as $slot) {
             $rowDatetime = $slot->title;
             $moments = explode(',', $slot->moments);
 
             if ($datetime == $rowDatetime) {
-                $i += count($moments);
-
                 // Here we have to insert at the end of a slot
+                $result->insert += count($moments);
                 $result->slot = $slot;
-                $result->insert = $i;
                 break;
             } elseif ($datetime < $rowDatetime) {
-                // Here we have to insert a new slot
+                // We have to insert before this slot
                 break;
             } else {
-                $i += count($moments);
+                $result->insert += count($moments);
             }
         }
-        $result->insert = $i;
 
         return $result;
     }
