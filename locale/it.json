@@ -335,6 +335,7 @@
     "Comment failed": "IT_Commentaire échoué",
     "You can't create a poll with hidden results with the following edition option:": "IT_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
     "Failed to delete column": "Impossibile eliminare colonna",
+    "The column already exists": "IT_La colonne existe déjà",
     "MISSING_VALUES": "Valori mancanti",
     "CANT_CONNECT_TO_DATABASE": "Impossibile connettersi al database"
   }

@@ -335,6 +335,7 @@
     "Comment failed": "Comment failed",
     "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following option: ",
     "Failed to delete column": "Failed to delete column",
+    "The column already exists": "The column already exists",
     "MISSING_VALUES": "Missing values",
     "CANT_CONNECT_TO_DATABASE": "Unable to connect to database"
   }
