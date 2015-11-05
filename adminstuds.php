@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 use Framadate\Editable;
+use Framadate\Exception\MomentAlreadyExistsException;
 use Framadate\Message;
 use Framadate\Services\AdminPollService;
 use Framadate\Services\InputService;
@@ -393,21 +394,21 @@ if (isset($_GET['add_slot'])) {
     exit;
 }
 if (isset($_POST['confirm_add_slot'])) {
-    if ($poll->format === 'D') {
-        $newdate = strip_tags($_POST['newdate']);
-        $newmoment = str_replace(',', '-', strip_tags($_POST['newmoment']));
+    try {
+        if ($poll->format === 'D') {
+            $newdate = strip_tags($_POST['newdate']);
+            $newmoment = str_replace(',', '-', strip_tags($_POST['newmoment']));
 
-        $ex = explode('/', $newdate);
-        $result = $adminPollService->addDateSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
-    } else {
-        $newslot = str_replace(',', '-', strip_tags($_POST['choice']));
-        $result = $adminPollService->addClassicSlot($poll_id, $newslot);
-    }
+            $ex = explode('/', $newdate);
+            $adminPollService->addDateSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
+        } else {
+            $newslot = str_replace(',', '-', strip_tags($_POST['choice']));
+            $adminPollService->addClassicSlot($poll_id, $newslot);
+        }
 
-    if ($result) {
         $message = new Message('success', __('adminstuds', 'Choice added'));
-    } else {
-        $message = new Message('danger', __('Error', 'Failed to add the column'));
+    } catch (MomentAlreadyExistsException $e) {
+        $message = new Message('danger', __('Error', 'The column already exists'));
     }
 }
 

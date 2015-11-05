@@ -335,6 +335,7 @@
         "Comment failed": "Abgabe des Kommentars gescheitert",
         "You can't create a poll with hidden results with the following edition option:": "Sie können mit der folgenden Editier-Option keine Umfrage mit versteckten Ergebnissen erzeugen:",
         "Failed to delete column": "Löschen der Spalte fehlgeschlagen",
+        "The column already exists": "DE_La colonne existe déjà",
         "MISSING_VALUES": "Fehlende Werte",
         "CANT_CONNECT_TO_DATABASE": "Kann nicht mit der Datenbank verbinden"
     }
