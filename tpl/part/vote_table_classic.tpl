@@ -14,7 +14,7 @@
                     <th role="presentation"></th>
                     {foreach $slots as $id=>$slot}
                         <td headers="C{$id}">
-                            <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=urlencode($slot->title)}"
+                            <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->title}"
                                class="btn btn-link btn-sm" title="{__('adminstuds', 'Remove the column')} {$slot->title|html}">
                                 <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                             </a>

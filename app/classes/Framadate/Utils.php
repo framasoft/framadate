@@ -104,6 +104,9 @@ class Utils {
      * @return  string The poll's URL.
      */
     public static function getUrlSondage($id, $admin = false, $vote_id = '', $action = null, $action_value = null) {
+        // URL-Encode $action_value
+        $action_value = $action_value == null ? null : urlencode($action_value);
+
         if (URL_PROPRE) {
             if ($admin === true) {
                 $url = self::get_server_name() . $id . '/admin';
