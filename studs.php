@@ -39,6 +39,7 @@ $poll_id = null;
 $poll = null;
 $message = null;
 $editingVoteId = 0;
+$editedVoteUniqueId = null;
 
 /* Services */
 /*----------*/
@@ -133,8 +134,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices);
         if ($result) {
             if ($poll->editable == Editable::EDITABLE_BY_OWN) {
-                $editedVoteUniqId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-                $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqId);
+                $editedVoteUniqueId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+                $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
                 $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
             } else {
                 $message = new Message('success', __('studs', 'Update vote succeeded'));
@@ -161,6 +162,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         if ($result) {
             if ($poll->editable == Editable::EDITABLE_BY_OWN) {
                 $urlEditVote = Utils::getUrlSondage($poll_id, false, $result->uniqId);
+                $editedVoteUniqueId =  $result->uniqId;
                 $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
             } else {
                 $message = new Message('success', __('studs', 'Adding the vote succeeded'));
@@ -216,5 +218,6 @@ $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
 $smarty->assign('admin', false);
 $smarty->assign('hidden', $poll->hidden);
+$smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
 
 $smarty->display('studs.tpl');
