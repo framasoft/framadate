@@ -59,7 +59,7 @@ $ALLOWED_LANGUAGES = [
 ];
 
 // Nom et emplacement du fichier image contenant le titre
-const IMAGE_TITRE = 'images/logo-framadate.png';
+const IMAGE_TITRE = 'images/logo-bitsoffreedom.png';
 
 // Clean URLs, boolean
 const URL_PROPRE = false;
