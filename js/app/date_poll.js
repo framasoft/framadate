@@ -23,24 +23,18 @@ $(document).ready(function () {
     var $selected_days = $('#selected-days');
     var $removeaday_and_copyhours = $('#remove-a-day, #copyhours');
 
-    // at least 1 day and 1 hour filled and you can submit
+    // at least 1 day filled and you can submit
 
     var submitDaysAvalaible = function () {
         var nb_filled_days = 0;
-        var nb_filled_hours = 0;
 
         $selected_days.find('fieldset legend input').each(function () {
             if ($(this).val() != '') {
                 nb_filled_days++;
             }
         });
-        $selected_days.find('.hours').each(function () {
-            if ($(this).val() != '') {
-                nb_filled_hours++;
-            }
-        });
 
-        if (nb_filled_days >= 1 && nb_filled_hours >= 1) {
+        if (nb_filled_days >= 1) {
             $('button[name="choixheures"]').removeClass('disabled');
             return true;
         } else {
