@@ -203,12 +203,12 @@
     "You are in the poll creation section.": "Avete scelto di creare un nuovo sondaggio.",
     "Required fields cannot be left blank.": "Riempire i campi obbligatori, segnati con *.",
     "Poll title": "Titolo del sondaggio",
-    "Votes cannot be modified.": "No voto non può essere modificato",
+    "Votes cannot be modified.": "Nessun voto può essere modificato",
     "All voters can modify any vote": "Tutti i sondaggi possono cambiare tutti i voti",
     "Voters can modify their vote themselves": "I partecipanti possono modificare il loro voto in autonomia",
-    "To receive an email for each new vote": "Per ricevere un'email per ogni voto nuovo",
-    "To receive an email for each new comment": "Ricevi una e-mail ogni commento",
-    "Only the poll maker can see the poll's results": "Solo il creatore sondaggio possono vedere i risultati",
+    "To receive an email for each new vote": "Per ricevere un'email per ogni nuovo voto",
+    "To receive an email for each new comment": "Ricevi un'e-mail per ogni nuovo commento",
+    "Only the poll maker can see the poll's results": "Solo il creatore sondaggio può vedere i risultati",
     "Go to step 2": "Andare al punto 2"
   },
   "Step 2": {
