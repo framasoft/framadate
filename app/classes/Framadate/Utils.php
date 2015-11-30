@@ -105,7 +105,7 @@ class Utils {
      */
     public static function getUrlSondage($id, $admin = false, $vote_id = '', $action = null, $action_value = null) {
         // URL-Encode $action_value
-        $action_value = $action_value == null ? null : urlencode($action_value);
+        $action_value = $action_value == null ? null : Utils::base64url_encode($action_value);
 
         if (URL_PROPRE) {
             if ($admin === true) {
@@ -115,8 +115,12 @@ class Utils {
             }
             if ($vote_id != '') {
                 $url .= '/vote/' . $vote_id . "#edit";
-            } elseif ($action != null && $action_value != null) {
-                $url .= '/action/' . $action . '/' . $action_value;
+            } elseif ($action != null) {
+                if ($action_value != null) {
+                    $url .= '/action/' . $action . '/' . $action_value;
+                } else {
+                    $url .= '/action/' . $action;
+                }
             }
         } else {
             if ($admin === true) {
@@ -126,8 +130,12 @@ class Utils {
             }
             if ($vote_id != '') {
                 $url .= '&vote=' . $vote_id . "#edit";
-            } elseif ($action != null && $action_value != null)  {
-                $url .= '&' . $action . "=" . $action_value;
+            } elseif ($action != null)  {
+                if ($action_value != null) {
+                    $url .= '&' . $action . "=" . $action_value;
+                } else {
+                    $url .= '&' . $action . "=";
+                }
             }
         }
 
@@ -199,5 +207,13 @@ class Utils {
 
     public static function fromPostOrDefault($postKey, $default = '') {
         return !empty($_POST[$postKey]) ? Utils::htmlEscape($_POST[$postKey]) : $default;
+    }
+
+    public static function base64url_encode($input) {
+        return rtrim(strtr(base64_encode($input), '+/', '-_'), '=');
+    }
+
+    public static function base64url_decode($input) {
+        return base64_decode(str_pad(strtr($input, '-_', '+/'), strlen($input) % 4, '=', STR_PAD_RIGHT));
     }
 }

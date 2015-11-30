@@ -246,6 +246,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 
 if (!empty($_GET['delete_vote'])) {
     $vote_id = filter_input(INPUT_GET, 'delete_vote', FILTER_VALIDATE_INT);
+    $vote_id = Utils::base64url_decode($vote_id);
     if ($adminPollService->deleteVote($poll_id, $vote_id)) {
         $message = new Message('success', __('adminstuds', 'Vote deleted'));
     } else {
@@ -361,6 +362,7 @@ if (isset($_POST['confirm_delete_poll'])) {
 
 if (!empty($_GET['delete_column'])) {
     $column = filter_input(INPUT_GET, 'delete_column', FILTER_DEFAULT);
+    $column = Utils::base64url_decode($column);
 
     if ($poll->format === 'D') {
         $ex = explode('@', $column);
@@ -385,15 +387,15 @@ if (!empty($_GET['delete_column'])) {
 // Add a slot
 // -------------------------------
 
-if (isset($_GET['add_slot'])) {
+if (isset($_GET['add_column'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('format', $poll->format);
     $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
-    $smarty->display('add_slot.tpl');
+    $smarty->display('add_column.tpl');
     exit;
 }
-if (isset($_POST['confirm_add_slot'])) {
+if (isset($_POST['confirm_add_column'])) {
     try {
         if ($poll->format === 'D') {
             $newdate = strip_tags($_POST['newdate']);
