@@ -10,6 +10,15 @@
     - Amélioration : Les commentaires sont horodatés
     - Amélioration : Auto wrapping de la description du sondage
 
+## Version 0.9.3 (Antonin - Olivier - Nikos)
+    - Fix : Traduction de textes en Italien
+    - Fix : Empêchement de la suppression de la dernière colonne
+    - Fix : Possiblité de supprimer des colonnes contenant des caractères spéciaux (par exemple "&")
+    - Fix : Correction de l'exemple d'URL rewriting (des efforts restent à faire)
+    - Amélioration : (Mode chacun son vote) Possiblité d'éditer son vote directement après un vote
+    - Amélioration : Message plus parlant lors de la création d'une colonne
+## Version 0.9.2 (Olivier)
+    - Fix : Completion d'un manque de contrôle sur les ID
 ## Version 0.9.1 (JosephK - Olivier - Antonin - Michael - Paul)
     - Fix : Correction des lenteurs de défilement
     - Fix : Arrêt du défilement auto à gauche qu'on clique sur un choix

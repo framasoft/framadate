@@ -40,6 +40,7 @@ $resultPubliclyVisible = true;
 $slots = array();
 $votes = array();
 $comments = array();
+$editedVoteUniqueId = null;
 
 /* Services */
 /*----------*/
@@ -189,5 +190,6 @@ $smarty->assign('admin', false);
 $smarty->assign('hidden', $poll->hidden);
 $smarty->assign('accessGranted', $accessGranted);
 $smarty->assign('resultPubliclyVisible', $resultPubliclyVisible);
+$smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
 
 $smarty->display('studs.tpl');

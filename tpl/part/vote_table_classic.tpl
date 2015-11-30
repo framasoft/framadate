@@ -26,8 +26,8 @@
                             </td>
                     {/foreach}
                     <td>
-                        <a href="{poll_url id=$admin_poll_id admin=true action='add_slot' action_value=true}"
-                           class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')} {$slot->title|html}">
+                        <a href="{poll_url id=$admin_poll_id admin=true action='add_column'}"
+                           class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')}">
                             <i class="glyphicon glyphicon-plus text-success"></i><span class="sr-only">{__('Poll results', 'Add a column')}</span>
                         </a>
                     </td>
@@ -99,7 +99,14 @@
 
                     {/foreach}
 
-                    {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin) && $accessGranted}
+                    {if $active && !$expired && $accessGranted &&
+                        (
+                         $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
+                         or ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_OWN') && $editedVoteUniqueId == $vote->uniqId)
+                         or $admin
+                        )
+                    }
+
                         <td class="hidden-print">
                             <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__('Poll results', 'Edit the line:')|html} {$vote->name|html}">
                                 <i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>

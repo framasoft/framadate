@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 use Framadate\Editable;
+use Framadate\Exception\MomentAlreadyExistsException;
 use Framadate\Message;
 use Framadate\Services\AdminPollService;
 use Framadate\Services\InputService;
@@ -227,6 +228,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 
 if (!empty($_GET['delete_vote'])) {
     $vote_id = filter_input(INPUT_GET, 'delete_vote', FILTER_VALIDATE_INT);
+    $vote_id = Utils::base64url_decode($vote_id);
     if ($adminPollService->deleteVote($poll_id, $vote_id)) {
         $message = new Message('success', __('adminstuds', 'Vote deleted'));
     } else {
@@ -318,6 +320,7 @@ if (isset($_POST['confirm_delete_poll'])) {
 
 if (!empty($_GET['delete_column'])) {
     $column = filter_input(INPUT_GET, 'delete_column', FILTER_DEFAULT);
+    $column = Utils::base64url_decode($column);
 
     if ($poll->format === 'D') {
         $ex = explode('@', $column);
@@ -342,30 +345,30 @@ if (!empty($_GET['delete_column'])) {
 // Add a slot
 // -------------------------------
 
-if (isset($_GET['add_slot'])) {
+if (isset($_GET['add_column'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('format', $poll->format);
     $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
-    $smarty->display('add_slot.tpl');
+    $smarty->display('add_column.tpl');
     exit;
 }
-if (isset($_POST['confirm_add_slot'])) {
-    if ($poll->format === 'D') {
-        $newdate = strip_tags($_POST['newdate']);
-        $newmoment = str_replace(',', '-', strip_tags($_POST['newmoment']));
+if (isset($_POST['confirm_add_column'])) {
+    try {
+        if ($poll->format === 'D') {
+            $newdate = strip_tags($_POST['newdate']);
+            $newmoment = str_replace(',', '-', strip_tags($_POST['newmoment']));
 
-        $ex = explode('/', $newdate);
-        $result = $adminPollService->addDateSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
-    } else {
-        $newslot = str_replace(',', '-', strip_tags($_POST['choice']));
-        $result = $adminPollService->addClassicSlot($poll_id, $newslot);
-    }
+            $ex = explode('/', $newdate);
+            $adminPollService->addDateSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
+        } else {
+            $newslot = str_replace(',', '-', strip_tags($_POST['choice']));
+            $adminPollService->addClassicSlot($poll_id, $newslot);
+        }
 
-    if ($result) {
         $message = new Message('success', __('adminstuds', 'Choice added'));
-    } else {
-        $message = new Message('danger', __('Error', 'Failed to add the column'));
+    } catch (MomentAlreadyExistsException $e) {
+        $message = new Message('danger', __('Error', 'The column already exists'));
     }
 }
 
