@@ -54,7 +54,7 @@ $(document).ready(function () {
 
         // creates assoc array for date
         var df = [];
-        for (var dc = 0; dc < 6; dc++) {
+        for (var dc = 0; dc < dtsplit.length; dc++) {
             df[dfsplit[dc]] = dtsplit[dc];
         }
 
@@ -77,7 +77,6 @@ $(document).ready(function () {
         var re_id_hours = new RegExp('"d' + (nb_days - 1) + '-h', 'g');
         var re_name_hours = new RegExp('name="horaires' + (nb_days - 1), 'g');
 
-        // TODO Faire mieux que remplacer des chaines de caractères
         var new_day_html = last_day.html().replace(re_id_hours, '"d' + nb_days + '-h')
             .replace('id="day' + (nb_days - 1) + '"', 'id="day' + nb_days + '"')
             .replace('for="day' + (nb_days - 1) + '"', 'for="day' + nb_days + '"')
@@ -234,13 +233,16 @@ $(document).ready(function () {
         var startDate = parseDate(startDateField.val(), window.date_formats.DATE);
         var endDate = parseDate(endDateField.val(), window.date_formats.DATE);
 
-        console.log('start_date as date', startDate);
-        console.log('start_end as date', endDate);
+        // Clear error classes
+        startDateField.parent().removeClass('has-error');
+        endDateField.parent().removeClass('has-error');
 
-        if (startDate <= endDate && startDate > new Date()) {
+        // console.log('start_date as date', startDate);
+        // console.log('start_end as date', endDate);
+        if (startDate <= endDate) {
             while (startDate <= endDate) {
                 var dateStr = formatDate(startDate, window.date_formats.DATE);
-                if(!useFirstEmptyDateField(dateStr)) {
+                if (!useFirstEmptyDateField(dateStr)) {
                     newDateFields(dateStr);
                 }
                 startDate.setDate(startDate.getDate() + 1);
@@ -251,8 +253,11 @@ $(document).ready(function () {
             endDateField.val('');
             $('#add_days').modal('hide');
             submitDaysAvalaible();
+
         } else {
-            console.log('err');
+            startDateField.parent().addClass('has-error');
+            endDateField.parent().addClass('has-error');
+
         }
 
     });
