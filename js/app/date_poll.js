@@ -255,8 +255,11 @@ $(document).ready(function () {
             submitDaysAvalaible();
 
         } else {
-            startDateField.parent().addClass('has-error');
-            endDateField.parent().addClass('has-error');
+            setTimeout(function () {
+                startDateField.parent().addClass('has-error');
+                endDateField.parent().addClass('has-error');
+
+            }, 200);
 
         }
 
