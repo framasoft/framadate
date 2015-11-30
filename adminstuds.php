@@ -387,15 +387,15 @@ if (!empty($_GET['delete_column'])) {
 // Add a slot
 // -------------------------------
 
-if (isset($_GET['add_slot'])) {
+if (isset($_GET['add_column'])) {
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('format', $poll->format);
     $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
-    $smarty->display('add_slot.tpl');
+    $smarty->display('add_column.tpl');
     exit;
 }
-if (isset($_POST['confirm_add_slot'])) {
+if (isset($_POST['confirm_add_column'])) {
     try {
         if ($poll->format === 'D') {
             $newdate = strip_tags($_POST['newdate']);

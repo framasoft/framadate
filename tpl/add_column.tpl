@@ -32,7 +32,7 @@
             {/if}
             <div class="form-group">
                 <button class="btn btn-default" type="submit" name="back">{__('adminstuds', 'Back to the poll')}</button>
-                <button type="submit" name="confirm_add_slot" class="btn btn-success">{__('adminstuds', 'Add a column')}</button>
+                <button type="submit" name="confirm_add_column" class="btn btn-success">{__('adminstuds', 'Add a column')}</button>
             </div>
         </div>
     </form>
