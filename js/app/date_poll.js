@@ -52,6 +52,10 @@ $(document).ready(function () {
         var dtsplit = dateStr.split(/[\/ .:-]/);
         var dfsplit = format.split(/[\/ .:-]/);
 
+        if (dfsplit.length != dtsplit.length) {
+            return null;
+        }
+
         // creates assoc array for date
         var df = [];
         for (var dc = 0; dc < dtsplit.length; dc++) {
@@ -239,26 +243,37 @@ $(document).ready(function () {
 
         // console.log('start_date as date', startDate);
         // console.log('start_end as date', endDate);
-        if (startDate <= endDate) {
-            while (startDate <= endDate) {
-                var dateStr = formatDate(startDate, window.date_formats.DATE);
-                if (!useFirstEmptyDateField(dateStr)) {
-                    newDateFields(dateStr);
+        if (startDate != null && endDate != null) {
+            if (startDate <= endDate) {
+                while (startDate <= endDate) {
+                    var dateStr = formatDate(startDate, window.date_formats.DATE);
+                    if (!useFirstEmptyDateField(dateStr)) {
+                        newDateFields(dateStr);
+                    }
+                    startDate.setDate(startDate.getDate() + 1);
                 }
-                startDate.setDate(startDate.getDate() + 1);
+
+                // Hide modal
+                startDateField.val('');
+                endDateField.val('');
+                $('#add_days').modal('hide');
+                submitDaysAvalaible();
+
+            } else {
+                setTimeout(function () {
+                    startDateField.parent().addClass('has-error');
+                    endDateField.parent().addClass('has-error');
+                }, 200);
+
             }
-
-            // Hide modal
-            startDateField.val('');
-            endDateField.val('');
-            $('#add_days').modal('hide');
-            submitDaysAvalaible();
-
         } else {
             setTimeout(function () {
-                startDateField.parent().addClass('has-error');
-                endDateField.parent().addClass('has-error');
-
+                if (startDate == null) {
+                    startDateField.parent().addClass('has-error');
+                }
+                if (endDate == null) {
+                    endDateField.parent().addClass('has-error');
+                }
             }, 200);
 
         }
