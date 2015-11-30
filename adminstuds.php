@@ -246,6 +246,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 
 if (!empty($_GET['delete_vote'])) {
     $vote_id = filter_input(INPUT_GET, 'delete_vote', FILTER_VALIDATE_INT);
+    $vote_id = Utils::base64url_decode($vote_id);
     if ($adminPollService->deleteVote($poll_id, $vote_id)) {
         $message = new Message('success', __('adminstuds', 'Vote deleted'));
     } else {
@@ -361,6 +362,7 @@ if (isset($_POST['confirm_delete_poll'])) {
 
 if (!empty($_GET['delete_column'])) {
     $column = filter_input(INPUT_GET, 'delete_column', FILTER_DEFAULT);
+    $column = Utils::base64url_decode($column);
 
     if ($poll->format === 'D') {
         $ex = explode('@', $column);
