@@ -16,6 +16,7 @@
                         {__('Step 1', 'Required fields cannot be left blank.')}
                     </p>
                 </div>
+
                 <div class="form-group {$errors['title']['class']}">
                     <label for="poll_title" class="col-sm-4 control-label">{__('Step 1', 'Poll title')} *</label>
 
@@ -28,6 +29,30 @@
                     <div class="alert alert-danger">
                         <p id="poll_title_error">
                             {$errors['title']['msg']}
+                        </p>
+                    </div>
+                {/if}
+
+                <div class="form-group {$errors['id']['class']}">
+                    <label for="poll_id" class="col-sm-4 control-label">{__('Step 1', 'Poll id')} *</label>
+
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <input id="custom_id" type="checkbox"/>
+                            </span>
+                            <input id="poll_id" type="text" name="id" class="form-control" {$errors['id']['aria']}
+                                   value="{$poll_id}" aria-describedBy="pollIdDesc" disabled="disabled" maxlength="64"
+                                   pattern="[A-Za-z0-9-]+"/>
+                        </div>
+                        <span id="pollIdDesc" class="help-block">{__('Step 1', 'Poll id rules')}</span>
+                        <span class="help-block text-warning">{__('Step 1', 'Poll id warning')}</span>
+                    </div>
+                </div>
+                {if !empty($errors['id']['msg'])}
+                    <div class="alert alert-danger">
+                        <p id="poll_title_error">
+                            {$errors['id']['msg']}
                         </p>
                     </div>
                 {/if}

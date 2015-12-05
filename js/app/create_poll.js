@@ -34,6 +34,31 @@ $(document).ready(function () {
     });
 
     /**
+     * Enable/Disable custom id options
+     */
+    var $pollId = $("#poll_id");
+    var $customId = $("#custom_id");
+
+    // Init checkbox + input
+    if (($pollId.val() || $pollId.attr('value') || "").length > 0) {
+        $customId.attr('checked', 'checked');
+        $pollId.removeAttr("disabled");
+    }
+    // Listen for checkbox changes
+    $customId.change(function () {
+        if ($(this).prop("checked")) {
+            $pollId
+                .removeAttr("disabled")
+                .val($pollId.attr("tmp") || $pollId.attr('value'));
+        } else {
+            $pollId
+                .attr("disabled", "disabled")
+                .attr("tmp", $pollId.val())
+                .val("");
+        }
+    });
+
+    /**
      * Hide/Show password options
      */
     $("#use_password").change(function(){

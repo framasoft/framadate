@@ -18,10 +18,9 @@
  */
 
 use Framadate\Form;
-use Framadate\Services\InputService;
-use Framadate\Editable;
-use Framadate\Utils;
 use Framadate\Security\PasswordHasher;
+use Framadate\Services\InputService;
+use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -55,6 +54,7 @@ if (isset($_GET['type']) && $_GET['type'] == 'date' ||
 $goToStep2 = filter_input(INPUT_POST, GO_TO_STEP_2, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(date|classic)$/']]);
 if ($goToStep2) {
     $title = $inputService->filterTitle($_POST['title']);
+    $id = $inputService->filterId($_POST['id']);
     $name = $inputService->filterName($_POST['name']);
     $mail = $inputService->filterMail($_POST['mail']);
     $description = $inputService->filterDescription($_POST['description']);
@@ -76,6 +76,7 @@ if ($goToStep2) {
     $error_on_password_repeat = false;
 
     $_SESSION['form']->title = $title;
+    $_SESSION['form']->id = $id;
     $_SESSION['form']->admin_name = $name;
     $_SESSION['form']->admin_mail = $mail;
     $_SESSION['form']->description = $description;
@@ -95,6 +96,10 @@ if ($goToStep2) {
 
     if ($title !== $_POST['title']) {
         $error_on_title = true;
+    }
+
+    if ($id === false) {
+        $error_on_id = true;
     }
 
     if ($name !== $_POST['name']) {
@@ -120,8 +125,9 @@ if ($goToStep2) {
         }
     }
 
-    if ($title && $name && $email_OK && !$error_on_title && !$error_on_description && !$error_on_name
-        && !$error_on_password && !$error_on_password_repeat) {
+    if ($title && $name && $email_OK && !$error_on_title && !$error_on_id && !$error_on_description && !$error_on_name
+        && !$error_on_password && !$error_on_password_repeat
+    ) {
 
         // If no errors, we hash the password if needed
         if ($_SESSION['form']->use_password) {
@@ -153,6 +159,11 @@ if ($goToStep2) {
 // Prepare error messages
 $errors = array(
     'title' => array(
+        'msg' => '',
+        'aria' => '',
+        'class' => ''
+    ),
+    'id' => array(
         'msg' => '',
         'aria' => '',
         'class' => ''
@@ -193,6 +204,12 @@ if (!empty($_POST[GO_TO_STEP_2])) {
         $errors['title']['aria'] = 'aria-describeby="poll_title_error" ';
         $errors['title']['class'] = ' has-error';
         $errors['title']['msg'] = __('Error', 'Something is wrong with the format');
+    }
+
+    if ($error_on_id) {
+        $errors['id']['aria'] = 'aria-describeby="poll_comment_error" ';
+        $errors['id']['class'] = ' has-error';
+        $errors['id']['msg'] = __('Error', 'Something is wrong with the format');
     }
 
     if ($error_on_description) {
@@ -243,6 +260,7 @@ $smarty->assign('goToStep2', GO_TO_STEP_2);
 
 $smarty->assign('poll_type', $poll_type);
 $smarty->assign('poll_title', Utils::fromPostOrDefault('title', $_SESSION['form']->title));
+$smarty->assign('poll_id', Utils::fromPostOrDefault('id', $_SESSION['form']->id));
 $smarty->assign('poll_description', Utils::fromPostOrDefault('description', $_SESSION['form']->description));
 $smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
 $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));
