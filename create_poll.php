@@ -18,6 +18,7 @@
  */
 
 use Framadate\Form;
+use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\PasswordHasher;
 use Framadate\Services\InputService;
 use Framadate\Utils;
@@ -31,6 +32,7 @@ const GO_TO_STEP_2 = 'gotostep2';
 /*----------*/
 
 $inputService = new InputService();
+$pollRepository = RepositoryFactory::pollRepository();
 
 /* PAGE */
 /* ---- */
@@ -100,6 +102,9 @@ if ($goToStep2) {
 
     if ($id === false) {
         $error_on_id = true;
+    } else if ($pollRepository->existsById($id)) {
+        $error_on_id = true;
+        $error_on_id_msg = __('Error', 'Poll id already used');
     }
 
     if ($name !== $_POST['name']) {
@@ -209,7 +214,7 @@ if (!empty($_POST[GO_TO_STEP_2])) {
     if ($error_on_id) {
         $errors['id']['aria'] = 'aria-describeby="poll_comment_error" ';
         $errors['id']['class'] = ' has-error';
-        $errors['id']['msg'] = __('Error', 'Something is wrong with the format');
+        $errors['id']['msg'] = isset($error_on_id_msg) ? $error_on_id_msg : __('Error', 'Something is wrong with the format');
     }
 
     if ($error_on_description) {
