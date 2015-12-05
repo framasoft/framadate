@@ -34,7 +34,7 @@
                 {/if}
 
                 <div class="form-group {$errors['id']['class']}">
-                    <label for="poll_id" class="col-sm-4 control-label">{__('Step 1', 'Poll id')} *</label>
+                    <label for="poll_id" class="col-sm-4 control-label">{__('Step 1', 'Poll id')}</label>
 
                     <div class="col-sm-8">
                         <div class="input-group">

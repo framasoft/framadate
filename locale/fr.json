@@ -216,6 +216,9 @@
     "You are in the poll creation section.": "Vous avez choisi de créer un nouveau sondage.",
     "Required fields cannot be left blank.": "Merci de remplir les champs obligatoires, marqués d'une *.",
     "Poll title": "Titre du sondage",
+    "Poll id": "Identifiant",
+    "Poll id rules": "L'identifiant peut contenir des lettres, des chiffres et des tirets \"-\".",
+    "Poll id warning": "En définissant un identifiant cela peut faciliter l'accès à ce sondage pour des personnes non désirées. Il est recommandé de le protéger par mot de passe.",
     "Votes cannot be modified.": "Aucun vote ne peut être modifié",
     "All voters can modify any vote": "Tous les sondés peuvent modifier tous les votes",
     "Voters can modify their vote themselves": "Chaque sondé peut modifier son propre vote",
@@ -370,6 +373,7 @@
     "MISSING_VALUES": "Il manque des valeurs",
     "CANT_CONNECT_TO_DATABASE": "Impossible de se connecter à la base de données",
     "Password is empty": "Le mot de passe est vide.",
-    "Passwords do not match": "Les mots de passe ne correspondent pas."
+    "Passwords do not match": "Les mots de passe ne correspondent pas.",
+    "Poll id already used": "L'identifiant est déjà utilisé"
   }
 }
