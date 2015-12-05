@@ -20,9 +20,8 @@ namespace Framadate\Services;
 
 use Framadate\Form;
 use Framadate\FramaDB;
-use Framadate\Utils;
-use Framadate\Security\Token;
 use Framadate\Repositories\RepositoryFactory;
+use Framadate\Security\Token;
 
 class PollService {
 
@@ -112,12 +111,21 @@ class PollService {
      * @return string
      */
     function createPoll(Form $form) {
-
         // Generate poll IDs, loop while poll ID already exists
-        do {
-            $poll_id = $this->random(16);
-        } while ($this->pollRepository->existsById($poll_id));
-        $admin_poll_id = $poll_id . $this->random(8);
+
+        if (empty($form->id)) { // User want us to generate an id for him
+            do {
+                $poll_id = $this->random(16);
+            } while ($this->pollRepository->existsById($poll_id));
+            $admin_poll_id = $poll_id . $this->random(8);
+
+        } else { // User have choosen the poll id
+            $poll_id = $form->id;
+            do {
+                $admin_poll_id = $this->random(24);
+            } while ($this->pollRepository->existsByAdminId($admin_poll_id));
+
+        }
 
         // Insert poll + slots
         $this->pollRepository->beginTransaction();

@@ -47,6 +47,14 @@ class PollRepository extends AbstractRepository {
         return $prepared->rowCount() > 0;
     }
 
+    public function existsByAdminId($admin_poll_id) {
+        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
+
+        $prepared->execute(array($admin_poll_id));
+
+        return $prepared->rowCount() > 0;
+    }
+
     function update($poll) {
         $prepared = $this->prepare('UPDATE `' . Utils::table('poll') . '` SET title=?, admin_name=?, admin_mail=?, description=?, end_date=?, active=?, editable=?, hidden=?, password_hash=?, results_publicly_visible=? WHERE id = ?');
 
