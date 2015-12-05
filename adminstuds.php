@@ -25,7 +25,8 @@ use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\PollService;
 use Framadate\Services\NotificationService;
-use  Framadate\Security\PasswordHasher;
+use Framadate\Security\PasswordHasher;
+use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -395,5 +396,6 @@ $smarty->assign('admin', true);
 $smarty->assign('hidden', false);
 $smarty->assign('accessGranted', true);
 $smarty->assign('resultPubliclyVisible', true);
+$smarty->assign('editedVoteUniqueId', '');
 
 $smarty->display('studs.tpl');
