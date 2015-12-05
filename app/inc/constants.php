@@ -18,7 +18,7 @@
  */
 
 // FRAMADATE version
-const VERSION = '0.9';
+const VERSION = '1.0';
 
 // Regex
 const POLL_REGEX = '/^[a-z0-9]+$/i';
