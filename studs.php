@@ -58,9 +58,7 @@ $securityService = new SecurityService();
 
 if (!empty($_GET['poll'])) {
     $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-    if (strlen($poll_id) === 16) {
-        $poll = $pollService->findById($poll_id);
-    }
+    $poll = $pollService->findById($poll_id);
 }
 
 if (!$poll) {

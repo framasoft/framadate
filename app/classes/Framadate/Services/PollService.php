@@ -49,7 +49,7 @@ class PollService {
      * @return \stdClass|null The found poll, or null
      */
     function findById($poll_id) {
-        if (preg_match('/^[\w\d]{16}$/i', $poll_id)) {
+        if (preg_match(POLL_REGEX, $poll_id)) {
             return $this->pollRepository->findById($poll_id);
         }
 
@@ -57,7 +57,7 @@ class PollService {
     }
 
     public function findByAdminId($admin_poll_id) {
-        if (preg_match('/^[\w\d]{24}$/i', $admin_poll_id)) {
+        if (preg_match(ADMIN_POLL_REGEX, $admin_poll_id)) {
             return $this->pollRepository->findByAdminId($admin_poll_id);
         }
 
