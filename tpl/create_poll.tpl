@@ -16,7 +16,7 @@
                         {__('Step 1', 'Required fields cannot be left blank.')}
                     </p>
                 </div>
-                <div class="form-group '.$errors['title']['class'].'">
+                <div class="form-group {$errors['title']['class']}">
                     <label for="poll_title" class="col-sm-4 control-label">{__('Step 1', 'Poll title')} *</label>
 
                     <div class="col-sm-8">
@@ -32,7 +32,7 @@
                     </div>
                 {/if}
 
-                <div class="form-group '.$errors['description']['class'].'">
+                <div class="form-group {$errors['description']['class']}">
                     <label for="poll_comments" class="col-sm-4 control-label">{__('Generic', 'Description')}</label>
 
                     <div class="col-sm-8">
