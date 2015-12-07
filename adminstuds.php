@@ -245,9 +245,9 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 // -------------------------------
 
 if (!empty($_GET['delete_vote'])) {
-    $vote_id = filter_input(INPUT_GET, 'delete_vote', FILTER_VALIDATE_INT);
+    $vote_id = filter_input(INPUT_GET, 'delete_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BASE64_REGEX]]);
     $vote_id = Utils::base64url_decode($vote_id);
-    if ($adminPollService->deleteVote($poll_id, $vote_id)) {
+    if ($vote_id && $adminPollService->deleteVote($poll_id, $vote_id)) {
         $message = new Message('success', __('adminstuds', 'Vote deleted'));
     } else {
         $message = new Message('danger', __('Error', 'Failed to delete the vote'));
