@@ -20,9 +20,8 @@ namespace Framadate\Services;
 
 use Framadate\Form;
 use Framadate\FramaDB;
-use Framadate\Utils;
-use Framadate\Security\Token;
 use Framadate\Repositories\RepositoryFactory;
+use Framadate\Security\Token;
 
 class PollService {
 
@@ -50,7 +49,7 @@ class PollService {
      * @return \stdClass|null The found poll, or null
      */
     function findById($poll_id) {
-        if (preg_match('/^[\w\d]{16}$/i', $poll_id)) {
+        if (preg_match(POLL_REGEX, $poll_id)) {
             return $this->pollRepository->findById($poll_id);
         }
 
@@ -58,7 +57,7 @@ class PollService {
     }
 
     public function findByAdminId($admin_poll_id) {
-        if (preg_match('/^[\w\d]{24}$/i', $admin_poll_id)) {
+        if (preg_match(ADMIN_POLL_REGEX, $admin_poll_id)) {
             return $this->pollRepository->findByAdminId($admin_poll_id);
         }
 
@@ -112,12 +111,21 @@ class PollService {
      * @return string
      */
     function createPoll(Form $form) {
-
         // Generate poll IDs, loop while poll ID already exists
-        do {
-            $poll_id = $this->random(16);
-        } while ($this->pollRepository->existsById($poll_id));
-        $admin_poll_id = $poll_id . $this->random(8);
+
+        if (empty($form->id)) { // User want us to generate an id for him
+            do {
+                $poll_id = $this->random(16);
+            } while ($this->pollRepository->existsById($poll_id));
+            $admin_poll_id = $poll_id . $this->random(8);
+
+        } else { // User have choosen the poll id
+            $poll_id = $form->id;
+            do {
+                $admin_poll_id = $this->random(24);
+            } while ($this->pollRepository->existsByAdminId($admin_poll_id));
+
+        }
 
         // Insert poll + slots
         $this->pollRepository->beginTransaction();
