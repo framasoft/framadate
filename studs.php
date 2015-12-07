@@ -178,7 +178,7 @@ if ($accessGranted) {
 }
 
 // Retrieve data
-if ($resultPubliclyVisible) {
+if ($resultPubliclyVisible || $accessGranted) {
     $slots = $pollService->allSlotsByPoll($poll);
     $votes = $pollService->allVotesByPollId($poll_id);
     $comments = $pollService->allCommentsByPollId($poll_id);
