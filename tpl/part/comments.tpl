@@ -1,5 +1,5 @@
 <hr role="presentation" id="comments" class="hidden-print"/>
-<form action="#comments" method="POST">
+<form action="{if $admin}{poll_url id=$admin_poll_id admin=true}{else}{poll_url id=$poll_id}{/if}#comments" method="POST">
 
     {* Comment list *}
 
