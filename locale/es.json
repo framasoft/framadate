@@ -328,6 +328,7 @@
         "The name you've chosen already exist in this poll!": "El nombre entrado existe ya!",
         "Enter a name and a comment!": "Introduzca su nombre y un comentario!",
         "Failed to insert the comment!": "ES_Échec à l'insertion du commentaire !",
+        "Failed to delete the vote!": "ES_Échec de la suppression du vote !",
         "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "ES_Framadate n'est pas installé correctement, lisez le fichier INSTALL pour configurer la base de données avant de continuer.",
         "Failed to save poll": "ES_Echec de la sauvegarde du sondage",
         "Update vote failed": "ES_Mise à jour du vote échoué",

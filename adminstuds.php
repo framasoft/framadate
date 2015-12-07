@@ -250,7 +250,7 @@ if (!empty($_GET['delete_vote'])) {
     if ($vote_id && $adminPollService->deleteVote($poll_id, $vote_id)) {
         $message = new Message('success', __('adminstuds', 'Vote deleted'));
     } else {
-        $message = new Message('danger', __('Error', 'Failed to delete the vote'));
+        $message = new Message('danger', __('Error', 'Failed to delete the vote!'));
     }
 }
 

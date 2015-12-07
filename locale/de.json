@@ -328,6 +328,7 @@
         "The name you've chosen already exist in this poll!": "Der von Ihnen eingegebenen Name existiert schon in dieser Umfrage",
         "Enter a name and a comment!": "Geben Sie einen Namen und ein Kommentar ein!",
         "Failed to insert the comment!": "Einfügen des Kommentars gescheitert!",
+        "Failed to delete the vote!": "DE_Échec de la suppression du vote !",
         "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "Framadate ist nicht richtig installiert. Bevor Sie fortfahren, beachten Sie bitte die Angaben zum Aufsetzen der Datenbank in \"INSTALL\".",
         "Failed to save poll": "Speichern der Umfrage fehlgeschlagen",
         "Update vote failed": "Aktualisierung der Wertung fehlgeschlagen",
