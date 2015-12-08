@@ -348,6 +348,8 @@
     "Failed to save poll": "Echec de la sauvegarde du sondage",
     "Update vote failed": "Mise à jour du vote échoué",
     "Adding vote failed": "Ajout d'un vote échoué",
+    "You already voted": "Vous avez déjà voté",
+    "Poll has been updated before you vote": "Le sondage a été mis à jour avant votre vote",
     "Comment failed": "Commentaire échoué",
     "You can't create a poll with hidden results with the following edition option:": "Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
     "Failed to delete column": "Échec de la suppression de colonne",
