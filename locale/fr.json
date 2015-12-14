@@ -252,7 +252,9 @@
     "Create the poll": "Créer le sondage",
     "Your poll will be automatically archived in %d days.": "Votre sondage sera automatiquement archivé dans %d jours.",
     "You can set a closer archiving date for it.": "Vous pouvez décider d'une date d'archivage plus proche.",
-    "Archiving date:": "Date d'archivage :"
+    "Archiving date:": "Date d'archivage :",
+    "Your poll will automatically be archived": "Votre sondage sera automatiquement archivé",
+    "after the last date of your poll.": "après le dernier jour de votre sondage."
   },
   "Admin": {
     "Back to administration": "Retour à l'administration",
