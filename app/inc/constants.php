@@ -27,7 +27,7 @@ const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/i';
 const BOOLEAN_TRUE_REGEX = '/^(on|true|1)$/i';
 const EDITABLE_CHOICE_REGEX = '/^[0-2]$/';
 const BASE64_REGEX = '/^[A-Za-z0-9]+$/';
-const MD5_REGEX = '/^[A-Fa-f0-9]+$/';
+const MD5_REGEX = '/^[A-Fa-f0-9]{32}$/';
 
 // CSRF (300s = 5min)
 const TOKEN_TIME = 300;
