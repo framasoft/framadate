@@ -333,6 +333,8 @@
     "Failed to save poll": "Failed to save poll",
     "Update vote failed": "Update vote failed",
     "Adding vote failed": "Adding vote failed",
+    "You already voted": "You already voted",
+    "Poll has been updated before you vote": "Poll has been updated before you vote",
     "Comment failed": "Comment failed",
     "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following option: ",
     "Failed to delete column": "Failed to delete column",

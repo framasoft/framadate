@@ -333,6 +333,8 @@
         "Failed to save poll": "Speichern der Umfrage fehlgeschlagen",
         "Update vote failed": "Aktualisierung der Wertung fehlgeschlagen",
         "Adding vote failed": "Stimmabgabe fehlgeschlagen",
+        "You already voted": "DE_Vous avez déjà voté",
+        "Poll has been updated before you vote": "DE_Le sondage a été mis à jour avant votre vote",
         "Comment failed": "Abgabe des Kommentars gescheitert",
         "You can't create a poll with hidden results with the following edition option:": "Sie können mit der folgenden Editier-Option keine Umfrage mit versteckten Ergebnissen erzeugen:",
         "Failed to delete column": "Löschen der Spalte fehlgeschlagen",
