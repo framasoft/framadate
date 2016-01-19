@@ -149,8 +149,8 @@
                     {if $active && !$expired &&
                         (
                             $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
-                            or ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_OWN') && $editedVoteUniqueId == $vote->uniqId)
                             or $admin
+                            or ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_OWN') && $editedVoteUniqueId == $vote->uniqId)
                         )
                     }
                         <td class="hidden-print">
