@@ -252,7 +252,9 @@
     "Create the poll": "Creare il sondaggio",
     "Your poll will be automatically archived in %d days.": "Il vostro sondaggio verrà archiviata automaticamente in %d giorni.",
     "You can set a closer archiving date for it.": "Si può decidere su una data più vicina di archiviazione.",
-    "Archiving date:": "Archivio Data:"
+    "Archiving date:": "Archivio Data:",
+    "Your poll will automatically be archived": "IT_Your poll will automatically be archived",
+    "after the last date of your poll.": "IT_after the last date of your poll."
   },
   "Admin": {
     "Back to administration": "Ritorna all'amministrazione",
@@ -333,6 +335,8 @@
     "Failed to save poll": "Errore nel salvataggio del sondaggio",
     "Update vote failed": "Aggiornamento del voto fallito",
     "Adding vote failed": "Aggiunta del voto fallito",
+    "You already voted": "IT_Vous avez déjà voté",
+    "Poll has been updated before you vote": "IT_Le sondage a été mis à jour avant votre vote",
     "Comment failed": "Commento fallito",
     "You can't create a poll with hidden results with the following edition option:": "Non potete creare un sondaggio con i risultati nascosti con queste opzioni: ",
     "Failed to delete column": "Impossibile eliminare la colonna",

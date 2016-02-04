@@ -252,7 +252,9 @@
     "Create the poll": "Create the poll",
     "Your poll will be automatically archived in %d days.": "Your poll will be automatically archived in %d days.",
     "You can set a closer archiving date for it.": "You can set a specific expiry date for the poll.",
-    "Archiving date:": "Expiry date:"
+    "Archiving date:": "Expiry date:",
+    "Your poll will automatically be archived": "Your poll will automatically be archived",
+    "after the last date of your poll.": "after the last date of your poll."
   },
   "Admin": {
     "Back to administration": "Back to administration",
@@ -333,6 +335,8 @@
     "Failed to save poll": "Failed to save poll",
     "Update vote failed": "Update vote failed",
     "Adding vote failed": "Adding vote failed",
+    "You already voted": "You already voted",
+    "Poll has been updated before you vote": "Poll has been updated before you vote",
     "Comment failed": "Comment failed",
     "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following option: ",
     "Failed to delete column": "Failed to delete column",

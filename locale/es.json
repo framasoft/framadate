@@ -252,7 +252,9 @@
         "Create the poll": "Crear la encuesta",
         "Your poll will be automatically archived in %d days.": "ES_Votre sondage sera automatiquement archivé dans %d jours.",
         "You can set a closer archiving date for it.": "ES_Vous pouvez décider d'une date d'archivage plus proche.",
-        "Archiving date:": "ES_Date d'archivage :"
+        "Archiving date:": "ES_Date d'archivage :",
+        "Your poll will automatically be archived": "ES_Your poll will automatically be archived",
+        "after the last date of your poll.": "ES_after the last date of your poll."
     },
     "Admin": {
         "Back to administration": "ES_Retour à l'administration",
@@ -333,6 +335,8 @@
         "Failed to save poll": "ES_Echec de la sauvegarde du sondage",
         "Update vote failed": "ES_Mise à jour du vote échoué",
         "Adding vote failed": "ES_Ajout d'un vote échoué",
+        "You already voted": "ES_Vous avez déjà voté",
+        "Poll has been updated before you vote": "ES_Le sondage a été mis à jour avant votre vote",
         "Comment failed": "ES_Commentaire échoué",
         "You can't create a poll with hidden results with the following edition option:": "ES_Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
         "Failed to delete column": "Error al eliminar la columna",
