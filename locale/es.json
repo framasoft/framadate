@@ -252,7 +252,9 @@
         "Create the poll": "Crear la encuesta",
         "Your poll will be automatically archived in %d days.": "ES_Votre sondage sera automatiquement archivé dans %d jours.",
         "You can set a closer archiving date for it.": "ES_Vous pouvez décider d'une date d'archivage plus proche.",
-        "Archiving date:": "ES_Date d'archivage :"
+        "Archiving date:": "ES_Date d'archivage :",
+        "Your poll will automatically be archived": "ES_Your poll will automatically be archived",
+        "after the last date of your poll.": "ES_after the last date of your poll."
     },
     "Admin": {
         "Back to administration": "ES_Retour à l'administration",

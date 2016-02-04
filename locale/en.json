@@ -252,7 +252,9 @@
     "Create the poll": "Create the poll",
     "Your poll will be automatically archived in %d days.": "Your poll will be automatically archived in %d days.",
     "You can set a closer archiving date for it.": "You can set a specific expiry date for the poll.",
-    "Archiving date:": "Expiry date:"
+    "Archiving date:": "Expiry date:",
+    "Your poll will automatically be archived": "Your poll will automatically be archived",
+    "after the last date of your poll.": "after the last date of your poll."
   },
   "Admin": {
     "Back to administration": "Back to administration",

@@ -252,7 +252,9 @@
         "Create the poll": "Umfrage erstellen",
         "Your poll will be automatically archived in %d days.": "Ihre Umfrage wird automatisch in %d Tage archiviert werden.",
         "You can set a closer archiving date for it.": "Sie können das Datum der Archivierung vorverlegen.",
-        "Archiving date:": "Tag der Archivierung:"
+        "Archiving date:": "Tag der Archivierung:",
+        "Your poll will automatically be archived": "DE_Your poll will automatically be archived",
+        "after the last date of your poll.": "DE_after the last date of your poll."
     },
     "Admin": {
         "Back to administration": "Zurück zur Verwaltung",
