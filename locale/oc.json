@@ -164,14 +164,14 @@
     "Adding the vote succeeded": "Ajust del vòte capitat"
   },
   "adminstuds": {
-    "As poll administrator, you can change all the lines of this poll with this button": "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec ce bouton",
-    "remove a column or a line with": "effacer une colonne ou une ligne avec",
-    "and add a new column with": "et si vous avez oublié de saisir un choix, vous pouvez rajouter une colonne en cliquant sur",
-    "Finally, you can change the informations of this poll like the title, the comments or your email address.": "Vous pouvez enfin également modifier les informations relatives à ce sondage comme le titre, les commentaires ou encore votre courriel.",
-    "Column's adding": "Ajout de colonne",
-    "You can add a new scheduling date to your poll.": "Vous pouvez ajouter une date à votre sondage.",
-    "If you just want to add a new hour to an existant date, put the same date and choose a new hour.": "Si vous voulez juste ajouter un horaire à une date existante, mettez la même date et choisissez un autre horaire. Il sera intégré normalement au sondage existant.",
-    "Confirm removal of the poll": "Confirmer la suppression du sondage",
+    "As poll administrator, you can change all the lines of this poll with this button": "En qualitat d'administrator podètz modificar totas las linhas d'aqueste sondatge avec aqueste boton",
+    "remove a column or a line with": "escafar una colomna o una linha amb",
+    "and add a new column with": "E se avètz doblidat de picar una causida, podètz tornar apondre una colona en clicant sus",
+    "Finally, you can change the informations of this poll like the title, the comments or your email address.": "Per acabar podètz tanben modificar las informacions tocant aqueste sondatge coma lo títol, los comentaris o vòstre corrièl.",
+    "Column's adding": "Apondi de colomna",
+    "You can add a new scheduling date to your poll.": "Podètz apondre una data a vòstre sondatge.",
+    "If you just want to add a new hour to an existant date, put the same date and choose a new hour.": "Se volètz apondre un orari a una data existenta, botatz la meteissa data e triatz un orari mai. Serà normalament integrat al sondatge existent.",
+    "Confirm removal of the poll": "Confirmar la supression del sondatge",
     "Delete the poll": "Suprimi lo sondatge",
     "Keep the poll": "Gardi lo sondatge",
     "Your poll has been removed!": "Vòstre sondatge es estat suprimit !",
@@ -253,8 +253,8 @@
     "Your poll will be automatically archived in %d days.": "Vòstre sondatge serà automaticament archivat dins %d jorns.",
     "You can set a closer archiving date for it.": "Podètz decidir d'una data de mesa en archiva mai prèpa.",
     "Archiving date:": "Data de mesa en archiva :",
-    "Your poll will automatically be archived": "DE_Your poll will automatically be archived",
-+    "after the last date of your poll.": "DE_after the last date of your poll."
+    "Your poll will automatically be archived": "Vòstre sondatge sera automaticament mesa en archiva",
++    "after the last date of your poll.": "aprèp lo darrièr jorn del sondatge."
   },
   "Admin": {
     "Back to administration": "Tornar a l'administracion",
@@ -276,7 +276,7 @@
     "Change the poll": "Modificar lo sondatge",
     "Deleted the poll": "Suprimir lo sondatge",
     "Summary": "Resumit",
-    "Success": "Réussite",
+    "Success": "Capidada",
     "Fail": "Fracàs",
     "Nothing": "Res",
     "Succeeded:": "Capitat:",
@@ -289,9 +289,9 @@
     "Purge the polls": "Purgar los sondatges"
   },
   "FindPolls": {
-    "Here are your polls": "Voici tes sondages",
-    "Send me my polls": "Envoyer mes sondages",
-    "Polls sent": "Sondages envoyés"
+    "Here are your polls": "Vaquí tos sondatges",
+    "Send me my polls": "Mandar mos sondatges",
+    "Polls sent": "Sondatges mandats"
   },
   "Mail": {
     "Poll's participation: %s": "Participation au sondage : %s",
