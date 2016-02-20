@@ -59,7 +59,7 @@
   },
   "Homepage": {
     "Schedule an event": "Schedule an event",
-    "Make a classic poll": "Make a classic poll",
+    "Make a classic poll": "Make a standard poll",
     "Where are my polls": "Where are my polls?"
   },
   "1st section": {
@@ -76,28 +76,28 @@
   "2nd section": {
     "The software": "The software",
     "Framadate was initially based on ": "Framadate was initially based on ",
-    "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.",
-    "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:",
+    "a software developed by the University of Strasbourg. Today, it is developed by Framasoft association.": "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.",
+    "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:": "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:",
     "It is governed by the": "Framadate is licensed under the",
     "CeCILL-B license": "CeCILL-B license"
   },
   "3rd section": {
-    "Cultivate your garden": "Cultivate your garden",
+    "Cultivate your garden": "Grow your own",
     "To participate in the software development, suggest improvements or simply download it, please visit ": "To participate in the software development, suggest improvements or simply download it, please visit ",
     "the development site": "the development site",
     "If you want to install the software for your own use and thus increase your independence, we help you on:": "If you want to install the software for your own use and thus increase your independence, we can help you at:"
   },
   "PollInfo": {
     "Remove the poll": "Remove the poll",
-    "Remove all the comments": "Remove all the comments",
-    "Remove all the votes": "Remove all the votes",
+    "Remove all the comments": "Remove all comments",
+    "Remove all the votes": "Remove all votes",
     "Print": "Print",
     "Export to CSV": "Export to CSV",
     "Title": "Title of the poll",
     "Edit the title": "Edit title",
     "Save the new title": "Save the new title",
     "Cancel the title edit": "Cancel the title edit",
-    "Initiator of the poll": "Initiator of the poll",
+    "Initiator of the poll": "Creator of the poll",
     "Edit the name": "Edit name",
     "Save the new name": "Save the new name",
     "Cancel the name edit": "Cancel the name edit",
