@@ -51,6 +51,7 @@ if (is_file(CONF_FILENAME)) {
     $ALLOWED_LANGUAGES = [
         'fr' => 'Français',
         'en' => 'English',
+        'oc' => 'Occitan',
         'es' => 'Español',
         'de' => 'Deutsch',
         'it' => 'Italiano',
