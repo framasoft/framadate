@@ -285,9 +285,7 @@ class AdminPollService {
         $result->insert = 0;
 
         // Sort slots before searching where to insert
-        uasort($slots, function ($a, $b) {
-            return $a->title > $b->title;
-        });
+        $this->pollService->sortSlorts($slots);
 
         // Search where to insert new column
         foreach ($slots as $k=>$slot) {

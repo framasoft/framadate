@@ -78,16 +78,16 @@ class PollService {
     function allSlotsByPoll($poll) {
         $slots = $this->slotRepository->listByPollId($poll->id);
         if ($poll->format == 'D') {
-            uasort($slots, function ($a, $b) {
-                return $a->title > $b->title;
-            });
+            $this->sortSlorts($slots);
         }
         return $slots;
     }
 
     public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash) {
+        $poll = $this->findById($poll_id);
+
         // Check if slots are still the same
-        $this->checkThatSlotsDidntChanged($poll_id, $slots_hash);
+        $this->checkThatSlotsDidntChanged($poll, $slots_hash);
 
         // Update vote
         $choices = implode($choices);
@@ -95,8 +95,10 @@ class PollService {
     }
 
     function addVote($poll_id, $name, $choices, $slots_hash) {
+        $poll = $this->findById($poll_id);
+
         // Check if slots are still the same
-        $this->checkThatSlotsDidntChanged($poll_id, $slots_hash);
+        $this->checkThatSlotsDidntChanged($poll, $slots_hash);
 
         // Check if vote already exists
         if ($this->voteRepository->existsByPollIdAndName($poll_id, $name)) {
@@ -225,15 +227,25 @@ class PollService {
     /**
      * This method checks if the hash send by the user is the same as the computed hash.
      *
-     * @param $poll_id int The id of the poll
+     * @param $poll /stdClass The poll
      * @param $slots_hash string The hash sent by the user
      * @throws ConcurrentEditionException Thrown when hashes are differents
      */
-    private function checkThatSlotsDidntChanged($poll_id, $slots_hash) {
-        $slots = $this->slotRepository->listByPollId($poll_id);
+    private function checkThatSlotsDidntChanged($poll, $slots_hash) {
+        $slots = $this->allSlotsByPoll($poll);
         if ($slots_hash !== $this->hashSlots($slots)) {
             throw new ConcurrentEditionException();
         }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function sortSlorts(&$slots) {
+        uasort($slots, function ($a, $b) {
+            return $a->title > $b->title;
+        });
+        return $slots;
     }
 
 }
