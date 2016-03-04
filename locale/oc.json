@@ -2,7 +2,7 @@
   "Generic": {
     "Make your polls": "Organizar de rencontres simplament, liurament",
     "Home": "Acuèlh",
-    "Poll": "Sondage",
+    "Poll": "Sondatge",
     "Save": "Enregistrar",
     "Cancel": "Anullar",
     "Add": "Apondre",
@@ -148,7 +148,7 @@
   "Comments": {
     "Comments of polled people": "Comentaris dels opinaires",
     "Remove the comment": "Suprimir lo comentari",
-    "Add a comment to the poll": "Apondre un commntari al sondatge",
+    "Add a comment to the poll": "Apondre un comentari al sondatge",
     "Your comment": "Vòstre comentari",
     "Send the comment": "Mandar lo comentari",
     "anonyme": "anonim",
@@ -247,14 +247,14 @@
     "Removal date and confirmation (3 on 3)": "Data d'expiracion e confirmacion (3 sus 3)",
     "Confirm the creation of your poll": "Confirmatz la creacion de vòstre sondatge",
     "List of your choices": "Lista de vòstras causidas",
-    "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "Un còp la creacion del sondatge confirmada, seretz mandat automaticament de vòstre sondatge.",
+    "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "Un còp la creacion del sondatge confirmada, seretz mandat automaticament a vòstre sondatge.",
     "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "D'aquel temps, recebretz dos corrièls : un amb lo ligam cap a vòstre sondatge per o mandar als opinaires, l'autre amb lo ligam per la pagina d'administracion del sondatge.",
     "Create the poll": "Crear lo sondatge",
     "Your poll will be automatically archived in %d days.": "Vòstre sondatge serà automaticament archivat dins %d jorns.",
     "You can set a closer archiving date for it.": "Podètz decidir d'una data de mesa en archiva mai prèpa.",
     "Archiving date:": "Data de mesa en archiva :",
-    "Your poll will automatically be archived": "Vòstre sondatge sera automaticament mesa en archiva",
-+    "after the last date of your poll.": "aprèp lo darrièr jorn del sondatge."
+    "Your poll will automatically be archived": "Vòstre sondatge serà automaticament mesa en archiva",
+    "after the last date of your poll.": "aprèp lo darrièr jorn del sondatge."
   },
   "Admin": {
     "Back to administration": "Tornar a l'administracion",
