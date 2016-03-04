@@ -41,12 +41,12 @@
     },
     "Date": {
         "dd/mm/yyyy": "dd/mm/aaaa",
-        "%A, den %e. %B %Y": "%A %e de %B %Y",
-        "FULL": "ES_%A, den %e. %B %Y",
-        "SHORT": "ES_%A %e %B %Y",
-        "DAY": "ES_%a %e",
-        "DATE": "ES_%Y-%m-%d",
-        "MONTH_YEAR": "ES_%B %Y"
+        "%A, den %e. %B %Y": "%A %e de %B de %Y",
+        "FULL": "%A, %e de %B de %Y",
+        "SHORT": "%A %e %B %Y",
+        "DAY": "%a %e",
+        "DATE": "%d-%m-%Y",
+        "MONTH_YEAR": "%B de %Y"
     },
     "Language selector": {
         "Select the language": "Elegir el idioma",
