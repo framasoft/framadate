@@ -93,12 +93,12 @@
         <div class="row">
             <div class="form-group form-group {if $admin}col-md-4{else}col-md-6{/if}">
                 <label for="public-link"><a class="public-link" href="{poll_url id=$poll_id}">{__('PollInfo', 'Public link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
-                <input class="form-control" id="public-link" type="text" readonly="readonly" value="{poll_url id=$poll_id}" />
+                <input class="form-control" id="public-link" type="text" readonly="readonly" value="{poll_url id=$poll_id}" onclick="select();"/>
             </div>
             {if $admin}
                 <div class="form-group col-md-4">
                     <label for="admin-link"><a class="admin-link" href="{poll_url id=$admin_poll_id admin=true}">{__('PollInfo', 'Admin link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
-                    <input class="form-control" id="admin-link" type="text" readonly="readonly" value="{poll_url id=$admin_poll_id admin=true}" />
+                    <input class="form-control" id="admin-link" type="text" readonly="readonly" value="{poll_url id=$admin_poll_id admin=true}" onclick="select();"/>
                 </div>
                 <div id="expiration-form" class="form-group col-md-4">
                     <label class="control-label">{__('PollInfo', 'Expiration date')}</label>
