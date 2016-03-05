@@ -179,7 +179,7 @@
 
             {* Line to add a new vote *}
 
-            {if $active && $editingVoteId === 0 && !$expired}
+            {if $active && $editingVoteId === 0 && !$expired && $accessGranted}
                 <tr id="vote-form" class="hidden-print">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">
