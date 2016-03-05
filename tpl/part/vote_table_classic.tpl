@@ -44,8 +44,9 @@
             </thead>
             <tbody>
             {foreach $votes as $vote}
+                {* Edited line *}
 
-                {if $editingVoteId === $vote->uniqId} {* Edited line *}
+                {if $editingVoteId === $vote->uniqId && !$expired}
 
                 <tr class="hidden-print">
                     <td class="bg-info" style="padding:5px">
