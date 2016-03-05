@@ -80,7 +80,6 @@ $(document).ready(function () {
                 $(this).find('.hours:eq(' + i + ')').val(first_day_hours[i]); // fill hours
             }
         });
-        $('#d0-h0').focus();
     });
 
     // Buttons "Add an hour"
