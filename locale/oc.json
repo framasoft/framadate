@@ -200,7 +200,7 @@
     "You are in the poll creation section.": "Avètz causit de crear un nòu sondatge.",
     "Required fields cannot be left blank.": "Mercés de garnir tots los formularis obligatòris, marcats amb una *.",
     "Poll title": "Títol del sondatge",
-    "Votes cannot be modified.": "Cap vòte pòt èsser modificat",
+    "Votes cannot be modified": "Cap vòte pòt èsser modificat",
     "All voters can modify any vote": "Tot lo mond pòt modificar sos vòtes",
     "Voters can modify their vote themselves": "Cadun pòt modificar son pròpi vòte",
     "To receive an email for each new vote": "Recebre un messatge per cada participacion",

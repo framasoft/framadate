@@ -216,7 +216,7 @@
         "Poll id": "DE_Identifiant",
         "Poll id rules": "DE_L'identifiant peut contenir des lettres, des chiffres et des tirets \"-\".",
         "Poll id warning": "DE_En définissant un identifiant cela peut faciliter l'accès à ce sondage pour des personnes non désirées. Il est recommandé de le protéger par mot de passe.",
-        "Votes cannot be modified.": "Wertungen können nicht verändert werden.",
+        "Votes cannot be modified": "Wertungen können nicht verändert werden.",
         "All voters can modify any vote": "Jeder Teilnehmer kann jede abgegebene Wertung ändern.",
         "Voters can modify their vote themselves": "Teilnehmer können ihre Wertungen verändern",
         "To receive an email for each new vote": "Bei jeder neuen Wertung eine E-Mail erhalten",
