@@ -74,6 +74,7 @@ $(document).ready(function () {
                         newMessage
                             .find('.contents')
                             .text(data.message.message);
+                        newMessage.removeClass('hidden');
                         var commentsAlert = $('#comments_alerts');
                         commentsAlert
                             .empty()

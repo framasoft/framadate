@@ -27,7 +27,8 @@ use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\PollService;
 use Framadate\Services\NotificationService;
-use  Framadate\Security\PasswordHasher;
+use Framadate\Security\PasswordHasher;
+use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 
