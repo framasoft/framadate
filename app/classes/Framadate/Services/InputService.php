@@ -54,6 +54,11 @@ class InputService {
         return $this->returnIfNotBlank($title);
     }
 
+    public function filterId($id) {
+        $filtered = filter_var($id, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+        return $filtered ? substr($filtered, 0, 64) : false;
+    }
+
     public function filterName($name) {
         $filtered = trim($name);
         return $this->returnIfNotBlank($filtered);
@@ -66,6 +71,10 @@ class InputService {
     public function filterDescription($description) {
         $description = str_replace("\r\n", "\n", $description);
         return $description;
+    }
+
+    public function filterMD5($control) {
+        return filter_var($control, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => MD5_REGEX]]);
     }
 
     public function filterBoolean($boolean) {

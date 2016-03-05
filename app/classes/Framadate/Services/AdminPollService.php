@@ -284,7 +284,11 @@ class AdminPollService {
         $result->slot = null;
         $result->insert = 0;
 
-        foreach ($slots as $slot) {
+        // Sort slots before searching where to insert
+        $this->pollService->sortSlorts($slots);
+
+        // Search where to insert new column
+        foreach ($slots as $k=>$slot) {
             $rowDatetime = $slot->title;
             $moments = explode(',', $slot->moments);
 

@@ -22,11 +22,18 @@ use Framadate\Services\InputService;
 use Framadate\Services\MailService;
 use Framadate\Services\NotificationService;
 use Framadate\Services\SecurityService;
+use Framadate\Services\SessionService;
 use Framadate\Message;
 use Framadate\Utils;
 use Framadate\Editable;
 
 include_once __DIR__ . '/app/inc/init.php';
+
+/* Constantes */
+/* ---------- */
+
+const USER_REMEMBER_VOTES_KEY = 'UserVotes';
+
 
 /* Variables */
 /* --------- */
@@ -40,7 +47,6 @@ $resultPubliclyVisible = true;
 $slots = array();
 $votes = array();
 $comments = array();
-$editedVoteUniqueId = null;
 
 /* Services */
 /*----------*/
@@ -51,6 +57,7 @@ $inputService = new InputService();
 $mailService = new MailService($config['use_smtp']);
 $notificationService = new NotificationService($mailService);
 $securityService = new SecurityService();
+$sessionService = new SessionService();
 
 
 /* PAGE */
@@ -58,9 +65,7 @@ $securityService = new SecurityService();
 
 if (!empty($_GET['poll'])) {
     $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-    if (strlen($poll_id) === 16) {
-        $poll = $pollService->findById($poll_id);
-    }
+    $poll = $pollService->findById($poll_id);
 }
 
 if (!$poll) {
@@ -68,6 +73,8 @@ if (!$poll) {
     $smarty->display('error.tpl');
     exit;
 }
+
+$editedVoteUniqueId = $sessionService->get(USER_REMEMBER_VOTES_KEY, $poll_id, '');
 
 // -------------------------------
 // Password verification
@@ -127,8 +134,9 @@ if ($accessGranted) {
             $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices);
             if ($result) {
                 if ($poll->editable == Editable::EDITABLE_BY_OWN) {
-                    $editedVoteUniqId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-                    $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqId);
+                    $editedVoteUniqueId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+                    $sessionService->set(USER_REMEMBER_VOTES_KEY, $poll_id, $editedVoteUniqueId);
+                    $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
                     $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
                 } else {
                     $message = new Message('success', __('studs', 'Update vote succeeded'));
@@ -154,7 +162,9 @@ if ($accessGranted) {
             $result = $pollService->addVote($poll_id, $name, $choices);
             if ($result) {
                 if ($poll->editable == Editable::EDITABLE_BY_OWN) {
-                    $urlEditVote = Utils::getUrlSondage($poll_id, false, $result->uniqId);
+                    $editedVoteUniqueId = $result->uniqId;
+                    $sessionService->set(USER_REMEMBER_VOTES_KEY, $poll_id, $editedVoteUniqueId);
+                    $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
                     $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
                 } else {
                     $message = new Message('success', __('studs', 'Adding the vote succeeded'));
@@ -168,7 +178,7 @@ if ($accessGranted) {
 }
 
 // Retrieve data
-if ($resultPubliclyVisible) {
+if ($resultPubliclyVisible || $accessGranted) {
     $slots = $pollService->allSlotsByPoll($poll);
     $votes = $pollService->allVotesByPollId($poll_id);
     $comments = $pollService->allCommentsByPollId($poll_id);
