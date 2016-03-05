@@ -17,6 +17,8 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 use Framadate\Editable;
+use Framadate\Exception\AlreadyExistsException;
+use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Exception\MomentAlreadyExistsException;
 use Framadate\Message;
 use Framadate\Services\AdminPollService;
@@ -183,6 +185,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     $name = $inputService->filterName($_POST['name']);
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
+    $slots_hash = $inputService->filterMD5($_POST['control']);
 
     if (empty($editedVote)) {
         $message = new Message('danger', __('Error', 'Something is going wrong...'));
@@ -193,16 +196,21 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 
     if ($message == null) {
         // Update vote
-        $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices);
-        if ($result) {
-            $message = new Message('success', __('adminstuds', 'Vote updated'));
-        } else {
-            $message = new Message('danger', __('Error', 'Update vote failed'));
+        try {
+            $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices, $slots_hash);
+            if ($result) {
+                $message = new Message('success', __('adminstuds', 'Vote updated'));
+            } else {
+                $message = new Message('danger', __('Error', 'Update vote failed'));
+            }
+        } catch (ConcurrentEditionException $cee) {
+            $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
         }
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
     $name = $inputService->filterName($_POST['name']);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
+    $slots_hash = $inputService->filterMD5($_POST['control']);
 
     if ($name == null) {
         $message = new Message('danger', __('Error', 'The name is invalid.'));
@@ -213,11 +221,17 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 
     if ($message == null) {
         // Add vote
-        $result = $pollService->addVote($poll_id, $name, $choices);
-        if ($result) {
-            $message = new Message('success', __('adminstuds', 'Vote added'));
-        } else {
-            $message = new Message('danger', __('Error', 'Adding vote failed'));
+        try {
+            $result = $pollService->addVote($poll_id, $name, $choices, $slots_hash);
+            if ($result) {
+                $message = new Message('success', __('adminstuds', 'Vote added'));
+            } else {
+                $message = new Message('danger', __('Error', 'Adding vote failed'));
+            }
+        } catch (AlreadyExistsException $aee) {
+            $message = new Message('danger', __('Error', 'You already voted'));
+        } catch (ConcurrentEditionException $cee) {
+            $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
         }
     }
 }
@@ -227,12 +241,12 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 // -------------------------------
 
 if (!empty($_GET['delete_vote'])) {
-    $vote_id = filter_input(INPUT_GET, 'delete_vote', FILTER_VALIDATE_INT);
+    $vote_id = filter_input(INPUT_GET, 'delete_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BASE64_REGEX]]);
     $vote_id = Utils::base64url_decode($vote_id);
-    if ($adminPollService->deleteVote($poll_id, $vote_id)) {
+    if ($vote_id && $adminPollService->deleteVote($poll_id, $vote_id)) {
         $message = new Message('success', __('adminstuds', 'Vote deleted'));
     } else {
-        $message = new Message('danger', __('Error', 'Failed to delete the vote'));
+        $message = new Message('danger', __('Error', 'Failed to delete the vote!'));
     }
 }
 
@@ -386,6 +400,7 @@ $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
 $smarty->assign('expired', strtotime($poll->end_date) < time());
 $smarty->assign('deletion_date', strtotime($poll->end_date) + PURGE_DELAY * 86400);
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
+$smarty->assign('slots_hash', $pollService->hashSlots($slots));
 $smarty->assign('votes', $pollService->splitVotes($votes));
 $smarty->assign('best_choices', $pollService->computeBestChoices($votes));
 $smarty->assign('comments', $comments);

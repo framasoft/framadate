@@ -61,7 +61,7 @@
   },
   "Homepage": {
     "Schedule an event": "Schedule an event",
-    "Make a classic poll": "Make a classic poll",
+    "Make a classic poll": "Make a standard poll",
     "Where are my polls": "Where are my polls?"
   },
   "1st section": {
@@ -78,28 +78,28 @@
   "2nd section": {
     "The software": "The software",
     "Framadate was initially based on ": "Framadate was initially based on ",
-    "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.",
-    "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:",
+    "a software developed by the University of Strasbourg. Today, it is developed by Framasoft association.": "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.",
+    "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:": "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:",
     "It is governed by the": "Framadate is licensed under the",
     "CeCILL-B license": "CeCILL-B license"
   },
   "3rd section": {
-    "Cultivate your garden": "Cultivate your garden",
+    "Cultivate your garden": "Grow your own",
     "To participate in the software development, suggest improvements or simply download it, please visit ": "To participate in the software development, suggest improvements or simply download it, please visit ",
     "the development site": "the development site",
     "If you want to install the software for your own use and thus increase your independence, we help you on:": "If you want to install the software for your own use and thus increase your independence, we can help you at:"
   },
   "PollInfo": {
     "Remove the poll": "Remove the poll",
-    "Remove all the comments": "Remove all the comments",
-    "Remove all the votes": "Remove all the votes",
+    "Remove all the comments": "Remove all comments",
+    "Remove all the votes": "Remove all votes",
     "Print": "Print",
     "Export to CSV": "Export to CSV",
     "Title": "Title of the poll",
     "Edit the title": "Edit title",
     "Save the new title": "Save the new title",
     "Cancel the title edit": "Cancel the title edit",
-    "Initiator of the poll": "Initiator of the poll",
+    "Initiator of the poll": "Creator of the poll",
     "Edit the name": "Edit name",
     "Save the new name": "Save the new name",
     "Cancel the name edit": "Cancel the name edit",
@@ -272,7 +272,9 @@
     "Create the poll": "Create the poll",
     "Your poll will be automatically archived in %d days.": "Your poll will be automatically archived in %d days.",
     "You can set a closer archiving date for it.": "You can set a specific expiry date for the poll.",
-    "Archiving date:": "Expiry date:"
+    "Archiving date:": "Expiry date:",
+    "Your poll will automatically be archived": "Your poll will automatically be archived",
+    "after the last date of your poll.": "after the last date of your poll."
   },
   "Admin": {
     "Back to administration": "Back to administration",
@@ -348,10 +350,13 @@
     "The name you've chosen already exist in this poll!": "The name you've chosen already exists in this poll!",
     "Enter a name and a comment!": "Enter a name and a comment!",
     "Failed to insert the comment!": "Failed to insert the comment!",
+    "Failed to delete the vote!": "Failed to delete the vote!",
     "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "Framadate is not properly installed, please see the 'INSTALL' file for instructions on setting up the database before continuing.",
     "Failed to save poll": "Failed to save poll",
     "Update vote failed": "Update vote failed",
     "Adding vote failed": "Adding vote failed",
+    "You already voted": "You already voted",
+    "Poll has been updated before you vote": "Poll has been updated before you vote",
     "Comment failed": "Comment failed",
     "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following option: ",
     "Failed to delete column": "Failed to delete column",

@@ -12,6 +12,7 @@
 
 <div id="tableContainer" class="tableContainer">
     <form action="{if $admin}{poll_url id=$admin_poll_id admin=true}{else}{poll_url id=$poll_id}{/if}" method="POST" id="poll_form">
+        <input type="hidden" name="control" value="{$slots_hash}"/>
         <table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes of the poll')} {$poll->title|html}</caption>
             <thead>
@@ -153,8 +154,8 @@
                     {if $active && !$expired && $accessGranted &&
                         (
                             $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
-                            or ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_OWN') && $editedVoteUniqueId == $vote->uniqId)
                             or $admin
+                            or ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_OWN') && $editedVoteUniqueId == $vote->uniqId)
                         )
                     }
                         <td class="hidden-print">

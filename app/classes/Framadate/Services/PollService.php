@@ -18,10 +18,13 @@
  */
 namespace Framadate\Services;
 
+use Framadate\Exception\AlreadyExistsException;
+use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Form;
 use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\Token;
+use Framadate\Utils;
 
 class PollService {
 
@@ -75,24 +78,34 @@ class PollService {
     function allSlotsByPoll($poll) {
         $slots = $this->slotRepository->listByPollId($poll->id);
         if ($poll->format == 'D') {
-            uasort($slots, function ($a, $b) {
-                return $a->title > $b->title;
-            });
+            $this->sortSlorts($slots);
         }
         return $slots;
     }
 
-    public function updateVote($poll_id, $vote_id, $name, $choices) {
-        $choices = implode($choices);
+    public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash) {
+        $poll = $this->findById($poll_id);
 
+        // Check if slots are still the same
+        $this->checkThatSlotsDidntChanged($poll, $slots_hash);
+
+        // Update vote
+        $choices = implode($choices);
         return $this->voteRepository->update($poll_id, $vote_id, $name, $choices);
     }
 
-    function addVote($poll_id, $name, $choices) {
+    function addVote($poll_id, $name, $choices, $slots_hash) {
+        $poll = $this->findById($poll_id);
+
+        // Check if slots are still the same
+        $this->checkThatSlotsDidntChanged($poll, $slots_hash);
+
+        // Check if vote already exists
         if ($this->voteRepository->existsByPollIdAndName($poll_id, $name)) {
-            return false;
+            throw new AlreadyExistsException();
         }
 
+        // Insert new vote
         $choices = implode($choices);
         $token = $this->random(16);
         return $this->voteRepository->insert($poll_id, $name, $choices, $token);
@@ -176,6 +189,16 @@ class PollService {
         return $splitted;
     }
 
+    /**
+     * @param $slots array The slots to hash
+     * @return string The hash
+     */
+    public function hashSlots($slots) {
+        return md5(array_reduce($slots, function($carry, $item) {
+            return $carry . $item->id . '@' . $item->moments . ';';
+        }));
+    }
+
     function splitVotes($votes) {
         $splitted = array();
         foreach ($votes as $vote) {
@@ -208,6 +231,30 @@ class PollService {
      */
     public function minExpiryDate() {
         return time() + 86400;
+    }
+
+    /**
+     * This method checks if the hash send by the user is the same as the computed hash.
+     *
+     * @param $poll /stdClass The poll
+     * @param $slots_hash string The hash sent by the user
+     * @throws ConcurrentEditionException Thrown when hashes are differents
+     */
+    private function checkThatSlotsDidntChanged($poll, $slots_hash) {
+        $slots = $this->allSlotsByPoll($poll);
+        if ($slots_hash !== $this->hashSlots($slots)) {
+            throw new ConcurrentEditionException();
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function sortSlorts(&$slots) {
+        uasort($slots, function ($a, $b) {
+            return $a->title > $b->title;
+        });
+        return $slots;
     }
 
 }
