@@ -99,24 +99,25 @@
                         </div>
                     </td>
 
-                    {foreach $vote->choices as $k=>$choice}
+					{foreach $slots as $k=>$slot}
+						{assign var='choice' value=$vote->choices[$k]}
 
                         <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$headersH[$k]}">
                             <ul class="list-unstyled choice">
                                 <li class="yes">
-                                    <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice==2}checked {/if}/>
+                                    <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice=='2'}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{__('Poll results', 'Vote yes for')|html} {$slots_raw[$k]}">
                                         <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                     </label>
                                 </li>
                                 <li class="ifneedbe">
-                                    <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice==1}checked {/if}/>
+                                    <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice=='1'}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slots_raw[$k]}">
                                         (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                     </label>
                                 </li>
                                 <li class="no">
-                                    <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice==0}checked {/if}/>
+                                    <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice=='0'}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{__('Poll results', 'Vote no for')|html} {$slots_raw[$k]}">
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
@@ -134,14 +135,17 @@
 
                     <th class="bg-info">{$vote->name|html}</th>
 
-                    {foreach $vote->choices as $k=>$choice}
+					{foreach $slots as $k=>$slot}
+						{assign var='choice' value=$vote->choices[$k]}
 
-                        {if $choice==2}
+                        {if $choice=='2'}
                             <td class="bg-success text-success" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span></td>
-                        {elseif $choice==1}
+                        {elseif $choice=='1'}
                             <td class="bg-warning text-warning" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">(<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span></td>
-                        {else}
+                        {elseif $choice=='0'}
                             <td class="bg-danger text-danger" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span></td>
+                        {else}
+                            <td class="" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">?<span class="sr-only">{__('Generic', 'Unknown')}</span></td>
                         {/if}
 
                     {/foreach}
