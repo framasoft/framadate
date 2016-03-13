@@ -122,6 +122,9 @@
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
+                                <li style='display:none'> {* #51 : default value for unselected vote *}
+                                    <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value=" " {if $choice!='2' && $choice!='1' && $choice!='0'}checked {/if}/>
+                                </li>
                             </ul>
                         </td>
                     {/foreach}
