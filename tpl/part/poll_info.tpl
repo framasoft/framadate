@@ -123,11 +123,11 @@
                 <div class="col-md-4">
                     <div id="password-form">
                         {if !empty($poll->password_hash) && !$poll->results_publicly_visible}
-                            {$password_text = __('PollInfo', 'Password protected.')}
+                            {$password_text = __('PollInfo', 'Password protected')}
                         {elseif !empty($poll->password_hash) && $poll->results_publicly_visible}
-                            {$password_text = __('PollInfo', 'Votes protected by password.')}
+                            {$password_text = __('PollInfo', 'Votes protected by password')}
                         {else}
-                            {$password_text = __('PollInfo', 'No password.')}
+                            {$password_text = __('PollInfo', 'No password')}
                         {/if}
                         <p class=""><span class="glyphicon glyphicon-lock"> </span> {$password_text}<button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
                         <div class="hidden js-password">
@@ -135,14 +135,14 @@
                             {if !empty($poll->password_hash)}
                                 <div class="input-group">
                                     <input type="checkbox" id="removePassword" name="removePassword"/>
-                                    <label for="removePassword">{__('PollInfo', 'Remove password.')}</label>
+                                    <label for="removePassword">{__('PollInfo', 'Remove password')}</label>
                                     <button type="submit" name="update_poll_info" value="removePassword" class="btn btn-success hidden" title="{__('PollInfo', 'Save the new rules')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Remove password.')}</span></button>
                                 </div>
                             {/if}
                             <div id="password_information">
                                 <div class="input-group">
                                     <input type="checkbox" id="resultsPubliclyVisible" name="resultsPubliclyVisible" {if $poll->results_publicly_visible}checked="checked"{/if}/>
-                                    <label for="resultsPubliclyVisible">{__('PollInfo', 'Results are visible.')}</label>
+                                    <label for="resultsPubliclyVisible">{__('PollInfo', 'Results are visible')}</label>
                                 </div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="password" name="password"/>
@@ -159,16 +159,16 @@
                     <div id="poll-hidden-form">
                         {if $poll->hidden}
                             {$hidden_icon = "glyphicon-eye-close"}
-                            {$hidden_text = __('PollInfo', 'Results are hidden.')}
+                            {$hidden_text = __('PollInfo', 'Results are hidden')}
                         {else}
                             {$hidden_icon = "glyphicon-eye-open"}
-                            {$hidden_text = __('PollInfo', 'Results are visible.')}
+                            {$hidden_text = __('PollInfo', 'Results are visible')}
                         {/if}
                         <p class=""><span class="glyphicon {$hidden_icon}"> </span> {$hidden_text}<button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
                         <div class="hidden js-poll-hidden">
                             <div class="input-group">
                                 <input type="checkbox" id="hidden" name="hidden" {if $poll->hidden}checked="checked"{/if}/>
-                                <label for="hidden">{__('PollInfo', 'Results are hidden.')}</label>
+                                <label for="hidden">{__('PollInfo', 'Results are hidden')}</label>
                                 <span class="input-group-btn">
                                     <button type="submit" name="update_poll_info" value="hidden" class="btn btn-success" title="{__('PollInfo', 'Save the new rules')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Save')}</span></button>
                                     <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the rules edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{__('Generic', 'Cancel')}</span></button>

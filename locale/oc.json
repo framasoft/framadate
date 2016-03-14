@@ -123,7 +123,11 @@
     "Save the new rules": "Enregistrar las nòvas permissions",
     "Cancel the rules edit": "Anullar lo cambi de permissions",
     "Results are hidden.": "Las resultats son amagadas.",
-    "Results are visible.": "Las resultats son visiblas."
+    "Results are visible.": "Las resultats son visiblas.",
+    "Password protected": "OC_Protégé par mot de passe",
+    "Votes protected by password": "OC_Votes protégés par mot de passe",
+    "No password": "OC_Pas de mot de passe",
+    "Remove password": "OC_Supprimer le mot de passe"
   },
   "Poll results": {
     "Votes of the poll": "Vòtes del sondatge",

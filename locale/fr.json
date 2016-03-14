@@ -124,12 +124,12 @@
     "Votes are editable solely by their owner.": "Les votes sont modifiables uniquement par leur créateur",
     "Save the new rules": "Enregistrer les nouvelles permissions",
     "Cancel the rules edit": "Annuler le changement de permissions",
-    "Results are hidden.": "Les résultats sont cachés.",
-    "Results are visible.": "Les résultats sont visibles.",
-    "Password protected.": "Protégé par mot de passe.",
-    "Votes protected by password.": "Votes protégés par mot de passe.",
-    "No password.": "Pas de mot de passe",
-    "Remove password.": "Supprimer le mot de passe."
+    "Results are hidden": "Les résultats sont cachés",
+    "Results are visible": "Les résultats sont visibles",
+    "Password protected": "Protégé par mot de passe",
+    "Votes protected by password": "Votes protégés par mot de passe",
+    "No password": "Pas de mot de passe",
+    "Remove password": "Supprimer le mot de passe"
   },
   "Poll results": {
     "Votes of the poll": "Votes du sondage",
