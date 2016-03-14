@@ -39,7 +39,7 @@
                     <div class="col-sm-8">
                         <div class="input-group">
                             <span class="input-group-addon">
-                                <input id="custom_id" type="checkbox"/>
+                                <input id="customize_id" name="customize_id" type="checkbox"/>
                             </span>
                             <input id="poll_id" type="text" name="id" class="form-control" {$errors['id']['aria']}
                                    value="{$poll_id}" aria-describedBy="pollIdDesc" disabled="disabled" maxlength="64"

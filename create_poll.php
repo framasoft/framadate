@@ -56,17 +56,18 @@ if (isset($_GET['type']) && $_GET['type'] == 'date' ||
 $goToStep2 = filter_input(INPUT_POST, GO_TO_STEP_2, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(date|classic)$/']]);
 if ($goToStep2) {
     $title = $inputService->filterTitle($_POST['title']);
-    $id = $inputService->filterId($_POST['id']);
+    $customizeId = $inputService->filterBoolean($_POST['customize_id']);
+    $id = $customizeId == true ? $inputService->filterId($_POST['id']) : null;
     $name = $inputService->filterName($_POST['name']);
-    $mail = $inputService->filterMail($_POST['mail']);
+    $mail = $config['use_smtp'] == true ? $inputService->filterMail($_POST['mail']) : null;
     $description = $inputService->filterDescription($_POST['description']);
     $editable = $inputService->filterEditable($_POST['editable']);
     $receiveNewVotes = isset($_POST['receiveNewVotes']) ? $inputService->filterBoolean($_POST['receiveNewVotes']) : false;
     $receiveNewComments = isset($_POST['receiveNewComments']) ? $inputService->filterBoolean($_POST['receiveNewComments']) : false;
     $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
     $use_password = filter_input(INPUT_POST, 'use_password', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
-    $password = isset($_POST['password'])?$_POST['password']:null;
-    $password_repeat = isset($_POST['password_repeat'])?$_POST['password_repeat']:null;
+    $password = isset($_POST['password']) ? $_POST['password'] : null;
+    $password_repeat = isset($_POST['password_repeat']) ? $_POST['password_repeat'] : null;
     $results_publicly_visible = filter_input(INPUT_POST, 'results_publicly_visible', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
 
     // On initialise également les autres variables
@@ -100,11 +101,13 @@ if ($goToStep2) {
         $error_on_title = true;
     }
 
-    if ($id === false) {
-        $error_on_id = true;
-    } else if ($pollRepository->existsById($id)) {
-        $error_on_id = true;
-        $error_on_id_msg = __('Error', 'Poll id already used');
+    if ($customizeId) {
+        if ($id === false) {
+            $error_on_id = true;
+        } else if ($pollRepository->existsById($id)) {
+            $error_on_id = true;
+            $error_on_id_msg = __('Error', 'Poll id already used');
+        }
     }
 
     if ($name !== $_POST['name']) {
