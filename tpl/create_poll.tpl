@@ -131,7 +131,7 @@
                             </label>
                             <label>
                                 <input type="radio" name="editable" {if empty($poll_editable) or $poll_editable==constant("Framadate\Editable::NOT_EDITABLE")}checked{/if} value="{constant("Framadate\Editable::NOT_EDITABLE")}">
-                                {__('Step 1', 'Votes cannot be modified.')}
+                                {__('Step 1', 'Votes cannot be modified')}
                             </label>
                         </div>
                     </div>

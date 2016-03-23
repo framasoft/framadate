@@ -183,16 +183,16 @@
                             {if $poll->editable}
                                 {if $poll->editable == constant("Framadate\Editable::EDITABLE_BY_ALL")}
                                     {$rule_id = 2}
-                                    {$rule_txt = __('PollInfo', 'Votes are editable')}
+                                    {$rule_txt = __('Step 1', 'All voters can modify any vote')}
                                 {else}
                                     {$rule_id = 3}
-                                    {$rule_txt = __('PollInfo', 'Votes are editable solely by their owner.')}
+                                    {$rule_txt = __('Step 1', 'Voters can modify their vote themselves')}
                                 {/if}
                                 {$rule_icon = '<span class="glyphicon glyphicon-edit"></span>'}
-                                {else}
+                            {else}
                                 {$rule_id = 1}
                                 {$rule_icon = '<span class="glyphicon glyphicon-check"></span>'}
-                                {$rule_txt = __('PollInfo', 'Votes and comments are open')}
+                                {$rule_txt = __('Step 1', 'Votes cannot be modified')}
                             {/if}
                         {else}
                             {$rule_id = 0}
@@ -206,9 +206,9 @@
                             <div class="input-group">
                                 <select class="form-control" id="rules" name="rules">
                                     <option value="0"{if $rule_id==0} selected="selected"{/if}>{__('PollInfo', 'Votes and comments are locked')}</option>
-                                    <option value="1"{if $rule_id==1} selected="selected"{/if}>{__('PollInfo', 'Votes and comments are open')}</option>
-                                    <option value="2"{if $rule_id==2} selected="selected"{/if}>{__('PollInfo', 'Votes are editable')}</option>
-                                    <option value="3"{if $rule_id==3} selected="selected"{/if}>{__('PollInfo', 'Votes are editable solely by their owner.')}</option>
+                                    <option value="1"{if $rule_id==1} selected="selected"{/if}>{__('Step 1', 'Votes cannot be modified')}</option>
+                                    <option value="3"{if $rule_id==3} selected="selected"{/if}>{__('Step 1', 'Voters can modify their vote themselves')}</option>
+                                    <option value="2"{if $rule_id==2} selected="selected"{/if}>{__('Step 1', 'All voters can modify any vote')}</option>
                                 </select>
                                 <span class="input-group-btn">
                                     <button type="submit" name="update_poll_info" value="rules" class="btn btn-success" title="{__('PollInfo', 'Save the new rules')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Save')}</span></button>
