@@ -1,4 +1,5 @@
 <div id="comments_list">
+    <form action="{if $admin}{poll_url id=$admin_poll_id admin=true}{else}{poll_url id=$poll_id}{/if}" method="POST">
     {if $comments|count > 0}
         <h3>{__('Comments', 'Comments of polled people')}</h3>
         {foreach $comments as $comment}
@@ -12,5 +13,6 @@
             </div>
         {/foreach}
     {/if}
+    </form>
     <div id="comments_alerts"></div>
 </div>
