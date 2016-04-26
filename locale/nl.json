@@ -52,15 +52,15 @@
     "Select the language": "Selecteer taal",
     "Change the language": "Wijzig taal"
   },
-  "Maintenance": {
-    "The application": "De applicatie",
-    "is currently under maintenance.": "is momenteel in onderhoud.",
-    "Thank you for your understanding.": "Bedankt voor je begrip."
-  },
   "Homepage": {
     "Schedule an event": "Plan een evenement",
     "Make a classic poll": "Maak een standaard poll",
     "Where are my polls": "Waar zijn mijn polls?"
+  },
+  "Maintenance": {
+    "The application": "De applicatie",
+    "is currently under maintenance.": "is momenteel in onderhoud.",
+    "Thank you for your understanding.": "Bedankt voor je begrip."
   },
   "1st section": {
     "What is that?": "Wat is Framadate?",
@@ -76,8 +76,8 @@
   "2nd section": {
     "The software": "Framadate",
     "Framadate was initially based on ": "is oorspronkelijk gebaseerd op ",
-    "a software developed by the University of Strasbourg. Today, it is developed by Framasoft association.": "software ontwikkeld door de Universiteit van Straatsburg. Het wordt tegenwoordig ontwikkeld door de Framasoft vereniging.",
-    "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:": "Voor deze software moeten JavaScript en cookies aan staan. Het werkt met de volgende browsers:",
+    "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": "software ontwikkeld door de Universiteit van Straatsburg. Het wordt tegenwoordig ontwikkeld door de Framasoft vereniging.",
+    "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "Voor deze software moeten JavaScript en cookies aan staan. Het werkt met de volgende browsers:",
     "It is governed by the": "Framadate is gelicenseerd onder de",
     "CeCILL-B license": "CeCILL-B licentie"
   },
@@ -190,10 +190,10 @@
     "Keep the votes": "Behoud de stemmen",
     "Remove the votes": "Verwijder de stemmen",
     "Confirm removal of all comments of the poll": "Bevestig het verwijderen van alle opmerkingen",
-    "Comment deleted": "Opmerking verwijderd",
-    "All comments deleted": "Alle opmerkingen verwijderd",
     "Keep the comments": "Behoud de opmerkingen",
     "Remove the comments": "Verwijder de opmerkingen",
+    "Comment deleted": "Opmerking verwijderd",
+    "All comments deleted": "Alle opmerkingen verwijderd",
     "Keep votes": "Behoud de stemmen",
     "Keep comments": "Behoud de opmerkingen",
     "Keep this poll": "Behoud deze poll"
@@ -311,6 +311,21 @@
     "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "Dit bericht moet je NIET doorsturen aan de deelnemers. Hou dit voor jezelf. <br/><br/>Je kan de poll aanpassen met bovenstaande link.",
     "Author's message": "Bericht van de auteur",
     "For sending to the polled users": "Link voor deelnemers"
+  },
+  "Installation": {
+    "AppMail": "NL_Adresse mail de l'application",
+    "AppName": "NL_Nom de l'application",
+    "CleanUrl": "NL_URL propres",
+    "Database": "NL_Base de données",
+    "DbConnectionString": "NL_Chaîne de connexion",
+    "DbPassword": "NL_Mot de passe",
+    "DbPrefix": "NL_Préfixe",
+    "DbUser": "NL_Utilisateur",
+    "DefaultLanguage": "NL_Langue par défaut",
+    "General": "NL_Général",
+    "Install": "NL_Installer",
+    "MigrationTable": "NL_Table de migration",
+    "ResponseMail": "NL_Mail de réponse"
   },
   "Error": {
     "Error!": "Fout!",
