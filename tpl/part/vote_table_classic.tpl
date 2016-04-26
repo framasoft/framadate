@@ -106,7 +106,7 @@
                         {elseif $choice=='0'}
                             <td class="bg-danger text-danger" headers="C{$id}"><i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span></td>
                         {else}
-                            <td headers="C{$id}">?<span class="sr-only">{__('Generic', 'Unknown')}</span></td>
+                            <td class="bg-info" headers="C{$id}"><span class="sr-only">{__('Generic', 'Unknown')}</span></td>
                         {/if}
 
                         {$id=$id + 1}

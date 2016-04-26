@@ -157,7 +157,7 @@
                         {elseif $choice=='0'}
                             <td class="bg-danger text-danger" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span></td>
                         {else}
-                            <td headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">?<span class="sr-only">{__('Generic', 'Unknown')}</span></td>
+                            <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><span class="sr-only">{__('Generic', 'Unknown')}</span></td>
                         {/if}
 
                         {$k=$k + 1}
