@@ -42,13 +42,19 @@
   },
   "Date": {
     "dd/mm/yyyy": "dd/mm/aaaa",
+    "datepicker": "yyyy-mm-dd",
+    "datetime_parseformat": "Y-m-d",
     "%A, den %e. %B %Y": "%A %e de %B de %Y",
     "FULL": "%A, %e de %B de %Y",
     "SHORT": "%A %e %B %Y",
     "DAY": "%a %e",
     "DATE": "%d-%m-%Y",
     "MONTH_YEAR": "%B de %Y",
-    "DATETIME": "%d/%m/%Y %H:%M"
+    "DATETIME": "%d/%m/%Y %H:%M",
+    "Add range dates": "ES_Ajout d'un intervalle de dates",
+    "Max dates count": "ES_Vous pouvez sélectionner au maximum 4 mois",
+    "Start date": "ES_Date de début",
+    "End date": "ES_Date de fin"
   },
   "Language selector": {
     "Select the language": "Elegir el idioma",
@@ -119,6 +125,9 @@
     "Poll rules": "Permisos de la encuesta",
     "Edit the poll rules": "Modificar los permisos de la encuesta",
     "Votes and comments are locked": "Los votos y comentarios están bloqueados",
+    "Votes and comments are open": "ES_Les votes et commentaires sont ouverts",
+    "Votes are editable": "ES_Les votes sont modifiables",
+    "Votes are editable solely by their owner.": "ES_Les votes sont modifiables uniquement par leur créateur",
     "Save the new rules": "ES_Enregistrer les nouvelles permissions",
     "Cancel the rules edit": "ES_Annuler le changement de permissions",
     "Results are hidden": "Los resutaldos no son visibles",
@@ -359,6 +368,7 @@
     "CANT_CONNECT_TO_DATABASE": "No se puede conectar a la base de datos",
     "Password is empty": "ES_Le mot de passe est vide.",
     "Passwords do not match": "ES_Les mot de passes ne correspondent pas.",
-    "Poll id already used": "ES_L'identifiant est déjà utilisé"
+    "Poll id already used": "ES_L'identifiant est déjà utilisé",
+    "You can't select more than %d dates": "ES_Vous ne pouvez pas choisir plus de %d dates"
   }
 }

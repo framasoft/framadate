@@ -42,11 +42,17 @@
   "Date": {
     "dd/mm/yyyy": "jj/mm/aaaa",
     "%A, den %e. %B %Y": "%A %e %B %Y",
+    "datepicker": "dd/mm/yyyy",
+    "datetime_parseformat": "d/m/Y",
     "FULL": "%A %e %B %Y",
     "SHORT": "%A %e %B %Y",
     "DAY": "%a %e",
     "DATE": "%Y-%m-%d",
-    "MONTH_YEAR": "%B %Y"
+    "MONTH_YEAR": "%B %Y",
+    "Add range dates": "OC_Ajout d'un intervalle de dates",
+    "Max dates count": "OC_Vous pouvez sélectionner au maximum 4 mois",
+    "Start date": "OC_Date de début",
+    "End date": "OC_Date de fin"
   },
   "Language selector": {
     "Select the language": "Seleccionar la lenga",
@@ -358,6 +364,7 @@
     "Failed to delete column": "Fracàs de la supression de colomna",
     "The column already exists": "La colomna existís ja",
     "MISSING_VALUES": "Mancan de valors",
-    "CANT_CONNECT_TO_DATABASE": "Impossible de se connectar a la banca de donadas"
+    "CANT_CONNECT_TO_DATABASE": "Impossible de se connectar a la banca de donadas",
+    "You can't select more than %d dates": "OC_Vous ne pouvez pas choisir plus de %d dates"
   }
 }

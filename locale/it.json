@@ -42,13 +42,19 @@
   },
   "Date": {
     "dd/mm/yyyy": "gg/mm/aaaa",
+    "datepicker": "gg/mm/yyyy",
+    "datetime_parseformat": "g/m/Y",
     "%A, den %e. %B %Y": "%A %e %B %Y",
     "FULL": "%A %e %B %Y",
     "SHORT": "%A %e %B %Y",
     "DAY": "%a %e",
     "DATE": "%Y-%m-%d",
     "MONTH_YEAR": "%B %Y",
-    "DATETIME": "%d/%m/%Y %H:%M"
+    "DATETIME": "%d/%m/%Y %H:%M",
+    "Add range dates": "IT_Ajout d'un intervalle de dates",
+    "Max dates count": "IT_Vous pouvez sélectionner au maximum 4 mois",
+    "Start date": "IT_Date de début",
+    "End date": "IT_Date de fin"
   },
   "Language selector": {
     "Select the language": "Scegliere la lingua",
@@ -360,6 +366,7 @@
     "The column already exists": "IT_La colonne existe déjà",
     "MISSING_VALUES": "Valori mancanti",
     "CANT_CONNECT_TO_DATABASE": "Impossibile connettersi al database",
-    "Poll id already used": "IT_L'identifiant est déjà utilisé"
+    "Poll id already used": "IT_L'identifiant est déjà utilisé",
+    "You can't select more than %d dates": "IT_Vous ne pouvez pas choisir plus de %d dates"
   }
 }

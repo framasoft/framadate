@@ -179,7 +179,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         }
         $summary .= '</ol>';
 
-        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_expiry_time)); //textual date
+        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); //textual date
 
         echo '
     <form name="formulaire" action="' . Utils::get_server_name() . 'create_classic_poll.php" method="POST" class="form-horizontal" role="form">

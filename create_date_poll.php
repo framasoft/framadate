@@ -124,6 +124,19 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
     } else {
 
         if (!empty($_POST['days'])) {
+            // Remove empty dates
+            $_POST['days'] = array_filter($_POST['days'], function($d) {return !empty($d);});
+
+            // Check if there are at most MAX_SLOTS_PER_POLL slots
+            if (count($_POST['days']) > MAX_SLOTS_PER_POLL) {
+                // Display step 2
+                $smarty->assign('title', __('Step 2 date', 'Poll dates (2 on 3)'));
+                $smarty->assign('choices', $_SESSION['form']->getChoices());
+                $smarty->assign('error', __f('Error', 'You can\'t select more than %d dates', MAX_SLOTS_PER_POLL));
+
+                $smarty->display('create_date_poll_step_2.tpl');
+                exit;
+            }
 
             // Clear previous choices
             $_SESSION['form']->clearChoices();
@@ -133,7 +146,8 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
 
                 if (!empty($day)) {
                     // Add choice to Form data
-                    $time = mktime(0, 0, 0, substr($_POST["days"][$i],3,2),substr($_POST["days"][$i],0,2),substr($_POST["days"][$i],6,4));
+                    $date = DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $_POST['days'][$i])->setTime(0, 0, 0);
+                    $time = $date->getTimestamp();
                     $choice = new Choice($time);
                     $_SESSION['form']->addChoice($choice);
 
@@ -154,7 +168,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         Utils::print_header ( __('Step 3', 'Removal date and confirmation (3 on 3)') );
         bandeau_titre(__('Step 3', 'Removal date and confirmation (3 on 3)'));
 
-        $end_date_str = utf8_encode(strftime('%d/%m/%Y', $max_expiry_time)); // textual date
+        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); // textual date
 
         // Summary
         $summary = '<ul>';
@@ -235,6 +249,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         // Display step 2
         $smarty->assign('title', __('Step 2 date', 'Poll dates (2 on 3)'));
         $smarty->assign('choices', $_SESSION['form']->getChoices());
+        $smarty->assign('error', null);
 
         $smarty->display('create_date_poll_step_2.tpl');
 

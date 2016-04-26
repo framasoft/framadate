@@ -43,6 +43,73 @@ $(document).ready(function () {
         }
     };
 
+    /**
+     * Parse a string date
+     * @param dateStr The string date
+     * @param format The format PHP style (allowed: %Y, %m and %d)
+     */
+    var parseDate = function (dateStr, format) {
+        var dtsplit = dateStr.split(/[\/ .:-]/);
+        var dfsplit = format.split(/[\/ .:-]/);
+
+        if (dfsplit.length != dtsplit.length) {
+            return null;
+        }
+
+        // creates assoc array for date
+        var df = [];
+        for (var dc = 0; dc < dtsplit.length; dc++) {
+            df[dfsplit[dc]] = dtsplit[dc];
+        }
+
+        // Build date
+        return new Date(parseInt(df['%Y']), parseInt(df['%m']) - 1, parseInt(df['%d']), 0, 0, 0, 0);
+    };
+
+    var formatDate = function (date, format) {
+        return format
+            .replace('%d', ("00" +date.getDate()).slice(-2))
+            .replace('%m', ("00" + (date.getMonth() + 1)).slice(-2))
+            .replace('%Y', ("0000" + date.getFullYear()).slice(-4));
+    };
+
+    function newDateFields(dateStr) {
+        var nb_days = $selected_days.find('fieldset').length;
+        var last_day = $selected_days.find('fieldset:last');
+        var last_day_title = last_day.find('legend input').attr('title');
+
+        var re_id_hours = new RegExp('"d' + (nb_days - 1) + '-h', 'g');
+        var re_name_hours = new RegExp('name="horaires' + (nb_days - 1), 'g');
+
+        var new_day_html = last_day.html().replace(re_id_hours, '"d' + nb_days + '-h')
+            .replace('id="day' + (nb_days - 1) + '"', 'id="day' + nb_days + '"')
+            .replace('for="day' + (nb_days - 1) + '"', 'for="day' + nb_days + '"')
+            .replace(re_name_hours, 'name="horaires' + nb_days)
+            .replace(/value="(.*?)"/g, 'value=""')
+            .replace(/hours" title="(.*?)"/g, 'hours" title="" p')
+            .replace('title="' + last_day_title + '"', 'title="' + last_day_title.substring(0, last_day_title.indexOf(' ')) + ' ' + (nb_days + 1) + '"');
+
+        last_day
+            .after('<fieldset>' + new_day_html + '</fieldset>')
+            .next().find('legend input').val(dateStr);
+        $('#day' + (nb_days)).focus();
+        $removeaday_and_copyhours.removeClass('disabled');
+    }
+
+    var useFirstEmptyDateField = function (dateStr) {
+        var used = false;
+        $selected_days.find('fieldset legend input').each(function () {
+            if (!used) {
+                if ($(this).val() == '') {
+                    $(this).val(dateStr);
+                    used = true;
+                }
+            }
+        });
+
+        return used;
+    };
+
     // Handle form submission
     $(document.formulaire).on('submit', function (e) {
         if (!submitDaysAvalaible()) {
@@ -144,24 +211,7 @@ $(document).ready(function () {
     // Button "Add a day"
 
     $('#add-a-day').on('click', function () {
-        var nb_days = $selected_days.find('fieldset').length;
-        var last_day = $selected_days.find('fieldset:last');
-        var last_day_title = last_day.find('legend input').attr('title');
-
-        var re_id_hours = new RegExp('"d' + (nb_days - 1) + '-h', 'g');
-        var re_name_hours = new RegExp('name="horaires' + (nb_days - 1), 'g');
-
-        var new_day_html = last_day.html().replace(re_id_hours, '"d' + nb_days + '-h')
-            .replace('id="day' + (nb_days - 1) + '"', 'id="day' + nb_days + '"')
-            .replace('for="day' + (nb_days - 1) + '"', 'for="day' + nb_days + '"')
-            .replace(re_name_hours, 'name="horaires' + nb_days)
-            .replace(/value="(.*?)"/g, 'value=""')
-            .replace(/hours" title="(.*?)"/g, 'hours" title="" p')
-            .replace('title="' + last_day_title + '"', 'title="' + last_day_title.substring(0, last_day_title.indexOf(' ')) + ' ' + (nb_days + 1) + '"');
-
-        last_day.after('<fieldset>' + new_day_html + '</fieldset>');
-        $('#day' + (nb_days)).focus();
-        $removeaday_and_copyhours.removeClass('disabled');
+        newDateFields();
     });
 
     // Button "Remove a day"
@@ -174,6 +224,58 @@ $(document).ready(function () {
             $removeaday_and_copyhours.addClass('disabled');
         }
         submitDaysAvalaible();
+    });
+
+    // Add an range of dates
+
+    $('#interval_add').on('click', function (ev) {
+        var startDateField = $('#range_start');
+        var endDateField = $('#range_end');
+        var startDate = parseDate(startDateField.val(), window.date_formats.DATE);
+        var endDate = parseDate(endDateField.val(), window.date_formats.DATE);
+
+        // Clear error classes
+        startDateField.parent().removeClass('has-error');
+        endDateField.parent().removeClass('has-error');
+
+        var maxDates = 123; // 123 = 4 months
+        var tooMuchDates = endDate - startDate > maxDates * 86400 * 1000;
+
+        if (startDate != null && endDate != null && !tooMuchDates) {
+            if (startDate <= endDate) {
+                while (startDate <= endDate) {
+                    var dateStr = formatDate(startDate, window.date_formats.DATE);
+                    if (!useFirstEmptyDateField(dateStr)) {
+                        newDateFields(dateStr);
+                    }
+                    startDate.setDate(startDate.getDate() + 1);
+                }
+
+                // Hide modal
+                startDateField.val('');
+                endDateField.val('');
+                $('#add_days').modal('hide');
+                submitDaysAvalaible();
+
+            } else {
+                setTimeout(function () {
+                    startDateField.parent().addClass('has-error');
+                    endDateField.parent().addClass('has-error');
+                }, 200);
+
+            }
+        } else {
+            setTimeout(function () {
+                if (startDate == null || tooMuchDates) {
+                    startDateField.parent().addClass('has-error');
+                }
+                if (endDate == null || tooMuchDates) {
+                    endDateField.parent().addClass('has-error');
+                }
+            }, 200);
+
+        }
+
     });
 
     // Title update on hours and buttons -/+ hours

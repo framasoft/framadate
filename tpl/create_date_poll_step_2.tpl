@@ -1,6 +1,12 @@
 {extends file='page.tpl'}
 
 {block name="header"}
+    <script type="text/javascript">
+        window.date_formats = {
+            DATE: '{__('Date', 'DATE')}',
+            DATEPICKER: '{__('Date', 'datepicker')}'
+        };
+    </script>
     <script type="text/javascript" src="{'js/app/framadatepicker.js'|resource}"></script>
     <script type="text/javascript" src="{'js/app/date_poll.js'|resource}"></script>
 {/block}
@@ -10,6 +16,12 @@
         <div class="row" id="selected-days">
             <div class="col-md-10 col-md-offset-1">
                 <h3>{__('Step 2 date', 'Choose the dates of your poll')}</h3>
+
+                {if $error != null}
+                <div class="alert alert-danger">
+                    <p>{$error}</p>
+                </div>
+                {/if}
 
                 <div class="alert alert-info">
                     <p>{__('Step 2 date', 'To schedule an event you need to propose at least two choices (two hours for one day or two days).')}</p>
@@ -26,7 +38,7 @@
 
                 {foreach $choices as $i=>$choice}
                     {if $choice->getName()}
-                        {$day_value = strftime('%d/%m/%Y', $choice->getName())}
+                        {$day_value = $choice->getName()|date_format:$date_format['txt_date']}
                     {else}
                         {$day_value = ''}
                     {/if}
@@ -79,6 +91,11 @@
                         <button type="button" id="add-a-day" class="btn btn-default" title="{__('Step 2 date', 'Add a day')}"><span
                                     class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{__('Step 2 date', 'Add a day')}</span></button>
                     </div>
+                    <a href="" data-toggle="modal" data-target="#add_days" class="btn btn-default" title="{__('Date', 'Add range dates')}">
+                        <span class="glyphicon glyphicon-plus text-success"></span>
+                        <span class="glyphicon glyphicon-plus text-success"></span>
+                        <span class="sr-only">{__('Step 2 date', 'Add days')}</span>
+                    </a>
                 </div>
                 <div class="col-md-8 text-right">
                     <div class="btn-group">
@@ -99,4 +116,46 @@
             </div>
         </div>
     </form>
+
+    <div id="add_days" class="modal fade">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">{__('Date', 'Add range dates')}</h4>
+                </div>
+                <div class="modal-body row">
+                    <div class="col-xs-12">
+                        <div class="alert alert-info">
+                            {__('Date', 'Max dates count')}
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <label for="range_start">{__('Date', 'Start date')}</label>
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
+                            <input type="text" class="form-control" id="range_start"
+                                   data-date-format="{__('Date', 'dd/mm/yyyy')}" size="10" maxlength="10"
+                                   placeholder="{__('Date', 'dd/mm/yyyy')}"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <label for="range_end">{__('Date', 'End date')}</label>
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
+                            <input type="text" class="form-control" id="range_end"
+                                   data-date-format="{__('Date', 'dd/mm/yyyy')}" size="10" maxlength="10"
+                                   placeholder="{__('Date', 'dd/mm/yyyy')}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default">{__('Generic', 'Cancel')}</button>
+                    <button id="interval_add" class="btn btn-success">{__('Generic', 'Add')}</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {/block}

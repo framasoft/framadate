@@ -133,7 +133,7 @@
 
 ## Changelog du 21 juin 2011 (pyg@framasoft.net)
 	- très nombreuses modifications CSS
-	- modification adminstuds.php : ajout de classes aux formulaires et ajout de stripslashes à l'affichage (TODO: à généraliser)
+	- modification adminstuds.php : ajout de classes aux formulaires et ajout de stripslashes à l'affichage
 	- modification infos_sondages.php : simplification du tableau de choix, ajouts de CSS, ajouts de labels pour faciliter la selection
 
 ## Changelog version 0.6.7 (mai 2011)

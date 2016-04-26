@@ -74,6 +74,9 @@ const LOG_FILE = 'admin/stdout.log';
 // Days (after expiration date) before purge a poll
 const PURGE_DELAY = 60;
 
+// Max slots per poll
+const MAX_SLOTS_PER_POLL = 366;
+
 // Config
 $config = [
     /* general config */

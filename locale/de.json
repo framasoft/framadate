@@ -41,14 +41,20 @@
         "ASTERISK": "*"
     },
     "Date": {
-        "dd/mm/yyyy": "jj/mm/aaaa",
+        "dd/mm/yyyy": "dd/mm/yyyy",
+        "datepicker": "yyyy-mm-dd",
+        "datetime_parseformat": "Y-m-d",
         "%A, den %e. %B %Y": "%A %e %B %Y",
         "FULL": "%A, den %e. %B %Y",
         "SHORT": "%A %e %B %Y",
         "DAY": "%a %e",
         "DATE": "%Y-%m-%d",
         "MONTH_YEAR": "%B %Y",
-        "DATETIME": "%Y-%m-%d %H:%M"
+        "DATETIME": "%Y-%m-%d %H:%M",
+        "Add range dates": "DE_Ajout d'un intervalle de dates",
+        "Max dates count": "DE_Vous pouvez sélectionner au maximum 4 mois",
+        "Start date": "DE_Date de début",
+        "End date": "DE_Date de fin"
     },
     "Language selector": {
         "Select the language": "Sprache wählen",
@@ -362,6 +368,7 @@
         "CANT_CONNECT_TO_DATABASE": "Kann nicht mit der Datenbank verbinden",
         "Password is empty": "DE_Le mot de passe est vide.",
         "Passwords do not match": "DE_Les mot de passes ne correspondent pas.",
-        "Poll id already used": "DE_L'identifiant est déjà utilisé"
+        "Poll id already used": "DE_L'identifiant est déjà utilisé",
+        "You can't select more than %d dates": "DE_Vous ne pouvez pas choisir plus de %d dates"
     }
 }
