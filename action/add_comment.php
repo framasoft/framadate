@@ -23,8 +23,6 @@ use Framadate\Services\MailService;
 use Framadate\Services\NotificationService;
 use Framadate\Services\SecurityService;
 use Framadate\Message;
-use Framadate\Utils;
-use Framadate\Editable;
 
 include_once __DIR__ . '/../app/inc/init.php';
 
