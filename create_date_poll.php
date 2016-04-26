@@ -124,6 +124,19 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
     } else {
 
         if (!empty($_POST['days'])) {
+            // Remove empty dates
+            $_POST['days'] = array_filter($_POST['days'], function($d) {return !empty($d);});
+
+            // Check if there are at most MAX_SLOTS_PER_POLL slots
+            if (count($_POST['days']) > MAX_SLOTS_PER_POLL) {
+                // Display step 2
+                $smarty->assign('title', __('Step 2 date', 'Poll dates (2 on 3)'));
+                $smarty->assign('choices', $_SESSION['form']->getChoices());
+                $smarty->assign('error', __f('Error', 'You can\'t select more than %d dates', MAX_SLOTS_PER_POLL));
+
+                $smarty->display('create_date_poll_step_2.tpl');
+                exit;
+            }
 
             // Clear previous choices
             $_SESSION['form']->clearChoices();
@@ -236,6 +249,7 @@ if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) ||
         // Display step 2
         $smarty->assign('title', __('Step 2 date', 'Poll dates (2 on 3)'));
         $smarty->assign('choices', $_SESSION['form']->getChoices());
+        $smarty->assign('error', null);
 
         $smarty->display('create_date_poll_step_2.tpl');
 

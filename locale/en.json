@@ -368,6 +368,7 @@
     "CANT_CONNECT_TO_DATABASE": "Unable to connect to database",
     "Password is empty": "Password is empty.",
     "Passwords do not match": "Passwords do not match.",
-    "Poll id already used": "Identifier is already used"
+    "Poll id already used": "Identifier is already used",
+    "You can't select more than %d dates": "You can't select more than %d dates"
   }
 }

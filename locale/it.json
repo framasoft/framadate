@@ -366,6 +366,7 @@
     "The column already exists": "IT_La colonne existe déjà",
     "MISSING_VALUES": "Valori mancanti",
     "CANT_CONNECT_TO_DATABASE": "Impossibile connettersi al database",
-    "Poll id already used": "IT_L'identifiant est déjà utilisé"
+    "Poll id already used": "IT_L'identifiant est déjà utilisé",
+    "You can't select more than %d dates": "IT_Vous ne pouvez pas choisir plus de %d dates"
   }
 }

@@ -364,6 +364,7 @@
     "Failed to delete column": "Fracàs de la supression de colomna",
     "The column already exists": "La colomna existís ja",
     "MISSING_VALUES": "Mancan de valors",
-    "CANT_CONNECT_TO_DATABASE": "Impossible de se connectar a la banca de donadas"
+    "CANT_CONNECT_TO_DATABASE": "Impossible de se connectar a la banca de donadas",
+    "You can't select more than %d dates": "OC_Vous ne pouvez pas choisir plus de %d dates"
   }
 }

@@ -368,6 +368,7 @@
     "CANT_CONNECT_TO_DATABASE": "No se puede conectar a la base de datos",
     "Password is empty": "ES_Le mot de passe est vide.",
     "Passwords do not match": "ES_Les mot de passes ne correspondent pas.",
-    "Poll id already used": "ES_L'identifiant est déjà utilisé"
+    "Poll id already used": "ES_L'identifiant est déjà utilisé",
+    "You can't select more than %d dates": "ES_Vous ne pouvez pas choisir plus de %d dates"
   }
 }

@@ -17,6 +17,12 @@
             <div class="col-md-10 col-md-offset-1">
                 <h3>{__('Step 2 date', 'Choose the dates of your poll')}</h3>
 
+                {if $error != null}
+                <div class="alert alert-danger">
+                    <p>{$error}</p>
+                </div>
+                {/if}
+
                 <div class="alert alert-info">
                     <p>{__('Step 2 date', 'To schedule an event you need to propose at least two choices (two hours for one day or two days).')}</p>
 
