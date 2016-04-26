@@ -104,31 +104,42 @@
                         </div>
                     </td>
 
-                    {foreach $vote->choices as $k=>$choice}
+                    {$k=0}
+                    {foreach $slots as $slot}
+                      {foreach $slot->moments as $moment}
+                        {$choice=$vote->choices[$k]}
+
 
                         <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$headersH[$k]}">
                             <ul class="list-unstyled choice">
                                 <li class="yes">
-                                    <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice==2}checked {/if}/>
+                                    <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice=='2'}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{__('Poll results', 'Vote yes for')|html} {$slots_raw[$k]}">
                                         <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                     </label>
                                 </li>
                                 <li class="ifneedbe">
-                                    <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice==1}checked {/if}/>
+                                    <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice=='1'}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slots_raw[$k]}">
                                         (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                     </label>
                                 </li>
                                 <li class="no">
-                                    <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice==0}checked {/if}/>
+                                    <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice=='0'}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{__('Poll results', 'Vote no for')|html} {$slots_raw[$k]}">
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
+                                <li style="display:none">
+                                    <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value=" " {if $choice!='2' && $choice!='1' && $choice!='0'}checked {/if}/>
+                                </li>
                             </ul>
                         </td>
+
+                        {$k=$k + 1}
+                      {/foreach}
                     {/foreach}
+
                     <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
 
                 </tr>
@@ -139,16 +150,23 @@
 
                     <th class="bg-info">{$vote->name|html}</th>
 
-                    {foreach $vote->choices as $k=>$choice}
+                    {$k=0}
+                    {foreach $slots as $slot}
+                      {foreach $slot->moments as $moment}
+                        {$choice=$vote->choices[$k]}
 
-                        {if $choice==2}
+                        {if $choice=='2'}
                             <td class="bg-success text-success" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span></td>
-                        {elseif $choice==1}
+                        {elseif $choice=='1'}
                             <td class="bg-warning text-warning" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">(<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span></td>
-                        {else}
+                        {elseif $choice=='0'}
                             <td class="bg-danger text-danger" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span></td>
+                        {else}
+                            <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><span class="sr-only">{__('Generic', 'Unknown')}</span></td>
                         {/if}
 
+                        {$k=$k + 1}
+                      {/foreach}
                     {/foreach}
 
                     {if $active && !$expired && $accessGranted &&
@@ -205,10 +223,13 @@
                                         </label>
                                     </li>
                                     <li class="no">
-                                        <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0" checked/>
+                                        <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0" />
                                         <label class="btn btn-default btn-xs startunchecked" for="n-choice-{$i}" title="{__('Poll results', 'Vote no for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                         </label>
+                                    </li>
+                                    <li style="display:none">
+                                      <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value=" " checked/>
                                     </li>
                                 </ul>
                             </td>
