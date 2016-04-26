@@ -68,9 +68,9 @@ $(document).ready(function () {
 
     var formatDate = function (date, format) {
         return format
-            .replace('%d', date.getDate())
-            .replace('%m', date.getMonth() + 1)
-            .replace('%Y', date.getFullYear());
+            .replace('%d', ("00" +date.getDate()).slice(-2))
+            .replace('%m', ("00" + (date.getMonth() + 1)).slice(-2))
+            .replace('%Y', ("0000" + date.getFullYear()).slice(-4));
     };
 
     function newDateFields(dateStr) {
