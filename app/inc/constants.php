@@ -22,7 +22,7 @@ const VERSION = '0.9';
 
 // Regex
 const POLL_REGEX = '/^[a-z0-9]+$/i';
-const CHOICE_REGEX = '/^[012]$/';
+const CHOICE_REGEX = '/^[ 012]$/';
 const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/i';
 const BOOLEAN_TRUE_REGEX = '/^(on|true|1)$/i';
 const EDITABLE_CHOICE_REGEX = '/^[0-2]$/';
