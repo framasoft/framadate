@@ -99,7 +99,7 @@
                         </div>
                     </td>
 
-                    {$k=0} {* #51 : Parcoure les slots/moments pour y inclure les nouveaux items sans vote }
+                    {$k=0}
                     {foreach $slots as $slot}
                       {foreach $slot->moments as $moment}
                         {$choice=$vote->choices[$k]}
@@ -125,7 +125,7 @@
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
-                                <li style='display:none'> {* #51 : default value for unselected vote *}
+                                <li style="display:none">
                                     <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value=" " {if $choice!='2' && $choice!='1' && $choice!='0'}checked {/if}/>
                                 </li>
                             </ul>
@@ -145,7 +145,7 @@
 
                     <th class="bg-info">{$vote->name|html}</th>
 
-                    {$k=0} {* #51 : Parcoure les slots/moments pour y inclure les nouveaux items sans vote }
+                    {$k=0}
                     {foreach $slots as $slot}
                       {foreach $slot->moments as $moment}
                         {$choice=$vote->choices[$k]}
@@ -156,8 +156,8 @@
                             <td class="bg-warning text-warning" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">(<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span></td>
                         {elseif $choice=='0'}
                             <td class="bg-danger text-danger" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span></td>
-                        {else} {* #51 : default value for unselected vote (new dates) *}
-                            <td class="" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">?<span class="sr-only">{__('Generic', 'Unknown')}</span></td>
+                        {else}
+                            <td headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">?<span class="sr-only">{__('Generic', 'Unknown')}</span></td>
                         {/if}
 
                         {$k=$k + 1}
@@ -223,7 +223,7 @@
                                             <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                         </label>
                                     </li>
-                                    <li style='display:none'> {* #51 : default value for unselected vote *}
+                                    <li style="display:none">
                                       <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value=" " checked/>
                                     </li>
                                 </ul>

@@ -51,7 +51,7 @@
                         </div>
                     </td>
 
-                    {$id=0} {* #51 : Parcoure les slots/moments pour y inclure les nouveaux items sans vote }
+                    {$id=0}
                     {foreach $slots as $slot}
                       {foreach $slot->moments as $moment}
                         {$choice=$vote->choices[$id]}
@@ -77,7 +77,7 @@
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
-                                <li style='display:none'> {* #51 : default value for unselected vote *}
+                                <li style="display:none">
                                     <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" " {if $choice!='2' && $choice!='1' && $choice!='0'}checked {/if}/>
                                 </li>
                             </ul>
@@ -94,7 +94,7 @@
 
                     <th class="bg-info">{$vote->name|html}</th>
 
-                    {$id=0} {* #51 : Parcoure les slots/moments pour y inclure les nouveaux items sans vote }
+                    {$id=0}
                     {foreach $slots as $slot}
                       {foreach $slot->moments as $moment}
                         {$choice=$vote->choices[$id]}
@@ -105,8 +105,8 @@
                             <td class="bg-warning text-warning" headers="C{$id}">(<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span></td>
                         {elseif $choice=='0'}
                             <td class="bg-danger text-danger" headers="C{$id}"><i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span></td>
-                        {else} {* #51 : default value for unselected vote (new dates) *}
-                            <td class="" headers="C{$id}">?<span class="sr-only">{__('Generic', 'Unknown')}</span></td>
+                        {else}
+                            <td headers="C{$id}">?<span class="sr-only">{__('Generic', 'Unknown')}</span></td>
                         {/if}
 
                         {$id=$id + 1}
@@ -171,7 +171,7 @@
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
-                                <li style='display:none'> {* #51 : default value for unselected vote *}
+                                <li style="display:none">
                                   <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" " checked/>
                                 </li>
                             </ul>
