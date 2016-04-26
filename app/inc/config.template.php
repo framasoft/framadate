@@ -53,6 +53,7 @@ const DEFAULT_LANGUAGE = 'fr';
 $ALLOWED_LANGUAGES = [
     'fr' => 'Français',
     'en' => 'English',
+    'oc' => 'Occitan',
     'es' => 'Español',
     'de' => 'Deutsch',
     'it' => 'Italiano',
@@ -86,4 +87,3 @@ $config = [
     /* create_classic_poll.php */
     'user_can_add_img_or_link' => true,     // user can add link or URL when creating his poll.
 ];
-

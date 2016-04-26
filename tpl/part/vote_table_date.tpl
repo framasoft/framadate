@@ -12,6 +12,7 @@
 
 <div id="tableContainer" class="tableContainer">
     <form action="{if $admin}{poll_url id=$admin_poll_id admin=true}{else}{poll_url id=$poll_id}{/if}" method="POST" id="poll_form">
+        <input type="hidden" name="control" value="{$slots_hash}"/>
         <table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes of the poll')} {$poll->title|html}</caption>
             <thead>
@@ -22,7 +23,7 @@
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $id=>$moment}
                             <td headers="M{$slot@key} D{$headersDCount} H{$headersDCount}">
-                                <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->day|cat:'@'|cat:urlencode($moment)}"
+                                <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->day|cat:'@'|cat:$moment}"
                                    class="btn btn-link btn-sm"
                                    title="{__('adminstuds', 'Remove the column')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                     <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
@@ -32,8 +33,8 @@
                         {/foreach}
                     {/foreach}
                     <td>
-                        <a href="{poll_url id=$admin_poll_id admin=true action='add_slot' action_value=true}"
-                           class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')} {$slot->day|html}">
+                        <a href="{poll_url id=$admin_poll_id admin=true action='add_column'}"
+                           class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')}">
                             <i class="glyphicon glyphicon-plus text-success"></i><span class="sr-only">{__('Poll results', 'Add a column')}</span>
                         </a>
                     </td>
@@ -150,7 +151,13 @@
 
                     {/foreach}
 
-                    {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin) && $accessGranted}
+                    {if $active && !$expired && $accessGranted &&
+                        (
+                            $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
+                            or $admin
+                            or ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_OWN') && $editedVoteUniqueId == $vote->uniqId)
+                        )
+                    }
                         <td class="hidden-print">
                             <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__('Poll results', 'Edit the line:')|escape} {$vote->name|html}">
                                 <i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>

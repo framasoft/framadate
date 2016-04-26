@@ -149,7 +149,6 @@ $(document).ready(function () {
                 $(this).find('.hours:eq(' + i + ')').val(first_day_hours[i]); // fill hours
             }
         });
-        $('#d0-h0').focus();
     });
 
     // Buttons "Add an hour"
@@ -179,11 +178,11 @@ $(document).ready(function () {
             '</div>';
 
         // After 11 + button is disable
-        if (hj < 10) {
+        if (hj < 99) {
             last_hour.after(new_hour_html);
             $('#d' + di + '-h' + (hj + 1)).focus();
             $(this).prev('.remove-an-hour').removeClass('disabled');
-            if (hj == 9) {
+            if (hj == 98) {
                 $(this).addClass('disabled');
             }
         }

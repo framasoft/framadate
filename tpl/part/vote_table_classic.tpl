@@ -11,6 +11,7 @@
 
 <div id="tableContainer" class="tableContainer">
     <form action="{if $admin}{poll_url id=$admin_poll_id admin=true}{else}{poll_url id=$poll_id}{/if}" method="POST"  id="poll_form">
+        <input type="hidden" name="control" value="{$slots_hash}"/>
         <table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes of the poll')} {$poll->title|html}</caption>
             <thead>
@@ -26,8 +27,8 @@
                             </td>
                     {/foreach}
                     <td>
-                        <a href="{poll_url id=$admin_poll_id admin=true action='add_slot' action_value=true}"
-                           class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')} {$slot->title|html}">
+                        <a href="{poll_url id=$admin_poll_id admin=true action='add_column'}"
+                           class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')}">
                             <i class="glyphicon glyphicon-plus text-success"></i><span class="sr-only">{__('Poll results', 'Add a column')}</span>
                         </a>
                     </td>
@@ -36,15 +37,16 @@
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
-                    <th class="bg-info" id="C{$id}">{$slot->title|markdown}</th>
+                    <th class="bg-info" id="C{$id}" title="{$slot->title|markdown:true}">{$slot->title|markdown}</th>
                 {/foreach}
                 <th></th>
             </tr>
             </thead>
             <tbody>
             {foreach $votes as $vote}
+                {* Edited line *}
 
-                {if $editingVoteId === $vote->uniqId} {* Edited line *}
+                {if $editingVoteId === $vote->uniqId && !$expired}
 
                 <tr class="hidden-print">
                     <td class="bg-info" style="padding:5px">
@@ -99,7 +101,14 @@
 
                     {/foreach}
 
-                    {if $active && !$expired && ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL') or $admin) && $accessGranted}
+                    {if $active && !$expired && $accessGranted &&
+                        (
+                         $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
+                         or $admin
+                         or ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_OWN') && $editedVoteUniqueId == $vote->uniqId)
+                        )
+                    }
+
                         <td class="hidden-print">
                             <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__('Poll results', 'Edit the line:')|html} {$vote->name|html}">
                                 <i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>

@@ -1,6 +1,7 @@
 <?php
 namespace Framadate\Services;
 
+use Framadate\Exception\MomentAlreadyExistsException;
 use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
 
@@ -118,7 +119,7 @@ class AdminPollService {
         $slots = $this->pollService->allSlotsByPoll($poll);
 
         // We can't delete the last slot
-        if ($poll->format == 'D' && count($slots) === 1 && strpos($slots[0]->moments, ',') === -1) {
+        if ($poll->format == 'D' && count($slots) === 1 && strpos($slots[0]->moments, ',') === false) {
             return false;
         } elseif ($poll->format == 'A' && count($slots) === 1) {
             return false;
@@ -196,10 +197,10 @@ class AdminPollService {
      * @param $poll_id int The ID of the poll
      * @param $datetime int The datetime
      * @param $new_moment string The moment's name
-     * @return bool true if added
+     * @throws MomentAlreadyExistsException When the moment to add already exists in database
      */
     public function addDateSlot($poll_id, $datetime, $new_moment) {
-        $this->logService->log('ADD_SLOT', 'id:' . $poll_id . ', datetime:' . $datetime . ', moment:' . $new_moment);
+        $this->logService->log('ADD_COLUMN', 'id:' . $poll_id . ', datetime:' . $datetime . ', moment:' . $new_moment);
 
         $slots = $this->slotRepository->listByPollId($poll_id);
         $result = $this->findInsertPosition($slots, $datetime);
@@ -207,16 +208,13 @@ class AdminPollService {
         // Begin transaction
         $this->connect->beginTransaction();
 
-        if ($result == null) {
-            // The moment already exists
-            return false;
-        } elseif ($result->slot != null) {
+        if ($result->slot != null) {
             $slot = $result->slot;
             $moments = explode(',', $slot->moments);
 
             // Check if moment already exists (maybe not necessary)
             if (in_array($new_moment, $moments)) {
-                return false;
+                throw new MomentAlreadyExistsException();
             }
 
             // Update found slot
@@ -232,8 +230,6 @@ class AdminPollService {
         // Commit transaction
         $this->connect->commit();
 
-        return true;
-
     }
 
     /**
@@ -244,10 +240,10 @@ class AdminPollService {
      *
      * @param $poll_id int The ID of the poll
      * @param $title int The title
-     * @return bool true if added
+     * @throws MomentAlreadyExistsException When the moment to add already exists in database
      */
     public function addClassicSlot($poll_id, $title) {
-        $this->logService->log('ADD_SLOT', 'id:' . $poll_id . ', title:' . $title);
+        $this->logService->log('ADD_COLUMN', 'id:' . $poll_id . ', title:' . $title);
 
         $slots = $this->slotRepository->listByPollId($poll_id);
 
@@ -257,7 +253,7 @@ class AdminPollService {
         }, $slots);
         if (in_array($title, $titles)) {
             // The moment already exists
-            return false;
+            throw new MomentAlreadyExistsException();
         }
 
 
@@ -272,8 +268,6 @@ class AdminPollService {
         // Commit transaction
         $this->connect->commit();
 
-        return true;
-
     }
 
     /**
@@ -283,34 +277,33 @@ class AdminPollService {
      *
      * @param $slots array All the slots of the poll
      * @param $datetime int The datetime of the new slot
-     * @return null|\stdClass An object like this one: {insert:X, slot:Y} where Y can be null.
+     * @return \stdClass An object like this one: {insert:X, slot:Y} where Y can be null.
      */
     private function findInsertPosition($slots, $datetime) {
         $result = new \stdClass();
         $result->slot = null;
-        $result->insert = -1;
+        $result->insert = 0;
 
-        $i = 0;
+        // Sort slots before searching where to insert
+        $this->pollService->sortSlorts($slots);
 
-        foreach ($slots as $slot) {
+        // Search where to insert new column
+        foreach ($slots as $k=>$slot) {
             $rowDatetime = $slot->title;
             $moments = explode(',', $slot->moments);
 
             if ($datetime == $rowDatetime) {
-                $i += count($moments);
-
                 // Here we have to insert at the end of a slot
+                $result->insert += count($moments);
                 $result->slot = $slot;
-                $result->insert = $i;
                 break;
             } elseif ($datetime < $rowDatetime) {
-                // Here we have to insert a new slot
+                // We have to insert before this slot
                 break;
             } else {
-                $i += count($moments);
+                $result->insert += count($moments);
             }
         }
-        $result->insert = $i;
 
         return $result;
     }

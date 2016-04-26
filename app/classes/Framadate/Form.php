@@ -22,6 +22,7 @@ class Form
 {
 
     public $title;
+    public $id;
     public $description;
     public $admin_name;
     public $admin_mail;

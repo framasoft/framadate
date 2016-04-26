@@ -1,6 +1,6 @@
 # Changelog de framadate
 
-## Version 1.0 (Olivier - Antonin - Luc)
+## Version 1.0 (Antonin - Julien - Luc - Olivier - Pierre)
     - Technique : Travail sur le service des notifications
     - Technique : Prise en compte de l'entête X-Forwarded-Proto
     - Technique : Utilisation de PHPMailer pour l'envoi de mails
@@ -9,7 +9,37 @@
     - Amélioration : Masquer l'encart au dessus du tableau des votes, maintenant visible grâce à un bouton
     - Amélioration : Les commentaires sont horodatés
     - Amélioration : Auto wrapping de la description du sondage
+    - Amélioration : Possibilité de choisir l'URL du sondage
+    - Amélioration : Protection de sondages par mots de passe
+    - Amélioration : Un click dans les champs URL sélectionne le contenu
 
+## Version 0.9.6 (goofy-bz - Olivier - Quentin - Vincent)
+    - Fix : Corrections mineures de langues
+    - Amélioration : Nouvelle langue - Occitan
+    - Amélioration : Blocage d'un vote si l'admin a changé les possibilités entre temps
+
+## Version 0.9.5 (Olivier)
+    - Fix : Corrections mineures de langues
+    - Fix : Correction de la suppresion de votes
+    - Amélioration : Possibilité d'ajouter plus de "moments" à une date
+
+## Version 0.9.4 (JosephK - Olivier - Nikos)
+    - Fix : Correction de l'échappement des tables Vote et Slot
+    - Fix : Encodage des "actions" en base64 pour fonctionner avec l'UrlRewriting
+    - Fix : Correction d'attributs "title"
+    - Fix : Un seul jour est requis pour faire un sondage
+    - Fix : Correction de l'UrlRewriting
+    - Amélioration : Traduction en Italien
+
+## Version 0.9.3 (Antonin - Olivier - Nikos)
+    - Fix : Traduction de textes en Italien
+    - Fix : Empêchement de la suppression de la dernière colonne
+    - Fix : Possiblité de supprimer des colonnes contenant des caractères spéciaux (par exemple "&")
+    - Fix : Correction de l'exemple d'URL rewriting (des efforts restent à faire)
+    - Amélioration : (Mode chacun son vote) Possiblité d'éditer son vote directement après un vote
+    - Amélioration : Message plus parlant lors de la création d'une colonne
+## Version 0.9.2 (Olivier)
+    - Fix : Completion d'un manque de contrôle sur les ID
 ## Version 0.9.1 (JosephK - Olivier - Antonin - Michael - Paul)
     - Fix : Correction des lenteurs de défilement
     - Fix : Arrêt du défilement auto à gauche qu'on clique sur un choix

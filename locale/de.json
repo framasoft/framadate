@@ -124,17 +124,14 @@
         "Poll rules": "Regeln der Umfrage",
         "Edit the poll rules": "Regeln der Umfrage bearbeiten",
         "Votes and comments are locked": "Wertungen und Kommentare sind gesperrt",
-        "Votes and comments are open": "Wertungen und Kommentare sind erlaubt",
-        "Votes are editable": "Die Wertungen können geändert werden",
-        "Votes are editable solely by their owner.": "Wertungen können nur vom Urheber geändert werden",
         "Save the new rules": "Neue Regeln speichern",
         "Cancel the rules edit": "Abbruch, Regeln nicht ändern",
-        "Results are hidden.": "Ergebnisse werden ausgeblendet.",
-        "Results are visible.": "Ergebnisse sind sichtbar.",
-        "Password protected.": "DE_Protégé par mot de passe.",
-        "Votes protected by password.": "DE_Votes protégés par mot de passe.",
-        "No password.": "DE_Pas de mot de passe",
-        "Remove password.": "DE_Supprimer le mot de passe."
+        "Results are hidden": "Ergebnisse werden ausgeblendet",
+        "Results are visible": "Ergebnisse sind sichtbar",
+        "Password protected": "DE_Protégé par mot de passe",
+        "Votes protected by password": "DE_Votes protégés par mot de passe",
+        "No password": "DE_Pas de mot de passe",
+        "Remove password": "DE_Supprimer le mot de passe"
     },
     "Poll results": {
         "Votes of the poll": "Stimmabgaben zur Umfrage",
@@ -221,8 +218,11 @@
         "You are in the poll creation section.": "Hier erstellen Sie die Umfrage",
         "Required fields cannot be left blank.": "Mit * markierte Felder müssen ausgefüllt sein.",
         "Poll title": "Titel der Umfrage",
-        "Votes cannot be modified.": "Wertungen können nicht verändert werden.",
-        "All voters can modify any vote": "Jeder Teilnehmer kann jede abgegebene Wertung ändern.",
+        "Poll id": "DE_Identifiant",
+        "Poll id rules": "DE_L'identifiant peut contenir des lettres, des chiffres et des tirets \"-\".",
+        "Poll id warning": "DE_En définissant un identifiant cela peut faciliter l'accès à ce sondage pour des personnes non désirées. Il est recommandé de le protéger par mot de passe.",
+        "Votes cannot be modified": "Wertungen können nicht verändert werden",
+        "All voters can modify any vote": "Jeder Teilnehmer kann jede abgegebene Wertung ändern",
         "Voters can modify their vote themselves": "Teilnehmer können ihre Wertungen verändern",
         "To receive an email for each new vote": "Bei jeder neuen Wertung eine E-Mail erhalten",
         "To receive an email for each new comment": "Bei jedem neuen Kommentar eine E-Mail erhalten",
@@ -274,7 +274,9 @@
         "Create the poll": "Umfrage erstellen",
         "Your poll will be automatically archived in %d days.": "Ihre Umfrage wird automatisch in %d Tage archiviert werden.",
         "You can set a closer archiving date for it.": "Sie können das Datum der Archivierung vorverlegen.",
-        "Archiving date:": "Tag der Archivierung:"
+        "Archiving date:": "Tag der Archivierung:",
+        "Your poll will automatically be archived": "DE_Your poll will automatically be archived",
+        "after the last date of your poll.": "DE_after the last date of your poll."
     },
     "Admin": {
         "Back to administration": "Zurück zur Verwaltung",
@@ -350,17 +352,21 @@
         "The name you've chosen already exist in this poll!": "Der von Ihnen eingegebenen Name existiert schon in dieser Umfrage",
         "Enter a name and a comment!": "Geben Sie einen Namen und ein Kommentar ein!",
         "Failed to insert the comment!": "Einfügen des Kommentars gescheitert!",
+        "Failed to delete the vote!": "DE_Échec de la suppression du vote !",
         "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "Framadate ist nicht richtig installiert. Bevor Sie fortfahren, beachten Sie bitte die Angaben zum Aufsetzen der Datenbank in \"INSTALL\".",
         "Failed to save poll": "Speichern der Umfrage fehlgeschlagen",
         "Update vote failed": "Aktualisierung der Wertung fehlgeschlagen",
         "Adding vote failed": "Stimmabgabe fehlgeschlagen",
+        "You already voted": "DE_Vous avez déjà voté",
+        "Poll has been updated before you vote": "DE_Le sondage a été mis à jour avant votre vote",
         "Comment failed": "Abgabe des Kommentars gescheitert",
         "You can't create a poll with hidden results with the following edition option:": "Sie können mit der folgenden Editier-Option keine Umfrage mit versteckten Ergebnissen erzeugen:",
         "Failed to delete column": "Löschen der Spalte fehlgeschlagen",
+        "The column already exists": "DE_La colonne existe déjà",
         "MISSING_VALUES": "Fehlende Werte",
         "CANT_CONNECT_TO_DATABASE": "Kann nicht mit der Datenbank verbinden",
-	"Password is empty": "DE_Le mot de passe est vide.",
-        "Passwords do not match": "DE_Les mot de passes ne correspondent pas."
-
+        "Password is empty": "DE_Le mot de passe est vide.",
+        "Passwords do not match": "DE_Les mot de passes ne correspondent pas.",
+        "Poll id already used": "DE_L'identifiant est déjà utilisé"
     }
 }

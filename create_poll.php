@@ -18,10 +18,10 @@
  */
 
 use Framadate\Form;
-use Framadate\Services\InputService;
-use Framadate\Editable;
-use Framadate\Utils;
+use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\PasswordHasher;
+use Framadate\Services\InputService;
+use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -32,6 +32,7 @@ const GO_TO_STEP_2 = 'gotostep2';
 /*----------*/
 
 $inputService = new InputService();
+$pollRepository = RepositoryFactory::pollRepository();
 
 /* PAGE */
 /* ---- */
@@ -55,16 +56,18 @@ if (isset($_GET['type']) && $_GET['type'] == 'date' ||
 $goToStep2 = filter_input(INPUT_POST, GO_TO_STEP_2, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(date|classic)$/']]);
 if ($goToStep2) {
     $title = $inputService->filterTitle($_POST['title']);
+    $customizeId = $inputService->filterBoolean($_POST['customize_id']);
+    $id = $customizeId == true ? $inputService->filterId($_POST['id']) : null;
     $name = $inputService->filterName($_POST['name']);
-    $mail = $inputService->filterMail($_POST['mail']);
+    $mail = $config['use_smtp'] == true ? $inputService->filterMail($_POST['mail']) : null;
     $description = $inputService->filterDescription($_POST['description']);
     $editable = $inputService->filterEditable($_POST['editable']);
     $receiveNewVotes = isset($_POST['receiveNewVotes']) ? $inputService->filterBoolean($_POST['receiveNewVotes']) : false;
     $receiveNewComments = isset($_POST['receiveNewComments']) ? $inputService->filterBoolean($_POST['receiveNewComments']) : false;
     $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
     $use_password = filter_input(INPUT_POST, 'use_password', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
-    $password = isset($_POST['password'])?$_POST['password']:null;
-    $password_repeat = isset($_POST['password_repeat'])?$_POST['password_repeat']:null;
+    $password = isset($_POST['password']) ? $_POST['password'] : null;
+    $password_repeat = isset($_POST['password_repeat']) ? $_POST['password_repeat'] : null;
     $results_publicly_visible = filter_input(INPUT_POST, 'results_publicly_visible', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
 
     // On initialise également les autres variables
@@ -76,6 +79,7 @@ if ($goToStep2) {
     $error_on_password_repeat = false;
 
     $_SESSION['form']->title = $title;
+    $_SESSION['form']->id = $id;
     $_SESSION['form']->admin_name = $name;
     $_SESSION['form']->admin_mail = $mail;
     $_SESSION['form']->description = $description;
@@ -95,6 +99,15 @@ if ($goToStep2) {
 
     if ($title !== $_POST['title']) {
         $error_on_title = true;
+    }
+
+    if ($customizeId) {
+        if ($id === false) {
+            $error_on_id = true;
+        } else if ($pollRepository->existsById($id)) {
+            $error_on_id = true;
+            $error_on_id_msg = __('Error', 'Poll id already used');
+        }
     }
 
     if ($name !== $_POST['name']) {
@@ -120,8 +133,9 @@ if ($goToStep2) {
         }
     }
 
-    if ($title && $name && $email_OK && !$error_on_title && !$error_on_description && !$error_on_name
-        && !$error_on_password && !$error_on_password_repeat) {
+    if ($title && $name && $email_OK && !$error_on_title && !$error_on_id && !$error_on_description && !$error_on_name
+        && !$error_on_password && !$error_on_password_repeat
+    ) {
 
         // If no errors, we hash the password if needed
         if ($_SESSION['form']->use_password) {
@@ -153,6 +167,11 @@ if ($goToStep2) {
 // Prepare error messages
 $errors = array(
     'title' => array(
+        'msg' => '',
+        'aria' => '',
+        'class' => ''
+    ),
+    'id' => array(
         'msg' => '',
         'aria' => '',
         'class' => ''
@@ -193,6 +212,12 @@ if (!empty($_POST[GO_TO_STEP_2])) {
         $errors['title']['aria'] = 'aria-describeby="poll_title_error" ';
         $errors['title']['class'] = ' has-error';
         $errors['title']['msg'] = __('Error', 'Something is wrong with the format');
+    }
+
+    if ($error_on_id) {
+        $errors['id']['aria'] = 'aria-describeby="poll_comment_error" ';
+        $errors['id']['class'] = ' has-error';
+        $errors['id']['msg'] = isset($error_on_id_msg) ? $error_on_id_msg : __('Error', 'Something is wrong with the format');
     }
 
     if ($error_on_description) {
@@ -243,6 +268,7 @@ $smarty->assign('goToStep2', GO_TO_STEP_2);
 
 $smarty->assign('poll_type', $poll_type);
 $smarty->assign('poll_title', Utils::fromPostOrDefault('title', $_SESSION['form']->title));
+$smarty->assign('poll_id', Utils::fromPostOrDefault('id', $_SESSION['form']->id));
 $smarty->assign('poll_description', Utils::fromPostOrDefault('description', $_SESSION['form']->description));
 $smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
 $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));
