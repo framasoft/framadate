@@ -51,12 +51,13 @@ const DEFAULT_LANGUAGE = 'fr';
 
 // List of supported languages, fake constant as arrays can be used as constants only in PHP >=5.6
 $ALLOWED_LANGUAGES = [
-    'fr' => 'Français',
-    'en' => 'English',
-    'oc' => 'Occitan',
-    'es' => 'Español',
     'de' => 'Deutsch',
+    'nl' => 'Dutch',
+    'en' => 'English',
+    'es' => 'Español',
+    'fr' => 'Français',
     'it' => 'Italiano',
+    'oc' => 'Occitan',
 ];
 
 // Nom et emplacement du fichier image contenant le titre
