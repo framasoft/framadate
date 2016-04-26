@@ -97,11 +97,9 @@ $(document).ready(function () {
     }
 
     var useFirstEmptyDateField = function (dateStr) {
-        console.log(dateStr);
         var used = false;
         $selected_days.find('fieldset legend input').each(function () {
             if (!used) {
-                console.log($(this).val(), $(this));
                 if ($(this).val() == '') {
                     $(this).val(dateStr);
                     used = true;
@@ -240,8 +238,6 @@ $(document).ready(function () {
         startDateField.parent().removeClass('has-error');
         endDateField.parent().removeClass('has-error');
 
-        // console.log('start_date as date', startDate);
-        // console.log('start_end as date', endDate);
         if (startDate != null && endDate != null) {
             if (startDate <= endDate) {
                 while (startDate <= endDate) {
