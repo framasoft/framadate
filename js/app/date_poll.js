@@ -238,7 +238,10 @@ $(document).ready(function () {
         startDateField.parent().removeClass('has-error');
         endDateField.parent().removeClass('has-error');
 
-        if (startDate != null && endDate != null) {
+        var maxDates = 123; // 123 = 4 months
+        var tooMuchDates = endDate - startDate > maxDates * 86400 * 1000;
+
+        if (startDate != null && endDate != null && !tooMuchDates) {
             if (startDate <= endDate) {
                 while (startDate <= endDate) {
                     var dateStr = formatDate(startDate, window.date_formats.DATE);
@@ -263,10 +266,10 @@ $(document).ready(function () {
             }
         } else {
             setTimeout(function () {
-                if (startDate == null) {
+                if (startDate == null || tooMuchDates) {
                     startDateField.parent().addClass('has-error');
                 }
-                if (endDate == null) {
+                if (endDate == null || tooMuchDates) {
                     endDateField.parent().addClass('has-error');
                 }
             }, 200);

@@ -52,6 +52,7 @@
     "MONTH_YEAR": "%B %Y",
     "DATETIME": "%d/%m/%Y %H:%M",
     "Add range dates": "IT_Ajout d'un intervalle de dates",
+    "Max dates count": "IT_Vous pouvez sélectionner au maximum 4 mois",
     "Start date": "IT_Date de début",
     "End date": "IT_Date de fin"
   },

@@ -122,6 +122,11 @@
                 </div>
                 <div class="modal-body row">
                     <div class="col-xs-12">
+                        <div class="alert alert-info">
+                            {__('Date', 'Max dates count')}
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
                         <label for="range_start">{__('Date', 'Start date')}</label>
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
