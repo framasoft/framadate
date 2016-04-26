@@ -141,7 +141,12 @@ if ($accessGranted) {
                         $editedVoteUniqueId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
                         $sessionService->set(USER_REMEMBER_VOTES_KEY, $poll_id, $editedVoteUniqueId);
                         $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
-                        $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
+                        $message = new Message(
+                            'success',
+                            __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'),
+                            $urlEditVote,
+                            __('Poll results', 'Edit the line:').' '.$name,
+                            'glyphicon-pencil');
                     } else {
                         $message = new Message('success', __('studs', 'Update vote succeeded'));
                     }
