@@ -35,12 +35,33 @@ class Increase_pollId_size implements Migration {
      * @return bool true if the execution succeeded
      */
     function execute(\PDO $pdo) {
+        $this->alterCommentTable($pdo);
         $this->alterPollTable($pdo);
+        $this->alterSlotTable($pdo);
+        $this->alterVoteTable($pdo);
+    }
+
+    private function alterCommentTable(\PDO $pdo) {
+        $pdo->exec('
+        ALTER TABLE `' . Utils::table('comment') . '`
+        CHANGE `poll_id` `poll_id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
     }
 
     private function alterPollTable(\PDO $pdo) {
         $pdo->exec('
         ALTER TABLE `' . Utils::table('poll') . '`
         CHANGE `id` `id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
+    }
+
+    private function alterSlotTable(\PDO $pdo) {
+        $pdo->exec('
+        ALTER TABLE `' . Utils::table('slot') . '`
+        CHANGE `poll_id` `poll_id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
+    }
+
+    private function alterVoteTable(\PDO $pdo) {
+        $pdo->exec('
+        ALTER TABLE `' . Utils::table('vote') . '`
+        CHANGE `poll_id` `poll_id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
     }
 }
