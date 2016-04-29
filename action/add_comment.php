@@ -78,6 +78,7 @@ if (!$poll) {
     $comments = $pollService->allCommentsByPollId($poll_id);
 }
 
+error_reporting(E_ALL & ~E_NOTICE);
 $smarty->error_reporting = E_ALL & ~E_NOTICE;
 $smarty->assign('comments', $comments);
 $comments_html = $smarty->fetch('part/comments_list.tpl');
