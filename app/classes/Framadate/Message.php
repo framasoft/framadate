@@ -25,13 +25,15 @@ class Message {
     var $link;
     var $linkTitle;
     var $linkIcon;
+    var $includeTemplate;
 
-    function __construct($type, $message, $link=null, $linkTitle=null, $linkIcon=null) {
+    function __construct($type, $message, $link=null, $linkTitle=null, $linkIcon=null, $includeTemplate=null) {
         $this->type = $type;
         $this->message = $message;
         $this->link = $link;
         $this->linkTitle = $linkTitle;
         $this->linkIcon = $linkIcon;
+        $this->includeTemplate = $includeTemplate;
     }
 
 }
