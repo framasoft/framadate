@@ -28,6 +28,7 @@ use Framadate\Services\SessionService;
 use Framadate\Message;
 use Framadate\Utils;
 use Framadate\Editable;
+use Framadate\Security\Token;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -147,6 +148,15 @@ if ($accessGranted) {
                             $urlEditVote,
                             __('Poll results', 'Edit the line:').' '.$name,
                             'glyphicon-pencil');
+                        if ($config['use_smtp']) {
+                            $token = new Token();
+                            $sessionService->set("Common", SESSION_EDIT_LINK_TOKEN, $token);
+                            $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
+                            $smarty->assign('token', $token->getValue());
+                            $smarty->assign('poll_id', $poll_id);
+                            $message->includeTemplate = $smarty->fetch('part/form_remember_edit_link.tpl');
+                            $smarty->clearAssign('token');
+                        }
                     } else {
                         $message = new Message('success', __('studs', 'Update vote succeeded'));
                     }
@@ -179,7 +189,21 @@ if ($accessGranted) {
                         $editedVoteUniqueId = $result->uniqId;
                         $sessionService->set(USER_REMEMBER_VOTES_KEY, $poll_id, $editedVoteUniqueId);
                         $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
-                        $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
+                        $message = new Message(
+                            'success',
+                            __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'),
+                            $urlEditVote,
+                            __('Poll results', 'Edit the line:').' '.$name,
+                            'glyphicon-pencil');
+                        if ($config['use_smtp']) {
+                            $token = new Token();
+                            $sessionService->set("Common", SESSION_EDIT_LINK_TOKEN, $token);
+                            $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
+                            $smarty->assign('token', $token->getValue());
+                            $smarty->assign('poll_id', $poll_id);
+                            $message->includeTemplate = $smarty->fetch('part/form_remember_edit_link.tpl');
+                            $smarty->clearAssign('token');
+                        }
                     } else {
                         $message = new Message('success', __('studs', 'Adding the vote succeeded'));
                     }
