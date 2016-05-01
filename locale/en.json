@@ -179,6 +179,16 @@
     "Update vote succeeded": "Vote updated",
     "Adding the vote succeeded": "Vote added"
   },
+  "EditLink": {
+    "Send": "Send",
+    "If you don't want to lose your personalized link, we can send it to your email.": "If you don't want to lose your personalized link, we can send it to your email.",
+    "The email address is not correct.": "The email address is not correct.",
+    "REMINDER": "REMINDER",
+    "Edit link for poll \"%s\"": "Edit link for poll \"%s\"",
+    "Please wait %d seconds before we can send an email to you then try again.": "Please wait %d seconds before we can send an email to you then try again.",
+    "Here is the link for editing your vote:": "Here is the link for editing your vote:",
+    "Your reminder has been successfully sent!": "Your reminder has been successfully sent!"
+  },
   "adminstuds": {
     "As poll administrator, you can change all the lines of this poll with this button": "As poll administrator, you can change all the lines of this poll with this button",
     "remove a column or a line with": "remove a column or a line with",
