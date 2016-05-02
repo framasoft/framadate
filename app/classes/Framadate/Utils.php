@@ -191,7 +191,7 @@ class Utils {
     }
 
     public static function htmlMailEscape($html) {
-        return htmlspecialchars($html, ENT_HTML5 | ENT_QUOTES, 'UTF-8');
+        return htmlspecialchars($html, ENT_HTML5 | ENT_QUOTES);
     }
 
     public static function csvEscape($text) {
