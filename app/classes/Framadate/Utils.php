@@ -190,6 +190,10 @@ class Utils {
         return htmlentities($html, ENT_HTML5 | ENT_QUOTES);
     }
 
+    public static function htmlMailEscape($html) {
+        return htmlspecialchars($html, ENT_HTML5 | ENT_QUOTES, 'UTF-8');
+    }
+
     public static function csvEscape($text) {
         $escaped = str_replace('"', '""', $text);
         $escaped = str_replace("\r\n", '', $escaped);
