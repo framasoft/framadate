@@ -64,7 +64,7 @@ if (is_null($message)) {
         $remainingTime = TIME_EDIT_LINK_EMAIL - (time() - $time);
 
         if ($remainingTime > 0) {
-            $message = new Message('error', sprintf(__('EditLink', 'Please wait %d seconds before we can send an email to you then try again.'), $remainingTime));
+            $message = new Message('error', __f('EditLink', 'Please wait %d seconds before we can send an email to you then try again.', $remainingTime));
         }
     }
 }
@@ -78,7 +78,7 @@ if (is_null($message)) {
     $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
     $body = $smarty->fetch('mail/remember_edit_link.tpl');
 
-    $subject = '[' . NOMAPPLICATION . ']['.__('EditLink', 'REMINDER').'] '.sprintf(__('EditLink', 'Edit link for poll "%s"'), $poll->title);
+    $subject = '[' . NOMAPPLICATION . ']['.__('EditLink', 'REMINDER').'] '.__f('EditLink', 'Edit link for poll "%s"', $poll->title);
 
     //$mailService->send($email, $subject, $body);
     $sessionService->remove("Common", SESSION_EDIT_LINK_TOKEN);
@@ -92,7 +92,7 @@ if (is_null($message)) {
 error_reporting(E_ALL & ~E_NOTICE);
 $smarty->error_reporting = E_ALL & ~E_NOTICE;
 
-$response = array('result' => $result, 'message' => $message, '$email'=> $email, '$subject'=>$subject, '$body'=>$body);
+$response = array('result' => $result, 'message' => $message);
 
 
 echo json_encode($response);
