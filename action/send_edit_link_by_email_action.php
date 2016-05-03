@@ -88,8 +88,6 @@ if (is_null($message)) {
     $result = true;
 }
 
-
-error_reporting(E_ALL & ~E_NOTICE);
 $smarty->error_reporting = E_ALL & ~E_NOTICE;
 
 $response = array('result' => $result, 'message' => $message);
