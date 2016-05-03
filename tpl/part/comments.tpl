@@ -5,7 +5,7 @@
 
 {* Add comment form *}
 {if $active && !$expired && $accessGranted}
-    <form action="action/add_comment.php" method="POST" id="comment_form">
+    <form action="{'action/add_comment.php'|resource}" method="POST" id="comment_form">
 
         <input type="hidden" name="poll" value="{$poll_id}"/>
         <div class="hidden-print jumbotron">
