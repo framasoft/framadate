@@ -136,7 +136,7 @@
   },
   "Poll results": {
     "Votes of the poll": "Votes",
-    "Edit the line:": "Edit line:",
+    "Edit the line: %s": "Edit line: %s",
     "Remove the line:": "Remove line:",
     "Vote no for": "Vote \"no\" for",
     "Vote yes for": "Vote \"yes\" for",

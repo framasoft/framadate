@@ -139,7 +139,7 @@
   },
   "Poll results": {
     "Votes of the poll": "Votos de la encuesta",
-    "Edit the line:": "Modificar la fila:",
+    "Edit the line: %s": "Modificar la fila: %s",
     "Remove the line:": "Borrar la fila:",
     "Vote no for": "Votar « no » para",
     "Vote yes for": "Votar « si » para",

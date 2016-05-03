@@ -196,7 +196,7 @@ function getMessageForOwnVoteEditableVote(SessionService &$sessionService, Smart
         'success',
         __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'),
         $urlEditVote,
-        __('Poll results', 'Edit the line:').' '.$name,
+        __f('Poll results', 'Edit the line: %s', $name),
         'glyphicon-pencil');
     if ($canUseSMTP) {
         $token = new Token();

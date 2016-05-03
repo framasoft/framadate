@@ -136,7 +136,7 @@
     },
     "Poll results": {
         "Votes of the poll": "Stimmabgaben zur Umfrage",
-        "Edit the line:": "Zeile bearbeiten:",
+        "Edit the line: %s": "Zeile bearbeiten: %s",
         "Remove the line:": "Zeile entfernen:",
         "Vote no for": "Nein-Stimmen für",
         "Vote yes for": "Ja-Stimmen für",

@@ -134,7 +134,7 @@
   },
   "Poll results": {
     "Votes of the poll": "Vòtes del sondatge",
-    "Edit the line:": "Modificar la linha :",
+    "Edit the line: %s": "Modificar la linha : %s",
     "Remove the line:": "Suprimir la linha :",
     "Vote no for": "Votar « non » per",
     "Vote yes for": "Votar « òc » per",
