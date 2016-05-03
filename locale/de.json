@@ -384,5 +384,23 @@
         "Passwords do not match": "DE_Les mot de passes ne correspondent pas.",
         "Poll id already used": "DE_L'identifiant est déjà utilisé",
         "You can't select more than %d dates": "DE_Vous ne pouvez pas choisir plus de %d dates"
+    },
+    "Check": {
+        "Installation checking": "DE_Vérifications de l'installation",
+        "Your PHP version (%s) is too old. This application needs at least PHP %s.": "DE_Votre version de PHP (%s) est trop vieille. Cette application a besoin de PHP %s au moins.",
+        "PHP version %s is enough (needed at least PHP %s).": "DE_Version de PHP %s suffisante (nécessite au moins PHP %s).",
+        "You need to enable the PHP Intl extension.": "DE_Vous devez activer l'extension PHP Intl.",
+        "PHP Intl extension is enabled.": "DE_L'extension PHP Intl est activée.",
+        "The template compile directory (%s) is not writable.": "DE_Le dossier de compilation des templates (%s) n'est pas accessible en écriture.",
+        "The template compile directory (%s) is writable.": "DE_Le dossier de compilation des templates (%s) est accessible en écriture.",
+        "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "DE_Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'éxiste pas.",
+        "The config file exists.": "DE_Le fichier de configuration existe.",
+        "The config file directory (%s) is writable.": "DE_Le dossier du fichier de configuration (%s) est accessible en écriture.",
+        "OpenSSL extension loaded.": "DE_L'extension PHP OpenSSL est chargée.",
+        "Consider enabling the PHP extension OpenSSL for increased security.": "DE_Veuillez considérer l'activation de l'extension PHP OpenSSL pour améliorer la sécurité.",
+        "date.timezone is set.": "DE_date.timezone est défini.",
+        "Consider setting the date.timezone in php.ini.": "DE_Veuillez considérer la définition de date.timezone dans le php.ini.",
+        "Check again": "DE_Vérifier à nouveau",
+        "Continue the installation": "DE_Continuer l'installation"
     }
 }

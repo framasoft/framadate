@@ -21,7 +21,7 @@ use Framadate\Utils;
 require_once __DIR__ . '/../../vendor/smarty/smarty/libs/Smarty.class.php';
 $smarty = new \Smarty();
 $smarty->setTemplateDir(ROOT_DIR . '/tpl/');
-$smarty->setCompileDir(ROOT_DIR . '/tpl_c/');
+$smarty->setCompileDir(ROOT_DIR . COMPILE_DIR);
 $smarty->setCacheDir(ROOT_DIR . '/cache/');
 $smarty->caching = false;
 
