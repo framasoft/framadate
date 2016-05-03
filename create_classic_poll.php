@@ -41,16 +41,10 @@ if (is_file('bandeaux_local.php')) {
 // Step 1/4 : error if $_SESSION from info_sondage are not valid
 if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (($config['use_smtp']) ? empty($_SESSION['form']->admin_mail) : false)) {
 
-    Utils::print_header(__('Error', 'Error!'));
-    bandeau_titre(__('Error', 'Error!'));
-
-    echo '
-    <div class="alert alert-danger">
-        <h3>' . __('Error', 'You haven\'t filled the first section of the poll creation.') . ' !</h3>
-        <p>' . __('Generic', 'Back to the homepage of') . ' <a href="' . Utils::get_server_name() . '"> ' . NOMAPPLICATION . '</a></p>
-    </div>' . "\n";
-
-    bandeau_pied();
+    $smarty->assign('title', __('Error', 'Error!'));
+    $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation.'));
+    $smarty->display('error.tpl');
+    exit;
 
 } else {
     // Min/Max archive date
