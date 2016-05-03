@@ -56,7 +56,7 @@ if (isset($_GET['type']) && $_GET['type'] == 'date' ||
 $goToStep2 = filter_input(INPUT_POST, GO_TO_STEP_2, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(date|classic)$/']]);
 if ($goToStep2) {
     $title = $inputService->filterTitle($_POST['title']);
-    $customizeId = $inputService->filterBoolean($_POST['customize_id']);
+    $customizeId = isset($_POST['customize_id']) ? $inputService->filterBoolean($_POST['customize_id']) : false;
     $id = $customizeId == true ? $inputService->filterId($_POST['id']) : null;
     $name = $inputService->filterName($_POST['name']);
     $mail = $config['use_smtp'] == true ? $inputService->filterMail($_POST['mail']) : null;
@@ -77,6 +77,7 @@ if ($goToStep2) {
     $error_on_description = false;
     $error_on_password = false;
     $error_on_password_repeat = false;
+    $error_on_id = false;
 
     $_SESSION['form']->title = $title;
     $_SESSION['form']->id = $id;
