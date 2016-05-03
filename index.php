@@ -23,7 +23,7 @@ use Framadate\Utils;
 include_once __DIR__ . '/app/inc/init.php';
 
 if (!is_file(CONF_FILENAME)) {
-    header(('Location: ' . Utils::get_server_name() . 'admin/install.php'));
+    header(('Location: ' . Utils::get_server_name() . 'admin/check.php'));
     exit;
 }
 
