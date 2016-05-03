@@ -64,7 +64,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
     }
 
     // Step 4 : Data prepare before insert in DB
-    if (isset($_POST['confirmecreation'])) {
+    if (isset($_POST['confirmation'])) {
 
         // Define expiration date
         $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
@@ -124,9 +124,6 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
 
     } // Step 3/4 : Confirm poll creation and choose a removal date
     else if (isset($_POST['fin_sondage_autre'])) {
-        Utils::print_header(__('Step 3', 'Removal date and confirmation (3 on 3)'));
-        bandeau_titre(__('Step 3', 'Removal date and confirmation (3 on 3)'));
-
 
         // Store choices in $_SESSION
         if (isset($_POST['choices'])) {
@@ -178,45 +175,13 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
 
         $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); //textual date
 
-        echo '
-    <form name="formulaire" action="' . Utils::get_server_name() . 'create_classic_poll.php" method="POST" class="form-horizontal" role="form">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="well summary">
-                <h4>' . __('Step 3', 'List of your choices') . '</h4>
-                ' . $summary . '
-            </div>
-            <div class="alert alert-info">
-                <p>' . __('Step 3', 'Your poll will automatically be archived') . ' ' . $config['default_poll_duration'] . ' ' . __('Generic', 'days') . ' ' .__('Step 3', 'after the last date of your poll.') . '
-                <br />' . __('Step 3', 'You can set a closer archiving date for it.') . '</p>
-                <div class="form-group">
-                    <label for="enddate" class="col-sm-5 control-label">' . __('Step 3', 'Archiving date:') . '</label>
-                    <div class="col-sm-6">
-                        <div class="input-group date">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                            <input type="text" class="form-control" id="enddate" data-date-format="' . __('Date', 'dd/mm/yyyy') . '" aria-describedby="dateformat" name="enddate" value="' . $end_date_str . '" size="10" maxlength="10" placeholder="' . __('Date', 'dd/mm/yyyy') . '" />
-                        </div>
-                    </div>
-                    <span id="dateformat" class="sr-only">' . __('Date', 'dd/mm/yyyy') . '</span>
-                </div>
-            </div>
-            <div class="alert alert-warning">
-                <p>' . __('Step 3', 'Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.') . '</p>';
-        if ($config['use_smtp'] == true) {
-            echo '
-                <p>' . __('Step 3', 'Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.') . '</p>';
-        }
-        echo '
-            </div>
-            <p class="text-right">
-                <button class="btn btn-default" onclick="javascript:window.history.back();" title="' . __('Step 3', 'Back to step 2') . '">' . __('Generic', 'Back') . '</button>
-                <button name="confirmecreation" value="confirmecreation" type="submit" class="btn btn-success">' . __('Step 3', 'Create the poll') . '</button>
-            </p>
-        </div>
-    </div>
-    </form>' . "\n";
+        $smarty->assign('title', __('Step 3', 'Removal date and confirmation (3 on 3)'));
+        $smarty->assign('summary', $summary);
+        $smarty->assign('end_date_str', $end_date_str);
+        $smarty->assign('default_poll_duration', $config['default_poll_duration']);
+        $smarty->assign('use_smtp', $config['use_smtp']);
 
-        bandeau_pied();
+        $smarty->display('create_classic_poll_step3.tpl');
 
         // Step 2/4 : Select choices of the poll
     } else {
