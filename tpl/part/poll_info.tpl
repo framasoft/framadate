@@ -22,7 +22,8 @@
                 <div class="btn-group pull-right">
                     <button onclick="print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> {__('PollInfo', 'Print')}</button>
                     <a href="{$SERVER_URL|html}exportcsv.php?poll={$poll_id|html}" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> {__('PollInfo', 'Export to CSV')}</a>
-                    {if $admin && !$expired}
+                    {if $admin}
+                        {if !$expired}
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-trash"></span> <span class="sr-only">{__('Generic', 'Remove')}</span> <span class="caret"></span>
                         </button>
@@ -32,6 +33,12 @@
                             <li class="divider" role="presentation"></li>
                             <li><button class="btn btn-link" type="submit" name="delete_poll">{__('PollInfo', 'Remove the poll')}</button></li>
                         </ul>
+                        {else}
+                            <button class="btn btn-danger" type="submit" name="delete_poll" title="{__('PollInfo', 'Remove the poll')}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <span class="sr-only">{__('PollInfo', 'Remove the poll')}</span>
+                            </button>
+                        {/if}
                     {/if}
                 </div>
             </div>
