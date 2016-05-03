@@ -33,19 +33,6 @@ class Utils {
         return $scheme . '://' . preg_replace('#//+#', '/', $server_name);
     }
 
-    public static function is_error($cerr) {
-        global $err;
-        if ($err == 0) {
-            return false;
-        }
-
-        return ($err & $cerr) != 0;
-    }
-
-    public static function is_user() {
-        return (USE_REMOTE_USER && isset($_SERVER['REMOTE_USER'])) || isset($_SESSION['nom']);
-    }
-
     /**
      * @param string $title
      * @deprecated
@@ -83,17 +70,6 @@ class Utils {
     </head>
     <body>
     <div class="container ombre">';
-    }
-
-    /**
-     * Check if an email address is valid using PHP filters
-     *
-     * @param   string $email Email address to check
-     * @return  bool    True if valid. False if not valid.
-     * @deprecated
-     */
-    public static function isValidEmail($email) {
-        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
     /**
