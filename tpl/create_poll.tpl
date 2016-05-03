@@ -22,7 +22,7 @@
 
                     <div class="col-sm-8">
                         <input id="poll_title" type="text" name="title" class="form-control" {$errors['title']['aria']}
-                               value="{$poll_title}"/>
+                               value="{$poll_title|html}"/>
                     </div>
                 </div>
                 {if !empty($errors['title']['msg'])}
@@ -63,7 +63,7 @@
                     <div class="col-sm-8">
                         <textarea id="poll_comments" name="description"
                                   class="form-control" {$errors['description']['aria']}
-                                  rows="5">{$poll_description}</textarea>
+                                  rows="5">{$poll_description|html}</textarea>
                     </div>
                 </div>
                 {if !empty($errors['description']['msg'])}
@@ -81,7 +81,7 @@
                         {if $useRemoteUser}
                             <input type="hidden" name="name" value="{$form->admin_name}" />{$form->admin_name}
                         {else}
-                            <input id="yourname" type="text" name="name" class="form-control" {$errors['name']['aria']} value="{$poll_name}" />
+                            <input id="yourname" type="text" name="name" class="form-control" {$errors['name']['aria']} value="{$poll_name|html}" />
                         {/if}
                     </div>
                 </div>
