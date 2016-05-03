@@ -102,8 +102,8 @@
                 </div>
                 <div id="expiration-form" class="form-group col-md-4">
                     <label class="control-label">{__('PollInfo', 'Expiration date')}</label>
-                    <p>{$poll->end_date|date_format:$date_format['txt_date']|html}{if !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiration date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
-                    {if !$expired}
+                    <p>{$poll->end_date|date_format:$date_format['txt_date']|html} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiration date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
+
                         <div class="hidden js-expiration">
                             <label class="sr-only" for="newexpirationdate">{__('PollInfo', 'Expiration date')}</label>
                             <div class="input-group">
@@ -114,7 +114,7 @@
                                 </span>
                             </div>
                         </div>
-                    {/if}
+
                 </div>
             {/if}
         </div>
@@ -129,9 +129,10 @@
                         {else}
                             {$password_text = __('PollInfo', 'No password')}
                         {/if}
-                        <p class=""><span class="glyphicon glyphicon-lock"> </span> {$password_text}<button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
+                        <p><span class="glyphicon glyphicon-lock"></span> {$password_text}{if !$expired}<button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
                         <div class="hidden js-password">
                             <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the rules edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{__('Generic', 'Cancel')}</span></button>
+                            {if !$expired}
                             {if !empty($poll->password_hash)}
                                 <div class="input-group">
                                     <input type="checkbox" id="removePassword" name="removePassword"/>
@@ -151,6 +152,7 @@
                                     </span>
                                 </div>
                             </div>
+                            {/if}
                         </div>
                     </div>
                 </div>
@@ -164,7 +166,8 @@
                             {$hidden_icon = "glyphicon-eye-open"}
                             {$hidden_text = __('PollInfo', 'Results are visible')}
                         {/if}
-                        <p class=""><span class="glyphicon {$hidden_icon}"> </span> {$hidden_text}<button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
+                        <p class=""><span class="glyphicon {$hidden_icon}"> </span> {$hidden_text}{if !$expired}<button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
+                        {if !$expired}
                         <div class="hidden js-poll-hidden">
                             <div class="input-group">
                                 <input type="checkbox" id="hidden" name="hidden" {if $poll->hidden}checked="checked"{/if}/>
@@ -175,6 +178,7 @@
                                 </span>
                             </div>
                         </div>
+                        {/if}
                     </div>
                 </div>
                 <div class="col-md-4" >
