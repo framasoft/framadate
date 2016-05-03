@@ -59,9 +59,7 @@
 
                     {$id=0}
                     {foreach $slots as $slot}
-                      {foreach $slot->moments as $moment}
                         {$choice=$vote->choices[$id]}
-
 
                         <td class="bg-info" headers="C{$id}">
                             <ul class="list-unstyled choice">
@@ -90,7 +88,6 @@
                         </td>
 
                         {$id=$id + 1}
-                      {/foreach}
                     {/foreach}
 
                     <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
@@ -102,7 +99,6 @@
 
                     {$id=0}
                     {foreach $slots as $slot}
-                      {foreach $slot->moments as $moment}
                         {$choice=$vote->choices[$id]}
 
                         {if $choice=='2'}
@@ -116,7 +112,6 @@
                         {/if}
 
                         {$id=$id + 1}
-                      {/foreach}
                     {/foreach}
 
                     {if $active && !$expired && $accessGranted &&
