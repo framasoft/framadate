@@ -102,8 +102,8 @@
                 </div>
                 <div id="expiration-form" class="form-group col-md-4">
                     <label class="control-label">{__('PollInfo', 'Expiration date')}</label>
-                    <p>{$poll->end_date|date_format:$date_format['txt_date']|html}{if !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiration date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
-                    {if !$expired}
+                    <p>{$poll->end_date|date_format:$date_format['txt_date']|html} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiration date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
+
                         <div class="hidden js-expiration">
                             <label class="sr-only" for="newexpirationdate">{__('PollInfo', 'Expiration date')}</label>
                             <div class="input-group">
@@ -114,7 +114,7 @@
                                 </span>
                             </div>
                         </div>
-                    {/if}
+
                 </div>
             {/if}
         </div>
@@ -199,8 +199,7 @@
                             {$rule_icon = '<span class="glyphicon glyphicon-lock"></span>'}
                             {$rule_txt = __('PollInfo', 'Votes and comments are locked')}
                         {/if}
-                        <p class="">{$rule_icon} {$rule_txt|html}{if !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
-                        {if !$expired}
+                        <p class="">{$rule_icon} {$rule_txt|html} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
                         <div class="hidden js-poll-rules">
                             <label class="sr-only" for="rules">{__('PollInfo', 'Poll rules')}</label>
                             <div class="input-group">
@@ -216,7 +215,6 @@
                                 </span>
                             </div>
                         </div>
-                        {/if}
                     </div>
                 </div>
             </div>
