@@ -44,6 +44,19 @@ class SessionService {
         $_SESSION[$section][$key] = $value;
     }
 
+    /**
+     * Remove a session value
+     *
+     * @param $section
+     * @param $key
+     */
+    public function remove($section, $key) {
+        assert(!empty($key));
+        assert(!empty($section));
+
+        unset($_SESSION[$section][$key]);
+    }
+
     private function initSectionIfNeeded($section) {
         if (!isset($_SESSION[$section])) {
             $_SESSION[$section] = array();

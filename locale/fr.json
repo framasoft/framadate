@@ -136,7 +136,7 @@
   },
   "Poll results": {
     "Votes of the poll": "Votes du sondage",
-    "Edit the line:": "Modifier la ligne :",
+    "Edit the line: %s": "Modifier la ligne : %s",
     "Remove the line:": "Supprimer la ligne :",
     "Vote no for": "Voter « non » pour",
     "Vote yes for": "Voter « oui » pour",
@@ -178,6 +178,16 @@
     "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Votre vote a bien été pris en compte, mais faites attention : ce sondage n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; conservez-le précieusement ! ",
     "Update vote succeeded": "Mise à jour du vote réussi",
     "Adding the vote succeeded": "Ajout du vote réussi"
+  },
+  "EditLink": {
+      "Send": "Envoyer",
+      "If you don't want to lose your personalized link, we can send it to your email.": "Afin de ne pas perdre ce lien d'édition de vote, nous pouvons vous l'envoyer par courriel.",
+      "The email address is not correct.": "Courriel incorrect.",
+      "REMINDER": "RAPPEL",
+      "Edit link for poll \"%s\"": "Lien d'édition du sondage \"%s\"",
+      "Please wait %d seconds before we can send an email to you then try again.": "Veuillez patienter encore %d secondes avant que nous puissions vous envoyer un email, puis réessayez.",
+      "Here is the link for editing your vote:": "Voici le lien pour éditer votre vote :",
+      "Your reminder has been successfully sent!": "Votre rappel a été envoyé avec succès !"
   },
   "adminstuds": {
     "As poll administrator, you can change all the lines of this poll with this button": "En tant qu'administrateur, vous pouvez modifier toutes les lignes de ce sondage avec ce bouton",

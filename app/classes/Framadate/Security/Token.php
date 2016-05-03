@@ -3,12 +3,13 @@ namespace Framadate\Security;
 
 class Token {
 
+    const DEFAULT_LENGTH = 64;
     private $time;
     private $value;
     private $length;
     private static $codeAlphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789';
 
-    function __construct($length = 64) {
+    function __construct($length = self::DEFAULT_LENGTH) {
         $this->length = $length;
         $this->time = time() + TOKEN_TIME;
         $this->value = $this->generate();
@@ -41,7 +42,7 @@ class Token {
      * @param bool $crypto_strong If passed, tells if the token is "cryptographically strong" or not.
      * @return string
      */
-    public static function getToken($length, &$crypto_strong = false) {
+    public static function getToken($length = self::DEFAULT_LENGTH, &$crypto_strong = false) {
         if (function_exists('openssl_random_pseudo_bytes')) {
             openssl_random_pseudo_bytes(1, $crypto_strong); // Fake use to see if the algorithm used was "cryptographically strong"
             return self::getSecureToken($length);

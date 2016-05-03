@@ -136,7 +136,7 @@
   },
   "Poll results": {
     "Votes of the poll": "Votes",
-    "Edit the line:": "Edit line:",
+    "Edit the line: %s": "Edit line: %s",
     "Remove the line:": "Remove line:",
     "Vote no for": "Vote \"no\" for",
     "Vote yes for": "Vote \"yes\" for",
@@ -178,6 +178,16 @@
     "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Your vote has been saved, but please note: you need to keep this personalised link to be able to edit your vote.",
     "Update vote succeeded": "Vote updated",
     "Adding the vote succeeded": "Vote added"
+  },
+  "EditLink": {
+    "Send": "Send",
+    "If you don't want to lose your personalized link, we can send it to your email.": "If you don't want to lose your personalized link, we can send it to your email.",
+    "The email address is not correct.": "The email address is not correct.",
+    "REMINDER": "REMINDER",
+    "Edit link for poll \"%s\"": "Edit link for poll \"%s\"",
+    "Please wait %d seconds before we can send an email to you then try again.": "Please wait %d seconds before we can send an email to you then try again.",
+    "Here is the link for editing your vote:": "Here is the link for editing your vote:",
+    "Your reminder has been successfully sent!": "Your reminder has been successfully sent!"
   },
   "adminstuds": {
     "As poll administrator, you can change all the lines of this poll with this button": "As poll administrator, you can change all the lines of this poll with this button",

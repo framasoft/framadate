@@ -30,5 +30,9 @@ const EDITABLE_CHOICE_REGEX = '/^[0-2]$/';
 const BASE64_REGEX = '/^[A-Za-z0-9]+$/';
 const MD5_REGEX = '/^[A-Fa-f0-9]{32}$/';
 
+// Session constants
+const SESSION_EDIT_LINK_TOKEN = 'EditLinkToken';
+const SESSION_EDIT_LINK_TIME = "EditLinkMail";
+
 // CSRF (300s = 5min)
 const TOKEN_TIME = 300;

@@ -77,6 +77,9 @@ const PURGE_DELAY = 60;
 // Max slots per poll
 const MAX_SLOTS_PER_POLL = 366;
 
+// Number of seconds before we allow to resend an "Remember Edit Link" email.
+const TIME_EDIT_LINK_EMAIL = 60;
+
 // Config
 $config = [
     /* general config */
