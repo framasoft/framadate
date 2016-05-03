@@ -1,5 +1,15 @@
 {extends file='page.tpl'}
 
+{block name="header"}
+    <script type="text/javascript">
+        window.date_formats = {
+            DATE: '{__('Date', 'DATE')}',
+            DATEPICKER: '{__('Date', 'datepicker')}'
+        };
+    </script>
+    <script type="text/javascript" src="{'js/app/framadatepicker.js'|resource}"></script>
+{/block}
+
 {block name=main}
     <form action="{poll_url id=$admin_poll_id admin=true}" method="POST">
         <div class="alert alert-info text-center">
@@ -36,5 +46,4 @@
             </div>
         </div>
     </form>
-    <script type="text/javascript" src="js/app/framadatepicker.js"></script>
 {/block}
