@@ -381,7 +381,8 @@
     "MISSING_VALUES": "Valori mancanti",
     "CANT_CONNECT_TO_DATABASE": "Impossibile connettersi al database",
     "Poll id already used": "IT_L'identifiant est déjà utilisé",
-    "You can't select more than %d dates": "IT_Vous ne pouvez pas choisir plus de %d dates"
+    "You can't select more than %d dates": "IT_Vous ne pouvez pas choisir plus de %d dates",
+    "Can't create the config.php file in '%s'.": "IT_Impossible de créer le fichier config.php dans '%s'."
   },
   "Check": {
     "Installation checking": "IT_Vérifications de l'installation",
