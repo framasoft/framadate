@@ -53,6 +53,7 @@ const DEFAULT_LANGUAGE = '{$defaultLanguage}';
 $ALLOWED_LANGUAGES = [
     'fr' => 'Français',
     'en' => 'English',
+    'oc' => 'Occitan',
     'es' => 'Español',
     'de' => 'Deutsch',
     'it' => 'Italiano',
@@ -73,6 +74,12 @@ const LOG_FILE = 'admin/stdout.log';
 // Days (after expiration date) before purge a poll
 const PURGE_DELAY = 60;
 
+// Max slots per poll
+const MAX_SLOTS_PER_POLL = 366;
+
+// Number of seconds before we allow to resend an "Remember Edit Link" email.
+const TIME_EDIT_LINK_EMAIL = 60;
+
 // Config
 $config = [
     /* general config */
@@ -86,4 +93,3 @@ $config = [
     /* create_classic_poll.php */
     'user_can_add_img_or_link' => true,     // user can add link or URL when creating his poll.
 ];
-
