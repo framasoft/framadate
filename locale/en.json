@@ -44,7 +44,6 @@
     "dd/mm/yyyy": "yyyy-mm-dd",
     "datepicker": "yyyy-mm-dd",
     "datetime_parseformat": "Y-m-d",
-    "%A, den %e. %B %Y": "%A %e %B %Y",
     "FULL": "%A, %B %e, %Y",
     "SHORT": "%A %e %B %Y",
     "DAY": "%a %e",
@@ -60,15 +59,15 @@
     "Select the language": "Select language",
     "Change the language": "Change language"
   },
-  "Maintenance": {
-    "The application": "The application",
-    "is currently under maintenance.": "is currently under maintenance.",
-    "Thank you for your understanding.": "Thank you for your understanding."
-  },
   "Homepage": {
     "Schedule an event": "Schedule an event",
     "Make a classic poll": "Make a standard poll",
     "Where are my polls": "Where are my polls?"
+  },
+  "Maintenance": {
+    "The application": "The application",
+    "is currently under maintenance.": "is currently under maintenance.",
+    "Thank you for your understanding.": "Thank you for your understanding."
   },
   "1st section": {
     "What is that?": "What is Framadate?",
@@ -84,8 +83,8 @@
   "2nd section": {
     "The software": "The software",
     "Framadate was initially based on ": "Framadate was initially based on ",
-    "a software developed by the University of Strasbourg. Today, it is developed by Framasoft association.": "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.",
-    "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:": "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:",
+    "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.",
+    "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:",
     "It is governed by the": "Framadate is licensed under the",
     "CeCILL-B license": "CeCILL-B license"
   },
@@ -216,10 +215,10 @@
     "Keep the votes": "Keep the votes",
     "Remove the votes": "Remove the votes",
     "Confirm removal of all comments of the poll": "Confirm removal of all comments",
-    "Comment deleted": "Comment deleted",
-    "All comments deleted": "All comments deleted",
     "Keep the comments": "Keep the comments",
     "Remove the comments": "Remove the comments",
+    "Comment deleted": "Comment deleted",
+    "All comments deleted": "All comments deleted",
     "Keep votes": "Keep votes",
     "Keep comments": "Keep comments",
     "Keep this poll": "Keep this poll"
@@ -296,7 +295,6 @@
     "Migration": "Migration",
     "Purge": "Purge",
     "Logs": "Logs",
-    "Installation": "Installation",
     "Poll ID": "Poll ID",
     "Format": "Format",
     "Title": "Title",
@@ -349,6 +347,21 @@
     "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "This message should NOT be sent to the poll participants. You should keep it private. <br/><br/>You can modify your poll at the link above",
     "Author's message": "Author's message",
     "For sending to the polled users": "Participant link"
+  },
+  "Installation": {
+    "AppMail": "EN_Adresse mail de l'application",
+    "AppName": "EN_Nom de l'application",
+    "CleanUrl": "EN_URL propres",
+    "Database": "EN_Base de données",
+    "DbConnectionString": "EN_Chaîne de connexion",
+    "DbPassword": "EN_Mot de passe",
+    "DbPrefix": "EN_Préfixe",
+    "DbUser": "EN_Utilisateur",
+    "DefaultLanguage": "EN_Langue par défaut",
+    "General": "EN_Général",
+    "Install": "EN_Installer",
+    "MigrationTable": "EN_Table de migration",
+    "ResponseMail": "EN_Mail de réponse"
   },
   "Error": {
     "Error!": "Error!",

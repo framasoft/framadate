@@ -41,10 +41,9 @@
         "ASTERISK": "*"
     },
     "Date": {
-        "dd/mm/yyyy": "dd/mm/yyyy",
+        "dd/mm/yyyy": "yyyy-mm-dd",
         "datepicker": "yyyy-mm-dd",
         "datetime_parseformat": "Y-m-d",
-        "%A, den %e. %B %Y": "%A %e %B %Y",
         "FULL": "%A, den %e. %B %Y",
         "SHORT": "%A %e %B %Y",
         "DAY": "%a %e",
@@ -202,9 +201,9 @@
         "Keep the poll": "Umfrage beibehalten",
         "Your poll has been removed!": "Ihre Umfrage wurde gelöscht!",
         "Poll saved": "Umfrage gespeichert",
+        "Poll fully deleted": "Umfrage vollständig gelöscht",
         "Vote added": "Wertung hinzugefügt",
         "Vote updated": "Wertung aktualisiert",
-        "Poll fully deleted": "Umfrage vollständig gelöscht",
         "Vote deleted": "Wertung gelöscht",
         "All votes deleted": "Alle Wertungen werden gelöscht",
         "Back to the poll": "Zurück zur Umfrage",
@@ -296,7 +295,6 @@
         "Migration": "Migration",
         "Purge": "Säuberung",
         "Logs": "Verlauf",
-        "Installation": "Installation",
         "Poll ID": "Umfrage-ID",
         "Format": "Format",
         "Title": "Titel",
@@ -348,6 +346,21 @@
         "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "Diese Meldung sollte NICHT an die befragten Personen gesendet werden. Sie richtet sich einzig an den Autor der Umfrage. Sie können sie jetzt über den oben genannten Link abändern.",
         "Author's message": "Nachricht vom Autor ",
         "For sending to the polled users": "Nachricht für die Teilnehmer"
+    },
+    "Installation": {
+        "AppMail": "DE_Adresse mail de l'application",
+        "AppName": "DE_Nom de l'application",
+        "CleanUrl": "DE_URL propres",
+        "Database": "DE_Base de données",
+        "DbConnectionString": "DE_Chaîne de connexion",
+        "DbPassword": "DE_Mot de passe",
+        "DbPrefix": "DE_Préfixe",
+        "DbUser": "DE_Utilisateur",
+        "DefaultLanguage": "DE_Langue par défaut",
+        "General": "DE_Général",
+        "Install": "DE_Installer",
+        "MigrationTable": "DE_Table de migration",
+        "ResponseMail": "DE_Mail de réponse"
     },
     "Error": {
         "Error!": "Fehler!",

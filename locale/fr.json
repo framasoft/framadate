@@ -44,7 +44,6 @@
     "dd/mm/yyyy": "jj/mm/aaaa",
     "datepicker": "dd/mm/yyyy",
     "datetime_parseformat": "d/m/Y",
-    "%A, den %e. %B %Y": "%A %e %B %Y",
     "FULL": "%A %e %B %Y",
     "SHORT": "%A %e %B %Y",
     "DAY": "%a %e",
