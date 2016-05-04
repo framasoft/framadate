@@ -41,10 +41,9 @@
         "ASTERISK": "*"
     },
     "Date": {
-        "dd/mm/yyyy": "dd/mm/yyyy",
+        "dd/mm/yyyy": "yyyy-mm-dd",
         "datepicker": "yyyy-mm-dd",
         "datetime_parseformat": "Y-m-d",
-        "%A, den %e. %B %Y": "%A %e %B %Y",
         "FULL": "%A, den %e. %B %Y",
         "SHORT": "%A %e %B %Y",
         "DAY": "%a %e",
