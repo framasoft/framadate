@@ -138,15 +138,18 @@ $warnings = 0;
 foreach ($messages as $message) {
     if ($message->type == 'danger') {
         $errors++;
-    } else if ($message->type == 'warning')
+    } else if ($message->type == 'warning') {
         $warnings++;
+    }
 }
 $readyPercentage = round((count($messages)-$errors)*100/count($messages));
-$readyClass = 'success';
+
 if ($errors > 0) {
     $readyClass = 'danger';
 } else if ($warnings > 0) {
     $readyClass = 'warning';
+} else {
+    $readyClass = 'success';
 }
 
 usort($messages, 'compareCheckMessage');
@@ -157,7 +160,7 @@ usort($messages, 'compareCheckMessage');
 <head>
     <meta charset="utf-8">
 
-   <title><?=__('Check', 'Installation checking') ?></title>
+    <title><?=__('Check', 'Installation checking') ?></title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
