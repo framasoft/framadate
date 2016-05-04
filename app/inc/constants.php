@@ -20,6 +20,12 @@
 // FRAMADATE version
 const VERSION = '1.0';
 
+// PHP Needed version
+const PHP_NEEDED_VERSION = '5.4.4';
+
+// Config constants
+const COMPILE_DIR = '/tpl_c/';
+
 // Regex
 const POLL_REGEX = '/^[a-z0-9-]*$/i';
 const ADMIN_POLL_REGEX = '/^[a-z0-9]{24}$/i';

@@ -11,6 +11,9 @@
     <div class="col-md-6 col-xs-12">
         <a href="./purge.php"><h2>{__('Admin', 'Purge')}</h2></a>
     </div>
+    <div class="col-md-6 col-xs-12">
+        <a href="./check.php"><h2>{__('Check', 'Installation checking')}</h2></a>
+    </div>
     {if $logsAreReadable}
         <div class="col-md-6 col-xs-12">
             <a href="./logs.php"><h2>{__('Admin', 'Logs')}</h2></a>
