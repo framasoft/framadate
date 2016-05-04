@@ -4,16 +4,16 @@
  * is not distributed with this file, you can obtain one at
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
- * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaï¿½l DROZ
  * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
- * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * Ce logiciel est rï¿½gi par la licence CeCILL-B. Si une copie de cette licence
  * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
  *
- * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaï¿½l DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 namespace Framadate\Services;
@@ -62,7 +62,9 @@ class InstallService {
         }
 
         // Write configuration to conf.php file
-        $this->writeConfiguration($smarty);
+        if ($this->writeConfiguration($smarty) === false) {
+            return $this->error(__f('Error', "Can't create the config.php file in '%s'.", CONF_FILENAME));
+        }
 
         return $this->ok();
     }
@@ -85,14 +87,14 @@ class InstallService {
 
         $content = $smarty->fetch('admin/config.tpl');
 
-        $this->writeToFile($content);
+        return $this->writeToFile($content);
     }
 
     /**
      * @param $content
      */
     function writeToFile($content) {
-        file_put_contents(CONF_FILENAME, $content);
+        return @file_put_contents(CONF_FILENAME, $content);
     }
 
     /**

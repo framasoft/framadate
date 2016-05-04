@@ -59,15 +59,15 @@
     "Select the language": "Select language",
     "Change the language": "Change language"
   },
-  "Maintenance": {
-    "The application": "The application",
-    "is currently under maintenance.": "is currently under maintenance.",
-    "Thank you for your understanding.": "Thank you for your understanding."
-  },
   "Homepage": {
     "Schedule an event": "Schedule an event",
     "Make a classic poll": "Make a standard poll",
     "Where are my polls": "Where are my polls?"
+  },
+  "Maintenance": {
+    "The application": "The application",
+    "is currently under maintenance.": "is currently under maintenance.",
+    "Thank you for your understanding.": "Thank you for your understanding."
   },
   "1st section": {
     "What is that?": "What is Framadate?",
@@ -83,8 +83,8 @@
   "2nd section": {
     "The software": "The software",
     "Framadate was initially based on ": "Framadate was initially based on ",
-    "a software developed by the University of Strasbourg. Today, it is developed by Framasoft association.": "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.",
-    "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:": "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:",
+    "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.",
+    "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:",
     "It is governed by the": "Framadate is licensed under the",
     "CeCILL-B license": "CeCILL-B license"
   },
@@ -215,10 +215,10 @@
     "Keep the votes": "Keep the votes",
     "Remove the votes": "Remove the votes",
     "Confirm removal of all comments of the poll": "Confirm removal of all comments",
-    "Comment deleted": "Comment deleted",
-    "All comments deleted": "All comments deleted",
     "Keep the comments": "Keep the comments",
     "Remove the comments": "Remove the comments",
+    "Comment deleted": "Comment deleted",
+    "All comments deleted": "All comments deleted",
     "Keep votes": "Keep votes",
     "Keep comments": "Keep comments",
     "Keep this poll": "Keep this poll"
@@ -295,7 +295,6 @@
     "Migration": "Migration",
     "Purge": "Purge",
     "Logs": "Logs",
-    "Installation": "Installation",
     "Poll ID": "Poll ID",
     "Format": "Format",
     "Title": "Title",
@@ -349,6 +348,21 @@
     "Author's message": "Author's message",
     "For sending to the polled users": "Participant link"
   },
+  "Installation": {
+    "AppMail": "EN_Adresse mail de l'application",
+    "AppName": "EN_Nom de l'application",
+    "CleanUrl": "EN_URL propres",
+    "Database": "EN_Base de données",
+    "DbConnectionString": "EN_Chaîne de connexion",
+    "DbPassword": "EN_Mot de passe",
+    "DbPrefix": "EN_Préfixe",
+    "DbUser": "EN_Utilisateur",
+    "DefaultLanguage": "EN_Langue par défaut",
+    "General": "EN_Général",
+    "Install": "EN_Installer",
+    "MigrationTable": "EN_Table de migration",
+    "ResponseMail": "EN_Mail de réponse"
+  },
   "Error": {
     "Error!": "Error!",
     "Enter a title": "Enter a title",
@@ -383,6 +397,25 @@
     "Password is empty": "Password is empty.",
     "Passwords do not match": "Passwords do not match.",
     "Poll id already used": "Identifier is already used",
-    "You can't select more than %d dates": "You can't select more than %d dates"
-  }
+    "You can't select more than %d dates": "You can't select more than %d dates",
+    "Can't create the config.php file in '%s'.": "Can't create the config.php file in '%s'."
+  },
+  "Check": {
+    "Installation checking": "Installation checking",
+    "Your PHP version (%s) is too old. This application needs at least PHP %s.": "Your PHP version (%s) is too old. This application needs at least PHP %s.",
+    "PHP version %s is enough (needed at least PHP %s).": "PHP version %s is enough (needed at least PHP %s).",
+    "You need to enable the PHP Intl extension.": "You need to enable the PHP Intl extension.",
+    "PHP Intl extension is enabled.": "PHP Intl extension is enabled.",
+    "The template compile directory (%s) is not writable.": "The template compile directory (%s) is not writable.",
+    "The template compile directory (%s) is writable.": "The template compile directory (%s) is writable.",
+    "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "The config file directory (%s) is not writable and the config file (%s) dos not exists.",
+    "The config file exists.": "The config file exists.",
+    "The config file directory (%s) is writable.": "The config file directory (%s) is writable.",
+    "OpenSSL extension loaded.": "OpenSSL extension loaded.",
+    "Consider enabling the PHP extension OpenSSL for increased security.": "Consider enabling the PHP extension OpenSSL for increased security.",
+    "date.timezone is set.": "date.timezone is set.",
+    "Consider setting the date.timezone in php.ini.": "Consider setting the date.timezone in php.ini.",
+    "Check again": "Check again",
+    "Continue the installation": "Continue the installation"
+    }
 }
