@@ -333,7 +333,7 @@ if (isset($_POST['confirm_delete_poll'])) {
 // Delete a slot
 // -------------------------------
 
-if (!empty($_GET['delete_column'])) {
+if (isset($_GET['delete_column'])) {
     $column = filter_input(INPUT_GET, 'delete_column', FILTER_DEFAULT);
     $column = Utils::base64url_decode($column);
 
