@@ -359,6 +359,7 @@ if (isset($_GET['delete_column'])) {
 // -------------------------------
 // Add a slot
 // -------------------------------
+
 function exit_displaying_add_column($message = null) {
     global $smarty, $poll_id, $admin_poll_id, $poll;
     $smarty->assign('poll_id', $poll_id);
@@ -381,10 +382,10 @@ if (isset($_POST['confirm_add_column'])) {
            exit_displaying_add_column(new Message('danger', __('Error', "Can't create an empty column.")));
         }
         if ($poll->format === 'D') {
-            $newdate = strip_tags($_POST['newdate']);
+            $date = DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $_POST['newdate'])->setTime(0, 0, 0);
+            $time = $date->getTimestamp();
             $newmoment = str_replace(',', '-', strip_tags($_POST['newmoment']));
-            $ex = explode('/', $newdate);
-            $adminPollService->addDateSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
+            $adminPollService->addDateSlot($poll_id, $time, $newmoment);
         } else {
             $newslot = str_replace(',', '-', strip_tags($_POST['choice']));
             $adminPollService->addClassicSlot($poll_id, $newslot);
