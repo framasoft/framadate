@@ -397,7 +397,8 @@
     "Passwords do not match": "Les mots de passe ne correspondent pas.",
     "Poll id already used": "L'identifiant est déjà utilisé",
     "You can't select more than %d dates": "Vous ne pouvez pas choisir plus de %d dates",
-    "Can't create the config.php file in '%s'.": "Impossible de créer le fichier config.php dans '%s'."
+    "Can't create the config.php file in '%s'.": "Impossible de créer le fichier config.php dans '%s'.",
+    "Can't create an empty column.": "Impossible de créer une colonne vide."
   },
   "Check": {
     "Installation checking": "Vérifications de l'installation",
