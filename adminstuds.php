@@ -359,21 +359,30 @@ if (isset($_GET['delete_column'])) {
 // -------------------------------
 // Add a slot
 // -------------------------------
-
-if (isset($_GET['add_column'])) {
+function exit_displaying_add_column($message = null) {
+    global $smarty, $poll_id, $admin_poll_id, $poll;
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('format', $poll->format);
     $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
+    $smarty->assign('message', $message);
     $smarty->display('add_column.tpl');
     exit;
 }
+
+if (isset($_GET['add_column'])) {
+    exit_displaying_add_column();
+}
+
 if (isset($_POST['confirm_add_column'])) {
     try {
+        if (($poll->format === 'D' && empty($_POST['newdate']))
+         || ($poll->format === 'A' && empty($_POST['choice']))) {
+           exit_displaying_add_column(new Message('danger', __('Error', "Can't create an empty column.")));
+        }
         if ($poll->format === 'D') {
             $newdate = strip_tags($_POST['newdate']);
             $newmoment = str_replace(',', '-', strip_tags($_POST['newmoment']));
-
             $ex = explode('/', $newdate);
             $adminPollService->addDateSlot($poll_id, mktime(0, 0, 0, $ex[1], $ex[0], $ex[2]), $newmoment);
         } else {
@@ -383,7 +392,7 @@ if (isset($_POST['confirm_add_column'])) {
 
         $message = new Message('success', __('adminstuds', 'Choice added'));
     } catch (MomentAlreadyExistsException $e) {
-        $message = new Message('danger', __('Error', 'The column already exists'));
+        exit_displaying_add_column(new Message('danger', __('Error', 'The column already exists')));
     }
 }
 
