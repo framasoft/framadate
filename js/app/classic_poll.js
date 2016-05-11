@@ -104,7 +104,7 @@
         var element = $('#' + $(this).val());
         
         if (img != '' && link != '') {
-            .val('[![' + text + '](' + img + ')](' + link + ')');
+            element.val('[![' + text + '](' + img + ')](' + link + ')');
         } else if (img != '') {
             element.val('![' + text + '](' + img + ')');
         } else if (link != '') {

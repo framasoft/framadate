@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     window.lang = $('html').attr('lang');
+    var simplemde;
 
     /**
      *  adminstuds.php
@@ -48,17 +49,38 @@ $(document).ready(function() {
         return false;
     });
 
+    window.myPreviewRender = function (text) {
+        text = text.replace(/[\u00A0-\u9999<>\&]/gim, function(i) {
+            return '&#'+i.charCodeAt(0)+';';
+        });
+        text = SimpleMDE.prototype.markdown(text);
+        text = text.replace(/ /g, '&nbsp;');
+
+        return text;
+    };
+
     $('#description-form .btn-edit').on('click', function() {
         $('#description-form .well').hide();
+        $('#description-form .control-label .btn-edit').hide();
         $('#description-form .js-desc').removeClass('hidden');
         $('.js-desc textarea').focus();
+        simplemde = new SimpleMDE({
+            element: $('.js-desc textarea')[0],
+            forceSync: true,
+            status: false,
+            previewRender: window.myPreviewRender
+        });
+
         return false;
     });
 
     $('#description-form .btn-cancel').on('click', function() {
         $('#description-form .well').show();
+        $('#description-form .control-label .btn-edit').show();
         $('#description-form .js-desc').addClass('hidden');
         $('.js-desc .btn-edit').focus();
+        simplemde.toTextArea();
+        simplemde = null;
         return false;
     });
 

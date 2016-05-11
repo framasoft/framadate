@@ -57,8 +57,8 @@ function smarty_function_poll_url($params, Smarty_Internal_Template $template) {
     return Utils::getUrlSondage($poll_id, $admin, $vote_unique_id, $action, $action_value);
 }
 
-function smarty_modifier_markdown($md, $clear = false) {
-    return Utils::markdown($md, $clear);
+function smarty_modifier_markdown($md, $clear = false, $inline=true) {
+    return Utils::markdown($md, $clear, $inline);
 }
 
 function smarty_modifier_resource($link) {

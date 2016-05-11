@@ -133,12 +133,26 @@ class Utils {
         return TABLENAME_PREFIX . $tableName;
     }
 
-    public static function markdown($md, $clear) {
+    public static function markdown($md, $clear=false, $line=true) {
         $parseDown = new \Parsedown();
 
-        $html = $parseDown
+        $parseDown
             ->setMarkupEscaped(true)
-            ->line($md);
+            ->setBreaksEnabled(true)
+            ->setUrlsLinked(false);
+
+        if ($line) {
+            $html  = $parseDown->line($md);
+        } else {
+            $md = preg_replace_callback(
+                '#( ){2,}#',
+                function ($m) {
+                    return str_repeat('&nbsp;', strlen($m[0]));
+                },
+                $md
+            );
+            $html  = $parseDown->text($md);
+        }
 
         $text = strip_tags($html);
 

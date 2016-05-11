@@ -75,9 +75,9 @@
             {if $admin || preg_match('/[^ \r\n]/', $poll->description)}
                 <div class="form-group col-md-8" id="description-form">
                     <label class="control-label">{__('Generic', 'Description')}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the description')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</label>
-                    <pre class="form-control-static well poll-description">{$poll->description|html}</pre>
+                    <div class="form-control-static well poll-description">{$poll->description|markdown:false:false}</div>
                     {if $admin && !$expired}
-                        <div class="hidden js-desc text-right">
+                        <div class="hidden js-desc">
                             <label class="sr-only" for="newdescription">{__('Generic', 'Description')}</label>
                             <textarea class="form-control" id="newdescription" name="description" rows="2" cols="40">{$poll->description|html}</textarea>
                             <button type="submit" id="btn-new-desc" name="update_poll_info" value="description" class="btn btn-sm btn-success" title="{__('PollInfo', 'Save the description')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Save')}</span></button>
