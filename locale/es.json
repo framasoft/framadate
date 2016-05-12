@@ -132,7 +132,9 @@
     "Password protected": "ES_Protégé par mot de passe",
     "Votes protected by password": "ES_Votes protégés par mot de passe",
     "No password": "ES_Pas de mot de passe",
-    "Remove password": "ES_Supprimer le mot de passe"
+    "Remove password": "ES_Supprimer le mot de passe",
+    "Rich editor": "ES_Editeur avancé",
+    "Simple editor": "ES_Editeur simple"
   },
   "Poll results": {
     "Votes of the poll": "Votos de la encuesta",

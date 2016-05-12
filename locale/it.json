@@ -132,7 +132,9 @@
     "Password protected": "Protetto da una password",
     "Votes protected by password": "Voti protetti da una password",
     "No password": "Nessuna password",
-    "Remove password": "Eliminare la password"
+    "Remove password": "Eliminare la password",
+    "Rich editor": "IT_Editeur avancé",
+    "Simple editor": "IT_Editeur simple"
   },
   "Poll results": {
     "Votes of the poll": "Voti del sondaggio ",

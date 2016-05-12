@@ -1,8 +1,8 @@
 {* Description buttons for markdown *}
 
 <div class="btn-group" role="group" aria-label="...">
-    <button type="button" id="rich-editor-button" class="btn btn-default btn-xs active">Editeur riche</button>
-    <button type="button" id="simple-editor-button" class="btn btn-default btn-xs">Editeur simple</button>
+    <button type="button" id="rich-editor-button" class="btn btn-default btn-xs active">{__('PollInfo', 'Rich editor')}</button>
+    <button type="button" id="simple-editor-button" class="btn btn-default btn-xs">{__('PollInfo', 'Simple editor')}</button>
 </div>
 
 <a href="" data-toggle="modal" data-target="#markdown_modal"><i class="glyphicon glyphicon-info-sign"></i></a><!-- TODO Add accessibility -->

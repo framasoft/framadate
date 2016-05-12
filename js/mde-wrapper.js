@@ -34,7 +34,8 @@ MDEWrapper.prototype.enable = function() {
             forceSync: true,
             status: true,
             previewRender: myPreviewRender,
-            spellChecker: false
+            spellChecker: false,
+            promptURLs: true
         });
         if (this.enableButton) {
             this.enableButton.addClass('active');
