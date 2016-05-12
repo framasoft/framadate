@@ -38,6 +38,7 @@
     "Search": "Búsqueda",
     "Creation date:": "Fecha de creación:",
     "Caption": "Leyenda",
+    "Markdown": "Markdown",
     "ASTERISK": "*"
   },
   "Date": {
@@ -241,7 +242,10 @@
     "The results are publicly visible": "ES_Les résultats sont visibles sans mot de passe",
     "Poll password": "ES_Mot de passe",
     "Confirm password": "ES_Confirmer votre mot de passe",
-    "Go to step 2": "Ir al paso número 2"
+    "Go to step 2": "Ir al paso número 2",
+    "To make the description more attractive, you can use the Markdown format.": "ES_Afin de rendre le descriptif de ce sondage plus attractif, vous pouvez utiliser le formatage Markdown.",
+    "You can enable or disable the editor at will.": "ES_Vous pouvez activer ou désactiver l'éditeur à votre guise.",
+    "More informations here:": "ES_Plus d'informations ici :"
   },
   "Step 2": {
     "Back to step 1": "Volver al paso número 1",

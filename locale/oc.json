@@ -38,6 +38,7 @@
     "Search": "Cercar",
     "Creation date:": "Data de creacion :",
     "Caption": "OC_Légende",
+    "Markdown": "Markdown",
     "ASTERISK": "*"
   },
   "Date": {
@@ -241,7 +242,10 @@
     "The results are publicly visible": "OC_Les résultats sont visibles sans mot de passe",
     "Poll password": "OC_Mot de passe",
     "Confirm password": "OC_Confirmer votre mot de passe   ",
-    "Go to step 2": "Anar a l'etapa 2"
+    "Go to step 2": "Anar a l'etapa 2",
+    "To make the description more attractive, you can use the Markdown format.": "OC_Afin de rendre le descriptif de ce sondage plus attractif, vous pouvez utiliser le formatage Markdown.",
+    "You can enable or disable the editor at will.": "OC_Vous pouvez activer ou désactiver l'éditeur à votre guise.",
+    "More informations here:": "OC_Plus d'informations ici :"
   },
   "Step 2": {
     "Back to step 1": "Tornar a l'etapa 1",

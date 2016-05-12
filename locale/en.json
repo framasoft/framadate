@@ -38,6 +38,7 @@
     "Search": "Search",
     "Creation date:": "Creation date:",
     "Caption": "Caption",
+    "Markdown": "Markdown",
     "ASTERISK": "*"
   },
   "Date" : {
@@ -241,7 +242,10 @@
     "The results are publicly visible": "The results are publicly visible",
     "Poll password": "Password",
     "Confirm password": "Confirmer votre mot de passe",
-    "Go to step 2": "Go to step 2"
+    "Go to step 2": "Go to step 2",
+    "To make the description more attractive, you can use the Markdown format.": "To make the description more attractive, you can use the Markdown format.",
+    "You can enable or disable the editor at will.": "You can enable or disable the editor at will.",
+    "More informations here:": "More informations here:"
   },
   "Step 2": {
     "Back to step 1": "Return to step 1",

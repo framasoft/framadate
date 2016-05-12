@@ -65,10 +65,7 @@
                     <label for="poll_comments" class="col-sm-4 control-label">{__('Generic', 'Description')}</label>
 
                     <div class="col-sm-8">
-                        <div class="btn-group" role="group" aria-label="...">
-                            <button type="button" id="rich-editor-button" class="btn btn-default btn-xs active">Editeur riche</button>
-                            <button type="button" id="simple-editor-button" class="btn btn-default btn-xs">Editeur simple</button>
-                        </div>
+                        {include 'part/description_markdown.tpl'}
                         <div>
                             <textarea id="poll_comments" name="description"
                                       class="form-control" {$errors['description']['aria']}
