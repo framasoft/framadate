@@ -79,6 +79,10 @@
                     {if $admin && !$expired}
                         <div class="hidden js-desc">
                             <label class="sr-only" for="newdescription">{__('Generic', 'Description')}</label>
+                            <div class="btn-group" role="group" aria-label="...">
+                                <button type="button" id="rich-editor-button" class="btn btn-default btn-xs active">Editeur riche</button>
+                                <button type="button" id="simple-editor-button" class="btn btn-default btn-xs">Editeur simple</button>
+                            </div>
                             <textarea class="form-control" id="newdescription" name="description" rows="2" cols="40">{$poll->description|html}</textarea>
                             <button type="submit" id="btn-new-desc" name="update_poll_info" value="description" class="btn btn-sm btn-success" title="{__('PollInfo', 'Save the description')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Save')}</span></button>
                             <button class="btn btn-default btn-sm btn-cancel" title="{__('PollInfo', 'Cancel the description edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{__('Generic', 'Cancel')}</span></button>

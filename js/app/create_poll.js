@@ -90,13 +90,7 @@ $(document).ready(function () {
         document.getElementById("cookie-warning").setAttribute("style", "");
     }
 
-
-    // Markdown for description
-    var simplemde = new SimpleMDE({
-        element: $('#poll_comments')[0],
-        forceSync: true,
-        status: false,
-        previewRender: window.myPreviewRender
-    });
+    var wrapper = new MDEWrapper($('#poll_comments')[0], $('#rich-editor-button'), $('#simple-editor-button'));
+    wrapper.enable();
 
 });

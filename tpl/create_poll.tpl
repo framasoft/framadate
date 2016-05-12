@@ -2,9 +2,11 @@
 
 {block name="header"}
     <script src="{"js/simplemde.min.js"|resource}" type="text/javascript"></script>
+    <script src="{"js/mde-wrapper.js"|resource}" type="text/javascript"></script>
     <script src="{"js/app/create_poll.js"|resource}" type="text/javascript"></script>
     <link rel="stylesheet" href="{"css/app/create_poll.css"|resource}">
     <link rel="stylesheet" href="{"css/simplemde.min.css"|resource}">
+
 {/block}
 
 {block name=main}
@@ -63,9 +65,15 @@
                     <label for="poll_comments" class="col-sm-4 control-label">{__('Generic', 'Description')}</label>
 
                     <div class="col-sm-8">
-                        <textarea id="poll_comments" name="description"
-                                  class="form-control" {$errors['description']['aria']}
-                                  rows="5">{$poll_description|escape}</textarea>
+                        <div class="btn-group" role="group" aria-label="...">
+                            <button type="button" id="rich-editor-button" class="btn btn-default btn-xs active">Editeur riche</button>
+                            <button type="button" id="simple-editor-button" class="btn btn-default btn-xs">Editeur simple</button>
+                        </div>
+                        <div>
+                            <textarea id="poll_comments" name="description"
+                                      class="form-control" {$errors['description']['aria']}
+                                      rows="5">{$poll_description|escape}</textarea>
+                        </div>
                     </div>
                 </div>
                 {if !empty($errors['description']['msg'])}

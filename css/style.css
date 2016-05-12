@@ -140,14 +140,14 @@ header .lead {
 }
 
 /** Description in markdown **/
-.CodeMirror, .CodeMirror-scroll {
+.form-group  .CodeMirror, .form-group  .CodeMirror-scroll {
     min-height: 200px;
 }
-.CodeMirror {
-    background: #f5f5f5 none repeat scroll 0 0;
-    overflow: hidden;
-    position: relative;
+#description-form  .CodeMirror {
+    background-color: #f5f5f5;
 }
+
+
 .editor-toolbar {
     background-color: #eee;
 }
