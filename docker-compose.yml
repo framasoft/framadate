@@ -17,6 +17,8 @@ app:
 
 web:
   image: library/nginx
+  ports:
+    - "8000:80"
   volumes:
     - ./default.conf:/etc/nginx/conf.d/default.conf
   links:
