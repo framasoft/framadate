@@ -117,6 +117,7 @@
     "Save the description": "Enregistrer la description",
     "Cancel the description edit": "Annuler le changement de description",
     "Public link of the poll": "Lien public du sondage",
+    "Read-only link of the poll": "Lien du sondage en lecture seule",
     "Admin link of the poll": "Lien d'administration du sondage",
     "Expiration date": "Date d'expiration",
     "Edit the expiration date": "Modifier la date d'expiration",

@@ -37,6 +37,7 @@ include_once __DIR__ . '/app/inc/init.php';
 
 $admin_poll_id = null;
 $poll_id = null;
+$readonly_poll_id = null;
 $poll = null;
 $message = null;
 $editingVoteId = 0;
@@ -63,6 +64,7 @@ if (!empty($_GET['poll'])) {
 
 if ($poll) {
     $poll_id = $poll->id;
+    $readonly_poll_id = $poll->readonly_id;
 } else {
     $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
     $smarty->display('error.tpl');
@@ -405,6 +407,7 @@ $comments = $pollService->allCommentsByPollId($poll_id);
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('admin_poll_id', $admin_poll_id);
+$smarty->assign('readonly_poll_id', $readonly_poll_id);
 $smarty->assign('poll', $poll);
 $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
 $smarty->assign('expired', strtotime($poll->end_date) < time());

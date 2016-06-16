@@ -115,7 +115,7 @@
                         {$id=$id + 1}
                     {/foreach}
 
-                    {if $active && !$expired && $accessGranted &&
+                    {if $active && !$expired && $accessGranted && !$readonly &&
                         (
                          $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
                          or $admin
@@ -144,7 +144,7 @@
 
             {* Line to add a new vote *}
 
-            {if $active && $editingVoteId === 0 && !$expired && $accessGranted}
+            {if $active && $editingVoteId === 0 && !$expired && $accessGranted && !$readonly}
                 <tr id="vote-form" class="hidden-print">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">
@@ -210,7 +210,7 @@
     </form>
 </div>
 
-{if !$hidden && $max > 0}
+{if !$hidden && $max > 0 && !$readonly}
     <div class="row" aria-hidden="true">
         <div class="col-xs-12">
             <p class="text-center" id="showChart">

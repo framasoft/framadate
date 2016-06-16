@@ -70,7 +70,9 @@
         {/if}
 
         {* Comments *}
+        {if !$readonly}
         {include 'part/comments.tpl' active=$poll->active comments=$comments}
+        {/if}
 
     {/if}
 
