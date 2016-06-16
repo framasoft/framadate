@@ -1,8 +1,9 @@
 <?php
+
 /**
  * This software is governed by the CeCILL-B license. If a copy of this license
  * is not distributed with this file, you can obtain one at
- * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt.
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
  * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
@@ -26,30 +27,31 @@ use Framadate\Message;
 use Framadate\Utils;
 use Framadate\Editable;
 
-include_once __DIR__ . '/app/inc/init.php';
+include_once __DIR__.'/app/inc/init.php';
 
 /* Constants */
 /* --------- */
 const UPDATE_VOTE = 1;
-const ADD_VOTE = 2;
+const ADD_VOTE    = 2;
 const ADD_COMMENT = 3;
 
 /* Variables */
 /* --------- */
 
-$poll_id = null;
-$poll = null;
-$message = null;
-$editingVoteId = 0;
+$poll_id            = null;
+$poll               = null;
+$message            = null;
+$editingVoteId      = 0;
 $editedVoteUniqueId = null;
+$readonly           = false;
 
 /* Services */
 /*----------*/
 
-$logService = new LogService();
-$pollService = new PollService($connect, $logService);
+$logService   = new LogService();
+$pollService  = new PollService($connect, $logService);
 $inputService = new InputService();
-$mailService = new MailService($config['use_smtp']);
+$mailService  = new MailService($config['use_smtp']);
 
 /* Functions */
 /*-----------*/
@@ -62,31 +64,31 @@ $mailService = new MailService($config['use_smtp']);
  * @param $name string The name user who triggered the notification
  * @param $type int cf: Constants on the top of this page
  */
-function sendUpdateNotification($poll, $mailService, $name, $type) {
+function sendUpdateNotification($poll, $mailService, $name, $type)
+{
     if (!isset($_SESSION['mail_sent'])) {
         $_SESSION['mail_sent'] = [];
     }
 
     if ($poll->receiveNewVotes) {
+        $subject = '['.NOMAPPLICATION.'] '.__f('Mail', 'Poll\'s participation: %s', $poll->title);
 
-        $subject = '[' . NOMAPPLICATION . '] ' . __f('Mail', 'Poll\'s participation: %s', $poll->title);
-
-        $message = $name . ' ';
+        $message = $name.' ';
         switch ($type) {
             case UPDATE_VOTE:
-                $message .= __('Mail', "updated a vote.\nYou can find your poll at the link") . " :\n\n";
+                $message .= __('Mail', "updated a vote.\nYou can find your poll at the link")." :\n\n";
                 break;
             case ADD_VOTE:
-                $message .= __('Mail', "filled a vote.\nYou can find your poll at the link") . " :\n\n";
+                $message .= __('Mail', "filled a vote.\nYou can find your poll at the link")." :\n\n";
                 break;
             case ADD_COMMENT:
-                $message .= __('Mail', "wrote a comment.\nYou can find your poll at the link") . " :\n\n";
+                $message .= __('Mail', "wrote a comment.\nYou can find your poll at the link")." :\n\n";
                 break;
         }
         $urlSondage = Utils::getUrlSondage($poll->admin_id, true);
-        $message .= '<a href="' . $urlSondage . '">' . $urlSondage . '</a>' . "\n\n";
+        $message .= '<a href="'.$urlSondage.'">'.$urlSondage.'</a>'."\n\n";
 
-        $messageTypeKey = $type . '-' . $poll->id;
+        $messageTypeKey = $type.'-'.$poll->id;
         $mailService->send($poll->admin_mail, $subject, $message, $messageTypeKey);
     }
 }
@@ -120,9 +122,9 @@ if (!empty($_GET['vote'])) {
 // -------------------------------
 
 if (!empty($_POST['save'])) { // Save edition of an old vote
-    $name = $inputService->filterName($_POST['name']);
+    $name       = $inputService->filterName($_POST['name']);
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
-    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
+    $choices    = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
     $slots_hash = $inputService->filterMD5($_POST['control']);
 
     if (empty($editedVote)) {
@@ -139,8 +141,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             if ($result) {
                 if ($poll->editable == Editable::EDITABLE_BY_OWN) {
                     $editedVoteUniqueId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-                    $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
-                    $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
+                    $urlEditVote        = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
+                    $message            = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
                 } else {
                     $message = new Message('success', __('studs', 'Update vote succeeded'));
                 }
@@ -153,8 +155,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
         }
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
-    $name = $inputService->filterName($_POST['name']);
-    $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
+    $name       = $inputService->filterName($_POST['name']);
+    $choices    = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
     $slots_hash = $inputService->filterMD5($_POST['control']);
 
     if ($name == null) {
@@ -170,9 +172,9 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             $result = $pollService->addVote($poll_id, $name, $choices, $slots_hash);
             if ($result) {
                 if ($poll->editable == Editable::EDITABLE_BY_OWN) {
-                    $urlEditVote = Utils::getUrlSondage($poll_id, false, $result->uniqId);
-                    $editedVoteUniqueId =  $result->uniqId;
-                    $message = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
+                    $urlEditVote        = Utils::getUrlSondage($poll_id, false, $result->uniqId);
+                    $editedVoteUniqueId = $result->uniqId;
+                    $message            = new Message('success', __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'), $urlEditVote);
                 } else {
                     $message = new Message('success', __('studs', 'Adding the vote succeeded'));
                 }
@@ -193,7 +195,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
 // -------------------------------
 
 if (isset($_POST['add_comment'])) {
-    $name = $inputService->filterName($_POST['name']);
+    $name    = $inputService->filterName($_POST['name']);
     $comment = $inputService->filterComment($_POST['comment']);
 
     if ($name == null) {
@@ -210,18 +212,24 @@ if (isset($_POST['add_comment'])) {
             $message = new Message('danger', __('Error', 'Comment failed'));
         }
     }
+}
 
+// -------------------------------
+// Readonly page
+// -------------------------------
+if (!empty($_GET['readonly'])) {
+    $readonly = true;
 }
 
 // Retrieve data
-$slots = $pollService->allSlotsByPoll($poll);
-$votes = $pollService->allVotesByPollId($poll_id);
+$slots    = $pollService->allSlotsByPoll($poll);
+$votes    = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
 
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('poll', $poll);
-$smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
+$smarty->assign('title', __('Generic', 'Poll').' - '.$poll->title);
 $smarty->assign('expired', strtotime($poll->end_date) < time());
 $smarty->assign('deletion_date', strtotime($poll->end_date) + PURGE_DELAY * 86400);
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
@@ -234,5 +242,6 @@ $smarty->assign('message', $message);
 $smarty->assign('admin', false);
 $smarty->assign('hidden', $poll->hidden);
 $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
+$smarty->assign('readonly', $readonly);
 
 $smarty->display('studs.tpl');

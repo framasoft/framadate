@@ -27,7 +27,7 @@
         <p>{__('studs', 'The poll is expired, it will be deleted soon.')}</p>
         <p>{__('studs', 'Deletion date:')} {$deletion_date|date_format:$date_format['txt_short']|html}</p>
     </div>
-{else}
+{elseif !$readonly}
     {if $admin}
         {include 'part/poll_hint_admin.tpl'}
     {else}
@@ -59,6 +59,9 @@
 
 {* Comments *}
 
-{include 'part/comments.tpl' active=$poll->active comments=$comments}
+{if !$readonly}
+    {include 'part/comments.tpl' active=$poll->active comments=$comments}
+{/if}
+
 
 {/block}
