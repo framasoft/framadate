@@ -25,6 +25,9 @@ class Utils {
      * @return string Server name
      */
     public static function get_server_name() {
+        if (!defined('APP_URL') && !defined($_SERVER['SERVER_NAME'])) {
+            return '/';
+        }
         $scheme = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? 'https' : 'http';
         $port = in_array($_SERVER['SERVER_PORT'], [80, 443], true) ? '' : ':' . $_SERVER['SERVER_PORT'];
         $dirname = dirname($_SERVER['SCRIPT_NAME']);
