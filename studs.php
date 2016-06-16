@@ -42,6 +42,7 @@ const USER_REMEMBER_VOTES_KEY = 'UserVotes';
 /* --------- */
 
 $poll_id = null;
+$readonly_poll_id = null;
 $poll = null;
 $message = null;
 $editingVoteId = 0;
@@ -50,6 +51,7 @@ $resultPubliclyVisible = true;
 $slots = array();
 $votes = array();
 $comments = array();
+$readonly = false;
 
 /* Services */
 /*----------*/
@@ -69,6 +71,13 @@ $sessionService = new SessionService();
 if (!empty($_GET['poll'])) {
     $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
     $poll = $pollService->findById($poll_id);
+}
+
+if (!empty($_GET['ro_poll'])) {
+    $readonly_poll_id = filter_input(INPUT_GET, 'ro_poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => READONLY_POLL_REGEX]]);
+    $poll = $pollService->findByReadonlyId($readonly_poll_id);
+    $poll_id = $poll->id;
+    $readonly = true;
 }
 
 if (!$poll) {
@@ -233,7 +242,7 @@ $smarty->assign('message', $message);
 $smarty->assign('admin', false);
 $smarty->assign('hidden', $poll->hidden);
 $smarty->assign('accessGranted', $accessGranted);
-$smarty->assign('resultPubliclyVisible', $resultPubliclyVisible);
 $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
+$smarty->assign('readonly', $readonly);
 
 $smarty->display('studs.tpl');

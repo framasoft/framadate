@@ -29,6 +29,7 @@ use Framadate\Migration\AddColumns_password_hash_And_results_publicly_visible_In
 use Framadate\Migration\Increase_pollId_size;
 use Framadate\Migration\Migration;
 use Framadate\Migration\RPadVotes_from_0_8;
+use Framadate\Migration\AddColumn_readonly_poll_id;
 use Framadate\Utils;
 
 include_once __DIR__ . '/../app/inc/init.php';
@@ -47,7 +48,8 @@ $migrations = [
     new Alter_Comment_table_for_name_length(),
     new Alter_Comment_table_adding_date(),
     new AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9(),
-    new Increase_pollId_size()
+    new Increase_pollId_size(),
+    new AddColumn_readonly_poll_id()
 ];
 // ---------------------------------------
 

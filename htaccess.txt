@@ -8,9 +8,10 @@
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule . - [L]
 
-  RewriteRule ^([a-zA-Z0-9-]+)$ studs.php?poll=$1 [L]
-  RewriteRule ^([a-zA-Z0-9-]+)/action/([a-zA-Z_-]+)/(.+)$ studs.php?poll=$1&$2=$3
-  RewriteRule ^([a-zA-Z0-9-]+)/vote/([a-zA-Z0-9]{16})$ studs.php?poll=$1&vote=$2
+  RewriteRule ^([a-zA-Z0-9-]{16})$ studs.php?poll=$1 [L]
+  RewriteRule ^([a-zA-Z0-9-]{16})/action/([a-zA-Z_-]+)/(.+)$ studs.php?poll=$1&$2=$3
+  RewriteRule ^([a-zA-Z0-9-]{16})/vote/([a-zA-Z0-9]{16})$ studs.php?poll=$1&vote=$2
+  RewriteRule ^([a-zA-Z0-9-]{20})/readonly$ studs.php?ro_poll=$1
   RewriteRule ^([a-zA-Z0-9-]{24})/admin$ adminstuds.php?poll=$1
   RewriteRule ^([a-zA-Z0-9-]{24})/admin/vote/([a-zA-Z0-9]{16})$ adminstuds.php?poll=$1&vote=$2
   RewriteRule ^([a-zA-Z0-9-]{24})/admin/action/([a-zA-Z_-]+)(/(.+))?$ adminstuds.php?poll=$1&$2=$4

@@ -28,6 +28,7 @@ const COMPILE_DIR = '/tpl_c/';
 
 // Regex
 const POLL_REGEX = '/^[a-z0-9-]*$/i';
+const READONLY_POLL_REGEX = '/^[a-z0-9]{20}$/i';
 const ADMIN_POLL_REGEX = '/^[a-z0-9]{24}$/i';
 const CHOICE_REGEX = '/^[ 012]$/';
 const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/i';

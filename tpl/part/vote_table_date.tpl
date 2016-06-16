@@ -4,7 +4,7 @@
 
 <h3>
     {__('Poll results', 'Votes of the poll')} {if $hidden}<i>({__('PollInfo', 'Results are hidden')})</i>{/if}
-    {if $accessGranted}
+    {if $accessGranted && !$readonly}
         <a href="" data-toggle="modal" data-target="#hint_modal"><i class="glyphicon glyphicon-info-sign"></i></a>
     {/if}
 </h3>
@@ -165,12 +165,11 @@
                         {else}
                             <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><span class="sr-only">{__('Generic', 'Unknown')}</span></td>
                         {/if}
-
                         {$k=$k + 1}
                       {/foreach}
                     {/foreach}
 
-                    {if $active && !$expired && $accessGranted &&
+                    {if $active && !$expired && $accessGranted && !$readonly &&
                         (
                             $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
                             or $admin
@@ -198,7 +197,7 @@
 
             {* Line to add a new vote *}
 
-            {if $active && $editingVoteId === 0 && !$expired && $accessGranted}
+            {if $active && $editingVoteId === 0 && !$expired && $accessGranted && !$readonly}
                 <tr id="vote-form" class="hidden-print">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">
@@ -268,7 +267,7 @@
     </form>
 </div>
 
-{if !$hidden && $max > 0}
+{if !$hidden && $max > 0 && !$readonly}
     <div class="row" aria-hidden="true">
         <div class="col-xs-12">
             <p class="text-center" id="showChart">
@@ -284,10 +283,10 @@
                 $('#showChart')
                         .after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>")
                         .remove();
-                               
+
                 var resIfneedbe = [];
                 var resYes = [];
-            
+
                 $('#addition').find('td').each(function () {
                     var inbCountText = $(this).find('.inb-count').text();
                     if(inbCountText != '' && inbCountText != undefined) {
@@ -305,7 +304,7 @@
                 var cols = [
                 {foreach $slots as $slot}
                     {foreach $slot->moments as $moment}
-                        $('<div/>').html('{$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}').text(), 
+                        $('<div/>').html('{$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}').text(),
                     {/foreach}
                 {/foreach}
                 ];
@@ -341,7 +340,7 @@
             });
         });
     </script>
-    
+
 {/if}
 
 {if !$hidden}
