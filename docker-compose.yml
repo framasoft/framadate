@@ -1,8 +1,12 @@
 db:
-  image: library/postgres
+  # image: library/postgres
+  # environment:
+  #   - POSTGRES_USER=framadate
+  #   - POSTGRES_PASSWORD=UnSuperMotDePasse
+  image: library/mariadb
   environment:
-    - POSTGRES_USER=framadate
-    - POSTGRES_PASSWORD=UnSuperMotDePasse
+    - MYSQL_ROOT_PASSWORD=UnSuperMotDePasse
+    - MYSQL_DATABASE=framadate
 
 app:
   build: .
