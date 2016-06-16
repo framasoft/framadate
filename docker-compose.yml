@@ -1,0 +1,21 @@
+db:
+  image: library/postgres
+  environment:
+    - POSTGRES_USER=framadate
+    - POSTGRES_PASSWORD=UnSuperMotDePasse
+
+app:
+  build: .
+  volumes:
+    - .:/var/www/html
+  links:
+    - db
+
+web:
+  image: library/nginx
+  volumes:
+    - ./default.conf:/etc/nginx/conf.d/default.conf
+  links:
+    - app
+  volumes_from:
+    - app
