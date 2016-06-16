@@ -95,7 +95,7 @@
 
                     {/foreach}
 
-                    {if $active && !$expired &&
+                    {if $active && !$expired && !$readonly &&
                         (
                          $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
                          or $admin
@@ -124,7 +124,7 @@
 
             {* Line to add a new vote *}
 
-            {if $active && $editingVoteId === 0 && !$expired}
+            {if $active && $editingVoteId === 0 && !$expired && !$readonly}
                 <tr id="vote-form" class="hidden-print">
                     <td class="bg-info" style="padding:5px">
                         <div class="input-group input-group-sm">
@@ -187,7 +187,7 @@
     </form>
 </div>
 
-{if !$hidden && $max > 0}
+{if !$hidden && $max > 0 && !$readonly}
     <div class="row" aria-hidden="true">
         <div class="col-xs-12">
             <p class="text-center" id="showChart">
@@ -203,10 +203,10 @@
                 $('#showChart')
                         .after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>")
                         .remove();
-                
+
                 var resIfneedbe = [];
                 var resYes = [];
-            
+
                 $('#addition').find('td').each(function () {
                     var inbCountText = $(this).find('.inb-count').text();
                     if(inbCountText != '' && inbCountText != undefined) {
@@ -224,7 +224,7 @@
                 });
                 var cols = [
                 {foreach $slots as $id=>$slot}
-                    $('<div/>').html('{$slot->title|markdown:true}').text(), 
+                    $('<div/>').html('{$slot->title|markdown:true}').text(),
                 {/foreach}
                 ];
 
@@ -259,7 +259,7 @@
             });
         });
     </script>
-    
+
 {/if}
 
 
