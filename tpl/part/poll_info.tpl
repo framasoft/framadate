@@ -4,8 +4,8 @@
     <div class="jumbotron{if $admin} bg-danger{/if}">
         <div class="row"> {* Title | buttons*}
             <div id="title-form" class="col-md-7">
-                <h3>{$poll->title|html}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the title')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</h3>
-                {if $admin && !$expired}
+                <h3>{$poll->title|html}{if $admin && !$expired && !$readonly} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the title')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</h3>
+                {if $admin && !$expired && !$readonly}
                     <div class="hidden js-title">
                         <label class="sr-only" for="newtitle">{__('PollInfo', 'Title')}</label>
                         <div class="input-group">
@@ -18,6 +18,7 @@
                     </div>
                 {/if}
             </div>
+            {if !$readonly}
             <div class="col-md-5 hidden-print">
                 <div class="btn-group pull-right">
                     <button onclick="print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> {__('PollInfo', 'Print')}</button>
@@ -35,6 +36,7 @@
                     {/if}
                 </div>
             </div>
+            {/if}
         </div>
         <div class="row"> {* Admin name + email | Description *}
             <div class="form-group col-md-4">
@@ -91,10 +93,12 @@
         </div>
 
         <div class="row">
+            {if !$readonly} {* TODO add an option if we want a link to the poll *}
             <div class="form-group form-group {if $admin}col-md-4{else}col-md-6{/if}">
                 <label for="public-link"><a class="public-link" href="{poll_url id=$poll_id}">{__('PollInfo', 'Public link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
                 <input class="form-control" id="public-link" type="text" readonly="readonly" value="{poll_url id=$poll_id}" onclick="select();"/>
             </div>
+            {/if}
             {if $admin}
                 <div class="form-group col-md-4">
                     <label for="admin-link"><a class="admin-link" href="{poll_url id=$admin_poll_id admin=true}">{__('PollInfo', 'Admin link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
@@ -120,7 +124,11 @@
         </div>
         {if $admin}
             <div class="row">
-                <div class="col-md-4 col-md-offset-4" >
+                <div class="form-group form-group col-md-4">
+                    <label for="public-link"><a class="public-link" href="{poll_url id=$poll_id}/readonly ">{__('PollInfo', 'Read-only link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                    <input class="form-control" id="public-link" type="text" readonly="readonly" value="{poll_url id=$poll_id}/readonly" onclick="select();"/>
+                </div>
+                <div class="col-md-4" >
                     <div id="poll-hidden-form">
                         {if $poll->hidden}
                             {$hidden_icon = "glyphicon-eye-close"}

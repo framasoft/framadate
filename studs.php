@@ -42,6 +42,7 @@ $poll = null;
 $message = null;
 $editingVoteId = 0;
 $editedVoteUniqueId = null;
+$readonly = false;
 
 /* Services */
 /*----------*/
@@ -210,7 +211,13 @@ if (isset($_POST['add_comment'])) {
             $message = new Message('danger', __('Error', 'Comment failed'));
         }
     }
+}
 
+// -------------------------------
+// Readonly page
+// -------------------------------
+if (!empty($_GET['readonly'])) {
+    $readonly = true;
 }
 
 // Retrieve data
@@ -234,5 +241,6 @@ $smarty->assign('message', $message);
 $smarty->assign('admin', false);
 $smarty->assign('hidden', $poll->hidden);
 $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
+$smarty->assign('readonly', $readonly);
 
 $smarty->display('studs.tpl');
