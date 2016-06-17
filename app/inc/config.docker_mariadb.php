@@ -64,7 +64,7 @@ $ALLOWED_LANGUAGES = [
 const IMAGE_TITRE = 'images/logo-framadate.png';
 
 // Clean URLs, boolean
-const URL_PROPRE = false;
+const URL_PROPRE = true;
 
 // Use REMOTE_USER data provided by web server
 const USE_REMOTE_USER =  true;
@@ -88,3 +88,4 @@ $config = [
     /* create_classic_poll.php */
     'user_can_add_img_or_link' => true,     // user can add link or URL when creating his poll.
 ];
+
