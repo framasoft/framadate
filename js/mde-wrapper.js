@@ -25,10 +25,8 @@ function MDEWrapper(textarea, enableButton, disableButton) {
 }
 
 MDEWrapper.prototype.enable = function() {
-    console.log("enable ")
     var wrapper = this;
     if (this.simplemde == null) {
-        console.log("go");
         this.simplemde = new SimpleMDE({
             element: wrapper.element,
             forceSync: true,
@@ -47,9 +45,7 @@ MDEWrapper.prototype.enable = function() {
 }
 
 MDEWrapper.prototype.disable = function() {
-    console.log("disable");
     if (this.simplemde != null) {
-        console.log("go");
         this.simplemde.toTextArea();
         this.simplemde = null;
         if (this.disableButton) {
