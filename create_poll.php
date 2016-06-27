@@ -265,6 +265,7 @@ $smarty->assign('title', $title);
 $smarty->assign('useRemoteUser', $useRemoteUser);
 $smarty->assign('errors', $errors);
 $smarty->assign('use_smtp', $config['use_smtp']);
+$smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
 $smarty->assign('goToStep2', GO_TO_STEP_2);
 
 $smarty->assign('poll_type', $poll_type);

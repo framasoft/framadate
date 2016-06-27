@@ -53,7 +53,9 @@ $(document).ready(function() {
         $('.js-desc textarea').focus();
         if (firstOpening) {
             firstOpening = false;
-            wrapper.enable();
+            if ($('#rich-editor-button').hasClass('active')) {
+                wrapper.enable();
+            }
         }
         return false;
     });

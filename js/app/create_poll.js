@@ -91,6 +91,8 @@ $(document).ready(function () {
     }
 
     var wrapper = new MDEWrapper($('#poll_comments')[0], $('#rich-editor-button'), $('#simple-editor-button'));
-    wrapper.enable();
+    if ($('#rich-editor-button').hasClass('active')) {
+        wrapper.enable();
+    }
 
 });
