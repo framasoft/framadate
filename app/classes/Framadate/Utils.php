@@ -190,7 +190,7 @@ class Utils {
     }
 
     public static function fromPostOrDefault($postKey, $default = '') {
-        return !empty($_POST[$postKey]) ? Utils::htmlEscape($_POST[$postKey]) : $default;
+        return !empty($_POST[$postKey]) ? $_POST[$postKey] : $default;
     }
 
     public static function base64url_encode($input) {
