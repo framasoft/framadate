@@ -58,6 +58,7 @@ $ALLOWED_LANGUAGES = [
     'fr' => 'Français',
     'it' => 'Italiano',
     'oc' => 'Occitan',
+    'br' => 'Brezhoneg',
 ];
 
 // Nom et emplacement du fichier image contenant le titre
