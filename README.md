@@ -33,11 +33,11 @@ Un fichier est dédié à l'installation de framadate : [INSTALL.md](INSTALL.md)
 
 1. Créer un compte sur [https://git.framasoft.org](https://git.framasoft.org)
 1. Créer un fork du projet principal : [Créer le fork](https://git.framasoft.org/framasoft/framadate/fork/new)
-1. Créer une branche nommée feature/[Description]
+1. Créer une branche nommée feature/[Description] à partir de la branche **develop**
     * Où [Description] est une description en anglais très courte de ce qui va être fait
 1. Faire des commits dans votre branche
 1. Pusher la branche sur votre fork
-1. Demander une merge request
+1. Demander une merge request vers **develop**
 
 ## La suite se passe de notre côté
 
