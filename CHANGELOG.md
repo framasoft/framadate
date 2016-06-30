@@ -1,17 +1,36 @@
 # Changelog de framadate
 
-## Version 1.0 (Antonin - Julien - Luc - Olivier - Pierre)
-    - Technique : Travail sur le service des notifications
-    - Technique : Prise en compte de l'entête X-Forwarded-Proto
-    - Technique : Utilisation de PHPMailer pour l'envoi de mails
+## Version 1.0 (Erik - Markus - Ecmu - Julien - Imre - Luc - Pierre - Antonin - Olivier)
     - Amélioration : Conserver les votes en cours lors que l'utilisateur envoie un commentaire
-    - Amélioration : Les mails sont envoyés en multipart pour les lecteurs ne supportant pas HMTL
+    - Amélioration : Les mails sont envoyés en multipart pour les lecteurs ne supportant pas HTML
     - Amélioration : Masquer l'encart au dessus du tableau des votes, maintenant visible grâce à un bouton
     - Amélioration : Les commentaires sont horodatés
     - Amélioration : Auto wrapping de la description du sondage
-    - Amélioration : Possibilité de choisir l'URL du sondage
     - Amélioration : Protection de sondages par mots de passe
     - Amélioration : Un click dans les champs URL sélectionne le contenu
+    - Amélioration : Choix du lien du sondage
+    - Amélioration : Possibilité de modifier un sondage après expiration
+    - Amélioration : Confirmation demandée pour supprimer une colonne
+    - Amélioration : Création d'une sondage par intervale de dates
+    - Amélioration : Possibilité de ne pas faire de choix sur une colonne
+    - Amélioration : Amélioration du format des mails
+    - Amélioration : Amélioration du mode où chaque votant ne peut modifier que son vote
+    - Amélioration : Fichier check.php pour vérifier la possibilité d'installation
+    - Amélioration : Changements de libellés
+    - Amélioration : Admin - Rechercher un sondage grâce à l'adresse mail
+    - Amélioration : Fluidification du défilement de la page
+    - Fix : Correction de traductions
+    - Fix : Corrections diverses sur les dates et leurs formats
+    - Fix : Impossible d'ajouter une colonne vide
+    - Fix : Possibilité de supprimer des colonnes vides
+    - Fix : Correction du formulaire de commentaires
+    - Fix : Correction d'échappements de caractères
+    - Fix : Rectification des contraintes sur les sondage expirés
+    - Technique : Travail sur le service des notifications
+    - Technique : Prise en compte de l'entête X-Forwarded-Proto
+    - Technique : Utilisation de PHPMailer pour l'envoi de mails
+    - Technique : Encore de la Smartization
+    - Technique : Pas mal de nettoyage de code
 
 ## Version 0.9.6 (goofy-bz - Olivier - Quentin - Vincent)
     - Fix : Corrections mineures de langues
