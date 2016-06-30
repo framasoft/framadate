@@ -193,6 +193,10 @@ class Utils {
         return !empty($_POST[$postKey]) ? Utils::htmlEscape($_POST[$postKey]) : $default;
     }
 
+    public static function fromPostOrDefaultUnescaped($postKey, $default = '') {
+        return !empty($_POST[$postKey]) ? $_POST[$postKey] : $default;
+    }
+
     public static function base64url_encode($input) {
         return rtrim(strtr(base64_encode($input), '+/', '-_'), '=');
     }

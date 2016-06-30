@@ -268,10 +268,10 @@ $smarty->assign('use_smtp', $config['use_smtp']);
 $smarty->assign('goToStep2', GO_TO_STEP_2);
 
 $smarty->assign('poll_type', $poll_type);
-$smarty->assign('poll_title', Utils::fromPostOrDefault('title', $_SESSION['form']->title));
+$smarty->assign('poll_title', Utils::fromPostOrDefaultUnescaped('title', $_SESSION['form']->title));
 $smarty->assign('poll_id', Utils::fromPostOrDefault('id', $_SESSION['form']->id));
-$smarty->assign('poll_description', Utils::fromPostOrDefault('description', $_SESSION['form']->description));
-$smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
+$smarty->assign('poll_description', Utils::fromPostOrDefaultUnescaped('description', $_SESSION['form']->description));
+$smarty->assign('poll_name', Utils::fromPostOrDefaultUnescaped('name', $_SESSION['form']->admin_name));
 $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));
 $smarty->assign('poll_editable', Utils::fromPostOrDefault('editable', $_SESSION['form']->editable));
 $smarty->assign('poll_receiveNewVotes', Utils::fromPostOrDefault('receiveNewVotes', $_SESSION['form']->receiveNewVotes));
