@@ -42,7 +42,7 @@
                                 <input id="customize_id" name="customize_id" type="checkbox"/>
                             </span>
                             <input id="poll_id" type="text" name="id" class="form-control" {$errors['id']['aria']}
-                                   value="{$poll_id}" aria-describedBy="pollIdDesc" disabled="disabled" maxlength="64"
+                                   value="{$poll_id|html}" aria-describedBy="pollIdDesc" disabled="disabled" maxlength="64"
                                    pattern="[A-Za-z0-9-]+"/>
                         </div>
                         <span id="pollIdDesc" class="help-block">{__('Step 1', 'Poll id rules')}</span>
@@ -104,7 +104,7 @@
                             {if $useRemoteUser}
                                 <input type="hidden" name="mail" value="{$form->admin_mail}">{$form->admin_mail}
                             {else}
-                                <input id="email" type="text" name="mail" class="form-control" {$errors['email']['aria']} value="{$poll_mail}" />
+                                <input id="email" type="text" name="mail" class="form-control" {$errors['email']['aria']} value="{$poll_mail|html}" />
                             {/if}
                         </div>
                     </div>
