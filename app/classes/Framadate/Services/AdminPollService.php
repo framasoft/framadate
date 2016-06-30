@@ -4,6 +4,7 @@ namespace Framadate\Services;
 use Framadate\Exception\MomentAlreadyExistsException;
 use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
+use Framadate\Utils;
 
 /**
  * Class AdminPollService
@@ -33,7 +34,7 @@ class AdminPollService {
 
     function updatePoll($poll) {
         global $config;
-        if ($poll->end_date > $poll->creation_date && $poll->end_date <= strtotime($poll->creation_date) + (86400 * $config['default_poll_duration'])) {
+        if ($poll->end_date > $poll->creation_date) {
             return $this->pollRepository->update($poll);
         } else {
             return false;

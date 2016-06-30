@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 namespace Framadate\Services;
+use DateTime;
 
 /**
  * This class helps to clean all inputs from the users or external services.
@@ -88,6 +89,11 @@ class InputService {
     public function filterComment($comment) {
         $comment = str_replace("\r\n", "\n", $comment);
         return $this->returnIfNotBlank($comment);
+    }
+
+    public function filterDate($date) {
+        $dDate = DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $date)->setTime(0, 0, 0);
+        return $dDate->format('Y-m-d H:i:s');
     }
 
     /**
