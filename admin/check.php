@@ -124,12 +124,12 @@ if (extension_loaded('openssl')) {
 }
 
 // Datetime
-if (!empty(ini_get('date.timezone'))) {
+$timezone = ini_get('date.timezone');
+if (!empty($timezone)) {
     $messages[] = new Message('info', __('Check','date.timezone is set.'));
 } else {
     $messages[] = new Message('warning', __('Check','Consider setting the date.timezone in php.ini.'));
 }
-
 
 
 // The percentage of steps needed to be ready to launch the application
