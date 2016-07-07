@@ -23,31 +23,31 @@
 // const APP_URL = '<www.mydomain.fr>';
 
 // Application name
-const NOMAPPLICATION = '{$appName|addslashes_single_quote}';
+const NOMAPPLICATION = 'FramaAntonin';
 
 // Database administrator email
-const ADRESSEMAILADMIN = '{$appMail}';
+const ADRESSEMAILADMIN = 'zepcome@gmail.com';
 
 // Email for automatic responses (you should set it to "no-reply")
-const ADRESSEMAILREPONSEAUTO = '{$responseMail}';
-
-// Database server name, leave empty to use a socket
-const DB_CONNECTION_STRING = '{$dbConnectionString}';
+const ADRESSEMAILREPONSEAUTO = 'zepcome@gmail.com';
 
 // Database user
-const DB_USER= '{$dbUser}';
+const DB_USER= 'framadate';
 
 // Database password
-const DB_PASSWORD = '{$dbPassword|addslashes_single_quote}';
+const DB_PASSWORD = 'framadate';
 
-// Table name prefix
-const TABLENAME_PREFIX = '{$dbPrefix}';
+// Database server name, leave empty to use a socket
+const DB_CONNECTION_STRING = 'mysql:host=localhost;dbname=framadate;port=3306';
 
 // Name of the table that store migration script already executed
-const MIGRATION_TABLE = '{$migrationTable}';
+const MIGRATION_TABLE = 'framadate_migration';
+
+// Table name prefix
+const TABLENAME_PREFIX = 'fd_';
 
 // Default Language
-const DEFAULT_LANGUAGE = '{$defaultLanguage}';
+const DEFAULT_LANGUAGE = 'fr';
 
 // List of supported languages, fake constant as arrays can be used as constants only in PHP >=5.6
 $ALLOWED_LANGUAGES = [
@@ -63,7 +63,7 @@ $ALLOWED_LANGUAGES = [
 const IMAGE_TITRE = 'images/logo-framadate.png';
 
 // Clean URLs, boolean
-const URL_PROPRE = {if in_array($cleanUrl, array('1', 'on', 'true'))}true{else}false{/if};
+const URL_PROPRE = false;
 
 // Use REMOTE_USER data provided by web server
 const USE_REMOTE_USER =  true;
@@ -77,9 +77,6 @@ const PURGE_DELAY = 60;
 // Max slots per poll
 const MAX_SLOTS_PER_POLL = 366;
 
-// Number of seconds before we allow to resend an "Remember Edit Link" email.
-const TIME_EDIT_LINK_EMAIL = 60;
-
 // Config
 $config = [
     /* general config */
@@ -92,4 +89,5 @@ $config = [
     'default_poll_duration' => 180,         // default values for the new poll duration (number of days).
     /* create_classic_poll.php */
     'user_can_add_img_or_link' => true,     // user can add link or URL when creating his poll.
+    'markdown_editor_by_default' => true    // The markdown editor for the description is enabled by default
 ];
