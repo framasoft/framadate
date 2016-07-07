@@ -64,6 +64,9 @@ function smarty_modifier_markdown($md, $clear = false) {
 function smarty_modifier_resource($link) {
     return Utils::get_server_name() . $link;
 }
+function smarty_modifier_addslashes_single_quote($string) {
+    return addcslashes($string, '\\\'');
+}
 
 function smarty_modifier_html($html) {
     return Utils::htmlEscape($html);
