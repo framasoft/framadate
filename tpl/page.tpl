@@ -25,7 +25,7 @@
 </head>
 <body>
 {if $use_nav_js}
-    <script src="https://n2.framasoft.org/nav/nav.js" type="text/javascript"></script>
+    <script src="https://framasoft.org/nav/nav.js" type="text/javascript"></script>
 {/if}
 <div class="container ombre">
 
