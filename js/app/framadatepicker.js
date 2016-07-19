@@ -53,22 +53,26 @@ $(document).ready(function () {
         // Re-init datepicker config before displaying
         init_datepicker();
 
-        var last_date = $('#selected-days').find('input[id^="day"]').filter(function() {
-            return $(this).val() != '';
-        }).last().val();
-
-        if (last_date)
+        if (isNaN($(this).parent().datepicker('getDate').getTime()))
         {
-            last_date = last_date.split('/');
-            last_date = new Date(last_date[2], last_date[1] - 1, last_date[0]);
 
-            while(before_show_day(last_date) != null)
+            var last_date = $('#selected-days').find('input[id^="day"]').filter(function() {
+                return $(this).val() != '';
+            }).last().val();
+
+            if (last_date)
             {
-                last_date.setDate(last_date.getDate() + 1);
-            }
+                last_date = last_date.split('/');
+                last_date = new Date(last_date[2], last_date[1] - 1, last_date[0]);
 
-            // Set date as the next available day.
-            $(this).parent().datepicker("setDate", last_date);
+                while(before_show_day(last_date) != null)
+                {
+                    last_date.setDate(last_date.getDate() + 1);
+                }
+
+                // Set date as the next available day.
+                $(this).parent().datepicker("setDate", last_date);
+            }
         }
         $(this).parent().datepicker('show');
 
