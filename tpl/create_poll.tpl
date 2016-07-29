@@ -124,7 +124,11 @@
                 {/if}
 
                 <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-8">
+                    <label for="poll_id" class="col-sm-4 control-label">
+                        {__('Step 1', 'Poll password')}
+                    </label>
+
+                    <div class="col-sm-8">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="use_password" {if $poll_use_password}checked{/if}
@@ -133,10 +137,13 @@
                             </label>
                         </div>
                     </div>
+
                     <div id="password_options"{if !$poll_use_password} class="hidden"{/if}>
-                        <label for="poll_password" class="col-sm-4 control-label">{__('Step 1', 'Poll password')}</label>
-                        <div class="col-sm-8">
-                            <input id="poll_password" type="password" name="password" class="form-control" {$errors['password']['aria']}/>
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <div class="input-group">
+                                <input id="poll_password" type="password" name="password" class="form-control" {$errors['password']['aria']}/>
+                                <label for="poll_password" class="input-group-addon">{__('Step 1', 'Password choice')}</label>
+                            </div>
                         </div>
                         {if !empty($errors['password']['msg'])}
                             <div class="alert alert-danger">
@@ -145,9 +152,11 @@
                                 </p>
                             </div>
                         {/if}
-                        <label for="poll_password_repeat" class="col-sm-4 control-label">{__('Step 1', 'Confirm password')}</label>
-                        <div class="col-sm-8">
-                            <input id="poll_password_repeat" type="password" name="password_repeat" class="form-control" {$errors['password_repeat']['aria']}/>
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <div class="input-group">
+                                <input id="poll_password_repeat" type="password" name="password_repeat" class="form-control" {$errors['password_repeat']['aria']}/>
+                                <label for="poll_password_repeat" class="input-group-addon">{__('Step 1', 'Password confirmation')}</label>
+                            </div>
                         </div>
                         {if !empty($errors['password_repeat']['msg'])}
                             <div class="alert alert-danger">
