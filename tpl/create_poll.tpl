@@ -34,18 +34,23 @@
                 {/if}
 
                 <div class="form-group {$errors['id']['class']}">
-                    <label for="poll_id" class="col-sm-4 control-label">{__('Step 1', 'Poll id')}</label>
+                    <label for="poll_id" class="col-sm-4 control-label">
+                        {__('Step 1', 'Poll id')}<br/>
+                        <span id="pollIdDesc" class="small">{__('Step 1', 'Poll id rules')}</span>
+                    </label>
 
                     <div class="col-sm-8">
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <input id="customize_id" name="customize_id" type="checkbox"/>
                             </span>
+                            <span class="input-group-addon">
+                                {$SERVER_URL}
+                            </span>
                             <input id="poll_id" type="text" name="id" class="form-control" {$errors['id']['aria']}
                                    value="{$poll_id|html}" aria-describedBy="pollIdDesc" disabled="disabled" maxlength="64"
                                    pattern="[A-Za-z0-9-]+"/>
                         </div>
-                        <span id="pollIdDesc" class="help-block">{__('Step 1', 'Poll id rules')}</span>
                         <span class="help-block text-warning">{__('Step 1', 'Poll id warning')}</span>
                     </div>
                 </div>
