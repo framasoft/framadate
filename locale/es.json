@@ -231,7 +231,8 @@
     "Use a password to restrict access": "ES_Utiliser un mot de passe pour restreindre l'accès au sondage",
     "The results are publicly visible": "ES_Les résultats sont visibles sans mot de passe",
     "Poll password": "ES_Mot de passe",
-    "Confirm password": "ES_Confirmer votre mot de passe",
+    "Password choice": "ES_Choix",
+    "Password confirmation": "ES_Confirmation",
     "Go to step 2": "Ir al paso número 2"
   },
   "Step 2": {

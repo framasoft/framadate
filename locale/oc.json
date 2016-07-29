@@ -216,6 +216,11 @@
     "To receive an email for each new vote": "Recebre un messatge per cada participacion",
     "To receive an email for each new comment": "Recebre un messatge per cada comentari",
     "Only the poll maker can see the poll's results": "Solament lo creator del sondatge pòt veire los resultats",
+    "Use a password to restrict access": "OC_Utiliser un mot de passe pour restreindre l'accès au sondage",
+    "The results are publicly visible": "OC_Les résultats sont visibles sans mot de passe",
+    "Poll password": "OC_Mot de passe",
+    "Password choice": "OC_Choix",
+    "Password confirmation": "OC_Confirmation",
     "Go to step 2": "Anar a l'etapa 2"
   },
   "Step 2": {
