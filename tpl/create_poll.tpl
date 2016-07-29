@@ -17,68 +17,6 @@
                     </p>
                 </div>
 
-                <div class="form-group {$errors['title']['class']}">
-                    <label for="poll_title" class="col-sm-4 control-label">{__('Step 1', 'Poll title')} *</label>
-
-                    <div class="col-sm-8">
-                        <input id="poll_title" type="text" name="title" class="form-control" {$errors['title']['aria']}
-                               value="{$poll_title|html}"/>
-                    </div>
-                </div>
-                {if !empty($errors['title']['msg'])}
-                    <div class="alert alert-danger">
-                        <p id="poll_title_error">
-                            {$errors['title']['msg']}
-                        </p>
-                    </div>
-                {/if}
-
-                <div class="form-group {$errors['id']['class']}">
-                    <label for="poll_id" class="col-sm-4 control-label">
-                        {__('Step 1', 'Poll id')}<br/>
-                        <span id="pollIdDesc" class="small">{__('Step 1', 'Poll id rules')}</span>
-                    </label>
-
-                    <div class="col-sm-8">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                <input id="customize_id" name="customize_id" type="checkbox"/>
-                            </span>
-                            <span class="input-group-addon">
-                                {$SERVER_URL}
-                            </span>
-                            <input id="poll_id" type="text" name="id" class="form-control" {$errors['id']['aria']}
-                                   value="{$poll_id|html}" aria-describedBy="pollIdDesc" disabled="disabled" maxlength="64"
-                                   pattern="[A-Za-z0-9-]+"/>
-                        </div>
-                        <span class="help-block text-warning">{__('Step 1', 'Poll id warning')}</span>
-                    </div>
-                </div>
-                {if !empty($errors['id']['msg'])}
-                    <div class="alert alert-danger">
-                        <p id="poll_title_error">
-                            {$errors['id']['msg']}
-                        </p>
-                    </div>
-                {/if}
-
-                <div class="form-group {$errors['description']['class']}">
-                    <label for="poll_comments" class="col-sm-4 control-label">{__('Generic', 'Description')}</label>
-
-                    <div class="col-sm-8">
-                        <textarea id="poll_comments" name="description"
-                                  class="form-control" {$errors['description']['aria']}
-                                  rows="5">{$poll_description|html}</textarea>
-                    </div>
-                </div>
-                {if !empty($errors['description']['msg'])}
-                    <div class="alert alert-danger">
-                        <p id="poll_title_error">
-                            {$errors['description']['msg']}
-                        </p>
-                    </div>
-                {/if}
-
                 <div class="form-group {$errors['name']['class']}">
                     <label for="yourname" class="col-sm-4 control-label">{__('Generic', 'Your name')} *</label>
 
@@ -122,6 +60,113 @@
                     {/if}
 
                 {/if}
+
+                <div class="form-group {$errors['title']['class']}">
+                    <label for="poll_title" class="col-sm-4 control-label">{__('Step 1', 'Poll title')} *</label>
+
+                    <div class="col-sm-8">
+                        <input id="poll_title" type="text" name="title" class="form-control" {$errors['title']['aria']}
+                               value="{$poll_title|html}"/>
+                    </div>
+                </div>
+                {if !empty($errors['title']['msg'])}
+                    <div class="alert alert-danger">
+                        <p id="poll_title_error">
+                            {$errors['title']['msg']}
+                        </p>
+                    </div>
+                {/if}
+
+                <div class="form-group {$errors['description']['class']}">
+                    <label for="poll_comments" class="col-sm-4 control-label">{__('Generic', 'Description')}</label>
+
+                    <div class="col-sm-8">
+                        <textarea id="poll_comments" name="description"
+                                  class="form-control" {$errors['description']['aria']}
+                                  rows="5">{$poll_description|html}</textarea>
+                    </div>
+                </div>
+                {if !empty($errors['description']['msg'])}
+                    <div class="alert alert-danger">
+                        <p id="poll_title_error">
+                            {$errors['description']['msg']}
+                        </p>
+                    </div>
+                {/if}
+
+                <div class="form-group {$errors['id']['class']}">
+                    <label for="poll_id" class="col-sm-4 control-label">
+                        {__('Step 1', 'Poll id')}<br/>
+                        <span id="pollIdDesc" class="small">{__('Step 1', 'Poll id rules')}</span>
+                    </label>
+
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <input id="customize_id" name="customize_id" type="checkbox"/>
+                            </span>
+                            <span class="input-group-addon">
+                                {$SERVER_URL}
+                            </span>
+                            <input id="poll_id" type="text" name="id" class="form-control" {$errors['id']['aria']}
+                                   value="{$poll_id|html}" aria-describedBy="pollIdDesc" disabled="disabled" maxlength="64"
+                                   pattern="[A-Za-z0-9-]+"/>
+                        </div>
+                        <span class="help-block text-warning">{__('Step 1', 'Poll id warning')}</span>
+                    </div>
+                </div>
+                {if !empty($errors['id']['msg'])}
+                    <div class="alert alert-danger">
+                        <p id="poll_title_error">
+                            {$errors['id']['msg']}
+                        </p>
+                    </div>
+                {/if}
+
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="use_password" {if $poll_use_password}checked{/if}
+                                       id="use_password">
+                                {__('Step 1', "Use a password to restrict access")}
+                            </label>
+                        </div>
+                    </div>
+                    <div id="password_options"{if !$poll_use_password} class="hidden"{/if}>
+                        <label for="poll_password" class="col-sm-4 control-label">{__('Step 1', 'Poll password')}</label>
+                        <div class="col-sm-8">
+                            <input id="poll_password" type="password" name="password" class="form-control" {$errors['password']['aria']}/>
+                        </div>
+                        {if !empty($errors['password']['msg'])}
+                            <div class="alert alert-danger">
+                                <p id="poll_password_error">
+                                    {$errors['password']['msg']}
+                                </p>
+                            </div>
+                        {/if}
+                        <label for="poll_password_repeat" class="col-sm-4 control-label">{__('Step 1', 'Confirm password')}</label>
+                        <div class="col-sm-8">
+                            <input id="poll_password_repeat" type="password" name="password_repeat" class="form-control" {$errors['password_repeat']['aria']}/>
+                        </div>
+                        {if !empty($errors['password_repeat']['msg'])}
+                            <div class="alert alert-danger">
+                                <p id="poll_password_repeat_error">
+                                    {$errors['password_repeat']['msg']}
+                                </p>
+                            </div>
+                        {/if}
+                        <div class="col-sm-offset-4 col-sm-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="results_publicly_visible"
+                                           {if $poll_results_publicly_visible}checked{/if} id="results_publicly_visible"/>
+                                    {__('Step 1', "The results are publicly visible")}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
@@ -184,56 +229,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-8">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="use_password" {if $poll_use_password}checked{/if}
-                                       id="use_password">
-                                {__('Step 1', "Use a password to restrict access")}
-                            </label>
-                        </div>
-                    </div>
-                    <div id="password_options"{if !$poll_use_password} class="hidden"{/if}>
-                        <label for="poll_password" class="col-sm-4 control-label">{__('Step 1', 'Poll password')}</label>
-                        <div class="col-sm-8">
-                            <input id="poll_password" type="password" name="password" class="form-control" {$errors['password']['aria']}/>
-                        </div>
-                        {if !empty($errors['password']['msg'])}
-                            <div class="alert alert-danger">
-                                <p id="poll_password_error">
-                                    {$errors['password']['msg']}
-                                </p>
-                            </div>
-                        {/if}
-                        <label for="poll_password_repeat" class="col-sm-4 control-label">{__('Step 1', 'Confirm password')}</label>
-                        <div class="col-sm-8">
-                            <input id="poll_password_repeat" type="password" name="password_repeat" class="form-control" {$errors['password_repeat']['aria']}/>
-                        </div>
-                        {if !empty($errors['password_repeat']['msg'])}
-                            <div class="alert alert-danger">
-                                <p id="poll_password_repeat_error">
-                                    {$errors['password_repeat']['msg']}
-                                </p>
-                            </div>
-                        {/if}
-                        <div class="col-sm-offset-4 col-sm-8">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="results_publicly_visible"
-                                           {if $poll_results_publicly_visible}checked{/if} id="results_publicly_visible"/>
-                                    {__('Step 1', "The results are publicly visible")}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
 
                 <p class="text-right">
                     <input type="hidden" name="type" value="$poll_type"/>
