@@ -133,31 +133,28 @@ class Utils {
         return TABLENAME_PREFIX . $tableName;
     }
 
-    public static function markdown($md, $clear) {
-        preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/', $md, $md_a_img); // Markdown [![alt](src)](href)
-        preg_match_all('/!\[(.*?)\]\((.*?)\)/', $md, $md_img); // Markdown ![alt](src)
-        preg_match_all('/\[(.*?)\]\((.*?)\)/', $md, $md_a); // Markdown [text](href)
-        if (isset($md_a_img[2][0]) && $md_a_img[2][0] != '' && isset($md_a_img[3][0]) && $md_a_img[3][0] != '') { // [![alt](src)](href)
+    public static function markdown($md, $clear=false, $line=true) {
+        $parseDown = new \Parsedown();
 
-            $text = self::htmlEscape($md_a_img[1][0]);
-            $html = '<a href="' . self::htmlEscape($md_a_img[3][0]) . '"><img src="' . self::htmlEscape($md_a_img[2][0]) . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" /></a>';
+        $parseDown
+            ->setMarkupEscaped(true)
+            ->setBreaksEnabled(true)
+            ->setUrlsLinked(false);
 
-        } elseif (isset($md_img[2][0]) && $md_img[2][0] != '') { // ![alt](src)
-
-            $text = self::htmlEscape($md_img[1][0]);
-            $html = '<img src="' . self::htmlEscape($md_img[2][0]) . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" />';
-
-        } elseif (isset($md_a[2][0]) && $md_a[2][0] != '') { // [text](href)
-
-            $text = self::htmlEscape($md_a[1][0]);
-            $html = '<a href="' . $md_a[2][0] . '">' . $text . '</a>';
-
-        } else { // text only
-
-            $text = self::htmlEscape($md);
-            $html = $text;
-
+        if ($line) {
+            $html  = $parseDown->line($md);
+        } else {
+            $md = preg_replace_callback(
+                '#( ){2,}#',
+                function ($m) {
+                    return str_repeat('&nbsp;', strlen($m[0]));
+                },
+                $md
+            );
+            $html  = $parseDown->text($md);
         }
+
+        $text = strip_tags($html);
 
         return $clear ? $text : $html;
     }

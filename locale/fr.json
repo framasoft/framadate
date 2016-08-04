@@ -38,6 +38,7 @@
     "Search": "Chercher",
     "Creation date:": "Date de création :",
     "Caption": "Légende",
+    "Markdown": "Markdown",
     "ASTERISK": "*"
   },
   "Date": {
@@ -131,7 +132,9 @@
     "Password protected": "Protégé par mot de passe",
     "Votes protected by password": "Votes protégés par mot de passe",
     "No password": "Pas de mot de passe",
-    "Remove password": "Supprimer le mot de passe"
+    "Remove password": "Supprimer le mot de passe",
+    "Rich editor": "Editeur avancé",
+    "Simple editor": "Editeur simple"
   },
   "Poll results": {
     "Votes of the poll": "Votes du sondage",
@@ -242,7 +245,10 @@
     "The results are publicly visible": "Les résultats sont visibles sans mot de passe",
     "Poll password": "Mot de passe",
     "Confirm password": "Confirmer votre mot de passe   ",
-    "Go to step 2": "Aller à l'étape 2"
+    "Go to step 2": "Aller à l'étape 2",
+    "To make the description more attractive, you can use the Markdown format.": "Afin de rendre le descriptif de ce sondage plus attractif, vous pouvez utiliser le formatage Markdown.",
+    "You can enable or disable the editor at will.": "Vous pouvez activer ou désactiver l'éditeur à votre guise.",
+    "More informations here:": "Plus d'informations ici :"
   },
   "Step 2": {
     "Back to step 1": "Revenir à l’étape 1",
