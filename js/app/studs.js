@@ -45,6 +45,16 @@ $(document).ready(function () {
       $(this).next().removeClass('startunchecked');
     });
 
+    $('.remove-column').on('click', function(e){
+        var confirmTranslation = $(this).data('remove-confirmation');
+        if (confirm(confirmTranslation)) {
+            return true;
+        } else {
+            e.stopPropagation();
+            return false
+        }
+    });
+
     var form = $('#comment_form');
     form.submit(function(event) {
         event.preventDefault();

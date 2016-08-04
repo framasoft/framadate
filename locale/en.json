@@ -212,6 +212,7 @@
     "Back to the poll": "Back to the poll",
     "Add a column": "Add a column",
     "Remove the column": "Remove column",
+    "Confirm removal of the column.": "Confirm removal of the column.",
     "Column removed": "Column deleted",
     "Choice added": "Choice added",
     "Confirm removal of all votes of the poll": "Confirm removal of all votes",
@@ -282,7 +283,7 @@
   },
   "Step 3": {
     "Back to step 2": "Back to step 2",
-    "Removal date and confirmation (3 on 3)": "Removal date and confirmation (1 of 3)",
+    "Removal date and confirmation (3 on 3)": "Removal date and confirmation (3 of 3)",
     "Confirm the creation of your poll": "Confirm the creation of your poll",
     "List of your choices": "List of options",
     "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "Once you have confirmed the creation of your poll, you will automatically be redirected to the poll's administration page.",

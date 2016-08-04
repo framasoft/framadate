@@ -28,10 +28,16 @@ Les tables de l'applications sont décrites plus loin dans ce fichier dans la pa
     CREATE USER 'framadate_user'@'localhost' IDENTIFIED BY '<password>';
     GRANT ALL PRIVILEGES ON `framadate_db`.* TO 'framadate_user'@'localhost';
 ```
+## Si vous utilisez la version GIT
+
+Il faut utiliser [Composer](https://getcomposer.org/) avant d'effectuer l'installation
+
+Ensuite ``composer install`` ou ``php composer.phar install``
+
 
 # Installation
 
-Pour installer l'application Framadate, rendez-vous sur la page http://monsite/admin/install.php et remplisez le formulaire.
+Pour installer l'application Framadate, rendez-vous sur la page http://example.org/admin/install.php et remplisez le formulaire.
 
 Une fois le formulaire rempli et envoyé, un script va générer le fichier `app/inc/config.php` puis vous rediriger vers la page de migration.
 
@@ -40,6 +46,7 @@ La page de migration s'occupe :
 - De mettre à jour la base de données lors des mises à jour de l'applciation.
 
 ! Attention, le chargement de la page de migration peu prendre du temps étant donné qu'elle applique toutes les mises à jours requises !
+
 
 # Accès à la page administrateur
 

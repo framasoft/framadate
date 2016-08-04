@@ -212,6 +212,7 @@
     "Back to the poll": "Volver a la encuesta",
     "Add a column": "Añadir una columna",
     "Remove the column": "Borrar la columna",
+    "Confirm removal of the column.": "ES_Confirmer la supression de cette colonne.",
     "Column removed": "Columna borrado",
     "Choice added": "Elección añadida",
     "Confirm removal of all votes of the poll": "Confirma la supresión de todos los votos de la encuesta",

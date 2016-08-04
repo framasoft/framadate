@@ -23,7 +23,7 @@
 // const APP_URL = '<www.mydomain.fr>';
 
 // Application name
-const NOMAPPLICATION = '{$appName}';
+const NOMAPPLICATION = '{$appName|addslashes_single_quote}';
 
 // Database administrator email
 const ADRESSEMAILADMIN = '{$appMail}';
@@ -38,7 +38,7 @@ const DB_CONNECTION_STRING = '{$dbConnectionString}';
 const DB_USER= '{$dbUser}';
 
 // Database password
-const DB_PASSWORD = '{$dbPassword}';
+const DB_PASSWORD = '{$dbPassword|addslashes_single_quote}';
 
 // Table name prefix
 const TABLENAME_PREFIX = '{$dbPrefix}';
@@ -57,6 +57,7 @@ $ALLOWED_LANGUAGES = [
     'es' => 'Español',
     'de' => 'Deutsch',
     'it' => 'Italiano',
+    'br' => 'Brezhoneg',
 ];
 
 // Nom et emplacement du fichier image contenant le titre
