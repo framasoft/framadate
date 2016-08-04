@@ -243,6 +243,7 @@
         "Poll password": "Password",
         "Password choice": "DE_Choix",
         "Password confirmation": "DE_Confirmation",
+        "Permissions": "DE_Permissions",
         "Go to step 2": "Weiter zum 2. Schritt"
     },
     "Step 2": {
