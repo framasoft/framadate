@@ -32,7 +32,7 @@
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
-                    <th class="bg-info" id="C{$id}">{$slot->title|markdown}</th>
+                    <th class="bg-info" id="C{$id}" title="{$slot->title|markdown:true}">{$slot->title|markdown}</th>
                 {/foreach}
                 <th></th>
             </tr>
