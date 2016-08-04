@@ -241,7 +241,9 @@
         "Use a password to restrict access": "Verwende ein Passwort um den Zugriff zu beschänken",
         "The results are publicly visible": "Die Ergebnisse sind öffentlich Einsehbar",
         "Poll password": "Password",
-        "Confirm password": "Passwort bestätigen",
+        "Password choice": "DE_Choix",
+        "Password confirmation": "DE_Confirmation",
+        "Permissions": "DE_Permissions",
         "Go to step 2": "Weiter zum 2. Schritt"
     },
     "Step 2": {

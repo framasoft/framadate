@@ -241,7 +241,9 @@
     "Use a password to restrict access": "Utilizzare una passwor per limitare l'accesso al sondaggio",
     "The results are publicly visible": "I risultati sono visibili senza password",
     "Poll password": "Password",
-    "Confirm password": "Conferma della password",
+    "Password choice": "IT_Choix",
+    "Password confirmation": "Conferma della password",
+    "Permissions": "IT_Permissions",
     "Go to step 2": "Andare al punto 2"
   },
   "Step 2": {
