@@ -230,6 +230,7 @@
     "Required fields cannot be left blank.": "Merci de remplir les champs obligatoires, marqués d'une *.",
     "Poll title": "Titre du sondage",
     "Poll id": "Lien du sondage",
+    "Customize the URL": "Personnaliser le lien",
     "Poll id rules": "(peut contenir des lettres, des chiffres et des tirets)",
     "Poll id warning": "La modification du lien du sondage peut faciliter l'accès à ce sondage pour des personnes non désirées. Il est recommandé de le protéger par mot de passe.",
     "Votes cannot be modified": "Aucun vote ne peut être modifié",
