@@ -51,7 +51,7 @@
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
                                     <input type="text" class="form-control" id="day{$i}" title="{__('Generic', 'Day')} {$i+1}"
                                            data-date-format="{__('Date', 'dd/mm/yyyy')}" aria-describedby="dateformat{$i}" name="days[]" value="{$day_value}"
-                                           size="10" maxlength="10" placeholder="{__('Date', 'dd/mm/yyyy')}"/>
+                                           size="10" maxlength="10" placeholder="{__('Date', 'dd/mm/yyyy')}" autocomplete="nope"/>
                                 </div>
                                 <span id="dateformat{$i}" class="sr-only">({__('Date', 'dd/mm/yyyy')})</span>
                             </legend>
