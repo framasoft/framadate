@@ -178,7 +178,10 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-8">
+                    <label for="poll_id" class="col-sm-4 control-label">
+                        {__('Step 1', 'Permissions')}
+                    </label>
+                    <div class="col-sm-8">
                         <div class="radio">
                             <label>
                                 <input type="radio" name="editable" id="editableByAll" {if $poll_editable==constant("Framadate\Editable::EDITABLE_BY_ALL")}checked{/if} value="{constant("Framadate\Editable::EDITABLE_BY_ALL")}">
