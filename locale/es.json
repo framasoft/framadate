@@ -230,6 +230,7 @@
     "Required fields cannot be left blank.": "Los campos requeridos tienen que ser llenados",
     "Poll title": "Título de la encuesta",
     "Poll id": "ES_Identifiant",
+    "Customize the URL": "ES_Personnaliser le lien",
     "Poll id rules": "ES_L'identifiant peut contenir des lettres, des chiffres et des tirets \"-\".",
     "Poll id warning": "ES_En définissant un identifiant cela peut faciliter l'accès à ce sondage pour des personnes non désirées. Il est recommandé de le protéger par mot de passe.",
     "Votes cannot be modified": "Los votos no pueden ser modificados",

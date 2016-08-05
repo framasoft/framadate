@@ -230,6 +230,7 @@
         "Required fields cannot be left blank.": "Mit * markierte Felder müssen ausgefüllt sein.",
         "Poll title": "Titel der Umfrage",
         "Poll id": "Bezeichner",
+        "Customize the URL": "DE_Personnaliser le lien",
         "Poll id rules": "Der Bezeichner kann Buchstaben, Zahlen und Bindestriche enhalten \"-\".",
         "Poll id warning": "Mit der Verwendung eines Bezeichners können möglicherweise Personen unerwünscht Zugriff auf die Umfrage erhalten. Es wird empfohlen sie mit einem Passwort zu schützen.",
         "Votes cannot be modified": "Wertungen können nicht verändert werden",

@@ -230,6 +230,7 @@
     "Required fields cannot be left blank.": "Riempire i campi obbligatori, segnati con *.",
     "Poll title": "Titolo del sondaggio",
     "Poll id": "IT_Identifiant",
+    "Customize the URL": "IT_Personnaliser le lien",
     "Poll id rules": "IT_L'identifiant peut contenir des lettres, des chiffres et des tirets \"-\".",
     "Poll id warning": "IT_En définissant un identifiant cela peut faciliter l'accès à ce sondage pour des personnes non désirées. Il est recommandé de le protéger par mot de passe.",
     "Votes cannot be modified": "Nessun voto può essere modificato",
