@@ -214,16 +214,12 @@ $(document).ready(function () {
         newDateFields();
     });
 
-    // Button "Remove a day"
+    // Button "Remove the current day"
 
-    $('#remove-a-day').on('click', function () {
-        $selected_days.find('fieldset:last').remove();
-        var nb_days = $selected_days.find('fieldset').length;
-        $('#day' + (nb_days - 1)).focus();
-        if (nb_days == 1) {
-            $removeaday_and_copyhours.addClass('disabled');
+    $(document).on('click', '.remove-day', function () {
+        if ($('#days_container').find('fieldset').length > 1) {
+            $(this).parents('fieldset').remove();
         }
-        submitDaysAvalaible();
     });
 
     // Add an range of dates

@@ -487,6 +487,15 @@ table.results > tbody > tr:hover > td .glyphicon {
     border:none;
     background:transparent;
 }
+
+#selected-days legend .input-group-addon:last-of-type {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+#selected-days legend {
+    height: 33px;
+}
+
 /* create_classic_poll.php */
 .md-a-img {
     text-decoration:none !important;

@@ -265,6 +265,7 @@
     "Copy hours of the first day": "Reportar los oraris del primièr jorn suls autres jorns",
     "Remove a day": "Suprimir lo darrièr jorn",
     "Add a day": "Ajustar un jorn",
+    "Remove this day": "OC_Supprimer ce jour",
     "Remove all days": "Suprimir totes los jorns",
     "Remove all hours": "Suprimir totes los oraris"
   },
