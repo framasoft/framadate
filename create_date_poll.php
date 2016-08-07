@@ -149,6 +149,7 @@ switch ($step) {
                     }
                 }
             }
+            $_SESSION['form']->sortChoices();
         }
 
         // Display step 3
