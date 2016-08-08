@@ -73,10 +73,16 @@ $(document).ready(function () {
             .replace('%Y', ("0000" + date.getFullYear()).slice(-4));
     };
 
+    function getLastDayNumber(last_day) {
+        if (last_day == null)
+            last_day = $selected_days.find('fieldset').filter(':last')
+        return parseInt(/^d([0-9]+)-h[0-9]+$/.exec(last_day.find('.hours').filter(':first').attr('id'))[1])
+    }
+
     function newDateFields(dateStr) {
         var last_day = $selected_days.find('fieldset').filter(':last');
         var last_day_title = last_day.find('legend input').attr('title');
-        var new_day_number = parseInt(/^d([0-9]+)-h[0-9]+$/.exec(last_day.find('.hours').filter(':first').attr('id'))[1]) + 1;
+        var new_day_number = getLastDayNumber(last_day) + 1;
 
         var re_id_hours = new RegExp('"d' + (new_day_number - 1) + '-h', 'g');
         var re_name_hours = new RegExp('name="horaires' + (new_day_number - 1), 'g');
@@ -214,12 +220,27 @@ $(document).ready(function () {
         newDateFields();
     });
 
+    // Button "Remove a day"
+
+    $('#remove-a-day').on('click', function () {
+        $selected_days.find('fieldset:last').remove();
+
+        var nb_days = $selected_days.find('fieldset').length;
+
+        $('#day' + (getLastDayNumber() - 1)).focus();
+        if (nb_days == 1) {
+            $removeaday_and_copyhours.addClass('disabled');
+        }
+        submitDaysAvalaible();
+    });
+
     // Button "Remove the current day"
 
     $(document).on('click', '.remove-day', function () {
         if ($('#days_container').find('fieldset').length > 1) {
             $(this).parents('fieldset').remove();
         }
+        submitDaysAvalaible();
     });
 
     // Add an range of dates
