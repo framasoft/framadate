@@ -76,7 +76,7 @@
                 {$slots_raw = array()}
                 {foreach $slots as $slot}
                     {foreach $slot->moments as $id=>$moment}
-                        <th colspan="1" class="bg-info" id="H{$headersDCount}">{$moment|html}</th>
+                        <th colspan="1" class="bg-info" id="H{$headersDCount}" title="{$moment|html}">{$moment|html}</th>
                         {append var='headersH' value=$headersDCount}
                         {$headersDCount = $headersDCount+1}
                         {$slots_raw[] = $slot->day|date_format:$date_format.txt_full|cat:' - '|cat:$moment}
