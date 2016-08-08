@@ -56,7 +56,7 @@
                                                    size="10" maxlength="10" placeholder="{__('Date', 'dd/mm/yyyy')}" autocomplete="nope"/>
                                         </div>
                                     </div>
-                                    <div class="col-xs-1 col-sm-1">
+                                    <div class="col-xs-2 col-sm-1">
                                         <button type="button" title="{__('Step 2 date', 'Remove this day')}" class="remove-day btn btn-sm btn-link">
                                             <span class="glyphicon glyphicon-remove text-danger"></span>
                                             <span class="sr-only">{__('Step 2 date', 'Remove this day')}</span>
