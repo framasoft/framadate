@@ -53,6 +53,12 @@ class Form
     public $hidden;
 
     /**
+     * If true, the author want to customize the URL
+     * @var boolean
+     */
+    public $use_customized_url;
+
+    /**
      * If true, a password will be needed to access the poll
      * @var boolean
      */

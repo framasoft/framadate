@@ -56,8 +56,8 @@ if (isset($_GET['type']) && $_GET['type'] == 'date' ||
 $goToStep2 = filter_input(INPUT_POST, GO_TO_STEP_2, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(date|classic)$/']]);
 if ($goToStep2) {
     $title = $inputService->filterTitle($_POST['title']);
-    $customizeId = isset($_POST['customize_id']) ? $inputService->filterBoolean($_POST['customize_id']) : false;
-    $id = $customizeId == true ? $inputService->filterId($_POST['id']) : null;
+    $use_customized_url = isset($_POST['use_customized_url']) ? $inputService->filterBoolean($_POST['use_customized_url']) : false;
+    $customized_url = $use_customized_url == true ? $inputService->filterId($_POST['customized_url']) : null;
     $name = $inputService->filterName($_POST['name']);
     $mail = $config['use_smtp'] == true ? $inputService->filterMail($_POST['mail']) : null;
     $description = $inputService->filterDescription($_POST['description']);
@@ -77,10 +77,11 @@ if ($goToStep2) {
     $error_on_description = false;
     $error_on_password = false;
     $error_on_password_repeat = false;
-    $error_on_id = false;
+    $error_on_customized_url = false;
 
     $_SESSION['form']->title = $title;
-    $_SESSION['form']->id = $id;
+    $_SESSION['form']->id = $customized_url;
+    $_SESSION['form']->use_customized_url = $use_customized_url;
     $_SESSION['form']->admin_name = $name;
     $_SESSION['form']->admin_mail = $mail;
     $_SESSION['form']->description = $description;
@@ -102,12 +103,12 @@ if ($goToStep2) {
         $error_on_title = true;
     }
 
-    if ($customizeId) {
-        if ($id === false) {
-            $error_on_id = true;
-        } else if ($pollRepository->existsById($id)) {
-            $error_on_id = true;
-            $error_on_id_msg = __('Error', 'Poll id already used');
+    if ($use_customized_url) {
+        if ($customized_url === false) {
+            $error_on_customized_url = true;
+        } else if ($pollRepository->existsById($customized_url)) {
+            $error_on_customized_url = true;
+            $error_on_customized_url_msg = __('Error', 'Poll id already used');
         }
     }
 
@@ -134,7 +135,7 @@ if ($goToStep2) {
         }
     }
 
-    if ($title && $name && $email_OK && !$error_on_title && !$error_on_id && !$error_on_description && !$error_on_name
+    if ($title && $name && $email_OK && !$error_on_title && !$error_on_customized_url && !$error_on_description && !$error_on_name
         && !$error_on_password && !$error_on_password_repeat
     ) {
 
@@ -172,7 +173,7 @@ $errors = array(
         'aria' => '',
         'class' => ''
     ),
-    'id' => array(
+    'customized_url' => array(
         'msg' => '',
         'aria' => '',
         'class' => ''
@@ -215,10 +216,10 @@ if (!empty($_POST[GO_TO_STEP_2])) {
         $errors['title']['msg'] = __('Error', 'Something is wrong with the format');
     }
 
-    if ($error_on_id) {
-        $errors['id']['aria'] = 'aria-describeby="poll_comment_error" ';
-        $errors['id']['class'] = ' has-error';
-        $errors['id']['msg'] = isset($error_on_id_msg) ? $error_on_id_msg : __('Error', 'Something is wrong with the format');
+    if ($error_on_customized_url) {
+        $errors['customized_url']['aria'] = 'aria-describeby="customized_url" ';
+        $errors['customized_url']['class'] = ' has-error';
+        $errors['customized_url']['msg'] = isset($error_on_customized_url_msg) ? $error_on_customized_url_msg : __('Error', 'Something is wrong with the format');
     }
 
     if ($error_on_description) {
@@ -270,7 +271,8 @@ $smarty->assign('goToStep2', GO_TO_STEP_2);
 
 $smarty->assign('poll_type', $poll_type);
 $smarty->assign('poll_title', Utils::fromPostOrDefault('title', $_SESSION['form']->title));
-$smarty->assign('poll_id', Utils::fromPostOrDefault('id', $_SESSION['form']->id));
+$smarty->assign('customized_url', Utils::fromPostOrDefault('customized_url', $_SESSION['form']->id));
+$smarty->assign('use_customized_url', Utils::fromPostOrDefault('use_customized_url', $_SESSION['form']->use_customized_url));
 $smarty->assign('poll_description', !empty($_POST['description']) ? $_POST['description'] :  $_SESSION['form']->description);
 $smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
 $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));

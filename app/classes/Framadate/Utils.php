@@ -59,8 +59,12 @@ class Utils {
         <link rel="stylesheet" href="' . self::get_server_name() . 'css/print.css" media="print" />
         <script type="text/javascript" src="' . self::get_server_name() . 'js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.' . $locale . '.js"></script>
+        <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>';
+        if ('en' != $locale) {
+        	   echo '
+        <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.' . $locale . '.js"></script>';
+        }
+        echo '
         <script type="text/javascript" src="' . self::get_server_name() . 'js/core.js"></script>';
         if (is_file($_SERVER['DOCUMENT_ROOT'] . "/nav/nav.js")) {
             echo '<script src="/nav/nav.js" id="nav_js" type="text/javascript" charset="utf-8"></script><!-- /Framanav -->';
@@ -183,7 +187,7 @@ class Utils {
     }
 
     public static function fromPostOrDefault($postKey, $default = '') {
-        return !empty($_POST[$postKey]) ? Utils::htmlEscape($_POST[$postKey]) : $default;
+        return !empty($_POST[$postKey]) ? $_POST[$postKey] : $default;
     }
 
     public static function base64url_encode($input) {
