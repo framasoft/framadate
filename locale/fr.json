@@ -268,6 +268,7 @@
     "Copy hours of the first day": "Reporter les horaires du premier jour sur les autres jours",
     "Remove a day": "Supprimer le dernier jour",
     "Add a day": "Ajouter un jour",
+    "Remove this day": "Supprimer ce jour",
     "Remove all days": "Effacer tous les jours",
     "Remove all hours": "Effacer tous les horaires"
   },
