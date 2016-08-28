@@ -17,6 +17,14 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
+require_once '../app/inc/init.php';
+
+$title = __('Check', 'Installation checking');
+
+$login = new Framadate\Services\AuthenticationService($connect);
+if ($login->IsAuthorized($smarty, $title) != true)
+  exit;
+
 use Framadate\Message;
 use Framadate\Utils;
 
@@ -161,7 +169,7 @@ usort($messages, 'compareCheckMessage');
 <head>
     <meta charset="utf-8">
 
-    <title><?=__('Check', 'Installation checking') ?></title>
+    <title><?=$title ?></title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">

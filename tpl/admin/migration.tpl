@@ -32,6 +32,19 @@
             </ul>
         </div>
 
+        {* Debug : show the skipped actions list
+        <div class="col-xs-12 col-md-4">
+            <h2>{__('Admin', 'Skipped:')}</h2>
+            <ul>
+                {foreach $skipped as $s}
+                    <li>{$s|html}</li>
+                    {foreachelse}
+                    <li>{__('Admin', 'Nothing')}</li>
+                {/foreach}
+            </ul>
+        </div>
+        *}
+        
         <div class="col-xs-12 well well-sm">
             {__('Generic', 'Page generated in')} {$time} {__('Generic', 'seconds')}
         </div>

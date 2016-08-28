@@ -19,11 +19,17 @@
 
 require_once '../app/inc/init.php';
 
+$title = __('Admin', 'Logs');
+
+$login = new Framadate\Services\AuthenticationService($connect);
+if ($login->IsAuthorized($smarty, $title) != true)
+  exit;
+
 ob_start();
 is_readable('../' . LOG_FILE) ? readfile('../' . LOG_FILE) : null;
 $content = ob_get_clean();
 
 $smarty->assign('logs', $content);
-$smarty->assign('title', __('Admin', 'Logs'));
 
+$smarty->assign('title', $title);
 $smarty->display('admin/logs.tpl');

@@ -170,7 +170,12 @@
     "Wrong password": "OC_Mot de passe incorrect.",
     "Submit access": "OC_Accèder",
     "You have to provide a password to access the poll.": "OC_Vous devez donner le mot de passe pour avoir accès à ce sondage.",
-    "You have to provide a password so you can participate to the poll.": "OC_Vous devez donner le mot de passe pour pouvoir participer à ce sondage."
+    "You have to provide a password so you can participate to the poll.": "OC_Vous devez donner le mot de passe pour pouvoir participer à ce sondage.",
+    "OldPwd": "OC_OldPwd",
+    "NewPwd": "OC_NewPwd",
+    "NewPwdConfirm": "OC_NewPwdConfirm",
+    "Change": "OC_Change",
+    "OldPwdIncorrect": "OC_OldPwdIncorrect"
   },
   "studs": {
     "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Per participar a aqueste sondatge, picatz vòstre nom, triatz totas las valors que vos agradan e validatz amb lo boton al cap de linha.",
@@ -324,7 +329,9 @@
     "Purged:": "Purgats :",
     "Confirm removal of the poll": "Confirmar la supression del sondatge",
     "polls in the database at this time": "sondatges dins la banca de donadas actualament",
-    "Purge the polls": "Purgar los sondatges"
+    "Purge the polls": "Purgar los sondatges",
+    "ChangePwd": "OC_ChangePwd",
+    "PleaseUpgrade": "OC_PleaseUpgrade"
   },
   "FindPolls": {
     "Send me my polls": "Mandar mos sondatges",

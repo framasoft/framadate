@@ -29,9 +29,16 @@ use Framadate\Migration\AddColumns_password_hash_And_results_publicly_visible_In
 use Framadate\Migration\Increase_pollId_size;
 use Framadate\Migration\Migration;
 use Framadate\Migration\RPadVotes_from_0_8;
+use Framadate\Migration\AddTableVariable;
 use Framadate\Utils;
 
 include_once __DIR__ . '/../app/inc/init.php';
+
+$title = __('Admin', 'Migration');
+
+$login = new Framadate\Services\AuthenticationService($connect);
+if ($login->IsAuthorized($smarty, $title) != true)
+  exit;
 
 set_time_limit(300);
 
@@ -47,7 +54,8 @@ $migrations = [
     new Alter_Comment_table_for_name_length(),
     new Alter_Comment_table_adding_date(),
     new AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9(),
-    new Increase_pollId_size()
+    new Increase_pollId_size(),
+    new AddTableVariable()
 ];
 // ---------------------------------------
 
@@ -77,6 +85,7 @@ $countSkipped = 0;
 // Loop on every Migration sub classes
 $success = [];
 $fail = [];
+$skipped = [];
 foreach ($migrations as $migration) {
     $className = get_class($migration);
 
@@ -103,6 +112,7 @@ foreach ($migrations as $migration) {
         }
     } else {
         $countSkipped++;
+        $skipped[] = $migration->description();
     }
 
 }
@@ -111,6 +121,7 @@ $countTotal = $countSucceeded + $countFailed + $countSkipped;
 
 $smarty->assign('success', $success);
 $smarty->assign('fail', $fail);
+$smarty->assign('skipped', $skipped);
 
 $smarty->assign('countSucceeded', $countSucceeded);
 $smarty->assign('countFailed', $countFailed);
@@ -118,6 +129,5 @@ $smarty->assign('countSkipped', $countSkipped);
 $smarty->assign('countTotal', $countTotal);
 $smarty->assign('time', $total_time = round((microtime(true)-$_SERVER['REQUEST_TIME_FLOAT']), 4));
 
-$smarty->assign('title', __('Admin', 'Migration'));
-
+$smarty->assign('title', $title);
 $smarty->display('admin/migration.tpl');

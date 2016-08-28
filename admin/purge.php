@@ -25,6 +25,12 @@ use Framadate\Services\SecurityService;
 include_once __DIR__ . '/../app/inc/init.php';
 include_once __DIR__ . '/../bandeaux.php';
 
+$title = __('Admin', 'Purge');
+
+$login = new Framadate\Services\AuthenticationService($connect);
+if ($login->IsAuthorized($smarty, $title) != true)
+  exit;
+
 /* Variables */
 /* --------- */
 
@@ -52,9 +58,9 @@ if ($action === 'purge' && $securityService->checkCsrf('admin', $_POST['csrf']))
 }
 
 // Assign data to template
+
 $smarty->assign('message', $message);
 $smarty->assign('crsf', $securityService->getToken('admin'));
 
-$smarty->assign('title', __('Admin', 'Purge'));
-
+$smarty->assign('title', $title);
 $smarty->display('admin/purge.tpl');

@@ -26,6 +26,12 @@ use Framadate\Services\SuperAdminService;
 include_once __DIR__ . '/../app/inc/init.php';
 include_once __DIR__ . '/../bandeaux.php';
 
+$title = __('Admin', 'Polls');
+
+$login = new Framadate\Services\AuthenticationService($connect);
+if ($login->IsAuthorized($smarty, $title) != true)
+  exit;
+
 const POLLS_PER_PAGE = 30;
 
 /* Functions */
@@ -86,6 +92,7 @@ $count = $found['count'];
 $total = $found['total'];
 
 // Assign data to template
+
 $smarty->assign('polls', $polls);
 $smarty->assign('count', $count);
 $smarty->assign('total', $total);
@@ -96,6 +103,5 @@ $smarty->assign('crsf', $securityService->getToken('admin'));
 $smarty->assign('search', $search);
 $smarty->assign('search_query', buildSearchQuery($search));
 
-$smarty->assign('title', __('Admin', 'Polls'));
-
+$smarty->assign('title', $title);
 $smarty->display('admin/polls.tpl');

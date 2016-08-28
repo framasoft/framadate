@@ -43,6 +43,7 @@ if (!empty($_POST)) {
 }
 
 $smarty->assign('error', $error);
-$smarty->assign('title', __('Admin', 'Installation'));
 $smarty->assign('fields', $installService->getFields());
+
+$smarty->assign('title', __('Admin', 'Installation'));
 $smarty->display('admin/install.tpl');

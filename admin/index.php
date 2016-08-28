@@ -19,6 +19,19 @@
 
 require_once '../app/inc/init.php';
 
-$smarty->assign('title', __('Admin', 'Administration'));
+$title = __('Admin', 'Administration');
+$msg_error = null;
+
+$login = new Framadate\Services\AuthenticationService($connect);
+if ($login->IsAuthorized($smarty, $title) != true)
+  exit;
+
+$msg_error = $login->GetMsgError();
+
+//SMARTY template
+
 $smarty->assign('logsAreReadable', is_readable('../' . LOG_FILE));
+$smarty->assign('msg_error', $msg_error);
+
+$smarty->assign('title', $title);
 $smarty->display('admin/index.tpl');

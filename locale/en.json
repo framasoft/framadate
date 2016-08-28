@@ -170,7 +170,12 @@
     "Wrong password": "Wrong password",
     "Submit access": "Submit access",
     "You have to provide a password to access the poll.": "You have to provide a password to access the poll.",
-    "You have to provide a password so you can participate to the poll.": "You have to provide a password so you can participate to the poll."
+    "You have to provide a password so you can participate to the poll.": "You have to provide a password so you can participate to the poll.",
+    "OldPwd": "Old password",
+    "NewPwd": "New password",
+    "NewPwdConfirm": "Confirm new password",
+    "Change": "Change",
+    "OldPwdIncorrect": "The old password is incorrect"
   },
   "studs": {
     "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "If you want to vote in this poll, you have to give your name, make your choice, and submit it with the plus button at the end of the line.",
@@ -324,7 +329,9 @@
     "Purged:": "Purged:",
     "Confirm removal of the poll": "Confirm removal of the poll ",
     "polls in the database at this time": "polls in the database at this time",
-    "Purge the polls": "Purge the polls"
+    "Purge the polls": "Purge the polls",
+    "ChangePwd": "Change password",
+    "PleaseUpgrade": "You should upgrade the application (Migration)."
   },
   "FindPolls": {
     "Send me my polls": "Send me my polls",
@@ -356,19 +363,19 @@
     "For sending to the polled users": "Participant link"
   },
   "Installation": {
-    "AppMail": "EN_Adresse mail de l'application",
-    "AppName": "EN_Nom de l'application",
-    "CleanUrl": "EN_URL propres",
-    "Database": "EN_Base de données",
-    "DbConnectionString": "EN_Chaîne de connexion",
-    "DbPassword": "EN_Mot de passe",
-    "DbPrefix": "EN_Préfixe",
-    "DbUser": "EN_Utilisateur",
-    "DefaultLanguage": "EN_Langue par défaut",
-    "General": "EN_Général",
-    "Install": "EN_Installer",
-    "MigrationTable": "EN_Table de migration",
-    "ResponseMail": "EN_Mail de réponse"
+    "AppMail": "Mail of the application",
+    "AppName": "Application name",
+    "CleanUrl": "Clean URL",
+    "Database": "Database",
+    "DbConnectionString": "Connection string",
+    "DbPassword": "Password",
+    "DbPrefix": "Prefix",
+    "DbUser": "User",
+    "DefaultLanguage": "Default language",
+    "General": "General",
+    "Install": "Install",
+    "MigrationTable": "Migration table",
+    "ResponseMail": "Response mail"
   },
   "Error": {
     "Error!": "Error!",

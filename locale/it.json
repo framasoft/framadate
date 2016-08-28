@@ -170,7 +170,12 @@
     "Wrong password": "Password sbagliata.",
     "Submit access": "Accesso",
     "You have to provide a password to access the poll.": "Dovete inserire la password per accedere a questo sondaggio.",
-    "You have to provide a password so you can participate to the poll.": "Dovete inserire la password per poter partecipare a questo sondaggio."
+    "You have to provide a password so you can participate to the poll.": "Dovete inserire la password per poter partecipare a questo sondaggio.",
+    "OldPwd": "Vecchia password",
+    "NewPwd": "nuova password",
+    "NewPwdConfirm": "Conferma nuova password",
+    "Change": "Changer",
+    "OldPwdIncorrect": "La vecchia password non è corretta"
   },
   "studs": {
     "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Per partecipare a questo sondaggio, è necessario inserire vostro nome, scegliere tutti i parametri che preferite e confermare la vostra scelta con il pulsante alla fine della riga.",
@@ -324,7 +329,9 @@
     "Purged:": "Depurati:",
     "Confirm removal of the poll": "Confermare l'eliminazione del sondaggio ",
     "polls in the database at this time": "sondaggi presenti nel database attualmente",
-    "Purge the polls": "Depurare i sondaggi"
+    "Purge the polls": "Depurare i sondaggi",
+    "ChangePwd": "Modificare la password",
+    "PleaseUpgrade": "È necessario aggiornare l'applicazione."
   },
   "FindPolls": {
     "Send me my polls": "Inviare i miei sondaggi",
@@ -355,19 +362,19 @@
     "For sending to the polled users": "Per diffondere ai partecipanti al sondaggio"
   },
   "Installation": {
-    "AppMail": "IT_Adresse mail de l'application",
-    "AppName": "IT_Nom de l'application",
-    "CleanUrl": "IT_URL propres",
-    "Database": "IT_Base de données",
-    "DbConnectionString": "IT_Chaîne de connexion",
-    "DbPassword": "IT_Mot de passe",
-    "DbPrefix": "IT_Préfixe",
-    "DbUser": "IT_Utilisateur",
-    "DefaultLanguage": "IT_Langue par défaut",
-    "General": "IT_Général",
-    "Install": "IT_Installer",
-    "MigrationTable": "IT_Table de migration",
-    "ResponseMail": "IT_Mail de réponse"
+    "AppMail": "Posta dell'applicazione",
+    "AppName": "Nome dell'applicazione",
+    "CleanUrl": "Clean URL",
+    "Database": "Banca dati",
+    "DbConnectionString": "stringa di connessione",
+    "DbPassword": "Password",
+    "DbPrefix": "Prefisso",
+    "DbUser": "Utente",
+    "DefaultLanguage": "Lingua di default",
+    "General": "Generale",
+    "Install": "Installare",
+    "MigrationTable": "tabella di migrazione",
+    "ResponseMail": "elettronica di risposta"
   },
   "Error": {
     "Error!": "Errore!",

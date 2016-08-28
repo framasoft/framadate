@@ -170,7 +170,12 @@
     "Wrong password": "Mot de passe incorrect.",
     "Submit access": "Accèder",
     "You have to provide a password to access the poll.": "Vous devez donner le mot de passe pour avoir accès à ce sondage.",
-    "You have to provide a password so you can participate to the poll.": "Vous devez donner le mot de passe pour pouvoir participer à ce sondage."
+    "You have to provide a password so you can participate to the poll.": "Vous devez donner le mot de passe pour pouvoir participer à ce sondage.",
+    "OldPwd": "Ancien mot de passe",
+    "NewPwd": "Nouveau mot de passe",
+    "NewPwdConfirm": "Confirmer le nouveau mot de passe",
+    "Change": "Changer",
+    "OldPwdIncorrect": "L'ancien mot de passe est incorrect"
   },
   "studs": {
     "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Pour participer à ce sondage, veuillez entrer votre nom, choisir toutes les valeurs qui vous conviennent et valider votre choix avec le bouton en bout de ligne.",
@@ -324,7 +329,9 @@
     "Purged:": "Purgés :",
     "Confirm removal of the poll": "Confirmer la suppression du sondage",
     "polls in the database at this time": "sondages dans la base actuellement",
-    "Purge the polls": "Purger les sondages"
+    "Purge the polls": "Purger les sondages",
+    "ChangePwd": "Changer le mot de passe",
+    "PleaseUpgrade": "Vous devriez mettre à niveau l'application (Migration)."
   },
   "FindPolls": {
     "Send me my polls": "Envoyer mes sondages",
