@@ -70,15 +70,19 @@ class MailService {
     }
 
     private function sendMail($to, $subject, $body, $msgKey, $headers) {
-        mail($to, $subject, $body, $headers, '');
+        $success = mail($to, $subject, $body, $headers, '');
 
         // Log
-
-        $this->logService->log('MAIL', 'Mail sent to: ' . $to . ', key: ' . $msgKey);
-
+        if ($success) {
+            $this->logService->log('MAIL', 'Mail sent to: ' . $to . ', key: ' . $msgKey);
+        } else {
+            $this->logService->log('MAIL', 'Mail could not be sent to: ' . $to . ', please check your configuration');
+        }
+        
         // Store the mail sending date
-
-        $_SESSION[self::MAILSERVICE_KEY][$msgKey] = time();
+        if ($success) {
+            $_SESSION[self::MAILSERVICE_KEY][$msgKey] = time();
+        }
     }
 
 }
