@@ -125,8 +125,8 @@
         {if $admin}
             <div class="row">
                 <div class="form-group form-group col-md-4">
-                    <label for="public-link"><a class="public-link" href="{poll_url id=$poll_id}/readonly ">{__('PollInfo', 'Read-only link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
-                    <input class="form-control" id="public-link" type="text" readonly="readonly" value="{poll_url id=$poll_id}/readonly" onclick="select();"/>
+                    <label for="public-link"><a class="public-link" href="{poll_url id=$readonly_poll_id}/readonly ">{__('PollInfo', 'Read-only link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                    <input class="form-control" id="public-link" type="text" readonly="readonly" value="{poll_url id=$readonly_poll_id}/readonly" onclick="select();"/>
                 </div>
                 <div class="col-md-4" >
                     <div id="poll-hidden-form">

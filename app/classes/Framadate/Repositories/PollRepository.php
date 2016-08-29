@@ -11,12 +11,12 @@ class PollRepository extends AbstractRepository {
         parent::__construct($connect);
     }
 
-    public function insertPoll($poll_id, $admin_poll_id, $form) {
+    public function insertPoll($poll_id, $admin_poll_id, $readonly_poll_id, $form) {
         $sql = 'INSERT INTO `' . Utils::table('poll') . '`
-          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden)
-          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?)';
+          (id, admin_id, readonly_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden)
+          VALUES (?,?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?)';
         $prepared = $this->prepare($sql);
-        $prepared->execute(array($poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, $form->editable, $form->receiveNewVotes, $form->receiveNewComments, $form->hidden));
+        $prepared->execute(array($poll_id, $admin_poll_id, $readonly_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, $form->editable, $form->receiveNewVotes, $form->receiveNewComments, $form->hidden));
     }
 
     function findById($poll_id) {
@@ -39,10 +39,28 @@ class PollRepository extends AbstractRepository {
         return $poll;
     }
 
+    public function findByReadonlyId($readonly_poll_id) {
+        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE readonly_id = ?');
+
+        $prepared->execute(array($readonly_poll_id));
+        $poll = $prepared->fetch();
+        $prepared->closeCursor();
+
+        return $poll;
+    }
+
     public function existsById($poll_id) {
         $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
         $prepared->execute(array($poll_id));
+
+        return $prepared->rowCount() > 0;
+    }
+
+    public function existsByReadonlyId($readonly_poll_id) {
+        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE readonly_id = ?');
+
+        $prepared->execute(array($readonly_poll_id));
 
         return $prepared->rowCount() > 0;
     }

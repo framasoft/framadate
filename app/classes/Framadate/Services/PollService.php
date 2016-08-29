@@ -67,6 +67,14 @@ class PollService {
         return null;
     }
 
+    public function findByReadonlyId($readonly_poll_id) {
+        if (preg_match('/^[\w\d]{20}$/i', $readonly_poll_id)) {
+            return $this->pollRepository->findByReadonlyId($readonly_poll_id);
+        }
+
+        return null;
+    }
+
     function allCommentsByPollId($poll_id) {
         return $this->commentRepository->findAllByPollId($poll_id);
     }
@@ -130,16 +138,19 @@ class PollService {
             $poll_id = $this->random(16);
         } while ($this->pollRepository->existsById($poll_id));
         $admin_poll_id = $poll_id . $this->random(8);
+        do {
+            $readonly_poll_id = $this->random(20);
+        } while ($this->pollRepository->existsByReadonlyId($readonly_poll_id));
 
         // Insert poll + slots
         $this->pollRepository->beginTransaction();
-        $this->pollRepository->insertPoll($poll_id, $admin_poll_id, $form);
+        $this->pollRepository->insertPoll($poll_id, $admin_poll_id, $readonly_poll_id, $form);
         $this->slotRepository->insertSlots($poll_id, $form->getChoices());
         $this->pollRepository->commit();
 
         $this->logService->log('CREATE_POLL', 'id:' . $poll_id . ', title: ' . $form->title . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
 
-        return array($poll_id, $admin_poll_id);
+        return array($poll_id, $admin_poll_id, $readonly_poll_id);
     }
 
     public function findAllByAdminMail($mail) {

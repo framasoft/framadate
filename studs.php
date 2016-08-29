@@ -38,6 +38,7 @@ const ADD_COMMENT = 3;
 /* --------- */
 
 $poll_id = null;
+$readonly_poll_id = null;
 $poll = null;
 $message = null;
 $editingVoteId = 0;
@@ -99,6 +100,10 @@ if (!empty($_GET['poll'])) {
     $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
     if (strlen($poll_id) === 16) {
         $poll = $pollService->findById($poll_id);
+    } elseif (strlen($poll_id) === 20) {
+        $poll = $pollService->findByReadonlyId($poll_id);
+        $poll_id = $poll->id;
+        $readonly = true;
     }
 }
 
@@ -211,13 +216,6 @@ if (isset($_POST['add_comment'])) {
             $message = new Message('danger', __('Error', 'Comment failed'));
         }
     }
-}
-
-// -------------------------------
-// Readonly page
-// -------------------------------
-if (!empty($_GET['readonly'])) {
-    $readonly = true;
 }
 
 // Retrieve data
