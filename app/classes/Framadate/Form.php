@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
@@ -51,6 +51,12 @@ class Form
      * @var boolean
      */
     public $hidden;
+
+    /**
+     * If true, the author want to customize the URL
+     * @var boolean
+     */
+    public $use_customized_url;
 
     /**
      * If true, a password will be needed to access the poll

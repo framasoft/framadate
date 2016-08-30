@@ -4,7 +4,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
@@ -34,27 +34,13 @@ $(document).ready(function () {
     });
 
     /**
-     * Enable/Disable custom id options
+     * Enable/Disable custom url options
      */
-    var $pollId = $("#poll_id");
-    var $customizeId = $("#customize_id");
-
-    // Init checkbox + input
-    if (($pollId.val() || $pollId.attr('value') || "").length > 0) {
-        $customizeId.attr('checked', 'checked');
-        $pollId.removeAttr("disabled");
-    }
-    // Listen for checkbox changes
-    $customizeId.change(function () {
+    $("#use_customized_url").change(function () {
         if ($(this).prop("checked")) {
-            $pollId
-                .removeAttr("disabled")
-                .val($pollId.attr("tmp") || $pollId.attr('value'));
+            $("#customized_url_options").removeClass("hidden");
         } else {
-            $pollId
-                .attr("disabled", "disabled")
-                .attr("tmp", $pollId.val())
-                .val("");
+            $("#customized_url_options").addClass("hidden");
         }
     });
 
@@ -88,6 +74,11 @@ $(document).ready(function () {
     } else {
         // Show the warning about cookies
         document.getElementById("cookie-warning").setAttribute("style", "");
+    }
+
+    var wrapper = new MDEWrapper($('#poll_comments')[0], $('#rich-editor-button'), $('#simple-editor-button'));
+    if ($('#rich-editor-button').hasClass('active')) {
+        wrapper.enable();
     }
 
 });

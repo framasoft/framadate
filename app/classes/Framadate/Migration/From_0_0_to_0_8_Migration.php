@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
@@ -48,7 +48,7 @@ class From_0_0_to_0_8_Migration implements Migration {
      * @return bool true is the Migration should be executed.
      */
     function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
+        $stmt = $pdo->query('SHOW TABLES like \'' . TABLENAME_PREFIX . '%\'');  //issue187 : pouvoir installer framadate dans une base contenant d'autres tables.
         $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
 
         // Check if there is no tables but the MIGRATION_TABLE one

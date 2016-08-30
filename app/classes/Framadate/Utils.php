@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
@@ -59,8 +59,12 @@ class Utils {
         <link rel="stylesheet" href="' . self::get_server_name() . 'css/print.css" media="print" />
         <script type="text/javascript" src="' . self::get_server_name() . 'js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>
-        <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.' . $locale . '.js"></script>
+        <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>';
+        if ('en' != $locale) {
+        	   echo '
+        <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.' . $locale . '.js"></script>';
+        }
+        echo '
         <script type="text/javascript" src="' . self::get_server_name() . 'js/core.js"></script>';
         if (is_file($_SERVER['DOCUMENT_ROOT'] . "/nav/nav.js")) {
             echo '<script src="/nav/nav.js" id="nav_js" type="text/javascript" charset="utf-8"></script><!-- /Framanav -->';
@@ -133,31 +137,28 @@ class Utils {
         return TABLENAME_PREFIX . $tableName;
     }
 
-    public static function markdown($md, $clear) {
-        preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/', $md, $md_a_img); // Markdown [![alt](src)](href)
-        preg_match_all('/!\[(.*?)\]\((.*?)\)/', $md, $md_img); // Markdown ![alt](src)
-        preg_match_all('/\[(.*?)\]\((.*?)\)/', $md, $md_a); // Markdown [text](href)
-        if (isset($md_a_img[2][0]) && $md_a_img[2][0] != '' && isset($md_a_img[3][0]) && $md_a_img[3][0] != '') { // [![alt](src)](href)
+    public static function markdown($md, $clear=false, $line=true) {
+        $parseDown = new \Parsedown();
 
-            $text = self::htmlEscape($md_a_img[1][0]);
-            $html = '<a href="' . self::htmlEscape($md_a_img[3][0]) . '"><img src="' . self::htmlEscape($md_a_img[2][0]) . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" /></a>';
+        $parseDown
+            ->setMarkupEscaped(true)
+            ->setBreaksEnabled(true)
+            ->setUrlsLinked(false);
 
-        } elseif (isset($md_img[2][0]) && $md_img[2][0] != '') { // ![alt](src)
-
-            $text = self::htmlEscape($md_img[1][0]);
-            $html = '<img src="' . self::htmlEscape($md_img[2][0]) . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" />';
-
-        } elseif (isset($md_a[2][0]) && $md_a[2][0] != '') { // [text](href)
-
-            $text = self::htmlEscape($md_a[1][0]);
-            $html = '<a href="' . $md_a[2][0] . '">' . $text . '</a>';
-
-        } else { // text only
-
-            $text = self::htmlEscape($md);
-            $html = $text;
-
+        if ($line) {
+            $html  = $parseDown->line($md);
+        } else {
+            $md = preg_replace_callback(
+                '#( ){2,}#',
+                function ($m) {
+                    return str_repeat('&nbsp;', strlen($m[0]));
+                },
+                $md
+            );
+            $html  = $parseDown->text($md);
         }
+
+        $text = strip_tags($html);
 
         return $clear ? $text : $html;
     }
@@ -186,7 +187,7 @@ class Utils {
     }
 
     public static function fromPostOrDefault($postKey, $default = '') {
-        return !empty($_POST[$postKey]) ? Utils::htmlEscape($_POST[$postKey]) : $default;
+        return !empty($_POST[$postKey]) ? $_POST[$postKey] : $default;
     }
 
     public static function base64url_encode($input) {

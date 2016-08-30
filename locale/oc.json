@@ -38,6 +38,7 @@
     "Search": "Cercar",
     "Creation date:": "Data de creacion :",
     "Caption": "OC_Légende",
+    "Markdown": "Markdown",
     "ASTERISK": "*"
   },
   "Date": {
@@ -131,7 +132,9 @@
     "Password protected": "OC_Protégé par mot de passe",
     "Votes protected by password": "OC_Votes protégés par mot de passe",
     "No password": "OC_Pas de mot de passe",
-    "Remove password": "OC_Supprimer le mot de passe"
+    "Remove password": "OC_Supprimer le mot de passe",
+    "Rich editor": "OC_Editeur avancé",
+    "Simple editor": "OC_Editeur simple"
   },
   "Poll results": {
     "Votes of the poll": "Vòtes del sondatge",
@@ -230,6 +233,7 @@
     "Required fields cannot be left blank.": "Mercés de garnir totes los formularis obligatòris, marcats amb una *.",
     "Poll title": "Títol del sondatge",
     "Poll id": "OC_Identifiant",
+    "Customize the URL": "OC_Personnaliser le lien",
     "Poll id rules": "OC_L'identifiant peut contenir des lettres, des chiffres et des tirets \"-\".",
     "Poll id warning": "OC_En définissant un identifiant cela peut faciliter l'accès à ce sondage pour des personnes non désirées. Il est recommandé de le protéger par mot de passe.",
     "Votes cannot be modified": "Cap de vòte pòt pas èsser modificat",
@@ -241,8 +245,13 @@
     "Use a password to restrict access": "OC_Utiliser un mot de passe pour restreindre l'accès au sondage",
     "The results are publicly visible": "OC_Les résultats sont visibles sans mot de passe",
     "Poll password": "OC_Mot de passe",
-    "Confirm password": "OC_Confirmer votre mot de passe   ",
-    "Go to step 2": "Anar a l'etapa 2"
+    "Password choice": "OC_Choix",
+    "Password confirmation": "OC_Confirmation",
+    "Permissions": "OC_Permissions",
+    "Go to step 2": "Anar a l'etapa 2",
+    "To make the description more attractive, you can use the Markdown format.": "OC_Afin de rendre le descriptif de ce sondage plus attractif, vous pouvez utiliser le formatage Markdown.",
+    "You can enable or disable the editor at will.": "OC_Vous pouvez activer ou désactiver l'éditeur à votre guise.",
+    "More informations here:": "OC_Plus d'informations ici :"
   },
   "Step 2": {
     "Back to step 1": "Tornar a l'etapa 1",
@@ -259,6 +268,7 @@
     "Copy hours of the first day": "Reportar los oraris del primièr jorn suls autres jorns",
     "Remove a day": "Suprimir lo darrièr jorn",
     "Add a day": "Ajustar un jorn",
+    "Remove this day": "OC_Supprimer ce jour",
     "Remove all days": "Suprimir totes los jorns",
     "Remove all hours": "Suprimir totes los oraris"
   },

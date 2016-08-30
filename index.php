@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
@@ -36,7 +36,7 @@ $pollService = new PollService($connect, new $logService());
 /* ---- */
 
 $demoPoll = $pollService->findById('aqg259dth55iuhwm');
-$nbcol = $config['show_what_is_that'] + $config['show_the_software'] + $config['show_cultivate_your_garden'];
+$nbcol = max( $config['show_what_is_that'] + $config['show_the_software'] + $config['show_cultivate_your_garden'], 1 );
 
 $smarty->assign('show_what_is_that', $config['show_what_is_that']);
 $smarty->assign('show_the_software', $config['show_the_software']);

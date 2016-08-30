@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
@@ -57,6 +57,7 @@ $ALLOWED_LANGUAGES = [
     'es' => 'Español',
     'de' => 'Deutsch',
     'it' => 'Italiano',
+    'br' => 'Brezhoneg',
 ];
 
 // Nom et emplacement du fichier image contenant le titre
@@ -92,4 +93,5 @@ $config = [
     'default_poll_duration' => 180,         // default values for the new poll duration (number of days).
     /* create_classic_poll.php */
     'user_can_add_img_or_link' => true,     // user can add link or URL when creating his poll.
+    'markdown_editor_by_default' => true    // The markdown editor for the description is enabled by default
 ];

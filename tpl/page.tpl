@@ -17,7 +17,9 @@
     <script type="text/javascript" src="{'js/jquery-1.11.1.min.js'|resource}"></script>
     <script type="text/javascript" src="{'js/bootstrap.min.js'|resource}"></script>
     <script type="text/javascript" src="{'js/bootstrap-datepicker.js'|resource}"></script>
+    {if "en" != $locale}
     <script type="text/javascript" src="{"js/locales/bootstrap-datepicker.$locale.js"|resource}"></script>
+    {/if}
     <script type="text/javascript" src="{'js/core.js'|resource}"></script>
 
     {block name="header"}{/block}
@@ -25,7 +27,7 @@
 </head>
 <body>
 {if $use_nav_js}
-    <script src="https://n2.framasoft.org/nav/nav.js" type="text/javascript"></script>
+    <script src="https://framasoft.org/nav/nav.js" type="text/javascript"></script>
 {/if}
 <div class="container ombre">
 

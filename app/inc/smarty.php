@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
@@ -57,12 +57,15 @@ function smarty_function_poll_url($params, Smarty_Internal_Template $template) {
     return Utils::getUrlSondage($poll_id, $admin, $vote_unique_id, $action, $action_value);
 }
 
-function smarty_modifier_markdown($md, $clear = false) {
-    return Utils::markdown($md, $clear);
+function smarty_modifier_markdown($md, $clear = false, $inline=true) {
+    return Utils::markdown($md, $clear, $inline);
 }
 
 function smarty_modifier_resource($link) {
     return Utils::get_server_name() . $link;
+}
+function smarty_modifier_addslashes_single_quote($string) {
+    return addcslashes($string, '\\\'');
 }
 
 function smarty_modifier_html($html) {

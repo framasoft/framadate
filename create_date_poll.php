@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft https://git.framasoft.org/framasoft/framadate/)
+ * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft https://git.framasoft.org/framasoft/framadate/)
  *
  * =============================
  *
@@ -120,6 +120,17 @@ switch ($step) {
             // Clear previous choices
             $_SESSION['form']->clearChoices();
 
+            // Reorder moments to deal with suppressed dates
+            $moments = array();
+            $i = 0;
+            while(count($moments) < count($_POST['days'])) {
+                if (!empty($_POST['horaires' . $i])) {
+                    $moments[] = $_POST['horaires' . $i];
+                }
+                $i++;
+            }
+
+
             for ($i = 0; $i < count($_POST['days']); $i++) {
                 $day = $_POST['days'][$i];
 
@@ -130,7 +141,7 @@ switch ($step) {
                     $choice = new Choice($time);
                     $_SESSION['form']->addChoice($choice);
 
-                    $schedules = $inputService->filterArray($_POST['horaires' . $i], FILTER_DEFAULT);
+                    $schedules = $inputService->filterArray($moments[$i], FILTER_DEFAULT);
                     for ($j = 0; $j < count($schedules); $j++) {
                         if (!empty($schedules[$j])) {
                             $choice->addSlot(strip_tags($schedules[$j]));
@@ -138,6 +149,7 @@ switch ($step) {
                     }
                 }
             }
+            $_SESSION['form']->sortChoices();
         }
 
         // Display step 3

@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
@@ -45,6 +45,7 @@ $ALLOWED_LANGUAGES = [
     'es' => 'Español',
     'de' => 'Deutsch',
     'it' => 'Italiano',
+    'br' => 'Brezhoneg',
 ];
 const DEFAULT_LANGUAGE = 'en';
 require_once ROOT_DIR . 'app/inc/i18n.php';
@@ -124,12 +125,12 @@ if (extension_loaded('openssl')) {
 }
 
 // Datetime
-if (!empty(ini_get('date.timezone'))) {
+$timezone = ini_get('date.timezone');
+if (!empty($timezone)) {
     $messages[] = new Message('info', __('Check','date.timezone is set.'));
 } else {
     $messages[] = new Message('warning', __('Check','Consider setting the date.timezone in php.ini.'));
 }
-
 
 
 // The percentage of steps needed to be ready to launch the application

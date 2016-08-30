@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondate: Framasoft (https://github.com/framasoft)
+ * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
@@ -122,8 +122,7 @@ if (isset($_POST['update_poll_info'])) {
                 break;
         }
     } elseif ($field == 'expiration_date') {
-        $expiration_date = filter_input(INPUT_POST, 'expiration_date', FILTER_VALIDATE_REGEXP,
-            ['options' => ['regexp' => '#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#']]);
+        $expiration_date = $inputService->filterDate($_POST['expiration_date']);
         if ($expiration_date) {
             $poll->end_date = $expiration_date;
             $updated = true;
@@ -422,5 +421,6 @@ $smarty->assign('hidden', false);
 $smarty->assign('accessGranted', true);
 $smarty->assign('resultPubliclyVisible', true);
 $smarty->assign('editedVoteUniqueId', '');
+$smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
 
 $smarty->display('studs.tpl');

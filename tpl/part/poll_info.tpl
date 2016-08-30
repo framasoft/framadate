@@ -22,7 +22,8 @@
                 <div class="btn-group pull-right">
                     <button onclick="print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> {__('PollInfo', 'Print')}</button>
                     <a href="{$SERVER_URL|html}exportcsv.php?poll={$poll_id|html}" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> {__('PollInfo', 'Export to CSV')}</a>
-                    {if $admin && !$expired}
+                    {if $admin}
+                        {if !$expired}
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-trash"></span> <span class="sr-only">{__('Generic', 'Remove')}</span> <span class="caret"></span>
                         </button>
@@ -32,6 +33,12 @@
                             <li class="divider" role="presentation"></li>
                             <li><button class="btn btn-link" type="submit" name="delete_poll">{__('PollInfo', 'Remove the poll')}</button></li>
                         </ul>
+                        {else}
+                            <button class="btn btn-danger" type="submit" name="delete_poll" title="{__('PollInfo', 'Remove the poll')}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <span class="sr-only">{__('PollInfo', 'Remove the poll')}</span>
+                            </button>
+                        {/if}
                     {/if}
                 </div>
             </div>
@@ -75,10 +82,11 @@
             {if $admin || preg_match('/[^ \r\n]/', $poll->description)}
                 <div class="form-group col-md-8" id="description-form">
                     <label class="control-label">{__('Generic', 'Description')}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the description')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</label>
-                    <pre class="form-control-static well poll-description">{$poll->description|html}</pre>
+                    <div class="form-control-static well poll-description">{$poll->description|markdown:false:false}</div>
                     {if $admin && !$expired}
-                        <div class="hidden js-desc text-right">
+                        <div class="hidden js-desc">
                             <label class="sr-only" for="newdescription">{__('Generic', 'Description')}</label>
+                            {include 'part/description_markdown.tpl'}
                             <textarea class="form-control" id="newdescription" name="description" rows="2" cols="40">{$poll->description|html}</textarea>
                             <button type="submit" id="btn-new-desc" name="update_poll_info" value="description" class="btn btn-sm btn-success" title="{__('PollInfo', 'Save the description')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Save')}</span></button>
                             <button class="btn btn-default btn-sm btn-cancel" title="{__('PollInfo', 'Cancel the description edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{__('Generic', 'Cancel')}</span></button>
@@ -102,8 +110,8 @@
                 </div>
                 <div id="expiration-form" class="form-group col-md-4">
                     <label class="control-label">{__('PollInfo', 'Expiration date')}</label>
-                    <p>{$poll->end_date|date_format:$date_format['txt_date']|html}{if !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiration date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
-                    {if !$expired}
+                    <p>{$poll->end_date|date_format:$date_format['txt_date']|html} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiration date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
+
                         <div class="hidden js-expiration">
                             <label class="sr-only" for="newexpirationdate">{__('PollInfo', 'Expiration date')}</label>
                             <div class="input-group">
@@ -114,7 +122,7 @@
                                 </span>
                             </div>
                         </div>
-                    {/if}
+
                 </div>
             {/if}
         </div>
@@ -199,8 +207,7 @@
                             {$rule_icon = '<span class="glyphicon glyphicon-lock"></span>'}
                             {$rule_txt = __('PollInfo', 'Votes and comments are locked')}
                         {/if}
-                        <p class="">{$rule_icon} {$rule_txt|html}{if !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
-                        {if !$expired}
+                        <p class="">{$rule_icon} {$rule_txt|html} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
                         <div class="hidden js-poll-rules">
                             <label class="sr-only" for="rules">{__('PollInfo', 'Poll rules')}</label>
                             <div class="input-group">
@@ -216,7 +223,6 @@
                                 </span>
                             </div>
                         </div>
-                        {/if}
                     </div>
                 </div>
             </div>

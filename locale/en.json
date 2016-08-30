@@ -38,6 +38,7 @@
     "Search": "Search",
     "Creation date:": "Creation date:",
     "Caption": "Caption",
+    "Markdown": "Markdown",
     "ASTERISK": "*"
   },
   "Date" : {
@@ -131,7 +132,9 @@
     "Password protected": "Password protected",
     "Votes protected by password": "Votes protected by password",
     "No password": "No password",
-    "Remove password": "Remove password"
+    "Remove password": "Remove password",
+    "Rich editor": "Rich editor",
+    "Simple editor": "Simple editor"
   },
   "Poll results": {
     "Votes of the poll": "Votes",
@@ -229,7 +232,8 @@
     "You are in the poll creation section.": "You are in the poll creation section.",
     "Required fields cannot be left blank.": "Required fields cannot be left blank.",
     "Poll title": "Poll title",
-    "Poll id": "Identifier",
+    "Poll id": "Poll link",
+    "Customize the URL": "EN_Personnaliser le lien",
     "Poll id rules": "The identifier can contain letters, numbers and dashes \"-\".",
     "Poll id warning": "By defining an identifier that can facilitate access to the poll for unwanted people. It is recommended to protect it with a password.",
     "Votes cannot be modified": "Votes cannot be modified",
@@ -241,8 +245,13 @@
     "Use a password to restrict access": "Use a password to restrict access",
     "The results are publicly visible": "The results are publicly visible",
     "Poll password": "Password",
-    "Confirm password": "Confirmer votre mot de passe",
-    "Go to step 2": "Go to step 2"
+    "Password choice": "Choice",
+    "Password confirmation": "Confirmation",
+    "Permissions": "Permissions",
+    "Go to step 2": "Go to step 2",
+    "To make the description more attractive, you can use the Markdown format.": "To make the description more attractive, you can use the Markdown format.",
+    "You can enable or disable the editor at will.": "You can enable or disable the editor at will.",
+    "More informations here:": "More informations here:"
   },
   "Step 2": {
     "Back to step 1": "Return to step 1",
@@ -259,6 +268,7 @@
     "Copy hours of the first day": "Copy times from the first day",
     "Remove a day": "Remove a day",
     "Add a day": "Add a day",
+    "Remove this day": "Remove this day",
     "Remove all days": "Remove all days",
     "Remove all hours": "Remove all times"
   },
@@ -277,7 +287,7 @@
   },
   "Step 3": {
     "Back to step 2": "Back to step 2",
-    "Removal date and confirmation (3 on 3)": "Removal date and confirmation (1 of 3)",
+    "Removal date and confirmation (3 on 3)": "Removal date and confirmation (3 of 3)",
     "Confirm the creation of your poll": "Confirm the creation of your poll",
     "List of your choices": "List of options",
     "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "Once you have confirmed the creation of your poll, you will automatically be redirected to the poll's administration page.",

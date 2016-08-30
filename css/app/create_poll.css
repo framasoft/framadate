@@ -1,3 +1,31 @@
 .form-horizontal .radio label {
     width: 100%;
 }
+
+.optionnal-parameters:hover, .optionnal-parameters:focus {
+    text-decoration: none;
+}
+
+.optionnal-parameters:active, .optionnal-parameters:focus {
+    outline: none;
+}
+
+.optionnal-parameters .caret, .optionnal-parameters.collapsed .caret.caret-up {
+    display: none;
+}
+
+.optionnal-parameters .caret.caret-up, .optionnal-parameters.collapsed .caret {
+    display: inline-block;
+}
+
+.caret.caret-up  {
+    border-bottom: 4px dashed;
+    border-top: 0 none;
+    content: "";
+}
+
+@media (max-width: 767px) {
+    #optionnal {
+        margin-top: 15px;
+    }
+}
