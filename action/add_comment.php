@@ -70,7 +70,7 @@ if (!$poll) {
         $result = $pollService->addComment($poll_id, $name, $comment);
         if ($result) {
             $message = new Message('success', __('Comments', 'Comment added'));
-            $notificationService->sendUpdateNotification($poll, $mailService, $name, NotificationService::ADD_COMMENT);
+            $notificationService->sendUpdateNotification($poll, NotificationService::ADD_COMMENT, $name);
         } else {
             $message = new Message('danger', __('Error', 'Comment failed'));
         }
