@@ -105,7 +105,7 @@
                     <a href="" data-toggle="modal" data-target="#add_days" class="btn btn-default" title="{__('Date', 'Add range dates')}">
                         <span class="glyphicon glyphicon-plus text-success"></span>
                         <span class="glyphicon glyphicon-plus text-success"></span>
-                        <span class="sr-only">{__('Step 2 date', 'Add days')}</span>
+                        <span class="sr-only">{__('Date', 'Add range dates')}</span>
                     </a>
                 </div>
                 <div class="col-md-8 text-right">
