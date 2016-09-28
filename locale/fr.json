@@ -336,7 +336,7 @@
     "List of your polls": "Liste de vos sondages",
     "Here is the list of the polls that you manage on %s:": "Voici la liste des sondages que vous administrez sur %s :",
     "Have a good day!": "Bonne journée !",
-    "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS : ce mail a été envoyé parce que vous – ou quelqu'un d'autre – a demandé la récupération des sondages créés à l'aide de votre adresse email.",
+    "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS : ce mail a été envoyé parce que vous – ou quelqu'un d'autre – avez demandé la récupération des sondages créés à l'aide de votre adresse email.",
     "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "Si jamais vous n'étiez pas à l'origine de cette action et que vous pensez qu'il s'agit d'un abus, vous pouvez nous le signaler à l'administrateur sur %s."
   },
   "Mail": {
@@ -409,6 +409,10 @@
     "Poll id already used": "L'identifiant est déjà utilisé",
     "You can't select more than %d dates": "Vous ne pouvez pas choisir plus de %d dates",
     "Can't create the config.php file in '%s'.": "Impossible de créer le fichier config.php dans '%s'.",
+    "Failed to delete all comments": "Impossible de supprimer tous les commentaires",
+    "Failed to delete all votes": "Impossible de supprimer tous les votes",
+    "Failed to delete the comment": "Impossible de supprimer le commentaire",
+    "Failed to delete the poll": "Impossible de supprimer le sondage",
     "Can't create an empty column.": "Impossible de créer une colonne vide."
   },
   "Check": {
@@ -419,7 +423,7 @@
     "PHP Intl extension is enabled.": "L'extension PHP Intl est activée.",
     "The template compile directory (%s) is not writable.": "Le dossier de compilation des templates (%s) n'est pas accessible en écriture.",
     "The template compile directory (%s) is writable.": "Le dossier de compilation des templates (%s) est accessible en écriture.",
-    "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'éxiste pas.",
+    "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'existe pas.",
     "The config file exists.": "Le fichier de configuration existe.",
     "The config file directory (%s) is writable.": "Le dossier du fichier de configuration (%s) est accessible en écriture.",
     "OpenSSL extension loaded.": "L'extension PHP OpenSSL est chargée.",
