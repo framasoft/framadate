@@ -30,7 +30,7 @@ class AuthenticationService {
 
 		try
 		{
-			$SQL = "select * from `" . Utils::table('variable') . "` where name = 'admin_pwd'";
+			$SQL = "select * from `" . Utils::table('Config') . "` where name = 'admin_pwd'";
 			$this->RecVariable = $this->connect->query($SQL)->fetch(\PDO::FETCH_OBJ);
 		}
 		catch (\PDO\PDOException $e)
@@ -119,7 +119,7 @@ class AuthenticationService {
 		if (!is_null($password) && !empty($password))
 			$SQLPwdHash = "'" . PasswordHasher::hash($password) . "'";
 
-		$SQL = "update `" . Utils::table('variable') . "` set value = " . $SQLPwdHash . " where name = 'admin_pwd'";
+		$SQL = "update `" . Utils::table('Config') . "` set value = " . $SQLPwdHash . " where name = 'admin_pwd'";
 		$this->connect->GetPDO()->exec($SQL);
 		
 		$_SESSION['admin_password'] = $password;

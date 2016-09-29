@@ -16,6 +16,9 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
+
+$_SERVER['FRAMADATE_DEVMODE'] = true;
+
 use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
 

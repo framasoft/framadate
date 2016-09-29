@@ -38,7 +38,6 @@ $smarty->assign('date_format', $date_format);
 if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {
     $smarty->force_compile = true;
     $smarty->compile_check = true;
-
 } else {
     $smarty->force_compile = false;
     $smarty->compile_check = false;

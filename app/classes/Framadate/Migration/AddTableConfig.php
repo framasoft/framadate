@@ -21,12 +21,12 @@ namespace Framadate\Migration;
 use Framadate\Utils;
 
 /**
- * Issue121 : This migration adds the 'variable' table for global parameters.
+ * Issue121 : This migration adds the 'Config' table for global configuration in framadate.
  *
  * @package Framadate\Migration
  * @version 0.9.x
  */
-class AddTableVariable implements Migration {
+class AddTableConfig implements Migration {
 
     function __construct() {
     }
@@ -37,7 +37,7 @@ class AddTableVariable implements Migration {
      * @return string The description of the migration class
      */
     function description() {
-        return 'Add table "Variable" for global parameters';
+        return "Add 'Config' table for global configuration in framadate";
     }
 
     /**
@@ -52,7 +52,7 @@ class AddTableVariable implements Migration {
         $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
 
         // Check if destination tables are presents
-        $diff = array_diff([Utils::table('variable')], $tables);
+        $diff = array_diff([Utils::table('Config')], $tables);
         return count($diff) != 0;		//!= 0 : At least one table is not present => OK for creation
     }
 
@@ -63,14 +63,14 @@ class AddTableVariable implements Migration {
      * @return bool true is the execution succeeded
      */
     function execute(\PDO $pdo) {
-        $pdo->exec('CREATE TABLE IF NOT EXISTS `' . Utils::table('variable') . '` ('
+        $pdo->exec('CREATE TABLE IF NOT EXISTS `' . Utils::table('Config') . '` ('
                   .' name  VARCHAR(64) NOT NULL,'
                   .' value TEXT        DEFAULT NULL,'
                   .' PRIMARY KEY (name)'
                   .') ENGINE = InnoDB DEFAULT CHARSET = utf8'
                   );
 
-        $pdo->exec('INSERT INTO `' . Utils::table('variable') . '` (name, value) values (\'admin_pwd\', null)');
+        $pdo->exec('INSERT INTO `' . Utils::table('Config') . '` (name, value) values (\'admin_pwd\', null)');
 
         return true;
     }
