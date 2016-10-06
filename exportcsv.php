@@ -42,6 +42,12 @@ $pollService = new PollService($connect, $logService);
 if (!empty($_GET['poll'])) {
     $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
     $poll = $pollService->findById($poll_id);
+} else if (!empty($_GET['admin'])) {
+    $admin_id = filter_input(INPUT_GET, 'admin', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => ADMIN_POLL_REGEX]]);
+    $poll = $pollService->findByAdminId($admin_id);
+    if ($poll) {
+        $poll_id = $poll->id;
+    }
 }
 
 if (!$poll) {
@@ -50,6 +56,11 @@ if (!$poll) {
     exit;
 }
 
+if ($poll->hidden && empty($admin_id)) {
+    $smarty->assign('error', __('Error', 'Forbidden!'));
+    $smarty->display('error.tpl');
+    exit;
+}
 
 $slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);

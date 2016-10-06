@@ -370,6 +370,7 @@
   },
   "Error": {
     "Error!": "Error!",
+    "Forbidden!": "Forbidden!",
     "Enter a title": "Enter a title",
     "Something is going wrong...": "Something has gone wrong...",
     "Something is wrong with the format": "Something is wrong with the format",
