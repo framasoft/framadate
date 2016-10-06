@@ -93,7 +93,7 @@ $(document).ready(function () {
     function getLastDayNumber(last_day) {
         if (last_day == null)
             last_day = $selected_days.find('fieldset').filter(':last')
-        return parseInt(/^d([0-9]+)-h[0-9]+$/.exec(last_day.find('.hours').filter(':first').attr('id'))[1])
+        return parseInt(/^d([0-9]+)-h[0-9]+$/.exec($(last_day).find('.hours').filter(':first').attr('id'))[1])
     }
 
     function newDateFields(dateStr) {
