@@ -369,6 +369,7 @@
   },
   "Error": {
     "Error!": "Error !",
+    "Forbidden!": "OC_Interdit !",
     "Enter a title": "Cal picar un títol !",
     "Something is going wrong...": "I a quicòm que truca...",
     "Something is wrong with the format": "I a quicòm que truca amb lo format.",

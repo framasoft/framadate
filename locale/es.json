@@ -369,6 +369,7 @@
   },
   "Error": {
     "Error!": "¡Error!",
+    "Forbidden!": "¡Prohibido!",
     "Enter a title": "Introducza un título",
     "Something is going wrong...": "Algo anda mal...",
     "Something is wrong with the format": "Algo está mal con el formato",
