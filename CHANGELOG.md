@@ -19,6 +19,7 @@
     - Amélioration : Changements de libellés
     - Amélioration : Admin - Rechercher un sondage grâce à l'adresse mail
     - Amélioration : Fluidification du défilement de la page
+    - Amélioration : Simplification de l'écran de création de sondage
     - Fix : Correction de traductions
     - Fix : Corrections diverses sur les dates et leurs formats
     - Fix : Impossible d'ajouter une colonne vide
@@ -26,6 +27,7 @@
     - Fix : Correction du formulaire de commentaires
     - Fix : Correction d'échappements de caractères
     - Fix : Rectification des contraintes sur les sondage expirés
+    - Fix : Interdiction d'exporter les résultats lorsque l'utilisateur ne peut pas les voir
     - Technique : Travail sur le service des notifications
     - Technique : Prise en compte de l'entête X-Forwarded-Proto
     - Technique : Utilisation de PHPMailer pour l'envoi de mails
