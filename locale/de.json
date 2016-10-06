@@ -245,6 +245,7 @@
         "Password choice": "DE_Choix",
         "Password confirmation": "DE_Confirmation",
         "Permissions": "DE_Permissions",
+        "Optional parameters": "DE_Paramètres optionnels",
         "Go to step 2": "Weiter zum 2. Schritt"
     },
     "Step 2": {
