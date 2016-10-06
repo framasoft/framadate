@@ -18,6 +18,7 @@
  */
 use Framadate\Services\LogService;
 use Framadate\Services\PollService;
+use Framadate\Services\SecurityService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -35,6 +36,7 @@ $poll = null;
 
 $logService = new LogService();
 $pollService = new PollService($connect, $logService);
+$securityService = new SecurityService();
 
 /* PAGE */
 /* ---- */
@@ -42,6 +44,12 @@ $pollService = new PollService($connect, $logService);
 if (!empty($_GET['poll'])) {
     $poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
     $poll = $pollService->findById($poll_id);
+} else if (!empty($_GET['admin'])) {
+    $admin_id = filter_input(INPUT_GET, 'admin', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => ADMIN_POLL_REGEX]]);
+    $poll = $pollService->findByAdminId($admin_id);
+    if ($poll) {
+        $poll_id = $poll->id;
+    }
 }
 
 if (!$poll) {
@@ -50,6 +58,16 @@ if (!$poll) {
     exit;
 }
 
+if (empty($admin_id)) {
+    $forbiddenBecauseOfPassword = !$poll->results_publicly_visible && !$securityService->canAccessPoll($poll);
+    $resultsAreHidden = $poll->hidden;
+
+    if ($resultsAreHidden || $forbiddenBecauseOfPassword) {
+        $smarty->assign('error', __('Error', 'Forbidden!'));
+        $smarty->display('error.tpl');
+        exit;
+    }
+}
 
 $slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
