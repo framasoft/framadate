@@ -148,7 +148,7 @@ $(document).ready(function () {
             $(this).find('.hours:gt(2)').parent().remove();
         });
         $('#d0-h0').focus();
-        $selected_days.find('fieldset .hours').attr('value', '');
+        $selected_days.find('fieldset .hours').val('');
     });
 
     // Button "Remove all days"
