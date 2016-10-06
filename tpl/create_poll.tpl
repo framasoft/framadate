@@ -105,7 +105,7 @@
                         <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
                     </span>
                     <a class="optionnal-parameters collapsed lead" role="button" data-toggle="collapse" href="#optionnal" aria-expanded="false" aria-controls="optionnal">
-                        Paramètres optionnels
+                        {__('Step 1', "Optional parameters")}
                         <i class="caret" aria-hidden="true"></i>
                         <i class="caret caret-up" aria-hidden="true"></i>
                     </a>
