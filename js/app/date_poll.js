@@ -75,8 +75,8 @@ $(document).ready(function () {
 
     function getLastDayNumber(last_day) {
         if (last_day == null)
-            last_day = $selected_days.find('fieldset').filter(':last');
-        return parseInt(/^d([0-9]+)-h[0-9]+$/.exec($(last_day).find('.hours').filter(':first').attr('id'))[1])
+            last_day = $selected_days.find('fieldset').filter(':last')
+        return parseInt(/^d([0-9]+)-h[0-9]+$/.exec(last_day.find('.hours').filter(':first').attr('id'))[1])
     }
 
     function newDateFields(dateStr) {
@@ -100,14 +100,6 @@ $(document).ready(function () {
             .next().find('legend input').val(dateStr);
         $('#day' + (new_day_number)).focus();
         $removeaday_and_copyhours.removeClass('disabled');
-    }
-
-    function manageRemoveadayAndCopyhoursButtons() {
-        var nb_days = $selected_days.find('fieldset').length;
-        $('#day' + (getLastDayNumber() - 1)).focus();
-        if (nb_days == 1) {
-            $removeaday_and_copyhours.addClass('disabled');
-        }
     }
 
     var useFirstEmptyDateField = function (dateStr) {
@@ -233,7 +225,12 @@ $(document).ready(function () {
     $('#remove-a-day').on('click', function () {
         $selected_days.find('fieldset:last').remove();
 
-        manageRemoveadayAndCopyhoursButtons();
+        var nb_days = $selected_days.find('fieldset').length;
+
+        $('#day' + (getLastDayNumber() - 1)).focus();
+        if (nb_days == 1) {
+            $removeaday_and_copyhours.addClass('disabled');
+        }
         submitDaysAvalaible();
     });
 
@@ -243,7 +240,6 @@ $(document).ready(function () {
         if ($('#days_container').find('fieldset').length > 1) {
             $(this).parents('fieldset').remove();
         }
-        manageRemoveadayAndCopyhoursButtons();
         submitDaysAvalaible();
     });
 
