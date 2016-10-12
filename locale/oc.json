@@ -37,7 +37,7 @@
     "Link": "Ligam",
     "Search": "Cercar",
     "Creation date:": "Data de creacion :",
-    "Caption": "OC_Légende",
+    "Caption": "Legenda",
     "ASTERISK": "*"
   },
   "Date": {
@@ -50,10 +50,10 @@
     "DATE": "%d/%m/%Y",
     "MONTH_YEAR": "%B %Y",
     "DATETIME": "%d/%m/%Y %H:%M",
-    "Add range dates": "OC_Ajout d'un intervalle de dates",
-    "Max dates count": "OC_Vous pouvez sélectionner au maximum 4 mois",
-    "Start date": "OC_Date de début",
-    "End date": "OC_Date de fin"
+    "Add range dates": "Apondre un interval de datas",
+    "Max dates count": "Podètz pas causir mai de 4 meses",
+    "Start date": "Data de debuta",
+    "End date": "Data de fin"
   },
   "Language selector": {
     "Select the language": "Seleccionar la lenga",
@@ -128,10 +128,10 @@
     "Cancel the rules edit": "Anullar lo cambiament de permissions",
     "Results are hidden": "Los resultats son amagats",
     "Results are visible": "Los resultats son visibles",
-    "Password protected": "OC_Protégé par mot de passe",
-    "Votes protected by password": "OC_Votes protégés par mot de passe",
-    "No password": "OC_Pas de mot de passe",
-    "Remove password": "OC_Supprimer le mot de passe"
+    "Password protected": "Protegit per senhal",
+    "Votes protected by password": "Vòtes protegits per senhal",
+    "No password": "Pas cap de senhal",
+    "Remove password": "Levar lo senhal"
   },
   "Poll results": {
     "Votes of the poll": "Vòtes del sondatge",
@@ -163,11 +163,11 @@
     "Comment added": "Comentari apondut"
   },
   "Password": {
-    "Password": "OC_Mot de passe",
-    "Wrong password": "OC_Mot de passe incorrect.",
-    "Submit access": "OC_Accèder",
-    "You have to provide a password to access the poll.": "OC_Vous devez donner le mot de passe pour avoir accès à ce sondage.",
-    "You have to provide a password so you can participate to the poll.": "OC_Vous devez donner le mot de passe pour pouvoir participer à ce sondage."
+    "Password": "Senhal",
+    "Wrong password": "Senhal incorrècte.",
+    "Submit access": "Accedir",
+    "You have to provide a password to access the poll.": "Vos cal donar lo senhal per aver accès a-n aqueste sondatge.",
+    "You have to provide a password so you can participate to the poll.": "Vos cal donar lo senhal per participar al sondatge."
   },
   "studs": {
     "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Per participar a aqueste sondatge, picatz vòstre nom, triatz totas las valors que vos agradan e validatz amb lo boton al cap de linha.",
@@ -179,14 +179,14 @@
     "Adding the vote succeeded": "Apondon del vòte capitat"
   },
   "EditLink": {
-    "Send": "OC_Envoyer",
-    "If you don't want to lose your personalized link, we can send it to your email.": "OC_Afin de ne pas perdre ce lien d'édition de vote, nous pouvons vous l'envoyer par courriel.",
-    "The email address is not correct.": "OC_Courriel incorrect.",
-    "REMINDER": "OC_RAPPEL",
-    "Edit link for poll \"%s\"": "OC_Lien d'édition du sondage \"%s\"",
-    "Please wait %d seconds before we can send an email to you then try again.": "OC_Veuillez patienter encore %d seconds avant que nous puissions vous envoyer un email, puis réessayez.",
-    "Here is the link for editing your vote:": "OC_Voici le lien pour éditer votre vote :",
-    "Your reminder has been successfully sent!": "OC_Votre rappel a été envoyé avec succès !"
+    "Send": "Mandar",
+    "If you don't want to lose your personalized link, we can send it to your email.": "A fin de perdre pas lo ligam de modificacion, podèm vos lo mandar per corrièl.",
+    "The email address is not correct.": "Corrièl incorrècte.",
+    "REMINDER": "RECÒRD",
+    "Edit link for poll \"%s\"": "Ligam de modificacion del sondatge \"%s\"",
+    "Please wait %d seconds before we can send an email to you then try again.": "Mercés d'esperar encara %d segondas abans que poscam vos mandar lo corrièl, puèi tornatz ensejar.",
+    "Here is the link for editing your vote:": "Vaquí lo ligam per modificar vòstre vòte :",
+    "Your reminder has been successfully sent!": "Vòstre recòrd es ben estat mandat !"
   },
   "adminstuds": {
     "As poll administrator, you can change all the lines of this poll with this button": "En qualitat d'administrator podètz modificar totas las linhas d'aqueste sondatge amb aqueste boton",
@@ -209,7 +209,7 @@
     "Back to the poll": "Tornar al sondatge",
     "Add a column": "Apondre una colomna",
     "Remove the column": "Suprimir la colomna",
-    "Confirm removal of the column.": "OC_Confirmer la supression de cette colonne.",
+    "Confirm removal of the column.": "Confirmar la supression d'aquesta colomna.",
     "Column removed": "Colomna suprimida",
     "Choice added": "Causida aponduda",
     "Confirm removal of all votes of the poll": "Confirmar la supression de totes los vòtes d'aqueste sondatge",
@@ -229,23 +229,23 @@
     "You are in the poll creation section.": "Avètz causit de crear un sondatge novèl.",
     "Required fields cannot be left blank.": "Mercés de garnir totes los formularis obligatòris, marcats amb una *.",
     "Poll title": "Títol del sondatge",
-    "Poll id": "OC_Identifiant",
-    "Customize the URL": "OC_Personnaliser le lien",
-    "Poll id rules": "OC_L'identifiant peut contenir des lettres, des chiffres et des tirets \"-\".",
-    "Poll id warning": "OC_En définissant un identifiant cela peut faciliter l'accès à ce sondage pour des personnes non désirées. Il est recommandé de le protéger par mot de passe.",
+    "Poll id": "Identificant",
+    "Customize the URL": "Personalizar lo ligam",
+    "Poll id rules": "L'identificant pòt contenir de letras, dea chifras e de tirets \"-\".",
+    "Poll id warning": "En utilizant un identificant aquò pòt facilitar l'accès a-n aqueste sondatge per de personas pas desiradas. Es recomandat de zo protegir amb un senhal.",
     "Votes cannot be modified": "Cap de vòte pòt pas èsser modificat",
     "All voters can modify any vote": "Totes los votants pòdon modificar sos vòtes",
     "Voters can modify their vote themselves": "Cadun pòt modificar son pròpri vòte",
     "To receive an email for each new vote": "Recebre un messatge per cada participacion",
     "To receive an email for each new comment": "Recebre un messatge per cada comentari",
     "Only the poll maker can see the poll's results": "Solament lo creator del sondatge pòt veire los resultats",
-    "Use a password to restrict access": "OC_Utiliser un mot de passe pour restreindre l'accès au sondage",
-    "The results are publicly visible": "OC_Les résultats sont visibles sans mot de passe",
-    "Poll password": "OC_Mot de passe",
-    "Password choice": "OC_Choix",
-    "Password confirmation": "OC_Confirmation",
-    "Permissions": "OC_Permissions",
-    "Optional parameters": "OC_Paramètres optionnels",
+    "Use a password to restrict access": "Emplegar un senhal per restrénher l'accès al sondatge",
+    "The results are publicly visible": "Los resultats son visibles sens senhal",
+    "Poll password": "Senhal",
+    "Password choice": "Causida",
+    "Password confirmation": "Confirmacion",
+    "Permissions": "Permissions",
+    "Optional parameters": "Paramètres opcionals",
     "Go to step 2": "Anar a l'etapa 2"
   },
   "Step 2": {
@@ -263,7 +263,7 @@
     "Copy hours of the first day": "Reportar los oraris del primièr jorn suls autres jorns",
     "Remove a day": "Suprimir lo darrièr jorn",
     "Add a day": "Ajustar un jorn",
-    "Remove this day": "OC_Supprimer ce jour",
+    "Remove this day": "Suprimir aqueste jour",
     "Remove all days": "Suprimir totes los jorns",
     "Remove all hours": "Suprimir totes los oraris"
   },
@@ -328,11 +328,11 @@
   "FindPolls": {
     "Send me my polls": "Mandar mos sondatges",
     "Polls sent": "Sondatges mandats",
-    "List of your polls": "OC_Liste de vos sondages",
-    "Here is the list of the polls that you manage on %s:": "OC_Voici la liste des sondages que vous administrez sur %s :",
-    "Have a good day!": "OC_Bonne journée !",
-    "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "OC_PS : ce mail a été envoyé parce que vous – ou quelqu'un d'autre – a demandé la récupération des sondages créés à l'aide de votre adresse email.",
-    "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "OC_Si jamais vous n'étiez pas à l'origine de cette action et que vous pensez qu'il s'agit d'un abus, vous pouvez nous le signaler à l'administrateur sur %s."
+    "List of your polls": "Lista de vòstres sondatges",
+    "Here is the list of the polls that you manage on %s:": "Vaquí la lista dels sondatges que gerissètz sus %s :",
+    "Have a good day!": "Bona jornada !",
+    "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS : aqueste corrièl es estat mandat perque avètz – o qualqu'un mai – a demandat la recuperacoon dels sondatges creats amb aquesta adreça de corrièl.",
+    "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "Se sètz pas a l'origina d'aquesta accion e que pensatz que s'agís d'un abús, podètz o signalar a l'administrator sus %s."
   },
   "Mail": {
     "Poll's participation: %s": "Participacion al sondatge : %s",
@@ -370,7 +370,7 @@
   },
   "Error": {
     "Error!": "Error !",
-    "Forbidden!": "OC_Interdit !",
+    "Forbidden!": "Interdit !",
     "Enter a title": "Cal picar un títol !",
     "Something is going wrong...": "I a quicòm que truca...",
     "Something is wrong with the format": "I a quicòm que truca amb lo format.",
@@ -400,29 +400,29 @@
     "The column already exists": "La colomna existís ja",
     "MISSING_VALUES": "Mancan de valors",
     "CANT_CONNECT_TO_DATABASE": "Impossible de se connectar a la banca de donadas",
-    "Password is empty": "OC_Le mot de passe est vide.",
-    "Passwords do not match": "OC_Les mots de passe ne correspondent pas.",
-    "Poll id already used": "OC_L'identifiant est déjà utilisé",
-    "You can't select more than %d dates": "OC_Vous ne pouvez pas choisir plus de %d dates",
-    "Can't create the config.php file in '%s'.": "OC_Impossible de créer le fichier config.php dans '%s'.",
-    "Can't create an empty column.": "OC_Impossible de créer une colonne vide."
+    "Password is empty": "Lo senhal es void.",
+    "Passwords do not match": "Los senhals son pas los meteisses.",
+    "Poll id already used": "L'identificant es ja utilizat",
+    "You can't select more than %d dates": "Podètz pas causir mai de %d datas",
+    "Can't create the config.php file in '%s'.": "Impossible de crear lo fichièr config.php dins '%s'.",
+    "Can't create an empty column.": "Impossible de crear una colomna voida."
   },
   "Check": {
-    "Installation checking": "OC_Vérifications de l'installation",
-    "Your PHP version (%s) is too old. This application needs at least PHP %s.": "OC_Votre version de PHP (%s) est trop vieille. Cette application a besoin de PHP %s au moins.",
-    "PHP version %s is enough (needed at least PHP %s).": "OC_Version de PHP %s suffisante (nécessite au moins PHP %s).",
-    "You need to enable the PHP Intl extension.": "OC_Vous devez activer l'extension PHP Intl.",
-    "PHP Intl extension is enabled.": "OC_L'extension PHP Intl est activée.",
-    "The template compile directory (%s) is not writable.": "OC_Le dossier de compilation des templates (%s) n'est pas accessible en écriture.",
-    "The template compile directory (%s) is writable.": "OC_Le dossier de compilation des templates (%s) est accessible en écriture.",
-    "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "OC_Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'éxiste pas.",
-    "The config file exists.": "OC_Le fichier de configuration existe.",
-    "The config file directory (%s) is writable.": "OC_Le dossier du fichier de configuration (%s) est accessible en écriture.",
-    "OpenSSL extension loaded.": "OC_L'extension PHP OpenSSL est chargée.",
-    "Consider enabling the PHP extension OpenSSL for increased security.": "OC_Veuillez considérer l'activation de l'extension PHP OpenSSL pour améliorer la sécurité.",
-    "date.timezone is set.": "OC_date.timezone est défini.",
-    "Consider setting the date.timezone in php.ini.": "OC_Veuillez considérer la définition de date.timezone dans le php.ini.",
-    "Check again": "OC_Vérifier à nouveau",
-    "Continue the installation": "OC_Continuer l'installation"
+    "Installation checking": "Verificacions de l'installacion",
+    "Your PHP version (%s) is too old. This application needs at least PHP %s.": "Vòstra version de PHP (%s) es tròp vièlha. Aquesta aplicacion a besonh de PHP %s almens.",
+    "PHP version %s is enough (needed at least PHP %s).": "Version de PHP %s sufisenta (Cal almens PHP %s).",
+    "You need to enable the PHP Intl extension.": "Vos cal activarl'extension PHP Intl.",
+    "PHP Intl extension is enabled.": "L'extension PHP Intl es activada.",
+    "The template compile directory (%s) is not writable.": "Lo dorsièr de compilacion dels modèls (%s) es pas accessible en escritura.",
+    "The template compile directory (%s) is writable.": "Lo dorsièr de compilacion dels modèls (%s) es accessible en escritura.",
+    "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "Lo dorsièr del fichièr de configuracion (%s) es pas accessible en escritura e lo fichièr de configuracion (%s) existís pas.",
+    "The config file exists.": "Lo fichièr de configuracion existís.",
+    "The config file directory (%s) is writable.": "Lo dorsièr del fichièr de configuracion (%s) es accessible en escritura.",
+    "OpenSSL extension loaded.": "L'extension PHP OpenSSL es cargada.",
+    "Consider enabling the PHP extension OpenSSL for increased security.": "Mercés de pensar a activar l'extension PHP OpenSSL per milhorar la seguritat.",
+    "date.timezone is set.": "date.timezone es definit.",
+    "Consider setting the date.timezone in php.ini.": "Mercés de far cas a la definicion de date.timezone dins lo php.ini.",
+    "Check again": "Tornar verificar",
+    "Continue the installation": "Contunhar l'installacion"
     }
 }
