@@ -230,7 +230,7 @@
     "Required fields cannot be left blank.": "Trugarez da leuniañ ar maeziennoù ret, merket gant ur *.",
     "Poll title": "Titl ar sontadeg",
     "Poll id": "Naoudi",
-    "Customize the URL": "BR_Personnaliser le lien",
+    "Customize the URL": "Personelaat an ere",
     "Poll id rules": "Gallout a ra an naoudi enderc'hel lizherennoù, niverennoù ha tiredoù \"-\".",
     "Poll id warning": "Ma lakait un naoudi re simpl e c'hallo tud all dont war bajenn ho sontadeg. Aliet eo gwareziñ anezhañ gant ur ger-tremen.",
     "Votes cannot be modified": "N'hall ket ar mouezhioù bezañ kemmet",
@@ -243,7 +243,7 @@
     "The results are publicly visible": "Gwelus d'an holl eo an disc'hoù",
     "Poll password": "Ger-tremen",
     "Confirm password": "Kadarnaat ho ker-tremen",
-    "Optional parameters": "BR_Paramètres optionnels",
+    "Optional parameters": "Arventennoù diret",
     "Go to step 2": "Mont d'ar bazenn 2"
   },
   "Step 2": {
@@ -261,7 +261,7 @@
     "Copy hours of the first day": "Eilañ eurioù an devezh kentañ war an devezhioù all",
     "Remove a day": "Dilemel an devezh diwezhañ",
     "Add a day": "Ouzhpennañ un devezh",
-    "Remove this day": "BR_Supprimer ce jour",
+    "Remove this day": "Dilemel an devezh-mañ",
     "Remove all days": "Dilemel an holl zevezhioù",
     "Remove all hours": "Dilemel an holl eurioù"
   },
@@ -369,7 +369,7 @@
   },
   "Error": {
     "Error!": "Fazi!",
-    "Forbidden!": "BR_Interdit !",
+    "Forbidden!": "Difennet!",
     "Enter a title": "Ret eo enankañ un titl!",
     "Something is going wrong...": "Un dra bennak a-dreuz a zo...",
     "Something is wrong with the format": "Un dra bennak a-dreuz a zo gant ar mentrezh",
