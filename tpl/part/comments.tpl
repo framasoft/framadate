@@ -8,6 +8,9 @@
     <form action="{'action/add_comment.php'|resource}" method="POST" id="comment_form">
 
         <input type="hidden" name="poll" value="{$poll_id}"/>
+        {if !empty($admin_poll_id)}
+            <input type="hidden" name="poll_admin" value="{$admin_poll_id}"/>
+        {/if}
         <div class="hidden-print jumbotron">
             <div class="col-md-6 col-md-offset-3">
                 <fieldset id="add-comment"><legend>{__('Comments', 'Add a comment to the poll')}</legend>
