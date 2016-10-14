@@ -56,6 +56,7 @@ $ALLOWED_LANGUAGES = [
     'oc' => 'Occitan',
     'es' => 'Español',
     'de' => 'Deutsch',
+    'nl' => 'Dutch',
     'it' => 'Italiano',
     'br' => 'Brezhoneg',
 ];
