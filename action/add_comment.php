@@ -34,6 +34,7 @@ $poll = null;
 $message = null;
 $result = false;
 $comments = array();
+$is_admin = false;
 
 /* Services */
 /*----------*/
@@ -53,9 +54,16 @@ if (!empty($_POST['poll'])) {
     $poll = $pollService->findById($poll_id);
 }
 
+if (!empty($_POST['poll_admin'])) {
+    $admin_poll_id = filter_input(INPUT_POST, 'poll_admin', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+    if (strlen($admin_poll_id) === 24) {
+        $is_admin = ($pollService->findByAdminId($admin_poll_id) != null);
+    }
+}
+
 if (!$poll) {
     $message = new Message('error',  __('Error', 'This poll doesn\'t exist !'));
-} else if ($poll && !$securityService->canAccessPoll($poll)) {
+} else if ($poll && !$securityService->canAccessPoll($poll) && !$is_admin) {
     $message = new Message('error',  __('Password', 'Wrong password'));
 } else {
     $name = $inputService->filterName($_POST['name']);
