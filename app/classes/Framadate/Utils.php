@@ -28,6 +28,7 @@ class Utils {
         $dirname = dirname($_SERVER['SCRIPT_NAME']);
         $dirname = $dirname === '\\' ? '/' : $dirname . '/';
         $dirname = str_replace('/admin', '', $dirname);
+        $dirname = str_replace('/action', '', $dirname);
         $server_name = (defined('APP_URL') ? APP_URL : $_SERVER['SERVER_NAME']) . $port . $dirname;
 
         return $scheme . '://' . preg_replace('#//+#', '/', $server_name);
