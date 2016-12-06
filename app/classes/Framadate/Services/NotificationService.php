@@ -34,7 +34,11 @@ class NotificationService {
             $_SESSION['mail_sent'] = [];
         }
 
-        if ($poll->receiveNewVotes) {
+        $isVoteAndCanSendIt = ($type == self::UPDATE_VOTE || $type == self::ADD_VOTE) && $poll->receiveNewVotes;
+        $isCommentAndCanSendIt = $type == self::ADD_COMMENT && $poll->receiveNewComments;
+        $isOtherType = $type != self::UPDATE_VOTE && $type != self::ADD_VOTE && $type != self::ADD_COMMENT;
+
+        if ($isVoteAndCanSendIt || $isCommentAndCanSendIt || $isOtherType) {
 
             if (self::isParticipation($type)) {
                 $translationString = 'Poll\'s participation: %s';
