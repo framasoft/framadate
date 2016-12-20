@@ -48,7 +48,14 @@ class AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9 impl
      * @return bool true is the Migration should be executed.
      */
     function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
+	switch(DB_DRIVER_NAME) {
+		case 'mysql':
+			$stmt = $pdo->query('SHOW TABLES');
+			break;
+		case 'pgsql':
+			$stmt = $pdo->query('select tablename from pg_tables where tablename !~ \'^sql_\' and tablename !~ \'^pg_\';');
+			break;
+	}
         $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
 
         // Check if tables of v0.9 are presents
@@ -69,10 +76,19 @@ class AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9 impl
     }
 
     private function alterPollTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `password_hash` VARCHAR(255) NULL DEFAULT NULL ,
-        ADD `results_publicly_visible` TINYINT(1) NULL DEFAULT NULL');
+	switch(DB_DRIVER_NAME) {
+		case 'mysql':
+			$pdo->exec('
+ALTER TABLE `' . Utils::table('poll') . '`
+ADD `password_hash` VARCHAR(255) NULL DEFAULT NULL ,
+ADD `results_publicly_visible` TINYINT(1) NULL DEFAULT NULL');
+			break;
+		case 'pgsql':
+			$pdo->exec('
+ALTER TABLE ' . Utils::table('poll') . '
+ADD password_hash VARCHAR(255) NULL DEFAULT NULL ,
+ADD results_publicly_visible SMALLINT NULL DEFAULT NULL');
+			break;
+	}
     }
-
 }

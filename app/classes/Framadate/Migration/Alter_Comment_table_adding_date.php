@@ -64,9 +64,17 @@ class Alter_Comment_table_adding_date implements Migration {
     }
 
     private function alterCommentTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('comment') . '`
-        ADD `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;');
+	switch(DB_DRIVER_NAME) {
+		case 'mysql':
+			$pdo->exec('
+ALTER TABLE `' . Utils::table('comment') . '`
+ADD `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;');
+			break;
+		case 'pgsql':
+			$pdo->exec('
+ALTER TABLE ' . Utils::table('comment') . '
+ADD date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;');
+			break;
+	}
     }
-
 }

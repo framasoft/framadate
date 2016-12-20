@@ -37,7 +37,14 @@ class Generate_uniqId_for_old_votes implements Migration {
     }
 
     function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
+	switch(DB_DRIVER_NAME) {
+		case 'mysql':
+			$stmt = $pdo->query('SHOW TABLES');
+			break;
+		case 'pgsql':
+			$stmt = $pdo->query('SELECT tablename FROM pg_tables WHERE tablename !~ \'^pg_\' AND tablename !~ \'^sql_\';');
+			break;
+	}
         $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
 
         // Check if tables of v0.9 are presents
@@ -61,15 +68,30 @@ class Generate_uniqId_for_old_votes implements Migration {
     }
 
     private function generateUniqIdsForEmptyOnes($pdo) {
-        $select = $pdo->query('
+	switch(DB_DRIVER_NAME) {
+		case 'mysql':
+			$select = $pdo->query('
 SELECT `id`
   FROM `' . Utils::table('vote') . '`
  WHERE `uniqid` = \'\'');
 
-        $update = $pdo->prepare('
+			$update = $pdo->prepare('
 UPDATE `' . Utils::table('vote') . '`
    SET `uniqid` = :uniqid
  WHERE `id` = :id');
+			break;
+		case 'pgsql':
+			$select = $pdo->query('
+SELECT id
+  FROM ' . Utils::table('vote') . '
+ WHERE uniqid = \'\'');
+
+			$update = $pdo->prepare('
+UPDATE ' . Utils::table('vote') . '
+   SET uniqid = :uniqid
+ WHERE id = :id');
+			break;
+	}
 
         while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
             $token = Token::getToken(16);
@@ -79,5 +101,4 @@ UPDATE `' . Utils::table('vote') . '`
                              ]);
         }
     }
-
 }

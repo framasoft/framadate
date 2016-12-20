@@ -57,23 +57,56 @@ $pdo = $connect->getPDO();
 $prefixedMigrationTable = Utils::table(MIGRATION_TABLE);
 
 if (!in_array($prefixedMigrationTable, $tables)) {
-    $pdo->exec('
-CREATE TABLE IF NOT EXISTS `' . $prefixedMigrationTable . '` (
-  `id`   INT(11)  UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` TEXT              NOT NULL,
-  `execute_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-)
-  ENGINE = MyISAM
-  DEFAULT CHARSET = utf8;');
+
+    switch(DB_DRIVER_NAME) {
+       case "mysql":
+          $pdo->exec('
+             CREATE TABLE IF NOT EXISTS `' . $prefixedMigrationTable . '` (
+             `id`   INT(11)  UNSIGNED NOT NULL AUTO_INCREMENT,
+             `name` TEXT              NOT NULL,
+             `execute_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+             PRIMARY KEY (`id`)
+             )
+
+             ENGINE = MyISAM
+	     DEFAULT CHARSET = utf8;
+          ');
+          $selectStmt = $pdo->prepare('SELECT id FROM `' . $prefixedMigrationTable . '` WHERE name=?');
+          $insertStmt = $pdo->prepare('INSERT INTO `' . $prefixedMigrationTable . '` (name) VALUES (?)');
+          break;
+       case "pgsql":
+          $pdo->exec('
+             CREATE TABLE IF NOT EXISTS ' . $prefixedMigrationTable . ' (
+             id           BIGSERIAL NOT NULL,
+             name         TEXT      NOT NULL,
+             execute_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+             PRIMARY KEY (id)
+	     );
+          ');
+          $selectStmt = $pdo->prepare('SELECT id FROM ' . $prefixedMigrationTable . ' WHERE name=?');
+          $insertStmt = $pdo->prepare('INSERT INTO ' . $prefixedMigrationTable . ' (name) VALUES (?)');
+          break;
+    }
 }
 
-$selectStmt = $pdo->prepare('SELECT id FROM `' . $prefixedMigrationTable . '` WHERE name=?');
-$insertStmt = $pdo->prepare('INSERT INTO `' . $prefixedMigrationTable . '` (name) VALUES (?)');
+
 $countSucceeded = 0;
 $countFailed = 0;
 $countSkipped = 0;
 
+$selectStmt = null;
+$insertStmt = null;
+
+switch(DB_DRIVER_NAME) {
+   case "mysql":
+      $selectStmt = $pdo->prepare('SELECT id FROM `' . $prefixedMigrationTable . '` WHERE name=?');
+      $insertStmt = $pdo->prepare('INSERT INTO `' . $prefixedMigrationTable . '` (name) VALUES (?)');
+      break;
+   case "pgsql":
+      $selectStmt = $pdo->prepare('SELECT id FROM ' . $prefixedMigrationTable . ' WHERE name=?');
+      $insertStmt = $pdo->prepare('INSERT INTO ' . $prefixedMigrationTable . ' (name) VALUES (?)');
+      break;
+}
 // Loop on every Migration sub classes
 $success = [];
 $fail = [];

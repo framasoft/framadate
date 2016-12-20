@@ -48,7 +48,15 @@ class AddColumn_receiveNewComments_For_0_9 implements Migration {
      * @return bool true is the Migration should be executed.
      */
     function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
+        //$stmt = $pdo->query('SHOW TABLES');
+	switch(DB_DRIVER_NAME){
+		case 'mysql':
+			$stmt = $pdo->query('SHOW TABLES');
+			break;
+		case 'pgsql':
+			$stmt = $pdo->query('SELECT tablename FROM pg_tables WHERE tablename !~ \'^pg_\' AND tablename !~ \'^sql_\';');
+			break;
+	}
         $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
 
         // Check if tables of v0.9 are presents
@@ -70,9 +78,15 @@ class AddColumn_receiveNewComments_For_0_9 implements Migration {
 
     private function alterPollTable(\PDO $pdo) {
         $pdo->exec('
-ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `receiveNewComments` TINYINT(1) DEFAULT \'0\'
-        AFTER `receiveNewVotes`');
+ALTER TABLE ' . Utils::table('poll') . '
+        ADD receiveNewComments SMALLINT DEFAULT \'0\'
+        ');
+	$pdo->exec('
+ALTER TABLE ' . Utils::table('poll') . '
+	ADD active_new SMALLINT DEFAULT \'1\'
+	');
+	$pdo->exec('UPDATE ' . Utils::table('poll') . ' SET active_new=active;');
+	$pdo->exec('ALTER TABLE ' . Utils::table('poll') . ' DROP COLUMN active;');
+	$pdo->exec('ALTER TABLE ' . Utils::table('poll') . ' RENAME COLUMN active_new to active;');
     }
-
 }

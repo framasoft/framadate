@@ -48,7 +48,14 @@ class AddColumn_uniqId_In_vote_For_0_9 implements Migration {
      * @return bool true is the Migration should be executed.
      */
     function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
+	switch(DB_DRIVER_NAME) {
+		case 'mysql':
+			$stmt = $pdo->query('SHOW TABLES');
+			break;
+		case 'pgsql':
+			$stmt = $pdo->query('SELECT tablename FROM pg_tables WHERE tablename !~ \'^pg_\' AND tablename !~ \'^sql_\';');
+			break;
+	}
         $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
 
         // Check if tables of v0.9 are presents
@@ -69,11 +76,20 @@ class AddColumn_uniqId_In_vote_For_0_9 implements Migration {
     }
 
     private function alterPollTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('vote') . '`
-        ADD `uniqId` CHAR(16) NOT NULL
-        AFTER `id`,
-        ADD INDEX (`uniqId`) ;');
-    }
+	    $pdo->exec('
+CREATE TABLE IF NOT EXISTS ' . Utils::table('vote_new') . ' (
+       id      BIGSERIAL       NOT NULL PRIMARY KEY,
+       uniqId  CHAR(16)        NOT NULL,
+       poll_id CHAR(16)        NOT NULL,
+       name    VARCHAR(64)     NOT NULL,
+       choices TEXT            NOT NULL
+       )
+');
+       $pdo->exec('
+INSERT INTO '. Utils::table('vote_new') . ' SELECT id, poll_id, name, choices from '. Utils::table('vote'));
 
+       $pdo->exec('DROP TABLE ' . Utils::table('vote'));
+       $pdo->exec('ALTER TABLE ' . Utils::table('vote_new') . ' RENAME TO ' . Utils::table('vote'));
+       $pdo->exec('CREATE INDEX vote_uniqId_index ON ' . Utils::table('vote') . ' ( uniqId)');
+   }
 }

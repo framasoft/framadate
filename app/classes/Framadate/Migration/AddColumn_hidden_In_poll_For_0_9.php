@@ -28,50 +28,65 @@ use Framadate\Utils;
  */
 class AddColumn_hidden_In_poll_For_0_9 implements Migration {
 
-    function __construct() {
+	function __construct() {
+	}
+
+	/**
+	 * This method should describe in english what is the purpose of the migration class.
+	 *
+	 * @return string The description of the migration class
+	 */
+	function description() {
+		return 'Add column "hidden" in table "vote" for version 0.9';
+	}
+
+	/**
+	 * This method could check if the execute method should be called.
+	 * It is called before the execute method.
+	 *
+	 * @param \PDO $pdo The connection to database
+	 * @return bool true is the Migration should be executed.
+	 */
+	function preCondition(\PDO $pdo) {
+		switch(DB_DRIVER_NAME) {
+		case 'mysql':
+			$stmt = $pdo->query('SHOW TABLES');
+			break;
+		case 'pgsql':
+			$stmt = $pdo->query('SELECT tablename FROM pg_tables WHERE tablename !~ \'^pg_\' AND tablename !~ \'^sql_\'');
+			break;
+		}
+		$tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+
+		// Check if tables of v0.9 are presents
+		$diff = array_diff([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')], $tables);
+		return count($diff) === 0;
+	}
+
+	/**
+	 * This method is called only one time in the migration page.
+	 *
+	 * @param \PDO $pdo The connection to database
+	 * @return bool true is the execution succeeded
+	 */
+	function execute(\PDO $pdo) {
+		$this->alterPollTable($pdo);
+
+		return true;
+	}
+
+	private function alterPollTable(\PDO $pdo) {
+		switch(DB_DRIVER_NAME) {
+		case 'mysql':
+			$pdo->exec('
+			ALTER TABLE `' . Utils::table('poll') . '`
+			ADD `hidden` TINYINT( 1 ) NOT NULL DEFAULT "0"');
+			break;
+		case 'pgsql':
+			$pdo->exec('
+			ALTER TABLE ' . Utils::table('poll') . '
+			ADD hidden SMALLINT NOT NULL DEFAULT \'0\'');
+			break;
+	}
     }
-
-    /**
-     * This method should describe in english what is the purpose of the migration class.
-     *
-     * @return string The description of the migration class
-     */
-    function description() {
-        return 'Add column "hidden" in table "vote" for version 0.9';
-    }
-
-    /**
-     * This method could check if the execute method should be called.
-     * It is called before the execute method.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the Migration should be executed.
-     */
-    function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
-        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
-
-        // Check if tables of v0.9 are presents
-        $diff = array_diff([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')], $tables);
-        return count($diff) === 0;
-    }
-
-    /**
-     * This method is called only one time in the migration page.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the execution succeeded
-     */
-    function execute(\PDO $pdo) {
-        $this->alterPollTable($pdo);
-
-        return true;
-    }
-
-    private function alterPollTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `hidden` TINYINT( 1 ) NOT NULL DEFAULT "0"');
-    }
-
 }

@@ -42,26 +42,74 @@ class Increase_pollId_size implements Migration {
     }
 
     private function alterCommentTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('comment') . '`
-        CHANGE `poll_id` `poll_id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
+        switch( DB_DRIVER_NAME){
+            case "mysql":
+                $pdo->exec('
+ALTER TABLE `' . Utils::table('comment') . '`
+CHANGE `poll_id` `poll_id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
+                break;
+            case "pgsql":
+                $pdo->exec('
+ALTER TABLE ' . Utils::table('comment') . '
+ALTER poll_id TYPE VARCHAR(64);');
+                $pdo->exec('
+ALTER TABLE ' . Utils::table('comment') . '
+ALTER poll_id SET DEFAULT NOT NULL;');
+                break;
+        }
     }
 
     private function alterPollTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('poll') . '`
-        CHANGE `id` `id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
+        switch( DB_DRIVER_NAME){
+            case "mysql":
+                $pdo->exec('
+ALTER TABLE `' . Utils::table('poll') . '`
+CHANGE `id` `id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
+                break;
+            case "pgsql":
+                $pdo->exec('
+ALTER TABLE ' . Utils::table('poll') . '
+ALTER id  TYPE VARCHAR(64);');
+                $pdo->exec('
+ALTER TABLE ' . Utils::table('poll') . '
+ALTER id SET DEFAULT NOT NULL;');
+                break;
+        }
     }
 
     private function alterSlotTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('slot') . '`
-        CHANGE `poll_id` `poll_id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
+        switch( DB_DRIVER_NAME){
+            case "mysql":
+                $pdo->exec('
+ALTER TABLE `' . Utils::table('slot') . '`
+CHANGE `poll_id` `poll_id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
+                break;
+            case "pgsql":
+                $pdo->exec('
+ALTER TABLE ' . Utils::table('slot') . '
+ALTER poll_id TYPE VARCHAR(64);');
+                $pdo->exec('
+ALTER TABLE ' . Utils::table('slot') . '
+ALTER poll_id SET DEFAULT NOT NULL;');
+                break;
+        }
     }
 
     private function alterVoteTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('vote') . '`
-        CHANGE `poll_id` `poll_id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
+        switch( DB_DRIVER_NAME){
+            case "mysql":
+                $pdo->exec('
+ALTER TABLE `' . Utils::table('vote') . '`
+CHANGE `poll_id` `poll_id` VARCHAR(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;');
+                break;
+            case "pgsql":
+                $pdo->exec('
+ALTER TABLE ' . Utils::table('vote') . '
+ALTER poll_id TYPE VARCHAR(64);');
+                $pdo->exec('
+ALTER TABLE ' . Utils::table('vote') . '
+ALTER poll_id SET DEFAULT NOT NULL;');
+                break;
+        }
     }
 }

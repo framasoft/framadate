@@ -64,9 +64,21 @@ class Alter_Comment_table_for_name_length implements Migration {
     }
 
     private function alterCommentTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('comment') . '`
-        CHANGE `name` `name` VARCHAR( 64 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ;');
+	switch(DB_DRIVER_NAME) {
+		case 'mysql':
+			$pdo->exec('
+ALTER TABLE `' . Utils::table('comment') . '`
+CHANGE `name` `name` VARCHAR( 64 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ;');
+			break;
+		case 'pgsql':
+			$pdo->exec('
+ALTER TABLE ' . Utils::table('comment') . '
+ALTER name TYPE VARCHAR(64);');
+			$pdo->exec('
+ALTER TABLE ' . Utils::table('comment') . '
+ALTER name set DEFAULT NULL;');
+			break;
+	}
     }
 
 }

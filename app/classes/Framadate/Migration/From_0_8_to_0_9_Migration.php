@@ -21,7 +21,7 @@ namespace Framadate\Migration;
 use Framadate\Utils;
 
 /**
- * This class executes the aciton in database to migrate data from version 0.8 to 0.9.
+ * This class executes the acton in database to migrate data from version 0.8 to 0.9.
  *
  * @package Framadate\Migration
  * @version 0.9
@@ -48,7 +48,14 @@ class From_0_8_to_0_9_Migration implements Migration {
      * @return bool true is the Migration should be executed.
      */
     function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
+	switch(DB_DRIVER_NAME){
+		case "mysql":
+			$stmt = $pdo->query('SHOW TABLES');
+			break;
+		case "pgsql":
+			$stmt = $pdo->query('SELECT tablename FROM pg_tables WHERE tablename !~ \'^pg_\' AND tablename !~ \'^sql_\';');
+			break;
+	}
         $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
 
         // Check if tables of v0.8 are presents
@@ -81,7 +88,10 @@ class From_0_8_to_0_9_Migration implements Migration {
     }
 
     private function createPollTable(\PDO $pdo) {
-        $pdo->exec('
+	$query_create_table_poll = null;
+	switch(DB_DRIVER_NAME){
+	   case 'mysql':
+		$query_create_table_poll = '
 CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
   `id`              CHAR(16)  NOT NULL,
   `admin_id`        CHAR(24)  NOT NULL,
@@ -98,11 +108,35 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
   PRIMARY KEY (`id`)
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = utf8');
+  DEFAULT CHARSET = utf8';
+		break;
+
+	  case 'pgsql':
+		$query_create_table_poll = '
+CREATE TABLE IF NOT EXISTS ' . Utils::table('poll') . ' (
+  id              CHAR(16)  NOT NULL PRIMARY KEY,
+  admin_id        CHAR(24)  NOT NULL,
+  title           TEXT      NOT NULL,
+  description     TEXT,
+  admin_name      VARCHAR(64) DEFAULT NULL,
+  admin_mail      VARCHAR(128) DEFAULT NULL,
+  creation_date   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  end_date        TIMESTAMP NOT NULL DEFAULT \'epoch\',
+  format          VARCHAR(1) DEFAULT NULL,
+  editable        SMALLINT DEFAULT \'0\',
+  receiveNewVotes SMALLINT DEFAULT \'0\',
+  active          SMALLINT DEFAULT \'1\'
+) ';
+               break;
+       }
+       $pdo->exec($query_create_table_poll);
     }
 
     private function migrateFromSondageToPoll(\PDO $pdo) {
-        $select = $pdo->query('
+	$query_select_table_sondage = null;
+	switch(DB_DRIVER_NAME){
+	   case 'mysql':
+		$query_select_table_sondage ='
 SELECT
     `id_sondage`,
     `id_sondage_admin`,
@@ -120,12 +154,43 @@ SELECT
     CASE SUBSTR(`format`, 2, 1)
     WHEN \'-\' THEN 0
     ELSE 1 END             AS `active`
-  FROM sondage');
-
-        $insert = $pdo->prepare('
+  FROM sondage';
+		$query_insert_table_poll = '
 INSERT INTO `' . Utils::table('poll') . '`
 (`id`, `admin_id`, `title`, `description`, `admin_name`, `admin_mail`, `creation_date`, `end_date`, `format`, `editable`, `receiveNewVotes`, `active`)
-VALUE (?,?,?,?,?,?,?,?,?,?,?,?)');
+VALUE (?,?,?,?,?,?,?,?,?,?,?,?)';
+                break;
+
+	  case 'pgsql':
+                $query_select_table_sondage ='
+SELECT
+    id_sondage,
+    id_sondage_admin,
+    titre,
+    commentaires,
+    nom_admin,
+    mail_admin,
+    date_creation,
+    date_fin,
+    SUBSTR(format, 1, 1) AS format,
+    CASE SUBSTR(format, 2, 1)
+    WHEN \'+\' THEN 1
+    ELSE 0 END             AS editable,
+    mailsonde,
+    CASE SUBSTR(format, 2, 1)
+    WHEN \'-\' THEN 0
+    ELSE 1 END             AS active
+  FROM sondage';
+
+		$query_insert_table_poll = '
+INSERT INTO ' . Utils::table('poll') . '
+(id, admin_id, title, description, admin_name, admin_mail, creation_date, end_date, format, editable, receiveNewVotes, active)
+VALUE (?,?,?,?,?,?,?,?,?,?,?,?)';
+	        break;
+	}
+
+        $select = $pdo->query($query_select_table_sondage);
+        $insert = $pdo->prepare($query_insert_table_poll);
 
         while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
             $insert->execute([
@@ -146,7 +211,10 @@ VALUE (?,?,?,?,?,?,?,?,?,?,?,?)');
     }
 
     private function createSlotTable(\PDO $pdo) {
-        $pdo->exec('
+	$query_create_table_slot = null;
+	switch(DB_DRIVER_NAME){
+	   case 'mysql':
+		$query_create_table_slot = '
 CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `poll_id` CHAR(16)         NOT NULL,
@@ -156,7 +224,20 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
   KEY `poll_id` (`poll_id`)
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = utf8');
+  DEFAULT CHARSET = utf8';
+		break;
+	   case 'pgsql':
+		   $query_create_table_slot = '
+CREATE TABLE IF NOT EXISTS ' . Utils::table('slot') . ' (
+  id      BIGSERIAL        NOT NULL PRIMARY KEY,
+  poll_id CHAR(16)         NOT NULL,
+  title   TEXT,
+  moments TEXT
+);
+CREATE INDEX slot_poll_id_index ON ' . Utils::table('slot') .' (poll_id);';
+		break;
+	}
+	$pdo->exec($query_create_table_slot);
     }
 
     private function migrateFromSujetStudsToSlot(\PDO $pdo) {
@@ -170,8 +251,17 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
                 $slots[] = $newSlot;
             }
         }
+	$query_insert_table_slot = null;
+	switch(DB_DRIVER_NAME){
+		case 'mysql':
+	             $query_insert_table_slot = 'INSERT INTO ' . Utils::table('slot') . ' (`poll_id`, `title`, `moments`) VALUE (?,?,?)';
+		     break;
+		case 'pgsql':
+	             $query_insert_table_slot = 'INSERT INTO ' . Utils::table('slot') . ' (poll_id, title, moments) VALUE (?,?,?)';
+		     break;
+	}
 
-        $prepared = $pdo->prepare('INSERT INTO ' . Utils::table('slot') . ' (`poll_id`, `title`, `moments`) VALUE (?,?,?)');
+        $prepared = $pdo->prepare($query_insert_table_slot);
         foreach ($slots as $slot) {
             $prepared->execute([
                 $slot->poll_id,
@@ -182,7 +272,10 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
     }
 
     private function createCommentTable(\PDO $pdo) {
-        $pdo->exec('
+	$query_create_table_comment = null;
+	switch(DB_DRIVER_NAME){
+		case 'mysql':
+			$query_create_table_comment = '
 CREATE TABLE IF NOT EXISTS `' . Utils::table('comment') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `poll_id` CHAR(16)         NOT NULL,
@@ -192,20 +285,47 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('comment') . '` (
   KEY `poll_id` (`poll_id`)
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = utf8');
+  DEFAULT CHARSET = utf8';
+			break;
+		case 'pgsql':
+			$query_create_table_comment = '
+CREATE TABLE IF NOT EXISTS ' . Utils::table('comment') . ' (
+  id      BIGSERIAL        NOT NULL PRIMARY KEY,
+  poll_id CHAR(16)         NOT NULL,
+  name    TEXT,
+  comment TEXT             NOT NULL
+);
+CREATE INDEX comment_poll_id_index ON ' . Utils::table('comment') .' (poll_id);';
+	}
+        $pdo->exec($query_create_table_comment);
     }
 
     private function migrateFromCommentsToComment(\PDO $pdo) {
-        $select = $pdo->query('
+	$query_select_table_comments = null;
+	switch(DB_DRIVER_NAME){
+		case 'mysql':
+			$query_select_table_comments = '
 SELECT
     `id_sondage`,
     `usercomment`,
     `comment`
-  FROM `comments`');
-
-        $insert = $pdo->prepare('
-INSERT INTO `' . Utils::table('comment') . '` (`poll_id`, `name`, `comment`)
-VALUE (?,?,?)');
+  FROM `comments`';
+			$query_insert_table_comment = '
+INSERT INTO `' . Utils::table('comment') . '` (`poll_id`, `name`, `comment`) VALUE (?,?,?)';
+			break;
+		case 'pgsql':
+			$query_select_table_comments = '
+SELECT
+    id_sondage,
+    usercomment,
+    comment
+  FROM comments';
+			$query_insert_table_comment = '
+INSERT INTO ' . Utils::table('comment') . ' (poll_id, name, comment) VALUE (?,?,?)';
+			break;
+	}
+        $select = $pdo->query($query_select_table_comments);
+        $insert = $pdo->prepare($query_insert_table_comment);
 
         while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
             $insert->execute([
@@ -217,7 +337,10 @@ VALUE (?,?,?)');
     }
 
     private function createVoteTable(\PDO $pdo) {
-        $pdo->exec('
+	    $query_create_table_vote = null;
+	    switch(DB_DRIVER_NAME){
+                case 'mysql':
+		    $query_create_table_vote = '
 CREATE TABLE IF NOT EXISTS `' . Utils::table('vote') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `poll_id` CHAR(16)         NOT NULL,
@@ -227,20 +350,50 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('vote') . '` (
   KEY `poll_id` (`poll_id`)
 )
   ENGINE = InnoDB
-  DEFAULT CHARSET = utf8');
+  DEFAULT CHARSET = utf8';
+		    break;
+	       case 'pgsql':
+		    $query_create_table_vote = '
+CREATE TABLE IF NOT EXISTS ' . Utils::table('vote') . ' (
+  id      BIGSERIAL        NOT NULL PRIMARY KEY,
+  poll_id CHAR(16)         NOT NULL,
+  name    VARCHAR(64)      NOT NULL,
+  choices TEXT             NOT NULL
+);
+CREATE INDEX vote_poll_id_index ON ' . Utils::table('vote') .' (poll_id)';
+		     break;
+	   }
+	   $pdo->exec($query_create_table_vote);
     }
 
     private function migrateFromUserStudsToVote(\PDO $pdo) {
-        $select = $pdo->query('
+	$query_select_table_user_studs = null;
+	switch(DB_DRIVER_NAME){
+	     case 'mysql':
+		$query_select_table_user_studs = '
 SELECT
     `id_sondage`,
     `nom`,
     REPLACE(REPLACE(REPLACE(`reponses`, 1, \'X\'), 2, 1), \'X\', 2) reponses
-  FROM `user_studs`');
+  FROM `user_studs`';
+		$query_insert_table_vote = '
+INSERT INTO `' . Utils::table('vote') . '` (`poll_id`, `name`, `choices`) VALUE (?,?,?)';
+		break;
 
-        $insert = $pdo->prepare('
-INSERT INTO `' . Utils::table('vote') . '` (`poll_id`, `name`, `choices`)
-VALUE (?,?,?)');
+	     case 'pgsql':
+		$query_select_table_user_studs = '
+SELECT
+    id_sondage,
+    nom,
+    REPLACE(REPLACE(REPLACE(reponses, \'1\', \'X\'), \'2\', \'1\'), \'X\', \'2\') reponses
+  FROM user_studs';
+		$query_insert_table_vote = '
+INSERT INTO ' . Utils::table('vote') . ' (poll_id, name, choices) VALUE (?,?,?)';
+		break;
+	}
+	    
+        $select = $pdo->query($query_select_table_user_studs);
+        $insert = $pdo->prepare($query_insert_table_vote);
 
         while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
             $insert->execute([
@@ -281,10 +434,24 @@ VALUE (?,?,?)');
     }
 
     private function dropOldTables(\PDO $pdo) {
-        $pdo->exec('DROP TABLE `comments`');
-        $pdo->exec('DROP TABLE `sujet_studs`');
-        $pdo->exec('DROP TABLE `user_studs`');
-        $pdo->exec('DROP TABLE `sondage`');
+	$query_drop_old_tables = null;
+	switch (DB_DRIVER_NAME) {
+		case 'mysql':
+			$query_drop_old_tables = '
+DROP TABLE `comments`;
+DROP TABLE `sujet_studs`;
+DROP TABLE `user_studs`;
+DROP TABLE `sondage`;';
+			break;
+		case 'pgsql':
+			$query_drop_old_tables = '
+DROP TABLE comments;
+DROP TABLE sujet_studs;
+DROP TABLE user_studs;
+DROP TABLE sondage;';
+			break;
+	}
+	$pdo->exec($query_drop_old_tables);
     }
 
     private function unescape($value) {

@@ -25,11 +25,13 @@ class FramaDB {
      * PDO Object, connection to database.
      */
     private $pdo = null;
+    private $drivername = null;
 
     function __construct($connection_string, $user, $password) {
         $this->pdo = new \PDO($connection_string, $user, $password);
         $this->pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+	$this->drivername = $this->pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
     }
 
     /**
@@ -45,7 +47,18 @@ class FramaDB {
      * @return array The array of table names
      */
     function allTables() {
-        $result = $this->pdo->query('SHOW TABLES');
+	$result = null;
+	switch($this->drivername()) {
+		case "mysql":
+		        $result = $this->query('SHOW TABLES');
+			break;
+		case "pgsql":
+			$result = $this->query('SELECT tablename FROM pg_tables WHERE tablename !~ \'^pg_\' AND tablename !~ \'^sql_\';');
+			break;
+		default:
+			return array();
+	}
+	
         $schemas = $result->fetchAll(\PDO::FETCH_COLUMN);
 
         return $schemas;
@@ -77,6 +90,10 @@ class FramaDB {
 
     function query($sql) {
         return $this->pdo->query($sql);
+    }
+
+    function driverName() {
+	return $this->drivername;
     }
 
     public function lastInsertId() {
