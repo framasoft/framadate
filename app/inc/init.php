@@ -56,6 +56,10 @@ if (is_file(CONF_FILENAME)) {
         'it' => 'Italiano',
         'br' => 'Brezhoneg',
     ];
+    $ALLOWED_DRIVERS = [
+	'mysql' => 'MySQL',
+	'pgsql' => 'PostgreSQL',
+    ];
 }
 
 require_once __DIR__ . '/i18n.php';

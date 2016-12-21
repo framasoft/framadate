@@ -297,6 +297,7 @@
     "Admin": {
         "Back to administration": "Retour à l'administration",
         "Administration": "Administration",
+        "Installation": "Installation",
         "Polls": "Sondages",
         "Migration": "Migration",
         "Purge": "Purge",
@@ -362,6 +363,10 @@
         "DbPassword": "Mot de passe",
         "DbPrefix": "Préfixe",
         "DbUser": "Utilisateur",
+        "DbDriver": "Pilote",
+        "DbHostname": "Serveur",
+        "DbPort": "Port",
+        "DbName": "Base de données",
         "DefaultLanguage": "Langue par défaut",
         "General": "Général",
         "Install": "Installer",

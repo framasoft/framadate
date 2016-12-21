@@ -34,6 +34,10 @@ class InstallService {
         'cleanUrl' => true,
 
         // Database configuration
+	'dbHostname' => '',
+	'dbDriver'   => 'mysql',
+	'dbPort'   => '3306',
+	'dbName'   => 'framadate',
         'dbConnectionString' => 'mysql:host=<HOST>;dbname=<SCHEMA>;port=3306',
         'dbUser' => 'root',
         'dbPassword' => '',
@@ -51,9 +55,12 @@ class InstallService {
 
     public function install(Smarty &$smarty) {
         // Check values are present
-        if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dbConnectionString']) || empty($this->fields['dbUser'])) {
+	    if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage'])
+		    || empty($this->fields['dbHostname']) || empty($this->fields['dbPort'])|| empty($this->fields['dbDriver']) || empty($this->fields['dbName']) || empty($this->fields['dbUser'])) {
             return $this->error('MISSING_VALUES');
         }
+	
+	$this->setDbConnectionString();
 
         // Connect to database
         $connect = $this->connectTo($this->fields['dbConnectionString'], $this->fields['dbUser'], $this->fields['dbPassword']);
@@ -122,4 +129,8 @@ class InstallService {
         return $this->fields;
     }
 
+
+    function setDbConnectionString(){
+	$this->fields['dbConnectionString'] = $this->fields['dbDriver'] . ':host=' . $this->fields['dbHostname'] . ';dbname=' . $this->fields['dbName'] . ';port=' . $this->fields['dbPort'];
+    }
 }

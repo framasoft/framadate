@@ -32,6 +32,7 @@ $smarty->assign('TITLE_IMAGE', IMAGE_TITRE);
 $smarty->assign('use_nav_js', strstr($_SERVER['SERVER_NAME'], 'framadate.org'));
 $smarty->assign('locale', $locale);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);
+$smarty->assign('drivers', $ALLOWED_DRIVERS);
 $smarty->assign('date_format', $date_format);
 
 // Dev Mode

@@ -56,13 +56,42 @@
 
             <fieldset>
                 <legend>{__('Installation', 'Database')}</legend>
+		{* 
                 <div class="form-group">
                     <div class="input-group">
                         <label for="dbConnectionString" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'DbConnectionString')}</label>
                         <input type="text" class="form-control" id="dbConnectionString" name="dbConnectionString" value="{$fields['dbConnectionString']}" required>
                     </div>
                 </div>
-
+		*}
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="dbDriver" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'DbDriver')}</label>
+			<select type="driver" class="form-control" id="dbDriver" name="dbDriver" required>
+				{foreach $drivers as $driver=>$label}
+					<option value="{$driver}" {if $driver==$fields['dbDriver']}selected{/if}>{$label}</option>
+				{/foreach}
+			</select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="dbHostname" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'DbHostname')}</label>
+                        <input type="text" class="form-control" id="dbHostname" name="dbHostname" value="{$fields['dbHostname']}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="dbPort" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'DbPort')}</label>
+                        <input type="text" class="form-control" id="dbPort" name="dbPort" value="{$fields['dbPort']}" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="dbUser" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'DbName')}</label>
+                        <input type="text" class="form-control" id="dbName" name="dbName" value="{$fields['dbName']}" required>
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="input-group">
                         <label for="dbUser" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'DbUser')}</label>

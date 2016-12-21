@@ -31,6 +31,9 @@ const ADRESSEMAILADMIN = '{$appMail}';
 // Email for automatic responses (you should set it to "no-reply")
 const ADRESSEMAILREPONSEAUTO = '{$responseMail}';
 
+// Database driver
+const DB_DRIVER_NAME = '{$dbDriver}';
+
 // Database server name, leave empty to use a socket
 const DB_CONNECTION_STRING = '{$dbConnectionString}';
 
@@ -59,6 +62,12 @@ $ALLOWED_LANGUAGES = [
     'nl' => 'Dutch',
     'it' => 'Italiano',
     'br' => 'Brezhoneg',
+];
+
+// List of supported drivers, same as allowed_languages only in PHP >= 5.6
+$ALLOWED_DRIVERS = [
+    'mysql' => 'MySQL',
+    'pgsql' => 'PostgreSQL',
 ];
 
 // Nom et emplacement du fichier image contenant le titre
