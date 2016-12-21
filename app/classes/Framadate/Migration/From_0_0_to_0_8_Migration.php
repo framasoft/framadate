@@ -52,7 +52,7 @@ class From_0_0_to_0_8_Migration implements Migration {
         $query_show_tables = null ;
 	switch(DB_DRIVER_NAME){
 	   case 'mysql':
-                $query_show_tables = 'SHOW TABLES like \'' . TABLENAME_PREFIX . '%\'';  
+                $query_show_tables = 'SHOW TABLES like \'' . TABLENAME_PREFIX . '%\'';
 		break;
            case 'pgsql':
                 $query_show_tables = 'SELECT tablename FROM pg_tables WHERE tablename !~ \'^pg_\' AND tablename !~ \'^sql_\' AND tablename like \'' . TABLENAME_PREFIX . '%\''; 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `sondage` (
   `mailsonde` tinyint(1) DEFAULT \'0\',
   `statut` int(11) NOT NULL DEFAULT \'1\' COMMENT \'1 = actif ; 0 = inactif ; \',
   UNIQUE KEY `id_sondage` (`id_sondage`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;';  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;';
 
 		$query_create_table_sujet_studs = '
 CREATE TABLE IF NOT EXISTS `sujet_studs` (
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS user_studs (
 );
 CREATE INDEX id_sondage_user_studs_index ON user_studs (id_sondage);';
 
-		break; 
+		break;
         }
 
 	$create_tables_queries = [
