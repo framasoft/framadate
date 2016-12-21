@@ -34,7 +34,14 @@ class SlotRepository extends AbstractRepository {
      * @param array $choices
      */
     public function insertSlots($poll_id, $choices) {
-        $prepared = $this->prepare('INSERT INTO `' . Utils::table('slot') . '` (poll_id, title, moments) VALUES (?, ?, ?)');
+        switch(DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('INSERT INTO `' . Utils::table('slot') . '` (poll_id, title, moments) VALUES (?, ?, ?)');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('INSERT INTO ' . Utils::table('slot') . ' (poll_id, title, moments) VALUES (?, ?, ?)');
+                break;
+        }
 
         foreach ($choices as $choice) {
 
@@ -61,7 +68,14 @@ class SlotRepository extends AbstractRepository {
     }
 
     function listByPollId($poll_id) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? ORDER BY id');
+        switch (DB_DRIVER_NAME){
+            case 'mysql':
+                $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? ORDER BY id');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT * FROM ' . Utils::table('slot') . ' WHERE poll_id = ? ORDER BY id');
+                break;
+        }
         $prepared->execute(array($poll_id));
 
         return $prepared->fetchAll();
@@ -75,7 +89,14 @@ class SlotRepository extends AbstractRepository {
      * @return mixed Object The slot found, or null
      */
     function findByPollIdAndDatetime($poll_id, $datetime) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? AND SUBSTRING_INDEX(title, \'@\', 1) = ?');
+        switch (DB_DRIVER_NAME){
+            case 'mysql':
+                $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? AND SUBSTRING_INDEX(title, \'@\', 1) = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT * FROM ' . Utils::table('slot') . ' WHERE poll_id = ? AND SUBSTRING_INDEX(title, \'@\', 1) = ?');
+                break;
+        }
 
         $prepared->execute([$poll_id, $datetime]);
         $slot = $prepared->fetch();
@@ -93,7 +114,14 @@ class SlotRepository extends AbstractRepository {
      * @return bool true if action succeeded
      */
     function insert($poll_id, $title, $moments) {
-        $prepared = $this->prepare('INSERT INTO `' . Utils::table('slot') . '` (poll_id, title, moments) VALUES (?,?,?)');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('INSERT INTO `' . Utils::table('slot') . '` (poll_id, title, moments) VALUES (?,?,?)');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('INSERT INTO ' . Utils::table('slot') . ' (poll_id, title, moments) VALUES (?,?,?)');
+                break;
+        }
 
         return $prepared->execute([$poll_id, $title, $moments]);
     }
@@ -107,7 +135,14 @@ class SlotRepository extends AbstractRepository {
      * @return bool|null true if action succeeded.
      */
     function update($poll_id, $datetime, $newMoments) {
-        $prepared = $this->prepare('UPDATE `' . Utils::table('slot') . '` SET moments = ? WHERE poll_id = ? AND title = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('UPDATE `' . Utils::table('slot') . '` SET moments = ? WHERE poll_id = ? AND title = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('UPDATE ' . Utils::table('slot') . ' SET moments = ? WHERE poll_id = ? AND title = ?');
+                break;
+        }
 
         return $prepared->execute([$newMoments, $poll_id, $datetime]);
     }
@@ -119,14 +154,27 @@ class SlotRepository extends AbstractRepository {
      * @param $datetime mixed The datetime of the slot
      */
     function deleteByDateTime($poll_id, $datetime) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE poll_id = ? AND title = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE poll_id = ? AND title = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('DELETE FROM ' . Utils::table('slot') . ' WHERE poll_id = ? AND title = ?');
+                break;
+        }
         $prepared->execute([$poll_id, $datetime]);
     }
 
     function deleteByPollId($poll_id) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE poll_id = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE poll_id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('DELETE FROM ' . Utils::table('slot') . ' WHERE poll_id = ?');
+                break;
+        }
 
         return $prepared->execute([$poll_id]);
     }
-
 }

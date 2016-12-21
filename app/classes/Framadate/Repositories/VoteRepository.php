@@ -10,21 +10,42 @@ class VoteRepository extends AbstractRepository {
         parent::__construct($connect);
     }
 
-    function allUserVotesByPollId($poll_id) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('vote') . '` WHERE poll_id = ? ORDER BY id');
+   function allUserVotesByPollId($poll_id) {
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('SELECT * FROM `' . Utils::table('vote') . '` WHERE poll_id = ? ORDER BY id');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT * FROM ' . Utils::table('vote') . ' WHERE poll_id = ? ORDER BY id');
+                break;
+        }
+
         $prepared->execute(array($poll_id));
 
         return $prepared->fetchAll();
     }
 
     function insertDefault($poll_id, $insert_position) {
-        $prepared = $this->prepare('UPDATE `' . Utils::table('vote') . '` SET choices = CONCAT(SUBSTRING(choices, 1, ?), " ", SUBSTRING(choices, ?)) WHERE poll_id = ?'); //#51 : default value for unselected vote
-
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('UPDATE `' . Utils::table('vote') . '` SET choices = CONCAT(SUBSTRING(choices, 1, ?), " ", SUBSTRING(choices, ?)) WHERE poll_id = ?'); //#51 : default value for unselected vote
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('UPDATE ' . Utils::table('vote') . ' SET choices = CONCAT(SUBSTRING(choices, 1, ?), " ", SUBSTRING(choices, ?)) WHERE poll_id = ?'); //#51 : default value for unselected vote
+                break;
+        }
         return $prepared->execute([$insert_position, $insert_position + 1, $poll_id]);
     }
 
     function insert($poll_id, $name, $choices, $token) {
-        $prepared = $this->prepare('INSERT INTO `' . Utils::table('vote') . '` (poll_id, name, choices, uniqId) VALUES (?,?,?,?)');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('INSERT INTO `' . Utils::table('vote') . '` (poll_id, name, choices, uniqId) VALUES (?,?,?,?)');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('INSERT INTO ' . Utils::table('vote') . ' (poll_id, name, choices, uniqId) VALUES (?,?,?,?)');
+                break;
+        }
         $prepared->execute([$poll_id, $name, $choices, $token]);
 
         $newVote = new \stdClass();
@@ -38,7 +59,13 @@ class VoteRepository extends AbstractRepository {
     }
 
     function deleteById($poll_id, $vote_id) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('vote') . '` WHERE poll_id = ? AND id = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('DELETE FROM `' . Utils::table('vote') . '` WHERE poll_id = ? AND id = ?');
+            case 'pgsql':
+                $prepared = $this->prepare('DELETE FROM ' . Utils::table('vote') . ' WHERE poll_id = ? AND id = ?');
+                break;
+        }
 
         return $prepared->execute([$poll_id, $vote_id]);
     }
@@ -50,7 +77,14 @@ class VoteRepository extends AbstractRepository {
      * @return bool|null true if action succeeded.
      */
     function deleteByPollId($poll_id) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('vote') . '` WHERE poll_id = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('DELETE FROM `' . Utils::table('vote') . '` WHERE poll_id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('DELETE FROM ' . Utils::table('vote') . ' WHERE poll_id = ?');
+                break;
+        }
 
         return $prepared->execute([$poll_id]);
     }
@@ -63,13 +97,27 @@ class VoteRepository extends AbstractRepository {
      * @return bool|null true if action succeeded.
      */
     function deleteByIndex($poll_id, $index) {
-        $prepared = $this->prepare('UPDATE `' . Utils::table('vote') . '` SET choices = CONCAT(SUBSTR(choices, 1, ?), SUBSTR(choices, ?)) WHERE poll_id = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('UPDATE `' . Utils::table('vote') . '` SET choices = CONCAT(SUBSTR(choices, 1, ?), SUBSTR(choices, ?)) WHERE poll_id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('UPDATE ' . Utils::table('vote') . ' SET choices = CONCAT(SUBSTR(choices, 1, ?), SUBSTR(choices, ?)) WHERE poll_id = ?');
+                break;
+        }
 
         return $prepared->execute([$index, $index + 2, $poll_id]);
     }
 
     function update($poll_id, $vote_id, $name, $choices) {
-        $prepared = $this->prepare('UPDATE `' . Utils::table('vote') . '` SET choices = ?, name = ? WHERE poll_id = ? AND id = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('UPDATE `' . Utils::table('vote') . '` SET choices = ?, name = ? WHERE poll_id = ? AND id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('UPDATE ' . Utils::table('vote') . ' SET choices = ?, name = ? WHERE poll_id = ? AND id = ?');
+                break;
+        }
 
         return $prepared->execute([$choices, $name, $poll_id, $vote_id]);
     }
@@ -82,9 +130,16 @@ class VoteRepository extends AbstractRepository {
      * @return bool true if vote already exists
      */
     public function existsByPollIdAndName($poll_id, $name) {
-        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('vote') . '` WHERE poll_id = ? AND name = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('vote') . '` WHERE poll_id = ? AND name = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT 1 FROM ' . Utils::table('vote') . ' WHERE poll_id = ? AND name = ?');
+                break;
+        }
+
         $prepared->execute(array($poll_id, $name));
         return $prepared->rowCount() > 0;
     }
-
 }

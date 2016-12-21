@@ -12,16 +12,57 @@ class PollRepository extends AbstractRepository {
     }
 
     public function insertPoll($poll_id, $admin_poll_id, $form) {
-        $sql = 'INSERT INTO `' . Utils::table('poll') . '`
-          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_hash, results_publicly_visible)
-          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?,?,?)';
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $sql = 'INSERT INTO `' . Utils::table('poll') . '` ' .
+                    '(id, ' .
+                    'admin_id, '.
+                    'title, '.
+                    'description, '.
+                    'admin_name, '.
+                    'admin_mail, '.
+                    'end_date, '.
+                    'format, '.
+                    'editable, '.
+                    'receiveNewVotes, '.
+                    'receiveNewComments, '.
+                    'hidden, '.
+                    'password_hash, '.
+                    'results_publicly_visible) ' .
+                    'VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?,?,?)';
+                break;
+            case 'pgsql':
+                $sql = 'INSERT INTO ' . Utils::table('poll') .  ' ' .
+                    '(id, ' .
+                    'admin_id, '.
+                    'title, '.
+                    'description, '.
+                    'admin_name, '.
+                    'admin_mail, '.
+                    'end_date, '.
+                    'format, '.
+                    'editable, '.
+                    'receiveNewVotes, '.
+                    'receiveNewComments, '.
+                    'hidden, '.
+                    'password_hash, '.
+                    'results_publicly_visible) ' .
+                    'VALUES (?,?,?,?,?,?,to_timestamp(?),?,?,?,?,?,?,?)';
+                break;
+        }
         $prepared = $this->prepare($sql);
         $prepared->execute(array($poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, ($form->editable>=0 && $form->editable<=2) ? $form->editable : 0, $form->receiveNewVotes ? 1 : 0, $form->receiveNewComments ? 1 : 0, $form->hidden ? 1 : 0, $form->password_hash, $form->results_publicly_visible ? 1 : 0));
     }
 
     function findById($poll_id) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE id = ?');
-
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' WHERE id = ?');
+                break;
+        }
         $prepared->execute(array($poll_id));
         $poll = $prepared->fetch();
         $prepared->closeCursor();
@@ -30,8 +71,14 @@ class PollRepository extends AbstractRepository {
     }
 
     public function findByAdminId($admin_poll_id) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
-
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' WHERE admin_id = ?');
+                break;
+        }
         $prepared->execute(array($admin_poll_id));
         $poll = $prepared->fetch();
         $prepared->closeCursor();
@@ -40,15 +87,28 @@ class PollRepository extends AbstractRepository {
     }
 
     public function existsById($poll_id) {
-        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE id = ?');
-
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT 1 FROM ' . Utils::table('poll') . ' WHERE id = ?');
+                break;
+        }
         $prepared->execute(array($poll_id));
 
         return $prepared->rowCount() > 0;
     }
 
     public function existsByAdminId($admin_poll_id) {
-        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT 1 FROM ' . Utils::table('poll') . ' WHERE admin_id = ?');
+                break;
+        }
 
         $prepared->execute(array($admin_poll_id));
 
@@ -56,13 +116,48 @@ class PollRepository extends AbstractRepository {
     }
 
     function update($poll) {
-        $prepared = $this->prepare('UPDATE `' . Utils::table('poll') . '` SET title=?, admin_name=?, admin_mail=?, description=?, end_date=?, active=?, editable=?, hidden=?, password_hash=?, results_publicly_visible=? WHERE id = ?');
-
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('UPDATE `' . Utils::table('poll') . '` ' .
+                    'SET title=?, ' .
+                    'admin_name=?, ' .
+                    'admin_mail=?, ' .
+                    'description=?, ' .
+                    'end_date=?, ' .
+                    'active=?, ' .
+                    'editable=?, ' .
+                    'hidden=?, ' .
+                    'password_hash=?, ' .
+                    'results_publicly_visible=? ' .
+                    'WHERE id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('UPDATE ' . Utils::table('poll') . ' ' .
+                    'SET title=?, ' .
+                    'admin_name=?, ' .
+                    'admin_mail=?, ' .
+                    'description=?, ' .
+                    'end_date=?, ' .
+                    'active=?, ' .
+                    'editable=?, ' .
+                    'hidden=?, ' .
+                    'password_hash=?, ' .
+                    'results_publicly_visible=? ' .
+                    'WHERE id = ?');
+                break;
+        }
         return $prepared->execute([$poll->title, $poll->admin_name, $poll->admin_mail, $poll->description, $poll->end_date, $poll->active, ($poll->editable>=0 && $poll->editable<=2) ? $poll->editable  : 0, $poll->hidden ? 1 : 0, $poll->password_hash, $poll->results_publicly_visible ? 1 : 0, $poll->id]);
     }
 
     function deleteById($poll_id) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('poll') . '` WHERE id = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('DELETE FROM `' . Utils::table('poll') . '` WHERE id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('DELETE FROM ' . Utils::table('poll') . ' WHERE id = ?');
+                break;
+        }
 
         return $prepared->execute([$poll_id]);
     }
@@ -73,7 +168,14 @@ class PollRepository extends AbstractRepository {
      * @return array Array of old polls
      */
     public function findOldPolls() {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE DATE_ADD(`end_date`, INTERVAL ' . PURGE_DELAY . ' DAY) < NOW() AND `end_date` != 0 LIMIT 20');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE DATE_ADD(`end_date`, INTERVAL ' . PURGE_DELAY . ' DAY) < NOW() AND `end_date` != 0 LIMIT 20');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' WHERE end_date + INTERVAL \'' . PURGE_DELAY . ' DAY\' < NOW() AND end_date != \'1970-01-01 00:00:00\' LIMIT 20');
+                break;
+        }
         $prepared->execute([]);
 
         return $prepared->fetchAll();
@@ -89,7 +191,9 @@ class PollRepository extends AbstractRepository {
      */
     public function findAll($search, $start, $limit) {
         // Polls
-        $prepared = $this->prepare('
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('
 SELECT p.*,
        (SELECT count(1) FROM `' . Utils::table('vote') . '` v WHERE p.id=v.poll_id) votes
   FROM `' . Utils::table('poll') . '` p
@@ -100,6 +204,21 @@ SELECT p.*,
  ORDER BY p.title ASC
  LIMIT :start, :limit
  ');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('
+SELECT p.*,
+       (SELECT count(1) FROM ' . Utils::table('vote') . ' v WHERE p.id=v.poll_id) votes
+  FROM ' . Utils::table('poll') . ' p
+ WHERE (:id = \'\' OR p.id LIKE :id)
+   AND (:title = \'\'OR p.title LIKE :title)
+   AND (:name = \'\' OR p.admin_name LIKE :name)
+   AND (:mail = \'\' OR p.admin_mail LIKE :mail)
+ ORDER BY p.title ASC
+ LIMIT :limit OFFSET :start
+ ');
+                break;
+        }
 
         $poll = $search['poll'] . '%';
         $title = '%' . $search['title'] . '%';
@@ -123,7 +242,14 @@ SELECT p.*,
      * @return array The list of matching polls
      */
     public function findAllByAdminMail($mail) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_mail = :admin_mail');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_mail = :admin_mail');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' WHERE admin_mail = :admin_mail');
+                break;
+        }
         $prepared->execute(array('admin_mail' => $mail));
 
         return $prepared->fetchAll();
@@ -137,13 +263,26 @@ SELECT p.*,
      */
     public function count($search = null) {
         // Total count
-        $prepared = $this->prepare('
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('
 SELECT count(1) nb
   FROM `' . Utils::table('poll') . '` p
  WHERE (:id = "" OR p.id LIKE :id)
    AND (:title = "" OR p.title LIKE :title)
    AND (:name = "" OR p.admin_name LIKE :name)
  ORDER BY p.title ASC');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('
+SELECT count(1) nb
+  FROM ' . Utils::table('poll') . ' p
+ WHERE (:id = \'\' OR p.id LIKE :id)
+   AND (:title = \'\' OR p.title LIKE :title)
+   AND (:name = \'\' OR p.admin_name LIKE :name)
+ ');
+                break;
+        }
 
         $poll = $search == null ? '' : $search['poll'] . '%';
         $title = $search == null ? '' : '%' . $search['title'] . '%';
@@ -162,5 +301,4 @@ SELECT count(1) nb
 
         return $count->nb;
     }
-
 }

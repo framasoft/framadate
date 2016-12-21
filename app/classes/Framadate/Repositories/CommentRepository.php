@@ -11,7 +11,15 @@ class CommentRepository extends AbstractRepository {
     }
 
     function findAllByPollId($poll_id) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('comment') . '` WHERE poll_id = ? ORDER BY id');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('SELECT * FROM `' . Utils::table('comment') . '` WHERE poll_id = ? ORDER BY id');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT * FROM ' . Utils::table('comment') . ' WHERE poll_id = ? ORDER BY id');
+                break;
+        }
+
         $prepared->execute(array($poll_id));
 
         return $prepared->fetchAll();
@@ -26,13 +34,27 @@ class CommentRepository extends AbstractRepository {
      * @return bool
      */
     function insert($poll_id, $name, $comment) {
-        $prepared = $this->prepare('INSERT INTO `' . Utils::table('comment') . '` (poll_id, name, comment) VALUES (?,?,?)');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('INSERT INTO `' . Utils::table('comment') . '` (poll_id, name, comment) VALUES (?,?,?)');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('INSERT INTO ' . Utils::table('comment') . ' (poll_id, name, comment) VALUES (?,?,?)');
+                break;
+        }
 
         return $prepared->execute([$poll_id, $name, $comment]);
     }
 
     function deleteById($poll_id, $comment_id) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('comment') . '` WHERE poll_id = ? AND id = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('DELETE FROM `' . Utils::table('comment') . '` WHERE poll_id = ? AND id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('DELETE FROM ' . Utils::table('comment') . ' WHERE poll_id = ? AND id = ?');
+                break;
+        }
 
         return $prepared->execute([$poll_id, $comment_id]);
     }
@@ -44,13 +66,28 @@ class CommentRepository extends AbstractRepository {
      * @return bool|null true if action succeeded.
      */
     function deleteByPollId($poll_id) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('comment') . '` WHERE poll_id = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('DELETE FROM `' . Utils::table('comment') . '` WHERE poll_id = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('DELETE FROM ' . Utils::table('comment') . ' WHERE poll_id = ?');
+                break;
+        }
 
         return $prepared->execute([$poll_id]);
     }
 
     public function exists($poll_id, $name, $comment) {
-        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('comment') . '` WHERE poll_id = ? AND name = ? AND comment = ?');
+        switch (DB_DRIVER_NAME) {
+            case 'mysql':
+                $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('comment') . '` WHERE poll_id = ? AND name = ? AND comment = ?');
+                break;
+            case 'pgsql':
+                $prepared = $this->prepare('SELECT 1 FROM ' . Utils::table('comment') . ' WHERE poll_id = ? AND name = ? AND comment = ?');
+                break;
+        }
+
         $prepared->execute(array($poll_id, $name, $comment));
 
         return $prepared->rowCount() > 0;
