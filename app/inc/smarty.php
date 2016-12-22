@@ -33,6 +33,9 @@ $smarty->assign('use_nav_js', strstr($_SERVER['SERVER_NAME'], 'framadate.org'));
 $smarty->assign('locale', $locale);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);
 $smarty->assign('date_format', $date_format);
+if (isset($config['tracking_code'])) {
+    $smarty->assign('tracking_code', $config['tracking_code']);
+}
 
 // Dev Mode
 if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {
