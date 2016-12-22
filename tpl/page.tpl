@@ -37,5 +37,8 @@
 
 </main>
 </div> <!-- .container -->
+{if isset($tracking_code)}
+    {$tracking_code}
+{/if}
 </body>
 </html>
