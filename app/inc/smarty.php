@@ -33,6 +33,9 @@ $smarty->assign('use_nav_js', strstr($_SERVER['SERVER_NAME'], 'framadate.org'));
 $smarty->assign('locale', $locale);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);
 $smarty->assign('date_format', $date_format);
+if (defined('FAVICON')) {
+    $smarty->assign('FAVICON', FAVICON);
+}
 
 // Dev Mode
 if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {

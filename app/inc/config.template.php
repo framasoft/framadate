@@ -64,6 +64,9 @@ $ALLOWED_LANGUAGES = [
 // Path to image file with the title
 const IMAGE_TITRE = 'images/logo-framadate.png';
 
+// Relative path to favicon
+const FAVICON = 'favicon.ico';
+
 // Clean URLs, boolean
 const URL_PROPRE = false;
 
