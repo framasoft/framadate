@@ -103,4 +103,5 @@ INSERT INTO '. Utils::table('vote_new') . ' SELECT id, poll_id, name, choices fr
                 $pdo->exec('CREATE INDEX vote_uniqId_index ON ' . Utils::table('vote') . ' ( uniqId)');
                 break;
        }
+    }
 }

@@ -99,4 +99,5 @@ ALTER TABLE ' . Utils::table('poll') . '
 	           $pdo->exec('ALTER TABLE ' . Utils::table('poll') . ' RENAME COLUMN active_new to active;');
 	           break;
         }
+    }
 }
