@@ -36,6 +36,9 @@ $smarty->assign('date_format', $date_format);
 if (isset($config['tracking_code'])) {
     $smarty->assign('tracking_code', $config['tracking_code']);
 }
+if (defined('FAVICON')) {
+    $smarty->assign('favicon', FAVICON);
+}
 
 // Dev Mode
 if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {
