@@ -101,8 +101,10 @@ if (extension_loaded('intl')) {
     $messages[] = new Message('danger', __('Check','You need to enable the PHP Intl extension.'));
 }
 
-// Is template compile dir writable ?
-if (is_writable(ROOT_DIR . COMPILE_DIR)) {
+// Is template compile dir exists and writable ?
+if (!file_exists(ROOT_DIR . COMPILE_DIR)) {
+    $messages[] = new Message('danger', __f('Check','The template compile directory (%s) don\'t exist in "%s". Run composer.', COMPILE_DIR, realpath(ROOT_DIR)));
+} elseif (is_writable(ROOT_DIR . COMPILE_DIR)) {
     $messages[] = new Message('info', __f('Check','The template compile directory (%s) is writable.', realpath(ROOT_DIR . COMPILE_DIR)));
 } else {
     $messages[] = new Message('danger', __f('Check','The template compile directory (%s) is not writable.', realpath(ROOT_DIR . COMPILE_DIR)));

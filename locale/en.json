@@ -414,6 +414,7 @@
         "PHP version %s is enough (needed at least PHP %s).": "PHP version %s is enough (needed at least PHP %s).",
         "You need to enable the PHP Intl extension.": "You need to enable the PHP Intl extension.",
         "PHP Intl extension is enabled.": "PHP Intl extension is enabled.",
+        "The template compile directory (%s) don't exist in \"%s\". Run composer.": "The template compile directory (%s) don't exist in \"%s\". Run composer.",
         "The template compile directory (%s) is not writable.": "The template compile directory (%s) is not writable.",
         "The template compile directory (%s) is writable.": "The template compile directory (%s) is writable.",
         "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "The config file directory (%s) is not writable and the config file (%s) dos not exists.",
