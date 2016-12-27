@@ -333,7 +333,6 @@
         "Have a good day!": "Have a good day!",
         "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.",
         "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s."
-
     },
     "Mail": {
         "Poll's participation: %s": "Poll participation: %s",
@@ -406,6 +405,10 @@
         "Poll id already used": "Identifier is already used",
         "You can't select more than %d dates": "You can't select more than %d dates",
         "Can't create the config.php file in '%s'.": "Can't create the config.php file in '%s'.",
+        "Failed to delete all comments": "Failed to delete all comments",
+        "Failed to delete all votes": "Failed to delete all votes",
+        "Failed to delete the comment": "Failed to delete the comment",
+        "Failed to delete the poll": "Failed to delete the poll",
         "Can't create an empty column.": "Can't create an empty column."
     },
     "Check": {
