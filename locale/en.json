@@ -323,7 +323,8 @@
         "Purged:": "Purged:",
         "Confirm removal of the poll": "Confirm removal of the poll ",
         "polls in the database at this time": "polls in the database at this time",
-        "Purge the polls": "Purge the polls"
+        "Purge the polls": "Purge the polls",
+        "Installation": "Installation"
     },
     "FindPolls": {
         "Send me my polls": "Send me my polls",
