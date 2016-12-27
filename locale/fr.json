@@ -323,7 +323,8 @@
         "Purged:": "Purgés :",
         "Confirm removal of the poll": "Confirmer la suppression du sondage",
         "polls in the database at this time": "sondages dans la base actuellement",
-        "Purge the polls": "Purger les sondages"
+        "Purge the polls": "Purger les sondages",
+        "Installation": "Installation"
     },
     "FindPolls": {
         "Send me my polls": "Envoyer mes sondages",
