@@ -410,7 +410,8 @@
         "Poll id already used": "Arveret eo an naoudi endeo",
         "You can't select more than %d dates": "N'hallit ket diuzañ ouzhpenn %d a zeiziadoù",
         "Can't create the config.php file in '%s'.": "N'haller ket krouiñ ar restr config.php e '%s'.",
-        "Can't create an empty column.": "N'haller ket krouiñ ur bann goullo."
+        "Can't create an empty column.": "N'haller ket krouiñ ur bann goullo.",
+        "If you quit now, your changes will be lost.": "BR_Si vous quittez maintenant, vos modifications seront perdues."
         },
         "Check": {
         "Installation checking": "Gwiriañ ar staliadur",

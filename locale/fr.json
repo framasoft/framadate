@@ -413,7 +413,8 @@
     "Failed to delete all votes": "Impossible de supprimer tous les votes",
     "Failed to delete the comment": "Impossible de supprimer le commentaire",
     "Failed to delete the poll": "Impossible de supprimer le sondage",
-    "Can't create an empty column.": "Impossible de créer une colonne vide."
+    "Can't create an empty column.": "Impossible de créer une colonne vide.",
+    "If you quit now, your changes will be lost.": "Si vous quittez maintenant, vos modifications seront perdues."
   },
   "Check": {
     "Installation checking": "Vérifications de l'installation",

@@ -409,7 +409,8 @@
     "Poll id already used": "ES_L'identifiant est déjà utilisé",
     "You can't select more than %d dates": "ES_Vous ne pouvez pas choisir plus de %d dates",
     "Can't create the config.php file in '%s'.": "ES_Impossible de créer le fichier config.php dans '%s'.",
-    "Can't create an empty column.": "ES_Impossible de créer une colonne vide."
+    "Can't create an empty column.": "ES_Impossible de créer une colonne vide.",
+    "If you quit now, your changes will be lost.": "ES_Si vous quittez maintenant, vos modifications seront perdues."
   },
   "Check": {
     "Installation checking": "ES_Vérifications de l'installation",

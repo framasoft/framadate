@@ -410,7 +410,8 @@
     "Poll id already used": "Identifier is already used",
     "You can't select more than %d dates": "You can't select more than %d dates",
     "Can't create the config.php file in '%s'.": "Can't create the config.php file in '%s'.",
-    "Can't create an empty column.": "Can't create an empty column."
+    "Can't create an empty column.": "Can't create an empty column.",
+    "If you quit now, your changes will be lost.": "If you quit now, your changes will be lost."
   },
   "Check": {
     "Installation checking": "Installation checking",

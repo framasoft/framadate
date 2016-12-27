@@ -18,6 +18,9 @@
 
 $(document).ready(function () {
 
+    // Flag for onbeforeunload event
+    var isSubmittingVote = false;
+
     $('#poll_form').submit(function (event) {
         var name = $('#name').val().trim();
 
@@ -32,6 +35,8 @@ $(document).ready(function () {
             $('html, body').animate({
                 scrollTop: messageContainer.offset().top
             }, 750);
+        } else {
+            isSubmittingVote = true;
         }
     });
 
@@ -101,6 +106,17 @@ $(document).ready(function () {
         }
 
         return false;
+    });
+
+    $(window).on('beforeunload', function(e) {
+        var name = $('#name').val().trim();
+        var comment = $('#comment').val().trim();
+
+        if ((!isSubmittingVote && name.length > 0) || comment.length > 0) {
+            var confirmationMessage = $('#preventLeaving').text();
+            e.returnValue = confirmationMessage;
+            return confirmationMessage;
+        }
     });
 
 });
