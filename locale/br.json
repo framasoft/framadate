@@ -321,7 +321,8 @@
         "Purged:": "Spurjet:",
         "Confirm removal of the poll": "Kadarnait dilemel ar sontadeg",
         "polls in the database at this time": "sontadeg er stlennvon",
-        "Purge the polls": "Spurjañ ar sontadegoù"
+        "Purge the polls": "Spurjañ ar sontadegoù",
+        "Installation": "BR_Installation"
     },
     "FindPolls": {
         "Send me my polls": "Kasit din ma sontadegoù",

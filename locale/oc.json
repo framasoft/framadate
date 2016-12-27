@@ -323,7 +323,8 @@
         "Purged:": "Purgats :",
         "Confirm removal of the poll": "Confirmar la supression del sondatge",
         "polls in the database at this time": "sondatges dins la banca de donadas actualament",
-        "Purge the polls": "Purgar los sondatges"
+        "Purge the polls": "Purgar los sondatges",
+        "Installation": "OC_Installation"
     },
     "FindPolls": {
         "Send me my polls": "Mandar mos sondatges",
