@@ -414,7 +414,7 @@
         "PHP version %s is enough (needed at least PHP %s).": "ES_Version de PHP %s suffisante (nécessite au moins PHP %s).",
         "You need to enable the PHP Intl extension.": "ES_Vous devez activer l'extension PHP Intl.",
         "PHP Intl extension is enabled.": "ES_L'extension PHP Intl est activée.",
-        "The template compile directory (%s) doesn't exist in \"%s\". Run composer.": "ES_The template compile directory (%s) doesn't exist in \"%s\". Run composer.",
+        "The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.": "ES_The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.",
         "The template compile directory (%s) is not writable.": "ES_Le dossier de compilation des templates (%s) n'est pas accessible en écriture.",
         "The template compile directory (%s) is writable.": "ES_Le dossier de compilation des templates (%s) est accessible en écriture.",
         "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "ES_Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'éxiste pas.",
