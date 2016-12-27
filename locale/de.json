@@ -405,7 +405,8 @@
         "Poll id already used": "Der Bezeichner ist bereits in Verwendung",
         "You can't select more than %d dates": "Es können nicht mehr als %d Termine ausgewählt werden",
         "Can't create the config.php file in '%s'.": "Kann die config.php nicht in '%s' angelegen.",
-        "Can't create an empty column.": "Kann keine leere Spalte anlegen."
+        "Can't create an empty column.": "Kann keine leere Spalte anlegen.",
+        "If you quit now, your changes will be lost.": "DE_Si vous quittez maintenant, vos modifications seront perdues."
     },
     "Check": {
         "Installation checking": "Verifikation der Installation",

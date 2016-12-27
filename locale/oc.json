@@ -405,7 +405,8 @@
         "Poll id already used": "L'identificant es ja utilizat",
         "You can't select more than %d dates": "Podètz pas causir mai de %d datas",
         "Can't create the config.php file in '%s'.": "Impossible de crear lo fichièr config.php dins '%s'.",
-        "Can't create an empty column.": "Impossible de crear una colomna voida."
+        "Can't create an empty column.": "Impossible de crear una colomna voida.",
+        "If you quit now, your changes will be lost.": "OC_Si vous quittez maintenant, vos modifications seront perdues."
     },
     "Check": {
         "Installation checking": "Verificacions de l'installacion",
