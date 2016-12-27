@@ -323,7 +323,8 @@
         "Purged:": "Leeggemaakt:",
         "Confirm removal of the poll": "Bevestig het verwijderen van de poll",
         "polls in the database at this time": "polls in de database op dit moment",
-        "Purge the polls": "Maak de polls leeg"
+        "Purge the polls": "Maak de polls leeg",
+        "Installation": "NL_Installation"
     },
     "FindPolls": {
         "Send me my polls": "Stuur me mijn polls",
