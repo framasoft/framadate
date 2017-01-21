@@ -73,6 +73,7 @@ $slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
 
 // CSV header
+echo "\xEF\xBB\xBF"; // BOM character for UTF-8
 if ($poll->format === 'D') {
     $titles_line = ',';
     $moments_line = ',';
