@@ -9,6 +9,9 @@
         <title>{$APPLICATION_NAME|html}</title>
     {/if}
 
+    {if isset($FAVICON)}
+        <link rel="icon" href="{$FAVICON|resource}">
+    {/if}
     <link rel="stylesheet" href="{'css/bootstrap.min.css'|resource}">
     <link rel="stylesheet" href="{'css/datepicker3.css'|resource}">
     <link rel="stylesheet" href="{'css/style.css'|resource}">
