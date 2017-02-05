@@ -34,6 +34,13 @@ class MailService {
                 $mail->addReplyTo(ADRESSEMAILREPONSEAUTO);
             }
 
+            $mail->Host = 'smtp-relay.gmail.com';
+            $mail->Port = 587;
+            $mail->SMTPSecure = 'tls';
+            $mail->SMTPAuth = true;
+            $mail->Username = "phpmailer@roseliere.ch";
+            $mail->Password = $_ENV['GOOGLE_SMTP_PASSWORD'];
+
             // To
             $mail->addAddress($to);
 
@@ -73,4 +80,4 @@ class MailService {
     }
 
 }
- 
+
