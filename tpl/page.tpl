@@ -39,6 +39,7 @@
 {block name=main}{/block}
 
 </main>
+{include file='footer.tpl'}
 </div> <!-- .container -->
 </body>
 </html>
