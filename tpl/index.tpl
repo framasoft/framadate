@@ -41,7 +41,7 @@
     <div class="row">
 
         {if $show_what_is_that}
-            <div class="col-md-{$col_size}">
+            <div class="col-md-6">
                 <h3>{__('1st section', 'What is that?')}</h3>
 
                 <p class="text-center" role="presentation">
@@ -67,7 +67,7 @@
             </div>
         {/if}
         {if $show_the_software}
-            <div class="col-md-{$col_size}">
+            <div class="col-md-6">
                 <h3>{__('2nd section', 'The software')}</h3>
 
                 <p class="text-center" role="presentation">
@@ -79,21 +79,21 @@
                     {__('2nd section', 'a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.')}
                 </p>
 
-                <p>{__('2nd section', 'This software needs javascript and cookies enabled. It is compatible with the following web browsers:')}</p>
+<!--                <p>{__('2nd section', 'This software needs javascript and cookies enabled. It is compatible with the following web browsers:')}</p>
                 <ul>
                     <li>Microsoft Internet Explorer 9+</li>
                     <li>Google Chrome 19+</li>
                     <li>Firefox 12+</li>
                     <li>Safari 5+</li>
                     <li>Opera 11+</li>
-                </ul>
+                </ul>-->
                 <p>
                     {__('2nd section', 'It is governed by the')}
                     <a href="http://www.cecill.info">{__('2nd section', 'CeCILL-B license')}</a>.
                 </p>
             </div>
         {/if}
-        {if $show_cultivate_your_garden}
+      <!--  {if $show_cultivate_your_garden}
             <div class="col-md-{$col_size}">
                 <h3>{__('3rd section', 'Cultivate your garden')}</h3>
 
@@ -117,6 +117,6 @@
                     </a>
                 </p>
             </div>
-        {/if}
+        {/if}-->
     </div>
 {/block}
