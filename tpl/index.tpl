@@ -79,14 +79,6 @@
                     {__('2nd section', 'a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.')}
                 </p>
 
-<!--                <p>{__('2nd section', 'This software needs javascript and cookies enabled. It is compatible with the following web browsers:')}</p>
-                <ul>
-                    <li>Microsoft Internet Explorer 9+</li>
-                    <li>Google Chrome 19+</li>
-                    <li>Firefox 12+</li>
-                    <li>Safari 5+</li>
-                    <li>Opera 11+</li>
-                </ul>-->
                 <p>
                     {__('2nd section', 'It is governed by the')}
                     <a href="http://www.cecill.info">{__('2nd section', 'CeCILL-B license')}</a>.

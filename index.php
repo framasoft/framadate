@@ -41,7 +41,7 @@ $nbcol = max( $config['show_what_is_that'] + $config['show_the_software'] + $con
 $smarty->assign('show_what_is_that', $config['show_what_is_that']);
 $smarty->assign('show_the_software', $config['show_the_software']);
 $smarty->assign('show_cultivate_your_garden', $config['show_cultivate_your_garden']);
-$smarty->assign('col_size', 12 / $nbcol);
+$smarty->assign('col_size', 6 / $nbcol);
 $smarty->assign('demo_poll', $demoPoll);
 
 $smarty->assign('title', __('Generic', 'Make your polls'));
