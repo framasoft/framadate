@@ -34,6 +34,14 @@ class MailService {
                 $mail->addReplyTo(ADRESSEMAILREPONSEAUTO);
             }
 
+            // Mail server config
+            $mail->Host = SMTP_HOST;
+            $mail->Port = SMTP_PORT;
+            $mail->SMTPSecure = SMTP_SECURE;
+            $mail->SMTPAuth = SMTP_AUTH;
+            $mail->Username = SMTP_USERNAME;
+            $mail->Password = SMTP_PASSWORD;
+
             // To
             $mail->addAddress($to);
 

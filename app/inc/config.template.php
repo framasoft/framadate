@@ -82,6 +82,24 @@ const MAX_SLOTS_PER_POLL = 366;
 // Number of seconds before we allow to resend an "Remember Edit Link" email.
 const TIME_EDIT_LINK_EMAIL = 60;
 
+// SMTP server
+const SMTP_HOST = '<smtp server>';
+
+// SMTP port
+const SMTP_PORT = 587;
+
+// SMTP security
+const SMTP_SECURE = 'tls';
+
+// use SMTP auth
+const SMTP_AUTH = true;
+
+// SMTP username
+const SMTP_USERNAME = '<smtp username>';
+
+// SMTP password
+const SMTP_PASSWORD = '<smtp password>';
+
 // Config
 $config = [
     /* general config */
