@@ -321,7 +321,8 @@
         "Purged:": "Spurjet:",
         "Confirm removal of the poll": "Kadarnait dilemel ar sontadeg",
         "polls in the database at this time": "sontadeg er stlennvon",
-        "Purge the polls": "Spurjañ ar sontadegoù"
+        "Purge the polls": "Spurjañ ar sontadegoù",
+        "Installation": "BR_Installation"
     },
     "FindPolls": {
         "Send me my polls": "Kasit din ma sontadegoù",
@@ -412,6 +413,7 @@
         "PHP version %s is enough (needed at least PHP %s).": "Trawalc'h eo an handelv PHP %s (PHP %s goulennet d'an nebeutañ).",
         "You need to enable the PHP Intl extension.": "Ret eo deoc'h gweredekaat an askouezh PHP Intl.",
         "PHP Intl extension is enabled.": "Gweredekaet eo an askouezh PHP Intl.",
+        "The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.": "BR_The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.",
         "The template compile directory (%s) is not writable.": "N'haller ket skrivañ e kavlec'h kempunañ ar patromoù (%s).",
         "The template compile directory (%s) is writable.": "Gallout a raer skrivañ e kavlec'h kempunañ ar patromoù (%s).",
         "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "N'haller ket skrivañ e kavlec'h ar restr kefluniañ (%s) ha n'eus ket eus ar restr kefluniañ (%s).",

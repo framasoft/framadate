@@ -323,7 +323,8 @@
         "Purged:": "Purgats :",
         "Confirm removal of the poll": "Confirmar la supression del sondatge",
         "polls in the database at this time": "sondatges dins la banca de donadas actualament",
-        "Purge the polls": "Purgar los sondatges"
+        "Purge the polls": "Purgar los sondatges",
+        "Installation": "OC_Installation"
     },
     "FindPolls": {
         "Send me my polls": "Mandar mos sondatges",
@@ -413,6 +414,7 @@
         "PHP version %s is enough (needed at least PHP %s).": "Version de PHP %s sufisenta (Cal almens PHP %s).",
         "You need to enable the PHP Intl extension.": "Vos cal activarl'extension PHP Intl.",
         "PHP Intl extension is enabled.": "L'extension PHP Intl es activada.",
+        "The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.": "OC_The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.",
         "The template compile directory (%s) is not writable.": "Lo dorsièr de compilacion dels modèls (%s) es pas accessible en escritura.",
         "The template compile directory (%s) is writable.": "Lo dorsièr de compilacion dels modèls (%s) es accessible en escritura.",
         "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "Lo dorsièr del fichièr de configuracion (%s) es pas accessible en escritura e lo fichièr de configuracion (%s) existís pas.",
