@@ -323,7 +323,8 @@
         "Purged:": "Depurati:",
         "Confirm removal of the poll": "Confermare l'eliminazione del sondaggio ",
         "polls in the database at this time": "sondaggi presenti nel database attualmente",
-        "Purge the polls": "Depurare i sondaggi"
+        "Purge the polls": "Depurare i sondaggi",
+        "Installation": "IT_Installation"
     },
     "FindPolls": {
         "Send me my polls": "Inviare i miei sondaggi",
@@ -413,6 +414,7 @@
         "PHP version %s is enough (needed at least PHP %s).": "IT_Version de PHP %s suffisante (nécessite au moins PHP %s).",
         "You need to enable the PHP Intl extension.": "IT_Vous devez activer l'extension PHP Intl.",
         "PHP Intl extension is enabled.": "IT_L'extension PHP Intl est activée.",
+        "The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.": "IT_The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.",
         "The template compile directory (%s) is not writable.": "IT_Le dossier de compilation des templates (%s) n'est pas accessible en écriture.",
         "The template compile directory (%s) is writable.": "IT_Le dossier de compilation des templates (%s) est accessible en écriture.",
         "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "IT_Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'éxiste pas.",
