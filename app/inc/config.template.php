@@ -56,12 +56,16 @@ $ALLOWED_LANGUAGES = [
     'oc' => 'Occitan',
     'es' => 'Español',
     'de' => 'Deutsch',
+    'nl' => 'Dutch',
     'it' => 'Italiano',
     'br' => 'Brezhoneg',
 ];
 
 // Nom et emplacement du fichier image contenant le titre
 const IMAGE_TITRE = 'images/logo-framadate.png';
+
+// Relative path to favicon
+const FAVICON = 'favicon.ico';
 
 // Clean URLs, boolean
 const URL_PROPRE = false;
@@ -85,6 +89,7 @@ const TIME_EDIT_LINK_EMAIL = 60;
 $config = [
     /* general config */
     'use_smtp' => true,                     // use email for polls creation/modification/responses notification
+    'tracking_code' => '',                  // add HTML code to every page, useful for tools like Piwik
     /* home */
     'show_what_is_that' => true,            // display "how to use" section
     'show_the_software' => true,            // display technical information about the software

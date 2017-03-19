@@ -9,6 +9,10 @@
         <title>{$APPLICATION_NAME|html}</title>
     {/if}
 
+    {if isset($favicon)}
+        <link rel="icon" href="{$favicon|resource}">
+    {/if}
+
     <link rel="stylesheet" href="{'css/bootstrap.min.css'|resource}">
     <link rel="stylesheet" href="{'css/datepicker3.css'|resource}">
     <link rel="stylesheet" href="{'css/style.css'|resource}">
@@ -37,5 +41,8 @@
 
 </main>
 </div> <!-- .container -->
+{if isset($tracking_code)}
+    {$tracking_code}
+{/if}
 </body>
 </html>
