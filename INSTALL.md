@@ -1,5 +1,9 @@
 # Pré-installation
 
+## Module php
+
+Installer le module php [intl](http://php.net/manual/fr/book.intl.php).
+
 ## Base de données
 
 Framadate fonctionne indépendemment de la base SQL utilisée.
@@ -27,6 +31,14 @@ Les tables de l'applications sont décrites plus loin dans ce fichier dans la pa
     -- Créer un utilisateur
     CREATE USER 'framadate_user'@'localhost' IDENTIFIED BY '<password>';
     GRANT ALL PRIVILEGES ON `framadate_db`.* TO 'framadate_user'@'localhost';
+```
+
+## Composer update
+    
+Installer [composer](https://getcomposer.org/download/).
+
+```bash
+    ./composer.phar update
 ```
 
 # Installation
@@ -57,6 +69,24 @@ par votre serveur Web. Quelque chose comme devrait convenir:
     touch admin/stdout.log
     chmod 700 admin/stdout.log
     chown www-data admin/stdout.log
+```
+
+# URL propres
+
+- Pour activer les urls propres, éditer le fichier `app/inc/config.php`
+
+```php
+    // Clean URLs, boolean
+    const URL_PROPRE = true;
+```
+
+et ne pas oublier les rewrites rules à activer d'après les exemples fournis dans [htaccess.txt](htaccess.txt)
+
+- Ou pour les désactiver (fonctionne sans rewrite rules)
+
+```php
+    // Clean URLs, boolean
+    const URL_PROPRE = false;
 ```
 
 # Maintenance
