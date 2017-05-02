@@ -10,7 +10,7 @@
                 <div class="form-group">
                     <div class="input-group">
                         <label for="mail" class="input-group-addon">{__('Generic', 'Your email address')}</label>
-                        <input type="email" class="form-control" id="mail" name="mail" autofocus>
+                        <input type="email" class="form-control" id="mail" name="mail" value="{$email}" autofocus>
                     </div>
                 </div>
             </div>
