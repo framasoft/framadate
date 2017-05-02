@@ -39,7 +39,8 @@
     "Creation date:": "Creation date:",
     "Caption": "Caption",
     "Markdown": "Markdown",
-    "ASTERISK": "*"
+    "ASTERISK": "*",
+    "Disconnect" : "Disconnect"
   },
   "Date" : {
     "dd/mm/yyyy": "yyyy-mm-dd",
