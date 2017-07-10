@@ -27,6 +27,15 @@ class MailService {
             $mail = new PHPMailer(true);
             $mail->isSMTP();
 
+            $mail->Host = SMTP_HOST;
+            $mail->Port = SMTP_PORT;
+            $mail->SMTPSecure = SMTP_TLS ? '' : 'tls';
+            if (!empty(SMTP_USERNAME) && !empty(SMTP_PASSWORD)) {
+                $mail->SMTPAuth = true;
+                $mail->Username = SMTP_USERNAME;
+                $mail->Password = SMTP_PASSWORD;
+            }
+
             // From
             $mail->FromName = NOMAPPLICATION;
             $mail->From = ADRESSEMAILADMIN;
@@ -73,4 +82,3 @@ class MailService {
     }
 
 }
- 

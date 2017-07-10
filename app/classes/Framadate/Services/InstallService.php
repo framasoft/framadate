@@ -38,7 +38,14 @@ class InstallService {
         'dbUser' => 'root',
         'dbPassword' => '',
         'dbPrefix' => 'fd_',
-        'migrationTable' => 'framadate_migration'
+        'migrationTable' => 'framadate_migration',
+
+        // SMTP configuration
+        'smtpHost' => 'localhost',
+        'smtpPort' => '25',
+        'smtpTls' => false,
+        'smtpUsername' => '',
+        'smtpPassword' => ''
     );
 
     function __construct() {}
@@ -51,7 +58,9 @@ class InstallService {
 
     public function install(Smarty &$smarty) {
         // Check values are present
-        if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dbConnectionString']) || empty($this->fields['dbUser'])) {
+        if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) ||
+            empty($this->fields['dbConnectionString']) || empty($this->fields['dbUser']) ||
+            empty($this->fields['smtpHost']) || empty($this->fields['smtpPort'])) {
             return $this->error('MISSING_VALUES');
         }
 

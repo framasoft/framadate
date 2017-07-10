@@ -67,6 +67,18 @@ const IMAGE_TITRE = 'images/logo-framadate.png';
 // Clean URLs, boolean
 const URL_PROPRE = false;
 
+// SMTP configuration
+const SMTP_HOST = '<SMTP host>';
+
+const SMTP_PORT = '<SMTP Port>';
+
+const SMTP_TLS = true;
+
+const SMTP_USERNAME = '<SMTP Username>';
+
+const SMTP_PASSWORD = '<SMTP Password>';
+
+
 // Use REMOTE_USER data provided by web server
 const USE_REMOTE_USER =  true;
 

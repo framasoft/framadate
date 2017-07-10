@@ -92,6 +92,46 @@
                 </div>
             </fieldset>
 
+            <fieldset>
+                <legend>{__('Installation', 'Smtp')}</legend>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="smtpHost" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'SmtpHost')}</label>
+                        <input type="text" class="form-control" id="smtpHost" name="smtpHost" value="{$fields['smtpHost']}" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="smtpPort" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'SmtpPort')}</label>
+                        <input type="text" class="form-control" id="smtpPort" name="smtpPort" value="{$fields['smtpPort']}" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="smtpTls" class="input-group-addon">{__('Installation', 'SmtpTls')}</label>
+                        <div class="form-control">
+                            <input type="checkbox" id="smtpTls" name="smtpTls" {($fields['smtpTls']) ? 'checked' : ''}>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="smtpUsername" class="input-group-addon">{__('Installation', 'SmtpUsername')}</label>
+                        <input type="text" class="form-control" id="smtpUsername" name="smtpUsername" value="{$fields['smtpUsername']}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="smtpPassword" class="input-group-addon">{__('Installation', 'SmtpPassword')}</label>
+                        <input type="password" class="form-control" id="smtpPassword" name="smtpPassword" value="{$fields['smtpPassword']}">
+                    </div>
+                </div>
+            </fieldset>
+
             <div class="text-center form-group">
                 <button type="submit" class="btn btn-primary">{__('Installation', 'Install')}</button>
             </div>
