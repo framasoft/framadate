@@ -367,7 +367,13 @@
         "General": "General",
         "Install": "Install",
         "MigrationTable": "Migration table",
-        "ResponseMail": "Respond-to mail address"
+        "ResponseMail": "Respond-to mail address",
+        "Smtp": "Sending mail server",
+        "SmtpHost": "SMTP hostname",
+        "SmtpPort": "Port",
+        "SmtpTls": "TLS encryption",
+        "SmtpUsername": "Username",
+        "SmtpPassword": "Password"
     },
     "Error": {
         "Error!": "Error!",
