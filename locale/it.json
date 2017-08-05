@@ -50,10 +50,10 @@
         "DATE": "%d/%m/%Y",
         "MONTH_YEAR": "%B %Y",
         "DATETIME": "%d/%m/%Y %H:%M",
-        "Add range dates": "IT_Ajout d'un intervalle de dates",
-        "Max dates count": "IT_Vous pouvez sélectionner au maximum 4 mois",
-        "Start date": "IT_Date de début",
-        "End date": "IT_Date de fin"
+        "Add range dates": "Aggiungere un intervallo di date",
+        "Max dates count": "Si possono selezionare al massimo 4 mesi",
+        "Start date": "Data iniziale",
+        "End date": "Data finale"
     },
     "Language selector": {
         "Select the language": "Scegliere la lingua",
@@ -180,13 +180,13 @@
     },
     "EditLink": {
         "Send": "IT_Envoyer",
-        "If you don't want to lose your personalized link, we can send it to your email.": "IT_Afin de ne pas perdre ce lien d'édition de vote, nous pouvons vous l'envoyer par courriel.",
-        "The email address is not correct.": "IT_Courriel incorrect.",
-        "REMINDER": "IT_RAPPEL",
-        "Edit link for poll \"%s\"": "IT_Lien d'édition du sondage \"%s\"",
-        "Please wait %d seconds before we can send an email to you then try again.": "IT_Veuillez patienter encore %d seconds avant que nous puissions vous envoyer un email, puis réessayez.",
-        "Here is the link for editing your vote:": "IT_Voici le lien pour éditer votre vote :",
-        "Your reminder has been successfully sent!": "IT_Votre rappel a été envoyé avec succès !"
+        "If you don't want to lose your personalized link, we can send it to your email.": "Se non vuoi perdere il link personalizzato, possiamo inviartelo via e-mail.",
+        "The email address is not correct.": "L'indirizzo e-mail non è corretto.",
+        "REMINDER": "Promemoria",
+        "Edit link for poll \"%s\"": "Modificare il link del sondaggio\"%s\"",
+        "Please wait %d seconds before we can send an email to you then try again.": "Attendere ancora %d secondi prima che possiamo inviare un'e-mail, in seguito riprovare.",
+        "Here is the link for editing your vote:": "Ecco il link per modificare il vostro voto :",
+        "Your reminder has been successfully sent!": "Il vostro promemoria è stato inviato con successo !"
     },
     "adminstuds": {
         "As poll administrator, you can change all the lines of this poll with this button": "Essendo l'amministratore, potete modificare tutte le righe di questo sondaggio con questo pulsante",
