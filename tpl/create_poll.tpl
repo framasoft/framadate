@@ -79,17 +79,17 @@
 
 		<div class="form-group">
 		    <label for="vote_system" class="col-sm-4 control-label">
-			{__('Step 1', 'Select vote system')}
+			{__('Step 1', 'Vote system')}
 		    </label>
 		    <div class="col-sm-8">
 			<div class="radio">
 			    <label>
 				<input type="radio" name="vote-sys" id="vote-sys" {if $vote_system==constant("Framadate\VoteSytem::MAJORITY")}checked{/if} value="{constant("Framadate\VoteSystem:MAJORITY")}">
-				{__('Step 1', 'Classic Majority vote system')}
+				{__('Step 1', 'Classic Majority')}
 			    </label>
 			    <label>
 				<input type="radio" name="vote-sys" {if $vote_system==constant("Framadate\VoteSystem::MAJORITY_JUDGMENT")}checked{/if} value="{constant("Framadate\VoteSystem:MAJORITY_JUDGMENT")}">
-				{__('Step 1', 'Majority judgment vote system')}
+				{__('Step 1', 'Majority judgment')}
 			    </label>
 			</div>
 		    </div>
