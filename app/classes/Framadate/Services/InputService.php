@@ -86,6 +86,10 @@ class InputService {
         return filter_var($editable, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => EDITABLE_CHOICE_REGEX]]);
     }
 
+    public function filterVoteSystem($vote_system) {
+        return filter_var($vote_system, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => VOTE_SYSTEM_REGEX]]);
+    }
+
     public function filterComment($comment) {
         $comment = str_replace("\r\n", "\n", $comment);
         return $this->returnIfNotBlank($comment);

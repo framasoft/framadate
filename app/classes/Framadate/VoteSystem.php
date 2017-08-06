@@ -29,7 +29,7 @@ namespace Framadate;
  * @package Framadate
  */
 class VoteSystem { // extends SplEnum
-    const __default = self::VOTE_SYSTEM;
+    const __default = self::MAJORITY;
 
     const MAJORITY = 0;
     const MAJORITY_JUDGMENT = 1;

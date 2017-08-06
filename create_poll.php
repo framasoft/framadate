@@ -62,6 +62,7 @@ if ($goToStep2) {
     $mail = $config['use_smtp'] == true ? $inputService->filterMail($_POST['mail']) : null;
     $description = $inputService->filterDescription($_POST['description']);
     $editable = $inputService->filterEditable($_POST['editable']);
+    $vote_system = $inputService->filterVoteSystem($_POST['vote-sys']);
     $receiveNewVotes = isset($_POST['receiveNewVotes']) ? $inputService->filterBoolean($_POST['receiveNewVotes']) : false;
     $receiveNewComments = isset($_POST['receiveNewComments']) ? $inputService->filterBoolean($_POST['receiveNewComments']) : false;
     $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
@@ -86,6 +87,7 @@ if ($goToStep2) {
     $_SESSION['form']->admin_mail = $mail;
     $_SESSION['form']->description = $description;
     $_SESSION['form']->editable = $editable;
+    $_SESSION['form']->vote_system = $vote_system;
     $_SESSION['form']->receiveNewVotes = $receiveNewVotes;
     $_SESSION['form']->receiveNewComments = $receiveNewComments;
     $_SESSION['form']->hidden = $hidden;
@@ -276,6 +278,7 @@ $smarty->assign('poll_description', Utils::fromPostOrDefault('description', $_SE
 $smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
 $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));
 $smarty->assign('poll_editable', Utils::fromPostOrDefault('editable', $_SESSION['form']->editable));
+$smarty->assign('poll_vote_system', Utils::fromPostOrDefault('vote_system', $_SESSION['form']->vote_system));
 $smarty->assign('poll_receiveNewVotes', Utils::fromPostOrDefault('receiveNewVotes', $_SESSION['form']->receiveNewVotes));
 $smarty->assign('poll_receiveNewComments', Utils::fromPostOrDefault('receiveNewComments', $_SESSION['form']->receiveNewComments));
 $smarty->assign('poll_hidden', Utils::fromPostOrDefault('hidden', $_SESSION['form']->hidden));

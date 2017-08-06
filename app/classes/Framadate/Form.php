@@ -29,6 +29,11 @@ class Form
     public $format;
     public $end_date;
     public $choix_sondage;
+
+    /**
+     * Contains the vote system for users
+     * @var \Framadate\VoteSystem
+     */
     public $vote_system;
 
     /**
