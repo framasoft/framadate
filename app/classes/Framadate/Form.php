@@ -29,6 +29,7 @@ class Form
     public $format;
     public $end_date;
     public $choix_sondage;
+    public $vote_system;
 
     /**
      * Tells if users can modify their choices.

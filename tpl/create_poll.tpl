@@ -77,6 +77,24 @@
                     </div>
                 {/if}
 
+		<div class="form-group">
+		    <label for="vote_system" class="col-sm-4 control-label">
+			{__('Step 1', 'Select vote system')}
+		    </label>
+		    <div class="col-sm-8">
+			<div class="radio">
+			    <label>
+				<input type="radio" name="vote-sys" id="vote-sys" {if $vote_system==constant("Framadate\VoteSytem::MAJORITY")}checked{/if} value="{constant("Framadate\VoteSystem:MAJORITY")}">
+				{__('Step 1', 'Classic Majority vote system')}
+			    </label>
+			    <label>
+				<input type="radio" name="vote-sys" {if $vote_system==constant("Framadate\VoteSystem::MAJORITY_JUDGMENT")}checked{/if} value="{constant("Framadate\VoteSystem:MAJORITY_JUDGMENT")}">
+				{__('Step 1', 'Majority judgment vote system')}
+			    </label>
+			</div>
+		    </div>
+		</div>
+
                 <div class="form-group {$errors['description']['class']}">
                     <label for="poll_comments" class="col-sm-4 control-label">{__('Generic', 'Description')}</label>
 

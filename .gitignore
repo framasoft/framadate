@@ -13,6 +13,7 @@ tpl_c/
 # Temp files
 *~
 \#*\#
+*.swp
 
 # Cache
 Thumbs.db
