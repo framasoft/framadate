@@ -383,6 +383,115 @@ table.results .btn-link.btn-sm {
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
 }
 
+/* majority judgement */
+.excellent input, .good input, .fair input, .poor input, .to-reject input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0px, 0px, 0px, 0px);
+    border: 0px none;
+}
+
+.excellent .btn, .good .btn, .fair .btn, .poor .btn, .to-reject .btn {
+    width:32px;
+    color:#555;
+}
+
+.excellent .btn,.excellent .btn:hover {
+    border-bottom-right-radius:0 !important;
+    border-bottom-left-radius:0 !important;
+    margin-bottom:-1px !important;
+    margin-top:4px !important;
+    color: #677835;
+}
+
+.good .btn,.good .btn:hover {
+    border-radius: 0;
+    margin-bottom:-1px !important;    
+    color: #BCD86A;
+}
+
+.fair .btn,.fair .btn:hover {
+    border-radius: 0;
+    margin-bottom:-1px !important;
+    color: #C48A1B;
+}
+
+.poor .btn,.poor .btn:hover {
+    border-radius: 0;
+    color: #AD220F;
+}
+.to-reject .btn,.to-reject .btn:hover{
+    border-top-right-radius:0 !important;
+    border-top-left-radius:0 !important;
+    margin-bottom:4px !important;
+    margin-top:-1px !important;
+    color: #5A5A5A;
+}
+
+.excellent input[type="radio"]:checked + label { /* =.btn-success.active */
+    color: #fff;
+    background-color: #677835;
+    border-color: #67753C;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.good input[type="radio"]:checked + label { /* =.btn-warning.active */
+    color: #fff;
+    background-color: #BCD86A;
+    border-color: #ABC661;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.fair input[type="radio"]:checked + label { /* =.btn-warning.active */
+    color: #fff;
+    background-color: #C48A1B;
+    border-color: #BD8A00;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.poor input[type="radio"]:checked + label { /* =.btn-warning.active */
+    color: #fff;
+    background-color: #BF2511;
+    border-color: #AD220F;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.to-reject input[type="radio"]:checked + label { /* =.btn-danger.active */
+    color: #fff;
+    background-color: #5A5A5A;
+    border-color: #585858;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.result-excellent {
+    color: #677835;
+    background-color: #E0E8CA;
+}
+
+.result-good {
+    color: #BCD86A;
+    background-color: #EFF6DB;
+}
+
+.result-fair {
+    color: #C48A1B;
+    background-color: #FAEFDB;
+}
+
+.result-poor {
+    color: #AD220F;
+    background-color: #FCDDD9;
+}
+
+.result-to-reject {
+    color: #595959;
+    background-color: #EBEBEB;
+}
+
 /* Button and results "No" */
 .no .btn.startunchecked {
     box-shadow:none !important;

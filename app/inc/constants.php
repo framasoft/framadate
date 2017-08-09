@@ -29,7 +29,8 @@ const COMPILE_DIR = '/tpl_c/';
 // Regex
 const POLL_REGEX = '/^[a-z0-9-]*$/i';
 const ADMIN_POLL_REGEX = '/^[a-z0-9]{24}$/i';
-const CHOICE_REGEX = '/^[ 012]$/';
+// goes up to 4 for majority vote but could be updated to change with vote system
+const CHOICE_REGEX = '/^[ 01234]$/';
 const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/i';
 const BOOLEAN_TRUE_REGEX = '/^(on|true|1)$/i';
 const EDITABLE_CHOICE_REGEX = '/^[0-2]$/';

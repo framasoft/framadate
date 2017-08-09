@@ -28,6 +28,7 @@ use Framadate\Services\SessionService;
 use Framadate\Message;
 use Framadate\Utils;
 use Framadate\Editable;
+use Framadate\VoteSystem;
 use Framadate\Security\Token;
 
 include_once __DIR__ . '/app/inc/init.php';

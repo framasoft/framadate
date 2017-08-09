@@ -38,7 +38,12 @@
         "Search": "Search",
         "Creation date:": "Creation date:",
         "Caption": "Caption",
-        "ASTERISK": "*"
+        "ASTERISK": "*",
+        "Excellent": "Excellent",
+        "Good": "Good",
+        "Fair": "Fair",
+        "Poor": "Poor",
+        "To reject": "to reject"
     },
     "Date": {
         "dd/mm/yyyy": "yyyy-mm-dd",
@@ -140,6 +145,11 @@
         "Vote no for": "Vote \"no\" for",
         "Vote yes for": "Vote \"yes\" for",
         "Vote ifneedbe for": "Vote \"ifneedbe\" for",
+        "Vote excellent for": "Vote \"excellent\" for",
+        "Vote good for": "Vote \"good\" for",
+        "Vote fair for": "Vote \"fair\" for",
+        "Vote poor for": "Vote \"poor\" for",
+        "Vote to reject for": "Vote \"to reject\" for",
         "Save the choices": "Save choices",
         "Addition": "Total",
         "Best choice": "Best choice",
