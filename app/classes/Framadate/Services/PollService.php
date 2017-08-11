@@ -176,6 +176,32 @@ class PollService {
         return $result;
     }
 
+    function computeMajorityJudgementChoices($votes) {
+    $result = ['excellent' => [0], 'good' => [0], 'fair' => [0], 'poor' => [0], 'to-reject' => [0], 'total' => [0]];
+    foreach ($votes as $vote) {
+        $choices = str_split($vote->choices);
+        foreach ($choices as $i => $choice) {
+            if ($choice == 0) {
+                $result['to-reject'][$i]++;
+            }
+            elseif ($choice == 1) {
+                $result['poor'][$i]++;
+            }
+            elseif ($choice == 2) {
+                $result['fair'][$i]++;
+            }
+            elseif ($choice == 3) {
+                $result['good'][$i]++;
+            }
+            elseif ($choice == 4) {
+                $result['excellent'][$i]++;
+            }
+            $result['total'][$i]++;
+        }
+        return $result;
+    }
+    }
+    
     function splitSlots($slots) {
         $splitted = array();
         foreach ($slots as $slot) {

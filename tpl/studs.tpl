@@ -56,10 +56,14 @@
         {/if}
 
         {* Vote table *}
-        {if $poll->format === 'D'}
+        {if $poll->format == 'D'}
             {include 'part/vote_table_date.tpl' active=$poll->active}
         {else}
-            {include 'part/vote_table_classic.tpl' active=$poll->active}
+            {if $poll->vote_system==constant("Framadate\VoteSystem::MAJORITY")}
+                {include 'part/vote_table_classic_majority.tpl' active=$poll->active}
+            {elseif $poll->vote_system==constant("Framadate\VoteSystem::MAJORITY_JUDGMENT")}
+                {include 'part/vote_table_classic_majority_judgment.tpl' active=$poll->active}
+            {/if}
         {/if}
 
         {* Comments *}
