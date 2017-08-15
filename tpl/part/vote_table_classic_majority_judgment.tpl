@@ -57,7 +57,9 @@
 {block name=total}
 {/block}
 
-{if !$hidden}
+{block name=chart}
+{print_r(count($votes))}
+{if !$hidden && count($votes)>0}
     <div class="row" aria-hidden="true">
         <div class="col-xs-12">
             <p class="text-center" id="showChart">
@@ -74,49 +76,81 @@
                         .after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>")
                         .remove();
                 
-                var resIfneedbe = [];
-                var resYes = [];
-            
-                $('#addition').find('td').each(function () {
-                    var inbCountText = $(this).find('.inb-count').text();
-                    if(inbCountText != '' && inbCountText != undefined) {
-                        resIfneedbe.push($(this).find('.inb-count').html())
-                    } else {
-                        resIfneedbe.push(0);
-                    }
-
-                    var yesCountText = $(this).find('.yes-count').text();
-                    if(yesCountText != '' && yesCountText != undefined) {
-                        resYes.push($(this).find('.yes-count').html())
-                    } else {
-                        resYes.push(0);
-                    }
-                });
                 var cols = [
                 {foreach $slots as $id=>$slot}
                     $('<div/>').html('{$slot->title|markdown:true}').text(), 
                 {/foreach}
                 ];
 
-                resIfneedbe.shift();
-                resYes.shift();
+                var resExcellent = [
+                {foreach $slots as $id=>$slot}
+                    {$best_choices[$id]['excellent']},
+                {/foreach}
+                ];
+                var resGood = [
+                {foreach $slots as $id=>$slot}
+                    {$best_choices[$id]['good']},
+                {/foreach}
+                ]
+                var resFair = [
+                {foreach $slots as $id=>$slot}
+                    {$best_choices[$id]['fair']},
+                {/foreach}
+                ]
+                var resPoor = [
+                {foreach $slots as $id=>$slot}
+                    {$best_choices[$id]['poor']},
+                {/foreach}
+                ]
+                var resToReject = [
+                {foreach $slots as $id=>$slot}
+                    {$best_choices[$id]['to-reject']},
+                {/foreach}
+                ]
+                
+                // resExcellent.shift();
+                // resYes.shift();
+                // console.info(JSON.stringify({json_encode($best_choices)}, null, 3));
+                // console.info(JSON.stringify(resExcellent), null, 3);
+                // console.info(resExcellent);
 
                 var barChartData = {
                     labels : cols,
                     datasets : [
                     {
-                        label: "{__('Generic', 'Ifneedbe')}",
-                        fillColor : "rgba(255,207,79,0.8)",
-                        highlightFill: "rgba(255,207,79,1)",
+                        label: "{__('Generic', 'To-reject')}",
+                        fillColor : "#5A5A5A",
+                        highlightFill : "#585858&",
                         barShowStroke : false,
-                        data : resIfneedbe
+                        data : resToReject
                     },
                     {
-                        label: "{__('Generic', 'Yes')}",
-                        fillColor : "rgba(103,120,53,0.8)",
-                        highlightFill : "rgba(103,120,53,1)",
+                        label: "{__('Generic', 'Poor')}",
+                        fillColor : "#AD220F",
+                        highlightFill : "#BF2511",
                         barShowStroke : false,
-                        data : resYes
+                        data : resPoor
+                    },
+                    {
+                        label: "{__('Generic', 'Fair')}",
+                        fillColor : "#C48A1B",
+                        highlightFill : "#BD8A00",
+                        barShowStroke : false,
+                        data : resFair
+                    },
+                    {
+                        label: "{__('Generic', 'Good')}",
+                        fillColor : "#BCD86A",
+                        highlightFill : "#ABC661",
+                        barShowStroke : false,
+                        data : resGood
+                    },
+                    {
+                        label: "{__('Generic', 'Excellent')}",
+                        fillColor : "#677835",
+                        highlightFill: "#67753C",
+                        barShowStroke : false,
+                        data : resExcellent
                     }
                     ]
                 };
@@ -131,4 +165,4 @@
     </script>
     
 {/if}
-{/chart}
+{/block}

@@ -29,6 +29,7 @@ use Framadate\Message;
 use Framadate\Utils;
 use Framadate\Editable;
 use Framadate\VoteSystem;
+use Framadate\VoteRating;
 use Framadate\Security\Token;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -227,7 +228,11 @@ $smarty->assign('deletion_date', strtotime($poll->end_date) + PURGE_DELAY * 8640
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
 $smarty->assign('slots_hash',  $pollService->hashSlots($slots));
 $smarty->assign('votes', $pollService->splitVotes($votes));
-$smarty->assign('best_choices', $pollService->computeBestChoices($votes));
+if ($poll->vote_system==constant("Framadate\VoteSystem::MAJORITY")){
+    $smarty->assign('best_choices', $pollService->computeBestChoices($votes));
+} elseif ($poll->vote_system==constant("Framadate\VoteSystem::MAJORITY_JUDGMENT")) {
+    $smarty->assign('best_choices', $pollService->computeMajorityJudgementChoices($votes));
+}
 $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);

@@ -177,29 +177,40 @@ class PollService {
     }
 
     function computeMajorityJudgementChoices($votes) {
-    $result = ['excellent' => [0], 'good' => [0], 'fair' => [0], 'poor' => [0], 'to-reject' => [0], 'total' => [0]];
-    foreach ($votes as $vote) {
-        $choices = str_split($vote->choices);
-        foreach ($choices as $i => $choice) {
-            if ($choice == 0) {
-                $result['to-reject'][$i]++;
-            }
-            elseif ($choice == 1) {
-                $result['poor'][$i]++;
-            }
-            elseif ($choice == 2) {
-                $result['fair'][$i]++;
-            }
-            elseif ($choice == 3) {
-                $result['good'][$i]++;
-            }
-            elseif ($choice == 4) {
-                $result['excellent'][$i]++;
-            }
-            $result['total'][$i]++;
+    $results = array();
+    $majority_results = array();
+    
+    if (count($votes) > 0){
+    
+        foreach ($votes as $vote) {
+            $choices = str_split($vote->choices);
+            array_push($results, $choices);
         }
-        return $result;
+
+        foreach ($results[0] as $i => $value){        
+            $result = ['excellent' => 0, 'good' => 0, 'fair' => 0, 'poor' => 0, 'to-reject' => 0, 'total' => 0];
+            foreach ($results as $j => $choice){
+                if ($choice[$i] == "0") {
+                    $result['to-reject']++;
+                }
+                elseif ($choice[$i] == "1") {
+                    $result['poor']++;
+                }
+                elseif ($choice[$i] == "2") {
+                    $result['fair']++;
+                }
+                elseif ($choice[$i] == "3") {
+                    $result['good']++;
+                }
+                elseif ($choice[$i] == "4") {
+                    $result['excellent']++;
+                }
+                $result['total']++;
+            }
+            array_push($majority_results, $result);
+        }
     }
+    return $majority_results;
     }
     
     function splitSlots($slots) {
