@@ -35,7 +35,11 @@
             {if $admin}
                 {include 'part/poll_hint_admin.tpl'}
             {else}
-                {include 'part/poll_hint.tpl' active=$poll->active}
+                {if $poll->vote_system==constant("Framadate\VoteSystem::MAJORITY")}
+                        {include 'part/poll_hint.tpl' active=$poll->active}
+                {elseif $poll->vote_system==constant("Framadate\VoteSystem::MAJORITY_JUDGMENT")}
+                        {include 'part/poll_hint_majority_judgement.tpl' active=$poll->active}
+                {/if}
             {/if}
         {/if}
 

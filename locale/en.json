@@ -43,7 +43,8 @@
         "Good": "Good",
         "Fair": "Fair",
         "Poor": "Poor",
-        "To reject": "to reject"
+        "To reject": "To reject",
+        "To-reject": "To reject"
     },
     "Date": {
         "dd/mm/yyyy": "yyyy-mm-dd",
@@ -156,6 +157,7 @@
         "Best choices": "Best choices",
         "The best choice at this time is:": "The current best choice is:",
         "The bests choices at this time are:": "The current best choices are:",
+        "The ordered choices at this time are (tied votes are not sorted):": "The current ordered choices are (tied votes are not sorted):",        
         "Scroll to the left": "Scroll to the left",
         "Scroll to the right": "Scroll to the right",
         "polled user": "polled user",
@@ -181,6 +183,7 @@
     },
     "studs": {
         "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "If you want to vote in this poll, you have to give your name, make your choice, and submit it with the plus button at the end of the line.",
+        "Vote according to your preferences.":"Vote according to your preferences, you can choose the same note for multiple choices.",
         "POLL_LOCKED_WARNING": "The administrator locked this poll. Votes and comments are frozen, it is no longer possible to participate",
         "The poll is expired, it will be deleted soon.": "The poll has expired, it will soon be deleted.",
         "Deletion date:": "Deletion date:",

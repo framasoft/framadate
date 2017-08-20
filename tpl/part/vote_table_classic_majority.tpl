@@ -154,6 +154,8 @@
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                         </div>
                     </td>
+                    {block name=add_choice}
+                    {/block}
                     {foreach $slots as $id=>$slot}
                         <td class="bg-info" headers="C{$id}">
                             {block name=display_slot}
@@ -296,6 +298,7 @@
 
 
 {if !$hidden}
+    {block name=best_choices}
     {* Best votes listing *}
     {$max = max($best_choices['y'])}
     {if $max > 0}
@@ -324,4 +327,5 @@
             </div>
         </div>
     {/if}
+    {/block}
 {/if}

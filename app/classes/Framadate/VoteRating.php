@@ -36,4 +36,6 @@ class VoteRating { // extends SplEnum
     const FAIR = 2;
     const GOOD = 3;
     const EXCELLENT = 4;
+    
+    const VOTERANGE = array("to-reject", "poor", "fair", "good", "excellent");
 }

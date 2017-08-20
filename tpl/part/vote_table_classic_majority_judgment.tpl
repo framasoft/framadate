@@ -1,5 +1,10 @@
 {extends file="part/vote_table_classic_majority.tpl"}
 
+{block name = add_choice}
+    {* setting to reject as default choice so as to be neutral *}
+    {$choice = constant('Framadate\VoteRating::TOREJECT')}
+{/block}
+
 {block name=display_slot}
 <ul class="list-unstyled choice">
     <li class="excellent">
@@ -29,7 +34,7 @@
     <li class="to-reject">
         <input type="radio" id="tr-choice-{$id}" name="choices[{$id}]" value="0" {if $choice=='0'}checked {/if}/>
         <label class="btn btn-default btn-xs" for="tr-choice-{$id}" title="{__('Poll results', 'Vote to reject for')|html} {$slots[$id]->title|html}">
-            <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'To reject')}</span>
+            <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'To reject')}</span>
         </label>
     </li>
     <li style="display:none">
@@ -48,7 +53,7 @@
 {elseif $choice=='1'}
     <td class="result-poor" headers="C{$id}"><i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Poor')}</span></td>
 {elseif $choice=='0'}
-    <td class="result-to-reject" headers="C{$id}"><i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'To reject')}</span></td>
+    <td class="result-to-reject" headers="C{$id}"><i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'To reject')}</span></td>
 {else}
     <td class="bg-info" headers="C{$id}"><span class="sr-only">{__('Generic', 'Unknown')}</span></td>
 {/if}
@@ -58,7 +63,6 @@
 {/block}
 
 {block name=chart}
-{print_r(count($votes))}
 {if !$hidden && count($votes)>0}
     <div class="row" aria-hidden="true">
         <div class="col-xs-12">
@@ -165,4 +169,38 @@
     </script>
     
 {/if}
+{/block}
+
+{block name=best_choices}
+    {$mj_choices = array() }
+    {$medians = array()}
+    {foreach $slots as $id=>$slot}
+        {foreach constant('Framadate\VoteRating::VOTERANGE') as $vote_value => $rank}
+            {if isset($mj_choices[$id][0])}
+                {$mj_choices[$id][] = end($mj_choices[$id]) + $best_choices[$id][$rank]}
+            {else}
+                {$mj_choices[$id][] = $best_choices[$id][$rank]}
+            {/if}
+            {if (!isset($medians[$id])) and (end($mj_choices[$id]) > ($best_choices[$id]['total']/2)) }
+                {$medians[$id] = $rank}
+            {/if}
+        {/foreach}
+        {*$medians[$id]*}
+    {/foreach}
+    
+    <ul style="list-style:none">
+    {__('Poll results', 'The ordered choices at this time are (tied votes are not sorted):')}
+    {foreach array_reverse(constant('Framadate\VoteRating::VOTERANGE'), true) as $id => $rank}
+        {$empty_rank = True}
+        {foreach $medians as $choice => $note}
+            {if ($note == $rank)}
+                {if $empty_rank}
+                    {$empty_rank = False}
+                    <li><strong>{__('Generic', ucfirst($rank))}</strong></li>
+                {/if}
+                <li> {$slots[$choice]->title} </li>
+            {/if}
+        {/foreach}        
+    {/foreach}
+    </ul>
 {/block}
