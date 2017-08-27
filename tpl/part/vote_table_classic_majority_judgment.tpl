@@ -111,6 +111,15 @@
                     {$best_choices[$id]['to-reject']},
                 {/foreach}
                 ]
+                var resMedians = [
+                {foreach $slots as $id=>$slot}
+                    {if ($best_choices[$id]['total'] % 2 == 0)}
+                        {$best_choices[$id]['total']/2 - 0.5},
+                    {else}
+                        {$best_choices[$id]['total']/2},
+                    {/if}
+                {/foreach}
+                ]
                 
                 // resExcellent.shift();
                 // resYes.shift();
@@ -122,46 +131,81 @@
                     labels : cols,
                     datasets : [
                     {
-                        label: "{__('Generic', 'To-reject')}",
-                        fillColor : "#5A5A5A",
-                        highlightFill : "#585858&",
-                        barShowStroke : false,
-                        data : resToReject
+                        type: 'line',
+                        label: "{__('Generic', 'Score')}",
+                        yAxisID: "y-axis-1",
+                        borderColor	 : "red",
+                        fill: false,
+                        data: resMedians
                     },
                     {
-                        label: "{__('Generic', 'Poor')}",
-                        fillColor : "#AD220F",
-                        highlightFill : "#BF2511",
+                        label: "{__('Generic', 'Excellent')}",
+                        yAxisID: "y-axis-0",
+                        backgroundColor : "#677835",
+                        highlightFill: "#67753C",
                         barShowStroke : false,
-                        data : resPoor
-                    },
-                    {
-                        label: "{__('Generic', 'Fair')}",
-                        fillColor : "#C48A1B",
-                        highlightFill : "#BD8A00",
-                        barShowStroke : false,
-                        data : resFair
+                        data : resExcellent
                     },
                     {
                         label: "{__('Generic', 'Good')}",
-                        fillColor : "#BCD86A",
+                        yAxisID: "y-axis-0",
+                        backgroundColor : "#BCD86A",
                         highlightFill : "#ABC661",
                         barShowStroke : false,
                         data : resGood
                     },
                     {
-                        label: "{__('Generic', 'Excellent')}",
-                        fillColor : "#677835",
-                        highlightFill: "#67753C",
+                        label: "{__('Generic', 'Fair')}",
+                        yAxisID: "y-axis-0",
+                        backgroundColor : "#C48A1B",
+                        highlightFill : "#BD8A00",
                         barShowStroke : false,
-                        data : resExcellent
+                        data : resFair
+                    },
+                    {
+                        label: "{__('Generic', 'Poor')}",
+                        yAxisID: "y-axis-0",
+                        backgroundColor : "#AD220F",
+                        highlightFill : "#BF2511",
+                        barShowStroke : false,
+                        data : resPoor
+                    },
+                    {
+                        label: "{__('Generic', 'To-reject')}",
+                        yAxisID: "y-axis-0",
+                        backgroundColor : "#5A5A5A",
+                        highlightFill : "#585858&",
+                        barShowStroke : false,
+                        data : resToReject
                     }
                     ]
                 };
 
                 var ctx = document.getElementById("Chart").getContext("2d");
-                window.myBar = new Chart(ctx).StackedBar(barChartData, {
-                    responsive : true
+                window.myBar = new Chart(ctx, {
+                    type: 'bar',
+                    data: barChartData,
+                    options: {
+                        responsive : true,
+                        scales: {
+                          xAxes: [{
+                            stacked: true
+                          }],
+                          yAxes: [{
+                            stacked: true,
+                            position: "left",
+                            id: "y-axis-0"
+                          }, {
+                            stacked: false,
+                            position: "right",
+                            id: "y-axis-1",
+                            ticks: {
+                               beginAtZero: true,
+                               suggestedMax: {$best_choices[0]['total']}
+                           }
+                          }]
+                        }
+                    }
                 });
                 return false;
             });
@@ -188,19 +232,23 @@
         {*$medians[$id]*}
     {/foreach}
     
-    <ul style="list-style:none">
-    {__('Poll results', 'The ordered choices at this time are (tied votes are not sorted):')}
+    <div class="row">
+    <div class="col-sm-12"><h3>{__('Poll results', 'The ordered choices at this time are (tied votes are not sorted):')}</h3></div>
+    <div class="col-sm-6 col-sm-offset-3 alert alert-info">
     {foreach array_reverse(constant('Framadate\VoteRating::VOTERANGE'), true) as $id => $rank}
         {$empty_rank = True}
+        <ul style="list-style:none">
         {foreach $medians as $choice => $note}
             {if ($note == $rank)}
                 {if $empty_rank}
-                    {$empty_rank = False}
+                    {$empty_rank = False}               
                     <li><strong>{__('Generic', ucfirst($rank))}</strong></li>
                 {/if}
-                <li> {$slots[$choice]->title} </li>
+                <li>* {$slots[$choice]->title} </li>
             {/if}
-        {/foreach}        
+        {/foreach}  
+        </ul>
     {/foreach}
-    </ul>
+    </div>
+    </div>
 {/block}

@@ -268,14 +268,14 @@
                     datasets : [
                     {
                         label: "{__('Generic', 'Ifneedbe')}",
-                        fillColor : "rgba(255,207,79,0.8)",
+                        backgroundColor : "rgba(255,207,79,0.8)",
                         highlightFill: "rgba(255,207,79,1)",
                         barShowStroke : false,
                         data : resIfneedbe
                     },
                     {
                         label: "{__('Generic', 'Yes')}",
-                        fillColor : "rgba(103,120,53,0.8)",
+                        backgroundColor : "rgba(103,120,53,0.8)",
                         highlightFill : "rgba(103,120,53,1)",
                         barShowStroke : false,
                         data : resYes
@@ -284,8 +284,12 @@
                 };
 
                 var ctx = document.getElementById("Chart").getContext("2d");
-                window.myBar = new Chart(ctx).StackedBar(barChartData, {
-                    responsive : true
+                window.myBar = new Chart(ctx, {
+                    type: 'bar',
+                    data: barChartData,
+                    options: {
+                        responsive : true
+                        }
                 });
                 return false;
             });

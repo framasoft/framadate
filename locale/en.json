@@ -44,7 +44,8 @@
         "Fair": "Fair",
         "Poor": "Poor",
         "To reject": "To reject",
-        "To-reject": "To reject"
+        "To-reject": "To reject",
+        "Score": "Score"
     },
     "Date": {
         "dd/mm/yyyy": "yyyy-mm-dd",
