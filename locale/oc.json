@@ -92,7 +92,7 @@
         "Cultivate your garden": "Cultivatz vòstre òrt",
         "To participate in the software development, suggest improvements or simply download it, please visit ": "Per participar al desvolopament del logicial, prepausar de milhoraments o simplament lo telecargar, anatz sus ",
         "the development site": "lo site de desvolopament",
-        "If you want to install the software for your own use and thus increase your independence, we help you on:": "Se volètz installar aqueste logicial per vòstra pròpia utilizacion e aital aver mai d’automonia, nos podètz ajudar sus :"
+        "If you want to install the software for your own use and thus increase your independence, we help you on:": "Se volètz installar aqueste logicial per vòstra pròpia utilizacion e aital aver mai d’autonomia, nos podètz ajudar sus :"
     },
     "PollInfo": {
         "Remove the poll": "Suprimir lo sondatge",
@@ -140,7 +140,7 @@
         "Vote no for": "Votar « non » per",
         "Vote yes for": "Votar « òc » per",
         "Vote ifneedbe for": "Votar « se cal » per",
-        "Save the choices": "Enregistar las causidas",
+        "Save the choices": "Enregistrar las causidas",
         "Addition": "Soma",
         "Best choice": "Milhora causida",
         "Best choices": "Milhoras causidas",
@@ -180,18 +180,18 @@
     },
     "EditLink": {
         "Send": "Mandar",
-        "If you don't want to lose your personalized link, we can send it to your email.": "A fin de perdre pas lo ligam de modificacion, podèm vos lo mandar per corrièl.",
+        "If you don't want to lose your personalized link, we can send it to your email.": "A fin de pèrdre pas lo ligam de modificacion, podèm vos lo mandar per corrièl.",
         "The email address is not correct.": "Corrièl incorrècte.",
         "REMINDER": "RECÒRD",
         "Edit link for poll \"%s\"": "Ligam de modificacion del sondatge \"%s\"",
-        "Please wait %d seconds before we can send an email to you then try again.": "Mercés d’esperar encara %d segondas abans que poscam vos mandar lo corrièl, puèi tornatz ensejar.",
+        "Please wait %d seconds before we can send an email to you then try again.": "Mercés d’esperar encara %d segondas abans que poscam vos mandar lo corrièl, puèi tornatz ensajar.",
         "Here is the link for editing your vote:": "Vaquí lo ligam per modificar vòstre vòte :",
         "Your reminder has been successfully sent!": "Vòstre recòrd es ben estat mandat !"
     },
     "adminstuds": {
         "As poll administrator, you can change all the lines of this poll with this button": "En qualitat d’administrator podètz modificar totas las linhas d’aqueste sondatge amb aqueste boton",
         "remove a column or a line with": "escafar una colomna o una linha amb",
-        "and add a new column with": "E se avètz doblidat de picar una causida, podètz tornar apondre una colomna en clicant sus",
+        "and add a new column with": "E se avètz oblidat de picar una causida, podètz tornar apondre una colomna en clicant sus",
         "Finally, you can change the informations of this poll like the title, the comments or your email address.": "Per acabar podètz tanben modificar las informacions a prepaus d’aqueste sondatge coma lo títol, los comentaris o vòstre corrièl.",
         "Column's adding": "Apondon de colomna",
         "You can add a new scheduling date to your poll.": "Podètz apondre una data a vòstre sondatge.",
@@ -220,7 +220,7 @@
         "Remove the comments": "Suprimir los comentaris",
         "Comment deleted": "Comentari suprimit",
         "All comments deleted": "Totes los comentaris son estats suprimits",
-        "Keep votes": "Gardar lòs vòtes",
+        "Keep votes": "Gardar los vòtes",
         "Keep comments": "Gardar los comentaris",
         "Keep this poll": "Gardar aqueste sondatge"
     },
@@ -231,7 +231,7 @@
         "Poll title": "Títol del sondatge",
         "Poll id": "Identificant",
         "Customize the URL": "Personalizar lo ligam",
-        "Poll id rules": "L’identificant pòt contenir de letras, dea chifras e de tirets \"-\".",
+        "Poll id rules": "L’identificant pòt contenir de letras, de chifras e de jonhents \"-\".",
         "Poll id warning": "En utilizant un identificant aquò pòt facilitar l’accès a aqueste sondatge per de personas pas desiradas. Es recomandat d’o protegir amb un senhal.",
         "Votes cannot be modified": "Cap de vòte pòt pas èsser modificat",
         "All voters can modify any vote": "Totes los votants pòdon modificar sos vòtes",
@@ -263,7 +263,7 @@
         "Copy hours of the first day": "Reportar los oraris del primièr jorn suls autres jorns",
         "Remove a day": "Suprimir lo darrièr jorn",
         "Add a day": "Ajustar un jorn",
-        "Remove this day": "Suprimir aqueste jour",
+        "Remove this day": "Suprimir aqueste jorn",
         "Remove all days": "Suprimir totes los jorns",
         "Remove all hours": "Suprimir totes los oraris"
     },
@@ -320,7 +320,7 @@
         "Failed:": "Fracassat :",
         "Skipped:": "Passat :",
         "Pages:": "Paginas :",
-        "Purged:": "Purgatvs:",
+        "Purged:": "Purgats :",
         "Confirm removal of the poll": "Confirmar la supression del sondatge",
         "polls in the database at this time": "sondatges dins la banca de donadas actualament",
         "Purge the polls": "Purgar los sondatges",
@@ -332,8 +332,8 @@
         "List of your polls": "Lista de vòstres sondatges",
         "Here is the list of the polls that you manage on %s:": "Vaquí la lista dels sondatges que gerissètz sus %s :",
         "Have a good day!": "Bona jornada !",
-        "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS : aqueste corrièl es estat mandat perque avètz – o qualqu’un mai – a demandat la recuperacoon dels sondatges creats amb aquesta adreça de corrièl.",
-        "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "Se sètz pas a l’origina d’aquesta accion e que pensatz que s’agís d’un abús, podètz o signalar a l’administrator sus %s."
+        "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS : aqueste corrièl es estat mandat perque avètz – o qualqu’un mai – a demandat la recuperacion dels sondatges creats amb aquesta adreça de corrièl.",
+        "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "Se sètz pas a l’origina d’aquesta accion e que pensatz que s’agís d’un abús, podètz o senhalar a l’administrator sus %s."
     },
     "Mail": {
         "Poll's participation: %s": "Participacion al sondatge : %s",
