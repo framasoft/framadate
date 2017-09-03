@@ -112,6 +112,7 @@
 
 
                         <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$headersH[$k]}">
+                            {block name=display_choices}
                             <ul class="list-unstyled choice">
                                 <li class="yes">
                                     <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice=='2'}checked {/if}/>
@@ -135,6 +136,7 @@
                                     <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value=" " {if $choice!='2' && $choice!='1' && $choice!='0'}checked {/if}/>
                                 </li>
                             </ul>
+                            {/block}
                         </td>
 
                         {$k=$k + 1}
@@ -155,7 +157,8 @@
                     {foreach $slots as $slot}
                       {foreach $slot->moments as $moment}
                         {$choice=$vote->choices[$k]}
-
+                        
+                        {block name=display_choice}
                         {if $choice=='2'}
                             <td class="bg-success text-success" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span></td>
                         {elseif $choice=='1'}
@@ -165,7 +168,8 @@
                         {else}
                             <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><span class="sr-only">{__('Generic', 'Unknown')}</span></td>
                         {/if}
-
+                        {/block}
+                        
                         {$k=$k + 1}
                       {/foreach}
                     {/foreach}
@@ -210,6 +214,9 @@
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $moment}
                             <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$headersH[$i]}">
+                                {block name=add_choice}
+                                {/block}
+                                {block name=display_slot}
                                 <ul class="list-unstyled choice">
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
@@ -233,6 +240,7 @@
                                       <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value=" " checked/>
                                     </li>
                                 </ul>
+                                {/block}
                             </td>
                             {$i = $i+1}
                         {/foreach}
@@ -242,32 +250,35 @@
             {/if}
 
             {if !$hidden}
-                {* Line displaying best moments *}
-                {$count_bests = 0}
-                {$max = max($best_choices['y'])}
-                {if $max > 0}
-                    <tr id="addition">
-                        <td>{__('Poll results', 'Addition')}<br/>{$votes|count} {if ($votes|count)==1}{__('Poll results', 'polled user')}{else}{__('Poll results', 'polled users')}{/if}</td>
-                        {foreach $best_choices['y'] as $i=>$best_moment}
-                            {if $max == $best_moment}
-                                {$count_bests = $count_bests +1}
-                                <td><i class="glyphicon glyphicon-star text-info"></i><span class="yes-count">{$best_moment|html}</span>{if $best_choices['inb'][$i]>0}<br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>{/if}</td>
-                            {elseif $best_moment > 0}
-                                <td><span class="yes-count">{$best_moment|html}</span>{if $best_choices['inb'][$i]>0}<br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>{/if}</td>
-                            {elseif $best_choices['inb'][$i]>0}
-                                <td><br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span></td>
-                            {else}
-                                <td></td>
-                            {/if}
-                        {/foreach}
-                    </tr>
-                {/if}
+                {block name=best_moments}
+                    {* Line displaying best moments *}
+                    {$count_bests = 0}
+                    {$max = max($best_choices['y'])}
+                    {if $max > 0}
+                        <tr id="addition">
+                            <td>{__('Poll results', 'Addition')}<br/>{$votes|count} {if ($votes|count)==1}{__('Poll results', 'polled user')}{else}{__('Poll results', 'polled users')}{/if}</td>
+                            {foreach $best_choices['y'] as $i=>$best_moment}
+                                {if $max == $best_moment}
+                                    {$count_bests = $count_bests +1}
+                                    <td><i class="glyphicon glyphicon-star text-info"></i><span class="yes-count">{$best_moment|html}</span>{if $best_choices['inb'][$i]>0}<br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>{/if}</td>
+                                {elseif $best_moment > 0}
+                                    <td><span class="yes-count">{$best_moment|html}</span>{if $best_choices['inb'][$i]>0}<br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>{/if}</td>
+                                {elseif $best_choices['inb'][$i]>0}
+                                    <td><br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span></td>
+                                {else}
+                                    <td></td>
+                                {/if}
+                            {/foreach}
+                        </tr>
+                    {/if}
+                {/block}
             {/if}
             </tbody>
         </table>
     </form>
 </div>
 
+{block name=chart}
 {if !$hidden && $max > 0}
     <div class="row" aria-hidden="true">
         <div class="col-xs-12">
@@ -345,10 +356,12 @@
             });
         });
     </script>
-    
+   
 {/if}
+{/block} 
 
 {if !$hidden}
+    {block name=best_choices}
     {* Best votes listing *}
     {$max = max($best_choices['y'])}
     {if $max > 0}
@@ -379,4 +392,5 @@
             </div>
         </div>
     {/if}
+    {/block}
 {/if}

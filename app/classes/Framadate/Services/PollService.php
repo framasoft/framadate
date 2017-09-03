@@ -190,19 +190,19 @@ class PollService {
         foreach ($results[0] as $i => $value){        
             $result = ['excellent' => 0, 'good' => 0, 'fair' => 0, 'poor' => 0, 'to-reject' => 0, 'total' => 0];
             foreach ($results as $j => $choice){
-                if ($choice[$i] == "0") {
+                if ($choice[$i] == constant('Framadate\VoteRating::TOREJECT')) {
                     $result['to-reject']++;
                 }
-                elseif ($choice[$i] == "1") {
+                elseif ($choice[$i] == constant('Framadate\VoteRating::POOR')) {
                     $result['poor']++;
                 }
-                elseif ($choice[$i] == "2") {
+                elseif ($choice[$i] == constant('Framadate\VoteRating::FAIR')) {
                     $result['fair']++;
                 }
-                elseif ($choice[$i] == "3") {
+                elseif ($choice[$i] == constant('Framadate\VoteRating::GOOD')) {
                     $result['good']++;
                 }
-                elseif ($choice[$i] == "4") {
+                elseif ($choice[$i] == constant('Framadate\VoteRating::EXCELLENT')) {
                     $result['excellent']++;
                 }
                 $result['total']++;
