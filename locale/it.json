@@ -50,10 +50,10 @@
         "DATE": "%d/%m/%Y",
         "MONTH_YEAR": "%B %Y",
         "DATETIME": "%d/%m/%Y %H:%M",
-        "Add range dates": "IT_Ajout d'un intervalle de dates",
-        "Max dates count": "IT_Vous pouvez sélectionner au maximum 4 mois",
-        "Start date": "IT_Date de début",
-        "End date": "IT_Date de fin"
+        "Add range dates": "Aggiungere un intervallo tra 2 date",
+        "Max dates count": "Potete selezionare al massimo 4 mesi",
+        "Start date": "Data iniziale",
+        "End date": "Data finale"
     },
     "Language selector": {
         "Select the language": "Scegliere la lingua",
@@ -179,14 +179,14 @@
         "Adding the vote succeeded": "L'aggiunta del voto ha avuto successo"
     },
     "EditLink": {
-        "Send": "IT_Envoyer",
-        "If you don't want to lose your personalized link, we can send it to your email.": "IT_Afin de ne pas perdre ce lien d'édition de vote, nous pouvons vous l'envoyer par courriel.",
-        "The email address is not correct.": "IT_Courriel incorrect.",
-        "REMINDER": "IT_RAPPEL",
-        "Edit link for poll \"%s\"": "IT_Lien d'édition du sondage \"%s\"",
-        "Please wait %d seconds before we can send an email to you then try again.": "IT_Veuillez patienter encore %d seconds avant que nous puissions vous envoyer un email, puis réessayez.",
-        "Here is the link for editing your vote:": "IT_Voici le lien pour éditer votre vote :",
-        "Your reminder has been successfully sent!": "IT_Votre rappel a été envoyé avec succès !"
+        "Send": "Invio",
+        "If you don't want to lose your personalized link, we can send it to your email.": "Per non perdere il vostro link personalizzato, possiamo inviarvelo con un'e-mail.",
+        "The email address is not correct.": "Indirizzo e-mail non corretto.",
+        "REMINDER": "Promemoria",
+        "Edit link for poll \"%s\"": "Modifica il link del sondaggio \"%s\"",
+        "Please wait %d seconds before we can send an email to you then try again.": "Prego attendere %d secondi prima che possiamo inviarvi l'e-mail, poi riprovate.",
+        "Here is the link for editing your vote:": "Ecco il link per modificare il vostro voto :",
+        "Your reminder has been successfully sent!": "Il vostro promemoria è stato inviato con successo !"
     },
     "adminstuds": {
         "As poll administrator, you can change all the lines of this poll with this button": "Essendo l'amministratore, potete modificare tutte le righe di questo sondaggio con questo pulsante",
@@ -209,7 +209,7 @@
         "Back to the poll": "Torna al sondaggio",
         "Add a column": "Aggiungere una colonna",
         "Remove the column": "Cancellare la colonna",
-        "Confirm removal of the column.": "IT_Confirmer la supression de cette colonne.",
+        "Confirm removal of the column.": "Confermare l'eliminazione della colonna.",
         "Column removed": "Colonna rimossa",
         "Choice added": "Scelta aggiunto",
         "Confirm removal of all votes of the poll": "Confermare l'eliminazione di tutti i voti del sondaggio",
@@ -229,10 +229,10 @@
         "You are in the poll creation section.": "Avete scelto di creare un nuovo sondaggio.",
         "Required fields cannot be left blank.": "Riempire i campi obbligatori, segnati con *.",
         "Poll title": "Titolo del sondaggio",
-        "Poll id": "IT_Identifiant",
-        "Customize the URL": "IT_Personnaliser le lien",
-        "Poll id rules": "IT_L'identifiant peut contenir des lettres, des chiffres et des tirets \"-\".",
-        "Poll id warning": "IT_En définissant un identifiant cela peut faciliter l'accès à ce sondage pour des personnes non désirées. Il est recommandé de le protéger par mot de passe.",
+        "Poll id": "ID del sondaggio",
+        "Customize the URL": "Personalizzare il link",
+        "Poll id rules": "L'ID può contenere lettere,cifre e trattini \"-\".",
+        "Poll id warning": "Definendo un ID si può facilitare l'accesso al sondaggio persone non desiderate. Si raccomanda di proteggerlo con una password.",
         "Votes cannot be modified": "Nessun voto può essere modificato",
         "All voters can modify any vote": "Tutti i votanti possono cambiare tutti i voti",
         "Voters can modify their vote themselves": "I partecipanti possono modificare il loro voto in autonomia",
@@ -242,10 +242,10 @@
         "Use a password to restrict access": "Utilizzare una passwor per limitare l'accesso al sondaggio",
         "The results are publicly visible": "I risultati sono visibili senza password",
         "Poll password": "Password",
-        "Password choice": "IT_Choix",
+        "Password choice": "Scelta della password",
         "Password confirmation": "Conferma della password",
-        "Permissions": "IT_Permissions",
-        "Optional parameters": "IT_Paramètres optionnels",
+        "Permissions": "Permessi",
+        "Optional parameters": "Parametri opzionali",
         "Go to step 2": "Andare al punto 2"
     },
     "Step 2": {
@@ -263,7 +263,7 @@
         "Copy hours of the first day": "Copiare gli orari del primo giorno",
         "Remove a day": "Eliminare l'ultimo giorno",
         "Add a day": "Aggiungere un giorno",
-        "Remove this day": "IT_Supprimer ce jour",
+        "Remove this day": "Eliminare questo giorno",
         "Remove all days": "Cancellare tutti i giorni",
         "Remove all hours": "Cancellare tutti gli orari"
     },
@@ -291,8 +291,8 @@
         "Your poll will be automatically archived in %d days.": "Il vostro sondaggio verrà archiviata automaticamente in %d giorni.",
         "You can set a closer archiving date for it.": "Si può decidere su una data più vicina di archiviazione.",
         "Archiving date:": "Archivio Data:",
-        "Your poll will automatically be archived": "IT_Your poll will automatically be archived",
-        "after the last date of your poll.": "IT_after the last date of your poll."
+        "Your poll will automatically be archived": "Il vostro sondaggio sarà archiviato automaticamente",
+        "after the last date of your poll.": "dopo l'ultimo giorno del vostro sondaggio."
     },
     "Admin": {
         "Back to administration": "Ritorna all'amministrazione",
@@ -324,16 +324,16 @@
         "Confirm removal of the poll": "Confermare l'eliminazione del sondaggio ",
         "polls in the database at this time": "sondaggi presenti nel database attualmente",
         "Purge the polls": "Depurare i sondaggi",
-        "Installation": "IT_Installation"
+        "Installation": "Installazione"
     },
     "FindPolls": {
         "Send me my polls": "Inviare i miei sondaggi",
         "Polls sent": "Sondaggi inviati",
-        "List of your polls": "IT_Liste de vos sondages",
-        "Here is the list of the polls that you manage on %s:": "IT_Voici la liste des sondages que vous administrez sur %s :",
-        "Have a good day!": "IT_Bonne journée !",
-        "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "IT_PS : ce mail a été envoyé parce que vous – ou quelqu'un d'autre – a demandé la récupération des sondages créés à l'aide de votre adresse email.",
-        "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "IT_Si jamais vous n'étiez pas à l'origine de cette action et que vous pensez qu'il s'agit d'un abus, vous pouvez nous le signaler à l'administrateur sur %s."
+        "List of your polls": "Lista dei vostri sondaggi",
+        "Here is the list of the polls that you manage on %s:": "Ecco la lista dei sondaggi che gestite su %s :",
+        "Have a good day!": "Buona giornata!",
+        "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS : questa e-mail vi è stato inviato perché voi – o qualcun altro – ha richiesto il recupero dei sondaggi creati tramite il vostro indirizzo e-mail.",
+        "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "Se non foste voi ad averlo richiesto o se pensiate che si tratti di un abuso, potreste segnalarlo all'amministratore su %s."
     },
     "Mail": {
         "Poll's participation: %s": "Partecipazione al sondaggio: %s",
@@ -424,7 +424,7 @@
         "Consider enabling the PHP extension OpenSSL for increased security.": "IT_Veuillez considérer l'activation de l'extension PHP OpenSSL pour améliorer la sécurité.",
         "date.timezone is set.": "IT_date.timezone est défini.",
         "Consider setting the date.timezone in php.ini.": "IT_Veuillez considérer la définition de date.timezone dans le php.ini.",
-        "Check again": "IT_Vérifier à nouveau",
-        "Continue the installation": "IT_Continuer l'installation"
+        "Check again": "Verificare di nuovo",
+        "Continue the installation": "Continuare l'installazione"
     }
 }
