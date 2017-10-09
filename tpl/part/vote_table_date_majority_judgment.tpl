@@ -8,31 +8,31 @@
 {block name=display_slot}
 <ul class="list-unstyled choice">
     <li class="excellent">
-        <input type="radio" id="e-choice-{$i}" name="choices[{$i}]" value=constant('Framadate\VoteRating::EXCELLENT') {if $choice=='4'}checked {/if}/>
+        <input type="radio" id="e-choice-{$i}" name="choices[{$i}]" value="4") {if $choice=='4'}checked {/if}/>
         <label class="btn btn-default btn-xs" for="e-choice-{$i}" title="{__('Poll results', 'Vote excellent for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
             <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Excellent')}</span>
         </label>
     </li>
     <li class="good">
-        <input type="radio" id="g-choice-{$i}" name="choices[{$i}]" value=constant('Framadate\VoteRating::GOOD') {if $choice=='3'}checked {/if}/>
+        <input type="radio" id="g-choice-{$i}" name="choices[{$i}]" value="3") {if $choice=='3'}checked {/if}/>
         <label class="btn btn-default btn-xs" for="g-choice-{$i}" title="{__('Poll results', 'Vote good for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
             <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Good')}</span>
         </label>
     </li>
     <li class="fair">
-        <input type="radio" id="m-choice-{$i}" name="choices[{$i}]" value=constant('Framadate\VoteRating::FAIR') {if $choice=='2'}checked {/if}/>
+        <input type="radio" id="m-choice-{$i}" name="choices[{$i}]" value="2") {if $choice=='2'}checked {/if}/>
         <label class="btn btn-default btn-xs" for="m-choice-{$i}" title="{__('Poll results', 'Vote fair for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
             <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Fair')}</span>
         </label>
     </li>
     <li class="poor">
-        <input type="radio" id="p-choice-{$i}" name="choices[{$i}]" value=constant('Framadate\VoteRating::POOR') {if $choice=='1'}checked {/if}/>
+        <input type="radio" id="p-choice-{$i}" name="choices[{$i}]" value="1") {if $choice=='1'}checked {/if}/>
         <label class="btn btn-default btn-xs" for="p-choice-{$i}" title="{__('Poll results', 'Vote poor for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
             <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Poor')}</span>
         </label>
     </li>
     <li class="to-reject">
-        <input type="radio" id="tr-choice-{$i}" name="choices[{$i}]" value="0" {if $choice==constant('Framadate\VoteRating::TOREJECT')}checked {/if}/>
+        <input type="radio" id="tr-choice-{$i}" name="choices[{$i}]" value="0" {if $choice=='0'}checked {/if}/>
         <label class="btn btn-default btn-xs" for="tr-choice-{$i}" title="{__('Poll results', 'Vote to reject for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
             <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'To reject')}</span>
         </label>
