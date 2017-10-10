@@ -21,10 +21,13 @@
 
                     <p>{__('adminstuds', 'Finally, you can change the informations of this poll like the title, the comments or your email address.')}</p>
 
+                    
+                    {block name = "vote_options"}
                     <p aria-hidden="true"><strong>{__('Generic', 'Legend:')}</strong> <span
                                 class="glyphicon glyphicon-ok"></span> = {__('Generic', 'Yes')}, <b>(<span
                                     class="glyphicon glyphicon-ok"></span>)</b> = {__('Generic', 'Ifneedbe')}, <span
                                 class="glyphicon glyphicon-ban-circle"></span> = {__('Generic', 'No')}</p>
+                    {/block}
                 </div>
             </div>
         </div>
