@@ -48,7 +48,7 @@ class From_0_0_to_0_8_Migration implements Migration {
      * @return bool true is the Migration should be executed.
      */
     function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES like \'' . TABLENAME_PREFIX . '%\'');  //issue187 : pouvoir installer framadate dans une base contenant d'autres tables.
+        $stmt = $pdo->query('SHOW TABLES like \'' . str_replace('_', '\_', TABLENAME_PREFIX) . '%\'');  //issue187 : pouvoir installer framadate dans une base contenant d'autres tables.
         $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
 
         // Check if there is no tables but the MIGRATION_TABLE one
