@@ -31,7 +31,7 @@ class InstallService {
         'appMail' => '',
         'responseMail' => '',
         'defaultLanguage' => 'fr',
-        'cleanUrl' => true,
+        'cleanUrl' => false,
 
         // Database configuration
         'dbConnectionString' => 'mysql:host=<HOST>;dbname=<SCHEMA>;port=3306',
