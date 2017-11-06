@@ -37,7 +37,7 @@ Une fois le formulaire rempli et envoyé, un script va générer le fichier `app
 
 La page de migration s'occupe :
 - D'installer toute la base de données (tables + données d'exemple)
-- De mettre à jour la base de données lors des mises à jour de l'applciation.
+- De mettre à jour la base de données lors des mises à jour de l'application.
 
 ! Attention, le chargement de la page de migration peu prendre du temps étant donné qu'elle applique toutes les mises à jours requises !
 
