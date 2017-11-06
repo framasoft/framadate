@@ -29,6 +29,7 @@ class Form
     public $format;
     public $end_date;
     public $choix_sondage;
+    public $ValueMax;
 
     /**
      * Tells if users can modify their choices.
@@ -48,6 +49,12 @@ class Form
 
     /**
      * If true, only the poll maker can see the poll's results
+     * @var boolean
+     */
+    public $use_ValueMax;
+
+    /**
+     * if true, there will be a limit of voters per option
      * @var boolean
      */
     public $hidden;

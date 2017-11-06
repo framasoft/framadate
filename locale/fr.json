@@ -246,7 +246,9 @@
         "Password confirmation": "Confirmation",
         "Permissions": "Permissions",
         "Optional parameters": "Paramètres facultatifs",
-        "Go to step 2": "Aller à l'étape 2"
+        "Go to step 2": "Aller à l'étape 2",
+	"Limit the ammount of voters per option":"limiter le nombre de votants par option",
+	"Value Max": "Valeur Maximale"
     },
     "Step 2": {
         "Back to step 1": "Revenir à l’étape 1",

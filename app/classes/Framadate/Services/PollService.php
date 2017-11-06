@@ -26,6 +26,8 @@ use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\Token;
 use Framadate\Utils;
 
+
+
 class PollService {
 
     private $connect;
@@ -155,7 +157,7 @@ class PollService {
         return $this->pollRepository->findAllByAdminMail($mail);
     }
 
-    function computeBestChoices($votes) {
+    function computeBestChoices($votes) { 
         $result = ['y' => [0], 'inb' => [0]];
         foreach ($votes as $vote) {
             $choices = str_split($vote->choices);
