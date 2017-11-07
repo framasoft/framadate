@@ -25,7 +25,9 @@ class MailService {
     function send($to, $subject, $body, $msgKey = null) {
         if ($this->smtp_allowed == true && $this->canSendMsg($msgKey)) {
             $mail = new PHPMailer(true);
-            $mail->isSMTP();
+	    // SMTP not working so fallback to Sendmail is required
+	    //$mail->isSMTP();
+	    $mail->isSendmail();
 
             // From
             $mail->FromName = NOMAPPLICATION;
