@@ -47,17 +47,8 @@ if ($_SESSION['form']->format !== 'D') {
     $_SESSION['form']->format = 'D';
     $_SESSION['form']->clearChoices();
 }
-// TEST ERWAN
-if ($_SESSION['form']->use_ValueMax==true){
-echo "use_ValueMax is : true ";
-} else {echo "use_ValueMax is : flase ";
-}
-if ($_SESSION['form']->ValueMax==3){
-echo "ValueMax is : true ";
-} else {echo "ValueMax is : flase ";
-}
 
-// FIN TEST ERWAN
+
 if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) || ($config['use_smtp'] && !isset($_SESSION['form']->admin_mail))) {
     $step = 1;
 } else if (!empty($_POST['confirmation'])) {
