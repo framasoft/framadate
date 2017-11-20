@@ -103,4 +103,8 @@ $(document).ready(function () {
         return false;
     });
 
+	$('#password').on('keyup change', function () {
+		if($('#password').val() && !($('#hidden').attr('checked'))){$('#resultsPubliclyVisible').removeAttr('disabled');}
+		else {$('#resultsPubliclyVisible').attr('disabled','disabled');};
+	});
 });

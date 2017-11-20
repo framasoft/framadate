@@ -137,6 +137,7 @@ if (isset($_POST['update_poll_info'])) {
         $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
         if ($hidden !== $poll->hidden) {
             $poll->hidden = $hidden;
+	    $poll->results_publicly_visible = false;
             $updated = true;
         }
     } elseif ($field === 'removePassword') {
@@ -153,7 +154,10 @@ if (isset($_POST['update_poll_info'])) {
             $poll->password_hash =  PasswordHasher::hash($password);
             $updated = true;
         }
-        if ($resultsPubliclyVisible !== $poll->results_publicly_visible) {
+	if ($poll->password_hash == null || $poll->hidden == true){
+	    $poll->results_publicly_visible = false;
+	}
+        if ($resultsPubliclyVisible != $poll->results_publicly_visible && $poll->password_hash != null && $poll->hidden == false) {
             $poll->results_publicly_visible = $resultsPubliclyVisible;
             $updated = true;
         }
