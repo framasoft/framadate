@@ -165,7 +165,7 @@
     "Password": {
         "Password": "Mot de passe",
         "Wrong password": "Mot de passe incorrect.",
-        "Submit access": "Accèder",
+        "Submit access": "Accéder",
         "You have to provide a password to access the poll.": "Vous devez donner le mot de passe pour avoir accès à ce sondage.",
         "You have to provide a password so you can participate to the poll.": "Vous devez donner le mot de passe pour pouvoir participer à ce sondage."
     },
@@ -245,7 +245,7 @@
         "Password choice": "Choix",
         "Password confirmation": "Confirmation",
         "Permissions": "Permissions",
-        "Optional parameters": "Paramètres optionnels",
+        "Optional parameters": "Paramètres facultatifs",
         "Go to step 2": "Aller à l'étape 2"
     },
     "Step 2": {
@@ -323,7 +323,8 @@
         "Purged:": "Purgés :",
         "Confirm removal of the poll": "Confirmer la suppression du sondage",
         "polls in the database at this time": "sondages dans la base actuellement",
-        "Purge the polls": "Purger les sondages"
+        "Purge the polls": "Purger les sondages",
+        "Installation": "Installation"
     },
     "FindPolls": {
         "Send me my polls": "Envoyer mes sondages",
@@ -395,7 +396,7 @@
         "You already voted": "Vous avez déjà voté",
         "Poll has been updated before you vote": "Le sondage a été mis à jour avant votre vote",
         "Comment failed": "Échec du commentaire",
-        "You can't create a poll with hidden results with the following edition option:": "Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'éditions suivantes : ",
+        "You can't create a poll with hidden results with the following edition option:": "Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'édition suivantes : ",
         "Failed to delete column": "Échec de la suppression de colonne",
         "The column already exists": "La colonne existe déjà",
         "MISSING_VALUES": "Il manque des valeurs",
@@ -417,6 +418,7 @@
         "PHP version %s is enough (needed at least PHP %s).": "Version de PHP %s suffisante (nécessite au moins PHP %s).",
         "You need to enable the PHP Intl extension.": "Vous devez activer l'extension PHP Intl.",
         "PHP Intl extension is enabled.": "L'extension PHP Intl est activée.",
+        "The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.": "Le dossier de compilation des templates (%s) n'existe pas dans \"%s\". Essayez de relancer l'installation.",
         "The template compile directory (%s) is not writable.": "Le dossier de compilation des templates (%s) n'est pas accessible en écriture.",
         "The template compile directory (%s) is writable.": "Le dossier de compilation des templates (%s) est accessible en écriture.",
         "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'existe pas.",

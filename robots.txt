@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
 Allow: /index.php
-Allow: /apropos.php
-Allow: /contacts.php
 Allow: /create_poll.php
 Disallow: /*

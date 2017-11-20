@@ -323,7 +323,8 @@
         "Purged:": "Entfernt:",
         "Confirm removal of the poll": "Bestätigen Sie die Löschung der Umfrage",
         "polls in the database at this time": "Umfragen derzeit in der Datenbank",
-        "Purge the polls": "Umfragen vollständig löschen"
+        "Purge the polls": "Umfragen vollständig löschen",
+        "Installation": "DE_Installation"
     },
     "FindPolls": {
         "Send me my polls": "Senden Sie mir mein Umfragen",
@@ -413,6 +414,7 @@
         "PHP version %s is enough (needed at least PHP %s).": "PHP Version %s ist ausreichend (mindestens PHP %s wird benötigt).",
         "You need to enable the PHP Intl extension.": "Sie müssen die PHP-Erweiterung Intl aktivieren.",
         "PHP Intl extension is enabled.": "Die PHP-Erweiterung Intl ist aktiviert.",
+        "The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.": "DE_The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.",
         "The template compile directory (%s) is not writable.": "Der Vorlagen-Übersetzungspfad (%s) ist nicht beschreibbar.",
         "The template compile directory (%s) is writable.": "Der Vorlagen-Übersetzungspfad (%s) ist beschreibbar.",
         "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "Der Konfigurationspfad (%s) ist nicht beschreibbar und es existiert keine Konfigurationsdatei (%s).",

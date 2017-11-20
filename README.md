@@ -1,12 +1,12 @@
 # Présentation du projet
 
-![Gitlab](https://git.framasoft.org/assets/logo-black-f52905a40830b30aa287f784b537c823.png)[https://git.framasoft.org](https://git.framasoft.org)
+![Gitlab](https://framagit.org/assets/logo-black-f52905a40830b30aa287f784b537c823.png)[https://framagit.org](https://framagit.org)
 
 ![English](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/20px-Flag_of_the_United_Kingdom.svg.png) **Framasoft uses GitLab** for the development of its free softwares. Our Github repositories are only mirrors.
-If you want to work with us, **fork us on [git.framasoft.org](https://git.framasoft.org)**. (no registration needed, you can sign in with your Github account)
+If you want to work with us, **fork us on [framagit.org](https://framagit.org)**. (no registration needed, you can sign in with your Github account)
 
 ![Français](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/20px-Flag_of_France.svg.png) **Framasoft utilise GitLab** pour le développement de ses logiciels libres. Nos dépôts Github ne sont que des mirroirs.
-Si vous souhaitez travailler avec nous, **forkez-nous sur [git.framasoft.org](https://git.framasoft.org)**. (l'inscription n'est pas nécessaire, vous pouvez vous connecter avec votre compte Github)
+Si vous souhaitez travailler avec nous, **forkez-nous sur [framagit.org](https://framagit.org)**. (l'inscription n'est pas nécessaire, vous pouvez vous connecter avec votre compte Github)
 
 ---
 
@@ -31,8 +31,8 @@ Un fichier est dédié à l'installation de framadate : [INSTALL.md](INSTALL.md)
 
 ## De votre côté
 
-1. Créer un compte sur [https://git.framasoft.org](https://git.framasoft.org)
-1. Créer un fork du projet principal : [Créer le fork](https://git.framasoft.org/framasoft/framadate/fork/new)
+1. Créer un compte sur [https://framagit.org](https://framagit.org)
+1. Créer un fork du projet principal : [Créer le fork](https://framagit.org/framasoft/framadate/forks/new)
 1. Créer une branche nommée feature/[Description]
     * Où [Description] est une description en anglais très courte de ce qui va être fait
 1. Faire des commits dans votre branche
