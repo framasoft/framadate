@@ -140,7 +140,7 @@
 			
                             <div class="col-sm-offset-4 col-sm-8">
 				    <label >   
-                                        <input id="ValueMax" type="number" name="ValueMax">
+                                        <input id="ValueMax" type="number" min= "0" name="ValueMax">
       
                                         {__('Step 1', "ValueMax instructions")}
                                     </label>
