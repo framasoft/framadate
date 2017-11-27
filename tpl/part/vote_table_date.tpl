@@ -216,7 +216,7 @@
 
                             <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$headersH[$i]}">
                                 <ul class="list-unstyled choice">
-				{if $best_choices['y'][$i] lt $poll->ValueMax}
+				{if $best_choices['y'][$i] lt $poll->ValueMax || $poll->ValueMax eq NULL}
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
                                         <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
