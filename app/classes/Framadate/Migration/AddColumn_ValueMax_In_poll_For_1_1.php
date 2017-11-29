@@ -26,7 +26,7 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.9
  */
-class AddColumn_ValueMax_In_poll_For_0_9 implements Migration {
+class AddColumn_ValueMax_In_poll_For_1_1 implements Migration {
 
     function __construct() {
     }
@@ -66,7 +66,8 @@ class AddColumn_ValueMax_In_poll_For_0_9 implements Migration {
     private function alterPollTable(\PDO $pdo) {
         $pdo->exec('
         ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `ValueMax` TINYINT');
+        ADD `ValueMax` TINYINT,
+	ADD CHECK (ValueMax > 0)');
     }
 
 }
