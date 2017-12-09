@@ -102,8 +102,10 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
                             <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
+												
                         </div>
                     </td>
+
 
                     {$k=0}
                     {foreach $slots as $slot}
@@ -149,8 +151,18 @@
 
                     {* Voted line *}
 
-                    <th class="bg-info">{$vote->name|html}</th>
+                    <th class="bg-info">{$vote->name|html}
+					<span style="float:right;"> 					
+					<a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit the line: %s', $vote->name)|html}">
+                                <i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>
+                            </a>
+					</span>
 
+					</th>
+
+					
+					
+	
                     {$k=0}
                     {foreach $slots as $slot}
                       {foreach $slot->moments as $moment}
