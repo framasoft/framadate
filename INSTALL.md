@@ -1,4 +1,18 @@
+# Pré-requis
+- Apache
+- MySQL ou PostgreSQL
+- PHP 5+
+- [Composer](https://getcomposer.org/)
+
 # Pré-installation
+
+## Composer
+
+Pour installer les dépendances nécessaires au bon fonctionnement du projet, vous devez lancer la commande suivante :
+
+```sh
+    composer install
+```
 
 ## Base de données
 
@@ -29,9 +43,13 @@ Les tables de l'applications sont décrites plus loin dans ce fichier dans la pa
     GRANT ALL PRIVILEGES ON `framadate_db`.* TO 'framadate_user'@'localhost';
 ```
 
+À noter que pour que l'installation se déroule correctement, MySQL doit être lancé avec le paramètre `[NO_ZERO_DATE](https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sqlmode_no_zero_date)` désactivé. Il vous faudra aller le supprimer du fichier de configuration `my.cnf`.
+
 # Installation
 
-Pour installer l'application Framadate, rendez-vous sur la page http://monsite/admin/install.php et remplisez le formulaire.
+Pour installer l'application Framadate, rendez-vous sur la page http://monsite/admin/install.php et remplissez le formulaire.
+
+Le champ `* Chaîne de connexion` contient la variable `<HOST>` qui doit être remplacée par le nom d'hôte de votre base de données, par exemple `localhost`. Il contient également la variable `<SCHEMA>` qui doit être remplacée par le nom de la base de données que vous allez utiliser. Si vous avez suivi les recommandations précédente, ça devrait être `framadate_db`.
 
 Une fois le formulaire rempli et envoyé, un script va générer le fichier `app/inc/config.php` puis vous rediriger vers la page de migration.
 
