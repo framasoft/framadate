@@ -34,7 +34,7 @@ class InstallService {
         'cleanUrl' => true,
 
         // Database configuration
-        'dbConnectionString' => 'mysql:host=<HOST>;dbname=<SCHEMA>;port=3306',
+        'dbConnectionString' => '',
         'dbUser' => 'root',
         'dbPassword' => '',
         'dbPrefix' => 'fd_',
