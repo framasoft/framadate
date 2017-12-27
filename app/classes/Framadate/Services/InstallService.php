@@ -42,7 +42,7 @@ class InstallService {
         'base' => 'mysql'
     );
 
-;
+
    
 function __construct() {}
 
