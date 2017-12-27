@@ -42,7 +42,10 @@ class InstallService {
         'base' => 'mysql'
     );
 
-    function __construct() {}
+    function __construct() {
+   $dbconnect = $this->fields['base'].':host=localhost;dbname='.$this->fields['dbConnectionString'];
+    $this->fields['dbConnectionnString'] = $dbconnect;
+}
 
     public function updateFields($data) {
         foreach ($data as $field => $value) {
