@@ -38,7 +38,8 @@ class InstallService {
         'dbUser' => 'root',
         'dbPassword' => '',
         'dbPrefix' => 'fd_',
-        'migrationTable' => 'framadate_migration'
+        'migrationTable' => 'framadate_migration',
+        'base' => 'mysql'
     );
 
     function __construct() {}
@@ -55,6 +56,8 @@ class InstallService {
             return $this->error('MISSING_VALUES');
         }
 
+
+      
         // Connect to database
         $connect = $this->connectTo($this->fields['dbConnectionString'], $this->fields['dbUser'], $this->fields['dbPassword']);
         if (!$connect) {
@@ -89,7 +92,7 @@ class InstallService {
 
         return $this->writeToFile($content);
     }
-
+  
     /**
      * @param $content
      */
