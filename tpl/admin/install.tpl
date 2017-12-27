@@ -53,9 +53,10 @@
                     </div>
                 </div>
             </fieldset>
-<input type = "radio" value = "mysql">
-<input type = "radio" value = "pgsql">
-            <fieldset>
+mysql<input type = "radio" name = "base" value = "mysql">
+pgsql<input type = "radio" name = "base" value = "pgsql">
+           
+<fieldset>
                 <legend>{__('Installation', 'Database')}</legend>
                 <div class="form-group">
                     <div class="input-group">
