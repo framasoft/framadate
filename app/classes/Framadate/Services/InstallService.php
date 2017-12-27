@@ -48,7 +48,7 @@ function __construct() {}
 
 function dbconnect(){
 
-echo $dbconnect = $this->fields['base'].":host=localhost;dbname=".$this->fields['dbConnectionString'];
+return $dbconnect = $this->fields['base'].":host=localhost;dbname=".$this->fields['dbConnectionString'];
 
 }
 
