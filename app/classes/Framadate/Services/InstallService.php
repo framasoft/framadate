@@ -42,9 +42,15 @@ class InstallService {
         'base' => 'mysql'
     );
 
-    function __construct() {
-   $dbconnect = $this->fields['base'].':host=localhost;dbname='.$this->fields['dbConnectionString'];
-    $this->fields['dbConnectionnString'] = $dbconnect;
+
+
+   
+function __construct() {}
+
+function dbconnect(){
+
+return $dbconnect = $this->fields['base'].":host=localhost;dbname=".$this->fields['dbConnectionString'];
+
 }
 
     public function updateFields($data) {
@@ -59,8 +65,9 @@ class InstallService {
             return $this->error('MISSING_VALUES');
         }
 
+ $this->fields['dbConnectionString'] = $this->dbconnect();
 
-      
+
         // Connect to database
         $connect = $this->connectTo($this->fields['dbConnectionString'], $this->fields['dbUser'], $this->fields['dbPassword']);
         if (!$connect) {
