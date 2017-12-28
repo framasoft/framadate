@@ -86,6 +86,14 @@ const TIME_EDIT_LINK_EMAIL = 60;
 $config = [
     /* general config */
     'use_smtp' => true,                     // use email for polls creation/modification/responses notification
+    'smtp_options' => [
+        'host' => 'localhost',  // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
+        'auth' => false,        // Enable SMTP authentication
+        'username' => '',       // SMTP username
+        'password' => '',       // SMTP password
+        'secure' => '',         // Enable encryption (false, tls or ssl)
+        'port' => 25,           // TCP port to connect to
+    ],
     /* home */
     'show_what_is_that' => true,            // display "how to use" section
     'show_the_software' => true,            // display technical information about the software
