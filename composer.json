@@ -10,10 +10,11 @@
     "type": "project",
 
     "require": {
-        "smarty/smarty": "3.1.21",
+        "smarty/smarty": "^3.1",
         "o80/i18n": "dev-develop",
-        "phpmailer/phpmailer": "~5.2",
-        "ircmaxell/password-compat": "dev-master"
+        "phpmailer/phpmailer": "^5.2",
+        "ircmaxell/password-compat": "dev-master",
+        "roave/security-advisories": "dev-master"
     },
 
     "require-dev": {
