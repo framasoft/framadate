@@ -40,7 +40,7 @@ class InstallService {
         'dbPrefix' => 'fd_',
         'migrationTable' => 'framadate_migration',
         'base' => 'mysql',
-        'serveur' => 'mysql'
+        'server' => 'localhost'
     );
 
 
@@ -50,7 +50,7 @@ function __construct() {}
 
 function dbconnect(){
 
-return $dbconnect = $this->fields['base'].":host=localhost;dbname=".$this->fields['dbConnectionString'];
+return $dbconnect = $this->fields['base'].":host=".$this->fields['server'].";dbname=".$this->fields['dbConnectionString'];
 
 }
 
@@ -62,7 +62,7 @@ return $dbconnect = $this->fields['base'].":host=localhost;dbname=".$this->field
 
     public function install(Smarty &$smarty) {
         // Check values are present
-        if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dbConnectionString']) || empty($this->fields['dbUser'])) {
+        if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dbConnectionString']) || empty($this->fields['dbUser'])  || empty($this->fields['server'])) {
             return $this->error('MISSING_VALUES');
         }
 

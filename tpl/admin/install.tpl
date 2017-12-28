@@ -60,6 +60,15 @@ pgsql<input type = "radio" name = "base" value = "pgsql">
            
 <fieldset>
                 <legend>{__('Installation', 'Database')}</legend>
+
+ <div class="form-group">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="appName" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'server')}</label>
+                            <input type="text" class="form-control" id="server" name="server" value="{$fields['server']}" autofocus required>
+                        </div>
+            </div>
+
                 <div class="form-group">
                     <div class="input-group">
                         <label for="dbConnectionString" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'DbConnectionString')}</label>

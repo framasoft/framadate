@@ -367,7 +367,8 @@
         "General": "General",
         "Install": "Install",
         "MigrationTable": "Migration table",
-        "ResponseMail": "Respond-to mail address"
+        "ResponseMail": "Respond-to mail address",
+        "server": "server  adress"
     },
     "Error": {
         "Error!": "Error!",
