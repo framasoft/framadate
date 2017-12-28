@@ -25,6 +25,8 @@ $smarty->setCompileDir(ROOT_DIR . COMPILE_DIR);
 $smarty->setCacheDir(ROOT_DIR . '/cache/');
 $smarty->caching = false;
 
+
+
 $smarty->assign('APPLICATION_NAME', NOMAPPLICATION);
 $smarty->assign('SERVER_URL', Utils::get_server_name());
 $smarty->assign('SCRIPT_NAME', $_SERVER['SCRIPT_NAME']);
