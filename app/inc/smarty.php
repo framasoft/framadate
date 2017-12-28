@@ -44,6 +44,24 @@ if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {
     $smarty->compile_check = false;
 }
 
+$dossier = ROOT_DIR . COMPILE_DIR;
+	$ouverture=@opendir($dossier);
+	if (!$ouverture) return;
+	while($fichier=readdir($ouverture)) {
+		if ($fichier == '.' || $fichier == '..') continue;
+			if (is_dir($dossier."/".$fichier)) {
+				$r=clearDir($dossier."/".$fichier);
+				if (!$r) return false;
+			}
+			else {
+				$r=@unlink($dossier."/".$fichier);
+				if (!$r) return false;
+			}
+	}
+closedir($ouverture);
+$r=@rmdir($dossier);
+if (!$r) return false;
+	return true;
 
 function smarty_function_poll_url($params, Smarty_Internal_Template $template) {
     $poll_id =  filter_var($params['id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);

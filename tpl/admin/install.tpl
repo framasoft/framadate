@@ -11,6 +11,7 @@
 
             <fieldset>
                 <legend>{__('Installation', 'General')}</legend>
+
                 <div class="form-group">
                     <div class="form-group">
                         <div class="input-group">
