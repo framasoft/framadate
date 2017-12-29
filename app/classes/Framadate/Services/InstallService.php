@@ -56,6 +56,10 @@ return $dbconnect = $this->fields['base'].":host=".$this->fields['server'].";dbn
 
 }
 
+public function admin(){
+
+}
+
     public function updateFields($data) {
         foreach ($data as $field => $value) {
             $this->fields[$field] = $value;
