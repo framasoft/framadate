@@ -6,6 +6,10 @@ chmod -R 777 ./
 
 composer install
 
+mkdir ./tpl_c
+
+chmod -R 777 ./
+
 exit 0
 
 
