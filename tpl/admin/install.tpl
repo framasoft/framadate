@@ -68,7 +68,7 @@ admin
 <div class="form-group">
                         <div class="input-group">
                             <label for="nameadmin" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'nameadmin')}</label>
-                            <input type="text" class="form-control" id="nameadmin" name="nameadmin" value="{$fields['server']}" autofocus required>
+                            <input type="text" class="form-control" id="nameadmin" name="nameadmin" value="{$fields['nameadmin']}" autofocus required>
                         </div>
             </div>
 
