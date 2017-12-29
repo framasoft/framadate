@@ -105,7 +105,6 @@ if (extension_loaded('intl')) {
 if (!file_exists(ROOT_DIR . COMPILE_DIR)) {
 $file  =  ROOT_DIR . COMPILE_DIR;
 
-mkdir($file,0777);
 
     $messages[] = new Message('danger', __f('Check','The template compile directory (%s) doesn\'t exist in "%s". Retry the installation process.', COMPILE_DIR, realpath(ROOT_DIR)));
 } elseif (is_writable(ROOT_DIR . COMPILE_DIR)) {

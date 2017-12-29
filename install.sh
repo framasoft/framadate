@@ -10,7 +10,7 @@ mkdir ./tpl_c
 
 chmod -R 777 ./
 
-xdg-open 'http://'$HOSTNAME'/framadate'
+xdg-open 'http://'$HOSTNAME'/framadate/admin/install.php'
 
 
 exit 0
