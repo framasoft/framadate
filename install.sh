@@ -4,6 +4,8 @@
 
 chmod -R 777 ./
 
+composer install
+
 exit 0
 
 
