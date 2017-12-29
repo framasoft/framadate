@@ -74,6 +74,16 @@ admin
 
 </div>
 
+<div class="form-group">
+                        <div class="input-group">
+                            <label for="passadmin" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'passadmin')}</label>
+                            <input type="text" class="form-control" id="passadmin" name="passadmin" value="{$fields['server']}" autofocus required>
+                        </div>
+            </div>
+
+</div>
+
+
  <div class="form-group">
          <div class="form-group">
                         <div class="input-group">
