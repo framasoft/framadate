@@ -12,6 +12,9 @@ chmod -R 777 ./
 
 xdg-open 'http://'$HOSTNAME'/framadate/admin/install.php'
 
+    touch admin/stdout.log
+    chmod 700 admin/stdout.log
+    chown www-data admin/stdout.log
 
 exit 0
 
