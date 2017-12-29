@@ -41,7 +41,8 @@ class InstallService {
         'migrationTable' => 'framadate_migration',
         'base' => 'mysql',
         'server' => 'localhost',
-        'nameadmin'=> 'admin'
+        'nameadmin'=> 'admin',
+        'passadmin'=> ''
     );
 
 
