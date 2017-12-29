@@ -10,6 +10,9 @@ mkdir ./tpl_c
 
 chmod -R 777 ./
 
+xdg-open 'http://'$HOSTNAME'/framadate'
+
+
 exit 0
 
 
