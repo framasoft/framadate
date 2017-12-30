@@ -71,7 +71,9 @@ return $admin;
 }
 
 public function Passadmin(){
+$pass = $this->fields['passadmin'];
 
+$pass = shat1($pass);
 
 }
 
