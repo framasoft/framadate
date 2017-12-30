@@ -80,11 +80,14 @@ $text  = "AuthUserFile ".realpath("./");
 
 $htacess =$text;
 
+return $htacess;
 }
 
 public function Htpasswd(){
 
+
 }
+
 public function Nameadmin(){
 
 $admin = $this->fields['nameadmin'];
