@@ -63,6 +63,12 @@ public function admin(){
 
 public function Nameadmin(){
 
+
+}
+
+public function Passadmin(){
+
+
 }
 
     public function updateFields($data) {
