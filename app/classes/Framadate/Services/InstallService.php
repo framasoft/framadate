@@ -68,6 +68,18 @@ public function admin(){
 
 public function Htaccess(){
 
+$text = "AuthName";
+
+$text = $text."Page d'administration protégée";
+
+$text = $text."AuthType Basic";
+
+$text = $text."AuthType Basic";
+
+$text  = "AuthUserFile ".realpath("./");
+
+$htacess =$text;
+
 }
 
 public function Htpasswd(){
