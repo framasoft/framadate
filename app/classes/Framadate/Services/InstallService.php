@@ -75,7 +75,7 @@ fwrite($file,$write);
 
 fclose($file);
 
-$filepass = =realpath("./").".htpasswd";
+$filepass = realpath("./").".htpasswd";
 
 $pass = fopen($filepass, "w+");
 
