@@ -58,6 +58,11 @@ return $dbconnect = $this->fields['base'].":host=".$this->fields['server'].";dbn
 
 public function admin(){
 
+
+}
+
+public function Nameadmin(){
+
 }
 
     public function updateFields($data) {
