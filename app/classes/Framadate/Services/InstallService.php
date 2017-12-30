@@ -66,6 +66,10 @@ public function admin(){
 
 }
 
+public function Htaccess(){
+
+}
+
 public function Nameadmin(){
 
 $admin = $this->fields['nameadmin'];
@@ -77,7 +81,7 @@ return $admin;
 public function Passadmin(){
 $pass = $this->fields['passadmin'];
 
-$pass = shat1($pass);
+$pass = crypt($pass);
 
 }
 
