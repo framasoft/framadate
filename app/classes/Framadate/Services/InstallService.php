@@ -45,6 +45,7 @@ class InstallService {
         'passadmin'=> ''
     );
 
+private $admin;
 
 
    
