@@ -47,7 +47,7 @@ class InstallService {
 
 private $admin;
 
-
+private $pass;
    
 function __construct() {}
 
@@ -58,7 +58,9 @@ return $dbconnect = $this->fields['base'].":host=".$this->fields['server'].";dbn
 }
 
 public function admin(){
+$admin = $this->fields['nameadmin'];
 
+return $admin;
 
 }
 
