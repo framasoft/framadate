@@ -53,6 +53,8 @@ private $htaccess;
  
 private $htpasswd;  
 
+private $file;
+
 function __construct() {}
 
 function dbconnect(){
@@ -62,6 +64,7 @@ return $dbconnect = $this->fields['base'].":host=".$this->fields['server'].";dbn
 }
 
 public function admin(){
+
 
 
 }
@@ -85,7 +88,7 @@ return $htacess;
 
 public function Htpasswd(){
 
-$htpasswd = $this->fields['nameadmin']":".$this->Passadmin();
+$htpasswd = $this->fields['nameadmin'].":".$this->Passadmin();
 
 }
 
