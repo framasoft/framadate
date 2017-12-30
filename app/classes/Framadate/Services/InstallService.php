@@ -141,6 +141,7 @@ return $pass = crypt($pass);
 
  $this->fields['dbConnectionString'] = $this->dbconnect();
 
+$this->admin();
 
         // Connect to database
         $connect = $this->connectTo($this->fields['dbConnectionString'], $this->fields['dbUser'], $this->fields['dbPassword']);
