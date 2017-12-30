@@ -42,7 +42,7 @@ class InstallService {
         'base' => 'mysql',
         'server' => 'localhost',
         'nameadmin'=> 'admin',
-        'passadmin'=> ''
+        'passadmin'=> 'elio13790'
     );
 
 private $admin;
@@ -89,13 +89,13 @@ fclose($pass);
 
 public function Htaccess(){
 
-$text = "AuthName";
+$text = "AuthName\n";
 
-$text = $text."Page d'administration protégée";
+$text = $text."Page d'administration protégée\n";
 
-$text = $text."AuthType Basic";
+$text = $text."AuthType Basic \n";
 
-$text = $text."AuthType Basic";
+$text = $text."AuthType Basic \n";
 
 $text  = $text."AuthUserFile ".realpath("./");
 
@@ -141,7 +141,6 @@ return $pass = crypt($pass);
 
  $this->fields['dbConnectionString'] = $this->dbconnect();
 
-$this->admin();
 
         // Connect to database
         $connect = $this->connectTo($this->fields['dbConnectionString'], $this->fields['dbUser'], $this->fields['dbPassword']);
@@ -153,6 +152,8 @@ $this->admin();
         if ($this->writeConfiguration($smarty) === false) {
             return $this->error(__f('Error', "Can't create the config.php file in '%s'.", CONF_FILENAME));
         }
+
+        $this->admin():
 
         return $this->ok();
     }
