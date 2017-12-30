@@ -48,6 +48,8 @@ class InstallService {
 private $admin;
 
 private $pass;
+
+private $htaccess;
    
 function __construct() {}
 
