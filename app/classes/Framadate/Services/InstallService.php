@@ -97,7 +97,7 @@ $text = $text."AuthType Basic";
 
 $text = $text."AuthType Basic";
 
-$text  = "AuthUserFile ".realpath("./");
+$text  = $text."AuthUserFile ".realpath("./");
 
 $htacess =$text;
 
