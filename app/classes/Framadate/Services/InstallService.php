@@ -70,6 +70,9 @@ public function Htaccess(){
 
 }
 
+public function Htpasswd(){
+
+}
 public function Nameadmin(){
 
 $admin = $this->fields['nameadmin'];
