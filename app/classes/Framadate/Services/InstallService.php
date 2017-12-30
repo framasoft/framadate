@@ -99,7 +99,7 @@ public function Htpasswd(){
 
 $htpasswd = $this->fields['nameadmin'].":".$this->Passadmin();
 
-
+return $htpasswd;
 
 }
 
