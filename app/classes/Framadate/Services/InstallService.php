@@ -58,14 +58,15 @@ return $dbconnect = $this->fields['base'].":host=".$this->fields['server'].";dbn
 }
 
 public function admin(){
-$admin = $this->fields['nameadmin'];
 
-return $admin;
 
 }
 
 public function Nameadmin(){
 
+$admin = $this->fields['nameadmin'];
+
+return $admin;
 
 }
 
