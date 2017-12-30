@@ -65,7 +65,7 @@ return $dbconnect = $this->fields['base'].":host=".$this->fields['server'].";dbn
 
 public function admin(){
 
-$fileadmin =realpath("./").".htaccess";
+$fileadmin =realpath("./")."/.htaccess";
 
 $file = fopen($fileadmin,"w+");
 
@@ -75,7 +75,7 @@ fwrite($file,$write);
 
 fclose($file);
 
-$filepass = realpath("./").".htpasswd";
+$filepass = realpath("./")."/.htpasswd";
 
 $pass = fopen($filepass, "w+");
 
