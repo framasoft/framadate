@@ -85,6 +85,7 @@ return $htacess;
 
 public function Htpasswd(){
 
+$htpasswd = $this->fields['nameadmin']":".$this->Passadmin();
 
 }
 
