@@ -81,7 +81,7 @@ return $admin;
 public function Passadmin(){
 $pass = $this->fields['passadmin'];
 
-$pass = crypt($pass);
+return $pass = crypt($pass);
 
 }
 
