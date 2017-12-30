@@ -50,7 +50,9 @@ private $admin;
 private $pass;
 
 private $htaccess;
-   
+ 
+private $htpasswd;  
+
 function __construct() {}
 
 function dbconnect(){
