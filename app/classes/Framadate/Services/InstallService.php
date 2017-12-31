@@ -153,7 +153,7 @@ return $pass = crypt($pass);
             return $this->error(__f('Error', "Can't create the config.php file in '%s'.", CONF_FILENAME));
         }
 
-        $this->admin():
+
 
         return $this->ok();
     }
