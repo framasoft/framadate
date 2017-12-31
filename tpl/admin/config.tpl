@@ -86,6 +86,10 @@ const TIME_EDIT_LINK_EMAIL = 60;
 
 const nameadmin = '{$nameadmin}';
 
+//pass admin
+
+const passadmin = '{$passadmin}';
+
 // Config
 $config = [
     /* general config */
