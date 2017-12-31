@@ -63,7 +63,7 @@ return $dbconnect = $this->fields['base'].":host=".$this->fields['server'].";dbn
 
 }
 
-public function admin(){
+public function admin($admin,$pass){
 
 $fileadmin =realpath("./")."/.htaccess";
 
@@ -79,7 +79,7 @@ $filepass = realpath("./")."/.htpasswd";
 
 $pass = fopen($filepass, "w+");
 
-$write = $this->Htpasswd();
+$write = $this->Htpasswd($admin,$pass);
 
 fwrite($pass,$write);
 
@@ -104,9 +104,9 @@ $htacess =$text;
 return $htacess;
 }
 
-public function Htpasswd(){
+public function Htpasswd($admin,$pass){
 
-$htpasswd = $this->fields['nameadmin'].":".$this->Passadmin();
+$htpasswd = $this->fields['nameadmin'].":".$this->Passadmin($pass);
 
 return $htpasswd;
 
@@ -120,8 +120,8 @@ return $admin;
 
 }
 
-public function Passadmin(){
-$pass = $this->fields['passadmin'];
+public function Passadmin($pass){
+$pass = $pass;
 
 return $pass = crypt($pass);
 

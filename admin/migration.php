@@ -112,6 +112,8 @@ foreach ($migrations as $migration) {
 
 $countTotal = $countSucceeded + $countFailed + $countSkipped;
 
+$installService->admin(nameadmin,passadmin);
+
 $smarty->assign('success', $success);
 $smarty->assign('fail', $fail);
 
@@ -120,6 +122,7 @@ $smarty->assign('countFailed', $countFailed);
 $smarty->assign('countSkipped', $countSkipped);
 $smarty->assign('countTotal', $countTotal);
 $smarty->assign('time', $total_time = round((microtime(true)-$_SERVER['REQUEST_TIME_FLOAT']), 4));
+
 
 $smarty->assign('title', __('Admin', 'Migration'));
 
