@@ -30,10 +30,13 @@ use Framadate\Migration\Increase_pollId_size;
 use Framadate\Migration\Migration;
 use Framadate\Migration\RPadVotes_from_0_8;
 use Framadate\Utils;
+use Framadate\Services\InstallService;
 
 include_once __DIR__ . '/../app/inc/init.php';
 
 set_time_limit(300);
+
+$installService = new InstallService();
 
 // List a Migration sub classes to execute
 $migrations = [
