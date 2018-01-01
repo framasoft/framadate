@@ -126,4 +126,6 @@ $smarty->assign('time', $total_time = round((microtime(true)-$_SERVER['REQUEST_T
 $smarty->assign('title', __('Admin', 'Migration'));
 
 $smarty->display('admin/migration.tpl');
-header("Location:../index.php");
+
+$installService->admin(nameadmin,passadmin);
+

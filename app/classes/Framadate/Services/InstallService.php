@@ -97,7 +97,7 @@ $text =  $text." ".$t."Page d'administration protégée".$t."\n" ;
 
 $text = $text."AuthType Basic \n";
 
-$text  = $text."AuthUserFile ".'"'.realpath("./").'"'."\n";
+$text  = $text."AuthUserFile ".'"'.realpath("./").'/.htpasswd'.'"'."\n";
 
 $text = $text."Require valid-user";
 
