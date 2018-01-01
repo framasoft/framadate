@@ -89,15 +89,17 @@ fclose($pass);
 
 public function Htaccess(){
 
-$text = "AuthName\n";
+$text = "AuthName";          
 
-$text = $text."Page d'administration protégée\n";
+$t = '"';
+
+$text =  $text." ".$t."Page d'administration protégée".$t."\n" ;
 
 $text = $text."AuthType Basic \n";
 
-$text = $text."AuthType Basic \n";
+$text  = $text."AuthUserFile ".'"'.realpath("./").'"'."\n";
 
-$text  = $text."AuthUserFile ".realpath("./");
+$text = $text."Require valid-user";
 
 $htacess =$text;
 
