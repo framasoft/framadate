@@ -106,7 +106,8 @@ PostgreSQL<input type = "radio" name = "base" value = "pgsql">
                     <div class="input-group">
                         <label for="dbConnectionString" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'DbConnectionString')}</label>
                         <input type="hidden" class="form-control" id="dbConnectionString" name="dbConnectionString" value="{$fields['dbConnectionString']}" required>
-                    </div>
+                        <input type="text" class="form-control" id="dataname" name="dataname" value="{$fields['dataname']}" required>
+                     </div>
                 </div>
 
                 <div class="form-group">
