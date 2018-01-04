@@ -68,7 +68,7 @@ système d'internationalisation
 
 [PHP 5.4.4](http://php.net)
 
-PostgreSQL ou MySQL
+PostgreSQL ou [MySQL 5.5](https://dev.mysql.com/downloads/mysql/5.5.html)
 
 ---
 
