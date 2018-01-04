@@ -420,7 +420,7 @@
         "PHP Intl extension is enabled.": "Gweredekaet eo an askouezh PHP Intl.",
         "The template compile directory (%s) is not writable.": "N'haller ket skrivañ e kavlec'h kempunañ ar patromoù (%s).",
         "The template compile directory (%s) is writable.": "Gallout a raer skrivañ e kavlec'h kempunañ ar patromoù (%s).",
-        "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "N'haller ket skrivañ e kavlec'h ar restr kefluniañ (%s) ha n'eus ket eus ar restr kefluniañ (%s).",
+        "The config file directory (%s) is not writable and the config file (%s) does not exists.": "N'haller ket skrivañ e kavlec'h ar restr kefluniañ (%s) ha n'eus ket eus ar restr kefluniañ (%s).",
         "The config file exists.": "Amañ mañ ar restr kefnluniañ.",
         "The config file directory (%s) is writable.": "Gallout a raer skrivañ e kavlec'h ar restr kefluniañ (%s).",
         "OpenSSL extension loaded.": "Askouezh OpenSSL karget.",

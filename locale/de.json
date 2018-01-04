@@ -418,7 +418,7 @@
         "PHP Intl extension is enabled.": "Die PHP-Erweiterung Intl ist aktiviert.",
         "The template compile directory (%s) is not writable.": "Der Vorlagen-Übersetzungspfad (%s) ist nicht beschreibbar.",
         "The template compile directory (%s) is writable.": "Der Vorlagen-Übersetzungspfad (%s) ist beschreibbar.",
-        "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "Der Konfigurationspfad (%s) ist nicht beschreibbar und es existiert keine Konfigurationsdatei (%s).",
+        "The config file directory (%s) is not writable and the config file (%s) does not exists.": "Der Konfigurationspfad (%s) ist nicht beschreibbar und es existiert keine Konfigurationsdatei (%s).",
         "The config file exists.": "Die Konfigurationsdatei existiert.",
         "The config file directory (%s) is writable.": "Die Konfigurationsdatei (%s) ist beschreibbar.",
         "OpenSSL extension loaded.": "Die OpenSSL-Erweiterung ist geladen.",

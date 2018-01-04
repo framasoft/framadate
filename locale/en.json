@@ -420,7 +420,7 @@
     "PHP Intl extension is enabled.": "PHP Intl extension is enabled.",
     "The template compile directory (%s) is not writable.": "The template compile directory (%s) is not writable.",
     "The template compile directory (%s) is writable.": "The template compile directory (%s) is writable.",
-    "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "The config file directory (%s) is not writable and the config file (%s) dos not exists.",
+    "The config file directory (%s) is not writable and the config file (%s) does not exists.": "The config file directory (%s) is not writable and the config file (%s) does not exists.",
     "The config file exists.": "The config file exists.",
     "The config file directory (%s) is writable.": "The config file directory (%s) is writable.",
     "OpenSSL extension loaded.": "OpenSSL extension loaded.",
