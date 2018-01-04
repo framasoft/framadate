@@ -40,9 +40,10 @@ class InstallService {
         'dbPrefix' => 'fd_',
         'migrationTable' => 'framadate_migration',
         'base' => 'mysql',
+         'dataname' => '',
         'server' => 'localhost',
         'nameadmin'=> 'admin',
-        'passadmin'=> 'elio13790'
+        'passadmin'=> 'elio13790'     
     );
 
 private $admin;
