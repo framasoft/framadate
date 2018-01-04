@@ -18,7 +18,7 @@ Attention : Si vous créez la base de données avec l'utilisateur "pgsql",
 il vous faudra faire un "grant all on <chaque table> to `framadate`" pour donner les droits à l'utilisateur `framadate` de lire et modifier la base.
 Les tables de l'applications sont décrites plus loin dans ce fichier dans la partie "Tables de la base de données".
 
-### MySQL
+###  MySQL
 
 ```sql
     -- Créer une base de données

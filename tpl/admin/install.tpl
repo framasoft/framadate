@@ -55,17 +55,25 @@
                     </div>
                 </div>
             </fieldset>
+
+ <legend>{__('Installation', 'typedatabase')}</legend>
+</br>
 mysql<input type = "radio" name = "base" value = "mysql">
-pgsql<input type = "radio" name = "base" value = "pgsql">
+</br>
+PostgreSQL<input type = "radio" name = "base" value = "pgsql">
          
 <fieldset>
-                <legend>{__('Installation', 'Database')}</legend>
+             
 
  <div class="form-group">
 
-admin
+
+ <legend>{__('Installation', 'identifiantadmin')}</legend>
+
+
 
 <div class="form-group">
+
                         <div class="input-group">
                             <label for="nameadmin" class="input-group-addon">{__('Generic', 'ASTERISK')} {__('Installation', 'nameadmin')}</label>
                             <input type="text" class="form-control" id="nameadmin" name="nameadmin" value="{$fields['nameadmin']}" autofocus required>
@@ -81,8 +89,10 @@ admin
                         </div>
             </div>
 
+<legend></legend>
 </div>
 
+ <legend>{__('Installation', 'Database')}</legend>
 
  <div class="form-group">
          <div class="form-group">
