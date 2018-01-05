@@ -43,7 +43,7 @@ class InstallService {
          'dataname' => '',
         'server' => 'localhost',
         'nameadmin'=> 'admin',
-        'passadmin'=> 'elio13790'     
+        'passadmin'=> ''     
     );
 
 private $admin;
