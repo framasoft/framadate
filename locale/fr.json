@@ -357,6 +357,7 @@
     "Installation": {
          "nameadmin":"pseudo admin",
          "passadmin":"mot de pass admin",
+          "typedatabase": "type de base donné",
          "identifiantadmin": "securisation du panneau d'adminstration",
         "server" :"adress du server",
         "AppMail": "Adresse mail de l'application",
