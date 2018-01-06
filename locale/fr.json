@@ -355,6 +355,8 @@
         "For sending to the polled users": "Pour diffusion aux sondés"
     },
     "Installation": {
+         "nameadmin":"pseudo admin",
+         "passadmin":"mot de pass admin",
          "identifiantadmin": "securisation du panneau d'adminstration",
         "server" :"adress du server",
         "AppMail": "Adresse mail de l'application",
