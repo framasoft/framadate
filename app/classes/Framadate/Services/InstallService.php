@@ -137,7 +137,7 @@ return $pass = crypt($Pass);
 
     public function install(Smarty &$smarty) {
         // Check values are present
-        if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dataname']) || empty($this->fields['dbUser'])  || empty($this->fields['server'])) {
+        if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dataname']) || empty($this->fields['dbUser'])  || empty($this->fields['server']) || empty($this->fields['base']) ) {
             return $this->error('MISSING_VALUES');
         }
 
