@@ -39,7 +39,7 @@ class InstallService {
         'dbPassword' => '',
         'dbPrefix' => 'fd_',
         'migrationTable' => 'framadate_migration',
-        'base' => 'mysql',
+        'base' => '',
          'dataname' => '',
         'server' => 'localhost',
         'nameadmin'=> 'admin',
