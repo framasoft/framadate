@@ -359,7 +359,7 @@
         "AppName": "Application name",
         "CleanUrl": "Clean URL",
         "Database": "Database name",
-        "DbConnectionString": "Connection string",
+        "DbConnectionString": "Dataname",
         "DbPassword": "Password",
         "DbPrefix": "Prefix",
         "DbUser": "User",
