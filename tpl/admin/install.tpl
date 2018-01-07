@@ -56,6 +56,11 @@
                 </div>
             </fieldset>
 
+<legend> Mode localhost </legend>
+yes<input type = "radio" name = "localhost">
+</br>
+no<input type = "radio" name = "localhost">
+
  <legend>{__('Installation', 'typedatabase')}</legend>
 </br>
 mysql<input type = "radio" name = "base" value = "mysql">
