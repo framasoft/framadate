@@ -90,6 +90,10 @@ const nameadmin = '{$nameadmin}';
 
 const passadmin = '{$passadmin}';
 
+//mode locahost
+
+const localhost = '{$localhost}';
+
 // Config
 $config = [
     /* general config */
