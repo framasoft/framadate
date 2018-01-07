@@ -57,9 +57,9 @@
             </fieldset>
 
 <legend> Mode localhost </legend>
-yes<input type = "radio" name = "localhost">
+yes<input type = "radio" name = "localhost" value = "1">
 </br>
-no<input type = "radio" name = "localhost">
+no<input type = "radio" name = "localhost" value = "0">
 
  <legend>{__('Installation', 'typedatabase')}</legend>
 </br>
