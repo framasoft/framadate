@@ -32,7 +32,7 @@ class InstallService {
         'responseMail' => '',
         'defaultLanguage' => 'fr',
         'cleanUrl' => true,
-
+        'localhost'=> '',
         // Database configuration
         'dbConnectionString' => '',
         'dbUser' => 'root',
