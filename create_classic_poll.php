@@ -29,7 +29,12 @@ include_once __DIR__ . '/app/inc/init.php';
 /*---------*/
 $logService = new LogService();
 $pollService = new PollService($connect, $logService);
+if(localhost == 0){
+
 $mailService = new MailService($config['use_smtp']);
+
+}
+
 $purgeService = new PurgeService($connect, $logService);
 
 if (is_file('bandeaux_local.php')) {
@@ -100,12 +105,13 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
             $message_admin = __('Mail', "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
             $message_admin .= sprintf(' :<br/><br/><a href="%1$s">%1$s</a>', Utils::getUrlSondage($admin_poll_id, true));
 
+if(localhost == 0){
             if ($mailService->isValidEmail($_SESSION['form']->admin_mail)) {
                 $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ': ' . $_SESSION['form']->title, $message_admin);
                 $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ': ' . $_SESSION['form']->title, $message);
             }
         }
-
+}
         // Clean Form data in $_SESSION
         unset($_SESSION['form']);
 
