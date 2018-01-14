@@ -35,6 +35,8 @@ $mailService = new MailService($config['use_smtp']);
 
 }
 
+
+
 $purgeService = new PurgeService($connect, $logService);
 
 if (is_file('bandeaux_local.php')) {
@@ -119,7 +121,12 @@ if(localhost == 0){
         $purgeService->purgeOldPolls();
 
         // Redirect to poll administration
-        header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
+ $urlid ='adminstuds.php?poll='.$admin_poll_id;
+
+
+  
+
+        header('Location:'.$urlid);
         exit;
 
     } // Step 3/4 : Confirm poll creation and choose a removal date

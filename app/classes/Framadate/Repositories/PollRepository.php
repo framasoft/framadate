@@ -39,6 +39,16 @@ class PollRepository extends AbstractRepository {
         return $poll;
     }
 
+    public function PollAdminId($admin_poll_id) {
+        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
+
+        $prepared->execute(array($admin_poll_id));
+        $poll = $prepared->fetch(PDO::FETCH_ASSOC);
+        $prepared->closeCursor();
+
+        return $poll;
+    }
+
     public function existsById($poll_id) {
         $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
