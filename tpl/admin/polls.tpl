@@ -102,7 +102,7 @@
                         {/if}
                         <td>{$poll->votes|html}</td>
                         <td>{$poll->id|html}</td>
-                        <td><a href="{poll_url id=$poll->id}" class="btn btn-link"
+                        <td><a href="{$SERVER_URL}studs.php?poll={$poll->id|html}" class="btn btn-link"
                                title="{__('Admin', 'See the poll')}"><span
                                         class="glyphicon glyphicon-eye-open"></span><span
                                         class="sr-only">{__('Admin', 'See the poll')}</span></a></td>
