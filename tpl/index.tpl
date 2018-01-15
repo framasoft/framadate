@@ -37,6 +37,19 @@
             </p>
         </div>
     </div>
+
+  <div >
+            <p class="home-choice">
+                <a href="{$SERVER_URL}listpolls.php" class="opacity" role="button">
+                    <span class="btn btn-warning btn-lg">
+                        <span class="glyphicon glyphicon-search"></span>
+                        'list of polls'
+                    </span>
+                </a>
+            </p>
+        </div>
+
+
     <hr role="presentation"/>
     <div class="row">
 
