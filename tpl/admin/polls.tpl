@@ -1,10 +1,12 @@
 {extends 'admin/admin_page.tpl'}
 
 {block name="header"}
+
     <script src="{"js/app/admin/polls.js"|resource}" type="text/javascript"></script>
 {/block}
 
 {block 'admin_main'}
+
     <div class="panel panel-default" id="poll_search">
         <div class="panel-heading">{__('Generic', 'Search')}</div>
         <div class="panel-body" style="display: none;">
