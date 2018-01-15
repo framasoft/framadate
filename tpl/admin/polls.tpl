@@ -106,7 +106,7 @@
                                title="{__('Admin', 'See the poll')}"><span
                                         class="glyphicon glyphicon-eye-open"></span><span
                                         class="sr-only">{__('Admin', 'See the poll')}</span></a></td>
-                        <td><a href="{poll_url id=$poll->admin_id admin=true}" class="btn btn-link"
+                        <td><a href="{$SERVER_URL}adminstuds.php?poll={$poll->admin_id}" class="btn btn-link"
                                title="{__('Admin', 'Change the poll')}"><span
                                         class="glyphicon glyphicon-pencil"></span><span
                                         class="sr-only">{__('Admin', 'Change the poll')}</span></a></td>
