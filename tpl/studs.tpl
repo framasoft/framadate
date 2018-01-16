@@ -22,6 +22,19 @@
 
     {else}
 
+
+  <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
+            <p class="home-choice">
+                <a href="{$SERVER_URL}listpolls.php" class="opacity" role="button">
+                    <span class="btn btn-warning btn-lg">
+                     
+                        back to poll
+                    </span>
+                </a>
+            </p>
+        
+    </div>
+
         {* Global informations about the current poll *}
         {include 'part/poll_info.tpl' admin=$admin}
 
