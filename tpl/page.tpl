@@ -8,6 +8,7 @@
     {else}
         <title>{$APPLICATION_NAME|html}</title>
     {/if}
+    <meta name="description" content="{__('Generic', 'Framadate is an online service for planning an appointment or make a decision quickly and easily.')}" />
 
     {if isset($favicon)}
         <link rel="icon" href="{$favicon|resource}">
