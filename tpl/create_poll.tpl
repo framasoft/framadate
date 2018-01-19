@@ -76,7 +76,14 @@
                         </p>
                     </div>
                 {/if}
+                  
+                       <div class="col-sm-offset-4 col-sm-8">
+                                <div class="input-group">
+                                    <input id="poll_password" type="password" name="passwordadmin" class="form-control" {$errors['password']['aria']}/>
+                                    <label for="poll_passwordadmin" class="input-group-addon">{__('Step 1', 'Password choice')}</label>
+                                </div>
 
+ 
                 <div class="form-group {$errors['description']['class']}">
                     <label for="poll_comments" class="col-sm-4 control-label">{__('Generic', 'Description')}</label>
 

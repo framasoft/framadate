@@ -71,6 +71,23 @@ class SecurityService {
         }
     }
 
+
+ public function canAccessPolladmin($poll) {
+        if (is_null($poll->passwordadmin)) {
+            return true;
+        }
+
+        $this->ensureSessionPollSecurityIsCreated();
+
+        $currentPassword = isset($_SESSION['poll_security'][$poll->id]) ? $_SESSION['poll_security'][$poll->id] : null;
+        if (!empty($currentPassword) && PasswordHasher::verify($currentPassword, $poll->password_hash)) {
+            return true;
+        } else {
+            unset($_SESSION['poll_security'][$poll->id]);
+            return false;
+        }
+    }
+
     /**
      * Submit to the session a poll password
      *

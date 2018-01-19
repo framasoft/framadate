@@ -13,10 +13,25 @@ class PollRepository extends AbstractRepository {
 
     public function insertPoll($poll_id, $admin_poll_id, $form) {
         $sql = 'INSERT INTO `' . Utils::table('poll') . '`
-          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_hash, results_publicly_visible)
+          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_hash,passadmin )
           VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?,?,?)';
         $prepared = $this->prepare($sql);
-        $prepared->execute(array($poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, ($form->editable>=0 && $form->editable<=2) ? $form->editable : 0, $form->receiveNewVotes ? 1 : 0, $form->receiveNewComments ? 1 : 0, $form->hidden ? 1 : 0, $form->password_hash, $form->results_publicly_visible ? 1 : 0));
+        $prepared->execute(
+array($poll_id, 
+$admin_poll_id, 
+$form->title, 
+$form->description, 
+$form->admin_name, 
+$form->admin_mail, 
+$form->end_date, 
+$form->format, 
+($form->editable>=0 && $form->editable<=2) ?
+ $form->editable : 0, 
+$form->receiveNewVotes ? 1 : 0, 
+$form->receiveNewComments ? 1 : 0, 
+$form->hidden ? 1 : 0, 
+$form->password_hash, 
+$form->password_admin));
     }
 
     function findById($poll_id) {
@@ -38,6 +53,17 @@ class PollRepository extends AbstractRepository {
 
         return $poll;
     }
+
+ public function findpassadmin($admin_poll_id){
+
+ $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
+
+        $prepared->execute(array($admin_poll_id));
+        $poll = $prepared->fetch(PDO::FETCH_ASSOC);
+        $prepared->closeCursor();
+
+        return $poll;
+}
 
     public function PollAdminId($admin_poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');

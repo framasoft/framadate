@@ -68,6 +68,17 @@ class PollService {
         return null;
     }
 
+  
+public function findpassadmin($admin_poll_id) {
+        if (preg_match(ADMIN_POLL_REGEX, $admin_poll_id)) {
+            return $this->pollRepository->findpassadmin($admin_poll_id);
+        }
+
+        return null;
+    }
+
+
+
     public function PollAdminId($admin_poll_id) {
         if (preg_match(ADMIN_POLL_REGEX, $admin_poll_id)) {
             return $this->pollRepository->PollAdminId($admin_poll_id);

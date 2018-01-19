@@ -70,6 +70,7 @@ class Form
      */
     public $password_hash;
 
+    public $password_admin;
     /**
      * If true, the polls results will be also visible for those without password
      * @var boolean

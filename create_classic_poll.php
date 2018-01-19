@@ -25,6 +25,8 @@ use Framadate\Choice;
 
 include_once __DIR__ . '/app/inc/init.php';
 
+
+
 /* Service */
 /*---------*/
 $logService = new LogService();

@@ -67,6 +67,10 @@ if ($goToStep2) {
     $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
     $use_password = filter_input(INPUT_POST, 'use_password', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
     $password = isset($_POST['password']) ? $_POST['password'] : null;
+    
+     
+    $passwordadmin = isset($_POST['passwordadmin']) ? $_POST['passwordadmin'] : null;
+   
     $password_repeat = isset($_POST['password_repeat']) ? $_POST['password_repeat'] : null;
     $results_publicly_visible = filter_input(INPUT_POST, 'results_publicly_visible', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
 
@@ -91,7 +95,7 @@ if ($goToStep2) {
     $_SESSION['form']->hidden = $hidden;
     $_SESSION['form']->use_password = ($use_password !== null);
     $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
-
+    $_SESSION['form']->password_admin = $passwordadmin;
 
     if ($config['use_smtp'] == true) {
         if (empty($mail)) {
@@ -140,8 +144,12 @@ if ($goToStep2) {
     ) {
 
         // If no errors, we hash the password if needed
+   
+     $_SESSION['form']->password_admin = PasswordHasher::hash($passwordadmin);
+   
         if ($_SESSION['form']->use_password) {
             $_SESSION['form']->password_hash = PasswordHasher::hash($password);
+           
         } else {
             $_SESSION['form']->password_hash = null;
             $_SESSION['form']->results_publicly_visible = null;

@@ -29,6 +29,9 @@ use Framadate\Services\PollService;
 use Framadate\Services\NotificationService;
 use Framadate\Security\PasswordHasher;
 use Framadate\Utils;
+use Framadate\Services\SecurityService;
+
+
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -40,6 +43,8 @@ $poll_id = null;
 $poll = null;
 $message = null;
 $editingVoteId = 0;
+$accessGranted = false;
+$passadmin = null;
 
 /* Services */
 /*----------*/
@@ -50,19 +55,40 @@ $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $inputService = new InputService();
 $mailService = new MailService($config['use_smtp']);
 $notificationService = new NotificationService($mailService);
+$securityService = new SecurityService();
 
+if(isset($_POST['password']) && !empty($_POST['password'])){
+$passadmin = $_POST['password'];
+
+$passadmin =PasswordHasher::hash($passadmin);
+$accessGranted = true;
+
+}else{
+
+$passadmin = false;
+
+}
 /* PAGE */
 /* ---- */
 
 if (!empty($_GET['poll'])) {
+
     $admin_poll_id = filter_input(INPUT_GET, 'poll', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+
     if (strlen($admin_poll_id) === 24) {
+
         $poll = $pollService->findByAdminId($admin_poll_id);
+
         $PollAdminId = $pollService->PollAdminId($admin_poll_id);
-     
+
+          $polladmin = $pollService->findpassadmin($poll->id);
+
+
 
 }
 }
+$polladmin = $pollService->findpassadmin($poll->admin_id);
+
 
 if ($poll) {
     $poll_id = $poll->id;
@@ -71,6 +97,12 @@ if ($poll) {
     $smarty->display('error.tpl');
     exit;
 }
+
+if (!is_null($poll->passadmin)) {
+
+    
+}
+
 
 // -------------------------------
 // Update poll info
@@ -146,14 +178,14 @@ if (isset($_POST['update_poll_info'])) {
         $removePassword = isset($_POST['removePassword']) ? $inputService->filterBoolean($_POST['removePassword']) : false;
         if ($removePassword) {
             $poll->results_publicly_visible = false;
-            $poll->password_hash = null;
+            $poll->passadmin = null;
             $updated = true;
         }
     } elseif ($field == 'password') {
         $password = isset($_POST['password']) ? $_POST['password'] : null;
         $resultsPubliclyVisible = isset($_POST['resultsPubliclyVisible']) ? $inputService->filterBoolean($_POST['resultsPubliclyVisible']) : false;
         if (!empty($password)) {
-            $poll->password_hash =  PasswordHasher::hash($password);
+            $poll->passadmin =  PasswordHasher::hash($password);
             $updated = true;
         }
         if ($resultsPubliclyVisible != $poll->results_publicly_visible) {
@@ -425,4 +457,10 @@ $smarty->assign('accessGranted', true);
 $smarty->assign('resultPubliclyVisible', true);
 $smarty->assign('editedVoteUniqueId', '');
 
+if($accessGranted == true){
 $smarty->display('studs.tpl');
+}else{
+
+$smarty->display('password.tpl');
+
+}
