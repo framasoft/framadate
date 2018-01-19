@@ -98,10 +98,7 @@ if ($poll) {
     exit;
 }
 
-if (!is_null($poll->passadmin)) {
 
-    
-}
 
 
 // -------------------------------

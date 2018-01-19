@@ -50,9 +50,9 @@ $migrations = [
     new RPadVotes_from_0_8(),
     new Alter_Comment_table_for_name_length(),
     new Alter_Comment_table_adding_date(),
+    new passadmin(),
     new AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9(),
     new Increase_pollId_size(),
-    new passadmin()
 ];
 // ---------------------------------------
 
