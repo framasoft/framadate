@@ -154,7 +154,7 @@
                             {/if}
                             <div id="password_information">
                                 <div class="input-group">
-                                    <input type="checkbox" id="resultsPubliclyVisible" name="resultsPubliclyVisible" {if $poll->results_publicly_visible && $poll->hidden == false && (!empty($poll->password_hash))}checked="checked" {elseif ($poll->hidden == true || empty($poll->password_hash))} disabled="disabled"{/if}/>
+                                    <input type="checkbox" id="resultsPubliclyVisible" name="resultsPubliclyVisible" {if $poll->results_publicly_visible}checked="checked"{/if}/>
                                     <label for="resultsPubliclyVisible">{__('PollInfo', 'Results are visible')}</label>
                                 </div>
                                 <div class="input-group">
