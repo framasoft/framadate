@@ -151,12 +151,62 @@ $(document).ready(function () {
 
     // Button "Copy hours of the first day"
 
+    function addHour(last_hour,add_button){
+// last_hour : Jquery selector on the last hour of the day selected
+// add_button : Jquery selector on the linked button
+
+		//var last_hour = $(this).children('div').children('div:last').prev();
+
+		// for and id
+		var di_hj = last_hour.children('.hours').attr('id').split('-');
+		var di = parseInt(di_hj[0].replace('d', ''));
+		var hj = parseInt(di_hj[1].replace('h', ''));
+
+		// label, title and placeholder
+		var last_hour_label = last_hour.children('.hours').attr('placeholder');
+		var hour_text = last_hour_label.substring(0, last_hour_label.indexOf(' '));
+
+		// RegEx for multiple replace
+		var re_label = new RegExp(last_hour_label, 'g');
+		var re_id = new RegExp('"d' + di + '-h' + hj + '"', 'g');
+
+		// HTML code of the new hour
+		var new_hour_html =
+		    '<div class="col-sm-2">' +
+		    last_hour.html().replace(re_label, hour_text + ' ' + (hj + 2))
+		        .replace(re_id, '"d' + di + '-h' + (hj + 1) + '"')
+		        .replace(/value="(.*?)"/g, 'value=""') +
+		    '</div>';
+
+		// After 11 + button is disable
+		if (hj < 99) {
+		    last_hour.after(new_hour_html);
+		    $('#d' + di + '-h' + (hj + 1)).focus();
+		    add_button.prev('.remove-an-hour').removeClass('disabled');
+		    if (hj == 98) {
+		        add_button.addClass('disabled');
+		    }
+		}
+}
+
+
     $('#copyhours').on('click', function () {
         var first_day_hours = $selected_days.find('fieldset:eq(0) .hours').map(function () {
             return $(this).val();
         });
 
         $selected_days.find('fieldset:gt(0)').each(function () {
+
+	    
+	    while($(this).find('.hours').length<first_day_hours.length){
+		var last_hour = $(this).children('div').children('div:last').prev();
+		var add_button = $(this).find('.add-an-hour');
+		addHour(last_hour,add_button);
+
+	    }
+
+
+
             for (var i = 0; i < first_day_hours.length; i++) {
                 $(this).find('.hours:eq(' + i + ')').val(first_day_hours[i]); // fill hours
             }
@@ -167,8 +217,11 @@ $(document).ready(function () {
 
     $(document).on('click', '.add-an-hour', function () {
         var last_hour = $(this).parent('div').parent('div').prev();
+	addHour(last_hour,this);
+        
 
-        // for and id
+	/*
+	// for and id
         var di_hj = last_hour.children('.hours').attr('id').split('-');
         var di = parseInt(di_hj[0].replace('d', ''));
         var hj = parseInt(di_hj[1].replace('h', ''));
@@ -198,8 +251,9 @@ $(document).ready(function () {
                 $(this).addClass('disabled');
             }
         }
-
+	*/
     });
+
 
     // Buttons "Remove an hour"
 
