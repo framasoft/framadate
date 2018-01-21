@@ -104,7 +104,7 @@ $(document).ready(function () {
     });
 
 	$('#password').on('keyup change', function () {
-		if($('#password').val() && $('#hidden').attr('checked')=false){$('#resultsPubliclyVisible').removeAttr('disabled');}
+		if($('#password').val()){$('#resultsPubliclyVisible').removeAttr('disabled');}
 		else {$('#resultsPubliclyVisible').attr('disabled','disabled');};
 	});
 });
