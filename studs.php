@@ -45,7 +45,7 @@ $poll_id = null;
 $poll = null;
 $message = null;
 $editingVoteId = 0;
-$accessGranted = true;
+$accessGranted = false;
 $resultPubliclyVisible = true;
 $slots = array();
 $votes = array();
@@ -83,17 +83,24 @@ $editedVoteUniqueId = $sessionService->get(USER_REMEMBER_VOTES_KEY, $poll_id, ''
 // Password verification
 // -------------------------------
 
-if (!is_null($poll->password_hash)) {
+if(isset($_POST['password']) && !empty($_POST['password'])){
+$c = $poll->password_hash;
 
-    // If we came from password submission
-    $password = isset($_POST['password']) ? $_POST['password'] : null;
-    if (!empty($password)) {
-        $securityService->submitPollAccess($poll, $password);
-    }
+$c1 = $_POST['password'];
 
-    if (!$securityService->canAccessPoll($poll)) {
-        $accessGranted = false;
-    }
+if (password_verify($c1, $c)) {
+ ;
+$accessGranted = true;
+
+} else {
+
+    echo 'Le mot de passe est invalide.';
+}
+
+}
+
+
+
     $resultPubliclyVisible = $poll->results_publicly_visible;
 
     if (!$accessGranted && !empty($password)) {
@@ -103,7 +110,7 @@ if (!is_null($poll->password_hash)) {
     } else if (!$accessGranted && $resultPubliclyVisible) {
         $message = new Message('danger', __('Password', 'You have to provide a password so you can participate to the poll.'));
     }
-}
+
 
 // We allow actions only if access is granted
 if ($accessGranted) {

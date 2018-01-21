@@ -57,17 +57,6 @@ $mailService = new MailService($config['use_smtp']);
 $notificationService = new NotificationService($mailService);
 $securityService = new SecurityService();
 
-if(isset($_POST['password']) && !empty($_POST['password'])){
-$passadmin = $_POST['password'];
-
-$passadmin =PasswordHasher::hash($passadmin);
-$accessGranted = true;
-
-}else{
-
-$passadmin = false;
-
-}
 /* PAGE */
 /* ---- */
 
@@ -89,6 +78,19 @@ if (!empty($_GET['poll'])) {
 }
 $polladmin = $pollService->findpassadmin($poll->admin_id);
 
+$c = $polladmin['password_admin'];
+if(isset($_POST['password']) && !empty($_POST['password'])){
+$c1 = $_POST['password'];
+
+if (password_verify($c1, $c)) {
+ 
+$accessGranted = true;
+
+} else {
+    echo 'Le mot de passe est invalide.';
+}
+
+}
 
 if ($poll) {
     $poll_id = $poll->id;

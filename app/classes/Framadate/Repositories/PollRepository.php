@@ -13,7 +13,7 @@ class PollRepository extends AbstractRepository {
 
     public function insertPoll($poll_id, $admin_poll_id, $form) {
         $sql = 'INSERT INTO `' . Utils::table('poll') . '`
-          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_admin ,password_hash )
+          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_admin,password_hash )
           VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?,?,?)';
         $prepared = $this->prepare($sql);
         $prepared->execute(
@@ -30,8 +30,8 @@ $form->format,
 $form->receiveNewVotes ? 1 : 0, 
 $form->receiveNewComments ? 1 : 0, 
 $form->hidden ? 1 : 0, 
-$form->password_hash, 
-$form->password_admin));
+$form->password_admin, 
+$form->password_hash));
     }
 
     function findById($poll_id) {
