@@ -13,4 +13,10 @@ include_once __DIR__ . '/app/inc/init.php';
 $logService = new LogService();
 $SlotRepository = new SlotRepository($connect, $logService);
 
+$format  = $_GET['format'];
+
+$smarty->assign('format', $format);
+
+$smarty->display('add_column.tpl');
+
 ?>

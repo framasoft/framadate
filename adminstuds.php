@@ -435,10 +435,14 @@ $slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
 
+$slot1 = $poll->format;
 
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('admin_poll_id', $admin_poll_id);
+
+$smarty->assign('slot1', $slot1);
+
 $smarty->assign('poll', $poll);
 $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
 $smarty->assign('expired', strtotime($poll->end_date) < time());

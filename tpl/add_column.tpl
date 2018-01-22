@@ -11,7 +11,7 @@
 {/block}
 
 {block name=main}
-
+ 
     <form action="{poll_url id=$admin_poll_id admin=true}" method="POST">
         <div class="alert alert-info text-center">
             <h2>{__('adminstuds', 'Column\'s adding')}</h2>
