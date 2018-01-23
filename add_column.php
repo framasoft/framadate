@@ -15,6 +15,10 @@ $SlotRepository = new SlotRepository($connect, $logService);
 
 $format  = $_GET['format'];
 
+$poll = $_GET['poll'];
+
+$smarty->assign('poll',$poll);
+
 $smarty->assign('format', $format);
 
 $smarty->display('add_column.tpl');

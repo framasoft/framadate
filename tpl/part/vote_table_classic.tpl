@@ -28,7 +28,7 @@
                             </td>
                     {/foreach}
                     <td>
-                        <a href="add_column.php?poll_id={$admin_poll_id}&format={$slot1}"
+                        <a href="add_column.php?poll={$admin_poll_id}&format={$slot1}"
 
                            class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')}">
                             <i class="glyphicon glyphicon-plus text-success"></i><span class="sr-only">{__('Poll results', 'Add a column')}</span>
