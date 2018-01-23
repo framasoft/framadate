@@ -20,7 +20,7 @@
                     <th role="presentation"></th>
                     {foreach $slots as $id=>$slot}
                         <td headers="C{$id}">
-                            <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->title}"
+                            <a href="delete_column.php?title={$slot->title}&poll_id={$admin_poll_id}"
                                data-remove-confirmation="{__('adminstuds', 'Confirm removal of the column.')}"
                                class="btn btn-link btn-sm remove-column" title="{__('adminstuds', 'Remove the column')} {$slot->title|html}">
                                 <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
