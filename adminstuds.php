@@ -437,8 +437,14 @@ $comments = $pollService->allCommentsByPollId($poll_id);
 
 $slot1 = $poll->format;
 
+$title = $poll->title; 
+
+
 // Assign data to template
-$smarty->assign('poll_id', $poll_id);
+
+$smarty->assign('title',$title);
+
+$smarty->assign('poll_id',$poll_id);
 $smarty->assign('admin_poll_id', $admin_poll_id);
 $smarty->assign('slot1', $slot1);
 $smarty->assign('poll', $poll);

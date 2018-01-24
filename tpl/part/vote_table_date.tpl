@@ -23,7 +23,7 @@
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $id=>$moment}
                             <td headers="M{$slot@key} D{$headersDCount} H{$headersDCount}">
-                                <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->day|cat:'@'|cat:$moment}"
+                             <a href="delete_column.php?title={$slot->day}&poll_id={$admin_poll_id}&acce={$accessGranted}"
                                    data-remove-confirmation="{__('adminstuds', 'Confirm removal of the column.')}"
                                    class="btn btn-link btn-sm remove-column"
                                    title="{__('adminstuds', 'Remove the column')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
