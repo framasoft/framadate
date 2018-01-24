@@ -30,7 +30,18 @@ include_once __DIR__ . '/app/inc/init.php';
 /*---------*/
 $logService = new LogService();
 $pollService = new PollService($connect, $logService);
+
+if(localhost == 0){
+
 $mailService = new MailService($config['use_smtp']);
+
+}else{
+
+$config['use_smtp']= false;
+
+}
+
+
 $purgeService = new PurgeService($connect, $logService);
 $inputService = new InputService();
 
@@ -239,6 +250,7 @@ switch ($step) {
         $purgeService->purgeOldPolls();
 
         // Redirect to poll administration
-        header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
+     $urlid ='adminstuds.php?poll='.$admin_poll_id;
+         header('Location:'.$urlid);
         exit;
 }
