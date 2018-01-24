@@ -13,4 +13,6 @@ $logService = new LogService();
 $SlotRepository = new SlotRepository($connect, $logService);
 
 
+$SlotRepository->deleteByPollId($_GET['title']);
+
 ?>

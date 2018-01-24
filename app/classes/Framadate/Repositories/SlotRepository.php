@@ -123,8 +123,15 @@ class SlotRepository extends AbstractRepository {
         $prepared->execute([$poll_id, $datetime]);
     }
 
+   function deletesolts($poll_id,$title) {
+        $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE title= ? AND poll_id = ?');
+
+        return $prepared->execute([$poll_id,$title]);
+    }
+
+ 
     function deleteByPollId($poll_id) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE poll_id = ?');
+        $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE title= ?');
 
         return $prepared->execute([$poll_id]);
     }
