@@ -14,7 +14,7 @@
 
  
 
-    <form action="adminstuds.php?poll={$poll}" method="POST">
+    <form action="adminstuds.php?poll={$poll}&acce={$accessGranted}" method="POST">
         <div class="alert alert-info text-center">
             <h2>{__('adminstuds', 'Column\'s adding')}</h2>
 

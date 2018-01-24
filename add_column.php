@@ -17,9 +17,13 @@ $format  = $_GET['format'];
 
 $poll = $_GET['poll'];
 
+$accessGranted = $_GET['acces'];
+
 $smarty->assign('poll',$poll);
 
 $smarty->assign('format', $format);
+
+$smarty->assign('accessGranted',$accessGranted);
 
 $smarty->display('add_column.tpl');
 

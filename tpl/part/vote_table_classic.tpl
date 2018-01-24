@@ -20,7 +20,7 @@
                     <th role="presentation"></th>
                     {foreach $slots as $id=>$slot}
                         <td headers="C{$id}">
-                            <a href="delete_column.php?title={$slot->title}&poll_id={$admin_poll_id}"
+                            <a href="delete_column.php?title={$slot->title}&poll_id={$admin_poll_id}&acce={$accessGranted}"
                                data-remove-confirmation="{__('adminstuds', 'Confirm removal of the column.')}"
                                class="btn btn-link btn-sm remove-column" title="{__('adminstuds', 'Remove the column')} {$slot->title|html}">
                                 <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
@@ -28,7 +28,7 @@
                             </td>
                     {/foreach}
                     <td>
-                        <a href="add_column.php?poll={$admin_poll_id}&format={$slot1}"
+                        <a href="add_column.php?poll={$admin_poll_id}&format={$slot1}&acces={$accessGranted}"
 
                            class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')}">
                             <i class="glyphicon glyphicon-plus text-success"></i><span class="sr-only">{__('Poll results', 'Add a column')}</span>

@@ -440,9 +440,7 @@ $slot1 = $poll->format;
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('admin_poll_id', $admin_poll_id);
-
 $smarty->assign('slot1', $slot1);
-
 $smarty->assign('poll', $poll);
 $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
 $smarty->assign('expired', strtotime($poll->end_date) < time());
@@ -459,6 +457,14 @@ $smarty->assign('hidden', false);
 $smarty->assign('accessGranted', true);
 $smarty->assign('resultPubliclyVisible', true);
 $smarty->assign('editedVoteUniqueId', '');
+
+if(isset($_GET['acce']) && !empty($_GET['acce'])){
+
+$accessGranted = $_GET['acce'];
+
+}
+
+$smarty->assign('accessGranted',$accessGranted);
 
 if($accessGranted == true){
 $smarty->display('studs.tpl');
