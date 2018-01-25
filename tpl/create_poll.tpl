@@ -69,7 +69,7 @@
                                value="{$poll_title|html}"/>
                     </div>
                 </div>
-                {if !empty($errors['title']['msg'])}
+                {if empty($errors['title']['msg'])}
                     <div class="alert alert-danger">
                         <p id="poll_title_error">
                             {$errors['title']['msg']}
@@ -83,7 +83,13 @@
 <input id="poll_password" type="password" name="passwordadmin" class="form-control" {$errors['password']['aria']}/>
                                    
                                 </div>
-
+  {if !empty($errors['password_admin']['msg'])}
+                                <div class="alert alert-danger">
+                                    <p id="password_admin">
+                                        {$errors['password_admin']['msg']}
+                                    </p>
+                                </div>
+                            {/if}
  
                 <div class="form-group {$errors['description']['class']}">
                     <label for="poll_comments" class="col-sm-4 control-label">{__('Generic', 'Description')}</label>

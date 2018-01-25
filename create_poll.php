@@ -68,9 +68,13 @@ if ($goToStep2) {
     $use_password = filter_input(INPUT_POST, 'use_password', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
     $password = isset($_POST['password']) ? $_POST['password'] : null;
     
-     
-    $passwordadmin = isset($_POST['passwordadmin']) ? $_POST['passwordadmin'] : null;
-   
+    if(isset($_POST['passwordadmin'])  && !empty($_POST['passwordadmin'])){
+    $passwordadmin = $_POST['passwordadmin'];
+     $error_passwordadmin = false;
+   }else{
+   $passwordadmin = null;
+   $error_passwordadmin = true;  
+}
     $password_repeat = isset($_POST['password_repeat']) ? $_POST['password_repeat'] : null;
     $results_publicly_visible = filter_input(INPUT_POST, 'results_publicly_visible', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
 
@@ -82,6 +86,7 @@ if ($goToStep2) {
     $error_on_password = false;
     $error_on_password_repeat = false;
     $error_on_customized_url = false;
+
 
     $_SESSION['form']->title = $title;
     $_SESSION['form']->id = $customized_url;
@@ -139,6 +144,7 @@ if ($goToStep2) {
         }
     }
 
+  
     if ($title && $name && $email_OK && !$error_on_title && !$error_on_customized_url && !$error_on_description && !$error_on_name
         && !$error_on_password && !$error_on_password_repeat
     ) {
@@ -206,11 +212,21 @@ $errors = array(
         'aria' => '',
         'class' => ''
     ),
+
+
+  'password_admin' => array(
+        'msg' => '',
+        'aria' => '',
+        'class' => ''
+    ),
+
     'password_repeat' => array(
         'msg' => '',
         'aria' => '',
         'class' => ''
     )
+
+
 );
 
 if (!empty($_POST[GO_TO_STEP_2])) {
@@ -266,6 +282,14 @@ if (!empty($_POST[GO_TO_STEP_2])) {
         $errors['password_repeat']['class'] = ' has-error';
         $errors['password_repeat']['msg'] = __('Error', 'Passwords do not match');
     }
+
+   if($error_passwordadmin == true){
+    $errors['password_admin']['aria'] = 'aria-describeby="poll_password_admin_error" ';
+        $errors['password_admin']['class'] = ' has-error';
+        $errors['password_admin']['msg'] = 'admin Passwords is empty ';
+
+}
+
 }
 
 $useRemoteUser = USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']);
