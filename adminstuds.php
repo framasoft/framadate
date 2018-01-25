@@ -86,9 +86,7 @@ if (password_verify($c1, $c)) {
  
 $accessGranted = true;
 
-} else {
-    echo 'Le mot de passe est invalide.';
-}
+} 
 
 }
 
