@@ -146,7 +146,7 @@ if ($goToStep2) {
 
   
     if ($title && $name && $email_OK && !$error_on_title && !$error_on_customized_url && !$error_on_description && !$error_on_name
-        && !$error_on_password && !$error_on_password_repeat
+        && !$error_on_password && !$error_on_password_repeat && $error_passwordadmin == false
     ) {
 
         // If no errors, we hash the password if needed

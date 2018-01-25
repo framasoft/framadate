@@ -69,7 +69,7 @@
                                value="{$poll_title|html}"/>
                     </div>
                 </div>
-                {if empty($errors['title']['msg'])}
+                {if !empty($errors['title']['msg'])}
                     <div class="alert alert-danger">
                         <p id="poll_title_error">
                             {$errors['title']['msg']}
