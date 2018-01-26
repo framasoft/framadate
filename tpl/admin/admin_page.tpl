@@ -1,10 +1,14 @@
 {extends 'page.tpl'}
 
 {block 'main'}
-    <div class="row">
-        <div class="col-xs-12">
-            <a href="{$SERVER_URL}index.php">Back to index</a>
-        </div>
-    </div>
+
+    <p class="home-choice">
+       <p class = "btn btn-warning btn-lg">
+            <a href="{$SERVER_URL}index.php" class = "btn-warning btn-lg">Back to index</a>
+     </p>        
+</p>
+
+
+    
     {block 'admin_main'}{/block}
 {/block}
