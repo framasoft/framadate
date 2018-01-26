@@ -1,5 +1,10 @@
 {if !$expired && ($active || $resultPubliclyVisible)}
     <hr role="presentation" id="password_request" class="hidden-print"/>
+   <p class="home-choice">
+       <p class = "btn btn-warning btn-lg">
+            <a href="{$SERVER_URL}index.php" class = "btn-warning btn-lg">Back to index</a>
+     </p>        
+</p>
 
     <div class="panel panel-danger password_request alert-danger">
         <div class="col-md-6 col-md-offset-3">
