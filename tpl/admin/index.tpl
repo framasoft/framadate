@@ -2,6 +2,13 @@
 
 {block 'main'}
 <div class="row">
+<div>
+
+ <div class="col-md-6 col-xs-12">
+        <a href="{$SERVER_URL}/index.php"><h2>back to index</h2></a>
+    </div>
+
+</div>
     <div class="col-md-6 col-xs-12">
         <a href="./polls.php"><h2>{__('Admin', 'Polls')}</h2></a>
     </div>
