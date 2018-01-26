@@ -101,7 +101,7 @@ if ($goToStep2) {
     $_SESSION['form']->use_password = ($use_password !== null);
     $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
     $_SESSION['form']->password_admin = $passwordadmin;
-
+    $_SESSION['form']->password_hash = $password;
     if ($config['use_smtp'] == true) {
         if (empty($mail)) {
             $error_on_mail = true;
