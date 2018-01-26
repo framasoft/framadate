@@ -13,6 +13,23 @@
             </p>
         </div>
 
+
+<div>
+
+<p class="col-xs- col-md-10 col-md-offset- text-center">
+            <p class="home-choice">
+                <a href="{$SERVER_URL}admin/index.php" class="opacity" role="button">
+                    <span class="btn btn-warning btn-lg">
+                        
+                         admin panel
+                    </span>
+                </a>
+            </p>
+        
+
+</p>
+</div>
+
     <div class="row">
         <div class="col-xs-12 col-md-6 text-center">
             <p class="home-choice">
