@@ -104,7 +104,7 @@ $accessGranted = true;
 
 }
 
-
+}
 
     $resultPubliclyVisible = $poll->results_publicly_visible;
 
