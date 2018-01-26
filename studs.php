@@ -83,19 +83,24 @@ $editedVoteUniqueId = $sessionService->get(USER_REMEMBER_VOTES_KEY, $poll_id, ''
 // Password verification
 // -------------------------------
 
+if(empty($poll->password_hash)){
+
+$accessGranted = true;
+
+}else{
+
+$accessGranted = false;
+
+}
+
 if(isset($_POST['password']) && !empty($_POST['password'])){
 $c = $poll->password_hash;
 
 $c1 = $_POST['password'];
 
 if (password_verify($c1, $c)) {
- ;
+
 $accessGranted = true;
-
-} else {
-
-    echo 'Le mot de passe est invalide.';
-}
 
 }
 
