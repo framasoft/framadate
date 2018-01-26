@@ -1,6 +1,18 @@
 {extends file='page.tpl'}
 
 {block name=main}
+
+<div >
+            <p class="home-choice">
+                <a href="{$SERVER_URL}listpolls.php" class="opacity" role="button">
+                    <span class="btn btn-warning btn-lg">
+                        <span class="glyphicon glyphicon-search"></span>
+                        'list of polls'
+                    </span>
+                </a>
+            </p>
+        </div>
+
     <div class="row">
         <div class="col-xs-12 col-md-6 text-center">
             <p class="home-choice">
@@ -38,16 +50,7 @@
         </div>
     </div>
 
-  <div >
-            <p class="home-choice">
-                <a href="{$SERVER_URL}listpolls.php" class="opacity" role="button">
-                    <span class="btn btn-warning btn-lg">
-                        <span class="glyphicon glyphicon-search"></span>
-                        'list of polls'
-                    </span>
-                </a>
-            </p>
-        </div>
+  
 
 
     <hr role="presentation"/>
