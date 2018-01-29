@@ -21,7 +21,7 @@
         {include 'part/password_request.tpl' active=$poll->active}
 
     {else}
-
+<div id="genericUnclosableSuccessTemplate" class="alert alert-success hidden-print" role="alert">ddd<span class="contents"> ddd </span></div>
 
   <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
             <p class="home-choice">
@@ -33,6 +33,9 @@
                 </a>
             </p>
         
+
+
+
     </div>
 
         {* Global informations about the current poll *}

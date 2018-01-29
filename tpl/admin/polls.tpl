@@ -46,20 +46,50 @@
         </div>
     </div>
 
-    <form action="" method="POST">
+    <form action="{$f}" method="POST">
         <input type="hidden" name="csrf" value="{$crsf}"/>
-        {if $poll_to_delete}
+       {if  $poll_to_delete or $poll_to_delete1 }
+{if $delete == false}
             <div class="alert alert-warning text-center">
-                <h3>{__('adminstuds', 'Confirm removal of the poll')} "{$poll_to_delete->id|html}"</h3>
-
+                <h3>{__('adminstuds', 'Confirm removal of the poll')} {$idc}</h3>
                 <p>
+                mot de pass admin du sondage*  <input type = "password" name = "passadmin">
+</br>
                     <button class="btn btn-default" type="submit" value="1"
                             name="annullesuppression">{__('adminstuds', 'Keep the poll')}</button>
                     <button type="submit" name="delete_confirm" value="{$poll_to_delete->id|html}"
                             class="btn btn-danger">{__('adminstuds', 'Delete the poll')}</button>
                 </p>
+       </br>
+         {if $passerror == true}
+          <div class="alert alert-danger">
+                        <p id="poll_title_error">
+                            error mot de pass
+                        </p>
+                    </div>
+         {/if}
+
+{if $passvide == true}
+
+    <div class="alert alert-danger">
+                        <p id="poll_title_error">
+                            mot de pass vide
+                        </p>
+                    </div>
+
+{/if}
+
+
+
             </div>
-        {/if}
+{/if}   
+     {/if}
+
+{if $passvalide == true}
+<div id="genericUnclosableSuccessTemplate" class="alert alert-success hidden-print" role="alert"><span class="contents"> poll delete witch success </span></div>
+{/if}
+
+
         <input type="hidden" name="csrf" value="{$crsf}"/>
 
         <div class="panel panel-default">
