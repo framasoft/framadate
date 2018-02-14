@@ -2,6 +2,7 @@
 <html lang="{$locale}">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     {if !empty($title)}
         <title>{$title|html} - {$APPLICATION_NAME|html}</title>
