@@ -82,6 +82,10 @@ header h1 {
 .container .jumbotron p {
     font-size: 1em;
 }
+.container .jumbotron .btn-group >.btn {
+    margin-bottom: 20px;
+    white-space: normal;
+}
 
 .summary h4 {
     margin-top:0;
@@ -298,6 +302,9 @@ table.results .btn-link.btn-sm {
 
 #showChart {
     margin-top:30px;
+}
+#showChart .btn {
+    white-space: normal;
 }
 
 #Chart {
