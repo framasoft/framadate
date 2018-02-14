@@ -126,6 +126,12 @@ header .lead {
     padding: 10px 0;
     margin:0;
 }
+header form .input-group .form-control {
+    margin-bottom: 20px;
+}
+header form .input-group .input-group-btn {
+    vertical-align: top;
+}
 
 #admin-link, #public-link {
     cursor:text;
