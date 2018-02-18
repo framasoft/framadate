@@ -521,6 +521,12 @@ table.results > tbody > tr:hover > td .glyphicon {
 #poll_search {
     cursor: pointer;
 }
+.table-of-polls {
+    overflow-x: scroll;
+    margin-bottom: 0;
+    border: 0;
+    box-shadow: none;
+}
 
 /* Studs */
 .password_request {
