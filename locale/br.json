@@ -192,7 +192,7 @@
     "Your reminder has been successfully sent!": "Kaset eo bet ho kounadur gant berzh!"
   },
   "adminstuds": {
-    "As poll administrator, you can change all the lines of this poll with this button": "En ur vezañ merour ar sontadeg e c'hallit kemmañ holl linennoù ar sontadeg gant an afell-mañ",
+    "As poll administrator, you can change all the lines of this poll with this button": " Dre ma'z oc'h merour e c'hallit kemmañ holl linennoù ar sontadeg gant an afell-mañ",
     "remove a column or a line with": "dilemel ur bann pe ul linenn gant",
     "and add a new column with": "ha m'ho peus disoñjet un dibab e c'hallit ouzhpennañ ur bann en ur glikañ war",
     "Finally, you can change the informations of this poll like the title, the comments or your email address.": "Gallout a rit ivez kemmañ an titouroù a-zivout ar sontadeg evel an titl, an evezhiadennoù pe ho chomlec'h postel.",
@@ -290,8 +290,8 @@
     "Removal date and confirmation (3 on 3)": "Deiziad diamzeriñ ha kadarnadur (3 war 3)",
     "Confirm the creation of your poll": "Kadarnait krouidigezh ho sontadeg",
     "List of your choices": "Roll ho tibaboù",
-    "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "Ur wech m'ho po kadarnaet krouidigezh ar sontadeg e viot adheñchet ent emgefreek davet pajenn verañ ar sontadeg.",
-    "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "D'ar memes mare e resevot daou bostel: unan oc'h enderc'hel un ere davet ho sontadeg evit e rannañ gant an dud da vezañ sontet hag unan all gant un ere davet pajenn verañ ar sontadeg.",
+    "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.": "Ur wech kadarnaet krouidigezh ar sontadeg e viot adheñchet ent emgefreek etrezek pajenn verañ ar sontadeg.",
+    "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll.": "War un dro e resevot daou bostel: unan zo ennañ un ere etrezek ho sontadeg evit e rannañ gant an dud da vezañ sontet hag un eil ennañ un ere etrezek pajenn verañ ar sontadeg.",
     "Create the poll": "Krouiñ ar sontadeg",
     "Your poll will be automatically archived in %d days.": "Diellaouet e vo ho sontadeg a-benn %d a zevezhioù ent emgefreek.",
     "You can set a closer archiving date for it.": "Gallout a rit dibab un deiziad diellaouiñ tostoc'h.",
