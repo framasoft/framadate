@@ -23,9 +23,3 @@
     border-top: 0 none;
     content: "";
 }
-
-@media (max-width: 767px) {
-    #optionnal {
-        margin-top: 15px;
-    }
-}
