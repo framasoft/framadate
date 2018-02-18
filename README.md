@@ -10,19 +10,6 @@ Si vous souhaitez travailler avec nous, **forkez-nous sur [framagit.org](https:/
 
 ---
 
-# Compatibilités des navigateurs
-_Dernière mise à jour le 21 avril 2014_
-
-| Navigateur | Version testée          |
-|------------|-------------------------|
-| Firefox    | Ubuntu 13.10/FF28       |
-| Chrome     | Ubuntu 13.10/Chromium33 |
-| Opera      | (non testé)             |
-| Konqueror  | (non testé)             |
-| Links      | (non testé, inutile)    |
-| Safari     | (non testé)             |
-| IE         | Win7/IE9                |
-
 # Installation
 
 Un fichier est dédié à l'installation de framadate : [INSTALL.md](INSTALL.md).
