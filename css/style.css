@@ -309,18 +309,26 @@ table.results .btn-link.btn-sm {
 #showChart {
     margin-top:30px;
 }
-#showChart .btn {
-    white-space: normal;
-}
 
 #Chart {
     padding-right:30px;
+}
+
+/* Formulaire de création de sondage */
+@media (max-width: 767px) {
+    #formulaire .col-xs-12 {
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
 }
 
 /* Formulaire de vote */
 #vote-form td ul, #vote-form td label {
     margin:0;
     font-size:12px;
+}
+#vote-form td label {
+    padding: 1px 3px;
 }
 
 #vote-form td {
@@ -536,4 +544,9 @@ table.results > tbody > tr:hover > td .glyphicon {
 
 #password-form .btn-cancel {
     float: right;
+}
+
+/* Buttons */
+.btn {
+    white-space: normal;
 }
