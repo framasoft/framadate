@@ -11,7 +11,9 @@ pages:
   script:
   - latesttag=$(git describe --tags)
   - git checkout ${latesttag}
-  - php composer.phar install
+  - php composer.phar install -o  --no-interaction --no-progress --prefer-dist
+  - php vendor/bin/php-cs-fixer fix --verbose --dry-run
+  - vendor/bin/phpunit --bootstrap app/tests/bootstrap.php --debug app/tests
   - mkdir tpl_c
   - zip -r latest.zip .
   - mkdir .public
@@ -22,7 +24,7 @@ pages:
     - public
   only:
   - master
-  
+
 funky:
   stage: funky
   before_script:
