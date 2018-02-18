@@ -21,7 +21,6 @@ namespace Framadate\Repositories;
 use Framadate\FramaDB;
 
 class RepositoryFactory {
-
     private static $connect;
 
     private static $pollRepository;
@@ -40,7 +39,7 @@ class RepositoryFactory {
      * @return PollRepository The singleton of PollRepository
      */
     static function pollRepository() {
-        if (self::$pollRepository == null) {
+        if (self::$pollRepository === null) {
             self::$pollRepository = new PollRepository(self::$connect);
         }
 
@@ -51,7 +50,7 @@ class RepositoryFactory {
      * @return SlotRepository The singleton of SlotRepository
      */
     static function slotRepository() {
-        if (self::$slotRepository == null) {
+        if (self::$slotRepository === null) {
             self::$slotRepository = new SlotRepository(self::$connect);
         }
 
@@ -62,7 +61,7 @@ class RepositoryFactory {
      * @return VoteRepository The singleton of VoteRepository
      */
     static function voteRepository() {
-        if (self::$voteRepository == null) {
+        if (self::$voteRepository === null) {
             self::$voteRepository = new VoteRepository(self::$connect);
         }
 
@@ -73,11 +72,10 @@ class RepositoryFactory {
      * @return CommentRepository The singleton of CommentRepository
      */
     static function commentRepository() {
-        if (self::$commentRepository == null) {
+        if (self::$commentRepository === null) {
             self::$commentRepository = new CommentRepository(self::$connect);
         }
 
         return self::$commentRepository;
     }
-
 }

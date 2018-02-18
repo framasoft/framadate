@@ -9,7 +9,6 @@ use Framadate\Repositories\RepositoryFactory;
  * @package Framadate\Services
  */
 class PurgeService {
-
     private $logService;
     private $pollRepository;
     private $slotRepository;
@@ -38,9 +37,9 @@ class PurgeService {
 
             foreach ($oldPolls as $poll) {
                 if ($this->purgePollById($poll->id)) {
-                    $this->logService->log('EXPIRATION_SUCCESS', 'id: ' . $poll->id . ', title:' . $poll->title . ', format: '.$poll->format . ', admin: ' . $poll->admin_name);
+                    $this->logService->log('EXPIRATION_SUCCESS', 'id: ' . $poll->id . ', title:' . $poll->title . ', format: ' . $poll->format . ', admin: ' . $poll->admin_name);
                 } else {
-                    $this->logService->log('EXPIRATION_FAILED', 'id: ' . $poll->id . ', title:' . $poll->title . ', format: '.$poll->format . ', admin: ' . $poll->admin_name);
+                    $this->logService->log('EXPIRATION_FAILED', 'id: ' . $poll->id . ', title:' . $poll->title . ', format: ' . $poll->format . ', admin: ' . $poll->admin_name);
                 }
             }
         }
@@ -71,6 +70,5 @@ class PurgeService {
 
         return $done;
     }
-
 }
  

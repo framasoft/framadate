@@ -5,14 +5,13 @@ use Framadate\FramaDB;
 use Framadate\Utils;
 
 class VoteRepository extends AbstractRepository {
-
     function __construct(FramaDB $connect) {
         parent::__construct($connect);
     }
 
     function allUserVotesByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('vote') . '` WHERE poll_id = ? ORDER BY id');
-        $prepared->execute(array($poll_id));
+        $prepared->execute([$poll_id]);
 
         return $prepared->fetchAll();
     }
@@ -83,8 +82,7 @@ class VoteRepository extends AbstractRepository {
      */
     public function existsByPollIdAndName($poll_id, $name) {
         $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('vote') . '` WHERE poll_id = ? AND name = ?');
-        $prepared->execute(array($poll_id, $name));
+        $prepared->execute([$poll_id, $name]);
         return $prepared->rowCount() > 0;
     }
-
 }

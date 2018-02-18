@@ -18,7 +18,7 @@ class MailServiceUnitTest extends FramaTestCase {
         $canSendMsg = $mailService->canSendMsg(self::MSG_KEY);
 
         // Then
-        $this->assertEquals(true, $canSendMsg);
+        $this->assertSame(true, $canSendMsg);
     }
 
     /**
@@ -33,7 +33,6 @@ class MailServiceUnitTest extends FramaTestCase {
         $canSendMsg = $mailService->canSendMsg(self::MSG_KEY);
 
         // Then
-        $this->assertEquals(false, $canSendMsg);
+        $this->assertSame(false, $canSendMsg);
     }
-
 }

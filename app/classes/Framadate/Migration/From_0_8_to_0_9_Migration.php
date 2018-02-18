@@ -27,7 +27,6 @@ use Framadate\Utils;
  * @version 0.9
  */
 class From_0_8_to_0_9_Migration implements Migration {
-
     function __construct() {
     }
 
@@ -265,14 +264,14 @@ VALUE (?,?,?)');
                 $slots[] = $slot;
             } else { // Date poll
                 $values = explode('@', $atomicSlot);
-                if ($lastSlot == null || $lastSlot->title !== $values[0]) {
+                if ($lastSlot === null || $lastSlot->title !== $values[0]) {
                     $lastSlot = new \stdClass();
                     $lastSlot->poll_id = $sujet->id_sondage;
                     $lastSlot->title = $values[0];
-                    $lastSlot->moments = count($values) == 2 ? $values[1] : '-';
+                    $lastSlot->moments = count($values) === 2 ? $values[1] : '-';
                     $slots[] = $lastSlot;
                 } else {
-                    $lastSlot->moments .= ',' . (count($values) == 2 ? $values[1] : '-');
+                    $lastSlot->moments .= ',' . (count($values) === 2 ? $values[1] : '-');
                 }
             }
         }

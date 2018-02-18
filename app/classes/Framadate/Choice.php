@@ -33,7 +33,7 @@ class Choice
     public function __construct($name='')
     {
         $this->name = $name;
-        $this->slots = array();
+        $this->slots = [];
     }
     
     public function addSlot($slot)
@@ -55,5 +55,4 @@ class Choice
     {
         return strcmp($a->name, $b->name);
     }
-    
 }

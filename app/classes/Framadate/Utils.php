@@ -24,7 +24,7 @@ class Utils {
      */
     public static function get_server_name() {
         $scheme = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? 'https' : 'http';
-        $port = in_array($_SERVER['SERVER_PORT'], [80, 443]) ? '' : ':' . $_SERVER['SERVER_PORT'];
+        $port = in_array($_SERVER['SERVER_PORT'], [80, 443], true) ? '' : ':' . $_SERVER['SERVER_PORT'];
         $dirname = dirname($_SERVER['SCRIPT_NAME']);
         $dirname = $dirname === '\\' ? '/' : $dirname . '/';
         $dirname = str_replace('/admin', '', $dirname);
@@ -61,7 +61,7 @@ class Utils {
         <script type="text/javascript" src="' . self::get_server_name() . 'js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>';
-        if ('en' != $locale) {
+        if ('en' !== $locale) {
         	   echo '
         <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.' . $locale . '.js"></script>';
         }
@@ -86,7 +86,7 @@ class Utils {
      */
     public static function getUrlSondage($id, $admin = false, $vote_id = '', $action = null, $action_value = null) {
         // URL-Encode $action_value
-        $action_value = $action_value == null ? null : Utils::base64url_encode($action_value);
+        $action_value = $action_value === null ? null : Utils::base64url_encode($action_value);
 
         if (URL_PROPRE) {
             if ($admin === true) {
@@ -94,10 +94,10 @@ class Utils {
             } else {
                 $url = self::get_server_name() . $id;
             }
-            if ($vote_id != '') {
+            if ($vote_id !== '') {
                 $url .= '/vote/' . $vote_id . "#edit";
-            } elseif ($action != null) {
-                if ($action_value != null) {
+            } elseif ($action !== null) {
+                if ($action_value !== null) {
                     $url .= '/action/' . $action . '/' . $action_value;
                 } else {
                     $url .= '/action/' . $action;
@@ -109,10 +109,10 @@ class Utils {
             } else {
                 $url = self::get_server_name() . 'studs.php?poll=' . $id;
             }
-            if ($vote_id != '') {
+            if ($vote_id !== '') {
                 $url .= '&vote=' . $vote_id . "#edit";
-            } elseif ($action != null)  {
-                if ($action_value != null) {
+            } elseif ($action !== null)  {
+                if ($action_value !== null) {
                     $url .= '&' . $action . "=" . $action_value;
                 } else {
                     $url .= '&' . $action . "=";
@@ -142,26 +142,18 @@ class Utils {
         preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/', $md, $md_a_img); // Markdown [![alt](src)](href)
         preg_match_all('/!\[(.*?)\]\((.*?)\)/', $md, $md_img); // Markdown ![alt](src)
         preg_match_all('/\[(.*?)\]\((.*?)\)/', $md, $md_a); // Markdown [text](href)
-        if (isset($md_a_img[2][0]) && $md_a_img[2][0] != '' && isset($md_a_img[3][0]) && $md_a_img[3][0] != '') { // [![alt](src)](href)
-
+        if (isset($md_a_img[2][0]) && $md_a_img[2][0] !== '' && isset($md_a_img[3][0]) && $md_a_img[3][0] !== '') { // [![alt](src)](href)
             $text = self::htmlEscape($md_a_img[1][0]);
             $html = '<a href="' . self::htmlEscape($md_a_img[3][0]) . '"><img src="' . self::htmlEscape($md_a_img[2][0]) . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" /></a>';
-
-        } elseif (isset($md_img[2][0]) && $md_img[2][0] != '') { // ![alt](src)
-
+        } elseif (isset($md_img[2][0]) && $md_img[2][0] !== '') { // ![alt](src)
             $text = self::htmlEscape($md_img[1][0]);
             $html = '<img src="' . self::htmlEscape($md_img[2][0]) . '" class="img-responsive" alt="' . $text . '" title="' . $text . '" />';
-
-        } elseif (isset($md_a[2][0]) && $md_a[2][0] != '') { // [text](href)
-
+        } elseif (isset($md_a[2][0]) && $md_a[2][0] !== '') { // [text](href)
             $text = self::htmlEscape($md_a[1][0]);
             $html = '<a href="' . $md_a[2][0] . '">' . $text . '</a>';
-
         } else { // text only
-
             $text = self::htmlEscape($md);
             $html = $text;
-
         }
 
         return $clear ? $text : $html;
@@ -200,6 +192,6 @@ class Utils {
     }
 
     public static function base64url_decode($input) {
-        return base64_decode(str_pad(strtr($input, '-_', '+/'), strlen($input) % 4, '=', STR_PAD_RIGHT));
+        return base64_decode(str_pad(strtr($input, '-_', '+/'), strlen($input) % 4, '=', STR_PAD_RIGHT), true);
     }
 }

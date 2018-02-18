@@ -3,13 +3,11 @@
 
 namespace Framadate\Services;
 
+use \stdClass;
 use Framadate\Services\MailService;
 use Framadate\Utils;
-use \stdClass;
-
 
 class NotificationService {
-
     const UPDATE_VOTE = 1;
     const ADD_VOTE = 2;
     const ADD_COMMENT = 3;
@@ -34,12 +32,11 @@ class NotificationService {
             $_SESSION['mail_sent'] = [];
         }
 
-        $isVoteAndCanSendIt = ($type == self::UPDATE_VOTE || $type == self::ADD_VOTE) && $poll->receiveNewVotes;
-        $isCommentAndCanSendIt = $type == self::ADD_COMMENT && $poll->receiveNewComments;
-        $isOtherType = $type != self::UPDATE_VOTE && $type != self::ADD_VOTE && $type != self::ADD_COMMENT;
+        $isVoteAndCanSendIt = ($type === self::UPDATE_VOTE || $type === self::ADD_VOTE) && $poll->receiveNewVotes;
+        $isCommentAndCanSendIt = $type === self::ADD_COMMENT && $poll->receiveNewComments;
+        $isOtherType = $type !== self::UPDATE_VOTE && $type !== self::ADD_VOTE && $type !== self::ADD_COMMENT;
 
         if ($isVoteAndCanSendIt || $isCommentAndCanSendIt || $isOtherType) {
-
             if (self::isParticipation($type)) {
                 $translationString = 'Poll\'s participation: %s';
             } else {
@@ -47,7 +44,6 @@ class NotificationService {
             }
 
             $subject = '[' . NOMAPPLICATION . '] ' . __f('Mail', $translationString, $poll->title);
-
 
             $message = '';
 
@@ -76,7 +72,6 @@ class NotificationService {
                 case self::DELETED_POLL:
                     $message = __f('Mail', 'Someone just delete your poll %s.', Utils::htmlEscape($poll->title)) . "\n\n";
                     break;
-
             }
 
             $messageTypeKey = $type . '-' . $poll->id;
@@ -88,5 +83,4 @@ class NotificationService {
     {
        return $type >= self::UPDATE_POLL;
     }
-
 } 

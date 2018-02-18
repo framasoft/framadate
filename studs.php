@@ -16,19 +16,19 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
+use Framadate\Editable;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
-use Framadate\Services\LogService;
-use Framadate\Services\PollService;
+use Framadate\Message;
+use Framadate\Security\Token;
 use Framadate\Services\InputService;
+use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\NotificationService;
+use Framadate\Services\PollService;
 use Framadate\Services\SecurityService;
 use Framadate\Services\SessionService;
-use Framadate\Message;
 use Framadate\Utils;
-use Framadate\Editable;
-use Framadate\Security\Token;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -36,7 +36,6 @@ include_once __DIR__ . '/app/inc/init.php';
 /* ---------- */
 
 const USER_REMEMBER_VOTES_KEY = 'UserVotes';
-
 
 /* Variables */
 /* --------- */
@@ -47,9 +46,9 @@ $message = null;
 $editingVoteId = 0;
 $accessGranted = true;
 $resultPubliclyVisible = true;
-$slots = array();
-$votes = array();
-$comments = array();
+$slots = [];
+$votes = [];
+$comments = [];
 
 /* Services */
 /*----------*/
@@ -61,7 +60,6 @@ $mailService = new MailService($config['use_smtp']);
 $notificationService = new NotificationService($mailService);
 $securityService = new SecurityService();
 $sessionService = new SessionService();
-
 
 /* PAGE */
 /* ---- */
@@ -84,7 +82,6 @@ $editedVoteUniqueId = $sessionService->get(USER_REMEMBER_VOTES_KEY, $poll_id, ''
 // -------------------------------
 
 if (!is_null($poll->password_hash)) {
-
     // If we came from password submission
     $password = isset($_POST['password']) ? $_POST['password'] : null;
     if (!empty($password)) {
@@ -107,7 +104,6 @@ if (!is_null($poll->password_hash)) {
 
 // We allow actions only if access is granted
 if ($accessGranted) {
-
     // -------------------------------
     // A vote is going to be edited
     // -------------------------------
@@ -129,16 +125,16 @@ if ($accessGranted) {
         if (empty($editedVote)) {
             $message = new Message('danger', __('Error', 'Something is going wrong...'));
         }
-        if (count($choices) != count($_POST['choices'])) {
+        if (count($choices) !== count($_POST['choices'])) {
             $message = new Message('danger', __('Error', 'There is a problem with your choices'));
         }
 
-        if ($message == null) {
+        if ($message === null) {
             // Update vote
             try {
                 $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices, $slots_hash);
                 if ($result) {
-                    if ($poll->editable == Editable::EDITABLE_BY_OWN) {
+                    if ($poll->editable === Editable::EDITABLE_BY_OWN) {
                         $editedVoteUniqueId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
                         $message = getMessageForOwnVoteEditableVote($sessionService, $smarty, $editedVoteUniqueId, $config['use_smtp'], $poll_id, $name);
                     } else {
@@ -157,19 +153,19 @@ if ($accessGranted) {
         $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
         $slots_hash = $inputService->filterMD5($_POST['control']);
 
-        if ($name == null) {
+        if ($name === null) {
             $message = new Message('danger', __('Error', 'The name is invalid.'));
         }
-        if (count($choices) != count($_POST['choices'])) {
+        if (count($choices) !== count($_POST['choices'])) {
             $message = new Message('danger', __('Error', 'There is a problem with your choices'));
         }
 
-        if ($message == null) {
+        if ($message === null) {
             // Add vote
             try {
                 $result = $pollService->addVote($poll_id, $name, $choices, $slots_hash);
                 if ($result) {
-                    if ($poll->editable == Editable::EDITABLE_BY_OWN) {
+                    if ($poll->editable === Editable::EDITABLE_BY_OWN) {
                         $editedVoteUniqueId = $result->uniqId;
                         $message = getMessageForOwnVoteEditableVote($sessionService, $smarty, $editedVoteUniqueId, $config['use_smtp'], $poll_id, $name);
                     } else {

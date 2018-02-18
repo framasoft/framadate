@@ -2,9 +2,8 @@
 namespace Framadate;
 
 abstract class FramaTestCase extends \PHPUnit_Framework_TestCase {
-
     protected function getTestResourcePath($resourcepath) {
-        return __DIR__ . '/../resources/'.$resourcepath;
+        return __DIR__ . '/../resources/' . $resourcepath;
     }
 
     protected function readTestResource($resourcepath) {
@@ -19,5 +18,4 @@ abstract class FramaTestCase extends \PHPUnit_Framework_TestCase {
         $params = array_slice(func_get_args(), 2); // get all the parameters after $methodName
         return $reflectionMethod->invokeArgs($object, $params);
     }
-
 }
