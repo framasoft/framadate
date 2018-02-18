@@ -16,12 +16,12 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
+use Framadate\Choice;
 use Framadate\Services\LogService;
-use Framadate\Services\PollService;
 use Framadate\Services\MailService;
+use Framadate\Services\PollService;
 use Framadate\Services\PurgeService;
 use Framadate\Utils;
-use Framadate\Choice;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -40,13 +40,11 @@ if (is_file('bandeaux_local.php')) {
 
 // Step 1/4 : error if $_SESSION from info_sondage are not valid
 if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (($config['use_smtp']) ? empty($_SESSION['form']->admin_mail) : false)) {
-
     $smarty->assign('title', __('Error', 'Error!'));
     $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation.'));
     $smarty->display('error.tpl');
     exit;
-
-} else {
+}  
     // Min/Max archive date
     $min_expiry_time = $pollService->minExpiryDate();
     $max_expiry_time = $pollService->maxExpiryDate();
@@ -59,14 +57,13 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
 
     // Step 4 : Data prepare before insert in DB
     if (isset($_POST['confirmation'])) {
-
         // Define expiration date
         $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
 
         if (!empty($enddate)) {
             $registredate = explode('/', $enddate);
 
-            if (is_array($registredate) && count($registredate) == 3) {
+            if (is_array($registredate) && count($registredate) === 3) {
                 $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
 
                 if ($time < $min_expiry_time) {
@@ -88,7 +85,6 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         $ids = $pollService->createPoll($_SESSION['form']);
         $poll_id = $ids[0];
         $admin_poll_id = $ids[1];
-
 
         // Send confirmation by mail if enabled
         if ($config['use_smtp'] === true) {
@@ -115,10 +111,8 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         // Redirect to poll administration
         header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
         exit;
-
     } // Step 3/4 : Confirm poll creation and choose a removal date
     else if (isset($_POST['fin_sondage_autre'])) {
-
         // Store choices in $_SESSION
         if (isset($_POST['choices'])) {
             $_SESSION['form']->clearChoices();
@@ -137,30 +131,21 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         // Summary
         $summary = '<ol>';
         foreach ($_SESSION['form']->getChoices() as $i=>$choice) {
-
             preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/', $choice->getName(), $md_a_img); // Markdown [![alt](src)](href)
             preg_match_all('/!\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_img); // Markdown ![alt](src)
             preg_match_all('/\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_a); // Markdown [text](href)
-            if (isset($md_a_img[2][0]) && $md_a_img[2][0] != '' && isset($md_a_img[3][0]) && $md_a_img[3][0] != '') { // [![alt](src)](href)
-
-                $li_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0] != '') ? stripslashes($md_a_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
+            if (isset($md_a_img[2][0]) && $md_a_img[2][0] !== '' && isset($md_a_img[3][0]) && $md_a_img[3][0] !== '') { // [![alt](src)](href)
+                $li_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0] !== '') ? stripslashes($md_a_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
                 $li_subject_html = '<a href="' . $md_a_img[3][0] . '"><img src="' . $md_a_img[2][0] . '" class="img-responsive" alt="' . $li_subject_text . '" /></a>';
-
-            } elseif (isset($md_img[2][0]) && $md_img[2][0] != '') { // ![alt](src)
-
-                $li_subject_text = (isset($md_img[1][0]) && $md_img[1][0] != '') ? stripslashes($md_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
+            } elseif (isset($md_img[2][0]) && $md_img[2][0] !== '') { // ![alt](src)
+                $li_subject_text = (isset($md_img[1][0]) && $md_img[1][0] !== '') ? stripslashes($md_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
                 $li_subject_html = '<img src="' . $md_img[2][0] . '" class="img-responsive" alt="' . $li_subject_text . '" />';
-
-            } elseif (isset($md_a[2][0]) && $md_a[2][0] != '') { // [text](href)
-
-                $li_subject_text = (isset($md_a[1][0]) && $md_a[1][0] != '') ? stripslashes($md_a[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
+            } elseif (isset($md_a[2][0]) && $md_a[2][0] !== '') { // [text](href)
+                $li_subject_text = (isset($md_a[1][0]) && $md_a[1][0] !== '') ? stripslashes($md_a[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
                 $li_subject_html = '<a href="' . $md_a[2][0] . '">' . $li_subject_text . '</a>';
-
             } else { // text only
-
                 $li_subject_text = stripslashes($choice->getName());
                 $li_subject_html = $li_subject_text;
-
             }
 
             $summary .= '<li>' . $li_subject_html . '</li>' . "\n";
@@ -262,6 +247,5 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
     ' . "\n";
 
         bandeau_pied();
-
     }
-}
+

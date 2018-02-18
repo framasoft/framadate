@@ -17,11 +17,11 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-use Framadate\Services\SessionService;
-use Framadate\Services\PollService;
-use Framadate\Services\MailService;
-use Framadate\Services\LogService;
 use Framadate\Message;
+use Framadate\Services\LogService;
+use Framadate\Services\MailService;
+use Framadate\Services\PollService;
+use Framadate\Services\SessionService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/../app/inc/init.php';
@@ -45,7 +45,7 @@ if (!empty($_POST['poll'])) {
 $token = $sessionService->get("Common", SESSION_EDIT_LINK_TOKEN);
 $token_form_value = empty($_POST['token']) ? null : $_POST['token'];
 $editedVoteUniqueId = filter_input(INPUT_POST, 'editedVoteUniqueId', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-if (is_null($poll) || $config['use_smtp'] == false || is_null($token) || is_null($token_form_value)
+if (is_null($poll) || $config['use_smtp'] === false || is_null($token) || is_null($token_form_value)
     || !$token->check($token_form_value) || is_null($editedVoteUniqueId)) {
     $message = new Message('error', __('Error', 'Something is going wrong...'));
 }
@@ -69,7 +69,6 @@ if (is_null($message)) {
     }
 }
 
-
 if (is_null($message)) {
     $url = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
 
@@ -78,7 +77,7 @@ if (is_null($message)) {
     $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
     $body = $smarty->fetch('mail/remember_edit_link.tpl');
 
-    $subject = '[' . NOMAPPLICATION . ']['.__('EditLink', 'REMINDER').'] '.__f('EditLink', 'Edit link for poll "%s"', $poll->title);
+    $subject = '[' . NOMAPPLICATION . '][' . __('EditLink', 'REMINDER') . '] ' . __f('EditLink', 'Edit link for poll "%s"', $poll->title);
 
     //$mailService->send($email, $subject, $body);
     $sessionService->remove("Common", SESSION_EDIT_LINK_TOKEN);
@@ -90,7 +89,6 @@ if (is_null($message)) {
 
 $smarty->error_reporting = E_ALL & ~E_NOTICE;
 
-$response = array('result' => $result, 'message' => $message);
-
+$response = ['result' => $result, 'message' => $message];
 
 echo json_encode($response);

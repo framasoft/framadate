@@ -27,7 +27,6 @@ use Framadate\Utils;
  * @version 0.9
  */
 class AddColumn_uniqId_In_vote_For_0_9 implements Migration {
-
     function __construct() {
     }
 
@@ -75,5 +74,4 @@ class AddColumn_uniqId_In_vote_For_0_9 implements Migration {
         AFTER `id`,
         ADD INDEX (`uniqId`) ;');
     }
-
 }

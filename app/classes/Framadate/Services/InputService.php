@@ -23,7 +23,6 @@ use DateTime;
  * This class helps to clean all inputs from the users or external services.
  */
 class InputService {
-
     function __construct() {}
 
     /**
@@ -112,5 +111,4 @@ class InputService {
 
         return null;
     }
-
 }

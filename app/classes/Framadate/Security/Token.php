@@ -2,7 +2,6 @@
 namespace Framadate\Security;
 
 class Token {
-
     const DEFAULT_LENGTH = 64;
     private $time;
     private $value;
@@ -13,10 +12,6 @@ class Token {
         $this->length = $length;
         $this->time = time() + TOKEN_TIME;
         $this->value = $this->generate();
-    }
-
-    private function generate() {
-        return self::getToken($this->length);
     }
 
     public function getTime() {
@@ -71,6 +66,10 @@ class Token {
         return $token;
     }
 
+    private function generate() {
+        return self::getToken($this->length);
+    }
+
     /**
      * @author http://us1.php.net/manual/en/function.openssl-random-pseudo-bytes.php#104322
      */
@@ -87,6 +86,5 @@ class Token {
         } while ($rnd >= $range);
         return $min + $rnd;
     }
-
 }
  

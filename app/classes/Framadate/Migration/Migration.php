@@ -19,7 +19,6 @@
 namespace Framadate\Migration;
 
 interface Migration {
-
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
@@ -43,6 +42,5 @@ interface Migration {
      * @return bool true if the execution succeeded
      */
     function execute(\PDO $pdo);
-
 }
  

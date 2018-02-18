@@ -9,7 +9,6 @@ use Framadate\Repositories\RepositoryFactory;
  * @package Framadate\Services
  */
 class SuperAdminService {
-
     private $pollRepository;
 
     function __construct() {
@@ -30,9 +29,7 @@ class SuperAdminService {
         $count = $this->pollRepository->count($search);
         $total = $this->pollRepository->count();
 
-
         return ['polls' => $polls, 'count' => $count, 'total' => $total];
     }
-
 }
  

@@ -6,7 +6,6 @@ use Framadate\Utils;
 use PDO;
 
 class PollRepository extends AbstractRepository {
-
     function __construct(FramaDB $connect) {
         parent::__construct($connect);
     }
@@ -16,13 +15,13 @@ class PollRepository extends AbstractRepository {
           (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_hash, results_publicly_visible)
           VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?,?,?)';
         $prepared = $this->prepare($sql);
-        $prepared->execute(array($poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, ($form->editable>=0 && $form->editable<=2) ? $form->editable : 0, $form->receiveNewVotes ? 1 : 0, $form->receiveNewComments ? 1 : 0, $form->hidden ? 1 : 0, $form->password_hash, $form->results_publicly_visible ? 1 : 0));
+        $prepared->execute([$poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, ($form->editable>=0 && $form->editable<=2) ? $form->editable : 0, $form->receiveNewVotes ? 1 : 0, $form->receiveNewComments ? 1 : 0, $form->hidden ? 1 : 0, $form->password_hash, $form->results_publicly_visible ? 1 : 0]);
     }
 
     function findById($poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
-        $prepared->execute(array($poll_id));
+        $prepared->execute([$poll_id]);
         $poll = $prepared->fetch();
         $prepared->closeCursor();
 
@@ -32,7 +31,7 @@ class PollRepository extends AbstractRepository {
     public function findByAdminId($admin_poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
 
-        $prepared->execute(array($admin_poll_id));
+        $prepared->execute([$admin_poll_id]);
         $poll = $prepared->fetch();
         $prepared->closeCursor();
 
@@ -42,7 +41,7 @@ class PollRepository extends AbstractRepository {
     public function existsById($poll_id) {
         $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
-        $prepared->execute(array($poll_id));
+        $prepared->execute([$poll_id]);
 
         return $prepared->rowCount() > 0;
     }
@@ -50,7 +49,7 @@ class PollRepository extends AbstractRepository {
     public function existsByAdminId($admin_poll_id) {
         $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
 
-        $prepared->execute(array($admin_poll_id));
+        $prepared->execute([$admin_poll_id]);
 
         return $prepared->rowCount() > 0;
     }
@@ -124,7 +123,7 @@ SELECT p.*,
      */
     public function findAllByAdminMail($mail) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_mail = :admin_mail');
-        $prepared->execute(array('admin_mail' => $mail));
+        $prepared->execute(['admin_mail' => $mail]);
 
         return $prepared->fetchAll();
     }
@@ -145,9 +144,9 @@ SELECT count(1) nb
    AND (:name = "" OR p.admin_name LIKE :name)
  ORDER BY p.title ASC');
 
-        $poll = $search == null ? '' : $search['poll'] . '%';
-        $title = $search == null ? '' : '%' . $search['title'] . '%';
-        $name = $search == null ? '' : '%' . $search['name'] . '%';
+        $poll = $search === null ? '' : $search['poll'] . '%';
+        $title = $search === null ? '' : '%' . $search['title'] . '%';
+        $name = $search === null ? '' : '%' . $search['name'] . '%';
         $prepared->bindParam(':id', $poll, PDO::PARAM_STR);
         $prepared->bindParam(':title', $title, PDO::PARAM_STR);
         $prepared->bindParam(':name', $name, PDO::PARAM_STR);
@@ -162,5 +161,4 @@ SELECT count(1) nb
 
         return $count->nb;
     }
-
 }

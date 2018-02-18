@@ -27,7 +27,6 @@ use Framadate\Utils;
  * @version 1.0
  */
 class Alter_Comment_table_for_name_length implements Migration {
-
     function __construct() {
     }
 
@@ -68,5 +67,4 @@ class Alter_Comment_table_for_name_length implements Migration {
         ALTER TABLE `' . Utils::table('comment') . '`
         CHANGE `name` `name` VARCHAR( 64 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ;');
     }
-
 }

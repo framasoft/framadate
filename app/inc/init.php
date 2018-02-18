@@ -23,11 +23,11 @@ use Framadate\Repositories\RepositoryFactory;
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../vendor/o80/i18n/src/shortcuts.php';
 
-if (session_id() == '') {
+if (session_id() === '') {
     session_start();
 }
 
-if (ini_get('date.timezone') == '') {
+if (ini_get('date.timezone') === '') {
     date_default_timezone_set('Europe/Paris');
 }
 

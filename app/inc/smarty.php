@@ -38,12 +38,10 @@ $smarty->assign('date_format', $date_format);
 if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {
     $smarty->force_compile = true;
     $smarty->compile_check = true;
-
 } else {
     $smarty->force_compile = false;
     $smarty->compile_check = false;
 }
-
 
 function smarty_function_poll_url($params, Smarty_Internal_Template $template) {
     $poll_id =  filter_var($params['id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);

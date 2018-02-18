@@ -27,7 +27,6 @@ use Framadate\Utils;
  * @version 1.0
  */
 class Alter_Comment_table_adding_date implements Migration {
-
     function __construct() {
     }
 
@@ -68,5 +67,4 @@ class Alter_Comment_table_adding_date implements Migration {
         ALTER TABLE `' . Utils::table('comment') . '`
         ADD `date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;');
     }
-
 }

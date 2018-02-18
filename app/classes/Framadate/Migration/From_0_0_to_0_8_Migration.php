@@ -27,7 +27,6 @@ use Framadate\Utils;
  * @version 0.8
  */
 class From_0_0_to_0_8_Migration implements Migration {
-
     function __construct() {
     }
 

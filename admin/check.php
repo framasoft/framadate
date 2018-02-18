@@ -35,7 +35,7 @@ if (!file_exists(ROOT_DIR . 'vendor/autoload.php') || !file_exists(ROOT_DIR . 'v
 require_once ROOT_DIR . 'vendor/autoload.php';
 require_once ROOT_DIR . 'vendor/o80/i18n/src/shortcuts.php';
 require_once ROOT_DIR . 'app/inc/constants.php';
-if (session_id() == '') {
+if (session_id() === '') {
     session_start();
 }
 $ALLOWED_LANGUAGES = [
@@ -59,27 +59,26 @@ require_once ROOT_DIR . 'app/inc/i18n.php';
  */
 function compareCheckMessage(Message $a, Message $b)
 {
-    $values = array(
+    $values = [
         'danger' => 0,
         'warning' => 1,
         'info' => 2,
         'success' => 3
-    );
+    ];
     $vA = $values[$a->type];
     $vB = $values[$b->type];
 
-    if ($vA == $vB) {
+    if ($vA === $vB) {
         return 0;
     }
     return ($vA < $vB) ? -1 : 1;
 }
 
-
 /**
  * Vars
  */
-$messages = array();
-$inc_directory = ROOT_DIR. 'app/inc/';
+$messages = [];
+$inc_directory = ROOT_DIR . 'app/inc/';
 $conf_filename = $inc_directory . 'config.php';
 
 /**
@@ -133,14 +132,13 @@ if (!empty($timezone)) {
     $messages[] = new Message('warning', __('Check','Consider setting the date.timezone in php.ini.'));
 }
 
-
 // The percentage of steps needed to be ready to launch the application
 $errors = 0;
 $warnings = 0;
 foreach ($messages as $message) {
-    if ($message->type == 'danger') {
+    if ($message->type === 'danger') {
         $errors++;
-    } else if ($message->type == 'warning') {
+    } else if ($message->type === 'warning') {
         $warnings++;
     }
 }
@@ -175,7 +173,7 @@ usort($messages, 'compareCheckMessage');
                 <div class="input-group input-group-sm pull-right col-xs-12 col-sm-2">
                     <select name="lang" class="form-control" title="<?=__('Language selector', 'Select the language')?>" >
                         <?php foreach ($ALLOWED_LANGUAGES as $lang_key => $language) { ?>
-                        <option lang="fr" <?php if (substr($lang_key, 0, 2)==$locale) { echo 'selected';} ?> value="<?=substr($lang_key, 0, 2)?>"><?=$language?></option>
+                        <option lang="fr" <?php if (substr($lang_key, 0, 2)===$locale) { echo 'selected';} ?> value="<?=substr($lang_key, 0, 2)?>"><?=$language?></option>
                         <?php } ?>
                     </select>
                 <span class="input-group-btn">
@@ -197,9 +195,9 @@ usort($messages, 'compareCheckMessage');
                 <div>
                     <?php
                         foreach ($messages as $message) {
-                            echo '<div class="alert alert-'. $message->type .'" role="alert">';
+                            echo '<div class="alert alert-' . $message->type . '" role="alert">';
                             echo Utils::htmlEscape($message->message);
-                            echo '<span class="sr-only">'. $message->type .'</span>';
+                            echo '<span class="sr-only">' . $message->type . '</span>';
                             echo '</div>';
                          }
                     ?>
@@ -209,7 +207,7 @@ usort($messages, 'compareCheckMessage');
                 <a class="btn btn-info" role="button" href=""><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <?= __('Check', 'Check again') ?></a>
                 <?php
                 if (!is_file($conf_filename)) {
-                    if ($errors == 0) {
+                    if ($errors === 0) {
                 ?>
                     <a class="btn btn-primary" role="button" href="<?= Utils::get_server_name() . 'admin/install.php' ?>"><span class=" glyphicon glyphicon-arrow-right" aria-hidden="true"></span> <?= __('Check', 'Continue the installation') ?></a>
                 <?php

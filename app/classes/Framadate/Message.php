@@ -19,7 +19,6 @@
 namespace Framadate;
 
 class Message {
-
     var $type;
     var $message;
     var $link;
@@ -35,6 +34,5 @@ class Message {
         $this->linkIcon = $linkIcon;
         $this->includeTemplate = $includeTemplate;
     }
-
 }
  
