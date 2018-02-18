@@ -230,7 +230,7 @@
         "Required fields cannot be left blank.": "Mit * markierte Felder müssen ausgefüllt sein.",
         "Poll title": "Titel der Umfrage",
         "Poll id": "Bezeichner",
-        "Customize the URL": "DE_Personnaliser le lien",
+        "Customize the URL": "Link anpassen",
         "Poll id rules": "Der Bezeichner kann Buchstaben, Zahlen und Bindestriche enhalten \"-\".",
         "Poll id warning": "Mit der Verwendung eines Bezeichners können möglicherweise Personen unerwünscht Zugriff auf die Umfrage erhalten. Es wird empfohlen sie mit einem Passwort zu schützen.",
         "Votes cannot be modified": "Wertungen können nicht verändert werden",
@@ -242,10 +242,10 @@
         "Use a password to restrict access": "Verwende ein Passwort um den Zugriff zu beschänken",
         "The results are publicly visible": "Die Ergebnisse sind öffentlich Einsehbar",
         "Poll password": "Password",
-        "Password choice": "DE_Choix",
-        "Password confirmation": "DE_Confirmation",
-        "Permissions": "DE_Permissions",
-        "Optional parameters": "DE_Paramètres optionnels",
+        "Password choice": "Passwortauswahl",
+        "Password confirmation": "Passwortbestätigung",
+        "Permissions": "Berechtigungen",
+        "Optional parameters": "Optionale Einstellungen",
         "Go to step 2": "Weiter zum 2. Schritt"
     },
     "Step 2": {
@@ -263,7 +263,7 @@
         "Copy hours of the first day": "Uhrzeiten des ersten Tags kopieren",
         "Remove a day": "Einen Tag entfernen",
         "Add a day": "Einen Tag hinzufügen",
-        "Remove this day": "DE_Supprimer ce jour",
+        "Remove this day": "Diesen Tag entfernen",
         "Remove all days": "Alle Tage entfernen",
         "Remove all hours": "Alle Uhrzeiten entfernen"
     },
@@ -324,7 +324,7 @@
         "Confirm removal of the poll": "Bestätigen Sie die Löschung der Umfrage",
         "polls in the database at this time": "Umfragen derzeit in der Datenbank",
         "Purge the polls": "Umfragen vollständig löschen",
-        "Installation": "DE_Installation"
+        "Installation": "Installation"
     },
     "FindPolls": {
         "Send me my polls": "Senden Sie mir mein Umfragen",
@@ -365,7 +365,7 @@
         "DbUser": "Datenbank-Nutzername",
         "DefaultLanguage": "Standardsprache",
         "General": "Allgemeine Konfiguration",
-        "Install": "DE_Installer",
+        "Install": "Installieren",
         "MigrationTable": "Name der Tabelle welche den Migrationsstatus speichert",
         "ResponseMail": "E-Mail-Adresse für automatische Antworten (sollte auf \"no-reply\" gesetzt werden)"
     },
