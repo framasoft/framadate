@@ -419,7 +419,7 @@
     "PHP Intl extension is enabled.": "IT_L'extension PHP Intl est activée.",
     "The template compile directory (%s) is not writable.": "IT_Le dossier de compilation des templates (%s) n'est pas accessible en écriture.",
     "The template compile directory (%s) is writable.": "IT_Le dossier de compilation des templates (%s) est accessible en écriture.",
-    "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "IT_Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'éxiste pas.",
+    "The config file directory (%s) is not writable and the config file (%s) does not exists.": "IT_Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'éxiste pas.",
     "The config file exists.": "IT_Le fichier de configuration existe.",
     "The config file directory (%s) is writable.": "IT_Le dossier du fichier de configuration (%s) est accessible en écriture.",
     "OpenSSL extension loaded.": "IT_L'extension PHP OpenSSL est chargée.",

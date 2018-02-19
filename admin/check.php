@@ -114,7 +114,7 @@ if (file_exists($conf_filename)) {
 } elseif (is_writable($inc_directory)) {
     $messages[] = new Message('info', __('Check','The config file directory (%s) is writable.', $inc_directory));
 } else {
-    $messages[] = new Message('danger', __f('Check','The config file directory (%s) is not writable and the config file (%s) dos not exists.', $inc_directory, $conf_filename));
+    $messages[] = new Message('danger', __f('Check','The config file directory (%s) is not writable and the config file (%s) does not exists.', $inc_directory, $conf_filename));
 }
 
 // Security
