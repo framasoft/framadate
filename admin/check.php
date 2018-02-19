@@ -87,7 +87,7 @@ $conf_filename = $inc_directory . 'config.php';
 
 // PHP Version
 if (version_compare(PHP_VERSION, PHP_NEEDED_VERSION)) {
-    $messages[] = new Message('info', __f('Check','PHP version %s is enough (needed at least PHP %s).', PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION, PHP_NEEDED_VERSION));
+    $messages[] = new Message('info', __f('Check','PHP version %s is enough (needed at least PHP %s).', PHP_MAJOR_VERSION . "." . PHP_MINOR_VERSION, PHP_NEEDED_VERSION));
 } else {
     $messages[] = new Message('danger', __f('Check','Your PHP version (%s) is too old. This application needs at least PHP %s.', phpversion(), PHP_NEEDED_VERSION));
 }
