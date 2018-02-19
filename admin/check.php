@@ -49,7 +49,6 @@ $ALLOWED_LANGUAGES = [
 ];
 const DEFAULT_LANGUAGE = 'en';
 require_once ROOT_DIR . 'app/inc/i18n.php';
-require_once '../app/inc/php_version.php';
 
 /**
  * Function to sort messages by type (priorise errors on warning, warning on info, etc.)
@@ -88,10 +87,10 @@ $conf_filename = $inc_directory . 'config.php';
  */
 
 // PHP Version
-if (PHP_VERSION_ID >= php_string_to_version_id(PHP_NEEDED_VERSION)) {
-    $messages[] = new Message('info', __f('Check','PHP version %s is enough (needed at least PHP %s).',phpversion(), PHP_NEEDED_VERSION));
+if (version_compare(PHP_VERSION, PHP_NEEDED_VERSION)) {
+    $messages[] = new Message('info', __f('Check','PHP version %s is enough (needed at least PHP %s).', PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION, PHP_NEEDED_VERSION));
 } else {
-    $messages[] = new Message('danger', __f('Check','Your PHP version (%s) is too old. This application needs at least PHP %s.',phpversion(), PHP_NEEDED_VERSION));
+    $messages[] = new Message('danger', __f('Check','Your PHP version (%s) is too old. This application needs at least PHP %s.', phpversion(), PHP_NEEDED_VERSION));
 }
 
 // INTL extension

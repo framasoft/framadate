@@ -1,7 +1,7 @@
 # Pré-requis
 - Apache
 - MySQL ou PostgreSQL
-- PHP 5+
+- PHP 5.6+
 - [Composer](https://getcomposer.org/)
 
 # Pré-installation
