@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "049183d97fa9891b1fed52d2d2c650f6",
+=======
+    "content-hash": "ca65bb3c4c4e869d5d98afe8369236a5",
+>>>>>>> Check for PHP 5.6
     "packages": [
         {
             "name": "ircmaxell/password-compat",
@@ -177,12 +181,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
+<<<<<<< HEAD
                 "reference": "5ebdd35b291cf9be4a425022872cb3aaf03192df"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/5ebdd35b291cf9be4a425022872cb3aaf03192df",
                 "reference": "5ebdd35b291cf9be4a425022872cb3aaf03192df",
+=======
+                "reference": "94230db36bded9d164ffccabcb38c67eedd63595"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/94230db36bded9d164ffccabcb38c67eedd63595",
+                "reference": "94230db36bded9d164ffccabcb38c67eedd63595",
+>>>>>>> Check for PHP 5.6
                 "shasum": ""
             },
             "conflict": {
@@ -232,7 +245,11 @@
                 "onelogin/php-saml": "<2.10.4",
                 "oro/crm": ">=1.7,<1.7.4",
                 "oro/platform": ">=1.7,<1.7.4",
+<<<<<<< HEAD
                 "padraic/file_get_contents": "<1.1.2",
+=======
+                "padraic/humbug_get_contents": "<1.1.2",
+>>>>>>> Check for PHP 5.6
                 "phpmailer/phpmailer": ">=5,<5.2.24",
                 "phpunit/phpunit": ">=4.8.19,<4.8.28|>=5.0.10,<5.6.3",
                 "phpxmlrpc/extras": "<0.6.1",
@@ -274,9 +291,9 @@
                 "typo3/neos": ">=1.1,<1.1.3|>=1.2,<1.2.13|>=2,<2.0.4",
                 "willdurand/js-translation-bundle": "<2.1.1",
                 "yiisoft/yii": ">=1.1.14,<1.1.15",
-                "yiisoft/yii2": "<2.0.5",
+                "yiisoft/yii2": "<2.0.14",
                 "yiisoft/yii2-bootstrap": "<2.0.4",
-                "yiisoft/yii2-dev": "<2.0.4",
+                "yiisoft/yii2-dev": "<2.0.14",
                 "yiisoft/yii2-gii": "<2.0.4",
                 "yiisoft/yii2-jui": "<2.0.4",
                 "zendframework/zend-cache": ">=2.4,<2.4.8|>=2.5,<2.5.3",
@@ -316,7 +333,11 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
+<<<<<<< HEAD
             "time": "2018-02-13T10:17:11+00:00"
+=======
+            "time": "2018-02-19T09:31:21+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "smarty/smarty",
@@ -375,32 +396,32 @@
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
-            "version": "1.1.0",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda"
+                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda",
-                "reference": "185b8868aa9bf7159f5f953ed5afb2d7fcdc3bda",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/8e884e78f9f0eb1329e445619e04456e64d8051d",
+                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1"
+                "php": ">=5.3,<8.0-DEV"
             },
             "require-dev": {
                 "athletic/athletic": "~0.1.8",
                 "ext-pdo": "*",
                 "ext-phar": "*",
-                "phpunit/phpunit": "^6.2.3",
-                "squizlabs/php_codesniffer": "^3.0.2"
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~2.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
@@ -425,6 +446,7 @@
                 "constructor",
                 "instantiate"
             ],
+<<<<<<< HEAD
             "time": "2017-07-22T11:58:36+00:00"
         },
         {
@@ -471,6 +493,9 @@
                 "object graph"
             ],
             "time": "2017-10-19T19:58:43+00:00"
+=======
+            "time": "2015-06-14T21:17:01+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -528,6 +553,7 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
+<<<<<<< HEAD
             "version": "4.3.0",
             "source": {
                 "type": "git",
@@ -538,25 +564,31 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/94fd0001232e47129dd3504189fa1c7225010d08",
                 "reference": "94fd0001232e47129dd3504189fa1c7225010d08",
+=======
+            "version": "3.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
+                "reference": "bf329f6c1aadea3299f08ee804682b7c45b326a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/bf329f6c1aadea3299f08ee804682b7c45b326a2",
+                "reference": "bf329f6c1aadea3299f08ee804682b7c45b326a2",
+>>>>>>> Check for PHP 5.6
                 "shasum": ""
             },
             "require": {
-                "php": "^7.0",
+                "php": "^5.6 || ^7.0",
                 "phpdocumentor/reflection-common": "^1.0.0",
                 "phpdocumentor/type-resolver": "^0.4.0",
                 "webmozart/assert": "^1.0"
             },
             "require-dev": {
-                "doctrine/instantiator": "~1.0.5",
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^6.4"
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.4"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "phpDocumentor\\Reflection\\": [
@@ -575,7 +607,11 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
+<<<<<<< HEAD
             "time": "2017-11-30T07:14:17+00:00"
+=======
+            "time": "2017-11-10T14:09:06+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -626,6 +662,7 @@
         },
         {
             "name": "phpspec/prophecy",
+<<<<<<< HEAD
             "version": "1.7.4",
             "source": {
                 "type": "git",
@@ -636,6 +673,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/phpspec/prophecy/zipball/9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
                 "reference": "9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
+=======
+            "version": "1.7.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpspec/prophecy.git",
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/dfd6be44111a7c41c2e884a336cc4f461b3b2401",
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401",
+>>>>>>> Check for PHP 5.6
                 "shasum": ""
             },
             "require": {
@@ -685,7 +734,11 @@
                 "spy",
                 "stub"
             ],
+<<<<<<< HEAD
             "time": "2018-02-11T18:49:29+00:00"
+=======
+            "time": "2018-02-19T10:16:54+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -748,7 +801,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2017-04-02T07:44:40+00:00"
+=======
+            "time": "2015-10-06T15:47:00+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -934,7 +991,11 @@
             "keywords": [
                 "tokenizer"
             ],
+<<<<<<< HEAD
             "time": "2017-11-27T05:48:46+00:00"
+=======
+            "time": "2017-12-04T08:55:13+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "phpunit/phpunit",
@@ -1016,7 +1077,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2018-02-01T05:50:59+00:00"
+=======
+            "time": "2017-06-21T08:07:12+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1075,6 +1140,7 @@
                 "mock",
                 "xunit"
             ],
+<<<<<<< HEAD
             "time": "2017-06-30T09:13:00+00:00"
         },
         {
@@ -1121,6 +1187,9 @@
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
             "time": "2017-03-04T06:30:41+00:00"
+=======
+            "time": "2015-10-02T06:51:40+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "sebastian/comparator",
@@ -1286,7 +1355,11 @@
                 "environment",
                 "hhvm"
             ],
+<<<<<<< HEAD
             "time": "2016-11-26T07:53:53+00:00"
+=======
+            "time": "2016-08-18T05:49:44+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "sebastian/exporter",
@@ -1353,7 +1426,11 @@
                 "export",
                 "exporter"
             ],
+<<<<<<< HEAD
             "time": "2016-11-19T08:54:04+00:00"
+=======
+            "time": "2016-06-17T09:04:28+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "sebastian/global-state",
@@ -1405,6 +1482,7 @@
                 "global state"
             ],
             "time": "2015-10-12T03:26:01+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "sebastian/object-enumerator",
@@ -1451,6 +1529,8 @@
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
             "time": "2017-02-18T15:18:39+00:00"
+=======
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "sebastian/recursion-context",
@@ -1503,6 +1583,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
+<<<<<<< HEAD
             "time": "2016-11-19T07:33:16+00:00"
         },
         {
@@ -1546,6 +1627,9 @@
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
             "time": "2015-07-28T20:34:47+00:00"
+=======
+            "time": "2016-10-03T07:41:43+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "sebastian/version",
@@ -1588,6 +1672,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
+<<<<<<< HEAD
             "time": "2016-10-03T07:35:21+00:00"
         },
         {
@@ -1602,6 +1687,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/yaml/zipball/ffc60bda1d4a00ec0b32eeabf39dc017bf480028",
                 "reference": "ffc60bda1d4a00ec0b32eeabf39dc017bf480028",
+=======
+            "time": "2015-06-21T13:59:46+00:00"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v3.4.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "eab73b6c21d27ae4cd037c417618dfd4befb0bfe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/eab73b6c21d27ae4cd037c417618dfd4befb0bfe",
+                "reference": "eab73b6c21d27ae4cd037c417618dfd4befb0bfe",
+>>>>>>> Check for PHP 5.6
                 "shasum": ""
             },
             "require": {
@@ -1646,7 +1747,11 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2018-01-21T19:06:11+00:00"
+=======
+            "time": "2018-01-21T19:05:02+00:00"
+>>>>>>> Check for PHP 5.6
         },
         {
             "name": "webmozart/assert",
@@ -1708,6 +1813,12 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": []
+    "platform": {
+        "php": ">=5.6.0",
+        "ext-pdo": "*"
+    },
+    "platform-dev": [],
+    "platform-overrides": {
+        "php": "5.6.0"
+    }
 }
