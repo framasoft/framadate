@@ -1,5 +1,5 @@
 # Pré-requis
-- Apache ou Nginx
+- Apache
 - MySQL ou PostgreSQL
 - PHP 5.6+
 - [Composer](https://getcomposer.org/)
