@@ -27,7 +27,6 @@ use Framadate\Security\Token;
 use Framadate\Utils;
 
 class PollService {
-
     private $connect;
     private $logService;
 
@@ -77,7 +76,7 @@ class PollService {
 
     function allSlotsByPoll($poll) {
         $slots = $this->slotRepository->listByPollId($poll->id);
-        if ($poll->format == 'D') {
+        if ($poll->format === 'D') {
             $this->sortSlorts($slots);
         }
         return $slots;
@@ -114,9 +113,8 @@ class PollService {
     function addComment($poll_id, $name, $comment) {
         if ($this->commentRepository->exists($poll_id, $name, $comment)) {
             return true;
-        } else {
+        }  
             return $this->commentRepository->insert($poll_id, $name, $comment);
-        }
     }
 
     /**
@@ -131,13 +129,11 @@ class PollService {
                 $poll_id = $this->random(16);
             } while ($this->pollRepository->existsById($poll_id));
             $admin_poll_id = $poll_id . $this->random(8);
-
         } else { // User have choosen the poll id
             $poll_id = $form->id;
             do {
                 $admin_poll_id = $this->random(24);
             } while ($this->pollRepository->existsByAdminId($admin_poll_id));
-
         }
 
         // Insert poll + slots
@@ -148,7 +144,7 @@ class PollService {
 
         $this->logService->log('CREATE_POLL', 'id:' . $poll_id . ', title: ' . $form->title . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
 
-        return array($poll_id, $admin_poll_id);
+        return [$poll_id, $admin_poll_id];
     }
 
     public function findAllByAdminMail($mail) {
@@ -164,10 +160,10 @@ class PollService {
                     $result['inb'][$i] = 0;
                     $result['y'][$i] = 0;
                 }
-                if ($choice == 1) {
+                if ($choice === 1) {
                     $result['inb'][$i]++;
                 }
-                if ($choice == 2) {
+                if ($choice === 2) {
                     $result['y'][$i]++;
                 }
             }
@@ -177,7 +173,7 @@ class PollService {
     }
 
     function splitSlots($slots) {
-        $splitted = array();
+        $splitted = [];
         foreach ($slots as $slot) {
             $obj = new \stdClass();
             $obj->day = $slot->title;
@@ -200,7 +196,7 @@ class PollService {
     }
 
     function splitVotes($votes) {
-        $splitted = array();
+        $splitted = [];
         foreach ($votes as $vote) {
             $obj = new \stdClass();
             $obj->id = $vote->id;
@@ -212,10 +208,6 @@ class PollService {
         }
 
         return $splitted;
-    }
-
-    private function random($length) {
-        return Token::getToken($length);
     }
 
     /**
@@ -234,6 +226,20 @@ class PollService {
     }
 
     /**
+     * @return mixed
+     */
+    public function sortSlorts(&$slots) {
+        uasort($slots, function ($a, $b) {
+            return $a->title > $b->title;
+        });
+        return $slots;
+    }
+
+    private function random($length) {
+        return Token::getToken($length);
+    }
+
+    /**
      * This method checks if the hash send by the user is the same as the computed hash.
      *
      * @param $poll /stdClass The poll
@@ -246,15 +252,4 @@ class PollService {
             throw new ConcurrentEditionException();
         }
     }
-
-    /**
-     * @return mixed
-     */
-    public function sortSlorts(&$slots) {
-        uasort($slots, function ($a, $b) {
-            return $a->title > $b->title;
-        });
-        return $slots;
-    }
-
 }

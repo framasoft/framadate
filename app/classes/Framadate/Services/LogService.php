@@ -7,7 +7,6 @@ namespace Framadate\Services;
  * @package Framadate\Services
  */
 class LogService {
-
     function __construct() {
     }
 
@@ -20,6 +19,5 @@ class LogService {
     function log($tag, $message) {
         error_log(date('Ymd His') . ' [' . $tag . '] ' . $message . "\n", 3, ROOT_DIR . LOG_FILE);
     }
-
 }
  

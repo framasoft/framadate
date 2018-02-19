@@ -34,7 +34,7 @@ function rcopy($src, $dst) {
     @mkdir($dst);
     $copied = true;
     while (false !== ($file = readdir($dir))) {
-        if (($file != '.') && ($file != '..')) {
+        if (($file !== '.') && ($file !== '..')) {
             if (is_dir($src . '/' . $file)) {
                 $copied &= rcopy($src . '/' . $file, $dst . '/' . $file);
             } else {
@@ -47,7 +47,7 @@ function rcopy($src, $dst) {
 }
 
 function rrmdir($dir) {
-    $files = array_diff(scandir($dir), array('.', '..'));
+    $files = array_diff(scandir($dir), ['.', '..']);
     foreach ($files as $file) {
         (is_dir("$dir/$file")) ? rrmdir("$dir/$file") : unlink("$dir/$file");
     }
@@ -83,7 +83,7 @@ function zip($source, $destination) {
                 if (is_dir($source)) {
                     $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::SELF_FIRST);
                     foreach ($files as $file) {
-                        if (in_array(basename($file), array('.', '..'))) {
+                        if (in_array(basename($file), ['.', '..'], true)) {
                             continue;
                         }
                         $file = realpath($file);
@@ -155,15 +155,15 @@ i($result->autoload, 'autoload');
 // Copy assets
 
 d('# Assets');
-copyFiles(array('css', 'fonts', 'images', 'js'), $result);
+copyFiles(['css', 'fonts', 'images', 'js'], $result);
 
 // Copy sources
 
 d('# Source directories');
-copyFiles(array('admin', 'app', 'locale', 'tpl'), $result);
+copyFiles(['admin', 'app', 'locale', 'tpl'], $result);
 
 d('# Source files');
-$files = array(
+$files = [
     'adminstuds.php',
     'bandeaux.php',
     'create_classic_poll.php',
@@ -181,7 +181,7 @@ $files = array(
     'README.md',
     'robots.txt',
     'studs.php'
-);
+];
 copyFiles($files, $result);
 
 // Zip Dist

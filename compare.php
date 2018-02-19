@@ -28,15 +28,14 @@ include_once __DIR__ . '/app/inc/init.php';
         }
     }
 
-    if (!$diffSection and array_keys($good)!=array_keys($test)) {
+    if (!$diffSection and array_keys($good)!==array_keys($test)) {
         var_dump(array_keys($good));
         var_dump(array_keys($test));
     } else {
         echo 'All sections are in two langs.' . "\n";
     }
 
-
-    $diff = array();
+    $diff = [];
 
     foreach ($good as $sectionName => $section) {
         $diffSection = false;
@@ -47,7 +46,7 @@ include_once __DIR__ . '/app/inc/init.php';
             }
         }
 
-        if (!$diffSection and array_keys($good[$sectionName]) != array_keys($test[$sectionName])) {
+        if (!$diffSection and array_keys($good[$sectionName]) !== array_keys($test[$sectionName])) {
             $diff[$sectionName]['order_good'] = array_keys($good[$sectionName]);
             $diff[$sectionName]['order_test'] = array_keys($test[$sectionName]);
         }

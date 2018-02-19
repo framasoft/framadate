@@ -27,7 +27,6 @@ use Framadate\Utils;
  * @version 0.9
  */
 class AddColumn_receiveNewComments_For_0_9 implements Migration {
-
     function __construct() {
     }
 
@@ -74,5 +73,4 @@ ALTER TABLE `' . Utils::table('poll') . '`
         ADD `receiveNewComments` TINYINT(1) DEFAULT \'0\'
         AFTER `receiveNewVotes`');
     }
-
 }

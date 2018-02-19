@@ -4,7 +4,6 @@ namespace Framadate\Repositories;
 use Framadate\FramaDB;
 
 abstract class AbstractRepository {
-
     /**
      * @var FramaDB
      */
@@ -41,5 +40,4 @@ abstract class AbstractRepository {
     function lastInsertId() {
         return $this->connect->lastInsertId();
     }
-
 }

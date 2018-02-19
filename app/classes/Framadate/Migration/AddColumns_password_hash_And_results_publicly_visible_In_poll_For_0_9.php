@@ -27,7 +27,6 @@ use Framadate\Utils;
  * @version 0.9
  */
 class AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9 implements Migration {
-
     function __construct() {
     }
 
@@ -74,5 +73,4 @@ class AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9 impl
         ADD `password_hash` VARCHAR(255) NULL DEFAULT NULL ,
         ADD `results_publicly_visible` TINYINT(1) NULL DEFAULT NULL');
     }
-
 }

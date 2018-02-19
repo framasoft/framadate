@@ -28,7 +28,6 @@ use Framadate\Utils;
  * @version 0.9
  */
 class RPadVotes_from_0_8 implements Migration {
-
     function description() {
         return 'RPad votes from version 0.8.';
     }
@@ -43,7 +42,6 @@ class RPadVotes_from_0_8 implements Migration {
     }
 
     function execute(\PDO $pdo) {
-
         $pdo->beginTransaction();
         $this->rpadVotes($pdo);
         $pdo->commit();
@@ -52,13 +50,13 @@ class RPadVotes_from_0_8 implements Migration {
     }
 
     private function rpadVotes($pdo) {
-        $pdo->exec('UPDATE '. Utils::table('vote') .' fv
+        $pdo->exec('UPDATE ' . Utils::table('vote') . ' fv
 INNER JOIN (
 	SELECT v.id, RPAD(v.choices, inn.slots_count, \'0\') new_choices
-	FROM '. Utils::table('vote') .' v
+	FROM ' . Utils::table('vote') . ' v
 	INNER JOIN
 		(SELECT s.poll_id, SUM(IFNULL(LENGTH(s.moments) - LENGTH(REPLACE(s.moments, \',\', \'\')) + 1, 1)) slots_count
-		FROM '. Utils::table('slot') .' s
+		FROM ' . Utils::table('slot') . ' s
 		GROUP BY s.poll_id
 		ORDER BY s.poll_id) inn ON inn.poll_id = v.poll_id
 	WHERE LENGTH(v.choices) != inn.slots_count

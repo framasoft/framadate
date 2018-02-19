@@ -43,7 +43,7 @@ if (!empty($_POST['mail'])) {
             $smarty->assign('polls', $polls);
             $body = $smarty->fetch('mail/find_polls.tpl');
 
-            $mailService->send($mail, __('FindPolls', 'List of your polls').' - '.NOMAPPLICATION, $body, 'SEND_POLLS');
+            $mailService->send($mail, __('FindPolls', 'List of your polls') . ' - ' . NOMAPPLICATION, $body, 'SEND_POLLS');
             $message = new Message('success', __('FindPolls', 'Polls sent'));
         } else {
             $message = new Message('warning', __('Error', 'No polls found'));
@@ -52,7 +52,6 @@ if (!empty($_POST['mail'])) {
         $message = new Message('danger', __('Error', 'Something is wrong with the format'));
     }
 }
-
 
 $smarty->assign('title', __('Homepage', 'Where are my polls'));
 $smarty->assign('message', $message);

@@ -22,7 +22,6 @@ use Framadate\FramaDB;
 use Framadate\Utils;
 
 class SlotRepository extends AbstractRepository {
-
     function __construct(FramaDB $connect) {
         parent::__construct($connect);
     }
@@ -37,7 +36,6 @@ class SlotRepository extends AbstractRepository {
         $prepared = $this->prepare('INSERT INTO `' . Utils::table('slot') . '` (poll_id, title, moments) VALUES (?, ?, ?)');
 
         foreach ($choices as $choice) {
-
             // We prepared the slots (joined by comas)
             $joinedSlots = '';
             $first = true;
@@ -52,17 +50,16 @@ class SlotRepository extends AbstractRepository {
 
             // We execute the insertion
             if (empty($joinedSlots)) {
-                $prepared->execute(array($poll_id, $choice->getName(), null));
+                $prepared->execute([$poll_id, $choice->getName(), null]);
             } else {
-                $prepared->execute(array($poll_id, $choice->getName(), $joinedSlots));
+                $prepared->execute([$poll_id, $choice->getName(), $joinedSlots]);
             }
-
         }
     }
 
     function listByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? ORDER BY id');
-        $prepared->execute(array($poll_id));
+        $prepared->execute([$poll_id]);
 
         return $prepared->fetchAll();
     }
@@ -128,5 +125,4 @@ class SlotRepository extends AbstractRepository {
 
         return $prepared->execute([$poll_id]);
     }
-
 }

@@ -37,9 +37,8 @@ if (!empty($_POST)) {
     if ($result['status'] === 'OK') {
         header(('Location: ' . Utils::get_server_name() . 'admin/migration.php'));
         exit;
-    } else {
+    }  
         $error = __('Error', $result['code']);
-    }
 }
 
 $smarty->assign('error', $error);
