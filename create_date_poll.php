@@ -48,6 +48,7 @@ if ($_SESSION['form']->format !== 'D') {
     $_SESSION['form']->clearChoices();
 }
 
+
 if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) || ($config['use_smtp'] && !isset($_SESSION['form']->admin_mail))) {
     $step = 1;
 } else if (!empty($_POST['confirmation'])) {

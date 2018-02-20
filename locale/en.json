@@ -247,7 +247,10 @@
         "Password confirmation": "Confirmation",
         "Permissions": "Permissions",
         "Optional parameters": "Optional parameters",
-        "Go to step 2": "Go to step 2"
+        "Go to step 2": "Go to step 2",
+		"Limit the ammount of voters per option": "Limit the ammount of voters per option",
+		"ValueMax instructions": "voters per options ",
+		"Value Max" : "Value Max"
     },
     "Step 2": {
         "Back to step 1": "Return to step 1",

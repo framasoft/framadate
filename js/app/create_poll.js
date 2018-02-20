@@ -44,6 +44,18 @@ $(document).ready(function () {
         }
     });
 
+ /**
+     * Enable/Disable ValueMax options
+     */
+    $("#use_ValueMax").change(function () {
+        if ($(this).prop("checked")) {
+            $("#ValueMax").removeClass("hidden");
+        } else {
+            $("#ValueMax").addClass("hidden");
+        }
+    });
+
+
     /**
      * Hide/Show password options
      */

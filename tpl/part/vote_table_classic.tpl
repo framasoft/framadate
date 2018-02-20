@@ -160,21 +160,24 @@
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                         </div>
                     </td>
+					{$i = 0}
                     {foreach $slots as $id=>$slot}
                         <td class="bg-info" headers="C{$id}">
                             <ul class="list-unstyled choice">
-                                <li class="yes">
-                                    <input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2" />
-                                    <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{__('Poll results', 'Vote yes for')|html} {$slot->title|html}">
-                                        <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
-                                    </label>
-                                </li>
-                                <li class="ifneedbe">
-                                    <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1" />
-                                    <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->title|html}">
-                                        (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
-                                    </label>
-                                </li>
+								{if $best_choices['y'][$i] lt $poll->ValueMax || $poll->ValueMax eq NULL}
+                               	 	<li class="yes">
+                                    	<input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2" />
+                                    	<label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{__('Poll results', 'Vote yes for')|html} {$slot->title|html}">
+                                       		<i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
+                                    	</label>
+                                	</li>
+                               		 <li class="ifneedbe">
+                                  	  <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1" />
+                                  	  <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->title|html}">
+                                        <i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
+                                    	</label>
+                               	 	</li>
+								{/if}
                                 <li class="no">
                                     <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value="0" />
                                     <label class="btn btn-default btn-xs startunchecked" for="n-choice-{$id}" title="{__('Poll results', 'Vote no for')|html} {$slot->title|html}">
@@ -186,6 +189,8 @@
                                 </li>
                             </ul>
                         </td>
+						{$i = $i+1}
+                        
                     {/foreach}
                     <td><button type="submit" class="btn btn-success btn-md" name="save" title="{__('Poll results', 'Save the choices')}">{__('Generic', 'Save')}</button></td>
                 </tr>
