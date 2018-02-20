@@ -33,6 +33,12 @@ $smarty->assign('use_nav_js', strstr($_SERVER['SERVER_NAME'], 'framadate.org'));
 $smarty->assign('locale', $locale);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);
 $smarty->assign('date_format', $date_format);
+if (isset($config['tracking_code'])) {
+    $smarty->assign('tracking_code', $config['tracking_code']);
+}
+if (defined('FAVICON')) {
+    $smarty->assign('favicon', FAVICON);
+}
 
 // Dev Mode
 if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {
@@ -55,8 +61,8 @@ function smarty_function_poll_url($params, Smarty_Internal_Template $template) {
     return Utils::getUrlSondage($poll_id, $admin, $vote_unique_id, $action, $action_value);
 }
 
-function smarty_modifier_markdown($md, $clear = false) {
-    return Utils::markdown($md, $clear);
+function smarty_modifier_markdown($md, $clear = false, $inline=true) {
+    return Utils::markdown($md, $clear, $inline);
 }
 
 function smarty_modifier_resource($link) {

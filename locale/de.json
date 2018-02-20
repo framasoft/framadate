@@ -38,6 +38,7 @@
         "Search": "Suche",
         "Creation date:": "Erstellungsdatum:",
         "Caption": "Bildunterschrift",
+        "Markdown": "Markdown",
         "ASTERISK": "*"
     },
     "Date": {
@@ -132,7 +133,9 @@
         "Password protected": "Passwortgeschützt",
         "Votes protected by password": "Wertungen sind passwortgeschützt",
         "No password": "Kein Passwort",
-        "Remove password": "Passwort entfernen"
+        "Remove password": "Passwort entfernen",
+        "Rich editor": "DE_Editeur avancé",
+        "Simple editor": "DE_Editeur simple"
     },
     "Poll results": {
         "Votes of the poll": "Stimmabgaben zur Umfrage",
@@ -247,7 +250,10 @@
         "Password confirmation": "Passwortbestätigung",
         "Permissions": "Berechtigungen",
         "Optional parameters": "Optionale Einstellungen",
-        "Go to step 2": "Weiter zum 2. Schritt"
+        "Go to step 2": "Weiter zum 2. Schritt",
+        "To make the description more attractive, you can use the Markdown format.": "DE_Afin de rendre le descriptif de ce sondage plus attractif, vous pouvez utiliser le formatage Markdown.",
+        "You can enable or disable the editor at will.": "DE_Vous pouvez activer ou désactiver l'éditeur à votre guise.",
+        "More informations here:": "DE_Plus d'informations ici :"
     },
     "Step 2": {
         "Back to step 1": "Zurück zum 1. Schritt",

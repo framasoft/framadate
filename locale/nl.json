@@ -135,8 +135,12 @@
         "Remove password": "Wachtwoord verwijderen"
     },
     "Poll results": {
-        "Votes of the poll": "Stemmen",
         "Edit the line: %s": "Bewerk regel: %s",
+        "Password protected": "NL_Protégé par mot de passe",
+        "Votes protected by password": "NL_Votes protégés par mot de passe",
+        "No password": "NL_Pas de mot de passe",
+        "Remove password": "NL_Supprimer le mot de passe",
+        "Votes of the poll": "Stemmen",
         "Remove the line:": "Verwijder regel:",
         "Vote no for": "Stem ‘nee’ voor",
         "Vote yes for": "Stem ‘ja’ voor",

@@ -1,8 +1,12 @@
 {extends file='page.tpl'}
 
 {block name="header"}
+    <script src="{"js/simplemde.min.js"|resource}" type="text/javascript"></script>
+    <script src="{"js/mde-wrapper.js"|resource}" type="text/javascript"></script>
     <script src="{"js/app/create_poll.js"|resource}" type="text/javascript"></script>
     <link rel="stylesheet" href="{"css/app/create_poll.css"|resource}">
+    <link rel="stylesheet" href="{"css/simplemde.min.css"|resource}">
+
 {/block}
 
 {block name=main}
@@ -81,9 +85,12 @@
                     <label for="poll_comments" class="col-sm-4 control-label">{__('Generic', 'Description')}</label>
 
                     <div class="col-sm-8">
-                        <textarea id="poll_comments" name="description"
-                                  class="form-control" {$errors['description']['aria']}
-                                  rows="5">{$poll_description|html}</textarea>
+                        {include 'part/description_markdown.tpl'}
+                        <div>
+                            <textarea id="poll_comments" name="description"
+                                      class="form-control" {$errors['description']['aria']}
+                                      rows="5">{$poll_description|escape}</textarea>
+                        </div>
                     </div>
                 </div>
                 {if !empty($errors['description']['msg'])}
@@ -116,11 +123,18 @@
 
                 <div class="collapse" id="optionnal">
 
-		    
+                    {* Poll identifier *}
+
+                    <div class="form-group {$errors['customized_url']['class']}">
+                        <label for="poll_id" class="col-sm-4 control-label">
+                            {__('Step 1', 'Poll id')}<br/>
+                        </label>
+
+
 		    {* Value MAX *}
-			
-			               
-	
+
+
+
 		    <div class="form-group">
                         <label for="use_valueMax" class="col-sm-4 control-label">
 			{__('Step 1', 'Value Max')}<br/>
@@ -128,8 +142,8 @@
                         <div class="col-sm-8">
                             <div class="checkbox">
                                 <label>
-                                    <input id="use_ValueMax" name="use_ValueMax" type="checkbox" >         
-						{__('Step 1', "Limit the ammount of voters per option")}  
+                                    <input id="use_ValueMax" name="use_ValueMax" type="checkbox" >
+						{__('Step 1', "Limit the ammount of voters per option")}
 			        </label>
                             </div>
                         </div>
@@ -137,19 +151,19 @@
 
 		    <div class="form-group">
 		      <div id="ValueMax"{if !$use_ValueMax} class="hidden"{/if}>
-			
+
                             <div class="col-sm-offset-4 col-sm-8">
-				    <label >   
+				    <label >
                                         <input id="ValueMax" type="number" min= "0" name="ValueMax">
-      
+
                                         {__('Step 1', "ValueMax instructions")}
                                     </label>
-			
+
 			    </div>
 			</div>
 		   </div>
-		
-	
+
+
 
                     {* Poll identifier *}
 
@@ -172,7 +186,6 @@
                             <label for="customized_url" class="col-sm-4 control-label">
                                 <span id="pollUrlDesc" class="small">{__('Step 1', 'Poll id rules')}</span>
                             </label>
-
                             <div class="col-sm-8">
                                 <div class="input-group">
                                     <span class="input-group-addon">

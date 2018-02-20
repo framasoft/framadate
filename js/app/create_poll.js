@@ -88,4 +88,9 @@ $(document).ready(function () {
         document.getElementById("cookie-warning").setAttribute("style", "");
     }
 
+    var wrapper = new MDEWrapper($('#poll_comments')[0], $('#rich-editor-button'), $('#simple-editor-button'));
+    if ($('#rich-editor-button').hasClass('active')) {
+        wrapper.enable();
+    }
+
 });

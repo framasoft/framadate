@@ -132,7 +132,9 @@
         "Password protected": "Password protected",
         "Votes protected by password": "Votes protected by password",
         "No password": "No password",
-        "Remove password": "Remove password"
+        "Remove password": "Remove password",
+        "Rich editor": "Rich editor",
+        "Simple editor": "Simple editor"
     },
     "Poll results": {
         "Votes of the poll": "Votes",
@@ -248,7 +250,10 @@
         "Permissions": "Permissions",
         "Optional parameters": "Optional parameters",
         "Go to step 2": "Go to step 2",
-		"Limit the ammount of voters per option": "Limit the ammount of voters per option",
+        "To make the description more attractive, you can use the Markdown format.": "To make the description more attractive, you can use the Markdown format.",
+        "You can enable or disable the editor at will.": "You can enable or disable the editor at will.",
+        "More informations here:": "More informations here:",
+        "Limit the ammount of voters per option": "Limit the ammount of voters per option",
 		"ValueMax instructions": "voters per options ",
 		"Value Max" : "Value Max"
     },
