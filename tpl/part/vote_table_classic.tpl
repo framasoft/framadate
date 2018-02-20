@@ -50,7 +50,7 @@
                 {if $editingVoteId === $vote->uniqId && !$expired}
 
                 <tr class="hidden-print">
-                    <td class="bg-info" style="padding:5px">
+                    <td class="bg-info btn-edit">
                         <div class="input-group input-group-sm" id="edit">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
@@ -82,7 +82,7 @@
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
-                                <li style="display:none">
+                                <li class="hide">
                                     <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" " {if $choice!='2' && $choice!='1' && $choice!='0'}checked {/if}/>
                                 </li>
                             </ul>
@@ -91,12 +91,20 @@
                         {$id=$id + 1}
                     {/foreach}
 
-                    <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
+                    <td class="btn-edit"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
                 </tr>
                 {elseif !$hidden} {* Voted line *}
                 <tr>
 
-                    <th class="bg-info">{$vote->name|html}</th>
+                    <th class="bg-info">{$vote->name|html}
+					{if $slots gt 4}
+					<span class="edit-username-left">
+						<a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit the line: %s', $vote->name)|html}">
+                    	<i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>
+                   	 	</a>
+					</span>
+					{/if}
+					</th>
 
                     {$id=0}
                     {foreach $slots as $slot}
@@ -146,7 +154,7 @@
 
             {if $active && $editingVoteId === 0 && !$expired && $accessGranted}
                 <tr id="vote-form" class="hidden-print">
-                    <td class="bg-info" style="padding:5px">
+                    <td class="bg-info" class="btn-edit">
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
@@ -173,7 +181,7 @@
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
-                                <li style="display:none">
+                                <li class="hide">
                                   <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" " checked/>
                                 </li>
                             </ul>
@@ -226,10 +234,10 @@
                 $('#showChart')
                         .after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>")
                         .remove();
-                
+
                 var resIfneedbe = [];
                 var resYes = [];
-            
+
                 $('#addition').find('td').each(function () {
                     var inbCountText = $(this).find('.inb-count').text();
                     if(inbCountText != '' && inbCountText != undefined) {
@@ -247,7 +255,7 @@
                 });
                 var cols = [
                 {foreach $slots as $id=>$slot}
-                    $('<div/>').html('{$slot->title|markdown:true}').text(), 
+                    $('<div/>').html('{$slot->title|markdown:true}').text(),
                 {/foreach}
                 ];
 
@@ -282,7 +290,7 @@
             });
         });
     </script>
-    
+
 {/if}
 
 
@@ -304,7 +312,7 @@
 
 
                 {$i = 0}
-                <ul style="list-style:none">
+                <ul class="list-unstyled">
                     {foreach $slots as $slot}
                         {if $best_choices['y'][$i] == $max}
                             <li><strong>{$slot->title|markdown:true}</strong></li>

@@ -37,6 +37,10 @@ body {
     margin: 15px auto 30px;
 }
 
+.hide {
+    display: none;
+}
+
 /* Commentaires */
 div.comment{
     margin-bottom: 10px;
@@ -69,10 +73,10 @@ header h1 {
     margin-top: 0;
 }
 .container {
-    padding:30px;
+    padding: 30px;
 }
 .container .jumbotron {
-    padding:20px 20px;
+    padding: 20px 20px;
     border-radius: 2px;
 }
 .container .jumbotron p {
@@ -115,7 +119,7 @@ header h1 {
 /* Description du sondage */
     /* studs.php et adminstuds.php */
 header .lead {
-    padding:10px 0;
+    padding: 10px 0;
     margin:0;
 }
 
@@ -240,7 +244,7 @@ table.results tbody td {
 table.results thead th {
     text-align:center;
     border:2px solid white;
-    padding:5px;
+    padding: 5px;
     min-width:40px;
     font-size:12px;
     max-width:100px;
@@ -249,8 +253,8 @@ table.results thead th {
 }
 
 table.results thead .btn {
-    margin:0 auto;
-    display:block;
+    margin: 0 auto;
+    display: block;
 }
 
 table.results th.rbd.day,
@@ -333,7 +337,15 @@ table.results .btn-link.btn-sm {
 }
 
 .choice label {
-    cursor:pointer;
+    cursor: pointer;
+}
+
+td.btn-edit {
+    padding: 5px;
+}
+
+span.edit-username-left {
+    float: right;
 }
 
 .yes .btn, .ifneedbe .btn, .no .btn {
@@ -398,7 +410,7 @@ table.results .btn-link.btn-sm {
 
 table.results .bg-danger .glyphicon {
     opacity:0;
-  
+
     -moz-animation-name: hideNoIcon;
     -moz-animation-iteration-count: 1;
     -moz-animation-timing-function: ease-in;
