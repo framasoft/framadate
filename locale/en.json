@@ -430,6 +430,8 @@
         "The config file exists.": "The config file exists.",
         "The config file directory (%s) is writable.": "The config file directory (%s) is writable.",
         "OpenSSL extension loaded.": "OpenSSL extension loaded.",
+        "Cookies are served from HTTP only.": "Cookies are served from HTTP only.",
+        "Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript.": "Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript.",
         "Consider enabling the PHP extension OpenSSL for increased security.": "Consider enabling the PHP extension OpenSSL for increased security.",
         "date.timezone is set.": "date.timezone is set.",
         "Consider setting the date.timezone in php.ini.": "Consider setting the date.timezone in php.ini.",

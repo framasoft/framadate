@@ -422,6 +422,8 @@
         "The config file exists.": "Amañ mañ ar restr kefnluniañ.",
         "The config file directory (%s) is writable.": "Gallout a raer skrivañ e kavlec'h ar restr kefluniañ (%s).",
         "OpenSSL extension loaded.": "Askouezh OpenSSL karget.",
+        "Cookies are served from HTTP only.": "BR_Cookies are served from HTTP only.",
+        "Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript.": "BR_Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript.",
         "Consider enabling the PHP extension OpenSSL for increased security.": "Aliañ a reomp gweredekaat an askouezh OpenSSL evit ;uioc'h a surentez.",
         "date.timezone is set.": "Arventennet eo date.timezone.",
         "Consider setting the date.timezone in php.ini.": "Aliañ a reomp da lakaat date.timezone e php.ini.",
