@@ -58,7 +58,7 @@ class Utils {
         <link rel="stylesheet" href="' . self::get_server_name() . 'css/style.css" />
         <link rel="stylesheet" href="' . self::get_server_name() . 'css/frama.css" />
         <link rel="stylesheet" href="' . self::get_server_name() . 'css/print.css" media="print" />
-        <script type="text/javascript" src="' . self::get_server_name() . 'js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="' . self::get_server_name() . 'js/jquery-1.12.4.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>';
         if ('en' !== $locale) {
