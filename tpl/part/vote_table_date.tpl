@@ -97,12 +97,12 @@
 
                 {if $editingVoteId === $vote->uniqId && !$expired}
                 <tr class="hidden-print">
-                    <td class="bg-info" style="padding:5px">
+                    <td class="bg-info btn-edit">
                         <div class="input-group input-group-sm" id="edit">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
                             <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
-												
+
                         </div>
                     </td>
 
@@ -133,7 +133,7 @@
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
-                                <li style="display:none">
+                                <li class="hide">
                                     <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value=" " {if $choice!='2' && $choice!='1' && $choice!='0'}checked {/if}/>
                                 </li>
                             </ul>
@@ -143,7 +143,7 @@
                       {/foreach}
                     {/foreach}
 
-                    <td style="padding:5px"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
+                    <td class="btn-edit"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save the choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
 
                 </tr>
                 {elseif !$hidden}
@@ -153,7 +153,7 @@
 
                     <th class="bg-info">{$vote->name|html}
 					{if $slots gt 4}
-						<span style="float:right;"> 					
+						<span class="edit-username-left">
 							<a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit the line: %s', $vote->name)|html}">
                        		<i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>
                        		</a>
@@ -161,9 +161,9 @@
 					{/if}
 					</th>
 
-					
-					
-	
+
+
+
                     {$k=0}
                     {foreach $slots as $slot}
                       {foreach $slot->moments as $moment}
@@ -213,7 +213,7 @@
 
             {if $active && $editingVoteId === 0 && !$expired && $accessGranted}
                 <tr id="vote-form" class="hidden-print">
-                    <td class="bg-info" style="padding:5px">
+                    <td class="bg-info btn-edit">
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
@@ -242,7 +242,7 @@
                                             <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                         </label>
                                     </li>
-                                    <li style="display:none">
+                                    <li class="hide">
                                       <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value=" " checked/>
                                     </li>
                                 </ul>
@@ -297,10 +297,10 @@
                 $('#showChart')
                         .after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>")
                         .remove();
-                               
+
                 var resIfneedbe = [];
                 var resYes = [];
-            
+
                 $('#addition').find('td').each(function () {
                     var inbCountText = $(this).find('.inb-count').text();
                     if(inbCountText != '' && inbCountText != undefined) {
@@ -318,7 +318,7 @@
                 var cols = [
                 {foreach $slots as $slot}
                     {foreach $slot->moments as $moment}
-                        $('<div/>').html('{$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}').text(), 
+                        $('<div/>').html('{$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}').text(),
                     {/foreach}
                 {/foreach}
                 ];
@@ -354,7 +354,7 @@
             });
         });
     </script>
-    
+
 {/if}
 
 {if !$hidden}
@@ -374,7 +374,7 @@
 
 
                 {$i = 0}
-                <ul style="list-style:none">
+                <ul class="list-unstyled">
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $moment}
                             {if $best_choices['y'][$i] == $max}
