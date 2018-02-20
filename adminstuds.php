@@ -137,6 +137,7 @@ if (isset($_POST['update_poll_info'])) {
         $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
         if ($hidden !== $poll->hidden) {
             $poll->hidden = $hidden;
+	    $poll->results_publicly_visible = false;
             $updated = true;
         }
     } elseif ($field === 'removePassword') {
@@ -148,12 +149,30 @@ if (isset($_POST['update_poll_info'])) {
         }
     } elseif ($field === 'password') {
         $password = isset($_POST['password']) ? $_POST['password'] : null;
+
+        /**
+         * Did the user choose results to be publicly visible ?
+         */
         $resultsPubliclyVisible = isset($_POST['resultsPubliclyVisible']) ? $inputService->filterBoolean($_POST['resultsPubliclyVisible']) : false;
+        /**
+         * If there's one, save the password
+         */
         if (!empty($password)) {
             $poll->password_hash =  PasswordHasher::hash($password);
             $updated = true;
         }
-        if ($resultsPubliclyVisible !== $poll->results_publicly_visible) {
+
+        /**
+         * If not pasword was set and the poll should be hidden, hide the results
+         */
+        if ($poll->password_hash === null || $poll->hidden === true) {
+            $poll->results_publicly_visible = false;
+        }
+
+        /**
+         * We don't have a password, the poll is hidden and we change the results public visibility
+         */
+        if ($resultsPubliclyVisible !== $poll->results_publicly_visible && $poll->password_hash !== null && $poll->hidden === false) {
             $poll->results_publicly_visible = $resultsPubliclyVisible;
             $updated = true;
         }
