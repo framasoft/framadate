@@ -82,6 +82,10 @@ header h1 {
 .container .jumbotron p {
     font-size: 1em;
 }
+.container .jumbotron .btn-group >.btn {
+    margin-bottom: 20px;
+    white-space: normal;
+}
 
 .summary h4 {
     margin-top:0;
@@ -121,6 +125,12 @@ header h1 {
 header .lead {
     padding: 10px 0;
     margin:0;
+}
+header form .input-group .form-control {
+    margin-bottom: 20px;
+}
+header form .input-group .input-group-btn {
+    vertical-align: top;
 }
 
 #admin-link, #public-link {
@@ -304,10 +314,21 @@ table.results .btn-link.btn-sm {
     padding-right:30px;
 }
 
+/* Formulaire de création de sondage */
+@media (max-width: 767px) {
+    #formulaire .col-xs-12 {
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+}
+
 /* Formulaire de vote */
 #vote-form td ul, #vote-form td label {
     margin:0;
     font-size:12px;
+}
+#vote-form td label {
+    padding: 1px 3px;
 }
 
 #vote-form td {
@@ -508,6 +529,12 @@ table.results > tbody > tr:hover > td .glyphicon {
 #poll_search {
     cursor: pointer;
 }
+.table-of-polls {
+    overflow-x: scroll;
+    margin-bottom: 0;
+    border: 0;
+    box-shadow: none;
+}
 
 /* Studs */
 .password_request {
@@ -517,4 +544,9 @@ table.results > tbody > tr:hover > td .glyphicon {
 
 #password-form .btn-cancel {
     float: right;
+}
+
+/* Buttons */
+.btn {
+    white-space: normal;
 }
