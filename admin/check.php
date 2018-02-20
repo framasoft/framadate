@@ -124,6 +124,12 @@ if (extension_loaded('openssl')) {
     $messages[] = new Message('warning', __('Check','Consider enabling the PHP extension OpenSSL for increased security.'));
 }
 
+if (ini_get('session.cookie_httponly') === '1') {
+    $messages[] = new Message('info', __('Check', 'Cookies are served from HTTP only.'));
+} else {
+    $messages[] = new Message('warning', __('Check', "Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript."));
+}
+
 // Datetime
 $timezone = ini_get('date.timezone');
 if (!empty($timezone)) {

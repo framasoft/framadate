@@ -424,6 +424,8 @@
         "The config file directory (%s) is writable.": "ES_Le dossier du fichier de configuration (%s) est accessible en écriture.",
         "OpenSSL extension loaded.": "ES_L'extension PHP OpenSSL est chargée.",
         "Consider enabling the PHP extension OpenSSL for increased security.": "ES_Veuillez considérer l'activation de l'extension PHP OpenSSL pour améliorer la sécurité.",
+        "Cookies are served from HTTP only.": "ES_Cookies are served from HTTP only.",
+        "Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript.": "ES_Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript.",
         "date.timezone is set.": "ES_date.timezone est défini.",
         "Consider setting the date.timezone in php.ini.": "ES_Veuillez considérer la définition de date.timezone dans le php.ini.",
         "Check again": "ES_Vérifier à nouveau",
