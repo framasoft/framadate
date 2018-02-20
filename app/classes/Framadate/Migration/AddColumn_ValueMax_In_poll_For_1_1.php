@@ -21,12 +21,12 @@ namespace Framadate\Migration;
 use Framadate\Utils;
 
 /**
- * This migration alter the comment table to set a length to the name column.
+ * This migration adds the field Value_Max on the poll table.
  *
  * @package Framadate\Migration
- * @version 1.0
+ * @version 0.9
  */
-class Alter_Comment_table_for_name_length implements Migration {
+class AddColumn_ValueMax_In_poll_For_1_1 implements Migration {
     function __construct() {
     }
 
@@ -36,7 +36,7 @@ class Alter_Comment_table_for_name_length implements Migration {
      * @return string The description of the migration class
      */
     function description() {
-        return 'Alter the comment table to set a length to the name column.';
+        return 'Add column "ValueMax" in table "vote" for version 0.9';
     }
 
     /**
@@ -51,20 +51,21 @@ class Alter_Comment_table_for_name_length implements Migration {
     }
 
     /**
-     * This methode is called only one time in the migration page.
+     * This method is called only one time in the migration page.
      *
      * @param \PDO $pdo The connection to database
      * @return bool true is the execution succeeded
      */
     function execute(\PDO $pdo) {
-        $this->alterCommentTable($pdo);
+        $this->alterPollTable($pdo);
 
         return true;
     }
 
-    private function alterCommentTable(\PDO $pdo) {
+    private function alterPollTable(\PDO $pdo) {
         $pdo->exec('
-        ALTER TABLE `' . Utils::table('comment') . '`
-        CHANGE `name` `name` VARCHAR( 64 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ;');
+        ALTER TABLE `' . Utils::table('poll') . '`
+        ADD `ValueMax` TINYINT,
+	ADD CHECK (ValueMax > 0)');
     }
 }

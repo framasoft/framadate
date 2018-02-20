@@ -27,7 +27,6 @@ use Framadate\Utils;
  * @version 0.8
  */
 class From_0_0_to_0_8_Migration implements Migration {
-
     function __construct() {
     }
 
@@ -72,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `sondage` (
   `titre` text,
   `id_sondage_admin` char(24) DEFAULT NULL,
   `date_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_fin` timestamp NOT NULL DEFAULT \'0000-00-00 00:00:00\',
+  `date_fin` timestamp NOT NULL,
   `format` varchar(2) DEFAULT NULL,
   `mailsonde` tinyint(1) DEFAULT \'0\',
   `statut` int(11) NOT NULL DEFAULT \'1\' COMMENT \'1 = actif ; 0 = inactif ; \',

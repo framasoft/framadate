@@ -1,4 +1,18 @@
+# Pré-requis
+- Apache
+- MySQL ou PostgreSQL
+- PHP 5.6+
+- [Composer](https://getcomposer.org/)
+
 # Pré-installation
+
+## Composer
+
+Pour installer les dépendances nécessaires au bon fonctionnement du projet, vous devez lancer la commande suivante :
+
+```sh
+    composer install
+```
 
 ## Base de données
 
@@ -35,17 +49,19 @@ Il faut utiliser [Composer](https://getcomposer.org/) avant d'effectuer l'instal
 Ensuite ``composer install`` ou ``php composer.phar install``
 
 
+À noter que pour que l'installation se déroule correctement, MySQL doit être lancé avec le paramètre `[NO_ZERO_DATE](https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sqlmode_no_zero_date)` désactivé. Il vous faudra aller le supprimer du fichier de configuration `my.cnf`.
+
 # Installation
 
-Pour installer l'application Framadate, rendez-vous sur la page http://monsite/ ; vous serez redirigé vers un outil de
-vérification de l'état de l'installation qui vous permettra, une fois les prérequis remplis, d'accèder au formulaire de
-paramètrage.
+Pour installer l'application Framadate, rendez-vous sur la page http://monsite/ ; vous serez redirigé vers un outil de vérification de l'état de l'installation qui vous permettra, une fois les prérequis remplis, d'accèder au formulaire de paramètrage.
+
+Le champ `* Chaîne de connexion` contient la variable `<HOST>` qui doit être remplacée par le nom d'hôte de votre base de données, par exemple `localhost`. Il contient également la variable `<SCHEMA>` qui doit être remplacée par le nom de la base de données que vous allez utiliser. Si vous avez suivi les recommandations précédente, ça devrait être `framadate_db`.
 
 Une fois le formulaire rempli et envoyé, un script va générer le fichier `app/inc/config.php` puis vous rediriger vers la page de migration.
 
 La page de migration s'occupe :
 - D'installer toute la base de données (tables + données d'exemple)
-- De mettre à jour la base de données lors des mises à jour de l'applciation.
+- De mettre à jour la base de données lors des mises à jour de l'application.
 
 ! Attention, le chargement de la page de migration peut prendre du temps étant donné qu'elle applique toutes les mises à jours requises !
 

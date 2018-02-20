@@ -27,7 +27,6 @@ use Framadate\Utils;
  * @version 0.9
  */
 class From_0_8_to_0_9_Migration implements Migration {
-
     function __construct() {
     }
 
@@ -90,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
   `admin_name`      VARCHAR(64) DEFAULT NULL,
   `admin_mail`      VARCHAR(128) DEFAULT NULL,
   `creation_date`   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `end_date`        TIMESTAMP NOT NULL DEFAULT \'0000-00-00 00:00:00\',
+  `end_date`        TIMESTAMP NOT NULL,
   `format`          VARCHAR(1) DEFAULT NULL,
   `editable`        TINYINT(1) DEFAULT \'0\',
   `receiveNewVotes` TINYINT(1) DEFAULT \'0\',
@@ -265,14 +264,14 @@ VALUE (?,?,?)');
                 $slots[] = $slot;
             } else { // Date poll
                 $values = explode('@', $atomicSlot);
-                if ($lastSlot == null || $lastSlot->title !== $values[0]) {
+                if ($lastSlot === null || $lastSlot->title !== $values[0]) {
                     $lastSlot = new \stdClass();
                     $lastSlot->poll_id = $sujet->id_sondage;
                     $lastSlot->title = $values[0];
-                    $lastSlot->moments = count($values) == 2 ? $values[1] : '-';
+                    $lastSlot->moments = count($values) === 2 ? $values[1] : '-';
                     $slots[] = $lastSlot;
                 } else {
-                    $lastSlot->moments .= ',' . (count($values) == 2 ? $values[1] : '-');
+                    $lastSlot->moments .= ',' . (count($values) === 2 ? $values[1] : '-');
                 }
             }
         }

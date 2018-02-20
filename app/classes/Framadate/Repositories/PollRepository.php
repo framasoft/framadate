@@ -6,23 +6,22 @@ use Framadate\Utils;
 use PDO;
 
 class PollRepository extends AbstractRepository {
-
     function __construct(FramaDB $connect) {
         parent::__construct($connect);
     }
 
     public function insertPoll($poll_id, $admin_poll_id, $form) {
         $sql = 'INSERT INTO `' . Utils::table('poll') . '`
-          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_hash, results_publicly_visible)
-          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?,?,?)';
+          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_hash, results_publicly_visible,ValueMax)
+          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?,?,?,?)';
         $prepared = $this->prepare($sql);
-        $prepared->execute(array($poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, $form->editable, $form->receiveNewVotes, $form->receiveNewComments, $form->hidden, $form->password_hash, $form->results_publicly_visible));
+        $prepared->execute([$poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, ($form->editable>=0 && $form->editable<=2) ? $form->editable : 0, $form->receiveNewVotes ? 1 : 0, $form->receiveNewComments ? 1 : 0, $form->hidden ? 1 : 0, $form->password_hash, $form->results_publicly_visible ? 1 : 0,$form->ValueMax]);
     }
 
     function findById($poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
-        $prepared->execute(array($poll_id));
+        $prepared->execute([$poll_id]);
         $poll = $prepared->fetch();
         $prepared->closeCursor();
 
@@ -32,7 +31,7 @@ class PollRepository extends AbstractRepository {
     public function findByAdminId($admin_poll_id) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
 
-        $prepared->execute(array($admin_poll_id));
+        $prepared->execute([$admin_poll_id]);
         $poll = $prepared->fetch();
         $prepared->closeCursor();
 
@@ -42,7 +41,7 @@ class PollRepository extends AbstractRepository {
     public function existsById($poll_id) {
         $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
-        $prepared->execute(array($poll_id));
+        $prepared->execute([$poll_id]);
 
         return $prepared->rowCount() > 0;
     }
@@ -50,7 +49,7 @@ class PollRepository extends AbstractRepository {
     public function existsByAdminId($admin_poll_id) {
         $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
 
-        $prepared->execute(array($admin_poll_id));
+        $prepared->execute([$admin_poll_id]);
 
         return $prepared->rowCount() > 0;
     }
@@ -58,7 +57,7 @@ class PollRepository extends AbstractRepository {
     function update($poll) {
         $prepared = $this->prepare('UPDATE `' . Utils::table('poll') . '` SET title=?, admin_name=?, admin_mail=?, description=?, end_date=?, active=?, editable=?, hidden=?, password_hash=?, results_publicly_visible=? WHERE id = ?');
 
-        return $prepared->execute([$poll->title, $poll->admin_name, $poll->admin_mail, $poll->description, $poll->end_date, $poll->active, $poll->editable, $poll->hidden, $poll->password_hash, $poll->results_publicly_visible, $poll->id]);
+        return $prepared->execute([$poll->title, $poll->admin_name, $poll->admin_mail, $poll->description, $poll->end_date, $poll->active, ($poll->editable>=0 && $poll->editable<=2) ? $poll->editable  : 0, $poll->hidden ? 1 : 0, $poll->password_hash, $poll->results_publicly_visible ? 1 : 0, $poll->id]);
     }
 
     function deleteById($poll_id) {
@@ -124,7 +123,7 @@ SELECT p.*,
      */
     public function findAllByAdminMail($mail) {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_mail = :admin_mail');
-        $prepared->execute(array('admin_mail' => $mail));
+        $prepared->execute(['admin_mail' => $mail]);
 
         return $prepared->fetchAll();
     }
@@ -145,9 +144,9 @@ SELECT count(1) nb
    AND (:name = "" OR p.admin_name LIKE :name)
  ORDER BY p.title ASC');
 
-        $poll = $search == null ? '' : $search['poll'] . '%';
-        $title = $search == null ? '' : '%' . $search['title'] . '%';
-        $name = $search == null ? '' : '%' . $search['name'] . '%';
+        $poll = $search === null ? '' : $search['poll'] . '%';
+        $title = $search === null ? '' : '%' . $search['title'] . '%';
+        $name = $search === null ? '' : '%' . $search['name'] . '%';
         $prepared->bindParam(':id', $poll, PDO::PARAM_STR);
         $prepared->bindParam(':title', $title, PDO::PARAM_STR);
         $prepared->bindParam(':name', $name, PDO::PARAM_STR);
@@ -162,5 +161,4 @@ SELECT count(1) nb
 
         return $count->nb;
     }
-
 }

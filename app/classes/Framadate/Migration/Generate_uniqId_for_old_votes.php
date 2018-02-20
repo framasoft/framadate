@@ -28,7 +28,6 @@ use Framadate\Utils;
  * @version 0.9
  */
 class Generate_uniqId_for_old_votes implements Migration {
-
     function __construct() {
     }
 
@@ -52,7 +51,6 @@ class Generate_uniqId_for_old_votes implements Migration {
      * @return bool true is the execution succeeded
      */
     function execute(\PDO $pdo) {
-
         $pdo->beginTransaction();
         $this->generateUniqIdsForEmptyOnes($pdo);
         $pdo->commit();
@@ -79,5 +77,4 @@ UPDATE `' . Utils::table('vote') . '`
                              ]);
         }
     }
-
 }

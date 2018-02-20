@@ -24,8 +24,7 @@ use Smarty;
  * This class helps to clean all inputs from the users or external services.
  */
 class InstallService {
-
-    private $fields = array(
+    private $fields = [
         // General
         'appName' => 'Framadate',
         'appMail' => '',
@@ -39,7 +38,7 @@ class InstallService {
         'dbPassword' => '',
         'dbPrefix' => 'fd_',
         'migrationTable' => 'framadate_migration'
-    );
+    ];
 
     function __construct() {}
 
@@ -101,10 +100,10 @@ class InstallService {
      * @return array
      */
     function ok() {
-        return array(
+        return [
             'status' => 'OK',
             'msg' => __f('Installation', 'Ended', Utils::get_server_name())
-        );
+        ];
     }
 
     /**
@@ -112,14 +111,13 @@ class InstallService {
      * @return array
      */
     function error($msg) {
-        return array(
+        return [
             'status' => 'ERROR',
             'code' => $msg
-        );
+        ];
     }
 
     public function getFields() {
         return $this->fields;
     }
-
 }

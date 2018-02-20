@@ -19,7 +19,7 @@
 
 // Fully qualified domain name of your webserver.
 // If this is unset or empty, the servername is determined automatically.
-// You *have to set this* if you are running Framedate behind a reverse proxy.
+// You *have to set this* if you are running Framadate behind a reverse proxy.
 // const APP_URL = '<www.mydomain.fr>';
 
 // Application name
@@ -40,7 +40,7 @@ const DB_PASSWORD = '<database password>';
 // Database server name, leave empty to use a socket
 const DB_CONNECTION_STRING = 'mysql:host=<database host>;dbname=<database name>;port=<database port>';
 
-// Name of the table that store migration script already executed
+// Name of the table that stores migration script already executed
 const MIGRATION_TABLE = 'framadate_migration';
 
 // Table name prefix
@@ -61,7 +61,7 @@ $ALLOWED_LANGUAGES = [
     'br' => 'Brezhoneg',
 ];
 
-// Nom et emplacement du fichier image contenant le titre
+// Path to image file with the title
 const IMAGE_TITRE = 'images/logo-framadate.png';
 
 // Relative path to favicon
@@ -76,7 +76,7 @@ const USE_REMOTE_USER =  true;
 // Path to the log file
 const LOG_FILE = 'admin/stdout.log';
 
-// Days (after expiration date) before purge a poll
+// Days (after expiration date) before purging a poll
 const PURGE_DELAY = 60;
 
 // Max slots per poll
@@ -93,7 +93,7 @@ $config = [
     /* home */
     'show_what_is_that' => true,            // display "how to use" section
     'show_the_software' => true,            // display technical information about the software
-    'show_cultivate_your_garden' => true,   // display "developpement and administration" information
+    'show_cultivate_your_garden' => true,   // display "development and administration" information
     /* create_classic_poll.php / create_date_poll.php */
     'default_poll_duration' => 180,         // default values for the new poll duration (number of days).
     /* create_classic_poll.php */

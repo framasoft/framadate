@@ -20,6 +20,7 @@ namespace Framadate\Services;
 
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
+use Framadate\Exception\ConcurrentVoteException;
 use Framadate\Form;
 use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
@@ -27,7 +28,6 @@ use Framadate\Security\Token;
 use Framadate\Utils;
 
 class PollService {
-
     private $connect;
     private $logService;
 
@@ -77,14 +77,27 @@ class PollService {
 
     function allSlotsByPoll($poll) {
         $slots = $this->slotRepository->listByPollId($poll->id);
-        if ($poll->format == 'D') {
+        if ($poll->format === 'D') {
             $this->sortSlorts($slots);
         }
         return $slots;
     }
 
+    /**
+     * @param $poll_id
+     * @param $vote_id
+     * @param $name
+     * @param $choices
+     * @param $slots_hash
+     * @throws ConcurrentEditionException
+     * @throws ConcurrentVoteException
+     * @return bool
+     */
     public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash) {
         $poll = $this->findById($poll_id);
+
+        // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
+        $this->checkMaxVotes($choices, $poll, $poll_id);
 
         // Check if slots are still the same
         $this->checkThatSlotsDidntChanged($poll, $slots_hash);
@@ -94,8 +107,21 @@ class PollService {
         return $this->voteRepository->update($poll_id, $vote_id, $name, $choices);
     }
 
+    /**
+     * @param $poll_id
+     * @param $name
+     * @param $choices
+     * @param $slots_hash
+     * @throws AlreadyExistsException
+     * @throws ConcurrentEditionException
+     * @throws ConcurrentVoteException
+     * @return \stdClass
+     */
     function addVote($poll_id, $name, $choices, $slots_hash) {
         $poll = $this->findById($poll_id);
+
+        // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
+        $this->checkMaxVotes($choices, $poll, $poll_id);
 
         // Check if slots are still the same
         $this->checkThatSlotsDidntChanged($poll, $slots_hash);
@@ -114,14 +140,13 @@ class PollService {
     function addComment($poll_id, $name, $comment) {
         if ($this->commentRepository->exists($poll_id, $name, $comment)) {
             return true;
-        } else {
-            return $this->commentRepository->insert($poll_id, $name, $comment);
         }
+            return $this->commentRepository->insert($poll_id, $name, $comment);
     }
 
     /**
      * @param Form $form
-     * @return string
+     * @return array
      */
     function createPoll(Form $form) {
         // Generate poll IDs, loop while poll ID already exists
@@ -131,13 +156,11 @@ class PollService {
                 $poll_id = $this->random(16);
             } while ($this->pollRepository->existsById($poll_id));
             $admin_poll_id = $poll_id . $this->random(8);
-
         } else { // User have choosen the poll id
             $poll_id = $form->id;
             do {
                 $admin_poll_id = $this->random(24);
             } while ($this->pollRepository->existsByAdminId($admin_poll_id));
-
         }
 
         // Insert poll + slots
@@ -148,7 +171,7 @@ class PollService {
 
         $this->logService->log('CREATE_POLL', 'id:' . $poll_id . ', title: ' . $form->title . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
 
-        return array($poll_id, $admin_poll_id);
+        return [$poll_id, $admin_poll_id];
     }
 
     public function findAllByAdminMail($mail) {
@@ -164,10 +187,10 @@ class PollService {
                     $result['inb'][$i] = 0;
                     $result['y'][$i] = 0;
                 }
-                if ($choice == 1) {
+                if ($choice === "1") {
                     $result['inb'][$i]++;
                 }
-                if ($choice == 2) {
+                if ($choice === "2") {
                     $result['y'][$i]++;
                 }
             }
@@ -177,7 +200,7 @@ class PollService {
     }
 
     function splitSlots($slots) {
-        $splitted = array();
+        $splitted = [];
         foreach ($slots as $slot) {
             $obj = new \stdClass();
             $obj->day = $slot->title;
@@ -200,7 +223,7 @@ class PollService {
     }
 
     function splitVotes($votes) {
-        $splitted = array();
+        $splitted = [];
         foreach ($votes as $vote) {
             $obj = new \stdClass();
             $obj->id = $vote->id;
@@ -212,10 +235,6 @@ class PollService {
         }
 
         return $splitted;
-    }
-
-    private function random($length) {
-        return Token::getToken($length);
     }
 
     /**
@@ -234,6 +253,20 @@ class PollService {
     }
 
     /**
+     * @return mixed
+     */
+    public function sortSlorts(&$slots) {
+        uasort($slots, function ($a, $b) {
+            return $a->title > $b->title;
+        });
+        return $slots;
+    }
+
+    private function random($length) {
+        return Token::getToken($length);
+    }
+
+    /**
      * This method checks if the hash send by the user is the same as the computed hash.
      *
      * @param $poll /stdClass The poll
@@ -248,13 +281,24 @@ class PollService {
     }
 
     /**
-     * @return mixed
+     * This method checks if the votes doesn't conflicts the maximum votes constraint
+     *
+     * @param $user_choice
+     * @param \stdClass $poll
+     * @param string $poll_id
+     * @throws ConcurrentVoteException
      */
-    public function sortSlorts(&$slots) {
-        uasort($slots, function ($a, $b) {
-            return $a->title > $b->title;
-        });
-        return $slots;
+    private function checkMaxVotes($user_choice, $poll, $poll_id) {
+        $votes = $this->allVotesByPollId($poll_id);
+        if (count($votes) <= 0) {
+            return;
+        }
+        $best_choices = $this->computeBestChoices($votes);
+        foreach ($best_choices['y'] as $i => $nb_choice) {
+            // if for this option we have reached maximum value and user wants to add itself too
+            if ($nb_choice >= $poll->ValueMax && $user_choice[$i] === "2") {
+                throw new ConcurrentVoteException();
+            }
+        }
     }
-
 }

@@ -103,7 +103,7 @@
 
                 <p>
                     {__('3rd section', 'To participate in the software development, suggest improvements or simply download it, please visit ')}
-                    <a href="https://git.framasoft.org/framasoft/framadate">{__('3rd section', 'the development site')}</a>.
+                    <a href="https://framagit.org/framasoft/framadate">{__('3rd section', 'the development site')}</a>.
                 </p>
                 <br/>
 

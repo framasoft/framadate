@@ -11,7 +11,6 @@ namespace Framadate\Security;
  * @package Framadate\Security
  */
 class PasswordHasher {
-
     /**
      * Hash a password
      *

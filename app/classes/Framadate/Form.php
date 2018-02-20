@@ -20,7 +20,6 @@ namespace Framadate;
 
 class Form
 {
-
     public $title;
     public $id;
     public $description;
@@ -29,6 +28,7 @@ class Form
     public $format;
     public $end_date;
     public $choix_sondage;
+    public $ValueMax;
 
     /**
      * Tells if users can modify their choices.
@@ -48,6 +48,12 @@ class Form
 
     /**
      * If true, only the poll maker can see the poll's results
+     * @var boolean
+     */
+    public $use_ValueMax;
+
+    /**
+     * if true, there will be a limit of voters per option
      * @var boolean
      */
     public $hidden;
@@ -87,7 +93,7 @@ class Form
     }
 
     public function clearChoices() {
-        $this->choices = array();
+        $this->choices = [];
     }
 
     public function addChoice(Choice $choice)
@@ -102,7 +108,6 @@ class Form
 
     public function sortChoices()
     {
-        usort($this->choices, array('Framadate\Choice', 'compare'));
+        usort($this->choices, ['Framadate\Choice', 'compare']);
     }
-
 }

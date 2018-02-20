@@ -16,13 +16,13 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-use Framadate\Services\LogService;
-use Framadate\Services\PollService;
+use Framadate\Message;
 use Framadate\Services\InputService;
+use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\NotificationService;
+use Framadate\Services\PollService;
 use Framadate\Services\SecurityService;
-use Framadate\Message;
 
 include_once __DIR__ . '/../app/inc/init.php';
 
@@ -33,7 +33,8 @@ $poll_id = null;
 $poll = null;
 $message = null;
 $result = false;
-$comments = array();
+$comments = [];
+$is_admin = false;
 
 /* Services */
 /*----------*/
@@ -53,19 +54,26 @@ if (!empty($_POST['poll'])) {
     $poll = $pollService->findById($poll_id);
 }
 
+if (!empty($_POST['poll_admin'])) {
+    $admin_poll_id = filter_input(INPUT_POST, 'poll_admin', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
+    if (strlen($admin_poll_id) === 24) {
+        $is_admin = ($pollService->findByAdminId($admin_poll_id) !== null);
+    }
+}
+
 if (!$poll) {
     $message = new Message('error',  __('Error', 'This poll doesn\'t exist !'));
-} else if ($poll && !$securityService->canAccessPoll($poll)) {
+} else if ($poll && !$securityService->canAccessPoll($poll) && !$is_admin) {
     $message = new Message('error',  __('Password', 'Wrong password'));
 } else {
     $name = $inputService->filterName($_POST['name']);
     $comment = $inputService->filterComment($_POST['comment']);
 
-    if ($name == null) {
+    if ($name === null) {
         $message = new Message('danger', __('Error', 'The name is invalid.'));
     }
 
-    if ($message == null) {
+    if ($message === null) {
         // Add comment
         $result = $pollService->addComment($poll_id, $name, $comment);
         if ($result) {
@@ -82,6 +90,6 @@ $smarty->error_reporting = E_ALL & ~E_NOTICE;
 $smarty->assign('comments', $comments);
 $comments_html = $smarty->fetch('part/comments_list.tpl');
 
-$response = array('result' => $result, 'message' => $message, 'comments' => $comments_html);
+$response = ['result' => $result, 'message' => $message, 'comments' => $comments_html];
 
 echo json_encode($response);

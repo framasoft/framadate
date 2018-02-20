@@ -5,7 +5,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
  * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
- * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft https://git.framasoft.org/framasoft/framadate/)
+ * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft https://framagit.org/framasoft/framadate/)
  *
  * =============================
  *
@@ -14,7 +14,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
  *
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
- * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft https://git.framasoft.org/framasoft/framadate/)
+ * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft https://framagit.org/framasoft/framadate/)
  */
 use Framadate\Choice;
 use Framadate\Services\InputService;
@@ -66,7 +66,6 @@ switch ($step) {
         $smarty->display('error.tpl');
         exit;
 
-
     case 2:
         // Step 2/4 : Select dates of the poll
 
@@ -95,7 +94,6 @@ switch ($step) {
         $smarty->display('create_date_poll_step_2.tpl');
         exit;
 
-
     case 3:
         // Step 3/4 : Confirm poll creation
 
@@ -121,7 +119,7 @@ switch ($step) {
             $_SESSION['form']->clearChoices();
 
             // Reorder moments to deal with suppressed dates
-            $moments = array();
+            $moments = [];
             $i = 0;
             while(count($moments) < count($_POST['days'])) {
                 if (!empty($_POST['horaires' . $i])) {
@@ -129,7 +127,6 @@ switch ($step) {
                 }
                 $i++;
             }
-
 
             for ($i = 0; $i < count($_POST['days']); $i++) {
                 $day = $_POST['days'][$i];
@@ -178,18 +175,16 @@ switch ($step) {
         $smarty->display('create_classic_poll_step3.tpl');
         exit;
 
-
     case 4:
         // Step 4 : Data prepare before insert in DB
 
         // Define expiration date
         $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
 
-
         if (!empty($enddate)) {
             $registredate = explode('/', $enddate);
 
-            if (is_array($registredate) && count($registredate) == 3) {
+            if (is_array($registredate) && count($registredate) === 3) {
                 $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
 
                 if ($time < $min_expiry_time) {
@@ -211,7 +206,6 @@ switch ($step) {
         $ids = $pollService->createPoll($_SESSION['form']);
         $poll_id = $ids[0];
         $admin_poll_id = $ids[1];
-
 
         // Send confirmation by mail if enabled
         if ($config['use_smtp'] === true) {

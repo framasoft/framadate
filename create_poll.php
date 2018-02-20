@@ -27,7 +27,6 @@ include_once __DIR__ . '/app/inc/init.php';
 
 const GO_TO_STEP_2 = 'gotostep2';
 
-
 /* Services */
 /*----------*/
 
@@ -42,8 +41,8 @@ if (!isset($_SESSION['form'])) {
 }
 
 // Type de sondage
-if (isset($_GET['type']) && $_GET['type'] == 'date' ||
-    isset($_POST['type']) && $_POST['type'] == 'date'
+if (isset($_GET['type']) && $_GET['type'] === 'date' ||
+    isset($_POST['type']) && $_POST['type'] === 'date'
 ) {
     $poll_type = 'date';
     $_SESSION['form']->choix_sondage = $poll_type;
@@ -56,10 +55,14 @@ if (isset($_GET['type']) && $_GET['type'] == 'date' ||
 $goToStep2 = filter_input(INPUT_POST, GO_TO_STEP_2, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '/^(date|classic)$/']]);
 if ($goToStep2) {
     $title = $inputService->filterTitle($_POST['title']);
+
+    $use_ValueMax = isset($_POST['use_ValueMax']) ? $inputService->filterBoolean($_POST['use_ValueMax']) : false;
+    $ValueMax = $use_ValueMax === true ? $inputService->filterInteger($_POST['ValueMax']) : null;
+
     $use_customized_url = isset($_POST['use_customized_url']) ? $inputService->filterBoolean($_POST['use_customized_url']) : false;
-    $customized_url = $use_customized_url == true ? $inputService->filterId($_POST['customized_url']) : null;
+    $customized_url = $use_customized_url === true ? $inputService->filterId($_POST['customized_url']) : null;
     $name = $inputService->filterName($_POST['name']);
-    $mail = $config['use_smtp'] == true ? $inputService->filterMail($_POST['mail']) : null;
+    $mail = $config['use_smtp'] === true ? $inputService->filterMail($_POST['mail']) : null;
     $description = $inputService->filterDescription($_POST['description']);
     $editable = $inputService->filterEditable($_POST['editable']);
     $receiveNewVotes = isset($_POST['receiveNewVotes']) ? $inputService->filterBoolean($_POST['receiveNewVotes']) : false;
@@ -78,10 +81,13 @@ if ($goToStep2) {
     $error_on_password = false;
     $error_on_password_repeat = false;
     $error_on_customized_url = false;
+    $error_on_ValueMax = false;
 
     $_SESSION['form']->title = $title;
     $_SESSION['form']->id = $customized_url;
     $_SESSION['form']->use_customized_url = $use_customized_url;
+    $_SESSION['form']->use_ValueMax = $use_ValueMax;
+    $_SESSION['form']->ValueMax = $ValueMax;
     $_SESSION['form']->admin_name = $name;
     $_SESSION['form']->admin_mail = $mail;
     $_SESSION['form']->description = $description;
@@ -92,8 +98,7 @@ if ($goToStep2) {
     $_SESSION['form']->use_password = ($use_password !== null);
     $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
 
-
-    if ($config['use_smtp'] == true) {
+    if ($config['use_smtp'] === true) {
         if (empty($mail)) {
             $error_on_mail = true;
         }
@@ -112,6 +117,13 @@ if ($goToStep2) {
         }
     }
 
+	if ($use_ValueMax) {
+		if ($use_ValueMax === false) {
+            $error_on_ValueMax = true;
+			$error_on_customized_url_msg = __('Error', 'Mauvaise valeur');
+        }
+	}
+
     if ($name !== $_POST['name']) {
         $error_on_name = true;
     }
@@ -121,7 +133,7 @@ if ($goToStep2) {
     }
 
     // Si pas d'erreur dans l'adresse alors on change de page vers date ou autre
-    if ($config['use_smtp'] == true) {
+    if ($config['use_smtp'] === true) {
         $email_OK = $mail && !$error_on_mail;
     } else {
         $email_OK = true;
@@ -130,15 +142,14 @@ if ($goToStep2) {
     if ($use_password) {
         if (empty($password)) {
             $error_on_password = true;
-        } else if ($password != $password_repeat) {
+        } else if ($password !== $password_repeat) {
             $error_on_password_repeat = true;
         }
     }
 
     if ($title && $name && $email_OK && !$error_on_title && !$error_on_customized_url && !$error_on_description && !$error_on_name
-        && !$error_on_password && !$error_on_password_repeat
+        && !$error_on_password && !$error_on_password_repeat &&!$error_on_ValueMax
     ) {
-
         // If no errors, we hash the password if needed
         if ($_SESSION['form']->use_password) {
             $_SESSION['form']->password_hash = PasswordHasher::hash($password);
@@ -147,16 +158,15 @@ if ($goToStep2) {
             $_SESSION['form']->results_publicly_visible = null;
         }
 
-        if ($goToStep2 == 'date') {
+        if ($goToStep2 === 'date') {
             header('Location:create_date_poll.php');
             exit();
         }
 
-        if ($goToStep2 == 'classic') {
+        if ($goToStep2 === 'classic') {
             header('Location:create_classic_poll.php');
             exit();
         }
-
     } else {
         // Title Erreur !
         $title = __('Error', 'Error!') . ' - ' . __('Step 1', 'Poll creation (1 on 3)');
@@ -167,43 +177,48 @@ if ($goToStep2) {
 }
 
 // Prepare error messages
-$errors = array(
-    'title' => array(
+$errors = [
+    'title' => [
         'msg' => '',
         'aria' => '',
         'class' => ''
-    ),
-    'customized_url' => array(
+    ],
+    'customized_url' => [
         'msg' => '',
         'aria' => '',
         'class' => ''
-    ),
-    'description' => array(
+    ],
+    'description' => [
         'msg' => '',
         'aria' => '',
         'class' => ''
-    ),
-    'name' => array(
+    ],
+    'name' => [
         'msg' => '',
         'aria' => '',
         'class' => ''
-    ),
-    'email' => array(
+    ],
+    'email' => [
         'msg' => '',
         'aria' => '',
         'class' => ''
-    ),
-    'password' => array(
+    ],
+    'password' => [
         'msg' => '',
         'aria' => '',
         'class' => ''
-    ),
-    'password_repeat' => array(
+    ],
+	'ValueMax' => [
         'msg' => '',
         'aria' => '',
         'class' => ''
-    )
-);
+    ],
+    'password_repeat' => [
+        'msg' => '',
+        'aria' => '',
+        'class' => ''
+    ],
+];
 
 if (!empty($_POST[GO_TO_STEP_2])) {
     if (empty($_POST['title'])) {
@@ -258,6 +273,11 @@ if (!empty($_POST[GO_TO_STEP_2])) {
         $errors['password_repeat']['class'] = ' has-error';
         $errors['password_repeat']['msg'] = __('Error', 'Passwords do not match');
     }
+	if ($error_on_ValueMax) {
+        $errors['ValueMax']['aria'] = 'aria-describeby="poll_ValueMax" ';
+        $errors['ValueMax']['class'] = ' has-error';
+        $errors['ValueMax']['msg'] = __('Error', 'error on ValueMax');
+    }
 }
 
 $useRemoteUser = USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']);
@@ -273,6 +293,8 @@ $smarty->assign('poll_type', $poll_type);
 $smarty->assign('poll_title', Utils::fromPostOrDefault('title', $_SESSION['form']->title));
 $smarty->assign('customized_url', Utils::fromPostOrDefault('customized_url', $_SESSION['form']->id));
 $smarty->assign('use_customized_url', Utils::fromPostOrDefault('use_customized_url', $_SESSION['form']->use_customized_url));
+$smarty->assign('ValueMax', Utils::fromPostOrDefault('ValueMax', $_SESSION['form']->ValueMax));
+$smarty->assign('use_ValueMax', Utils::fromPostOrDefault('use_ValueMax', $_SESSION['form']->use_ValueMax));
 $smarty->assign('poll_description', !empty($_POST['description']) ? $_POST['description'] :  $_SESSION['form']->description);
 $smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
 $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));

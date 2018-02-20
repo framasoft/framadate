@@ -19,7 +19,6 @@
 
 namespace Framadate;
 
-
 /**
  * Class Editable
  *

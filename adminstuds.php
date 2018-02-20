@@ -19,15 +19,16 @@
 use Framadate\Editable;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
+use Framadate\Exception\ConcurrentVoteException;
 use Framadate\Exception\MomentAlreadyExistsException;
 use Framadate\Message;
+use Framadate\Security\PasswordHasher;
 use Framadate\Services\AdminPollService;
 use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
-use Framadate\Services\PollService;
 use Framadate\Services\NotificationService;
-use Framadate\Security\PasswordHasher;
+use Framadate\Services\PollService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -79,25 +80,25 @@ if (isset($_POST['update_poll_info'])) {
         'rules', 'expiration_date', 'name', 'hidden', 'removePassword', 'password']);
 
     // Update the right poll field
-    if ($field == 'title') {
+    if ($field === 'title') {
         $title = $inputService->filterTitle($_POST['title']);
         if ($title) {
             $poll->title = $title;
             $updated = true;
         }
-    } elseif ($field == 'admin_mail') {
+    } elseif ($field === 'admin_mail') {
         $admin_mail = $inputService->filterMail($_POST['admin_mail']);
         if ($admin_mail) {
             $poll->admin_mail = $admin_mail;
             $updated = true;
         }
-    } elseif ($field == 'description') {
+    } elseif ($field === 'description') {
         $description = $inputService->filterDescription($_POST['description']);
         if ($description) {
             $poll->description = $description;
             $updated = true;
         }
-    } elseif ($field == 'rules') {
+    } elseif ($field === 'rules') {
         $rules = strip_tags($_POST['rules']);
         switch ($rules) {
             case 0:
@@ -121,39 +122,58 @@ if (isset($_POST['update_poll_info'])) {
                 $updated = true;
                 break;
         }
-    } elseif ($field == 'expiration_date') {
+    } elseif ($field === 'expiration_date') {
         $expiration_date = $inputService->filterDate($_POST['expiration_date']);
         if ($expiration_date) {
             $poll->end_date = $expiration_date;
             $updated = true;
         }
-    } elseif ($field == 'name') {
+    } elseif ($field === 'name') {
         $admin_name = $inputService->filterName($_POST['name']);
         if ($admin_name) {
             $poll->admin_name = $admin_name;
             $updated = true;
         }
-    } elseif ($field == 'hidden') {
+    } elseif ($field === 'hidden') {
         $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
-        if ($hidden != $poll->hidden) {
+        if ($hidden !== $poll->hidden) {
             $poll->hidden = $hidden;
+	    $poll->results_publicly_visible = false;
             $updated = true;
         }
-    } elseif ($field == 'removePassword') {
+    } elseif ($field === 'removePassword') {
         $removePassword = isset($_POST['removePassword']) ? $inputService->filterBoolean($_POST['removePassword']) : false;
         if ($removePassword) {
             $poll->results_publicly_visible = false;
             $poll->password_hash = null;
             $updated = true;
         }
-    } elseif ($field == 'password') {
+    } elseif ($field === 'password') {
         $password = isset($_POST['password']) ? $_POST['password'] : null;
+
+        /**
+         * Did the user choose results to be publicly visible ?
+         */
         $resultsPubliclyVisible = isset($_POST['resultsPubliclyVisible']) ? $inputService->filterBoolean($_POST['resultsPubliclyVisible']) : false;
+        /**
+         * If there's one, save the password
+         */
         if (!empty($password)) {
             $poll->password_hash =  PasswordHasher::hash($password);
             $updated = true;
         }
-        if ($resultsPubliclyVisible != $poll->results_publicly_visible) {
+
+        /**
+         * If not pasword was set and the poll should be hidden, hide the results
+         */
+        if ($poll->password_hash === null || $poll->hidden === true) {
+            $poll->results_publicly_visible = false;
+        }
+
+        /**
+         * We don't have a password, the poll is hidden and we change the results public visibility
+         */
+        if ($resultsPubliclyVisible !== $poll->results_publicly_visible && $poll->password_hash !== null && $poll->hidden === false) {
             $poll->results_publicly_visible = $resultsPubliclyVisible;
             $updated = true;
         }
@@ -190,11 +210,11 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     if (empty($editedVote)) {
         $message = new Message('danger', __('Error', 'Something is going wrong...'));
     }
-    if (count($choices) != count($_POST['choices'])) {
+    if (count($choices) !== count($_POST['choices'])) {
         $message = new Message('danger', __('Error', 'There is a problem with your choices'));
     }
 
-    if ($message == null) {
+    if ($message === null) {
         // Update vote
         try {
             $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices, $slots_hash);
@@ -205,6 +225,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             }
         } catch (ConcurrentEditionException $cee) {
             $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
+        } catch (ConcurrentVoteException $cve) {
+            $message = new Message('danger', __('Error', "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."));
         }
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
@@ -212,14 +234,14 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
     $slots_hash = $inputService->filterMD5($_POST['control']);
 
-    if ($name == null) {
+    if ($name === null) {
         $message = new Message('danger', __('Error', 'The name is invalid.'));
     }
-    if (count($choices) != count($_POST['choices'])) {
+    if (count($choices) !== count($_POST['choices'])) {
         $message = new Message('danger', __('Error', 'There is a problem with your choices'));
     }
 
-    if ($message == null) {
+    if ($message === null) {
         // Add vote
         try {
             $result = $pollService->addVote($poll_id, $name, $choices, $slots_hash);
@@ -232,6 +254,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             $message = new Message('danger', __('Error', 'You already voted'));
         } catch (ConcurrentEditionException $cee) {
             $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
+        } catch (ConcurrentVoteException $cve) {
+            $message = new Message('danger', __('Error', "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."));
         }
     }
 }
@@ -400,7 +424,6 @@ if (isset($_POST['confirm_add_column'])) {
 $slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
-
 
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);

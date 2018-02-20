@@ -21,7 +21,13 @@
             <div class="col-md-5 hidden-print">
                 <div class="btn-group pull-right">
                     <button onclick="print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> {__('PollInfo', 'Print')}</button>
-                    <a href="{$SERVER_URL|html}exportcsv.php?poll={$poll_id|html}" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> {__('PollInfo', 'Export to CSV')}</a>
+                    {if $admin}
+                        <a href="{$SERVER_URL|html}exportcsv.php?admin={$admin_poll_id|html}" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> {__('PollInfo', 'Export to CSV')}</a>
+                    {else}
+                        {if !$hidden}
+                            <a href="{$SERVER_URL|html}exportcsv.php?poll={$poll_id|html}" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> {__('PollInfo', 'Export to CSV')}</a>
+                        {/if}
+                    {/if}
                     {if $admin}
                         {if !$expired}
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
@@ -149,8 +155,8 @@
                             {/if}
                             <div id="password_information">
                                 <div class="input-group">
-                                    <input type="checkbox" id="resultsPubliclyVisible" name="resultsPubliclyVisible" {if $poll->results_publicly_visible}checked="checked"{/if}/>
-                                    <label for="resultsPubliclyVisible">{__('PollInfo', 'Results are visible')}</label>
+                                    <input type="checkbox" id="resultsPubliclyVisible" name="resultsPubliclyVisible" {if $poll->results_publicly_visible && $poll->hidden == false && (!empty($poll->password_hash))}checked="checked" {elseif ($poll->hidden == true || empty($poll->password_hash))} disabled="disabled"{/if}/>
+                                    <label for="resultsPubliclyVisible">{__('PollInfo', 'Only votes are protected')}</label>
                                 </div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="password" name="password"/>

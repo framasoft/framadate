@@ -4,12 +4,11 @@ namespace Framadate\Services;
 use PHPMailer;
 
 class MailService {
-
-    private $smtp_allowed;
-
     const DELAY_BEFORE_RESEND = 300;
 
     const MAILSERVICE_KEY = 'mailservice';
+
+    private $smtp_allowed;
 
     private $logService;
 
@@ -23,7 +22,7 @@ class MailService {
     }
 
     function send($to, $subject, $body, $msgKey = null) {
-        if ($this->smtp_allowed == true && $this->canSendMsg($msgKey)) {
+        if ($this->smtp_allowed === true && $this->canSendMsg($msgKey)) {
             $mail = new PHPMailer(true);
             $mail->isSMTP();
 
@@ -62,7 +61,7 @@ class MailService {
     }
 
     function canSendMsg($msgKey) {
-        if ($msgKey == null) {
+        if ($msgKey === null) {
             return true;
         }
 
@@ -71,6 +70,5 @@ class MailService {
         }
         return !isset($_SESSION[self::MAILSERVICE_KEY][$msgKey]) || time() - $_SESSION[self::MAILSERVICE_KEY][$msgKey] > self::DELAY_BEFORE_RESEND;
     }
-
 }
  

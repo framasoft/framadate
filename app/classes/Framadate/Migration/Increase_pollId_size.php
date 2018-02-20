@@ -4,7 +4,6 @@ namespace Framadate\Migration;
 use Framadate\Utils;
 
 class Increase_pollId_size implements Migration {
-
     function __construct() {
     }
 

@@ -3,9 +3,7 @@
 
 namespace Framadate\Services;
 
-
 class SessionService {
-
     /**
      * Get value of $key in $section, or $defaultValue
      *
@@ -59,8 +57,7 @@ class SessionService {
 
     private function initSectionIfNeeded($section) {
         if (!isset($_SESSION[$section])) {
-            $_SESSION[$section] = array();
+            $_SESSION[$section] = [];
         }
     }
-
 } 

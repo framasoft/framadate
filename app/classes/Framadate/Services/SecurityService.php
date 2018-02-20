@@ -1,11 +1,10 @@
 <?php
 namespace Framadate\Services;
 
-use Framadate\Security\Token;
 use Framadate\Security\PasswordHasher;
+use Framadate\Security\Token;
 
 class SecurityService {
-
     function __construct() {
     }
 
@@ -65,10 +64,9 @@ class SecurityService {
         $currentPassword = isset($_SESSION['poll_security'][$poll->id]) ? $_SESSION['poll_security'][$poll->id] : null;
         if (!empty($currentPassword) && PasswordHasher::verify($currentPassword, $poll->password_hash)) {
             return true;
-        } else {
+        }  
             unset($_SESSION['poll_security'][$poll->id]);
             return false;
-        }
     }
 
     /**
@@ -86,9 +84,8 @@ class SecurityService {
 
     private function ensureSessionPollSecurityIsCreated() {
         if (!isset($_SESSION['poll_security'])) {
-            $_SESSION['poll_security'] = array();
+            $_SESSION['poll_security'] = [];
         }
     }
-
 }
  

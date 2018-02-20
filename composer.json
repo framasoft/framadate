@@ -1,29 +1,83 @@
 {
     "name": "framasoft/framadate",
     "description": "Application to facilitate the schedule of events or classic polls",
-    "keywords": [
-        "poll"
-    ],
+    "homepage": "https://framadate.org/",
+    "keywords": ["poll", "framadate"],
     "version": "0.9.0",
     "license": "CECILL-B",
 
     "type": "project",
+    "support": {
+        "issues": "https://framagit.org/framasoft/framadate/issues"
+    },
+    "authors": [
+        {
+            "name": "Thomas CITHAREL",
+            "email": "tcit@tcit.fr",
+            "role": "Maintainer"
+        },
+        {
+            "name": "JosephK",
+            "email": "joseph@framasoft.org",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Olivier PEREZ",
+            "email": "olivier@olivierperez.fr",
+            "role": "Former maintainer"
+        },
+        {
+            "name": "Antonin MURTIN",
+            "email": "antonin.murtin@gmail.com",
+            "role": "Former developper"
+        },
+        {
+            "name": "Simon LEBLANC",
+            "role": "Former developper",
+            "email": "contact@leblanc-simon.eu"
+        },
+        {
+            "name": "Pierre-Yves GOSSET",
+            "role": "Former developper",
+            "email": "pyg@framasoft.org"
+        },
+        {
+            "name": "Guilhem BORGHESI",
+            "role": "Studs developper",
+            "email": "borghesi@unistra.fr"
+        },
+        {
+            "name": "Raphaël DROZ",
+            "role": "Studs developper",
+            "email": "raphael.droz@gmail.com"
+        }
+    ],
 
     "require": {
-        "smarty/smarty": "3.1.21",
+        "php": ">=5.6.0",
+        "ext-pdo": "*",
+        "smarty/smarty": "^3.1",
         "o80/i18n": "dev-develop",
-        "phpmailer/phpmailer": "~5.2",
-        "erusev/parsedown": "1.6.0",
-	"ircmaxell/password-compat": "dev-master"
+        "phpmailer/phpmailer": "^5.2",
+        "ircmaxell/password-compat": "dev-master",
+        "roave/security-advisories": "dev-master",
+        "erusev/parsedown": "1.6.0"
     },
 
     "require-dev": {
-        "phpunit/phpunit": "^4.5"
+        "phpunit/phpunit": "^5.7",
+        "friendsofphp/php-cs-fixer": "~2.0"
     },
 
     "autoload": {
         "psr-4": {
             "Framadate\\": "app/classes/Framadate/"
+        }
+    },
+
+    "config": {
+        "platform": {
+            "php": "5.6.0"
         }
     }
 }

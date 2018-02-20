@@ -1,4 +1,5 @@
 .htaccess
+.htdigest
 .htpasswd
 admin/stdout.log
 composer.phar
@@ -8,6 +9,7 @@ app/inc/config.php
 vendor
 cache/
 tpl_c/
+.php_cs.cache
 
 # Temp files
 *~

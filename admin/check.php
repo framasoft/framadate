@@ -35,7 +35,7 @@ if (!file_exists(ROOT_DIR . 'vendor/autoload.php') || !file_exists(ROOT_DIR . 'v
 require_once ROOT_DIR . 'vendor/autoload.php';
 require_once ROOT_DIR . 'vendor/o80/i18n/src/shortcuts.php';
 require_once ROOT_DIR . 'app/inc/constants.php';
-if (session_id() == '') {
+if (session_id() === '') {
     session_start();
 }
 $ALLOWED_LANGUAGES = [
@@ -49,7 +49,6 @@ $ALLOWED_LANGUAGES = [
 ];
 const DEFAULT_LANGUAGE = 'en';
 require_once ROOT_DIR . 'app/inc/i18n.php';
-require_once '../app/inc/php_version.php';
 
 /**
  * Function to sort messages by type (priorise errors on warning, warning on info, etc.)
@@ -60,27 +59,26 @@ require_once '../app/inc/php_version.php';
  */
 function compareCheckMessage(Message $a, Message $b)
 {
-    $values = array(
+    $values = [
         'danger' => 0,
         'warning' => 1,
         'info' => 2,
         'success' => 3
-    );
+    ];
     $vA = $values[$a->type];
     $vB = $values[$b->type];
 
-    if ($vA == $vB) {
+    if ($vA === $vB) {
         return 0;
     }
     return ($vA < $vB) ? -1 : 1;
 }
 
-
 /**
  * Vars
  */
-$messages = array();
-$inc_directory = ROOT_DIR. 'app/inc/';
+$messages = [];
+$inc_directory = ROOT_DIR . 'app/inc/';
 $conf_filename = $inc_directory . 'config.php';
 
 /**
@@ -88,10 +86,10 @@ $conf_filename = $inc_directory . 'config.php';
  */
 
 // PHP Version
-if (PHP_VERSION_ID >= php_string_to_version_id(PHP_NEEDED_VERSION)) {
-    $messages[] = new Message('info', __f('Check','PHP version %s is enough (needed at least PHP %s).',phpversion(), PHP_NEEDED_VERSION));
+if (version_compare(PHP_VERSION, PHP_NEEDED_VERSION)) {
+    $messages[] = new Message('info', __f('Check','PHP version %s is enough (needed at least PHP %s).', PHP_MAJOR_VERSION . "." . PHP_MINOR_VERSION, PHP_NEEDED_VERSION));
 } else {
-    $messages[] = new Message('danger', __f('Check','Your PHP version (%s) is too old. This application needs at least PHP %s.',phpversion(), PHP_NEEDED_VERSION));
+    $messages[] = new Message('danger', __f('Check','Your PHP version (%s) is too old. This application needs at least PHP %s.', phpversion(), PHP_NEEDED_VERSION));
 }
 
 // INTL extension
@@ -101,8 +99,10 @@ if (extension_loaded('intl')) {
     $messages[] = new Message('danger', __('Check','You need to enable the PHP Intl extension.'));
 }
 
-// Is template compile dir writable ?
-if (is_writable(ROOT_DIR . COMPILE_DIR)) {
+// Is template compile dir exists and writable ?
+if (!file_exists(ROOT_DIR . COMPILE_DIR)) {
+    $messages[] = new Message('danger', __f('Check','The template compile directory (%s) doesn\'t exist in "%s". Retry the installation process.', COMPILE_DIR, realpath(ROOT_DIR)));
+} elseif (is_writable(ROOT_DIR . COMPILE_DIR)) {
     $messages[] = new Message('info', __f('Check','The template compile directory (%s) is writable.', realpath(ROOT_DIR . COMPILE_DIR)));
 } else {
     $messages[] = new Message('danger', __f('Check','The template compile directory (%s) is not writable.', realpath(ROOT_DIR . COMPILE_DIR)));
@@ -124,6 +124,12 @@ if (extension_loaded('openssl')) {
     $messages[] = new Message('warning', __('Check','Consider enabling the PHP extension OpenSSL for increased security.'));
 }
 
+if (ini_get('session.cookie_httponly') === '1') {
+    $messages[] = new Message('info', __('Check', 'Cookies are served from HTTP only.'));
+} else {
+    $messages[] = new Message('warning', __('Check', "Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript."));
+}
+
 // Datetime
 $timezone = ini_get('date.timezone');
 if (!empty($timezone)) {
@@ -132,14 +138,13 @@ if (!empty($timezone)) {
     $messages[] = new Message('warning', __('Check','Consider setting the date.timezone in php.ini.'));
 }
 
-
 // The percentage of steps needed to be ready to launch the application
 $errors = 0;
 $warnings = 0;
 foreach ($messages as $message) {
-    if ($message->type == 'danger') {
+    if ($message->type === 'danger') {
         $errors++;
-    } else if ($message->type == 'warning') {
+    } else if ($message->type === 'warning') {
         $warnings++;
     }
 }
@@ -174,7 +179,7 @@ usort($messages, 'compareCheckMessage');
                 <div class="input-group input-group-sm pull-right col-xs-12 col-sm-2">
                     <select name="lang" class="form-control" title="<?=__('Language selector', 'Select the language')?>" >
                         <?php foreach ($ALLOWED_LANGUAGES as $lang_key => $language) { ?>
-                        <option lang="fr" <?php if (substr($lang_key, 0, 2)==$locale) { echo 'selected';} ?> value="<?=substr($lang_key, 0, 2)?>"><?=$language?></option>
+                        <option lang="fr" <?php if (substr($lang_key, 0, 2)===$locale) { echo 'selected';} ?> value="<?=substr($lang_key, 0, 2)?>"><?=$language?></option>
                         <?php } ?>
                     </select>
                 <span class="input-group-btn">
@@ -196,9 +201,9 @@ usort($messages, 'compareCheckMessage');
                 <div>
                     <?php
                         foreach ($messages as $message) {
-                            echo '<div class="alert alert-'. $message->type .'" role="alert">';
+                            echo '<div class="alert alert-' . $message->type . '" role="alert">';
                             echo Utils::htmlEscape($message->message);
-                            echo '<span class="sr-only">'. $message->type .'</span>';
+                            echo '<span class="sr-only">' . $message->type . '</span>';
                             echo '</div>';
                          }
                     ?>
@@ -208,7 +213,7 @@ usort($messages, 'compareCheckMessage');
                 <a class="btn btn-info" role="button" href=""><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <?= __('Check', 'Check again') ?></a>
                 <?php
                 if (!is_file($conf_filename)) {
-                    if ($errors == 0) {
+                    if ($errors === 0) {
                 ?>
                     <a class="btn btn-primary" role="button" href="<?= Utils::get_server_name() . 'admin/install.php' ?>"><span class=" glyphicon glyphicon-arrow-right" aria-hidden="true"></span> <?= __('Check', 'Continue the installation') ?></a>
                 <?php

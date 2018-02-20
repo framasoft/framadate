@@ -27,7 +27,6 @@ use Framadate\Utils;
  * @version 0.9
  */
 class AddColumn_hidden_In_poll_For_0_9 implements Migration {
-
     function __construct() {
     }
 
@@ -73,5 +72,4 @@ class AddColumn_hidden_In_poll_For_0_9 implements Migration {
         ALTER TABLE `' . Utils::table('poll') . '`
         ADD `hidden` TINYINT( 1 ) NOT NULL DEFAULT "0"');
     }
-
 }

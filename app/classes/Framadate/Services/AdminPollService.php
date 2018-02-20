@@ -12,7 +12,6 @@ use Framadate\Utils;
  * @package Framadate\Services
  */
 class AdminPollService {
-
     private $connect;
     private $pollService;
     private $logService;
@@ -36,9 +35,8 @@ class AdminPollService {
         global $config;
         if ($poll->end_date > $poll->creation_date) {
             return $this->pollRepository->update($poll);
-        } else {
+        }  
             return false;
-        }
     }
 
     /**
@@ -120,9 +118,9 @@ class AdminPollService {
         $slots = $this->pollService->allSlotsByPoll($poll);
 
         // We can't delete the last slot
-        if ($poll->format == 'D' && count($slots) === 1 && strpos($slots[0]->moments, ',') === false) {
+        if ($poll->format === 'D' && count($slots) === 1 && strpos($slots[0]->moments, ',') === false) {
             return false;
-        } elseif ($poll->format == 'A' && count($slots) === 1) {
+        } elseif ($poll->format === 'A' && count($slots) === 1) {
             return false;
         }
 
@@ -135,8 +133,8 @@ class AdminPollService {
             $moments = explode(',', $aSlot->moments);
 
             foreach ($moments as $rowMoment) {
-                if ($datetime == $aSlot->title) {
-                    if ($moment == $rowMoment) {
+                if ($datetime === $aSlot->title) {
+                    if ($moment === $rowMoment) {
                         $indexToDelete = $index;
                     } else {
                         $newMoments[] = $rowMoment;
@@ -173,7 +171,7 @@ class AdminPollService {
 
         // Search the index of the slot to delete
         foreach ($slots as $aSlot) {
-            if ($slot_title == $aSlot->title) {
+            if ($slot_title === $aSlot->title) {
                 $indexToDelete = $index;
             }
             $index++;
@@ -209,19 +207,18 @@ class AdminPollService {
         // Begin transaction
         $this->connect->beginTransaction();
 
-        if ($result->slot != null) {
+        if ($result->slot !== null) {
             $slot = $result->slot;
             $moments = explode(',', $slot->moments);
 
             // Check if moment already exists (maybe not necessary)
-            if (in_array($new_moment, $moments)) {
+            if (in_array($new_moment, $moments, true)) {
                 throw new MomentAlreadyExistsException();
             }
 
             // Update found slot
             $moments[] = $new_moment;
             $this->slotRepository->update($poll_id, $datetime, implode(',', $moments));
-
         } else {
             $this->slotRepository->insert($poll_id, $datetime, $new_moment);
         }
@@ -230,7 +227,6 @@ class AdminPollService {
 
         // Commit transaction
         $this->connect->commit();
-
     }
 
     /**
@@ -252,11 +248,10 @@ class AdminPollService {
         $titles = array_map(function ($slot) {
             return $slot->title;
         }, $slots);
-        if (in_array($title, $titles)) {
+        if (in_array($title, $titles, true)) {
             // The moment already exists
             throw new MomentAlreadyExistsException();
         }
-
 
         // Begin transaction
         $this->connect->beginTransaction();
@@ -268,7 +263,6 @@ class AdminPollService {
 
         // Commit transaction
         $this->connect->commit();
-
     }
 
     /**
@@ -293,7 +287,7 @@ class AdminPollService {
             $rowDatetime = $slot->title;
             $moments = explode(',', $slot->moments);
 
-            if ($datetime == $rowDatetime) {
+            if ($datetime === $rowDatetime) {
                 // Here we have to insert at the end of a slot
                 $result->insert += count($moments);
                 $result->slot = $slot;
@@ -301,13 +295,11 @@ class AdminPollService {
             } elseif ($datetime < $rowDatetime) {
                 // We have to insert before this slot
                 break;
-            } else {
+            }  
                 $result->insert += count($moments);
-            }
         }
 
         return $result;
     }
-
 }
  
