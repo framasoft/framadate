@@ -89,9 +89,9 @@ class PollService {
      * @param $name
      * @param $choices
      * @param $slots_hash
-     * @return bool
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
+     * @return bool
      */
     public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash) {
         $poll = $this->findById($poll_id);
@@ -112,10 +112,10 @@ class PollService {
      * @param $name
      * @param $choices
      * @param $slots_hash
-     * @return \stdClass
      * @throws AlreadyExistsException
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
+     * @return \stdClass
      */
     function addVote($poll_id, $name, $choices, $slots_hash) {
         $poll = $this->findById($poll_id);
