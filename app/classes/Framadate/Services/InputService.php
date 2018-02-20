@@ -76,6 +76,14 @@ class InputService {
     public function filterMD5($control) {
         return filter_var($control, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => MD5_REGEX]]);
     }
+    
+    public function filterInteger($int) {
+          if (filter_var($int, FILTER_VALIDATE_INT)) {
+              return $int;
+       } else {
+      return  null;
+      }
+    }
 
     public function filterBoolean($boolean) {
         return !!filter_var($boolean, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_TRUE_REGEX]]);

@@ -30,6 +30,9 @@ use Framadate\Services\SecurityService;
 use Framadate\Services\SessionService;
 use Framadate\Utils;
 
+
+
+
 include_once __DIR__ . '/app/inc/init.php';
 
 /* Constantes */
@@ -231,5 +234,6 @@ $smarty->assign('hidden', $poll->hidden);
 $smarty->assign('accessGranted', $accessGranted);
 $smarty->assign('resultPubliclyVisible', $resultPubliclyVisible);
 $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
+$smarty->assign('ValueMax', $poll->ValueMax);
 
 $smarty->display('studs.tpl');

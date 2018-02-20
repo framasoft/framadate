@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
+
 // FRAMADATE version
 const VERSION = '1.0';
 

@@ -116,6 +116,41 @@
 
                 <div class="collapse" id="optionnal">
 
+		    
+		    {* Value MAX *}
+			
+			               
+	
+		    <div class="form-group">
+                        <label for="use_valueMax" class="col-sm-4 control-label">
+			{__('Step 1', 'Value Max')}<br/>
+                        </label>
+                        <div class="col-sm-8">
+                            <div class="checkbox">
+                                <label>
+                                    <input id="use_ValueMax" name="use_ValueMax" type="checkbox" >         
+						{__('Step 1', "Limit the ammount of voters per option")}  
+			        </label>
+                            </div>
+                        </div>
+		     </div>
+
+		    <div class="form-group">
+		      <div id="ValueMax"{if !$use_ValueMax} class="hidden"{/if}>
+			
+                            <div class="col-sm-offset-4 col-sm-8">
+				    <label >   
+                                        <input id="ValueMax" type="number" min= "0" name="ValueMax">
+      
+                                        {__('Step 1', "ValueMax instructions")}
+                                    </label>
+			
+			    </div>
+			</div>
+		   </div>
+		
+	
+
                     {* Poll identifier *}
 
                     <div class="form-group {$errors['customized_url']['class']}">
