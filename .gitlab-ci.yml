@@ -18,6 +18,9 @@ test:
     - mkdir tpl_c
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run
     - vendor/bin/phpunit --bootstrap app/tests/bootstrap.php --debug app/tests
+  cache:
+    paths:
+      - vendor/
 
 # Create artifacts on master
 pages:
