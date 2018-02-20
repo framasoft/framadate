@@ -219,17 +219,17 @@
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                         </div>
                     </td>
-				
-			
+
+
                     {$i = 0}
-                    {foreach $slots as $slot} 
+                    {foreach $slots as $slot}
                         {foreach $slot->moments as $moment}
 
-				
+
 
                             <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$headersH[$i]}">
                                 <ul class="list-unstyled choice">
-				{if $best_choices['y'][$i] lt $poll->ValueMax || $poll->ValueMax eq NULL}
+                                    {if $best_choices['y'][$i] lt $poll->ValueMax || $poll->ValueMax eq NULL}
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
                                         <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
@@ -242,7 +242,7 @@
                                             (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                         </label>
                                     </li>
-					
+
 				{/if}
 
                                     <li class="no">
@@ -257,7 +257,7 @@
                                 </ul>
                             </td>
 
-				
+
 
                             {$i = $i+1}
                         {/foreach}

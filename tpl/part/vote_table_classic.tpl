@@ -190,7 +190,7 @@
                             </ul>
                         </td>
 						{$i = $i+1}
-                        
+
                     {/foreach}
                     <td><button type="submit" class="btn btn-success btn-md" name="save" title="{__('Poll results', 'Save the choices')}">{__('Generic', 'Save')}</button></td>
                 </tr>

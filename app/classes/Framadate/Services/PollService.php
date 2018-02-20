@@ -113,7 +113,7 @@ class PollService {
     function addComment($poll_id, $name, $comment) {
         if ($this->commentRepository->exists($poll_id, $name, $comment)) {
             return true;
-        }  
+        }
             return $this->commentRepository->insert($poll_id, $name, $comment);
     }
 
@@ -160,10 +160,10 @@ class PollService {
                     $result['inb'][$i] = 0;
                     $result['y'][$i] = 0;
                 }
-                if ($choice === 1) {
+                if ($choice === "1") {
                     $result['inb'][$i]++;
                 }
-                if ($choice === 2) {
+                if ($choice === "2") {
                     $result['y'][$i]++;
                 }
             }
