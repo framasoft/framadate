@@ -154,10 +154,10 @@ if (isset($_POST['update_poll_info'])) {
             $poll->password_hash =  PasswordHasher::hash($password);
             $updated = true;
         }
-	if ($poll->password_hash == null || $poll->hidden == true){
+	if ($poll->password_hash === null || $poll->hidden === true){
 	    $poll->results_publicly_visible = false;
 	}
-        if ($resultsPubliclyVisible != $poll->results_publicly_visible && $poll->password_hash != null && $poll->hidden == false) {
+        if ($resultsPubliclyVisible !== $poll->results_publicly_visible && $poll->password_hash !== null && $poll->hidden === false) {
             $poll->results_publicly_visible = $resultsPubliclyVisible;
             $updated = true;
         }
