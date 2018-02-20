@@ -45,7 +45,7 @@
                 </div>
             {/if}
             <div class="form-group">
-                <button class="btn btn-default" type="submit" name="back">{__('adminstuds', 'Back to the poll')}</button>
+                <a href="{poll_url id=$admin_poll_id admin=true}" class="btn btn-default" name="back">{__('adminstuds', 'Back to the poll')}</a>
                 <button type="submit" name="confirm_add_column" class="btn btn-success">{__('adminstuds', 'Add a column')}</button>
             </div>
         </div>

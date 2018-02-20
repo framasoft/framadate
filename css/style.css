@@ -150,8 +150,20 @@ header form .input-group .input-group-btn {
 
 .poll-description {
     font-family: inherit;
-    white-space: pre-wrap;
     word-break: initial;
+}
+
+/** Description in markdown **/
+.form-group  .CodeMirror, .form-group  .CodeMirror-scroll {
+    min-height: 200px;
+}
+#description-form  .CodeMirror {
+    background-color: #f5f5f5;
+}
+
+
+.editor-toolbar {
+    background-color: #eee;
 }
 
 h4.control-label {

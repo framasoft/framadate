@@ -98,14 +98,19 @@
         $('#md-a-imgModalLabel').text($(this).attr('title'));
     });
     md_a_imgModal.find('.btn-primary').on('click', function () {
-        if (md_img.val() != '' && md_val.val() != '') {
-            $('#' + $(this).val()).val('[![' + md_text.val() + '](' + md_img.val() + ')](' + md_val.val() + ')');
-        } else if (md_img.val() != '') {
-            $('#' + $(this).val()).val('![' + md_text.val() + '](' + md_img.val() + ')');
-        } else if (md_val.val() != '') {
-            $('#' + $(this).val()).val('[' + md_text.val() + '](' + md_val.val() + ')');
+        var text = md_text.val();
+        var img = md_img.val();
+        var link = md_val.val();
+        var element = $('#' + $(this).val());
+        
+        if (img != '' && link != '') {
+            element.val('[![' + text + '](' + img + ')](' + link + ')');
+        } else if (img != '') {
+            element.val('![' + text + '](' + img + ')');
+        } else if (link != '') {
+            element.val('[' + (text?text:link) + '](' + link + ')');
         } else {
-            $('#' + $(this).val()).val(md_text.val());
+            element.val(text);
         }
         md_a_imgModal.modal('hide');
         md_img.val('');

@@ -7,7 +7,6 @@ If you want to work with us, **fork us on [framagit.org](https://framagit.org)**
 
 ![Français](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/20px-Flag_of_France.svg.png) **Framasoft utilise GitLab** pour le développement de ses logiciels libres. Nos dépôts Github ne sont que des mirroirs.
 Si vous souhaitez travailler avec nous, **forkez-nous sur [framagit.org](https://framagit.org)**. (l'inscription n'est pas nécessaire, vous pouvez vous connecter avec votre compte Github)
-
 ---
 
 # Installation
@@ -18,13 +17,13 @@ Un fichier est dédié à l'installation de framadate : [INSTALL.md](INSTALL.md)
 
 ## De votre côté
 
-1. Créer un compte sur [https://framagit.org](https://framagit.org)
-1. Créer un fork du projet principal : [Créer le fork](https://framagit.org/framasoft/framadate/forks/new)
-1. Créer une branche nommée feature/[Description]
+1. Créer un compte sur [https://git.framasoft.org](https://git.framasoft.org)
+1. Créer un fork du projet principal : [Créer le fork](https://git.framasoft.org/framasoft/framadate/fork/new)
+1. Créer une branche nommée feature/[Description] à partir de la branche **develop**
     * Où [Description] est une description en anglais très courte de ce qui va être fait
 1. Faire des commits dans votre branche
 1. Pusher la branche sur votre fork
-1. Demander une merge request
+1. Demander une merge request vers **develop**
 
 ## La suite se passe de notre côté
 

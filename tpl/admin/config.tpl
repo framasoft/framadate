@@ -94,4 +94,5 @@ $config = [
     'default_poll_duration' => 180,         // default values for the new poll duration (number of days).
     /* create_classic_poll.php */
     'user_can_add_img_or_link' => true,     // user can add link or URL when creating his poll.
+    'markdown_editor_by_default' => true    // The markdown editor for the description is enabled by default
 ];

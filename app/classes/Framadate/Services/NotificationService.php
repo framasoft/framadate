@@ -83,4 +83,4 @@ class NotificationService {
     {
        return $type >= self::UPDATE_POLL;
     }
-} 
+}

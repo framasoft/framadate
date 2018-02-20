@@ -286,6 +286,7 @@ $smarty->assign('title', $title);
 $smarty->assign('useRemoteUser', $useRemoteUser);
 $smarty->assign('errors', $errors);
 $smarty->assign('use_smtp', $config['use_smtp']);
+$smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
 $smarty->assign('goToStep2', GO_TO_STEP_2);
 
 $smarty->assign('poll_type', $poll_type);
@@ -294,7 +295,7 @@ $smarty->assign('customized_url', Utils::fromPostOrDefault('customized_url', $_S
 $smarty->assign('use_customized_url', Utils::fromPostOrDefault('use_customized_url', $_SESSION['form']->use_customized_url));
 $smarty->assign('ValueMax', Utils::fromPostOrDefault('ValueMax', $_SESSION['form']->ValueMax));
 $smarty->assign('use_ValueMax', Utils::fromPostOrDefault('use_ValueMax', $_SESSION['form']->use_ValueMax));
-$smarty->assign('poll_description', Utils::fromPostOrDefault('description', $_SESSION['form']->description));
+$smarty->assign('poll_description', !empty($_POST['description']) ? $_POST['description'] :  $_SESSION['form']->description);
 $smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
 $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));
 $smarty->assign('poll_editable', Utils::fromPostOrDefault('editable', $_SESSION['form']->editable));

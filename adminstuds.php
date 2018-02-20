@@ -444,5 +444,6 @@ $smarty->assign('hidden', false);
 $smarty->assign('accessGranted', true);
 $smarty->assign('resultPubliclyVisible', true);
 $smarty->assign('editedVoteUniqueId', '');
+$smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
 
 $smarty->display('studs.tpl');
