@@ -27,7 +27,6 @@ use Framadate\Utils;
  * @version 0.9
  */
 class AddColumn_ValueMax_In_poll_For_1_1 implements Migration {
-
     function __construct() {
     }
 
@@ -69,5 +68,4 @@ class AddColumn_ValueMax_In_poll_For_1_1 implements Migration {
         ADD `ValueMax` TINYINT,
 	ADD CHECK (ValueMax > 0)');
     }
-
 }

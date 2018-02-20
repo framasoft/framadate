@@ -57,7 +57,7 @@ if ($goToStep2) {
     $title = $inputService->filterTitle($_POST['title']);
 
     $use_ValueMax = isset($_POST['use_ValueMax']) ? $inputService->filterBoolean($_POST['use_ValueMax']) : false;
-    $ValueMax = $use_ValueMax == true ? $inputService->filterInteger($_POST['ValueMax']) : null;
+    $ValueMax = $use_ValueMax === true ? $inputService->filterInteger($_POST['ValueMax']) : null;
 
     $use_customized_url = isset($_POST['use_customized_url']) ? $inputService->filterBoolean($_POST['use_customized_url']) : false;
     $customized_url = $use_customized_url === true ? $inputService->filterId($_POST['customized_url']) : null;
@@ -82,7 +82,6 @@ if ($goToStep2) {
     $error_on_password_repeat = false;
     $error_on_customized_url = false;
     $error_on_ValueMax = false;
-
 
     $_SESSION['form']->title = $title;
     $_SESSION['form']->id = $customized_url;
@@ -124,7 +123,6 @@ if ($goToStep2) {
 			$error_on_customized_url_msg = __('Error', 'Mauvaise valeur');
         }
 	}
-
 
     if ($name !== $_POST['name']) {
         $error_on_name = true;
