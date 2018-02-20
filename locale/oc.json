@@ -396,6 +396,7 @@
         "Adding vote failed": "Fracàs de l’apondon d’un vòte",
         "You already voted": "Avètz ja votat",
         "Poll has been updated before you vote": "Lo sondatge es estat mes a jorn abans vòstre vòte",
+        "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.",
         "Comment failed": "Fracàs del comentari",
         "You can't create a poll with hidden results with the following edition option:": "Podètz pas crear de sondatges amb de resultats amagats amb las opcions d’edicion seguentas : ",
         "Failed to delete column": "Fracàs de la supression de colomna",

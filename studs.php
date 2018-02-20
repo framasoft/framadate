@@ -19,6 +19,7 @@
 use Framadate\Editable;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
+use Framadate\Exception\ConcurrentVoteException;
 use Framadate\Message;
 use Framadate\Security\Token;
 use Framadate\Services\InputService;
@@ -146,6 +147,8 @@ if ($accessGranted) {
                 }
             } catch (ConcurrentEditionException $cee) {
                 $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
+            } catch (ConcurrentVoteException $cve) {
+                $message = new Message('danger', __('Error', "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."));
             }
         }
     } elseif (isset($_POST['save'])) { // Add a new vote
@@ -179,6 +182,8 @@ if ($accessGranted) {
                 $message = new Message('danger', __('Error', 'You already voted'));
             } catch (ConcurrentEditionException $cee) {
                 $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
+            } catch (ConcurrentVoteException $cve) {
+                $message = new Message('danger', __('Error', "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."));
             }
         }
     }
@@ -231,5 +236,6 @@ $smarty->assign('hidden', $poll->hidden);
 $smarty->assign('accessGranted', $accessGranted);
 $smarty->assign('resultPubliclyVisible', $resultPubliclyVisible);
 $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
+$smarty->assign('ValueMax', $poll->ValueMax);
 
 $smarty->display('studs.tpl');

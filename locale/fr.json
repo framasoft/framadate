@@ -247,7 +247,10 @@
         "Password confirmation": "Confirmation",
         "Permissions": "Permissions",
         "Optional parameters": "Paramètres facultatifs",
-        "Go to step 2": "Aller à l'étape 2"
+        "Go to step 2": "Aller à l'étape 2",
+	"Limit the ammount of voters per option":"limiter le nombre de votants par option",
+	"Value Max": "Valeur Maximale",
+	"ValueMax instructions": "Votants maximum par option"
     },
     "Step 2": {
         "Back to step 1": "Revenir à l’étape 1",
@@ -396,6 +399,7 @@
         "Adding vote failed": "Échec de l'ajout d'un vote",
         "You already voted": "Vous avez déjà voté",
         "Poll has been updated before you vote": "Le sondage a été mis à jour avant votre vote",
+        "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Votre vote n'a pas été pris en compte, car quelqu'un a voté entre temps et cela entre en conflit avec vos choix et les conditions du sondage. Merci de réessayer.",
         "Comment failed": "Échec du commentaire",
         "You can't create a poll with hidden results with the following edition option:": "Vous ne pouvez pas créer de sondage avec résulats cachés avec les options d'édition suivantes : ",
         "Failed to delete column": "Échec de la suppression de colonne",
