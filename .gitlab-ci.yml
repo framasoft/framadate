@@ -1,19 +1,35 @@
 image: php
 stages:
+  - test
   - deploy
   - funky
-pages:
-  stage: deploy
-  before_script:
+
+# install zip, git, composer on each build
+before_script:
   - apt-get update -yqq
   - apt-get install zip unzip git -yqq
   - curl --silent --show-error https://getcomposer.org/installer | php
+
+# Run php-cs-fixer and phpunit on all branches
+test:
+  stage: test
+  script:
+    - php composer.phar install -o  --no-interaction --no-progress --prefer-dist
+    - mkdir tpl_c
+    - php vendor/bin/php-cs-fixer fix --verbose --dry-run
+    - vendor/bin/phpunit --bootstrap app/tests/bootstrap.php --debug app/tests
+  cache:
+    paths:
+      - vendor/
+
+# Create artifacts on master
+pages:
+  stage: deploy
   script:
   - latesttag=$(git describe --tags)
   - git checkout ${latesttag}
-  - php composer.phar install -o  --no-interaction --no-progress --prefer-dist
-  - php vendor/bin/php-cs-fixer fix --verbose --dry-run
-  - vendor/bin/phpunit --bootstrap app/tests/bootstrap.php --debug app/tests
+  - php composer.phar install -o  --no-interaction --no-progress --prefer-dist --no-dev
+  - php composer.phar dump-autoload --optimize --no-dev --classmap-authoritative
   - mkdir tpl_c
   - zip -r latest.zip .
   - mkdir .public
@@ -23,14 +39,11 @@ pages:
     paths:
     - public
   only:
-  - master
+    - master
 
+# Deploy on funky
 funky:
   stage: funky
-  before_script:
-  - apt-get update -y -qq
-  - DEBIAN_FRONTEND=noninteractive apt-get install -y -qq zip unzip git
-  - curl --silent --show-error https://getcomposer.org/installer | php
   script:
   - git checkout funky
   - php composer.phar install
