@@ -396,6 +396,7 @@
         "Adding vote failed": "Aggiunta del voto fallito",
         "You already voted": "IT_Vous avez déjà voté",
         "Poll has been updated before you vote": "IT_Le sondage a été mis à jour avant votre vote",
+        "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.",
         "Comment failed": "Commento fallito",
         "You can't create a poll with hidden results with the following edition option:": "Non potete creare un sondaggio con i risultati nascosti con queste opzioni: ",
         "Failed to delete column": "Impossibile eliminare la colonna",

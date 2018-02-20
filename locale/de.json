@@ -396,6 +396,7 @@
         "Adding vote failed": "Stimmabgabe fehlgeschlagen",
         "You already voted": "Sie haben bereits abgestimmt",
         "Poll has been updated before you vote": "Die Abstimmung wurde vor Ihrer Stimmabgabe aktualisiert",
+        "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.",
         "Comment failed": "Abgabe des Kommentars gescheitert",
         "You can't create a poll with hidden results with the following edition option:": "Sie können mit der folgenden Editier-Option keine Umfrage mit versteckten Ergebnissen erzeugen:",
         "Failed to delete column": "Löschen der Spalte fehlgeschlagen",
