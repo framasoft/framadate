@@ -146,7 +146,7 @@ class PollService {
 
     /**
      * @param Form $form
-     * @return string
+     * @return array
      */
     function createPoll(Form $form) {
         // Generate poll IDs, loop while poll ID already exists
@@ -289,7 +289,11 @@ class PollService {
      * @throws ConcurrentVoteException
      */
     private function checkMaxVotes($user_choice, $poll, $poll_id) {
-        $best_choices = $this->computeBestChoices($this->allVotesByPollId($poll_id));
+        $votes = $this->allVotesByPollId($poll_id);
+        if (count($votes) <= 0) {
+            return;
+        }
+        $best_choices = $this->computeBestChoices($votes);
         foreach ($best_choices['y'] as $i => $nb_choice) {
             // if for this option we have reached maximum value and user wants to add itself too
             if ($nb_choice >= $poll->ValueMax && $user_choice[$i] === "2") {
