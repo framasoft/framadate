@@ -80,9 +80,8 @@ class InputService {
     public function filterInteger($int) {
           if (filter_var($int, FILTER_VALIDATE_INT)) {
               return $int;
-       } else {
+       }  
       return  null;
-      }
     }
 
     public function filterBoolean($boolean) {
