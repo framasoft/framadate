@@ -29,7 +29,7 @@ include_once __DIR__ . '/app/inc/init.php';
 /*---------*/
 $logService = new LogService();
 $pollService = new PollService($connect, $logService);
-$mailService = new MailService($config['use_smtp']);
+$mailService = new MailService($config['use_smtp'], $config['smtp_options']);
 $purgeService = new PurgeService($connect, $logService);
 
 if (is_file('bandeaux_local.php')) {
@@ -44,7 +44,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
     $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation.'));
     $smarty->display('error.tpl');
     exit;
-}  
+}
     // Min/Max archive date
     $min_expiry_time = $pollService->minExpiryDate();
     $max_expiry_time = $pollService->maxExpiryDate();

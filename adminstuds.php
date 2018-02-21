@@ -49,7 +49,7 @@ $logService = new LogService();
 $pollService = new PollService($connect, $logService);
 $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $inputService = new InputService();
-$mailService = new MailService($config['use_smtp']);
+$mailService = new MailService($config['use_smtp'], $config['smtp_options']);
 $notificationService = new NotificationService($mailService);
 
 /* PAGE */
