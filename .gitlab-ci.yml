@@ -56,6 +56,6 @@ funky:
   - if [ ! -z ${DEPLOYEMENT_KNOWN_HOSTS+x} ]; then echo -e "${DEPLOYEMENT_KNOWN_HOSTS}" > ${HOME}/.ssh/known_hosts; fi
   - eval `ssh-agent -s`
   - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then ssh-add <(echo "${DEPLOYEMENT_KEY}" | base64 --decode -i); fi
-  - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then rsync -a --delete --exclude admin/.stdout.log --exclude admin/.htpasswd --exclude app/inc/config.php --exclude stats/ --exclude errors/ public/ ${DEPLOYEMENT_USER}@${DEPLOYEMENT_HOST}:../../web/; fi
+  - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then rsync -a --delete --exclude admin/.stdout.log --exclude admin/.htpasswd --exclude app/inc/config.php --exclude stats/ --exclude error/ public/ ${DEPLOYEMENT_USER}@${DEPLOYEMENT_HOST}:../../web/; fi
   only:
     - funky
