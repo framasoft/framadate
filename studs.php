@@ -71,8 +71,9 @@ if (!empty($_GET['poll'])) {
 }
 
 if (!$poll) {
-    $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
-    $smarty->display('error.tpl');
+    $twig->render('error.twig', [
+        'error' => __('Error', 'This poll doesn\'t exist !'),
+    ]);
     exit;
 }
 
@@ -218,24 +219,23 @@ if ($resultPubliclyVisible || $accessGranted) {
     $comments = $pollService->allCommentsByPollId($poll_id);
 }
 
-// Assign data to template
-$smarty->assign('poll_id', $poll_id);
-$smarty->assign('poll', $poll);
-$smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
-$smarty->assign('expired', strtotime($poll->end_date) < time());
-$smarty->assign('deletion_date', strtotime($poll->end_date) + PURGE_DELAY * 86400);
-$smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
-$smarty->assign('slots_hash',  $pollService->hashSlots($slots));
-$smarty->assign('votes', $pollService->splitVotes($votes));
-$smarty->assign('best_choices', $pollService->computeBestChoices($votes));
-$smarty->assign('comments', $comments);
-$smarty->assign('editingVoteId', $editingVoteId);
-$smarty->assign('message', $message);
-$smarty->assign('admin', false);
-$smarty->assign('hidden', $poll->hidden);
-$smarty->assign('accessGranted', $accessGranted);
-$smarty->assign('resultPubliclyVisible', $resultPubliclyVisible);
-$smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
-$smarty->assign('ValueMax', $poll->ValueMax);
-
-$smarty->display('studs.tpl');
+echo $twig->render('studs.twig', [
+    'poll_id' => $poll_id,
+    'poll' => $poll,
+    'title' => __('Generic', 'Poll') . ' - ' . $poll->title,
+    'expired' => strtotime($poll->end_date) < time(),
+    'deletion_date' => strtotime($poll->end_date) + PURGE_DELAY * 86400,
+    'slots' => $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots,
+    'slots_hash' =>  $pollService->hashSlots($slots),
+    'votes' => $pollService->splitVotes($votes),
+    'best_choices' => $pollService->computeBestChoices($votes),
+    'comments' => $comments,
+    'editingVoteId' => $editingVoteId,
+    'message' => $message,
+    'admin' =>false,
+    'hidden' => $poll->hidden,
+    'accessGranted' => $accessGranted,
+    'resultPubliclyVisible' => $resultPubliclyVisible,
+    'editedVoteUniqueId' => $editedVoteUniqueId,
+    'ValueMax' => $poll->ValueMax,
+]);

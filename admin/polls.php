@@ -86,16 +86,15 @@ $count = $found['count'];
 $total = $found['total'];
 
 // Assign data to template
-$smarty->assign('polls', $polls);
-$smarty->assign('count', $count);
-$smarty->assign('total', $total);
-$smarty->assign('page', $page);
-$smarty->assign('pages', ceil($count / POLLS_PER_PAGE));
-$smarty->assign('poll_to_delete', $poll_to_delete);
-$smarty->assign('crsf', $securityService->getToken('admin'));
-$smarty->assign('search', $search);
-$smarty->assign('search_query', buildSearchQuery($search));
-
-$smarty->assign('title', __('Admin', 'Polls'));
-
-$smarty->display('admin/polls.tpl');
+echo $twig->render('admin/polls.twig', [
+    'polls' => $polls,
+    'count' => $count,
+    'total' => $total,
+    'page' => $page,
+    'pages' => ceil($count / POLLS_PER_PAGE),
+    'poll_to_delete' => $poll_to_delete,
+    'crsf' => $securityService->getToken('admin'),
+    'search' => $search,
+    'search_query' => buildSearchQuery($search),
+    'title' => __('Admin', 'Polls'),
+]);

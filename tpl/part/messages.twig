@@ -1,0 +1,25 @@
+{# Messages #}
+<div id="message-container">
+    {% if message is not empty %}
+        <div class="alert alert-dismissible alert-{{ message.type|raw}} hidden-print" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="{{__('Generic', 'Close')}}"><span aria-hidden="true">&times;</span></button>
+            {{message.message|raw}}
+            {% if message.link != null %}
+                <div class="input-group input-group-sm">
+                        <span class="input-group-btn">
+                            <a {% if message.linkTitle is not null %} title="{{ message.linkTitle | escape }}" {% endif %} class="btn btn-default btn-sm" href="{{ message.link }}">
+                                {% if message.linkIcon is not null %}<i class="glyphicon glyphicon-pencil"></i>{% if message.linkTitle is not null %}<span class="sr-only">{{ message.linkTitle|escape }}</span>{% endif %}{% endif %}
+                            </a>
+                        </span>
+                    <input type="text" aria-hidden="true" value="{{ message.link }}" class="form-control" readonly="readonly" >
+                </div>
+                {% if message.includeTemplate is not null %}
+                    {{message.includeTemplate}}
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+<div id="nameErrorMessage" class="hidden alert alert-dismissible alert-danger hidden-print" role="alert">{{__('Error', 'The name is invalid.')}}<button type="button" class="close" data-dismiss="alert" aria-label="{{__('Generic', 'Close')}}"><span aria-hidden="true">&times;</span></button></div>
+<div id="genericErrorTemplate" class="hidden alert alert-dismissible alert-danger hidden-print" role="alert"><span class="contents"></span><button type="button" class="close" data-dismiss="alert" aria-label="{{__('Generic', 'Close')}}"><span aria-hidden="true">&times;</span></button></div>
+<div id="genericUnclosableSuccessTemplate" class="hidden alert alert-success hidden-print" role="alert"><span class="contents"></span></div>

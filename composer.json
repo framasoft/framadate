@@ -61,7 +61,10 @@
         "phpmailer/phpmailer": "^5.2",
         "ircmaxell/password-compat": "dev-master",
         "roave/security-advisories": "dev-master",
-        "erusev/parsedown": "^1.7"
+        "erusev/parsedown": "^1.7",
+        "twig/twig": "^1.34",
+        "jms/serializer": "^1.11",
+        "myclabs/php-enum": "^1.5"
     },
 
     "require-dev": {

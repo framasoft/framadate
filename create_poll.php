@@ -22,6 +22,7 @@ use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\PasswordHasher;
 use Framadate\Services\InputService;
 use Framadate\Utils;
+use JMS\Serializer\SerializerBuilder;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -36,19 +37,24 @@ $pollRepository = RepositoryFactory::pollRepository();
 /* PAGE */
 /* ---- */
 
-if (!isset($_SESSION['form'])) {
-    $_SESSION['form'] = new Form();
+$serializer = SerializerBuilder::create()->build();
+if (isset($_SESSION['form'])) {
+    /** @var Form $form */
+    $form = $serializer->deserialize($_SESSION['form'], Form::class, 'json');
+} else {
+    $form = new Form();
 }
+
 
 // Type de sondage
 if (isset($_GET['type']) && $_GET['type'] === 'date' ||
     isset($_POST['type']) && $_POST['type'] === 'date'
 ) {
     $poll_type = 'date';
-    $_SESSION['form']->choix_sondage = $poll_type;
+    $form->choix_sondage = $poll_type;
 } else {
     $poll_type = 'classic';
-    $_SESSION['form']->choix_sondage = $poll_type;
+    $form->choix_sondage = $poll_type;
 }
 
 // We clean the data
@@ -83,20 +89,20 @@ if ($goToStep2) {
     $error_on_customized_url = false;
     $error_on_ValueMax = false;
 
-    $_SESSION['form']->title = $title;
-    $_SESSION['form']->id = $customized_url;
-    $_SESSION['form']->use_customized_url = $use_customized_url;
-    $_SESSION['form']->use_ValueMax = $use_ValueMax;
-    $_SESSION['form']->ValueMax = $ValueMax;
-    $_SESSION['form']->admin_name = $name;
-    $_SESSION['form']->admin_mail = $mail;
-    $_SESSION['form']->description = $description;
-    $_SESSION['form']->editable = $editable;
-    $_SESSION['form']->receiveNewVotes = $receiveNewVotes;
-    $_SESSION['form']->receiveNewComments = $receiveNewComments;
-    $_SESSION['form']->hidden = $hidden;
-    $_SESSION['form']->use_password = ($use_password !== null);
-    $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
+    $form->title = $title;
+    $form->id = $customized_url;
+    $form->use_customized_url = $use_customized_url;
+    $form->use_ValueMax = $use_ValueMax;
+    $form->ValueMax = $ValueMax;
+    $form->admin_name = $name;
+    $form->admin_mail = $mail;
+    $form->description = $description;
+    $form->setEditable($editable);
+    $form->receiveNewVotes = $receiveNewVotes;
+    $form->receiveNewComments = $receiveNewComments;
+    $form->hidden = $hidden;
+    $form->use_password = ($use_password !== null);
+    $form->results_publicly_visible = ($results_publicly_visible !== null);
 
     if ($config['use_smtp'] === true) {
         if (empty($mail)) {
@@ -151,12 +157,14 @@ if ($goToStep2) {
         && !$error_on_password && !$error_on_password_repeat &&!$error_on_ValueMax
     ) {
         // If no errors, we hash the password if needed
-        if ($_SESSION['form']->use_password) {
-            $_SESSION['form']->password_hash = PasswordHasher::hash($password);
+        if ($form->use_password) {
+            $form->password_hash = PasswordHasher::hash($password);
         } else {
-            $_SESSION['form']->password_hash = null;
-            $_SESSION['form']->results_publicly_visible = null;
+            $form->password_hash = null;
+            $form->results_publicly_visible = null;
         }
+
+        $_SESSION['form'] = $serializer->serialize($form, 'json');
 
         if ($goToStep2 === 'date') {
             header('Location:create_date_poll.php');
@@ -281,29 +289,29 @@ if (!empty($_POST[GO_TO_STEP_2])) {
 }
 
 $useRemoteUser = USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']);
+$_SESSION['form'] = $serializer->serialize($form, 'json');
 
-$smarty->assign('title', $title);
-$smarty->assign('useRemoteUser', $useRemoteUser);
-$smarty->assign('errors', $errors);
-$smarty->assign('use_smtp', $config['use_smtp']);
-$smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
-$smarty->assign('goToStep2', GO_TO_STEP_2);
-
-$smarty->assign('poll_type', $poll_type);
-$smarty->assign('poll_title', Utils::fromPostOrDefault('title', $_SESSION['form']->title));
-$smarty->assign('customized_url', Utils::fromPostOrDefault('customized_url', $_SESSION['form']->id));
-$smarty->assign('use_customized_url', Utils::fromPostOrDefault('use_customized_url', $_SESSION['form']->use_customized_url));
-$smarty->assign('ValueMax', Utils::fromPostOrDefault('ValueMax', $_SESSION['form']->ValueMax));
-$smarty->assign('use_ValueMax', Utils::fromPostOrDefault('use_ValueMax', $_SESSION['form']->use_ValueMax));
-$smarty->assign('poll_description', !empty($_POST['description']) ? $_POST['description'] :  $_SESSION['form']->description);
-$smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
-$smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));
-$smarty->assign('poll_editable', Utils::fromPostOrDefault('editable', $_SESSION['form']->editable));
-$smarty->assign('poll_receiveNewVotes', Utils::fromPostOrDefault('receiveNewVotes', $_SESSION['form']->receiveNewVotes));
-$smarty->assign('poll_receiveNewComments', Utils::fromPostOrDefault('receiveNewComments', $_SESSION['form']->receiveNewComments));
-$smarty->assign('poll_hidden', Utils::fromPostOrDefault('hidden', $_SESSION['form']->hidden));
-$smarty->assign('poll_use_password', Utils::fromPostOrDefault('use_password', $_SESSION['form']->use_password));
-$smarty->assign('poll_results_publicly_visible', Utils::fromPostOrDefault('results_publicly_visible', $_SESSION['form']->results_publicly_visible));
-$smarty->assign('form', $_SESSION['form']);
-
-$smarty->display('create_poll.tpl');
+echo $twig->render('create_poll.twig', [
+    'title' => $title,
+    'useRemoteUser' => $useRemoteUser,
+    'errors' => $errors,
+    'use_smtp' => $config['use_smtp'],
+    'default_to_marldown_editor' => $config['markdown_editor_by_default'],
+    'goToStep2' => GO_TO_STEP_2,
+    'poll_type' => $poll_type,
+    'poll_title' => Utils::fromPostOrDefault('title', $form->title),
+    'customized_url' => Utils::fromPostOrDefault('customized_url', $form->id),
+    'use_customized_url' => Utils::fromPostOrDefault('use_customized_url', $form->use_customized_url),
+    'ValueMax' => Utils::fromPostOrDefault('ValueMax', $form->ValueMax),
+    'use_ValueMax' => Utils::fromPostOrDefault('use_ValueMax', $form->use_ValueMax),
+    'poll_description' => !empty($_POST['description']) ? $_POST['description'] :  $form->description,
+    'poll_name' => Utils::fromPostOrDefault('name', $form->admin_name),
+    'poll_mail' => Utils::fromPostOrDefault('mail', $form->admin_mail),
+    'poll_editable' => Utils::fromPostOrDefault('editable', $form->editable),
+    'poll_receiveNewVotes' => Utils::fromPostOrDefault('receiveNewVotes', $form->receiveNewVotes),
+    'poll_receiveNewComments' => Utils::fromPostOrDefault('receiveNewComments', $form->receiveNewComments),
+    'poll_hidden' => Utils::fromPostOrDefault('hidden', $form->hidden),
+    'poll_use_password' => Utils::fromPostOrDefault('use_password', $form->use_password),
+    'poll_results_publicly_visible' => Utils::fromPostOrDefault('results_publicly_visible', $form->results_publicly_visible),
+    'form' => $form,
+]);
