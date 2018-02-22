@@ -76,11 +76,11 @@ class InputService {
     public function filterMD5($control) {
         return filter_var($control, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => MD5_REGEX]]);
     }
-    
+
     public function filterInteger($int) {
           if (filter_var($int, FILTER_VALIDATE_INT)) {
               return $int;
-       }  
+       }
       return  null;
     }
 
@@ -89,7 +89,7 @@ class InputService {
     }
 
     public function filterEditable($editable) {
-        return filter_var($editable, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => EDITABLE_CHOICE_REGEX]]);
+        return (int) filter_var($editable, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => EDITABLE_CHOICE_REGEX]]);
     }
 
     public function filterComment($comment) {

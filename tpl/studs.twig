@@ -1,0 +1,64 @@
+{% extends "page.twig" %}
+
+{% block header %}
+    <script src="{{ "js/jquery-ui.min.js"}}" type="text/javascript"></script>
+    <script src="{{"js/Chart.min.js"}}" type="text/javascript"></script>
+    <script src="{{ "js/Chart.StackedBar.js"}}" type="text/javascript"></script>
+    <script src="{{ "js/app/studs.js"}}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{'css/jquery-ui.min.css'}}">
+
+    {% if admin %}
+        <script src="{{"js/simplemde.min.js"}}" type="text/javascript"></script>
+        <script src="{{"js/mde-wrapper.js"}}" type="text/javascript"></script>
+        <script src="{{"js/app/adminstuds.js"}}" type="text/javascript"></script>
+        <link rel="stylesheet" href="{{'css/simplemde.min.css'}}">
+    {% endif %}
+
+{% endblock %}
+
+{% block main %}
+
+
+    {# messages #}
+    {% include 'part/messages.twig' %}
+    
+    {% if not accessGranted and not resultPubliclyVisible %}
+
+        {% include 'part/password_request.twig' with {active: poll.active} %}
+
+    {% else %}
+
+        {# Global informations about the current poll #}
+        {% include 'part/poll_info.twig' with {admin: admin} %}
+
+        {# Information about voting #}
+        {% if expired %}
+            <div class="alert alert-danger">
+                <p>{{ __('studs', 'The poll is expired, it will be deleted soon.') }}</p>
+                <p>{{ __('studs', 'Deletion date:')}} {{ deletion_date|raw }}</p>
+            </div>
+        {% else %}
+            {% if admin %}
+                {% include('part/poll_hint_admin.twig') %}
+            {% else %}
+                {% include 'part/poll_hint.twig' with {active: poll.active} %}
+            {% endif %}
+        {% endif %}
+
+        {% if not accessGranted and resultPubliclyVisible %}
+            {% include 'part/password_request.twig' with {active:poll.active} %}
+        {% endif %}
+
+        {# Vote table #}
+        {% if poll.format == 'D' %}
+            {% include 'part/vote_table_date.twig' with {active: poll.active} %}
+        {% else %}
+            {% include 'part/vote_table_classic.tpl' with {active: poll.active} %}
+        {% endif %}
+
+        {# Comments #}
+        {% include 'part/comments.twig' with {active: poll.active, comments: comments} %}
+
+    {% endif %}
+
+{% endblock %}
