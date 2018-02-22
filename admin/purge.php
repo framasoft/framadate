@@ -52,9 +52,9 @@ if ($action === 'purge' && $securityService->checkCsrf('admin', $_POST['csrf']))
 }
 
 // Assign data to template
-$smarty->assign('message', $message);
-$smarty->assign('crsf', $securityService->getToken('admin'));
 
-$smarty->assign('title', __('Admin', 'Purge'));
-
-$smarty->display('admin/purge.tpl');
+echo $twig->render('admin/purge.twig', [
+    'message' => $message,
+    'crsf' => $securityService->getToken('admin'),
+    'title' => __('Admin', 'Purge'),
+]);

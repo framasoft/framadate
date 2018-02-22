@@ -1,0 +1,374 @@
+<?php
+
+namespace Framadate\Controller;
+
+use Framadate\Form\FinderType;
+use Framadate\Form\PollType;
+use Framadate\Entity\Poll;
+use Framadate\Services\MailService;
+use Framadate\Services\PollService;
+use Framadate\Services\SecurityService;
+use Framadate\Utils;
+use Psr\Log\LoggerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Translation\TranslatorInterface;
+use Twig_Environment;
+
+class PollController extends Controller
+{
+    const GO_TO_STEP_2 = 'gotostep2';
+    /**
+     * @var PollService
+     */
+    protected $poll_service;
+
+    /**
+     * @var UrlGenerator
+     */
+    protected $url_generator;
+
+    /**
+     * @var SecurityService
+     */
+    protected $security_service;
+
+    /**
+     * @var Twig_Environment
+     */
+    protected $twig;
+
+    /**
+     * @var TranslatorInterface
+     */
+    protected $i18n;
+
+    /**
+     * @var Session
+     */
+    protected $session;
+
+    /**
+     * @var MailService
+     */
+    private $mail_service;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    /**
+     * PollController constructor.
+     * @param PollService $poll_service
+     * @param SecurityService $security_service
+     * @param MailService $mail_service
+     * @param TranslatorInterface $i18n
+     * @param SessionInterface $session
+     * @param LoggerInterface $logger
+     */
+    public function __construct(PollService $poll_service, SecurityService $security_service, MailService $mail_service, TranslatorInterface $i18n, SessionInterface $session, LoggerInterface $logger)
+    {
+        $this->poll_service = $poll_service;
+        $this->security_service = $security_service;
+        $this->mail_service = $mail_service;
+        $this->i18n = $i18n;
+        $this->session = $session;
+        $this->logger = $logger;
+    }
+
+    /**
+     * @Route("/", name="home")
+     */
+    public function indexAction()
+    {
+        $demoPoll = $this->poll_service->findById('aqg259dth55iuhwm');
+        $nbcol = 3; //max($this->app_config['show_what_is_that'] + $this->app_config['show_the_software'] + $this->app_config['show_cultivate_your_garden'], 1);
+
+        return $this->render('index.twig', [
+            'show_what_is_that' => true, //$this->app_config['show_what_is_that'],
+            'show_the_software' => true, // $this->app_config['show_the_software'],
+            'show_cultivate_your_garden' => true, // $this->app_config['show_cultivate_your_garden'],
+            'col_size' => 12 / $nbcol,
+            'demo_poll' => $demoPoll,
+            'title' => $this->i18n->trans('Generic.Make your polls'),
+        ]);
+    }
+
+    /**
+     * @param $poll_id
+     * @return string
+     *
+     * @Route("/p/{poll_id}", name="view_poll", requirements={"poll_id": "^([a-zA-Z0-9-]*)$"})
+     */
+    public function showAction($poll_id)
+    {
+        $accessGranted = true;
+        $resultPubliclyVisible = true;
+        $message = '';
+        $editingVoteId = 0;
+        $comments = [];
+
+        $poll = $this->poll_service->findById($poll_id);
+
+        if (!$poll) {
+            throw $this->createNotFoundException($this->i18n->trans('Error.This poll doesn\'t exist !'));
+        }
+        $editedVoteUniqueId = $this->session->get(VoteController::USER_REMEMBER_VOTES_KEY . $poll_id, 0);
+
+        // TODO : Add back $resultPubliclyVisible and $accessGranted
+
+        // Retrieve data
+        if ($resultPubliclyVisible || $accessGranted) {
+            $choices = $this->poll_service->allChoicesByPoll($poll);
+            $poll->setChoices($choices);
+            $votes = $this->poll_service->allVotesByPollId($poll_id);
+            $comments = $this->poll_service->allCommentsByPollId($poll_id);
+        }
+
+        return $this->render('studs.twig', [
+            'poll' => $poll,
+            'title' => $this->i18n->trans('Generic.Poll') . ' - ' . $poll->getTitle(),
+            'expired' => $poll->getEndDate() < date('now'),
+            'deletion_date' => $poll->getEndDate()->modify('+'. 60 .' day'),
+            'choices_hash' =>  $this->poll_service->hashChoices($poll->getChoices()),
+            'votes' => $this->poll_service->splitVotes($votes),
+            'best_choices' => $this->poll_service->computeBestChoices($votes),
+            'comments' => $comments,
+            'editingVoteId' => $editingVoteId,
+            'message' => $message,
+            'admin' => false,
+            'hidden' => $poll->isHidden(),
+            'accessGranted' => $accessGranted,
+            'resultPubliclyVisible' => $resultPubliclyVisible,
+            'editedVoteUniqueId' => $editedVoteUniqueId,
+            'ValueMax' => $poll->getValueMax(),
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $type
+     * @return string
+     *
+     * @Route("/p/new/{type}", name="new_poll", requirements={"poll"="date|classic"})
+     */
+    public function createPollAction(Request $request, $type)
+    {
+        /** @var Poll $poll */
+        //$poll = $this->session->get('form', new Poll($type));
+        $poll = new Poll();
+        $poll->setChoixSondage($type);
+
+        $form = $this->createForm(PollType::class, $poll);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->session->set('form', $poll);
+            if ($poll->getChoixSondage() === 'date') {
+                return $this->redirectToRoute('new_date_poll_step_2');
+            }
+            return $this->redirectToRoute('new_classic_poll_step_2');
+        }
+
+        // $useRemoteUser = USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']);
+        // $this->session->set('form', $poll);
+
+        return $this->render('create_poll.twig', [
+            'title' => $this->i18n->trans('Step 1.Poll creation (1 on 3)'),
+            'use_smtp' => $this->getParameter('app_use_smtp'), // $this->app_config['use_smtp'],
+            'default_to_markdown_editor' => true, //$this->app_config['markdown_editor_by_default'],
+            // 'useRemoteUser' => $useRemoteUser,
+            'poll' => $poll,
+            'form' => $form->createView(),
+            'base_url' => $request->getHost(),
+        ]);
+    }
+
+    /**
+     * @Route("/find_poll", name="find-poll")
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function pollFinderAction(Request $request)
+    {
+        $form = $this->createForm(FinderType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mail = $form->getData()['adminMail'];
+            $polls = $this->poll_service->findAllByAdminMail($mail);
+
+            if (count($polls) > 0) {
+                $this->logger->info("Found " . count($polls) . " polls for email " . $mail);
+                $body = $this->render('mail/find_polls.twig', [
+                    'polls' => $polls,
+                    'app_name' => $this->getParameter('app_name'),
+                    'admin_email' => $this->getParameter('app_email_admin'),
+                ]);
+
+                $this->mail_service->send($mail, $this->i18n->trans('FindPolls.List of your polls') . ' - ' . $this->getParameter('app_name'), $body, 'SEND_POLLS');
+                $this->session->getFlashBag()->add('success', $this->i18n->trans('FindPolls.Polls sent'));
+            } else {
+                $this->session->getFlashBag()->add('warning', $this->i18n->trans('Error.No polls found'));
+            }
+        }
+        return $this->render('find_polls.twig', [
+            'form' => $form->createView(),
+            'title' => $this->i18n->trans('Homepage.Where are my polls'),
+        ]);
+    }
+
+    /**
+     * @Route("/p/{poll_id}/export.{format}", name="export_poll", defaults={"format": "CSV"})
+     *
+     * @param $poll_id
+     * @param $format
+     */
+    public function exportPollAction($poll_id, $format)
+    {
+        if (empty($poll_id)) {
+            // redirect to previous page with referrer
+            var_dump("empty poll id");
+            return;
+        }
+
+        $poll = $this->poll_service->findById($poll_id);
+
+        if (!$poll) {
+            var_dump("no poll with this ID");
+            // redirect to error page
+            return;
+        }
+
+        $forbiddenBecauseOfPassword = !$poll->isResultsPubliclyVisible() && !$this->security_service->canAccessPoll($poll);
+        $resultsAreHidden = $poll->isHidden();
+
+        if ($resultsAreHidden || $forbiddenBecauseOfPassword) {
+            // redirect to forbidden page
+            var_dump("forbidden page");
+            return;
+        }
+
+        switch ($format) {
+            // TODO : Add more formats
+            case 'CSV':
+            default:
+                $this->exportCSVPollAction($poll);
+                break;
+        }
+    }
+
+    private function exportCSVPollAction(Poll $poll)
+    {
+        $choices = $this->poll_service->allChoicesByPoll($poll);
+        $votes = $this->poll_service->allVotesByPollId($poll->getId());
+
+        // CSV header
+        if ($poll->getFormat() === 'D') {
+            $titles_line = ',';
+            $moments_line = ',';
+            foreach ($choices as $choice) {
+                $title = Utils::csvEscape(strftime($this->i18n->trans('Date.DATE'), $choice['title']));
+                $moments = explode(',', $choice['moments']);
+
+                $titles_line .= str_repeat($title . ',', count($moments));
+                $moments_line .= implode(',', array_map('\Framadate\Utils::csvEscape', $moments)) . ',';
+            }
+            echo $titles_line . "\r\n";
+            echo $moments_line . "\r\n";
+        } else {
+            echo ',';
+            foreach ($choices as $choice) {
+                echo Utils::markdown($choice['title'], true) . ',';
+            }
+            echo "\r\n";
+        }
+        // END - CSV header
+
+        // Vote lines
+        foreach ($votes as $vote) {
+            echo Utils::csvEscape($vote['name']) . ',';
+            $choices = str_split($vote['choices']);
+            foreach ($choices as $choice) {
+                switch ($choice) {
+                    case 0:
+                        $text = $this->i18n->trans('Generic.No');
+                        break;
+                    case 1:
+                        $text = $this->i18n->trans('Generic.Ifneedbe');
+                        break;
+                    case 2:
+                        $text = $this->i18n->trans('Generic.Yes');
+                        break;
+                    default:
+                        $text = 'unkown';
+                }
+                echo Utils::csvEscape($text);
+                echo ',';
+            }
+            echo "\r\n";
+        }
+        // END - Vote lines
+
+        // HTTP headers
+        $content = ob_get_clean();
+        $filesize = strlen($content);
+        $filename = Utils::cleanFilename($poll->getTitle()) . '.csv';
+
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Length: ' . $filesize);
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        header('Cache-Control: max-age=10');
+        // END - HTTP headers
+
+        echo $content;
+    }
+
+    /**
+     * @Route("/_locale", name="edit-locale", methods={"POST"})
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function changeLanguageAction(Request $request)
+    {
+        $locale = $request->get('locale', 'en');
+        if (in_array($locale, array_keys([
+                                             'fr' => 'Français',
+                                             'en' => 'English',
+                                             'es' => 'Español',
+                                             'de' => 'Deutsch',
+                                             'it' => 'Italiano',
+                                             'br' => 'Brezhoneg',
+                                         ]), true)) {
+            $this->i18n->setLocale($locale);
+            $this->session->set('_locale', $locale);
+        }
+        $url = $this->matchReferrer($request->headers->get('referer'), $request->getSchemeAndHttpHost());
+        return $this->redirect($url);
+    }
+
+    /**
+     * This function is used in case of false or wrong referer when changing locale
+     *
+     * @param string $referer
+     * @param string $baseUrl
+     * @return string
+     */
+    private function matchReferrer($referer, $baseUrl)
+    {
+        $router = $this->get('router');
+        $url = substr($referer, strpos($referer, $baseUrl) + strlen($baseUrl));
+        if ($router->match($url)) {
+            return $url;
+        }
+        return $this->generateUrl('home');
+    }
+}

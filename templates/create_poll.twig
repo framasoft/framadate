@@ -1,0 +1,223 @@
+{% extends 'page.twig' %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block main %}
+    <div class="row" style="display:none" id="form-block">
+        <div class="col-md-8 col-md-offset-2">
+            {{ form_start(form) }}
+
+                <div class="alert alert-info">
+                    <p>
+                        {{__('Step 1', 'You are in the poll creation section.')}}<br/>
+                        {{__('Step 1', 'Required fields cannot be left blank.')}}
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.admin_name) }}
+
+                    <div class="col-sm-8">
+                        {{ form_widget(form.admin_name) }}
+                    </div>
+                </div>
+                {% if use_smtp %}
+                    <div class="form-group">
+                        <label for="poll_admin_mail" class="col-sm-4 control-label">
+                            {{ __('Generic', 'Your email address') }} *<br/>
+                            <span class="small">{{ __('Generic', '(in the format name@mail.com)')}}</span>
+                        </label>
+
+                        <div class="col-sm-8">
+                            {{ form_widget(form.admin_mail) }}
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-group">
+                    {{ form_label(form.title) }}
+
+                    <div class="col-sm-8">
+                        {{ form_widget(form.title) }}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.description) }}
+
+                    <div class="col-sm-8">
+                        {% include 'part/description_markdown.twig' %}
+                        <div>
+                            {{ form_widget(form.description) }}
+                        </div>
+                    </div>
+                </div>
+
+                {# Optionnal parameters #}
+                <div class="col-sm-offset-3 col-sm-1 hidden-xs">
+                    <p class="lead">
+                        <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
+                    </p>
+                </div>
+                <div class="col-sm-8 col-xs-12">
+                    <span class="lead visible-xs-inline">
+                        <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
+                    </span>
+                    <a class="optionnal-parameters collapsed lead" role="button" data-toggle="collapse" href="#optionnal" aria-expanded="false" aria-controls="optionnal">
+                        {{__('Step 1', "Optional parameters")}}
+                        <i class="caret" aria-hidden="true"></i>
+                        <i class="caret caret-up" aria-hidden="true"></i>
+                    </a>
+
+                </div>
+                <div class="clearfix"></div>
+
+
+                <div class="collapse" id="optionnal">
+
+                    {# Value MAX #}
+                    <div class="form-group">
+                        <label for="poll_id" class="col-sm-4 control-label">
+                            {{__('Step 1', 'Value Max')}}
+                        </label>
+
+                        <div class="col-sm-8">
+                            {{ form_widget(form.use_ValueMax) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div id="ValueMax" class="hidden">
+
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <div class="form-group">
+                                    <label for="poll_ValueMax" class="col-sm-6 control-label">{{ __('Step 1', "ValueMax instructions") }}</label>
+                                    <div class="col-sm-4">
+                                        {{ form_widget(form.ValueMax) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+
+
+                    {# Poll identifier #}
+                    <div class="form-group">
+                        <label for="poll_id" class="col-sm-4 control-label">
+                            {{__('Step 1', 'Poll id')}}<br/>
+                        </label>
+
+                        <div class="col-sm-8">
+                            {% set use_customized_url = form.vars.value.id != null %}
+                            {{ form_widget(form.use_customized_url, {'value': use_customized_url}) }}
+                        </div>
+                    </div>
+                    <div id="customized_url_options" {% if not use_customized_url %}class="hidden" {% endif %}>
+                        <div class="form-group">
+                            <label for="poll_id" class="col-sm-4 control-label">
+                                <span id="pollUrlDesc" class="small">{{ __('Step 1', 'Poll id rules') }}</span>
+                            </label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        {{ base_url }}/
+                                    </span>
+                                    {{ form_widget(form.id) }}
+                                </div>
+                                <span class="help-block text-warning">{{ __('Step 1', 'Poll id warning') }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {# Password #}
+
+                    <div class="form-group">
+                        <label for="poll_id" class="col-sm-4 control-label">
+                            {{__('Step 1', 'Poll password')}}
+                        </label>
+
+                        <div class="col-sm-8">
+                            {{ form_widget(form.use_password) }}
+                        </div>
+
+                        <div id="password_options" class="hidden">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <div class="input-group">
+                                    {{ form_widget(form.password.first) }}
+                                    <label for="poll_password_first" class="input-group-addon">{{__('Step 1', 'Password choice')}}</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <div class="input-group">
+                                    {{ form_widget(form.password.second) }}
+                                    <label for="poll_password_second" class="input-group-addon">{{__('Step 1', 'Password confirmation')}}</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-4 col-sm-8">
+                                {{ form_widget(form.results_publicly_visible) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="poll_id" class="col-sm-4 control-label">
+                            {{__('Step 1', 'Permissions')}}
+                        </label>
+                        <div class="col-sm-8">
+                            <div class="radio">
+                                {{ form_widget(form.editable) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-8">
+                            {{ form_widget(form.hidden) }}
+                            <div id="hiddenWithBadEditionModeError" class="alert alert-danger hidden">
+                                <p>
+                                    {{__('Error', "You can't create a poll with hidden results with the following edition option:")}}"{{__('Step 1', 'All voters can modify any vote')}}"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {% if use_smtp %}
+                        <div class="form-group">
+                            <label for="poll_id" class="col-sm-4 control-label">
+                                {{__('Step 1', 'Notifications')}}
+                            </label>
+                            <div class="col-sm-8">
+                                {{ form_widget(form.receiveNewVotes) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                {{ form_widget(form.receiveNewComments) }}
+                            </div>
+                        </div>
+                    {% endif %}
+                    </div>
+                    {{ form_row(form._token) }}
+
+                    <p class="text-right">
+                        {{ form_widget(form.submit) }}
+                    </p>
+
+                    <!--<script type="text/javascript">document.getElementById('poll_admin_name').focus();</script>-->
+
+                    {{ form_widget(form._token) }}
+            </div>
+        </div>
+    </div>
+    <noscript>
+        <div class="alert alert-danger">
+            {{__('Step 1', 'Javascript is disabled on your browser. Its activation is required to create a poll.')}}
+        </div>
+    </noscript>
+    <div id="cookie-warning" class="alert alert-danger" style="display:none">
+        {{__('Step 1', 'Cookies are disabled on your browser. Their activation is required to create a poll.')}}
+    </div>
+{% endblock %}

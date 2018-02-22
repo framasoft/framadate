@@ -1,0 +1,108 @@
+{% extends 'page.twig' %}
+
+{% block header %}
+    <script type="text/javascript">
+        window.date_formats = {
+            DATE: '{{__('Date', 'DATE')}}',
+            DATEPICKER: '{{__('Date', 'datepicker')}}'
+        };
+    </script>
+{% endblock %}
+
+{% block main %}
+    <div>
+        <p>
+            {{ __('Step 2', 'Title', {'%s': poll.title }) }}
+        </p>
+    </div>
+
+    <div class="col-md-10 col-md-offset-1">
+        <h3>{{__('Step 2 date', 'Choose the dates of your poll')}}</h3>
+
+        <div class="alert alert-info">
+            <p>{{__('Step 2 date', 'To schedule an event you need to propose at least two choices (two hours for one day or two days).')}}</p>
+
+            <p>{{__('Step 2 date', 'You can add or remove additionnal days and hours with the buttons')}}
+                <span class="glyphicon glyphicon-minus text-info"></span>
+                <span class="sr-only">{{__('Generic', 'Remove')}}</span>
+                <span class="glyphicon glyphicon-plus text-success"></span>
+                <span class="sr-only">{{__('Generic', 'Add')}}</span>
+            </p>
+
+            <p>{{__('Step 2 date', 'For each selected day, you can choose, or not, meeting hours (e.g.: "8h", "8:30", "8h-10h", "evening", etc.)')}}</p>
+        </div>
+        {{ form_start(form, {'attr': {'id': 'selected-days'}}) }}
+        {{ form_widget(form.choices) }}
+        <div class="col-md-4">
+            <button type="button" id="copyhours" class="btn btn-default disabled" title="{{__('Step 2 date', 'Copy hours of the first day')}}"><span
+                    class="glyphicon glyphicon-sort-by-attributes-alt text-info"></span><span
+                    class="sr-only">{{__('Step 2 date', 'Copy hours of the first day')}}</span></button>
+            <div class="btn-group btn-group">
+                <button type="button" id="remove-a-day" class="btn btn-default disabled" title="{{__('Step 2 date', 'Remove a day')}}"><span
+                        class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">{{__('Step 2 date', 'Remove a day')}}</span></button>
+                <button type="button" id="add-a-day" class="btn btn-default" title="{{__('Step 2 date', 'Add a day')}}"><span
+                        class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{{__('Step 2 date', 'Add a day')}}</span></button>
+            </div>
+            <a href="" data-toggle="modal" data-target="#add_days" class="btn btn-default" title="{{__('Date', 'Add range dates')}}">
+                <span class="glyphicon glyphicon-plus text-success"></span>
+                <span class="glyphicon glyphicon-plus text-success"></span>
+                <span class="sr-only">{{__('Date', 'Add range dates')}}</span>
+            </a>
+        </div>
+        <div class="col-md-8 text-right">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-remove text-danger"></span>
+                    {{__('Generic', 'Remove')}}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a id="resetdays" href="#">{{__('Step 2 date', 'Remove all days')}}</a></li>
+                    <li><a id="resethours" href="#">{{__('Step 2 date', 'Remove all hours')}}</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-default" href="{{ path('new_poll', {type: 'date'}) }}"
+               title="{{__('Step 2', 'Back to step 1')}}">{{__('Generic', 'Back')}}</a>
+            {{ form_widget(form.submit) }}
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+    <div id="add_days" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">{{__('Date', 'Add range dates')}}</h4>
+                </div>
+                <div class="modal-body row">
+                    <div class="col-xs-12">
+                        <div class="alert alert-info">
+                            {{__('Date', 'Max dates count')}}
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <label for="range_start">{{__('Date', 'Start date')}}</label>
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
+                            <input type="date" class="form-control" id="range_start" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <label for="range_end">{{__('Date', 'End date')}}</label>
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
+                            <input type="date" class="form-control" id="range_end" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default">{{__('Generic', 'Cancel')}}</button>
+                    <button data-dismiss="modal" data-backdrop="false" id="interval_add" class="btn btn-success">{{__('Generic', 'Add')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
