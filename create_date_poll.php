@@ -17,12 +17,14 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft https://framagit.org/framasoft/framadate/)
  */
 use Framadate\Choice;
+use Framadate\Form;
 use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\PollService;
 use Framadate\Services\PurgeService;
 use Framadate\Utils;
+use JMS\Serializer\SerializerBuilder;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -42,56 +44,59 @@ if (is_readable('bandeaux_local.php')) {
 $min_expiry_time = $pollService->minExpiryDate();
 $max_expiry_time = $pollService->maxExpiryDate();
 
-// The poll format is DATE
-if ($_SESSION['form']->format !== 'D') {
-    $_SESSION['form']->format = 'D';
-    $_SESSION['form']->clearChoices();
+if (isset($_SESSION['form'])) {
+    $serializer = SerializerBuilder::create()->build();
+    /** @var Form $form */
+    $form = $serializer->deserialize($_SESSION['form'], Form::class, 'json');
+} else {
+    $form = new Form();
 }
 
-if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) || ($config['use_smtp'] && !isset($_SESSION['form']->admin_mail))) {
+// The poll format is DATE
+if ($form->format !== 'D') {
+    $form->format = 'D';
+    $form->clearChoices();
+}
+
+if (!isset($form->title) || !isset($form->admin_name) || ($config['use_smtp'] && !isset($form->admin_mail))) {
     $step = 1;
 } else if (!empty($_POST['confirmation'])) {
     $step = 4;
-} else if (empty($_POST['choixheures']) || isset($_SESSION['form']->totalchoixjour)) {
+} else if (empty($_POST['choixheures']) || isset($form->totalchoixjour)) {
     $step = 2;
 } else {
     $step = 3;
 }
 
 switch ($step) {
-    case 1:
-        // Step 1/4 : error if $_SESSION from info_sondage are not valid
-        $smarty->assign('title', __('Error', 'Error!'));
-        $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation.'));
-        $smarty->display('error.tpl');
-        exit;
-
     case 2:
         // Step 2/4 : Select dates of the poll
 
         // Prefill form->choices
-        foreach ($_SESSION['form']->getChoices() as $c) {
+        foreach ($form->getChoices() as $c) {
+            /** @var Choice $c */
             $count = 3 - count($c->getSlots());
             for ($i = 0; $i < $count; $i++) {
                 $c->addSlot('');
             }
         }
 
-        $count = 3 - count($_SESSION['form']->getChoices());
+        $count = 3 - count($form->getChoices());
         for ($i = 0; $i < $count; $i++) {
             $c = new Choice('');
             $c->addSlot('');
             $c->addSlot('');
             $c->addSlot('');
-            $_SESSION['form']->addChoice($c);
+            $form->addChoice($c);
         }
 
         // Display step 2
-        $smarty->assign('title', __('Step 2 date', 'Poll dates (2 on 3)'));
-        $smarty->assign('choices', $_SESSION['form']->getChoices());
-        $smarty->assign('error', null);
 
-        $smarty->display('create_date_poll_step_2.tpl');
+        echo $twig->render('create_date_poll_step_2.twig', [
+            'title' => __('Step 2 date', 'Poll dates (2 on 3)'),
+            'choices' => $form->getChoices(),
+            'error' => null,
+        ]);
         exit;
 
     case 3:
@@ -107,16 +112,16 @@ switch ($step) {
             // Check if there are at most MAX_SLOTS_PER_POLL slots
             if (count($_POST['days']) > MAX_SLOTS_PER_POLL) {
                 // Display step 2
-                $smarty->assign('title', __('Step 2 date', 'Poll dates (2 on 3)'));
-                $smarty->assign('choices', $_SESSION['form']->getChoices());
-                $smarty->assign('error', __f('Error', 'You can\'t select more than %d dates', MAX_SLOTS_PER_POLL));
-
-                $smarty->display('create_date_poll_step_2.tpl');
+                echo $twig->render('create_date_poll_step_2.twig', [
+                    'title', __('Step 2 date', 'Poll dates (2 on 3)'),
+                    'choices', $form->getChoices(),
+                    'error', __f('Error', 'You can\'t select more than %d dates', MAX_SLOTS_PER_POLL),
+                ]);
                 exit;
             }
 
             // Clear previous choices
-            $_SESSION['form']->clearChoices();
+            $form->clearChoices();
 
             // Reorder moments to deal with suppressed dates
             $moments = [];
@@ -136,7 +141,7 @@ switch ($step) {
                     $date = DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $_POST['days'][$i])->setTime(0, 0, 0);
                     $time = $date->getTimestamp();
                     $choice = new Choice($time);
-                    $_SESSION['form']->addChoice($choice);
+                    $form->addChoice($choice);
 
                     $schedules = $inputService->filterArray($moments[$i], FILTER_DEFAULT);
                     for ($j = 0; $j < count($schedules); $j++) {
@@ -146,13 +151,14 @@ switch ($step) {
                     }
                 }
             }
-            $_SESSION['form']->sortChoices();
+            $form->sortChoices();
         }
 
         // Display step 3
         $summary = '<ul>';
-        $choices = $_SESSION['form']->getChoices();
+        $choices = $form->getChoices();
         foreach ($choices as $choice) {
+            /** @var Choice $choice */
             $summary .= '<li>' . strftime($date_format['txt_full'], $choice->getName());
             $first = true;
             foreach ($choice->getSlots() as $slots) {
@@ -166,13 +172,13 @@ switch ($step) {
 
         $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); // textual date
 
-        $smarty->assign('title', __('Step 3', 'Removal date and confirmation (3 on 3)'));
-        $smarty->assign('summary', $summary);
-        $smarty->assign('end_date_str', $end_date_str);
-        $smarty->assign('default_poll_duration', $config['default_poll_duration']);
-        $smarty->assign('use_smtp', $config['use_smtp']);
-
-        $smarty->display('create_classic_poll_step3.tpl');
+        echo $twig->render('create_classic_poll_step_3.twig', [
+            'title' => __('Step 3', 'Removal date and confirmation (3 on 3)'),
+            'summary' => $summary,
+            'end_date_str' => $end_date_str,
+            'default_poll_duration' => $config['default_poll_duration'],
+            'use_smtp' => $config['use_smtp'],
+        ]);
         exit;
 
     case 4:
@@ -188,22 +194,22 @@ switch ($step) {
                 $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
 
                 if ($time < $min_expiry_time) {
-                    $_SESSION['form']->end_date = $min_expiry_time;
+                    $form->end_date = $min_expiry_time;
                 } elseif ($max_expiry_time < $time) {
-                    $_SESSION['form']->end_date = $max_expiry_time;
+                    $form->end_date = $max_expiry_time;
                 } else {
-                    $_SESSION['form']->end_date = $time;
+                    $form->end_date = $time;
                 }
             }
         }
 
-        if (empty($_SESSION['form']->end_date)) {
+        if (empty($form->end_date)) {
             // By default, expiration date is 6 months after last day
-            $_SESSION['form']->end_date = $max_expiry_time;
+            $form->end_date = $max_expiry_time;
         }
 
         // Insert poll in database
-        $ids = $pollService->createPoll($_SESSION['form']);
+        $ids = $pollService->createPoll($form);
         $poll_id = $ids[0];
         $admin_poll_id = $ids[1];
 
@@ -211,7 +217,7 @@ switch ($step) {
         if ($config['use_smtp'] === true) {
             $message = __('Mail', "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
             $message .= '<br/><br/>';
-            $message .= Utils::htmlEscape($_SESSION['form']->admin_name) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlEscape($_SESSION['form']->title) . '".<br/>';
+            $message .= Utils::htmlEscape($form->admin_name) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlEscape($form->title) . '".<br/>';
             $message .= __('Mail', 'Thanks for filling the poll at the link above') . ' :<br/><br/><a href="%1$s">%1$s</a>';
 
             $message_admin = __('Mail', "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
@@ -220,9 +226,9 @@ switch ($step) {
             $message = sprintf($message, Utils::getUrlSondage($poll_id));
             $message_admin = sprintf($message_admin, Utils::getUrlSondage($admin_poll_id, true));
 
-            if ($mailService->isValidEmail($_SESSION['form']->admin_mail)) {
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($_SESSION['form']->title), $message_admin);
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($_SESSION['form']->title), $message);
+            if ($mailService->isValidEmail($form->admin_mail)) {
+                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($form->title), $message_admin);
+                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($form->title), $message);
             }
         }
 
@@ -234,5 +240,14 @@ switch ($step) {
 
         // Redirect to poll administration
         header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
+        exit;
+
+    case 1:
+    default:
+        // Step 1/4 : error if $_SESSION from info_sondage are not valid
+        echo $twig->render('error.twig', [
+            'title' => __('Error', 'Error!'),
+            'error' => __('Error', 'You haven\'t filled the first section of the poll creation.'),
+        ]);
         exit;
 }

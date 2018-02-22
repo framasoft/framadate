@@ -65,8 +65,9 @@ if (!empty($_GET['poll'])) {
 if ($poll) {
     $poll_id = $poll->id;
 } else {
-    $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
-    $smarty->display('error.tpl');
+    echo $twig->render('error.twig', [
+        'error' => __('Error', 'This poll doesn\'t exist !'),
+    ]);
     exit;
 }
 
@@ -103,22 +104,22 @@ if (isset($_POST['update_poll_info'])) {
         switch ($rules) {
             case 0:
                 $poll->active = false;
-                $poll->editable = Editable::NOT_EDITABLE;
+                $poll->editable = Editable::NOT_EDITABLE();
                 $updated = true;
                 break;
             case 1:
                 $poll->active = true;
-                $poll->editable = Editable::NOT_EDITABLE;
+                $poll->editable = Editable::NOT_EDITABLE();
                 $updated = true;
                 break;
             case 2:
                 $poll->active = true;
-                $poll->editable = Editable::EDITABLE_BY_ALL;
+                $poll->editable = Editable::EDITABLE_BY_ALL();
                 $updated = true;
                 break;
             case 3:
                 $poll->active = true;
-                $poll->editable = Editable::EDITABLE_BY_OWN;
+                $poll->editable = Editable::EDITABLE_BY_OWN();
                 $updated = true;
                 break;
         }
@@ -426,24 +427,25 @@ $votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
 
 // Assign data to template
-$smarty->assign('poll_id', $poll_id);
-$smarty->assign('admin_poll_id', $admin_poll_id);
-$smarty->assign('poll', $poll);
-$smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
-$smarty->assign('expired', strtotime($poll->end_date) < time());
-$smarty->assign('deletion_date', strtotime($poll->end_date) + PURGE_DELAY * 86400);
-$smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
-$smarty->assign('slots_hash', $pollService->hashSlots($slots));
-$smarty->assign('votes', $pollService->splitVotes($votes));
-$smarty->assign('best_choices', $pollService->computeBestChoices($votes));
-$smarty->assign('comments', $comments);
-$smarty->assign('editingVoteId', $editingVoteId);
-$smarty->assign('message', $message);
-$smarty->assign('admin', true);
-$smarty->assign('hidden', false);
-$smarty->assign('accessGranted', true);
-$smarty->assign('resultPubliclyVisible', true);
-$smarty->assign('editedVoteUniqueId', '');
-$smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
 
-$smarty->display('studs.tpl');
+echo $twig->render('studs.twig', [
+    'poll_id' => $poll_id,
+    'admin_poll_id' => $admin_poll_id,
+    'poll' => $poll,
+    'title' => __('Generic', 'Poll') . ' - ' . $poll->title,
+    'expired' => strtotime($poll->end_date) < time(),
+    'deletion_date' => strtotime($poll->end_date) + PURGE_DELAY * 86400,
+    'slots' => $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots,
+    'slots_hash' => $pollService->hashSlots($slots),
+    'votes' => $pollService->splitVotes($votes),
+    'best_choices' => $pollService->computeBestChoices($votes),
+    'comments' => $comments,
+    'editingVoteId' => $editingVoteId,
+    'message' => $message,
+    'admin' => true,
+    'hidden' => false,
+    'accessGranted' => true,
+    'resultPubliclyVisible' => true,
+    'editedVoteUniqueId' => '',
+    'default_to_marldown_editor' => $config['markdown_editor_by_default'],
+]);

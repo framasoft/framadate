@@ -110,15 +110,13 @@ foreach ($migrations as $migration) {
 
 $countTotal = $countSucceeded + $countFailed + $countSkipped;
 
-$smarty->assign('success', $success);
-$smarty->assign('fail', $fail);
-
-$smarty->assign('countSucceeded', $countSucceeded);
-$smarty->assign('countFailed', $countFailed);
-$smarty->assign('countSkipped', $countSkipped);
-$smarty->assign('countTotal', $countTotal);
-$smarty->assign('time', $total_time = round((microtime(true)-$_SERVER['REQUEST_TIME_FLOAT']), 4));
-
-$smarty->assign('title', __('Admin', 'Migration'));
-
-$smarty->display('admin/migration.tpl');
+echo $twig->render('admin/migration.twig', [
+    'success' => $success,
+    'fail' => $fail,
+    'countSucceeded' => $countSucceeded,
+    'countFailed' => $countFailed,
+    'countSkipped' => $countSkipped,
+    'countTotal' => $countTotal,
+    'time' => $total_time = round((microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']), 4),
+    'title' => __('Admin', 'Migration'),
+]);

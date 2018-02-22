@@ -16,12 +16,15 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
+
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
 
 // Autoloading of dependencies with Composer
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../vendor/o80/i18n/src/shortcuts.php';
+AnnotationRegistry::registerLoader('class_exists');
 
 if (session_id() === '') {
     session_start();
@@ -59,5 +62,5 @@ if (is_file(CONF_FILENAME)) {
 }
 
 require_once __DIR__ . '/i18n.php';
-// Smarty
-require_once __DIR__ . '/smarty.php';
+// Twig
+require_once __DIR__ . '/twig.php';

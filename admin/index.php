@@ -19,6 +19,7 @@
 
 require_once '../app/inc/init.php';
 
-$smarty->assign('title', __('Admin', 'Administration'));
-$smarty->assign('logsAreReadable', is_readable('../' . LOG_FILE));
-$smarty->display('admin/index.tpl');
+echo $twig->render('admin/index.twig', [
+    'title' => __('Admin', 'Administration'),
+    'logsAreReadable' => is_readable('../' . LOG_FILE),
+]);
