@@ -13,12 +13,12 @@ Si vous souhaitez travailler avec nous, **forkez-nous sur [framagit.org](https:/
 
 Un fichier est dédié à l'installation de framadate : [INSTALL.md](INSTALL.md).
 
-# Comment contribuer
+# Comment contribuer avec du code
 
 ## De votre côté
 
-1. Créer un compte sur [https://git.framasoft.org](https://git.framasoft.org)
-1. Créer un fork du projet principal : [Créer le fork](https://git.framasoft.org/framasoft/framadate/fork/new)
+1. Créer un compte sur [https://framagit.org](https://framagit.org)
+1. Créer un fork du projet principal : [Créer le fork](https://framagit.org/framasoft/framadate/fork/new)
 1. Créer une branche nommée feature/[Description] à partir de la branche **develop**
     * Où [Description] est une description en anglais très courte de ce qui va être fait
 1. Faire des commits dans votre branche
@@ -44,6 +44,11 @@ Un fichier est dédié à l'appréhension du code de framadate : [Document techn
 # Traductions
 
 Les traductions se trouvent dans le dossier `locale`. Chaque langue est dans un fichier JSON différent organisé par section.
+
+Ne modifiez pas directement les fichiers !
+Si vous avez des modifications à y apporter (voire ajouter une nouvelle traduction), allez sur <https://trad.framasoft.org> (tout y est expliqué sur la page d'accueil).
+
+La page de traduction du projet Framadate est <https://trad.framasoft.org/zanata/iteration/view/framadate/master>.
 
 # Synthèses des librairies utilisées
 
