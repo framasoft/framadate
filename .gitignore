@@ -10,6 +10,7 @@ vendor
 cache/
 tpl_c/
 .php_cs.cache
+.zanata-cache/
 
 # Temp files
 *~
