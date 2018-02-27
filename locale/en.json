@@ -185,6 +185,7 @@
       "Legend:": "Legend:",
       "Link": "Link",
       "Make your polls": "Make your polls",
+      "Markdown": "Markdown",
       "Next": "Next",
       "No": "No",
       "Page generated in": "Page generated in",
@@ -231,7 +232,7 @@
    },
    "Mail": {
       "Author's message": "Author's message",
-      "FOOTER": "",
+      "FOOTER": "\"The road is long, but the way is clear…\"<br/>Framasoft lives only by your donations.<br/>Thank you in advance for your support https://soutenir.framasoft.org",
       "For sending to the polled users": "Participant link",
       "Notification of poll: %s": "Notification of poll: %s",
       "Poll's participation: %s": "Poll participation: %s",

@@ -181,6 +181,7 @@
       "Legend:": "Legenda:",
       "Link": "Link",
       "Make your polls": "Maak je polls en datumprikkers",
+      "Markdown": "Markdown",
       "Next": "Volgende",
       "No": "Nee",
       "Page generated in": "Pagina gegenereerd in",
@@ -227,7 +228,6 @@
    },
    "Mail": {
       "Author's message": "Bericht van de auteur",
-      "FOOTER": "",
       "For sending to the polled users": "Link voor deelnemers",
       "Notification of poll: %s": "Bericht van poll: %s",
       "Poll's participation: %s": "Poll deelname: %s",
@@ -263,9 +263,6 @@
       "Chart": "Grafiek",
       "Display the chart of the results": "Toon de grafiek met resultaten",
       "Edit the line: %s": "Bewerk regel: %s",
-      "No password": "NL_Pas de mot de passe",
-      "Password protected": "NL_Protégé par mot de passe",
-      "Remove password": "NL_Supprimer le mot de passe",
       "Remove the line:": "Verwijder regel:",
       "Save the choices": "Keuzes opslaan",
       "Scroll to the left": "Scroll naar links",
@@ -276,7 +273,6 @@
       "Vote no for": "Stem ‘nee’ voor",
       "Vote yes for": "Stem ‘ja’ voor",
       "Votes of the poll": "Stemmen",
-      "Votes protected by password": "NL_Votes protégés par mot de passe",
       "polled user": "ondervraagde gebruiker",
       "polled users": "ondervraagde gebruikers"
    },

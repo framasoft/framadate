@@ -62,7 +62,7 @@
       "Consider setting the date.timezone in php.ini.": "Prendi in considerazione di configurare la date.timezone dentro al file php.ini.",
       "Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript.": "IT_Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript.",
       "Continue the installation": "Continuare l'installazione",
-      "Cookies are served from HTTP only.": "IT_Cookies are served from HTTP only.",
+      "Cookies are served from HTTP only.": "Cookies are served from HTTP only.",
       "Installation checking": "Verifica dell'installazione",
       "OpenSSL extension loaded.": "L'estensione PHP OpenSSL è caricata.",
       "PHP Intl extension is enabled.": "L'estensione PHP Intl è attiva.",
@@ -124,7 +124,7 @@
       "Enter an email address": "È necessario inserire un indirizzo e-mail!",
       "Error!": "Errore!",
       "Failed to delete column": "Impossibile eliminare la colonna",
-      "Failed to delete the vote!": "IT_Échec de la suppression du vote !",
+      "Failed to delete the vote!": "Failed to delete the vote!",
       "Failed to insert the comment!": "Errore nell'inserimento del commento !",
       "Failed to save poll": "Errore nel salvataggio del sondaggio",
       "Forbidden!": "Proibito!",
@@ -211,7 +211,7 @@
       "AppMail": "Indirizzo e-mail dell'applicazione",
       "AppName": "Nome dell'applicazione",
       "CleanUrl": "Clean URL",
-      "Database": "Database",
+      "Database": "Database name",
       "DbConnectionString": "Stringa di connessione",
       "DbPassword": "Password",
       "DbPrefix": "Prefisso",
@@ -228,7 +228,7 @@
    },
    "Mail": {
       "Author's message": "Riservato all'autore",
-      "FOOTER": "« La strada è lunga, ma la via è libera… »\nFramasoft vive solo grazie alle vostre donazioni (deducibili dalle imposte).\nGrazie in anticipo per il vostro sostegno http://soutenir.framasoft.org.",
+      "FOOTER": "« La strada è lunga, ma la via è libera… »<br/> Framasoft vive solo grazie alle vostre donazioni.<br/> Grazie in anticipo per il vostro sostegno https://soutenir.framasoft.org.",
       "For sending to the polled users": "Per diffondere ai partecipanti al sondaggio",
       "Notification of poll: %s": "Notifica di sondaggio: %s",
       "Poll's participation: %s": "Partecipazione al sondaggio: %s",
@@ -390,7 +390,7 @@
       "You can set a closer archiving date for it.": "Si può decidere su una data più vicina di archiviazione.",
       "Your poll will automatically be archived": "Il vostro sondaggio sarà archiviato automaticamente",
       "Your poll will be automatically archived in %d days.": "Il vostro sondaggio verrà archiviata automaticamente in %d giorni.",
-      "after the last date of your poll.": "dopo l'ultimo giorno del vostro sondaggio."
+      "after the last date of your poll.": "dopo l'ultimo giorno del vostro sondaggi"
    },
    "adminstuds": {
       "Add a column": "Aggiungere una colonna",

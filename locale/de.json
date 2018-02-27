@@ -228,7 +228,7 @@
    },
    "Mail": {
       "Author's message": "Nachricht vom Autor ",
-      "FOOTER": "„Die Strecke ist lang, aber der Weg ist frei… » <br/>Framasoft besteht nur durch Ihre Spenden (in Frankreich von der Steuer absetzbar).<br/>Herzlichen Dank für Ihre Unterstützung http://soutenir.framasoft.org",
+      "FOOTER": "„Die Strecke ist lang, aber der Weg ist frei… » <br/>Framasoft besteht nur durch Ihre Spenden (in Frankreich von der Steuer absetzba).<br/>Herzlichen Dank für Ihre Unterstützung https://soutenir.framasoft.org",
       "For sending to the polled users": "Nachricht für die Teilnehmer",
       "Notification of poll: %s": "Mitteilung bezüglich der Umfrage: %s",
       "Poll's participation: %s": "Beteiligung an der Umfrage: %s",
@@ -333,7 +333,7 @@
       "Poll id": "Bezeichner",
       "Poll id rules": "Der Bezeichner kann Buchstaben, Zahlen und Bindestriche enhalten \"-\".",
       "Poll id warning": "Mit der Verwendung eines Bezeichners können möglicherweise Personen unerwünscht Zugriff auf die Umfrage erhalten. Es wird empfohlen sie mit einem Passwort zu schützen.",
-      "Poll password": "Password",
+      "Poll password": "Passwort",
       "Poll title": "Titel der Umfrage",
       "Required fields cannot be left blank.": "Mit * markierte Felder müssen ausgefüllt sein.",
       "The results are publicly visible": "Die Ergebnisse sind öffentlich Einsehbar",

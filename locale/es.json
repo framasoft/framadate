@@ -228,7 +228,7 @@
    },
    "Mail": {
       "Author's message": "Reservado al autor",
-      "FOOTER": "",
+      "FOOTER": "\"El camino es largo, pero el camino está despejado...\"<br/>Framasoft vive sólo de sus donaciones<br/>Gracias de antemano por su apoyo https://soutenir.framasoft.org",
       "For sending to the polled users": "Para difusión a los votantes",
       "Notification of poll: %s": "Notificación de la encuesta: %s",
       "Poll's participation: %s": "Participación a la encuesta: %s",
