@@ -21,7 +21,7 @@
 
     {# messages #}
     {% include 'part/messages.twig' %}
-    
+
     {% if not accessGranted and not resultPubliclyVisible %}
 
         {% include 'part/password_request.twig' with {active: poll.active} %}
@@ -53,7 +53,7 @@
         {% if poll.format == 'D' %}
             {% include 'part/vote_table_date.twig' with {active: poll.active} %}
         {% else %}
-            {% include 'part/vote_table_classic.tpl' with {active: poll.active} %}
+            {% include 'part/vote_table_classic.twig' with {active: poll.active} %}
         {% endif %}
 
         {# Comments #}

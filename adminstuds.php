@@ -65,8 +65,9 @@ if (!empty($_GET['poll'])) {
 if ($poll) {
     $poll_id = $poll->id;
 } else {
-    $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
-    $smarty->display('error.tpl');
+    echo $twig->render('error.twig', [
+        'error' => __('Error', 'This poll doesn\'t exist !'),
+    ]);
     exit;
 }
 

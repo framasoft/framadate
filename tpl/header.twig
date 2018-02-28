@@ -18,7 +18,7 @@
 
     <h1 class="row col-xs-12 col-sm-10">
         <a href="{{ SERVER_URL|raw}}" title="{{__('Generic', 'Home')}} - {{ APPLICATION_NAME|raw}}" >
-            <img src="{{TITLE_IMAGE}}" alt="{{ APPLICATION_NAME|raw}}" class="img-responsive"/>
+            <img src="/{{TITLE_IMAGE}}" alt="{{ APPLICATION_NAME|raw}}" class="img-responsive"/>
         </a>
     </h1>
     {% if title is not empty %}<h2 class="lead col-xs-12"><i>{{ title|raw }}</i></h2>{% endif %}

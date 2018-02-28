@@ -15,18 +15,18 @@
         <link rel="icon" href="{{ favicon }}">
     {% endif %}
 
-    <link rel="stylesheet" href="{{'css/bootstrap.min.css'}}">
-    <link rel="stylesheet" href="{{'css/datepicker3.css'}}">
-    <link rel="stylesheet" href="{{'css/style.css'}}">
-    <link rel="stylesheet" href="{{'css/frama.css'}}">
-    <link rel="stylesheet" href="{{'css/print.css'}}" media="print">
-    <script type="text/javascript" src="{{'js/jquery-1.12.4.min.js'}}"></script>
-    <script type="text/javascript" src="{{'js/bootstrap.min.js'}}"></script>
-    <script type="text/javascript" src="{{'js/bootstrap-datepicker.js'}}"></script>
+    <link rel="stylesheet" href="{{'/css/bootstrap.min.css'}}">
+    <link rel="stylesheet" href="{{'/css/datepicker3.css'}}">
+    <link rel="stylesheet" href="{{'/css/style.css'}}">
+    <link rel="stylesheet" href="{{'/css/frama.css'}}">
+    <link rel="stylesheet" href="{{'/css/print.css'}}" media="print">
+    <script type="text/javascript" src="{{'/js/jquery-1.12.4.min.js'}}"></script>
+    <script type="text/javascript" src="{{'/js/bootstrap.min.js'}}"></script>
+    <script type="text/javascript" src="{{'/js/bootstrap-datepicker.js'}}"></script>
     {% if "en" != locale %}
-        <script type="text/javascript" src="{{ 'js/locales/bootstrap-datepicker.' ~ locale ~ '.js' }}" ></script>
+        <script type="text/javascript" src="{{ '/js/locales/bootstrap-datepicker.' ~ locale ~ '.js' }}" ></script>
     {% endif %}
-    <script type="text/javascript" src="{{'js/core.js'}}"></script>
+    <script type="text/javascript" src="{{'/js/core.js'}}"></script>
 
     {% block header %}{% endblock %}
 

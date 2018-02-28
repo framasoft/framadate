@@ -23,31 +23,31 @@
 // const APP_URL = '<www.mydomain.fr>';
 
 // Application name
-const NOMAPPLICATION = '{$appName|addslashes_single_quote}';
+const NOMAPPLICATION = '{{ appName | addslashes_single_quote }}';
 
 // Database administrator email
-const ADRESSEMAILADMIN = '{$appMail}';
+const ADRESSEMAILADMIN = '{{ appMail }}';
 
 // Email for automatic responses (you should set it to "no-reply")
-const ADRESSEMAILREPONSEAUTO = '{$responseMail}';
+const ADRESSEMAILREPONSEAUTO = '{{ responseMail }}';
 
 // Database server name, leave empty to use a socket
-const DB_CONNECTION_STRING = '{$dbConnectionString}';
+const DB_CONNECTION_STRING = '{{ dbConnectionString }}';
 
 // Database user
-const DB_USER= '{$dbUser}';
+const DB_USER= '{{ dbUser }}';
 
 // Database password
-const DB_PASSWORD = '{$dbPassword|addslashes_single_quote}';
+const DB_PASSWORD = '{{ dbPassword | addslashes_single_quote }}';
 
 // Table name prefix
-const TABLENAME_PREFIX = '{$dbPrefix}';
+const TABLENAME_PREFIX = '{{ dbPrefix }}';
 
 // Name of the table that stores migration script already executed
-const MIGRATION_TABLE = '{$migrationTable}';
+const MIGRATION_TABLE = '{{ migrationTable }}';
 
 // Default Language
-const DEFAULT_LANGUAGE = '{$defaultLanguage}';
+const DEFAULT_LANGUAGE = '{{ defaultLanguage }}';
 
 // List of supported languages, fake constant as arrays can be used as constants only in PHP >=5.6
 $ALLOWED_LANGUAGES = [
@@ -65,7 +65,7 @@ $ALLOWED_LANGUAGES = [
 const IMAGE_TITRE = 'images/logo-framadate.png';
 
 // Clean URLs, boolean
-const URL_PROPRE = {if in_array($cleanUrl, array('1', 'on', 'true'))}true{else}false{/if};
+const URL_PROPRE = {% if cleanUrl in ['1', 'on', 'true'] %}true{% else %}false{% endif %};
 
 // Use REMOTE_USER data provided by web server
 const USE_REMOTE_USER =  true;

@@ -51,9 +51,14 @@ $preg_match = new Twig_SimpleFunction('preg_match', function($pattern, $subject)
    return preg_match($pattern, $subject);
 });
 
+$addslashes = new Twig_SimpleFilter('addslashes_single_quote', function ($string) {
+    return addcslashes($string, '\\\'');
+});
+
 $twig->addFunction($trans);
 $twig->addFunction($route);
 $twig->addFunction($preg_match);
+$twig->addFilter($addslashes);
 
 $twig->addExtension(new Twig_Extension_Debug());
 
@@ -79,9 +84,6 @@ function smarty_modifier_markdown($md, $clear = false, $inline=true) {
 
 function smarty_modifier_resource($link) {
     return Utils::get_server_name() . $link;
-}
-function smarty_modifier_addslashes_single_quote($string) {
-    return addcslashes($string, '\\\'');
 }
 
 function smarty_modifier_html($html) {

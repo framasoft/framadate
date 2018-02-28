@@ -62,7 +62,5 @@ if (is_file(CONF_FILENAME)) {
 }
 
 require_once __DIR__ . '/i18n.php';
-// Smarty
-// require_once __DIR__ . '/smarty.php';
 // Twig
 require_once __DIR__ . '/twig.php';

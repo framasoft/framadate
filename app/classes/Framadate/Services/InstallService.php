@@ -18,7 +18,6 @@
  */
 namespace Framadate\Services;
 use Framadate\Utils;
-use Smarty;
 
 /**
  * This class helps to clean all inputs from the users or external services.
@@ -48,7 +47,7 @@ class InstallService {
         }
     }
 
-    public function install(Smarty &$smarty) {
+    public function install(\Twig_Environment &$twig) {
         // Check values are present
         if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dbConnectionString']) || empty($this->fields['dbUser'])) {
             return $this->error('MISSING_VALUES');
@@ -61,7 +60,7 @@ class InstallService {
         }
 
         // Write configuration to conf.php file
-        if ($this->writeConfiguration($smarty) === false) {
+        if ($this->writeConfiguration($twig) === false) {
             return $this->error(__f('Error', "Can't create the config.php file in '%s'.", CONF_FILENAME));
         }
 
@@ -79,12 +78,8 @@ class InstallService {
         }
     }
 
-    function writeConfiguration(Smarty &$smarty) {
-        foreach($this->fields as $field=>$value) {
-            $smarty->assign($field, $value);
-        }
-
-        $content = $smarty->fetch('admin/config.tpl');
+    function writeConfiguration(\Twig_Environment &$twig) {
+        $content = $twig->render('admin/config.twig', $this->fields);
 
         return $this->writeToFile($content);
     }
