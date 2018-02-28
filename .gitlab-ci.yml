@@ -59,3 +59,13 @@ funky:
   - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then rsync -a --delete --exclude admin/.stdout.log --exclude admin/.htpasswd --exclude app/inc/config.php --exclude stats/ --exclude error/ public/ ${DEPLOYEMENT_USER}@${DEPLOYEMENT_HOST}:../../web/; fi
   only:
     - funky
+
+# Push new translations strings to https://trad.framasoft.org
+trads:
+  stage: deploy
+  image: framasoft/push-trad:latest
+  script:
+  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
+  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make push-locales; fi
+  only:
+    - develop
