@@ -14,11 +14,11 @@ while (defined(my $line = <STDIN>)) {
     $old_json .= $line;
 }
 
-$old_json = decode_json($old_json);
+$old_json = $json->decode($old_json);
 for my $key (keys %{$old_json}) {
-    $key =~ m/^([^.]*)\.(.*)$/;
-    my $real_key = $1;
-    my $trad_key = $2;
+    my $index    = index($key, '.');
+    my $real_key = substr($key, 0, $index++);
+    my $trad_key = substr($key, $index);
 
     $new_json->{$real_key}->{$trad_key} = $old_json->{$key} if $old_json->{$key};
 }
