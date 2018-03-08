@@ -7,15 +7,31 @@
             DATEPICKER: '{{__('Date', 'datepicker')}}'
         };
     </script>
-    <script type="text/javascript" src="{{'js/app/framadatepicker.js'}}"></script>
+    <script type="text/javascript" src="{{ asset('js/app/framadatepicker.js') }}"></script>
 {% endblock %}
 {% block main %}
-    <form name="formulaire" method="POST" class="form-horizontal" role="form">
+    <form name="formulaire" method="POST" action="{{ path('new_date_poll_final') }}" class="form-horizontal" role="form">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="well summary">
                     <h4>{{__('Step 3', 'List of your choices')}}</h4>
-                    {{summary | raw }}
+                    <ul>
+                        {% for choice in choices %}
+                            <li>
+                                {% if poll_type == 'date' %}
+                                    {{ choice.name | localizeddate('none', 'none', locale, NULL, 'EEEE dd MMMM y') }}{% if choice.slots | length > 0 %}:{% endif %}
+                                    {% for slot in choice.slots %}
+                                        {% spaceless %}
+                                            {{ slot }}{% if not loop.last %},{% endif %}
+                                        {% endspaceless %}
+                                    {% endfor %}
+                                {% else %}
+                                    {{ choice.name | markdown | raw }}
+                                {% endif %}
+                            </li>
+
+                        {% endfor %}
+                    </ul>
                 </div>
                 <div class="alert alert-info">
                     <p>{{__('Step 3', 'Your poll will automatically be archived')}} {{default_poll_duration}} {{__('Generic', 'days')}} {{__('Step 3', 'after the last date of your poll.')}}

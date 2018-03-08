@@ -5,11 +5,11 @@
 
 {# Add comment form #}
 {% if active and not expired and accessGranted %}
-    <form action="{{'action/add_comment.php'}}" method="POST" id="comment_form">
+    <form action="{{ path('new_comment', {'poll_id': poll.id}) }}" method="POST" id="comment_form">
 
-        <input type="hidden" name="poll" value="{{ poll_id }}"/>
-        {% if admin_poll_id is not empty %}
-            <input type="hidden" name="poll_admin" value="{{ admin_poll_id }}"/>
+        <input type="hidden" name="poll" value="{{ poll.id }}"/>
+        {% if admin_poll_id is defined and poll.adminId is not empty %}
+            <input type="hidden" name="poll_admin" value="{{ poll.adminId }}"/>
         {% endif %}
         <div class="hidden-print jumbotron">
             <div class="col-md-6 col-md-offset-3">

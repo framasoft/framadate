@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-6 text-center">
             <p class="home-choice">
-                <a href="{{ SERVER_URL }}create_poll.php?type=date" class="opacity" role="button">
+                <a href="{{ path('new_poll', {type: 'date'}) }}" class="opacity" role="button">
                     <img class="img-responsive center-block" src="{{'images/date.png'}}" alt=""/>
                     <br/>
                     <span class="btn btn-primary btn-lg">
@@ -16,7 +16,7 @@
         </div>
         <div class="col-xs-12 col-md-6 text-center">
             <p class="home-choice">
-                <a href="{{SERVER_URL}}create_poll.php?type=autre" class="opacity" role="button">
+                <a href="{{ path('new_poll', {type: 'classic'}) }}" class="opacity" role="button">
                     <img alt="" class="img-responsive center-block" src="{{'images/classic.png'}}"/>
                     <br/>
                     <span class="btn btn-info btn-lg">
@@ -28,7 +28,7 @@
         </div>
         <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
             <p class="home-choice">
-                <a href="{{SERVER_URL}}find_polls.php" class="opacity" role="button">
+                <a href="changeme.php" class="opacity" role="button">
                     <span class="btn btn-warning btn-lg">
                         <span class="glyphicon glyphicon-search"></span>
                         {{__('Homepage', 'Where are my polls')}}
@@ -61,7 +61,7 @@
                 {% if demo_poll != null %}
                 <p>
                     {{__('1st section', 'Do you want to')}}
-                    <a href="{{ poll_url('aqg259dth55iuhwm') }}">{{__('1st section', 'view an example?')}}</a>
+                    <a href="{{ path('view_poll', {'poll_id': 'aqg259dth55iuhwm'}) }}">{{__('1st section', 'view an example?')}}</a>
                 </p>
                 {% endif %}
             </div>

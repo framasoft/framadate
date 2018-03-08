@@ -36,7 +36,7 @@ $(document).ready(function () {
     /**
      * Enable/Disable custom url options
      */
-    $("#use_customized_url").change(function () {
+    $("#poll_use_customized_url").change(function () {
         if ($(this).prop("checked")) {
             $("#customized_url_options").removeClass("hidden");
         } else {
@@ -47,7 +47,7 @@ $(document).ready(function () {
  /**
      * Enable/Disable ValueMax options
      */
-    $("#use_ValueMax").change(function () {
+    $("#poll_use_ValueMax").change(function () {
         if ($(this).prop("checked")) {
             $("#ValueMax").removeClass("hidden");
         } else {
@@ -59,7 +59,7 @@ $(document).ready(function () {
     /**
      * Hide/Show password options
      */
-    $("#use_password").change(function(){
+    $("#poll_use_password").change(function(){
         if ($(this).prop("checked")) {
             $("#password_options").removeClass("hidden");
         } else {

@@ -50,7 +50,7 @@ const TABLENAME_PREFIX = 'fd_';
 const DEFAULT_LANGUAGE = 'fr';
 
 // List of supported languages, fake constant as arrays can be used as constants only in PHP >=5.6
-$ALLOWED_LANGUAGES = [
+const ALLOWED_LANGUAGES = [
     'fr' => 'Français',
     'en' => 'English',
     'oc' => 'Occitan',

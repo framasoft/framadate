@@ -17,7 +17,6 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-use Framadate\Services\PollService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -27,23 +26,52 @@ if (!is_file(CONF_FILENAME)) {
     exit;
 }
 
-/* SERVICES */
-/* -------- */
-$logService = '\Framadate\Services\LogService';
-$pollService = new PollService($connect, new $logService());
+$app->get('/', 'poll.controller:indexAction')->bind('home');
+$app->get('/{poll_id}', 'poll.controller:showAction')->bind('view_poll'); // TODO : add back ->assert('poll_id', POLL_REGEX)
+$app->get('/{admin_poll_id}/admin', 'poll_admin.controller:showAdminPollAction')->bind('view_admin_poll'); // TODO : add back ->assert('admin_poll_id', POLL_ADMIN_REGEX)
+$app->post('/{poll_id}', 'poll_comment_controller:postAction')->bind('post_comment');
 
-/* PAGE */
-/* ---- */
+/**
+ * Creating a new poll
+ */
+$app->match('/new/{type}', 'poll.controller:createPollAction')->bind('new_poll');
 
-$demoPoll = $pollService->findById('aqg259dth55iuhwm');
-$nbcol = max($config['show_what_is_that'] + $config['show_the_software'] + $config['show_cultivate_your_garden'], 1 );
+/**
+ * Creating a date poll
+ */
+$app->match('/new/date/2', 'date_poll.controller:createPollActionStepTwo')->bind('new_date_poll_step_2');
+$app->match('/new/date/3', 'date_poll.controller:createPollActionStepThree')->bind('new_date_poll_step_3');
+$app->post('/new/date/4', 'date_poll.controller:createPollFinalAction')->bind('new_date_poll_final');
 
+/**
+ * Creating a classic poll
+ */
+$app->match('/new/classic/2', 'classic_poll.controller:createPollActionStepTwo')->bind('new_classic_poll_step_2');
+$app->match('/new/classic/3', 'classic_poll.controller:createPollActionStepThree')->bind('new_classic_poll_step_3');
+$app->match('/new/classic/4', 'classic_poll.controller:createPollActionStepThree')->bind('new_classic_poll_final');
 
-echo $twig->render('index.twig', [
-    'show_what_is_that' => $config['show_what_is_that'],
-    'show_the_software' => $config['show_the_software'],
-    'show_cultivate_your_garden' => $config['show_cultivate_your_garden'],
-    'col_size' => 12 / $nbcol,
-    'demo_poll' => $demoPoll,
-    'title' => __('Generic', 'Make your polls'),
-]);
+/**
+ * Posting a vote
+ */
+$app->post('/{poll_id}/vote', 'vote.controller:voteAction')->bind('vote_poll');
+$app->match('/{poll_id}/vote/edit/{vote_uniq_id}', 'vote.controller:editVoteAction')->bind('edit_vote_poll');
+$app->post('/{admin_poll_id}/admin/vote', 'vote.controller:voteAdminAction')->bind('vote_poll_admin');
+
+/**
+ * Editing a vote
+ */
+$app->post('{admin_poll_id}/admin/edit', 'poll_admin.controller:editPollAction')->bind('edit_admin_poll');
+
+/**
+ * Export a poll
+ */
+$app->get('{poll_id}/export.{format}', 'poll.controller:exportPollAction')->bind('export_poll')->value('format', 'CSV');
+
+/**
+ * Post a comment
+ */
+$app->post('{poll_id}/comment', 'comment.controller:createCommentAction')->bind('new_comment');
+$app->post('{poll_id}/comment/remove', 'comment.controller:removeCommentAction')->bind('remove_comment');
+
+$app->run();
+

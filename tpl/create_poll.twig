@@ -1,18 +1,19 @@
 {% extends 'page.twig' %}
 
 {% block header %}
-    <script src="{{"js/simplemde.min.js"}}" type="text/javascript"></script>
-    <script src="{{"js/mde-wrapper.js"}}" type="text/javascript"></script>
-    <script src="{{"js/app/create_poll.js"}}" type="text/javascript"></script>
-    <link rel="stylesheet" href="{{"css/app/create_poll.css"}}">
-    <link rel="stylesheet" href="{{"css/simplemde.min.css"}}">
+    <script src="{{ asset("js/simplemde.min.js") }}" type="text/javascript"></script>
+    <script src="{{ asset("js/mde-wrapper.js") }}" type="text/javascript"></script>
+    <script src="{{ asset("js/app/create_poll.js") }}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ asset("css/app/create_poll.css") }}">
+    <link rel="stylesheet" href="{{ asset("css/simplemde.min.css") }}">
 
 {% endblock %}
 
 {% block main %}
     <div class="row" style="display:none" id="form-block">
         <div class="col-md-8 col-md-offset-2">
-            <form name="formulaire" id="formulaire" action="" method="POST" class="form-horizontal" role="form">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+            {#<form name="formulaire" id="formulaire" action="{{ path('new_date_poll_step_2') }}" method="POST" class="form-horizontal" role="form"> #}
 
                 <div class="alert alert-info">
                     <p>
@@ -21,82 +22,44 @@
                     </p>
                 </div>
 
-                <div class="form-group {{ errors.name.class }}">
+                <div class="form-group">
                     <label for="yourname" class="col-sm-4 control-label">{{ __('Generic', 'Your name') }} *</label>
 
                     <div class="col-sm-8">
-                        {% if useRemoteUser %}
-                            <input type="hidden" name="name" value="{{form.admin_name}}" />{{form.admin_name}}
-                        {% else %}
-                            <input id="yourname" type="text" name="name" class="form-control" {{errors.name.aria}} value="{{ poll_name|raw}}" />
-                        {% endif %}
+                        {{ form_widget(form.admin_name) }}
                     </div>
                 </div>
-                {% if errors.name.msg is not empty %}
-                    <div class="alert alert-danger">
-                        <p id="poll_title_error">{{ errors.name.msg }}</p>
-                    </div>
-                {% endif %}
-
                 {% if use_smtp %}
-                    <div class="form-group {{ errors.email.class }}">
+                    <div class="form-group">
                         <label for="email" class="col-sm-4 control-label">
                             {{ __('Generic', 'Your email address') }} *<br/>
                             <span class="small">{{ __('Generic', '(in the format name@mail.com)')}}</span>
                         </label>
 
                         <div class="col-sm-8">
-                            {% if useRemoteUser %}
-                                <input type="hidden" name="mail" value="{$form->admin_mail}">{{ form.admin_mail }}
-                            {% else %}
-                                <input id="email" type="text" name="mail" class="form-control" {{ errors.email.aria }} value="{{ poll_mail | raw }}" />
-                            {% endif %}
+                            {{ form_widget(form.admin_mail) }}
                         </div>
                     </div>
-                    {% if errors.email.msg is not empty %}
-                    <div class="alert alert-danger">
-                        <p id="poll_title_error">
-                            {{ errors.email.msg }}
-                        </p>
-                    </div>
-                    {% endif %}
                 {% endif %}
 
-                <div class="form-group {{ errors.title.class }}">
+                <div class="form-group">
                     <label for="poll_title" class="col-sm-4 control-label">{{__('Step 1', 'Poll title')}} *</label>
 
                     <div class="col-sm-8">
-                        <input id="poll_title" type="text" name="title" class="form-control" {{ errors.title.aria }}
-                               value="{{ poll_title|raw }}"/>
+                        {{ form_widget(form.title) }}
                     </div>
                 </div>
-                {% if errors.title.msg is not empty %}
-                    <div class="alert alert-danger">
-                        <p id="poll_title_error">
-                            {{ errors.title.msg }}
-                        </p>
-                    </div>
-                {% endif %}
 
-                <div class="form-group {$errors['description']['class']}">
+                <div class="form-group">
                     <label for="poll_comments" class="col-sm-4 control-label">{{__('Generic', 'Description')}}</label>
 
                     <div class="col-sm-8">
                         {% include 'part/description_markdown.twig' %}
                         <div>
-                            <textarea id="poll_comments" name="description"
-                                      class="form-control" {{ errors.description.aria }}
-                                      rows="5">{{ poll_description | escape }}</textarea>
+                            {{ form_widget(form.description) }}
                         </div>
                     </div>
                 </div>
-                {% if errors.description.msg is not empty %}
-                    <div class="alert alert-danger">
-                        <p id="poll_title_error">
-                            {{ errors.description.msg }}
-                        </p>
-                    </div>
-                {% endif %}
 
                 {# Optionnal parameters #}
                 <div class="col-sm-offset-3 col-sm-1 hidden-xs">
@@ -121,7 +84,7 @@
                 <div class="collapse" id="optionnal">
                 {# Poll identifier #}
 
-                    <div class="form-group {{ errors.customized_url.class }}">
+                    <div class="form-group">
 
                         {# Value MAX #}
                         <div class="form-group">
@@ -129,21 +92,16 @@
                                 {{__('Step 1', 'Value Max')}}<br/>
                             </label>
                             <div class="col-sm-8">
-                                <div class="checkbox">
-                                    <label>
-                                        <input id="use_ValueMax" name="use_ValueMax" type="checkbox" >
-                                            {{__('Step 1', "Limit the ammount of voters per option")}}
-                                    </label>
-                                </div>
+                                {{ form_widget(form.use_ValueMax) }}
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div id="ValueMax"{% if not use_ValueMax%} class="hidden"{% endif %}>
+                            <div id="ValueMax" class="hidden">
 
                                 <div class="col-sm-offset-4 col-sm-8">
                                     <label>
-                                        <input id="ValueMax" type="number" min= "0" name="ValueMax">
+                                        {{ form_widget(form.ValueMax) }}
                                         {{__('Step 1', "ValueMax instructions")}}
                                     </label>
                                 </div>
@@ -152,44 +110,30 @@
 
 
                         {# Poll identifier #}
-                        <div class="form-group {{ errors.customized_url.class }}">
+                        <div class="form-group">
                             <label for="poll_id" class="col-sm-4 control-label">
                                 {{__('Step 1', 'Poll id')}}<br/>
                             </label>
 
                             <div class="col-sm-8">
-                                <div class="checkbox">
-                                    <label>
-                                        <input id="use_customized_url" name="use_customized_url" type="checkbox" {% if use_customized_url %}checked{% endif %}/>
-                                        {{__('Step 1', 'Customize the URL')}}
-                                    </label>
-                                </div>
+                                {{ form_widget(form.use_customized_url) }}
                             </div>
                         </div>
-                        <div id="customized_url_options" {% if not use_customized_url %}class="hidden"{% endif %}>
-                            <div class="form-group {{ errors.customized_url.class }}">
+                        <div id="customized_url_options" class="hidden">
+                            <div class="form-group">
                                 <label for="customized_url" class="col-sm-4 control-label">
                                     <span id="pollUrlDesc" class="small">{{ __('Step 1', 'Poll id rules') }}</span>
                                 </label>
                                 <div class="col-sm-8">
                                     <div class="input-group">
                                         <span class="input-group-addon">
-                                            {{ SERVER_URL }}
+                                            {{ base_url }}
                                         </span>
-                                        <input id="customized_url" type="text" name="customized_url" class="form-control" {{ errors.customized_url.aria }}
-                                               value="{{ customized_url | raw }}" aria-describedBy="pollUrlDesc" maxlength="64"
-                                               pattern="[A-Za-z0-9-]+"/>
+                                        {{ form_widget(form.id) }}
                                     </div>
                                     <span class="help-block text-warning">{{ __('Step 1', 'Poll id warning') }}</span>
                                 </div>
                             </div>
-                            {% if errors.customized_url.msg is not empty %}
-                                <div class="alert alert-danger">
-                                    <p id="poll_customized_url_error">
-                                        {{ errors.customized_url.msg }}
-                                    </p>
-                                </div>
-                            {% endif %}
                         </div>
 
                         {# Password #}
@@ -200,48 +144,24 @@
                             </label>
 
                             <div class="col-sm-8">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="use_password" {% if poll_use_password %}checked{% endif %}
-                                               id="use_password">
-                                        {{ __('Step 1', "Use a password to restrict access")}}
-                                    </label>
-                                </div>
+                                {{ form_widget(form.use_password) }}
                             </div>
 
-                            <div id="password_options"{% if not poll_use_password %} class="hidden"{% endif %}>
+                            <div id="password_options" class="hidden">
                                 <div class="col-sm-offset-4 col-sm-8">
                                     <div class="input-group">
-                                        <input id="poll_password" type="password" name="password" class="form-control" {{ errors.password.aria }}/>
+                                        {{ form_widget(form.password.first) }}
                                         <label for="poll_password" class="input-group-addon">{{__('Step 1', 'Password choice')}}</label>
                                     </div>
                                 </div>
-                                {% if errors.password.msg is not empty %}
-                                    <div class="alert alert-danger">
-                                        <p id="poll_password_error">
-                                            {{errors.password.msg }}
-                                        </p>
-                                    </div>
-                                {% endif %}
                                 <div class="col-sm-offset-4 col-sm-8">
                                     <div class="input-group">
-                                        <input id="poll_password_repeat" type="password" name="password_repeat" class="form-control" {{ errors.password_repeat.aria }}/>
+                                        {{ form_widget(form.password.second) }}
                                         <label for="poll_password_repeat" class="input-group-addon">{{__('Step 1', 'Password confirmation')}}</label>
                                     </div>
                                 </div>
-                                {% if errors.password_repeat.msg is not empty %}
-                                    <div class="alert alert-danger">
-                                        <p id="poll_password_repeat_error">{{errors.password_repeat.msg}}</p>
-                                    </div>
-                                {% endif %}
                                 <div class="col-sm-offset-4 col-sm-8">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="results_publicly_visible"
-                                                   {% if poll_results_publicly_visible %}checked{% endif %} id="results_publicly_visible"/>
-                                            {{__('Step 1', "The results are publicly visible")}}
-                                        </label>
-                                    </div>
+                                    {{ form_widget(form.results_publicly_visible) }}
                                 </div>
                             </div>
                         </div>
@@ -252,18 +172,7 @@
                             </label>
                             <div class="col-sm-8">
                                 <div class="radio">
-                                    <label>
-                                        <input type="radio" name="editable" id="editableByAll" {% if poll_editable == constant('Framadate\\Editable::EDITABLE_BY_ALL') %}checked{% endif %} value="{{ constant('Framadate\\Editable::EDITABLE_BY_ALL') }}">
-                                        {{__('Step 1', 'All voters can modify any vote')}}
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="editable" {% if poll_editable == constant('Framadate\\Editable::EDITABLE_BY_OWN') %}checked{% endif %} value="{{constant('Framadate\\Editable::EDITABLE_BY_OWN')}}">
-                                        {{__('Step 1', 'Voters can modify their vote themselves')}}
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="editable" {% if poll_editable is empty or poll_editable == constant('Framadate\\Editable::NOT_EDITABLE')%}checked{% endif %} value="{{constant('Framadate\\Editable::NOT_EDITABLE')}}">
-                                        {{__('Step 1', 'Votes cannot be modified')}}
-                                    </label>
+                                    {{ form_widget(form.editable) }}
                                 </div>
                             </div>
                         </div>
@@ -274,8 +183,7 @@
                                 <div class="col-sm-offset-4 col-sm-8">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="receiveNewVotes" {% if poll_receiveNewVotes %}checked{% endif %}
-                                            id="receiveNewVotes">
+                                            {{ form_widget(form.receiveNewVotes) }}
                                             {{__('Step 1', 'To receive an email for each new vote')}}
                                         </label>
                                     </div>
@@ -285,8 +193,7 @@
                                 <div class="col-sm-offset-4 col-sm-8">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="receiveNewComments" {% if poll_receiveNewComments %}checked{% endif %}
-                                            id="receiveNewComments">
+                                            {{ form_widget(form.receiveNewComments) }}
                                             {{__('Step 1', 'To receive an email for each new comment')}}
                                         </label>
                                     </div>
@@ -296,13 +203,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="hidden" {% if poll_hidden %}checked{% endif %}
-                                        id="hidden">
-                                        {{__('Step 1', "Only the poll maker can see the poll's results")}}
-                                    </label>
-                                </div>
+                                {{ form_widget(form.hidden) }}
                                 <div id="hiddenWithBadEditionModeError" class="alert alert-danger hidden">
                                     <p>
                                         {{__('Error', "You can't create a poll with hidden results with the following edition option:")}}"{{__('Step 1', 'All voters can modify any vote')}}"
@@ -314,14 +215,12 @@
                 </div>
 
                 <p class="text-right">
-                    <input type="hidden" name="type" value="{{ poll_type }}"/>
-                    <button name="{{ goToStep2 }}" value="{{ poll_type }}" type="submit"
-                            class="btn btn-success">{{__('Step 1', 'Go to step 2')}}</button>
+                    {{ form_widget(form.submit) }}
                 </p>
 
-                <script type="text/javascript">document.formulaire.title.focus();</script>
+                <script type="text/javascript">document.getElementById('poll_admin_name').focus();</script>
 
-            </form>
+                    </form>
         </div>
     </div>
     <noscript>

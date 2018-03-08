@@ -112,14 +112,14 @@
                             <td>{{ poll.votes | raw }}</td>
                             <td>{{ poll.id | raw }}</td>
                             <td>
-                                <a href="{{ poll_url(poll.id) }}" class="btn btn-link"
+                                <a href="{{ path('view_poll', {'poll_id': poll.id}) }}" class="btn btn-link"
                                    title="{{__('Admin', 'See the poll')}}">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                     <span class="sr-only">{{__('Admin', 'See the poll')}}</span>
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ poll_url(poll.admin_id, true) }}" class="btn btn-link"
+                                <a href="{{ path('view_admin_poll', {'admin_poll_id': poll.adminId}) }}" class="btn btn-link"
                                    title="{{__('Admin', 'Change the poll')}}">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                     <span class="sr-only">{{ __('Admin', 'Change the poll')}}</span>

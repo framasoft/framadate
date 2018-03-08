@@ -7,12 +7,17 @@
             DATEPICKER: '{{__('Date', 'datepicker')}}'
         };
     </script>
-    <script type="text/javascript" src="{{ 'js/app/framadatepicker.js' }}"></script>
-    <script type="text/javascript" src="{{ 'js/app/date_poll.js '}}"></script>
+    <script type="text/javascript" src="{{ asset('js/app/framadatepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/app/date_poll.js') }}"></script>
 {% endblock %}
 
 {% block main %}
-    <form name="formulaire" action="" method="POST" class="form-horizontal" role="form">
+    <div>
+        <p>
+            Titre : {{ poll.title }}
+        </p>
+    </div>
+    <form name="formulaire" action="{{ path('new_date_poll_step_3') }}" method="POST" class="form-horizontal" role="form">
         <div class="row" id="selected-days">
             <div class="col-md-10 col-md-offset-1">
                 <h3>{{__('Step 2 date', 'Choose the dates of your poll')}}</h3>
@@ -119,7 +124,7 @@
                             <li><a id="resethours" href="javascript:void(0)">{{__('Step 2 date', 'Remove all hours')}}</a></li>
                         </ul>
                     </div>
-                    <a class="btn btn-default" href="{{SERVER_URL}}create_poll.php?type=date"
+                    <a class="btn btn-default" href="{{ path('new_poll', {type: 'date'}) }}"
                        title="{{__('Step 2', 'Back to step 1')}}">{{__('Generic', 'Back')}}</a>
                     <button name="choixheures" value="{{__('Generic', 'Next')}}" type="submit" class="btn btn-success disabled"
                             title="{{__('Step 2', 'Go to step 3')}}">{{__('Generic', 'Next')}}</button>

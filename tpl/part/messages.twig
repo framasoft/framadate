@@ -1,4 +1,12 @@
 {# Messages #}
+{% for label, flashes in app.session.flashbag.all %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{ label }}">
+            {{ flash }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
 <div id="message-container">
     {% if message is not empty %}
         <div class="alert alert-dismissible alert-{{ message.type|raw}} hidden-print" role="alert">
