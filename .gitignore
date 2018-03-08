@@ -1,25 +1,17 @@
-.htaccess
-.htdigest
-.htpasswd
-admin/stdout.log
-composer.phar
-framanav
-nav
-app/inc/config.php
-vendor
-cache/
-tpl_c/
-.php_cs.cache
 
-# Temp files
-*~
-\#*\#
+###> symfony/framework-bundle ###
+.env
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
 
-# Cache
-Thumbs.db
+###> symfony/webpack-encore-pack ###
+/node_modules/
+/public/build/
+###< symfony/webpack-encore-pack ###
 
-# IDE
-.settings/
-.project
-.idea/
-*.iml
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###

@@ -1,0 +1,21 @@
+{% set i = 0 %}
+<ul class="list-unstyled">
+    {% for slot in slots %}
+        {% for moment in slot.moments %}
+            {% if best_choices.y[i] == max %}
+                <li>
+                    <strong>
+                        {{ slot.day | localizeddate('long', 'none', locale) }}
+                        {% if moment %}
+                        - {{ moment | raw }}
+                    {% endif %}
+                    </strong>
+                </li>
+            {% endif %}
+            {% set i = i+1 %}
+        {% endfor %}
+    {% endfor %}
+</ul>
+<p>{{ __('Generic', 'with') }}
+    <b>{{ max | raw }}</b> {% if max == 1 %}{{ __('Generic', 'vote') }}{% else %}{{ __('Generic', 'votes') }}{% endif %}
+</p>

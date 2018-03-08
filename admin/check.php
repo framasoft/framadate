@@ -48,7 +48,7 @@ $ALLOWED_LANGUAGES = [
     'br' => 'Brezhoneg',
 ];
 const DEFAULT_LANGUAGE = 'en';
-require_once ROOT_DIR . 'app/inc/i18n.php';
+require_once ROOT_DIR . 'app/inc/I18nWrapper.php';
 
 /**
  * Function to sort messages by type (priorise errors on warning, warning on info, etc.)
