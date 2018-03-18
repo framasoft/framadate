@@ -16,12 +16,13 @@
 <div id="tableContainer" class="tableContainer">
     <form action="{if $admin}{poll_url id=$admin_poll_id admin=true}{else}{poll_url id=$poll_id}{/if}" method="POST"  id="poll_form">
         <input type="hidden" name="control" value="{$slots_hash}"/>
-        <table class="results">
+	<table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes of the poll')} {$poll->title|html}</caption>
             <thead>
             {if $admin && !$expired}
                 <tr class="hidden-print">
                     <th role="presentation"></th>
+                    {$headersDCount=0}
                     {foreach $slots as $id=>$slot}
                         <td headers="C{$id}">
                             <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->title}"
@@ -29,7 +30,15 @@
                                class="btn btn-link btn-sm remove-column" title="{__('adminstuds', 'Remove the column')} {$slot->title|html}">
                                 <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                             </a>
+			    {if $poll->collect_users_mail}
+				    <a href="{poll_url id=$admin_poll_id admin=true action='collect_mail' action_value=($headersDCount)}"
+					   class="btn btn-link btn-sm collect-mail"
+		                           title="{__('adminstuds', 'Collect the emails of the polled users for the choice')} {$slot->title|html}">
+		                            <i class="glyphicon glyphicon-envelope"></i><span class="sr-only">{__('Generic', 'Collect emails')}</span>
+		                        </a>
+			    {/if}
                             </td>
+                            {$headersDCount = $headersDCount+1}
                     {/foreach}
                     <td>
                         <a href="{poll_url id=$admin_poll_id admin=true action='add_column'}"
@@ -59,6 +68,9 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
                             <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
+                            {if $poll->collect_users_mail}
+			    	<input type="email" required id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
+			    {/if}
                         </div>
                     </td>
 
@@ -172,7 +184,16 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
+                            {if $poll->collect_users_mail}
+				                <input type="email" required id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
+			                {/if}
                         </div>
+                        {if $poll->collect_users_mail && $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')}
+                            <div class="bg-danger">
+                                <i class="glyphicon glyphicon-alert"> </i>
+                                <label> {__('Poll results', 'Anyone will be able to access your email address after your vote')} </label>
+                            </div>
+                        {/if}
                     </td>
 					{$i = 0}
                     {foreach $slots as $id=>$slot}
@@ -205,7 +226,7 @@
                                     </label>
                                 </li>
                                 <li class="hide">
-                                  <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" " 
+                                  <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" "
                                 		{(isset($selectedNewVotes[$id]) && ("" !== $selectedNewVotes[$id])) ? "" : " checked"}
                                 	/>
                                 </li>

@@ -67,6 +67,25 @@ $(document).ready(function () {
         }
     });
 
+    /**
+     * Hide/Show Warning collect_users_mail + editable by all
+     */
+    $("#collect_users_mail").change(function(){
+        if ($(this).prop("checked") && $("input[name='editable']:checked").val() == 1) {
+            $("#collect_warning").removeClass("hidden");
+        } else {
+            $("#collect_warning").addClass("hidden");
+        }
+    });
+
+    $("input[name='editable']").change(function(){
+        if ($("#collect_users_mail").prop("checked") && $("input[name='editable']:checked").val() == 1) {
+            $("#collect_warning").removeClass("hidden");
+        } else {
+            $("#collect_warning").addClass("hidden");
+        }
+    });
+
     // Check cookies are enabled too
     var cookieEnabled = function () {
         var cookieEnabled = navigator.cookieEnabled;
