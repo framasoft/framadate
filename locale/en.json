@@ -285,7 +285,8 @@
       "Vote yes for": "Vote \"yes\" for",
       "Votes of the poll": "Votes",
       "polled user": "polled user",
-      "polled users": "polled users"
+      "polled users": "polled users",
+      "Anyone will be able to access your email address after your vote" : "Anyone will be able to access your email address after your vote"
    },
    "PollInfo": {
       "Admin link of the poll": "Admin link for the poll",
@@ -327,7 +328,8 @@
       "Simple editor": "Simple editor",
       "Title": "Title of the poll",
       "Votes and comments are locked": "Votes and comments are locked",
-      "Votes protected by password": "Votes protected by password"
+      "Votes protected by password": "Votes protected by password",
+      "Collecting the polled users emails" : "Collecting the polled users emails"
    },
    "Step 1": {
       "All voters can modify any vote": "All voters can modify any vote",
@@ -357,7 +359,10 @@
       "Voters can modify their vote themselves": "Voters can modify their vote themselves",
       "Votes cannot be modified": "Votes cannot be modified",
       "You are in the poll creation section.": "You are in the poll creation section.",
-      "You can enable or disable the editor at will.": "You can enable or disable the editor at will."
+      "You can enable or disable the editor at will.": "You can enable or disable the editor at will.",
+      "Collect users email" : "Collect users email",
+      "Collect the polled users email addresses" : "Collect the polled users email addresses",
+      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules." : "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules."
    },
    "Step 2": {
       "Back to step 1": "Return to step 1",
@@ -407,6 +412,7 @@
    },
    "adminstuds": {
       "Add a column": "Add a column",
+      "Collect the emails of the polled users for the choice": "Collect the emails of the polled users for the choice",
       "All comments deleted": "All comments deleted",
       "All votes deleted": "All votes deleted",
       "As poll administrator, you can change all the lines of this poll with this button": "As poll administrator, you can change all the lines of this poll with this button",
@@ -450,5 +456,13 @@
       "The poll is expired, it will be deleted soon.": "The poll has expired, it will soon be deleted.",
       "Update vote succeeded": "Vote updated",
       "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Your vote has been saved, but please note: you need to keep this personalised link to be able to edit your vote."
+   },
+   "display_mails": {
+	"People who have answered 'Yes' to this option have not left any email addresses." : "People who have answered 'Yes' to this option have not left any email addresses.",
+	"People who have answered 'If need be' to this option have not left any email addresses." : "People who have answered 'If need be' to this option have not left any email addresses.",
+	"People who have answered 'No' to this option have not left any email addresses." : "People who have answered 'No' to this option have not left any email addresses.",
+	"People who have answered 'Yes' to this option have left those email addresses :" : "People who have answered 'Yes' to this option have left those email addresses :",
+	"People who have answered 'If need be' to this option have left those email addresses :" : "People who have answered 'If need be' to this option have left those email addresses :",
+	"People who have answered 'No' to this option have left those email addresses :" : "People who have answered 'No' to this option have left those email addresses :"
    }
 }

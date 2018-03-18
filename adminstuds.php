@@ -219,6 +219,11 @@ $selectedNewVotes = [];
 
 if (!empty($_POST['save'])) { // Save edition of an old vote
     $name = $inputService->filterName($_POST['name']);
+    if(empty($_POST['mail']) || $inputService->filterMail($_POST['mail'])===false) {
+	$mail = null;
+    } else {
+	$mail = $inputService->filterMail($_POST['mail']);
+    }
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
     $slots_hash = $inputService->filterMD5($_POST['control']);
@@ -233,7 +238,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     if ($message === null) {
         // Update vote
         try {
-            $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices, $slots_hash);
+            $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices, $slots_hash, $mail);
             if ($result) {
                 $message = new Message('success', __('adminstuds', 'Vote updated'));
             } else {
@@ -249,6 +254,11 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
     $name = $inputService->filterName($_POST['name']);
+    if(empty($_POST['mail']) || $inputService->filterMail($_POST['mail'])===false) {
+	$mail = null;
+    } else {
+	$mail = $inputService->filterMail($_POST['mail']);
+    }
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
     $slots_hash = $inputService->filterMD5($_POST['control']);
 
@@ -262,7 +272,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     if ($message === null) {
         // Add vote
         try {
-            $result = $pollService->addVote($poll_id, $name, $choices, $slots_hash);
+            $result = $pollService->addVote($poll_id, $name, $choices, $slots_hash, $mail);
             if ($result) {
                 $message = new Message('success', __('adminstuds', 'Vote added'));
             } else {
@@ -396,6 +406,44 @@ if (isset($_GET['delete_column'])) {
     } else {
         $message = new Message('danger', __('Error', 'Failed to delete column'));
     }
+}
+
+// -------------------------------
+// Collect the mails of a column
+// -------------------------------
+
+if (isset($_GET['collect_mail'])) {
+    $column_str = strval(filter_input(INPUT_GET, 'collect_mail', FILTER_DEFAULT));
+    $column_str = strval(Utils::base64url_decode($column_str));
+    $column = intval($column_str);
+    $votes = $pollService->splitVotes($pollService->allVotesByPollId($poll_id));
+    $mails_yes = [];
+    $mails_ifneedbe = [];
+    $mails_no = [];
+    $size = count($votes);
+    for ($i = 0; $i < $size; $i++)
+{
+	if(intval($votes[$i]->choices[$column]) === 2 && $votes[$i]->mail !== NULL) {
+		$mails_yes[]=$votes[$i]->mail;
+        }
+	else {
+		if(intval($votes[$i]->choices[$column]) === 1 && $votes[$i]->mail !== NULL) {
+			$mails_ifneedbe[]=$votes[$i]->mail;
+        	}
+		elseif($votes[$i]->mail !== NULL) {
+			$mails_no[]=$votes[$i]->mail;
+		}
+	}
+}
+    $smarty->assign('poll_id', $poll_id);
+    $smarty->assign('admin_poll_id', $admin_poll_id);
+    $smarty->assign('admin', true);
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title . ' - ' . __('adminstuds', 'Collect the emails of the polled users for this column'));
+    $smarty->assign('mails_yes', $mails_yes);
+    $smarty->assign('mails_ifneedbe', $mails_ifneedbe);
+    $smarty->assign('mails_no', $mails_no);
+    $smarty->display('display_mails.tpl');
+    exit;
 }
 
 // -------------------------------

@@ -82,6 +82,12 @@ class Form
      */
     public $results_publicly_visible;
 
+     /**
+     * If true, the users can leave an email address while voting in the poll
+     * @var boolean
+     */
+    public $collect_users_mail;
+
     /**
      * List of available choices
      */

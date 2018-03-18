@@ -59,6 +59,8 @@ if ($goToStep2) {
     $use_ValueMax = isset($_POST['use_ValueMax']) ? $inputService->filterBoolean($_POST['use_ValueMax']) : false;
     $ValueMax = $use_ValueMax === true ? $inputService->filterValueMax($_POST['ValueMax']) : null;
 
+    $collect_users_mail = isset($_POST['collect_users_mail']) ? $inputService->filterBoolean($_POST['collect_users_mail']) : false;
+
     $use_customized_url = isset($_POST['use_customized_url']) ? $inputService->filterBoolean($_POST['use_customized_url']) : false;
     $customized_url = $use_customized_url === true ? $inputService->filterId($_POST['customized_url']) : null;
     $name = $inputService->filterName($_POST['name']);
@@ -68,6 +70,8 @@ if ($goToStep2) {
     $receiveNewVotes = isset($_POST['receiveNewVotes']) ? $inputService->filterBoolean($_POST['receiveNewVotes']) : false;
     $receiveNewComments = isset($_POST['receiveNewComments']) ? $inputService->filterBoolean($_POST['receiveNewComments']) : false;
     $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
+    $use_password = filter_input(INPUT_POST, 'use_password', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
+    $collect_users_mail = isset($_POST['collect_users_mail']) ? $inputService->filterBoolean($_POST['collect_users_mail']) : false;
     $use_password = filter_input(INPUT_POST, 'use_password', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
     $password = isset($_POST['password']) ? $_POST['password'] : null;
     $password_repeat = isset($_POST['password_repeat']) ? $_POST['password_repeat'] : null;
@@ -95,6 +99,7 @@ if ($goToStep2) {
     $_SESSION['form']->receiveNewVotes = $receiveNewVotes;
     $_SESSION['form']->receiveNewComments = $receiveNewComments;
     $_SESSION['form']->hidden = $hidden;
+    $_SESSION['form']->collect_users_mail = $collect_users_mail;
     $_SESSION['form']->use_password = ($use_password !== null);
     $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
 
@@ -291,6 +296,7 @@ $smarty->assign('customized_url', Utils::fromPostOrDefault('customized_url', $_S
 $smarty->assign('use_customized_url', Utils::fromPostOrDefault('use_customized_url', $_SESSION['form']->use_customized_url));
 $smarty->assign('ValueMax', Utils::fromPostOrDefault('ValueMax', $_SESSION['form']->ValueMax));
 $smarty->assign('use_ValueMax', Utils::fromPostOrDefault('use_ValueMax', $_SESSION['form']->use_ValueMax));
+$smarty->assign('collect_users_mail', Utils::fromPostOrDefault('collect_users_mail', $_SESSION['form']->collect_users_mail));
 $smarty->assign('poll_description', !empty($_POST['description']) ? $_POST['description'] :  $_SESSION['form']->description);
 $smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
 $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));
