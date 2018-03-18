@@ -93,7 +93,7 @@ class PollService {
      * @throws ConcurrentVoteException
      * @return bool
      */
-    public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash) {
+    public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash, $mail) {
         $poll = $this->findById($poll_id);
 
         // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
@@ -104,7 +104,7 @@ class PollService {
 
         // Update vote
         $choices = implode($choices);
-        return $this->voteRepository->update($poll_id, $vote_id, $name, $choices);
+        return $this->voteRepository->update($poll_id, $vote_id, $name, $choices, $mail);
     }
 
     /**
@@ -117,7 +117,7 @@ class PollService {
      * @throws ConcurrentVoteException
      * @return \stdClass
      */
-    function addVote($poll_id, $name, $choices, $slots_hash) {
+    function addVote($poll_id, $name, $choices, $slots_hash, $mail) {
         $poll = $this->findById($poll_id);
 
         // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
@@ -134,7 +134,7 @@ class PollService {
         // Insert new vote
         $choices = implode($choices);
         $token = $this->random(16);
-        return $this->voteRepository->insert($poll_id, $name, $choices, $token);
+        return $this->voteRepository->insert($poll_id, $name, $choices, $token, $mail);
     }
 
     function addComment($poll_id, $name, $comment) {
@@ -230,6 +230,7 @@ class PollService {
             $obj->name = $vote->name;
             $obj->uniqId = $vote->uniqId;
             $obj->choices = str_split($vote->choices);
+	    $obj->mail = $vote->mail;
 
             $splitted[] = $obj;
         }
