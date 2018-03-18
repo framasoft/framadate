@@ -203,6 +203,7 @@ if (!empty($_GET['vote'])) {
 
 if (!empty($_POST['save'])) { // Save edition of an old vote
     $name = $inputService->filterName($_POST['name']);
+    $mail = $inputService->filterName($_POST['mail']);
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
     $slots_hash = $inputService->filterMD5($_POST['control']);
@@ -217,7 +218,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     if ($message === null) {
         // Update vote
         try {
-            $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices, $slots_hash);
+            $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices, $slots_hash, $mail);
             if ($result) {
                 $message = new Message('success', __('adminstuds', 'Vote updated'));
             } else {
@@ -231,6 +232,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
     $name = $inputService->filterName($_POST['name']);
+    $mail = $inputService->filterName($_POST['mail']);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
     $slots_hash = $inputService->filterMD5($_POST['control']);
 
@@ -244,7 +246,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     if ($message === null) {
         // Add vote
         try {
-            $result = $pollService->addVote($poll_id, $name, $choices, $slots_hash);
+            $result = $pollService->addVote($poll_id, $name, $choices, $slots_hash, $mail);
             if ($result) {
                 $message = new Message('success', __('adminstuds', 'Vote added'));
             } else {
