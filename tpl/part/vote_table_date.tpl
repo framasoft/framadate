@@ -105,6 +105,7 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
                             <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
+			    <input type="text" id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{__('Generic', 'Your mail')}" placeholder="{__('Generic', 'Your mail')}" />
 
                         </div>
                     </td>
@@ -230,6 +231,7 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
+			    <input type="text" id="mail" name="mail" class="form-control" title="{__('Generic', 'Your mail')}" placeholder="{__('Generic', 'Your mail')}" />
                         </div>
                     </td>
 
