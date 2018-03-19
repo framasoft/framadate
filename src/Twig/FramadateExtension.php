@@ -67,11 +67,13 @@ class FramadateExtension extends AbstractExtension implements ExtensionInterface
         ];
     }
 
-    public function trans($section, $key, array $args = []) {
+    public function trans($section, $key, array $args = [])
+    {
         return $this->i18n->trans($section.'.'.$key, $args);
     }
 
-    public function poll_url($id, $admin = false, $action = false, $action_value = false, $vote_id = '') {
+    public function poll_url($id, $admin = false, $action = false, $action_value = false, $vote_id = '')
+    {
         $poll_id =  filter_var($id, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => Poll::POLL_REGEX]]);
         $action = $action === false ?: Utils::htmlEscape($action);
         $action_value = $action_value === false ?: $action_value;
@@ -82,11 +84,13 @@ class FramadateExtension extends AbstractExtension implements ExtensionInterface
         return "";// Utils::getUrlSondage($poll_id, $admin, $vote_unique_id, $action, $action_value);
     }
 
-    public function preg_match($pattern, $subject) {
+    public function preg_match($pattern, $subject)
+    {
         return preg_match($pattern, $subject);
     }
 
-    public function addslashes_single_quote($string) {
+    public function addslashes_single_quote($string)
+    {
         return addcslashes($string, '\\\'');
     }
 

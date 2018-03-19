@@ -18,7 +18,8 @@ use Psr\Log\LoggerInterface;
  *
  * @package Framadate\Services
  */
-class AdminPollService {
+class AdminPollService
+{
 
     /**
      * @var Connection
@@ -40,7 +41,8 @@ class AdminPollService {
     private $voteRepository;
     private $commentRepository;
 
-    function __construct(Connection $connect, PollService $pollService, LoggerInterface $logger, PollRepository $pollRepository, SlotRepository $slotRepository, VoteRepository $voteRepository, CommentRepository $commentRepository) {
+    public function __construct(Connection $connect, PollService $pollService, LoggerInterface $logger, PollRepository $pollRepository, SlotRepository $slotRepository, VoteRepository $voteRepository, CommentRepository $commentRepository)
+    {
         $this->connect = $connect;
         $this->pollService = $pollService;
         $this->logger = $logger;
@@ -55,7 +57,8 @@ class AdminPollService {
      * @return bool
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function updatePoll(Poll $poll) {
+    public function updatePoll(Poll $poll)
+    {
         if ($poll->getEndDate() > $poll->getCreationDate()) {
             return $this->pollRepository->update($poll);
         }
@@ -69,7 +72,8 @@ class AdminPollService {
      * @param $vote_id int The ID of the vote
      * @return mixed true is action succeeded
      */
-    function deleteVote($poll_id, $vote_id) {
+    public function deleteVote($poll_id, $vote_id)
+    {
         return $this->voteRepository->deleteById($poll_id, $vote_id);
     }
 
@@ -79,7 +83,8 @@ class AdminPollService {
      * @param $poll_id int The ID of the poll
      * @return bool|null true is action succeeded
      */
-    function cleanVotes($poll_id) {
+    public function cleanVotes($poll_id)
+    {
         $this->logger->info('CLEAN_VOTES id:' . $poll_id);
         return $this->voteRepository->deleteByPollId($poll_id);
     }
@@ -90,7 +95,8 @@ class AdminPollService {
      * @param $poll_id int The ID of the poll
      * @return bool true is action succeeded
      */
-    function deleteEntirePoll($poll_id) {
+    public function deleteEntirePoll($poll_id)
+    {
         $poll = $this->pollRepository->findById($poll_id);
         $this->logger->log('info', "DELETE_POLL : id:" . $poll->getId() . ", format:" . $poll->getFormat() . ", admin:" . $poll->getAdminMail() . ", mail:" . $poll->getAdminMail());
 
@@ -111,7 +117,8 @@ class AdminPollService {
      * @return bool true if action succeeded
      * @throws \Doctrine\DBAL\ConnectionException
      */
-    public function deleteDateSlot(Poll $poll, DateSlot $slot) {
+    public function deleteDateSlot(Poll $poll, DateSlot $slot)
+    {
         $this->logger->info('DELETE_SLOT: id:' . $poll->getId(), [$slot]);
 
         $datetime = $slot->getTitle();
@@ -122,8 +129,7 @@ class AdminPollService {
         // We can't delete the last slot
         if (
             ($poll->isDate() && count($slots) === 1 && strpos($slots[0]->moments, ',') === false) ||
-            (!$poll->isDate() && count($slots) === 1))
-        {
+            (!$poll->isDate() && count($slots) === 1)) {
             $this->logger->info("We can't delete the last slot", [$slots]);
             return false;
         }
@@ -162,7 +168,8 @@ class AdminPollService {
         return true;
     }
 
-    public function deleteClassicSlot($poll, $slot_title) {
+    public function deleteClassicSlot($poll, $slot_title)
+    {
         $this->logger->info('DELETE_SLOT: id:' . $poll->id . ', slot:' . $slot_title);
 
         $slots = $this->pollService->allSlotsByPoll($poll);
@@ -203,7 +210,8 @@ class AdminPollService {
      * @param $new_moment string The moment's name
      * @throws MomentAlreadyExistsException When the moment to add already exists in database
      */
-    public function addDateSlot($poll_id, $datetime, $new_moment) {
+    public function addDateSlot($poll_id, $datetime, $new_moment)
+    {
         $this->logger->info('ADD_COLUMN: id:' . $poll_id . ', datetime:' . $datetime . ', moment:' . $new_moment);
 
         try {
@@ -252,7 +260,8 @@ class AdminPollService {
      * @param $title int The title
      * @throws MomentAlreadyExistsException When the moment to add already exists in database
      */
-    public function addClassicSlot($poll_id, $title) {
+    public function addClassicSlot($poll_id, $title)
+    {
         $this->logger->info('ADD_COLUMN: id:' . $poll_id . ', title:' . $title);
 
         try {
@@ -294,7 +303,8 @@ class AdminPollService {
      * @param $datetime int The datetime of the new slot
      * @return \stdClass An object like this one: {insert:X, slot:Y} where Y can be null.
      */
-    private function findInsertPosition($slots, $datetime) {
+    private function findInsertPosition($slots, $datetime)
+    {
         $result = new \stdClass();
         $result->slot = null;
         $result->insert = 0;
@@ -323,7 +333,7 @@ class AdminPollService {
                 // We have to insert before this slot
                 break;
             }
-                $result->insert += count($moments);
+            $result->insert += count($moments);
         }
 
         return $result;

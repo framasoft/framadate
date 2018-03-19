@@ -23,7 +23,8 @@ use Framadate\Entity\Slot;
 use Framadate\FramaDB;
 use Framadate\Utils;
 
-class SlotRepository extends AbstractRepository {
+class SlotRepository extends AbstractRepository
+{
 
     /**
      * Insert a bulk of slots.
@@ -31,7 +32,8 @@ class SlotRepository extends AbstractRepository {
      * @param int $poll_id
      * @param array $choices
      */
-    public function insertSlots($poll_id, $choices) {
+    public function insertSlots($poll_id, $choices)
+    {
         $prepared = $this->prepare('INSERT INTO `' . Utils::table('slot') . '` (poll_id, title, moments) VALUES (?, ?, ?)');
 
         foreach ($choices as $choice) {
@@ -62,8 +64,8 @@ class SlotRepository extends AbstractRepository {
      * @return array
      * @throws \Doctrine\DBAL\DBALException
      */
-    function listByPollId($poll_id, $is_date = false) {
-
+    public function listByPollId($poll_id, $is_date = false)
+    {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? ORDER BY id');
         $prepared->execute([$poll_id]);
 
@@ -79,7 +81,8 @@ class SlotRepository extends AbstractRepository {
      * @param $datetime int The datetime of the slot
      * @return mixed Object The slot found, or null
      */
-    function findByPollIdAndDatetime($poll_id, $datetime) {
+    public function findByPollIdAndDatetime($poll_id, $datetime)
+    {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? AND SUBSTRING_INDEX(title, \'@\', 1) = ?');
 
         $prepared->execute([$poll_id, $datetime]);
@@ -97,7 +100,8 @@ class SlotRepository extends AbstractRepository {
      * @param $moments mixed|null The moments joined with ","
      * @return bool true if action succeeded
      */
-    function insert($poll_id, $title, $moments) {
+    public function insert($poll_id, $title, $moments)
+    {
         $prepared = $this->prepare('INSERT INTO `' . Utils::table('slot') . '` (poll_id, title, moments) VALUES (?,?,?)');
 
         return $prepared->execute([$poll_id, $title, $moments]);
@@ -111,7 +115,8 @@ class SlotRepository extends AbstractRepository {
      * @param $newMoments mixed The new moments
      * @return bool|null true if action succeeded.
      */
-    function update($poll_id, $datetime, $newMoments) {
+    public function update($poll_id, $datetime, $newMoments)
+    {
         $prepared = $this->prepare('UPDATE `' . Utils::table('slot') . '` SET moments = ? WHERE poll_id = ? AND title = ?');
 
         return $prepared->execute([$newMoments, $poll_id, $datetime]);
@@ -123,7 +128,8 @@ class SlotRepository extends AbstractRepository {
      * @param $poll_id int The ID of the poll
      * @param $datetime mixed The datetime of the slot
      */
-    function deleteByDateTime($poll_id, $datetime) {
+    public function deleteByDateTime($poll_id, $datetime)
+    {
         $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE poll_id = ? AND title = ?');
         $prepared->execute([$poll_id, $datetime]);
     }
@@ -132,13 +138,14 @@ class SlotRepository extends AbstractRepository {
      * @param $poll_id
      * @return bool
      */
-    function deleteByPollId($poll_id) {
+    public function deleteByPollId($poll_id)
+    {
         $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE poll_id = ?');
 
         return $prepared->execute([$poll_id]);
     }
 
-    static function mapDataToSlot($slot_data, $is_date)
+    public static function mapDataToSlot($slot_data, $is_date)
     {
         if ($is_date) {
             $slot = new DateSlot();

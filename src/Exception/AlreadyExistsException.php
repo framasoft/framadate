@@ -1,7 +1,9 @@
 <?php
 namespace Framadate\Exception;
 
-class AlreadyExistsException extends \Exception {
-    function __construct() {
+class AlreadyExistsException extends \Exception
+{
+    public function __construct()
+    {
     }
 }

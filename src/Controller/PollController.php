@@ -17,7 +17,6 @@ use Twig_Environment;
 
 class PollController extends Controller
 {
-
     const GO_TO_STEP_2 = 'gotostep2';
     /**
      * @var PollService
@@ -72,7 +71,7 @@ class PollController extends Controller
     public function indexAction()
     {
         $demoPoll = $this->poll_service->findById('aqg259dth55iuhwm');
-        $nbcol = max($this->app_config['show_what_is_that'] + $this->app_config['show_the_software'] + $this->app_config['show_cultivate_your_garden'], 1 );
+        $nbcol = max($this->app_config['show_what_is_that'] + $this->app_config['show_the_software'] + $this->app_config['show_cultivate_your_garden'], 1);
 
         return $this->render('index.twig', [
             'show_what_is_that' => true, //$this->app_config['show_what_is_that'],
@@ -173,7 +172,6 @@ class PollController extends Controller
             'form' => $form->createView(),
             'base_url' => $request->getHost(),
         ]);
-
     }
 
     /**
@@ -214,11 +212,10 @@ class PollController extends Controller
                 $this->exportCSVPollAction($poll);
                 break;
         }
-
     }
 
-    private function exportCSVPollAction(Poll $poll) {
-
+    private function exportCSVPollAction(Poll $poll)
+    {
         $slots = $this->poll_service->allSlotsByPoll($poll);
         $votes = $this->poll_service->allVotesByPollId($poll->getId());
 

@@ -6,8 +6,10 @@ namespace Framadate\Services;
  *
  * @package Framadate\Services
  */
-class LogService {
-    function __construct() {
+class LogService
+{
+    public function __construct()
+    {
     }
 
     /**
@@ -16,8 +18,8 @@ class LogService {
      * @param $tag string A tag is used to quickly found a message when reading log file
      * @param $message string some message
      */
-    function log($tag, $message) {
+    public function log($tag, $message)
+    {
         error_log(date('Ymd His') . ' [' . $tag . '] ' . $message . "\n", 3, ROOT_DIR . LOG_FILE);
     }
 }
- 

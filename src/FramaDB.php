@@ -19,15 +19,18 @@
 namespace Framadate;
 
 use PDO;
+
 const TABLENAME_PREFIX = 'fd_';
 
-class FramaDB {
+class FramaDB
+{
     /**
      * PDO Object, connection to database.
      */
     private $pdo = null;
 
-    function __construct($connection_string, $user, $password) {
+    public function __construct($connection_string, $user, $password)
+    {
         $this->pdo = new \PDO($connection_string, $user, $password);
         $this->pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
         $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
@@ -36,7 +39,8 @@ class FramaDB {
     /**
      * @return \PDO Connection to database
      */
-    function getPDO() {
+    public function getPDO()
+    {
         return $this->pdo;
     }
 
@@ -45,42 +49,51 @@ class FramaDB {
      *
      * @return array The array of table names
      */
-    function allTables() {
+    public function allTables()
+    {
         $result = $this->pdo->query('SHOW TABLES');
         $schemas = $result->fetchAll(\PDO::FETCH_COLUMN);
 
         return $schemas;
     }
 
-    function prepare($sql) {
+    public function prepare($sql)
+    {
         return $this->pdo->prepare($sql);
     }
 
-    function beginTransaction() {
+    public function beginTransaction()
+    {
         $this->pdo->beginTransaction();
     }
 
-    function commit() {
+    public function commit()
+    {
         $this->pdo->commit();
     }
 
-    function rollback() {
+    public function rollback()
+    {
         $this->pdo->rollback();
     }
 
-    function errorCode() {
+    public function errorCode()
+    {
         return $this->pdo->errorCode();
     }
 
-    function errorInfo() {
+    public function errorInfo()
+    {
         return $this->pdo->errorInfo();
     }
 
-    function query($sql) {
+    public function query($sql)
+    {
         return $this->pdo->query($sql);
     }
 
-    public function lastInsertId() {
+    public function lastInsertId()
+    {
         return $this->pdo->lastInsertId();
     }
 }

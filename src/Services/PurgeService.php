@@ -1,5 +1,6 @@
 <?php
 namespace Framadate\Services;
+
 use Framadate\FramaDB;
 use Framadate\Repository\CommentRepository;
 use Framadate\Repository\PollRepository;
@@ -12,14 +13,16 @@ use Framadate\Repository\VoteRepository;
  *
  * @package Framadate\Services
  */
-class PurgeService {
+class PurgeService
+{
     private $logService;
     private $pollRepository;
     private $slotRepository;
     private $voteRepository;
     private $commentRepository;
 
-    function __construct(FramaDB $connect, LogService $logService, PollRepository $pollRepository, SlotRepository $slotRepository, VoteRepository $voteRepository, CommentRepository $commentRepository) {
+    public function __construct(FramaDB $connect, LogService $logService, PollRepository $pollRepository, SlotRepository $slotRepository, VoteRepository $voteRepository, CommentRepository $commentRepository)
+    {
         $this->logService = $logService;
         $this->pollRepository = $pollRepository;
         $this->slotRepository = $slotRepository;
@@ -33,7 +36,8 @@ class PurgeService {
      * @param $purge_delay
      * @return bool true is action succeeded
      */
-    function purgeOldPolls($purge_delay) {
+    public function purgeOldPolls($purge_delay)
+    {
         $oldPolls = $this->pollRepository->findOldPolls($purge_delay);
         $count = count($oldPolls);
 
@@ -58,7 +62,8 @@ class PurgeService {
      * @param $poll_id int The ID of the poll
      * @return bool true is action succeeded
      */
-    function purgePollById($poll_id) {
+    public function purgePollById($poll_id)
+    {
         $done = true;
 
         $this->pollRepository->beginTransaction();

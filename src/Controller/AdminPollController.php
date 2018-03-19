@@ -263,7 +263,7 @@ class AdminPollController extends Controller
         // Update poll in database
         if ($updated && $this->admin_poll_service->updatePoll($poll)) {
             $this->session->getFlashBag()->add('success', $this->i18n->trans('adminstuds.Poll saved'));
-            // if mail is activated
+        // if mail is activated
             // $this->notification_service->sendUpdateNotification($poll, NotificationService::UPDATE_POLL);
         } else {
             $this->session->getFlashBag()->add('danger', $this->i18n->trans('Error.Failed to save poll'));
@@ -375,7 +375,7 @@ class AdminPollController extends Controller
     {
         try {
             if (strlen($admin_poll_id) === 24) {
-                    $poll = $this->poll_service->findByAdminId($admin_poll_id);
+                $poll = $this->poll_service->findByAdminId($admin_poll_id);
             }
             if (!$poll) {
                 throw $this->createNotFoundException($this->i18n->trans('Error.This poll doesn\'t exist !'));

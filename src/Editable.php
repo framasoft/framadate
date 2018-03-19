@@ -18,6 +18,7 @@
  */
 
 namespace Framadate;
+
 use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
 
 /**
@@ -30,8 +31,8 @@ use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
  * @method static NOT_EDITABLE()
  * @package Framadate
  */
-class Editable extends AbstractEnumType {
-
+class Editable extends AbstractEnumType
+{
     public const NOT_EDITABLE = 0;
     public const EDITABLE_BY_ALL = 1;
     public const EDITABLE_BY_OWN = 2;

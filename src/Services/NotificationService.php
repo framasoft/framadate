@@ -11,7 +11,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class NotificationService {
+class NotificationService
+{
     const UPDATE_VOTE = 1;
     const ADD_VOTE = 2;
     const ADD_COMMENT = 3;
@@ -44,7 +45,8 @@ class NotificationService {
      * @param SessionInterface $session
      * @param TranslatorInterface $i18n
      */
-    public function __construct(MailService $mailService, SessionInterface $session, TranslatorInterface $i18n, UrlGeneratorInterface $urlGenerator) {
+    public function __construct(MailService $mailService, SessionInterface $session, TranslatorInterface $i18n, UrlGeneratorInterface $urlGenerator)
+    {
         $this->mailService = $mailService;
         $this->session = $session;
         $this->i18n = $i18n;
@@ -58,7 +60,8 @@ class NotificationService {
      * @param $name string The name user who triggered the notification
      * @param $type int cf: Constants on the top of this page
      */
-    function sendUpdateNotification(Poll $poll, $type, $name = '') {
+    public function sendUpdateNotification(Poll $poll, $type, $name = '')
+    {
         if (!$this->session->has('mail_sent')) {
             $this->session->set('mail_sent', []);
         }
@@ -116,6 +119,6 @@ class NotificationService {
      */
     public function isParticipation($type)
     {
-       return $type >= self::UPDATE_POLL;
+        return $type >= self::UPDATE_POLL;
     }
 }

@@ -18,15 +18,17 @@
  */
 namespace Framadate;
 
-class Message {
-    var $type;
-    var $message;
-    var $link;
-    var $linkTitle;
-    var $linkIcon;
-    var $includeTemplate;
+class Message
+{
+    public $type;
+    public $message;
+    public $link;
+    public $linkTitle;
+    public $linkIcon;
+    public $includeTemplate;
 
-    function __construct($type, $message, $link=null, $linkTitle=null, $linkIcon=null, $includeTemplate=null) {
+    public function __construct($type, $message, $link=null, $linkTitle=null, $linkIcon=null, $includeTemplate=null)
+    {
         $this->type = $type;
         $this->message = $message;
         $this->link = $link;
@@ -35,4 +37,3 @@ class Message {
         $this->includeTemplate = $includeTemplate;
     }
 }
- 

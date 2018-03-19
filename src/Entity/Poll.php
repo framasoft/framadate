@@ -155,7 +155,8 @@ class Poll
         $this->clearChoices();
     }
 
-    public function clearChoices() {
+    public function clearChoices()
+    {
         $this->choices = [];
     }
 
@@ -199,7 +200,8 @@ class Poll
      * @param int $value
      * @return Poll
      */
-    public function setEditable($value) {
+    public function setEditable($value)
+    {
         $this->editable = $value;
         return $this;
     }

@@ -5,13 +5,14 @@ use Framadate\Entity\Poll;
 use Framadate\Utils;
 use PDO;
 
-class PollRepository extends AbstractRepository {
+class PollRepository extends AbstractRepository
+{
 
     /**
      * @param array $poll_data
      * @return Poll
      */
-    static function mapDataToPoll(array $poll_data)
+    public static function mapDataToPoll(array $poll_data)
     {
         $poll = new Poll();
         $poll->setId($poll_data['id'])
@@ -37,8 +38,8 @@ class PollRepository extends AbstractRepository {
     /**
      * @param Poll $poll
      */
-    public function insertPoll(Poll $poll) {
-
+    public function insertPoll(Poll $poll)
+    {
         $this->connect->insert(
             Utils::table('poll'),
             [
@@ -65,7 +66,8 @@ class PollRepository extends AbstractRepository {
      * @param $poll_id
      * @return Poll
      */
-    public function findById($poll_id) {
+    public function findById($poll_id)
+    {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
         $prepared->execute([$poll_id]);
@@ -83,7 +85,8 @@ class PollRepository extends AbstractRepository {
      * @return Poll
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function findByAdminId($admin_poll_id) {
+    public function findByAdminId($admin_poll_id)
+    {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
 
         $prepared->execute([$admin_poll_id]);
@@ -118,7 +121,8 @@ class PollRepository extends AbstractRepository {
      * @param $poll_id
      * @return bool
      */
-    public function existsById($poll_id) {
+    public function existsById($poll_id)
+    {
         $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
         $prepared->execute([$poll_id]);
@@ -130,7 +134,8 @@ class PollRepository extends AbstractRepository {
      * @param $admin_poll_id
      * @return bool
      */
-    public function existsByAdminId($admin_poll_id) {
+    public function existsByAdminId($admin_poll_id)
+    {
         $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('poll') . '` WHERE admin_id = ?');
 
         $prepared->execute([$admin_poll_id]);
@@ -174,7 +179,8 @@ class PollRepository extends AbstractRepository {
      * @param $poll_id
      * @return bool
      */
-    public function deleteById($poll_id) {
+    public function deleteById($poll_id)
+    {
         $prepared = $this->prepare('DELETE FROM `' . Utils::table('poll') . '` WHERE id = ?');
 
         return $prepared->execute([$poll_id]);
@@ -187,7 +193,8 @@ class PollRepository extends AbstractRepository {
      * @return array Array of old polls
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function findOldPolls($purge_delay) {
+    public function findOldPolls($purge_delay)
+    {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE DATE_ADD(`end_date`, INTERVAL ' . $purge_delay . ' DAY) < NOW() AND `end_date` != 0 LIMIT 20');
         $prepared->execute([]);
 
@@ -203,7 +210,8 @@ class PollRepository extends AbstractRepository {
      * @return array The found polls
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function findAll($search, $start, $limit) {
+    public function findAll($search, $start, $limit)
+    {
         // Polls
         $prepared = $this->prepare('
 SELECT p.*,
@@ -239,7 +247,8 @@ SELECT p.*,
      * @return array The list of matching polls
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function findAllByAdminMail($mail) {
+    public function findAllByAdminMail($mail)
+    {
         $prepared = $this->prepare('SELECT * FROM `' . Utils::table('poll') . '` WHERE admin_mail = :admin_mail');
         $prepared->execute(['admin_mail' => $mail]);
 
@@ -253,7 +262,8 @@ SELECT p.*,
      * @return int The number of polls
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function count($search = null) {
+    public function count($search = null)
+    {
         // Total count
         $prepared = $this->prepare('
 SELECT count(1) nb

@@ -10,14 +10,16 @@ namespace Framadate\Security;
  *
  * @package Framadate\Security
  */
-class PasswordHasher {
+class PasswordHasher
+{
     /**
      * Hash a password
      *
      * @param string $password the password to hash.
      * @return false|string the hashed password, or false on failure. The used algorithm, cost and salt are returned as part of the hash.
      */
-    public static function hash($password) {
+    public static function hash($password)
+    {
         return password_hash($password, PASSWORD_DEFAULT);
     }
 
@@ -28,7 +30,8 @@ class PasswordHasher {
      * @param string $hash the hash to compare.
      * @return bool
      */
-    public static function verify($password, $hash) {
+    public static function verify($password, $hash)
+    {
         return password_verify($password, $hash);
     }
-} 
+}

@@ -20,7 +20,8 @@ namespace Framadate;
 
 use Parsedown;
 
-class Utils {
+class Utils
+{
     /**
      * @return string Server name
      */
@@ -40,7 +41,8 @@ class Utils {
      * @param string $title
      * @deprecated
      */
-    public static function print_header($title = '') {
+    public static function print_header($title = '')
+    {
         global $locale;
 
         echo '<!DOCTYPE html>
@@ -64,7 +66,7 @@ class Utils {
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap.min.js"></script>
         <script type="text/javascript" src="' . self::get_server_name() . 'js/bootstrap-datepicker.js"></script>';
         if ('en' !== $locale) {
-        	   echo '
+            echo '
         <script type="text/javascript" src="' . self::get_server_name() . 'js/locales/bootstrap-datepicker.' . $locale . '.js"></script>';
         }
         echo '
@@ -86,7 +88,8 @@ class Utils {
      * @param   string $vote_id (optional) The vote's unique id
      * @return  string The poll's URL.
      */
-    public static function getUrlSondage($id, $admin = false, $vote_id = '', $action = null, $action_value = null) {
+    public static function getUrlSondage($id, $admin = false, $vote_id = '', $action = null, $action_value = null)
+    {
         // URL-Encode $action_value
         $action_value = $action_value ? null : Utils::base64url_encode($action_value);
 
@@ -113,7 +116,7 @@ class Utils {
             }
             if ($vote_id !== '') {
                 $url .= '&vote=' . $vote_id . "#edit";
-            } elseif ($action !== null)  {
+            } elseif ($action !== null) {
                 if ($action_value !== null) {
                     $url .= '&' . $action . "=" . $action_value;
                 } else {
@@ -130,17 +133,20 @@ class Utils {
      *
      * @param mixed $object The object to print.
      */
-    public static function debug($object) {
+    public static function debug($object)
+    {
         echo '<pre>';
         print_r($object);
         echo '</pre>';
     }
 
-    public static function table($tableName) {
+    public static function table($tableName)
+    {
         return 'fd_' . $tableName;
     }
 
-    public static function markdown($md, $clear=false, $line=true) {
+    public static function markdown($md, $clear=false, $line=true)
+    {
         $parseDown = new Parsedown();
 
         $parseDown
@@ -166,15 +172,18 @@ class Utils {
         return $clear ? $text : $html;
     }
 
-    public static function htmlEscape($html) {
+    public static function htmlEscape($html)
+    {
         return htmlentities($html, ENT_HTML5 | ENT_QUOTES);
     }
 
-    public static function htmlMailEscape($html) {
+    public static function htmlMailEscape($html)
+    {
         return htmlspecialchars($html, ENT_HTML5 | ENT_QUOTES);
     }
 
-    public static function csvEscape($text) {
+    public static function csvEscape($text)
+    {
         $escaped = str_replace('"', '""', $text);
         $escaped = str_replace("\r\n", '', $escaped);
         $escaped = str_replace("\n", '', $escaped);
@@ -183,22 +192,26 @@ class Utils {
         return '"' . $escaped . '"';
     }
 
-    public static function cleanFilename($title) {
+    public static function cleanFilename($title)
+    {
         $cleaned = preg_replace('[^a-zA-Z0-9._-]', '_', $title);
         $cleaned = preg_replace(' {2,}', ' ', $cleaned);
 
         return $cleaned;
     }
 
-    public static function fromPostOrDefault($postKey, $default = '') {
+    public static function fromPostOrDefault($postKey, $default = '')
+    {
         return !empty($_POST[$postKey]) ? $_POST[$postKey] : $default;
     }
 
-    public static function base64url_encode($input) {
+    public static function base64url_encode($input)
+    {
         return rtrim(strtr(base64_encode($input), '+/', '-_'), '=');
     }
 
-    public static function base64url_decode($input) {
+    public static function base64url_decode($input)
+    {
         return base64_decode(str_pad(strtr($input, '-_', '+/'), strlen($input) % 4, '=', STR_PAD_RIGHT), true);
     }
 }

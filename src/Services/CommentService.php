@@ -8,7 +8,8 @@ use Framadate\Repository\CommentRepository;
  *
  * @package Framadate\Services
  */
-class CommentService {
+class CommentService
+{
 
     /**
      * @var CommentRepository
@@ -20,7 +21,8 @@ class CommentService {
      */
     private $logService;
 
-    function __construct(CommentRepository $commentRepository, LogService $logService) {
+    public function __construct(CommentRepository $commentRepository, LogService $logService)
+    {
         $this->commentRepository = $commentRepository;
         $this->logService = $logService;
     }
@@ -32,7 +34,8 @@ class CommentService {
      * @param $comment_id int The ID of the comment
      * @return mixed true is action succeeded
      */
-    function deleteComment($poll_id, $comment_id) {
+    public function deleteComment($poll_id, $comment_id)
+    {
         return $this->commentRepository->deleteById($poll_id, $comment_id);
     }
 
@@ -42,7 +45,8 @@ class CommentService {
      * @param $poll_id int The ID a the poll
      * @return bool|null true is action succeeded
      */
-    function cleanComments($poll_id) {
+    public function cleanComments($poll_id)
+    {
         $this->logService->log("CLEAN_COMMENTS", "id:$poll_id");
         return $this->commentRepository->deleteByPollId($poll_id);
     }

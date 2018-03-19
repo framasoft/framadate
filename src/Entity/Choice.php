@@ -20,7 +20,6 @@ namespace Framadate\Entity;
 
 class Choice
 {
-
     const CHOICE_REGEX = '/^[ 012]$/';
     const MD5_REGEX = '/^[A-Fa-f0-9]{32}$/';
 
@@ -59,7 +58,7 @@ class Choice
         return $this->slots;
     }
 
-    static function compare(Choice $a, Choice $b)
+    public static function compare(Choice $a, Choice $b)
     {
         return strcmp($a->name, $b->name);
     }

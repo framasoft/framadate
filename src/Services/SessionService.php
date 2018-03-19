@@ -3,7 +3,8 @@
 
 namespace Framadate\Services;
 
-class SessionService {
+class SessionService
+{
     /**
      * Get value of $key in $section, or $defaultValue
      *
@@ -12,7 +13,8 @@ class SessionService {
      * @param null $defaultValue
      * @return mixed
      */
-    public function get($section, $key, $defaultValue=null) {
+    public function get($section, $key, $defaultValue=null)
+    {
         assert(!empty($key));
         assert(!empty($section));
 
@@ -33,7 +35,8 @@ class SessionService {
      * @param $key
      * @param $value
      */
-    public function set($section, $key, $value) {
+    public function set($section, $key, $value)
+    {
         assert(!empty($key));
         assert(!empty($section));
 
@@ -48,16 +51,18 @@ class SessionService {
      * @param $section
      * @param $key
      */
-    public function remove($section, $key) {
+    public function remove($section, $key)
+    {
         assert(!empty($key));
         assert(!empty($section));
 
         unset($_SESSION[$section][$key]);
     }
 
-    private function initSectionIfNeeded($section) {
+    private function initSectionIfNeeded($section)
+    {
         if (!isset($_SESSION[$section])) {
             $_SESSION[$section] = [];
         }
     }
-} 
+}

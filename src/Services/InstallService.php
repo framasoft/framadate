@@ -17,12 +17,14 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 namespace Framadate\Services;
+
 use Framadate\Utils;
 
 /**
  * This class helps to clean all inputs from the users or external services.
  */
-class InstallService {
+class InstallService
+{
     private $fields = [
         // General
         'appName' => 'Framadate',
@@ -39,15 +41,19 @@ class InstallService {
         'migrationTable' => 'framadate_migration'
     ];
 
-    function __construct() {}
+    public function __construct()
+    {
+    }
 
-    public function updateFields($data) {
+    public function updateFields($data)
+    {
         foreach ($data as $field => $value) {
             $this->fields[$field] = $value;
         }
     }
 
-    public function install(\Twig_Environment &$twig) {
+    public function install(\Twig_Environment &$twig)
+    {
         // Check values are present
         if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dbConnectionString']) || empty($this->fields['dbUser'])) {
             return $this->error('MISSING_VALUES');
@@ -67,18 +73,20 @@ class InstallService {
         return $this->ok();
     }
 
-    function connectTo($connectionString, $user, $password) {
+    public function connectTo($connectionString, $user, $password)
+    {
         try {
             $pdo = @new \PDO($connectionString, $user, $password);
             $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             return $pdo;
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             return null;
         }
     }
 
-    function writeConfiguration(\Twig_Environment &$twig) {
+    public function writeConfiguration(\Twig_Environment &$twig)
+    {
         $content = $twig->render('admin/config.twig', $this->fields);
 
         return $this->writeToFile($content);
@@ -87,14 +95,16 @@ class InstallService {
     /**
      * @param $content
      */
-    function writeToFile($content) {
+    public function writeToFile($content)
+    {
         return @file_put_contents(CONF_FILENAME, $content);
     }
 
     /**
      * @return array
      */
-    function ok() {
+    public function ok()
+    {
         return [
             'status' => 'OK',
             'msg' => __f('Installation', 'Ended', Utils::get_server_name())
@@ -105,14 +115,16 @@ class InstallService {
      * @param $msg
      * @return array
      */
-    function error($msg) {
+    public function error($msg)
+    {
         return [
             'status' => 'ERROR',
             'code' => $msg
         ];
     }
 
-    public function getFields() {
+    public function getFields()
+    {
         return $this->fields;
     }
 }

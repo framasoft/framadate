@@ -6,7 +6,8 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class MailService {
+class MailService
+{
     const DELAY_BEFORE_RESEND = 300;
 
     const MAILSERVICE_KEY = 'mailservice';
@@ -40,7 +41,8 @@ class MailService {
      * @param LoggerInterface $logger
      * @param bool $smtp_allowed
      */
-    function __construct(SessionInterface $session, \Swift_Mailer $mailer, LoggerInterface $logger, TranslatorInterface $translator, bool $smtp_allowed = true) {
+    public function __construct(SessionInterface $session, \Swift_Mailer $mailer, LoggerInterface $logger, TranslatorInterface $translator, bool $smtp_allowed = true)
+    {
         $this->session = $session;
         $this->mailer = $mailer;
         $this->logger = $logger;
@@ -52,7 +54,8 @@ class MailService {
      * @param $email
      * @return mixed
      */
-    public function isValidEmail($email) {
+    public function isValidEmail($email)
+    {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
@@ -62,7 +65,8 @@ class MailService {
      * @param $body
      * @param null $msgKey
      */
-    public function send($to, $subject, $body, $msgKey = null) {
+    public function send($to, $subject, $body, $msgKey = null)
+    {
         if ($this->smtp_allowed === true && $this->canSendMsg($msgKey)) {
             $mail = (new \Swift_Message())
                 ->setFrom('admin@tld', 'admin')
@@ -90,7 +94,8 @@ class MailService {
      * @param $msgKey
      * @return bool
      */
-    public function canSendMsg($msgKey) {
+    public function canSendMsg($msgKey)
+    {
         if ($msgKey === null) {
             return true;
         }

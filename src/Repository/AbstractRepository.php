@@ -3,7 +3,8 @@ namespace Framadate\Repository;
 
 use Doctrine\DBAL\Connection;
 
-abstract class AbstractRepository {
+abstract class AbstractRepository
+{
     /**
      * @var Connection
      */
@@ -13,25 +14,29 @@ abstract class AbstractRepository {
      * PollRepository constructor.
      * @param Connection $connect
      */
-    function __construct(Connection $connect) {
+    public function __construct(Connection $connect)
+    {
         $this->connect = $connect;
     }
 
-    public function beginTransaction() {
+    public function beginTransaction()
+    {
         $this->connect->beginTransaction();
     }
 
     /**
      * @throws \Doctrine\DBAL\ConnectionException
      */
-    public function commit() {
+    public function commit()
+    {
         $this->connect->commit();
     }
 
     /**
      * @throws \Doctrine\DBAL\ConnectionException
      */
-    function rollback() {
+    public function rollback()
+    {
         $this->connect->rollback();
     }
 
@@ -40,7 +45,8 @@ abstract class AbstractRepository {
      * @return \Doctrine\DBAL\Statement
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function prepare($sql) {
+    public function prepare($sql)
+    {
         return $this->connect->prepare($sql);
     }
 
@@ -49,14 +55,16 @@ abstract class AbstractRepository {
      * @return \Doctrine\DBAL\Driver\Statement
      * @throws \Doctrine\DBAL\DBALException
      */
-    function query($sql) {
+    public function query($sql)
+    {
         return $this->connect->query($sql);
     }
 
     /**
      * @return string
      */
-    function lastInsertId() {
+    public function lastInsertId()
+    {
         return $this->connect->lastInsertId();
     }
 }

@@ -106,9 +106,9 @@ class CommentController extends Controller
         }
 
         if (!$poll) {
-            $message = new Message('error',  $this->i18n->trans('Error.This poll doesn\'t exist !'));
-        } else if ($poll && !$this->security_service->canAccessPoll($poll) && !$is_admin) {
-            $message = new Message('error',  $this->i18n->trans('Password.Wrong password'));
+            $message = new Message('error', $this->i18n->trans('Error.This poll doesn\'t exist !'));
+        } elseif ($poll && !$this->security_service->canAccessPoll($poll) && !$is_admin) {
+            $message = new Message('error', $this->i18n->trans('Password.Wrong password'));
         } else {
             $name = $this->input_service->filterName($request->get('name'));
             $comment = $this->input_service->filterComment($request->get('comment'));

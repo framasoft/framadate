@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 namespace Framadate\Services;
+
 use DateTime;
 use Framadate\Entity\Choice;
 use Framadate\Entity\Poll;
@@ -24,8 +25,11 @@ use Framadate\Entity\Poll;
 /**
  * This class helps to clean all inputs from the users or external services.
  */
-class InputService {
-    function __construct() {}
+class InputService
+{
+    public function __construct()
+    {
+    }
 
     /**
      * This method filter an array calling "filter_var" on each items.
@@ -35,10 +39,11 @@ class InputService {
      * @param array|null $options The associative array of options
      * @return array The filtered array
      */
-    function filterArray(array $arr, $type, $options = null) {
+    public function filterArray(array $arr, $type, $options = null)
+    {
         $newArr = [];
 
-        foreach($arr as $id=>$item) {
+        foreach ($arr as $id=>$item) {
             $item = filter_var($item, $type, $options);
             if ($item !== false) {
                 $newArr[$id] = $item;
@@ -48,51 +53,62 @@ class InputService {
         return $newArr;
     }
 
-    function filterAllowedValues($value, array $allowedValues) {
+    public function filterAllowedValues($value, array $allowedValues)
+    {
         return in_array($value, $allowedValues, true) ? $value : null;
     }
 
-    public function filterTitle($title) {
+    public function filterTitle($title)
+    {
         return $this->returnIfNotBlank($title);
     }
 
-    public function filterId($id) {
+    public function filterId($id)
+    {
         $filtered = filter_var($id, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => Poll::POLL_REGEX]]);
         return $filtered ? substr($filtered, 0, 64) : false;
     }
 
-    public function filterName($name) {
+    public function filterName($name)
+    {
         return $this->returnIfNotBlank(trim($name));
     }
 
-    public function filterMail($mail) {
+    public function filterMail($mail)
+    {
         return filter_var($mail, FILTER_VALIDATE_EMAIL);
     }
 
-    public function filterDescription($description) {
+    public function filterDescription($description)
+    {
         return str_replace("\r\n", "\n", $description);
     }
 
-    public function filterMD5($control) {
+    public function filterMD5($control)
+    {
         return filter_var($control, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => Choice::MD5_REGEX]]);
     }
 
-    public function filterInteger($int) {
-          if (filter_var($int, FILTER_VALIDATE_INT)) {
-              return $int;
-       }
-      return  null;
+    public function filterInteger($int)
+    {
+        if (filter_var($int, FILTER_VALIDATE_INT)) {
+            return $int;
+        }
+        return  null;
     }
 
-    public function filterBoolean($boolean) {
+    public function filterBoolean($boolean)
+    {
         return !!filter_var($boolean, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_TRUE_REGEX]]);
     }
 
-    public function filterEditable($editable) {
+    public function filterEditable($editable)
+    {
         return (int) filter_var($editable, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => EDITABLE_CHOICE_REGEX]]);
     }
 
-    public function filterComment($comment) {
+    public function filterComment($comment)
+    {
         $comment = str_replace("\r\n", "\n", $comment);
         return $this->returnIfNotBlank($comment);
     }
@@ -101,7 +117,8 @@ class InputService {
      * @param string $date
      * @return string
      */
-    public function filterDate($date) {
+    public function filterDate($date)
+    {
         $dDate = DateTime::createFromFormat('Y-m-d', $date)->setTime(0, 0, 0);
         return $dDate->format('Y-m-d H:i:s');
     }
@@ -112,7 +129,8 @@ class InputService {
      * @param string $filtered The value
      * @return string|null
      */
-    private function returnIfNotBlank($filtered) {
+    private function returnIfNotBlank($filtered)
+    {
         if ($filtered) {
             $withoutSpaces = str_replace(' ', '', $filtered);
             if (!empty($withoutSpaces)) {

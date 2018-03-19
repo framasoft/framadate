@@ -44,7 +44,8 @@ class DatePollController extends Controller
      */
     private $session;
 
-    public function __construct(PollService $poll_service,
+    public function __construct(
+        PollService $poll_service,
                                 MailService $mail_service,
                                 PurgeService $purge_service,
                                 TranslatorInterface $i18n,
@@ -116,7 +117,6 @@ class DatePollController extends Controller
      */
     public function createPollActionStepThree(Request $request)
     {
-
         $min_expiry_time = $this->poll_service->minExpiryDate();
         $max_expiry_time = $this->poll_service->maxExpiryDate();
 
@@ -217,7 +217,7 @@ class DatePollController extends Controller
             // Reorder moments to deal with suppressed dates
             $moments = [];
             $i = 0;
-            while(count($moments) < count($days)) {
+            while (count($moments) < count($days)) {
                 if (!empty($request->get('horaires' . $i))) {
                     $moments[] = $request->get('horaires' . $i);
                 }
@@ -269,10 +269,11 @@ class DatePollController extends Controller
      * @param array|null $options The associative array of options
      * @return array The filtered array
      */
-    private function filterArray(array $arr, $type, $options = null) {
+    private function filterArray(array $arr, $type, $options = null)
+    {
         $newArr = [];
 
-        foreach($arr as $id=>$item) {
+        foreach ($arr as $id=>$item) {
             $item = filter_var($item, $type, $options);
             if ($item !== false) {
                 $newArr[$id] = $item;

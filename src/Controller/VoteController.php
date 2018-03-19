@@ -28,7 +28,6 @@ use Twig_Environment;
 
 class VoteController extends Controller
 {
-
     const GO_TO_STEP_2 = 'gotostep2';
     const USER_REMEMBER_VOTES_KEY = 'UserVotes';
 
@@ -78,14 +77,14 @@ class VoteController extends Controller
      * @param SessionInterface $session
      * @param LoggerInterface $logger
      */
-    public function __construct(PollService $poll_service,
+    public function __construct(
+        PollService $poll_service,
                                 TranslatorInterface $i18n,
                                 InputService $input_service,
                                 NotificationService $notification_service,
                                 SessionInterface $session,
                                 LoggerInterface $logger
-)
-    {
+) {
         $this->poll_service = $poll_service;
         $this->i18n = $i18n;
         $this->input_service = $input_service;
@@ -165,7 +164,6 @@ class VoteController extends Controller
                     } else {
                         $this->session->getFlashBag()->add('danger', $this->i18n->trans('Error.Update vote failed'));
                     }
-
                 } catch (ConcurrentEditionException $e) {
                     $this->session->getFlashBag()->add('danger', $this->i18n->trans('Error.Poll has been updated before you vote'));
                 } catch (ConcurrentVoteException $e) {
@@ -322,7 +320,8 @@ class VoteController extends Controller
         }
     }
 
-    private function getMessageForOwnVoteEditableVote($editedVoteUniqueId, $poll_id) {
+    private function getMessageForOwnVoteEditableVote($editedVoteUniqueId, $poll_id)
+    {
         $this->session->set(self::USER_REMEMBER_VOTES_KEY . $poll_id, $editedVoteUniqueId);
         $urlEditVote = $this->url_generator->generate('edit_vote_poll', ['poll_id' => $poll_id, 'vote_uniq_id' => $editedVoteUniqueId], UrlGeneratorInterface::ABSOLUTE_URL);
 
@@ -342,11 +341,11 @@ class VoteController extends Controller
             $token = new Token();
             $this->session->set("Common" . SESSION_EDIT_LINK_TOKEN, $token);
 
-           /* $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
-            $smarty->assign('token', $token->getValue());
-            $smarty->assign('poll_id', $poll_id);
-            $message->includeTemplate = $smarty->fetch('part/form_remember_edit_link.tpl');
-            $smarty->clearAssign('token');*/
+            /* $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
+             $smarty->assign('token', $token->getValue());
+             $smarty->assign('poll_id', $poll_id);
+             $message->includeTemplate = $smarty->fetch('part/form_remember_edit_link.tpl');
+             $smarty->clearAssign('token');*/
         }
         //return $message;
     }

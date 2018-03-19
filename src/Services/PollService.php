@@ -33,7 +33,8 @@ use Framadate\Security\Token;
 use Framadate\Entity\Vote;
 use Psr\Log\LoggerInterface;
 
-class PollService {
+class PollService
+{
     private $logService;
 
     private $pollRepository;
@@ -46,7 +47,8 @@ class PollService {
      */
     private $logger;
 
-    function __construct(LogService $logService, LoggerInterface $logger, PollRepository $pollRepository, SlotRepository $slotRepository, VoteRepository $voteRepository, CommentRepository $commentRepository) {
+    public function __construct(LogService $logService, LoggerInterface $logger, PollRepository $pollRepository, SlotRepository $slotRepository, VoteRepository $voteRepository, CommentRepository $commentRepository)
+    {
         $this->logService = $logService;
         $this->pollRepository = $pollRepository;
         $this->slotRepository = $slotRepository;
@@ -61,7 +63,8 @@ class PollService {
      * @param $poll_id int The ID of the poll
      * @return Poll
      */
-    function findById($poll_id) {
+    public function findById($poll_id)
+    {
         if (preg_match(Poll::POLL_REGEX, $poll_id)) {
             return $this->pollRepository->findById($poll_id);
         }
@@ -74,7 +77,8 @@ class PollService {
      * @return Poll|null
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function findByAdminId($admin_poll_id) {
+    public function findByAdminId($admin_poll_id)
+    {
         if (preg_match(Poll::ADMIN_POLL_REGEX, $admin_poll_id)) {
             return $this->pollRepository->findByAdminId($admin_poll_id);
         }
@@ -86,7 +90,8 @@ class PollService {
      * @param $poll_id
      * @return array
      */
-    public function allCommentsByPollId($poll_id) {
+    public function allCommentsByPollId($poll_id)
+    {
         try {
             return $this->commentRepository->findAllByPollId($poll_id);
         } catch (DBALException $e) {
@@ -99,7 +104,8 @@ class PollService {
      * @param $poll_id
      * @return array
      */
-    function allVotesByPollId($poll_id) {
+    public function allVotesByPollId($poll_id)
+    {
         return $this->voteRepository->allUserVotesByPollId($poll_id);
     }
 
@@ -107,7 +113,8 @@ class PollService {
      * @param Poll $poll
      * @return array
      */
-    function allSlotsByPoll(Poll $poll) {
+    public function allSlotsByPoll(Poll $poll)
+    {
         try {
             $slots = $this->slotRepository->listByPollId($poll->getId(), $poll->getFormat() === 'D');
 
@@ -131,7 +138,8 @@ class PollService {
      * @throws ConcurrentVoteException
      * @return bool
      */
-    public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash) {
+    public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash)
+    {
         $poll = $this->findById($poll_id);
 
         // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
@@ -155,7 +163,8 @@ class PollService {
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
      */
-    function addVote($poll_id, $name, $choices, $slots_hash) {
+    public function addVote($poll_id, $name, $choices, $slots_hash)
+    {
         $poll = $this->findById($poll_id);
 
         // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
@@ -181,7 +190,8 @@ class PollService {
      * @param $comment
      * @return bool
      */
-    public function addComment($poll_id, $name, $comment) {
+    public function addComment($poll_id, $name, $comment)
+    {
         if ($this->commentRepository->exists($poll_id, $name, $comment)) {
             return true;
         }
@@ -193,7 +203,8 @@ class PollService {
      * @return Poll
      * @throws \Doctrine\DBAL\ConnectionException
      */
-    public function createPoll(Poll $poll) {
+    public function createPoll(Poll $poll)
+    {
         // Generate poll IDs, loop while poll ID already exists
 
         if ($poll->getId() === null) { // User want us to generate an id for him
@@ -224,11 +235,13 @@ class PollService {
         return $this->pollRepository->existsById($poll_id);
     }
 
-    public function findAllByAdminMail($mail) {
+    public function findAllByAdminMail($mail)
+    {
         return $this->pollRepository->findAllByAdminMail($mail);
     }
 
-    function computeBestChoices($votes) {
+    public function computeBestChoices($votes)
+    {
         $result = ['y' => [0], 'inb' => [0]];
         foreach ($votes as $vote) {
             $choices = str_split($vote['choices']);
@@ -253,7 +266,8 @@ class PollService {
      * @param array $slots
      * @return array
      */
-    public function splitSlots($slots) {
+    public function splitSlots($slots)
+    {
         $splitted = [];
         foreach ($slots as $slot) {
             /** @var Slot $slot */
@@ -271,8 +285,9 @@ class PollService {
      * @param $slots array The slots to hash
      * @return string The hash
      */
-    public function hashSlots($slots) {
-        return md5(array_reduce($slots, function($carry, $item) {
+    public function hashSlots($slots)
+    {
+        return md5(array_reduce($slots, function ($carry, $item) {
             if ($item instanceof DateSlot) {
                 /** @var DateSlot $item */
                 return $carry . $item->getId() . '@' . $item->getMoments() . ';';
@@ -286,7 +301,8 @@ class PollService {
      * @param array $votes
      * @return array
      */
-    public function splitVotes($votes) {
+    public function splitVotes($votes)
+    {
         $splitted = [];
         foreach ($votes as $vote) {
             $obj = new \stdClass();
@@ -304,7 +320,8 @@ class PollService {
     /**
      * @return \DateTime The max timestamp allowed for expiry date
      */
-    public function maxExpiryDate() {
+    public function maxExpiryDate()
+    {
         // TODO : inject proper config
         return (new \DateTime())->modify('+'. 60 .' day');
     }
@@ -312,7 +329,8 @@ class PollService {
     /**
      * @return \DateTime The min timestamp allowed for expiry date
      */
-    public function minExpiryDate() {
+    public function minExpiryDate()
+    {
         return (new \DateTime())->modify('+1 day');
     }
 
@@ -320,14 +338,16 @@ class PollService {
      * @param array $slots
      * @return array
      */
-    public function sortSlorts(array &$slots) {
+    public function sortSlorts(array &$slots)
+    {
         uasort($slots, function (Slot $a, Slot $b) {
             return $a->getTitle() > $b->getTitle();
         });
         return $slots;
     }
 
-    private function random($length) {
+    private function random($length)
+    {
         return Token::getToken($length);
     }
 
@@ -338,7 +358,8 @@ class PollService {
      * @param $slots_hash string The hash sent by the user
      * @throws ConcurrentEditionException Thrown when hashes are differents
      */
-    private function checkThatSlotsDidntChanged($poll, $slots_hash) {
+    private function checkThatSlotsDidntChanged($poll, $slots_hash)
+    {
         $slots = $this->allSlotsByPoll($poll);
         if ($slots_hash !== $this->hashSlots($slots)) {
             throw new ConcurrentEditionException();
@@ -353,7 +374,8 @@ class PollService {
      * @param string $poll_id
      * @throws ConcurrentVoteException
      */
-    private function checkMaxVotes($user_choice, Poll $poll, $poll_id) {
+    private function checkMaxVotes($user_choice, Poll $poll, $poll_id)
+    {
         $votes = $this->allVotesByPollId($poll_id);
         if (count($votes) <= 0) {
             return;

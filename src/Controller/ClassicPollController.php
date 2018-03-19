@@ -46,7 +46,8 @@ class ClassicPollController extends AbstractController
      */
     private $session;
 
-    public function __construct(PollService $poll_service,
+    public function __construct(
+        PollService $poll_service,
                                 MailService $mail_service,
                                 PurgeService $purge_service,
                                 TranslatorInterface $i18n,
@@ -82,7 +83,8 @@ class ClassicPollController extends AbstractController
         }
         $poll->setChoices($choices);
 
-        return $this->render('create_classic_poll_step_2.twig',
+        return $this->render(
+            'create_classic_poll_step_2.twig',
                 [
                     'title' => $this->i18n->trans('Step 2 date.Poll dates (2 on 3)'),
                     'choices' => $poll->getChoices(),
@@ -232,8 +234,6 @@ class ClassicPollController extends AbstractController
             'default_poll_duration' => 180, // $this->app_config['default_poll_duration'],
             'use_smtp' => true, // $this->app_config['use_smtp'],
         ]);
-
-
     }
 
     /**
@@ -244,10 +244,11 @@ class ClassicPollController extends AbstractController
      * @param array|null $options The associative array of options
      * @return array The filtered array
      */
-    private function filterArray(array $arr, $type, $options = null) {
+    private function filterArray(array $arr, $type, $options = null)
+    {
         $newArr = [];
 
-        foreach($arr as $id=>$item) {
+        foreach ($arr as $id=>$item) {
             $item = filter_var($item, $type, $options);
             if ($item !== false) {
                 $newArr[$id] = $item;

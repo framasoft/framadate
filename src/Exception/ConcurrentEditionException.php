@@ -1,7 +1,9 @@
 <?php
 namespace Framadate\Exception;
 
-class ConcurrentEditionException extends \Exception {
-    function __construct() {
+class ConcurrentEditionException extends \Exception
+{
+    public function __construct()
+    {
     }
 }
