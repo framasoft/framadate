@@ -26,7 +26,7 @@ class Utils {
      */
     public static function get_server_name() {
         $scheme = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? 'https' : 'http';
-        $port = in_array($_SERVER['SERVER_PORT'], [80, 443], true) ? '' : ':' . $_SERVER['SERVER_PORT'];
+        $port = in_array($_SERVER['SERVER_PORT'], ['80', '443'], true) ? '' : ':' . $_SERVER['SERVER_PORT'];
         $dirname = dirname($_SERVER['SCRIPT_NAME']);
         $dirname = $dirname === '\\' ? '/' : $dirname . '/';
         $dirname = str_replace('/admin', '', $dirname);
@@ -88,7 +88,7 @@ class Utils {
      */
     public static function getUrlSondage($id, $admin = false, $vote_id = '', $action = null, $action_value = null) {
         // URL-Encode $action_value
-        $action_value = $action_value === null ? null : Utils::base64url_encode($action_value);
+        $action_value = $action_value ? null : Utils::base64url_encode($action_value);
 
         if (URL_PROPRE) {
             if ($admin === true) {
@@ -98,8 +98,8 @@ class Utils {
             }
             if ($vote_id !== '') {
                 $url .= '/vote/' . $vote_id . "#edit";
-            } elseif ($action !== null) {
-                if ($action_value !== null) {
+            } elseif ($action) {
+                if ($action_value) {
                     $url .= '/action/' . $action . '/' . $action_value;
                 } else {
                     $url .= '/action/' . $action;

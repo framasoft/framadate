@@ -8,12 +8,12 @@ stages:
 before_script:
   - apt-get update -yqq
   - apt-get install zip unzip git -yqq
-  - curl --silent --show-error https://getcomposer.org/installer | php
 
 # Run php-cs-fixer and phpunit on all branches
 test:
   stage: test
   script:
+    - curl --silent --show-error https://getcomposer.org/installer | php
     - php composer.phar install -o  --no-interaction --no-progress --prefer-dist
     - mkdir tpl_c
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run
@@ -28,10 +28,14 @@ pages:
   script:
   - latesttag=$(git describe --tags)
   - git checkout ${latesttag}
+  - curl --silent --show-error https://getcomposer.org/installer | php
   - php composer.phar install -o  --no-interaction --no-progress --prefer-dist --no-dev
   - php composer.phar dump-autoload --optimize --no-dev --classmap-authoritative
+  - rm -rf composer.phar
   - mkdir tpl_c
-  - zip -r latest.zip .
+  - mkdir framadate
+  - mv * framadate
+  - zip -r latest.zip framadate
   - mkdir .public
   - cp latest.zip .public
   - mv .public public
@@ -46,6 +50,7 @@ funky:
   stage: funky
   script:
   - git checkout funky
+  - curl --silent --show-error https://getcomposer.org/installer | php
   - php composer.phar install
   - mkdir tpl_c
   - mkdir .public
@@ -56,6 +61,16 @@ funky:
   - if [ ! -z ${DEPLOYEMENT_KNOWN_HOSTS+x} ]; then echo -e "${DEPLOYEMENT_KNOWN_HOSTS}" > ${HOME}/.ssh/known_hosts; fi
   - eval `ssh-agent -s`
   - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then ssh-add <(echo "${DEPLOYEMENT_KEY}" | base64 --decode -i); fi
-  - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then rsync -a --delete --exclude admin/.stdout.log --exclude admin/.htpasswd --exclude app/inc/config.php --exclude stats/ --exclude errors/ public/ ${DEPLOYEMENT_USER}@${DEPLOYEMENT_HOST}:../../web/; fi
+  - if [ ! -z ${DEPLOYEMENT_KEY+x} ]; then rsync -a --delete --exclude admin/.stdout.log --exclude admin/.htpasswd --exclude app/inc/config.php --exclude stats/ --exclude error/ public/ ${DEPLOYEMENT_USER}@${DEPLOYEMENT_HOST}:../../web/; fi
   only:
     - funky
+
+# Push new translations strings to https://trad.framasoft.org
+trads:
+  stage: deploy
+  image: framasoft/push-trad:latest
+  script:
+  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
+  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make push-locales; fi
+  only:
+    - develop
