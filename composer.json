@@ -61,7 +61,7 @@
         "phpmailer/phpmailer": "^5.2",
         "ircmaxell/password-compat": "dev-master",
         "roave/security-advisories": "dev-master",
-        "erusev/parsedown": "1.6.0"
+        "erusev/parsedown": "^1.7"
     },
 
     "require-dev": {
