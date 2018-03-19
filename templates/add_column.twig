@@ -1,0 +1,83 @@
+{% extends 'page.twig' %}
+
+{% block header %}
+    <script type="text/javascript">
+        window.date_formats = {
+            DATE: '{{__('Date', 'DATE')}}',
+            DATEPICKER: '{{ __('Date', 'datepicker')}}'
+        };
+    </script>
+    <script type="text/javascript" src="{{ 'js/app/framadatepicker.js'}}"></script>
+{% endblock %}
+
+{% block main %}
+
+    {#<form action="{{ poll_url(poll.adminId, true) }}" method="POST">#}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        <div class="alert alert-info text-center">
+            <h2>{{__('adminstuds', 'Column\'s adding')}}</h2>
+
+            {# Messages #}
+            {% include 'part/messages.twig' %}
+
+            <div class="form-group">
+                {{ form_label(form.title) }}
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        {{ form_widget(form.title) }}
+                    </div>
+                </div>
+                {{ form_errors(form.title) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.moments) }}
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                        {{ form_widget(form.moments) }}
+                    </div>
+                </div>
+                {{ form_errors(form.moments) }}
+            </div>
+            <div class="form-group">
+                <a href="{{ path('view_admin_poll', {'admin_poll_id': poll.adminId}) }}" class="btn btn-default" name="back">{{__('adminstuds', 'Back to the poll')}}</a>
+                {{ form_row(form.submit) }}
+            </div>
+
+            {#{% if poll.format == 'D' %}
+                <div class="form-group">
+                    <label for="newdate" class="col-md-4">{{__('Generic', 'Day')}}</label>
+                    <div class="col-md-8">
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            #}{#<input type="text" id="newdate" data-date-format="{{__('Date', 'dd/mm/yyyy')}}" aria-describedby="dateformat" name="newdate" class="form-control" placeholder="{{__('Date', 'dd/mm/yyyy')}}" />#}{#
+                            <input type="date" name="newdate" id="newdate" class="form-control" aria-describedby="dateformat" />
+                        </div>
+                        <span id="dateformat" class="sr-only">({{__('Date', 'dd/mm/yyyy')}})</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="newmoment" class="col-md-4">{{__('Generic', 'Time')}}</label>
+                    <div class="col-md-8">
+                        <div class="input-group date">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                            <input type="text" id="newmoment" name="newmoment" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="form-group">
+                    <label for="choice" class="col-md-4">{{__('Generic', 'Choice')}}</label>
+                    <div class="col-md-8">
+                        <input type="text" id="choice" name="choice" class="form-control" />
+                    </div>
+                </div>
+            {% endif %}
+            <div class="form-group">
+
+                <button type="submit" name="confirm_add_column" class="btn btn-success">{{__('adminstuds', 'Add a column')}}</button>
+            </div>#}
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

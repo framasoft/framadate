@@ -1,0 +1,68 @@
+{# Line to add a new vote #}
+
+    {% if active and editingVoteId is same as(0) and not expired and accessGranted %}
+        <tr id="vote-form" class="hidden-print">
+            <td class="bg-info btn-edit">
+                <div class="input-group input-group-sm">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input type="text" id="name" name="name" class="form-control"
+                           title="{{ __('Generic', 'Your name') }}"
+                           placeholder="{{ __('Generic', 'Your name') }}"/>
+                </div>
+            </td>
+
+
+            {% set i = 0 %}
+            {% for slot in slots %}
+                {% for moment in slot.moments %}
+
+                    <td class="bg-info" headers="M{{ headersM[i] }} D{{ headersD[i] }} H{{ headersH[i] }}">
+                        <ul class="list-unstyled choice">
+                            {% if best_choices['y'][0] > poll.ValueMax or poll.ValueMax == 0 %}
+                                <li class="yes">
+                                    <input type="radio" id="y-choice-{{ i }}" name="choices[{{ i }}]"
+                                           value="2"/>
+                                    <label class="btn btn-default btn-xs" for="y-choice-{{ i }}"
+                                           title="{{ __('Poll results', 'Vote yes for')|raw }} {{ slot.day | localizeddate('none', 'none', locale, NULL, 'MMMM r') }}">
+                                        <i class="glyphicon glyphicon-ok"></i><span
+                                                class="sr-only">{{ __('Generic', 'Yes') }}</span>
+                                    </label>
+                                </li>
+                                <li class="ifneedbe">
+                                    <input type="radio" id="i-choice-{{ i }}" name="choices[{{ i }}]"
+                                           value="1"/>
+                                    <label class="btn btn-default btn-xs" for="i-choice-{{ i }}"
+                                           title="{{ __('Poll results', 'Vote ifneedbe for')|raw }} {{ slot.day | localizeddate('none', 'none', locale, NULL, 'MMMM r') }}">
+                                        (<i class="glyphicon glyphicon-ok"></i>)<span
+                                                class="sr-only">{{ __('Generic', 'Ifneedbe') }}</span>
+                                    </label>
+                                </li>
+
+                            {% endif %}
+
+                            <li class="no">
+                                <input type="radio" id="n-choice-{{ i }}" name="choices[{{ i }}]" value="0"/>
+                                <label class="btn btn-default btn-xs startunchecked" for="n-choice-{{ i }}"
+                                       title="{{ __('Poll results', 'Vote no for')|raw }} {{ slot.day | localizeddate('none', 'none', locale, NULL, 'MMMM r') }} - {{ moment|raw }}">
+                                    <i class="glyphicon glyphicon-ban-circle"></i><span
+                                            class="sr-only">{{ __('Generic', 'No') }}</span>
+                                </label>
+                            </li>
+                            <li class="hide">
+                                <input type="radio" id="n-choice-{{ i }}" name="choices[{{ i }}]" value=" "
+                                       checked/>
+                            </li>
+                        </ul>
+                    </td>
+
+
+
+                    {% set i = i + 1 %}
+                {% endfor %}
+            {% endfor %}
+            <td>
+                <button type="submit" class="btn btn-success btn-md" name="save"
+                        title="{{ __('Poll results', 'Save the choices') }}">{{ __('Generic', 'Save') }}</button>
+            </td>
+        </tr>
+    {% endif %}

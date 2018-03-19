@@ -1,102 +1,81 @@
 {
-    "name": "framasoft/framadate",
-    "description": "Application to facilitate the schedule of events or classic polls",
-    "homepage": "https://framadate.org/",
-    "keywords": ["poll", "framadate"],
-    "version": "0.9.0",
-    "license": "CECILL-B",
-
     "type": "project",
-    "support": {
-        "issues": "https://framagit.org/framasoft/framadate/issues"
-    },
-    "authors": [
-        {
-            "name": "Thomas CITHAREL",
-            "email": "tcit@tcit.fr",
-            "role": "Maintainer"
-        },
-        {
-            "name": "JosephK",
-            "email": "joseph@framasoft.org",
-            "role": "Maintainer"
-        },
-        {
-            "name": "Olivier PEREZ",
-            "email": "olivier@olivierperez.fr",
-            "role": "Former maintainer"
-        },
-        {
-            "name": "Antonin MURTIN",
-            "email": "antonin.murtin@gmail.com",
-            "role": "Former developper"
-        },
-        {
-            "name": "Simon LEBLANC",
-            "role": "Former developper",
-            "email": "contact@leblanc-simon.eu"
-        },
-        {
-            "name": "Pierre-Yves GOSSET",
-            "role": "Former developper",
-            "email": "pyg@framasoft.org"
-        },
-        {
-            "name": "Guilhem BORGHESI",
-            "role": "Studs developper",
-            "email": "borghesi@unistra.fr"
-        },
-        {
-            "name": "Raphaël DROZ",
-            "role": "Studs developper",
-            "email": "raphael.droz@gmail.com"
-        }
-    ],
-
+    "license": "proprietary",
     "require": {
-        "php": ">=5.6.0",
-        "ext-pdo": "*",
-        "smarty/smarty": "^3.1",
-        "o80/i18n": "dev-develop",
-        "phpmailer/phpmailer": "^5.2",
-        "ircmaxell/password-compat": "dev-master",
-        "roave/security-advisories": "dev-master",
-        "erusev/parsedown": "1.7.0",
-        "twig/twig": "^1.34",
-        "jms/serializer": "^1.11",
-        "myclabs/php-enum": "^1.5",
-        "silex/silex": "~2.2",
-        "symfony/twig-bridge": "^3.4",
-        "twig/extensions": "^1.5",
-        "symfony/asset": "^3.4",
-        "symfony/form": "^3.4",
-        "symfony/validator": "^3.4",
-        "symfony/config": "^3.4"
+        "php": "^7.1.3",
+        "ext-iconv": "*",
+        "doctrine/doctrine-bundle": "^1.8",
+        "erusev/parsedown": "^1.7",
+        "fresh/doctrine-enum-bundle": "~6.0",
+        "sensio/framework-extra-bundle": "^5.1",
+        "symfony/asset": "^4.0",
+        "symfony/console": "^4.0",
+        "symfony/debug-pack": "*",
+        "symfony/expression-language": "^4.0",
+        "symfony/flex": "^1.0",
+        "symfony/form": "^4.0",
+        "symfony/framework-bundle": "^4.0",
+        "symfony/lts": "^4@dev",
+        "symfony/monolog-bundle": "^3.1",
+        "symfony/process": "^4.0",
+        "symfony/security-bundle": "^4.0",
+        "symfony/serializer-pack": "*",
+        "symfony/swiftmailer-bundle": "^3.1",
+        "symfony/validator": "^4.0",
+        "symfony/web-link": "^4.0",
+        "symfony/webpack-encore-pack": "*",
+        "symfony/yaml": "^4.0",
+        "twig/extensions": "^1.5"
     },
-
     "require-dev": {
-        "phpunit/phpunit": "^5.7",
-        "friendsofphp/php-cs-fixer": "~2.0",
-        "silex/web-profiler": "^2.0",
-        "symfony/browser-kit": "^3.4",
-        "symfony/css-selector": "^3.4"
+        "symfony/browser-kit": "^4.0",
+        "symfony/css-selector": "^4.0",
+        "symfony/dotenv": "^4.0",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "^4.0",
+        "symfony/profiler-pack": "*"
     },
-
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
     "autoload": {
         "psr-4": {
-            "Framadate\\": "app/"
+            "Framadate\\": "src/"
         }
     },
-
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Framadate\\Tests\\": "tests/"
         }
     },
-
-    "config": {
-        "platform": {
-            "php": "5.6.0"
+    "replace": {
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "id": "01C82FNF65RNQJGCFPFY7TZJ5C",
+            "allow-contrib": false
         }
     }
 }
