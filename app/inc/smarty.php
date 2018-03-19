@@ -94,9 +94,8 @@ function smarty_modifier_locale_2_lang($locale) {
     $lang_arr = explode('-', $locale);
     if ($lang_arr && count($lang_arr) > 1) {
         return $lang_arr[0];
-    } else {
-        return $locale;
     }
+    return $locale;
 }
 
 function path_for_datepicker_locale($lang) {
