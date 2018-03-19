@@ -1,19 +1,13 @@
-image: php
+image: framasoft/framadate-ci
 stages:
   - test
   - deploy
   - funky
 
-# install zip, git, composer on each build
-before_script:
-  - apt-get update -yqq
-  - apt-get install zip unzip git -yqq
-
 # Run php-cs-fixer and phpunit on all branches
 test:
   stage: test
   script:
-    - curl --silent --show-error https://getcomposer.org/installer | php
     - php composer.phar install -o  --no-interaction --no-progress --prefer-dist
     - mkdir tpl_c
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run
@@ -28,7 +22,6 @@ pages:
   script:
   - latesttag=$(git describe --tags)
   - git checkout ${latesttag}
-  - curl --silent --show-error https://getcomposer.org/installer | php
   - php composer.phar install -o  --no-interaction --no-progress --prefer-dist --no-dev
   - php composer.phar dump-autoload --optimize --no-dev --classmap-authoritative
   - rm -rf composer.phar
@@ -50,7 +43,6 @@ funky:
   stage: funky
   script:
   - git checkout funky
-  - curl --silent --show-error https://getcomposer.org/installer | php
   - php composer.phar install
   - mkdir tpl_c
   - mkdir .public
