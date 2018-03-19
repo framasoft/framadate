@@ -68,7 +68,7 @@ La page de migration s'occupe :
 
 # Accès à la page administrateur
 
-Le répertoire `admin/` fournit l'accès à certainnes actions et informations à protéger.
+Le répertoire `admin/` fournit l'accès à certaines actions et informations à protéger.
 
 Il convient de mettre en place un couple de fichiers `.htaccess`/`.htpasswd`, pour restreindre l'accès à la page d'administration de l'application.
 Il existe une multitude de tutoriels sur internet à ce sujet.

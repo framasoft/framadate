@@ -18,7 +18,7 @@ Un fichier est dédié à l'installation de framadate : [INSTALL.md](INSTALL.md)
 ## De votre côté
 
 1. Créer un compte sur [https://framagit.org](https://framagit.org)
-1. Créer un fork du projet principal : [Créer le fork](https://framagit.org/framasoft/framadate/fork/new)
+1. Créer un fork du projet principal : [Créer le fork](https://framagit.org/framasoft/framadate/forks/new)
 1. Créer une branche nommée feature/[Description] à partir de la branche **develop**
     * Où [Description] est une description en anglais très courte de ce qui va être fait
 1. Faire des commits dans votre branche
