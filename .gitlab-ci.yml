@@ -8,7 +8,7 @@ stages:
 test:
   stage: test
   script:
-    - php composer.phar install -o  --no-interaction --no-progress --prefer-dist
+    - composer install -o  --no-interaction --no-progress --prefer-dist
     - mkdir tpl_c
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run
     - vendor/bin/phpunit --bootstrap app/tests/bootstrap.php --debug app/tests
@@ -22,9 +22,8 @@ pages:
   script:
   - latesttag=$(git describe --tags)
   - git checkout ${latesttag}
-  - php composer.phar install -o  --no-interaction --no-progress --prefer-dist --no-dev
-  - php composer.phar dump-autoload --optimize --no-dev --classmap-authoritative
-  - rm -rf composer.phar
+  - composer install -o  --no-interaction --no-progress --prefer-dist --no-dev
+  - composer dump-autoload --optimize --no-dev --classmap-authoritative
   - mkdir tpl_c
   - mkdir framadate
   - mv `ls -A | grep -v framadate` ./framadate
@@ -43,7 +42,7 @@ funky:
   stage: funky
   script:
   - git checkout funky
-  - php composer.phar install
+  - composer install
   - mkdir tpl_c
   - mkdir .public
   - cp -r * .public
