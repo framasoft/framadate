@@ -10,8 +10,8 @@ test:
   script:
     - composer install -o  --no-interaction --no-progress --prefer-dist
     - mkdir tpl_c
-    - php vendor/bin/php-cs-fixer fix --verbose --dry-run
-    - vendor/bin/phpunit --bootstrap app/tests/bootstrap.php --debug app/tests
+    - php vendor/bin/php-cs-fixer fix --verbose --dry-run src/
+    - vendor/bin/phpunit --debug
   cache:
     paths:
       - vendor/
