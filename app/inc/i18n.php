@@ -29,7 +29,7 @@ if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'
 
 /* <html lang="$locale"> */
 $i18n->get('', 'Something, just to load the dictionary');
-$locale = $i18n->getLoadedLang();
+$locale = str_replace('_', '-', $i18n->getLoadedLang());
 
 /* Date Format */
 $date_format['txt_full'] = __('Date', 'FULL'); //summary in create_date_poll.php and removal date in choix_(date|autre).php
