@@ -34,7 +34,7 @@ pages:
   - rm -rf composer.phar
   - mkdir tpl_c
   - mkdir framadate
-  - mv * framadate
+  - mv `ls -A | grep -v framadate` ./framadate
   - zip -r latest.zip framadate
   - mkdir .public
   - cp latest.zip .public
