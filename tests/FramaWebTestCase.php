@@ -24,7 +24,7 @@ abstract class FramaWebTestCase extends WebTestCase {
     {
         $message = null;
         if ($this->client->getCrawler()) {
-            $message = preg_replace('#\s{2,}#', '', $this->client->getCrawler()->filter('.text-exception')->text());
+            $message = preg_replace('#\s{2,}#', '', $this->client->getCrawler()->filter('.exception-message')->text());
         }
         if ($message) {
             $exceptionClass = get_class($exception);
