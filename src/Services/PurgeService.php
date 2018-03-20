@@ -1,10 +1,8 @@
 <?php
 namespace Framadate\Services;
 
-use Framadate\FramaDB;
 use Framadate\Repository\CommentRepository;
 use Framadate\Repository\PollRepository;
-use Framadate\Repository\RepositoryFactory;
 use Framadate\Repository\SlotRepository;
 use Framadate\Repository\VoteRepository;
 
@@ -21,7 +19,7 @@ class PurgeService
     private $voteRepository;
     private $commentRepository;
 
-    public function __construct(FramaDB $connect, LogService $logService, PollRepository $pollRepository, SlotRepository $slotRepository, VoteRepository $voteRepository, CommentRepository $commentRepository)
+    public function __construct(LogService $logService, PollRepository $pollRepository, SlotRepository $slotRepository, VoteRepository $voteRepository, CommentRepository $commentRepository)
     {
         $this->logService = $logService;
         $this->pollRepository = $pollRepository;

@@ -1,7 +1,6 @@
 <?php
 namespace Framadate\Repository;
 
-use Framadate\FramaDB;
 use Framadate\Utils;
 
 class CommentRepository extends AbstractRepository

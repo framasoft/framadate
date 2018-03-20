@@ -27,12 +27,6 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    Framadate\FramaDB:
-        arguments:
-          - 'mysql:host=localhost;dbname=framadate;port=3306'
-          - 'framadate'
-          - 'framadate'
-
     Framadate\Services\MailService:
         arguments:
           - '@session'

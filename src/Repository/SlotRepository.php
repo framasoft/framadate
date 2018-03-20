@@ -20,7 +20,6 @@ namespace Framadate\Repository;
 
 use Framadate\Entity\DateSlot;
 use Framadate\Entity\Slot;
-use Framadate\FramaDB;
 use Framadate\Utils;
 
 class SlotRepository extends AbstractRepository
