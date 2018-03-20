@@ -6,10 +6,8 @@ composer.phar
 framanav
 nav
 app/inc/config.php
-vendor
 cache/
 tpl_c/
-.php_cs.cache
 .zanata-cache/
 
 ###> symfony/framework-bundle ###
