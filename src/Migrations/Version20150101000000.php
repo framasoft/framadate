@@ -16,9 +16,10 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate\Migration;
+namespace DoctrineMigrations;
 
-use Framadate\Utils;
+use Doctrine\DBAL\Migrations\AbstractMigration;
+use Doctrine\DBAL\Schema\Schema;
 
 /**
  * Class From_0_0_to_0_8_Migration
@@ -26,43 +27,26 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.8
  */
-class From_0_0_to_0_8_Migration implements Migration {
-    function __construct() {
-    }
+class Version20150101000000 extends AbstractMigration {
 
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description() {
         return 'First installation of the Framadate application (v0.8)';
-    }
-
-    /**
-     * This method could check if the execute method should be called.
-     * It is called before the execute method.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the Migration should be executed.
-     */
-    function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES like \'' . TABLENAME_PREFIX . '%\'');  //issue187 : pouvoir installer framadate dans une base contenant d'autres tables.
-        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
-
-        // Check if there is no tables but the MIGRATION_TABLE one
-        $diff = array_diff($tables, [Utils::table(MIGRATION_TABLE)]);
-        return count($diff) === 0;
     }
 
     /**
      * This method is called only one time in the migration page.
      *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the execution succeeded
+     * @param Schema $schema
+     * @return void true is the execution succeeded
      */
-    function execute(\PDO $pdo) {
-        $pdo->exec('
+    public function up(Schema $schema) {
+
+        $this->addSql('
 CREATE TABLE IF NOT EXISTS `sondage` (
   `id_sondage` char(16) NOT NULL,
   `commentaires` text,
@@ -78,14 +62,14 @@ CREATE TABLE IF NOT EXISTS `sondage` (
   UNIQUE KEY `id_sondage` (`id_sondage`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;');
 
-        $pdo->exec('
+        $this->addSql('
 CREATE TABLE IF NOT EXISTS `sujet_studs` (
   `id_sondage` char(16) NOT NULL,
   `sujet` text,
   KEY `id_sondage` (`id_sondage`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;');
 
-        $pdo->exec('
+        $this->addSql('
 CREATE TABLE IF NOT EXISTS `comments` (
   `id_comment` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `id_sondage` char(16) NOT NULL,
@@ -95,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   KEY `id_sondage` (`id_sondage`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;');
 
-        $pdo->exec('
+        $this->addSql('
 CREATE TABLE IF NOT EXISTS `user_studs` (
   `id_users` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `nom` varchar(64) NOT NULL,
@@ -104,5 +88,14 @@ CREATE TABLE IF NOT EXISTS `user_studs` (
   PRIMARY KEY (`id_users`),
   KEY `id_sondage` (`id_sondage`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;');
+    }
+
+    public function down(Schema $schema)
+    {
+        $this->addSql('DROP TABLE `sondage`');
+        $this->addSql('DROP TABLE `sujet_studs`');
+        $this->addSql('DROP TABLE `comments`');
+        $this->addSql('DROP TABLE `user_studs`');
+
     }
 }

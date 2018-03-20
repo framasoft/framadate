@@ -87,7 +87,7 @@ class PollController extends Controller
      * @param $poll_id
      * @return string
      *
-     * @Route("/{poll_id}", name="view_poll", requirements={"poll_id": "^([a-zA-Z0-9-]*)$"})
+     * @Route("/p/{poll_id}", name="view_poll", requirements={"poll_id": "^([a-zA-Z0-9-]*)$"})
      */
     public function showAction($poll_id)
     {
@@ -140,7 +140,7 @@ class PollController extends Controller
      * @param $type
      * @return string
      *
-     * @Route("/new/{type}", name="new_poll")
+     * @Route("/p/new/{type}", name="new_poll")
      */
     public function createPollAction(Request $request, $type)
     {
@@ -175,7 +175,7 @@ class PollController extends Controller
     }
 
     /**
-     * @Route("{poll_id}/export.{format}", name="export_poll", defaults={"format": "CSV"})
+     * @Route("/p/{poll_id}/export.{format}", name="export_poll", defaults={"format": "CSV"})
      *
      * @param $poll_id
      * @param $format

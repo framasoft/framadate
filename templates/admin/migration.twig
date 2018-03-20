@@ -2,42 +2,6 @@
 
 {% block admin_main %}
     <div class="row">
-        <div class="col-xs-12 col-md-4">
-            <h2>{{__('Admin', 'Summary')}}</h2>
-            {{__('Admin', 'Succeeded:')}} <span class="label label-warning">{{ countSucceeded | raw }} / {{ countTotal | raw }}</span>
-            <br/>
-            {{__('Admin', 'Failed:')}} <span class="label label-danger">{{ countFailed | raw}} / {{ countTotal | raw }}</span>
-            <br/>
-            {{__('Admin', 'Skipped:')}} <span class="label label-info">{{ countSkipped | raw }} / {{ countTotal | raw }}</span>
-        </div>
-        <div class="col-xs-12 col-md-4">
-            <h2>{{__('Admin', 'Success')}}</h2>
-            <ul>
-                {% if success | length > 0 %}
-                    {% for s in success %}
-                        <li>{{  s | raw }}</li>
-                    {% endfor %}
-                {% else %}
-                    <li>{{__('Admin', 'Nothing')}}</li>
-                {% endif %}
-            </ul>
-        </div>
-
-        <div class="col-xs-12 col-md-4">
-            <h2>{{__('Admin', 'Fail')}}</h2>
-            <ul>
-                {% if success | length > 0 %}
-                    {% for f in fail %}
-                        <li>{{ f | raw }}</li>
-                    {% endfor %}
-                {% else %}
-                    <li>{{__('Admin', 'Nothing')}}</li>
-                {% endif %}
-            </ul>
-        </div>
-
-        <div class="col-xs-12 well well-sm">
-            {{__('Generic', 'Page generated in')}} {{ time }} {{__('Generic', 'seconds')}}
-        </div>
+        {{ output | raw }}
     </div>
 {% endblock %}

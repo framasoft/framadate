@@ -16,8 +16,11 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate\Migration;
+namespace DoctrineMigrations;
 
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Migrations\AbstractMigration;
+use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
 /**
@@ -26,51 +29,41 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.9
  */
-class AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9 implements Migration {
-    function __construct() {
-    }
-
+class Version20151028000000 extends AbstractMigration {
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description() {
         return 'Add columns "password_hash" and "results_publicly_visible" in table "vote" for version 0.9';
     }
 
     /**
-     * This method could check if the execute method should be called.
-     * It is called before the execute method.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the Migration should be executed.
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     * @throws \Doctrine\DBAL\Schema\SchemaException
      */
-    function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
-        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+    public function up(Schema $schema)
+    {
+        $pollTable = $schema->getTable(Utils::table('poll'));
 
-        // Check if tables of v0.9 are presents
-        $diff = array_diff([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')], $tables);
-        return count($diff) === 0;
+        $this->skipIf($pollTable->hasColumn('password_hash'));
+        $this->skipIf($pollTable->hasColumn('results_publicly_visible'));
+
+        $pollTable->addColumn('password_hash', 'string', ['notnull' => false]);
+        $pollTable->addColumn('results_publicly_visible', 'boolean', ['notnull' => false]);
     }
 
     /**
-     * This method is called only one time in the migration page.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the execution succeeded
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Schema\SchemaException
      */
-    function execute(\PDO $pdo) {
-        $this->alterPollTable($pdo);
+    public function down(Schema $schema)
+    {
+        $pollTable = $schema->getTable(Utils::table('poll'));
 
-        return true;
-    }
-
-    private function alterPollTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `password_hash` VARCHAR(255) NULL DEFAULT NULL ,
-        ADD `results_publicly_visible` TINYINT(1) NULL DEFAULT NULL');
+        $pollTable->dropColumn('password_hash');
+        $pollTable->dropColumn('results_publicly_visible');
     }
 }

@@ -16,8 +16,11 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate\Migration;
+namespace DoctrineMigrations;
 
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Migrations\AbstractMigration;
+use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
 /**
@@ -26,50 +29,42 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.9
  */
-class AddColumn_hidden_In_poll_For_0_9 implements Migration {
-    function __construct() {
-    }
+class Version20150405000000 extends AbstractMigration {
 
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description() {
         return 'Add column "hidden" in table "vote" for version 0.9';
     }
 
     /**
-     * This method could check if the execute method should be called.
-     * It is called before the execute method.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the Migration should be executed.
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     * @throws \Doctrine\DBAL\Schema\SchemaException
      */
-    function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
-        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+    public function up(Schema $schema)
+    {
+        foreach ([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')] as $table) {
+            $this->skipIf(!$schema->hasTable($table), 'Missing table ' . $table);
+        }
+        $pollTable = $schema->getTable(Utils::table('poll'));
 
-        // Check if tables of v0.9 are presents
-        $diff = array_diff([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')], $tables);
-        return count($diff) === 0;
+        $this->skipIf($pollTable->hasColumn('hidden'), 'Column uniqId already existing in table poll');
+
+        $pollTable->addColumn('hidden', 'boolean', ['default' => false, 'notnull' => true]);
     }
 
     /**
-     * This method is called only one time in the migration page.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the execution succeeded
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Schema\SchemaException
      */
-    function execute(\PDO $pdo) {
-        $this->alterPollTable($pdo);
+    public function down(Schema $schema)
+    {
+        $pollTable = $schema->getTable(Utils::table('poll'));
 
-        return true;
-    }
-
-    private function alterPollTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `hidden` TINYINT( 1 ) NOT NULL DEFAULT "0"');
+        $pollTable->dropColumn('hidden');
     }
 }

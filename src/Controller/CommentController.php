@@ -83,7 +83,7 @@ class CommentController extends Controller
     }
 
     /**
-     * @Route("{poll_id}/comment/new", name="new_comment")
+     * @Route("/p/{poll_id}/comment/new", name="new_comment")
      *
      * @param Request $request
      * @param $poll_id
@@ -142,7 +142,7 @@ class CommentController extends Controller
     }
 
     /**
-     * @Route("/{poll_id}/comment/remove", name="remove_comment")
+     * @Route("/p/{poll_id}/comment/remove", name="remove_comment")
      *
      * @param Request $request
      * @param $poll_id

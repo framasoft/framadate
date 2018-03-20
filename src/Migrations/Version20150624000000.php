@@ -16,8 +16,10 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate\Migration;
+namespace DoctrineMigrations;
 
+use Doctrine\DBAL\Migrations\AbstractMigration;
+use Doctrine\DBAL\Schema\Schema;
 use Framadate\Security\Token;
 use Framadate\Utils;
 
@@ -27,44 +29,31 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.9
  */
-class Generate_uniqId_for_old_votes implements Migration {
-    function __construct() {
-    }
+class Version20150624000000 extends AbstractMigration {
 
-    function description() {
+    public function description() {
         return 'Generate "uniqId" in "vote" table for all legacy votes';
     }
 
-    function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
-        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
-
-        // Check if tables of v0.9 are presents
-        $diff = array_diff([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')], $tables);
-        return count($diff) === 0;
-    }
-
     /**
-     * This methode is called only one time in the migration page.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the execution succeeded
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\DBALException
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
      */
-    function execute(\PDO $pdo) {
-        $pdo->beginTransaction();
-        $this->generateUniqIdsForEmptyOnes($pdo);
-        $pdo->commit();
+    public function up(Schema $schema)
+    {
+        foreach ([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')] as $table) {
+            $this->skipIf(!$schema->hasTable($table), 'Missing table ' . $table);
+        }
 
-        return true;
-    }
+        $this->connection->beginTransaction();
 
-    private function generateUniqIdsForEmptyOnes($pdo) {
-        $select = $pdo->query('
+        $select = $this->connection->query('
 SELECT `id`
   FROM `' . Utils::table('vote') . '`
  WHERE `uniqid` = \'\'');
 
-        $update = $pdo->prepare('
+        $update = $this->connection->prepare('
 UPDATE `' . Utils::table('vote') . '`
    SET `uniqid` = :uniqid
  WHERE `id` = :id');
@@ -72,9 +61,16 @@ UPDATE `' . Utils::table('vote') . '`
         while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
             $token = Token::getToken(16);
             $update->execute([
-                'uniqid' => $token,
-                'id' => $row->id
+                                 'uniqid' => $token,
+                                 'id' => $row->id
                              ]);
         }
+
+        $this->connection->commit();
+    }
+
+    public function down(Schema $schema)
+    {
+        // TODO: Implement down() method.
     }
 }

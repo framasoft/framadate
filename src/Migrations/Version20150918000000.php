@@ -4,20 +4,24 @@
  * is not distributed with this file, you can obtain one at
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
- * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaï¿½l DROZ
  * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
- * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * Ce logiciel est rï¿½gi par la licence CeCILL-B. Si une copie de cette licence
  * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
  *
- * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaï¿½l DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate\Migration;
 
+namespace DoctrineMigrations;
+
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Migrations\AbstractMigration;
+use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
 /**
@@ -27,30 +31,25 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.9
  */
-class RPadVotes_from_0_8 implements Migration {
-    function description() {
+class Version20150918000000 extends AbstractMigration
+{
+    public function description()
+    {
         return 'RPad votes from version 0.8.';
     }
 
-    function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
-        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+    /**
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     */
+    public function up(Schema $schema)
+    {
+        foreach ([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')] as $table) {
+            $this->skipIf(!$schema->hasTable($table), 'Missing table ' . $table);
+        }
 
-        // Check if tables of v0.9 are presents
-        $diff = array_diff([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')], $tables);
-        return count($diff) === 0;
-    }
-
-    function execute(\PDO $pdo) {
-        $pdo->beginTransaction();
-        $this->rpadVotes($pdo);
-        $pdo->commit();
-
-        return true;
-    }
-
-    private function rpadVotes($pdo) {
-        $pdo->exec('UPDATE ' . Utils::table('vote') . ' fv
+        $this->addSql(
+            'UPDATE ' . Utils::table('vote') . ' fv
 INNER JOIN (
 	SELECT v.id, RPAD(v.choices, inn.slots_count, \'0\') new_choices
 	FROM ' . Utils::table('vote') . ' v
@@ -61,6 +60,13 @@ INNER JOIN (
 		ORDER BY s.poll_id) inn ON inn.poll_id = v.poll_id
 	WHERE LENGTH(v.choices) != inn.slots_count
 ) computed ON fv.id = computed.id
-SET fv.choices = computed.new_choices');
+SET fv.choices = computed.new_choices'
+        );
+
+    }
+
+    public function down(Schema $schema)
+    {
+        // TODO: Implement down() method.
     }
 }

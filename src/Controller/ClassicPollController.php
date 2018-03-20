@@ -63,7 +63,7 @@ class ClassicPollController extends AbstractController
     }
 
     /**
-     * @Route("/new/classic/2", name="new_classic_poll_step_2")
+     * @Route("/p/new/classic/2", name="new_classic_poll_step_2")
      *
      * @param Request $request
      * @return null
@@ -96,7 +96,7 @@ class ClassicPollController extends AbstractController
     }
 
     /**
-     * @Route("/new/classic/3", name="new_classic_poll_step_3")
+     * @Route("/p/new/classic/3", name="new_classic_poll_step_3")
      *
      * @param Request $request
      * @return string

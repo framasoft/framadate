@@ -16,8 +16,10 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate\Migration;
+namespace DoctrineMigrations;
 
+use Doctrine\DBAL\Migrations\AbstractMigration;
+use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
 /**
@@ -26,9 +28,7 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.9
  */
-class From_0_8_to_0_9_Migration implements Migration {
-    function __construct() {
-    }
+class Version20150102000000 extends AbstractMigration {
 
     /**
      * This method should describe in english what is the purpose of the migration class.
@@ -39,48 +39,9 @@ class From_0_8_to_0_9_Migration implements Migration {
         return 'From 0.8 to 0.9';
     }
 
-    /**
-     * This method could check if the execute method should be called.
-     * It is called before the execute method.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the Migration should be executed.
-     */
-    function preCondition(\PDO $pdo) {
-        $stmt = $pdo->query('SHOW TABLES');
-        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+    private function createPollTable() {
 
-        // Check if tables of v0.8 are presents
-        $diff = array_diff(['sondage', 'sujet_studs', 'comments', 'user_studs'], $tables);
-        return count($diff) === 0;
-    }
-
-    /**
-     * This method is called only one time in the migration page.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the execution succeeded
-     */
-    function execute(\PDO $pdo) {
-        $this->createPollTable($pdo);
-        $this->createCommentTable($pdo);
-        $this->createSlotTable($pdo);
-        $this->createVoteTable($pdo);
-
-        $pdo->beginTransaction();
-        $this->migrateFromSondageToPoll($pdo);
-        $this->migrateFromCommentsToComment($pdo);
-        $this->migrateFromSujetStudsToSlot($pdo);
-        $this->migrateFromUserStudsToVote($pdo);
-        $pdo->commit();
-
-        $this->dropOldTables($pdo);
-
-        return true;
-    }
-
-    private function createPollTable(\PDO $pdo) {
-        $pdo->exec('
+        $this->addSql('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
   `id`              CHAR(16)  NOT NULL,
   `admin_id`        CHAR(24)  NOT NULL,
@@ -100,8 +61,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromSondageToPoll(\PDO $pdo) {
-        $select = $pdo->query('
+    private function migrateFromSondageToPoll() {
+        $select = $this->connection->query('
 SELECT
     `id_sondage`,
     `id_sondage_admin`,
@@ -121,7 +82,7 @@ SELECT
     ELSE 1 END             AS `active`
   FROM sondage');
 
-        $insert = $pdo->prepare('
+        $insert = $this->connection->prepare('
 INSERT INTO `' . Utils::table('poll') . '`
 (`id`, `admin_id`, `title`, `description`, `admin_name`, `admin_mail`, `creation_date`, `end_date`, `format`, `editable`, `receiveNewVotes`, `active`)
 VALUE (?,?,?,?,?,?,?,?,?,?,?,?)');
@@ -144,8 +105,8 @@ VALUE (?,?,?,?,?,?,?,?,?,?,?,?)');
         }
     }
 
-    private function createSlotTable(\PDO $pdo) {
-        $pdo->exec('
+    private function createSlotTable() {
+        $this->addSql('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `poll_id` CHAR(16)         NOT NULL,
@@ -158,8 +119,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromSujetStudsToSlot(\PDO $pdo) {
-        $stmt = $pdo->query('SELECT * FROM sujet_studs');
+    private function migrateFromSujetStudsToSlot() {
+        $stmt = $this->connection->query('SELECT * FROM sujet_studs');
         $sujets = $stmt->fetchAll();
         $slots = [];
 
@@ -170,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
             }
         }
 
-        $prepared = $pdo->prepare('INSERT INTO ' . Utils::table('slot') . ' (`poll_id`, `title`, `moments`) VALUE (?,?,?)');
+        $prepared = $this->connection->prepare('INSERT INTO ' . Utils::table('slot') . ' (`poll_id`, `title`, `moments`) VALUE (?,?,?)');
         foreach ($slots as $slot) {
             $prepared->execute([
                 $slot->poll_id,
@@ -180,8 +141,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
         }
     }
 
-    private function createCommentTable(\PDO $pdo) {
-        $pdo->exec('
+    private function createCommentTable() {
+        $this->addSql('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('comment') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `poll_id` CHAR(16)         NOT NULL,
@@ -194,15 +155,15 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('comment') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromCommentsToComment(\PDO $pdo) {
-        $select = $pdo->query('
+    private function migrateFromCommentsToComment() {
+        $select = $this->connection->query('
 SELECT
     `id_sondage`,
     `usercomment`,
     `comment`
   FROM `comments`');
 
-        $insert = $pdo->prepare('
+        $insert = $this->connection->prepare('
 INSERT INTO `' . Utils::table('comment') . '` (`poll_id`, `name`, `comment`)
 VALUE (?,?,?)');
 
@@ -215,8 +176,8 @@ VALUE (?,?,?)');
         }
     }
 
-    private function createVoteTable(\PDO $pdo) {
-        $pdo->exec('
+    private function createVoteTable() {
+        $this->addSql('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('vote') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `poll_id` CHAR(16)         NOT NULL,
@@ -229,15 +190,15 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('vote') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromUserStudsToVote(\PDO $pdo) {
-        $select = $pdo->query('
+    private function migrateFromUserStudsToVote() {
+        $select = $this->connection->query('
 SELECT
     `id_sondage`,
     `nom`,
     REPLACE(REPLACE(REPLACE(`reponses`, 1, \'X\'), 2, 1), \'X\', 2) reponses
   FROM `user_studs`');
 
-        $insert = $pdo->prepare('
+        $insert = $this->connection->prepare('
 INSERT INTO `' . Utils::table('vote') . '` (`poll_id`, `name`, `choices`)
 VALUE (?,?,?)');
 
@@ -279,14 +240,88 @@ VALUE (?,?,?)');
         return $slots;
     }
 
-    private function dropOldTables(\PDO $pdo) {
-        $pdo->exec('DROP TABLE `comments`');
-        $pdo->exec('DROP TABLE `sujet_studs`');
-        $pdo->exec('DROP TABLE `user_studs`');
-        $pdo->exec('DROP TABLE `sondage`');
+    private function dropOldTables() {
+        $this->addSql('DROP TABLE `comments`');
+        $this->addSql('DROP TABLE `sujet_studs`');
+        $this->addSql('DROP TABLE `user_studs`');
+        $this->addSql('DROP TABLE `sondage`');
     }
 
     private function unescape($value) {
         return stripslashes(html_entity_decode($value, ENT_QUOTES));
+    }
+
+    /**
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     */
+    public function up(Schema $schema)
+    {
+        foreach (['sondage', 'sujet_studs', 'comments', 'user_studs'] as $table) {
+            $this->skipIf(!$schema->hasTable($table), 'Missing table ' . $table);
+        }
+
+        $this->createPollTable();
+        $this->createCommentTable();
+        $this->createSlotTable();
+        $this->createVoteTable();
+
+        $this->migrateFromSondageToPoll();
+        $this->migrateFromCommentsToComment();
+        $this->migrateFromSujetStudsToSlot();
+        $this->migrateFromUserStudsToVote();
+
+        $this->dropOldTables();
+    }
+
+    public function down(Schema $schema)
+    {
+        $this->addSql('
+CREATE TABLE IF NOT EXISTS `sondage` (
+  `id_sondage` char(16) NOT NULL,
+  `commentaires` text,
+  `mail_admin` varchar(128) DEFAULT NULL,
+  `nom_admin` varchar(64) DEFAULT NULL,
+  `titre` text,
+  `id_sondage_admin` char(24) DEFAULT NULL,
+  `date_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_fin` timestamp NOT NULL,
+  `format` varchar(2) DEFAULT NULL,
+  `mailsonde` tinyint(1) DEFAULT \'0\',
+  `statut` int(11) NOT NULL DEFAULT \'1\' COMMENT \'1 = actif ; 0 = inactif ; \',
+  UNIQUE KEY `id_sondage` (`id_sondage`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;');
+
+        $this->addSql('
+CREATE TABLE IF NOT EXISTS `sujet_studs` (
+  `id_sondage` char(16) NOT NULL,
+  `sujet` text,
+  KEY `id_sondage` (`id_sondage`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;');
+
+        $this->addSql('
+CREATE TABLE IF NOT EXISTS `comments` (
+  `id_comment` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id_sondage` char(16) NOT NULL,
+  `comment` text NOT NULL,
+  `usercomment` text,
+  PRIMARY KEY (`id_comment`),
+  KEY `id_sondage` (`id_sondage`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;');
+
+        $this->addSql('
+CREATE TABLE IF NOT EXISTS `user_studs` (
+  `id_users` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `nom` varchar(64) NOT NULL,
+  `id_sondage` char(16) NOT NULL,
+  `reponses` text NOT NULL,
+  PRIMARY KEY (`id_users`),
+  KEY `id_sondage` (`id_sondage`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;');
+
+        $schema->dropTable(Utils::table('poll'));
+        $schema->dropTable(Utils::table('comment'));
+        $schema->dropTable(Utils::table('vote'));
+        $schema->dropTable(Utils::table('slot'));
     }
 }

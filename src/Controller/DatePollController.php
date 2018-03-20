@@ -59,7 +59,7 @@ class DatePollController extends Controller
     }
 
     /**
-     * @Route("/new/date/2", name="new_date_poll_step_2")
+     * @Route("/p/new/date/2", name="new_date_poll_step_2")
      *
      * @param Request $request
      * @return Response
@@ -109,7 +109,7 @@ class DatePollController extends Controller
     }
 
     /**
-     * @Route("/new/date/3", name="new_date_poll_step_3")
+     * @Route("/p/new/date/3", name="new_date_poll_step_3")
      *
      * @param Request $request
      * @return Response

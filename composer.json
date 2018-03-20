@@ -56,9 +56,12 @@
         "ext-iconv": "*",
         "ext-pdo": "*",
         "doctrine/doctrine-bundle": "^1.8",
+        "doctrine/doctrine-migrations-bundle": "^1.3",
         "erusev/parsedown": "^1.7",
         "fresh/doctrine-enum-bundle": "~6.0",
+        "roave/security-advisories": "dev-master",
         "sensio/framework-extra-bundle": "^5.1",
+        "sensiolabs/ansi-to-html": "^1.1",
         "symfony/asset": "^4.0",
         "symfony/console": "^4.0",
         "symfony/debug-pack": "*",
@@ -76,8 +79,7 @@
         "symfony/web-link": "^4.0",
         "symfony/webpack-encore-pack": "*",
         "symfony/yaml": "^4.0",
-        "twig/extensions": "^1.5",
-        "roave/security-advisories": "dev-master"
+        "twig/extensions": "^1.5"
     },
     "require-dev": {
         "symfony/browser-kit": "^4.0",

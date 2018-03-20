@@ -86,7 +86,7 @@ class AdminPollController extends Controller
     }
 
     /**
-     * @Route("{admin_poll_id}/admin", name="view_admin_poll")
+     * @Route("/a/{admin_poll_id}", name="view_admin_poll")
      *
      * @param string $admin_poll_id
      * @return string
@@ -135,7 +135,7 @@ class AdminPollController extends Controller
     }
 
     /**
-     * @Route("{admin_poll_id}/admin/edit", name="edit_admin_poll")
+     * @Route("/a/{admin_poll_id}/edit", name="edit_admin_poll")
      *
      * @param Request $request
      * @param $admin_poll_id
@@ -274,7 +274,7 @@ class AdminPollController extends Controller
     }
 
     /**
-     * * @Route("/{admin_poll_id}/admin/add_column", name="add_column")
+     * * @Route("/a/{admin_poll_id}/add_column", name="add_column")
      *
      * @param Request $request
      * @param $admin_poll_id
@@ -326,7 +326,7 @@ class AdminPollController extends Controller
     }
 
     /**
-     * @Route("/{admin_poll_id}/admin/delete_column/{column}", name="delete_column")
+     * @Route("/a/{admin_poll_id}/delete_column/{column}", name="delete_column")
      *
      * @param $admin_poll_id
      * @param $column
@@ -366,7 +366,7 @@ class AdminPollController extends Controller
     }
 
     /**
-     * @Route("/{admin_poll_id}/admin/remove_vote/{vote_id}", name="remove_vote")
+     * @Route("/a/{admin_poll_id}/remove_vote/{vote_id}", name="remove_vote")
      *
      * @param $admin_poll_id
      * @param $vote_id
