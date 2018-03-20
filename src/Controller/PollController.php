@@ -71,7 +71,7 @@ class PollController extends Controller
     public function indexAction()
     {
         $demoPoll = $this->poll_service->findById('aqg259dth55iuhwm');
-        $nbcol = max($this->app_config['show_what_is_that'] + $this->app_config['show_the_software'] + $this->app_config['show_cultivate_your_garden'], 1);
+        $nbcol = 3; //max($this->app_config['show_what_is_that'] + $this->app_config['show_the_software'] + $this->app_config['show_cultivate_your_garden'], 1);
 
         return $this->render('index.twig', [
             'show_what_is_that' => true, //$this->app_config['show_what_is_that'],
