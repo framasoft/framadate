@@ -1,6 +1,6 @@
 
 {% block header %}
-<header role="banner" class="clearfix">
+<header class="clearfix">
 {% if langs | length > 1 %}
     <form method="post" action="{{ path('edit-locale') }}" class="hidden-print">
         <div class="input-group input-group-sm pull-right col-xs-12 col-sm-2">
@@ -18,7 +18,7 @@
 
     <h1 class="row col-xs-12 col-sm-10">
         <a href="{{ path('home') }}" title="{{__('Generic', 'Home')}} - {{ APPLICATION_NAME|raw}}" >
-            <img src="/{{TITLE_IMAGE}}" alt="{{ APPLICATION_NAME|raw}}" class="img-responsive"/>
+            <img src="{{ asset('build/' ~ TITLE_IMAGE) }}" alt="{{ APPLICATION_NAME|raw}}" class="img-responsive"/>
         </a>
     </h1>
     {% if title is not empty %}<h2 class="lead col-xs-12"><i>{{ title|raw }}</i></h2>{% endif %}

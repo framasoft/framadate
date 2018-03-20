@@ -25,7 +25,7 @@
                 </div>
                 {% if use_smtp %}
                     <div class="form-group">
-                        <label for="email" class="col-sm-4 control-label">
+                        <label for="poll_admin_mail" class="col-sm-4 control-label">
                             {{ __('Generic', 'Your email address') }} *<br/>
                             <span class="small">{{ __('Generic', '(in the format name@mail.com)')}}</span>
                         </label>
@@ -116,7 +116,7 @@
                     </div>
                     <div id="customized_url_options" {% if not use_customized_url %}class="hidden" {% endif %}>
                         <div class="form-group">
-                            <label for="customized_url" class="col-sm-4 control-label">
+                            <label for="poll_id" class="col-sm-4 control-label">
                                 <span id="pollUrlDesc" class="small">{{ __('Step 1', 'Poll id rules') }}</span>
                             </label>
                             <div class="col-sm-8">
@@ -146,13 +146,13 @@
                             <div class="col-sm-offset-4 col-sm-8">
                                 <div class="input-group">
                                     {{ form_widget(form.password.first) }}
-                                    <label for="poll_password" class="input-group-addon">{{__('Step 1', 'Password choice')}}</label>
+                                    <label for="poll_password_first" class="input-group-addon">{{__('Step 1', 'Password choice')}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-offset-4 col-sm-8">
                                 <div class="input-group">
                                     {{ form_widget(form.password.second) }}
-                                    <label for="poll_password_repeat" class="input-group-addon">{{__('Step 1', 'Password confirmation')}}</label>
+                                    <label for="poll_password_second" class="input-group-addon">{{__('Step 1', 'Password confirmation')}}</label>
                                 </div>
                             </div>
                             <div class="col-sm-offset-4 col-sm-8">
@@ -206,9 +206,9 @@
                         {{ form_widget(form.submit) }}
                     </p>
 
-                    <script type="text/javascript">document.getElementById('poll_admin_name').focus();</script>
+                    <!--<script type="text/javascript">document.getElementById('poll_admin_name').focus();</script>-->
 
-                    </form>
+                    {{ form_end(form) }}
         </div>
     </div>
     <noscript>

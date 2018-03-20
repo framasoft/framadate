@@ -17,10 +17,10 @@
 
     <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
     {#<link rel="stylesheet" href="{{ asset('build/css/frama.css') }}">#}
-    <script type="text/javascript" src="{{ asset('build/js/app.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('build/js/vendor.js') }}"></script>
+    <script src="{{ asset('build/js/app.js') }}"></script>
+    <script src="{{ asset('build/js/vendor.js') }}"></script>
     {% if locale != 'en' %}
-        <script type="text/javascript" src="{{ asset('/js/locales/bootstrap-datepicker.' ~ locale ~ '.js') }}" ></script>
+        <script src="{{ asset('/js/locales/bootstrap-datepicker.' ~ locale ~ '.js') }}" ></script>
     {% endif %}
 
     {% block header %}{% endblock %}
@@ -34,7 +34,7 @@
 
 {% include "header.twig" %}
 
-<main role="main">
+<main>
 
 {% block main %}{% endblock %}
 
