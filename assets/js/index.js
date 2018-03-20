@@ -6,3 +6,6 @@ import './app/classic_poll';
 import './app/date_poll';
 import './app/adminstuds';
 
+import '../images/date.png';
+import '../images/logo-framadate.png';
+import '../images/classic.png';
