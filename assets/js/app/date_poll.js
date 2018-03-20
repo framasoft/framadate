@@ -69,7 +69,7 @@ $(document).ready(function () {
         var dtsplit = dateStr.split(/[\/ .:-]/);
         var dfsplit = format.split(/[\/ .:-]/);
 
-        if (dfsplit.length != dtsplit.length) {
+        if (dfsplit.length !== dtsplit.length) {
             return null;
         }
 

@@ -18,12 +18,12 @@
 
 import MDEWrapper from '../mde-wrapper';
 
-$(document).ready(function () {
+$(document).ready(() => {
 
     /**
      * Error check when submitting form
      */
-    $("#formulaire").submit(function (event) {
+    $('form[name="poll"]').submit((event) => {
         const isHidden = $("#hidden").prop('checked');
         const isOptionAllUserCanModifyEverything = $("#editableByAll").is(":checked");
 
@@ -46,7 +46,7 @@ $(document).ready(function () {
         }
     }
 
- /**
+    /**
      * Enable/Disable ValueMax options
      */
     function toggle_use_value_max() {
@@ -78,13 +78,13 @@ $(document).ready(function () {
     toggle_use_password();
 
     // Check cookies are enabled too
-    const cookieEnabled = function () {
+    const cookieEnabled = () => {
         let cookieEnabled = navigator.cookieEnabled;
 
         // if not IE4+ nor NS6+
         if (!cookieEnabled && typeof navigator.cookieEnabled === "undefined") {
             document.cookie = "testcookie";
-            cookieEnabled = document.cookie.indexOf("testcookie") != -1;
+            cookieEnabled = document.cookie.indexOf("testcookie") !== -1;
         }
 
         return cookieEnabled;
