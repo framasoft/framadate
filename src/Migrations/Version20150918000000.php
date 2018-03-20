@@ -62,7 +62,6 @@ INNER JOIN (
 ) computed ON fv.id = computed.id
 SET fv.choices = computed.new_choices'
         );
-
     }
 
     public function down(Schema $schema)

@@ -29,14 +29,16 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.9
  */
-class Version20150405000000 extends AbstractMigration {
+class Version20150405000000 extends AbstractMigration
+{
 
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    public function description() {
+    public function description()
+    {
         return 'Add column "hidden" in table "vote" for version 0.9';
     }
 

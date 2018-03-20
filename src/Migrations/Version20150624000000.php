@@ -29,9 +29,10 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.9
  */
-class Version20150624000000 extends AbstractMigration {
-
-    public function description() {
+class Version20150624000000 extends AbstractMigration
+{
+    public function description()
+    {
         return 'Generate "uniqId" in "vote" table for all legacy votes';
     }
 

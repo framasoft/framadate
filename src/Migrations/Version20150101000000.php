@@ -27,14 +27,16 @@ use Doctrine\DBAL\Schema\Schema;
  * @package Framadate\Migration
  * @version 0.8
  */
-class Version20150101000000 extends AbstractMigration {
+class Version20150101000000 extends AbstractMigration
+{
 
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    public function description() {
+    public function description()
+    {
         return 'First installation of the Framadate application (v0.8)';
     }
 
@@ -44,8 +46,8 @@ class Version20150101000000 extends AbstractMigration {
      * @param Schema $schema
      * @return void true is the execution succeeded
      */
-    public function up(Schema $schema) {
-
+    public function up(Schema $schema)
+    {
         $this->addSql('
 CREATE TABLE IF NOT EXISTS `sondage` (
   `id_sondage` char(16) NOT NULL,
@@ -96,6 +98,5 @@ CREATE TABLE IF NOT EXISTS `user_studs` (
         $this->addSql('DROP TABLE `sujet_studs`');
         $this->addSql('DROP TABLE `comments`');
         $this->addSql('DROP TABLE `user_studs`');
-
     }
 }

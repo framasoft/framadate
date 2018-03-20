@@ -30,14 +30,16 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 1.0
  */
-class Version20151012075900 extends AbstractMigration {
+class Version20151012075900 extends AbstractMigration
+{
 
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    public function description() {
+    public function description()
+    {
         return 'Alter the comment table to set a length to the name column.';
     }
 

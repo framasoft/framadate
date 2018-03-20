@@ -6,13 +6,15 @@ use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Types\Type;
 use Framadate\Utils;
 
-class Version20151205000000 extends AbstractMigration {
+class Version20151205000000 extends AbstractMigration
+{
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    public function description() {
+    public function description()
+    {
         return 'Increase the size of id column in poll table';
     }
 

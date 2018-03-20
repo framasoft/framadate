@@ -28,19 +28,21 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.9
  */
-class Version20150102000000 extends AbstractMigration {
+class Version20150102000000 extends AbstractMigration
+{
 
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description()
+    {
         return 'From 0.8 to 0.9';
     }
 
-    private function createPollTable() {
-
+    private function createPollTable()
+    {
         $this->addSql('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
   `id`              CHAR(16)  NOT NULL,
@@ -61,7 +63,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromSondageToPoll() {
+    private function migrateFromSondageToPoll()
+    {
         $select = $this->connection->query('
 SELECT
     `id_sondage`,
@@ -105,7 +108,8 @@ VALUE (?,?,?,?,?,?,?,?,?,?,?,?)');
         }
     }
 
-    private function createSlotTable() {
+    private function createSlotTable()
+    {
         $this->addSql('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -119,7 +123,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromSujetStudsToSlot() {
+    private function migrateFromSujetStudsToSlot()
+    {
         $stmt = $this->connection->query('SELECT * FROM sujet_studs');
         $sujets = $stmt->fetchAll();
         $slots = [];
@@ -141,7 +146,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
         }
     }
 
-    private function createCommentTable() {
+    private function createCommentTable()
+    {
         $this->addSql('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('comment') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -155,7 +161,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('comment') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromCommentsToComment() {
+    private function migrateFromCommentsToComment()
+    {
         $select = $this->connection->query('
 SELECT
     `id_sondage`,
@@ -176,7 +183,8 @@ VALUE (?,?,?)');
         }
     }
 
-    private function createVoteTable() {
+    private function createVoteTable()
+    {
         $this->addSql('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('vote') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -190,7 +198,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('vote') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromUserStudsToVote() {
+    private function migrateFromUserStudsToVote()
+    {
         $select = $this->connection->query('
 SELECT
     `id_sondage`,
@@ -211,7 +220,8 @@ VALUE (?,?,?)');
         }
     }
 
-    private function transformSujetToSlot($sujet) {
+    private function transformSujetToSlot($sujet)
+    {
         $slots = [];
         $ex = explode(',', $sujet->sujet);
         $isDatePoll = strpos($sujet->sujet, '@');
@@ -240,14 +250,16 @@ VALUE (?,?,?)');
         return $slots;
     }
 
-    private function dropOldTables() {
+    private function dropOldTables()
+    {
         $this->addSql('DROP TABLE `comments`');
         $this->addSql('DROP TABLE `sujet_studs`');
         $this->addSql('DROP TABLE `user_studs`');
         $this->addSql('DROP TABLE `sondage`');
     }
 
-    private function unescape($value) {
+    private function unescape($value)
+    {
         return stripslashes(html_entity_decode($value, ENT_QUOTES));
     }
 

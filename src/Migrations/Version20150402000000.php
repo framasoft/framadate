@@ -28,8 +28,8 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.9
  */
-class Version20150402000000 extends AbstractMigration {
-
+class Version20150402000000 extends AbstractMigration
+{
     private $indexUniqIdName = 'IDX_vote_uniqId';
 
     /**
@@ -37,7 +37,8 @@ class Version20150402000000 extends AbstractMigration {
      *
      * @return string The description of the migration class
      */
-    public function description() {
+    public function description()
+    {
         return 'Add column "uniqId" in table "vote" for version 0.9';
     }
 

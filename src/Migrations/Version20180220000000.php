@@ -29,13 +29,15 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 0.9
  */
-class Version20180220000000 extends AbstractMigration {
+class Version20180220000000 extends AbstractMigration
+{
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    public function description() {
+    public function description()
+    {
         return 'Add column "ValueMax" in table "vote" for version 0.9';
     }
 
@@ -45,14 +47,15 @@ class Version20180220000000 extends AbstractMigration {
      * @param Connection $connect The connection to database
      * @return bool true is the execution succeeded
      */
-    function execute(Connection $connect) {
+    public function execute(Connection $connect)
+    {
         $this->alterPollTable($connect);
 
         return true;
     }
 
-    private function alterPollTable(Connection $connect) {
-
+    private function alterPollTable(Connection $connect)
+    {
     }
 
     /**
