@@ -18,8 +18,8 @@ test:
   script:
     - apt update && apt install -y zlib1g-dev && docker-php-ext-install zip && docker-php-ext-install pdo_mysql
     - composer install -o  --no-interaction --no-progress --prefer-dist
-    - mkdir tpl_c
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run src/
+    - bin/console doctrine:migrations:migrate --env="test"
     - bin/phpunit --debug
   cache:
     paths:
