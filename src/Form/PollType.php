@@ -68,6 +68,7 @@ class PollType extends AbstractType
                     new Assert\Range(['min' => 1])
                 ],
                 'attr' => ['min' => 1, 'class' => 'col-sm-4'],
+                'data' => null,
                 'label' => 'Step 1.ValueMax instructions',
                 'label_attr' => ['class' => 'col-sm-6']
             ])
