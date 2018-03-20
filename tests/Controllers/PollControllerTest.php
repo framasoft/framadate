@@ -32,7 +32,7 @@ class PollControllerTest extends FramaWebTestCase
 
     public function testSubmitDatePollForm()
     {
-        $crawler = $this->client->request('GET', '/new/date');
+        $crawler = $this->client->request('GET', '/p/new/date');
 
         $this->assertTrue($this->client->getResponse()->isOk());
         $this->assertCount(1, $crawler->filter('form[name="poll"]'));
