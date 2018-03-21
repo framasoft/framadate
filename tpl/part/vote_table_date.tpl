@@ -153,9 +153,15 @@
                 <tr>
 
                     {* Voted line *}
-
                     <th class="bg-info">{$vote->name|html}
-					{if $slots gt 4}
+                    {if $active && !$expired && $accessGranted &&
+                        (
+                        $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
+                        or $admin
+                        or ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_OWN') && $editedVoteUniqueId == $vote->uniqId)
+                        ) &&
+                    $slots|count gt 4
+                    }
 						<span class="edit-username-left">
 							<a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit the line: %s', $vote->name)|html}">
                        		<i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>
@@ -232,7 +238,7 @@
 
                             <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$headersH[$i]}">
                                 <ul class="list-unstyled choice">
-                                    {if $best_choices['y'][$i] lt $poll->ValueMax || $poll->ValueMax eq NULL}
+                                    {if $poll->ValueMax eq NULL || $best_choices['y'][$i] lt $poll->ValueMax}
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
                                         <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">

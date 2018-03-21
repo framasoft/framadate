@@ -168,7 +168,7 @@ if ($accessGranted) {
             try {
                 $result = $pollService->addVote($poll_id, $name, $choices, $slots_hash);
                 if ($result) {
-                    if ($poll->editable === Editable::EDITABLE_BY_OWN) {
+                    if (intval($poll->editable) === Editable::EDITABLE_BY_OWN) {
                         $editedVoteUniqueId = $result->uniqId;
                         $message = getMessageForOwnVoteEditableVote($sessionService, $smarty, $editedVoteUniqueId, $config['use_smtp'], $poll_id, $name);
                     } else {
