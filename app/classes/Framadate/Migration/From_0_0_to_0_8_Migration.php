@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `sondage` (
   `titre` text,
   `id_sondage_admin` char(24) DEFAULT NULL,
   `date_creation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `date_fin` timestamp NOT NULL,
+  `date_fin` timestamp NULL DEFAULT NULL,
   `format` varchar(2) DEFAULT NULL,
   `mailsonde` tinyint(1) DEFAULT \'0\',
   `statut` int(11) NOT NULL DEFAULT \'1\' COMMENT \'1 = actif ; 0 = inactif ; \',

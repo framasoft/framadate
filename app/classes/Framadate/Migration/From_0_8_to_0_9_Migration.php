@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
   `admin_name`      VARCHAR(64) DEFAULT NULL,
   `admin_mail`      VARCHAR(128) DEFAULT NULL,
   `creation_date`   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `end_date`        TIMESTAMP NOT NULL,
+  `end_date`        TIMESTAMP NULL DEFAULT NULL,
   `format`          VARCHAR(1) DEFAULT NULL,
   `editable`        TINYINT(1) DEFAULT \'0\',
   `receiveNewVotes` TINYINT(1) DEFAULT \'0\',
