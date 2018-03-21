@@ -65,7 +65,6 @@ class AddColumn_ValueMax_In_poll_For_1_1 implements Migration {
     private function alterPollTable(\PDO $pdo) {
         $pdo->exec('
         ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `ValueMax` TINYINT,
-	ADD CHECK (ValueMax > 0)');
+        ADD `ValueMax` TINYINT NULL;');
     }
 }
