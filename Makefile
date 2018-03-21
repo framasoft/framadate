@@ -1,5 +1,7 @@
-push-locales:
+locales:
 	json2po -P -i locale/en.json -t locale/en.json -o po/framadate.pot
+
+push-locales: locales
 	zanata-cli -q -B push
 
 pull-locales:
