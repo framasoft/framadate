@@ -32,6 +32,12 @@
                                    title="{__('adminstuds', 'Remove the column')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                     <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                                 </a>
+				<a href="{poll_url id=$admin_poll_id admin=true action='collect_mail' action_value=$slot->day|cat:'@'|cat:$moment}"
+                                   collect-mail-confirmation="{__('adminstuds', 'Confirm collect of mails.')}"
+				   class="btn btn-link btn-sm collect-the-mail"
+                                   title="{__('adminstuds', 'Collect the mail of the column')} {$slot->day|date_format:$date_format.txt_short|html}">
+                                    <i class="glyphicon glyphicon-envelope"></i><span class="sr-only">{__('Generic', 'Collect mails')}</span>
+                                </a>
                             </td>
                             {$headersDCount = $headersDCount+1}
                         {/foreach}
