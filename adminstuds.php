@@ -382,6 +382,14 @@ if (isset($_GET['delete_column'])) {
 }
 
 // -------------------------------
+// Collect the mails of a column
+// -------------------------------
+
+if (isset($_GET['collect_mail'])) {
+    $message = new Message('success', __('adminstuds', 'Mail collected '));
+}
+
+// -------------------------------
 // Add a slot
 // -------------------------------
 
