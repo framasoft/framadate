@@ -44,7 +44,7 @@ class Fix_MySQL_No_Zero_Date implements Migration {
      * It is called before the execute method.
      *
      * @param \PDO $pdo The connection to database
-     * @return bool true is the Migration should be executed.
+     * @return bool true if the Migration should be executed.
      */
     function preCondition(\PDO $pdo) {
         $stmt = $pdo->prepare("SELECT Column_Default from Information_Schema.Columns where Table_Name = ? AND Column_Name = ?;");
@@ -53,16 +53,18 @@ class Fix_MySQL_No_Zero_Date implements Migration {
         $stmt->execute();
         $default = $stmt->fetch(\PDO::FETCH_COLUMN);
 
-        return $default !== null;
+        $driver_name = $pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
+
+        return $default !== null && $driver_name === 'mysql';
     }
 
     /**
      * This method is called only one time in the migration page.
      *
      * @param \PDO $pdo The connection to database
-     * @return void true is the execution succeeded
+     * @return bool|void if the execution succeeded
      */
     function execute(\PDO $pdo) {
-        $pdo->exec('ALTER TABLE ' . Utils::table('poll') . ' CHANGE COLUMN end_date TIMESTAMP NULL DEFAULT NULL');
+        $pdo->exec('ALTER TABLE ' . Utils::table('poll') . ' MODIFY end_date TIMESTAMP NULL DEFAULT NULL;');
     }
 }
