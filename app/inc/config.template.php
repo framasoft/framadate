@@ -89,6 +89,14 @@ const TIME_EDIT_LINK_EMAIL = 60;
 $config = [
     /* general config */
     'use_smtp' => true,                     // use email for polls creation/modification/responses notification
+    'smtp_options' => [
+        'host' => 'localhost',              // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
+        'auth' => false,                    // Enable SMTP authentication
+        'username' => '',                   // SMTP username
+        'password' => '',                   // SMTP password
+        'secure' => '',                     // Enable encryption (false, tls or ssl)
+        'port' => 25,                       // TCP port to connect to
+    ],
     'tracking_code' => '',                  // add HTML code to every page, useful for tools like Piwik
     /* home */
     'show_what_is_that' => true,            // display "how to use" section
@@ -98,5 +106,5 @@ $config = [
     'default_poll_duration' => 180,         // default values for the new poll duration (number of days).
     /* create_classic_poll.php */
     'user_can_add_img_or_link' => true,     // user can add link or URL when creating his poll.
-    'markdown_editor_by_default' => true    // The markdown editor for the description is enabled by default
+    'markdown_editor_by_default' => true,    // The markdown editor for the description is enabled by default
 ];

@@ -24,6 +24,7 @@ use Framadate\Migration\AddColumn_ValueMax_In_poll_For_1_1;
 use Framadate\Migration\AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9;
 use Framadate\Migration\Alter_Comment_table_adding_date;
 use Framadate\Migration\Alter_Comment_table_for_name_length;
+use Framadate\Migration\Fix_MySQL_No_Zero_Date;
 use Framadate\Migration\From_0_0_to_0_8_Migration;
 use Framadate\Migration\From_0_8_to_0_9_Migration;
 use Framadate\Migration\Generate_uniqId_for_old_votes;
@@ -49,11 +50,14 @@ $migrations = [
     new Alter_Comment_table_for_name_length(),
     new Alter_Comment_table_adding_date(),
     new AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9(),
-    new Increase_pollId_size()
+    new Increase_pollId_size(),
+    new AddColumn_ValueMax_In_poll_For_1_1(),
+    new Fix_MySQL_No_Zero_Date(),
 ];
 // ---------------------------------------
 
 // Check if MIGRATION_TABLE already exists
+/** @var \Framadate\FramaDB $connect */
 $tables = $connect->allTables();
 $pdo = $connect->getPDO();
 $prefixedMigrationTable = Utils::table(MIGRATION_TABLE);

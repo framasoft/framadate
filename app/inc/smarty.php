@@ -75,3 +75,29 @@ function smarty_modifier_addslashes_single_quote($string) {
 function smarty_modifier_html($html) {
     return Utils::htmlEscape($html);
 }
+
+function smarty_modifier_datepicker_path($lang) {
+    $i = 0;
+    while (!is_file(path_for_datepicker_locale($lang)) && $i < 3) {
+        $lang_arr = explode('-', $lang);
+        if ($lang_arr && count($lang_arr) > 1) {
+            $lang = $lang_arr[0];
+        } else {
+            $lang = 'en';
+        }
+        $i += 1;
+    }
+    return 'js/locales/bootstrap-datepicker.' . $lang . '.js';
+}
+
+function smarty_modifier_locale_2_lang($locale) {
+    $lang_arr = explode('-', $locale);
+    if ($lang_arr && count($lang_arr) > 1) {
+        return $lang_arr[0];
+    }
+    return $locale;
+}
+
+function path_for_datepicker_locale($lang) {
+    return __DIR__ . '/../../js/locales/bootstrap-datepicker.' . $lang . '.js';
+}
