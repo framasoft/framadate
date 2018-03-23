@@ -31,6 +31,7 @@ class ArchiveType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Step 3.Create the poll',
+                'attr' => ['class' => 'btn-success'],
             ])
         ;
     }

@@ -112,7 +112,6 @@ class AdminPollController extends Controller
 
         // Assign data to template
 
-        var_dump($poll);
         return $this->render('studs.twig', [
             'poll' => $poll,
             'title' => $this->i18n->trans('Generic.Poll') . ' - ' . $poll->getTitle(),
