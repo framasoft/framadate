@@ -79,4 +79,23 @@ class PollControllerTest extends FramaWebTestCase
         $this->assertCount(1, $crawler->filter('div.alert-info:contains("Step 1.You are in the poll creation section.")'));
 
     }
+
+    public function testPollFinderAction()
+    {
+        $crawler = $this->client->request('GET', '/find_poll');
+
+        $this->assertTrue($this->client->getResponse()->isOk());
+
+        $form = $crawler->filter('button[id=finder_submit]')->form();
+
+        $data = [
+            'finder[adminMail]' => 'admin@admin.tld',
+        ];
+
+        $crawler = $this->client->submit($form, $data);
+
+        $this->assertSame(200, $this->client->getResponse()->getStatusCode());
+
+        $this->assertContains('Error.No polls found', $crawler->filter('body')->extract(['_text'])[0]);
+    }
 }

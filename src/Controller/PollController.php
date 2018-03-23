@@ -197,7 +197,7 @@ class PollController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function pollfinderAction(Request $request)
+    public function pollFinderAction(Request $request)
     {
         $form = $this->createForm(FinderType::class);
         $form->handleRequest($request);
@@ -219,7 +219,6 @@ class PollController extends Controller
             } else {
                 $this->session->getFlashBag()->add('warning', $this->i18n->trans('Error.No polls found'));
             }
-
         }
         return $this->render('find_polls.twig', [
             'form' => $form->createView(),

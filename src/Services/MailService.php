@@ -59,7 +59,8 @@ class MailService
      * @param array $from
      * @param array $reply_to
      */
-    public function __construct(SessionInterface $session,
+    public function __construct(
+        SessionInterface $session,
                                 \Swift_Mailer $mailer,
                                 LoggerInterface $logger,
                                 TranslatorInterface $translator,
@@ -67,8 +68,7 @@ class MailService
                                 string $app_name = 'Framadate',
                                 array $from = ['email' => 'admin@tld', 'name' => 'admin'],
                                 array $reply_to = ['email' => 'auto@reply', 'name' => 'autoreply']
-    )
-    {
+    ) {
         $this->session = $session;
         $this->mailer = $mailer;
         $this->logger = $logger;
