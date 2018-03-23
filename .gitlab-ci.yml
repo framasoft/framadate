@@ -18,7 +18,7 @@ test:
     APP_LOCALE: fr_FR
     APP_NAME: Framadate
     APP_ADMIN_EMAIL: tcit@tcit.fr
-    APP_SEND_EMAILS: true
+    APP_SEND_EMAILS: "true"
     APP_EMAIL_FROM_NAME: admin
     APP_EMAIL_FROM_EMAIL: admin@domain.tld
   script:
