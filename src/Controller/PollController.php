@@ -2,14 +2,19 @@
 
 namespace Framadate\Controller;
 
+use Framadate\Form\FinderType;
 use Framadate\Form\PollType;
 use Framadate\Entity\Poll;
+use Framadate\Services\MailService;
 use Framadate\Services\PollService;
 use Framadate\Services\SecurityService;
 use Framadate\Utils;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -44,25 +49,37 @@ class PollController extends Controller
     protected $i18n;
 
     /**
-     * @var SessionInterface
+     * @var Session
      */
     protected $session;
 
-    protected $app_config;
+    /**
+     * @var MailService
+     */
+    private $mail_service;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
     /**
      * PollController constructor.
      * @param PollService $poll_service
      * @param SecurityService $security_service
+     * @param MailService $mail_service
      * @param TranslatorInterface $i18n
      * @param SessionInterface $session
+     * @param LoggerInterface $logger
      */
-    public function __construct(PollService $poll_service, SecurityService $security_service, TranslatorInterface $i18n, SessionInterface $session)
+    public function __construct(PollService $poll_service, SecurityService $security_service, MailService $mail_service, TranslatorInterface $i18n, SessionInterface $session, LoggerInterface $logger)
     {
         $this->poll_service = $poll_service;
         $this->security_service = $security_service;
+        $this->mail_service = $mail_service;
         $this->i18n = $i18n;
         $this->session = $session;
+        $this->logger = $logger;
     }
 
     /**
@@ -171,6 +188,42 @@ class PollController extends Controller
             'poll' => $poll,
             'form' => $form->createView(),
             'base_url' => $request->getHost(),
+        ]);
+    }
+
+    /**
+     * @Route("/find_poll", name="find-poll")
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function pollfinderAction(Request $request)
+    {
+        $form = $this->createForm(FinderType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mail = $form->getData()['adminMail'];
+            $polls = $this->poll_service->findAllByAdminMail($mail);
+
+            if (count($polls) > 0) {
+                $this->logger->info("Found " . count($polls) . " polls for email " . $mail);
+                $body = $this->render('mail/find_polls.twig', [
+                    'polls' => $polls,
+                    'app_name' => $this->getParameter('app_name'),
+                    'admin_email' => $this->getParameter('app_email_admin'),
+                ]);
+
+                $this->mail_service->send($mail, $this->i18n->trans('FindPolls.List of your polls') . ' - ' . $this->getParameter('app_name'), $body, 'SEND_POLLS');
+                $this->session->getFlashBag()->add('success', $this->i18n->trans('FindPolls.Polls sent'));
+            } else {
+                $this->session->getFlashBag()->add('warning', $this->i18n->trans('Error.No polls found'));
+            }
+
+        }
+        return $this->render('find_polls.twig', [
+            'form' => $form->createView(),
+            'title' => $this->i18n->trans('Homepage.Where are my polls'),
         ]);
     }
 

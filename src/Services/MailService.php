@@ -1,7 +1,6 @@
 <?php
 namespace Framadate\Services;
 
-use PHPMailer;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -35,19 +34,49 @@ class MailService
     private $translator;
 
     /**
+     * @var string
+     */
+    private $app_name;
+
+    /**
+     * @var array
+     */
+    private $from;
+
+    /**
+     * @var array
+     */
+    private $reply_to;
+
+    /**
      * MailService constructor.
      * @param SessionInterface $session
      * @param \Swift_Mailer $mailer
      * @param LoggerInterface $logger
+     * @param TranslatorInterface $translator
      * @param bool $smtp_allowed
+     * @param string $app_name
+     * @param array $from
+     * @param array $reply_to
      */
-    public function __construct(SessionInterface $session, \Swift_Mailer $mailer, LoggerInterface $logger, TranslatorInterface $translator, bool $smtp_allowed = true)
+    public function __construct(SessionInterface $session,
+                                \Swift_Mailer $mailer,
+                                LoggerInterface $logger,
+                                TranslatorInterface $translator,
+                                bool $smtp_allowed = true,
+                                string $app_name = 'Framadate',
+                                array $from = ['email' => 'admin@tld', 'name' => 'admin'],
+                                array $reply_to = ['email' => 'auto@reply', 'name' => 'autoreply']
+    )
     {
         $this->session = $session;
         $this->mailer = $mailer;
         $this->logger = $logger;
         $this->translator = $translator;
         $this->smtp_allowed = $smtp_allowed;
+        $this->app_name = $app_name;
+        $this->from = $from;
+        $this->reply_to = $reply_to;
     }
 
     /**
@@ -65,14 +94,15 @@ class MailService
      * @param $body
      * @param null $msgKey
      */
-    public function send($to, $subject, $body, $msgKey = null)
+    public function send(string $to, $subject, $body, $msgKey = null)
     {
         if ($this->smtp_allowed === true && $this->canSendMsg($msgKey)) {
+            $this->logger->info('Building email');
             $mail = (new \Swift_Message())
-                ->setFrom('admin@tld', 'admin')
+                ->setFrom($this->from['email'], $this->from['name'])
                 ->setTo([$to])
-                ->setReplyTo('auto@reply', 'autoreply')
-                ->setBody($body . ' <br/><br/>' . $this->translator->trans('Mail.Thanks for your trust.') . ' <br/>' . 'framadate' . ' <hr/>' . $this->translator->trans('Mail.FOOTER'), 'text/html')
+                ->setReplyTo($this->reply_to['email'], $this->reply_to['name'])
+                ->setBody($body . ' <br/><br/>' . $this->translator->trans('Mail.Thanks for your trust.') . ' <br/>' . $this->app_name . ' <hr/>' . $this->translator->trans('Mail.FOOTER'), 'text/html')
                 ->setSubject($subject)
                 ->setCharset('UTF-8')
                 ;
@@ -87,6 +117,8 @@ class MailService
 
             // Store the mail sending date
             $this->session->set(self::MAILSERVICE_KEY, [$msgKey => time()]);
+        } else {
+            $this->logger->info("Not sending an email because SMTP is not allowed or we can't send emails yet");
         }
     }
 

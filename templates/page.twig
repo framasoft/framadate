@@ -34,6 +34,11 @@
 
 {% include "header.twig" %}
 
+{% block messages %}
+
+    {# messages #}
+    {% include 'part/messages.twig' %}
+{% endblock %}
 <main>
 
 {% block main %}{% endblock %}

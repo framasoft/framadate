@@ -2,3 +2,5 @@
 swiftmailer:
     # send all emails to a specific address
     #delivery_addresses: ['me@example.com']
+web_profiler:
+    intercept_redirects: true

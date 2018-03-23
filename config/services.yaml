@@ -1,5 +1,16 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    app_name: '%env(APP_NAME)%'
+    app_email_admin: '%env(APP_ADMIN_EMAIL)%'
+    app_email_from:
+        name: '%env(APP_EMAIL_FROM_NAME)%'
+        email: '%env(APP_EMAIL_FROM_EMAIL)%'
+    app_email_reply_to:
+        name: '%env(APP_EMAIL_REPLY_TO_NAME)%'
+        email: '%env(APP_EMAIL_REPLY_TO_EMAIL)%'
+    env(APP_EMAIL_REPLY_TO_NAME): '%env(APP_EMAIL_FROM_NAME)%'
+    env(APP_EMAIL_REPLY_TO_EMAIL): '%env(APP_EMAIL_FROM_EMAIL)%'
 
 services:
     # default configuration for services in *this* file
@@ -31,4 +42,7 @@ services:
           - '@mailer'
           - '@logger'
           - '@translator'
-          - true
+          - '%env(APP_SEND_EMAILS)%'
+          - '%app_name%'
+          - '%app_email_from%'
+          - '%app_email_reply_to%'
