@@ -77,7 +77,6 @@ class PollControllerTest extends FramaWebTestCase
         $this->assertSame(200, $this->client->getResponse()->getStatusCode());
 
         if ($res) {
-            /** @var  $mailCollector */
             $mailCollector = $this->client->getProfile()->getCollector('swiftmailer');
             $this->assertSame(1, $mailCollector->getMessageCount());
             $this->assertContains('FindPolls.Polls sent', $crawler->filter('body')->extract(['_text'])[0]);

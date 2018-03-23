@@ -6,7 +6,21 @@ use Framadate\Tests\FramaWebTestCase;
 
 class DatePollControllerTest extends FramaWebTestCase
 {
-    public function testSubmitDatePollForm()
+    public function provideDataForSubmitDatePollForm()
+    {
+        return [
+            ['admin@domain.tld'],
+            [false]
+        ];
+    }
+
+
+    /**
+     * @dataProvider provideDataForSubmitDatePollForm
+     *
+     * @param $admin_email
+     */
+    public function testSubmitDatePollForm($admin_email)
     {
         $crawler = $this->client->request('GET', '/p/new/date');
 
@@ -19,7 +33,8 @@ class DatePollControllerTest extends FramaWebTestCase
         $data = [
             'poll[admin_name]' => 'admin',
             'poll[title]' => 'my poll',
-            'poll[description]' => 'my awesome poll'
+            'poll[description]' => 'my awesome poll',
+            'poll[admin_mail]' => $admin_email,
         ];
 
         $this->client->submit($form, $data);
@@ -49,9 +64,15 @@ class DatePollControllerTest extends FramaWebTestCase
             'archive[end_date]' => (new \DateTime('now'))->modify('+3 month')->format('Y-m-d'),
         ];
 
+        $this->client->enableProfiler();
         $this->client->submit($form, $data);
 
         $this->assertSame(302, $this->client->getResponse()->getStatusCode());
+
+        if ($admin_email) {
+            $mailCollector = $this->client->getProfile()->getCollector('swiftmailer');
+            $this->assertSame(2, $mailCollector->getMessageCount());
+        }
 
         $crawler = $this->client->followRedirect();
 
