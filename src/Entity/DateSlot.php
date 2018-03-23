@@ -26,7 +26,7 @@ class DateSlot extends Slot
 
     /**
      * @param DateTime $title
-     * @return Slot
+     * @return DateSlot
      */
     public function setTitle($title): Slot
     {

@@ -30,6 +30,7 @@ class SlotRepository extends AbstractRepository
      *
      * @param int $poll_id
      * @param array $choices
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function insertSlots($poll_id, $choices)
     {
@@ -98,6 +99,7 @@ class SlotRepository extends AbstractRepository
      * @param $title mixed The title of the slot
      * @param $moments mixed|null The moments joined with ","
      * @return bool true if action succeeded
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function insert($poll_id, $title, $moments)
     {
@@ -113,6 +115,7 @@ class SlotRepository extends AbstractRepository
      * @param $datetime int The datetime of the slot to update
      * @param $newMoments mixed The new moments
      * @return bool|null true if action succeeded.
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function update($poll_id, $datetime, $newMoments)
     {
@@ -126,6 +129,7 @@ class SlotRepository extends AbstractRepository
      *
      * @param $poll_id int The ID of the poll
      * @param $datetime mixed The datetime of the slot
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function deleteByDateTime($poll_id, $datetime)
     {
@@ -136,6 +140,7 @@ class SlotRepository extends AbstractRepository
     /**
      * @param $poll_id
      * @return bool
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function deleteByPollId($poll_id)
     {

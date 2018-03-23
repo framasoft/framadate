@@ -80,7 +80,21 @@ class PollControllerTest extends FramaWebTestCase
 
     }
 
-    public function testPollFinderAction()
+    public function emailPollFinderProvider()
+    {
+        return [
+            ['admin@admin.tld', false],
+            ['creator@frama.tld', true],
+        ];
+    }
+
+    /**
+     * @dataProvider emailPollFinderProvider
+     *
+     * @param $email
+     * @param $res
+     */
+    public function testPollFinderAction($email, $res)
     {
         $crawler = $this->client->request('GET', '/find_poll');
 
@@ -89,13 +103,22 @@ class PollControllerTest extends FramaWebTestCase
         $form = $crawler->filter('button[id=finder_submit]')->form();
 
         $data = [
-            'finder[adminMail]' => 'admin@admin.tld',
+            'finder[adminMail]' => $email,
         ];
+
+        $this->client->enableProfiler();
 
         $crawler = $this->client->submit($form, $data);
 
         $this->assertSame(200, $this->client->getResponse()->getStatusCode());
 
-        $this->assertContains('Error.No polls found', $crawler->filter('body')->extract(['_text'])[0]);
+        if ($res) {
+            /** @var  $mailCollector */
+            $mailCollector = $this->client->getProfile()->getCollector('swiftmailer');
+            $this->assertSame(1, $mailCollector->getMessageCount());
+            $this->assertContains('FindPolls.Polls sent', $crawler->filter('body')->extract(['_text'])[0]);
+        } else {
+            $this->assertContains('Error.No polls found', $crawler->filter('body')->extract(['_text'])[0]);
+        }
     }
 }

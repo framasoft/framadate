@@ -157,7 +157,7 @@ class PollController extends Controller
      * @param $type
      * @return string
      *
-     * @Route("/p/new/{type}", name="new_poll")
+     * @Route("/p/new/{type}", name="new_poll", requirements={"poll"="date|classic"})
      */
     public function createPollAction(Request $request, $type)
     {

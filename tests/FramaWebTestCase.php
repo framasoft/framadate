@@ -1,8 +1,8 @@
 <?php
 namespace Framadate\Tests;
 
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Client;
 use Throwable;
 
 abstract class FramaWebTestCase extends WebTestCase {

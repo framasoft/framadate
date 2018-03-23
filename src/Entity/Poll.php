@@ -347,6 +347,7 @@ class Poll
 
     /**
      * @param string $choix_sondage
+     * @return Poll
      */
     public function setChoixSondage($choix_sondage)
     {

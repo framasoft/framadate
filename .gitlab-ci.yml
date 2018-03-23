@@ -15,14 +15,20 @@ test:
     APP_ENV: test
     APP_SECRET: e168e005fbbc9b6f5e4f8b15a0dffce8
     DATABASE_URL: mysql://root:framadate_password@mysql/framadate
-    APP_LOCALE: 'en_US'
+    APP_LOCALE: fr_FR
+    APP_NAME: Framadate
+    APP_ADMIN_EMAIL: tcit@tcit.fr
+    APP_SEND_EMAILS: true
+    APP_EMAIL_FROM_NAME: admin
+    APP_EMAIL_FROM_EMAIL: admin@domain.tld
   script:
     - npm i
     - ./node_modules/.bin/encore production
     - composer install -o  --no-interaction --no-progress --prefer-dist
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run src/
+    - bin/console framadate:tests:fixtures --env="test"
     - bin/console doctrine:migrations:migrate --env="test"
-    - bin/phpunit --debug
+    - bin/phpunit --debug --coverage-text --colors=never
   cache:
     paths:
       - vendor/

@@ -270,7 +270,7 @@ class PollService
     {
         $splitted = [];
         foreach ($slots as $slot) {
-            /** @var Slot $slot */
+            /** @var DateSlot $slot */
             $obj = new \stdClass();
             $obj->day = $slot->getTitle();
             $obj->moments = explode(',', $slot->getMoments());

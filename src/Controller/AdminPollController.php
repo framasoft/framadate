@@ -302,7 +302,7 @@ class AdminPollController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 if ($poll->getFormat() === 'D') {
-                    $time = (string) $slot->getTitle()->getTimestamp();
+                    $time = $slot->getTitle();
                     $newmoment = str_replace(',', '-', strip_tags($slot->getMoments()));
                     $this->admin_poll_service->addDateSlot($poll->getId(), $time, $newmoment);
                 } else {
@@ -333,7 +333,7 @@ class AdminPollController extends Controller
      * @return null
      * @throws \Doctrine\DBAL\DBALException
      */
-    public function deleteColumnAction($admin_poll_id, $column)
+    public function deleteColumnAction(string $admin_poll_id, string $column)
     {
         if (strlen($admin_poll_id) !== 24) {
             // redirect to error page
