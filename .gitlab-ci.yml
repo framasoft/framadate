@@ -26,8 +26,8 @@ test:
     - ./node_modules/.bin/encore production
     - composer install -o  --no-interaction --no-progress --prefer-dist
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run src/
-    - bin/console framadate:tests:fixtures --env="test"
     - bin/console doctrine:migrations:migrate --env="test"
+    - bin/console framadate:tests:fixtures --env="test"
     - bin/phpunit --debug --coverage-text --colors=never
   cache:
     paths:
