@@ -1,31 +1,19 @@
 {% extends "page.twig" %}
 
 {% block main %}
-    {% if message is not empty %}
-        <div class="alert alert-dismissible alert-{{ message.type | raw }}" role="alert">
-            {{ message.message | raw }}
-            {% if message.link is not null %}
-                <br/>
-                <a href="{{message.link}}">{{ message.link }}</a>
-            {% endif %}
-            <button type="button" class="close" data-dismiss="alert" aria-label="{{__('Generic', 'Close')}}">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    {% endif %}
-    <form action="" method="post">
+    {{ form_start(form) }}
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
                 <div class="form-group">
                     <div class="input-group">
                         <label for="mail" class="input-group-addon">{{__('Generic', 'Your email address')}}</label>
-                        <input type="email" class="form-control" id="mail" name="mail" autofocus>
+                        {{ form_widget(form.adminMail) }}
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-3 text-center">
-                <button type="submit" class="btn btn-success">{{__('FindPolls', 'Send me my polls')}}</button>
+                {{ form_row(form.submit) }}
             </div>
         </div>
-    </form>
+    {{ form_end(form) }}
 {% endblock %}

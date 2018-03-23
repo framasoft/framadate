@@ -205,20 +205,20 @@ class AdminPollService
      *  <li>Create a new moment if a slot already exists for the given date</li>
      * </ul>
      *
-     * @param $poll_id int The ID of the poll
-     * @param $datetime int The datetime
+     * @param $poll_id string The ID of the poll
+     * @param $datetime \DateTime The datetime
      * @param $new_moment string The moment's name
      * @throws MomentAlreadyExistsException When the moment to add already exists in database
      */
-    public function addDateSlot($poll_id, $datetime, $new_moment)
+    public function addDateSlot(string $poll_id, \DateTime $datetime, string $new_moment)
     {
-        $this->logger->info('ADD_COLUMN: id:' . $poll_id . ', datetime:' . $datetime . ', moment:' . $new_moment);
+        $this->logger->info('ADD_COLUMN: id:' . $poll_id . ', datetime:' . $datetime->getTimestamp() . ', moment:' . $new_moment);
 
         try {
             $slots = $this->slotRepository->listByPollId($poll_id, true);
             $this->logger->debug("slots", [$slots]);
 
-            $result = $this->findInsertPosition($slots, $datetime);
+            $result = $this->findInsertPosition($slots, (string) $datetime);
             $this->logger->debug("insert pos result", [$result]);
 
             // Begin transaction
@@ -236,9 +236,9 @@ class AdminPollService
 
                 // Update found slot
                 $moments[] = $new_moment;
-                $this->slotRepository->update($poll_id, $datetime, implode(',', $moments));
+                $this->slotRepository->update($poll_id, (string) $datetime, implode(',', $moments));
             } else {
-                $this->slotRepository->insert($poll_id, $datetime, $new_moment);
+                $this->slotRepository->insert($poll_id, (string) $datetime, $new_moment);
             }
 
             $this->voteRepository->insertDefault($poll_id, $result->insert);

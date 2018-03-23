@@ -1,9 +1,9 @@
-<p>{{ __('FindPolls', 'Here is the list of the polls that you manage on %s:', NOMAPPLICATION) }}</p>
+<p>{{ __('FindPolls', 'Here is the list of the polls that you manage on %s:', {'%s': app_name}) }}</p>
 <ul>
     {% for poll in polls %}
         <li>
-            <a href="{{poll_url(poll.admin_id, true) }}">{{ poll.title|raw }}</a>
-            ({{__('Generic', 'Creation date:')}} {{ poll.creation_date }})
+            <a href="{{ url('view_admin_poll', {'admin_poll_id': poll.admin_id}) }}">{{ poll.title }}</a>
+            ({{__('Generic', 'Creation date:')}} {{ poll.creation_date | localizeddate('none', 'none', locale, NULL, 'EEEE dd MMMM y') }})
         </li>
     {% endfor %}
 </ul>
@@ -11,7 +11,7 @@
 <p>
     <i>
         {{__('FindPolls','PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.')}}
-        {% set email_url %}<a href="mailto:{$smarty.const.ADRESSEMAILADMIN}">{{ ADRESSEMAILADMIN }}</a>{% endset %}
-        {{ __('FindPolls',"If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.", email_url) }}
+        {% set email_url %}<a href="mailto:{{ admin_email }}">{{ admin_email }}</a>{% endset %}
+        {{ __('FindPolls',"If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.", {'%s': email_url}) | raw }}
     </i>
 </p>

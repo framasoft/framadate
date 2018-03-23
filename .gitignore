@@ -10,6 +10,8 @@ cache/
 tpl_c/
 .zanata-cache/
 
+cover/
+
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
