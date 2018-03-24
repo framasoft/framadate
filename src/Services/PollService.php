@@ -201,6 +201,7 @@ class PollService
             return $this->commentRepository->insert($comment);
         } catch (DBALException $e) {
             $this->logger->error($e->getMessage());
+            var_dump($e->getMessage());
             return null;
         }
     }

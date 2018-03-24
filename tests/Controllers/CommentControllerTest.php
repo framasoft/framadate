@@ -20,6 +20,7 @@ class CommentControllerTest extends FramaWebTestCase
             ['HTTP_Content-Type' => 'application/json']
             );
 
+        var_dump($this->client->getResponse()->getContent());
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $json = json_decode($this->client->getResponse()->getContent(), true);
 
