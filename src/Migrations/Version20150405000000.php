@@ -54,7 +54,7 @@ class Version20150405000000 extends AbstractMigration
         }
         $pollTable = $schema->getTable(Utils::table('poll'));
 
-        $this->skipIf($pollTable->hasColumn('hidden'), 'Column uniqId already existing in table poll');
+        $this->skipIf($pollTable->hasColumn('hidden'), 'Column hidden already existing in table poll');
 
         $pollTable->addColumn('hidden', 'boolean', ['default' => false, 'notnull' => true]);
     }

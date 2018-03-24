@@ -25,15 +25,18 @@ class CommentRepository extends AbstractRepository
      *
      * @param Comment $comment
      * @return Comment $comment
-     * @throws \Doctrine\DBAL\DBALException
      */
     public function insert(Comment $comment)
     {
-        $prepared = $this->prepare('INSERT INTO `' . Utils::table('comment') . '` (poll_id, name, comment) VALUES (?,?,?)');
+        $comment->setCreatedAt(new \DateTime());
+        $this->connect->insert(Utils::table('comment'), [
+            'poll_id' => $comment->getPollId(),
+            'name' => $comment->getName(),
+            'comment' => $comment->getContent(),
+            'date' => $comment->getCreatedAt()->format('Y-m-d H:i:s'),
+        ]);
 
-        $prepared->execute([$comment->getPollId(), $comment->getName(), $comment->getContent()]);
-
-        return $comment->setId(intval($this->lastInsertId()))->setCreatedAt(new \DateTime());
+        return $comment->setId(intval($this->lastInsertId()));
     }
 
     /**
