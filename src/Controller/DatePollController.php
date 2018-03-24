@@ -252,7 +252,7 @@ class DatePollController extends Controller
                 'title' => $this->i18n->trans('Step 3.Removal date and confirmation (3 on 3)'),
                 'choices' => $choices,
                 'poll_type' => $poll->getChoixSondage(),
-                'default_poll_duration' => 180, // $this->app_config['default_poll_duration'],
+                'default_poll_duration' => $this->getParameter('app_default_poll_duration'), // $this->app_config['default_poll_duration'],
                 'use_smtp' => true, // $this->app_config['use_smtp'],
                 'form' => $form->createView(),
             ]

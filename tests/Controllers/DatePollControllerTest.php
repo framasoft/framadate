@@ -80,4 +80,69 @@ class DatePollControllerTest extends FramaWebTestCase
 
         $this->assertContains('PollInfo.Admin link of the poll', $crawler->filter('body')->extract(['_text'])[0]);
     }
+
+
+    public function invalidArchiveDateProvider()
+    {
+        return [
+            [(new \DateTime('now'))->modify('+2 year'), 'This value should be less than'],
+            [new \DateTime('now'), 'This value should be greater than'],
+        ];
+    }
+
+    /**
+     * @dataProvider invalidArchiveDateProvider
+     *
+     * @param \DateTime $date
+     */
+    public function testSubmitPollWithInvalidArchiveDate(\DateTime $date, string $error)
+    {
+        $crawler = $this->client->request('GET', '/p/new/date');
+
+        $this->assertTrue($this->client->getResponse()->isOk());
+        $this->assertCount(1, $crawler->filter('form[name="poll"]'));
+        $this->assertCount(1, $crawler->filter('div.alert-info:contains("Step 1.You are in the poll creation section.")'));
+
+        $form = $crawler->filter('button[id=poll_submit]')->form();
+
+        $data = [
+            'poll[admin_name]' => 'admin',
+            'poll[title]' => 'my poll',
+            'poll[description]' => 'my awesome poll',
+        ];
+
+        $this->client->submit($form, $data);
+
+        $this->assertSame(302, $this->client->getResponse()->getStatusCode());
+
+        $crawler = $this->client->followRedirect();
+
+        $this->assertContains('Step 2.Title', $crawler->filter('body')->extract(['_text'])[0]);
+
+        $form = $crawler->filter('button[name=choixheures]')->form();
+
+        $data = [
+            'days' => ['2019-02-17', '2019-02-18'],
+            'horaires0' => ['12h', '13h'],
+        ];
+
+        $crawler = $this->client->submit($form, $data);
+
+        $this->assertSame(200, $this->client->getResponse()->getStatusCode());
+
+        $this->assertContains('Step 3.List of your choices', $crawler->filter('body')->extract(['_text'])[0]);
+
+        $form = $crawler->filter('button[id=archive_submit]')->form();
+
+        $data = [
+            'archive[end_date]' => $date->format('Y-m-d'),
+        ];
+
+        $this->client->enableProfiler();
+        $crawler = $this->client->submit($form, $data);
+
+        $this->assertSame(200, $this->client->getResponse()->getStatusCode());
+
+        $this->assertContains($error, $crawler->filter('div.alert.alert-danger')->extract(['_text'])[0]);
+    }
 }

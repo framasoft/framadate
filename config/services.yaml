@@ -12,6 +12,7 @@ parameters:
         email: '%env(APP_EMAIL_REPLY_TO_EMAIL)%'
     env(APP_EMAIL_REPLY_TO_NAME): '%env(APP_EMAIL_FROM_NAME)%'
     env(APP_EMAIL_REPLY_TO_EMAIL): '%env(APP_EMAIL_FROM_EMAIL)%'
+    app_default_poll_duration: '%env(int:APP_DEFAULT_POLL_DURATION)%'
 
 services:
     # default configuration for services in *this* file
@@ -47,3 +48,7 @@ services:
           - '%app_name%'
           - '%app_email_from%'
           - '%app_email_reply_to%'
+
+    Framadate\Form\ArchiveType:
+        arguments:
+            - '%app_default_poll_duration%'

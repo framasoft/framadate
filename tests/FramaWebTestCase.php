@@ -23,7 +23,7 @@ abstract class FramaWebTestCase extends WebTestCase {
     protected function onNotSuccessfulTest(Throwable $exception)
     {
         $message = null;
-        if ($this->client->getCrawler()) {
+        if ($this->client->getCrawler() && count($this->client->getCrawler()->filter('.exception-message')) > 0) {
             $message = preg_replace('#\s{2,}#', '', $this->client->getCrawler()->filter('.exception-message')->text());
         }
         if ($message) {
