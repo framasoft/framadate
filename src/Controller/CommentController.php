@@ -2,8 +2,8 @@
 
 namespace Framadate\Controller;
 
+use Framadate\Entity\Comment;
 use Framadate\Entity\Poll;
-use Framadate\I18nWrapper;
 use Framadate\Message;
 use Framadate\Services\CommentService;
 use Framadate\Services\InputService;
@@ -15,13 +15,10 @@ use Framadate\Utils;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Translation\TranslatorInterface;
-use Twig_Environment;
 
 class CommentController extends Controller
 {
@@ -88,11 +85,10 @@ class CommentController extends Controller
      * @param Request $request
      * @param $poll_id
      * @return null|JsonResponse
-     * @throws \Doctrine\DBAL\DBALException
      */
-    public function createCommentAction(Request $request, $poll_id)
+    public function createCommentAction(Request $request, string $poll_id)
     {
-        $message = null;
+        $result = true;
         $is_admin = false;
         if (empty($poll_id)) {
             // return json response error
@@ -106,59 +102,48 @@ class CommentController extends Controller
         }
 
         if (!$poll) {
-            $message = new Message('error', $this->i18n->trans('Error.This poll doesn\'t exist !'));
+            return new JsonResponse(['result' => false, 'error' => $this->i18n->trans('Error.This poll doesn\'t exist !')], 400);
         } elseif ($poll && !$this->security_service->canAccessPoll($poll) && !$is_admin) {
-            $message = new Message('error', $this->i18n->trans('Password.Wrong password'));
+            return new JsonResponse(['result' => false, 'error' => $this->i18n->trans('Password.Wrong password')], 400);
         } else {
             $name = $this->input_service->filterName($request->get('name'));
-            $comment = $this->input_service->filterComment($request->get('comment'));
+            $content = $this->input_service->filterComment($request->get('comment'));
 
             if ($name === null) {
-                $message = new Message('danger', $this->i18n->trans('Error.The name is invalid.'));
+                return new JsonResponse(['result' => false, 'error' => $this->i18n->trans('Error.The name is invalid.')], 400);
             }
 
-            if ($message === null) {
-                // Add comment
-                $result = $this->poll_service->addComment($poll_id, $name, $comment);
-                if ($result) {
-                    $message = new Message('success', $this->i18n->trans('Comments.Comment added'));
-                    $this->notification_service->sendUpdateNotification($poll, NotificationService::ADD_COMMENT, $name);
-                } else {
-                    $message = new Message('danger', $this->i18n->trans('Error.Comment failed'));
-                }
+            // Add comment
+            $comment = new Comment();
+            $comment->setName($name)->setContent($content)->setPollId($poll_id);
+            $result = $this->poll_service->addComment($comment);
+            if ($result) {
+                $this->notification_service->sendUpdateNotification($poll, NotificationService::ADD_COMMENT, $name);
+
+                return new JsonResponse(['result' => true, 'comment' => $result]);
+            } else {
+                return new JsonResponse(['result' => false, 'error' => $this->i18n->trans('Error.Comment failed')], 400);
             }
-            $comments = $this->poll_service->allCommentsByPollId($poll_id);
         }
-
-        $comments_html = $this->render('part/comments_list.twig', [
-            'comments' => $comments,
-            'admin' => $is_admin,
-            'poll' => $poll
-        ]);
-
-        $response = ['result' => $result, 'message' => $message, 'comments' => $comments_html->getContent()];
-
-        return new JsonResponse($response);
     }
 
     /**
-     * @Route("/p/{poll_id}/comment/remove", name="remove_comment")
+     * @Route("/p/{poll_admin_id}/comment/{comment_id}/remove", name="remove_comment")
      *
-     * @param Request $request
-     * @param $poll_id
+     * @param string $poll_admin_id
+     * @param string $comment_id
      * @return null
      */
-    public function removeCommentAction(Request $request, $poll_id)
+    public function removeCommentAction(string $poll_admin_id, string $comment_id)
     {
-        if (empty($poll_id)) {
+        if (empty($poll_admin_id) || empty($comment_id)) {
             // return json response error
             return null;
         }
 
-        $poll = $this->poll_service->findById($poll_id);
-        $comment_id = $request->get('delete_comment');
+        $poll = $this->poll_service->findByAdminId($poll_admin_id);
 
-        if ($this->comment_service->deleteComment($poll_id, $comment_id)) {
+        if ($this->comment_service->deleteComment($poll->getId(), $comment_id)) {
             $this->session->getFlashBag()->add('success', $this->i18n->trans('adminstuds.Comment deleted'));
         } else {
             $this->session->getFlashBag()->add('danger', $this->i18n->trans('Error.Failed to delete the comment'));
@@ -167,6 +152,8 @@ class CommentController extends Controller
     }
 
     /**
+     * @TODO : FIX ME
+     *
      * @param Request $request
      * @return JsonResponse
      */
@@ -209,17 +196,13 @@ class CommentController extends Controller
         if (is_null($message)) {
             $url = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
 
-            try {
-                $body = $this->render(
-                    'mail/remember_edit_link.twig',
-                    [
-                        'poll' => $poll,
-                        'editedVoteUniqueId' => $editedVoteUniqueId,
-                    ]
-                );
-            } catch (\Twig_Error $e) {
-                // log error
-            }
+            $body = $this->render(
+                'mail/remember_edit_link.twig',
+                [
+                    'poll' => $poll,
+                    'editedVoteUniqueId' => $editedVoteUniqueId,
+                ]
+            );
 
             $subject = '[' . NOMAPPLICATION . '][' . $this->i18n->trans('EditLink.REMINDER') . '] ' . $this->i18n->trans('EditLink.Edit link for poll "%s"', ['%s' => $poll->getTitle()]);
 

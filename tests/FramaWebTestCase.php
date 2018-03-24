@@ -1,6 +1,8 @@
 <?php
 namespace Framadate\Tests;
 
+use Framadate\Entity\Poll;
+use Framadate\Services\PollService;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Throwable;
@@ -31,5 +33,14 @@ abstract class FramaWebTestCase extends WebTestCase {
             throw new $exceptionClass($exception->getMessage() . ' | ' . $message);
         }
         throw $exception;
+    }
+
+    /**
+     * @param string $id
+     * @return Poll
+     */
+    protected function getPollById(string $id): Poll
+    {
+        return $this->client->getContainer()->get('framadate.poll_service.public')->findById($id);
     }
 }

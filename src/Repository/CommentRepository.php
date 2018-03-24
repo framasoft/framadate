@@ -1,6 +1,7 @@
 <?php
 namespace Framadate\Repository;
 
+use Framadate\Entity\Comment;
 use Framadate\Utils;
 
 class CommentRepository extends AbstractRepository
@@ -22,18 +23,25 @@ class CommentRepository extends AbstractRepository
     /**
      * Insert a new comment.
      *
-     * @param $poll_id
-     * @param $name
-     * @param $comment
-     * @return bool
+     * @param Comment $comment
+     * @return Comment $comment
+     * @throws \Doctrine\DBAL\DBALException
      */
-    public function insert($poll_id, $name, $comment)
+    public function insert(Comment $comment)
     {
         $prepared = $this->prepare('INSERT INTO `' . Utils::table('comment') . '` (poll_id, name, comment) VALUES (?,?,?)');
 
-        return $prepared->execute([$poll_id, $name, $comment]);
+        $prepared->execute([$comment->getPollId(), $comment->getName(), $comment->getContent()]);
+
+        return $comment->setId(intval($this->lastInsertId()))->setCreatedAt(new \DateTime());
     }
 
+    /**
+     * @param $poll_id
+     * @param $comment_id
+     * @return bool
+     * @throws \Doctrine\DBAL\DBALException
+     */
     public function deleteById($poll_id, $comment_id)
     {
         $prepared = $this->prepare('DELETE FROM `' . Utils::table('comment') . '` WHERE poll_id = ? AND id = ?');
@@ -44,21 +52,45 @@ class CommentRepository extends AbstractRepository
     /**
      * Delete all comments of a given poll.
      *
-     * @param $poll_id int The ID of the given poll.
+     * @param string $poll_id int The ID of the given poll.
      * @return bool|null true if action succeeded.
+     * @throws \Doctrine\DBAL\DBALException
      */
-    public function deleteByPollId($poll_id)
+    public function deleteByPollId(string $poll_id)
     {
         $prepared = $this->prepare('DELETE FROM `' . Utils::table('comment') . '` WHERE poll_id = ?');
 
         return $prepared->execute([$poll_id]);
     }
 
-    public function exists($poll_id, $name, $comment)
+    /**
+     * @param Comment $comment
+     * @return Comment|bool
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function exists(Comment $comment)
     {
-        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('comment') . '` WHERE poll_id = ? AND name = ? AND comment = ?');
-        $prepared->execute([$poll_id, $name, $comment]);
+        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('comment') . '` WHERE poll_id = ? AND name = ? AND comment = ?');
+        $prepared->execute([$comment->getPollId(), $comment->getName(), $comment->getContent()]);
 
-        return $prepared->rowCount() > 0;
+        if ($prepared->rowCount() > 0) {
+            return $this->dataToComment($prepared->fetch());
+        }
+        return false;
+    }
+
+    /**
+     * @param array $data
+     * @return Comment
+     */
+    private function dataToComment($data)
+    {
+        $comment = new Comment();
+        return $comment->setId($data['id'])
+            ->setName($data['name'])
+            ->setContent($data['comment'])
+            ->setPollId($data['poll_id'])
+            ->setCreatedAt(\DateTime::createFromFormat('Y-m-d H:i:s', $data['date']))
+            ;
     }
 }

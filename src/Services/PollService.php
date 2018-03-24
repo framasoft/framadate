@@ -19,6 +19,7 @@
 namespace Framadate\Services;
 
 use Doctrine\DBAL\DBALException;
+use Framadate\Entity\Comment;
 use Framadate\Entity\DateSlot;
 use Framadate\Entity\Slot;
 use Framadate\Exception\AlreadyExistsException;
@@ -75,12 +76,15 @@ class PollService
     /**
      * @param $admin_poll_id
      * @return Poll|null
-     * @throws \Doctrine\DBAL\DBALException
      */
-    public function findByAdminId($admin_poll_id)
+    public function findByAdminId(string $admin_poll_id)
     {
-        if (preg_match(Poll::ADMIN_POLL_REGEX, $admin_poll_id)) {
-            return $this->pollRepository->findByAdminId($admin_poll_id);
+        try {
+            if (preg_match(Poll::ADMIN_POLL_REGEX, $admin_poll_id)) {
+                return $this->pollRepository->findByAdminId($admin_poll_id);
+            }
+        } catch (DBALException $e) {
+            $this->logger->error($e->getMessage());
         }
 
         return null;
@@ -185,17 +189,20 @@ class PollService
     }
 
     /**
-     * @param $poll_id
-     * @param $name
-     * @param $comment
-     * @return bool
+     * @param Comment $comment
+     * @return Comment
      */
-    public function addComment($poll_id, $name, $comment)
+    public function addComment(Comment $comment)
     {
-        if ($this->commentRepository->exists($poll_id, $name, $comment)) {
-            return true;
+        try {
+            if ($existingComment = $this->commentRepository->exists($comment)) {
+                return $existingComment;
+            }
+            return $this->commentRepository->insert($comment);
+        } catch (DBALException $e) {
+            $this->logger->error($e->getMessage());
+            return null;
         }
-        return $this->commentRepository->insert($poll_id, $name, $comment);
     }
 
     /**

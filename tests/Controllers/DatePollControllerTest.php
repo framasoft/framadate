@@ -94,6 +94,7 @@ class DatePollControllerTest extends FramaWebTestCase
      * @dataProvider invalidArchiveDateProvider
      *
      * @param \DateTime $date
+     * @param string $error
      */
     public function testSubmitPollWithInvalidArchiveDate(\DateTime $date, string $error)
     {
