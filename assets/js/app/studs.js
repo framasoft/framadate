@@ -73,7 +73,7 @@ $(document).ready(function () {
                 $('#comment').val('');
                 if (data.result) {
                     const comment_list = $('#comments_list');
-                    comment_list.replaceWith(data.comments);
+                    comment_list.append('<div class="comment"><span class="comment_date">' + data.comment.created_at + '</span><b>' + data.comment.name + '</b>&nbsp;<span>' + data.comment.content + '</span></div>');
                     const lastComment = comment_list.find('div.comment').last();
                     lastComment.effect('highlight', {color: 'green'}, 401);
                     /*$('html, body').animate({

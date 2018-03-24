@@ -157,26 +157,24 @@ class DatePollController extends Controller
                 $poll->setEndDate($max_expiry_time);
             }
 
-            // var_dump($poll);
             // Insert poll in database
             $poll = $this->poll_service->createPoll($poll);
 
             // Send confirmation by mail if enabled
-            if (/*$this->app_config['use_smtp']*/false === true) {
-                $message = __('Mail', "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
-                $message .= '<br/><br/>';
-                $message .= Utils::htmlEscape($poll->getAdminName()) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlEscape($poll->getTitle()) . '".<br/>';
-                $message .= __('Mail', 'Thanks for filling the poll at the link above') . ' :<br/><br/><a href="%1$s">%1$s</a>';
+            if ($this->getParameter('app_use_smtp') === true) {
+                $message = $this->render('mail/creation.twig', [
+                    'poll' => $poll,
+                    'admin' => false,
+                ]);
 
-                $message_admin = __('Mail', "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
-                $message_admin .= ' :<br/><br/><a href="%1$s">%1$s</a>';
-
-                $message = sprintf($message, Utils::getUrlSondage($poll->getId()));
-                $message_admin = sprintf($message_admin, Utils::getUrlSondage($poll->getAdminId(), true));
+                $message_admin = $this->render('mail/creation.twig', [
+                    'poll' => $poll,
+                    'admin' => true,
+                ]);
 
                 if ($this->mail_service->isValidEmail($poll->getAdminMail())) {
-                    $this->mail_service->send($poll->getAdminMail(), '[' . NOMAPPLICATION . '][' . $this->i18n->trans('Mail.Author\'s message') . '] ' . $this->i18n->trans('Generic.Poll') . ': ' . Utils::htmlEscape($poll->getTitle()), $message_admin);
-                    $this->mail_service->send($poll->getAdminMail(), '[' . NOMAPPLICATION . '][' . $this->i18n->trans('Mail.For sending to the polled users') . '] ' . $this->i18n->trans('Generic.Poll') . ': ' . Utils::htmlEscape($poll->getTitle()), $message);
+                    $this->mail_service->send($poll->getAdminMail(), '[' . $this->getParameter('app_name') . '][' . $this->i18n->trans('Mail.Author\'s message') . '] ' . $this->i18n->trans('Generic.Poll') . ': ' . Utils::htmlEscape($poll->getTitle()), $message_admin);
+                    $this->mail_service->send($poll->getAdminMail(), '[' . $this->getParameter('app_name') . '][' . $this->i18n->trans('Mail.For sending to the polled users') . '] ' . $this->i18n->trans('Generic.Poll') . ': ' . Utils::htmlEscape($poll->getTitle()), $message);
                 }
             }
 
@@ -254,7 +252,7 @@ class DatePollController extends Controller
                 'title' => $this->i18n->trans('Step 3.Removal date and confirmation (3 on 3)'),
                 'choices' => $choices,
                 'poll_type' => $poll->getChoixSondage(),
-                'default_poll_duration' => 180, // $this->app_config['default_poll_duration'],
+                'default_poll_duration' => $this->getParameter('app_default_poll_duration'), // $this->app_config['default_poll_duration'],
                 'use_smtp' => true, // $this->app_config['use_smtp'],
                 'form' => $form->createView(),
             ]

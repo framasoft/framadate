@@ -10,14 +10,14 @@ use Framadate\Services\MailService;
 use Framadate\Services\PollService;
 use Framadate\Services\PurgeService;
 use Psr\Log\LoggerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class ClassicPollController extends AbstractController
+class ClassicPollController extends Controller
 {
     /**
      * @var PollService
@@ -231,7 +231,7 @@ class ClassicPollController extends AbstractController
             'choices' => $poll->getChoices(),
             'poll_type' => $poll->getChoixSondage(),
             'form' => $form->createView(),
-            'default_poll_duration' => 180, // $this->app_config['default_poll_duration'],
+            'default_poll_duration' => $this->getParameter('app_default_poll_duration'), // $this->app_config['default_poll_duration'],
             'use_smtp' => true, // $this->app_config['use_smtp'],
         ]);
     }

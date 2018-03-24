@@ -21,6 +21,7 @@ test:
     APP_SEND_EMAILS: "true"
     APP_EMAIL_FROM_NAME: admin
     APP_EMAIL_FROM_EMAIL: admin@domain.tld
+    APP_DEFAULT_POLL_DURATION: 180
   script:
     - npm i
     - ./node_modules/.bin/encore production

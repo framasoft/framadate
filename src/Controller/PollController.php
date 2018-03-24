@@ -182,7 +182,7 @@ class PollController extends Controller
 
         return $this->render('create_poll.twig', [
             'title' => $this->i18n->trans('Step 1.Poll creation (1 on 3)'),
-            'use_smtp' => true, // $this->app_config['use_smtp'],
+            'use_smtp' => $this->getParameter('app_use_smtp'), // $this->app_config['use_smtp'],
             'default_to_markdown_editor' => true, //$this->app_config['markdown_editor_by_default'],
             // 'useRemoteUser' => $useRemoteUser,
             'poll' => $poll,

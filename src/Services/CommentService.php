@@ -1,7 +1,9 @@
 <?php
 namespace Framadate\Services;
 
+use Doctrine\DBAL\DBALException;
 use Framadate\Repository\CommentRepository;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class Comment
@@ -17,14 +19,14 @@ class CommentService
     private $commentRepository;
 
     /**
-     * @var LogService
+     * @var LoggerInterface
      */
-    private $logService;
+    private $logger;
 
-    public function __construct(CommentRepository $commentRepository, LogService $logService)
+    public function __construct(CommentRepository $commentRepository, LoggerInterface $logger)
     {
         $this->commentRepository = $commentRepository;
-        $this->logService = $logService;
+        $this->logger = $logger;
     }
 
     /**
@@ -47,7 +49,12 @@ class CommentService
      */
     public function cleanComments($poll_id)
     {
-        $this->logService->log("CLEAN_COMMENTS", "id:$poll_id");
-        return $this->commentRepository->deleteByPollId($poll_id);
+        $this->logger->info("CLEAN_COMMENTS for poll ID " . $poll_id);
+        try {
+            return $this->commentRepository->deleteByPollId($poll_id);
+        } catch (DBALException $e) {
+            $this->logger->error($e->getMessage());
+            return null;
+        }
     }
 }

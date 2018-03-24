@@ -338,6 +338,14 @@ class Poll
     }
 
     /**
+     * @return bool
+     */
+    public function getExpired()
+    {
+        return $this->getEndDate() < new \DateTime();
+    }
+
+    /**
      * @return string
      */
     public function getChoixSondage()
