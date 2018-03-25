@@ -405,7 +405,9 @@ if (isset($_GET['delete_column'])) {
 // -------------------------------
 
 if (isset($_GET['collect_mail'])) {
-    $message = new Message('success', __('adminstuds', 'Mail collected '));
+    $column = filter_input(INPUT_GET, 'collect_mail', FILTER_DEFAULT);
+    $column = Utils::base64url_decode($column)-1;
+    $message = new Message('success', __('adminstuds', 'Mail collected '.$column));
 }
 
 // -------------------------------
