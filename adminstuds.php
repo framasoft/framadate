@@ -414,15 +414,16 @@ if (isset($_GET['collect_mail'])) {
     for ($i=0; $i<sizeof($votes);$i++)
 {
 	if((int)($votes[$i]->choices[$column])==2) {
-		$mails_yes[]=$votes[$i]->mail;
+		if ($votes[$i]->mail != NULL) {$mails_yes[]=$votes[$i]->mail;}
         }
 	if((int)($votes[$i]->choices[$column])==1) {
-		$mails_ifneedbe[]=$votes[$i]->mail;
+		if ($votes[$i]->mail != NULL) {$mails_ifneedbe[]=$votes[$i]->mail;}
         }
 }
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('admin', true);
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title.' - '.__('Generic', 'Collect the emails'));
     $smarty->assign('mails_yes', $mails_yes);
     $smarty->assign('mails_ifneedbe', $mails_ifneedbe);
     $smarty->display('display_mails.tpl');
