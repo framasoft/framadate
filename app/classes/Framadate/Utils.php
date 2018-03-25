@@ -84,11 +84,13 @@ class Utils {
      * @param   string $id The poll's id
      * @param   bool $admin True to generate an admin URL, false for a public one
      * @param   string $vote_id (optional) The vote's unique id
+     * @param null $action
+     * @param null $action_value
      * @return  string The poll's URL.
      */
     public static function getUrlSondage($id, $admin = false, $vote_id = '', $action = null, $action_value = null) {
         // URL-Encode $action_value
-        $action_value = $action_value ? null : Utils::base64url_encode($action_value);
+        $action_value = $action_value ? Utils::base64url_encode($action_value) : null;
 
         if (URL_PROPRE) {
             if ($admin === true) {
