@@ -26,7 +26,7 @@
                     </p>
                     <p>
                         {__('Step 1', 'More informations here:')}
-                        <a href="http://{$locale}.wikipedia.org/wiki/Markdown">http://{$locale}.wikipedia.org/wiki/Markdown</a>
+                        <a href="http://{$locale|locale_2_lang}.wikipedia.org/wiki/Markdown">http://{$locale|locale_2_lang}.wikipedia.org/wiki/Markdown</a>
                     </p>
             </div>
         </div>

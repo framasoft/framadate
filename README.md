@@ -1,76 +1,39 @@
-# Présentation du projet
+# Framadate
 
-![Gitlab](https://framagit.org/assets/logo-black-f52905a40830b30aa287f784b537c823.png)[https://framagit.org](https://framagit.org)
+![English](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/20px-Flag_of_the_United_Kingdom.svg.png) Framadate is an online service for planning an appointment or making a decision quickly and easily. No registration is required.
 
-![English](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/20px-Flag_of_the_United_Kingdom.svg.png) **Framasoft uses GitLab** for the development of its free softwares. Our Github repositories are only mirrors.
-If you want to work with us, **fork us on [framagit.org](https://framagit.org)**. (no registration needed, you can sign in with your Github account)
+![Français](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/20px-Flag_of_France.svg.png) Framadate est un service en ligne permettant de planifier un rendez-vous ou prendre des décisions rapidement et simplement. Aucune inscription préalable n’est nécessaire.
 
-![Français](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/20px-Flag_of_France.svg.png) **Framasoft utilise GitLab** pour le développement de ses logiciels libres. Nos dépôts Github ne sont que des mirroirs.
-Si vous souhaitez travailler avec nous, **forkez-nous sur [framagit.org](https://framagit.org)**. (l'inscription n'est pas nécessaire, vous pouvez vous connecter avec votre compte Github)
 ---
-
 # Installation
 
-Un fichier est dédié à l'installation de framadate : [INSTALL.md](INSTALL.md).
+Follow the instructions on our Wiki : <https://framagit.org/framasoft/framadate/wikis/home>
 
-# Comment contribuer avec du code
+# Contribute
 
-## De votre côté
-
-1. Créer un compte sur [https://framagit.org](https://framagit.org)
-1. Créer un fork du projet principal : [Créer le fork](https://framagit.org/framasoft/framadate/forks/new)
-1. Créer une branche nommée feature/[Description] à partir de la branche **develop**
-    * Où [Description] est une description en anglais très courte de ce qui va être fait
-1. Faire des commits dans votre branche
-1. Pusher la branche sur votre fork
-1. Demander une merge request vers **develop**
-
-## La suite se passe de notre côté
-
-1. Quelqu'un relira votre travail
-    * Essayez de rendre ce travail plus facile en organisant vos commits
-1. S'il y a des remarques sur le travail, le relecteur fera des commentaires sur la merge request
-1. Si la merge request lui semble correcte il peut merger votre travail avec la branche **develop**
-
-## Corrections suite à une relecture
-
-La relecture de la merge request peut vous amener à faire des corrections.
-Vous pouvez faire ces corrections dans votre branche, ce qui aura pour effet de les ajouter à la merge request.
-
-## Comprendre le code
-
-Un fichier est dédié à l'appréhension du code de framadate : [Document technique](doc/TECHNICAL.md).
+## Code 
+Follow the instructions on <https://framagit.org/framasoft/framadate/wikis/coding>
 
 # Traductions
 
-Les traductions se trouvent dans le dossier `locale`. Chaque langue est dans un fichier JSON différent organisé par section.
+Follow the instructions on <https://framagit.org/framasoft/framadate/wikis/translating>
 
-Ne modifiez pas directement les fichiers !
-Si vous avez des modifications à y apporter (voire ajouter une nouvelle traduction), allez sur <https://trad.framasoft.org> (tout y est expliqué sur la page d'accueil).
+# Used libraries
 
-La page de traduction du projet Framadate est <https://trad.framasoft.org/zanata/iteration/view/framadate/master>.
-
-# Synthèses des librairies utilisées
-
-[Smarty](http://www.smarty.net/),
-gestion des templates pour PHP
-
-[o80-i18n](https://github.com/olivierperez/o80-i18n),
-système d'internationalisation
-
-[PHP 5.4.4](http://php.net)
-
-PostgreSQL ou [MySQL 5.5](https://dev.mysql.com/downloads/mysql/5.5.html)
+* PHP [PHP 5.6](http://php.net)
+* Templating [Smarty](http://www.smarty.net/),
+* I18N [o80-i18n](https://github.com/olivierperez/o80-i18n)
+* Database: PostgreSQL ou [MySQL 5.5](https://dev.mysql.com/downloads/mysql/5.5.html)
 
 ---
 
-Framadate est un fork du projet [STUdS](https://sourcesup.cru.fr/projects/studs/), il motorise framadate.org pour framasoft.org
+Framadate is a fork of the [STUdS](https://sourcesup.cru.fr/projects/studs/) project, that works at framadate.org for framasoft.org
 
-Les auteurs principaux de Framadate sont :
+Previous main authors of Framadate were :
 * Simon LEBLANC
 * Pierre-Yves GOSSET
 
-Les auteurs principaux du projet STUdS sont :
+Main authors of project STUdS are :
 * Guilhem BORGHESI
 * Raphaël DROZ
 

@@ -21,12 +21,12 @@ namespace Framadate\Migration;
 use Framadate\Utils;
 
 /**
- * This migration adds the field Value_Max on the poll table.
+ * This migration sets Poll.end_date to NULL by default
  *
  * @package Framadate\Migration
- * @version 0.9
+ * @version 1.1
  */
-class AddColumn_ValueMax_In_poll_For_1_1 implements Migration {
+class Fix_MySQL_No_Zero_Date implements Migration {
     function __construct() {
     }
 
@@ -36,7 +36,7 @@ class AddColumn_ValueMax_In_poll_For_1_1 implements Migration {
      * @return string The description of the migration class
      */
     function description() {
-        return 'Add column "ValueMax" in table "vote" for version 0.9';
+        return 'Sets Poll end_date to NULL by default (work around MySQL NO_ZERO_DATE)';
     }
 
     /**
@@ -44,27 +44,27 @@ class AddColumn_ValueMax_In_poll_For_1_1 implements Migration {
      * It is called before the execute method.
      *
      * @param \PDO $pdo The connection to database
-     * @return bool true is the Migration should be executed.
+     * @return bool true if the Migration should be executed.
      */
     function preCondition(\PDO $pdo) {
-        return true;
+        $stmt = $pdo->prepare("SELECT Column_Default from Information_Schema.Columns where Table_Name = ? AND Column_Name = ?;");
+        $stmt->bindValue(1, Utils::table('poll'));
+        $stmt->bindValue(2, 'end_date');
+        $stmt->execute();
+        $default = $stmt->fetch(\PDO::FETCH_COLUMN);
+
+        $driver_name = $pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
+
+        return $default !== null && $driver_name === 'mysql';
     }
 
     /**
      * This method is called only one time in the migration page.
      *
      * @param \PDO $pdo The connection to database
-     * @return bool true is the execution succeeded
+     * @return bool|void if the execution succeeded
      */
     function execute(\PDO $pdo) {
-        $this->alterPollTable($pdo);
-
-        return true;
-    }
-
-    private function alterPollTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `ValueMax` TINYINT NULL;');
+        $pdo->exec('ALTER TABLE ' . Utils::table('poll') . ' MODIFY end_date TIMESTAMP NULL DEFAULT NULL;');
     }
 }
