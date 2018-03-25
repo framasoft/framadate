@@ -22,6 +22,7 @@
             {if $admin && !$expired}
                 <tr class="hidden-print">
                     <th role="presentation"></th>
+                    {$headersDCount=0}
                     {foreach $slots as $id=>$slot}
                         <td headers="C{$id}">
                             <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->title}"
@@ -29,7 +30,13 @@
                                class="btn btn-link btn-sm remove-column" title="{__('adminstuds', 'Remove the column')} {$slot->title|html}">
                                 <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                             </a>
+			    <a href="{poll_url id=$admin_poll_id admin=true action='collect_mail' action_value=($headersDCount+1)}"
+				   class="btn btn-link btn-sm collect-the-mail"
+                                   title="{__('adminstuds', 'Collect the mail of the column')} {$headersDCount}">
+                                    <i class="glyphicon glyphicon-envelope"></i><span class="sr-only">{__('Generic', 'Collect mails')}</span>
+                                </a>
                             </td>
+                            {$headersDCount = $headersDCount+1}
                     {/foreach}
                     <td>
                         <a href="{poll_url id=$admin_poll_id admin=true action='add_column'}"
