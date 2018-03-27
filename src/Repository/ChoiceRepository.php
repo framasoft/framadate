@@ -38,7 +38,6 @@ class ChoiceRepository extends AbstractRepository
         $prepared = $this->prepare('INSERT INTO `' . Utils::table('slot') . '` (poll_id, title, moments) VALUES (?, ?, ?)');
 
         foreach ($choices as $choice) {
-
             if ($choice instanceof DateChoice) {
                 /** @var DateChoice $choice */
                 // We prepared the choices (joined by comas)
@@ -222,7 +221,7 @@ class ChoiceRepository extends AbstractRepository
     public static function mapDataToMoment(string $moment_data): array
     {
         $moments = explode(',', $moment_data);
-        return array_map(function($moment) {
+        return array_map(function ($moment) {
             return new Moment($moment);
         }, $moments);
     }

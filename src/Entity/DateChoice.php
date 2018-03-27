@@ -130,8 +130,7 @@ class DateChoice extends Choice
      */
     public function clearEmptyMoments()
     {
-        foreach ($this->moments as $index => $moment)
-        {
+        foreach ($this->moments as $index => $moment) {
             /** @var $moment Moment */
             if ($moment == null || empty($moment->getTitle())) {
                 unset($this->moments[$index]);

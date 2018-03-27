@@ -224,7 +224,7 @@ class AdminPollService
      */
     public function addDateChoice(DateChoice $choice)
     {
-        $this->logger->info('ADD_COLUMN: id:' . $choice->getPollId() . ', datetime:' . $choice->getDate()->getTimestamp() . ', moment:' , [$choice->getMoments()]);
+        $this->logger->info('ADD_COLUMN: id:' . $choice->getPollId() . ', datetime:' . $choice->getDate()->getTimestamp() . ', moment:', [$choice->getMoments()]);
 
         try {
             $choices = $this->choiceRepository->listByPollId($choice->getPollId(), true);
