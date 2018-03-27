@@ -2,10 +2,9 @@
 
 namespace Framadate\Form;
 
-use Framadate\Entity\Poll;
+use Framadate\Entity\Choice;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,20 +16,14 @@ class ChoiceType extends AbstractType
             /**
              * Required attributes
              */
-            ->add('choices', CollectionType::class, [
-                'entry_type' => SlotType::class,
-                'entry_options' => []
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Step 2.Go to step 3',
-            ])
+            ->add('name', TextType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-                                   'data_class' => Poll::class,
+                                   'data_class' => Choice::class,
                                ]);
     }
 }

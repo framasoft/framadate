@@ -18,8 +18,6 @@
  */
 namespace Framadate\Entity;
 
-use Framadate\Editable;
-
 class Poll
 {
     const POLL_REGEX = '/^[a-z0-9-]*$/i';
@@ -82,7 +80,7 @@ class Poll
 
     /**
      * Tells if users can modify their choices.
-     * @var \Framadate\Editable
+     * @var int
      */
     protected $editable;
 
@@ -152,23 +150,42 @@ class Poll
     public function __construct()
     {
         $this->editable = Editable::EDITABLE_BY_ALL;
-        $this->clearChoices();
-    }
-
-    public function clearChoices()
-    {
         $this->choices = [];
     }
 
+    /**
+     * Clear empty choices
+     */
+    public function clearEmptyChoices()
+    {
+        $this->choices = array_filter($this->choices, function ($choice) {
+            if ($choice instanceof DateChoice) {
+                return (!empty($choice->getDate()) || !$choice->getDate());
+            } elseif ($choice instanceof Choice) {
+                return !empty($choice->getName());
+            } else {
+                return false;
+            }
+        });
+        foreach ($this->choices as $choice) {
+            if ($choice instanceof DateChoice) {
+                $choice->clearEmptyMoments();
+            }
+        }
+    }
+
+    /**
+     * @param Choice $choice
+     */
     public function addChoice(Choice $choice)
     {
         $this->choices[] = $choice;
     }
 
     /**
-     * @return array<Choice>
+     * @return Choice[]
      */
-    public function getChoices()
+    public function getChoices(): array
     {
         return $this->choices;
     }
@@ -185,22 +202,26 @@ class Poll
 
     public function sortChoices()
     {
-        usort($this->choices, [Choice::class, 'compare']);
+        if ($this->isDate()) {
+            usort($this->choices, [DateChoice::class, 'compareDate']);
+        } else {
+            usort($this->choices, [Choice::class, 'compare']);
+        }
     }
 
     /**
-     * @return Editable
+     * @return int
      */
     public function getEditable()
     {
-        return $this->editable;
+        return intval($this->editable);
     }
 
     /**
      * @param int $value
      * @return Poll
      */
-    public function setEditable($value)
+    public function setEditable(int $value)
     {
         $this->editable = $value;
         return $this;
@@ -286,6 +307,7 @@ class Poll
 
     /**
      * @param string $admin_mail
+     * @return Poll
      */
     public function setAdminMail($admin_mail)
     {

@@ -3,13 +3,13 @@ namespace Framadate\Services;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DBALException;
-use Framadate\Entity\DateSlot;
-use Framadate\Entity\Slot;
+use Framadate\Entity\Choice;
+use Framadate\Entity\DateChoice;
 use Framadate\Exception\MomentAlreadyExistsException;
 use Framadate\Entity\Poll;
+use Framadate\Repository\ChoiceRepository;
 use Framadate\Repository\CommentRepository;
 use Framadate\Repository\PollRepository;
-use Framadate\Repository\SlotRepository;
 use Framadate\Repository\VoteRepository;
 use Psr\Log\LoggerInterface;
 
@@ -37,17 +37,17 @@ class AdminPollService
     private $logger;
 
     private $pollRepository;
-    private $slotRepository;
+    private $choiceRepository;
     private $voteRepository;
     private $commentRepository;
 
-    public function __construct(Connection $connect, PollService $pollService, LoggerInterface $logger, PollRepository $pollRepository, SlotRepository $slotRepository, VoteRepository $voteRepository, CommentRepository $commentRepository)
+    public function __construct(Connection $connect, PollService $pollService, LoggerInterface $logger, PollRepository $pollRepository, ChoiceRepository $choiceRepository, VoteRepository $voteRepository, CommentRepository $commentRepository)
     {
         $this->connect = $connect;
         $this->pollService = $pollService;
         $this->logger = $logger;
         $this->pollRepository = $pollRepository;
-        $this->slotRepository = $slotRepository;
+        $this->choiceRepository = $choiceRepository;
         $this->voteRepository = $voteRepository;
         $this->commentRepository = $commentRepository;
     }
@@ -55,7 +55,6 @@ class AdminPollService
     /**
      * @param Poll $poll
      * @return bool
-     * @throws \Doctrine\DBAL\DBALException
      */
     public function updatePoll(Poll $poll)
     {
@@ -100,37 +99,43 @@ class AdminPollService
         $poll = $this->pollRepository->findById($poll_id);
         $this->logger->log('info', "DELETE_POLL : id:" . $poll->getId() . ", format:" . $poll->getFormat() . ", admin:" . $poll->getAdminMail() . ", mail:" . $poll->getAdminMail());
 
-        // Delete the entire poll
-        $this->voteRepository->deleteByPollId($poll_id);
-        $this->commentRepository->deleteByPollId($poll_id);
-        $this->slotRepository->deleteByPollId($poll_id);
-        $this->pollRepository->deleteById($poll_id);
+        try {
+            // Delete the entire poll
+            $this->voteRepository->deleteByPollId($poll_id);
+            $this->commentRepository->deleteByPollId($poll_id);
+            $this->choiceRepository->deleteByPollId($poll_id);
+            $this->pollRepository->deleteById($poll_id);
+        } catch (DBALException $e) {
+            $this->logger->error($e->getMessage());
+            return false;
+        }
 
         return true;
     }
 
     /**
-     * Delete a slot from a poll.
+     * Delete a choice from a poll.
      *
      * @param Poll $poll The poll
-     * @param DateSlot $slot The slot informations (datetime + moment)
+     * @param DateChoice $choice
      * @return bool true if action succeeded
+     * @throws DBALException
      * @throws \Doctrine\DBAL\ConnectionException
      */
-    public function deleteDateSlot(Poll $poll, DateSlot $slot)
+    public function deleteDateChoice(Poll $poll, DateChoice $choice)
     {
-        $this->logger->info('DELETE_SLOT: id:' . $poll->getId(), [$slot]);
+        $this->logger->info('DELETE_choice: id:' . $poll->getId(), [$choice]);
 
-        $datetime = $slot->getTitle();
-        $moment = $slot->getMoments();
+        $datetime = $choice->getDate();
+        $moment = $choice->getMoments();
 
-        $slots = $this->pollService->allSlotsByPoll($poll);
+        $choices = $this->pollService->allChoicesByPoll($poll);
 
-        // We can't delete the last slot
+        // We can't delete the last choice
         if (
-            ($poll->isDate() && count($slots) === 1 && strpos($slots[0]->moments, ',') === false) ||
-            (!$poll->isDate() && count($slots) === 1)) {
-            $this->logger->info("We can't delete the last slot", [$slots]);
+            ($poll->isDate() && count($choices) === 1 && strpos($choices[0]->getMoments(), ',') === false) ||
+            (!$poll->isDate() && count($choices) === 1)) {
+            $this->logger->info("We can't delete the last choice", [$choices]);
             return false;
         }
 
@@ -138,13 +143,12 @@ class AdminPollService
         $indexToDelete = -1;
         $newMoments = [];
 
-        // Search the index of the slot to delete
-        foreach ($slots as $aSlot) {
-            /** @var DateSlot $aSlot */
-            $moments = explode(',', $aSlot->getMoments());
+        // Search the index of the choice to delete
+        foreach ($choices as $choice) {
+            /** @var DateChoice $choice */
 
-            foreach ($moments as $rowMoment) {
-                if ($datetime === $aSlot->getTitle()) {
+            foreach ($choice->getMoments() as $rowMoment) {
+                if ($datetime === $choice->getDate()) {
                     if ($moment === $rowMoment) {
                         $indexToDelete = $index;
                     } else {
@@ -159,89 +163,97 @@ class AdminPollService
         $this->connect->beginTransaction();
         $this->voteRepository->deleteByIndex($poll->getId(), $indexToDelete);
         if (count($newMoments) > 0) {
-            $this->slotRepository->update($poll->getId(), $datetime, implode(',', $newMoments));
+            $this->choiceRepository->update($poll->getId(), $datetime, implode(',', $newMoments));
         } else {
-            $this->slotRepository->deleteByDateTime($poll->getId(), $datetime);
+            $this->choiceRepository->deleteByDateTime($poll->getId(), $datetime);
         }
-        $this->connect->commit();
-
-        return true;
-    }
-
-    public function deleteClassicSlot($poll, $slot_title)
-    {
-        $this->logger->info('DELETE_SLOT: id:' . $poll->id . ', slot:' . $slot_title);
-
-        $slots = $this->pollService->allSlotsByPoll($poll);
-
-        if (count($slots) === 1) {
-            return false;
-        }
-
-        $index = 0;
-        $indexToDelete = -1;
-
-        // Search the index of the slot to delete
-        foreach ($slots as $aSlot) {
-            if ($slot_title === $aSlot->title) {
-                $indexToDelete = $index;
-            }
-            $index++;
-        }
-
-        // Remove votes
-        $this->connect->beginTransaction();
-        $this->voteRepository->deleteByIndex($poll->id, $indexToDelete);
-        $this->slotRepository->deleteByDateTime($poll->id, $slot_title);
         $this->connect->commit();
 
         return true;
     }
 
     /**
-     * Add a new slot to a date poll. And insert default values for user's votes.
-     * <ul>
-     *  <li>Create a new slot if no one exists for the given date</li>
-     *  <li>Create a new moment if a slot already exists for the given date</li>
-     * </ul>
-     *
-     * @param $poll_id string The ID of the poll
-     * @param $datetime \DateTime The datetime
-     * @param $new_moment string The moment's name
-     * @throws MomentAlreadyExistsException When the moment to add already exists in database
+     * @param Poll $poll
+     * @param Choice $choice
+     * @return bool
      */
-    public function addDateSlot(string $poll_id, \DateTime $datetime, string $new_moment)
+    public function deleteClassicChoice(Poll $poll, Choice $choice)
     {
-        $this->logger->info('ADD_COLUMN: id:' . $poll_id . ', datetime:' . $datetime->getTimestamp() . ', moment:' . $new_moment);
+        $this->logger->info('DELETE_choice: id:' . $poll->getId() . ', choice:' . $choice->getName());
+
+        $choices = $this->pollService->allChoicesByPoll($poll);
+
+        if (count($choices) === 1) {
+            return false;
+        }
+
+        $index = 0;
+        $indexToDelete = -1;
+
+        // Search the index of the choice to delete
+        foreach ($choices as $aChoice) {
+            /** @var $aChoice Choice */
+            if ($choice->getName() === $aChoice->getName()) {
+                $indexToDelete = $index;
+            }
+            $index++;
+        }
 
         try {
-            $slots = $this->slotRepository->listByPollId($poll_id, true);
-            $this->logger->debug("slots", [$slots]);
+            // Remove votes
+            $this->connect->beginTransaction();
+            $this->voteRepository->deleteByIndex($poll->getId(), $indexToDelete);
+            $this->choiceRepository->deleteByTitle($poll->getId(), $choice->getName());
+            $this->connect->commit();
+        } catch (DBALException $e) {
+            $this->logger->error($e->getMessage());
+        }
 
-            $result = $this->findInsertPosition($slots, (string) $datetime);
+        return true;
+    }
+
+    /**
+     * Add a new choice to a date poll. And insert default values for user's votes.
+     * <ul>
+     *  <li>Create a new choice if no one exists for the given date</li>
+     *  <li>Create a new moment if a choice already exists for the given date</li>
+     * </ul>
+     *
+     * @param DateChoice $choice
+     * @throws MomentAlreadyExistsException When the moment to add already exists in database
+     */
+    public function addDateChoice(DateChoice $choice)
+    {
+        $this->logger->info('ADD_COLUMN: id:' . $choice->getPollId() . ', datetime:' . $choice->getDate()->getTimestamp() . ', moment:' , [$choice->getMoments()]);
+
+        try {
+            $choices = $this->choiceRepository->listByPollId($choice->getPollId(), true);
+            $this->logger->debug("choices", [$choices]);
+
+            $result = $this->findInsertPosition($choices, $choice->getDate());
             $this->logger->debug("insert pos result", [$result]);
 
             // Begin transaction
             $this->connect->beginTransaction();
 
-            if ($result->slot !== null) {
-                /** @var DateSlot $slot */
-                $slot = $result->slot;
-                $moments = explode(',', $slot->getMoments());
+            if ($result->choice !== null) {
+                /** @var DateChoice $existingChoice */
+                $existingChoice = $result->choice;
 
                 // Check if moment already exists (maybe not necessary)
-                if (in_array($new_moment, $moments, true)) {
+                if (count(array_intersect($choice->getMoments(), $existingChoice->getMoments())) > 0) {
                     throw new MomentAlreadyExistsException();
                 }
 
-                // Update found slot
-                $moments[] = $new_moment;
-                $this->slotRepository->update($poll_id, (string) $datetime, implode(',', $moments));
+                // Update found choice
+                //$choice->addMoment($new_moment);
+                $this->choiceRepository->update($choice->getPollId(), $choice->getDate(), implode(',', array_merge($existingChoice
+                ->getMoments(), $choice->getMoments())));
             } else {
-                $this->slotRepository->insert($poll_id, (string) $datetime, $new_moment);
+                $this->choiceRepository->insertDateChoice($choice);
             }
 
-            $this->voteRepository->insertDefault($poll_id, $result->insert);
+            $this->voteRepository->insertDefault($choice->getPollId(), $result->insert);
 
             // Commit transaction
             $this->connect->commit();
@@ -251,30 +263,30 @@ class AdminPollService
     }
 
     /**
-     * Add a new slot to a classic poll. And insert default values for user's votes.
+     * Add a new choice to a classic poll. And insert default values for user's votes.
      * <ul>
-     *  <li>Create a new slot if no one exists for the given title</li>
+     *  <li>Create a new choice if no one exists for the given title</li>
      * </ul>
      *
-     * @param $poll_id int The ID of the poll
-     * @param $title int The title
+     * @param Choice $choice
      * @throws MomentAlreadyExistsException When the moment to add already exists in database
      */
-    public function addClassicSlot($poll_id, $title)
+    public function addClassicChoice(Choice $choice)
     {
-        $this->logger->info('ADD_COLUMN: id:' . $poll_id . ', title:' . $title);
+        $this->logger->info('ADD_COLUMN: id:' . $choice->getPollId() . ', title:' . $choice->getName());
 
         try {
-            $slots = $this->slotRepository->listByPollId($poll_id);
+            $choices = $this->choiceRepository->listByPollId($choice->getPollId());
 
-            // Check if slot already exists
+            // Check if choice already exists
             $titles = array_map(
-                function ($slot) {
-                    return $slot->title;
+                function ($choice) {
+                    /** @var $choice Choice */
+                    return $choice->getName();
                 },
-                $slots
+                $choices
             );
-            if (in_array($title, $titles, true)) {
+            if (in_array($choice->getName(), $titles, true)) {
                 // The moment already exists
                 throw new MomentAlreadyExistsException();
             }
@@ -282,10 +294,10 @@ class AdminPollService
             // Begin transaction
             $this->connect->beginTransaction();
 
-            // New slot
-            $this->slotRepository->insert($poll_id, $title, null);
+            // New choice
+            $this->choiceRepository->insertChoice($choice);
             // Set default votes
-            $this->voteRepository->insertDefault($poll_id, count($slots));
+            $this->voteRepository->insertDefault($choice->getPollId(), count($choices));
 
             // Commit transaction
             $this->connect->commit();
@@ -295,42 +307,44 @@ class AdminPollService
     }
 
     /**
-     * This method find where to insert a datatime+moment into a list of slots.<br/>
+     * This method find where to insert a datatime+moment into a list of choices.<br/>
      * Return the {insert:X}, where X is the index of the moment into the whole poll (ex: X=0 => Insert to the first column).
-     * Return {slot:Y}, where Y is not null if there is a slot existing for the given datetime.
+     * Return {choice:Y}, where Y is not null if there is a choice existing for the given datetime.
      *
-     * @param $slots array All the slots of the poll
-     * @param $datetime int The datetime of the new slot
-     * @return \stdClass An object like this one: {insert:X, slot:Y} where Y can be null.
+     * @param Choice[] $choices All the choices of the poll
+     * @param \DateTime $datetime The datetime of the new choice
+     * @return \stdClass An object like this one: {insert:X, choice:Y} where Y can be null.
      */
-    private function findInsertPosition($slots, $datetime)
+    private function findInsertPosition(array $choices, \DateTime $datetime)
     {
         $result = new \stdClass();
-        $result->slot = null;
+        $result->choice = null;
         $result->insert = 0;
 
-        // Sort slots before searching where to insert
-        $this->pollService->sortSlorts($slots);
+        // Sort choices before searching where to insert
+        $this->pollService->sortChoices($choices);
 
         // Search where to insert new column
-        foreach ($slots as $slot) {
-            /** @var DateSlot $slot */
+        foreach ($choices as $choice) {
+            /** @var DateChoice $choice */
 
-            $this->logger->debug('processing slot', [$slot]);
+            $this->logger->debug('processing choice', [$choice]);
 
-            $rowDatetime = $slot->getTitle();
-            $moments = explode(',', $slot->getMoments());
+            $rowDatetime = $choice->getDate();
+            $moments = $choice->getMoments();
 
             $this->logger->debug('found moments', [$moments]);
             $this->logger->debug('comparing datetime and rowdatetime', [$datetime, $rowDatetime]);
 
-            if ($datetime === $rowDatetime) {
-                // Here we have to insert at the end of a slot
+            if ($datetime == $rowDatetime) {
+                // Here we have to insert at the end of a choice
+                $this->logger->info("We chose to insert at the end of choice", [$choice]);
                 $result->insert += count($moments);
-                $result->slot = $slot;
+                $result->choice = $choice;
                 break;
             } elseif ($datetime < $rowDatetime) {
-                // We have to insert before this slot
+                // We have to insert before this choice
+                $this->logger->info("We chose to insert before the choice", [$choice]);
                 break;
             }
             $result->insert += count($moments);

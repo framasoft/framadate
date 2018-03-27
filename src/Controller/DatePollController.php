@@ -4,8 +4,11 @@ namespace Framadate\Controller;
 
 use DateTime;
 use Framadate\Entity\Choice;
+use Framadate\Entity\DateChoice;
+use Framadate\Entity\Moment;
 use Framadate\Form\ArchiveType;
 use Framadate\Entity\Poll;
+use Framadate\Form\PollDateChoicesType;
 use Framadate\Services\MailService;
 use Framadate\Services\PollService;
 use Framadate\Services\PurgeService;
@@ -72,27 +75,38 @@ class DatePollController extends Controller
         // The poll format is DATE
         if ($poll->getFormat() !== 'D') {
             $poll->setFormat('D');
-            $poll->clearChoices();
         }
 
         // Step 2/4 : Select dates of the poll
 
         // Prefill form->choices
-        foreach ($poll->getChoices() as $c) {
-            /** @var Choice $c */
-            $count = 3 - count($c->getSlots());
+        foreach ($poll->getChoices() as $choice) {
+            /** @var DateChoice $choice */
+            $count = 3 - count($choice->getMoments());
             for ($i = 0; $i < $count; $i++) {
-                $c->addSlot('');
+                $choice->addMoment(new Moment(''));
             }
         }
 
         $count = 3 - count($poll->getChoices());
         for ($i = 0; $i < $count; $i++) {
-            $c = new Choice('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $poll->addChoice($c);
+            $choice = new DateChoice();
+            $choice->addMoment(new Moment(''));
+            $choice->addMoment(new Moment(''));
+            $choice->addMoment(new Moment(''));
+            $poll->addChoice($choice);
+        }
+
+        $form = $this->createForm(PollDateChoicesType::class, $poll);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Handle Step2 submission
+
+            $poll->clearEmptyChoices();
+
+            $poll->sortChoices();
+            return $this->redirectToRoute('new_classic_poll_step_3');
         }
 
         // Display step 2
@@ -104,6 +118,7 @@ class DatePollController extends Controller
                 'choices' => $poll->getChoices(),
                 'error' => null,
                 'poll' => $poll,
+                'form' => $form->createView(),
             ]
         );
     }
@@ -192,56 +207,7 @@ class DatePollController extends Controller
 
         // Step 3/4 : Confirm poll creation
 
-        // Handle Step2 submission
-        if (!empty($request->get('days'))) {
-            // Remove empty dates
-            $days = array_filter($request->get('days'), function ($d) {
-                return !empty($d);
-            });
 
-            // Check if there are at most MAX_SLOTS_PER_POLL slots
-            if (count($days) > 366) {
-                // Display step 2
-                return $this->render('create_date_poll_step_2.twig', [
-                    'title', $this->i18n->trans('Step 2 date.Poll dates (2 on 3)'),
-                    'choices', $poll->getChoices(),
-                    'error', $this->i18n->trans('Error.You can\'t select more than %d dates', ['%d' => MAX_SLOTS_PER_POLL]),
-                ]);
-            }
-
-            // Clear previous choices
-            $poll->clearChoices();
-
-            // Reorder moments to deal with suppressed dates
-            $moments = [];
-            $i = 0;
-            while (count($moments) < count($days)) {
-                if (!empty($request->get('horaires' . $i))) {
-                    $moments[] = $request->get('horaires' . $i);
-                }
-                $i++;
-            }
-
-            for ($i = 0; $i < count($days); $i++) {
-                $day = $days[$i];
-
-                if (!empty($day)) {
-                    // Add choice to Form data
-                    $date = DateTime::createFromFormat('Y-m-d', $days[$i])->setTime(0, 0, 0);
-                    $time = $date->getTimestamp();
-                    $choice = new Choice($time);
-                    $poll->addChoice($choice);
-
-                    $schedules = $this->filterArray($moments[$i], FILTER_DEFAULT);
-                    for ($j = 0; $j < count($schedules); $j++) {
-                        if (!empty($schedules[$j])) {
-                            $choice->addSlot(strip_tags($schedules[$j]));
-                        }
-                    }
-                }
-            }
-            $poll->sortChoices();
-        }
 
         // Display step 3
         $choices = $poll->getChoices();

@@ -19,16 +19,17 @@
 namespace Framadate\Services;
 
 use Doctrine\DBAL\DBALException;
+use Framadate\Entity\Choice;
 use Framadate\Entity\Comment;
-use Framadate\Entity\DateSlot;
-use Framadate\Entity\Slot;
+use Framadate\Entity\DateChoice;
+use Framadate\Entity\Moment;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Exception\ConcurrentVoteException;
 use Framadate\Entity\Poll;
 use Framadate\Repository\CommentRepository;
 use Framadate\Repository\PollRepository;
-use Framadate\Repository\SlotRepository;
+use Framadate\Repository\ChoiceRepository;
 use Framadate\Repository\VoteRepository;
 use Framadate\Security\Token;
 use Framadate\Entity\Vote;
@@ -39,7 +40,7 @@ class PollService
     private $logService;
 
     private $pollRepository;
-    private $slotRepository;
+    private $choiceRepository;
     private $voteRepository;
     private $commentRepository;
 
@@ -48,11 +49,11 @@ class PollService
      */
     private $logger;
 
-    public function __construct(LogService $logService, LoggerInterface $logger, PollRepository $pollRepository, SlotRepository $slotRepository, VoteRepository $voteRepository, CommentRepository $commentRepository)
+    public function __construct(LogService $logService, LoggerInterface $logger, PollRepository $pollRepository, ChoiceRepository $choiceRepository, VoteRepository $voteRepository, CommentRepository $commentRepository)
     {
         $this->logService = $logService;
         $this->pollRepository = $pollRepository;
-        $this->slotRepository = $slotRepository;
+        $this->choiceRepository = $choiceRepository;
         $this->voteRepository = $voteRepository;
         $this->commentRepository = $commentRepository;
         $this->logger = $logger;
@@ -115,17 +116,17 @@ class PollService
 
     /**
      * @param Poll $poll
-     * @return array
+     * @return Choice[]
      */
-    public function allSlotsByPoll(Poll $poll)
+    public function allChoicesByPoll(Poll $poll)
     {
         try {
-            $slots = $this->slotRepository->listByPollId($poll->getId(), $poll->getFormat() === 'D');
+            $choices = $this->choiceRepository->listByPollId($poll->getId(), $poll->getFormat() === 'D');
 
-            if ($poll->getFormat() === 'D') {
-                $this->sortSlorts($slots);
+            if ($poll->isDate()) {
+                $this->sortChoices($choices);
             }
-            return $slots;
+            return $choices;
         } catch (DBALException $e) {
             // log exception
             return [];
@@ -137,20 +138,20 @@ class PollService
      * @param $vote_id
      * @param $name
      * @param $choices
-     * @param $slots_hash
+     * @param $choices_hash
+     * @return bool
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
-     * @return bool
      */
-    public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash)
+    public function updateVote($poll_id, $vote_id, $name, $choices, $choices_hash)
     {
         $poll = $this->findById($poll_id);
 
         // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
         $this->checkMaxVotes($choices, $poll, $poll_id);
 
-        // Check if slots are still the same
-        $this->checkThatSlotsDidntChanged($poll, $slots_hash);
+        // Check if choices are still the same
+        $this->checkThatChoicesDidntChanged($poll, $choices_hash);
 
         // Update vote
         $choices = implode($choices);
@@ -161,21 +162,21 @@ class PollService
      * @param $poll_id
      * @param $name
      * @param $choices
-     * @param $slots_hash
+     * @param $choices_hash
      * @return Vote
      * @throws AlreadyExistsException
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
      */
-    public function addVote($poll_id, $name, $choices, $slots_hash)
+    public function addVote($poll_id, $name, $choices, $choices_hash)
     {
         $poll = $this->findById($poll_id);
 
         // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
         $this->checkMaxVotes($choices, $poll, $poll_id);
 
-        // Check if slots are still the same
-        $this->checkThatSlotsDidntChanged($poll, $slots_hash);
+        // Check if choices are still the same
+        $this->checkThatChoicesDidntChanged($poll, $choices_hash);
 
         // Check if vote already exists
         if ($this->voteRepository->existsByPollIdAndName($poll_id, $name)) {
@@ -185,7 +186,11 @@ class PollService
         // Insert new vote
         $choices = implode($choices);
         $token = $this->random(16);
-        return $this->voteRepository->insert($poll_id, $name, $choices, $token);
+        try {
+            return $this->voteRepository->insert($poll_id, $name, $choices, $token);
+        } catch (DBALException $e) {
+            $this->logger->error($e->getMessage());
+        }
     }
 
     /**
@@ -225,10 +230,10 @@ class PollService
             } while ($this->pollRepository->existsByAdminId($poll->getAdminId()));
         }
 
-        // Insert poll + slots
+        // Insert poll + choices
         $this->pollRepository->beginTransaction();
         $this->pollRepository->insertPoll($poll);
-        $this->slotRepository->insertSlots($poll->getId(), $poll->getChoices());
+        $this->choiceRepository->insertchoices($poll->getId(), $poll->getChoices());
         $this->pollRepository->commit();
 
         $this->logger->info('CREATE_POLL' . 'id:' . $poll->getId() . ', title: ' . $poll->getTitle() . ', format:' . $poll->getFormat() . ', admin:' . $poll->getAdminName() . ', mail:' . $poll->getAdminMail());
@@ -270,36 +275,16 @@ class PollService
     }
 
     /**
-     * @param array $slots
-     * @return array
-     */
-    public function splitSlots($slots)
-    {
-        $splitted = [];
-        foreach ($slots as $slot) {
-            /** @var DateSlot $slot */
-            $obj = new \stdClass();
-            $obj->day = $slot->getTitle();
-            $obj->moments = explode(',', $slot->getMoments());
-
-            $splitted[] = $obj;
-        }
-
-        return $splitted;
-    }
-
-    /**
-     * @param $slots array The slots to hash
+     * @param Choice[] $choices The choices to hash
      * @return string The hash
      */
-    public function hashSlots($slots)
+    public function hashChoices(array $choices)
     {
-        return md5(array_reduce($slots, function ($carry, $item) {
-            if ($item instanceof DateSlot) {
-                /** @var DateSlot $item */
-                return $carry . $item->getId() . '@' . $item->getMoments() . ';';
+        return md5(array_reduce($choices, function ($carry, $item) {
+            if ($item instanceof DateChoice) {
+                return $carry . $item->getId() . '@' . implode(',', $item->getMoments()) . ';';
             }
-            /** @var Slot $item */
+            /** @var Choice $item */
             return $carry . $item->getId() . '@;';
         }));
     }
@@ -308,7 +293,7 @@ class PollService
      * @param array $votes
      * @return array
      */
-    public function splitVotes($votes)
+    public function splitVotes(array $votes)
     {
         $splitted = [];
         foreach ($votes as $vote) {
@@ -342,17 +327,21 @@ class PollService
     }
 
     /**
-     * @param array $slots
+     * @param array $choices
      * @return array
      */
-    public function sortSlorts(array &$slots)
+    public function sortChoices(array &$choices)
     {
-        uasort($slots, function (Slot $a, Slot $b) {
-            return $a->getTitle() > $b->getTitle();
+        uasort($choices, function (Choice $a, Choice $b) {
+            return $a->getName() > $b->getName();
         });
-        return $slots;
+        return $choices;
     }
 
+    /**
+     * @param $length
+     * @return string
+     */
     private function random($length)
     {
         return Token::getToken($length);
@@ -362,13 +351,15 @@ class PollService
      * This method checks if the hash send by the user is the same as the computed hash.
      *
      * @param $poll /stdClass The poll
-     * @param $slots_hash string The hash sent by the user
-     * @throws ConcurrentEditionException Thrown when hashes are differents
+     * @param $choices_hash string The hash sent by the user
+     * @throws ConcurrentEditionException Thrown when hashes are different
      */
-    private function checkThatSlotsDidntChanged($poll, $slots_hash)
+    private function checkThatChoicesDidntChanged($poll, $choices_hash)
     {
-        $slots = $this->allSlotsByPoll($poll);
-        if ($slots_hash !== $this->hashSlots($slots)) {
+        $choices = $this->allChoicesByPoll($poll);
+        $hashed_choices = $this->hashChoices($choices);
+        if ($choices_hash !== $hashed_choices) {
+            $this->logger->info("ConcurrentEditionException : the two choices hash don't match", [$choices_hash, $hashed_choices]);
             throw new ConcurrentEditionException();
         }
     }

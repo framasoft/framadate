@@ -23,7 +23,7 @@
 
 <div id="tableContainer" class="tableContainer">
     <form action="{% if admin %}{{ path('vote_poll_admin', {'admin_poll_id': poll.adminId}) }}{% else %}{{ path('vote_poll', {'poll_id': poll.id}) }}{% endif %}" method="POST" id="poll_form">
-        <input type="hidden" name="control" value="{{ slots_hash }}"/>
+        <input type="hidden" name="control" value="{{ choices_hash }}"/>
         <table class="results">
             <caption class="sr-only">{{ __('Poll results', 'Votes of the poll') }} {{ poll.title|raw }}</caption>
             <thead>
@@ -32,13 +32,13 @@
                 <tr class="hidden-print">
                     <th role="presentation"></th>
                     {% set headersDCount=0 %}
-                    {% for slot in slots %}
-                        {% for id, moment in slot.moments %}
+                    {% for choice in poll.choices %}
+                        {% for id, moment in choice.moments %}
                             <td headers="M{{ id }} D{{ headersDCount }} H{{ headersDCount }}">
-                                <a href="{{ path('delete_column', {'admin_poll_id': poll.adminId, 'column': (slot.day ~ '@' ~ moment) | base64_encode}) }}"
+                                <a href="{{ path('delete_column', {'admin_poll_id': poll.adminId, 'column': ((choice.date|date('U')) ~ '@' ~ moment) | base64_encode}) }}"
                                    data-remove-confirmation="{{ __('adminstuds', 'Confirm removal of the column.') }}"
                                    class="btn btn-link btn-sm remove-column"
-                                   title="{{ __('adminstuds', 'Remove the column') }} {{ slot.day|localizeddate('none', 'none', locale, NULL, 'EEEE dd') }}{% if moment %} - {{ moment|raw }}{% endif %}">
+                                   title="{{ __('adminstuds', 'Remove the column') }} {{ choice.date|localizeddate('none', 'none', locale, NULL, 'EEEE dd') }}{% if moment %} - {{ moment|raw }}{% endif %}">
                                     <i class="glyphicon glyphicon-remove text-danger"></i><span
                                         class="sr-only">{{ __('Generic', 'Remove') }}</span>
                                 </a>
@@ -60,14 +60,14 @@
                 <th role="presentation"></th>
                 {% set count_same = 0 %}
                 {% set previous = 0 %}
-                {% for id, slot in slots %}
-                    {% set display = slot.day|localizeddate('none', 'none', locale, NULL, 'MMMM r') %}
+                {% for id, choice in poll.choices %}
+                    {% set display = choice.date|localizeddate('none', 'none', locale, NULL, 'MMMM r') %}
                     {% if previous != 0 and previous != display %}
                         <th colspan="{{ count_same }}" class="bg-primary month" id="M{{ id }}">{{ previous }}</th>
                         {% set count_same = 0 %}
                     {% endif %}
 
-                    {% set count_same = count_same + (slot.moments|length) %}
+                    {% set count_same = count_same + (choice.moments|length) %}
 
                     {% if loop.last %}
                         <th colspan="{{ count_same }}" class="bg-primary month" id="M{{ id }}">{{ display }}</th>
@@ -76,7 +76,7 @@
                     {% set previous = display %}
 
 
-                    {% for foo in 0..(slot.moments|length)-1 %}
+                    {% for foo in 0..(choice.moments|length)-1 %}
                         {% set headersM = headersM | merge([id]) %}
                     {% endfor %}
                 {% endfor %}
@@ -85,10 +85,10 @@
             <tr>
                 {# Header line to show date days #}
                 <th role="presentation"></th>
-                {% for id, slot in slots %}
-                    <th colspan="{{ slot.moments | length }}" class="bg-primary day"
-                        id="D{{ id }}">{{ slot.day|localizeddate('none', 'none', locale, NULL, 'EEEE dd') }}</th>
-                    {% for foo in 0..(slot.moments| length )-1 %}
+                {% for id, choice in poll.choices %}
+                    <th colspan="{{ choice.moments | length }}" class="bg-primary day"
+                        id="D{{ id }}">{{ choice.date|localizeddate('none', 'none', locale, NULL, 'EEEE dd') }}</th>
+                    {% for foo in 0..(choice.moments| length )-1 %}
                         {% set headersD = headersD | merge([id]) %}
                     {% endfor %}
                 {% endfor %}
@@ -98,13 +98,13 @@
                 {# Header line to show date moments #}
                 <th role="presentation"></th>
                 {% set headersDCount = 0 %}
-                {% set slots_raw = [] %}
-                {% for slot in slots %}
-                    {% for id, moment in slot.moments %}
+                {% set choices_raw = [] %}
+                {% for choice in poll.choices %}
+                    {% for id, moment in choice.moments %}
                         <th colspan="1" class="bg-info" id="H{{ headersDCount }}">{{ moment|raw }}</th>
                         {% set headersH = headersH | merge([headersDCount]) %}
                         {% set headersDCount = headersDCount+1 %}
-                        {% set slots_raw = slots_raw | merge([slot.day]) %}
+                        {% set choices_raw = choices_raw | merge([choice.date]) %}
                     {% endfor %}
                 {% endfor %}
                 <th></th>
@@ -211,9 +211,9 @@
                     }
                 });
                 var cols = [
-                    {% for slot in slots %}
-                    {% for moment in slot.moments %}
-                    $('<div/>').html('{{ slot.day | localizeddate('long', 'none', locale) }}{% if moment %} - {{ moment|raw }}{% endif %}').text(),
+                    {% for choice in poll.choices %}
+                    {% for moment in choice.moments %}
+                    $('<div/>').html('{{ choice.date | localizeddate('long', 'none', locale) }}{% if moment %} - {{ moment|raw }}{% endif %}').text(),
                     {% endfor %}
                     {% endfor %}
                 ];

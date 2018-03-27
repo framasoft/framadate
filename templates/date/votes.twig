@@ -17,8 +17,8 @@
 
 
             {% set k=0 %}
-            {% for slot in slots %}
-                {% for moment in slot.moments %}
+            {% for choice in poll.choices %}
+                {% for moment in choice.moments %}
                     {% set choice = vote.choices[k] %}
 
 
@@ -28,7 +28,7 @@
                                 <input type="radio" id="y-choice-{{ k }}" name="choices[{{ k }}]" value="2"
                                        {% if choice == '2' %}checked {% endif %}/>
                                 <label class="btn btn-default btn-xs" for="y-choice-{{ k }}"
-                                       title="{{ __('Poll results', 'Vote yes for')|raw }} {{ slots_raw[k] }}">
+                                       title="{{ __('Poll results', 'Vote yes for')|raw }} {{ choices_raw[k] | localizeddate('none', 'none', locale, NULL, 'MMMM r')}}">
                                     <i class="glyphicon glyphicon-ok"></i><span
                                             class="sr-only">{{ __('Generic', 'Yes') }}</span>
                                 </label>
@@ -37,7 +37,7 @@
                                 <input type="radio" id="i-choice-{{ k }}" name="choices[{{ k }}]" value="1"
                                        {% if choice == '1' %}checked {% endif %}/>
                                 <label class="btn btn-default btn-xs" for="i-choice-{{ k }}"
-                                       title="{{ __('Poll results', 'Vote ifneedbe for')|raw }} {{ slots_raw[k] }}">
+                                       title="{{ __('Poll results', 'Vote ifneedbe for')|raw }} {{ choices_raw[k] | localizeddate('none', 'none', locale, NULL, 'MMMM r') }}">
                                     (<i class="glyphicon glyphicon-ok"></i>)<span
                                             class="sr-only">{{ __('Generic', 'Ifneedbe') }}</span>
                                 </label>
@@ -46,7 +46,7 @@
                                 <input type="radio" id="n-choice-{{ k }}" name="choices[{{ k }}]" value="0"
                                        {% if choice == '0' %}checked {% endif %}/>
                                 <label class="btn btn-default btn-xs" for="n-choice-{{ k }}"
-                                       title="{{ __('Poll results', 'Vote no for')|raw }} {{ slots_raw[k] }}">
+                                       title="{{ __('Poll results', 'Vote no for')|raw }} {{ choices_raw[k] | localizeddate('none', 'none', locale, NULL, 'MMMM r')}}">
                                     <i class="glyphicon glyphicon-ban-circle"></i><span
                                             class="sr-only">{{ __('Generic', 'No') }}</span>
                                 </label>
@@ -74,7 +74,7 @@
             {# Voted line #}
 
             <th class="bg-info">{{ vote.name | raw }}
-                {% if slots | length > 4 %}
+                {% if poll.choices | length > 4 %}
                     <span class="edit-username-left">
                         <a href="{{ path('edit_vote_poll', {'poll_id': poll.id, 'vote_uniq_id': vote.uniqId}) }}" class="btn btn-default btn-sm" title="{{ __('Poll results', 'Edit the line: %s', {'%s': vote.name})|raw }}">
                             <i class="glyphicon glyphicon-pencil"></i>
@@ -85,8 +85,8 @@
             </th>
 
             {% set k=0 %}
-            {% for slot in slots %}
-                {% for moment in slot.moments %}
+            {% for choice in poll.choices %}
+                {% for moment in choice.moments %}
                     {% set choice = vote.choices[k] %}
 
                     {% if choice == '2' %}
@@ -115,9 +115,9 @@
 
             {% if active and not expired and accessGranted and
                 (
-                poll.editable == constant('Framadate\\Editable::EDITABLE_BY_ALL')
+                poll.editable == constant('Framadate\\Entity\\Editable::EDITABLE_BY_ALL')
                 or admin
-                or (poll.editable == constant('Framadate\\Editable::EDITABLE_BY_OWN') and editedVoteUniqueId == vote.uniqId)
+                or (poll.editable == constant('Framadate\\Entity\\Editable::EDITABLE_BY_OWN') and editedVoteUniqueId is same as(vote.uniqId))
                 ) %}
                 <td class="hidden-print">
                     <a href="{{ path('edit_vote_poll', {'poll_id': poll.id, 'vote_uniq_id': vote.uniqId}) }}"

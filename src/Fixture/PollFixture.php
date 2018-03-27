@@ -2,7 +2,8 @@
 
 namespace Framadate\Fixture;
 
-use Framadate\Entity\DateSlot;
+use Framadate\Entity\DateChoice;
+use Framadate\Entity\Moment;
 use Framadate\Entity\Poll;
 use Framadate\Services\PollService;
 
@@ -38,11 +39,11 @@ class PollFixture implements FixtureInterface
             ->setDescription('MyDescription')
             ->setEndDate((new \DateTime())->modify('+3 month'))
             ;
-        $slot1 = new DateSlot();
-        $slot1->setTitle(new \DateTime("2018/06/30"))
-            ->setMoments('afternoon');
+        $choice1 = new DateChoice();
+        $choice1->setDate(new \DateTime("2018/06/30"))
+            ->setMoments([new Moment('afternoon'), new Moment('evening')]);
 
-        $poll1->setChoices($slot1);
+        $poll1->setChoices($choice1);
 
         $this->pollService->createPoll($poll1);
     }

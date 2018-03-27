@@ -9,3 +9,65 @@ col-sm-4
 {% block form_group_class -%}
 col-sm-8
 {%- endblock form_group_class %}
+
+{% block _poll_date_choices_choices_entry_row %}
+    <fieldset>
+        <div class="form-group">
+            <legend>
+                <label class="sr-only" for="day{{ (name | number_format) }}">{{__('Generic', 'Day')}} {{(name | number_format)+1}}</label>
+
+                <div class="col-xs-10 col-sm-11">
+                    <div class="input-group date">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
+                        {{ form_widget(form.date) }}
+                        {#<input type="date" class="form-control" id="day{{ (name | number_format) }}" title="{{__('Generic', 'Day')}} {{ (name | number_format)+1 }}"
+                               data-date-format="{{__('Date', 'dd/mm/yyyy')}}" aria-describedby="dateformat{{ (name | number_format) }}" name="days[]"
+                               size="10" maxlength="10" placeholder="{{__('Date', 'dd/mm/yyyy')}}" autocomplete="nope"/>#}
+                    </div>
+                </div>
+                <div class="col-xs-2 col-sm-1">
+                    <button type="button" title="{{__('Step 2 date', 'Remove this day')}}" class="remove-day btn btn-sm btn-link">
+                        <span class="glyphicon glyphicon-remove text-danger"></span>
+                        <span class="sr-only">{{__('Step 2 date', 'Remove this day')}}</span>
+                    </button>
+                </div>
+
+                <span id="dateformat{{ (name | number_format) }}" class="sr-only">({{ __('Date', 'dd/mm/yyyy') }})</span>
+            </legend>
+
+            {{ form_widget(form.moments) }}
+
+            <div class="col-sm-2">
+                <div class="btn-group btn-group-xs" style="margin-top: 5px;">
+                    <button type="button" title="{{__('Step 2 date', 'Remove an hour')}}" class="remove-an-hour btn btn-default">
+                        <span class="glyphicon glyphicon-minus text-info"></span>
+                        <span class="sr-only">{{__('Step 2 date', 'Remove an hour')}}</span>
+                    </button>
+                    <button type="button" title="{{__('Step 2 date', 'Add an hour')}}" class="add-an-hour btn btn-default">
+                        <span class="glyphicon glyphicon-plus text-success"></span>
+                        <span class="sr-only">{{__('Step 2 date', 'Add an hour')}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+{% endblock %}
+{% block _poll_date_choices_choices_entry_moments_entry_row %}
+    {{ form_widget(form) }}
+{% endblock _poll_date_choices_choices_entry_moments_entry_row %}
+
+{% block _poll_date_choices_choices_entry_moments_entry_widget %}
+    <div class="col-sm-2">
+        <label for="poll_date_choices_choices_{{ (form.parent.parent.vars.name | number_format) }}_moments_{{ (name | number_format) }}" class="sr-only control-label">{{__('Generic', 'Time')}} {{ (name | number_format)+1 }}</label>
+        {{ form_widget(form) }}
+        {#<input type="text" class="" title="{{__('Generic', 'Day') }} {{ (form.parent.parent.vars.name | number_format) + 1 }} - {{__('Generic', 'Time') }} {{ (name | number_format) + 1 }}"
+               placeholder="{{__('Generic', 'Time') }} {{ (name | number_format)+1 }}" id="d{{ (form.parent.parent.vars.name | number_format) }}-h{{ (name | number_format) }}" />#}
+    </div>
+{% endblock _poll_date_choices_choices_entry_moments_entry_widget %}
+
+{% block _new_date_column_moments_entry_title_entry_widget %}
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+        {{ form_widget(form) }}
+    </div>
+{% endblock _new_date_column_moments_entry_title_entry_widget %}

@@ -2,7 +2,7 @@
 
 namespace Framadate\Form;
 
-use Framadate\Entity\Slot;
+use Framadate\Entity\Choice;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,7 +18,7 @@ class NewColumnType extends AbstractType
             /**
              * Required attributes
              */
-            ->add('title', TextType::class, [
+            ->add('name', TextType::class, [
                 'constraints' => [
                     new Assert\NotBlank()
                 ]
@@ -33,7 +33,7 @@ class NewColumnType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-                                   'data_class' => Slot::class,
+                                   'data_class' => Choice::class,
                                ]);
     }
 }
