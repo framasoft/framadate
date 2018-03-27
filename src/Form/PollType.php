@@ -2,8 +2,7 @@
 
 namespace Framadate\Form;
 
-use Framadate\Constraint\UniquePollConstraint;
-use Framadate\Editable;
+use Framadate\Entity\Editable;
 use Framadate\Entity\Poll;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;

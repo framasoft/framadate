@@ -13,6 +13,7 @@ parameters:
     env(APP_EMAIL_REPLY_TO_NAME): '%env(APP_EMAIL_FROM_NAME)%'
     env(APP_EMAIL_REPLY_TO_EMAIL): '%env(APP_EMAIL_FROM_EMAIL)%'
     app_default_poll_duration: '%env(int:APP_DEFAULT_POLL_DURATION)%'
+    app_max_choices: 366
 
 services:
     # default configuration for services in *this* file
@@ -52,3 +53,11 @@ services:
     Framadate\Form\ArchiveType:
         arguments:
             - '%app_default_poll_duration%'
+
+    Framadate\Form\PollChoicesType:
+        arguments:
+            - '%app_max_choices%'
+
+    Framadate\Form\PollDateChoicesType:
+        arguments:
+            - '%app_max_choices%'

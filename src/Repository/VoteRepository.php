@@ -23,8 +23,9 @@ class VoteRepository extends AbstractRepository
      * @param $poll_id
      * @param $insert_position
      * @return bool
+     * @throws \Doctrine\DBAL\DBALException
      */
-    public function insertDefault($poll_id, $insert_position)
+    public function insertDefault(string $poll_id, $insert_position)
     {
         $prepared = $this->prepare('UPDATE `' . Utils::table('vote') . '` SET choices = CONCAT(SUBSTRING(choices, 1, ?), " ", SUBSTRING(choices, ?)) WHERE poll_id = ?'); //#51 : default value for unselected vote
 
@@ -37,6 +38,7 @@ class VoteRepository extends AbstractRepository
      * @param $choices
      * @param $token
      * @return Vote
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function insert($poll_id, $name, $choices, $token)
     {

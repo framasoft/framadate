@@ -18,34 +18,36 @@
  */
 namespace Framadate\Entity;
 
+use App\Entity\ChoiceInterface;
+
 class Choice
 {
     const CHOICE_REGEX = '/^[ 012]$/';
     const MD5_REGEX = '/^[A-Fa-f0-9]{32}$/';
 
     /**
+     * @var string
+     */
+    protected $id;
+
+    /**
      * Name of the Choice
+     * @var string
      */
     private $name;
 
     /**
-     * All available slots for this Choice.
+     * @var string
      */
-    private $slots;
+    protected $poll_id;
 
     /**
      * Choice constructor.
      * @param string $name
      */
-    public function __construct($name = '')
+    public function __construct(string $name = '')
     {
         $this->name = $name;
-        $this->slots = [];
-    }
-
-    public function addSlot($slot)
-    {
-        $this->slots[] = $slot;
     }
 
     public function getName()
@@ -53,13 +55,59 @@ class Choice
         return $this->name;
     }
 
-    public function getSlots()
+    /**
+     * @param mixed $name
+     * @return Choice
+     */
+    public function setName(string $name): Choice
     {
-        return $this->slots;
+        $this->name = $name;
+        return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     * @return Choice
+     */
+    public function setId(string $id): Choice
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPollId(): ?string
+    {
+        return $this->poll_id;
+    }
+
+    /**
+     * @param string $poll_id
+     * @return Choice
+     */
+    public function setPollId(string $poll_id): Choice
+    {
+        $this->poll_id = $poll_id;
+        return $this;
+    }
+
+    /**
+     * @param Choice $a
+     * @param Choice $b
+     * @return bool
+     */
     public static function compare(Choice $a, Choice $b)
     {
-        return strcmp($a->name, $b->name);
+        return $a->getName() < $b->getName();
     }
 }

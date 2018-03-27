@@ -125,19 +125,18 @@ class PollController extends Controller
 
         // Retrieve data
         if ($resultPubliclyVisible || $accessGranted) {
-            $slots = $this->poll_service->allSlotsByPoll($poll);
+            $choices = $this->poll_service->allChoicesByPoll($poll);
+            $poll->setChoices($choices);
             $votes = $this->poll_service->allVotesByPollId($poll_id);
             $comments = $this->poll_service->allCommentsByPollId($poll_id);
         }
 
         return $this->render('studs.twig', [
-            'poll_id' => $poll_id,
             'poll' => $poll,
             'title' => $this->i18n->trans('Generic.Poll') . ' - ' . $poll->getTitle(),
             'expired' => $poll->getEndDate() < date('now'),
             'deletion_date' => $poll->getEndDate()->modify('+'. 60 .' day'),
-            'slots' => $poll->getFormat() === 'D' ? $this->poll_service->splitSlots($slots) : $slots,
-            'slots_hash' =>  $this->poll_service->hashSlots($slots),
+            'choices_hash' =>  $this->poll_service->hashChoices($poll->getChoices()),
             'votes' => $this->poll_service->splitVotes($votes),
             'best_choices' => $this->poll_service->computeBestChoices($votes),
             'comments' => $comments,
@@ -268,16 +267,16 @@ class PollController extends Controller
 
     private function exportCSVPollAction(Poll $poll)
     {
-        $slots = $this->poll_service->allSlotsByPoll($poll);
+        $choices = $this->poll_service->allChoicesByPoll($poll);
         $votes = $this->poll_service->allVotesByPollId($poll->getId());
 
         // CSV header
         if ($poll->getFormat() === 'D') {
             $titles_line = ',';
             $moments_line = ',';
-            foreach ($slots as $slot) {
-                $title = Utils::csvEscape(strftime($this->i18n->trans('Date.DATE'), $slot['title']));
-                $moments = explode(',', $slot['moments']);
+            foreach ($choices as $choice) {
+                $title = Utils::csvEscape(strftime($this->i18n->trans('Date.DATE'), $choice['title']));
+                $moments = explode(',', $choice['moments']);
 
                 $titles_line .= str_repeat($title . ',', count($moments));
                 $moments_line .= implode(',', array_map('\Framadate\Utils::csvEscape', $moments)) . ',';
@@ -286,8 +285,8 @@ class PollController extends Controller
             echo $moments_line . "\r\n";
         } else {
             echo ',';
-            foreach ($slots as $slot) {
-                echo Utils::markdown($slot['title'], true) . ',';
+            foreach ($choices as $choice) {
+                echo Utils::markdown($choice['title'], true) . ',';
             }
             echo "\r\n";
         }

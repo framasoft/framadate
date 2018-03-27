@@ -5,12 +5,13 @@ namespace Framadate\Controller;
 use DateTime;
 use Doctrine\DBAL\DBALException;
 use Framadate\Editable;
-use Framadate\Entity\DateSlot;
-use Framadate\Entity\Slot;
+use Framadate\Entity\Choice;
+use Framadate\Entity\DateChoice;
+use Framadate\Entity\Moment;
+use Framadate\Entity\Poll;
 use Framadate\Exception\MomentAlreadyExistsException;
 use Framadate\Form\NewColumnType;
 use Framadate\Form\NewDateColumnType;
-use Framadate\I18nWrapper;
 use Framadate\Security\PasswordHasher;
 use Framadate\Services\AdminPollService;
 use Framadate\Services\InputService;
@@ -90,7 +91,6 @@ class AdminPollController extends Controller
      *
      * @param string $admin_poll_id
      * @return string
-     * @throws \Doctrine\DBAL\DBALException
      */
     public function showAdminPollAction($admin_poll_id)
     {
@@ -106,7 +106,8 @@ class AdminPollController extends Controller
         }
 
         // Retrieve data
-        $slots = $this->poll_service->allSlotsByPoll($poll);
+        $choices = $this->poll_service->allChoicesByPoll($poll);
+        $poll->setChoices($choices);
         $votes = $this->poll_service->allVotesByPollId($poll->getId());
         $comments = $this->poll_service->allCommentsByPollId($poll->getId());
 
@@ -117,8 +118,7 @@ class AdminPollController extends Controller
             'title' => $this->i18n->trans('Generic.Poll') . ' - ' . $poll->getTitle(),
             'expired' => $poll->getEndDate() < date('now'),
             'deletion_date' => $poll->getEndDate()->modify('+1 day'),
-            'slots' => $poll->getFormat() === 'D' ? $this->poll_service->splitSlots($slots) : $slots,
-            'slots_hash' => $this->poll_service->hashSlots($slots),
+            'choices_hash' => $this->poll_service->hashChoices($poll->getChoices()),
             'votes' => $this->poll_service->splitVotes($votes),
             'best_choices' => $this->poll_service->computeBestChoices($votes),
             'comments' => $comments,
@@ -139,7 +139,6 @@ class AdminPollController extends Controller
      * @param Request $request
      * @param $admin_poll_id
      * @return RedirectResponse|null
-     * @throws \Doctrine\DBAL\DBALException
      */
     public function editPollAction(Request $request, $admin_poll_id)
     {
@@ -278,7 +277,6 @@ class AdminPollController extends Controller
      * @param Request $request
      * @param $admin_poll_id
      * @return null|\Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\DBAL\DBALException
      */
     public function addColumnAction(Request $request, $admin_poll_id)
     {
@@ -287,26 +285,31 @@ class AdminPollController extends Controller
             return null;
         }
 
+        /** @var Poll $poll */
         $poll = $this->poll_service->findByAdminId($admin_poll_id);
 
-        if (!$poll->getFormat() === 'D') {
-            $slot = new Slot();
-            $form = $this->createForm(NewColumnType::class, $slot);
+        if ($poll->getFormat() !== 'D') {
+            $choice = new Choice();
+            $form = $this->createForm(NewColumnType::class, $choice);
         } else {
-            $slot = new DateSlot();
-            $form = $this->createForm(NewDateColumnType::class, $slot);
+            $choice = new DateChoice();
+            $choice->addMoment(new Moment(''));
+            $choice->addMoment(new Moment(''));
+            $choice->addMoment(new Moment(''));
+            $form = $this->createForm(NewDateColumnType::class, $choice);
         }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $choice->setPollId($poll->getId());
+            $this->logger->info("Submitting choice", [$choice]);
+            $choice->clearEmptyMoments();
             try {
-                if ($poll->getFormat() === 'D') {
-                    $time = $slot->getTitle();
-                    $newmoment = str_replace(',', '-', strip_tags($slot->getMoments()));
-                    $this->admin_poll_service->addDateSlot($poll->getId(), $time, $newmoment);
+                if ($poll->isDate()) {
+                    $this->logger->info("Creating choice", [$choice]);
+                    $this->admin_poll_service->addDateChoice($choice);
                 } else {
-                    $newslot = str_replace(',', '-', strip_tags($slot->getTitle()));
-                    $this->admin_poll_service->addClassicSlot($poll->getId(), $newslot);
+                    $this->admin_poll_service->addClassicChoice($choice);
                 }
 
                 $this->session->getFlashBag()->add('success', $this->i18n->trans('adminstuds.Choice added'));
@@ -346,13 +349,15 @@ class AdminPollController extends Controller
         if ($poll->getFormat() === 'D') {
             $ex = explode('@', $column);
 
-            $slot = new DateSlot();
-            $slot->setTitle($ex[0]);
-            $slot->setMoments($ex[1]);
+            $choice = new DateChoice();
+            $choice->setDate((new DateTime())->setTimestamp($ex[0]));
+            $choice->setMoments([new Moment($ex[1])]);
 
-            $result = $this->admin_poll_service->deleteDateSlot($poll, $slot);
+            $result = $this->admin_poll_service->deleteDateChoice($poll, $choice);
         } else {
-            $result = $this->admin_poll_service->deleteClassicSlot($poll, $column);
+            $choice = new Choice();
+            $choice->setName($column);
+            $result = $this->admin_poll_service->deleteClassicChoice($poll, $choice);
         }
 
         if ($result) {

@@ -6,11 +6,11 @@
         {{ __('studs','Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:') }}
         <div class="input-group input-group-sm">
         <span class="input-group-btn">
-            <a title="{{ message.linkTitle | escape }}" class="btn btn-default btn-sm" href="{{ path('edit_vote_poll', {'poll_id': poll.id, 'vote_uniq_id': editedVoteUniqueId}) }}">
+            <a class="btn btn-default btn-sm" href="{{ path('edit_vote_poll', {'poll_id': poll.id, 'vote_uniq_id': editedVoteUniqueId}) }}">
                 <i class="glyphicon glyphicon-pencil"></i>
             </a>
         </span>
-            <input type="text" aria-hidden="true" value="{{ path('edit_vote_poll', {'poll_id': poll.id, 'vote_uniq_id': editedVoteUniqueId}) }}" class="form-control" readonly="readonly" />
+            <input type="text" aria-hidden="true" value="{{ url('edit_vote_poll', {'poll_id': poll.id, 'vote_uniq_id': editedVoteUniqueId}) }}" class="form-control" readonly="readonly" />
         </div>
     </div>
 {% endif %}
@@ -251,7 +251,7 @@
                     <div id="poll-rules-form">
                         {% if poll.active %}
                             {% if poll.editable %}
-                                {% if poll.editable == constant("Framadate\\Editable::EDITABLE_BY_ALL") %}
+                                {% if poll.editable == constant("Framadate\\Entity\\Editable::EDITABLE_BY_ALL") %}
                                     {% set rule_id = 2 %}
                                     {% set rule_txt = __('Step 1', 'All voters can modify any vote') %}
                                 {% else %}

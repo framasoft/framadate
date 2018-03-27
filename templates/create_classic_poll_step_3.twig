@@ -19,10 +19,10 @@
                         {% for choice in choices %}
                             <li>
                                 {% if poll_type == 'date' %}
-                                    {{ choice.name | localizeddate('none', 'none', locale, NULL, 'EEEE dd MMMM y') }}{% if choice.slots | length > 0 %}:{% endif %}
-                                    {% for slot in choice.slots %}
+                                    {{ choice.name | localizeddate('none', 'none', locale, NULL, 'EEEE dd MMMM y') }}{% if choice.moments | length > 0 %}:{% endif %}
+                                    {% for moment in choice.moments %}
                                         {% spaceless %}
-                                            {{ slot }}{% if not loop.last %},{% endif %}
+                                            {{ moment }}{% if not loop.last %},{% endif %}
                                         {% endspaceless %}
                                     {% endfor %}
                                 {% else %}
@@ -48,9 +48,11 @@
                         <span id="dateformat" class="sr-only">{{__('Date', 'dd/mm/yyyy')}}</span>
                     </div>
                 </div>
-                <div class="alert alert-danger">
-                    {{ form_errors(form.end_date) }}
-                </div>
+                {% if not form.end_date.vars.valid %}
+                    <div class="alert alert-danger">
+                        {{ form_errors(form.end_date) }}
+                    </div>
+                {% endif %}
                 <div class="alert alert-warning">
                     <p>{{__('Step 3', 'Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll.')}}</p>
                     {% if use_smtp %}

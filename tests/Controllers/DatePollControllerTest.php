@@ -45,20 +45,41 @@ class DatePollControllerTest extends FramaWebTestCase
 
         $this->assertContains('Step 2.Title', $crawler->filter('body')->extract(['_text'])[0]);
 
-        $form = $crawler->filter('button[name=choixheures]')->form();
+        $form = $crawler->filter('#poll_date_choices_submit')->form();
 
         $data = [
-            'days' => ['2019-02-17', '2019-02-18'],
-            'horaires0' => ['12h', '13h'],
+            'poll_date_choices' => [
+                'choices' => [
+                    [
+                        'date' => '2019-02-17',
+                        'moments' => [
+                            [
+                                'title' => '12h',
+                                'title' => '13h'
+                            ],
+                        ]
+                    ],
+                    [
+                        'date' => '2019-02-18'
+                    ],
+                    [
+                        'date' => '2019-01-18'
+                    ],
+                ],
+            ],
         ];
 
-        $crawler = $this->client->submit($form, $data);
+        $this->client->submit($form, $data);
+
+        $this->assertSame(302, $this->client->getResponse()->getStatusCode());
+
+        $crawler = $this->client->followRedirect();
 
         $this->assertSame(200, $this->client->getResponse()->getStatusCode());
 
         $this->assertContains('Step 3.List of your choices', $crawler->filter('body')->extract(['_text'])[0]);
 
-        $form = $crawler->filter('button[id=archive_submit]')->form();
+        $form = $crawler->filter('button#archive_submit')->form();
 
         $data = [
             'archive[end_date]' => (new \DateTime('now'))->modify('+3 month')->format('Y-m-d'),
@@ -120,14 +141,35 @@ class DatePollControllerTest extends FramaWebTestCase
 
         $this->assertContains('Step 2.Title', $crawler->filter('body')->extract(['_text'])[0]);
 
-        $form = $crawler->filter('button[name=choixheures]')->form();
+        $form = $crawler->filter('#poll_date_choices_submit')->form();
 
         $data = [
-            'days' => ['2019-02-17', '2019-02-18'],
-            'horaires0' => ['12h', '13h'],
+            'poll_date_choices' => [
+                'choices' => [
+                    [
+                        'date' => '2019-02-17',
+                        'moments' => [
+                            [
+                                'title' => '12h',
+                                'title' => '13h'
+                            ],
+                        ]
+                    ],
+                    [
+                        'date' => '2019-02-18'
+                    ],
+                    [
+                        'date' => '2019-01-18'
+                    ],
+                ],
+            ],
         ];
 
-        $crawler = $this->client->submit($form, $data);
+        $this->client->submit($form, $data);
+
+        $this->assertSame(302, $this->client->getResponse()->getStatusCode());
+
+        $crawler = $this->client->followRedirect();
 
         $this->assertSame(200, $this->client->getResponse()->getStatusCode());
 

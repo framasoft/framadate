@@ -17,7 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-namespace Framadate;
+namespace Framadate\Entity;
 
 use Fresh\DoctrineEnumBundle\DBAL\Types\AbstractEnumType;
 

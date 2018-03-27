@@ -1,10 +1,12 @@
 <?php
 namespace Framadate\Services;
 
+use Doctrine\DBAL\DBALException;
+use Framadate\Repository\ChoiceRepository;
 use Framadate\Repository\CommentRepository;
 use Framadate\Repository\PollRepository;
-use Framadate\Repository\SlotRepository;
 use Framadate\Repository\VoteRepository;
+use Psr\Log\LoggerInterface;
 
 /**
  * This service helps to purge data.
@@ -13,17 +15,21 @@ use Framadate\Repository\VoteRepository;
  */
 class PurgeService
 {
-    private $logService;
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
     private $pollRepository;
-    private $slotRepository;
+    private $choiceRepository;
     private $voteRepository;
     private $commentRepository;
 
-    public function __construct(LogService $logService, PollRepository $pollRepository, SlotRepository $slotRepository, VoteRepository $voteRepository, CommentRepository $commentRepository)
+    public function __construct(LoggerInterface $logger, PollRepository $pollRepository, ChoiceRepository $choiceRepository, VoteRepository $voteRepository, CommentRepository $commentRepository)
     {
-        $this->logService = $logService;
+        $this->logger = $logger;
         $this->pollRepository = $pollRepository;
-        $this->slotRepository = $slotRepository;
+        $this->choiceRepository = $choiceRepository;
         $this->voteRepository = $voteRepository;
         $this->commentRepository = $commentRepository;
     }
@@ -33,6 +39,7 @@ class PurgeService
      *
      * @param $purge_delay
      * @return bool true is action succeeded
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function purgeOldPolls($purge_delay)
     {
@@ -64,16 +71,21 @@ class PurgeService
     {
         $done = true;
 
-        $this->pollRepository->beginTransaction();
-        $done &= $this->commentRepository->deleteByPollId($poll_id);
-        $done &= $this->voteRepository->deleteByPollId($poll_id);
-        $done &= $this->slotRepository->deleteByPollId($poll_id);
-        $done &= $this->pollRepository->deleteById($poll_id);
+        try {
+            $this->pollRepository->beginTransaction();
+            $done &= $this->commentRepository->deleteByPollId($poll_id);
+            $done &= $this->voteRepository->deleteByPollId($poll_id);
+            $done &= $this->choiceRepository->deleteByPollId($poll_id);
+            $done &= $this->pollRepository->deleteById($poll_id);
 
-        if ($done) {
-            $this->pollRepository->commit();
-        } else {
-            $this->pollRepository->rollback();
+            if ($done) {
+                $this->pollRepository->commit();
+            } else {
+                $this->pollRepository->rollback();
+            }
+        } catch (DBALException $e) {
+            $this->logger->error($e->getMessage());
+            return false;
         }
 
         return $done;

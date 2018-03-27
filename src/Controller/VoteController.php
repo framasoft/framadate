@@ -2,14 +2,12 @@
 
 namespace Framadate\Controller;
 
-use Doctrine\DBAL\DBALException;
-use Framadate\Editable;
+use Framadate\Entity\Editable;
 use Framadate\Entity\Choice;
 use Framadate\Entity\Poll;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Exception\ConcurrentVoteException;
-use Framadate\Message;
 use Framadate\Security\Token;
 use Framadate\Services\InputService;
 use Framadate\Services\NotificationService;
@@ -21,7 +19,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Twig_Environment;
@@ -125,7 +122,6 @@ class VoteController extends Controller
      * @param Request $request
      * @param $admin_poll_id
      * @return RedirectResponse
-     * @throws DBALException
      */
     public function votePollAdminAction(Request $request, $admin_poll_id)
     {
@@ -138,12 +134,18 @@ class VoteController extends Controller
         return $this->doVoteAction($request, $poll, true);
     }
 
+    /**
+     * @param Request $request
+     * @param Poll $poll
+     * @param bool $redirect_to_admin
+     * @return RedirectResponse
+     */
     public function doVoteAction(Request $request, Poll $poll, bool $redirect_to_admin = false): RedirectResponse
     {
         $message = null;
         $name = $this->input_service->filterName($request->get('name', null));
         $choices = $this->input_service->filterArray($request->get('choices', []), FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => Choice::CHOICE_REGEX]]);
-        $slots_hash = $this->input_service->filterMD5($request->get('control', null));
+        $choices_hash = $this->input_service->filterMD5($request->get('control', null));
 
         if ($name === null) {
             $this->session->getFlashBag()->add('danger', $this->i18n->trans('Error.The name is invalid.'));
@@ -158,7 +160,7 @@ class VoteController extends Controller
             if ($editedVoteId) {
                 $this->logger->debug("Editing vote " . $editedVoteId . " from poll " . $poll->getId());
                 try {
-                    $result = $this->poll_service->updateVote($poll->getId(), $editedVoteId, $name, $choices, $slots_hash);
+                    $result = $this->poll_service->updateVote($poll->getId(), $editedVoteId, $name, $choices, $choices_hash);
                     if ($result) {
                         $this->handleAddingOrUpdatingVoteResult($poll, $request->get('edited_vote', null), true);
                     } else {
@@ -174,7 +176,7 @@ class VoteController extends Controller
                 // Add vote
                 try {
                     $this->logger->debug("Adding new vote for poll " . $poll->getId());
-                    $result = $this->poll_service->addVote($poll->getId(), $name, $choices, $slots_hash);
+                    $result = $this->poll_service->addVote($poll->getId(), $name, $choices, $choices_hash);
                     if ($result) {
                         $this->handleAddingOrUpdatingVoteResult($poll, $result->getUniqId(), false);
                     } else {
@@ -243,7 +245,8 @@ class VoteController extends Controller
 
             // Retrieve data
             if ($resultPubliclyVisible || $accessGranted) {
-                $slots = $this->poll_service->allSlotsByPoll($poll);
+                $choices = $this->poll_service->allChoicesByPoll($poll);
+                $poll->setChoices($choices);
                 $votes = $this->poll_service->allVotesByPollId($poll_id);
                 $comments = $this->poll_service->allCommentsByPollId($poll_id);
             }
@@ -254,8 +257,7 @@ class VoteController extends Controller
                 'title' => $this->i18n->trans('Generic.Poll') . ' - ' . $poll->getTitle(),
                 'expired' => $poll->getEndDate() < date('now'),
                 'deletion_date' => $poll->getEndDate()->modify('+'. 60 .' day'),
-                'slots' => $poll->getFormat() === 'D' ? $this->poll_service->splitSlots($slots) : $slots,
-                'slots_hash' =>  $this->poll_service->hashSlots($slots),
+                'choices_hash' =>  $this->poll_service->hashChoices($poll->getChoices()),
                 'votes' => $this->poll_service->splitVotes($votes),
                 'best_choices' => $this->poll_service->computeBestChoices($votes),
                 'comments' => $comments,
@@ -273,7 +275,7 @@ class VoteController extends Controller
         $name = $this->input_service->filterName($request->get('name'));
         $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
         $choices = $this->input_service->filterArray($choices, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
-        $slots_hash = $this->input_service->filterMD5($request->get('control'));
+        $choices_hash = $this->input_service->filterMD5($request->get('control'));
 
         if (empty($editedVote)) {
             $this->session->getFlashBag()->add('danger', $this->i18n->trans('Error.Something is going wrong...'));
@@ -285,7 +287,7 @@ class VoteController extends Controller
         if ($message === null) {
             // Update vote
             try {
-                $result = $this->poll_service->updateVote($poll_id, $editedVote, $name, $choices, $slots_hash);
+                $result = $this->poll_service->updateVote($poll_id, $editedVote, $name, $choices, $choices_hash);
                 if ($result) {
                     if ($poll->getEditable() === Editable::EDITABLE_BY_OWN) {
                         $this->getMessageForOwnVoteEditableVote($vote_uniq_id, $poll_id, $name);
@@ -323,7 +325,7 @@ class VoteController extends Controller
     private function getMessageForOwnVoteEditableVote($editedVoteUniqueId, $poll_id)
     {
         $this->session->set(self::USER_REMEMBER_VOTES_KEY . $poll_id, $editedVoteUniqueId);
-        $urlEditVote = $this->url_generator->generate('edit_vote_poll', ['poll_id' => $poll_id, 'vote_uniq_id' => $editedVoteUniqueId], UrlGeneratorInterface::ABSOLUTE_URL);
+        $urlEditVote = $this->generateUrl('edit_vote_poll', ['poll_id' => $poll_id, 'vote_uniq_id' => $editedVoteUniqueId], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $this->session->getFlashBag()->add('success', $this->i18n->trans('studs.Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:') . "<br>");
 

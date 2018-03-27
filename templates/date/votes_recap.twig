@@ -1,11 +1,11 @@
 {% set i = 0 %}
 <ul class="list-unstyled">
-    {% for slot in slots %}
-        {% for moment in slot.moments %}
+    {% for choice in poll.choices %}
+        {% for moment in choice.moments %}
             {% if best_choices.y[i] == max %}
                 <li>
                     <strong>
-                        {{ slot.day | localizeddate('long', 'none', locale) }}
+                        {{ choice.date | localizeddate('long', 'none', locale) }}
                         {% if moment %}
                         - {{ moment | raw }}
                     {% endif %}
