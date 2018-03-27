@@ -38,7 +38,12 @@ class CommentService
      */
     public function deleteComment($poll_id, $comment_id)
     {
-        return $this->commentRepository->deleteById($poll_id, $comment_id);
+        try {
+            return $this->commentRepository->deleteById($poll_id, $comment_id);
+        } catch (DBALException $e) {
+            $this->logger->error($e->getMessage());
+            return null;
+        }
     }
 
     /**

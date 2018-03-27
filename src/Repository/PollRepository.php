@@ -65,6 +65,7 @@ class PollRepository extends AbstractRepository
     /**
      * @param $poll_id
      * @return Poll
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function findById($poll_id)
     {

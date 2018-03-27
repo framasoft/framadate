@@ -17,7 +17,7 @@ class MomentType extends AbstractType
                 'title',
                 TextType::class,
                 [
-                    'label' => 'Generic.Time',
+                    'label' => false,
                     'label_attr' => ['class' => 'col-md-4'],
                     'attr' => ['class' => 'form-control']
                 ]

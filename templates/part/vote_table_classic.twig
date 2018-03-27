@@ -22,11 +22,11 @@
             {% if admin and not expired %}
                 <tr class="hidden-print">
                     <th role="presentation"></th>
-                    {% for id, choice in choices %}
+                    {% for id, choice in poll.choices %}
                         <td headers="C{{ id }}">
-                            <a href="{{ poll_url(poll.adminId, true, 'delete_column', choice.title)}}"
+                            <a href="{{ poll_url(poll.adminId, true, 'delete_column', choice.name)}}"
                                data-remove-confirmation="{{__('adminstuds', 'Confirm removal of the column.')}}"
-                               class="btn btn-link btn-sm remove-column" title="{{__('adminstuds', 'Remove the column')}} {{ choice.title|raw}}">
+                               class="btn btn-link btn-sm remove-column" title="{{__('adminstuds', 'Remove the column')}} {{ choice.name|raw}}">
                                 <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{{__('Generic', 'Remove')}}</span>
                             </a>
                             </td>
@@ -41,8 +41,8 @@
             {% endif %}
             <tr>
                 <th role="presentation"></th>
-                {% for id, choice in choices %}
-                    <th class="bg-info" id="C{{ id }}" title="{{ choice.title }}">{{ choice.title | markdown | raw }}</th>
+                {% for id, choice in poll.choices %}
+                    <th class="bg-info" id="C{{ id }}" title="{{ choice.name }}">{{ choice.name | markdown | raw }}</th>
                 {% endfor %}
                 <th></th>
             </tr>
@@ -63,26 +63,26 @@
                     </td>
 
                     {% set id = 0 %}
-                    {% for choice in choices %}
+                    {% for choice in poll.choices %}
                         {% set choice = vote.choices[id] %}
 
                         <td class="bg-info" headers="C{{ id }}">
                             <ul class="list-unstyled choice">
                                 <li class="yes">
                                     <input type="radio" id="y-choice-{{ id }}" name="choices[{{ id }}]" value="2" {% if choice == '2' %}checked {% endif %}/>
-                                    <label class="btn btn-default btn-xs" for="y-choice-{{ id }}" title="{{__('Poll results', 'Vote yes for')|raw}} {{ choices[id].title|raw}}">
+                                    <label class="btn btn-default btn-xs" for="y-choice-{{ id }}" title="{{__('Poll results', 'Vote yes for')|raw}} {{ poll.choices[id].title|raw}}">
                                         <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{{__('Generic', 'Yes')}}</span>
                                     </label>
                                 </li>
                                 <li class="ifneedbe">
                                     <input type="radio" id="i-choice-{{ id }}" name="choices[{{ id }}]" value="1" {% if choice == '1' %}checked {% endif %}/>
-                                    <label class="btn btn-default btn-xs" for="i-choice-{{ id }}" title="{{__('Poll results', 'Vote ifneedbe for')|raw}} {{ choices[id].title|raw}}">
+                                    <label class="btn btn-default btn-xs" for="i-choice-{{ id }}" title="{{__('Poll results', 'Vote ifneedbe for')|raw}} {{ poll.choices[id].title|raw}}">
 (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{{__('Generic', 'Ifneedbe')}}</span>
                                     </label>
                                 </li>
                                 <li class="no">
                                     <input type="radio" id="n-choice-{{ id }}" name="choices[{{ id }}]" value="0" {% if choice == '0' %}checked {% endif %}/>
-                                    <label class="btn btn-default btn-xs" for="n-choice-{{ id }}" title="{{__('Poll results', 'Vote no for')|raw}} {{ choices[id].title|raw}}">
+                                    <label class="btn btn-default btn-xs" for="n-choice-{{ id }}" title="{{__('Poll results', 'Vote no for')|raw}} {{ poll.choices[id].title|raw}}">
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{{__('Generic', 'No')}}</span>
                                     </label>
                                 </li>
@@ -101,7 +101,7 @@
                 <tr>
 
                     <th class="bg-info">{{ vote.name|raw }}
-					{% if choices > 4 %}
+					{% if poll.choices > 4 %}
 					<span class="edit-username-left">
 						<a href="{% if admin %}{{ poll_url(poll.admin_id, vote.uniqId, true) }}{% else %}{{ poll_url(poll.id, vote.uniqId) }}{% endif %}" class="btn btn-default btn-sm" title="{{__('Poll results', 'Edit the line: %s', vote.name)|raw}}">
                     	<i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{{__('Generic', 'Edit')}}</span>
@@ -111,7 +111,7 @@
 					</th>
 
                     {% set id = 0 %}
-                    {% for choice in choices %}
+                    {% for choice in poll.choices %}
                         {% set  choice = vote.choices[id] %}
 
                         {% if choice == '2' %}
@@ -173,26 +173,26 @@
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{{__('Generic', 'Your name')}}" />
                         </div>
                     </td>
-                    {% for id, choice in choices %}
+                    {% for id, choice in poll.choices %}
                         <td class="bg-info" headers="C{{ id }}">
                             <ul class="list-unstyled choice">
                                 {% if best_choices.y | first < poll.ValueMax or poll.ValueMax is null %}
                                	 	<li class="yes">
                                     	<input type="radio" id="y-choice-{{ id }}" name="choices[{{ id }}]" value="2" />
-                                    	<label class="btn btn-default btn-xs" for="y-choice-{{ id }}" title="{{__('Poll results', 'Vote yes for')|raw}} {{choice.title | raw}}">
+                                    	<label class="btn btn-default btn-xs" for="y-choice-{{ id }}" title="{{__('Poll results', 'Vote yes for')|raw}} {{choice.name | raw}}">
                                        		<i class="glyphicon glyphicon-ok"></i><span class="sr-only">{{__('Generic', 'Yes')}}</span>
                                     	</label>
                                 	</li>
                                		 <li class="ifneedbe">
                                   	  <input type="radio" id="i-choice-{{ id }}" name="choices[{{ id }}]" value="1" />
-                                  	  <label class="btn btn-default btn-xs" for="i-choice-{{ id }}" title="{{__('Poll results', 'Vote ifneedbe for')|raw}} {{ choice.title|raw}}">
+                                  	  <label class="btn btn-default btn-xs" for="i-choice-{{ id }}" title="{{__('Poll results', 'Vote ifneedbe for')|raw}} {{ choice.name|raw}}">
                                         (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{{__('Generic', 'Ifneedbe')}}</span>
                                     	</label>
                                	 	</li>
 								{% endif %}
                                 <li class="no">
                                     <input type="radio" id="n-choice-{{ id }}" name="choices[{{ id }}]" value="0" />
-                                    <label class="btn btn-default btn-xs startunchecked" for="n-choice-{{ id }}" title="{{__('Poll results', 'Vote no for')|raw}} {{ choice.title|raw}}">
+                                    <label class="btn btn-default btn-xs startunchecked" for="n-choice-{{ id }}" title="{{__('Poll results', 'Vote no for')|raw}} {{ choice.name|raw}}">
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{{__('Generic', 'No')}}</span>
                                     </label>
                                 </li>
@@ -290,8 +290,8 @@
                     }
                 });
                 var cols = [
-                {% for id, choice in choices %}
-                    $('<div/>').html('{{ choice.title | markdown | raw }}').text(),
+                {% for id, choice in poll.choices %}
+                    $('<div/>').html('{{ choice.name | markdown | raw }}').text(),
                 {% endfor %}
                 ];
 
@@ -359,9 +359,9 @@
 
         {% set i = 0 %}
         <ul class="list-unstyled">
-            {% for choice in choices %}
+            {% for choice in poll.choices %}
                 {% if best_choices['y'][i] == max %}
-                    <li>{{ choice.title | markdown | raw }}</li>
+                    <li>{{ choice.name | markdown | raw }}</li>
                 {% endif %}
                 {% set i = i + 1 %}
             {% endfor %}

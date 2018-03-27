@@ -106,7 +106,7 @@ class DatePollController extends Controller
             $poll->clearEmptyChoices();
 
             $poll->sortChoices();
-            return $this->redirectToRoute('new_classic_poll_step_3');
+            return $this->redirectToRoute('new_date_poll_step_3');
         }
 
         // Display step 2
@@ -128,7 +128,7 @@ class DatePollController extends Controller
      *
      * @param Request $request
      * @return Response
-     * @throws \Doctrine\DBAL\ConnectionException
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function createPollActionStepThree(Request $request)
     {
@@ -172,6 +172,8 @@ class DatePollController extends Controller
                 $poll->setEndDate($max_expiry_time);
             }
 
+            // TODO : Probably useless
+            $poll->clearEmptyChoices();
             // Insert poll in database
             $poll = $this->poll_service->createPoll($poll);
 

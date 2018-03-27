@@ -213,7 +213,6 @@ class PollService
     /**
      * @param Poll $poll
      * @return Poll
-     * @throws \Doctrine\DBAL\ConnectionException
      */
     public function createPoll(Poll $poll)
     {
@@ -230,16 +229,26 @@ class PollService
             } while ($this->pollRepository->existsByAdminId($poll->getAdminId()));
         }
 
-        // Insert poll + choices
-        $this->pollRepository->beginTransaction();
-        $this->pollRepository->insertPoll($poll);
-        $this->choiceRepository->insertchoices($poll->getId(), $poll->getChoices());
-        $this->pollRepository->commit();
+        try {
+            // Insert poll + choices
+            $this->pollRepository->beginTransaction();
+            $this->pollRepository->insertPoll($poll);
+            $this->choiceRepository->insertchoices($poll->getId(), $poll->getChoices());
+            $this->pollRepository->commit();
 
-        $this->logger->info('CREATE_POLL' . 'id:' . $poll->getId() . ', title: ' . $poll->getTitle() . ', format:' . $poll->getFormat() . ', admin:' . $poll->getAdminName() . ', mail:' . $poll->getAdminMail());
-        // $this->logService->log('CREATE_POLL', 'id:' . $poll_id . ', title: ' . $form->getTitle() . ', format:' . $form->getFormat() . ', admin:' . $form->getAdminName() . ', mail:' . $form->getAdminMail());
 
-        return $poll;
+            $this->logger->info(
+                'CREATE_POLL' . 'id:' . $poll->getId() . ', title: ' . $poll->getTitle(
+                ) . ', format:' . $poll->getFormat() . ', admin:' . $poll->getAdminName(
+                ) . ', mail:' . $poll->getAdminMail()
+            );
+            // $this->logService->log('CREATE_POLL', 'id:' . $poll_id . ', title: ' . $form->getTitle() . ', format:' . $form->getFormat() . ', admin:' . $form->getAdminName() . ', mail:' . $form->getAdminMail());
+
+            return $poll;
+        } catch (DBALException $e) {
+            $this->logger->error($e->getMessage());
+            return null;
+        }
     }
 
     public function existsById($poll_id)

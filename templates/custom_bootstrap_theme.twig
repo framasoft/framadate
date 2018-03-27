@@ -65,9 +65,6 @@ col-sm-8
     </div>
 {% endblock _poll_date_choices_choices_entry_moments_entry_widget %}
 
-{% block _new_date_column_moments_entry_title_entry_widget %}
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-        {{ form_widget(form) }}
-    </div>
-{% endblock _new_date_column_moments_entry_title_entry_widget %}
+{% block _poll_date_choices_choices_entry_moments_entry_title_row %}
+    {{ form_widget(form) }}
+{% endblock _poll_date_choices_choices_entry_moments_entry_title_row %}
