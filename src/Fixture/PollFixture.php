@@ -43,7 +43,11 @@ class PollFixture implements FixtureInterface
         $choice1->setDate(new \DateTime("2018/06/30"))
             ->setMoments([new Moment('afternoon'), new Moment('evening')]);
 
-        $poll1->setChoices($choice1);
+        $choice2 = new DateChoice();
+        $choice2->setDate(new \DateTime("2018/06/10"))
+            ->setMoments([new Moment('afternoon'), new Moment('evening')]);
+
+        $poll1->setChoices([$choice1, $choice2]);
 
         $this->pollService->createPoll($poll1);
     }
