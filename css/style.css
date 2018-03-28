@@ -274,6 +274,10 @@ table.results thead th {
     text-overflow:ellipsis;
 }
 
+table.results thead th img {
+    max-width: 100%;
+}
+
 table.results thead .btn {
     margin: 0 auto;
     display: block;
