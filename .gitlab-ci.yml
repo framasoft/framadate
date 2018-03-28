@@ -39,7 +39,7 @@ pages:
     - master
 
 # Deploy on develop
-funky:
+beta:
   stage: beta
   script:
   - git checkout develop
