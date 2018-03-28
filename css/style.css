@@ -163,7 +163,11 @@ header form .input-group .input-group-btn {
 
 
 .editor-toolbar {
+    margin-top: 10px;
     background-color: #eee;
+}
+#poll_comments {
+    margin-top: 10px;
 }
 
 h4.control-label {
