@@ -2,6 +2,7 @@ image: framasoft/framadate-ci
 stages:
   - test
   - deploy
+  - beta
   - funky
 
 # Run php-cs-fixer and phpunit on all branches
@@ -36,6 +37,26 @@ pages:
     - public
   only:
     - master
+
+# Deploy on develop
+funky:
+  stage: beta
+  script:
+  - git checkout develop
+  - composer install -o  --no-interaction --no-progress --prefer-dist --no-dev
+  - composer dump-autoload --optimize --no-dev --classmap-authoritative
+  - mkdir tpl_c
+  - mkdir .public
+  - cp -r * .public
+  - mv .public public
+  - mkdir "${HOME}/.ssh"
+  - chmod 700 "${HOME}/.ssh"
+  - if [ ! -z ${DEPLOYEMENT_KNOWN_HOSTS+x} ]; then echo -e "${DEPLOYEMENT_KNOWN_HOSTS}" > ${HOME}/.ssh/known_hosts; fi
+  - eval `ssh-agent -s`
+  - if [ ! -z ${BETA_KEY+x} ]; then ssh-add <(echo "${BETA_KEY}" | base64 --decode -i); fi
+  - if [ ! -z ${BETA_KEY+x} ]; then rsync -a --delete --exclude admin/.stdout.log --exclude admin/.htpasswd --exclude app/inc/config.php --exclude stats/ --exclude error/ public/ ${BETA_USER}@${DEPLOYEMENT_HOST}:../../web/; fi
+  only:
+    - develop
 
 # Deploy on funky
 funky:
