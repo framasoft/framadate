@@ -353,11 +353,11 @@ table.results .btn-link.btn-sm {
     position: absolute;
     width: 1px;
     height: 1px;
-    padding: 0px;
+    padding: 0;
     margin: -1px;
     overflow: hidden;
     clip: rect(0px, 0px, 0px, 0px);
-    border: 0px none;
+    border: 0 none;
 }
 
 .choice input:focus + label {
@@ -365,7 +365,7 @@ table.results .btn-link.btn-sm {
     outline-offset: -2px;
 }
 .choice {
-    width:32px;
+    width: 35px;
     margin:0 auto !important;
 }
 
@@ -382,8 +382,8 @@ span.edit-username-left {
 }
 
 .yes .btn, .ifneedbe .btn, .no .btn {
-    width:32px;
-    color:#555;
+    width: 35px;
+    color: #555;
 }
 
 .yes .btn,.yes .btn:hover {
