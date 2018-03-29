@@ -184,7 +184,7 @@
                                		 <li class="ifneedbe">
                                   	  <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1" />
                                   	  <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->title|html}">
-                                        <i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
+                                        (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                     	</label>
                                	 	</li>
 								{/if}
