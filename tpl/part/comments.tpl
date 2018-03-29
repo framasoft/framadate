@@ -16,7 +16,7 @@
                 <fieldset id="add-comment"><legend>{__('Comments', 'Add a comment to the poll')}</legend>
                     <div class="form-group">
                         <label for="comment_name" class="control-label">{__('Generic', 'Your name')}</label>
-                        <input type="text" name="name" id="comment_name" class="form-control" />
+                        <input type="text" name="name" id="comment_name" class="form-control" maxlength="60" />
                     </div>
                     <div class="form-group">
                         <label for="comment" class="control-label">{__('Comments', 'Your comment')}</label>
