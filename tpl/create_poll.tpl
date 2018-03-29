@@ -28,7 +28,7 @@
                         {if $useRemoteUser}
                             <input type="hidden" name="name" value="{$form->admin_name}" />{$form->admin_name}
                         {else}
-                            <input id="yourname" type="text" name="name" class="form-control" {$errors['name']['aria']} value="{$poll_name|html}" />
+                            <input id="yourname" type="text" required name="name" class="form-control" {$errors['name']['aria']} value="{$poll_name|html}" />
                         {/if}
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         {if $useRemoteUser}
                             <input type="hidden" name="mail" value="{$form->admin_mail}">{$form->admin_mail}
                         {else}
-                            <input id="email" type="text" name="mail" class="form-control" {$errors['email']['aria']} value="{$poll_mail|html}" />
+                            <input id="email" required type="email" name="mail" class="form-control" {$errors['email']['aria']} value="{$poll_mail|html}" />
                         {/if}
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <label for="poll_title" class="col-sm-4 control-label">{__('Step 1', 'Poll title')} *</label>
 
                     <div class="col-sm-8">
-                        <input id="poll_title" type="text" name="title" class="form-control" {$errors['title']['aria']}
+                        <input id="poll_title" type="text" name="title" class="form-control" required {$errors['title']['aria']}
                                value="{$poll_title|html}"/>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                     <span class="lead visible-xs-inline">
                         <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
                     </span>
-                    <a class="optionnal-parameters collapsed lead" role="button" data-toggle="collapse" href="#optionnal" aria-expanded="false" aria-controls="optionnal">
+                    <a class="optionnal-parameters {if !$advanced_errors}collapsed{/if} lead" role="button" data-toggle="collapse" href="#optionnal" aria-expanded="{if $advanced_errors}false{else}true{/if}" aria-controls="optionnal">
                         {__('Step 1', "Optional parameters")}
                         <i class="caret" aria-hidden="true"></i>
                         <i class="caret caret-up" aria-hidden="true"></i>
@@ -121,32 +121,32 @@
                 <div class="clearfix"></div>
 
 
-                <div class="collapse" id="optionnal">
+                <div class="collapse{if $advanced_errors} in{/if}" id="optionnal" {if $advanced_errors}aria-expanded="true"{/if}>
                 {* Poll identifier *}
 
                     <div class="form-group {$errors['customized_url']['class']}">
 
                         {* Value MAX *}
-                        <div class="form-group">
+                        <div class="form-group {$errors['ValueMax']['class']}">
                                     <label for="use_valueMax" class="col-sm-4 control-label">
                         {__('Step 1', 'Value Max')}<br/>
                                     </label>
                                     <div class="col-sm-8">
                                         <div class="checkbox">
                                             <label>
-                                                <input id="use_ValueMax" name="use_ValueMax" type="checkbox" >
-                                    {__('Step 1', "Limit the ammount of voters per option")}
+                                                <input id="use_ValueMax" name="use_ValueMax" type="checkbox" {if $use_ValueMax}checked{/if}>
+                                    {__('Step 1', "Limit the amount of voters per option")}
                                 </label>
                                         </div>
                                     </div>
                         </div>
 
-                        <div class="form-group">
-                            <div id="ValueMax"{if !$use_ValueMax} class="hidden"{/if}>
+                        <div class="form-group {$errors['ValueMax']['class']}">
+                            <div id="ValueMax" {if !$use_ValueMax}class="hidden"{/if}>
 
                                 <div class="col-sm-offset-4 col-sm-8">
                                     <label>
-                                            <input id="ValueMax" type="number" min= "0" name="ValueMax">
+                                            <input id="ValueMax" type="number" min="0" name="ValueMax" value="{$ValueMax|html}" {$errors['ValueMax']['aria']}>
 
                                             {__('Step 1', "ValueMax instructions")}
                                     </label>
@@ -154,6 +154,14 @@
                                 </div>
                             </div>
                        </div>
+
+                        {if !empty($errors['ValueMax']['msg'])}
+                            <div class="alert alert-danger">
+                                <p id="poll_customized_url_error">
+                                    {$errors['ValueMax']['msg']}
+                                </p>
+                            </div>
+                        {/if}
 
 
                         {* Poll identifier *}

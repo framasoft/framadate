@@ -57,7 +57,7 @@ if ($goToStep2) {
     $title = $inputService->filterTitle($_POST['title']);
 
     $use_ValueMax = isset($_POST['use_ValueMax']) ? $inputService->filterBoolean($_POST['use_ValueMax']) : false;
-    $ValueMax = $use_ValueMax === true ? $inputService->filterInteger($_POST['ValueMax']) : null;
+    $ValueMax = $use_ValueMax === true ? $inputService->filterValueMax($_POST['ValueMax']) : null;
 
     $use_customized_url = isset($_POST['use_customized_url']) ? $inputService->filterBoolean($_POST['use_customized_url']) : false;
     $customized_url = $use_customized_url === true ? $inputService->filterId($_POST['customized_url']) : null;
@@ -98,10 +98,8 @@ if ($goToStep2) {
     $_SESSION['form']->use_password = ($use_password !== null);
     $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
 
-    if ($config['use_smtp'] === true) {
-        if (empty($mail)) {
-            $error_on_mail = true;
-        }
+    if ($config['use_smtp'] === true && empty($mail)) {
+        $error_on_mail = true;
     }
 
     if ($title !== $_POST['title']) {
@@ -117,11 +115,8 @@ if ($goToStep2) {
         }
     }
 
-	if ($use_ValueMax) {
-		if ($use_ValueMax === false) {
-            $error_on_ValueMax = true;
-			$error_on_customized_url_msg = __('Error', 'Mauvaise valeur');
-        }
+	if ($use_ValueMax && $ValueMax === false) {
+        $error_on_ValueMax = true;
 	}
 
     if ($name !== $_POST['name']) {
@@ -234,7 +229,7 @@ if (!empty($_POST[GO_TO_STEP_2])) {
     if ($error_on_customized_url) {
         $errors['customized_url']['aria'] = 'aria-describeby="customized_url" ';
         $errors['customized_url']['class'] = ' has-error';
-        $errors['customized_url']['msg'] = isset($error_on_customized_url_msg) ? $error_on_customized_url_msg : __('Error', 'Something is wrong with the format');
+        $errors['customized_url']['msg'] = isset($error_on_customized_url_msg) ? $error_on_customized_url_msg : __('Error', "Something is wrong with the format: customized urls should only consist of alphanumeric characters and hyphens.");
     }
 
     if ($error_on_description) {
@@ -250,7 +245,7 @@ if (!empty($_POST[GO_TO_STEP_2])) {
     } elseif ($error_on_name) {
         $errors['name']['aria'] = 'aria-describeby="poll_name_error" ';
         $errors['name']['class'] = ' has-error';
-        $errors['name']['msg'] = __('Error', 'Something is wrong with the format');
+        $errors['name']['msg'] = __('Error', "Something is wrong with the format: name shouldn't have any spaces before or after");
     }
 
     if (empty($_POST['mail'])) {
@@ -276,7 +271,7 @@ if (!empty($_POST[GO_TO_STEP_2])) {
 	if ($error_on_ValueMax) {
         $errors['ValueMax']['aria'] = 'aria-describeby="poll_ValueMax" ';
         $errors['ValueMax']['class'] = ' has-error';
-        $errors['ValueMax']['msg'] = __('Error', 'error on ValueMax');
+        $errors['ValueMax']['msg'] = __('Error', 'Error on amount of voters limitation : value must be an integer greater than 0');
     }
 }
 
@@ -285,6 +280,7 @@ $useRemoteUser = USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']);
 $smarty->assign('title', $title);
 $smarty->assign('useRemoteUser', $useRemoteUser);
 $smarty->assign('errors', $errors);
+$smarty->assign('advanced_errors', $goToStep2 && ($error_on_ValueMax || $error_on_customized_url || $error_on_password || $error_on_password_repeat));
 $smarty->assign('use_smtp', $config['use_smtp']);
 $smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
 $smarty->assign('goToStep2', GO_TO_STEP_2);
