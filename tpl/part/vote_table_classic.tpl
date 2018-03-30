@@ -31,9 +31,9 @@
                                 <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                             </a>
 			    <a href="{poll_url id=$admin_poll_id admin=true action='collect_mail' action_value=($headersDCount+1)}"
-				   class="btn btn-link btn-sm collect-the-mail"
-                                   title="{__('adminstuds', 'Collect the mail of the column')} {$headersDCount}">
-                                    <i class="glyphicon glyphicon-envelope"></i><span class="sr-only">{__('Generic', 'Collect mails')}</span>
+				   class="btn btn-link btn-sm collect-mail"
+                                   title="{__('adminstuds', 'Collect the emails of the column')} {$headersDCount}">
+                                    <i class="glyphicon glyphicon-envelope"></i><span class="sr-only">{__('Generic', 'Collect emails')}</span>
                                 </a>
                             </td>
                             {$headersDCount = $headersDCount+1}
@@ -66,7 +66,7 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
                             <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
-                            <input type="text" id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{__('Generic', 'Your mail')}" placeholder="{__('Generic', 'Your mail')}" />
+                            <input type="email" id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{__('Generic', 'Your email')}" placeholder="{__('Generic', 'Your email')}" />
                         </div>
                     </td>
 
@@ -180,7 +180,7 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
-                            <input type="text" id="mail" name="mail" class="form-control" title="{__('Generic', 'Your mail')}" placeholder="{__('Generic', 'Your mail')}" />
+                            <input type="email" id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email')}" placeholder="{__('Generic', 'Your email')}" />
                         </div>
                     </td>
 					{$i = 0}
