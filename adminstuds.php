@@ -389,27 +389,26 @@ if (isset($_GET['collect_mail'])) {
     $column = filter_input(INPUT_GET, 'collect_mail', FILTER_DEFAULT);
     $column = Utils::base64url_decode($column)-1;
     $votes = $pollService->splitVotes($pollService->allVotesByPollId($poll_id));
-    $mails_yes=array();
-    $mails_ifneedbe=array();
-    $mails_no=array();
+    $mails_yes=[];
+    $mails_ifneedbe=[];
+    $mails_no=[];
     for ($i=0; $i<sizeof($votes);$i++)
 {
-	if((int)($votes[$i]->choices[$column])==2) {
-		if ($votes[$i]->mail != NULL) {$mails_yes[]=$votes[$i]->mail;}
+	if((int)($votes[$i]->choices[$column])===2) {
+		if ($votes[$i]->mail !== NULL) {$mails_yes[]=$votes[$i]->mail;}
         }
 	else {
-		if((int)($votes[$i]->choices[$column])==1) {
-			if ($votes[$i]->mail != NULL) {$mails_ifneedbe[]=$votes[$i]->mail;}
+		if((int)($votes[$i]->choices[$column])===1) {
+			if ($votes[$i]->mail !== NULL) {$mails_ifneedbe[]=$votes[$i]->mail;}
         	}
-		else { if ($votes[$i]->mail != NULL) {$mails_no[]=$votes[$i]->mail;}
-
+		else { if ($votes[$i]->mail !== NULL) {$mails_no[]=$votes[$i]->mail;}
 		}
 	}
 }
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('admin', true);
-    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title.' - '.__('Generic', 'Collect the emails'));
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title . ' - ' . __('Generic', 'Collect the emails'));
     $smarty->assign('mails_yes', $mails_yes);
     $smarty->assign('mails_ifneedbe', $mails_ifneedbe);
     $smarty->assign('mails_no', $mails_no);
