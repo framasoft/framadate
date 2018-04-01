@@ -283,7 +283,8 @@
       "Vote yes for": "Vote \"yes\" for",
       "Votes of the poll": "Votes",
       "polled user": "polled user",
-      "polled users": "polled users"
+      "polled users": "polled users",
+      "Link to edit this particular line" : "Link to edit this particular line"
    },
    "PollInfo": {
       "Admin link of the poll": "Admin link for the poll",

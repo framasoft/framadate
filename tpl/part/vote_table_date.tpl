@@ -209,6 +209,11 @@
                                    title="{__('Poll results', 'Remove the line:')} {$vote->name|html}">
                                     <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                                 </a>
+                                
+                                <a href="{poll_url id=$poll->id vote_id=$vote->uniqId}" class="btn btn-default btn-sm">
+                                    {__('Poll results', 'Link to edit this particular line')} <span class="btn-link glyphicon glyphicon-link"></span>
+                                </a>
+                                
                             {/if}
                         </td>
                     {else}
