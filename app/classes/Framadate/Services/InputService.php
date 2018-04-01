@@ -65,7 +65,45 @@ class InputService {
     }
 
     public function filterMail($mail) {
-        return filter_var($mail, FILTER_VALIDATE_EMAIL);
+        
+        $mail = mb_strtolower(trim($mail));
+        
+        
+        $decoupage = explode("@", $mail, 2);
+        
+        $resultat = FALSE;
+        
+        
+        if (isset($decoupage[1])) {
+            
+            $domaine = idn_to_ascii(
+                  $decoupage[1]
+                , IDNA_DEFAULT
+                , INTL_IDNA_VARIANT_UTS46
+            );
+            
+            $adresseConvertie = "{$decoupage[0]}@$domaine";
+            
+            $adresseFiltree = filter_var(
+                  $adresseConvertie
+                , FILTER_VALIDATE_EMAIL
+                , ["flags" => FILTER_FLAG_EMAIL_UNICODE] // permet d'utiliser des accents avant le @
+            );
+            
+            if ($adresseConvertie === $adresseFiltree) {
+                
+                $testMX = getmxrr($domaine, $_); // tester sur le domaine indique un serveur MX
+                
+                if ($testMX) {
+                    $resultat = $mail;
+                }
+                
+            }
+            
+        }
+        
+        
+        return $resultat;
     }
 
     public function filterDescription($description) {
