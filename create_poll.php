@@ -62,7 +62,7 @@ if ($goToStep2) {
     $use_customized_url = isset($_POST['use_customized_url']) ? $inputService->filterBoolean($_POST['use_customized_url']) : false;
     $customized_url = $use_customized_url === true ? $inputService->filterId($_POST['customized_url']) : null;
     $name = $inputService->filterName($_POST['name']);
-    $mail = $config['use_smtp'] === true ? $inputService->filterMail($_POST['mail']) : null;
+    $mail = $config['use_smtp'] === true ? $inputService->filterMail($_POST['mail']) : "";
     $description = $inputService->filterDescription($_POST['description']);
     $editable = $inputService->filterEditable($_POST['editable']);
     $receiveNewVotes = isset($_POST['receiveNewVotes']) ? $inputService->filterBoolean($_POST['receiveNewVotes']) : false;
