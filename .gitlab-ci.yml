@@ -48,6 +48,7 @@ beta:
   - mkdir tpl_c
   - mkdir .public
   - cp -r * .public
+  - cp -r .git .public
   - mv .public public
   - mkdir "${HOME}/.ssh"
   - chmod 700 "${HOME}/.ssh"
