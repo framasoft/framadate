@@ -254,7 +254,11 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     }
 } elseif (isset($_POST['save'])) { // Add a new vote
     $name = $inputService->filterName($_POST['name']);
-    $mail = $inputService->filterName($_POST['mail']);
+    if(empty($_POST['mail']) || $inputService->filterMail($_POST['mail'])===false) {
+	$mail = null;
+    } else {
+	$mail = $inputService->filterMail($_POST['mail']);
+    }
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
     $slots_hash = $inputService->filterMD5($_POST['control']);
 
