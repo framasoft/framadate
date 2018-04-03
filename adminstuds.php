@@ -203,7 +203,12 @@ if (!empty($_GET['vote'])) {
 
 if (!empty($_POST['save'])) { // Save edition of an old vote
     $name = $inputService->filterName($_POST['name']);
-    $mail = $inputService->filterName($_POST['mail']);
+    if(empty($_POST['mail']) or $inputService->filterMail($_POST['mail'])==false) {
+	$mail = null;
+    }
+    else {
+	$mail = $inputService->filterMail($_POST['mail']);
+    }
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
     $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
     $slots_hash = $inputService->filterMD5($_POST['control']);
@@ -386,29 +391,38 @@ if (isset($_GET['delete_column'])) {
 // -------------------------------
 
 if (isset($_GET['collect_mail'])) {
-    $column = filter_input(INPUT_GET, 'collect_mail', FILTER_DEFAULT);
-    $column = Utils::base64url_decode($column)-1;
+    $column_str = strval(filter_input(INPUT_GET, 'collect_mail', FILTER_DEFAULT));
+    $column_str = strval(Utils::base64url_decode($column_str));
+    $column = intval($column_str);
     $votes = $pollService->splitVotes($pollService->allVotesByPollId($poll_id));
     $mails_yes=[];
     $mails_ifneedbe=[];
     $mails_no=[];
-    for ($i=0; $i<sizeof($votes);$i++)
+    $size=count($votes);
+    for ($i=0; $i<$size;$i++)
 {
-	if((int)($votes[$i]->choices[$column])===2) {
-		if ($votes[$i]->mail !== NULL) {$mails_yes[]=$votes[$i]->mail;}
+	if(intval($votes[$i]->choices[$column])===2) {
+		if ($votes[$i]->mail !== NULL) {
+			$mails_yes[]=$votes[$i]->mail;
+		}
         }
 	else {
-		if((int)($votes[$i]->choices[$column])===1) {
-			if ($votes[$i]->mail !== NULL) {$mails_ifneedbe[]=$votes[$i]->mail;}
+		if(intval($votes[$i]->choices[$column])===1) {
+			if ($votes[$i]->mail !== NULL) {
+				$mails_ifneedbe[]=$votes[$i]->mail;
+			}
         	}
-		else { if ($votes[$i]->mail !== NULL) {$mails_no[]=$votes[$i]->mail;}
+		else {
+			if ($votes[$i]->mail !== NULL) {
+				$mails_no[]=$votes[$i]->mail;
+			}
 		}
 	}
 }
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('admin', true);
-    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title . ' - ' . __('Generic', 'Collect the emails'));
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title . ' - ' . __('adminstuds', 'Collect the emails of the polled users for this column'));
     $smarty->assign('mails_yes', $mails_yes);
     $smarty->assign('mails_ifneedbe', $mails_ifneedbe);
     $smarty->assign('mails_no', $mails_no);

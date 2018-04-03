@@ -52,9 +52,9 @@ $migrations = [
     new Alter_Comment_table_adding_date(),
     new AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9(),
     new Increase_pollId_size(),
-    new AddColumn_mail_In_vote(),
     new AddColumn_ValueMax_In_poll_For_1_1(),
-    new Fix_MySQL_No_Zero_Date()
+    new Fix_MySQL_No_Zero_Date(),
+    new AddColumn_mail_In_vote()
 ];
 // ---------------------------------------
 

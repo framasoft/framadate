@@ -119,7 +119,12 @@ if ($accessGranted) {
 
     if (!empty($_POST['save'])) { // Save edition of an old vote
         $name = $inputService->filterName($_POST['name']);
-	$mail = $inputService->filterName($_POST['mail']);
+	if(empty($_POST['mail']) or $inputService->filterMail($_POST['mail'])==false) {
+		$mail = null;
+    	}
+    	else {
+		$mail = $inputService->filterMail($_POST['mail']);
+    	}
         $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
         $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
         $slots_hash = $inputService->filterMD5($_POST['control']);
