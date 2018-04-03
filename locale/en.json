@@ -407,6 +407,7 @@
    },
    "adminstuds": {
       "Add a column": "Add a column",
+      "Collect the emails of the polled users for this column": "Collect the emails of the polled users for this column",
       "All comments deleted": "All comments deleted",
       "All votes deleted": "All votes deleted",
       "As poll administrator, you can change all the lines of this poll with this button": "As poll administrator, you can change all the lines of this poll with this button",
@@ -450,5 +451,13 @@
       "The poll is expired, it will be deleted soon.": "The poll has expired, it will soon be deleted.",
       "Update vote succeeded": "Vote updated",
       "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Your vote has been saved, but please note: you need to keep this personalised link to be able to edit your vote."
+   },
+   "display_mails": {
+	"People who have answered 'Yes' to this option have not left any email addresses." : "People who have answered 'Yes' to this option have not left any email addresses.",
+	"People who have answered 'If need be' to this option have not left any email addresses." : "People who have answered 'If need be' to this option have not left any email addresses.",
+	"People who have answered 'No' to this option have not left any email addresses." : "People who have answered 'No' to this option have not left any email addresses.",
+	"People who have answered 'Yes' to this option have left those email addresses :" : "People who have answered 'Yes' to this option have left those email addresses :",
+	"People who have answered 'If need be' to this option have left those email addresses :" : "People who have answered 'If need be' to this option have left those email addresses :",
+	"People who have answered 'No' to this option have left those email addresses :" : "People who have answered 'No' to this option have left those email addresses :"
    }
 }

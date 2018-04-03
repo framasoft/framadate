@@ -65,6 +65,6 @@ class AddColumn_mail_In_vote implements Migration {
     private function alterVoteTable(\PDO $pdo) {
         $pdo->exec('
         ALTER TABLE `' . Utils::table('vote') . '`
-        ADD `mail` VARCHAR(320);');
+        ADD `mail` VARCHAR(320) DEFAULT NULL;');
     }
 }
