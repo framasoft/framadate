@@ -120,10 +120,9 @@ if ($accessGranted) {
 
     if (!empty($_POST['save'])) { // Save edition of an old vote
         $name = $inputService->filterName($_POST['name']);
-	if(empty($_POST['mail']) or $inputService->filterMail($_POST['mail'])==false) {
+	if(empty($_POST['mail']) || $inputService->filterMail($_POST['mail']) === false) {
 		$mail = null;
-    	}
-    	else {
+    	} else {
 		$mail = $inputService->filterMail($_POST['mail']);
     	}
         $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);

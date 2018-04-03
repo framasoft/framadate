@@ -219,10 +219,9 @@ $selectedNewVotes = [];
 
 if (!empty($_POST['save'])) { // Save edition of an old vote
     $name = $inputService->filterName($_POST['name']);
-    if(empty($_POST['mail']) or $inputService->filterMail($_POST['mail'])==false) {
+    if(empty($_POST['mail']) || $inputService->filterMail($_POST['mail'])===false) {
 	$mail = null;
-    }
-    else {
+    } else {
 	$mail = $inputService->filterMail($_POST['mail']);
     }
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
@@ -414,27 +413,21 @@ if (isset($_GET['collect_mail'])) {
     $column_str = strval(Utils::base64url_decode($column_str));
     $column = intval($column_str);
     $votes = $pollService->splitVotes($pollService->allVotesByPollId($poll_id));
-    $mails_yes=[];
-    $mails_ifneedbe=[];
-    $mails_no=[];
-    $size=count($votes);
-    for ($i=0; $i<$size;$i++)
+    $mails_yes = [];
+    $mails_ifneedbe = [];
+    $mails_no = [];
+    $size = count($votes);
+    for ($i = 0; $i < $size; $i++)
 {
-	if(intval($votes[$i]->choices[$column])===2) {
-		if ($votes[$i]->mail !== NULL) {
-			$mails_yes[]=$votes[$i]->mail;
-		}
+	if(intval($votes[$i]->choices[$column]) === 2 && $votes[$i]->mail !== NULL) {
+		$mails_yes[]=$votes[$i]->mail;
         }
 	else {
-		if(intval($votes[$i]->choices[$column])===1) {
-			if ($votes[$i]->mail !== NULL) {
-				$mails_ifneedbe[]=$votes[$i]->mail;
-			}
+		if(intval($votes[$i]->choices[$column]) === 1 && $votes[$i]->mail !== NULL) {
+			$mails_ifneedbe[]=$votes[$i]->mail;
         	}
-		else {
-			if ($votes[$i]->mail !== NULL) {
-				$mails_no[]=$votes[$i]->mail;
-			}
+		elseif($votes[$i]->mail !== NULL) {
+			$mails_no[]=$votes[$i]->mail;
 		}
 	}
 }
