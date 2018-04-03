@@ -18,6 +18,8 @@
  */
 namespace Framadate\Services;
 use DateTime;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
 
 /**
  * This class helps to clean all inputs from the users or external services.
@@ -65,8 +67,26 @@ class InputService {
     }
 
     public function filterMail($mail) {
-        $mail = trim($mail);
-        return filter_var($mail, FILTER_VALIDATE_EMAIL);
+    	///////////////////////////////////////////////////////////////////////////////////////
+        // formatting
+        
+    	$mail = trim($mail);
+        
+    	///////////////////////////////////////////////////////////////////////////////////////
+        // e-mail validation
+        
+        $resultat = FALSE;
+        
+    	$validator = new EmailValidator();
+    	
+        if ($validator->isValid($mail, new RFCValidation())) {
+            $resultat = $mail;
+        }
+        
+        ///////////////////////////////////////////////////////////////////////////////////////
+        // return
+        
+        return $resultat;
     }
 
     public function filterDescription($description) {
