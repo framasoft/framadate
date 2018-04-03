@@ -67,7 +67,6 @@ class InputService {
     }
 
     public function filterMail($mail) {
-        
     	///////////////////////////////////////////////////////////////////////////////////////
         // formatting
         
