@@ -87,7 +87,6 @@ class PollRepository extends AbstractRepository {
      * @return array The found polls
      */
     public function findAll($search, $start, $limit) {
-        
         // Polls
         
         $request  = "";
@@ -96,16 +95,12 @@ class PollRepository extends AbstractRepository {
         $request .= " FROM `" . Utils::table('poll') . "` p";
         $request .= " WHERE 1";
         
-        
         $values = [];
         
         if (!empty($search["poll"])) {
-            
             $request .= " AND p.id LIKE :poll";
             $values["poll"] = "{$search["poll"]}%";
-            
         }
-        
         
         $fields = [
             // key of $search => column name
@@ -115,20 +110,16 @@ class PollRepository extends AbstractRepository {
         ];
         
         foreach ($fields as $searchKey => $columnName) {
-            
             if (empty($search[$searchKey])) {
                 continue;
             }
             
             $request .= " AND p.$columnName LIKE :$searchKey";
             $values[$searchKey] = "%{$search[$searchKey]}%";
-            
         }
-        
         
         $request .= "  ORDER BY p.title ASC";
         $request .= "  LIMIT :start, :limit";
-        
         
         $prepared = $this->prepare($request);
         
