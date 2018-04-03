@@ -65,6 +65,7 @@ class InputService {
     }
 
     public function filterMail($mail) {
+        $mail = trim($mail);
         return filter_var($mail, FILTER_VALIDATE_EMAIL);
     }
 
