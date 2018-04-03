@@ -18,6 +18,8 @@
  */
 namespace Framadate\Services;
 use DateTime;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
 
 /**
  * This class helps to clean all inputs from the users or external services.
@@ -66,42 +68,24 @@ class InputService {
 
     public function filterMail($mail) {
         
-        $mail = mb_strtolower(trim($mail));
+    	///////////////////////////////////////////////////////////////////////////////////////
+        // formatting
         
+    	$mail = trim($mail);
         
-        $decoupage = explode("@", $mail, 2);
+    	///////////////////////////////////////////////////////////////////////////////////////
+        // e-mail validation
         
         $resultat = FALSE;
         
-        
-        if (isset($decoupage[1])) {
-            
-            $domaine = idn_to_ascii(
-                  $decoupage[1]
-                , IDNA_DEFAULT
-                , INTL_IDNA_VARIANT_UTS46
-            );
-            
-            $adresseConvertie = "{$decoupage[0]}@$domaine";
-            
-            $adresseFiltree = filter_var(
-                  $adresseConvertie
-                , FILTER_VALIDATE_EMAIL
-                , ["flags" => FILTER_FLAG_EMAIL_UNICODE] // permet d'utiliser des accents avant le @
-            );
-            
-            if ($adresseConvertie === $adresseFiltree) {
-                
-                $testMX = getmxrr($domaine, $_); // tester sur le domaine indique un serveur MX
-                
-                if ($testMX) {
-                    $resultat = $mail;
-                }
-                
-            }
-            
+    	$validator = new EmailValidator();
+    	
+        if ($validator->isValid($mail, new RFCValidation())) {
+            $resultat = $mail;
         }
         
+        ///////////////////////////////////////////////////////////////////////////////////////
+        // return
         
         return $resultat;
     }
