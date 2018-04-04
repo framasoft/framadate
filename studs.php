@@ -50,6 +50,8 @@ $resultPubliclyVisible = true;
 $slots = [];
 $votes = [];
 $comments = [];
+$selectedNewVotes = [];
+
 
 /* Services */
 /*----------*/
@@ -180,6 +182,7 @@ if ($accessGranted) {
                 }
             } catch (AlreadyExistsException $aee) {
                 $message = new Message('danger', __('Error', 'You already voted'));
+                $selectedNewVotes = $choices;
             } catch (ConcurrentEditionException $cee) {
                 $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
             } catch (ConcurrentVoteException $cve) {
@@ -237,5 +240,6 @@ $smarty->assign('accessGranted', $accessGranted);
 $smarty->assign('resultPubliclyVisible', $resultPubliclyVisible);
 $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
 $smarty->assign('ValueMax', $poll->ValueMax);
+$smarty->assign('selectedNewVotes', $selectedNewVotes);
 
 $smarty->display('studs.tpl');

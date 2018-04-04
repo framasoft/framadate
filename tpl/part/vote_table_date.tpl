@@ -238,39 +238,42 @@
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $moment}
 
-
-
                             <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$headersH[$i]}">
                                 <ul class="list-unstyled choice">
                                     {if $poll->ValueMax eq NULL || $best_choices['y'][$i] lt $poll->ValueMax}
                                     <li class="yes">
-                                        <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
+                                        <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2"
+                                        	{(!isset($selectedNewVotes[$i]) || ("2" !== $selectedNewVotes[$i])) ? "" : " checked=\"checked\""}
+                                        />
                                         <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
-                                        <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1" />
+                                        <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1"
+                                        	{(!isset($selectedNewVotes[$i]) || ("1" !== $selectedNewVotes[$i])) ? "" : " checked=\"checked\""}
+                                        />
                                         <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                         </label>
                                     </li>
-
-				{/if}
+                                    {/if}
 
                                     <li class="no">
-                                        <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0" />
+                                        <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0"
+                                        	{(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "" : " checked=\"checked\""}
+                                        />
                                         <label class="btn btn-default btn-xs startunchecked" for="n-choice-{$i}" title="{__('Poll results', 'Vote no for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                         </label>
                                     </li>
                                     <li class="hide">
-                                      <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value=" " checked/>
+                                      <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value=" "
+                                      	{(isset($selectedNewVotes[$i]) || ("" !== $selectedNewVotes[$i])) ? "" : " checked=\"checked\""}
+                                      />
                                     </li>
                                 </ul>
                             </td>
-
-
 
                             {$i = $i+1}
                         {/foreach}
