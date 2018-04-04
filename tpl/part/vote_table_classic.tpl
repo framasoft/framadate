@@ -181,26 +181,34 @@
                             <ul class="list-unstyled choice">
 								{if $poll->ValueMax eq NULL || $best_choices['y'][$i] lt $poll->ValueMax}
                                	 	<li class="yes">
-                                    	<input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2" />
+                                    	<input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2"
+                                    		{(!isset($selectedNewVotes[$id]) || ("2" !== $selectedNewVotes[$id])) ? "" : " checked=\"checked\""}
+                                    	/>
                                     	<label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{__('Poll results', 'Vote yes for')|html} {$slot->title|html}">
                                        		<i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                     	</label>
                                 	</li>
                                		 <li class="ifneedbe">
-                                  	  <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1" />
+                                  	  <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1"
+                                    		{(!isset($selectedNewVotes[$id]) || ("1" !== $selectedNewVotes[$id])) ? "" : " checked=\"checked\""}
+                                    	/>
                                   	  <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->title|html}">
                                         (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                     	</label>
                                	 	</li>
 								{/if}
                                 <li class="no">
-                                    <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value="0" />
-                                    <label class="btn btn-default btn-xs startunchecked" for="n-choice-{$id}" title="{__('Poll results', 'Vote no for')|html} {$slot->title|html}">
+                                    <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value="0"
+                                		{(!isset($selectedNewVotes[$id]) || ("0" !== $selectedNewVotes[$id])) ? "" : " checked=\"checked\""}
+                                	/>
+                                    <label class="btn btn-default btn-xs {(!isset($selectedNewVotes[$id]) || ("0" !== $selectedNewVotes[$id])) ? "startunchecked" : ""}" for="n-choice-{$id}" title="{__('Poll results', 'Vote no for')|html} {$slot->title|html}">
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
                                 <li class="hide">
-                                  <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" " checked/>
+                                  <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" " 
+                                		{(isset($selectedNewVotes[$id]) || ("" !== $selectedNewVotes[$id])) ? "" : " checked=\"checked\""}
+                                	/>
                                 </li>
                             </ul>
                         </td>
