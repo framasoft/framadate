@@ -79,7 +79,7 @@ if (is_null($message)) {
 
     $subject = '[' . NOMAPPLICATION . '][' . __('EditLink', 'REMINDER') . '] ' . __f('EditLink', 'Edit link for poll "%s"', $poll->title);
 
-    //$mailService->send($email, $subject, $body);
+    $mailService->send($email, $subject, $body);
     $sessionService->remove("Common", SESSION_EDIT_LINK_TOKEN);
     $sessionService->set("Common", SESSION_EDIT_LINK_TIME, time());
 
