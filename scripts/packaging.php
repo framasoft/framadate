@@ -55,7 +55,7 @@ function rrmdir($dir) {
 }
 
 function copyDependencyToBuild($dirname) {
-    return @mkdir(BUILD_VENDOR . $dirname, 755, true) && @rcopy(VENDOR . $dirname, BUILD_VENDOR . $dirname);
+    return @mkdir(BUILD_VENDOR . $dirname, 0755, true) && @rcopy(VENDOR . $dirname, BUILD_VENDOR . $dirname);
 }
 
 function copyFiles($files, &$result) {
@@ -131,9 +131,9 @@ if (file_exists(BUILD)) {
 
 // Create dist>build directories
 
-$result->mkdirDist = mkdir(DIST, 755);
+$result->mkdirDist = mkdir(DIST, 0755);
 i($result->mkdirDist, 'Dist', ' created');
-$result->mkdirBuild = mkdir(BUILD, 755);
+$result->mkdirBuild = mkdir(BUILD, 0755);
 i($result->mkdirBuild, 'Build', ' created');
 
 // Copy dependencies files
