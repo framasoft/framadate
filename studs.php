@@ -52,7 +52,6 @@ $votes = [];
 $comments = [];
 $selectedNewVotes = [];
 
-
 /* Services */
 /*----------*/
 
