@@ -6,16 +6,19 @@ use Framadate\Utils;
 use PDO;
 
 class PollRepository extends AbstractRepository {
+	const VOTE_TYPE_3_CHOICES = 1;
+	const VOTE_TYPE_2_CHOICES = 2;
+	
     function __construct(FramaDB $connect) {
         parent::__construct($connect);
     }
 
     public function insertPoll($poll_id, $admin_poll_id, $form) {
         $sql = 'INSERT INTO `' . Utils::table('poll') . '`
-          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_hash, results_publicly_visible,ValueMax)
-          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?,?,?,?)';
+          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_hash, results_publicly_visible,ValueMax, vote_type)
+          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?,?,?,?, ?)';
         $prepared = $this->prepare($sql);
-        $prepared->execute([$poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, ($form->editable>=0 && $form->editable<=2) ? $form->editable : 0, $form->receiveNewVotes ? 1 : 0, $form->receiveNewComments ? 1 : 0, $form->hidden ? 1 : 0, $form->password_hash, $form->results_publicly_visible ? 1 : 0,$form->ValueMax]);
+        $prepared->execute([$poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, ($form->editable>=0 && $form->editable<=2) ? $form->editable : 0, $form->receiveNewVotes ? 1 : 0, $form->receiveNewComments ? 1 : 0, $form->hidden ? 1 : 0, $form->password_hash, $form->results_publicly_visible ? 1 : 0,$form->ValueMax, $form->vote_type ]);
     }
 
     function findById($poll_id) {
