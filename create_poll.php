@@ -23,6 +23,7 @@ use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\PasswordHasher;
 use Framadate\Services\InputService;
 use Framadate\Utils;
+use Framadate\Repositories\PollRepository;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -100,6 +101,7 @@ if ($goToStep2) {
     $_SESSION['form']->use_password = ($use_password !== null);
     $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
     $_SESSION['form']->vote_type = $vote_type;
+
     
     if ($config['use_smtp'] === true && empty($mail)) {
         $error_on_mail = true;
