@@ -178,20 +178,49 @@ class PollService {
         return $this->pollRepository->findAllByAdminMail($mail);
     }
 
-    function computeBestChoices($votes) {
-        $result = ['y' => [0], 'inb' => [0]];
-        foreach ($votes as $vote) {
-            $choices = str_split($vote->choices);
-            foreach ($choices as $i => $choice) {
-                if (!isset($result['y'][$i])) {
-                    $result['inb'][$i] = 0;
-                    $result['y'][$i] = 0;
+    function computeBestChoices($votes, $poll) {
+        $result = ['y' => [], 'inb' => []];
+        
+        if (0 === count($votes)) {
+            // if there is no votes, calculates the number of slot
+            
+            $slots = $this->allSlotsByPoll($poll);
+            
+            if ($poll->format === 'A') {
+                // poll format classic
+                
+                foreach ($slots as $slot) {
+                    $result['y'][] = 0;
+                    $result['inb'][] = 0;
                 }
-                if ($choice === "1") {
-                    $result['inb'][$i]++;
+            } else {
+                // poll format date
+                
+                $slots = $this->splitSlots($slots);
+                
+                foreach ($slots as $slot) {
+                    foreach ($slot->moments as $_) {
+                        $result['y'][] = 0;
+                        $result['inb'][] = 0;
+                    }
                 }
-                if ($choice === "2") {
-                    $result['y'][$i]++;
+            }
+        } else {
+            // if there is votes
+            
+            foreach ($votes as $vote) {
+                $choices = str_split($vote->choices);
+                foreach ($choices as $i => $choice) {
+                    if (!isset($result['y'][$i])) {
+                        $result['inb'][$i] = 0;
+                        $result['y'][$i] = 0;
+                    }
+                    if ($choice === "1") {
+                        $result['inb'][$i]++;
+                    }
+                    if ($choice === "2") {
+                        $result['y'][$i]++;
+                    }
                 }
             }
         }
@@ -293,10 +322,10 @@ class PollService {
         if (count($votes) <= 0) {
             return;
         }
-        $best_choices = $this->computeBestChoices($votes);
+        $best_choices = $this->computeBestChoices($votes, $poll);
         foreach ($best_choices['y'] as $i => $nb_choice) {
             // if for this option we have reached maximum value and user wants to add itself too
-	     if ($poll->ValueMax !== null && $nb_choice >= $poll->ValueMax && $user_choice[$i] === "2") {
+            if ($poll->ValueMax !== null && $nb_choice >= $poll->ValueMax && $user_choice[$i] === "2") {
                 throw new ConcurrentVoteException();
             }
         }
