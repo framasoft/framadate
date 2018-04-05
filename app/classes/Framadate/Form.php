@@ -18,6 +18,9 @@
  */
 namespace Framadate;
 
+use Framadate\Repositories\PollRepository;
+use Framadate\Services\PollService;
+
 class Form
 {
     public $title;
@@ -29,7 +32,8 @@ class Form
     public $end_date;
     public $choix_sondage;
     public $ValueMax;
-
+    public $vote_type;
+    
     /**
      * Tells if users can modify their choices.
      * @var \Framadate\Editable
@@ -89,6 +93,8 @@ class Form
 
     public function __construct(){
         $this->editable = Editable::EDITABLE_BY_ALL;
+        $this->vote_type = PollRepository::VOTE_TYPE_3_CHOICES;
+        
         $this->clearChoices();
     }
 
