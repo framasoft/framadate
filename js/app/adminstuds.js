@@ -2,7 +2,62 @@ $(document).ready(function() {
 
     wrapper = new MDEWrapper($('.js-desc textarea')[0], $('#rich-editor-button'), $('#simple-editor-button'));
     var firstOpening = true;
+    $('[data-toggle="popover"]').popover();
 
+    function createNode(text) {
+        var node = document.createElement('pre');
+        node.style.width = '1px';
+        node.style.height = '1px';
+        node.style.position = 'fixed';
+        node.style.top = '5px';
+        node.textContent = text;
+        return node;
+    }
+
+    function copyNode(node) {
+        var selection = getSelection();
+        selection.removeAllRanges();
+
+        var range = document.createRange();
+        range.selectNodeContents(node);
+        selection.addRange(range);
+
+        document.execCommand('copy');
+        selection.removeAllRanges();
+    }
+
+    function copyText(text) {
+        var node = createNode(text);
+        document.body.appendChild(node);
+        copyNode(node);
+        document.body.removeChild(node);
+    }
+
+    /**
+     * When clicked on a .clipboard-url link, copy link inside clipboard and show popover confirmation for 2 seconds
+     */
+    $('body').on('click', '.clipboard-url', function(e) {
+        var btn = $(e.target);
+        /**
+         * Kind of workaround for clicking child instead of button (because propagation is stopped with preventDefault())
+         */
+        if (!btn.get(0).hasAttribute('data-toggle')) {
+            btn = btn.parent();
+        }
+        /**
+         * Try catch because reasons : https://caniuse.com/#feat=clipboard
+         */
+        try {
+            copyText(btn.attr('href'));
+            btn.popover('show');
+            setTimeout(function () {
+                btn.popover('hide');
+            }, 2000);
+            e.preventDefault();
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+    });
 
     $('#title-form .btn-edit').on('click', function() {
         $('#title-form h3').hide();

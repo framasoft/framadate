@@ -75,7 +75,8 @@ $(document).ready(function () {
                         var lastComment = $('#comments_list')
                             .find('div.comment')
                             .last();
-                        lastComment.effect('highlight', {color: 'green'}, 401);
+                        // TODO : replace old jQuery UI Effect with Modern CSS
+                        // lastComment.effect('highlight', {color: 'green'}, 401);
                         $('html, body').animate({
                             scrollTop: lastComment.offset().top
                         }, 750);
