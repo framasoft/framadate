@@ -88,29 +88,19 @@ class PollService {
      * @param $name
      * @param $choices
      * @param $slots_hash
+     * @throws AlreadyExistsException
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
      * @return bool
      */
     public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash) {
-        $poll = $this->findById($poll_id);
-
-        // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
-        $this->checkMaxVotes($choices, $poll, $poll_id);
-
-        // Check if slots are still the same
-        $this->checkThatSlotsDidntChanged($poll, $slots_hash);
-        
-        // Check if vote already exists with the same name
-        if ($this->voteRepository->existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id)) {
-            throw new AlreadyExistsException();
-        }
+        $this->checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id);
         
         // Update vote
         $choices = implode($choices);
         return $this->voteRepository->update($poll_id, $vote_id, $name, $choices);
     }
-
+    
     /**
      * @param $poll_id
      * @param $name
@@ -122,19 +112,8 @@ class PollService {
      * @return \stdClass
      */
     function addVote($poll_id, $name, $choices, $slots_hash) {
-        $poll = $this->findById($poll_id);
-
-        // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
-        $this->checkMaxVotes($choices, $poll, $poll_id);
-
-        // Check if slots are still the same
-        $this->checkThatSlotsDidntChanged($poll, $slots_hash);
-
-        // Check if vote already exists
-        if ($this->voteRepository->existsByPollIdAndName($poll_id, $name)) {
-            throw new AlreadyExistsException();
-        }
-
+        $this->checkVoteConstraints($choices, $poll_id, $slots_hash, $name, NULL);
+        
         // Insert new vote
         $choices = implode($choices);
         $token = $this->random(16);
@@ -145,7 +124,8 @@ class PollService {
         if ($this->commentRepository->exists($poll_id, $name, $comment)) {
             return true;
         }
-            return $this->commentRepository->insert($poll_id, $name, $comment);
+        
+        return $this->commentRepository->insert($poll_id, $name, $comment);
     }
 
     /**
@@ -312,7 +292,38 @@ class PollService {
     private function random($length) {
         return Token::getToken($length);
     }
-
+    
+    /**
+     * @param $choices
+     * @param $poll_id
+     * @param $slots_hash
+     * @param $name
+     * @param string|NULL $vote_id
+     * @throws AlreadyExistsException
+     * @throws ConcurrentVoteException
+     * @throws ConcurrentEditionException
+     */
+    private function checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id) {
+        // Check if vote already exists with the same name
+        if (!isset($vote_id)) {
+        	$exists = $this->voteRepository->existsByPollIdAndName($poll_id, $name);
+        } else {
+        	$exists = $this->voteRepository->existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id);
+        }
+        
+        if ($exists) {
+            throw new AlreadyExistsException();
+        }
+        
+        $poll = $this->findById($poll_id);
+        
+        // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
+        $this->checkMaxVotes($choices, $poll, $poll_id);
+        
+        // Check if slots are still the same
+        $this->checkThatSlotsDidntChanged($poll, $slots_hash);
+    }
+    
     /**
      * This method checks if the hash send by the user is the same as the computed hash.
      *
