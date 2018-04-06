@@ -99,5 +99,5 @@ class VoteRepository extends AbstractRepository {
         $prepared->execute([$poll_id, $name, $vote_id]);
         return $prepared->rowCount() > 0;
     }
-    
 }
+
