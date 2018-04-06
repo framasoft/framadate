@@ -178,45 +178,11 @@ class PollService {
     }
 
     /**
-     * @param \stdClass $poll
-     * @return array
-     */
-    private function computeEmptyBestChoices($poll)
-    {
-        $result = ['y' => [], 'inb' => []];
-        // if there is no votes, calculates the number of slot
-
-        $slots = $this->allSlotsByPoll($poll);
-
-        if ($poll->format === 'A') {
-            // poll format classic
-
-            for ($i = 0; $i < count($slots); $i++) {
-                $result['y'][] = 0;
-                $result['inb'][] = 0;
-            }
-        } else {
-            // poll format date
-
-            $slots = $this->splitSlots($slots);
-
-            foreach ($slots as $slot) {
-                for ($i = 0; $i < count($slot->moments); $i++) {
-                    $result['y'][] = 0;
-                    $result['inb'][] = 0;
-                }
-            }
-        }
-        return $result;
-    }
-
-    /**
      * @param array $votes
      * @param \stdClass $poll
      * @return array
      */
     public function computeBestChoices($votes, $poll) {
-
         if (0 === count($votes)) {
            return $this->computeEmptyBestChoices($poll);
         }
@@ -303,6 +269,39 @@ class PollService {
             return $a->title > $b->title;
         });
         return $slots;
+    }
+
+    /**
+     * @param \stdClass $poll
+     * @return array
+     */
+    private function computeEmptyBestChoices($poll)
+    {
+        $result = ['y' => [], 'inb' => []];
+        // if there is no votes, calculates the number of slot
+
+        $slots = $this->allSlotsByPoll($poll);
+
+        if ($poll->format === 'A') {
+            // poll format classic
+
+            for ($i = 0; $i < count($slots); $i++) {
+                $result['y'][] = 0;
+                $result['inb'][] = 0;
+            }
+        } else {
+            // poll format date
+
+            $slots = $this->splitSlots($slots);
+
+            foreach ($slots as $slot) {
+                for ($i = 0; $i < count($slot->moments); $i++) {
+                    $result['y'][] = 0;
+                    $result['inb'][] = 0;
+                }
+            }
+        }
+        return $result;
     }
 
     private function random($length) {
