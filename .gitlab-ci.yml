@@ -40,6 +40,7 @@ pages:
   - mkdir tpl_c
   - mkdir framadate
   - mv `ls -A | grep -v framadate` ./framadate
+  - chmod -R 644 framadate/ && chmod -R 770 framadate/tpl_c/ && chmod -R 770 framadate/app/inc/
   - zip -r latest.zip framadate
   - mkdir .public
   - cp latest.zip .public
