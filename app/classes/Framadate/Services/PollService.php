@@ -25,7 +25,6 @@ use Framadate\Form;
 use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\Token;
-use Framadate\Utils;
 
 class PollService {
     private $connect;
@@ -178,8 +177,18 @@ class PollService {
         return $this->pollRepository->findAllByAdminMail($mail);
     }
 
-    function computeBestChoices($votes) {
-        $result = ['y' => [0], 'inb' => [0]];
+    /**
+     * @param array $votes
+     * @param \stdClass $poll
+     * @return array
+     */
+    public function computeBestChoices($votes, $poll) {
+        if (0 === count($votes)) {
+           return $this->computeEmptyBestChoices($poll);
+        }
+        $result = ['y' => [], 'inb' => []];
+
+        // if there are votes
         foreach ($votes as $vote) {
             $choices = str_split($vote->choices);
             foreach ($choices as $i => $choice) {
@@ -262,6 +271,39 @@ class PollService {
         return $slots;
     }
 
+    /**
+     * @param \stdClass $poll
+     * @return array
+     */
+    private function computeEmptyBestChoices($poll)
+    {
+        $result = ['y' => [], 'inb' => []];
+        // if there is no votes, calculates the number of slot
+
+        $slots = $this->allSlotsByPoll($poll);
+
+        if ($poll->format === 'A') {
+            // poll format classic
+
+            for ($i = 0; $i < count($slots); $i++) {
+                $result['y'][] = 0;
+                $result['inb'][] = 0;
+            }
+        } else {
+            // poll format date
+
+            $slots = $this->splitSlots($slots);
+
+            foreach ($slots as $slot) {
+                for ($i = 0; $i < count($slot->moments); $i++) {
+                    $result['y'][] = 0;
+                    $result['inb'][] = 0;
+                }
+            }
+        }
+        return $result;
+    }
+
     private function random($length) {
         return Token::getToken($length);
     }
@@ -293,10 +335,10 @@ class PollService {
         if (count($votes) <= 0) {
             return;
         }
-        $best_choices = $this->computeBestChoices($votes);
+        $best_choices = $this->computeBestChoices($votes, $poll);
         foreach ($best_choices['y'] as $i => $nb_choice) {
             // if for this option we have reached maximum value and user wants to add itself too
-	     if ($poll->ValueMax !== null && $nb_choice >= $poll->ValueMax && $user_choice[$i] === "2") {
+            if ($poll->ValueMax !== null && $nb_choice >= $poll->ValueMax && $user_choice[$i] === "2") {
                 throw new ConcurrentVoteException();
             }
         }

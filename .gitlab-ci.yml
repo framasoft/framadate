@@ -17,6 +17,20 @@ test:
     paths:
       - vendor/
 
+check-trad:
+  stage: test
+  allow_failure: true
+  script:
+    - if [ -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then echo "*** Unable to check if translations need to be pulled, exiting ***"; exit 1; fi
+    - export ORIG=$(git diff-files --shortstat)
+    - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
+    - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make push-locales; fi
+    - git status > /dev/null 2>&1
+    - export CHANGES=$(git diff-files --shortstat)
+    - if [[ $CHANGES != $ORIG ]]; then echo "*** There is changes in locales ***"; echo "*** You need to do `make pull-locales` in your repo ***"; exit 1; fi
+  only:
+    - develop
+
 # Create artifacts on master
 pages:
   stage: deploy
@@ -28,6 +42,7 @@ pages:
   - mkdir tpl_c
   - mkdir framadate
   - mv `ls -A | grep -v framadate` ./framadate
+  - chmod -R 644 framadate/ && chmod -R 770 framadate/tpl_c/ && chmod -R 770 framadate/app/inc/
   - zip -r latest.zip framadate
   - mkdir .public
   - cp latest.zip .public
@@ -45,9 +60,12 @@ beta:
   - git checkout develop
   - composer install -o  --no-interaction --no-progress --prefer-dist --no-dev
   - composer dump-autoload --optimize --no-dev --classmap-authoritative
+  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
+  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make pull-locales; fi
   - mkdir tpl_c
   - mkdir .public
   - cp -r * .public
+  - cp -r .git .public
   - mv .public public
   - mkdir "${HOME}/.ssh"
   - chmod 700 "${HOME}/.ssh"

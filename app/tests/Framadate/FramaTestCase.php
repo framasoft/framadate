@@ -1,7 +1,9 @@
 <?php
 namespace Framadate;
 
-abstract class FramaTestCase extends \PHPUnit_Framework_TestCase {
+use PHPUnit\Framework\TestCase;
+
+abstract class FramaTestCase extends TestCase {
     protected function getTestResourcePath($resourcepath) {
         return __DIR__ . '/../resources/' . $resourcepath;
     }

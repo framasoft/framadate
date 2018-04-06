@@ -79,7 +79,7 @@ class PollRepository extends AbstractRepository {
     }
 
     /**
-     * Search polls in databse.
+     * Search polls in database.
      *
      * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>..., 'mail'=>...]
      * @param int $start The number of first entry to select
@@ -88,28 +88,48 @@ class PollRepository extends AbstractRepository {
      */
     public function findAll($search, $start, $limit) {
         // Polls
-        $prepared = $this->prepare('
-SELECT p.*,
-       (SELECT count(1) FROM `' . Utils::table('vote') . '` v WHERE p.id=v.poll_id) votes
-  FROM `' . Utils::table('poll') . '` p
- WHERE (:id = "" OR p.id LIKE :id)
-   AND (:title = "" OR p.title LIKE :title)
-   AND (:name = "" OR p.admin_name LIKE :name)
-   AND (:mail = "" OR p.admin_mail LIKE :mail)
- ORDER BY p.title ASC
- LIMIT :start, :limit
- ');
-
-        $poll = $search['poll'] . '%';
-        $title = '%' . $search['title'] . '%';
-        $name = '%' . $search['name'] . '%';
-        $mail = '%' . $search['mail'] . '%';
-        $prepared->bindParam(':id', $poll, PDO::PARAM_STR);
-        $prepared->bindParam(':title', $title, PDO::PARAM_STR);
-        $prepared->bindParam(':name', $name, PDO::PARAM_STR);
-        $prepared->bindParam(':mail', $mail, PDO::PARAM_STR);
+        
+        $request  = "";
+        $request .= "SELECT p.*,";
+        $request .= "    (SELECT count(1) FROM `" . Utils::table('vote') . "` v WHERE p.id=v.poll_id) votes";
+        $request .= " FROM `" . Utils::table('poll') . "` p";
+        $request .= " WHERE 1";
+        
+        $values = [];
+        
+        if (!empty($search["poll"])) {
+            $request .= " AND p.id LIKE :poll";
+            $values["poll"] = "{$search["poll"]}%";
+        }
+        
+        $fields = [
+            // key of $search => column name
+            "title" => "title",
+            "name" => "admin_name",
+            "mail" => "admin_mail",
+        ];
+        
+        foreach ($fields as $searchKey => $columnName) {
+            if (empty($search[$searchKey])) {
+                continue;
+            }
+            
+            $request .= " AND p.$columnName LIKE :$searchKey";
+            $values[$searchKey] = "%{$search[$searchKey]}%";
+        }
+        
+        $request .= "  ORDER BY p.title ASC";
+        $request .= "  LIMIT :start, :limit";
+        
+        $prepared = $this->prepare($request);
+        
+        foreach ($values as $searchKey => $value) {
+            $prepared->bindParam(":$searchKey", $value, PDO::PARAM_STR);
+        }
+        
         $prepared->bindParam(':start', $start, PDO::PARAM_INT);
         $prepared->bindParam(':limit', $limit, PDO::PARAM_INT);
+        
         $prepared->execute();
 
         return $prepared->fetchAll();
