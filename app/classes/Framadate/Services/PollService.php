@@ -100,7 +100,12 @@ class PollService {
 
         // Check if slots are still the same
         $this->checkThatSlotsDidntChanged($poll, $slots_hash);
-
+        
+        // Check if vote already exists with the same name
+        if ($this->voteRepository->existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id)) {
+            throw new AlreadyExistsException();
+        }
+        
         // Update vote
         $choices = implode($choices);
         return $this->voteRepository->update($poll_id, $vote_id, $name, $choices);

@@ -145,7 +145,9 @@ if ($accessGranted) {
                 } else {
                     $message = new Message('danger', __('Error', 'Update vote failed'));
                 }
-            } catch (ConcurrentEditionException $cee) {
+            } catch (AlreadyExistsException $aee) {
+	            $message = new Message('danger', __('Error', 'The name you\'ve chosen already exist in this poll!'));
+	        } catch (ConcurrentEditionException $cee) {
                 $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
             } catch (ConcurrentVoteException $cve) {
                 $message = new Message('danger', __('Error', "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."));
