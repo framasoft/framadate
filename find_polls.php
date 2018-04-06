@@ -55,5 +55,6 @@ if (!empty($_POST['mail'])) {
 
 $smarty->assign('title', __('Homepage', 'Where are my polls'));
 $smarty->assign('message', $message);
+$smarty->assign('locale', $locale);
 
 $smarty->display('find_polls.tpl');
