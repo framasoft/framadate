@@ -25,7 +25,6 @@ use Framadate\Form;
 use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\Token;
-use Framadate\Utils;
 
 class PollService {
     private $connect;
@@ -178,49 +177,64 @@ class PollService {
         return $this->pollRepository->findAllByAdminMail($mail);
     }
 
-    function computeBestChoices($votes, $poll) {
+    /**
+     * @param \stdClass $poll
+     * @return array
+     */
+    private function computeEmptyBestChoices($poll)
+    {
         $result = ['y' => [], 'inb' => []];
-        
-        if (0 === count($votes)) {
-            // if there is no votes, calculates the number of slot
-            
-            $slots = $this->allSlotsByPoll($poll);
-            
-            if ($poll->format === 'A') {
-                // poll format classic
-                
-                foreach ($slots as $slot) {
+        // if there is no votes, calculates the number of slot
+
+        $slots = $this->allSlotsByPoll($poll);
+
+        if ($poll->format === 'A') {
+            // poll format classic
+
+            for ($i = 0; $i < count($slots); $i++) {
+                $result['y'][] = 0;
+                $result['inb'][] = 0;
+            }
+        } else {
+            // poll format date
+
+            $slots = $this->splitSlots($slots);
+
+            foreach ($slots as $slot) {
+                for ($i = 0; $i < count($slot->moments); $i++) {
                     $result['y'][] = 0;
                     $result['inb'][] = 0;
                 }
-            } else {
-                // poll format date
-                
-                $slots = $this->splitSlots($slots);
-                
-                foreach ($slots as $slot) {
-                    foreach ($slot->moments as $_) {
-                        $result['y'][] = 0;
-                        $result['inb'][] = 0;
-                    }
-                }
             }
-        } else {
-            // if there is votes
-            
-            foreach ($votes as $vote) {
-                $choices = str_split($vote->choices);
-                foreach ($choices as $i => $choice) {
-                    if (!isset($result['y'][$i])) {
-                        $result['inb'][$i] = 0;
-                        $result['y'][$i] = 0;
-                    }
-                    if ($choice === "1") {
-                        $result['inb'][$i]++;
-                    }
-                    if ($choice === "2") {
-                        $result['y'][$i]++;
-                    }
+        }
+        return $result;
+    }
+
+    /**
+     * @param array $votes
+     * @param \stdClass $poll
+     * @return array
+     */
+    public function computeBestChoices($votes, $poll) {
+
+        if (0 === count($votes)) {
+           return $this->computeEmptyBestChoices($poll);
+        }
+        $result = ['y' => [], 'inb' => []];
+
+        // if there are votes
+        foreach ($votes as $vote) {
+            $choices = str_split($vote->choices);
+            foreach ($choices as $i => $choice) {
+                if (!isset($result['y'][$i])) {
+                    $result['inb'][$i] = 0;
+                    $result['y'][$i] = 0;
+                }
+                if ($choice === "1") {
+                    $result['inb'][$i]++;
+                }
+                if ($choice === "2") {
+                    $result['y'][$i]++;
                 }
             }
         }
