@@ -18,6 +18,54 @@
 
 $(document).ready(function () {
 
+
+    /**
+     * Save a list of polls inside LocalStorage
+     * @param polls
+     */
+    function setPolls(polls) {
+        localStorage.setItem('polls', JSON.stringify(polls));
+    }
+
+    /**
+     * Add an poll inside LocalStorage
+     * @param poll
+     */
+    function addPoll(poll) {
+        var polls = JSON.parse(localStorage.getItem('polls'));
+
+        /**
+         * Test if the poll is already inside the list
+         */
+        var index = polls.findIndex(function (existingPoll) {
+            return existingPoll.url === poll.url;
+        });
+        if (index === -1) {
+            polls.push(poll);
+        } else { // if the poll is already present, we need to update the last access date
+            polls[index] = poll;
+        }
+        setPolls(polls);
+    }
+
+    var poll = {
+        url: window.location.href,
+        title: $('#title-form h3').get(0).childNodes[0].nodeValue,
+        accessed: (new Date()).toISOString()
+    };
+
+    function isAdmin() {
+        return $('.jumbotron').hasClass('bg-danger');
+    }
+
+    if (!isAdmin()) {
+        if (!localStorage.getItem('polls')) {
+            setPolls([poll]);
+        } else {
+            addPoll(poll);
+        }
+    }
+
     $('#poll_form').submit(function (event) {
         var name = $('#name').val().trim();
 
