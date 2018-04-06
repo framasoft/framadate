@@ -227,7 +227,7 @@ $smarty->assign('deletion_date', strtotime($poll->end_date) + PURGE_DELAY * 8640
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
 $smarty->assign('slots_hash',  $pollService->hashSlots($slots));
 $smarty->assign('votes', $pollService->splitVotes($votes));
-$smarty->assign('best_choices', $pollService->computeBestChoices($votes));
+$smarty->assign('best_choices', $pollService->computeBestChoices($votes, $poll));
 $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
