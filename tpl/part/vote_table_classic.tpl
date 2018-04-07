@@ -69,7 +69,7 @@
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
                             <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                             {if $poll->collect_users_mail}
-			    	<input type="email" id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
+			    	<input type="email" required id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
 			    {/if}
                         </div>
                     </td>
@@ -185,7 +185,7 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                             {if $poll->collect_users_mail}
-				<input type="email" id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
+				<input type="email" required id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
 			    {/if}
                         </div>
                     </td>
