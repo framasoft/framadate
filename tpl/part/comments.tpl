@@ -23,7 +23,14 @@
                         <textarea name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea>
                     </div>
                     <div class="pull-right">
-                        <input type="submit" id="add_comment" name="add_comment" value="{__('Comments', 'Send the comment')}" class="btn btn-success">
+                        <input
+	                        type="submit"
+	                        id="add_comment"
+	                        name="add_comment"
+	                        value="{__('Comments', 'Send the comment')}"
+	                        class="btn btn-success"
+	                        data-text-wait="{__('Comments', 'Type your name and a comment to send it')}"
+                        >
                     </div>
                 </fieldset>
             </div>

@@ -54,8 +54,16 @@ $(document).ready(function () {
             return false
         }
     });
-
+    
+    
+    checkCommentSending();
+    
+    $("#comment_name").on("keyup change", checkCommentSending);
+    $("#comment").on("keyup change", checkCommentSending);
+    
+    
     var form = $('#comment_form');
+    
     form.submit(function(event) {
         event.preventDefault();
 
@@ -115,3 +123,18 @@ $(document).ready(function () {
         }
     });
 });
+
+
+function checkCommentSending() {
+	
+	var name = $("#comment_name").val().trim();
+	var comment = $("#comment").val().trim();
+	
+	
+	var button = $("#add_comment");
+	
+	
+	
+}
+
+
