@@ -127,13 +127,26 @@ $(document).ready(function () {
 
 function checkCommentSending() {
 	
+	var button = $("#add_comment");
+	
+	// on page load, "textSend" is not set
+	if ("undefined" === typeof button.data("textSend")) {
+		button.data("textSend", button.val());
+	}
+	
+	
 	var name = $("#comment_name").val().trim();
 	var comment = $("#comment").val().trim();
 	
-	
-	var button = $("#add_comment");
-	
-	
+	if (	(0 === name.length)
+		||	(0 === comment.length)
+	) {
+		button.prop("disabled", true);
+		button.val(button.data("textWait"));
+	} else {
+		button.prop("disabled", false);
+		button.val(button.data("textSend"));
+	}
 	
 }
 
