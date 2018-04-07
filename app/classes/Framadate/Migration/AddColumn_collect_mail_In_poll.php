@@ -36,7 +36,7 @@ class AddColumn_collect_mail_In_poll implements Migration {
      * @return string The description of the migration class
      */
     function description() {
-        return 'Add column collect_mail in table poll';
+        return 'Add column collect_users_mail in table poll';
     }
 
     /**
@@ -65,6 +65,6 @@ class AddColumn_collect_mail_In_poll implements Migration {
     private function alterVoteTable(\PDO $pdo) {
         $pdo->exec('
         ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `collect_mail` BOOLEAN DEFAULT FALSE;');
+        ADD `collect_users_mail` TINYINT DEFAULT 0;');
     }
 }

@@ -325,6 +325,22 @@
                                 </div>
                             </div>
                         </div>
+			{* Collect users email *}
+
+                        <div class="form-group">
+                            <label for="collect_mail" class="col-sm-4 control-label">
+                                {__('Step 1', 'Collect users email')}
+                            </label>
+
+                            <div class="col-sm-8">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="collect_users_mail"
+                                               id="collect_users_mail">
+                                        {__('Step 1', "Collect the polled users email addresses")}
+                                    </label>
+                                </div>
+                            </div>
                     </div>
                 </div>
 
