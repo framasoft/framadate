@@ -69,6 +69,8 @@ if ($goToStep2) {
     $receiveNewComments = isset($_POST['receiveNewComments']) ? $inputService->filterBoolean($_POST['receiveNewComments']) : false;
     $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
     $use_password = filter_input(INPUT_POST, 'use_password', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
+    $collect_users_mail = isset($_POST['collect_users_mail']) ? $inputService->filterBoolean($_POST['collect_users_mail']) : false;
+    $use_password = filter_input(INPUT_POST, 'use_password', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
     $password = isset($_POST['password']) ? $_POST['password'] : null;
     $password_repeat = isset($_POST['password_repeat']) ? $_POST['password_repeat'] : null;
     $results_publicly_visible = filter_input(INPUT_POST, 'results_publicly_visible', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
@@ -95,6 +97,7 @@ if ($goToStep2) {
     $_SESSION['form']->receiveNewVotes = $receiveNewVotes;
     $_SESSION['form']->receiveNewComments = $receiveNewComments;
     $_SESSION['form']->hidden = $hidden;
+    $_SESSION['form']->collect_users_mail = $collect_users_mail;
     $_SESSION['form']->use_password = ($use_password !== null);
     $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
 
