@@ -71,6 +71,15 @@ if ($poll) {
 }
 
 // -------------------------------
+// creation message
+// -------------------------------
+
+if (isset($_SESSION["Framadate"]["messagePollCreated"])) {
+	unset($_SESSION["Framadate"]["messagePollCreated"]);
+	$message = new Message('success', __('adminstuds', 'The poll is created.'));
+}
+
+// -------------------------------
 // Update poll info
 // -------------------------------
 

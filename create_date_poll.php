@@ -232,6 +232,9 @@ switch ($step) {
         // Delete old polls
         $purgeService->purgeOldPolls();
 
+        // creation message
+        $_SESSION["Framadate"]["messagePollCreated"] = TRUE;
+        
         // Redirect to poll administration
         header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
         exit;
