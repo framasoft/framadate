@@ -223,6 +223,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             } else {
                 $message = new Message('danger', __('Error', 'Update vote failed'));
             }
+        } catch (AlreadyExistsException $aee) {
+            $message = new Message('danger', __('Error', 'The name you\'ve chosen already exist in this poll!'));
         } catch (ConcurrentEditionException $cee) {
             $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
         } catch (ConcurrentVoteException $cve) {
