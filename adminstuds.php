@@ -29,6 +29,7 @@ use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\NotificationService;
 use Framadate\Services\PollService;
+use Framadate\Services\SessionService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -51,6 +52,7 @@ $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $inputService = new InputService();
 $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
 $notificationService = new NotificationService($mailService);
+$sessionService = new SessionService();
 
 /* PAGE */
 /* ---- */
@@ -74,8 +76,11 @@ if ($poll) {
 // creation message
 // -------------------------------
 
-if (isset($_SESSION["Framadate"]["messagePollCreated"])) {
-	unset($_SESSION["Framadate"]["messagePollCreated"]);
+$messagePollCreated = $sessionService->get("Framadate", "messagePollCreated", FALSE);
+
+if ($messagePollCreated) {
+	$sessionService->remove("Framadate", "messagePollCreated");
+	
 	$message = new Message('success', __('adminstuds', 'The poll is created.'));
 }
 
