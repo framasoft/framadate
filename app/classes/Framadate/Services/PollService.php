@@ -112,7 +112,7 @@ class PollService {
      * @return \stdClass
      */
     function addVote($poll_id, $name, $choices, $slots_hash) {
-        $this->checkVoteConstraints($choices, $poll_id, $slots_hash, $name, NULL);
+        $this->checkVoteConstraints($choices, $poll_id, $slots_hash, $name);
         
         // Insert new vote
         $choices = implode($choices);
@@ -298,14 +298,14 @@ class PollService {
      * @param $poll_id
      * @param $slots_hash
      * @param $name
-     * @param string|NULL $vote_id
+     * @param string $vote_id
      * @throws AlreadyExistsException
      * @throws ConcurrentVoteException
      * @throws ConcurrentEditionException
      */
-    private function checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id) {
+    private function checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id = FALSE) {
         // Check if vote already exists with the same name
-        if (!isset($vote_id)) {
+        if (FALSE === $vote_id) {
         	$exists = $this->voteRepository->existsByPollIdAndName($poll_id, $name);
         } else {
         	$exists = $this->voteRepository->existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id);
