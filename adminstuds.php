@@ -201,6 +201,8 @@ if (!empty($_GET['vote'])) {
 // Something to save (edit or add)
 // -------------------------------
 
+$selectedNewVotes = [];
+
 if (!empty($_POST['save'])) { // Save edition of an old vote
     $name = $inputService->filterName($_POST['name']);
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
@@ -254,6 +256,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             }
         } catch (AlreadyExistsException $aee) {
             $message = new Message('danger', __('Error', 'You already voted'));
+            $selectedNewVotes = $choices;
         } catch (ConcurrentEditionException $cee) {
             $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
         } catch (ConcurrentVoteException $cve) {
@@ -447,5 +450,6 @@ $smarty->assign('accessGranted', true);
 $smarty->assign('resultPubliclyVisible', true);
 $smarty->assign('editedVoteUniqueId', '');
 $smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
+$smarty->assign('selectedNewVotes', $selectedNewVotes);
 
 $smarty->display('studs.tpl');
