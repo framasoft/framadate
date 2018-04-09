@@ -18,11 +18,11 @@
  */
 
 use Framadate\Form;
+use Framadate\Repositories\PollRepository;
 use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\PasswordHasher;
 use Framadate\Services\InputService;
 use Framadate\Utils;
-use Framadate\Repositories\PollRepository;
 
 include_once __DIR__ . '/app/inc/init.php';
 
