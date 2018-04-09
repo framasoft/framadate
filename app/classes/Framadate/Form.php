@@ -18,8 +18,8 @@
  */
 namespace Framadate;
 
-use Framadate\Services\PollService;
 use Framadate\Repositories\PollRepository;
+use Framadate\Services\PollService;
 
 class Form
 {
