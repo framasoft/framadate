@@ -37,7 +37,7 @@ $pollRepository = RepositoryFactory::pollRepository();
 /* PAGE */
 /* ---- */
 
-if (!isset($_SESSION['form'])) {
+if (isset($_SESSION['form'])) {
     $_SESSION['form'] = new Form();
 }
 
@@ -75,7 +75,8 @@ if ($goToStep2) {
     $password = isset($_POST['password']) ? $_POST['password'] : null;
     $password_repeat = isset($_POST['password_repeat']) ? $_POST['password_repeat'] : null;
     $results_publicly_visible = filter_input(INPUT_POST, 'results_publicly_visible', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
-
+    $vote_type = isset($_POST['vote_type']) ? (int) $_POST['vote_type'] : PollRepository::VOTE_TYPE_3_CHOICES;
+    
     // On initialise également les autres variables
     $error_on_mail = false;
     $error_on_title = false;
@@ -101,7 +102,7 @@ if ($goToStep2) {
     $_SESSION['form']->collect_users_mail = $collect_users_mail;
     $_SESSION['form']->use_password = ($use_password !== null);
     $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
-    $_SESSION['form']->vote_type = PollRepository::VOTE_TYPE_3_CHOICES;
+    $_SESSION['form']->vote_type = $vote_type;
     
     if ($config['use_smtp'] === true && empty($mail)) {
         $error_on_mail = true;
@@ -280,6 +281,11 @@ if (!empty($_POST[GO_TO_STEP_2])) {
     }
 }
 
+$votesTypes = [
+	PollRepository::VOTE_TYPE_3_CHOICES => __("Step 1", "3 choices : yes, if need be, no"),
+	PollRepository::VOTE_TYPE_2_CHOICES => __("Step 1", "2 choices : yes, no"),
+];
+
 $useRemoteUser = USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']);
 
 $smarty->assign('title', $title);
@@ -297,6 +303,7 @@ $smarty->assign('use_customized_url', Utils::fromPostOrDefault('use_customized_u
 $smarty->assign('ValueMax', Utils::fromPostOrDefault('ValueMax', $_SESSION['form']->ValueMax));
 $smarty->assign('use_ValueMax', Utils::fromPostOrDefault('use_ValueMax', $_SESSION['form']->use_ValueMax));
 $smarty->assign('collect_users_mail', Utils::fromPostOrDefault('collect_users_mail', $_SESSION['form']->collect_users_mail));
+$smarty->assign('poll_vote_type', (int) Utils::fromPostOrDefault('vote_type', $_SESSION['form']->vote_type));
 $smarty->assign('poll_description', !empty($_POST['description']) ? $_POST['description'] :  $_SESSION['form']->description);
 $smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
 $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));
@@ -307,5 +314,6 @@ $smarty->assign('poll_hidden', Utils::fromPostOrDefault('hidden', $_SESSION['for
 $smarty->assign('poll_use_password', Utils::fromPostOrDefault('use_password', $_SESSION['form']->use_password));
 $smarty->assign('poll_results_publicly_visible', Utils::fromPostOrDefault('results_publicly_visible', $_SESSION['form']->results_publicly_visible));
 $smarty->assign('form', $_SESSION['form']);
+$smarty->assign('votesTypes', $votesTypes);
 
 $smarty->display('create_poll.tpl');
