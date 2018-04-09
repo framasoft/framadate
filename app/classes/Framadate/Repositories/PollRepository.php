@@ -27,6 +27,8 @@ class PollRepository extends AbstractRepository {
         $prepared->execute([$poll_id]);
         $poll = $prepared->fetch();
         $prepared->closeCursor();
+        
+        $poll->vote_type = (int) $poll->vote_type;
 
         return $poll;
     }
