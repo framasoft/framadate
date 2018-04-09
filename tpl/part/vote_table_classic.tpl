@@ -208,7 +208,9 @@
                                        		<i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                     	</label>
                                 	</li>
-                               		 <li class="ifneedbe">
+                                	
+                                	
+                               		<li class="ifneedbe">
                                   	  <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1"
                                     		{(!isset($selectedNewVotes[$id]) || ("1" !== $selectedNewVotes[$id])) ? "" : " checked"}
                                     	/>
@@ -216,6 +218,8 @@
                                         (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                     	</label>
                                	 	</li>
+                               	 	
+                               	 	
 								{/if}
                                 <li class="no">
                                     <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value="0"

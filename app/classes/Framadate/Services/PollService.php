@@ -21,8 +21,10 @@ namespace Framadate\Services;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Exception\ConcurrentVoteException;
+use Framadate\Exception\InvalidVoteException;
 use Framadate\Form;
 use Framadate\FramaDB;
+use Framadate\Repositories\PollRepository;
 use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\Token;
 
@@ -320,6 +322,9 @@ class PollService {
 
         $poll = $this->findById($poll_id);
 
+        // check that all choices are valid for the vote type
+        $this->checkVotesRange($choices, $poll);
+        
         // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
         $this->checkMaxVotes($choices, $poll, $poll_id);
 
@@ -361,5 +366,28 @@ class PollService {
                 throw new ConcurrentVoteException();
             }
         }
+    }
+    
+    /**
+     * This method checks that all choices are valid for the vote type
+     *
+     * @param $choices
+     * @param \stdClass $poll
+     * @throws InvalidVoteException
+     */
+    private function checkVotesRange($choices, $poll) {
+    	$validChoices = [];
+    	
+    	if (PollRepository::VOTE_TYPE_3_CHOICES === $poll->vote_type) {
+    		// yes, if need be, no, blank
+    		$validChoices = ["2", "1", "0", " "];
+    	} elseif (PollRepository::VOTE_TYPE_2_CHOICES === $poll->vote_type) {
+    		// yes, no, blank
+    		$validChoices = ["2", "0", " "];
+    	}
+    	
+    	if (count(array_diff($choices, $validChoices)) > 0) {
+    		throw new InvalidVoteException();
+    	}
     }
 }
