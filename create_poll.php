@@ -37,7 +37,7 @@ $pollRepository = RepositoryFactory::pollRepository();
 /* PAGE */
 /* ---- */
 
-if (isset($_SESSION['form'])) {
+if (!isset($_SESSION['form'])) {
     $_SESSION['form'] = new Form();
 }
 
