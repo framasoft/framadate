@@ -29,6 +29,7 @@ use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\NotificationService;
 use Framadate\Services\PollService;
+use Framadate\Services\SessionService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -51,6 +52,7 @@ $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $inputService = new InputService();
 $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
 $notificationService = new NotificationService($mailService);
+$sessionService = new SessionService();
 
 /* PAGE */
 /* ---- */
@@ -68,6 +70,18 @@ if ($poll) {
     $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
     $smarty->display('error.tpl');
     exit;
+}
+
+// -------------------------------
+// creation message
+// -------------------------------
+
+$messagePollCreated = $sessionService->get("Framadate", "messagePollCreated", FALSE);
+
+if ($messagePollCreated) {
+	$sessionService->remove("Framadate", "messagePollCreated");
+	
+	$message = new Message('success', __('adminstuds', 'The poll is created.'));
 }
 
 // -------------------------------
@@ -201,6 +215,8 @@ if (!empty($_GET['vote'])) {
 // Something to save (edit or add)
 // -------------------------------
 
+$selectedNewVotes = [];
+
 if (!empty($_POST['save'])) { // Save edition of an old vote
     $name = $inputService->filterName($_POST['name']);
     $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
@@ -223,6 +239,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             } else {
                 $message = new Message('danger', __('Error', 'Update vote failed'));
             }
+        } catch (AlreadyExistsException $aee) {
+            $message = new Message('danger', __('Error', 'The name you\'ve chosen already exist in this poll!'));
         } catch (ConcurrentEditionException $cee) {
             $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
         } catch (ConcurrentVoteException $cve) {
@@ -252,6 +270,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             }
         } catch (AlreadyExistsException $aee) {
             $message = new Message('danger', __('Error', 'You already voted'));
+            $selectedNewVotes = $choices;
         } catch (ConcurrentEditionException $cee) {
             $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
         } catch (ConcurrentVoteException $cve) {
@@ -445,5 +464,6 @@ $smarty->assign('accessGranted', true);
 $smarty->assign('resultPubliclyVisible', true);
 $smarty->assign('editedVoteUniqueId', '');
 $smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
+$smarty->assign('selectedNewVotes', $selectedNewVotes);
 
 $smarty->display('studs.tpl');

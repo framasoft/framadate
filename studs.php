@@ -50,6 +50,7 @@ $resultPubliclyVisible = true;
 $slots = [];
 $votes = [];
 $comments = [];
+$selectedNewVotes = [];
 
 /* Services */
 /*----------*/
@@ -145,7 +146,9 @@ if ($accessGranted) {
                 } else {
                     $message = new Message('danger', __('Error', 'Update vote failed'));
                 }
-            } catch (ConcurrentEditionException $cee) {
+            } catch (AlreadyExistsException $aee) {
+	            $message = new Message('danger', __('Error', 'The name you\'ve chosen already exist in this poll!'));
+	        } catch (ConcurrentEditionException $cee) {
                 $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
             } catch (ConcurrentVoteException $cve) {
                 $message = new Message('danger', __('Error', "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."));
@@ -180,6 +183,7 @@ if ($accessGranted) {
                 }
             } catch (AlreadyExistsException $aee) {
                 $message = new Message('danger', __('Error', 'You already voted'));
+                $selectedNewVotes = $choices;
             } catch (ConcurrentEditionException $cee) {
                 $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
             } catch (ConcurrentVoteException $cve) {
@@ -237,5 +241,6 @@ $smarty->assign('accessGranted', $accessGranted);
 $smarty->assign('resultPubliclyVisible', $resultPubliclyVisible);
 $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
 $smarty->assign('ValueMax', $poll->ValueMax);
+$smarty->assign('selectedNewVotes', $selectedNewVotes);
 
 $smarty->display('studs.tpl');
