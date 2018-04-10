@@ -26,6 +26,7 @@ use Framadate\Migration\AddColumn_ValueMax_In_poll_For_1_1;
 use Framadate\Migration\AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9;
 use Framadate\Migration\Alter_Comment_table_adding_date;
 use Framadate\Migration\Alter_Comment_table_for_name_length;
+use Framadate\Migration\Alter_Poll_table_adding_vote_type;
 use Framadate\Migration\Fix_MySQL_No_Zero_Date;
 use Framadate\Migration\From_0_0_to_0_8_Migration;
 use Framadate\Migration\From_0_8_to_0_9_Migration;
@@ -56,7 +57,8 @@ $migrations = [
     new AddColumn_ValueMax_In_poll_For_1_1(),
     new Fix_MySQL_No_Zero_Date(),
     new AddColumn_mail_In_vote(),
-    new AddColumn_collect_mail_In_poll()
+    new AddColumn_collect_mail_In_poll(),
+    new Alter_Poll_table_adding_vote_type(),
 ];
 // ---------------------------------------
 

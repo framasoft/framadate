@@ -6,9 +6,9 @@ use Framadate\Utils;
 use PDO;
 
 class PollRepository extends AbstractRepository {
-	const VOTE_TYPE_3_CHOICES = 1;
-	const VOTE_TYPE_2_CHOICES = 2;
-	
+    const VOTE_TYPE_3_CHOICES = 1;
+    const VOTE_TYPE_2_CHOICES = 2;
+    
     function __construct(FramaDB $connect) {
         parent::__construct($connect);
     }
@@ -28,8 +28,10 @@ class PollRepository extends AbstractRepository {
         $poll = $prepared->fetch();
         $prepared->closeCursor();
         
-        $poll->vote_type = (int) $poll->vote_type;
-
+        if (is_a($poll, "stdClass")) {
+            $poll->vote_type = (int) $poll->vote_type;
+        }
+        
         return $poll;
     }
 
@@ -39,7 +41,11 @@ class PollRepository extends AbstractRepository {
         $prepared->execute([$admin_poll_id]);
         $poll = $prepared->fetch();
         $prepared->closeCursor();
-
+        
+        if (is_a($poll, "stdClass")) {
+            $poll->vote_type = (int) $poll->vote_type;
+        }
+        
         return $poll;
     }
 
