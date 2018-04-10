@@ -133,12 +133,16 @@
                                         <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                     </label>
                                 </li>
-                                <li class="ifneedbe">
-                                    <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice=='1'}checked {/if}/>
-                                    <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slots_raw[$k]}">
-                                        (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
-                                    </label>
-                                </li>
+                                
+                                {if \Framadate\Repositories\PollRepository::VOTE_TYPE_3_CHOICES === $poll->vote_type}
+                                    <li class="ifneedbe">
+                                        <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice=='1'}checked {/if}/>
+                                        <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slots_raw[$k]}">
+                                            (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
+                                        </label>
+                                    </li>
+                                {/if}
+                                
                                 <li class="no">
                                     <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice=='0'}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{__('Poll results', 'Vote no for')|html} {$slots_raw[$k]}">
@@ -171,13 +175,13 @@
                         ) &&
                     $slots|count gt 4
                     }
-						<span class="edit-username-left">
-							<a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit the line: %s', $vote->name)|html}">
-                       		<i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>
-                       		</a>
-					</span>
-					{/if}
-					</th>
+                        <span class="edit-username-left">
+                            <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit the line: %s', $vote->name)|html}">
+                               <i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>
+                               </a>
+                    </span>
+                    {/if}
+                    </th>
 
 
 
@@ -259,27 +263,32 @@
                             <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$headersH[$i]}">
                                 <ul class="list-unstyled choice">
                                     {if $poll->ValueMax eq NULL || $best_choices['y'][$i] lt $poll->ValueMax}
-                                    <li class="yes">
-                                        <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2"
-                                        	{(!isset($selectedNewVotes[$i]) || ("2" !== $selectedNewVotes[$i])) ? "" : " checked"}
-                                        />
-                                        <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
-                                            <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
-                                        </label>
-                                    </li>
-                                    <li class="ifneedbe">
-                                        <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1"
-                                        	{(!isset($selectedNewVotes[$i]) || ("1" !== $selectedNewVotes[$i])) ? "" : " checked"}
-                                        />
-                                        <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
-                                            (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
-                                        </label>
-                                    </li>
+                                        
+                                        <li class="yes">
+                                            <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2"
+                                                {(!isset($selectedNewVotes[$i]) || ("2" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                            />
+                                            <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                                <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
+                                            </label>
+                                        </li>
+                                        
+                                        {if \Framadate\Repositories\PollRepository::VOTE_TYPE_3_CHOICES === $poll->vote_type}
+                                            <li class="ifneedbe">
+                                                <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1"
+                                                    {(!isset($selectedNewVotes[$i]) || ("1" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                                />
+                                                <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                                    (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
+                                                </label>
+                                            </li>
+                                        {/if}
+                                        
                                     {/if}
-
+                                    
                                     <li class="no">
                                         <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0"
-                                        	{(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                            {(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "" : " checked"}
                                         />
                                         <label class="btn btn-default btn-xs {(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "startunchecked" : ""}" for="n-choice-{$i}" title="{__('Poll results', 'Vote no for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
@@ -287,7 +296,7 @@
                                     </li>
                                     <li class="hide">
                                       <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value=" "
-                                      	{(isset($selectedNewVotes[$i]) && ("" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                          {(isset($selectedNewVotes[$i]) && ("" !== $selectedNewVotes[$i])) ? "" : " checked"}
                                       />
                                     </li>
                                 </ul>
