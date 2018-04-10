@@ -51,7 +51,9 @@ pages:
     paths:
     - public
   only:
-    - master
+    - tags
+  except:
+    - (beta|alpha)
 
 # Deploy on develop
 beta:
