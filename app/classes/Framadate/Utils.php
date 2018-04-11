@@ -146,7 +146,7 @@ class Utils {
         $parseDown = new Parsedown();
 
         $parseDown
-            ->setMarkupEscaped(true)
+            ->setSafeMode(true)
             ->setBreaksEnabled(true)
             ->setUrlsLinked(false);
 
