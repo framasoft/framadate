@@ -20,7 +20,12 @@ $(document).ready(function() {
      * @param adminPoll
      */
     function addAdminPoll(adminPoll) {
-        var adminPolls = JSON.parse(localStorage.getItem('admin_polls'));
+        var adminPolls = localStorage.getItem('admin_polls');
+        if (adminPolls === null) {
+            adminPolls = [];
+        } else {
+            adminPolls = JSON.parse(adminPolls);
+        }
         /**
          * Test if the poll is already inside the list
          */
