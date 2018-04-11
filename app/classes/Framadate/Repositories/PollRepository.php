@@ -6,16 +6,19 @@ use Framadate\Utils;
 use PDO;
 
 class PollRepository extends AbstractRepository {
+    const VOTE_TYPE_3_CHOICES = 1;
+    const VOTE_TYPE_2_CHOICES = 2;
+
     function __construct(FramaDB $connect) {
         parent::__construct($connect);
     }
 
     public function insertPoll($poll_id, $admin_poll_id, $form) {
         $sql = 'INSERT INTO `' . Utils::table('poll') . '`
-          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_hash, results_publicly_visible,ValueMax)
-          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?,?,?,?)';
+          (id, admin_id, title, description, admin_name, admin_mail, end_date, format, editable, receiveNewVotes, receiveNewComments, hidden, password_hash, results_publicly_visible,ValueMax, vote_type)
+          VALUES (?,?,?,?,?,?,FROM_UNIXTIME(?),?,?,?,?,?,?,?,?, ?)';
         $prepared = $this->prepare($sql);
-        $prepared->execute([$poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, ($form->editable>=0 && $form->editable<=2) ? $form->editable : 0, $form->receiveNewVotes ? 1 : 0, $form->receiveNewComments ? 1 : 0, $form->hidden ? 1 : 0, $form->password_hash, $form->results_publicly_visible ? 1 : 0,$form->ValueMax]);
+        $prepared->execute([$poll_id, $admin_poll_id, $form->title, $form->description, $form->admin_name, $form->admin_mail, $form->end_date, $form->format, ($form->editable>=0 && $form->editable<=2) ? $form->editable : 0, $form->receiveNewVotes ? 1 : 0, $form->receiveNewComments ? 1 : 0, $form->hidden ? 1 : 0, $form->password_hash, $form->results_publicly_visible ? 1 : 0,$form->ValueMax, $form->vote_type ]);
     }
 
     function findById($poll_id) {
@@ -24,6 +27,10 @@ class PollRepository extends AbstractRepository {
         $prepared->execute([$poll_id]);
         $poll = $prepared->fetch();
         $prepared->closeCursor();
+
+        if (is_a($poll, "stdClass")) {
+            $poll->vote_type = (int) $poll->vote_type;
+        }
 
         return $poll;
     }
@@ -34,6 +41,10 @@ class PollRepository extends AbstractRepository {
         $prepared->execute([$admin_poll_id]);
         $poll = $prepared->fetch();
         $prepared->closeCursor();
+
+        if (is_a($poll, "stdClass")) {
+            $poll->vote_type = (int) $poll->vote_type;
+        }
 
         return $poll;
     }
@@ -88,48 +99,48 @@ class PollRepository extends AbstractRepository {
      */
     public function findAll($search, $start, $limit) {
         // Polls
-        
+
         $request  = "";
         $request .= "SELECT p.*,";
         $request .= "    (SELECT count(1) FROM `" . Utils::table('vote') . "` v WHERE p.id=v.poll_id) votes";
         $request .= " FROM `" . Utils::table('poll') . "` p";
         $request .= " WHERE 1";
-        
+
         $values = [];
-        
+
         if (!empty($search["poll"])) {
             $request .= " AND p.id LIKE :poll";
             $values["poll"] = "{$search["poll"]}%";
         }
-        
+
         $fields = [
             // key of $search => column name
             "title" => "title",
             "name" => "admin_name",
             "mail" => "admin_mail",
         ];
-        
+
         foreach ($fields as $searchKey => $columnName) {
             if (empty($search[$searchKey])) {
                 continue;
             }
-            
+
             $request .= " AND p.$columnName LIKE :$searchKey";
             $values[$searchKey] = "%{$search[$searchKey]}%";
         }
-        
+
         $request .= "  ORDER BY p.title ASC";
         $request .= "  LIMIT :start, :limit";
-        
+
         $prepared = $this->prepare($request);
-        
+
         foreach ($values as $searchKey => $value) {
             $prepared->bindParam(":$searchKey", $value, PDO::PARAM_STR);
         }
-        
+
         $prepared->bindParam(':start', $start, PDO::PARAM_INT);
         $prepared->bindParam(':limit', $limit, PDO::PARAM_INT);
-        
+
         $prepared->execute();
 
         return $prepared->fetchAll();

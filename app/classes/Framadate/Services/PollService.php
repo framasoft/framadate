@@ -21,8 +21,10 @@ namespace Framadate\Services;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Exception\ConcurrentVoteException;
+use Framadate\Exception\InvalidVoteException;
 use Framadate\Form;
 use Framadate\FramaDB;
+use Framadate\Repositories\PollRepository;
 use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\Token;
 
@@ -91,16 +93,17 @@ class PollService {
      * @throws AlreadyExistsException
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
+     * @throws InvalidVoteException
      * @return bool
      */
     public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash) {
         $this->checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id);
-        
+
         // Update vote
         $choices = implode($choices);
         return $this->voteRepository->update($poll_id, $vote_id, $name, $choices);
     }
-    
+
     /**
      * @param $poll_id
      * @param $name
@@ -109,11 +112,12 @@ class PollService {
      * @throws AlreadyExistsException
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
+     * @throws InvalidVoteException
      * @return \stdClass
      */
     function addVote($poll_id, $name, $choices, $slots_hash) {
         $this->checkVoteConstraints($choices, $poll_id, $slots_hash, $name);
-        
+
         // Insert new vote
         $choices = implode($choices);
         $token = $this->random(16);
@@ -124,7 +128,7 @@ class PollService {
         if ($this->commentRepository->exists($poll_id, $name, $comment)) {
             return true;
         }
-        
+
         return $this->commentRepository->insert($poll_id, $name, $comment);
     }
 
@@ -292,16 +296,17 @@ class PollService {
     private function random($length) {
         return Token::getToken($length);
     }
-    
+
     /**
      * @param $choices
      * @param $poll_id
      * @param $slots_hash
      * @param $name
-     * @param string $vote_id
+     * @param string|false $vote_id
      * @throws AlreadyExistsException
      * @throws ConcurrentVoteException
      * @throws ConcurrentEditionException
+     * @throws InvalidVoteException
      */
     private function checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id = FALSE) {
         // Check if vote already exists with the same name
@@ -310,20 +315,23 @@ class PollService {
         } else {
         	$exists = $this->voteRepository->existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id);
         }
-        
+
         if ($exists) {
             throw new AlreadyExistsException();
         }
-        
+
         $poll = $this->findById($poll_id);
-        
+
+        // check that all choices are valid for the vote type
+        $this->checkVotesRange($choices, $poll);
+
         // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
         $this->checkMaxVotes($choices, $poll, $poll_id);
-        
+
         // Check if slots are still the same
         $this->checkThatSlotsDidntChanged($poll, $slots_hash);
     }
-    
+
     /**
      * This method checks if the hash send by the user is the same as the computed hash.
      *
@@ -357,6 +365,29 @@ class PollService {
             if ($poll->ValueMax !== null && $nb_choice >= $poll->ValueMax && $user_choice[$i] === "2") {
                 throw new ConcurrentVoteException();
             }
+        }
+    }
+
+    /**
+     * This method checks that all choices are valid for the vote type
+     *
+     * @param $choices
+     * @param \stdClass $poll
+     * @throws InvalidVoteException
+     */
+    private function checkVotesRange($choices, $poll) {
+        $validChoices = [];
+
+        if (PollRepository::VOTE_TYPE_3_CHOICES === $poll->vote_type) {
+            // yes, if need be, no, blank
+            $validChoices = ["2", "1", "0", " "];
+        } elseif (PollRepository::VOTE_TYPE_2_CHOICES === $poll->vote_type) {
+            // yes, no, blank
+            $validChoices = ["2", "0", " "];
+        }
+
+        if (count(array_diff($choices, $validChoices)) > 0) {
+            throw new InvalidVoteException();
         }
     }
 }
