@@ -47,8 +47,7 @@ class Version20180220000000 extends AbstractMigration
     public function up(Schema $schema)
     {
         $pollTable = $schema->getTable(Utils::table('poll'));
-        $pollTable->addColumn('ValueMax', 'smallint');
-        $this->addSql('ALTER TABLE ' . Utils::table('poll') . ' ADD `ValueMax` TINYINT NULL;');
+        $pollTable->addColumn('ValueMax', 'smallint', ['default' => null]);
     }
 
     /**
