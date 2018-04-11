@@ -18,7 +18,6 @@
  */
 namespace DoctrineMigrations;
 
-use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
