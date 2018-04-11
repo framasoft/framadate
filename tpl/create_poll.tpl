@@ -164,6 +164,32 @@
                         {/if}
 
 
+                        <div class="form-group">
+                            <label for="poll_id" class="col-sm-4 control-label">
+                                {__('Step 1', 'Vote type')}
+                            </label>
+                            <div class="col-sm-8">
+                                <div class="radio">
+
+                                    {foreach $votesTypes as $typeCode => $typeDescription}
+
+	                                    <label>
+	                                        <input
+		                                        type="radio"
+		                                        name="vote_type"
+		                                        value="{$typeCode|html}"
+		                                        {if $typeCode === $poll_vote_type}checked{/if}
+	                                        >
+	                                        {$typeDescription|html}
+	                                    </label>
+
+	                                {/foreach}
+
+                                </div>
+                            </div>
+                        </div>
+
+
                         {* Poll identifier *}
                         <div class="form-group {$errors['customized_url']['class']}">
                             <label for="poll_id" class="col-sm-4 control-label">
