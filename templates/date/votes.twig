@@ -1,0 +1,152 @@
+{% for vote in votes %}
+
+    {# Active edited line when link to vote #}
+
+    {% if editingVoteId is same as(vote.uniqId) and not expired %}
+        <tr class="hidden-print">
+            <td class="bg-info btn-edit">
+                <div class="input-group input-group-sm" id="edit">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input type="hidden" name="edited_vote" value="{{ vote.uniqId }}"/>
+                    <input type="text" id="name" name="name" value="{{ vote.name|raw }}"
+                           class="form-control" title="{{ __('Generic', 'Your name') }}"
+                           placeholder="{{ __('Generic', 'Your name') }}"/>
+
+                </div>
+            </td>
+
+
+            {% set k=0 %}
+            {% for choice in poll.choices %}
+                {% for moment in choice.moments %}
+                    {% set choice = vote.choices[k] %}
+
+
+                    <td class="bg-info" headers="M{{ headersM[k] }} D{{ headersD[k] }} H{{ headersH[k] }}">
+                        <ul class="list-unstyled choice">
+                            <li class="yes">
+                                <input type="radio" id="y-choice-{{ k }}" name="choices[{{ k }}]" value="2"
+                                       {% if choice == '2' %}checked {% endif %}/>
+                                <label class="btn btn-default btn-xs" for="y-choice-{{ k }}"
+                                       title="{{ __('Poll results', 'Vote yes for')|raw }} {{ choices_raw[k] | localizeddate('none', 'none', locale, NULL, 'MMMM r')}}">
+                                    <i class="glyphicon glyphicon-ok"></i><span
+                                            class="sr-only">{{ __('Generic', 'Yes') }}</span>
+                                </label>
+                            </li>
+                            <li class="ifneedbe">
+                                <input type="radio" id="i-choice-{{ k }}" name="choices[{{ k }}]" value="1"
+                                       {% if choice == '1' %}checked {% endif %}/>
+                                <label class="btn btn-default btn-xs" for="i-choice-{{ k }}"
+                                       title="{{ __('Poll results', 'Vote ifneedbe for')|raw }} {{ choices_raw[k] | localizeddate('none', 'none', locale, NULL, 'MMMM r') }}">
+                                    (<i class="glyphicon glyphicon-ok"></i>)<span
+                                            class="sr-only">{{ __('Generic', 'Ifneedbe') }}</span>
+                                </label>
+                            </li>
+                            <li class="no">
+                                <input type="radio" id="n-choice-{{ k }}" name="choices[{{ k }}]" value="0"
+                                       {% if choice == '0' %}checked {% endif %}/>
+                                <label class="btn btn-default btn-xs" for="n-choice-{{ k }}"
+                                       title="{{ __('Poll results', 'Vote no for')|raw }} {{ choices_raw[k] | localizeddate('none', 'none', locale, NULL, 'MMMM r')}}">
+                                    <i class="glyphicon glyphicon-ban-circle"></i><span
+                                            class="sr-only">{{ __('Generic', 'No') }}</span>
+                                </label>
+                            </li>
+                            <li class="hide">
+                                <input type="radio" id="n-choice-{{ k }}" name="choices[{{ k }}]" value=" "
+                                       {% if choice != '2' and choice != '1' and choice != '0' %}checked {% endif %}/>
+                            </li>
+                        </ul>
+                    </td>
+
+                    {% set k= k + 1 %}
+                {% endfor %}
+            {% endfor %}
+
+            <td class="btn-edit">
+                <button type="submit" class="btn btn-success btn-xs" name="save" value="{{ vote.id | raw }}"
+                        title="{{ __('Poll results', 'Save the choices') }} {{ vote.name | raw }}">{{ __('Generic', 'Save') }}</button>
+            </td>
+
+        </tr>
+    {% elseif not hidden %}
+        <tr>
+
+            {# Voted line #}
+
+            <th class="bg-info">{{ vote.name | raw }}
+                {% if active and not expired and accessGranted and
+                    (
+                    poll.editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
+                    or admin
+                    or (poll.editable == constant('Framadate\Editable::EDITABLE_BY_OWN') and editedVoteUniqueId == vote.uniqId)
+                    ) and
+                    poll.choices | length > 4 %}
+                    <span class="edit-username-left">
+                        <a href="{{ path('edit_vote_poll', {'poll_id': poll.id, 'vote_uniq_id': vote.uniqId}) }}" class="btn btn-default btn-sm" title="{{ __('Poll results', 'Edit the line: %s', {'%s': vote.name})|raw }}">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <span class="sr-only">{{ __('Generic', 'Edit') }}</span>
+                        </a>
+                    </span>
+                {% endif %}
+            </th>
+
+            {% set k=0 %}
+            {% for choice in poll.choices %}
+                {% for moment in choice.moments %}
+                    {% set choice = vote.choices[k] %}
+
+                    {% if choice == '2' %}
+                        <td class="bg-success text-success"
+                            headers="M{{ headersM[k] }} D{{ headersD[k] }} H{{ k }}"><i
+                                    class="glyphicon glyphicon-ok"></i><span
+                                    class="sr-only">{{ __('Generic', 'Yes') }}</span></td>
+                    {% elseif choice == '1' %}
+                        <td class="bg-warning text-warning"
+                            headers="M{{ headersM[k] }} D{{ headersD[k] }} H{{ k }}">(<i
+                                    class="glyphicon glyphicon-ok"></i>)<span
+                                    class="sr-only">{{ __('Generic', 'Ifneedbe') }}</span></td>
+                    {% elseif choice == '0' %}
+                        <td class="bg-danger text-danger"
+                            headers="M{{ headersM[k] }} D{{ headersD[k] }} H{{ k }}"><i
+                                    class="glyphicon glyphicon-ban-circle"></i><span
+                                    class="sr-only">{{ __('Generic', 'No') }}</span></td>
+                    {% else %}
+                        <td class="bg-info" headers="M{{ headersM[k] }} D{{ headersD[k] }} H{{ k }}"><span
+                                    class="sr-only">{{ __('Generic', 'Unknown') }}</span></td>
+                    {% endif %}
+
+                    {% set k = k + 1 %}
+                {% endfor %}
+            {% endfor %}
+
+            {% if active and not expired and accessGranted and
+                (
+                poll.editable == constant('Framadate\\Entity\\Editable::EDITABLE_BY_ALL')
+                or admin
+                or (poll.editable == constant('Framadate\\Entity\\Editable::EDITABLE_BY_OWN') and editedVoteUniqueId is same as(vote.uniqId))
+                ) %}
+                <td class="hidden-print">
+                    <a href="{{ path('edit_vote_poll', {'poll_id': poll.id, 'vote_uniq_id': vote.uniqId}) }}"
+                       class="btn btn-default btn-sm"
+                       title="{{ __('Poll results', 'Edit the line: %s', {'%s': vote.name})|raw }}">
+                        <i class="glyphicon glyphicon-pencil"></i><span
+                                class="sr-only">{{ __('Generic', 'Edit') }}</span>
+                    </a>
+                    {% if admin %}
+                        <a href="{poll_url id=$poll->id vote_id=$vote->uniqId}" class="btn btn-default btn-sm clipboard-url" data-toggle="popover" data-trigger="manual" title="{__('Poll results', 'Link to edit this particular line')}" data-content="{__('Poll results', 'Link to edit this particular line has been copied!')}">
+                            <i class="glyphicon glyphicon-link"></i><span class="sr-only">{__('Generic', 'Link')}</span>
+                        </a>
+                        <a href="{{ path('remove_vote', {'admin_poll_id': poll.adminId, 'vote_id': vote.id}) }}"
+                           class="btn btn-default btn-sm"
+                           title="{{ __('Poll results', 'Remove the line:') }} {{ vote.name|raw }}">
+                            <i class="glyphicon glyphicon-remove text-danger"></i><span
+                                    class="sr-only">{{ __('Generic', 'Remove') }}</span>
+                        </a>
+                    {% endif %}
+                </td>
+            {% else %}
+                <td></td>
+            {% endif %}
+        </tr>
+    {% endif %}
+{% endfor %}

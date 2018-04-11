@@ -1,0 +1,48 @@
+{% extends "page.twig" %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block main %}
+    
+    {% if not accessGranted and not resultPubliclyVisible %}
+
+        {% include 'part/password_request.twig' with {active: poll.active} %}
+
+    {% else %}
+
+        {# Global informations about the current poll #}
+        {% include 'part/poll_info.twig' with {admin: admin} %}
+
+        {# Information about voting #}
+        {% if expired %}
+            <div class="alert alert-danger">
+                <p>{{ __('studs', 'The poll is expired, it will be deleted soon.') }}</p>
+                <p>{{ __('studs', 'Deletion date:')}} {{ deletion_date|raw }}</p>
+            </div>
+        {% else %}
+            {% if admin %}
+                {% include('part/poll_hint_admin.twig') %}
+            {% else %}
+                {% include 'part/poll_hint.twig' with {active: poll.active} %}
+            {% endif %}
+        {% endif %}
+
+        {% if not accessGranted and resultPubliclyVisible %}
+            {% include 'part/password_request.twig' with {active:poll.active} %}
+        {% endif %}
+
+        {# Vote table #}
+        {% if poll.format == 'D' %}
+            {% include 'date/vote_table_date.twig' with {active: poll.active} %}
+        {% else %}
+            {% include 'part/vote_table_classic.twig' with {active: poll.active} %}
+        {% endif %}
+
+        {# Comments #}
+        {% include 'part/comments.twig' with {active: poll.active, comments: comments} %}
+
+    {% endif %}
+
+{% endblock %}

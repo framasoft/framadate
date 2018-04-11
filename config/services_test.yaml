@@ -1,0 +1,16 @@
+services:
+    _defaults:
+        public: true
+
+    # If you need to access services in a test, create an alias
+    # and then fetch that alias from the container. As a convention,
+    # aliases are prefixed with test. For example:
+    #
+    # test.App\Service\MyService: '@App\Service\MyService'
+
+    # TODO : Remove-me when SF 4.1 is out with https://github.com/symfony/symfony/pull/26499
+    framadate.poll_service.public:
+        class: 'Framadate\Services\PollService'
+        autoconfigure: true
+        autowire: true
+        public: true

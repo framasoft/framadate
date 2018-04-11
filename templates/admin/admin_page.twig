@@ -1,0 +1,10 @@
+{% extends 'page.twig' %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-xs-12 lead">
+            <a class="btn btn-default" href="{{ path('admin_view') }}">{{__('Admin', 'Back to administration')}}</a>
+        </div>
+    </div>
+    {% block admin_main %}{% endblock %}
+{% endblock %}
