@@ -76,18 +76,19 @@ class InputService
         return $this->returnIfNotBlank(trim($name));
     }
 
-    public function filterMail($mail) {
-    	///////////////////////////////////////////////////////////////////////////////////////
+    public function filterMail($mail)
+    {
+        ///////////////////////////////////////////////////////////////////////////////////////
         // formatting
 
-    	$mail = trim($mail);
+        $mail = trim($mail);
 
-    	///////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////
         // e-mail validation
 
-        $resultat = FALSE;
+        $resultat = false;
 
-    	$validator = new EmailValidator();
+        $validator = new EmailValidator();
 
         if ($validator->isValid($mail, new RFCValidation())) {
             $resultat = $mail;

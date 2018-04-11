@@ -29,14 +29,16 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 1.1
  */
-class Version20180411000000 extends AbstractMigration {
+class Version20180411000000 extends AbstractMigration
+{
 
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description()
+    {
         return 'Sets Poll end_date to NULL by default (work around MySQL NO_ZERO_DATE)';
     }
 
@@ -47,7 +49,8 @@ class Version20180411000000 extends AbstractMigration {
      * @param Connection|\PDO $connection The connection to database
      * @return bool true if the Migration should be executed.
      */
-    function preCondition(Connection $connection) {
+    public function preCondition(Connection $connection)
+    {
         $stmt = $connection->prepare("SELECT Column_Default from Information_Schema.Columns where Table_Name = ? AND Column_Name = ?;");
         $stmt->bindValue(1, Utils::table('poll'));
         $stmt->bindValue(2, 'end_date');

@@ -132,11 +132,10 @@ class VoteRepository extends AbstractRepository
      * @param int $vote_id ID of the current vote
      * @return bool true if vote already exists
      */
-    public function existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id) {
+    public function existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id)
+    {
         $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('vote') . '` WHERE poll_id = ? AND name = ? AND id != ?');
         $prepared->execute([$poll_id, $name, $vote_id]);
         return $prepared->rowCount() > 0;
     }
-
 }
-

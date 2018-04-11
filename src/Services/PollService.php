@@ -246,7 +246,8 @@ class PollService
         return $this->pollRepository->findAllByAdminMail($mail);
     }
 
-    public function computeBestChoices($votes, Poll $poll) {
+    public function computeBestChoices($votes, Poll $poll)
+    {
         $result = ['y' => [], 'inb' => []];
 
         if (0 === count($votes)) {
@@ -418,7 +419,8 @@ class PollService
      * @throws AlreadyExistsException
      * @throws ConcurrentEditionException
      */
-    private function checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id = false) {
+    private function checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id = false)
+    {
         // Check if vote already exists with the same name
         if (false !== $vote_id) {
             $exists = $this->voteRepository->existsByPollIdAndName($poll_id, $name);
