@@ -32,7 +32,12 @@ $(document).ready(function () {
      * @param poll
      */
     function addPoll(poll) {
-        var polls = JSON.parse(localStorage.getItem('polls'));
+        var polls = localStorage.getItem('polls');
+        if (polls === null) {
+            polls = [];
+        } else {
+            polls = JSON.parse(polls);
+        }
 
         /**
          * Test if the poll is already inside the list
