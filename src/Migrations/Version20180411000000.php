@@ -57,7 +57,7 @@ class Version20180411000000 extends AbstractMigration
         $stmt->execute();
         $default = $stmt->fetch(\PDO::FETCH_COLUMN);
 
-        $driver_name = $connection->getAttribute(\PDO::ATTR_DRIVER_NAME);
+        $driver_name = $connection->getWrappedConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME);
 
         return $default !== null && $driver_name === 'mysql';
     }
