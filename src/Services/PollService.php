@@ -253,22 +253,22 @@ class PollService
         if (0 === count($votes)) {
             // if there is no votes, calculates the number of slot
 
-            $slots = $this->allChoicesByPoll($poll);
+            $choices = $this->allChoicesByPoll($poll);
 
-            if ($poll->getFormat() === 'A') {
+            if (!$poll->isDate()) {
                 // poll format classic
 
-                foreach ($slots as $slot) {
+                foreach ($choices as $choice) {
                     $result['y'][] = 0;
                     $result['inb'][] = 0;
                 }
             } else {
                 // poll format date
 
-                $slots = $this->splitVotes($slots);
+                $choices = $this->splitChoices($choices);
 
-                foreach ($slots as $slot) {
-                    foreach ($slot->moments as $_) {
+                foreach ($choices as $choice) {
+                    foreach ($choice->moments as $_) {
                         $result['y'][] = 0;
                         $result['inb'][] = 0;
                     }
@@ -313,24 +313,41 @@ class PollService
     }
 
     /**
-     * @param array $votes
+     * @param Vote[] $votes
      * @return array
      */
     public function splitVotes(array $votes)
     {
         $splitted = [];
         foreach ($votes as $vote) {
+            /** @var Vote $vote */
             $obj = new \stdClass();
-            $obj->id = $vote['id'];
-            $obj->name = $vote['name'];
-            $obj->uniqId = $vote['uniqId'];
-            $obj->choices = str_split($vote['choices']);
+            $obj->id = $vote->getId();
+            $obj->name = $vote->getName();
+            $obj->uniqId = $vote->getUniqId();
+            $obj->choices = str_split($vote->getChoices());
 
             $splitted[] = $obj;
         }
 
         return $splitted;
     }
+
+    function splitChoices($choices)
+    {
+        $splitted = [];
+        foreach ($choices as $choice) {
+            /** @var DateChoice $choice */
+            $obj = new \stdClass();
+            $obj->day = $choice->getName();
+            $obj->moments = $choice->getMoments();
+
+            $splitted[] = $obj;
+        }
+
+        return $splitted;
+    }
+
 
     /**
      * @return \DateTime The max timestamp allowed for expiry date
@@ -413,13 +430,15 @@ class PollService
     /**
      * @param $choices
      * @param $poll_id
-     * @param $slots_hash
+     * @param $choices_hash
      * @param $name
      * @param string|bool $vote_id
      * @throws AlreadyExistsException
      * @throws ConcurrentEditionException
+     * @throws ConcurrentVoteException
+     * @throws DBALException
      */
-    private function checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id = false)
+    private function checkVoteConstraints($choices, $poll_id, $choices_hash, $name, $vote_id = false)
     {
         // Check if vote already exists with the same name
         if (false !== $vote_id) {
@@ -437,7 +456,7 @@ class PollService
         // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
         $this->checkMaxVotes($choices, $poll, $poll_id);
 
-        // Check if slots are still the same
-        $this->checkThatChoicesDidntChanged($poll, $slots_hash);
+        // Check if choices are still the same
+        $this->checkThatChoicesDidntChanged($poll, $choices_hash);
     }
 }

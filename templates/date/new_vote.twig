@@ -18,7 +18,7 @@
 
                     <td class="bg-info" headers="M{{ headersM[i] }} D{{ headersD[i] }} H{{ headersH[i] }}">
                         <ul class="list-unstyled choice">
-                            {% if poll.ValueMax is null or best_choices['y'][0] > poll.ValueMax %}
+                            {% if poll.ValueMax is null or poll.ValueMax is same as(0) or best_choices['y'][0] > poll.ValueMax %}
                                 <li class="yes">
                                     <input type="radio" id="y-choice-{{ i }}" name="choices[{{ i }}]"
                                            value="2"/>

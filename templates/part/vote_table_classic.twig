@@ -106,7 +106,7 @@
                         poll.editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
                         or admin
                         or (poll.editable == constant('Framadate\Editable::EDITABLE_BY_OWN') and editedVoteUniqueId == vote.uniqId)
-                        )
+                        ) and
                          poll.choices > 4 %}
 					<span class="edit-username-left">
 						<a href="{% if admin %}{{ poll_url(poll.admin_id, vote.uniqId, true) }}{% else %}{{ poll_url(poll.id, vote.uniqId) }}{% endif %}" class="btn btn-default btn-sm" title="{{__('Poll results', 'Edit the line: %s', vote.name)|raw}}">
@@ -185,7 +185,7 @@
                     {% for id, choice in poll.choices %}
                         <td class="bg-info" headers="C{{ id }}">
                             <ul class="list-unstyled choice">
-                                {% if poll.ValueMax is null or best_choices.y | first < poll.ValueMax %}
+                                {% if poll.ValueMax is null or poll.ValueMax is same as(0) or best_choices.y | first < poll.ValueMax %}
                                	 	<li class="yes">
                                     	<input type="radio" id="y-choice-{{ id }}" name="choices[{{ id }}]" value="2" />
                                     	<label class="btn btn-default btn-xs" for="y-choice-{{ id }}" title="{{__('Poll results', 'Vote yes for')|raw}} {{choice.name | raw}}">

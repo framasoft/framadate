@@ -39,6 +39,9 @@ class ChoiceRepository extends AbstractRepository
 
         foreach ($choices as $choice) {
             if ($choice instanceof DateChoice) {
+                if ($choice->getDate() === null) {
+                    continue;
+                }
                 /** @var DateChoice $choice */
                 // We prepared the choices (joined by comas)
                 $prepared->execute([$poll_id, $choice->getDate()->getTimestamp(), $this->joinMoments($choice->getMoments())]);

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-    
+
     {% if not accessGranted and not resultPubliclyVisible %}
 
         {% include 'part/password_request.twig' with {active: poll.active} %}
