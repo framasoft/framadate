@@ -1,3 +1,7 @@
+This changelog file is **deprecated**. For an up-to-date changelog, please check [the tags](https://framagit.org/framasoft/framadate/tags).
+
+---------------------
+
 # Changelog de framadate
 
 ## Version 1.0 (Erik - Markus - Ecmu - Julien - Imre - Luc - Pierre - Antonin - Olivier)
