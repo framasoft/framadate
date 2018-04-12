@@ -333,7 +333,7 @@ class PollService
         return $splitted;
     }
 
-    function splitChoices($choices)
+    public function splitChoices($choices)
     {
         $splitted = [];
         foreach ($choices as $choice) {
