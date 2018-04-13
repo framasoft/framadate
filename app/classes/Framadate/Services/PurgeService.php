@@ -46,7 +46,28 @@ class PurgeService {
 
         return $count;
     }
-
+    
+    public function cleanDemoPoll() {
+    	
+    	if (	!defined("DEMO_POLL_ID")
+    		||	!defined("DEMO_POLL_NUMBER_VOTES")
+    	) {
+    		return;
+    	}
+    	
+    	$this->voteRepository->beginTransaction();
+    	
+    	$demoVotes = $this->voteRepository->allUserVotesByPollId(DEMO_POLL_ID);
+    	$votesToDelete = count($demoVotes) - DEMO_POLL_NUMBER_VOTES;
+    	
+    	if ($votesToDelete > 0) {
+    		$this->voteRepository->deleteOldVotesByPollId(DEMO_POLL_ID, $votesToDelete);
+    	}
+    	
+    	$this->voteRepository->commit();
+    	
+    }
+    
     /**
      * This methode delete all data about a poll.
      *
