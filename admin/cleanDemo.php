@@ -27,4 +27,3 @@ $purgeService = new PurgeService($connect, $logService);
 
 $purgeService->cleanDemoPoll();
 
-
