@@ -16,7 +16,13 @@
 <div id="tableContainer" class="tableContainer">
     <form action="{if $admin}{poll_url id=$admin_poll_id admin=true}{else}{poll_url id=$poll_id}{/if}" method="POST"  id="poll_form">
         <input type="hidden" name="control" value="{$slots_hash}"/>
-        <table class="results">
+	<div id="collect_warning" {if !($poll->collect_users_mail && $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL'))} class="hidden"{/if}>
+				<div class="col-sm-offset-4 col-sm-8">
+					<i class="glyphicon glyphicon-alert"> </i>
+					<label> {__('Poll results', 'Warning : anyone can access to your email address after voting')} </label>
+				</div>
+			    </div>        
+	<table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes of the poll')} {$poll->title|html}</caption>
             <thead>
             {if $admin && !$expired}

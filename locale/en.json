@@ -285,7 +285,8 @@
       "Vote yes for": "Vote \"yes\" for",
       "Votes of the poll": "Votes",
       "polled user": "polled user",
-      "polled users": "polled users"
+      "polled users": "polled users",
+      "Warning : anyone can access to your email address after voting" : "Warning : anyone can access to your email address after voting"
    },
    "PollInfo": {
       "Admin link of the poll": "Admin link for the poll",
@@ -361,7 +362,8 @@
       "You are in the poll creation section.": "You are in the poll creation section.",
       "You can enable or disable the editor at will.": "You can enable or disable the editor at will.",
       "Collect users email" : "Collect users email",
-      "Collect the polled users email addresses" : "Collect the polled users email addresses"
+      "Collect the polled users email addresses" : "Collect the polled users email addresses",
+      "Warning : anyone can access to the polled users's email addresses." : "Warning : anyone can access to the polled users's email addresses."
    },
    "Step 2": {
       "Back to step 1": "Return to step 1",

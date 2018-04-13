@@ -341,9 +341,14 @@
                                     </label>
                                 </div>
                             </div>
+
+			    <div id="collect_warning" class="hidden">
+				<div class="col-sm-offset-4 col-sm-8">
+					<label><i class="glyphicon glyphicon-alert"> </i> {__('Step 1', 'Warning : anyone can access to the polled users\'s email addresses.')} </label>
+				</div>
+			    </div>
                     </div>
                 </div>
-
                 <p class="text-right">
                     <input type="hidden" name="type" value="$poll_type"/>
                     <button name="{$goToStep2}" value="{$poll_type}" type="submit"
