@@ -23,6 +23,11 @@ class PurgeService {
         $this->commentRepository = RepositoryFactory::commentRepository();
     }
 
+    public function repeatedCleanings() {
+    	$this->purgeOldPolls();
+    	$this->cleanDemoPoll();
+    }
+    
     /**
      * This methode purges all old polls (the ones with end_date in past).
      *

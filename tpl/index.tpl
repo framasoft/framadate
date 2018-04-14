@@ -58,10 +58,10 @@
                     <li>{__('1st section', 'Discuss and make a decision')}</li>
                 </ol>
 
-                {if $demo_poll != null}
+                {if $demo_poll_url}
                 <p>
                     {__('1st section', 'Do you want to')}
-                    <a href="{poll_url id='aqg259dth55iuhwm'}">{__('1st section', 'view an example?')}</a>
+                    <a href="{$demo_poll_url|html}">{__('1st section', 'view an example?')}</a>
                 </p>
                 {/if}
             </div>
