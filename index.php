@@ -35,14 +35,19 @@ $pollService = new PollService($connect, new $logService());
 /* PAGE */
 /* ---- */
 
-$demoPoll = $pollService->findById('aqg259dth55iuhwm');
+$demoPollURL = "";
+
+if (defined("DEMO_POLL_ID")) {
+	$demoPollURL = Utils::getUrlSondage(DEMO_POLL_ID);
+}
+
 $nbcol = max( $config['show_what_is_that'] + $config['show_the_software'] + $config['show_cultivate_your_garden'], 1 );
 
 $smarty->assign('show_what_is_that', $config['show_what_is_that']);
 $smarty->assign('show_the_software', $config['show_the_software']);
 $smarty->assign('show_cultivate_your_garden', $config['show_cultivate_your_garden']);
 $smarty->assign('col_size', 12 / $nbcol);
-$smarty->assign('demo_poll', $demoPoll);
+$smarty->assign('demo_poll_url', $demoPollURL);
 
 $smarty->assign('title', __('Generic', 'Make your polls'));
 
