@@ -45,7 +45,7 @@ $min_expiry_time = $pollService->minExpiryDate();
 $max_expiry_time = $pollService->maxExpiryDate();
 
 // The poll format is DATE
-if ($_SESSION['form']->format !== 'D') {
+if (isset($_SESSION['form']->format) && ($_SESSION['form']->format !== 'D')) {
     $_SESSION['form']->format = 'D';
     $_SESSION['form']->clearChoices();
 }
@@ -64,7 +64,7 @@ switch ($step) {
     case 1:
         // Step 1/4 : error if $_SESSION from info_sondage are not valid
         $smarty->assign('title', __('Error', 'Error!'));
-        $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation.'));
+        $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
         $smarty->display('error.tpl');
         exit;
 
