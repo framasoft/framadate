@@ -33,7 +33,8 @@ MDEWrapper.prototype.enable = function() {
             status: true,
             previewRender: myPreviewRender,
             spellChecker: false,
-            promptURLs: true
+            promptURLs: true,
+            autoDownloadFontAwesome: false
         });
         if (this.enableButton) {
             this.enableButton.addClass('active');
