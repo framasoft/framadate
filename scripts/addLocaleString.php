@@ -17,7 +17,6 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-
 $ALLOWED_LANGUAGES = [
     'fr' => 'Français',
     'en' => 'English',
@@ -29,12 +28,10 @@ $ALLOWED_LANGUAGES = [
     'br' => 'Brezhoneg',
 ];
 
-
 const ARG_CREATE_NEW_KEY = "--create-new-key";
 
 exec("pwd", $content);
 $directory = $content[0];
-
 
 $valid = FALSE;
 $createNewKey = FALSE;
@@ -54,7 +51,6 @@ if (	(4 === $argc)
 	$text = $argv[2];
 }
 
-
 if (!$valid) {
 	o("Usage :");
 	o("php {$argv[0]} \"key\" \"text string\"");
@@ -62,18 +58,15 @@ if (!$valid) {
 	exit();
 }
 
-
 foreach ($ALLOWED_LANGUAGES as $language_code => $language_name) {
 	$file = "$directory/locale/$language_code.json";
 	
 	$content = file_get_contents($file);
 	$translations_groups = json_decode($content);
 	
-	
 	// add string
 	
 	if (!isset($translations_groups->$key)) {
-		
 		if ($createNewKey) {
 			$translations_groups->$key = new stdClass();
 		} else {
@@ -83,11 +76,9 @@ foreach ($ALLOWED_LANGUAGES as $language_code => $language_name) {
 			
 			exit();
 		}
-		
 	}
 	
 	$translations_groups->$key->$text = $text;
-	
 	
 	// save file
 	$content = json_encode($translations_groups, JSON_UNESCAPED_UNICODE);
