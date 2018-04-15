@@ -53,9 +53,7 @@ class PurgeService {
     }
     
     public function cleanDemoPoll() {
-    	if (	!defined("DEMO_POLL_ID")
-    		||	!defined("DEMO_POLL_NUMBER_VOTES")
-    	) {
+    	if (!defined("DEMO_POLL_ID") || !defined("DEMO_POLL_NUMBER_VOTES")) {
     		return;
     	}
     	
