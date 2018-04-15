@@ -25,7 +25,10 @@ class PurgeService {
 
     public function repeatedCleanings() {
     	$this->purgeOldPolls();
-    	$this->cleanDemoPoll();
+    	
+    	if (0 === time() % 10) {
+    		$this->cleanDemoPoll();
+    	}
     }
     
     /**
