@@ -81,14 +81,7 @@ foreach ($ALLOWED_LANGUAGES as $language_code => $language_name) {
 	$translations_groups->$key->$text = $text;
 	
 	// save file
-	$content = json_encode($translations_groups, JSON_UNESCAPED_UNICODE);
-	
-	$content = str_replace(":{", ":\n{\n      ", $content);
-	$content = str_replace("\":\"", "\": \"", $content);
-	$content = str_replace("{\"", "{\n\"", $content);
-	$content = str_replace("}", "\n}\n", $content);
-	$content = str_replace("\",\"", "\",\n      \"", $content);
-	
+	$content = json_encode($translations_groups, JSON_PRETTY_PRINT | ~(JSON_ERROR_UTF8 | JSON_HEX_QUOT | JSON_HEX_APOS));
 	file_put_contents($file, $content);
 	
 	o($file);
