@@ -1,5 +1,6 @@
 {
-   "1st section": {
+"1st section":
+{
       "Define dates or subjects to choose": "Determinatz las datas o los tèmas a causir",
       "Discuss and make a decision": "Charratz e prenètz vòstra decision",
       "Do you want to": "Volètz",
@@ -9,22 +10,25 @@
       "Send the poll link to your friends or colleagues": "Mandatz lo ligam del sondatge a vòstres amics o companhs",
       "What is that?": "Primièrs passes",
       "view an example?": "veire un example ?"
-   },
-   "2nd section": {
+}
+,"2nd section":
+{
       "CeCILL-B license": "licéncia CeCILL-B",
       "Framadate was initially based on ": "Framadate es inicialament basat sus ",
       "It is governed by the": "Es regit per la",
       "The software": "Lo logicial",
       "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "Aqueste logicial requerís l’activacion del javascript e dels cookies. Es compatible amb los navigadors web seguents :",
       "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": "un logicial desvolopat per l’Universitat d’Estrasborg. Uèi son desvolopament es fach per l’associacion Framasoft."
-   },
-   "3rd section": {
+}
+,"3rd section":
+{
       "Cultivate your garden": "Cultivatz vòstre òrt",
       "If you want to install the software for your own use and thus increase your independence, we help you on:": "Se volètz installar aqueste logicial per vòstra pròpia utilizacion e aital aver mai d’autonomia, nos podètz ajudar sus :",
       "To participate in the software development, suggest improvements or simply download it, please visit ": "Per participar al desvolopament del logicial, prepausar de milhoraments o simplament lo telecargar, anatz sus ",
       "the development site": "lo site de desvolopament"
-   },
-   "Admin": {
+}
+,"Admin":
+{
       "Actions": "Accions",
       "Administration": "Administracion",
       "Author": "Autor",
@@ -55,8 +59,9 @@
       "Title": "Títol",
       "Votes": "Vòtes",
       "polls in the database at this time": "sondatges dins la banca de donadas actualament"
-   },
-   "Check": {
+}
+,"Check":
+{
       "Check again": "Tornar verificar",
       "Consider enabling the PHP extension OpenSSL for increased security.": "Mercés de pensar a activar l’extension PHP OpenSSL per milhorar la seguritat.",
       "Consider setting the date.timezone in php.ini.": "Mercés de far cas a la definicion de date.timezone dins lo php.ini.",
@@ -76,8 +81,9 @@
       "You need to enable the PHP Intl extension.": "Vos cal activar l’extension PHP Intl.",
       "Your PHP version (%s) is too old. This application needs at least PHP %s.": "Vòstra version de PHP (%s) es tròp vièlha. Aquesta aplicacion a besonh de PHP %s almens.",
       "date.timezone is set.": "date.timezone es definit."
-   },
-   "Comments": {
+}
+,"Comments":
+{
       "Add a comment to the poll": "Apondre un comentari al sondatge",
       "Comment added": "Comentari apondut",
       "Comments of polled people": "Comentaris dels sondats",
@@ -85,11 +91,12 @@
       "Send the comment": "Mandar lo comentari",
       "Your comment": "Vòstre comentari",
       "anonyme": "anonim"
-   },
-   "Date": {
+}
+,"Date":
+{
       "Add range dates": "Apondre un interval de datas",
-      "DATE": "%d/%m/%Y",
-      "DATETIME": "%d/%m/%Y %H:%M",
+      "DATE": "%d\/%m\/%Y",
+      "DATETIME": "%d\/%m\/%Y %H:%M",
       "DAY": "%a %e",
       "End date": "Data de fin",
       "FULL": "%A %e %B %Y",
@@ -97,11 +104,12 @@
       "Max dates count": "Podètz pas causir mai de 4 meses",
       "SHORT": "%A %e %B %Y",
       "Start date": "Data de debuta",
-      "datepicker": "dd/mm/yyyy",
-      "datetime_parseformat": "d/m/Y",
-      "dd/mm/yyyy": "jj/mm/aaaa"
-   },
-   "EditLink": {
+      "datepicker": "dd\/mm\/yyyy",
+      "datetime_parseformat": "d\/m\/Y",
+      "dd\/mm\/yyyy": "jj\/mm\/aaaa"
+}
+,"EditLink":
+{
       "Edit link for poll \"%s\"": "Ligam de modificacion del sondatge \"%s\"",
       "Here is the link for editing your vote:": "Vaquí lo ligam per modificar vòstre vòte :",
       "If you don't want to lose your personalized link, we can send it to your email.": "A fin de pèrdre pas lo ligam de modificacion, podèm vos lo mandar per corrièl.",
@@ -110,8 +118,9 @@
       "Send": "Mandar",
       "The email address is not correct.": "Corrièl incorrècte.",
       "Your reminder has been successfully sent!": "Vòstre recòrd es ben estat mandat !"
-   },
-   "Error": {
+}
+,"Error":
+{
       "Adding vote failed": "Fracàs de l’apondon d’un vòte",
       "CANT_CONNECT_TO_DATABASE": "Impossible de se connectar a la banca de donadas",
       "Can't create an empty column.": "Impossible de crear una colomna voida.",
@@ -156,9 +165,11 @@
       "You can't create a poll with hidden results with the following edition option:": "Podètz pas crear de sondatges amb de resultats amagats amb las opcions d’edicion seguentas : ",
       "You can't select more than %d dates": "Podètz pas causir mai de %d datas",
       "You haven't filled the first section of the poll creation.": "Avètz pas garnit la primièra pagina del sondatge",
-      "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."
-   },
-   "FindPolls": {
+      "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.",
+      "You haven't filled the first section of the poll creation, or your session has expired.": "You haven't filled the first section of the poll creation, or your session has expired."
+}
+,"FindPolls":
+{
       "Have a good day!": "Bona jornada !",
       "Here is the list of the polls that you manage on %s:": "Vaquí la lista dels sondatges que gerissètz sus %s :",
       "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "Se sètz pas a l’origina d’aquesta accion e que pensatz que s’agís d’un abús, podètz o senhalar a l’administrator sus %s.",
@@ -166,8 +177,9 @@
       "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS : aqueste corrièl es estat mandat perque avètz – o qualqu’un mai – a demandat la recuperacion dels sondatges creats amb aquesta adreça de corrièl.",
       "Polls sent": "Sondatges mandats",
       "Send me my polls": "Mandar mos sondatges"
-   },
-   "Generic": {
+}
+,"Generic":
+{
       "(in the format name@mail.com)": "(al format nom@mail.com)",
       "ASTERISK": "*",
       "Add": "Apondre",
@@ -209,13 +221,15 @@
       "vote": "vòte",
       "votes": "vòtes",
       "with": "amb"
-   },
-   "Homepage": {
+}
+,"Homepage":
+{
       "Make a classic poll": "Crear un sondatge classic",
       "Schedule an event": "Crear un sondatge especial datas",
       "Where are my polls": "Ont son mos sondatges ?"
-   },
-   "Installation": {
+}
+,"Installation":
+{
       "AppMail": "Adreça de corrièl de l’aplicacion",
       "AppName": "Nom de l’aplicacion",
       "CleanUrl": "URL clars",
@@ -229,43 +243,48 @@
       "Install": "Installar",
       "MigrationTable": "Taula de migracion",
       "ResponseMail": "Adreça de responsa"
-   },
-   "Language selector": {
+}
+,"Language selector":
+{
       "Change the language": "Cambiar la lenga",
       "Select the language": "Seleccionar la lenga"
-   },
-   "Mail": {
+}
+,"Mail":
+{
       "Author's message": "Reservat a l’autor",
-      "FOOTER": "« La rota es longa, mai lo camin es liure… »<br/>Framasoft viu solament amb vòstres dons (qu’òm pòt tirar de vòstres impòstes).<br/> Mercé d’avança pel vòstre sosten https://soutenir.framasoft.org.",
+      "FOOTER": "« La rota es longa, mai lo camin es liure… »<br\/>Framasoft viu solament amb vòstres dons (qu’òm pòt tirar de vòstres impòstes).<br\/> Mercé d’avança pel vòstre sosten https:\/\/soutenir.framasoft.org.",
       "For sending to the polled users": "Per difusion als sondats",
       "Notification of poll: %s": "Notificacion d’un sondatge : %s",
       "Poll's participation: %s": "Participacion al sondatge : %s",
-      "Someone just change your poll available at the following link %s.": "Qualqu’un ven de modificar vòstre sondatge accessible amb lo ligam seguent <a href=\"%1$s\">%1$s</a>.",
+      "Someone just change your poll available at the following link %s.": "Qualqu’un ven de modificar vòstre sondatge accessible amb lo ligam seguent <a href=\"%1$s\">%1$s<\/a>.",
       "Someone just delete your poll %s.": "Qualqu’un ven de suprimir vòstre sondatge \"%s\".",
       "Thanks for filling the poll at the link above": "Mercé de ben voler participar al sondatge a l’adreça seguenta",
       "Thanks for your trust.": "Mercé per vòstra fisança.",
-      "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.": "Aquò es lo messatge que serà mandat als sondats.<br/>Podètz ara transmetre aqueste messatge a totas las personas susceptiblas de participar al vòte.",
-      "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "Aqueste messatge deu PAS èsser difusat als sondats. Es reservat a l’autor del sondatge.<br/><br/>Podètz modificar aqueste sondatge amb lo ligam seguent ",
-      "You have changed the settings of your poll. \nYou can modify this poll with this link": "Avètz modificat la configuracion del sondatge.<br/>Podètz modificar aqueste sondatge amb lo ligam seguent",
+      "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.": "Aquò es lo messatge que serà mandat als sondats.<br\/>Podètz ara transmetre aqueste messatge a totas las personas susceptiblas de participar al vòte.",
+      "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "Aqueste messatge deu PAS èsser difusat als sondats. Es reservat a l’autor del sondatge.<br\/><br\/>Podètz modificar aqueste sondatge amb lo ligam seguent ",
+      "You have changed the settings of your poll. \nYou can modify this poll with this link": "Avètz modificat la configuracion del sondatge.<br\/>Podètz modificar aqueste sondatge amb lo ligam seguent",
       "[ADMINISTRATOR] New settings for your poll": "[ADMINISTRATOR] Cambi de configuracion del sondatge",
-      "filled a vote.\nYou can find your poll at the link": "ven de votar.<br/>Podètz tornar a vòstre sondatge amb lo ligam seguent",
+      "filled a vote.\nYou can find your poll at the link": "ven de votar.<br\/>Podètz tornar a vòstre sondatge amb lo ligam seguent",
       "hast just created a poll called": " ven de crear un sondatge titolat ",
-      "updated a vote.\nYou can find your poll at the link": "ven de metre a jorn un vòte.<br/>Podètz tornar a vòstre sondatge amb lo ligam seguent",
-      "wrote a comment.\nYou can find your poll at the link": "ven de redigir un comentari.<br/>Podètz tornar a vòstre sondatge amb lo ligam seguent"
-   },
-   "Maintenance": {
+      "updated a vote.\nYou can find your poll at the link": "ven de metre a jorn un vòte.<br\/>Podètz tornar a vòstre sondatge amb lo ligam seguent",
+      "wrote a comment.\nYou can find your poll at the link": "ven de redigir un comentari.<br\/>Podètz tornar a vòstre sondatge amb lo ligam seguent"
+}
+,"Maintenance":
+{
       "Thank you for your understanding.": "Mercés de tornar dins un momenton.",
       "The application": "L’aplicacion",
       "is currently under maintenance.": "es en mantenença."
-   },
-   "Password": {
+}
+,"Password":
+{
       "Password": "Senhal",
       "Submit access": "Accedir",
       "Wrong password": "Senhal incorrècte.",
       "You have to provide a password so you can participate to the poll.": "Vos cal donar lo senhal per participar al sondatge.",
       "You have to provide a password to access the poll.": "Vos cal donar lo senhal per aver accès a aqueste sondatge."
-   },
-   "Poll results": {
+}
+,"Poll results":
+{
       "Addition": "Soma",
       "Best choice": "Milhora causida",
       "Best choices": "Milhoras causidas",
@@ -285,8 +304,9 @@
       "Votes of the poll": "Vòtes del sondatge",
       "polled user": "votant",
       "polled users": "votants"
-   },
-   "PollInfo": {
+}
+,"PollInfo":
+{
       "Admin link of the poll": "Ligam d’administracion del sondatge",
       "Cancel the description edit": "Anullar lo cambiament de descripcion",
       "Cancel the email address edit": "Anullar lo cambiament d’adreça",
@@ -327,8 +347,9 @@
       "Title": "Títol del sondatge",
       "Votes and comments are locked": "Los vòtes e comentaris son clavats",
       "Votes protected by password": "Vòtes protegits per senhal"
-   },
-   "Step 1": {
+}
+,"Step 1":
+{
       "All voters can modify any vote": "Totes los votants pòdon modificar sos vòtes",
       "Customize the URL": "Personalizar lo ligam",
       "Go to step 2": "Anar a l’etapa 2",
@@ -357,12 +378,14 @@
       "Votes cannot be modified": "Cap de vòte pòt pas èsser modificat",
       "You are in the poll creation section.": "Avètz causit de crear un sondatge novèl.",
       "You can enable or disable the editor at will.": "Podètz activar o desactivar l’editor coma volgatz."
-   },
-   "Step 2": {
+}
+,"Step 2":
+{
       "Back to step 1": "Tornar a l’etapa 1",
       "Go to step 3": "Anar a l’etapa 3"
-   },
-   "Step 2 classic": {
+}
+,"Step 2 classic":
+{
       "Add a choice": "Apondre una causida",
       "Add a link or an image": "Apondre un ligam o un imatge",
       "Alternative text": "Tèxte alternatiu",
@@ -374,8 +397,9 @@
       "URL of the image": "URL de l’imatge",
       "You can add or remove additional choices with the buttons": "Podètz apondre o suprimir de causidas mai amb los botons",
       "the Markdown syntax": "la sintaxi Markdown"
-   },
-   "Step 2 date": {
+}
+,"Step 2 date":
+{
       "Add a day": "Ajustar un jorn",
       "Add an hour": "Ajustar un orari",
       "Choose the dates of your poll": "Causissètz las datas de vòstre sondatge",
@@ -389,8 +413,9 @@
       "Remove this day": "Suprimir aqueste jorn",
       "To schedule an event you need to propose at least two choices (two hours for one day or two days).": "Per crear un sondatge especial datas vos cal prepausar almens doas causidas (dos oraris per la meteissa jornada o dos jorns).",
       "You can add or remove additionnal days and hours with the buttons": "Podètz apondre o suprimir de jorns e oraris suplementaris amb los botons"
-   },
-   "Step 3": {
+}
+,"Step 3":
+{
       "Archiving date:": "Data de mesa en archiu :",
       "Back to step 2": "Tornar a l’etapa 2",
       "Confirm the creation of your poll": "Confirmatz la creacion de vòstre sondatge",
@@ -403,8 +428,9 @@
       "Your poll will automatically be archived": "Vòstre sondatge serà archivat automaticament",
       "Your poll will be automatically archived in %d days.": "Vòstre sondatge serà archivat automaticament dins %d jorns.",
       "after the last date of your poll.": "aprèp lo darrièr jorn del sondatge."
-   },
-   "adminstuds": {
+}
+,"adminstuds":
+{
       "Add a column": "Apondre una colomna",
       "All comments deleted": "Totes los comentaris son estats suprimits",
       "All votes deleted": "Totes los vòtes son estats suprimits",
@@ -437,11 +463,12 @@
       "Vote updated": "Vòte mes a jorn",
       "You can add a new scheduling date to your poll.": "Podètz apondre una data a vòstre sondatge.",
       "Your poll has been removed!": "Vòstre sondatge es estat suprimit !",
-      "The poll is created." : "The poll is created.",
+      "The poll is created.": "The poll is created.",
       "and add a new column with": "E se avètz oblidat de picar una causida, podètz tornar apondre una colomna en clicant sus",
       "remove a column or a line with": "escafar una colomna o una linha amb"
-   },
-   "studs": {
+}
+,"studs":
+{
       "Adding the vote succeeded": "Apondon del vòte capitat",
       "Deletion date:": "Data de supression :",
       "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Per participar a aqueste sondatge, picatz vòstre nom, triatz totas las valors que vos agradan e validatz amb lo boton al cap de linha.",
@@ -449,5 +476,6 @@
       "The poll is expired, it will be deleted soon.": "Lo sondatge a expirat, serà lèu suprimit.",
       "Update vote succeeded": "Mesa a jorn del vòte amb succès",
       "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Vòstre vòte es estat enregistrat corrèctament, mas mèfi : aqueste sondatge permet l’edicion de vòstre vòte solament amb lo ligam personalizat seguent ; gardatz-lo preciosament ! "
-   }
+}
+
 }

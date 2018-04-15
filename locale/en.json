@@ -1,5 +1,6 @@
 {
-   "1st section": {
+"1st section":
+{
       "Define dates or subjects to choose": "Define dates or subjects to choose from",
       "Discuss and make a decision": "Discuss and make a decision",
       "Do you want to": "Do you want to",
@@ -9,22 +10,25 @@
       "Send the poll link to your friends or colleagues": "Send the poll link to your friends or colleagues",
       "What is that?": "What is Framadate?",
       "view an example?": "view an example?"
-   },
-   "2nd section": {
+}
+,"2nd section":
+{
       "CeCILL-B license": "CeCILL-B license",
       "Framadate was initially based on ": "Framadate was initially based on ",
       "It is governed by the": "Framadate is licensed under the",
       "The software": "The software",
       "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "This software needs JavaScript and cookies enabled. It is compatible with the following web browsers:",
       "a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.": "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association."
-   },
-   "3rd section": {
+}
+,"3rd section":
+{
       "Cultivate your garden": "Grow your own",
       "If you want to install the software for your own use and thus increase your independence, we help you on:": "If you want to install the software for your own use and thus increase your independence, we can help you at:",
       "To participate in the software development, suggest improvements or simply download it, please visit ": "To participate in the software development, suggest improvements or simply download it, please visit ",
       "the development site": "the development site"
-   },
-   "Admin": {
+}
+,"Admin":
+{
       "Actions": "Actions",
       "Administration": "Administration",
       "Author": "Author",
@@ -55,8 +59,9 @@
       "Title": "Title",
       "Votes": "Votes",
       "polls in the database at this time": "polls in the database at this time"
-   },
-   "Check": {
+}
+,"Check":
+{
       "Check again": "Check again",
       "Consider enabling the PHP extension OpenSSL for increased security.": "Consider enabling the PHP extension OpenSSL for increased security.",
       "Consider setting the date.timezone in php.ini.": "Consider setting the date.timezone in php.ini.",
@@ -76,8 +81,9 @@
       "You need to enable the PHP Intl extension.": "You need to enable the PHP Intl extension.",
       "Your PHP version (%s) is too old. This application needs at least PHP %s.": "Your PHP version (%s) is too old. This application needs at least PHP %s.",
       "date.timezone is set.": "date.timezone is set."
-   },
-   "Comments": {
+}
+,"Comments":
+{
       "Add a comment to the poll": "Add a comment to the poll",
       "Comment added": "Comment saved",
       "Comments of polled people": "Comments",
@@ -85,11 +91,12 @@
       "Send the comment": "Submit comment",
       "Your comment": "Comment",
       "anonyme": "anonyme"
-   },
-   "Date": {
+}
+,"Date":
+{
       "Add range dates": "Add range dates",
       "DATE": "%Y-%m-%d",
-      "DATETIME": "%m/%d/%Y %H:%M",
+      "DATETIME": "%m\/%d\/%Y %H:%M",
       "DAY": "%a %e",
       "End date": "End date",
       "FULL": "%A, %B %e, %Y",
@@ -99,9 +106,10 @@
       "Start date": "Start date",
       "datepicker": "yyyy-mm-dd",
       "datetime_parseformat": "Y-m-d",
-      "dd/mm/yyyy": "yyyy-mm-dd"
-   },
-   "EditLink": {
+      "dd\/mm\/yyyy": "yyyy-mm-dd"
+}
+,"EditLink":
+{
       "Edit link for poll \"%s\"": "Edit link for poll \"%s\"",
       "Here is the link for editing your vote:": "Here is the link for editing your vote:",
       "If you don't want to lose your personalized link, we can send it to your email.": "If you don't want to lose your personalized link, we can send it to your email.",
@@ -110,8 +118,9 @@
       "Send": "Send",
       "The email address is not correct.": "The email address is not correct.",
       "Your reminder has been successfully sent!": "Your reminder has been successfully sent!"
-   },
-   "Error": {
+}
+,"Error":
+{
       "Adding vote failed": "Adding vote failed",
       "CANT_CONNECT_TO_DATABASE": "Unable to connect to database",
       "Can't create an empty column.": "Can't create an empty column.",
@@ -156,9 +165,11 @@
       "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following option: ",
       "You can't select more than %d dates": "You can't select more than %d dates",
       "You haven't filled the first section of the poll creation.": "You haven't filled in the first section of the poll.",
-      "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."
-   },
-   "FindPolls": {
+      "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.",
+      "You haven't filled the first section of the poll creation, or your session has expired.": "You haven't filled the first section of the poll creation, or your session has expired."
+}
+,"FindPolls":
+{
       "Have a good day!": "Have a good day!",
       "Here is the list of the polls that you manage on %s:": "Here is the list of the polls that you manage on %s:",
       "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.",
@@ -166,8 +177,9 @@
       "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.",
       "Polls sent": "Polls sent",
       "Send me my polls": "Send me my polls"
-   },
-   "Generic": {
+}
+,"Generic":
+{
       "(in the format name@mail.com)": "(in the format name@mail.com)",
       "ASTERISK": "*",
       "Add": "Add",
@@ -209,13 +221,15 @@
       "vote": "vote",
       "votes": "votes",
       "with": "with"
-   },
-   "Homepage": {
+}
+,"Homepage":
+{
       "Make a classic poll": "Make a standard poll",
       "Schedule an event": "Schedule an event",
       "Where are my polls": "Where are my polls?"
-   },
-   "Installation": {
+}
+,"Installation":
+{
       "AppMail": "Administrator mail address",
       "AppName": "Application name",
       "CleanUrl": "Clean URL",
@@ -229,43 +243,48 @@
       "Install": "Install",
       "MigrationTable": "Migration table",
       "ResponseMail": "Respond-to mail address"
-   },
-   "Language selector": {
+}
+,"Language selector":
+{
       "Change the language": "Change language",
       "Select the language": "Select language"
-   },
-   "Mail": {
+}
+,"Mail":
+{
       "Author's message": "Author's message",
-      "FOOTER": "\"The road is long, but the way is clear…\"<br/>Framasoft lives only by your donations.<br/>Thank you in advance for your support https://soutenir.framasoft.org",
+      "FOOTER": "\"The road is long, but the way is clear…\"<br\/>Framasoft lives only by your donations.<br\/>Thank you in advance for your support https:\/\/soutenir.framasoft.org",
       "For sending to the polled users": "Participant link",
       "Notification of poll: %s": "Notification of poll: %s",
       "Poll's participation: %s": "Poll participation: %s",
-      "Someone just change your poll available at the following link %s.": "Someone just changed your poll at the following link <a href=\"%1$s\">%1$s</a>.",
+      "Someone just change your poll available at the following link %s.": "Someone just changed your poll at the following link <a href=\"%1$s\">%1$s<\/a>.",
       "Someone just delete your poll %s.": "Someone just deleted your poll \"%s\".",
       "Thanks for filling the poll at the link above": "Please fill in the poll at the link above",
       "Thanks for your trust.": "Thank you for your trust.",
       "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.": "This is the message to forward to the poll participants.",
-      "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "This message should NOT be sent to the poll participants. You should keep it private. <br/><br/>You can modify your poll at the link above",
-      "You have changed the settings of your poll. \nYou can modify this poll with this link": "You have changed the settings of your poll.<br/>You can modify this poll with this link",
+      "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "This message should NOT be sent to the poll participants. You should keep it private. <br\/><br\/>You can modify your poll at the link above",
+      "You have changed the settings of your poll. \nYou can modify this poll with this link": "You have changed the settings of your poll.<br\/>You can modify this poll with this link",
       "[ADMINISTRATOR] New settings for your poll": "[ADMINISTRATOR] New settings for your poll",
-      "filled a vote.\nYou can find your poll at the link": "added a vote.<br/>You can visit your poll at the link",
+      "filled a vote.\nYou can find your poll at the link": "added a vote.<br\/>You can visit your poll at the link",
       "hast just created a poll called": "has just created a poll called",
-      "updated a vote.\nYou can find your poll at the link": "updated a vote.<br/>You can visit your poll at the link",
-      "wrote a comment.\nYou can find your poll at the link": "wrote a comment.<br/>You can visit your poll at the link"
-   },
-   "Maintenance": {
+      "updated a vote.\nYou can find your poll at the link": "updated a vote.<br\/>You can visit your poll at the link",
+      "wrote a comment.\nYou can find your poll at the link": "wrote a comment.<br\/>You can visit your poll at the link"
+}
+,"Maintenance":
+{
       "Thank you for your understanding.": "Thank you for your understanding.",
       "The application": "The application",
       "is currently under maintenance.": "is currently under maintenance."
-   },
-   "Password": {
+}
+,"Password":
+{
       "Password": "Password",
       "Submit access": "Submit access",
       "Wrong password": "Wrong password",
       "You have to provide a password so you can participate to the poll.": "You have to provide a password so you can participate to the poll.",
       "You have to provide a password to access the poll.": "You have to provide a password to access the poll."
-   },
-   "Poll results": {
+}
+,"Poll results":
+{
       "Addition": "Total",
       "Best choice": "Best choice",
       "Best choices": "Best choices",
@@ -286,8 +305,9 @@
       "Votes of the poll": "Votes",
       "polled user": "polled user",
       "polled users": "polled users"
-   },
-   "PollInfo": {
+}
+,"PollInfo":
+{
       "Admin link of the poll": "Admin link for the poll",
       "Cancel the description edit": "Cancel the description edit",
       "Cancel the email address edit": "Cancel the email address edit",
@@ -328,8 +348,9 @@
       "Title": "Title of the poll",
       "Votes and comments are locked": "Votes and comments are locked",
       "Votes protected by password": "Votes protected by password"
-   },
-   "Step 1": {
+}
+,"Step 1":
+{
       "All voters can modify any vote": "All voters can modify any vote",
       "Customize the URL": "Customize the URL",
       "Go to step 2": "Go to step 2",
@@ -358,12 +379,14 @@
       "Votes cannot be modified": "Votes cannot be modified",
       "You are in the poll creation section.": "You are in the poll creation section.",
       "You can enable or disable the editor at will.": "You can enable or disable the editor at will."
-   },
-   "Step 2": {
+}
+,"Step 2":
+{
       "Back to step 1": "Return to step 1",
       "Go to step 3": "Go to step 3"
-   },
-   "Step 2 classic": {
+}
+,"Step 2 classic":
+{
       "Add a choice": "Add a choice",
       "Add a link or an image": "Add a link or an image",
       "Alternative text": "Alternative text",
@@ -375,8 +398,9 @@
       "URL of the image": "URL of the image",
       "You can add or remove additional choices with the buttons": "You can add or remove choices with the buttons",
       "the Markdown syntax": "Markdown syntax"
-   },
-   "Step 2 date": {
+}
+,"Step 2 date":
+{
       "Add a day": "Add a day",
       "Add an hour": "Add a time slot",
       "Choose the dates of your poll": "Choose dates for your poll",
@@ -390,8 +414,9 @@
       "Remove this day": "Remove this day",
       "To schedule an event you need to propose at least two choices (two hours for one day or two days).": "To schedule an event you need to provide at least two choices (e.g., two time slots on one day or two days).",
       "You can add or remove additionnal days and hours with the buttons": "You can add or remove additional days and times with the buttons"
-   },
-   "Step 3": {
+}
+,"Step 3":
+{
       "Archiving date:": "Expiry date:",
       "Back to step 2": "Back to step 2",
       "Confirm the creation of your poll": "Confirm the creation of your poll",
@@ -404,8 +429,9 @@
       "Your poll will automatically be archived": "Your poll will automatically be archived",
       "Your poll will be automatically archived in %d days.": "Your poll will be automatically archived in %d days.",
       "after the last date of your poll.": "after the last date of your poll."
-   },
-   "adminstuds": {
+}
+,"adminstuds":
+{
       "Add a column": "Add a column",
       "All comments deleted": "All comments deleted",
       "All votes deleted": "All votes deleted",
@@ -438,11 +464,12 @@
       "Vote updated": "Vote updated",
       "You can add a new scheduling date to your poll.": "You can add a new scheduling date to your poll.",
       "Your poll has been removed!": "Your poll has been removed!",
-      "The poll is created." : "The poll is created.",
+      "The poll is created.": "The poll is created.",
       "and add a new column with": "and add a new column with",
       "remove a column or a line with": "remove a column or a line with"
-   },
-   "studs": {
+}
+,"studs":
+{
       "Adding the vote succeeded": "Vote added",
       "Deletion date:": "Deletion date:",
       "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "If you want to vote in this poll, you have to give your name, make your choice, and submit it with the plus button at the end of the line.",
@@ -450,5 +477,6 @@
       "The poll is expired, it will be deleted soon.": "The poll has expired, it will soon be deleted.",
       "Update vote succeeded": "Vote updated",
       "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Your vote has been saved, but please note: you need to keep this personalised link to be able to edit your vote."
-   }
+}
+
 }
