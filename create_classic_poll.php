@@ -43,7 +43,7 @@ if (is_file('bandeaux_local.php')) {
 // Step 1/4 : error if $_SESSION from info_sondage are not valid
 if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (($config['use_smtp']) ? empty($_SESSION['form']->admin_mail) : false)) {
     $smarty->assign('title', __('Error', 'Error!'));
-    $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation.'));
+    $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
     $smarty->display('error.tpl');
     exit;
 }
