@@ -146,9 +146,9 @@ class Utils {
         $parseDown = new Parsedown();
 
         $parseDown
-            ->setMarkupEscaped(true)
             ->setBreaksEnabled(true)
-            ->setUrlsLinked(false);
+            ->setSafeMode(true)
+            ;
 
         if ($line) {
             $html  = $parseDown->line($md);
