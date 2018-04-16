@@ -16,11 +16,11 @@
                 <fieldset id="add-comment"><legend>{__('Comments', 'Add a comment to the poll')|html}</legend>
                     <div class="form-group">
                         <label for="comment_name" class="control-label">{__('Generic', 'Your name')|html}</label>
-                        <input type="text" name="name" id="comment_name" class="form-control" maxlength="60" />
+                        <input type="text" name="name" id="comment_name" class="form-control" maxlength="60" required>
                     </div>
                     <div class="form-group">
                         <label for="comment" class="control-label">{__('Comments', 'Your comment')|html}</label>
-                        <textarea name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea>
+                        <textarea name="comment" id="comment" class="form-control" rows="2" cols="40" required></textarea>
                     </div>
                     <div class="pull-right">
                         <input

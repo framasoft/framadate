@@ -16,6 +16,9 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
+
+var form;
+
 $(document).ready(function () {
 
     $('#poll_form').submit(function (event) {
@@ -56,13 +59,17 @@ $(document).ready(function () {
     });
     
     
+    form = $('#comment_form');
+    
+    
     checkCommentSending();
     
     $("#comment_name").on("keyup change", checkCommentSending);
     $("#comment").on("keyup change", checkCommentSending);
     
+    $("#comment_name").on("change", formatValues);
+    $("#comment").on("change", formatValues);
     
-    var form = $('#comment_form');
     
     form.submit(function(event) {
         event.preventDefault();
@@ -125,6 +132,14 @@ $(document).ready(function () {
 });
 
 
+function formatValues() {
+	var value = $(this).val().trim();
+	
+	if (0 === value.length) {
+		$(this).val("");
+	}
+}
+
 function checkCommentSending() {
 	
 	var button = $("#add_comment");
@@ -135,12 +150,7 @@ function checkCommentSending() {
 	}
 	
 	
-	var name = $("#comment_name").val().trim();
-	var comment = $("#comment").val().trim();
-	
-	if (	(0 === name.length)
-		||	(0 === comment.length)
-	) {
+	if (!form.get(0).checkValidity()) {
 		button.prop("disabled", true);
 		button.val(button.data("textWait"));
 	} else {
