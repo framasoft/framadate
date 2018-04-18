@@ -31,7 +31,6 @@ use Framadate\Utils;
  */
 class Version20180411000000 extends AbstractMigration
 {
-
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
@@ -54,7 +53,6 @@ class Version20180411000000 extends AbstractMigration
         $driver_name = $connection->getWrappedConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME);
 
         if ($driver_name === 'mysql') {
-
             $stmt = $connection->prepare(
                 "SELECT Column_Default from Information_Schema.Columns where Table_Name = ? AND Column_Name = ?;"
             );

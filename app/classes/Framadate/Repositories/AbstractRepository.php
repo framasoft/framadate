@@ -41,8 +41,8 @@ abstract class AbstractRepository {
 
     /**
      * @param string $sql
-     * @return bool|\Doctrine\DBAL\Driver\Statement|\PDOStatement
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool|\Doctrine\DBAL\Driver\Statement|\PDOStatement
      */
     public function prepare($sql)
     {
@@ -51,8 +51,8 @@ abstract class AbstractRepository {
 
     /**
      * @param string $sql
-     * @return bool|\Doctrine\DBAL\Driver\Statement|\PDOStatement
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool|\Doctrine\DBAL\Driver\Statement|\PDOStatement
      */
     public function query($sql)
     {

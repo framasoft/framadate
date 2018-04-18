@@ -4,11 +4,10 @@ namespace Framadate\Repositories;
 use Framadate\Utils;
 
 class CommentRepository extends AbstractRepository {
-
     /**
      * @param $poll_id
-     * @return array
      * @throws \Doctrine\DBAL\DBALException
+     * @return array
      */
     public function findAllByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM ' . Utils::table('comment') . ' WHERE poll_id = ? ORDER BY id');
@@ -33,8 +32,8 @@ class CommentRepository extends AbstractRepository {
     /**
      * @param $poll_id
      * @param $comment_id
-     * @return bool
      * @throws \Doctrine\DBAL\Exception\InvalidArgumentException
+     * @return bool
      */
     function deleteById($poll_id, $comment_id)
     {
@@ -45,8 +44,8 @@ class CommentRepository extends AbstractRepository {
      * Delete all comments of a given poll.
      *
      * @param $poll_id int The ID of the given poll.
-     * @return bool true if action succeeded.
      * @throws \Doctrine\DBAL\Exception\InvalidArgumentException
+     * @return bool true if action succeeded.
      */
     function deleteByPollId($poll_id)
     {
@@ -57,8 +56,8 @@ class CommentRepository extends AbstractRepository {
      * @param $poll_id
      * @param $name
      * @param $comment
-     * @return bool
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool
      */
     public function exists($poll_id, $name, $comment)
     {

@@ -30,7 +30,6 @@ use Framadate\Utils;
  */
 class Version20150102000000 extends AbstractMigration
 {
-
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
@@ -55,6 +54,51 @@ class Version20150102000000 extends AbstractMigration
         $this->createCommentTable($schema);
         $this->createSlotTable($schema);
         $this->createVoteTable($schema);
+    }
+
+    public function down(Schema $schema)
+    {
+        $sondage = $schema->createTable('sondage');
+        $sondage->addColumn('id_sondage', 'string');
+        $sondage->addColumn('commentaires', 'text');
+        $sondage->addColumn('mail_admin', 'string', ['notnull' => false]);
+        $sondage->addColumn('nom_admin', 'string', ['notnull' => false]);
+        $sondage->addColumn('titre', 'text');
+        $sondage->addColumn('id_sondage_admin', 'string', ['notnull' => false]);
+        $sondage->addColumn('date_creation', 'datetime', ['default' => (new \DateTime())->format('Y-m-d H:i:s')]);
+        $sondage->addColumn('date_fin', 'datetime', ['notnull' => false]);
+        $sondage->addColumn('format', 'string', ['notnull' => false]);
+        $sondage->addColumn('mailsonde', 'boolean', ['default' => false]);
+        $sondage->addColumn('statut', 'integer', ['default' => '1']);
+        $sondage->addUniqueIndex(['id_sondage'], 'sondage_index_id_sondage');
+
+        $sujetStuds = $schema->createTable('sujet_studs');
+        $sujetStuds->addColumn('id_sondage', 'string');
+        $sujetStuds->addColumn('sujet', 'text');
+        $sujetStuds->addIndex(['id_sondage'], 'sujet_studs_index_id_sondage');
+
+        $comments = $schema->createTable('comments');
+        $schema->createSequence('comments_seq');
+        $comments->addColumn('id_comment', 'integer', ['autoincrement' => true]);
+        $comments->addColumn('id_sondage', 'string');
+        $comments->addColumn('comment', 'text');
+        $comments->addColumn('usercomment', 'text', ['notnull' => false]);
+        $comments->addUniqueIndex(['id_comment'], 'comments_index_id_comment');
+        $comments->addIndex(['id_sondage'], 'comments_index_id_sondage');
+
+        $userStuds = $schema->createTable('user_studs');
+        $schema->createSequence('user_studs_seq');
+        $userStuds->addColumn('id_users', 'integer', ['autoincrement' => true]);
+        $userStuds->addColumn('nom', 'string');
+        $userStuds->addColumn('id_sondage', 'string');
+        $userStuds->addColumn('reponses', 'text');
+        $userStuds->addUniqueIndex(['id_users'], 'user_studs_index_id_users');
+        $userStuds->addIndex(['id_sondage'], 'user_studs_index_id_sondage');
+
+        $schema->dropTable(Utils::table('poll'));
+        $schema->dropTable(Utils::table('comment'));
+        $schema->dropTable(Utils::table('vote'));
+        $schema->dropTable(Utils::table('slot'));
     }
 
     private function createPollTable(Schema $schema)
@@ -109,50 +153,5 @@ class Version20150102000000 extends AbstractMigration
         $vote->addColumn('choices', 'string');
         $vote->addUniqueIndex(['id'], 'vote_index_id');
         $vote->addIndex(['poll_id'], 'vote_index_poll_id');
-    }
-
-    public function down(Schema $schema)
-    {
-        $sondage = $schema->createTable('sondage');
-        $sondage->addColumn('id_sondage', 'string');
-        $sondage->addColumn('commentaires', 'text');
-        $sondage->addColumn('mail_admin', 'string', ['notnull' => false]);
-        $sondage->addColumn('nom_admin', 'string', ['notnull' => false]);
-        $sondage->addColumn('titre', 'text');
-        $sondage->addColumn('id_sondage_admin', 'string', ['notnull' => false]);
-        $sondage->addColumn('date_creation', 'datetime', ['default' => (new \DateTime())->format('Y-m-d H:i:s')]);
-        $sondage->addColumn('date_fin', 'datetime', ['notnull' => false]);
-        $sondage->addColumn('format', 'string', ['notnull' => false]);
-        $sondage->addColumn('mailsonde', 'boolean', ['default' => false]);
-        $sondage->addColumn('statut', 'integer', ['default' => '1']);
-        $sondage->addUniqueIndex(['id_sondage'], 'sondage_index_id_sondage');
-
-        $sujetStuds = $schema->createTable('sujet_studs');
-        $sujetStuds->addColumn('id_sondage', 'string');
-        $sujetStuds->addColumn('sujet', 'text');
-        $sujetStuds->addIndex(['id_sondage'], 'sujet_studs_index_id_sondage');
-
-        $comments = $schema->createTable('comments');
-        $schema->createSequence('comments_seq');
-        $comments->addColumn('id_comment', 'integer', ['autoincrement' => true]);
-        $comments->addColumn('id_sondage', 'string');
-        $comments->addColumn('comment', 'text');
-        $comments->addColumn('usercomment', 'text', ['notnull' => false]);
-        $comments->addUniqueIndex(['id_comment'], 'comments_index_id_comment');
-        $comments->addIndex(['id_sondage'], 'comments_index_id_sondage');
-
-        $userStuds = $schema->createTable('user_studs');
-        $schema->createSequence('user_studs_seq');
-        $userStuds->addColumn('id_users', 'integer', ['autoincrement' => true]);
-        $userStuds->addColumn('nom', 'string');
-        $userStuds->addColumn('id_sondage', 'string');
-        $userStuds->addColumn('reponses', 'text');
-        $userStuds->addUniqueIndex(['id_users'], 'user_studs_index_id_users');
-        $userStuds->addIndex(['id_sondage'], 'user_studs_index_id_sondage');
-
-        $schema->dropTable(Utils::table('poll'));
-        $schema->dropTable(Utils::table('comment'));
-        $schema->dropTable(Utils::table('vote'));
-        $schema->dropTable(Utils::table('slot'));
     }
 }

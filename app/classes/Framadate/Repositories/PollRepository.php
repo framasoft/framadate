@@ -5,7 +5,6 @@ use Framadate\Utils;
 use PDO;
 
 class PollRepository extends AbstractRepository {
-
     /**
      * @param $poll_id
      * @param $admin_poll_id
@@ -34,8 +33,8 @@ class PollRepository extends AbstractRepository {
 
     /**
      * @param $poll_id
-     * @return mixed
      * @throws \Doctrine\DBAL\DBALException
+     * @return mixed
      */
     public function findById($poll_id)
     {
@@ -50,8 +49,8 @@ class PollRepository extends AbstractRepository {
 
     /**
      * @param $admin_poll_id
-     * @return mixed
      * @throws \Doctrine\DBAL\DBALException
+     * @return mixed
      */
     public function findByAdminId($admin_poll_id) {
         $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' WHERE admin_id = ?');
@@ -65,8 +64,8 @@ class PollRepository extends AbstractRepository {
 
     /**
      * @param $poll_id
-     * @return bool
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool
      */
     public function existsById($poll_id) {
         $prepared = $this->prepare('SELECT 1 FROM ' . Utils::table('poll') . ' WHERE id = ?');
@@ -78,8 +77,8 @@ class PollRepository extends AbstractRepository {
 
     /**
      * @param $admin_poll_id
-     * @return bool
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool
      */
     public function existsByAdminId($admin_poll_id) {
         $prepared = $this->prepare('SELECT 1 FROM ' . Utils::table('poll') . ' WHERE admin_id = ?');
@@ -113,8 +112,8 @@ class PollRepository extends AbstractRepository {
 
     /**
      * @param $poll_id
-     * @return bool
      * @throws \Doctrine\DBAL\Exception\InvalidArgumentException
+     * @return bool
      */
     public function deleteById($poll_id)
     {
@@ -125,8 +124,8 @@ class PollRepository extends AbstractRepository {
      * Find old polls. Limit: 20.
      *
      * @param int $limit
-     * @return array Array of old polls
      * @throws \Doctrine\DBAL\DBALException
+     * @return array Array of old polls
      */
     public function findOldPolls($limit = 20)
     {
@@ -142,8 +141,8 @@ class PollRepository extends AbstractRepository {
      * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>..., 'mail'=>...]
      * @param int $start The number of first entry to select
      * @param int $limit The number of entries to find
-     * @return array The found polls
      * @throws \Doctrine\DBAL\DBALException
+     * @return array The found polls
      */
     public function findAll($search, $start, $limit) {
         // Polls
@@ -198,8 +197,8 @@ class PollRepository extends AbstractRepository {
      * Find all polls that are created with the given admin mail.
      *
      * @param string $mail Email address of the poll admin
-     * @return array The list of matching polls
      * @throws \Doctrine\DBAL\DBALException
+     * @return array The list of matching polls
      */
     public function findAllByAdminMail($mail) {
         $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' WHERE admin_mail = :admin_mail');
@@ -212,8 +211,8 @@ class PollRepository extends AbstractRepository {
      * Get the total number of polls in database.
      *
      * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>...]
-     * @return int The number of polls
      * @throws \Doctrine\DBAL\DBALException
+     * @return int The number of polls
      */
     public function count($search = null) {
         // Total count

@@ -61,7 +61,6 @@ $configuration->setMigrationsDirectory($migrationsDirectory);
 $configuration->setMigrationsNamespace('DoctrineMigrations');
 $configuration->registerMigrationsFromDirectory($migrationsDirectory);
 
-
 if ($executing) {
     $migration = new Migration($configuration);
     $migration->migrate();

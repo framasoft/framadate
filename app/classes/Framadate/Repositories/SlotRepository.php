@@ -21,7 +21,6 @@ namespace Framadate\Repositories;
 use Framadate\Utils;
 
 class SlotRepository extends AbstractRepository {
-
     /**
      * Insert a bulk of slots.
      *
@@ -49,8 +48,8 @@ class SlotRepository extends AbstractRepository {
 
     /**
      * @param $poll_id
-     * @return array
      * @throws \Doctrine\DBAL\DBALException
+     * @return array
      */
     public function listByPollId($poll_id)
     {
@@ -65,8 +64,8 @@ class SlotRepository extends AbstractRepository {
      *
      * @param $poll_id int The ID of the poll
      * @param $datetime int The datetime of the slot
-     * @return mixed Object The slot found, or null
      * @throws \Doctrine\DBAL\DBALException
+     * @return mixed Object The slot found, or null
      */
     function findByPollIdAndDatetime($poll_id, $datetime) {
         $prepared = $this->prepare('SELECT * FROM ' . Utils::table('slot') . ' WHERE poll_id = ? AND SUBSTRING_INDEX(title, \'@\', 1) = ?');
@@ -109,8 +108,8 @@ class SlotRepository extends AbstractRepository {
      *
      * @param $poll_id int The ID of the poll
      * @param $datetime mixed The datetime of the slot
-     * @return bool
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool
      */
     public function deleteByDateTime($poll_id, $datetime)
     {
@@ -119,8 +118,8 @@ class SlotRepository extends AbstractRepository {
 
     /**
      * @param $poll_id
-     * @return bool
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool
      */
     public function deleteByPollId($poll_id)
     {

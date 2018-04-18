@@ -23,5 +23,4 @@ use Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand;
 
 class MigrationCommand extends MigrateCommand
 {
-
 }

@@ -29,7 +29,6 @@ use Doctrine\DBAL\Schema\Schema;
  */
 class Version20150101000000 extends AbstractMigration
 {
-
     /**
      * This method should describe in english what is the purpose of the migration class.
      *

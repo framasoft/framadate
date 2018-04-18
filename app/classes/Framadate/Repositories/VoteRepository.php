@@ -5,11 +5,10 @@ use Framadate\FramaDB;
 use Framadate\Utils;
 
 class VoteRepository extends AbstractRepository {
-
     /**
      * @param $poll_id
-     * @return array
      * @throws \Doctrine\DBAL\DBALException
+     * @return array
      */
     public function allUserVotesByPollId($poll_id)
     {
@@ -22,8 +21,8 @@ class VoteRepository extends AbstractRepository {
     /**
      * @param $poll_id
      * @param $insert_position
-     * @return bool
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool
      */
     public function insertDefault($poll_id, $insert_position)
     {
@@ -57,8 +56,8 @@ class VoteRepository extends AbstractRepository {
     /**
      * @param $poll_id
      * @param $vote_id
-     * @return bool
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool
      */
     public function deleteById($poll_id, $vote_id)
     {
@@ -75,8 +74,8 @@ class VoteRepository extends AbstractRepository {
      * Delete all votes of a given poll.
      *
      * @param $poll_id int The ID of the given poll.
-     * @return bool|null true if action succeeded.
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool|null true if action succeeded.
      */
     public function deleteByPollId($poll_id)
     {
@@ -88,8 +87,8 @@ class VoteRepository extends AbstractRepository {
      *
      * @param $poll_id int The ID of the poll
      * @param $index int The index of the vote into the poll
-     * @return bool|null true if action succeeded.
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool|null true if action succeeded.
      */
     public function deleteByIndex($poll_id, $index)
     {
@@ -121,8 +120,8 @@ class VoteRepository extends AbstractRepository {
      *
      * @param int $poll_id ID of the poll
      * @param string $name Name of the vote
-     * @return bool true if vote already exists
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool true if vote already exists
      */
     public function existsByPollIdAndName($poll_id, $name) {
         $prepared = $this->prepare('SELECT 1 FROM ' . Utils::table('vote') . ' WHERE poll_id = ? AND name = ?');
@@ -136,8 +135,8 @@ class VoteRepository extends AbstractRepository {
      * @param int $poll_id ID of the poll
      * @param string $name Name of the vote
      * @param int $vote_id ID of the current vote
-     * @return bool true if vote already exists
      * @throws \Doctrine\DBAL\DBALException
+     * @return bool true if vote already exists
      */
     public function existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id) {
         $prepared = $this->prepare('SELECT 1 FROM ' . Utils::table('vote') . ' WHERE poll_id = ? AND name = ? AND id != ?');

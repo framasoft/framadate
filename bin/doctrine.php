@@ -37,7 +37,6 @@ try {
     $migrateCommand = new \Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand();
     $statusCommand = new \Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand();
 
-
     $migrationsDirectory = __DIR__ . '/../app/classes/Framadate/Migrations';
 
     $configuration = new Configuration($connect);
@@ -53,7 +52,6 @@ try {
 
     // Runs console application
     $cli->run($input, $output);
-
 } catch (\Exception $e) {
     var_dump($e);
     $style->error($e->getMessage());

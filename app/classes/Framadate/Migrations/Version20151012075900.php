@@ -32,7 +32,6 @@ use Framadate\Utils;
  */
 class Version20151012075900 extends AbstractMigration
 {
-
     /**
      * This method should describe in english what is the purpose of the migration class.
      *

@@ -49,8 +49,8 @@ class PollService {
      * Find a poll from its ID.
      *
      * @param $poll_id int The ID of the poll
-     * @return \stdClass|null The found poll, or null
      * @throws \Doctrine\DBAL\DBALException
+     * @return \stdClass|null The found poll, or null
      */
     function findById($poll_id) {
         if (preg_match(POLL_REGEX, $poll_id)) {
