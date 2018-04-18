@@ -16,55 +16,50 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate\Migration;
+namespace DoctrineMigrations;
 
+use Doctrine\DBAL\Schema\Schema;
+use Framadate\AbstractMigration;
 use Framadate\Utils;
 
 /**
- * This migration adds the field uniqId on the vote table.
+ * This migration adds the column mail in the vote table
  *
  * @package Framadate\Migration
- * @version 0.9
+ * @version 1.2
  */
-class AddColumn_mail_In_vote implements Migration {
-    function __construct() {
-    }
-
+class Version20180419180000 extends AbstractMigration
+{
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description()
+    {
         return 'Add column mail in table vote';
     }
 
     /**
-     * This method could check if the execute method should be called.
-     * It is called before the execute method.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the Migration should be executed.
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     * @throws \Doctrine\DBAL\DBALException
      */
-    function preCondition(\PDO $pdo) {
-        return true;
+    public function up(Schema $schema)
+    {
+        $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\AddColumn_collect_mail_In_poll'), 'Migration has been executed in an earlier database migration system');
+        $vote = $schema->getTable(Utils::table('vote'));
+        $vote->addColumn('mail', 'string', ['default' => null, 'notnull' => false]);
     }
 
     /**
-     * This method is called only one time in the migration page.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the execution succeeded
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Schema\SchemaException
      */
-    function execute(\PDO $pdo) {
-        $this->alterVoteTable($pdo);
-
-        return true;
-    }
-
-    private function alterVoteTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('vote') . '`
-        ADD `mail` VARCHAR(320) DEFAULT NULL;');
+    public function down(Schema $schema)
+    {
+        $vote = $schema->getTable(Utils::table('vote'));
+        $vote->dropColumn('mail');
     }
 }

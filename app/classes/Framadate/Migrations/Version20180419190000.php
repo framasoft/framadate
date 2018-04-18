@@ -16,55 +16,45 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate\Migration;
+namespace DoctrineMigrations;
 
+use Doctrine\DBAL\Schema\Schema;
+use Framadate\AbstractMigration;
 use Framadate\Utils;
 
 /**
- * This migration adds the field uniqId on the vote table.
+ * This migration adds the column mail in the vote table
  *
  * @package Framadate\Migration
- * @version 0.9
+ * @version 1.2
  */
-class AddColumn_collect_mail_In_poll implements Migration {
-    function __construct() {
-    }
-
+class Version20180419190000 extends AbstractMigration
+{
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    function description() {
-        return 'Add column collect_users_mail in table poll';
+    public function description()
+    {
+        return 'Remove the old migration table';
     }
 
     /**
-     * This method could check if the execute method should be called.
-     * It is called before the execute method.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the Migration should be executed.
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
      */
-    function preCondition(\PDO $pdo) {
-        return true;
+    public function up(Schema $schema)
+    {
+        $this->skipIf(!$schema->hasTable(Utils::table(MIGRATION_TABLE)), "The old migration table wasn't created, no need to delete it.");
+        $schema->dropTable(Utils::table(MIGRATION_TABLE));
     }
 
     /**
-     * This method is called only one time in the migration page.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the execution succeeded
+     * @param Schema $schema
      */
-    function execute(\PDO $pdo) {
-        $this->alterVoteTable($pdo);
-
-        return true;
-    }
-
-    private function alterVoteTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `collect_users_mail` TINYINT DEFAULT 0;');
+    public function down(Schema $schema)
+    {
+        // No need to recreate legacy migration table
     }
 }

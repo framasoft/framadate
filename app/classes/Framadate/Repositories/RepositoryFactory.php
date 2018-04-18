@@ -18,7 +18,7 @@
  */
 namespace Framadate\Repositories;
 
-use Framadate\FramaDB;
+use Doctrine\DBAL\Connection;
 
 class RepositoryFactory {
     private static $connect;
@@ -29,9 +29,9 @@ class RepositoryFactory {
     private static $commentRepository;
 
     /**
-     * @param FramaDB $connect
+     * @param Connection $connect
      */
-    static function init(FramaDB $connect) {
+    static function init(Connection $connect) {
         self::$connect = $connect;
     }
 

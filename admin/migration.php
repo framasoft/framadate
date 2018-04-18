@@ -17,116 +17,64 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-use Framadate\Migration\AddColumn_collect_mail_In_poll;
-use Framadate\Migration\AddColumn_hidden_In_poll_For_0_9;
-use Framadate\Migration\AddColumn_mail_In_vote;
-use Framadate\Migration\AddColumn_receiveNewComments_For_0_9;
-use Framadate\Migration\AddColumn_uniqId_In_vote_For_0_9;
-use Framadate\Migration\AddColumn_ValueMax_In_poll_For_1_1;
-use Framadate\Migration\AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9;
-use Framadate\Migration\Alter_Comment_table_adding_date;
-use Framadate\Migration\Alter_Comment_table_for_name_length;
-use Framadate\Migration\Fix_MySQL_No_Zero_Date;
-use Framadate\Migration\From_0_0_to_0_8_Migration;
-use Framadate\Migration\From_0_8_to_0_9_Migration;
-use Framadate\Migration\Generate_uniqId_for_old_votes;
-use Framadate\Migration\Increase_pollId_size;
-use Framadate\Migration\Migration;
-use Framadate\Migration\RPadVotes_from_0_8;
+use Doctrine\DBAL\Migrations\Configuration\Configuration;
+use Doctrine\DBAL\Migrations\Migration;
+use Doctrine\DBAL\Migrations\OutputWriter;
+use Doctrine\DBAL\Migrations\Tools\Console\Helper\MigrationStatusInfosHelper;
 use Framadate\Utils;
 
-include_once __DIR__ . '/../app/inc/init.php';
+require_once __DIR__ . '/../app/inc/init.php';
 
-set_time_limit(300);
+class MigrationLogger {
+    private $log;
 
-// List a Migration sub classes to execute
-$migrations = [
-    new From_0_0_to_0_8_Migration(),
-    new From_0_8_to_0_9_Migration(),
-    new AddColumn_receiveNewComments_For_0_9(),
-    new AddColumn_uniqId_In_vote_For_0_9(),
-    new AddColumn_hidden_In_poll_For_0_9(),
-    new AddColumn_ValueMax_In_poll_For_1_1(),
-    new Generate_uniqId_for_old_votes(),
-    new RPadVotes_from_0_8(),
-    new Alter_Comment_table_for_name_length(),
-    new Alter_Comment_table_adding_date(),
-    new AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9(),
-    new Increase_pollId_size(),
-    new AddColumn_ValueMax_In_poll_For_1_1(),
-    new Fix_MySQL_No_Zero_Date(),
-    new AddColumn_mail_In_vote(),
-    new AddColumn_collect_mail_In_poll()
-];
-// ---------------------------------------
-
-// Check if MIGRATION_TABLE already exists
-/** @var \Framadate\FramaDB $connect */
-$tables = $connect->allTables();
-$pdo = $connect->getPDO();
-$prefixedMigrationTable = Utils::table(MIGRATION_TABLE);
-
-if (!in_array($prefixedMigrationTable, $tables, true)) {
-    $pdo->exec('
-CREATE TABLE IF NOT EXISTS `' . $prefixedMigrationTable . '` (
-  `id`   INT(11)  UNSIGNED NOT NULL AUTO_INCREMENT,
-  `name` TEXT              NOT NULL,
-  `execute_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-)
-  ENGINE = MyISAM
-  DEFAULT CHARSET = utf8;');
-}
-
-$selectStmt = $pdo->prepare('SELECT id FROM `' . $prefixedMigrationTable . '` WHERE name=?');
-$insertStmt = $pdo->prepare('INSERT INTO `' . $prefixedMigrationTable . '` (name) VALUES (?)');
-$countSucceeded = 0;
-$countFailed = 0;
-$countSkipped = 0;
-
-// Loop on every Migration sub classes
-$success = [];
-$fail = [];
-foreach ($migrations as $migration) {
-    $className = get_class($migration);
-
-    // Check if $className is a Migration sub class
-    if (!$migration instanceof Migration) {
-        $smarty->assign('error', 'The class ' . $className . ' is not a sub class of Framadate\\Migration\\Migration.');
-        $smarty->display('error.tpl');
-        exit;
+    public function __construct()
+    {
+        $this->log = '';
     }
 
-    // Check if the Migration is already executed
-    $selectStmt->execute([$className]);
-    $executed = $selectStmt->rowCount();
-    $selectStmt->closeCursor();
+    public function addLine($message)
+    {
+        $this->log .= $message . "\n";
+    }
 
-    if (!$executed && $migration->preCondition($pdo)) {
-        $migration->execute($pdo);
-        if ($insertStmt->execute([$className])) {
-            $countSucceeded++;
-            $success[] = $migration->description();
-        } else {
-            $countFailed++;
-            $fail[] = $migration->description();
-        }
-    } else {
-        $countSkipped++;
+    public function getLog()
+    {
+        return $this->log;
     }
 }
 
-$countTotal = $countSucceeded + $countFailed + $countSkipped;
+$executing = false;
+$migration = null;
+$output = '';
 
-$smarty->assign('success', $success);
-$smarty->assign('fail', $fail);
+if (isset($_POST['execute'])) {
+    $executing = true;
+}
 
-$smarty->assign('countSucceeded', $countSucceeded);
-$smarty->assign('countFailed', $countFailed);
-$smarty->assign('countSkipped', $countSkipped);
-$smarty->assign('countTotal', $countTotal);
-$smarty->assign('time', $total_time = round((microtime(true)-$_SERVER['REQUEST_TIME_FLOAT']), 4));
+$migrationsDirectory = __DIR__ . '/../app/classes/Framadate/Migrations';
+$log = new MigrationLogger();
 
+$configuration = new Configuration($connect, new OutputWriter(function ($message) use ($log) {
+    $log->addLine($message);
+}));
+$configuration->setMigrationsTableName(Utils::table(MIGRATION_TABLE) . '_new');
+$configuration->setMigrationsDirectory($migrationsDirectory);
+$configuration->setMigrationsNamespace('DoctrineMigrations');
+$configuration->registerMigrationsFromDirectory($migrationsDirectory);
+
+if ($executing) {
+    $migration = new Migration($configuration);
+    $migration->migrate();
+    $output = trim(strip_tags($log->getLog()));
+}
+$infos = (new MigrationStatusInfosHelper($configuration))->getMigrationsInfos();
+
+$smarty->assign('countTotal', $infos['Available Migrations']);
+$smarty->assign('countExecuted', $infos['Executed Migrations']);
+$smarty->assign('countWaiting', $infos['New Migrations']);
+$smarty->assign('executing', $executing);
 $smarty->assign('title', __('Admin', 'Migration'));
-
+$smarty->assign('output', $output);
+$smarty->assign('time', round((microtime(true)-$_SERVER['REQUEST_TIME_FLOAT']), 4));
 $smarty->display('admin/migration.tpl');
