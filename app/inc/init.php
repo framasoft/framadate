@@ -16,8 +16,12 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-use Framadate\FramaDB;
+
+use Doctrine\DBAL\Configuration;
+use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\DriverManager;
 use Framadate\Repositories\RepositoryFactory;
+use Framadate\Services\LogService;
 
 // Autoloading of dependencies with Composer
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -32,17 +36,41 @@ if (ini_get('date.timezone') === '') {
 }
 
 define('ROOT_DIR', __DIR__ . '/../../');
-define('CONF_FILENAME', ROOT_DIR . '/app/inc/config.php');
+
+$path = '/app/inc/config.php';
+if (getenv('APP_ENV') === 'test') {
+    $path = '/app/inc/config.test.php';
+}
+define('CONF_FILENAME', ROOT_DIR . $path);
 
 require_once __DIR__ . '/constants.php';
 
 if (is_file(CONF_FILENAME)) {
-    @include_once __DIR__ . '/config.php';
+    @include_once CONF_FILENAME;
 
     // Connection to database
-    $connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
-    RepositoryFactory::init($connect);
-    $err = 0;
+    $doctrineConfig = new Configuration();
+    $connectionParams = [
+        'dbname' => DB_NAME,
+        'user' => DB_USER,
+        'password' => DB_PASSWORD,
+        'host' => DB_HOST,
+        'driver' => DB_DRIVER,
+        'charset' => DB_DRIVER === 'pdo_mysql' ? 'utf8mb4' : 'utf8',
+    ];
+
+    if (DB_DRIVER === 'pdo_sqlite') {
+        $connectionParams['path'] = 'test_database.sqlite';
+    }
+
+    try {
+        $connect = DriverManager::getConnection($connectionParams, $doctrineConfig);
+        RepositoryFactory::init($connect);
+        $err = 0;
+    } catch (DBALException $e) {
+        $logger = new LogService();
+        $logger->log('ERROR', $e->getMessage());
+    }
 } else {
     define('NOMAPPLICATION', 'Framadate');
     define('DEFAULT_LANGUAGE', 'fr');

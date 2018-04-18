@@ -258,7 +258,7 @@
 
                             <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$headersH[$i]}">
                                 <ul class="list-unstyled choice">
-                                    {if $poll->ValueMax eq NULL || $best_choices['y'][$i] lt $poll->ValueMax}
+                                    {if $poll->valuemax eq NULL || $best_choices['y'][$i] lt $poll->valuemax}
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2"
                                         	{(!isset($selectedNewVotes[$i]) || ("2" !== $selectedNewVotes[$i])) ? "" : " checked"}

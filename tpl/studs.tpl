@@ -17,7 +17,6 @@
 
 {block name=main}
 
-
     {* Messages *}
     {include 'part/messages.tpl'}
 

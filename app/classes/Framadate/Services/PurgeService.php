@@ -1,6 +1,7 @@
 <?php
 namespace Framadate\Services;
-use Framadate\FramaDB;
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DBALException;
 use Framadate\Repositories\RepositoryFactory;
 
 /**
@@ -15,7 +16,7 @@ class PurgeService {
     private $voteRepository;
     private $commentRepository;
 
-    function __construct(FramaDB $connect, LogService $logService) {
+    function __construct(Connection $connect, LogService $logService) {
         $this->logService = $logService;
         $this->pollRepository = RepositoryFactory::pollRepository();
         $this->slotRepository = RepositoryFactory::slotRepository();
@@ -36,23 +37,34 @@ class PurgeService {
      *
      * @return bool true is action succeeded
      */
-    function purgeOldPolls() {
-        $oldPolls = $this->pollRepository->findOldPolls();
-        $count = count($oldPolls);
+    public function purgeOldPolls() {
+        try {
+            $oldPolls = $this->pollRepository->findOldPolls();
+            $count = count($oldPolls);
 
-        if ($count > 0) {
-            $this->logService->log('EXPIRATION', 'Going to purge ' . $count . ' poll(s)...');
+            if ($count > 0) {
+                $this->logService->log('EXPIRATION', 'Going to purge ' . $count . ' poll(s)...');
 
-            foreach ($oldPolls as $poll) {
-                if ($this->purgePollById($poll->id)) {
-                    $this->logService->log('EXPIRATION_SUCCESS', 'id: ' . $poll->id . ', title:' . $poll->title . ', format: ' . $poll->format . ', admin: ' . $poll->admin_name);
-                } else {
-                    $this->logService->log('EXPIRATION_FAILED', 'id: ' . $poll->id . ', title:' . $poll->title . ', format: ' . $poll->format . ', admin: ' . $poll->admin_name);
+                foreach ($oldPolls as $poll) {
+                    if ($this->purgePollById($poll->id)) {
+                        $this->logService->log(
+                            'EXPIRATION_SUCCESS',
+                            'id: ' . $poll->id . ', title:' . $poll->title . ', format: ' . $poll->format . ', admin: ' . $poll->admin_name
+                        );
+                    } else {
+                        $this->logService->log(
+                            'EXPIRATION_FAILED',
+                            'id: ' . $poll->id . ', title:' . $poll->title . ', format: ' . $poll->format . ', admin: ' . $poll->admin_name
+                        );
+                    }
                 }
             }
-        }
 
-        return $count;
+            return $count;
+        } catch (DBALException $e) {
+            $this->logService->log('ERROR', $e->getMessage());
+            return false;
+        }
     }
     
     public function cleanDemoPoll() {
@@ -78,22 +90,25 @@ class PurgeService {
      * @param $poll_id int The ID of the poll
      * @return bool true is action succeeded
      */
-    function purgePollById($poll_id) {
+    private function purgePollById($poll_id) {
         $done = true;
 
-        $this->pollRepository->beginTransaction();
-        $done &= $this->commentRepository->deleteByPollId($poll_id);
-        $done &= $this->voteRepository->deleteByPollId($poll_id);
-        $done &= $this->slotRepository->deleteByPollId($poll_id);
-        $done &= $this->pollRepository->deleteById($poll_id);
+        try {
+            $this->pollRepository->beginTransaction();
+            $done &= $this->commentRepository->deleteByPollId($poll_id);
+            $done &= $this->voteRepository->deleteByPollId($poll_id);
+            $done &= $this->slotRepository->deleteByPollId($poll_id);
+            $done &= $this->pollRepository->deleteById($poll_id);
 
-        if ($done) {
-            $this->pollRepository->commit();
-        } else {
-            $this->pollRepository->rollback();
+            if ($done) {
+                $this->pollRepository->commit();
+            } else {
+                $this->pollRepository->rollback();
+            }
+        } catch (DBALException $e) {
+            $this->logService->log('ERROR', $e->getMessage());
         }
 
         return $done;
     }
 }
- 
