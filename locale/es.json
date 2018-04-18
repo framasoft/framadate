@@ -122,7 +122,7 @@
       "Enter a name and a comment!": "Introduzca su nombre y un comentario",
       "Enter a title": "Introducza un título",
       "Enter an email address": "Introduzca un correo electrónico",
-      "Error on amount of voters limitation : value must be an integer greater than 0": "Error en el límite en la cantidad de votantes: el valor debe ser un número entero mayor a 0",
+      "Error on amount of voters limitation : value must be an integer greater than 0": "Error en el límite en la cantidad de votos: el valor debe ser un número entero mayor a 0",
       "Error!": "¡Error!",
       "Failed to delete all comments": "No se han eliminado todos los comentarios",
       "Failed to delete all votes": "No se han eliminado todos los votos",
