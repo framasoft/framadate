@@ -54,6 +54,9 @@
       "Summary": "Résumé",
       "Title": "Titre",
       "Votes": "Votes",
+      "Status": "Statut",
+      "Waiting": "En attente",
+      "Executed": "Exécutées",
       "polls in the database at this time": "sondages dans la base actuellement"
    },
    "Check": {
@@ -237,8 +240,11 @@
       "AppName": "Nom de l'application",
       "CleanUrl": "URL propres",
       "Database": "Base de données",
-      "DbConnectionString": "Chaîne de connexion",
+      "DbDriver": "Pilote de la base de données",
+      "DbHost": "Nom d'hôte",
+      "DbName": "Nom de la base de données",
       "DbPassword": "Mot de passe",
+      "DbPort": "Port du serveur",
       "DbPrefix": "Préfixe",
       "DbUser": "Utilisateur·rice",
       "DefaultLanguage": "Langue par défaut",
