@@ -10,7 +10,7 @@ test:
   stage: test
   before_script:
     - apt-get update -yqq
-    - apt-get install sqlite php-sqlite -yqq
+    - apt-get install sqlite php-sqlite3 -yqq
   script:
     - composer install -o  --no-interaction --no-progress --prefer-dist
     - mkdir tpl_c
