@@ -363,7 +363,7 @@
       "You can enable or disable the editor at will.": "You can enable or disable the editor at will.",
       "Collect users email" : "Collect users email",
       "Collect the polled users email addresses" : "Collect the polled users email addresses",
-      "Warning : anyone can access to the polled users's email addresses." : "Warning : anyone can access to the polled users's email addresses."
+      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules." : "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules."
    },
    "Step 2": {
       "Back to step 1": "Return to step 1",

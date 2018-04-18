@@ -344,7 +344,7 @@
 
 			    <div id="collect_warning" class="hidden">
 				<div class="col-sm-offset-4 col-sm-8">
-					<label><i class="glyphicon glyphicon-alert"> </i> {__('Step 1', 'Warning : anyone can access to the polled users\'s email addresses.')} </label>
+					<label class="bg-danger"><i class="glyphicon glyphicon-alert"> </i> {__('Step 1', 'Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.')} </label>
 				</div>
 			    </div>
                     </div>
