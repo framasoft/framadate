@@ -18,11 +18,12 @@
  */
 namespace Framadate\Services;
 
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DBALException;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Exception\ConcurrentVoteException;
 use Framadate\Form;
-use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\Token;
 
@@ -35,7 +36,7 @@ class PollService {
     private $voteRepository;
     private $commentRepository;
 
-    function __construct(FramaDB $connect, LogService $logService) {
+    function __construct(Connection $connect, LogService $logService) {
         $this->connect = $connect;
         $this->logService = $logService;
         $this->pollRepository = RepositoryFactory::pollRepository();
@@ -48,6 +49,7 @@ class PollService {
      * Find a poll from its ID.
      *
      * @param $poll_id int The ID of the poll
+     * @throws \Doctrine\DBAL\DBALException
      * @return \stdClass|null The found poll, or null
      */
     function findById($poll_id) {
@@ -66,8 +68,18 @@ class PollService {
         return null;
     }
 
-    function allCommentsByPollId($poll_id) {
-        return $this->commentRepository->findAllByPollId($poll_id);
+    /**
+     * @param $poll_id
+     * @return array
+     */
+    public function allCommentsByPollId($poll_id)
+    {
+        try {
+            return $this->commentRepository->findAllByPollId($poll_id);
+        } catch (DBALException $e) {
+            $this->logService->log('error', $e->getMessage());
+            return null;
+        }
     }
 
     function allVotesByPollId($poll_id) {

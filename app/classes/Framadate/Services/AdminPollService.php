@@ -1,10 +1,9 @@
 <?php
 namespace Framadate\Services;
 
+use Doctrine\DBAL\Connection;
 use Framadate\Exception\MomentAlreadyExistsException;
-use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
-use Framadate\Utils;
 
 /**
  * Class AdminPollService
@@ -21,7 +20,7 @@ class AdminPollService {
     private $voteRepository;
     private $commentRepository;
 
-    function __construct(FramaDB $connect, PollService $pollService, LogService $logService) {
+    function __construct(Connection $connect, PollService $pollService, LogService $logService) {
         $this->connect = $connect;
         $this->pollService = $pollService;
         $this->logService = $logService;
@@ -35,7 +34,7 @@ class AdminPollService {
         global $config;
         if ($poll->end_date > $poll->creation_date) {
             return $this->pollRepository->update($poll);
-        }  
+        }
             return false;
     }
 
@@ -295,11 +294,10 @@ class AdminPollService {
             } elseif ($datetime < $rowDatetime) {
                 // We have to insert before this slot
                 break;
-            }  
+            }
                 $result->insert += count($moments);
         }
 
         return $result;
     }
 }
- 

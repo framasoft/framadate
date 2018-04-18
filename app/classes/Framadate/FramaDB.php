@@ -42,11 +42,25 @@ class FramaDB {
     /**
      * Find all tables in database.
      *
-     * @return array The array of table names
+     * @return array|false The array of table names
      */
-    function allTables() {
-        $result = $this->pdo->query('SHOW TABLES');
-        $schemas = $result->fetchAll(\PDO::FETCH_COLUMN);
+    public function allTables()
+    {
+        $driver = $this->pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
+        switch ($driver) {
+            case 'mysql':
+                $result = $this->pdo->query('SHOW TABLES');
+                $schemas = $result->fetchAll(\PDO::FETCH_COLUMN);
+                break;
+            case 'pgsql':
+                $result = $this->pdo->query(
+                    "SELECT table_name FROM information_schema.tables WHERE table_schema='public'"
+                );
+                $schemas = $result->fetchAll(\PDO::FETCH_COLUMN);
+                break;
+            default:
+                return false;
+        }
 
         return $schemas;
     }

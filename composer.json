@@ -62,7 +62,10 @@
         "ircmaxell/password-compat": "dev-master",
         "roave/security-advisories": "dev-master",
         "erusev/parsedown": "^1.7",
-        "egulias/email-validator": "~2.1"
+        "egulias/email-validator": "~2.1",
+        "doctrine/dbal": "^2.5",
+        "doctrine/migrations": "^1.5",
+        "sensiolabs/ansi-to-html": "^1.1"
     },
 
     "require-dev": {
