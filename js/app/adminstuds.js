@@ -1,9 +1,67 @@
 $(document).ready(function() {
 
+    /**
+     * Markdown Editor
+     * @type {MDEWrapper}
+     */
     wrapper = new MDEWrapper($('.js-desc textarea')[0], $('#rich-editor-button'), $('#simple-editor-button'));
     var firstOpening = true;
+
+    /**
+     * Save a list of admin polls inside LocalStorage
+     * @param adminPolls
+     */
+    function setAdminPolls(adminPolls) {
+        localStorage.setItem('admin_polls', JSON.stringify(adminPolls));
+    }
+
+    /**
+     * Add an admin poll inside LocalStorage
+     * @param adminPoll
+     */
+    function addAdminPoll(adminPoll) {
+        var adminPolls = localStorage.getItem('admin_polls');
+        if (adminPolls === null) {
+            adminPolls = [];
+        } else {
+            adminPolls = JSON.parse(adminPolls);
+        }
+        /**
+         * Test if the poll is already inside the list
+         */
+        var index = adminPolls.findIndex(function (existingPoll) {
+            return existingPoll.url === adminPoll.url;
+        });
+        if (index === -1) {
+            adminPolls.push(adminPoll);
+        } else { // if the poll is already present, we need to update the last access date
+            adminPolls[index] = adminPoll;
+        }
+        setAdminPolls(adminPolls);
+    }
+
+    var adminPoll = {
+        url: window.location.href,
+        title: $('#title-form h3').get(0).childNodes[0].nodeValue,
+        accessed: (new Date()).toISOString()
+    };
+
+    if (!localStorage.getItem('admin_polls')) {
+        setAdminPolls([adminPoll]);
+    } else {
+        addAdminPoll(adminPoll);
+    }
+
+    /**
+     * Initiate popovers
+     */
     $('[data-toggle="popover"]').popover();
 
+    /**
+     * Create node with text to use the Clipboard API
+     * @param text
+     * @returns {HTMLPreElement}
+     */
     function createNode(text) {
         var node = document.createElement('pre');
         node.style.width = '1px';
@@ -14,6 +72,10 @@ $(document).ready(function() {
         return node;
     }
 
+    /**
+     * Copy a Node to use for Clipboard API
+     * @param node
+     */
     function copyNode(node) {
         var selection = getSelection();
         selection.removeAllRanges();
@@ -26,6 +88,10 @@ $(document).ready(function() {
         selection.removeAllRanges();
     }
 
+    /**
+     * Copy a text inside the clipboard
+     * @param text
+     */
     function copyText(text) {
         var node = createNode(text);
         document.body.appendChild(node);

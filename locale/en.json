@@ -165,7 +165,22 @@
       "List of your polls": "List of your polls",
       "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.",
       "Polls sent": "Polls sent",
-      "Send me my polls": "Send me my polls"
+      "Created polls": "Created polls",
+      "Visited polls": "Visited polls",
+      "Send me my polls": "Send me my polls",
+      "Send my polls by email": "Send my polls by email",
+      "Polls saved inside this browser": "Polls saved inside this browser",
+      "Local Storage Help": "To help you find your previous polls, we save inside your browser each poll you create or access to. These informations are saved only inside this browser. The informations saved are the following:",
+      "Local Storage Help Information Title": "The title of the poll",
+      "Local Storage Help Information Address": "It's address",
+      "Local Storage Help Information Accessed": "The date on which you created or last accessed the poll",
+      "Local Storage Help Delete": "To delete this information, you can click the bin matching each line or click the « delete my polls index » option. This won't delete your polls.",
+      "Title": "Title",
+      "Address": "Address",
+      "Last access date": "Last access date",
+      "Remove poll from index": "Remove poll from index",
+      "There are no polls saved inside your browser yet": "There are no polls saved inside your browser yet",
+      "Remove all polls from this browser": "Remove all my polls from this browser's index"
    },
    "Generic": {
       "(in the format name@mail.com)": "(in the format name@mail.com)",
