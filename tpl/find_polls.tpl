@@ -130,8 +130,18 @@
                 };
             },
             created() {
-                this.polls = JSON.parse(localStorage.getItem('polls'));
-                this.adminPolls = JSON.parse(localStorage.getItem('admin_polls'));
+                var polls = localStorage.getItem('polls');
+                if (polls === null) {
+                    this.polls = [];
+                } else {
+                    this.polls = JSON.parse(polls);
+                }
+                var adminPolls = localStorage.getItem('admin_polls');
+                if (adminPolls === null) {
+                    this.adminPolls = [];
+                } else {
+                    this.adminPolls = JSON.parse(adminPolls);
+                }
             },
             filters: {
                 date: function(value) {
