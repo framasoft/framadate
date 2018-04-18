@@ -23,28 +23,37 @@
 // const APP_URL = '<www.mydomain.fr>';
 
 // Application name
-const NOMAPPLICATION = '<Application name>';
+const NOMAPPLICATION = 'Framadate';
 
 // Database administrator email
-const ADRESSEMAILADMIN = '<email address>';
+const ADRESSEMAILADMIN = 'admin@app.tld';
 
 // Email for automatic responses (you should set it to "no-reply")
-const ADRESSEMAILREPONSEAUTO = '<no-reply@mydomain.com>';
+const ADRESSEMAILREPONSEAUTO = 'no@reply';
+
+// Database driver
+const DB_DRIVER = 'pdo_sqlite';
+
+// Database name
+const DB_NAME = 'framadate';
+
+// Database host
+const DB_HOST = '';
+
+// Database port
+const DB_PORT = '';
 
 // Database user
-const DB_USER= '<database user>';
+const DB_USER = '';
 
 // Database password
-const DB_PASSWORD = '<database password>';
-
-// Database server name, leave empty to use a socket
-const DB_CONNECTION_STRING = 'mysql:host=<database host>;dbname=<database name>;port=<database port>';
-
-// Name of the table that stores migration script already executed
-const MIGRATION_TABLE = 'framadate_migration';
+const DB_PASSWORD = '';
 
 // Table name prefix
 const TABLENAME_PREFIX = 'fd_';
+
+// Name of the table that stores migration script already executed
+const MIGRATION_TABLE = 'framadate_migration';
 
 // Default Language
 const DEFAULT_LANGUAGE = 'fr';
@@ -63,9 +72,6 @@ $ALLOWED_LANGUAGES = [
 
 // Path to image file with the title
 const IMAGE_TITRE = 'images/logo-framadate.png';
-
-// Relative path to favicon
-const FAVICON = 'favicon.ico';
 
 // Clean URLs, boolean
 const URL_PROPRE = false;
@@ -88,7 +94,7 @@ const TIME_EDIT_LINK_EMAIL = 60;
 // Config
 $config = [
     /* general config */
-    'use_smtp' => true,                     // use email for polls creation/modification/responses notification
+    'use_smtp' => false,                     // use email for polls creation/modification/responses notification
     'smtp_options' => [
         'host' => 'localhost',              // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
         'auth' => false,                    // Enable SMTP authentication
@@ -97,7 +103,6 @@ $config = [
         'secure' => '',                     // Enable encryption (false, tls or ssl)
         'port' => 25,                       // TCP port to connect to
     ],
-    'tracking_code' => '',                  // add HTML code to every page, useful for tools like Piwik
     /* home */
     'show_what_is_that' => true,            // display "how to use" section
     'show_the_software' => true,            // display technical information about the software

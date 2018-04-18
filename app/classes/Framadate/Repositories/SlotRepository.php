@@ -4,28 +4,23 @@
  * is not distributed with this file, you can obtain one at
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-en.txt
  *
- * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of STUdS (initial project): Guilhem BORGHESI (borghesi@unistra.fr) and Raphaï¿½l DROZ
  * Authors of Framadate/OpenSondage: Framasoft (https://github.com/framasoft)
  *
  * =============================
  *
- * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * Ce logiciel est rï¿½gi par la licence CeCILL-B. Si une copie de cette licence
  * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
  *
- * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaï¿½l DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 namespace Framadate\Repositories;
 
-use Framadate\FramaDB;
 use Framadate\Utils;
 
 class SlotRepository extends AbstractRepository {
-    function __construct(FramaDB $connect) {
-        parent::__construct($connect);
-    }
-
     /**
      * Insert a bulk of slots.
      *
@@ -33,11 +28,9 @@ class SlotRepository extends AbstractRepository {
      * @param array $choices
      */
     public function insertSlots($poll_id, $choices) {
-        $prepared = $this->prepare('INSERT INTO `' . Utils::table('slot') . '` (poll_id, title, moments) VALUES (?, ?, ?)');
-
         foreach ($choices as $choice) {
             // We prepared the slots (joined by comas)
-            $joinedSlots = '';
+            $joinedSlots = null;
             $first = true;
             foreach ($choice->getSlots() as $slot) {
                 if ($first) {
@@ -49,16 +42,18 @@ class SlotRepository extends AbstractRepository {
             }
 
             // We execute the insertion
-            if (empty($joinedSlots)) {
-                $prepared->execute([$poll_id, $choice->getName(), null]);
-            } else {
-                $prepared->execute([$poll_id, $choice->getName(), $joinedSlots]);
-            }
+            $this->connect->insert(Utils::table('slot'), ['poll_id' => $poll_id, 'title' => $choice->getName(), 'moments' => $joinedSlots]);
         }
     }
 
-    function listByPollId($poll_id) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? ORDER BY id');
+    /**
+     * @param $poll_id
+     * @throws \Doctrine\DBAL\DBALException
+     * @return array
+     */
+    public function listByPollId($poll_id)
+    {
+        $prepared = $this->prepare('SELECT * FROM ' . Utils::table('slot') . ' WHERE poll_id = ? ORDER BY id');
         $prepared->execute([$poll_id]);
 
         return $prepared->fetchAll();
@@ -69,10 +64,11 @@ class SlotRepository extends AbstractRepository {
      *
      * @param $poll_id int The ID of the poll
      * @param $datetime int The datetime of the slot
+     * @throws \Doctrine\DBAL\DBALException
      * @return mixed Object The slot found, or null
      */
     function findByPollIdAndDatetime($poll_id, $datetime) {
-        $prepared = $this->prepare('SELECT * FROM `' . Utils::table('slot') . '` WHERE poll_id = ? AND SUBSTRING_INDEX(title, \'@\', 1) = ?');
+        $prepared = $this->prepare('SELECT * FROM ' . Utils::table('slot') . ' WHERE poll_id = ? AND SUBSTRING_INDEX(title, \'@\', 1) = ?');
 
         $prepared->execute([$poll_id, $datetime]);
         $slot = $prepared->fetch();
@@ -89,10 +85,9 @@ class SlotRepository extends AbstractRepository {
      * @param $moments mixed|null The moments joined with ","
      * @return bool true if action succeeded
      */
-    function insert($poll_id, $title, $moments) {
-        $prepared = $this->prepare('INSERT INTO `' . Utils::table('slot') . '` (poll_id, title, moments) VALUES (?,?,?)');
-
-        return $prepared->execute([$poll_id, $title, $moments]);
+    function insert($poll_id, $title, $moments)
+    {
+        return $this->connect->insert(Utils::table('slot'), ['poll_id' => $poll_id, 'title' => $title, 'moments' => $moments]) > 0;
     }
 
     /**
@@ -103,10 +98,9 @@ class SlotRepository extends AbstractRepository {
      * @param $newMoments mixed The new moments
      * @return bool|null true if action succeeded.
      */
-    function update($poll_id, $datetime, $newMoments) {
-        $prepared = $this->prepare('UPDATE `' . Utils::table('slot') . '` SET moments = ? WHERE poll_id = ? AND title = ?');
-
-        return $prepared->execute([$newMoments, $poll_id, $datetime]);
+    function update($poll_id, $datetime, $newMoments)
+    {
+        return $this->connect->update(Utils::table('slot'), ['moments' => $newMoments], ['poll_id' => $poll_id, 'title' => $datetime]) > 0;
     }
 
     /**
@@ -114,15 +108,21 @@ class SlotRepository extends AbstractRepository {
      *
      * @param $poll_id int The ID of the poll
      * @param $datetime mixed The datetime of the slot
+     * @throws \Doctrine\DBAL\DBALException
+     * @return bool
      */
-    function deleteByDateTime($poll_id, $datetime) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE poll_id = ? AND title = ?');
-        $prepared->execute([$poll_id, $datetime]);
+    public function deleteByDateTime($poll_id, $datetime)
+    {
+        return $this->connect->delete(Utils::table('slot'), ['poll_id' => $poll_id, 'title' => $datetime]) > 0;
     }
 
-    function deleteByPollId($poll_id) {
-        $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE poll_id = ?');
-
-        return $prepared->execute([$poll_id]);
+    /**
+     * @param $poll_id
+     * @throws \Doctrine\DBAL\DBALException
+     * @return bool
+     */
+    public function deleteByPollId($poll_id)
+    {
+        return $this->connect->delete(Utils::table('slot'), ['poll_id' => $poll_id]) > 0;
     }
 }
