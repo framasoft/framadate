@@ -16,8 +16,11 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate\Migration;
+namespace DoctrineMigrations;
 
+use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Migrations\AbstractMigration;
+use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
 /**
@@ -26,16 +29,16 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 1.1
  */
-class Fix_MySQL_No_Zero_Date implements Migration {
-    function __construct() {
-    }
+class Version20180411000000 extends AbstractMigration
+{
 
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description()
+    {
         return 'Sets Poll end_date to NULL by default (work around MySQL NO_ZERO_DATE)';
     }
 
@@ -43,28 +46,42 @@ class Fix_MySQL_No_Zero_Date implements Migration {
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
-     * @param \PDO $pdo The connection to database
+     * @param Connection|\PDO $connection The connection to database
      * @return bool true if the Migration should be executed.
      */
-    function preCondition(\PDO $pdo) {
-        $stmt = $pdo->prepare("SELECT Column_Default from Information_Schema.Columns where Table_Name = ? AND Column_Name = ?;");
-        $stmt->bindValue(1, Utils::table('poll'));
-        $stmt->bindValue(2, 'end_date');
-        $stmt->execute();
-        $default = $stmt->fetch(\PDO::FETCH_COLUMN);
+    public function preCondition(Connection $connection)
+    {
+        $driver_name = $connection->getWrappedConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME);
 
-        $driver_name = $pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
+        if ($driver_name === 'mysql') {
 
-        return $default !== null && $driver_name === 'mysql';
+            $stmt = $connection->prepare(
+                "SELECT Column_Default from Information_Schema.Columns where Table_Name = ? AND Column_Name = ?;"
+            );
+            $stmt->bindValue(1, Utils::table('poll'));
+            $stmt->bindValue(2, 'end_date');
+            $stmt->execute();
+            $default = $stmt->fetch(\PDO::FETCH_COLUMN);
+
+            return $default !== null;
+        }
+        return true;
     }
 
     /**
-     * This method is called only one time in the migration page.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool|void if the execution succeeded
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
      */
-    function execute(\PDO $pdo) {
-        $pdo->exec('ALTER TABLE ' . Utils::table('poll') . ' MODIFY end_date TIMESTAMP NULL DEFAULT NULL;');
+    public function up(Schema $schema)
+    {
+        $this->skipIf($this->preCondition($this->connection));
+        $poll = $schema->getTable(Utils::table('poll'));
+        $poll->changeColumn('end_date', ['default' => null, 'notnull' => false]);
+    }
+
+    public function down(Schema $schema)
+    {
+        // nothing
     }
 }
