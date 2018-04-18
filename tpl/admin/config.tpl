@@ -82,6 +82,13 @@ const MAX_SLOTS_PER_POLL = 366;
 // Number of seconds before we allow to resend an "Remember Edit Link" email.
 const TIME_EDIT_LINK_EMAIL = 60;
 
+// uncomment to display a link to the demo poll at the home page
+//const DEMO_POLL_ID = "aqg259dth55iuhwm";
+
+// number of recent votes that are not deleted
+const DEMO_POLL_NUMBER_VOTES = 10;
+
+
 // Config
 $config = [
     /* general config */

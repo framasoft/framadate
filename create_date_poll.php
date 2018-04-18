@@ -231,8 +231,7 @@ switch ($step) {
         // Clean Form data in $_SESSION
         unset($_SESSION['form']);
 
-        // Delete old polls
-        $purgeService->purgeOldPolls();
+        $purgeService->repeatedCleanings();
 
         // creation message
         $sessionService->set("Framadate", "messagePollCreated", TRUE);
