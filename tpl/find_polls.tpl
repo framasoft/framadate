@@ -6,65 +6,69 @@
 {/block}
 
 {block name=main}
-    <div id="local-poll">
-        <h3>
-            {__('FindPolls', 'Polls saved inside this browser')}
-            <a href="#" data-toggle="modal" data-target="#localstorage_help_modal"><i class="glyphicon glyphicon-info-sign"></i></a><!-- TODO Add accessibility -->
-        </h3>
-        <div class="row">
-            <div class="pull-right">
-                <button @click="removeAllPolls" class="btn btn-sm btn-danger">{__('FindPolls', 'Remove all polls from this browser')}</button>
+    <script type="text/x-template" id="poll-finder-component">
+        <div>
+            <h3>
+                {__('FindPolls', 'Polls saved inside this browser')}
+                <a href="#" data-toggle="modal" data-target="#localstorage_help_modal"><i class="glyphicon glyphicon-info-sign"></i></a><!-- TODO Add accessibility -->
+            </h3>
+            <div class="row" v-if="polls.length > 0 || adminPolls.length > 0">
+                <div class="pull-right">
+                    <button @click="removeAllPolls" class="btn btn-sm btn-danger">{__('FindPolls', 'Remove all polls from this browser')}</button>
+                </div>
             </div>
-        </div>
-        <div v-if="polls.length > 0">
-            <h4>Sondages votés</h4>
-            <div class="table-responsive">
-                <table class="table table-hover table-condensed">
-                    <thead>
+            <div v-if="polls.length > 0">
+                <h4>{__('FindPolls', 'Visited polls')}</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-condensed">
+                        <thead>
                         <tr>
                             <td>{__('FindPolls', 'Title')}</td>
                             <td>{__('FindPolls', 'Address')}</td>
                             <td>{__('FindPolls', 'Last access date')}</td>
                             <td>{__('FindPolls', 'Remove poll from index')}</td>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         <tr v-for="poll in polls">
                             <td>%% poll.title %%</td>
                             <td><a :href="poll.url">%% poll.url %%</a></td>
                             <td>%% poll.accessed | date %%</td>
                             <td><button class="btn btn-sm btn-danger" @click="removePoll(poll.url)"><i class="glyphicon glyphicon-trash"></i><span class="sr-only">{__('Generic', 'Remove')}</span></button></td>
                         </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div v-if="adminPolls.length > 0">
+                <h4>{__('FindPolls', 'Created polls')}</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-condensed">
+                        <thead>
+                        <tr>
+                            <td>{__('FindPolls', 'Title')}</td>
+                            <td>{__('FindPolls', 'Address')}</td>
+                            <td>{__('FindPolls', 'Last access date')}</td>
+                            <td>{__('FindPolls', 'Remove poll from index')}</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="poll in adminPolls">
+                            <td>%% poll.title %%</td>
+                            <td><a :href="poll.url">%% poll.url %%</a></td>
+                            <td>%% poll.accessed | date %%</td>
+                            <td><button class="btn btn-sm btn-danger" @click="removeAdminPoll(poll.url)"><i class="glyphicon glyphicon-trash"></i><span class="sr-only">{__('Generic', 'Remove')}</span></button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div v-if="polls.length === 0 && adminPolls.length === 0" class="alert alert-info">
+                {__('FindPolls', 'There are no polls saved inside your browser yet')}
             </div>
         </div>
-        <div v-if="adminPolls.length > 0">
-            <h4>Sondages créés</h4>
-            <div class="table-responsive">
-                <table class="table table-hover table-condensed">
-                    <thead>
-                    <tr>
-                        <td>{__('FindPolls', 'Title')}</td>
-                        <td>{__('FindPolls', 'Address')}</td>
-                        <td>{__('FindPolls', 'Last access date')}</td>
-                        <td>{__('FindPolls', 'Remove poll from index')}</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr v-for="poll in adminPolls">
-                        <td>%% poll.title %%</td>
-                        <td><a :href="poll.url">%% poll.url %%</a></td>
-                        <td>%% poll.accessed | date %%</td>
-                        <td><button class="btn btn-sm btn-danger" @click="removeAdminPoll(poll.url)"><i class="glyphicon glyphicon-trash"></i><span class="sr-only">{__('Generic', 'Remove')}</span></button></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div v-if="polls.length === 0 && adminPolls.length === 0" class="alert alert-info">
-            {__('FindPolls', 'There are no polls saved inside your browser yet')}
-        </div>
+    </script>
+    <div id="local-polls">
     </div>
     <div>
         <h3>{__('FindPolls', 'Send my polls by email')}</h3>
@@ -114,9 +118,11 @@
     </div><!-- /.modal -->
     <script>
         moment.locale('{$locale}');
+
         var app = new Vue({
             delimiters: ['%%', '%%'],
-            el: '#local-poll',
+            el: '#local-polls',
+            template: '#poll-finder-component',
             data() {
                 return {
                     polls: [],
