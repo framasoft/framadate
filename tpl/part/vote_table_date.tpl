@@ -16,12 +16,6 @@
 <div id="tableContainer" class="tableContainer">
     <form action="{if $admin}{poll_url id=$admin_poll_id admin=true}{else}{poll_url id=$poll_id}{/if}" method="POST" id="poll_form">
         <input type="hidden" name="control" value="{$slots_hash}"/>
-	<div id="collect_warning" {if !($poll->collect_users_mail && $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL'))} class="hidden"{/if}>
-				<div class="col-sm-offset-4 col-sm-8">
-					<i class="glyphicon glyphicon-alert"> </i>
-					<label> {__('Poll results', 'Warning : anyone can access to your email address after voting')} </label>
-				</div>
-			    </div>      
         <table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes of the poll')} {$poll->title|html}</caption>
             <thead>
@@ -41,7 +35,7 @@
 				{if $poll->collect_users_mail}
 					<a href="{poll_url id=$admin_poll_id admin=true action='collect_mail' action_value=($headersDCount)}"
 					   class="btn btn-link btn-sm collect-mail"
-		                           title="{__('adminstuds', 'Collect the emails of the polled users for this column')} {$headersDCount}">
+		                           title="{__('adminstuds', 'Collect the emails of the polled users for the choice')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
 		                            <i class="glyphicon glyphicon-envelope"></i><span class="sr-only">{__('Generic', 'Collect emails')}</span>
 		                        </a>
 				{/if}
@@ -245,10 +239,16 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
-			    {if $poll->collect_users_mail}
-			    	<input type="email" required id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
-			    {/if}
+                            {if $poll->collect_users_mail}
+                                <input type="email" required id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
+                            {/if}
                         </div>
+                        {if $poll->collect_users_mail && $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')}
+                            <div class="bg-danger">
+                                <i class="glyphicon glyphicon-alert"> </i>
+                                <label> {__('Poll results', 'Anyone will be able to access your email address after your vote')} </label>
+                            </div>
+                        {/if}
                     </td>
 
 

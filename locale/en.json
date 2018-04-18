@@ -286,7 +286,7 @@
       "Votes of the poll": "Votes",
       "polled user": "polled user",
       "polled users": "polled users",
-      "Warning : anyone can access to your email address after voting" : "Warning : anyone can access to your email address after voting"
+      "Anyone will be able to access your email address after your vote" : "Anyone will be able to access your email address after your vote"
    },
    "PollInfo": {
       "Admin link of the poll": "Admin link for the poll",
@@ -329,8 +329,7 @@
       "Title": "Title of the poll",
       "Votes and comments are locked": "Votes and comments are locked",
       "Votes protected by password": "Votes protected by password",
-      "No collect of the polled users email addresses" : "No collect of the polled users email addresses",
-      "Collect of the polled users email addresses" : "Collect of the polled users email addresses"
+      "Collecting the polled users emails" : "Collecting the polled users emails"
    },
    "Step 1": {
       "All voters can modify any vote": "All voters can modify any vote",
@@ -413,7 +412,7 @@
    },
    "adminstuds": {
       "Add a column": "Add a column",
-      "Collect the emails of the polled users for this column": "Collect the emails of the polled users for this column",
+      "Collect the emails of the polled users for the choice": "Collect the emails of the polled users for the choice",
       "All comments deleted": "All comments deleted",
       "All votes deleted": "All votes deleted",
       "As poll administrator, you can change all the lines of this poll with this button": "As poll administrator, you can change all the lines of this poll with this button",
