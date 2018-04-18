@@ -23,40 +23,40 @@
 // const APP_URL = '<www.mydomain.fr>';
 
 // Application name
-const NOMAPPLICATION = '{$appName|addslashes_single_quote}';
+const NOMAPPLICATION = 'Framadate';
 
 // Database administrator email
-const ADRESSEMAILADMIN = '{$appMail}';
+const ADRESSEMAILADMIN = 'admin@app.tld';
 
 // Email for automatic responses (you should set it to "no-reply")
-const ADRESSEMAILREPONSEAUTO = '{$responseMail}';
+const ADRESSEMAILREPONSEAUTO = 'no@reply';
 
 // Database driver
-const DB_DRIVER = '{$dbDriver}';
+const DB_DRIVER = 'pdo_sqlite';
 
 // Database name
-const DB_NAME = '{$dbName}';
+const DB_NAME = 'framadate';
 
 // Database host
-const DB_HOST = '{$dbHost}';
+const DB_HOST = '';
 
 // Database port
-const DB_PORT = '{$dbPort}';
+const DB_PORT = '';
 
 // Database user
-const DB_USER = '{$dbUser}';
+const DB_USER = '';
 
 // Database password
-const DB_PASSWORD = '{$dbPassword|addslashes_single_quote}';
+const DB_PASSWORD = '';
 
 // Table name prefix
-const TABLENAME_PREFIX = '{$dbPrefix}';
+const TABLENAME_PREFIX = 'fd_';
 
 // Name of the table that stores migration script already executed
-const MIGRATION_TABLE = '{$migrationTable}';
+const MIGRATION_TABLE = 'framadate_migration';
 
 // Default Language
-const DEFAULT_LANGUAGE = '{$defaultLanguage}';
+const DEFAULT_LANGUAGE = 'fr';
 
 // List of supported languages, fake constant as arrays can be used as constants only in PHP >=5.6
 $ALLOWED_LANGUAGES = [
@@ -74,7 +74,7 @@ $ALLOWED_LANGUAGES = [
 const IMAGE_TITRE = 'images/logo-framadate.png';
 
 // Clean URLs, boolean
-const URL_PROPRE = {if in_array($cleanUrl, array('1', 'on', 'true'))}true{else}false{/if};
+const URL_PROPRE = false;
 
 // Use REMOTE_USER data provided by web server
 const USE_REMOTE_USER =  true;
@@ -91,17 +91,10 @@ const MAX_SLOTS_PER_POLL = 366;
 // Number of seconds before we allow to resend an "Remember Edit Link" email.
 const TIME_EDIT_LINK_EMAIL = 60;
 
-// uncomment to display a link to the demo poll at the home page
-//const DEMO_POLL_ID = "aqg259dth55iuhwm";
-
-// number of recent votes that are not deleted
-const DEMO_POLL_NUMBER_VOTES = 10;
-
-
 // Config
 $config = [
     /* general config */
-    'use_smtp' => true,                     // use email for polls creation/modification/responses notification
+    'use_smtp' => false,                     // use email for polls creation/modification/responses notification
     'smtp_options' => [
         'host' => 'localhost',              // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
         'auth' => false,                    // Enable SMTP authentication
@@ -121,4 +114,3 @@ $config = [
     'markdown_editor_by_default' => true,   // The markdown editor for the description is enabled by default
     'provide_fork_awesome' => true,         // Whether the build-in fork-awesome should be provided
 ];
-

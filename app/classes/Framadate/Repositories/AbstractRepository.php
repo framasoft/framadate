@@ -1,43 +1,69 @@
 <?php
 namespace Framadate\Repositories;
 
-use Framadate\FramaDB;
+use Doctrine\DBAL\Connection;
 
 abstract class AbstractRepository {
     /**
-     * @var FramaDB
+     * @var Connection
      */
-    private $connect;
+    protected $connect;
 
     /**
      * PollRepository constructor.
-     * @param FramaDB $connect
+     * @param Connection $connect
      */
-    function __construct(FramaDB $connect) {
+    public function __construct(Connection $connect) {
         $this->connect = $connect;
+        $this->connect->setFetchMode(\PDO::FETCH_OBJ);
     }
 
-    public function beginTransaction() {
+    public function beginTransaction()
+    {
         $this->connect->beginTransaction();
     }
 
-    public function commit() {
+    /**
+     * @throws \Doctrine\DBAL\ConnectionException
+     */
+    public function commit()
+    {
         $this->connect->commit();
     }
 
-    function rollback() {
+    /**
+     * @throws \Doctrine\DBAL\ConnectionException
+     */
+    public function rollback()
+    {
         $this->connect->rollback();
     }
 
-    public function prepare($sql) {
+    /**
+     * @param string $sql
+     * @throws \Doctrine\DBAL\DBALException
+     * @return bool|\Doctrine\DBAL\Driver\Statement|\PDOStatement
+     */
+    public function prepare($sql)
+    {
         return $this->connect->prepare($sql);
     }
 
-    function query($sql) {
+    /**
+     * @param string $sql
+     * @throws \Doctrine\DBAL\DBALException
+     * @return bool|\Doctrine\DBAL\Driver\Statement|\PDOStatement
+     */
+    public function query($sql)
+    {
         return $this->connect->query($sql);
     }
 
-    function lastInsertId() {
+    /**
+     * @return string
+     */
+    public function lastInsertId()
+    {
         return $this->connect->lastInsertId();
     }
 }
