@@ -350,7 +350,6 @@
                     </div>
                 </div>
                 <p class="text-right">
-                    <input type="hidden" name="type" value="$poll_type"/>
                     <button name="{$goToStep2}" value="{$poll_type}" type="submit"
                             class="btn btn-success">{__('Step 1', 'Go to step 2')}</button>
                 </p>

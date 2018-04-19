@@ -41,9 +41,7 @@ if (!isset($_SESSION['form'])) {
 }
 
 // Type de sondage
-if (isset($_GET['type']) && $_GET['type'] === 'date' ||
-    isset($_POST['type']) && $_POST['type'] === 'date'
-) {
+if (isset($_GET['type']) && $_GET['type'] === 'date') {
     $poll_type = 'date';
     $_SESSION['form']->choix_sondage = $poll_type;
 } else {
