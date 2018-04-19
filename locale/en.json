@@ -84,6 +84,7 @@
       "Remove the comment": "Remove comment",
       "Send the comment": "Submit comment",
       "Your comment": "Comment",
+      "Type your name and a comment to send it" : "Type your name and a comment to send it",
       "anonyme": "anonymous"
    },
    "Date": {
@@ -155,32 +156,33 @@
       "You already voted": "You already voted",
       "You can't create a poll with hidden results with the following edition option:": "You can't create a poll with hidden results with the following option: ",
       "You can't select more than %d dates": "You can't select more than %d dates",
+      "You haven't filled the first section of the poll creation, or your session has expired.": "You haven't filled the first section of the poll creation, or your session has expired.",
       "You haven't filled the first section of the poll creation.": "You haven't filled in the first section of the poll.",
       "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."
    },
    "FindPolls": {
+      "Address": "Address",
+      "Created polls": "Created polls",
       "Have a good day!": "Have a good day!",
       "Here is the list of the polls that you manage on %s:": "Here is the list of the polls that you manage on %s:",
       "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator at %s.",
+      "Last access date": "Last access date",
       "List of your polls": "List of your polls",
+      "Local Storage Help": "To help you find your previous polls, we save each poll you create or access inside your browser. This data is saved inside this browser only. The following data will be saved:",
+      "Local Storage Help Delete": "To delete this data click the trashcan on the according line or click the « delete my polls index » option. This won't delete your polls.",
+      "Local Storage Help Information Accessed": "The date you created or last accessed the poll",
+      "Local Storage Help Information Address": "It's address",
+      "Local Storage Help Information Title": "The title of the poll",
       "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.",
+      "Polls saved inside this browser": "Polls saved inside this browser",
       "Polls sent": "Polls sent",
-      "Created polls": "Created polls",
-      "Visited polls": "Visited polls",
+      "Remove all polls from this browser": "Remove all my polls from this browser's index",
+      "Remove poll from index": "Remove poll from index",
       "Send me my polls": "Send me my polls",
       "Send my polls by email": "Send my polls by email",
-      "Polls saved inside this browser": "Polls saved inside this browser",
-      "Local Storage Help": "To help you find your previous polls, we save inside your browser each poll you create or access to. These informations are saved only inside this browser. The informations saved are the following:",
-      "Local Storage Help Information Title": "The title of the poll",
-      "Local Storage Help Information Address": "It's address",
-      "Local Storage Help Information Accessed": "The date on which you created or last accessed the poll",
-      "Local Storage Help Delete": "To delete this information, you can click the bin matching each line or click the « delete my polls index » option. This won't delete your polls.",
-      "Title": "Title",
-      "Address": "Address",
-      "Last access date": "Last access date",
-      "Remove poll from index": "Remove poll from index",
       "There are no polls saved inside your browser yet": "There are no polls saved inside your browser yet",
-      "Remove all polls from this browser": "Remove all my polls from this browser's index"
+      "Title": "Title",
+      "Visited polls": "Visited polls"
    },
    "Generic": {
       "(in the format name@mail.com)": "(in the format name@mail.com)",
@@ -203,7 +205,7 @@
       "Ifneedbe": "Under reserve",
       "Legend:": "Legend:",
       "Link": "Link",
-      "Make your polls": "Create your polls",
+      "Make your polls": "Create your own polls",
       "Markdown": "Markdown",
       "Next": "Next",
       "No": "No",
@@ -300,7 +302,8 @@
       "Vote yes for": "Vote \"yes\" for",
       "Votes of the poll": "Votes",
       "polled user": "polled user",
-      "polled users": "polled users"
+      "polled users": "polled users",
+      "Anyone will be able to access your email address after your vote" : "Anyone will be able to access your email address after your vote"
    },
    "PollInfo": {
       "Admin link of the poll": "Admin link for the poll",
@@ -342,7 +345,8 @@
       "Simple editor": "Simple editor",
       "Title": "Title of the poll",
       "Votes and comments are locked": "Votes and comments are locked",
-      "Votes protected by password": "Votes protected by password"
+      "Votes protected by password": "Votes protected by password",
+      "Collecting the polled users emails" : "Collecting the polled users emails"
    },
    "Step 1": {
       "All voters can modify any vote": "All voters can modify any vote",
@@ -368,11 +372,14 @@
       "To receive an email for each new vote": "Receive an email for each new vote",
       "Use a password to restrict access": "Use a password to restrict access",
       "Value Max": "Value Max",
-      "ValueMax instructions": "votes per options ",
+      "ValueMax instructions": "votes per options",
       "Voters can modify their vote themselves": "Voters can modify their vote themselves",
       "Votes cannot be modified": "Votes cannot be modified",
       "You are in the poll creation section.": "You are in the poll creation section.",
-      "You can enable or disable the editor at will.": "You can enable or disable the editor at will."
+      "You can enable or disable the editor at will.": "You can enable or disable the editor at will.",
+      "Collect users email" : "Collect users email",
+      "Collect the polled users email addresses" : "Collect the polled users email addresses",
+      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules." : "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules."
    },
    "Step 2": {
       "Back to step 1": "Return to step 1",
@@ -422,6 +429,7 @@
    },
    "adminstuds": {
       "Add a column": "Add a column",
+      "Collect the emails of the polled users for the choice": "Collect the emails of the polled users for the choice",
       "All comments deleted": "All comments deleted",
       "All votes deleted": "All votes deleted",
       "As poll administrator, you can change all the lines of this poll with this button": "As poll administrator, you can change all the lines of this poll with this button",
@@ -465,5 +473,13 @@
       "The poll is expired, it will be deleted soon.": "The poll has expired, it will soon be deleted.",
       "Update vote succeeded": "Vote updated",
       "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Your vote has been saved, but please note: you need to keep this personalised link to be able to edit your vote."
+   },
+   "display_mails": {
+	"No one voted 'Yes' to this option." : "No one voted 'Yes' to this option.",
+	"No one voted 'If need be' to this option." : "No one voted 'If need be' to this option.",
+	"No one voted 'No' to this option." : "No one voted 'No' to this option.",
+	"People who have answered 'Yes' to this option have left these email addresses:" : "People who have answered 'Yes' to this option have left these email addresses:",
+	"People who have answered 'If need be' to this option have left these email addresses:" : "People who have answered 'If need be' to this option have left these email addresses:",
+	"People who have answered 'No' to this option have left these email addresses:" : "People who have answered 'No' to this option have left these email addresses:"
    }
 }

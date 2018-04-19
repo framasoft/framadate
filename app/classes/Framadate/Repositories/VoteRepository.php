@@ -22,9 +22,9 @@ class VoteRepository extends AbstractRepository {
         return $prepared->execute([$insert_position, $insert_position + 1, $poll_id]);
     }
 
-    function insert($poll_id, $name, $choices, $token) {
-        $prepared = $this->prepare('INSERT INTO `' . Utils::table('vote') . '` (poll_id, name, choices, uniqId) VALUES (?,?,?,?)');
-        $prepared->execute([$poll_id, $name, $choices, $token]);
+    function insert($poll_id, $name, $choices, $token, $mail) {
+        $prepared = $this->prepare('INSERT INTO `' . Utils::table('vote') . '` (poll_id, name, choices, uniqId, mail) VALUES (?,?,?,?,?)');
+        $prepared->execute([$poll_id, $name, $choices, $token, $mail]);
 
         $newVote = new \stdClass();
         $newVote->poll_id = $poll_id;
@@ -32,6 +32,7 @@ class VoteRepository extends AbstractRepository {
         $newVote->name = $name;
         $newVote->choices = $choices;
         $newVote->uniqId = $token;
+	$newVote->mail=$mail;
 
         return $newVote;
     }
@@ -73,10 +74,10 @@ class VoteRepository extends AbstractRepository {
         return $prepared->execute([$index, $index + 2, $poll_id]);
     }
 
-    function update($poll_id, $vote_id, $name, $choices) {
-        $prepared = $this->prepare('UPDATE `' . Utils::table('vote') . '` SET choices = ?, name = ? WHERE poll_id = ? AND id = ?');
+    function update($poll_id, $vote_id, $name, $choices, $mail) {
+        $prepared = $this->prepare('UPDATE `' . Utils::table('vote') . '` SET choices = ?, name = ?, mail = ? WHERE poll_id = ? AND id = ?');
 
-        return $prepared->execute([$choices, $name, $poll_id, $vote_id]);
+        return $prepared->execute([$choices, $name, $mail, $poll_id, $vote_id]);
     }
 
     /**

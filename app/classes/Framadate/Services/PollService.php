@@ -88,43 +88,45 @@ class PollService {
      * @param $name
      * @param $choices
      * @param $slots_hash
+     * @param string $mail
      * @throws AlreadyExistsException
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
      * @return bool
      */
-    public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash) {
+    public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash, $mail) {
         $this->checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id);
-        
+
         // Update vote
         $choices = implode($choices);
-        return $this->voteRepository->update($poll_id, $vote_id, $name, $choices);
+        return $this->voteRepository->update($poll_id, $vote_id, $name, $choices, $mail);
     }
-    
+
     /**
      * @param $poll_id
      * @param $name
      * @param $choices
      * @param $slots_hash
+     * @param string $mail
      * @throws AlreadyExistsException
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
      * @return \stdClass
      */
-    function addVote($poll_id, $name, $choices, $slots_hash) {
+    function addVote($poll_id, $name, $choices, $slots_hash, $mail) {
         $this->checkVoteConstraints($choices, $poll_id, $slots_hash, $name);
-        
+
         // Insert new vote
         $choices = implode($choices);
         $token = $this->random(16);
-        return $this->voteRepository->insert($poll_id, $name, $choices, $token);
+        return $this->voteRepository->insert($poll_id, $name, $choices, $token, $mail);
     }
 
     function addComment($poll_id, $name, $comment) {
         if ($this->commentRepository->exists($poll_id, $name, $comment)) {
             return true;
         }
-        
+
         return $this->commentRepository->insert($poll_id, $name, $comment);
     }
 
@@ -224,6 +226,7 @@ class PollService {
             $obj->name = $vote->name;
             $obj->uniqId = $vote->uniqId;
             $obj->choices = str_split($vote->choices);
+	    $obj->mail = $vote->mail;
 
             $splitted[] = $obj;
         }
@@ -292,7 +295,7 @@ class PollService {
     private function random($length) {
         return Token::getToken($length);
     }
-    
+
     /**
      * @param $choices
      * @param $poll_id
@@ -310,20 +313,20 @@ class PollService {
         } else {
         	$exists = $this->voteRepository->existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id);
         }
-        
+
         if ($exists) {
             throw new AlreadyExistsException();
         }
-        
+
         $poll = $this->findById($poll_id);
-        
+
         // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
         $this->checkMaxVotes($choices, $poll, $poll_id);
-        
+
         // Check if slots are still the same
         $this->checkThatSlotsDidntChanged($poll, $slots_hash);
     }
-    
+
     /**
      * This method checks if the hash send by the user is the same as the computed hash.
      *

@@ -232,6 +232,11 @@
                     </div>
                 </div>
             </div>
+	    <div id="collect_users_mail">
+            {if $poll->collect_users_mail}
+                <p><span class="glyphicon glyphicon-envelope"> </span> {__('PollInfo', 'Collecting the polled users emails')}</p>
+            {/if}
+	    </div>
         {/if}
     </div>
 {if $admin}</form>{/if}
