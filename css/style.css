@@ -449,18 +449,9 @@ span.edit-username-left {
     border-color: #949494 !important;
 }
 
-table.results .bg-danger .glyphicon {
+/* TODO : Refactor me ! */
+table.results .bg-danger .glyphicon:not(.glyphicon-alert) {
     opacity:0;
-
-    -moz-animation-name: hideNoIcon;
-    -moz-animation-iteration-count: 1;
-    -moz-animation-timing-function: ease-in;
-    -moz-animation-duration: 2s;
-
-    -webkit-animation-name: hideNoIcon;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: ease-in;
-    -webkit-animation-duration: 2s;
 
     animation-name: hideNoIcon;
     animation-iteration-count: 1;

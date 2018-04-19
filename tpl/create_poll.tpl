@@ -325,9 +325,30 @@
                                 </div>
                             </div>
                         </div>
+			{* Collect users email *}
+
+                        <div class="form-group">
+                            <label for="collect_mail" class="col-sm-4 control-label">
+                                {__('Step 1', 'Collect users email')}
+                            </label>
+
+                            <div class="col-sm-8">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="collect_users_mail"
+                                               id="collect_users_mail">
+                                        {__('Step 1', "Collect the polled users email addresses")}
+                                    </label>
+                                </div>
+                            </div>
+
+			    <div id="collect_warning" class="hidden">
+				<div class="col-sm-offset-4 col-sm-8">
+					<label class="bg-danger"><i class="glyphicon glyphicon-alert"> </i> {__('Step 1', 'Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.')} </label>
+				</div>
+			    </div>
                     </div>
                 </div>
-
                 <p class="text-right">
                     <button name="{$goToStep2}" value="{$poll_type}" type="submit"
                             class="btn btn-success">{__('Step 1', 'Go to step 2')}</button>

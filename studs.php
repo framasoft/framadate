@@ -120,6 +120,11 @@ if ($accessGranted) {
 
     if (!empty($_POST['save'])) { // Save edition of an old vote
         $name = $inputService->filterName($_POST['name']);
+	if(empty($_POST['mail']) || $inputService->filterMail($_POST['mail']) === false) {
+		$mail = null;
+    	} else {
+		$mail = $inputService->filterMail($_POST['mail']);
+    	}
         $editedVote = filter_input(INPUT_POST, 'save', FILTER_VALIDATE_INT);
         $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
         $slots_hash = $inputService->filterMD5($_POST['control']);
@@ -134,7 +139,7 @@ if ($accessGranted) {
         if ($message === null) {
             // Update vote
             try {
-                $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices, $slots_hash);
+                $result = $pollService->updateVote($poll_id, $editedVote, $name, $choices, $slots_hash, $mail);
                 if ($result) {
                     if ($poll->editable === Editable::EDITABLE_BY_OWN) {
                         $editedVoteUniqueId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
@@ -156,6 +161,11 @@ if ($accessGranted) {
         }
     } elseif (isset($_POST['save'])) { // Add a new vote
         $name = $inputService->filterName($_POST['name']);
+	if(empty($_POST['mail']) || $inputService->filterMail($_POST['mail']) === false) {
+		$mail = null;
+    	} else {
+		$mail = $inputService->filterMail($_POST['mail']);
+    	}
         $choices = $inputService->filterArray($_POST['choices'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => CHOICE_REGEX]]);
         $slots_hash = $inputService->filterMD5($_POST['control']);
 
@@ -169,7 +179,7 @@ if ($accessGranted) {
         if ($message === null) {
             // Add vote
             try {
-                $result = $pollService->addVote($poll_id, $name, $choices, $slots_hash);
+                $result = $pollService->addVote($poll_id, $name, $choices, $slots_hash, $mail);
                 if ($result) {
                     if (intval($poll->editable) === Editable::EDITABLE_BY_OWN) {
                         $editedVoteUniqueId = $result->uniqId;
