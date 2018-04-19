@@ -13,17 +13,23 @@
         {/if}
         <div class="hidden-print jumbotron">
             <div class="col-md-6 col-md-offset-3">
-                <fieldset id="add-comment"><legend>{__('Comments', 'Add a comment to the poll')}</legend>
+                <fieldset id="add-comment"><legend>{__('Comments', 'Add a comment to the poll')|html}</legend>
                     <div class="form-group">
-                        <label for="comment_name" class="control-label">{__('Generic', 'Your name')}</label>
-                        <input type="text" name="name" id="comment_name" class="form-control" maxlength="60" />
+                        <label for="comment_name" class="control-label">{__('Generic', 'Your name')|html}</label>
+                        <input type="text" name="name" id="comment_name" class="form-control" maxlength="60" required>
                     </div>
                     <div class="form-group">
-                        <label for="comment" class="control-label">{__('Comments', 'Your comment')}</label>
-                        <textarea name="comment" id="comment" class="form-control" rows="2" cols="40"></textarea>
+                        <label for="comment" class="control-label">{__('Comments', 'Your comment')|html}</label>
+                        <textarea name="comment" id="comment" class="form-control" rows="2" cols="40" required></textarea>
                     </div>
                     <div class="pull-right">
-                        <input type="submit" id="add_comment" name="add_comment" value="{__('Comments', 'Send the comment')}" class="btn btn-success">
+                        <button
+	                        type="submit"
+	                        id="add_comment"
+	                        value="{__('Comments', 'Send the comment')|html}"
+	                        class="btn btn-success"
+	                        data-text-wait="{__('Comments', 'Type your name and a comment to send it')|html}"
+                        >
                     </div>
                 </fieldset>
             </div>
