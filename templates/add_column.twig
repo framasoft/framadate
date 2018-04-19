@@ -1,0 +1,43 @@
+{% extends 'page.twig' %}
+
+{% block header %}
+    <script type="text/javascript">
+        window.date_formats = {
+            DATE: '{{__('Date', 'DATE')}}',
+            DATEPICKER: '{{ __('Date', 'datepicker')}}'
+        };
+    </script>
+    <script type="text/javascript" src="{{ 'js/app/framadatepicker.js'}}"></script>
+{% endblock %}
+
+{% block main %}
+
+    {#<form action="{{ poll_url(poll.adminId, true) }}" method="POST">#}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        <div class="alert alert-info text-center">
+            <h2>{{__('adminstuds', 'Column\'s adding')}}</h2>
+
+            {# Messages #}
+            {% include 'part/messages.twig' %}
+
+            <div class="form-group">
+                {{ form_label(form.name) }}
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        {{ form_widget(form.name) }}
+                    </div>
+                </div>
+                {{ form_errors(form.name) }}
+            </div>
+            <div class="form-group">
+                {{ form_widget(form.moments) }}
+                {{ form_errors(form.moments) }}
+            </div>
+            <div class="form-group">
+                <a href="{{ path('view_admin_poll', {'admin_poll_id': poll.adminId}) }}" class="btn btn-default" name="back">{{__('adminstuds', 'Back to the poll')}}</a>
+                {{ form_row(form.submit) }}
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

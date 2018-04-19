@@ -32,16 +32,17 @@ $installService = new InstallService();
 
 if (!empty($_POST)) {
     $installService->updateFields($_POST);
-    $result = $installService->install($smarty);
+    $result = $installService->install($twig);
 
     if ($result['status'] === 'OK') {
         header(('Location: ' . Utils::get_server_name() . 'admin/migration.php'));
         exit;
-    }  
+    }
         $error = __('Error', $result['code']);
 }
 
-$smarty->assign('error', $error);
-$smarty->assign('title', __('Admin', 'Installation'));
-$smarty->assign('fields', $installService->getFields());
-$smarty->display('admin/install.tpl');
+echo $twig->render('admin/install.twig', [
+    'error' => $error,
+    'title' => __('Admin', 'Installation'),
+    'fields' => $installService->getFields(),
+]);

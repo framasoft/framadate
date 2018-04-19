@@ -1,0 +1,577 @@
+/* This software is governed by the CeCILL-B license. If a copy of this license
+ * is not distributed with this file, you can obtain one at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ * Authors of STUdS (initial project) : Guilhem BORGHESI (borghesi@unistra.fr) and Raphaël DROZ
+ * Authors of OpenSondage : Framasoft (https://github.com/framasoft)
+ *
+ * =============================
+ *
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
+ * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-fr.txt
+ *
+ * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
+ * Auteurs d'OpenSondage : Framasoft (https://github.com/framasoft)
+ */
+
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap/dist/css/bootstrap-theme.css';
+// @import 'jquery-ui.min.css';
+@import '~bootstrap-datepicker/dist/css/bootstrap-datepicker3.css';
+@import '~simplemde/dist/simplemde.min.css';
+@import 'app/create_poll.css';
+
+@font-face {
+    font-family: "DejaVu Sans";
+    src: url('../fonts/DejaVuSans.ttf');
+}
+body {
+  font-family: "DejaVu Sans", Verdana, Geneva, sans-serif;
+  color:#333;
+  background:#eee;
+}
+
+.trait { /* hr */
+    background-color: #EEE;
+    height: 5px;
+    margin: 5px 0;
+    border: none;
+}
+
+.ombre {
+    background-color: #FFF;
+    box-shadow: -4px 6px 9px rgba(50, 50, 50, 0.5);
+    margin: 15px auto 30px;
+}
+
+.hide {
+    display: none;
+}
+
+/* Commentaires */
+div.comment{
+    margin-bottom: 10px;
+    border-left: 1px dashed #999;
+    background: #F5F5F5;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 14px;
+}
+
+.comment_date {
+    font-style: italic;
+    font-size: 12px;
+    letter-spacing: -0.7px;
+    color: grey;
+}
+
+/* Règles générales */
+
+a:focus { /* a11y */
+    outline:#000 dotted 1px;
+}
+
+header, footer {
+}
+main {
+    margin-top: 20px;
+}
+header h1 {
+    margin-top: 0;
+}
+.container {
+    padding: 30px;
+}
+.container .jumbotron {
+    padding: 20px 20px;
+    border-radius: 2px;
+}
+.container .jumbotron p {
+    font-size: 1em;
+}
+.container .jumbotron .btn-group >.btn {
+    margin-bottom: 20px;
+    white-space: normal;
+}
+
+.summary h4 {
+    margin-top:0;
+}
+
+.summary img {
+    max-width:100px;
+}
+
+.alert {
+    border-radius: 2px;
+}
+
+.very-small {
+    font-size: 70%;
+}
+
+/* Effet sur les images en page d'accueil */
+.opacity img {
+    opacity: 0.8;
+}
+
+.opacity:hover img {
+    opacity: 1;
+}
+
+.home-choice {
+    margin-bottom:50px;
+}
+
+/* Description du sondage */
+    /* studs.php et adminstuds.php */
+header .lead {
+    padding: 10px 0;
+    margin:0;
+}
+header form .input-group .form-control {
+    margin-bottom: 20px;
+}
+header form .input-group .input-group-btn {
+    vertical-align: top;
+}
+
+#admin-link, #public-link {
+    cursor:text;
+}
+.admin-link, .public-link,
+.admin-link:hover, .public-link:hover {
+    color:#333;
+    text-decoration:none;
+    border:none;
+}
+
+.jumbotron h3, .jumbotron .js-title {
+    margin-bottom:20px;
+    margin-top:0;
+}
+
+.poll-description {
+    font-family: inherit;
+    word-break: initial;
+}
+
+/** Description in markdown **/
+.form-group  .CodeMirror, .form-group  .CodeMirror-scroll {
+    min-height: 200px;
+}
+#description-form  .CodeMirror {
+    background-color: #f5f5f5;
+}
+
+
+.editor-toolbar {
+    margin-top: 10px;
+    background-color: #eee;
+}
+#poll_comments {
+    margin-top: 10px;
+}
+
+h4.control-label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.42857;
+    margin-top:0;
+}
+
+caption {
+    padding: 0 10px 10px;
+    font-weight:bold;
+}
+
+.results a.btn-default.btn-sm {
+    padding: 3px 7px;
+    font-size: 0.7em;
+}
+
+    /* adminstuds.php */
+#title-form h3 .btn-edit,
+#email-form .btn-edit,
+#description-form .btn-edit,
+#poll-rules-form .btn-edit,
+#poll-hidden-form .btn-edit,
+#expiration-form .btn-edit,
+#password-form .btn-edit,
+#name-form .btn-edit {
+    position:absolute;
+    left:-2000px;
+}
+
+#title-form .btn-edit:focus,
+#title-form h3:hover .btn-edit,
+#email-form .btn-edit:focus,
+#email-form:hover .btn-edit,
+#description-form .btn-edit:focus,
+#description-form:hover .btn-edit,
+#poll-rules-form .btn-edit:focus,
+#poll-rules-form:hover .btn-edit,
+#poll-hidden-form .btn-edit:focus,
+#poll-hidden-form:hover .btn-edit,
+#expiration-form .btn-edit:focus,
+#expiration-form:hover .btn-edit,
+#password-form .btn-edit:focus,
+#password-form:hover .btn-edit,
+#name-form .btn-edit:focus,
+#name-form:hover .btn-edit {
+    position:relative !important;
+    left:0;
+    padding: 0 10px;
+}
+
+.js-desc textarea {
+    margin-bottom:5px;
+}
+
+#author-form .form-control-static {
+    margin-bottom:0;
+}
+
+#poll-rules-form p, #poll-hidden-form p,
+.jumbotron p.well {
+    font-size:16px;
+}
+.jumbotron p {
+    font-weight: normal;
+}
+
+/* Tableau du sondage */
+#tableContainer {
+    overflow-x:auto;
+    margin:5px auto;
+}
+
+table.results {
+    margin:0 auto;
+}
+
+table.results > tbody > tr:hover > td,
+table.results > tbody > tr:hover > th {
+    opacity:0.85;
+}
+
+table.results > tbody > tr#vote-form:hover > td,
+table.results > tbody > tr#vote-form:hover > th {
+    opacity:1;
+}
+
+table.results tbody td {
+    text-align:center;
+    padding:1px 5px;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+}
+
+table.results thead th {
+    text-align:center;
+    border:2px solid white;
+    padding: 5px;
+    min-width:40px;
+    font-size: 13px;
+    max-width:100px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-weight: normal;
+}
+
+table.results thead th img {
+    max-width: 100%;
+}
+
+table.results thead .btn {
+    margin: 0 auto;
+    display: block;
+}
+
+table.results th.rbd.day,
+table.results th.rbd.bg-info,
+table.results td.rbd {
+    border-right: 2px dotted white;
+}
+
+table.results th.bg-primary.month,
+table.results th.day,
+table.results th.bg-info {
+    border-bottom:none;
+    border-top:none;
+    border-right: 2px dotted white;
+    border-left: 2px dotted white;
+}
+
+table.results tbody th.bg-info {
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+    text-align:center;
+    min-width:150px;
+}
+
+table.results th.bg-primary.month,
+table.results th.day {
+    text-align:left;
+}
+
+table.results #nom {
+    width:115px;
+}
+
+table.results .btn-link.btn-sm {
+    padding:2px;
+}
+
+#addition {
+    vertical-align:top;
+}
+
+#showChart {
+    margin-top:30px;
+}
+
+#Chart {
+    padding-right:30px;
+}
+
+/* Formulaire de création de sondage */
+@media (max-width: 767px) {
+    #formulaire .col-xs-12 {
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+}
+
+/* Formulaire de vote */
+#vote-form td ul, #vote-form td label {
+    margin:0;
+    font-size:12px;
+}
+#vote-form td label {
+    padding: 1px 3px;
+}
+
+#vote-form td {
+    border-top:2px solid white;
+}
+#vote-form td:first-child {
+    min-width: 180px;
+}
+.yes input, .ifneedbe input,.no input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0px, 0px, 0px, 0px);
+    border: 0 none;
+}
+
+.choice input:focus + label {
+    outline: 2px dotted #000;
+    outline-offset: -2px;
+}
+.choice {
+    width: 35px;
+    margin:0 auto !important;
+}
+
+.choice label {
+    cursor: pointer;
+}
+
+td.btn-edit {
+    padding: 5px;
+}
+
+span.edit-username-left {
+    float: right;
+}
+
+.yes .btn, .ifneedbe .btn, .no .btn {
+    width: 35px;
+    color: #555;
+}
+
+.yes .btn,.yes .btn:hover {
+    border-bottom-right-radius:0 !important;
+    border-bottom-left-radius:0 !important;
+    margin-bottom:-1px !important;
+    margin-top:4px !important;
+    color: #677835;
+}
+
+.ifneedbe .btn,.ifneedbe .btn:hover {
+    border-radius: 0;
+    color: #C48A1B;
+}
+
+.no .btn,.no .btn:hover{
+    border-top-right-radius:0 !important;
+    border-top-left-radius:0 !important;
+    margin-bottom:4px !important;
+    margin-top:-1px !important;
+    color: #AD220F;
+}
+
+.yes input[type="radio"]:checked + label { /* =.btn-success.active */
+    color: #fff;
+    background-color: #768745;
+    border-color: #67753C;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.ifneedbe input[type="radio"]:checked + label { /* =.btn-warning.active */
+    color: #fff;
+    background-color: #CF9800;
+    border-color: #BD8A00;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+.no input[type="radio"]:checked + label { /* =.btn-danger.active */
+    color: #fff;
+    background-color: #BF2511;
+    border-color: #AD220F;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+}
+
+/* Button and results "No" */
+.no .btn.startunchecked {
+    box-shadow:none !important;
+    color:#AD220F !important;
+    background:#fff !important;
+    border-color:#bdbdbd !important;
+}
+
+.no .btn.startunchecked:hover {
+    background-color: #E0E0E0 !important;
+    border-color: #949494 !important;
+}
+
+table.results .bg-danger .glyphicon {
+    opacity:0;
+
+    -moz-animation-name: hideNoIcon;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: ease-in;
+    -moz-animation-duration: 2s;
+
+    -webkit-animation-name: hideNoIcon;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-duration: 2s;
+
+    animation-name: hideNoIcon;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
+}
+
+@-moz-keyframes hideNoIcon {
+    0% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+    }
+}
+@-webkit-keyframes hideNoIcon {
+    0% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+    }
+}
+@keyframes hideNoIcon {
+    0% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+    }
+}
+
+table.results > tbody > tr:hover > td .glyphicon {
+    opacity:1
+}
+
+/* create_date_poll.php */
+#selected-days .form-group {
+    margin-left:0;
+    margin-right:0;
+}
+
+#selected-days legend input {
+    box-shadow: none;
+    border-width:0;
+    color: #333;
+    font-size: 21px;
+    border-radius:0;
+    margin-bottom:-1px;
+    background:transparent;
+}
+
+#selected-days legend input:hover,
+#selected-days legend input:focus {
+    border-bottom-width:1px;
+    background-color:#E6E6E6;
+}
+
+#selected-days legend .input-group-addon {
+    border:none;
+    background:transparent;
+}
+
+#selected-days legend .input-group-addon:last-of-type {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+#selected-days legend {
+    height: 33px;
+}
+
+/* create_classic_poll.php */
+.md-a-img {
+    text-decoration:none !important;
+}
+
+#md-a-imgModal .form-group {
+    margin:10px 0;
+}
+
+#md-a-imgModalLabel {
+    font-size: 24px;
+}
+
+/* Admin */
+#poll_search {
+    cursor: pointer;
+}
+.table-of-polls {
+    overflow-x: scroll;
+    margin-bottom: 0;
+    border: 0;
+    box-shadow: none;
+}
+
+/* Studs */
+.password_request {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#password-form .btn-cancel {
+    float: right;
+}
+
+/* Buttons */
+.btn {
+    white-space: normal;
+}

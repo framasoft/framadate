@@ -6,21 +6,30 @@ composer.phar
 framanav
 nav
 app/inc/config.php
-vendor
 cache/
 tpl_c/
-.php_cs.cache
 .zanata-cache/
 
-# Temp files
-*~
-\#*\#
+cover/
 
-# Cache
-Thumbs.db
+###> symfony/framework-bundle ###
+.env
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
 
-# IDE
-.settings/
-.project
-.idea/
-*.iml
+###> symfony/webpack-encore-pack ###
+/node_modules/
+/public/build/
+###< symfony/webpack-encore-pack ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> friendsofphp/php-cs-fixer ###
+/.php_cs
+/.php_cs.cache
+###< friendsofphp/php-cs-fixer ###

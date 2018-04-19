@@ -1,0 +1,19 @@
+{% extends "page.twig" %}
+
+{% block main %}
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="mail" class="input-group-addon">{{__('Generic', 'Your email address')}}</label>
+                        {{ form_widget(form.adminMail) }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-3 text-center">
+                {{ form_row(form.submit) }}
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

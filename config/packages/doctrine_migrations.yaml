@@ -1,0 +1,6 @@
+doctrine_migrations:
+    dir_name: '%kernel.project_dir%/src/Migrations'
+    table_name: framadate_migration
+    # namespace is arbitrary but should be different from App\Migrations
+    # as migrations classes should NOT be autoloaded
+    namespace: DoctrineMigrations

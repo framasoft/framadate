@@ -5,7 +5,6 @@
     "keywords": ["poll", "framadate"],
     "version": "0.9.0",
     "license": "CECILL-B",
-
     "type": "project",
     "support": {
         "issues": "https://framagit.org/framasoft/framadate/issues"
@@ -52,33 +51,87 @@
             "email": "raphael.droz@gmail.com"
         }
     ],
-
     "require": {
-        "php": ">=5.6.0",
+        "php": "^7.1.3",
+        "ext-iconv": "*",
         "ext-pdo": "*",
-        "smarty/smarty": "^3.1",
-        "o80/i18n": "dev-develop",
-        "phpmailer/phpmailer": "^5.2",
-        "ircmaxell/password-compat": "dev-master",
-        "roave/security-advisories": "dev-master",
+        "doctrine/doctrine-bundle": "^1.8",
+        "doctrine/doctrine-migrations-bundle": "^1.3",
         "erusev/parsedown": "^1.7",
-        "egulias/email-validator": "~2.1"
+        "fresh/doctrine-enum-bundle": "~6.0",
+        "roave/security-advisories": "dev-master",
+        "egulias/email-validator": "~2.1",
+        "sensio/framework-extra-bundle": "^5.1",
+        "sensiolabs/ansi-to-html": "^1.1",
+        "symfony/asset": "^4.0",
+        "symfony/console": "^4.0",
+        "symfony/debug-pack": "*",
+        "symfony/expression-language": "^4.0",
+        "symfony/flex": "^1.0",
+        "symfony/form": "^4.0",
+        "symfony/framework-bundle": "^4.0",
+        "symfony/lts": "^4@dev",
+        "symfony/monolog-bundle": "^3.1",
+        "symfony/process": "^4.0",
+        "symfony/security-bundle": "^4.0",
+        "symfony/serializer-pack": "*",
+        "symfony/swiftmailer-bundle": "^3.1",
+        "symfony/validator": "^4.0",
+        "symfony/web-link": "^4.0",
+        "symfony/webpack-encore-pack": "*",
+        "symfony/yaml": "^4.0",
+        "twig/extensions": "^1.5"
     },
-
     "require-dev": {
-        "phpunit/phpunit": "^5.7",
+        "symfony/browser-kit": "^4.0",
+        "symfony/css-selector": "^4.0",
+        "symfony/dotenv": "^4.0",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "^4.0",
+        "symfony/profiler-pack": "*",
         "friendsofphp/php-cs-fixer": "~2.0"
     },
-
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
     "autoload": {
         "psr-4": {
-            "Framadate\\": "app/classes/Framadate/"
+            "Framadate\\": "src/"
         }
     },
-
-    "config": {
-        "platform": {
-            "php": "5.6.0"
+    "autoload-dev": {
+        "psr-4": {
+            "Framadate\\Tests\\": "tests/"
+        }
+    },
+    "replace": {
+        "symfony/polyfill-iconv": "*",
+        "symfony/polyfill-php71": "*",
+        "symfony/polyfill-php70": "*",
+        "symfony/polyfill-php56": "*"
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "id": "01C82FNF65RNQJGCFPFY7TZJ5C",
+            "allow-contrib": false
         }
     }
 }

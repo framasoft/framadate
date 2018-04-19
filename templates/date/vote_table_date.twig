@@ -1,0 +1,303 @@
+{% if best_choices is not iterable or best_choices is empty %}
+    {% set best_choices = [0] %}
+{% endif %}
+{% set headersM = [] %}
+{% set headersD = [] %}
+{% set headersH = [] %}
+
+<h3>
+    {{ __('Poll results', 'Votes of the poll') }}
+    {% if hidden %}
+        <i>({{ __('PollInfo', 'Results are hidden') }})</i>
+    {% endif %}
+    {% if accessGranted %}
+        <a href="" data-toggle="modal" data-target="#hint_modal">
+            <i class="glyphicon glyphicon-info-sign"></i>
+        </a>
+    {% endif %}
+</h3>
+
+
+{% include 'part/scroll_left_right.twig' %}
+
+
+<div id="tableContainer" class="tableContainer">
+    <form action="{% if admin %}{{ path('vote_poll_admin', {'admin_poll_id': poll.adminId}) }}{% else %}{{ path('vote_poll', {'poll_id': poll.id}) }}{% endif %}" method="POST" id="poll_form">
+        <input type="hidden" name="control" value="{{ choices_hash }}"/>
+        <table class="results">
+            <caption class="sr-only">{{ __('Poll results', 'Votes of the poll') }} {{ poll.title|raw }}</caption>
+            <thead>
+            {# Header line to remove / add columns #}
+            {% if admin and not expired %}
+                <tr class="hidden-print">
+                    <th role="presentation"></th>
+                    {% set headersDCount=0 %}
+                    {% for choice in poll.choices %}
+                        {% for id, moment in choice.moments %}
+                            <td headers="M{{ id }} D{{ headersDCount }} H{{ headersDCount }}">
+                                <a href="{{ path('delete_column', {'admin_poll_id': poll.adminId, 'column': ((choice.date|date('U')) ~ '@' ~ moment) | base64_encode}) }}"
+                                   data-remove-confirmation="{{ __('adminstuds', 'Confirm removal of the column.') }}"
+                                   class="btn btn-link btn-sm remove-column"
+                                   title="{{ __('adminstuds', 'Remove the column') }} {{ choice.date|localizeddate('none', 'none', locale, NULL, 'EEEE dd') }}{% if moment %} - {{ moment|raw }}{% endif %}">
+                                    <i class="glyphicon glyphicon-remove text-danger"></i><span
+                                        class="sr-only">{{ __('Generic', 'Remove') }}</span>
+                                </a>
+                            </td>
+                            {% set headersDCount = headersDCount + 1 %}
+                        {% endfor %}
+                    {% endfor %}
+                    <td>
+                        <a href="{{ path('add_column', {'admin_poll_id': poll.adminId}) }}"
+                           class="btn btn-link btn-sm" title="{{ __('adminstuds', 'Add a column') }}">
+                            <i class="glyphicon glyphicon-plus text-success"></i><span
+                                class="sr-only">{{ __('Poll results', 'Add a column') }}</span>
+                        </a>
+                    </td>
+                </tr>
+            {% endif %}
+            <tr>
+                {# Header line to show common informations : month and year #}
+                <th role="presentation"></th>
+                {% set count_same = 0 %}
+                {% set previous = 0 %}
+                {% for id, choice in poll.choices %}
+                    {% set display = choice.date|localizeddate('none', 'none', locale, NULL, 'MMMM r') %}
+                    {% if previous != 0 and previous != display %}
+                        <th colspan="{{ count_same }}" class="bg-primary month" id="M{{ id }}">{{ previous }}</th>
+                        {% set count_same = 0 %}
+                    {% endif %}
+
+                    {% set count_same = count_same + (choice.moments|length) %}
+
+                    {% if loop.last %}
+                        <th colspan="{{ count_same }}" class="bg-primary month" id="M{{ id }}">{{ display }}</th>
+                    {% endif %}
+
+                    {% set previous = display %}
+
+
+                    {% for foo in 0..(choice.moments|length)-1 %}
+                        {% set headersM = headersM | merge([id]) %}
+                    {% endfor %}
+                {% endfor %}
+                <th></th>
+            </tr>
+            <tr>
+                {# Header line to show date days #}
+                <th role="presentation"></th>
+                {% for id, choice in poll.choices %}
+                    <th colspan="{{ choice.moments | length }}" class="bg-primary day"
+                        id="D{{ id }}">{{ choice.date|localizeddate('none', 'none', locale, NULL, 'EEEE dd') }}</th>
+                    {% for foo in 0..(choice.moments| length )-1 %}
+                        {% set headersD = headersD | merge([id]) %}
+                    {% endfor %}
+                {% endfor %}
+                <th></th>
+            </tr>
+            <tr>
+                {# Header line to show date moments #}
+                <th role="presentation"></th>
+                {% set headersDCount = 0 %}
+                {% set choices_raw = [] %}
+                {% for choice in poll.choices %}
+                    {% for id, moment in choice.moments %}
+                        <th colspan="1" class="bg-info" id="H{{ headersDCount }}">{{ moment|raw }}</th>
+                        {% set headersH = headersH | merge([headersDCount]) %}
+                        {% set headersDCount = headersDCount+1 %}
+                        {% set choices_raw = choices_raw | merge([choice.date]) %}
+                    {% endfor %}
+                {% endfor %}
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                {# Previous votes #}
+                {% include 'date/votes.twig' %}
+
+                {# New vote #}
+                {% include 'date/new_vote.twig' %}
+
+                {# Sums of the votes #}
+                {% set count_bests = 0 %}
+                {% set max = max(best_choices.y) %}
+                {% if not hidden %}
+                    {# Line displaying best moments #}
+                    {% if max > 0 %}
+                        <tr id="addition">
+                            <td>{{ __('Poll results', 'Addition') }}<br/>
+                                {{ votes|length }}
+                                {% if (votes|length) == 1 %}
+                                    {{ __('Poll results', 'polled user') }}
+                                {% else %}
+                                    {{ __('Poll results', 'polled users') }}
+                                {% endif %}
+                            </td>
+                            {% for i, best_moment in best_choices['y'] %}
+                                {% if max == best_moment %}
+                                    {% set count_bests = count_bests +1 %}
+                                    <td>
+                                        <i class="glyphicon glyphicon-star text-info"></i>
+                                        <span class="yes-count">{{ best_moment|raw }}</span>
+                                        {% if best_choices['inb'][i]>0 %}
+                                            <br/>
+                                            <span class="small text-muted">
+                        (+<span class="inb-count">{{ best_choices['inb'][i]|raw }}</span>)
+                    </span>
+                                        {% endif %}
+                                    </td>
+                                {% elseif best_moment > 0 %}
+                                    <td>
+                                        <span class="yes-count">{{ best_moment|raw }}</span>
+                                        {% if best_choices['inb'][i] > 0 %}
+                                            <br/>
+                                            <span class="small text-muted">
+                            (+<span class="inb-count">{{ best_choices['inb'][i]|raw }}</span>)
+                        </span>
+                                        {% endif %}
+                                    </td>
+                                {% elseif best_choices['inb'][i] > 0 %}
+                                    <td>
+                                        <br/>
+                                        <span class="small text-muted">
+                        (+<span class="inb-count">{{ best_choices['inb'][i]|raw }}</span>)
+                    </span>
+                                    </td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
+
+                {% endif %}
+            </tbody>
+        </table>
+    </form>
+</div>
+
+{% if not hidden and max > 0 %}
+    <div class="row" aria-hidden="true">
+        <div class="col-xs-12">
+            <p class="text-center" id="showChart">
+                <button class="btn btn-lg btn-default">
+                    <span
+                        class="fa fa-fw fa-bar-chart"></span> {{ __('Poll results', 'Display the chart of the results') }}
+                </button>
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#showChart').on('click', function () {
+                $('#showChart')
+                    .after("<h3>{{ __('Poll results', 'Chart') }}</h3><canvas id=\"Chart\"></canvas>")
+                    .remove();
+
+                var resIfneedbe = [];
+                var resYes = [];
+
+                $('#addition').find('td').each(function () {
+                    var inbCountText = $(this).find('.inb-count').text();
+                    if (inbCountText !== '' && inbCountText !== undefined) {
+                        resIfneedbe.push(inbCountText)
+                    } else {
+                        resIfneedbe.push(0);
+                    }
+                    var yesCountText = $(this).find('.yes-count').text();
+                    if (yesCountText !== '' && yesCountText !== undefined) {
+                        resYes.push(yesCountText)
+                    } else {
+                        resYes.push(0);
+                    }
+                });
+                var cols = [
+                    {% for choice in poll.choices %}
+                    {% for moment in choice.moments %}
+                    $('<div/>').html('{{ choice.date | localizeddate('long', 'none', locale) }}{% if moment %} - {{ moment|raw }}{% endif %}').text(),
+                    {% endfor %}
+                    {% endfor %}
+                ];
+
+                resIfneedbe.shift();
+                resYes.shift();
+                console.log(cols);
+                console.log(resYes);
+                console.log(resIfneedbe);
+
+                var ctx = document.getElementById("Chart").getContext("2d");
+                window.myBar = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: cols,
+                        datasets: [
+                            {
+                                label: "{{ __('Generic', 'Ifneedbe') }}",
+                                backgroundColor: "rgba(255,207,79,0.8)",
+                                highlightFill: "rgba(255,207,79,1)",
+                                barShowStroke: false,
+                                data: resIfneedbe
+                            },
+                            {
+                                label: "{{ __('Generic', 'Yes') }}",
+                                backgroundColor: "rgba(103,120,53,0.8)",
+                                highlightFill: "rgba(103,120,53,1)",
+                                barShowStroke: false,
+                                data: resYes
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                stacked: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                    stepSize: 1,
+                                }
+                            }],
+                            yAxes: [{
+                                stacked: true,
+                                ticks: {
+                                    beginAtZero: true,
+                                    stepSize: 1,
+                                }
+                            }]
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+
+{% endif %}
+
+{% if not hidden %}
+    {# Best votes listing #}
+    {% set max = max(best_choices['y']) %}
+    {% if max > 0 %}
+        <div class="row">
+            {% if count_bests == 1 %}
+                <div class="col-sm-12">
+                    <h3>{{ __('Poll results', 'Best choice') }}</h3>
+                </div>
+                <div class="col-sm-6 col-sm-offset-3 alert alert-info">
+                    <p>
+                        <i class="glyphicon glyphicon-star text-info"></i> {{ __('Poll results', 'The best choice at this time is:') }}
+                    </p>
+                    {% include 'date/votes_recap.twig' %}
+                </div>
+            {% elseif count_bests > 1 %}
+                <div class="col-sm-12">
+                    <h3>{{ __('Poll results', 'Best choices') }}</h3>
+                </div>
+                <div class="col-sm-6 col-sm-offset-3 alert alert-info">
+                    <p>
+                        <i class="glyphicon glyphicon-star text-info"></i> {{ __('Poll results', 'The bests choices at this time are:') }}
+                    </p>
+                    {% include 'date/votes_recap.twig' %}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endif %}

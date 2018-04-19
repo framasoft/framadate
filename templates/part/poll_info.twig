@@ -1,0 +1,304 @@
+{% if editedVoteUniqueId != 0 %}
+    <div class="alert alert-dismissible alert-success hidden-print" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="{{__('Generic', 'Close')}}">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        {{ __('studs','Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:') }}
+        <div class="input-group input-group-sm">
+        <span class="input-group-btn">
+            <a class="btn btn-default btn-sm" href="{{ path('edit_vote_poll', {'poll_id': poll.id, 'vote_uniq_id': editedVoteUniqueId}) }}">
+                <i class="glyphicon glyphicon-pencil"></i>
+            </a>
+        </span>
+            <input type="text" aria-hidden="true" value="{{ url('edit_vote_poll', {'poll_id': poll.id, 'vote_uniq_id': editedVoteUniqueId}) }}" class="form-control" readonly="readonly" />
+        </div>
+    </div>
+{% endif %}
+{% if admin %}
+    <form action="{{ path('edit_admin_poll', {'admin_poll_id': poll.adminId}) }}" method="POST">
+{% endif %}
+    <div class="jumbotron{% if admin %} bg-danger{% endif %}">
+        <div class="row"> {# Title | buttons #}
+            <div id="title-form" class="col-md-7">
+                <h3>{{ poll.title|raw }}
+                    {% if admin and not expired %}
+                    <button class="btn btn-link btn-sm btn-edit" title="{{__('PollInfo', 'Edit the title')}}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="sr-only">{{__('Generic', 'Edit')}}</span>
+                    </button>
+                    {% endif %}
+                </h3>
+                {% if admin and not expired %}
+                    <div class="hidden js-title">
+                        <label class="sr-only" for="newtitle">{{__('PollInfo', 'Title')}}</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="newtitle" name="title" size="40" value="{{ poll.title | raw }}" />
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-success" name="update_poll_info" value="title" title="{{__('PollInfo', 'Save the new title')}}">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                    <span class="sr-only">{{ __('Generic', 'Save')}}</span>
+                                </button>
+                                <button class="btn btn-link btn-cancel" title="{{__('PollInfo', 'Cancel the title edit')}}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{{__('Generic', 'Cancel')}}</span></button>
+                            </span>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-5 hidden-print">
+                <div class="btn-group pull-right">
+                    <button onclick="print(); return false;" class="btn btn-default"><span class="glyphicon glyphicon-print"></span> {{__('PollInfo', 'Print')}}</button>
+                    {% if admin or not hidden %}
+                        <a href="{{ path('export_poll', {'poll_id': poll.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> {{__('PollInfo', 'Export to CSV')}}</a>
+                    {% endif %}
+                    {% if admin %}
+                        {% if not expired %}
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-trash"></span> <span class="sr-only">{{__('Generic', 'Remove')}}</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><button class="btn btn-link" type="submit" name="remove_all_votes">{{__('PollInfo', 'Remove all the votes') }}</button></li>
+                            <li><button class="btn btn-link" type="submit" name="remove_all_comments">{{__('PollInfo', 'Remove all the comments')}}</button></li>
+                            <li class="divider" role="presentation"></li>
+                            <li><button class="btn btn-link" type="submit" name="delete_poll">{{__('PollInfo', 'Remove the poll')}}</button></li>
+                        </ul>
+                        {% else %}
+                            <button class="btn btn-danger" type="submit" name="delete_poll" title="{{__('PollInfo', 'Remove the poll')}}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <span class="sr-only">{{__('PollInfo', 'Remove the poll')}}</span>
+                            </button>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row"> {# Admin name + email | Description #}
+            <div class="form-group col-md-4">
+                <div id="name-form">
+                    <label class="control-label">{{__('PollInfo', 'Initiator of the poll')}}</label>
+                    <p class="form-control-static">{{ poll.adminName|raw}}
+                        {% if admin and not expired %}
+                        <button class="btn btn-link btn-sm btn-edit" title="{{__('PollInfo', 'Edit the name')}}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="sr-only">{{__('Generic', 'Edit')}}</span>
+                        </button>
+                        {% endif %}
+                    </p>
+                    {% if admin and not expired %}
+                    <div class="hidden js-name">
+                        <label class="sr-only" for="newname">{{__('PollInfo', 'Initiator of the poll')}}</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="newname" name="name" size="40" value="{{ poll.adminName|raw }}" />
+                            <span class="input-group-btn">
+                            <button type="submit" class="btn btn-success" name="update_poll_info" value="name" title="{{__('PollInfo', 'Save the new name')}}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{{__('Generic', 'Save')}}</span></button>
+                            <button class="btn btn-link btn-cancel" title="{{__('PollInfo', 'Cancel the name edit')}}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{{__('Generic', 'Cancel')}}</span></button>
+                            </span>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% if admin %}
+                <div id="email-form">
+                    <p>{{ poll.adminMail|raw }}
+                        {% if not expired %}
+                        <button class="btn btn-link btn-sm btn-edit" title="{{__('PollInfo', 'Edit the email adress')}}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="sr-only">{{__('Generic', 'Edit')}}</span>
+                        </button>
+                        {% endif %}
+                    </p>
+                    {% if not expired %}
+                        <div class="hidden js-email">
+                            <label class="sr-only" for="adminMail">{{__('PollInfo', 'Email')}}</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="adminMail" name="adminMail" size="40" value="{{ poll.adminMail | raw}}" />
+                            <span class="input-group-btn">
+                                <button type="submit" name="update_poll_info" value="adminMail" class="btn btn-success" title="{{__('PollInfo', 'Save the email address')}}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{{__('Generic', 'Save')}}</span></button>
+                                <button class="btn btn-link btn-cancel" title="{{__('PollInfo', 'Cancel the email address edit')}}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{{__('Generic', 'Cancel')}}</span></button>
+                            </span>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+            {% if admin %}
+                <div class="form-group col-md-8" id="description-form">
+                    <label class="control-label">{{__('Generic', 'Description')}}{% if admin and not expired %} <button class="btn btn-link btn-sm btn-edit" title="{{__('PollInfo', 'Edit the description')}}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{{__('Generic', 'Edit')}}</span></button>{% endif %}</label>
+                    <div class="form-control-static well poll-description">{{ poll.description }}</div>
+                    {% if admin and not expired %}
+                        <div class="hidden js-desc">
+                            <label class="sr-only" for="newdescription">{{__('Generic', 'Description')}}</label>
+                            {% include 'part/description_markdown.twig' %}
+                            <textarea class="form-control" id="newdescription" name="description" rows="2" cols="40">{{ poll.description|raw}}</textarea>
+                            <button type="submit" id="btn-new-desc" name="update_poll_info" value="description" class="btn btn-sm btn-success" title="{{__('PollInfo', 'Save the description')}}">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                <span class="sr-only">{{__('Generic', 'Save')}}</span>
+                            </button>
+                            <button class="btn btn-default btn-sm btn-cancel" title="{__('PollInfo', 'Cancel the description edit')}">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="sr-only">{{__('Generic', 'Cancel')}}</span>
+                            </button>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="row">
+        </div>
+
+        <div class="row">
+            <div class="form-group form-group {% if admin %}col-md-4{% else %}col-md-6{% endif %}">
+                <label for="public-link">
+                    <a class="public-link" href="{{ url('view_poll', {poll_id: poll.id} )}}">{{ __('PollInfo', 'Public link of the poll') }}
+                        <span class="btn-link glyphicon glyphicon-link"></span>
+                    </a>
+                </label>
+                <input class="form-control" id="public-link" type="text" readonly="readonly" value="{{ url('view_poll', {poll_id: poll.id} )}}" onclick="select();"/>
+            </div>
+            {% if admin %}
+                <div class="form-group col-md-4">
+                    <label for="admin-link"><a class="admin-link" href="{{ url('view_admin_poll', {'admin_poll_id': poll.adminId}) }}">{{__('PollInfo', 'Admin link of the poll')}} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                    <input class="form-control" id="admin-link" type="text" readonly="readonly" value="{{ url('view_admin_poll', {'admin_poll_id': poll.adminId}) }}" onclick="select();"/>
+                </div>
+                <div id="expiration-form" class="form-group col-md-4">
+                    <label class="control-label">{{__('PollInfo', 'Expiration date')}}</label>
+                    <p>{{ poll.endDate | localizeddate('full', 'none', locale) }}
+                        <button class="btn btn-link btn-sm btn-edit" title="{{__('PollInfo', 'Edit the expiration date')}}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="sr-only">{{ __('Generic', 'Edit')}}</span>
+                        </button>
+                    </p>
+
+                    <div class="hidden js-expiration">
+                        <label class="sr-only" for="newexpirationdate">{{__('PollInfo', 'Expiration date')}}</label>
+                        <div class="input-group">
+                            <input type="date" class="form-control" id="newexpirationdate" name="expiration_date" size="40" value="{{ poll.endDate | date('Y-m-d') }}" />
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-success" name="update_poll_info" value="expiration_date" title="{{__('PollInfo', 'Save the new expiration date')}}">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                    <span class="sr-only">{{__('Generic', 'Save')}}</span>
+                                </button>
+                                <button class="btn btn-link btn-cancel" title="{{__('PollInfo', 'Cancel the expiration date edit')}}">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                    <span class="sr-only">{{__('Generic', 'Cancel')}}</span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        {% if admin %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div id="password-form">
+                        {% if poll.passwordHash is not empty and not poll.resultsPubliclyVisible %}
+                            {% set password_text = __('PollInfo', 'Password protected') %}
+                        {% elseif poll.passwordHash is not empty and poll.resultsPubliclyVisible %}
+                            {% set password_text = __('PollInfo', 'Votes protected by password') %}
+                        {% else %}
+                            {% set password_text = __('PollInfo', 'No password') %}
+                        {% endif %}
+                        <p class=""><span class="glyphicon glyphicon-lock"> </span> {{ password_text }}<button class="btn btn-link btn-sm btn-edit" title="{{__('PollInfo', 'Edit the poll rules')}}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{{__('Generic', 'Edit')}}</span></button></p>
+                        <div class="hidden js-password">
+                            <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the rules edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{__('Generic', 'Cancel')}</span></button>
+                            {% if poll.passwordHash is not empty %}
+                                <div class="input-group">
+                                    <input type="checkbox" id="removePassword" name="removePassword"/>
+                                    <label for="removePassword">{{__('PollInfo', 'Remove password')}}</label>
+                                    <button type="submit" name="update_poll_info" value="removePassword" class="btn btn-success hidden" title="{{__('PollInfo', 'Save the new rules')}}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{{__('Generic', 'Remove password.')}}</span></button>
+                                </div>
+                            {% endif %}
+                            <div id="password_information">
+                                <div class="input-group">
+                                    <input type="checkbox" id="resultsPubliclyVisible" name="resultsPubliclyVisible" {% if poll.resultsPubliclyVisible and poll.hidden == false and poll.passwordHash is not empty %}checked="checked" {% elseif poll.hidden == true or poll.passwordHash is empty %} disabled="disabled"{% endif %}/>
+                                    <label for="resultsPubliclyVisible">{{__('PollInfo', 'Only votes are protected')}}</label>
+                                </div>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="password" name="password"/>
+                                    <span class="input-group-btn">
+                                        <button type="submit" name="update_poll_info" value="password" class="btn btn-success" title="{{__('PollInfo', 'Save the new rules')}}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{{__('Generic', 'Save')}}</span></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 ">
+                    <div id="poll-hidden-form">
+                        {% if poll.hidden %}
+                            {% set hidden_icon = "glyphicon-eye-close" %}
+                            {% set hidden_text = __('PollInfo', 'Results are hidden') %}
+                        {% else %}
+                            {% set hidden_icon = "glyphicon-eye-open" %}
+                            {% set hidden_text = __('PollInfo', 'Results are visible') %}
+                        {% endif %}
+                        <p class=""><span class="glyphicon {{ hidden_icon }}"> </span> {{ hidden_text }}<button class="btn btn-link btn-sm btn-edit" title="{{__('PollInfo', 'Edit the poll rules')}}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{{__('Generic', 'Edit')}}</span></button></p>
+                        <div class="hidden js-poll-hidden">
+                            <div class="input-group">
+                                <input type="checkbox" id="hidden" name="hidden" {% if poll.hidden %}checked="checked"{% endif %}/>
+                                <label for="hidden">{{__('PollInfo', 'Results are hidden')}}</label>
+                                <span class="input-group-btn">
+                                    <button type="submit" name="update_poll_info" value="hidden" class="btn btn-success" title="{{__('PollInfo', 'Save the new rules')}}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{{__('Generic', 'Save')}}</span></button>
+                                    <button class="btn btn-link btn-cancel" title="{{__('PollInfo', 'Cancel the rules edit')}}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{{__('Generic', 'Cancel')}}</span></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" >
+                    <div id="poll-rules-form">
+                        {% if poll.active %}
+                            {% if poll.editable %}
+                                {% if poll.editable == constant("Framadate\\Entity\\Editable::EDITABLE_BY_ALL") %}
+                                    {% set rule_id = 2 %}
+                                    {% set rule_txt = __('Step 1', 'All voters can modify any vote') %}
+                                {% else %}
+                                    {% set rule_id = 3 %}
+                                    {% set rule_txt = __('Step 1', 'Voters can modify their vote themselves') %}
+                                {% endif %}
+                                {% set rule_icon = '<span class="glyphicon glyphicon-edit"></span>' %}
+                            {% else %}
+                                {% set rule_id = 1 %}
+                                {% set rule_icon = '<span class="glyphicon glyphicon-check"></span>' %}
+                                {% set rule_txt = __('Step 1', 'Votes cannot be modified') %}
+                            {% endif %}
+                        {% else %}
+                            {% set rule_id = 0 %}
+                            {% set rule_icon = '<span class="glyphicon glyphicon-lock"></span>' %}
+                            {% set rule_txt = __('PollInfo', 'Votes and comments are locked') %}
+                        {% endif %}
+                        <p class="">{{ rule_icon | raw }} {{ rule_txt | raw }}
+                            <button class="btn btn-link btn-sm btn-edit" title="{{__('PollInfo', 'Edit the poll rules')}}">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="sr-only">{{__('Generic', 'Edit')}}</span>
+                            </button>
+                        </p>
+                        <div class="hidden js-poll-rules">
+                            <label class="sr-only" for="rules">{{__('PollInfo', 'Poll rules')}}</label>
+                            <div class="input-group">
+                                <select class="form-control" id="rules" name="rules">
+                                    <option value="0"{% if rule_id == 0 %} selected="selected"{% endif %}>{{__('PollInfo', 'Votes and comments are locked')}}</option>
+                                    <option value="1"{% if rule_id == 1 %} selected="selected"{% endif %}>{{__('Step 1', 'Votes cannot be modified')}}</option>
+                                    <option value="3"{% if rule_id == 3 %} selected="selected"{% endif %}>{{__('Step 1', 'Voters can modify their vote themselves')}}</option>
+                                    <option value="2"{% if rule_id == 2 %} selected="selected"{% endif %}>{{__('Step 1', 'All voters can modify any vote')}}</option>
+                                </select>
+                                <span class="input-group-btn">
+                                    <button type="submit" name="update_poll_info" value="rules" class="btn btn-success" title="{{__('PollInfo', 'Save the new rules')}}">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                        <span class="sr-only">{{__('Generic', 'Save')}}</span>
+                                    </button>
+                                    <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the rules edit')}">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                        <span class="sr-only">{{__('Generic', 'Cancel')}}</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% if admin %}</form>{% endif %}
