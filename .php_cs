@@ -38,7 +38,8 @@ return PhpCsFixer\Config::create()
             ->exclude([
                 'vendor',
                 'var',
-                'web'
+                'web',
+                'tpl_c',
             ])
             ->in(__DIR__)
     )
