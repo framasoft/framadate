@@ -80,7 +80,7 @@ $messagePollCreated = $sessionService->get("Framadate", "messagePollCreated", FA
 
 if ($messagePollCreated) {
 	$sessionService->remove("Framadate", "messagePollCreated");
-	
+
 	$message = new Message('success', __('adminstuds', 'The poll is created.'));
 }
 
@@ -417,28 +417,21 @@ if (isset($_GET['collect_mail'])) {
     $column_str = strval(Utils::base64url_decode($column_str));
     $column = intval($column_str);
     $votes = $pollService->splitVotes($pollService->allVotesByPollId($poll_id));
-    $mails_yes = [];
-    $mails_ifneedbe = [];
-    $mails_no = [];
-    $size = count($votes);
-    for ($i = 0; $i < $size; $i++)
-{
-	if(intval($votes[$i]->choices[$column]) === 2 && $votes[$i]->mail !== NULL) {
-		$mails_yes[]=$votes[$i]->mail;
+    $mails_yes = $mails_ifneedbe = $mails_no = [];
+    foreach ($votes as $vote) {
+        if (intval($vote->choices[$column]) === 2 && $vote->mail !== NULL) {
+            $mails_yes[] = $vote->mail;
+        } elseif (intval($vote->choices[$column]) === 1 && $vote->mail !== NULL) {
+            $mails_ifneedbe[] = $vote->mail;
+        } elseif($vote->mail !== NULL) {
+            $mails_no[] = $vote->mail;
         }
-	else {
-		if(intval($votes[$i]->choices[$column]) === 1 && $votes[$i]->mail !== NULL) {
-			$mails_ifneedbe[]=$votes[$i]->mail;
-        	}
-		elseif($votes[$i]->mail !== NULL) {
-			$mails_no[]=$votes[$i]->mail;
-		}
-	}
-}
+    }
+
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('admin', true);
-    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title . ' - ' . __('adminstuds', 'Collect the emails of the polled users for this column'));
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title . ' - ' . __('adminstuds', 'Collect the emails of the polled users for the choice'));
     $smarty->assign('mails_yes', $mails_yes);
     $smarty->assign('mails_ifneedbe', $mails_ifneedbe);
     $smarty->assign('mails_no', $mails_no);

@@ -458,11 +458,11 @@
       "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "Your vote has been saved, but please note: you need to keep this personalised link to be able to edit your vote."
    },
    "display_mails": {
-	"People who have answered 'Yes' to this option have not left any email addresses." : "People who have answered 'Yes' to this option have not left any email addresses.",
-	"People who have answered 'If need be' to this option have not left any email addresses." : "People who have answered 'If need be' to this option have not left any email addresses.",
-	"People who have answered 'No' to this option have not left any email addresses." : "People who have answered 'No' to this option have not left any email addresses.",
-	"People who have answered 'Yes' to this option have left those email addresses :" : "People who have answered 'Yes' to this option have left those email addresses :",
-	"People who have answered 'If need be' to this option have left those email addresses :" : "People who have answered 'If need be' to this option have left those email addresses :",
-	"People who have answered 'No' to this option have left those email addresses :" : "People who have answered 'No' to this option have left those email addresses :"
+	"No one voted 'Yes' to this option." : "No one voted 'Yes' to this option.",
+	"No one voted 'If need be' to this option." : "No one voted 'If need be' to this option.",
+	"No one voted 'No' to this option." : "No one voted 'No' to this option.",
+	"People who have answered 'Yes' to this option have left these email addresses:" : "People who have answered 'Yes' to this option have left these email addresses:",
+	"People who have answered 'If need be' to this option have left these email addresses:" : "People who have answered 'If need be' to this option have left these email addresses:",
+	"People who have answered 'No' to this option have left these email addresses:" : "People who have answered 'No' to this option have left these email addresses:"
    }
 }
