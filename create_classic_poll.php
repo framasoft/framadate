@@ -62,7 +62,6 @@ if ($_SESSION['form']->format !== 'A') {
     $_SESSION['form']->clearChoices();
 }
 
-
 switch ($step) {
     case 1: // Step 1/4 : error if $_SESSION from info_sondage are not valid
         $smarty->assign('title', __('Error', 'Error!'));
