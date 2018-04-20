@@ -42,9 +42,11 @@ class Version20180419190000 extends AbstractMigration
 
     /**
      * @param Schema $schema
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
      */
     public function up(Schema $schema)
     {
+        $this->skipIf(!$schema->hasTable(Utils::table(MIGRATION_TABLE)));
         $schema->dropTable(Utils::table(MIGRATION_TABLE));
     }
 
@@ -53,10 +55,6 @@ class Version20180419190000 extends AbstractMigration
      */
     public function down(Schema $schema)
     {
-        $migrationTable = $schema->createTable(Utils::table(MIGRATION_TABLE));
-        $schema->createSequence(Utils::table(MIGRATION_TABLE) . 'seq');
-        $migrationTable->addColumn('id', 'integer', ['autoincrement' => true]);
-        $migrationTable->addColumn('name', 'string');
-        $migrationTable->addColumn('execute_date', 'datetime', ['default' => (new \DateTime())->format('Y-m-d H:i:s')]);
+        // No need to recreate legacy migration table
     }
 }
