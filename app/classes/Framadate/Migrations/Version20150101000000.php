@@ -43,10 +43,10 @@ class Version20150101000000 extends AbstractMigration
      * This method is called only one time in the migration page.
      *
      * @param Schema $schema
-     * @return void true is the execution succeeded
      * @throws \Doctrine\DBAL\DBALException
      * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
      * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @return void true is the execution succeeded
      */
     public function up(Schema $schema)
     {
