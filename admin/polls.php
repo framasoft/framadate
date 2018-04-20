@@ -17,14 +17,14 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
+use Framadate\Repositories\RepositoryFactory;
+use Framadate\Repositories\Slot\AbstractSlotRepository;
 use Framadate\Services\AdminPollService;
 use Framadate\Services\LogService;
 use Framadate\Services\PollService;
 use Framadate\Services\SecurityService;
 use Framadate\Services\SuperAdminService;
-use Framadate\Repositories\Slot\AbstractSlotRepository;
 use PhpCsFixer\Report\ReporterFactory;
-use Framadate\Repositories\RepositoryFactory;
 
 include_once __DIR__ . '/../app/inc/init.php';
 include_once __DIR__ . '/../bandeaux.php';

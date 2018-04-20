@@ -8,6 +8,21 @@ class DateSlotRepository extends AbstractSlotRepository {
 		return "date";
 	}
 	
+	public function listByPollId($poll_id) {
+		$slots = parent::listByPollId($poll_id);
+		return self::sortSlots($slots);
+	}
+	
+    /**
+     * @return mixed
+     */
+    static public function sortSlots($slots) {
+        uasort($slots, function ($a, $b) {
+            return $a->title > $b->title;
+        });
+        return $slots;
+    }
+	
     /**
      * Find the slot into poll for a given datetime.
      *

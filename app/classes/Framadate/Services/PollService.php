@@ -79,9 +79,6 @@ class PollService {
 
     function allSlotsByPoll($poll) {
         $slots = $this->slotRepository->listByPollId($poll->id);
-        if ($poll->format === 'D') {
-            $this->sortSlorts($slots);
-        }
         return $slots;
     }
 

@@ -17,13 +17,13 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 use Framadate\Choice;
+use Framadate\Repositories\RepositoryFactory;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\PollService;
 use Framadate\Services\PurgeService;
 use Framadate\Services\SessionService;
 use Framadate\Utils;
-use Framadate\Repositories\RepositoryFactory;
 
 include_once __DIR__ . '/app/inc/init.php';
 
