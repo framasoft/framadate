@@ -32,6 +32,13 @@ abstract class AbstractMigration extends DoctrineAbstractMigration
      */
     public function legacyCheck(Schema $schema, $class)
     {
+        /**
+         * If there's no legacy table, we can go on
+         */
+        if (!$schema->hasTable(Utils::table(MIGRATION_TABLE))) {
+            return false;
+        }
+
         $migration_table = $schema->getTable(Utils::table(MIGRATION_TABLE));
         /**
          * We check the migration table
