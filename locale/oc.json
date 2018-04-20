@@ -52,7 +52,7 @@
       "Succeeded:": "Capitat :",
       "Success": "Capitada",
       "Summary": "Resumit",
-      "Title": "Title",
+      "Title": "Títol",
       "Votes": "Vòtes",
       "polls in the database at this time": "sondatges dins la banca de donadas actualament"
    },
@@ -83,8 +83,9 @@
       "Comments of polled people": "Comentaris dels sondats",
       "Remove the comment": "Suprimir lo comentari",
       "Send the comment": "Mandar lo comentari",
+      "Type your name and a comment to send it": "Picatz vòstre nom e un comentari per lo mandar",
       "Your comment": "Vòstre comentari",
-      "anonyme": "anonymous"
+      "anonyme": "anonim"
    },
    "Date": {
       "Add range dates": "Apondre un interval de datas",
@@ -160,27 +161,27 @@
       "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."
    },
    "FindPolls": {
-      "Address": "Address",
-      "Created polls": "Created polls",
+      "Address": "Adreça",
+      "Created polls": "Sondatges creats",
       "Have a good day!": "Bona jornada !",
       "Here is the list of the polls that you manage on %s:": "Vaquí la lista dels sondatges que gerissètz sus %s :",
       "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator at %s.",
-      "Last access date": "Last access date",
+      "Last access date": "Data de darrièr accès",
       "List of your polls": "Lista de vòstres sondatges",
       "Local Storage Help": "To help you find your previous polls, we save each poll you create or access inside your browser. This data is saved inside this browser only. The following data will be saved:",
       "Local Storage Help Delete": "To delete this data click the trashcan on the according line or click the « delete my polls index » option. This won't delete your polls.",
       "Local Storage Help Information Accessed": "The date you created or last accessed the poll",
       "Local Storage Help Information Address": "It's address",
-      "Local Storage Help Information Title": "The title of the poll",
+      "Local Storage Help Information Title": "Lo títol del sondatge",
       "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS : aqueste corrièl es estat mandat perque avètz – o qualqu’un mai – a demandat la recuperacion dels sondatges creats amb aquesta adreça de corrièl.",
-      "Polls saved inside this browser": "Polls saved inside this browser",
+      "Polls saved inside this browser": "Sondatges enregistrats dins aqueste navegador",
       "Polls sent": "Sondatges mandats",
-      "Remove all polls from this browser": "Remove all my polls from this browser's index",
-      "Remove poll from index": "Remove poll from index",
+      "Remove all polls from this browser": "Levar totes mos sondatges de l’ensenhador del navegador",
+      "Remove poll from index": "Levar lo sondatge de l’ensenhador",
       "Send me my polls": "Mandar mos sondatges",
-      "Send my polls by email": "Send my polls by email",
+      "Send my polls by email": "Enviar mos sondatges per corrièl",
       "There are no polls saved inside your browser yet": "There are no polls saved inside your browser yet",
-      "Title": "Title",
+      "Title": "Títol",
       "Visited polls": "Visited polls"
    },
    "Generic": {
@@ -190,7 +191,7 @@
       "Back": "Tornar",
       "Back to the homepage of": "Tornar a la pagina d’acuèlh de",
       "Cancel": "Anullar",
-      "Caption": "Information",
+      "Caption": "Informacions",
       "Choice": "Causida",
       "Classic": "Classic",
       "Close": "Tampar",
@@ -251,7 +252,7 @@
       "Select the language": "Seleccionar la lenga"
    },
    "Mail": {
-      "Author's message": "Message for the author",
+      "Author's message": "Messatge per l’autor",
       "FOOTER": "« La rota es longa, mai lo camin es liure… »<br/>Framasoft viu solament amb vòstres dons (qu’òm pòt tirar de vòstres impòstes).<br/> Mercé d’avança pel vòstre sosten https://soutenir.framasoft.org.",
       "For sending to the polled users": "Per difusion als sondats",
       "Notification of poll: %s": "Notificacion d’un sondatge : %s",
@@ -283,6 +284,7 @@
    },
    "Poll results": {
       "Addition": "Soma",
+      "Anyone will be able to access your email address after your vote": "Anyone will be able to see your email address after you voted",
       "Best choice": "Milhora causida",
       "Best choices": "Milhoras causidas",
       "Chart": "Grafic",
@@ -311,6 +313,7 @@
       "Cancel the name edit": "Anullar lo cambiament d’autor",
       "Cancel the rules edit": "Anullar lo cambiament de permissions",
       "Cancel the title edit": "Anullar lo cambiament de títol",
+      "Collecting the polled users emails": "Collecting the polled users' email addresses",
       "Edit the description": "Modificar la descripcion",
       "Edit the email adress": "Modificar l’adreça",
       "Edit the expiration date": "Modificar la data d’expiracion",
@@ -347,6 +350,8 @@
    },
    "Step 1": {
       "All voters can modify any vote": "Totes los votants pòdon modificar sos vòtes",
+      "Collect the polled users email addresses": "Collecting the polled users' email addresses",
+      "Collect users email": "Collect users' email addresses",
       "Customize the URL": "Personalizar lo ligam",
       "Go to step 2": "Anar a l’etapa 2",
       "Limit the amount of voters per option": "Limitar lo nombre de votants per opcion",
@@ -369,9 +374,10 @@
       "To receive an email for each new vote": "Recebre un messatge per cada participacion",
       "Use a password to restrict access": "Emplegar un senhal per restrénher l’accès al sondatge",
       "Value Max": "Valor maximala",
-      "ValueMax instructions": "votes per options",
+      "ValueMax instructions": "votes per option",
       "Voters can modify their vote themselves": "Cadun pòt modificar son pròpri vòte",
       "Votes cannot be modified": "Cap de vòte pòt pas èsser modificat",
+      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Warning: Anyone can see the polled users email addresses since all voters can modify any vote. You should restrict permission rules.",
       "You are in the poll creation section.": "Avètz causit de crear un sondatge novèl.",
       "You can enable or disable the editor at will.": "Podètz activar o desactivar l’editor coma volgatz."
    },
@@ -428,6 +434,7 @@
       "As poll administrator, you can change all the lines of this poll with this button": "En qualitat d’administrator podètz modificar totas las linhas d’aqueste sondatge amb aqueste boton",
       "Back to the poll": "Tornar al sondatge",
       "Choice added": "Causida aponduda",
+      "Collect the emails of the polled users for the choice": "Collect the emails of the polled users for the choice",
       "Column removed": "Colomna suprimida",
       "Column's adding": "Apondon de colomna",
       "Comment deleted": "Comentari suprimit",
@@ -457,6 +464,14 @@
       "Your poll has been removed!": "Vòstre sondatge es estat suprimit !",
       "and add a new column with": "E se avètz oblidat de picar una causida, podètz tornar apondre una colomna en clicant sus",
       "remove a column or a line with": "escafar una colomna o una linha amb"
+   },
+   "display_mails": {
+      "No one voted 'If need be' to this option.": "No one voted 'If need be' for this option.",
+      "No one voted 'No' to this option.": "No one voted 'No' for this option.",
+      "No one voted 'Yes' to this option.": "No one voted 'Yes' for this option.",
+      "People who have answered 'If need be' to this option have left these email addresses:": "Email addresses of all People who voted 'If need be' for this option:",
+      "People who have answered 'No' to this option have left these email addresses:": "Email addresses of all People who voted 'No' for this option:",
+      "People who have answered 'Yes' to this option have left these email addresses:": "Email addresses of all people who voted 'Yes' for this option:"
    },
    "studs": {
       "Adding the vote succeeded": "Apondon del vòte capitat",

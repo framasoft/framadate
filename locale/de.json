@@ -83,6 +83,7 @@
       "Comments of polled people": "Kommentare der Teilnehmer",
       "Remove the comment": "Kommentar entfernen",
       "Send the comment": "Kommentar abschicken",
+      "Type your name and a comment to send it": "Geben Sie Ihren Namen und einen Kommentar ein bevor Sie das Formular abschicken",
       "Your comment": "Ihr Kommentar",
       "anonyme": "anonym"
    },
@@ -155,7 +156,7 @@
       "You already voted": "Sie haben bereits abgestimmt",
       "You can't create a poll with hidden results with the following edition option:": "Sie können mit den folgenden Optionen keine Umfrage mit versteckten Ergebnissen erzeugen:",
       "You can't select more than %d dates": "Es können nicht mehr als %d Termine ausgewählt werden",
-      "You haven't filled the first section of the poll creation, or your session has expired.": "You haven't filled the first section of the poll creation, or your session has expired.",
+      "You haven't filled the first section of the poll creation, or your session has expired.": "Sie haben den ersten Teil der Umfrageerstellung nicht ausgefüllt oder Ihre Session ist abgelaufen.",
       "You haven't filled the first section of the poll creation.": "Sie haben den ersten Teil der Umfrageerstellung nicht ausgefüllt.",
       "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Ihre Stimme wurde nicht gezählt, da jemand in der Zwischenzeit gewählt hat und dies mit Ihrer Abstimmung und den Umfrage-Bestimmungen in Konflikt stand. Bitte versuchen Sie es erneut."
    },
@@ -167,9 +168,9 @@
       "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.": "Wenn Sie diesen Vorgang nicht veranlasst haben und glauben, dass dieser Dienst missbraucht wurde, benachrichtigen Sie bitte den Administrator unter %s.",
       "Last access date": "Letzter Zugriff",
       "List of your polls": "Liste Ihrer Umfragen",
-      "Local Storage Help": "Damit Sie Ihre bisherigen Umfragen leichter wieder finden, speichern wir jede Umfrage, die sie erstellen oder aufrufen, in Ihrem Browser. Die Daten sind ausschließlich in diesem Browser gespeichert. Folgende Daten werden gespeichert:",
-      "Local Storage Help Delete": "Um diese Daten zu löschen, klicken Sie auf den Mülleimer in der entsprechenden Zeile oder klicken Sie auf die \"Alle Umfragen aus dem Index dieses Browsers entfernen\"-Option. Ihre Umfragen selbst werden dabei nicht gelöscht.",
-      "Local Storage Help Information Accessed": "Das Datum, an dem Sie die Umfrage erstellt oder auf sie zuletzt zugegriffen haben",
+      "Local Storage Help": "Um Ihre bisherigen Umfragen leichter zu finden, speichern wir jede Umfrage, die Sie erstellt oder die Sie aufgerufen haben, in Ihrem Browser. Die folgenden Daten werden dabei gespeichert:",
+      "Local Storage Help Delete": "Um diese Daten zu löschen klicken Sie auf den Mülleimer in der entsprechenden Zeile oder klicken Sie auf « Umfrage vom Index entfernen ». Ihre Umfragen selbst werden dabei nicht gelöscht.",
+      "Local Storage Help Information Accessed": "Das Datum, an dem Sie die Umfrage erstellt oder auf sie zugegriffen haben",
       "Local Storage Help Information Address": "Ihre Adresse",
       "Local Storage Help Information Title": "Der Titel der Umfrage",
       "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.": "PS: Diese E-Mail wurde abgeschickt weil Sie – oder jemand anderes – Zugriff auf die mit Ihrer E-Mail-Adresse angelegten Umfragen angefordert hat.",
@@ -204,7 +205,7 @@
       "Ifneedbe": "Unter Vorbehalt",
       "Legend:": "Legende:",
       "Link": "Link",
-      "Make your polls": "Umfragen selbst erstellen",
+      "Make your polls": "Eigene Umfragen erstellen",
       "Markdown": "Markdown",
       "Next": "Weiter",
       "No": "Nein",
@@ -283,6 +284,7 @@
    },
    "Poll results": {
       "Addition": "Insgesamt",
+      "Anyone will be able to access your email address after your vote": "Jeder wird nach Ihrer Abstimmung Ihre E-Mail-Adresse sehen können",
       "Best choice": "Beste Alternative",
       "Best choices": "Beste Alternativen",
       "Chart": "Grafik",
@@ -311,6 +313,7 @@
       "Cancel the name edit": "Abbruch, Namen nicht ändern",
       "Cancel the rules edit": "Abbruch, Regeln nicht ändern",
       "Cancel the title edit": "Abbruch, Titel nicht ändern",
+      "Collecting the polled users emails": "Sammeln der E-Mail-Adressen der zur Abstimmung eingeladenen Benutzer",
       "Edit the description": "Beschreibung bearbeiten",
       "Edit the email adress": "E-Mail-Adresse ändern",
       "Edit the expiration date": "Das Ablaufdatum bearbeiten",
@@ -347,6 +350,8 @@
    },
    "Step 1": {
       "All voters can modify any vote": "Jeder Teilnehmer kann jede abgegebene Stimme ändern",
+      "Collect the polled users email addresses": "Sammeln der E-Mail-Adressen der zur Abstimmung eingeladenen Benutzer",
+      "Collect users email": "Sammeln der E-Mail-Adressen aller Benutzer",
       "Customize the URL": "Link anpassen",
       "Go to step 2": "Weiter zum 2. Schritt",
       "Limit the amount of voters per option": "Anzahl der Stimmen pro Option begrenzen",
@@ -372,6 +377,7 @@
       "ValueMax instructions": "Stimmen pro Option",
       "Voters can modify their vote themselves": "Teilnehmer können ihre Stimmen verändern",
       "Votes cannot be modified": "Stimmen können nicht verändert werden",
+      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Achtung: Jeder kann die E-Mail-Adressen der zur Abstimmung eingeladenen Benutzer einsehen, da alle Wähler alle Stimmen verändern können. Sie sollten die Zugriffsrechte beschränken.",
       "You are in the poll creation section.": "Hier erstellen Sie die Umfrage",
       "You can enable or disable the editor at will.": "Sie können den Editor nach Belieben ein- und wieder ausschalten."
    },
@@ -428,6 +434,7 @@
       "As poll administrator, you can change all the lines of this poll with this button": "Als Administrator der Umfrage können Sie alle Zeilen der Umfrage über diesen Button ändern",
       "Back to the poll": "Zurück zur Umfrage",
       "Choice added": "Option hinzugefügt",
+      "Collect the emails of the polled users for the choice": "Sammeln der E-Mail-Adressen der zur Abstimmung eingeladenen Benutzer für die Auswahl",
       "Column removed": "Spalte entfernt",
       "Column's adding": "Spalte hinzufügen",
       "Comment deleted": "Kommentar gelöscht",
@@ -457,6 +464,14 @@
       "Your poll has been removed!": "Ihre Umfrage wurde gelöscht!",
       "and add a new column with": "und neue Spalte hinzufügen mit",
       "remove a column or a line with": "Zeile oder Spalte entfernen mit"
+   },
+   "display_mails": {
+      "No one voted 'If need be' to this option.": "Niemand hat mit \"Ja - unter Vorbehalt\" für diese Option abgestimmt.",
+      "No one voted 'No' to this option.": "Niemand hat mit \"Nein\" für diese Option abgestimmt.",
+      "No one voted 'Yes' to this option.": "Niemand hat mit \"Ja\" für diese Option abgestimmt.",
+      "People who have answered 'If need be' to this option have left these email addresses:": "E-Mail-Adressen aller Wähler, die mit \"Ja - unter Vorbehalt\" für diese Option gestimmt haben:",
+      "People who have answered 'No' to this option have left these email addresses:": "E-Mail-Adressen aller Wähler, die mit \"Nein\" für diese Option gestimmt haben:",
+      "People who have answered 'Yes' to this option have left these email addresses:": "E-Mail-Adressen aller Wähler, die mit \"Ja\" für diese Option gestimmt haben:"
    },
    "studs": {
       "Adding the vote succeeded": "Die Stimme wurde hinzugefügt",

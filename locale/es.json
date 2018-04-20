@@ -83,6 +83,7 @@
       "Comments of polled people": "Comentarios de los votantes",
       "Remove the comment": "Borrar el comentario",
       "Send the comment": "Enviar el comentario",
+      "Type your name and a comment to send it": "Enter your name and comment prior to submitting the form",
       "Your comment": "Su comentario",
       "anonyme": "anonymous"
    },
@@ -283,6 +284,7 @@
    },
    "Poll results": {
       "Addition": "Suma",
+      "Anyone will be able to access your email address after your vote": "Anyone will be able to see your email address after you voted",
       "Best choice": "Mejor elección",
       "Best choices": "Mejores elecciones",
       "Chart": "Gráfico",
@@ -311,6 +313,7 @@
       "Cancel the name edit": "Cancelar el cambio de autor",
       "Cancel the rules edit": "Cancelar los cambios en las reglas",
       "Cancel the title edit": "Cancelar el cambio de título",
+      "Collecting the polled users emails": "Collecting the polled users' email addresses",
       "Edit the description": "Modificar la descripción",
       "Edit the email adress": "Modificar el correo electrónico",
       "Edit the expiration date": "Modificar la fecha de expiración",
@@ -347,6 +350,8 @@
    },
    "Step 1": {
       "All voters can modify any vote": "Los votos pueden ser modificados por cualquiera",
+      "Collect the polled users email addresses": "Collecting the polled users' email addresses",
+      "Collect users email": "Collect users' email addresses",
       "Customize the URL": "Personalizar la URL",
       "Go to step 2": "Ir al paso número 2",
       "Limit the amount of voters per option": "Limitar el número de votantes por opción",
@@ -369,9 +374,10 @@
       "To receive an email for each new vote": "Recibir un correo electrónico para cada nuevo voto",
       "Use a password to restrict access": "Utilice una contraseña para restringir el acceso",
       "Value Max": "Valor max",
-      "ValueMax instructions": "votes per options",
+      "ValueMax instructions": "votes per option",
       "Voters can modify their vote themselves": "Los votos peuden ser modificados por su autor",
       "Votes cannot be modified": "Los votos no pueden ser modificados",
+      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Warning: Anyone can see the polled users email addresses since all voters can modify any vote. You should restrict permission rules.",
       "You are in the poll creation section.": "Usted ha eligido crear una nueva encuesta",
       "You can enable or disable the editor at will.": "Puede activar o desactivar el editor cuando lo desee."
    },
@@ -428,6 +434,7 @@
       "As poll administrator, you can change all the lines of this poll with this button": "Como administrador, Usted puede cambiar todas las filas de la encuesta con este botón",
       "Back to the poll": "Volver a la encuesta",
       "Choice added": "Elección añadida",
+      "Collect the emails of the polled users for the choice": "Collect the emails of the polled users for the choice",
       "Column removed": "Columna borrado",
       "Column's adding": "Añadir una columna",
       "Comment deleted": "Comentario borrado",
@@ -457,6 +464,14 @@
       "Your poll has been removed!": "Su encuesta ha sido borrada",
       "and add a new column with": "y se puede añadir una columna con",
       "remove a column or a line with": "borrar una columna o una fila con"
+   },
+   "display_mails": {
+      "No one voted 'If need be' to this option.": "No one voted 'If need be' for this option.",
+      "No one voted 'No' to this option.": "No one voted 'No' for this option.",
+      "No one voted 'Yes' to this option.": "No one voted 'Yes' for this option.",
+      "People who have answered 'If need be' to this option have left these email addresses:": "Email addresses of all People who voted 'If need be' for this option:",
+      "People who have answered 'No' to this option have left these email addresses:": "Email addresses of all People who voted 'No' for this option:",
+      "People who have answered 'Yes' to this option have left these email addresses:": "Email addresses of all people who voted 'Yes' for this option:"
    },
    "studs": {
       "Adding the vote succeeded": "Voto guardado con exíto",

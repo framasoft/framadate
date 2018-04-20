@@ -83,6 +83,7 @@
       "Comments of polled people": "Opmerkingen",
       "Remove the comment": "Verwijder opmerking",
       "Send the comment": "Opmerking opslaan",
+      "Type your name and a comment to send it": "Enter your name and comment prior to submitting the form",
       "Your comment": "Jouw opmerking",
       "anonyme": "anonymous"
    },
@@ -283,6 +284,7 @@
    },
    "Poll results": {
       "Addition": "Totaal",
+      "Anyone will be able to access your email address after your vote": "Anyone will be able to see your email address after you voted",
       "Best choice": "Beste keuze",
       "Best choices": "Beste keuzes",
       "Chart": "Grafiek",
@@ -311,6 +313,7 @@
       "Cancel the name edit": "Naam bewerken annuleren",
       "Cancel the rules edit": "Regels bewerken annuleren",
       "Cancel the title edit": "Titel bewerken annuleren",
+      "Collecting the polled users emails": "Collecting the polled users' email addresses",
       "Edit the description": "Bewerk de beschrijving",
       "Edit the email adress": "Bewerk emailadres",
       "Edit the expiration date": "Bewerk de vervaldatum",
@@ -347,6 +350,8 @@
    },
    "Step 1": {
       "All voters can modify any vote": "Alle stemmers kunnen elke stem aanpassen",
+      "Collect the polled users email addresses": "Collecting the polled users' email addresses",
+      "Collect users email": "Collect users' email addresses",
       "Customize the URL": "Link verpersoonlijken",
       "Go to step 2": "Ga naar stap 2",
       "Limit the amount of voters per option": "Limit the amount of voters per option",
@@ -369,9 +374,10 @@
       "To receive an email for each new vote": "Ontvang een email bij elke nieuwe stem",
       "Use a password to restrict access": "Toegang tot poll beperken met een paswoord",
       "Value Max": "Value Max",
-      "ValueMax instructions": "votes per options",
+      "ValueMax instructions": "votes per option",
       "Voters can modify their vote themselves": "Stemmers kunnen hun eigen stem aanpassen",
       "Votes cannot be modified": "Stemmen kunnen niet worden aangepast",
+      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Warning: Anyone can see the polled users email addresses since all voters can modify any vote. You should restrict permission rules.",
       "You are in the poll creation section.": "Je bent in het onderdeel poll aanmaken.",
       "You can enable or disable the editor at will.": "You can enable or disable the editor at will."
    },
@@ -428,6 +434,7 @@
       "As poll administrator, you can change all the lines of this poll with this button": "Als pollbeheerder kan je alle regels van de poll wijzigen met deze knop",
       "Back to the poll": "Terug naar de poll",
       "Choice added": "Keuze toegevoegd",
+      "Collect the emails of the polled users for the choice": "Collect the emails of the polled users for the choice",
       "Column removed": "Kolom verwijderd",
       "Column's adding": "Een kolom toevoegen",
       "Comment deleted": "Opmerking verwijderd",
@@ -457,6 +464,14 @@
       "Your poll has been removed!": "Je poll is verwijderd!",
       "and add a new column with": "en voeg een nieuwe kokom toe met",
       "remove a column or a line with": "verwijder een kolom of regel met"
+   },
+   "display_mails": {
+      "No one voted 'If need be' to this option.": "No one voted 'If need be' for this option.",
+      "No one voted 'No' to this option.": "No one voted 'No' for this option.",
+      "No one voted 'Yes' to this option.": "No one voted 'Yes' for this option.",
+      "People who have answered 'If need be' to this option have left these email addresses:": "Email addresses of all People who voted 'If need be' for this option:",
+      "People who have answered 'No' to this option have left these email addresses:": "Email addresses of all People who voted 'No' for this option:",
+      "People who have answered 'Yes' to this option have left these email addresses:": "Email addresses of all people who voted 'Yes' for this option:"
    },
    "studs": {
       "Adding the vote succeeded": "Stem toegevoegd",
