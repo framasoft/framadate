@@ -18,8 +18,6 @@
  */
 namespace DoctrineMigrations;
 
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\DBAL\Types\Type;
 use Framadate\Utils;
@@ -46,9 +44,11 @@ class Version20151012075900 extends AbstractMigration
      * @param Schema $schema
      * @throws \Doctrine\DBAL\Schema\SchemaException
      * @throws \Doctrine\DBAL\DBALException
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
      */
     public function up(Schema $schema)
     {
+        $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\Alter_Comment_table_for_name_length'));
         $commentTable = $schema->getTable(Utils::table('comment'));
 
         $commentTable->changeColumn('name', ['default' => null, 'notnull' => false]);

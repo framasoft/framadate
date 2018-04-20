@@ -18,8 +18,6 @@
  */
 namespace DoctrineMigrations;
 
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
@@ -45,9 +43,11 @@ class Version20151028000000 extends AbstractMigration
      * @param Schema $schema
      * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
      * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function up(Schema $schema)
     {
+        $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\AddColumns_password_hash_And_results_publicly_visible_In_poll_For_0_9'));
         $pollTable = $schema->getTable(Utils::table('poll'));
 
         $this->skipIf($pollTable->hasColumn('password_hash'));

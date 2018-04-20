@@ -18,7 +18,6 @@
  */
 namespace DoctrineMigrations;
 
-use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Framadate\Security\Token;
 use Framadate\Utils;
@@ -43,6 +42,7 @@ class Version20150624000000 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
+        $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\Generate_uniqId_for_old_votes'));
         foreach ([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')] as $table) {
             $this->skipIf(!$schema->hasTable($table), 'Missing table ' . $table);
         }
