@@ -1,7 +1,6 @@
 <?php
 namespace Framadate\Repositories\Slot;
 
-
 use Framadate\Utils;
 
 class DateSlotRepository extends AbstractSlotRepository {
@@ -36,5 +35,4 @@ class DateSlotRepository extends AbstractSlotRepository {
         $prepared = $this->prepare('DELETE FROM `' . Utils::table('slot') . '` WHERE poll_id = ? AND title = ?');
         $prepared->execute([$poll_id, $datetime]);
     }
-
 }

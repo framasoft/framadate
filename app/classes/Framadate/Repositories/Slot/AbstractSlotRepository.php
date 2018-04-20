@@ -1,15 +1,12 @@
 <?php
 namespace Framadate\Repositories\Slot;
 
-
-use Framadate\Utils;
 use \Framadate\Repositories\AbstractRepository;
+use Framadate\Utils;
 
 abstract class AbstractSlotRepository extends AbstractRepository {
-	
 	abstract public function templateCode();
 	
-    
     /**
      * Insert a bulk of slots.
      *

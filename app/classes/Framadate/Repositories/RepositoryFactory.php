@@ -24,11 +24,9 @@ use Framadate\Repositories\Slot\DateSlotRepository;
 use Framadate\Repositories\Slot\UndefinedSlotRepository;
 
 class RepositoryFactory {
-	
 	const SLOT_TYPE_CLASSIC = "A";
 	const SLOT_TYPE_DATE = "D";
 	const SLOT_TYPE_UNDEFINED = "undefined";
-	
 	
     private static $connect;
 
