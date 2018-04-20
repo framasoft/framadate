@@ -18,7 +18,6 @@
  */
 namespace DoctrineMigrations;
 
-use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
@@ -46,9 +45,11 @@ class Version20150402000000 extends AbstractMigration
      * @param Schema $schema
      * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
      * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function up(Schema $schema)
     {
+        $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\AddColumn_uniqId_In_vote_For_0_9'));
         foreach ([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')] as $table) {
             $this->skipIf(!$schema->hasTable($table), 'Missing table ' . $table);
         }

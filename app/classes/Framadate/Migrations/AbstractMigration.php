@@ -18,47 +18,31 @@
  */
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\Migrations\AbstractMigration as DoctrineAbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
-/**
- * This migration adds the column mail in the vote table
- *
- * @package Framadate\Migration
- * @version 1.2
- */
-class Version20180419180000 extends AbstractMigration
+abstract class AbstractMigration extends DoctrineAbstractMigration
 {
     /**
-     * This method should describe in english what is the purpose of the migration class.
-     *
-     * @return string The description of the migration class
-     */
-    public function description()
-    {
-        return 'Add column mail in table vote';
-    }
-
-    /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Schema\SchemaException
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     * @param $class
+     * @return bool
      * @throws \Doctrine\DBAL\DBALException
-     */
-    public function up(Schema $schema)
-    {
-        $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\AddColumn_collect_mail_In_poll'));
-        $vote = $schema->getTable(Utils::table('vote'));
-        $vote->addColumn('mail', 'string', ['default' => null, 'notnull' => false]);
-    }
-
-    /**
-     * @param Schema $schema
      * @throws \Doctrine\DBAL\Schema\SchemaException
      */
-    public function down(Schema $schema)
+    public function legacyCheck(Schema $schema, $class)
     {
-        $vote = $schema->getTable(Utils::table('vote'));
-        $vote->dropColumn('mail');
+        $migration_table = $schema->getTable(MIGRATION_TABLE);
+        /**
+         * We check the migration table
+         */
+        if ($migration_table->hasColumn('name')) {
+            /** @var $stmt \Doctrine\DBAL\Driver\Statement */
+            $stmt = $this->connection->prepare('SELECT * FROM ' . Utils::table(MIGRATION_TABLE) . ' WHERE name = ?');
+            $stmt->execute([$class]);
+            return $stmt->rowCount() > 0;
+        }
+        return false;
     }
 }

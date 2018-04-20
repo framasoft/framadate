@@ -3,6 +3,7 @@
 
 use Doctrine\DBAL\Migrations\Configuration\Configuration;
 use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use Framadate\Utils;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Helper\QuestionHelper;
@@ -40,7 +41,7 @@ try {
     $migrationsDirectory = __DIR__ . '/../app/classes/Framadate/Migrations';
 
     $configuration = new Configuration($connect);
-    $configuration->setMigrationsTableName(MIGRATION_TABLE . '_new');
+    $configuration->setMigrationsTableName(Utils::table(MIGRATION_TABLE) . '_new');
     $configuration->setMigrationsDirectory($migrationsDirectory);
     $configuration->setMigrationsNamespace('DoctrineMigrations');
     $configuration->registerMigrationsFromDirectory($migrationsDirectory);
@@ -53,6 +54,5 @@ try {
     // Runs console application
     $cli->run($input, $output);
 } catch (\Exception $e) {
-    var_dump($e);
     $style->error($e->getMessage());
 }

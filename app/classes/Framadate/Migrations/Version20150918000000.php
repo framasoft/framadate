@@ -19,8 +19,6 @@
 
 namespace DoctrineMigrations;
 
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
@@ -40,10 +38,13 @@ class Version20150918000000 extends AbstractMigration
 
     /**
      * @param Schema $schema
+     * @throws \Doctrine\DBAL\DBALException
      * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     * @throws \Doctrine\DBAL\Schema\SchemaException
      */
     public function up(Schema $schema)
     {
+        $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\RPadVotes_from_0_8'));
         foreach ([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')] as $table) {
             $this->skipIf(!$schema->hasTable($table), 'Missing table ' . $table);
         }

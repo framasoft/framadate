@@ -22,12 +22,12 @@ use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
 /**
- * This migration adds the field hidden on the poll table.
+ * This migration adds the column mail in the vote table
  *
  * @package Framadate\Migration
- * @version 0.9
+ * @version 1.2
  */
-class Version20150405000000 extends AbstractMigration
+class Version20180419190000 extends AbstractMigration
 {
     /**
      * This method should describe in english what is the purpose of the migration class.
@@ -36,36 +36,26 @@ class Version20150405000000 extends AbstractMigration
      */
     public function description()
     {
-        return 'Add column "hidden" in table "vote" for version 0.9';
+        return 'Remove the old migration table';
     }
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
-     * @throws \Doctrine\DBAL\Schema\SchemaException
-     * @throws \Doctrine\DBAL\DBALException
      */
     public function up(Schema $schema)
     {
-        $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\AddColumn_hidden_In_poll_For_0_9'));
-        foreach ([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')] as $table) {
-            $this->skipIf(!$schema->hasTable($table), 'Missing table ' . $table);
-        }
-        $pollTable = $schema->getTable(Utils::table('poll'));
-
-        $this->skipIf($pollTable->hasColumn('hidden'), 'Column hidden already existing in table poll');
-
-        $pollTable->addColumn('hidden', 'boolean', ['default' => false, 'notnull' => true]);
+        $schema->dropTable(Utils::table(MIGRATION_TABLE));
     }
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Schema\SchemaException
      */
     public function down(Schema $schema)
     {
-        $pollTable = $schema->getTable(Utils::table('poll'));
-
-        $pollTable->dropColumn('hidden');
+        $migrationTable = $schema->createTable(Utils::table(MIGRATION_TABLE));
+        $schema->createSequence(Utils::table(MIGRATION_TABLE) . 'seq');
+        $migrationTable->addColumn('id', 'integer', ['autoincrement' => true]);
+        $migrationTable->addColumn('name', 'string');
+        $migrationTable->addColumn('execute_date', 'datetime', ['default' => (new \DateTime())->format('Y-m-d H:i:s')]);
     }
 }

@@ -18,8 +18,6 @@
  */
 namespace DoctrineMigrations;
 
-use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
@@ -45,9 +43,11 @@ class Version20151012082600 extends AbstractMigration
      * @param Schema $schema
      * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
      * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws \Doctrine\DBAL\DBALException
      */
     public function up(Schema $schema)
     {
+        $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\Alter_Comment_table_adding_date'));
         $commentTable = $schema->getTable(Utils::table('comment'));
 
         $this->skipIf($commentTable->hasColumn('date'));

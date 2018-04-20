@@ -18,7 +18,6 @@
  */
 namespace DoctrineMigrations;
 
-use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 use Framadate\Utils;
 
@@ -42,10 +41,13 @@ class Version20150102000000 extends AbstractMigration
 
     /**
      * @param Schema $schema
+     * @throws \Doctrine\DBAL\DBALException
      * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     * @throws \Doctrine\DBAL\Schema\SchemaException
      */
     public function up(Schema $schema)
     {
+        $this->skipIf($this->legacyCheck($schema,'Framadate\Migration\From_0_8_to_0_9_Migration'));
         foreach (['sondage', 'sujet_studs', 'comments', 'user_studs'] as $table) {
             $this->skipIf(!$schema->hasTable($table), 'Missing table ' . $table);
         }

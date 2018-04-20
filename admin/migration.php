@@ -21,6 +21,7 @@ use Doctrine\DBAL\Migrations\Configuration\Configuration;
 use Doctrine\DBAL\Migrations\Migration;
 use Doctrine\DBAL\Migrations\OutputWriter;
 use Doctrine\DBAL\Migrations\Tools\Console\Helper\MigrationStatusInfosHelper;
+use Framadate\Utils;
 
 require_once __DIR__ . '/../app/inc/init.php';
 
@@ -56,7 +57,7 @@ $log = new MigrationLogger();
 $configuration = new Configuration($connect, new OutputWriter(function ($message) use ($log) {
     $log->addLine($message);
 }));
-$configuration->setMigrationsTableName(MIGRATION_TABLE . '_new');
+$configuration->setMigrationsTableName(Utils::table(MIGRATION_TABLE) . '_new');
 $configuration->setMigrationsDirectory($migrationsDirectory);
 $configuration->setMigrationsNamespace('DoctrineMigrations');
 $configuration->registerMigrationsFromDirectory($migrationsDirectory);
