@@ -83,6 +83,7 @@
       "Comments of polled people": "Evezhiadennoù",
       "Remove the comment": "Dilemel an evezhiadenn",
       "Send the comment": "Kas an evezhiadenn",
+      "Type your name and a comment to send it": "Enter your name and comment prior to submitting the form",
       "Your comment": "Hoc'h evezhiadenn",
       "anonyme": "dizanv"
    },
@@ -204,7 +205,7 @@
       "Ifneedbe": "Marteze",
       "Legend:": "Alc'hwez:",
       "Link": "Ere",
-      "Make your polls": "Aozit emgavioù en un doare simpl ha dieub.",
+      "Make your polls": "Aozit emgavioù en un doare simpl ha dieub",
       "Markdown": "Markdown",
       "Next": "Kenderc'hel",
       "No": "Ket",
@@ -283,6 +284,7 @@
    },
    "Poll results": {
       "Addition": "Sammad",
+      "Anyone will be able to access your email address after your vote": "Anyone will be able to see your email address after you voted",
       "Best choice": "Dibab gwellañ",
       "Best choices": "Dibaboù gwellañ",
       "Chart": "Diervad",
@@ -311,6 +313,7 @@
       "Cancel the name edit": "Nullañ embann an anv",
       "Cancel the rules edit": "Nullañ embann an aotreoù",
       "Cancel the title edit": "Nullañ embann an titl",
+      "Collecting the polled users emails": "Collecting the polled users' email addresses",
       "Edit the description": "Embann an deskrivadur",
       "Edit the email adress": "Embann ar chomlec'h postel",
       "Edit the expiration date": "Embann an deiziad diamzeriñ",
@@ -347,6 +350,8 @@
    },
    "Step 1": {
       "All voters can modify any vote": "An holl vouezhierien a c'hall kemmañ an holl vouezhioù",
+      "Collect the polled users email addresses": "Collecting the polled users' email addresses",
+      "Collect users email": "Collect users' email addresses",
       "Customize the URL": "Personelaat an ere",
       "Go to step 2": "Mont d'ar bazenn 2",
       "Limit the amount of voters per option": "Bevenniñ an niver a vouezhierien dre zibab",
@@ -369,9 +374,10 @@
       "To receive an email for each new vote": "Degemer ur postel evit pep mouezh nevez",
       "Use a password to restrict access": "Lakaat ur ger-tremen evit bevenniñ an haeziñ",
       "Value Max": "Talvoud uc'hek",
-      "ValueMax instructions": "mouezhier dre zibab",
+      "ValueMax instructions": "votes per option",
       "Voters can modify their vote themselves": "Pep mouezhier a c'hell kemmañ e vouezh",
       "Votes cannot be modified": "N'hall ket ar mouezhioù bezañ kemmet",
+      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Warning: Anyone can see the polled users email addresses since all voters can modify any vote. You should restrict permission rules.",
       "You are in the poll creation section.": "Dibabet ho peus krouiñ ur sontadeg nevez.",
       "You can enable or disable the editor at will.": "Gallout a rit gweredekaat pe ziweredekaat an embanner diouzh ho tibab."
    },
@@ -428,6 +434,7 @@
       "As poll administrator, you can change all the lines of this poll with this button": "Dre ma'z oc'h merour e c'hallit kemmañ holl linennoù ar sontadeg gant an afell-mañ",
       "Back to the poll": "Distreiñ d'ar sontadeg",
       "Choice added": "Dibab ouzhpennet",
+      "Collect the emails of the polled users for the choice": "Collect the emails of the polled users for the choice",
       "Column removed": "Bann dilamet",
       "Column's adding": "Ouzhpennañ ur bann",
       "Comment deleted": "Dilamet eo bet an evezhiadenn",
@@ -457,6 +464,14 @@
       "Your poll has been removed!": "Dilamet eo bet ar sontadeg!",
       "and add a new column with": "ha m'ho peus disoñjet un dibab e c'hallit ouzhpennañ ur bann en ur glikañ war",
       "remove a column or a line with": "dilemel ur bann pe ul linenn gant"
+   },
+   "display_mails": {
+      "No one voted 'If need be' to this option.": "No one voted 'If need be' for this option.",
+      "No one voted 'No' to this option.": "No one voted 'No' for this option.",
+      "No one voted 'Yes' to this option.": "No one voted 'Yes' for this option.",
+      "People who have answered 'If need be' to this option have left these email addresses:": "Email addresses of all People who voted 'If need be' for this option:",
+      "People who have answered 'No' to this option have left these email addresses:": "Email addresses of all People who voted 'No' for this option:",
+      "People who have answered 'Yes' to this option have left these email addresses:": "Email addresses of all people who voted 'Yes' for this option:"
    },
    "studs": {
       "Adding the vote succeeded": "Mouezh ouzhpennet",
