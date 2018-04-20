@@ -199,15 +199,14 @@ function checkCommentSending() {
 
     // on page load, "textSend" is not set
     if ("undefined" === typeof button.data("textSend")) {
-        button.data("textSend", button.val());
+        button.data("textSend", button.text());
     }
-
 
 	if (!form.get(0).checkValidity()) {
 		button.prop("disabled", true);
-		button.val(button.data("textWait"));
+		button.text(button.data("textWait"));
 	} else {
 		button.prop("disabled", false);
-		button.val(button.data("textSend"));
+		button.text(button.data("textSend"));
 	}
 }
