@@ -3,6 +3,6 @@ namespace Framadate\Repositories\Slot;
 
 class UndefinedSlotRepository extends AbstractSlotRepository {
 	public function templateCode() {
-		new Exception("");
+		new Exception("no template for UndefinedSlotRepository");
 	}
 }

@@ -39,6 +39,7 @@ class AdminPollService {
     
     public function setSlotRepositoryByFormat(string $pollType) {
         $this->slotRepository = RepositoryFactory::slotRepository($pollType);
+        $this->pollService->setSlotRepositoryByFormat($pollType);
     }
     
     /**

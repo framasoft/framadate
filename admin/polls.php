@@ -22,6 +22,9 @@ use Framadate\Services\LogService;
 use Framadate\Services\PollService;
 use Framadate\Services\SecurityService;
 use Framadate\Services\SuperAdminService;
+use Framadate\Repositories\Slot\AbstractSlotRepository;
+use PhpCsFixer\Report\ReporterFactory;
+use Framadate\Repositories\RepositoryFactory;
 
 include_once __DIR__ . '/../app/inc/init.php';
 include_once __DIR__ . '/../bandeaux.php';
@@ -54,6 +57,8 @@ $pollService = new PollService($connect, $logService);
 $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $superAdminService = new SuperAdminService();
 $securityService = new SecurityService();
+
+$adminPollService->setSlotRepositoryByFormat(RepositoryFactory::SLOT_TYPE_UNDEFINED);
 
 /* GET */
 /*-----*/

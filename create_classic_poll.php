@@ -23,6 +23,7 @@ use Framadate\Services\PollService;
 use Framadate\Services\PurgeService;
 use Framadate\Services\SessionService;
 use Framadate\Utils;
+use Framadate\Repositories\RepositoryFactory;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -39,6 +40,8 @@ if (is_file('bandeaux_local.php')) {
 } else {
     include_once('bandeaux.php');
 }
+
+$pollService->setSlotRepositoryByFormat(RepositoryFactory::SLOT_TYPE_CLASSIC);
 
 // Step 1/4 : error if $_SESSION from info_sondage are not valid
 if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (($config['use_smtp']) ? empty($_SESSION['form']->admin_mail) : false)) {

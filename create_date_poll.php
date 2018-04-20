@@ -24,6 +24,7 @@ use Framadate\Services\PollService;
 use Framadate\Services\PurgeService;
 use Framadate\Services\SessionService;
 use Framadate\Utils;
+use Framadate\Repositories\RepositoryFactory;
 
 include_once __DIR__ . '/app/inc/init.php';
 
@@ -39,6 +40,8 @@ $sessionService = new SessionService();
 if (is_readable('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
 }
+
+$pollService->setSlotRepositoryByFormat(RepositoryFactory::SLOT_TYPE_DATE);
 
 // Min/Max archive date
 $min_expiry_time = $pollService->minExpiryDate();

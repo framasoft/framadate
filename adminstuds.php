@@ -64,15 +64,15 @@ if (!empty($_GET['poll'])) {
     }
 }
 
-if ($poll) {
-    $poll_id = $poll->id;
-} else {
+if (!isset($poll)) {
     $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
     $smarty->display('error.tpl');
     exit;
 }
 
-$pollService->setSlotRepositoryByFormat($poll->format);
+$poll_id = $poll->id;
+
+$adminPollService->setSlotRepositoryByFormat($poll->format);
 
 // -------------------------------
 // creation message
