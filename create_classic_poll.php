@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 use Framadate\Choice;
+use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\PollService;
@@ -40,32 +41,107 @@ if (is_file('bandeaux_local.php')) {
     include_once('bandeaux.php');
 }
 
+// Min/Max archive date
+$min_expiry_time = $pollService->minExpiryDate();
+$max_expiry_time = $pollService->maxExpiryDate();
+
 $form = unserialize($_SESSION['form']);
 
-// Step 1/4 : error if $_SESSION from info_sondage are not valid
-if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? empty($form->admin_mail) : false)) {
-    $smarty->assign('title', __('Error', 'Error!'));
-    $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
-    $smarty->display('error.tpl');
-    exit;
+if (!isset($form->title) || !isset($form->admin_name) || ($config['use_smtp'] && !isset($form->admin_mail))) {
+    $step = 1;
+} elseif (isset($_POST['confirmation'])) {
+    $step = 4;
+} elseif (empty($_POST['fin_sondage_autre']) ) {
+    $step = 2;
+} else {
+    $step = 3;
 }
-    // Min/Max archive date
-    $min_expiry_time = $pollService->minExpiryDate();
-    $max_expiry_time = $pollService->maxExpiryDate();
 
-    // The poll format is other (A) if we are in this file
-    if (!isset($form->format)) {
-        $form->format = 'A';
-    }
-    // If we come from another format, we need to clear choices
-    if (isset($form->format) && $form->format !== 'A') {
-        $form->format = 'A';
-        $form->clearChoices();
-    }
+// The poll format is AUTRE (other)
+if ($form->format !== 'A') {
+    $form->format = 'A';
+    $form->clearChoices();
+}
 
-    // Step 4 : Data prepare before insert in DB
-    if (isset($_POST['confirmation'])) {
-        // Define expiration date
+switch ($step) {
+    case 2: // Step 2/4 : Select choices of the poll
+        $choices = $form->getChoices();
+        $nb_choices = max( 5- count($choices), 0);
+        while ($nb_choices-- > 0) {
+            $c = new Choice('');
+            $form->addChoice($c);
+        }
+
+        $_SESSION['form'] = serialize($form);
+
+        // Display step 2
+        $smarty->assign('title', __('Step 2 classic', 'Poll subjects (2 on 3)'));
+        $smarty->assign('choices', $form->getChoices());
+        $smarty->assign('allowMarkdown', $config['user_can_add_img_or_link']);
+        $smarty->assign('error', null);
+
+        $smarty->display('create_classic_poll_step_2.tpl');
+        exit;
+
+    case 3: // Step 3/4 : Confirm poll creation and choose a removal date
+        // Handle Step2 submission
+        if (!empty($_POST['choices'])) {
+            // remove empty choices
+            $_POST['choices'] = array_filter($_POST['choices'], function ($c) {
+                return !empty($c);
+            });
+
+            $form->clearChoices();
+
+            // store choices in $_SESSION
+            foreach ($_POST['choices'] as $c) {
+                $c = strip_tags($c);
+                $choice = new Choice($c);
+                $form->addChoice($choice);
+            }
+        }
+
+        // Expiration date is initialised with config parameter. Value will be modified in step 4 if user has defined an other date
+        $form->end_date = $max_expiry_time;
+
+        // Summary
+        $summary = '<ol>';
+        foreach ($form->getChoices() as $i => $choice) {
+            /** @var Choice $choice */
+            preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/', $choice->getName(), $md_a_img); // Markdown [![alt](src)](href)
+            preg_match_all('/!\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_img); // Markdown ![alt](src)
+            preg_match_all('/\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_a); // Markdown [text](href)
+            if (isset($md_a_img[2][0]) && $md_a_img[2][0] !== '' && isset($md_a_img[3][0]) && $md_a_img[3][0] !== '') { // [![alt](src)](href)
+                $li_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0] !== '') ? stripslashes($md_a_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
+                $li_subject_html = '<a href="' . $md_a_img[3][0] . '"><img src="' . $md_a_img[2][0] . '" class="img-responsive" alt="' . $li_subject_text . '" /></a>';
+            } elseif (isset($md_img[2][0]) && $md_img[2][0] !== '') { // ![alt](src)
+                $li_subject_text = (isset($md_img[1][0]) && $md_img[1][0] !== '') ? stripslashes($md_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
+                $li_subject_html = '<img src="' . $md_img[2][0] . '" class="img-responsive" alt="' . $li_subject_text . '" />';
+            } elseif (isset($md_a[2][0]) && $md_a[2][0] !== '') { // [text](href)
+                $li_subject_text = (isset($md_a[1][0]) && $md_a[1][0] !== '') ? stripslashes($md_a[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
+                $li_subject_html = '<a href="' . $md_a[2][0] . '">' . $li_subject_text . '</a>';
+            } else { // text only
+                $li_subject_text = stripslashes($choice->getName());
+                $li_subject_html = $li_subject_text;
+            }
+
+            $summary .= '<li>' . $li_subject_html . '</li>' . "\n";
+        }
+        $summary .= '</ol>';
+
+        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); //textual date
+
+        $_SESSION['form'] = serialize($form);
+
+        $smarty->assign('title', __('Step 3', 'Removal date and confirmation (3 on 3)'));
+        $smarty->assign('summary', $summary);
+        $smarty->assign('end_date_str', $end_date_str);
+        $smarty->assign('default_poll_duration', $config['default_poll_duration']);
+        $smarty->assign('use_smtp', $config['use_smtp']);
+
+        $smarty->display('create_poll_step_3.tpl');
+        exit;
+    case 4: // Step 4 : Data prepare before insert in DB
         $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
 
         if (!empty($enddate)) {
@@ -113,151 +189,19 @@ if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? 
         // Clean Form data in $_SESSION
         unset($_SESSION['form']);
 
-        $purgeService->repeatedCleanings();
+        // Delete old polls
+        $purgeService->purgeOldPolls();
 
         // creation message
         $sessionService->set("Framadate", "messagePollCreated", TRUE);
-
         // Redirect to poll administration
         header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
         exit;
-    } // Step 3/4 : Confirm poll creation and choose a removal date
-    else if (isset($_POST['fin_sondage_autre'])) {
-        // Store choices in $_SESSION
-        if (isset($_POST['choices'])) {
-            $form->clearChoices();
-            foreach ($_POST['choices'] as $c) {
-                if (!empty($c)) {
-                    $c = strip_tags($c);
-                    $choice = new Choice($c);
-                    $form->addChoice($choice);
-                }
-            }
-        }
 
-        // Expiration date is initialised with config parameter. Value will be modified in step 4 if user has defined an other date
-        $form->end_date = $max_expiry_time;
-
-        // Summary
-        $summary = '<ol>';
-        foreach ($form->getChoices() as $i=>$choice) {
-            preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/', $choice->getName(), $md_a_img); // Markdown [![alt](src)](href)
-            preg_match_all('/!\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_img); // Markdown ![alt](src)
-            preg_match_all('/\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_a); // Markdown [text](href)
-            if (isset($md_a_img[2][0]) && $md_a_img[2][0] !== '' && isset($md_a_img[3][0]) && $md_a_img[3][0] !== '') { // [![alt](src)](href)
-                $li_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0] !== '') ? stripslashes($md_a_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
-                $li_subject_html = '<a href="' . $md_a_img[3][0] . '"><img src="' . $md_a_img[2][0] . '" class="img-responsive" alt="' . $li_subject_text . '" /></a>';
-            } elseif (isset($md_img[2][0]) && $md_img[2][0] !== '') { // ![alt](src)
-                $li_subject_text = (isset($md_img[1][0]) && $md_img[1][0] !== '') ? stripslashes($md_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
-                $li_subject_html = '<img src="' . $md_img[2][0] . '" class="img-responsive" alt="' . $li_subject_text . '" />';
-            } elseif (isset($md_a[2][0]) && $md_a[2][0] !== '') { // [text](href)
-                $li_subject_text = (isset($md_a[1][0]) && $md_a[1][0] !== '') ? stripslashes($md_a[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
-                $li_subject_html = '<a href="' . $md_a[2][0] . '">' . $li_subject_text . '</a>';
-            } else { // text only
-                $li_subject_text = stripslashes($choice->getName());
-                $li_subject_html = $li_subject_text;
-            }
-
-            $summary .= '<li>' . $li_subject_html . '</li>' . "\n";
-        }
-        $summary .= '</ol>';
-
-        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); //textual date
-
-        $_SESSION['form'] = serialize($form);
-
-        $smarty->assign('title', __('Step 3', 'Removal date and confirmation (3 on 3)'));
-        $smarty->assign('summary', $summary);
-        $smarty->assign('end_date_str', $end_date_str);
-        $smarty->assign('default_poll_duration', $config['default_poll_duration']);
-        $smarty->assign('use_smtp', $config['use_smtp']);
-
-        $smarty->display('create_classic_poll_step3.tpl');
-
-        // Step 2/4 : Select choices of the poll
-    } else {
-        Utils::print_header(__('Step 2 classic', 'Poll subjects (2 on 3)'));
-        bandeau_titre(__('Step 2 classic', 'Poll subjects (2 on 3)'));
-
-        echo '
-    <form name="formulaire" action="' . Utils::get_server_name() . 'create_classic_poll.php" method="POST" class="form-horizontal" role="form">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">';
-        echo '
-            <div class="alert alert-info">
-                <p>' . __('Step 2 classic', 'To make a generic poll you need to propose at least two choices between differents subjects.') . '</p>
-                <p>' . __('Step 2 classic', 'You can add or remove additional choices with the buttons') . ' <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">' . __('Generic', 'Remove') . '</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">' . __('Generic', 'Add') . '</span></p>';
-        if ($config['user_can_add_img_or_link']) {
-            echo '    <p>' . __('Step 2 classic', 'It\'s possible to propose links or images by using') . ' <a href="http://' . $locale . '.wikipedia.org/wiki/Markdown">' . __('Step 2 classic', 'the Markdown syntax') . '</a>.</p>';
-        }
-        echo '    </div>' . "\n";
-
-        // Fields choices : 5 by default
-        $choices = $form->getChoices();
-        $nb_choices = max(count($choices), 5);
-        for ($i = 0; $i < $nb_choices; $i++) {
-            $choice = isset($choices[$i]) ? $choices[$i] : new Choice();
-            echo '
-            <div class="form-group choice-field">
-                <label for="choice' . $i . '" class="col-sm-2 control-label">' . __('Generic', 'Choice') . ' ' . ($i + 1) . '</label>
-                <div class="col-sm-10 input-group">
-                    <input type="text" class="form-control" name="choices[]" size="40" value="' . $choice->getName() . '" id="choice' . $i . '" />';
-            if ($config['user_can_add_img_or_link']) {
-                echo '<span class="input-group-addon btn-link md-a-img" title="' . __('Step 2 classic', 'Add a link or an image') . ' - ' . __('Generic', 'Choice') . ' ' . ($i + 1) . '" ><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>';
-            }
-            echo '
-            </div>
-            </div>' . "\n";
-        }
-
-        echo '
-            <div class="col-md-4">
-                <div class="btn-group btn-group">
-                    <button type="button" id="remove-a-choice" class="btn btn-default" title="' . __('Step 2 classic', 'Remove a choice') . '"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">' . __('Generic', 'Remove') . '</span></button>
-                    <button type="button" id="add-a-choice" class="btn btn-default" title="' . __('Step 2 classic', 'Add a choice') . '"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">' . __('Generic', 'Add') . '</span></button>
-                </div>
-            </div>
-            <div class="col-md-8 text-right">
-                <a class="btn btn-default" href="' . Utils::get_server_name() . 'create_poll.php?type=classic" title="' . __('Step 2', 'Back to step 1') . '">' . __('Generic', 'Back') . '</a>
-                <button name="fin_sondage_autre" value="' . __('Generic', 'Next') . '" type="submit" class="btn btn-success disabled" title="' . __('Step 2', 'Go to step 3') . '">' . __('Generic', 'Next') . '</button>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="md-a-imgModal" tabindex="-1" role="dialog" aria-labelledby="md-a-imgModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">' . __('Generic', 'Close') . '</span></button>
-                    <p class="modal-title" id="md-a-imgModalLabel">' . __('Step 2 classic', 'Add a link or an image') . '</p>
-                </div>
-                <div class="modal-body">
-                    <p class="alert alert-info">' . __('Step 2 classic', 'These fields are optional. You can add a link, an image or both.') . '</p>
-                    <div class="form-group">
-                        <label for="md-img"><span class="glyphicon glyphicon-picture"></span> ' . __('Step 2 classic', 'URL of the image') . '</label>
-                        <input id="md-img" type="text" placeholder="http://…" class="form-control" size="40" />
-                    </div>
-                    <div class="form-group">
-                        <label for="md-a"><span class="glyphicon glyphicon-link"></span> ' . __('Generic', 'Link') . '</label>
-                        <input id="md-a" type="text" placeholder="http://…" class="form-control" size="40" />
-                    </div>
-                    <div class="form-group">
-                        <label for="md-text">' . __('Step 2 classic', 'Alternative text') . '</label>
-                        <input id="md-text" type="text" class="form-control" size="40" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">' . __('Generic', 'Cancel') . '</button>
-                    <button type="button" class="btn btn-primary">' . __('Generic', 'Add') . '</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    </form>
-
-    <script type="text/javascript" src="js/app/framadatepicker.js"></script>
-    <script type="text/javascript" src="js/app/classic_poll.js"></script>
-    ' . "\n";
-
-        bandeau_pied();
-    }
-
+    case 1: // Step 1/4 : error if $_SESSION from info_sondage are not valid
+    default:
+        $smarty->assign('title', __('Error', 'Error!'));
+        $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation.'));
+        $smarty->display('error.tpl');
+        exit;
+}
