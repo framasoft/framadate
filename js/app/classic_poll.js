@@ -15,75 +15,74 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-(function () {
 
-    // 2 choices filled and you can submit
 
-    var submitChoicesAvalaible = function () {
+$(document).ready(function () {
+    $(document.formulaire).on('submit', function (e) {
+        if (!isSubmitChoicesAvalaible()) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
+    
+    var $next = $('button[name="fin_sondage_autre"]');
+    var $removeAChoice = $('#remove-a-choice');
+    var $addAChoice = $('#add-a-choice');
+
+    var updateButtonState = function() {
+        var $choiceFields = $('.choice-field');
+        $removeAChoice.prop('disabled', function() { return $choiceFields.length <= 2; });
+        $next.prop('disabled', !isSubmitChoicesAvalaible());
+    }
+
+    var isSubmitChoicesAvalaible = function () {
+        return (countFilledChoices() >= 2);
+    };
+
+    var countFilledChoices = function() {
         var nb_filled_choices = 0;
         $('.choice-field input').each(function () {
             if ($(this).val() != '') {
                 nb_filled_choices++;
             }
         });
-        if (nb_filled_choices >= 1) {
-            $('button[name="fin_sondage_autre"]').removeClass('disabled');
-            return true;
-        } else {
-            $('button[name="fin_sondage_autre"]').addClass('disabled');
-            return false;
-        }
+        return nb_filled_choices;
     };
 
-    // Handle form submission
-    $(document.formulaire).on('submit', function (e) {
-        if (!submitChoicesAvalaible()) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
+    $removeAChoice.on('click', function () {
+        $('.choice-field:last').remove();
+        updateButtonState();
     });
 
-    // Button "Add a choice"
-
-    $('#add-a-choice').on('click', function () {
-        var nb_choices = $('.choice-field').length;
-        var last_choice = $('.choice-field:last');
-
+    $addAChoice.on('click', function () {
+        var $choiceFields = $('.choice-field');
+        var nb_choices = $choiceFields.length;
+        var last_choice = $choiceFields.last();
+    
         var new_choice = last_choice.html();
-
+    
         // label
         var last_choice_label = last_choice.children('label').text();
         var choice_text = last_choice_label.substring(0, last_choice_label.indexOf(' '));
-
+    
         // for and id
         var re_id_choice = new RegExp('"choice' + (nb_choices - 1) + '"', 'g');
-
+    
         var new_choice_html = new_choice.replace(re_id_choice, '"choice' + nb_choices + '"')
             .replace(last_choice_label, choice_text + ' ' + (nb_choices + 1))
             .replace(/value="(.*?)"/g, 'value=""');
-
-        last_choice.after('<div class="form-group choice-field">' + new_choice_html + '</div>');
+    
+        last_choice.after('<div class="form-group choice-field row">' + new_choice_html + '</div>');
         $('#choice' + nb_choices).focus();
-        $('#remove-a-choice').removeClass('disabled');
-
-    });
-
-    // Button "Remove a choice"
-
-    $('#remove-a-choice').on('click', function () {
-        $('.choice-field:last').remove();
-        var nb_choices = $('.choice-field').length;
-        $('#choice' + (nb_choices - 1)).focus();
-        if (nb_choices == 1) {
-            $('#remove-a-choice').addClass('disabled');
-        }
-        submitChoicesAvalaible();
+        updateButtonState()
+    
     });
 
     $(document).on('keyup, change', '.choice-field input', function () {
-        submitChoicesAvalaible();
+        updateButtonState();
     });
-    submitChoicesAvalaible();
+    
+    updateButtonState();
 
     // Button to build markdown from: link + image-url + text
 
@@ -92,7 +91,7 @@
     var md_img = $('#md-img');
     var md_val = $('#md-a');
 
-    $(document).on('click', '.md-a-img', function () {
+    $('.md-a-img').on('click' , function () {
         md_a_imgModal.modal('show');
         md_a_imgModal.find('.btn-primary').attr('value', $(this).prev().attr('id'));
         $('#md-a-imgModalLabel').text($(this).attr('title'));
@@ -116,6 +115,6 @@
         md_img.val('');
         md_val.val('');
         md_text.val('');
-        submitChoicesAvalaible();
+        updateButtonState();
     });
-})();
+});
