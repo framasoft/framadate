@@ -325,7 +325,8 @@
                                 </div>
                             </div>
                         </div>
-			{* Collect users email *}
+                        
+                        {* Collect users email *}
 
                         <div class="form-group">
                             <label for="collect_mail" class="col-sm-4 control-label">
@@ -342,13 +343,18 @@
                                 </div>
                             </div>
 
-			    <div id="collect_warning" class="hidden">
-				<div class="col-sm-offset-4 col-sm-8">
-					<label class="bg-danger"><i class="glyphicon glyphicon-alert"> </i> {__('Step 1', 'Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.')} </label>
-				</div>
-			    </div>
-                    </div>
-                </div>
+                            <div id="collect_warning" class="hidden">
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <label class="bg-danger"><i class="glyphicon glyphicon-alert"> </i> {__('Step 1', 'Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.')} </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div> {* END div.form-group *}
+                    
+                </div> {* END div.collapse *}
+                
+                
                 <p class="text-right">
                     <button name="{$goToStep2}" value="{$poll_type}" type="submit"
                             class="btn btn-success">{__('Step 1', 'Go to step 2')}</button>
