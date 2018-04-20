@@ -27,9 +27,9 @@ abstract class AbstractMigration extends DoctrineAbstractMigration
     /**
      * @param Schema $schema
      * @param $class
-     * @return bool
      * @throws \Doctrine\DBAL\DBALException
      * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @return bool
      */
     public function legacyCheck(Schema $schema, $class)
     {
