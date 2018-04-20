@@ -67,13 +67,6 @@ if (!isset($form->title) || !isset($form->admin_name) || ($config['use_smtp'] &&
 }
 
 switch ($step) {
-    case 1:
-        // Step 1/4 : error if $_SESSION from info_sondage are not valid
-        $smarty->assign('title', __('Error', 'Error!'));
-        $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
-        $smarty->display('error.tpl');
-        exit;
-
     case 2:
         // Step 2/4 : Select dates of the poll
 
@@ -186,7 +179,7 @@ switch ($step) {
         $smarty->assign('default_poll_duration', $config['default_poll_duration']);
         $smarty->assign('use_smtp', $config['use_smtp']);
 
-        $smarty->display('create_poll_step3.tpl');
+        $smarty->display('create_poll_step_3.tpl');
         exit;
 
     case 4:
@@ -250,5 +243,13 @@ switch ($step) {
 
         // Redirect to poll administration
         header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
+        exit;
+
+    case 1:
+    default:
+        // Step 1/4 : error if $_SESSION from info_sondage are not valid
+        $smarty->assign('title', __('Error', 'Error!'));
+        $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
+        $smarty->display('error.tpl');
         exit;
 }
