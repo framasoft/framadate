@@ -26,10 +26,11 @@
                         <button
 	                        type="submit"
 	                        id="add_comment"
-	                        value="{__('Comments', 'Send the comment')|html}"
 	                        class="btn btn-success"
 	                        data-text-wait="{__('Comments', 'Type your name and a comment to send it')|html}"
                         >
+                        	{__('Comments', 'Send the comment')|html}
+                        </button>
                     </div>
                 </fieldset>
             </div>
