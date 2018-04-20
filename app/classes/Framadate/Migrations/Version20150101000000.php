@@ -19,6 +19,7 @@
 namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Schema\Schema;
+use Framadate\AbstractMigration;
 
 /**
  * Class From_0_0_to_0_8_Migration
@@ -42,12 +43,14 @@ class Version20150101000000 extends AbstractMigration
      * This method is called only one time in the migration page.
      *
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
      * @return void true is the execution succeeded
+     * @throws \Doctrine\DBAL\DBALException
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     * @throws \Doctrine\DBAL\Schema\SchemaException
      */
     public function up(Schema $schema)
     {
-        $this->skipIf($this->legacyCheck('Framadate\Migration\From_0_0_to_0_8_Migration'));
+        $this->skipIf($this->legacyCheck($schema,'Framadate\Migration\From_0_0_to_0_8_Migration'));
         $sondage = $schema->createTable('sondage');
         $sondage->addColumn('id_sondage', 'string');
         $sondage->addColumn('commentaires', 'text');
