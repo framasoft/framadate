@@ -16,11 +16,10 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace DoctrineMigrations;
+namespace Framadate;
 
 use Doctrine\DBAL\Migrations\AbstractMigration as DoctrineAbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
-use Framadate\Utils;
 
 abstract class AbstractMigration extends DoctrineAbstractMigration
 {
@@ -33,7 +32,7 @@ abstract class AbstractMigration extends DoctrineAbstractMigration
      */
     public function legacyCheck(Schema $schema, $class)
     {
-        $migration_table = $schema->getTable(MIGRATION_TABLE);
+        $migration_table = $schema->getTable(Utils::table(MIGRATION_TABLE));
         /**
          * We check the migration table
          */
