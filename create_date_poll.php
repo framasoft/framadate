@@ -186,7 +186,7 @@ switch ($step) {
         $smarty->assign('default_poll_duration', $config['default_poll_duration']);
         $smarty->assign('use_smtp', $config['use_smtp']);
 
-        $smarty->display('create_classic_poll_step3.tpl');
+        $smarty->display('create_poll_step3.tpl');
         exit;
 
     case 4:
