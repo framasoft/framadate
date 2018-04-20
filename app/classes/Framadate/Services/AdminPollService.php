@@ -4,7 +4,6 @@ namespace Framadate\Services;
 use Framadate\Exception\MomentAlreadyExistsException;
 use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
-use Framadate\Utils;
 
 /**
  * Class AdminPollService
@@ -26,7 +25,6 @@ class AdminPollService {
         $this->pollService = $pollService;
         $this->logService = $logService;
         $this->pollRepository = RepositoryFactory::pollRepository();
-        $this->slotRepository = RepositoryFactory::slotRepository();
         $this->voteRepository = RepositoryFactory::voteRepository();
         $this->commentRepository = RepositoryFactory::commentRepository();
     }
@@ -38,7 +36,11 @@ class AdminPollService {
         }  
             return false;
     }
-
+    
+    public function setSlotRepositoryByFormat(string $pollType) {
+        $this->slotRepository = RepositoryFactory::slotRepository($pollType);
+    }
+    
     /**
      * Delete a comment from a poll.
      *

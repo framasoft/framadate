@@ -39,11 +39,14 @@ class PollService {
         $this->connect = $connect;
         $this->logService = $logService;
         $this->pollRepository = RepositoryFactory::pollRepository();
-        $this->slotRepository = RepositoryFactory::slotRepository();
         $this->voteRepository = RepositoryFactory::voteRepository();
         $this->commentRepository = RepositoryFactory::commentRepository();
     }
 
+    public function setSlotRepositoryByFormat(string $pollType) {
+        $this->slotRepository = RepositoryFactory::slotRepository($pollType);
+    }
+    
     /**
      * Find a poll from its ID.
      *

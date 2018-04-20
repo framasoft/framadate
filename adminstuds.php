@@ -72,6 +72,8 @@ if ($poll) {
     exit;
 }
 
+$pollService->setSlotRepositoryByFormat($poll->format);
+
 // -------------------------------
 // creation message
 // -------------------------------

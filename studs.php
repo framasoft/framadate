@@ -77,6 +77,8 @@ if (!$poll) {
     exit;
 }
 
+$pollService->setSlotRepositoryByFormat($poll->format);
+
 $editedVoteUniqueId = $sessionService->get(USER_REMEMBER_VOTES_KEY, $poll_id, '');
 
 // -------------------------------

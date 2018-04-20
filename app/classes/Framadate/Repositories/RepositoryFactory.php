@@ -19,12 +19,21 @@
 namespace Framadate\Repositories;
 
 use Framadate\FramaDB;
+use Framadate\Repositories\Slot\ClassicSlotRepository;
+use Framadate\Repositories\Slot\DateSlotRepository;
+use Framadate\Repositories\Slot\UndefinedSlotRepository;
 
 class RepositoryFactory {
+	
+	const SLOT_TYPE_CLASSIC = "A";
+	const SLOT_TYPE_DATE = "D";
+	const SLOT_TYPE_UNDEFINED = "undefined";
+	
+	
     private static $connect;
 
     private static $pollRepository;
-    private static $slotRepository;
+    private static $slotRepository = [];
     private static $voteRepository;
     private static $commentRepository;
 
@@ -49,12 +58,20 @@ class RepositoryFactory {
     /**
      * @return SlotRepository The singleton of SlotRepository
      */
-    static function slotRepository() {
-        if (self::$slotRepository === null) {
-            self::$slotRepository = new SlotRepository(self::$connect);
+    static function slotRepository(string $pollType) {
+        if (!isset(self::$slotRepository[$pollType])) {
+        	if (self::SLOT_TYPE_CLASSIC === $pollType) {
+        		$slotRepository = new ClassicSlotRepository(self::$connect);
+        	} elseif (self::SLOT_TYPE_DATE === $pollType) {
+        		$slotRepository = new DateSlotRepository(self::$connect);
+        	} elseif (self::SLOT_TYPE_UNDEFINED === $pollType) {
+        		$slotRepository = new UndefinedSlotRepository(self::$connect);
+        	}
+        	
+        	self::$slotRepository[$pollType] = $slotRepository;
         }
-
-        return self::$slotRepository;
+        
+        return self::$slotRepository[$pollType];
     }
 
     /**

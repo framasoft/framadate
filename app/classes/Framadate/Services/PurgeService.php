@@ -18,7 +18,7 @@ class PurgeService {
     function __construct(FramaDB $connect, LogService $logService) {
         $this->logService = $logService;
         $this->pollRepository = RepositoryFactory::pollRepository();
-        $this->slotRepository = RepositoryFactory::slotRepository();
+        $this->slotRepository = RepositoryFactory::slotRepository(RepositoryFactory::SLOT_TYPE_UNDEFINED);
         $this->voteRepository = RepositoryFactory::voteRepository();
         $this->commentRepository = RepositoryFactory::commentRepository();
     }
