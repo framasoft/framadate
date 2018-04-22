@@ -39,6 +39,17 @@ $(document).ready(function () {
     $("#use_customized_url").change(function () {
         if ($(this).prop("checked")) {
             $("#customized_url_options").removeClass("hidden");
+            // Check url pattern
+            $('#customized_url').on('input', function() {
+                var regex_url = /^[a-zA-Z0-9-]*$/
+                if (! regex_url.test(this.value)) {
+                    $(this).parent(".input-group").addClass("has-error");
+                    $(this).attr("aria-invalid", "true");
+                } else {
+                    $(this).parent(".input-group").removeClass("has-error");
+                    $(this).attr("aria-invalid", "false");
+                }
+            });
         } else {
             $("#customized_url_options").addClass("hidden");
         }
