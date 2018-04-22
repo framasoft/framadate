@@ -1,7 +1,6 @@
 <?php
 namespace Framadate\Repositories;
 
-use Framadate\FramaDB;
 use Framadate\Utils;
 
 class VoteRepository extends AbstractRepository {
