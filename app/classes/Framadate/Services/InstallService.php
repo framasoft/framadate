@@ -17,6 +17,9 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 namespace Framadate\Services;
+use Doctrine\DBAL\Configuration;
+use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\DriverManager;
 use Framadate\Utils;
 use Smarty;
 
@@ -33,7 +36,9 @@ class InstallService {
         'cleanUrl' => true,
 
         // Database configuration
-        'dbConnectionString' => 'mysql:host=<HOST>;dbname=<SCHEMA>;port=3306',
+        'dbName' => 'framadate',
+        'dbPort' => 3306,
+        'dbHost' => 'localhost',
         'dbUser' => 'root',
         'dbPassword' => '',
         'dbPrefix' => 'fd_',
@@ -50,12 +55,12 @@ class InstallService {
 
     public function install(Smarty &$smarty) {
         // Check values are present
-        if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dbConnectionString']) || empty($this->fields['dbUser'])) {
+        if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dbName']) || empty($this->fields['dbHost']) || empty($this->fields['dbPort']) || empty($this->fields['dbUser'])) {
             return $this->error('MISSING_VALUES');
         }
 
         // Connect to database
-        $connect = $this->connectTo($this->fields['dbConnectionString'], $this->fields['dbUser'], $this->fields['dbPassword']);
+        $connect = $this->connectTo($this->fields);
         if (!$connect) {
             return $this->error('CANT_CONNECT_TO_DATABASE');
         }
@@ -68,13 +73,25 @@ class InstallService {
         return $this->ok();
     }
 
-    function connectTo($connectionString, $user, $password) {
+    /**
+     * @param $fields
+     * @return \Doctrine\DBAL\Connection|null
+     */
+    function connectTo($fields) {
+        $doctrineConfig = new Configuration();
+        $connectionParams = [
+            'dbname' => $fields['dbName'],
+            'user' => $fields['dbUser'],
+            'password' => $fields['dbPassword'],
+            'host' => $fields['dbHost'],
+            'driver' => $fields['dbDriver'],
+            'charset' => $fields['dbDriver'] === 'pdo_mysql' ? 'utf8mb4' : 'utf8',
+        ];
         try {
-            $pdo = @new \PDO($connectionString, $user, $password);
-            $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
-            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            return $pdo;
-        } catch(\Exception $e) {
+            return DriverManager::getConnection($connectionParams, $doctrineConfig);
+        } catch (DBALException $e) {
+            $logger = new LogService();
+            $logger->log('ERROR', $e->getMessage());
             return null;
         }
     }
@@ -91,6 +108,7 @@ class InstallService {
 
     /**
      * @param $content
+     * @return bool|int
      */
     function writeToFile($content) {
         return @file_put_contents(CONF_FILENAME, $content);

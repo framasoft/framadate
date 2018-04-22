@@ -16,8 +16,11 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-namespace Framadate\Migration;
+namespace DoctrineMigrations;
 
+use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Types\Type;
+use Framadate\AbstractMigration;
 use Framadate\Utils;
 
 /**
@@ -26,45 +29,43 @@ use Framadate\Utils;
  * @package Framadate\Migration
  * @version 1.0
  */
-class Alter_Comment_table_for_name_length implements Migration {
-    function __construct() {
-    }
-
+class Version20151012075900 extends AbstractMigration
+{
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description()
+    {
         return 'Alter the comment table to set a length to the name column.';
     }
 
     /**
-     * This method could check if the execute method should be called.
-     * It is called before the execute method.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the Migration should be executed.
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws \Doctrine\DBAL\DBALException
+     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
      */
-    function preCondition(\PDO $pdo) {
-        return true;
+    public function up(Schema $schema)
+    {
+        $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\Alter_Comment_table_for_name_length'), 'Migration has been executed in an earlier database migration system');
+        $commentTable = $schema->getTable(Utils::table('comment'));
+
+        $commentTable->changeColumn('name', ['default' => null, 'notnull' => false]);
+
+        $commentTable->changeColumn('name', ['type' => Type::getType('string'), 'length' => 64, 'notnull' => true]);
     }
 
     /**
-     * This methode is called only one time in the migration page.
-     *
-     * @param \PDO $pdo The connection to database
-     * @return bool true is the execution succeeded
+     * @param Schema $schema
+     * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws \Doctrine\DBAL\DBALException
      */
-    function execute(\PDO $pdo) {
-        $this->alterCommentTable($pdo);
+    public function down(Schema $schema)
+    {
+        $commentTable = $schema->getTable(Utils::table('comment'));
 
-        return true;
-    }
-
-    private function alterCommentTable(\PDO $pdo) {
-        $pdo->exec('
-        ALTER TABLE `' . Utils::table('comment') . '`
-        CHANGE `name` `name` VARCHAR( 64 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ;');
+        $commentTable->changeColumn('name', ['type' => Type::getType('string')]);
     }
 }
