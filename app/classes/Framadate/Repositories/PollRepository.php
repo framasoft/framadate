@@ -39,9 +39,8 @@ class PollRepository extends AbstractRepository {
      */
     public function findById($poll_id)
     {
-        $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' WHERE id = ?');
+        $prepared = $this->connect->executeQuery('SELECT * FROM ' . Utils::table('poll') . ' WHERE id = ?', [$poll_id]);
 
-        $prepared->execute([$poll_id]);
         $poll = $prepared->fetch();
         $prepared->closeCursor();
 
@@ -54,9 +53,8 @@ class PollRepository extends AbstractRepository {
      * @return mixed
      */
     public function findByAdminId($admin_poll_id) {
-        $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' WHERE admin_id = ?');
+        $prepared = $this->connect->executeQuery('SELECT * FROM ' . Utils::table('poll') . ' WHERE admin_id = ?', [$admin_poll_id]);
 
-        $prepared->execute([$admin_poll_id]);
         $poll = $prepared->fetch();
         $prepared->closeCursor();
 
@@ -124,14 +122,12 @@ class PollRepository extends AbstractRepository {
     /**
      * Find old polls. Limit: 20.
      *
-     * @param int $limit
      * @throws \Doctrine\DBAL\DBALException
      * @return array Array of old polls
      */
-    public function findOldPolls($limit = 20)
+    public function findOldPolls()
     {
-        $prepared = $this->prepare('SELECT * FROM ' . Utils::table('poll') . ' WHERE DATE_ADD(end_date, INTERVAL ? DAY) < NOW() AND end_date != 0 LIMIT ?');
-        $prepared->execute([PURGE_DELAY, $limit]);
+        $prepared = $this->connect->executeQuery('SELECT * FROM ' . Utils::table('poll') . ' WHERE DATE_ADD(end_date, INTERVAL ? DAY) < NOW() AND end_date != 0 LIMIT 20', [PURGE_DELAY]);
 
         return $prepared->fetchAll();
     }

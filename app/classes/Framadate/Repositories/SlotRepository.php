@@ -18,6 +18,7 @@
  */
 namespace Framadate\Repositories;
 
+use Framadate\Choice;
 use Framadate\Utils;
 
 class SlotRepository extends AbstractRepository {
@@ -29,6 +30,7 @@ class SlotRepository extends AbstractRepository {
      */
     public function insertSlots($poll_id, $choices) {
         foreach ($choices as $choice) {
+            /** @var Choice $choice */
             // We prepared the slots (joined by comas)
             $joinedSlots = null;
             $first = true;
@@ -42,7 +44,11 @@ class SlotRepository extends AbstractRepository {
             }
 
             // We execute the insertion
-            $this->connect->insert(Utils::table('slot'), ['poll_id' => $poll_id, 'title' => $choice->getName(), 'moments' => $joinedSlots]);
+            $this->connect->insert(Utils::table('slot'), [
+                'poll_id' => $poll_id,
+                'title' => $choice->getName(),
+                'moments' => $joinedSlots
+            ]);
         }
     }
 
