@@ -44,8 +44,12 @@ if (is_readable('bandeaux_local.php')) {
 $min_expiry_time = $pollService->minExpiryDate();
 $max_expiry_time = $pollService->maxExpiryDate();
 
-// The poll format is DATE
-if (isset($_SESSION['form']->format) && ($_SESSION['form']->format !== 'D')) {
+// The poll format is DATE if we are in this file
+if (!isset($_SESSION['form']->format)) {
+    $_SESSION['form']->format = 'D';
+}
+// If we come from another format, we need to clear choices
+if (isset($_SESSION['form']->format) && $_SESSION['form']->format !== 'D') {
     $_SESSION['form']->format = 'D';
     $_SESSION['form']->clearChoices();
 }
