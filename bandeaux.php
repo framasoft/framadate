@@ -43,15 +43,6 @@ function bandeau_titre($titre)
         <hr class="trait" role="presentation" />
     </header>
     <main role="main">';
-    
-    global $connect;
-    $tables = $connect->allTables();
-    $diff = array_diff([Utils::table('comment'), Utils::table('poll'), Utils::table('slot'), Utils::table('vote')], $tables);
-    if (0 !== count($diff)) {
-        echo '<div class="alert alert-danger">' . __('Error', 'Framadate is not properly installed, please check the "INSTALL" to setup the database before continuing.') . '</div>';
-        bandeau_pied();
-        die();
-    }
 }
 
 function liste_lang()

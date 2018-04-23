@@ -44,8 +44,12 @@ if (is_readable('bandeaux_local.php')) {
 $min_expiry_time = $pollService->minExpiryDate();
 $max_expiry_time = $pollService->maxExpiryDate();
 
-// The poll format is DATE
-if (isset($_SESSION['form']->format) && ($_SESSION['form']->format !== 'D')) {
+// The poll format is DATE if we are in this file
+if (!isset($_SESSION['form'])) {
+    $_SESSION['form']->format = 'D';
+}
+// If we come from another format, we need to clear choices
+if (isset($_SESSION['form']->format) && $_SESSION['form']->format !== 'D') {
     $_SESSION['form']->format = 'D';
     $_SESSION['form']->clearChoices();
 }
@@ -73,6 +77,7 @@ switch ($step) {
 
         // Prefill form->choices
         foreach ($_SESSION['form']->getChoices() as $c) {
+            /** @var Choice $c */
             $count = 3 - count($c->getSlots());
             for ($i = 0; $i < $count; $i++) {
                 $c->addSlot('');
@@ -136,7 +141,7 @@ switch ($step) {
                 if (!empty($day)) {
                     // Add choice to Form data
                     $date = DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $_POST['days'][$i])->setTime(0, 0, 0);
-                    $time = $date->getTimestamp();
+                    $time = (string) $date->getTimestamp();
                     $choice = new Choice($time);
                     $_SESSION['form']->addChoice($choice);
 
@@ -155,6 +160,7 @@ switch ($step) {
         $summary = '<ul>';
         $choices = $_SESSION['form']->getChoices();
         foreach ($choices as $choice) {
+            /** @var Choice $choice */
             $summary .= '<li>' . strftime($date_format['txt_full'], $choice->getName());
             $first = true;
             foreach ($choice->getSlots() as $slots) {
@@ -235,7 +241,7 @@ switch ($step) {
 
         // creation message
         $sessionService->set("Framadate", "messagePollCreated", TRUE);
-        
+
         // Redirect to poll administration
         header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
         exit;

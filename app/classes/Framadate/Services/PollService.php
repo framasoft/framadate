@@ -19,6 +19,7 @@
 namespace Framadate\Services;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\ConnectionException;
 use Doctrine\DBAL\DBALException;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
@@ -49,20 +50,31 @@ class PollService {
      * Find a poll from its ID.
      *
      * @param $poll_id int The ID of the poll
-     * @throws \Doctrine\DBAL\DBALException
      * @return \stdClass|null The found poll, or null
      */
     function findById($poll_id) {
-        if (preg_match(POLL_REGEX, $poll_id)) {
-            return $this->pollRepository->findById($poll_id);
+        try {
+            if (preg_match(POLL_REGEX, $poll_id)) {
+                return $this->pollRepository->findById($poll_id);
+            }
+        } catch (DBALException $e) {
+            $this->logService->log('ERROR', 'Database error : ' . $e->getMessage());
         }
 
         return null;
     }
 
+    /**
+     * @param $admin_poll_id
+     * @return mixed|null
+     */
     public function findByAdminId($admin_poll_id) {
-        if (preg_match(ADMIN_POLL_REGEX, $admin_poll_id)) {
-            return $this->pollRepository->findByAdminId($admin_poll_id);
+        try {
+            if (preg_match(ADMIN_POLL_REGEX, $admin_poll_id)) {
+                return $this->pollRepository->findByAdminId($admin_poll_id);
+            }
+        } catch (DBALException $e) {
+            $this->logService->log('ERROR', 'Database error : ' . $e->getMessage());
         }
 
         return null;
@@ -149,27 +161,36 @@ class PollService {
     function createPoll(Form $form) {
         // Generate poll IDs, loop while poll ID already exists
 
-        if (empty($form->id)) { // User want us to generate an id for him
-            do {
-                $poll_id = $this->random(16);
-            } while ($this->pollRepository->existsById($poll_id));
-            $admin_poll_id = $poll_id . $this->random(8);
-        } else { // User have choosen the poll id
-            $poll_id = $form->id;
-            do {
-                $admin_poll_id = $this->random(24);
-            } while ($this->pollRepository->existsByAdminId($admin_poll_id));
+        try {
+            if (empty($form->id)) { // User want us to generate an id for him
+                do {
+                    $poll_id = $this->random(16);
+                } while ($this->pollRepository->existsById($poll_id));
+                $admin_poll_id = $poll_id . $this->random(8);
+            } else { // User have choosen the poll id
+                $poll_id = $form->id;
+                do {
+                    $admin_poll_id = $this->random(24);
+                } while ($this->pollRepository->existsByAdminId($admin_poll_id));
+            }
+
+            // Insert poll + slots
+            $this->pollRepository->beginTransaction();
+            $this->pollRepository->insertPoll($poll_id, $admin_poll_id, $form);
+            $this->slotRepository->insertSlots($poll_id, $form->getChoices());
+            $this->pollRepository->commit();
+
+            $this->logService->log(
+                'CREATE_POLL',
+                'id:' . $poll_id . ', title: ' . $form->title . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail
+            );
+
+            return [$poll_id, $admin_poll_id];
+        } catch (DBALException $e) {
+            $this->pollRepository->rollback();
+            $this->logService->log('ERROR', "Poll couldn't be saved : " . $e->getMessage());
+            return null;
         }
-
-        // Insert poll + slots
-        $this->pollRepository->beginTransaction();
-        $this->pollRepository->insertPoll($poll_id, $admin_poll_id, $form);
-        $this->slotRepository->insertSlots($poll_id, $form->getChoices());
-        $this->pollRepository->commit();
-
-        $this->logService->log('CREATE_POLL', 'id:' . $poll_id . ', title: ' . $form->title . ', format:' . $form->format . ', admin:' . $form->admin_name . ', mail:' . $form->admin_mail);
-
-        return [$poll_id, $admin_poll_id];
     }
 
     public function findAllByAdminMail($mail) {
