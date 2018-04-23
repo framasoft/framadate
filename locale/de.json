@@ -33,6 +33,7 @@
       "Confirm removal of the poll": "Bestätigen Sie die Löschung der Umfrage",
       "Deleted the poll": "Umfrage gelöscht",
       "Email": "E-Mail-Adresse",
+      "Executed": "Ausgeführt",
       "Expiration date": "Verfallsdatum",
       "Fail": "Fehler",
       "Failed:": "Fehlgeschlagen:",
@@ -49,11 +50,13 @@
       "Purged:": "Entfernt:",
       "See the poll": "Umfrage ansehen",
       "Skipped:": "Übersprungene:",
+      "Status": "Status",
       "Succeeded:": "Erfolgreich:",
       "Success": "Erfolg",
       "Summary": "Zusammenfassung",
       "Title": "Titel",
       "Votes": "Stimmen",
+      "Waiting": "Wartend",
       "polls in the database at this time": "Umfragen derzeit in der Datenbank"
    },
    "Check": {
@@ -105,7 +108,7 @@
    "EditLink": {
       "Edit link for poll \"%s\"": "Link für die Abstimmung \"%s\" bearbeiten",
       "Here is the link for editing your vote:": "Hier ist der Link zum Ändern ihrer Stimme:",
-      "If you don't want to lose your personalized link, we can send it to your email.": "Wenn Sie ihren personalisierten Link nicht verlieren möchten, können wir ihn an Ihre E-Mail-Adresse senden.",
+      "If you don't want to lose your personalized link, we can send it to your email.": "Wenn Sie Ihren persönlichen Link nicht verlieren möchten, können wir Ihnen diesen per E-Mail zusenden.",
       "Please wait %d seconds before we can send an email to you then try again.": "Bitte warten Sie %d Sekunden bis die E-Mail an Sie gesendet werden kann. Versuchen Sie es dann erneut.",
       "REMINDER": "HINWEIS",
       "Send": "Absenden",
@@ -236,9 +239,12 @@
       "AppMail": "E-Mail-Adresse der Anwendung/des Datenbankadministrators",
       "AppName": "Name der Anwendung",
       "CleanUrl": "Säubere URLs (boolean)",
-      "Database": "Name der Datenbank",
-      "DbConnectionString": "Name des Datenbankservers (leer lassen um eine lokale Socket-Verbindung zu nutzen)",
+      "Database": "Datenbankname",
+      "DbDriver": "Datenbanktreiber",
+      "DbHost": "Datenbank-Hostname",
+      "DbName": "Datenbankname",
       "DbPassword": "Datenbank-Passwort",
+      "DbPort": "Datenbank-Port",
       "DbPrefix": "Tabellen-Präfix",
       "DbUser": "Datenbank-Benutzername",
       "DefaultLanguage": "Standardsprache",
@@ -284,7 +290,7 @@
    },
    "Poll results": {
       "Addition": "Insgesamt",
-      "Anyone will be able to access your email address after your vote": "Jeder wird nach Ihrer Abstimmung Ihre E-Mail-Adresse sehen können",
+      "Anyone will be able to access your email address after your vote": "Jeder wird Ihre E-Mail-Adresse sehen können nachdem Sie abgestimmt haben",
       "Best choice": "Beste Alternative",
       "Best choices": "Beste Alternativen",
       "Chart": "Grafik",
@@ -313,7 +319,7 @@
       "Cancel the name edit": "Abbruch, Namen nicht ändern",
       "Cancel the rules edit": "Abbruch, Regeln nicht ändern",
       "Cancel the title edit": "Abbruch, Titel nicht ändern",
-      "Collecting the polled users emails": "Sammeln der E-Mail-Adressen der zur Abstimmung eingeladenen Benutzer",
+      "Collecting the polled users emails": "Sammeln der E-Mail-Adressen der zur Umfrage eingeladenen Benutzer",
       "Edit the description": "Beschreibung bearbeiten",
       "Edit the email adress": "E-Mail-Adresse ändern",
       "Edit the expiration date": "Das Ablaufdatum bearbeiten",
@@ -350,8 +356,8 @@
    },
    "Step 1": {
       "All voters can modify any vote": "Jeder Teilnehmer kann jede abgegebene Stimme ändern",
-      "Collect the polled users email addresses": "Sammeln der E-Mail-Adressen der zur Abstimmung eingeladenen Benutzer",
-      "Collect users email": "Sammeln der E-Mail-Adressen aller Benutzer",
+      "Collect the polled users email addresses": "Sammeln der E-Mail-Adressen der zur Umfrage eingeladenen Benutzer",
+      "Collect users email": "Sammeln der E-Mail-Adressen der Benutzer",
       "Customize the URL": "Link anpassen",
       "Go to step 2": "Weiter zum 2. Schritt",
       "Limit the amount of voters per option": "Anzahl der Stimmen pro Option begrenzen",
@@ -377,7 +383,7 @@
       "ValueMax instructions": "Stimmen pro Option",
       "Voters can modify their vote themselves": "Teilnehmer können ihre Stimmen verändern",
       "Votes cannot be modified": "Stimmen können nicht verändert werden",
-      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Achtung: Jeder kann die E-Mail-Adressen der zur Abstimmung eingeladenen Benutzer einsehen, da alle Wähler alle Stimmen verändern können. Sie sollten die Zugriffsrechte beschränken.",
+      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Achtung: Jeder kann die E-Mail-Adressen der zur Umfrage eingeladenen Benutzer sehen da jeder Wähler jede Stimme verändern kann. Sie sollten die Zugriffsrechte beschränken.",
       "You are in the poll creation section.": "Hier erstellen Sie die Umfrage",
       "You can enable or disable the editor at will.": "Sie können den Editor nach Belieben ein- und wieder ausschalten."
    },
@@ -466,12 +472,12 @@
       "remove a column or a line with": "Zeile oder Spalte entfernen mit"
    },
    "display_mails": {
-      "No one voted 'If need be' to this option.": "Niemand hat mit \"Ja - unter Vorbehalt\" für diese Option abgestimmt.",
-      "No one voted 'No' to this option.": "Niemand hat mit \"Nein\" für diese Option abgestimmt.",
-      "No one voted 'Yes' to this option.": "Niemand hat mit \"Ja\" für diese Option abgestimmt.",
-      "People who have answered 'If need be' to this option have left these email addresses:": "E-Mail-Adressen aller Wähler, die mit \"Ja - unter Vorbehalt\" für diese Option gestimmt haben:",
-      "People who have answered 'No' to this option have left these email addresses:": "E-Mail-Adressen aller Wähler, die mit \"Nein\" für diese Option gestimmt haben:",
-      "People who have answered 'Yes' to this option have left these email addresses:": "E-Mail-Adressen aller Wähler, die mit \"Ja\" für diese Option gestimmt haben:"
+      "No one voted 'If need be' to this option.": "Niemand hat mit \"Ja - unter Vorbehalt\" für die Option abgestimmt.",
+      "No one voted 'No' to this option.": "Niemand hat mit \"Nein\" für die Option abgestimmt.",
+      "No one voted 'Yes' to this option.": "Niemand hat mit \"Ja\" für die Option abgestimmt.",
+      "People who have answered 'If need be' to this option have left these email addresses:": "E-Mail-Adressen aller Benutzer, die mit \"Ja - unter Vorbehalt\" für diese Option abgestimmt haben:",
+      "People who have answered 'No' to this option have left these email addresses:": "E-Mail-Adressen aller Benutzer, die mit \"Nein\" für diese Option abgestimmt haben:",
+      "People who have answered 'Yes' to this option have left these email addresses:": "E-Mail-Adressen aller Benutzer, die mit \"Ja\" für diese Option abgestimmt haben:"
    },
    "studs": {
       "Adding the vote succeeded": "Die Stimme wurde hinzugefügt",

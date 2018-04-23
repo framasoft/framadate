@@ -33,6 +33,7 @@
       "Confirm removal of the poll": "Confirmar la eliminación de la encuesta",
       "Deleted the poll": "Borrar la encuesta",
       "Email": "Correo electrónico",
+      "Executed": "Executed",
       "Expiration date": "Fecha de expiración",
       "Fail": "Error",
       "Failed:": "Con error:",
@@ -49,11 +50,13 @@
       "Purged:": "Purgados:",
       "See the poll": "Ver la encuesta",
       "Skipped:": "Omitidos:",
+      "Status": "Status",
       "Succeeded:": "Con éxito:",
       "Success": "Éxito",
       "Summary": "Resumen",
       "Title": "Title",
       "Votes": "Votos",
+      "Waiting": "Waiting",
       "polls in the database at this time": "encuestas en la base de datos a la fecha"
    },
    "Check": {
@@ -105,7 +108,7 @@
    "EditLink": {
       "Edit link for poll \"%s\"": "Enlace para edición de encuesta \"%s\"",
       "Here is the link for editing your vote:": "Este es el enlace para editar su votación:",
-      "If you don't want to lose your personalized link, we can send it to your email.": "Si no desea extraviar su enlace personalizado podemos enviárselo a su correo electrónico.",
+      "If you don't want to lose your personalized link, we can send it to your email.": "If you don't want to lose your personalized link, we can send it to you by email.",
       "Please wait %d seconds before we can send an email to you then try again.": "Por favor espere %d segundos antes de que podamos enviar nuevamente un correo electrónico, y luego vuelva a intentarlo.",
       "REMINDER": "RECORDATORIO",
       "Send": "Enviar",
@@ -236,9 +239,12 @@
       "AppMail": "Correo electrónico del administrador",
       "AppName": "Nombre de la aplicación",
       "CleanUrl": "URL Limpia",
-      "Database": "Nombre de la base de datos",
-      "DbConnectionString": "'String' de conexión",
+      "Database": "Database name",
+      "DbDriver": "Database driver",
+      "DbHost": "Database hostname",
+      "DbName": "Database name",
       "DbPassword": "Contraseña",
+      "DbPort": "Database port",
       "DbPrefix": "Prefijo",
       "DbUser": "Usuario",
       "DefaultLanguage": "Lenguaje por defecto",
@@ -313,7 +319,7 @@
       "Cancel the name edit": "Cancelar el cambio de autor",
       "Cancel the rules edit": "Cancelar los cambios en las reglas",
       "Cancel the title edit": "Cancelar el cambio de título",
-      "Collecting the polled users emails": "Collecting the polled users' email addresses",
+      "Collecting the polled users emails": "Collecting the polled users email addresses",
       "Edit the description": "Modificar la descripción",
       "Edit the email adress": "Modificar el correo electrónico",
       "Edit the expiration date": "Modificar la fecha de expiración",
@@ -350,7 +356,7 @@
    },
    "Step 1": {
       "All voters can modify any vote": "Los votos pueden ser modificados por cualquiera",
-      "Collect the polled users email addresses": "Collecting the polled users' email addresses",
+      "Collect the polled users email addresses": "Collect the polled users email addresses",
       "Collect users email": "Collect users' email addresses",
       "Customize the URL": "Personalizar la URL",
       "Go to step 2": "Ir al paso número 2",
@@ -377,7 +383,7 @@
       "ValueMax instructions": "votes per option",
       "Voters can modify their vote themselves": "Los votos peuden ser modificados por su autor",
       "Votes cannot be modified": "Los votos no pueden ser modificados",
-      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Warning: Anyone can see the polled users email addresses since all voters can modify any vote. You should restrict permission rules.",
+      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Warning: Anyone can see the polled users' email addresses since all voters can modify any vote. You should restrict permission rules.",
       "You are in the poll creation section.": "Usted ha eligido crear una nueva encuesta",
       "You can enable or disable the editor at will.": "Puede activar o desactivar el editor cuando lo desee."
    },
@@ -466,12 +472,12 @@
       "remove a column or a line with": "borrar una columna o una fila con"
    },
    "display_mails": {
-      "No one voted 'If need be' to this option.": "No one voted 'If need be' for this option.",
-      "No one voted 'No' to this option.": "No one voted 'No' for this option.",
-      "No one voted 'Yes' to this option.": "No one voted 'Yes' for this option.",
-      "People who have answered 'If need be' to this option have left these email addresses:": "Email addresses of all People who voted 'If need be' for this option:",
-      "People who have answered 'No' to this option have left these email addresses:": "Email addresses of all People who voted 'No' for this option:",
-      "People who have answered 'Yes' to this option have left these email addresses:": "Email addresses of all people who voted 'Yes' for this option:"
+      "No one voted 'If need be' to this option.": "No one voted \"If need be\" for this option.",
+      "No one voted 'No' to this option.": "No one voted \"No\" for this option.",
+      "No one voted 'Yes' to this option.": "No one voted \"Yes\" for this option.",
+      "People who have answered 'If need be' to this option have left these email addresses:": "Email addresses of all People who voted \"If need be\" for this option:",
+      "People who have answered 'No' to this option have left these email addresses:": "Email addresses of all People who voted \"No\" for this option:",
+      "People who have answered 'Yes' to this option have left these email addresses:": "Email addresses of all people who voted \"Yes\" for this option:"
    },
    "studs": {
       "Adding the vote succeeded": "Voto guardado con exíto",
