@@ -52,7 +52,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
     $max_expiry_time = $pollService->maxExpiryDate();
 
     // The poll format is other (A) if we are in this file
-    if (!isset($_SESSION['form'])) {
+    if (!isset($_SESSION['form']->format)) {
         $_SESSION['form']->format = 'A';
     }
     // If we come from another format, we need to clear choices

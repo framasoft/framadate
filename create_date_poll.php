@@ -45,7 +45,7 @@ $min_expiry_time = $pollService->minExpiryDate();
 $max_expiry_time = $pollService->maxExpiryDate();
 
 // The poll format is DATE if we are in this file
-if (!isset($_SESSION['form'])) {
+if (!isset($_SESSION['form']->format)) {
     $_SESSION['form']->format = 'D';
 }
 // If we come from another format, we need to clear choices
