@@ -347,7 +347,7 @@
                                         {__('Step 1', 'Email addresses are required')}
                                     </label>
 				    <label>
-                                        <input type="radio" name="collect_users_mail" {if $collect_users_mail==constant("Framadate\Collect_mail::COLLECT_REQUIRED_VERIFIED")}checked{/if} value="{constant("Framadate\Collect_mail::COLLECT_REQUIRED_VERIFIED")}">
+                                        <input type="radio" disabled name="collect_users_mail" {if $collect_users_mail==constant("Framadate\Collect_mail::COLLECT_REQUIRED_VERIFIED")}checked{/if} value="{constant("Framadate\Collect_mail::COLLECT_REQUIRED_VERIFIED")}">
                                         {__('Step 1', 'Email addresses are required and verified')}
                                     </label>
                                 </div>
