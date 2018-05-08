@@ -329,7 +329,10 @@
       "Title": "Title of the poll",
       "Votes and comments are locked": "Votes and comments are locked",
       "Votes protected by password": "Votes protected by password",
-      "Collecting the polled users emails" : "Collecting the polled users emails"
+      "Voters email adresses are not collected": "Voters email adresses are not collected",
+      "Voters email adresses are collected": "Voters email adresses are collected",
+      "Voters email adresses are collected and required": "Voters email adresses are collected and required",
+      "Voters email adresses are collected, required and verified": "Voters email adresses are collected, required and verified"
    },
    "Step 1": {
       "All voters can modify any vote": "All voters can modify any vote",
