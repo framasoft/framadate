@@ -360,8 +360,11 @@
       "Votes cannot be modified": "Votes cannot be modified",
       "You are in the poll creation section.": "You are in the poll creation section.",
       "You can enable or disable the editor at will.": "You can enable or disable the editor at will.",
-      "Collect users email" : "Collect users email",
-      "Collect the polled users email addresses" : "Collect the polled users email addresses",
+      "Collect voters email" : "Collect voters email",
+      "Email addresses are not collected" : "Email addresses are not collected",
+      "Email addresses are collected but not required" : "Email addresses are collected but not required",
+      "Email addresses are required" : "Email addresses are required",
+      "Email addresses are required and verified" : "Email addresses are required and verified",
       "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules." : "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules."
    },
    "Step 2": {
