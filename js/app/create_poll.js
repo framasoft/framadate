@@ -81,8 +81,8 @@ $(document).ready(function () {
     /**
      * Hide/Show Warning collect_users_mail + editable by all
      */
-    $("#collect_users_mail").change(function(){
-        if ($(this).prop("checked") && $("input[name='editable']:checked").val() == 1) {
+    $("input[name='collect_users_mail']").change(function(){
+        if (($("input[name='collect_users_mail']:checked").val() != 0) && ($("input[name='editable']:checked").val() == 1)) {
             $("#collect_warning").removeClass("hidden");
         } else {
             $("#collect_warning").addClass("hidden");
@@ -90,7 +90,7 @@ $(document).ready(function () {
     });
 
     $("input[name='editable']").change(function(){
-        if ($("#collect_users_mail").prop("checked") && $("input[name='editable']:checked").val() == 1) {
+        if ($("input[name='collect_users_mail']:checked").val() != 0 && $("input[name='editable']:checked").val() == 1) {
             $("#collect_warning").removeClass("hidden");
         } else {
             $("#collect_warning").addClass("hidden");
