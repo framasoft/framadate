@@ -42,7 +42,13 @@ class VoteRepository extends AbstractRepository {
 
         return $prepared->execute([$poll_id, $vote_id]);
     }
+    
+    public function deleteOldVotesByPollId($poll_id, $votesToDelete) {
+    	$prepared = $this->prepare('DELETE FROM `' . Utils::table('vote') . '` WHERE poll_id = ? ORDER BY `poll_id` ASC LIMIT ' . $votesToDelete);
 
+        return $prepared->execute([$poll_id]);
+    }
+    
     /**
      * Delete all votes of a given poll.
      *
@@ -86,4 +92,19 @@ class VoteRepository extends AbstractRepository {
         $prepared->execute([$poll_id, $name]);
         return $prepared->rowCount() > 0;
     }
+    
+    /**
+     * Check if name is already used for the given poll and another vote.
+     *
+     * @param int $poll_id ID of the poll
+     * @param string $name Name of the vote
+     * @param int $vote_id ID of the current vote
+     * @return bool true if vote already exists
+     */
+    public function existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id) {
+        $prepared = $this->prepare('SELECT 1 FROM `' . Utils::table('vote') . '` WHERE poll_id = ? AND name = ? AND id != ?');
+        $prepared->execute([$poll_id, $name, $vote_id]);
+        return $prepared->rowCount() > 0;
+    }
 }
+

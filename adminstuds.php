@@ -29,6 +29,7 @@ use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\NotificationService;
 use Framadate\Services\PollService;
+use Framadate\Services\SessionService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -51,6 +52,7 @@ $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $inputService = new InputService();
 $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
 $notificationService = new NotificationService($mailService);
+$sessionService = new SessionService();
 
 /* PAGE */
 /* ---- */
@@ -68,6 +70,18 @@ if ($poll) {
     $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
     $smarty->display('error.tpl');
     exit;
+}
+
+// -------------------------------
+// creation message
+// -------------------------------
+
+$messagePollCreated = $sessionService->get("Framadate", "messagePollCreated", FALSE);
+
+if ($messagePollCreated) {
+	$sessionService->remove("Framadate", "messagePollCreated");
+
+	$message = new Message('success', __('adminstuds', 'The poll is created.'));
 }
 
 // -------------------------------
@@ -201,6 +215,8 @@ if (!empty($_GET['vote'])) {
 // Something to save (edit or add)
 // -------------------------------
 
+$selectedNewVotes = [];
+
 if (!empty($_POST['save'])) { // Save edition of an old vote
     $name = $inputService->filterName($_POST['name']);
     if(empty($_POST['mail']) || $inputService->filterMail($_POST['mail'])===false) {
@@ -228,6 +244,8 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             } else {
                 $message = new Message('danger', __('Error', 'Update vote failed'));
             }
+        } catch (AlreadyExistsException $aee) {
+            $message = new Message('danger', __('Error', 'The name you\'ve chosen already exist in this poll!'));
         } catch (ConcurrentEditionException $cee) {
             $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
         } catch (ConcurrentVoteException $cve) {
@@ -262,6 +280,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
             }
         } catch (AlreadyExistsException $aee) {
             $message = new Message('danger', __('Error', 'You already voted'));
+            $selectedNewVotes = $choices;
         } catch (ConcurrentEditionException $cee) {
             $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
         } catch (ConcurrentVoteException $cve) {
@@ -398,28 +417,21 @@ if (isset($_GET['collect_mail'])) {
     $column_str = strval(Utils::base64url_decode($column_str));
     $column = intval($column_str);
     $votes = $pollService->splitVotes($pollService->allVotesByPollId($poll_id));
-    $mails_yes = [];
-    $mails_ifneedbe = [];
-    $mails_no = [];
-    $size = count($votes);
-    for ($i = 0; $i < $size; $i++)
-{
-	if(intval($votes[$i]->choices[$column]) === 2 && $votes[$i]->mail !== NULL) {
-		$mails_yes[]=$votes[$i]->mail;
+    $mails_yes = $mails_ifneedbe = $mails_no = [];
+    foreach ($votes as $vote) {
+        if (intval($vote->choices[$column]) === 2 && $vote->mail !== NULL) {
+            $mails_yes[] = $vote->mail;
+        } elseif (intval($vote->choices[$column]) === 1 && $vote->mail !== NULL) {
+            $mails_ifneedbe[] = $vote->mail;
+        } elseif($vote->mail !== NULL) {
+            $mails_no[] = $vote->mail;
         }
-	else {
-		if(intval($votes[$i]->choices[$column]) === 1 && $votes[$i]->mail !== NULL) {
-			$mails_ifneedbe[]=$votes[$i]->mail;
-        	}
-		elseif($votes[$i]->mail !== NULL) {
-			$mails_no[]=$votes[$i]->mail;
-		}
-	}
-}
+    }
+
     $smarty->assign('poll_id', $poll_id);
     $smarty->assign('admin_poll_id', $admin_poll_id);
     $smarty->assign('admin', true);
-    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title . ' - ' . __('adminstuds', 'Collect the emails of the polled users for this column'));
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title . ' - ' . __('adminstuds', 'Collect the emails of the polled users for the choice'));
     $smarty->assign('mails_yes', $mails_yes);
     $smarty->assign('mails_ifneedbe', $mails_ifneedbe);
     $smarty->assign('mails_no', $mails_no);
@@ -483,7 +495,7 @@ $smarty->assign('deletion_date', strtotime($poll->end_date) + PURGE_DELAY * 8640
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
 $smarty->assign('slots_hash', $pollService->hashSlots($slots));
 $smarty->assign('votes', $pollService->splitVotes($votes));
-$smarty->assign('best_choices', $pollService->computeBestChoices($votes));
+$smarty->assign('best_choices', $pollService->computeBestChoices($votes, $poll));
 $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
@@ -493,5 +505,6 @@ $smarty->assign('accessGranted', true);
 $smarty->assign('resultPubliclyVisible', true);
 $smarty->assign('editedVoteUniqueId', '');
 $smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
+$smarty->assign('selectedNewVotes', $selectedNewVotes);
 
 $smarty->display('studs.tpl');

@@ -17,28 +17,13 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-// FRAMADATE version
-const VERSION = '1.2.0';
+use Framadate\Services\LogService;
+use Framadate\Services\PurgeService;
 
-// PHP Needed version
-const PHP_NEEDED_VERSION = '5.6';
+include_once __DIR__ . '/../app/inc/init.php';
 
-// Config constants
-const COMPILE_DIR = '/tpl_c/';
+$logService = new LogService();
+$purgeService = new PurgeService($connect, $logService);
 
-// Regex
-const POLL_REGEX = '/^[a-z0-9-]*$/i';
-const ADMIN_POLL_REGEX = '/^[a-z0-9]{24}$/i';
-const CHOICE_REGEX = '/^[ 012]$/';
-const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/i';
-const BOOLEAN_TRUE_REGEX = '/^(on|true|1)$/i';
-const EDITABLE_CHOICE_REGEX = '/^[0-2]$/';
-const BASE64_REGEX = '/^[A-Za-z0-9]+$/';
-const MD5_REGEX = '/^[A-Fa-f0-9]{32}$/';
+$purgeService->cleanDemoPoll();
 
-// Session constants
-const SESSION_EDIT_LINK_TOKEN = 'EditLinkToken';
-const SESSION_EDIT_LINK_TIME = "EditLinkMail";
-
-// CSRF (300s = 5min)
-const TOKEN_TIME = 300;

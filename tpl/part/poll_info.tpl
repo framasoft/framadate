@@ -233,12 +233,9 @@
                 </div>
             </div>
 	    <div id="collect_users_mail">
-                        {if !$poll->collect_users_mail}
-                            {$password_text = __('PollInfo', 'No collect of the polled users email addresses')}
-                        {else}
-                            {$password_text = __('PollInfo', 'Collect of the polled users email addresses')}
-                        {/if}
-                        <p class=""><span class="glyphicon glyphicon-envelope"> </span> {$password_text}</p>
+            {if $poll->collect_users_mail}
+                <p><span class="glyphicon glyphicon-envelope"> </span> {__('PollInfo', 'Collecting the polled users emails')}</p>
+            {/if}
 	    </div>
         {/if}
     </div>

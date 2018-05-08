@@ -50,6 +50,7 @@ $resultPubliclyVisible = true;
 $slots = [];
 $votes = [];
 $comments = [];
+$selectedNewVotes = [];
 
 /* Services */
 /*----------*/
@@ -150,7 +151,9 @@ if ($accessGranted) {
                 } else {
                     $message = new Message('danger', __('Error', 'Update vote failed'));
                 }
-            } catch (ConcurrentEditionException $cee) {
+            } catch (AlreadyExistsException $aee) {
+	            $message = new Message('danger', __('Error', 'The name you\'ve chosen already exist in this poll!'));
+	        } catch (ConcurrentEditionException $cee) {
                 $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
             } catch (ConcurrentVoteException $cve) {
                 $message = new Message('danger', __('Error', "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."));
@@ -190,6 +193,7 @@ if ($accessGranted) {
                 }
             } catch (AlreadyExistsException $aee) {
                 $message = new Message('danger', __('Error', 'You already voted'));
+                $selectedNewVotes = $choices;
             } catch (ConcurrentEditionException $cee) {
                 $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
             } catch (ConcurrentVoteException $cve) {
@@ -237,7 +241,7 @@ $smarty->assign('deletion_date', strtotime($poll->end_date) + PURGE_DELAY * 8640
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
 $smarty->assign('slots_hash',  $pollService->hashSlots($slots));
 $smarty->assign('votes', $pollService->splitVotes($votes));
-$smarty->assign('best_choices', $pollService->computeBestChoices($votes));
+$smarty->assign('best_choices', $pollService->computeBestChoices($votes, $poll));
 $smarty->assign('comments', $comments);
 $smarty->assign('editingVoteId', $editingVoteId);
 $smarty->assign('message', $message);
@@ -247,5 +251,6 @@ $smarty->assign('accessGranted', $accessGranted);
 $smarty->assign('resultPubliclyVisible', $resultPubliclyVisible);
 $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
 $smarty->assign('ValueMax', $poll->ValueMax);
+$smarty->assign('selectedNewVotes', $selectedNewVotes);
 
 $smarty->display('studs.tpl');

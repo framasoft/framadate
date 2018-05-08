@@ -41,7 +41,7 @@
 				{if $poll->collect_users_mail}
 					<a href="{poll_url id=$admin_poll_id admin=true action='collect_mail' action_value=($headersDCount)}"
 					   class="btn btn-link btn-sm collect-mail"
-		                           title="{__('adminstuds', 'Collect the emails of the polled users for this column')} {$headersDCount}">
+		                           title="{__('adminstuds', 'Collect the emails of the polled users for the choice')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
 		                            <i class="glyphicon glyphicon-envelope"></i><span class="sr-only">{__('Generic', 'Collect emails')}</span>
 		                        </a>
 				{/if}
@@ -219,11 +219,15 @@
                                 <i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>
                             </a>
                             {if $admin}
+                                <a href="{poll_url id=$poll->id vote_id=$vote->uniqId}" class="btn btn-default btn-sm clipboard-url" data-toggle="popover" data-trigger="manual" title="{__('Poll results', 'Link to edit this particular line')}" data-content="{__('Poll results', 'Link to edit this particular line has been copied!')}">
+                                    <i class="glyphicon glyphicon-link"></i><span class="sr-only">{__('Generic', 'Link')}</span>
+                                </a>
                                 <a href="{poll_url id=$admin_poll_id admin=true action='delete_vote' action_value=$vote->id}"
                                    class="btn btn-default btn-sm"
                                    title="{__('Poll results', 'Remove the line:')} {$vote->name|html}">
                                     <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                                 </a>
+
                             {/if}
                         </td>
                     {else}
@@ -241,50 +245,58 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
-			    {if $poll->collect_users_mail}
-			    	<input type="email" required id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
-			    {/if}
+                            {if $poll->collect_users_mail}
+                                <input type="email" required id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
+                            {/if}
                         </div>
+                        {if $poll->collect_users_mail && $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')}
+                            <div class="bg-danger">
+                                <i class="glyphicon glyphicon-alert"> </i>
+                                <label> {__('Poll results', 'Anyone will be able to access your email address after your vote')} </label>
+                            </div>
+                        {/if}
                     </td>
-
 
                     {$i = 0}
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $moment}
 
-
-
                             <td class="bg-info" headers="M{$headersM[$i]} D{$headersD[$i]} H{$headersH[$i]}">
                                 <ul class="list-unstyled choice">
                                     {if $poll->ValueMax eq NULL || $best_choices['y'][$i] lt $poll->ValueMax}
                                     <li class="yes">
-                                        <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2" />
+                                        <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2"
+                                        	{(!isset($selectedNewVotes[$i]) || ("2" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                        />
                                         <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
-                                        <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1" />
+                                        <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1"
+                                        	{(!isset($selectedNewVotes[$i]) || ("1" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                        />
                                         <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                         </label>
                                     </li>
-
-				{/if}
+                                    {/if}
 
                                     <li class="no">
-                                        <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0" />
-                                        <label class="btn btn-default btn-xs startunchecked" for="n-choice-{$i}" title="{__('Poll results', 'Vote no for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                        <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0"
+                                        	{(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                        />
+                                        <label class="btn btn-default btn-xs {(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "startunchecked" : ""}" for="n-choice-{$i}" title="{__('Poll results', 'Vote no for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                         </label>
                                     </li>
                                     <li class="hide">
-                                      <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value=" " checked/>
+                                      <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value=" "
+                                      	{(isset($selectedNewVotes[$i]) && ("" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                      />
                                     </li>
                                 </ul>
                             </td>
-
-
 
                             {$i = $i+1}
                         {/foreach}

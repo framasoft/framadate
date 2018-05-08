@@ -1,7 +1,6 @@
 {extends file='page.tpl'}
 
 {block name="header"}
-    <script src="{"js/jquery-ui.min.js"|resource}" type="text/javascript"></script>
     <script src="{"js/Chart.min.js"|resource}" type="text/javascript"></script>
     <script src="{"js/Chart.StackedBar.js"|resource}" type="text/javascript"></script>
     <script src="{"js/app/studs.js"|resource}" type="text/javascript"></script>

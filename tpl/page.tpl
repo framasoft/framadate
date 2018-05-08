@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="{'css/style.css'|resource}">
     <link rel="stylesheet" href="{'css/frama.css'|resource}">
     <link rel="stylesheet" href="{'css/print.css'|resource}" media="print">
+    {if $provide_fork_awesome}
+        <link rel="stylesheet" href="{'css/fork-awesome.min.css'|resource}">
+    {/if}
     <script type="text/javascript" src="{'js/jquery-1.12.4.min.js'|resource}"></script>
     <script type="text/javascript" src="{'js/bootstrap.min.js'|resource}"></script>
     <script type="text/javascript" src="{'js/bootstrap-datepicker.js'|resource}"></script>

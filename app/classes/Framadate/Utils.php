@@ -115,8 +115,8 @@ class Utils {
             }
             if ($vote_id !== '') {
                 $url .= '&vote=' . $vote_id . "#edit";
-            } elseif ($action !== null)  {
-                if ($action_value !== null) {
+            } elseif ($action)  {
+                if ($action_value) {
                     $url .= '&' . $action . "=" . $action_value;
                 } else {
                     $url .= '&' . $action . "=";
@@ -146,9 +146,9 @@ class Utils {
         $parseDown = new Parsedown();
 
         $parseDown
-            ->setMarkupEscaped(true)
             ->setBreaksEnabled(true)
-            ->setUrlsLinked(false);
+            ->setSafeMode(true)
+            ;
 
         if ($line) {
             $html  = $parseDown->line($md);
