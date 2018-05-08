@@ -59,7 +59,6 @@ if ($goToStep2) {
     $ValueMax = $use_ValueMax === true ? $inputService->filterValueMax($_POST['ValueMax']) : null;
 
     $collect_users_mail = isset($_POST['collect_users_mail']) ? $inputService->filterBoolean($_POST['collect_users_mail']) : false;
-
     $use_customized_url = isset($_POST['use_customized_url']) ? $inputService->filterBoolean($_POST['use_customized_url']) : false;
     $customized_url = $use_customized_url === true ? $inputService->filterId($_POST['customized_url']) : null;
     $name = $inputService->filterName($_POST['name']);
@@ -70,7 +69,7 @@ if ($goToStep2) {
     $receiveNewComments = isset($_POST['receiveNewComments']) ? $inputService->filterBoolean($_POST['receiveNewComments']) : false;
     $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
     $use_password = filter_input(INPUT_POST, 'use_password', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
-    $collect_users_mail = isset($_POST['collect_users_mail']) ? $inputService->filterBoolean($_POST['collect_users_mail']) : false;
+    $collect_users_mail = $inputService->filterCollect_mail($_POST['collect_users_mail']);
     $use_password = filter_input(INPUT_POST, 'use_password', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => BOOLEAN_REGEX]]);
     $password = isset($_POST['password']) ? $_POST['password'] : null;
     $password_repeat = isset($_POST['password_repeat']) ? $_POST['password_repeat'] : null;
