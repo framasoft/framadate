@@ -55,6 +55,10 @@ if [ ! -f /var/www/framadate/admin/.htpasswd ]; then
   fi
 fi
 
+# Run Database migrations
+php /var/www/framadate/bin/doctrine migrations:status --no-interaction -vvv
+php /var/www/framadate/bin/doctrine migrations:migrate --no-interaction -vvv
+
 # Run apache server
 chown -R www-data:www-data /var/www/framadate
 source /etc/apache2/envvars
