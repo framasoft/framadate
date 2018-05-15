@@ -187,6 +187,7 @@ class PollService {
 
             return [$poll_id, $admin_poll_id];
         } catch (DBALException $e) {
+            $this->pollRepository->beginTransaction();
             $this->pollRepository->rollback();
             $this->logService->log('ERROR', "Poll couldn't be saved : " . $e->getMessage());
             return null;
