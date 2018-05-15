@@ -319,7 +319,7 @@
       "Cancel the name edit": "Annuler le changement d'auteur·rice",
       "Cancel the rules edit": "Annuler le changement de permissions",
       "Cancel the title edit": "Annuler le changement de titre",
-      "Collecting the polled users emails": "Collecte les courriels des utilisateurs",
+      "Collecting the polled users emails": "Collecting the polled users email addresses",
       "Edit the description": "Modifier la description",
       "Edit the email adress": "Modifier le courriel",
       "Edit the expiration date": "Modifier la date d'expiration",
@@ -356,7 +356,7 @@
    },
    "Step 1": {
       "All voters can modify any vote": "Tou·te·s les sondé·e·s peuvent modifier tous les votes",
-      "Collect the polled users email addresses": "Collecte les courriels des utilisateurs",
+      "Collect the polled users email addresses": "Collecting the polled users' email addresses",
       "Collect users email": "Récolter les courriels des utilisateurs",
       "Customize the URL": "Personnaliser le lien",
       "Go to step 2": "Aller à l'étape 2",
@@ -383,7 +383,7 @@
       "ValueMax instructions": "votes par choix",
       "Voters can modify their vote themselves": "Chaque sondé·e peut modifier son propre vote",
       "Votes cannot be modified": "Aucun vote ne peut être modifié",
-      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Attention : tout le monde pourra accéder aux courriels des votants car tout le monde peut éditer chaque vote. Vous devriez restreindre les règles de permission.",
+      "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Warning: Anyone can see the polled users' email addresses since all voters can modify any vote. You should restrict permission rules.",
       "You are in the poll creation section.": "Vous avez choisi de créer un nouveau sondage.",
       "You can enable or disable the editor at will.": "Vous pouvez activer ou désactiver l'éditeur à votre guise."
    },
@@ -472,12 +472,12 @@
       "remove a column or a line with": "effacer une colonne ou une ligne avec"
    },
    "display_mails": {
-      "No one voted 'If need be' to this option.": "Personne n'a voté « Si nécessaire » pour ce choix.",
-      "No one voted 'No' to this option.": "Personne n'a voté « Non » pour ce choix.",
-      "No one voted 'Yes' to this option.": "Personne n'a voté « Oui » pour ce choix.",
-      "People who have answered 'If need be' to this option have left these email addresses:": "Courriels des gens qui ont voté « Si nécessaire » pour cette option » :",
-      "People who have answered 'No' to this option have left these email addresses:": "Courriels des gens qui ont voté « Non » pour cette option » :",
-      "People who have answered 'Yes' to this option have left these email addresses:": "Courriels des gens qui ont voté « Oui » pour cette option » :"
+      "No one voted 'If need be' to this option.": "No one voted \"If need be\" for this option.",
+      "No one voted 'No' to this option.": "No one voted \"No\" for this option.",
+      "No one voted 'Yes' to this option.": "No one voted \"Yes\" for this option.",
+      "People who have answered 'If need be' to this option have left these email addresses:": "Email addresses of all users who voted \"If need be\" for this option:",
+      "People who have answered 'No' to this option have left these email addresses:": "Email addresses of all users who voted \"No\" for this option:",
+      "People who have answered 'Yes' to this option have left these email addresses:": "Email addresses of all users who voted \"Yes\" for this option:"
    },
    "studs": {
       "Adding the vote succeeded": "Ajout du vote réussi",
