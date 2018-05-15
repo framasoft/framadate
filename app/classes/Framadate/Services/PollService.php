@@ -161,6 +161,7 @@ class PollService {
     function createPoll(Form $form) {
         // Generate poll IDs, loop while poll ID already exists
 
+        $this->pollRepository->beginTransaction();
         try {
             if (empty($form->id)) { // User want us to generate an id for him
                 do {
@@ -175,7 +176,6 @@ class PollService {
             }
 
             // Insert poll + slots
-            $this->pollRepository->beginTransaction();
             $this->pollRepository->insertPoll($poll_id, $admin_poll_id, $form);
             $this->slotRepository->insertSlots($poll_id, $form->getChoices());
             $this->pollRepository->commit();
