@@ -25,11 +25,14 @@ $smarty->setCompileDir(ROOT_DIR . COMPILE_DIR);
 $smarty->setCacheDir(ROOT_DIR . '/cache/');
 $smarty->caching = false;
 
+$serverName = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '';
+
 $smarty->assign('APPLICATION_NAME', NOMAPPLICATION);
 $smarty->assign('SERVER_URL', Utils::get_server_name());
 $smarty->assign('SCRIPT_NAME', $_SERVER['SCRIPT_NAME']);
 $smarty->assign('TITLE_IMAGE', IMAGE_TITRE);
-$smarty->assign('use_nav_js', strstr($_SERVER['SERVER_NAME'], 'framadate.org'));
+
+$smarty->assign('use_nav_js', strstr($serverName, 'framadate.org'));
 $smarty->assign('provide_fork_awesome', !isset($config['provide_fork_awesome']) || $config['provide_fork_awesome']);
 $smarty->assign('locale', $locale);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);

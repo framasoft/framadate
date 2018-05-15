@@ -24,3 +24,4 @@ Thumbs.db
 .project
 .idea/
 *.iml
+test_database.sqlite

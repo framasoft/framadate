@@ -77,6 +77,7 @@ switch ($step) {
 
         // Prefill form->choices
         foreach ($_SESSION['form']->getChoices() as $c) {
+            /** @var Choice $c */
             $count = 3 - count($c->getSlots());
             for ($i = 0; $i < $count; $i++) {
                 $c->addSlot('');
@@ -140,7 +141,7 @@ switch ($step) {
                 if (!empty($day)) {
                     // Add choice to Form data
                     $date = DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $_POST['days'][$i])->setTime(0, 0, 0);
-                    $time = $date->getTimestamp();
+                    $time = (string) $date->getTimestamp();
                     $choice = new Choice($time);
                     $_SESSION['form']->addChoice($choice);
 
@@ -159,6 +160,7 @@ switch ($step) {
         $summary = '<ul>';
         $choices = $_SESSION['form']->getChoices();
         foreach ($choices as $choice) {
+            /** @var Choice $choice */
             $summary .= '<li>' . strftime($date_format['txt_full'], $choice->getName());
             $first = true;
             foreach ($choice->getSlots() as $slots) {
@@ -239,7 +241,7 @@ switch ($step) {
 
         // creation message
         $sessionService->set("Framadate", "messagePollCreated", TRUE);
-        
+
         // Redirect to poll administration
         header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
         exit;

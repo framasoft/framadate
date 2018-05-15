@@ -86,7 +86,7 @@
       "Comments of polled people": "Comentaris dels sondats",
       "Remove the comment": "Suprimir lo comentari",
       "Send the comment": "Mandar lo comentari",
-      "Type your name and a comment to send it": "Picatz vòstre nom e un comentari per lo mandar",
+      "Type your name and a comment to send it": "Picatz vòstre nom e comentari d’en primièr per mandar lo formulari",
       "Your comment": "Vòstre comentari",
       "anonyme": "anonim"
    },
@@ -108,7 +108,7 @@
    "EditLink": {
       "Edit link for poll \"%s\"": "Ligam de modificacion del sondatge \"%s\"",
       "Here is the link for editing your vote:": "Vaquí lo ligam per modificar vòstre vòte :",
-      "If you don't want to lose your personalized link, we can send it to your email.": "A fin de pèrdre pas lo ligam de modificacion, podèm vos lo mandar per corrièl.",
+      "If you don't want to lose your personalized link, we can send it to your email.": "Se volètz pas perdre vòstre ligam personalizat, podètz vos lo enviar per corrièl",
       "Please wait %d seconds before we can send an email to you then try again.": "Mercés d’esperar encara %d segondas abans que poscam vos mandar lo corrièl, puèi tornatz ensajar.",
       "REMINDER": "RECÒRD",
       "Send": "Mandar",
@@ -183,9 +183,9 @@
       "Remove poll from index": "Levar lo sondatge de l’ensenhador",
       "Send me my polls": "Mandar mos sondatges",
       "Send my polls by email": "Enviar mos sondatges per corrièl",
-      "There are no polls saved inside your browser yet": "There are no polls saved inside your browser yet",
+      "There are no polls saved inside your browser yet": "Vòstre navegador a pas cap de sondatges enregistrats",
       "Title": "Títol",
-      "Visited polls": "Visited polls"
+      "Visited polls": "Sondatges consultats"
    },
    "Generic": {
       "(in the format name@mail.com)": "(al format nom@mail.com)",
@@ -208,7 +208,7 @@
       "Ifneedbe": "Amb resèrva",
       "Legend:": "Legenda :",
       "Link": "Ligam",
-      "Make your polls": "Create your own polls",
+      "Make your polls": "Creatz vòstres sondatges",
       "Markdown": "Markdown",
       "Next": "Contunhar",
       "No": "Non",
@@ -265,7 +265,7 @@
       "Poll's participation: %s": "Participacion al sondatge : %s",
       "Someone just change your poll available at the following link %s.": "Qualqu’un ven de modificar vòstre sondatge accessible amb lo ligam seguent <a href=\"%1$s\">%1$s</a>.",
       "Someone just delete your poll %s.": "Qualqu’un ven de suprimir vòstre sondatge \"%s\".",
-      "Thanks for filling the poll at the link above": "Thank you for participating in the poll at the following link",
+      "Thanks for filling the poll at the link above": "Mercés de vòstra participacion al sondatge al ligam seguent",
       "Thanks for your trust.": "Mercé per vòstra fisança.",
       "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.": "Aquò es lo messatge que serà mandat als sondats.<br/>Podètz ara transmetre aqueste messatge a totas las personas susceptiblas de participar al vòte.",
       "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above": "Aqueste messatge deu PAS èsser mandat als participants. Vos cal lo gardar privat.<br/><br/>Podètz modificar lo sondatge amb lo ligam seguent",
@@ -380,7 +380,7 @@
       "To receive an email for each new vote": "Recebre un messatge per cada participacion",
       "Use a password to restrict access": "Emplegar un senhal per restrénher l’accès al sondatge",
       "Value Max": "Valor maximala",
-      "ValueMax instructions": "votes per option",
+      "ValueMax instructions": "votacion per opcion",
       "Voters can modify their vote themselves": "Cadun pòt modificar son pròpri vòte",
       "Votes cannot be modified": "Cap de vòte pòt pas èsser modificat",
       "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Avertiment : qual que siá pòt veire las adreças dels votants del moment que totes los votants pòdon modificar quin que siá vòte. Vos caldriá restrénher las permissions.",
