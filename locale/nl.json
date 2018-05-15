@@ -356,7 +356,7 @@
    },
    "Step 1": {
       "All voters can modify any vote": "Alle stemmers kunnen elke stem aanpassen",
-      "Collect the polled users email addresses": "Collect the polled users email addresses",
+      "Collect the polled users email addresses": "Collecting the polled users' email addresses",
       "Collect users email": "Collect users' email addresses",
       "Customize the URL": "Link verpersoonlijken",
       "Go to step 2": "Ga naar stap 2",
@@ -475,9 +475,9 @@
       "No one voted 'If need be' to this option.": "No one voted \"If need be\" for this option.",
       "No one voted 'No' to this option.": "No one voted \"No\" for this option.",
       "No one voted 'Yes' to this option.": "No one voted \"Yes\" for this option.",
-      "People who have answered 'If need be' to this option have left these email addresses:": "Email addresses of all People who voted \"If need be\" for this option:",
-      "People who have answered 'No' to this option have left these email addresses:": "Email addresses of all People who voted \"No\" for this option:",
-      "People who have answered 'Yes' to this option have left these email addresses:": "Email addresses of all people who voted \"Yes\" for this option:"
+      "People who have answered 'If need be' to this option have left these email addresses:": "Email addresses of all users who voted \"If need be\" for this option:",
+      "People who have answered 'No' to this option have left these email addresses:": "Email addresses of all users who voted \"No\" for this option:",
+      "People who have answered 'Yes' to this option have left these email addresses:": "Email addresses of all users who voted \"Yes\" for this option:"
    },
    "studs": {
       "Adding the vote succeeded": "Stem toegevoegd",

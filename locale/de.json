@@ -31,7 +31,7 @@
       "Back to administration": "Zurück zur Verwaltung",
       "Change the poll": "Umfrage ändern",
       "Confirm removal of the poll": "Bestätigen Sie die Löschung der Umfrage",
-      "Deleted the poll": "Umfrage gelöscht",
+      "Deleted the poll": "Umfrage löschen",
       "Email": "E-Mail-Adresse",
       "Executed": "Ausgeführt",
       "Expiration date": "Verfallsdatum",
@@ -356,7 +356,7 @@
    },
    "Step 1": {
       "All voters can modify any vote": "Jeder Teilnehmer kann jede abgegebene Stimme ändern",
-      "Collect the polled users email addresses": "Sammeln der E-Mail-Adressen der zur Umfrage eingeladenen Benutzer",
+      "Collect the polled users email addresses": "Sammeln der E-Mail-Adressen der zur Abstimmung eingeladenen Benutzer",
       "Collect users email": "Sammeln der E-Mail-Adressen der Benutzer",
       "Customize the URL": "Link anpassen",
       "Go to step 2": "Weiter zum 2. Schritt",
@@ -472,12 +472,12 @@
       "remove a column or a line with": "Zeile oder Spalte entfernen mit"
    },
    "display_mails": {
-      "No one voted 'If need be' to this option.": "Niemand hat mit \"Ja - unter Vorbehalt\" für die Option abgestimmt.",
-      "No one voted 'No' to this option.": "Niemand hat mit \"Nein\" für die Option abgestimmt.",
-      "No one voted 'Yes' to this option.": "Niemand hat mit \"Ja\" für die Option abgestimmt.",
+      "No one voted 'If need be' to this option.": "Keiner hat mit \"Ja - unter Vorbehalt\" für diese Option abgestimmt.",
+      "No one voted 'No' to this option.": "Keiner hat mit \"Nein\" für diese Option abgestimmt.",
+      "No one voted 'Yes' to this option.": "Keiner hat mit \"Ja\" für diese Option abgestimmt.",
       "People who have answered 'If need be' to this option have left these email addresses:": "E-Mail-Adressen aller Benutzer, die mit \"Ja - unter Vorbehalt\" für diese Option abgestimmt haben:",
       "People who have answered 'No' to this option have left these email addresses:": "E-Mail-Adressen aller Benutzer, die mit \"Nein\" für diese Option abgestimmt haben:",
-      "People who have answered 'Yes' to this option have left these email addresses:": "E-Mail-Adressen aller Benutzer, die mit \"Ja\" für diese Option abgestimmt haben:"
+      "People who have answered 'Yes' to this option have left these email addresses:": "E-Mail-Adressen aller Benutzer, die mit \"Ja\" für diese \"Option abgestimmt haben:"
    },
    "studs": {
       "Adding the vote succeeded": "Die Stimme wurde hinzugefügt",
