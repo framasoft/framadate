@@ -248,5 +248,28 @@
 
 	    </div>
         {/if}
+        <div class="row">
+            <div class="col-md-4" >
+                <div id="poll-closed">
+                        {if $poll->closed}
+                            {$closed_icon = '<span class="glyphicon glyphicon-minus-sign"></span>'}
+                            {$closed_txt = __('PollInfo', 'The poll is closed')}
+                        {else}
+			    {$closed_icon = '<span class="glyphicon glyphicon-plus-sign"></span>'}
+                            {$closed_txt = __('PollInfo', 'The poll is still opened')}
+                        {/if}
+                        <p class="">{$closed_icon} {$closed_txt|html} </p>
+		</div>
+            </div>
+	</div>
+	{if $admin && !$poll->closed}
+	<div class="row">
+	    <div class="col-md-4" >
+                <div id="poll-close-the-poll">
+                        <button class="btn btn-danger" type="submit" name="close_poll"> <span class="glyphicon glyphicon-minus-sign"></span> {__('PollInfo', 'Close the poll')}</button>
+		</div>
+            </div>
+        </div>
+	{/if}
     </div>
 {if $admin}</form>{/if}

@@ -480,6 +480,26 @@ if (isset($_POST['confirm_add_column'])) {
     }
 }
 
+// -------------------------------
+// Close the poll
+// -------------------------------
+if (isset($_POST['close_poll'])) {
+    $smarty->assign('poll_id', $poll_id);
+    $smarty->assign('admin_poll_id', $admin_poll_id);
+    $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
+    $smarty->display('confirm/close_poll.tpl');
+    exit;
+}
+if (isset($_POST['confirm_close_poll'])) {
+    $poll->closed="1";
+	if ($adminPollService->updatePoll($poll)) {
+		$message = new Message('success', __('adminstuds', 'Poll closed'));
+	    } else {
+		$message = new Message('danger', __('Error', 'Failed to close the poll'));
+		$poll = $pollService->findById($poll_id);
+	    }
+}
+
 // Retrieve data
 $slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);

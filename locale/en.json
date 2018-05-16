@@ -162,7 +162,8 @@
       "You can't select more than %d dates": "You can't select more than %d dates",
       "You haven't filled the first section of the poll creation, or your session has expired.": "You haven't filled the first section of the poll creation, or your session has expired.",
       "You haven't filled the first section of the poll creation.": "You haven't filled in the first section of the poll.",
-      "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."
+      "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.": "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry.",
+      "Failed to close the poll": "Failed to close the poll" 
    },
    "FindPolls": {
       "Address": "Address",
@@ -361,7 +362,10 @@
       "Voters email adresses are collected, required and verified": "Voters email adresses are collected, required and verified",
       "Voters email adresses are not collected": "Voters email adresses are not collected",
       "Votes and comments are locked": "Votes and comments are locked",
-      "Votes protected by password": "Votes protected by password"
+      "Votes protected by password": "Votes protected by password",
+      "The poll is still opened": "The poll is still opened",
+      "The poll is closed": "The poll is closed",
+      "Close the poll": "Close the poll"
    },
    "Step 1": {
       "All voters can modify any vote": "All voters can modify any vote",
@@ -485,7 +489,10 @@
       "You can add a new scheduling date to your poll.": "You can add a new scheduling date to your poll.",
       "Your poll has been removed!": "Your poll has been removed!",
       "and add a new column with": "and add a new column with",
-      "remove a column or a line with": "remove a column or a line with"
+      "remove a column or a line with": "remove a column or a line with",
+      "Poll closed" : "Poll closed",
+      "Confirm close of the poll" : "Confirm close of the poll",
+      "Keep the poll opened": "Keep the poll opened"
    },
    "display_mails": {
       "People who have answered 'If need be' to this option have left those email addresses :": "People who have answered 'If need be' to this option have left those email addresses :",
