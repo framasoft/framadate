@@ -123,6 +123,7 @@
       "Enter an email address": "Enter an email address",
       "Error on amount of votes limitation: Value must be an integer greater than 0": "Error on amount of votes limitation: Value must be an integer greater than 0",
       "Error!": "Error!",
+      "Failed to close the poll": "Failed to close the poll",
       "Failed to delete all comments": "Failed to delete all comments",
       "Failed to delete all votes": "Failed to delete all votes",
       "Failed to delete column": "Failed to delete column",
@@ -346,7 +347,10 @@
       "Voters' email addresses are collected, required and verified": "Voters' email addresses are collected, required and verified",
       "Voters' email addresses are not collected": "Voters' email addresses are not collected",
       "Votes and comments are locked": "Votes and comments are locked",
-      "Votes protected by password": "Votes protected by password"
+      "Votes protected by password": "Votes protected by password",
+      "The poll is still opened": "The poll is still opened",
+      "The poll is closed": "The poll is closed",
+      "Close the poll": "Close the poll"
    },
    "Step 1": {
       "All voters can modify any vote": "All voters can modify any vote",
@@ -465,7 +469,10 @@
       "You can add a new scheduling date to your poll.": "You can add a new scheduling date to your poll.",
       "Your poll has been removed!": "Your poll has been removed!",
       "and add a new column with": "and add a new column with",
-      "remove a column or a line with": "remove a column or a line with"
+      "remove a column or a line with": "remove a column or a line with",
+      "Poll closed" : "Poll closed",
+      "Confirm close of the poll" : "Confirm close of the poll",
+      "Keep the poll opened": "Keep the poll opened"
    },
    "display_mails": {
       "Users who voted \"If need be\" for this option have left those email addresses:": "Users who voted \"If need be\" for this option have left those email addresses:",

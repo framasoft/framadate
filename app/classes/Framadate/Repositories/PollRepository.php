@@ -103,7 +103,8 @@ class PollRepository extends AbstractRepository {
             'editable' => $poll->editable >= 0 && $poll->editable <= 2 ? $poll->editable : 0,
             'hidden' => $poll->hidden ? 1 : 0,
             'password_hash' => $poll->password_hash,
-            'results_publicly_visible' => $poll->results_publicly_visible ? 1 : 0
+            'results_publicly_visible' => $poll->results_publicly_visible ? 1 : 0,
+            'closed' => $poll->closed ? 1 : 0,
         ], [
             'id' => $poll->id
         ]) > 0;
