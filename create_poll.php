@@ -115,7 +115,7 @@ if ($goToStep2) {
         } else if ($pollRepository->existsById($customized_url)) {
             $error_on_customized_url = true;
             $error_on_customized_url_msg = __('Error', 'Poll id already used');
-        } else if (in_array($customized_url, array('admin', 'vote', 'action'))) {
+        } else if (in_array($customized_url, ['admin', 'vote', 'action'], $strict = true)) {
             $error_on_customized_url = true;
             $error_on_customized_url_msg = __('Error', 'This id is not allowed');
         }
