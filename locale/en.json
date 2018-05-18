@@ -154,6 +154,7 @@
       "The name is invalid.": "The name is invalid.",
       "The name you've chosen already exist in this poll!": "The name you've chosen already exists in this poll!",
       "There is a problem with your choices": "There is a problem with your choices",
+      "This id is not allowed": "This id is not allowed",
       "This poll doesn't exist !": "This poll doesn't exist!",
       "Update vote failed": "Update vote failed",
       "You already voted": "You already voted",
