@@ -19,7 +19,7 @@
         <table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes')} {$poll->title|html}</caption>
             <thead>
-            {if $admin && !$expired}
+            {if $admin && !$expired && !$poll->closed}
                 <tr class="hidden-print">
                     <th role="presentation"></th>
                     {$headersDCount=0}
@@ -163,7 +163,7 @@
 
                     {* Voted line *}
                     <th class="bg-info" {if $accessGranted && $admin}title="{$vote->mail|html}"{/if}>{$vote->name|html}
-                    {if $active && !$expired && $accessGranted &&
+                    {if $active && !$expired && $accessGranted && !$poll->closed &&
                         (
                         $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
                         or $admin
@@ -201,7 +201,7 @@
                       {/foreach}
                     {/foreach}
 
-                    {if $active && !$expired && $accessGranted &&
+                    {if $active && !$expired && $accessGranted && !$poll->closed &&
                         (
                             $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
                             or $admin
@@ -233,7 +233,7 @@
 
             {* Line to add a new vote *}
 
-            {if $active && $editingVoteId === 0 && !$expired && $accessGranted}
+            {if $active && $editingVoteId === 0 && !$expired && $accessGranted && !$poll->closed}
                 <tr id="vote-form" class="hidden-print">
                     <td class="bg-info btn-edit">
                         <div class="input-group input-group-sm">
