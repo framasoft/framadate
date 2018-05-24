@@ -111,7 +111,7 @@
                 </tr>
                 {elseif !$hidden} {* Voted line *}
                 <tr>
-                    
+
                     <th class="bg-info" {if $accessGranted && $admin && $vote->mail}title="{$vote->mail|html}"{/if}>{$vote->name|html}
                     {if $active && !$expired && $accessGranted && !$poll->closed &&
                     (
