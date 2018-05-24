@@ -40,8 +40,10 @@ if (is_file('bandeaux_local.php')) {
     include_once('bandeaux.php');
 }
 
+$form = unserialize($_SESSION['form']);
+
 // Step 1/4 : error if $_SESSION from info_sondage are not valid
-if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (($config['use_smtp']) ? empty($_SESSION['form']->admin_mail) : false)) {
+if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? empty($form->admin_mail) : false)) {
     $smarty->assign('title', __('Error', 'Error!'));
     $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
     $smarty->display('error.tpl');
@@ -52,13 +54,13 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
     $max_expiry_time = $pollService->maxExpiryDate();
 
     // The poll format is other (A) if we are in this file
-    if (!isset($_SESSION['form']->format)) {
-        $_SESSION['form']->format = 'A';
+    if (!isset($form->format)) {
+        $form->format = 'A';
     }
     // If we come from another format, we need to clear choices
-    if (isset($_SESSION['form']->format) && $_SESSION['form']->format !== 'A') {
-        $_SESSION['form']->format = 'A';
-        $_SESSION['form']->clearChoices();
+    if (isset($form->format) && $form->format !== 'A') {
+        $form->format = 'A';
+        $form->clearChoices();
     }
 
     // Step 4 : Data prepare before insert in DB
@@ -73,22 +75,22 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
                 $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
 
                 if ($time < $min_expiry_time) {
-                    $_SESSION['form']->end_date = $min_expiry_time;
+                    $form->end_date = $min_expiry_time;
                 } elseif ($max_expiry_time < $time) {
-                    $_SESSION['form']->end_date = $max_expiry_time;
+                    $form->end_date = $max_expiry_time;
                 } else {
-                    $_SESSION['form']->end_date = $time;
+                    $form->end_date = $time;
                 }
             }
         }
 
-        if (empty($_SESSION['form']->end_date)) {
+        if (empty($form->end_date)) {
             // By default, expiration date is 6 months after last day
-            $_SESSION['form']->end_date = $max_expiry_time;
+            $form->end_date = $max_expiry_time;
         }
 
         // Insert poll in database
-        $ids = $pollService->createPoll($_SESSION['form']);
+        $ids = $pollService->createPoll($form);
         $poll_id = $ids[0];
         $admin_poll_id = $ids[1];
 
@@ -96,15 +98,15 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         if ($config['use_smtp'] === true) {
             $message = __('Mail', "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
             $message .= '<br/><br/>';
-            $message .= Utils::htmlMailEscape($_SESSION['form']->admin_name) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlMailEscape($_SESSION['form']->title) . '".<br/>';
+            $message .= Utils::htmlMailEscape($form->admin_name) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlMailEscape($form->title) . '".<br/>';
             $message .= sprintf(__('Mail', 'Thanks for filling the poll at the link above') . ' :<br/><br/><a href="%1$s">%1$s</a>', Utils::getUrlSondage($poll_id));
 
             $message_admin = __('Mail', "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
             $message_admin .= sprintf(' :<br/><br/><a href="%1$s">%1$s</a>', Utils::getUrlSondage($admin_poll_id, true));
 
-            if ($mailService->isValidEmail($_SESSION['form']->admin_mail)) {
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ': ' . $_SESSION['form']->title, $message_admin);
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ': ' . $_SESSION['form']->title, $message);
+            if ($mailService->isValidEmail($form->admin_mail)) {
+                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message_admin);
+                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message);
             }
         }
 
@@ -123,22 +125,22 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
     else if (isset($_POST['fin_sondage_autre'])) {
         // Store choices in $_SESSION
         if (isset($_POST['choices'])) {
-            $_SESSION['form']->clearChoices();
+            $form->clearChoices();
             foreach ($_POST['choices'] as $c) {
                 if (!empty($c)) {
                     $c = strip_tags($c);
                     $choice = new Choice($c);
-                    $_SESSION['form']->addChoice($choice);
+                    $form->addChoice($choice);
                 }
             }
         }
 
         // Expiration date is initialised with config parameter. Value will be modified in step 4 if user has defined an other date
-        $_SESSION['form']->end_date = $max_expiry_time;
+        $form->end_date = $max_expiry_time;
 
         // Summary
         $summary = '<ol>';
-        foreach ($_SESSION['form']->getChoices() as $i=>$choice) {
+        foreach ($form->getChoices() as $i=>$choice) {
             preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/', $choice->getName(), $md_a_img); // Markdown [![alt](src)](href)
             preg_match_all('/!\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_img); // Markdown ![alt](src)
             preg_match_all('/\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_a); // Markdown [text](href)
@@ -161,6 +163,8 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         $summary .= '</ol>';
 
         $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); //textual date
+
+        $_SESSION['form'] = serialize($form);
 
         $smarty->assign('title', __('Step 3', 'Removal date and confirmation (3 on 3)'));
         $smarty->assign('summary', $summary);
@@ -189,7 +193,7 @@ if (empty($_SESSION['form']->title) || empty($_SESSION['form']->admin_name) || (
         echo '    </div>' . "\n";
 
         // Fields choices : 5 by default
-        $choices = $_SESSION['form']->getChoices();
+        $choices = $form->getChoices();
         $nb_choices = max(count($choices), 5);
         for ($i = 0; $i < $nb_choices; $i++) {
             $choice = isset($choices[$i]) ? $choices[$i] : new Choice();
