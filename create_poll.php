@@ -35,9 +35,9 @@ $pollRepository = RepositoryFactory::pollRepository();
 
 /* PAGE */
 /* ---- */
-$form = null;
+$form = isset($_SESSION['form']) ? unserialize($_SESSION['form']) : null;
 
-if (!isset($_SESSION['form']) && !(unserialize($_SESSION['form']) instanceof Form)) {
+if ($form != null && !($form instanceof Form)) {
     $form = new Form();
 }
 
