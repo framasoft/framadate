@@ -44,21 +44,23 @@ if (is_readable('bandeaux_local.php')) {
 $min_expiry_time = $pollService->minExpiryDate();
 $max_expiry_time = $pollService->maxExpiryDate();
 
+$form = unserialize($_SESSION['form']);
+
 // The poll format is DATE if we are in this file
-if (!isset($_SESSION['form']->format)) {
-    $_SESSION['form']->format = 'D';
+if (!isset($form->format)) {
+    $form->format = 'D';
 }
 // If we come from another format, we need to clear choices
-if (isset($_SESSION['form']->format) && $_SESSION['form']->format !== 'D') {
-    $_SESSION['form']->format = 'D';
-    $_SESSION['form']->clearChoices();
+if (isset($form->format) && $form->format !== 'D') {
+    $form->format = 'D';
+    $form->clearChoices();
 }
 
-if (!isset($_SESSION['form']->title) || !isset($_SESSION['form']->admin_name) || ($config['use_smtp'] && !isset($_SESSION['form']->admin_mail))) {
+if (!isset($form->title) || !isset($form->admin_name) || ($config['use_smtp'] && !isset($form->admin_mail))) {
     $step = 1;
 } else if (!empty($_POST['confirmation'])) {
     $step = 4;
-} else if (empty($_POST['choixheures']) || isset($_SESSION['form']->totalchoixjour)) {
+} else if (empty($_POST['choixheures']) || isset($form->totalchoixjour)) {
     $step = 2;
 } else {
     $step = 3;
@@ -76,7 +78,7 @@ switch ($step) {
         // Step 2/4 : Select dates of the poll
 
         // Prefill form->choices
-        foreach ($_SESSION['form']->getChoices() as $c) {
+        foreach ($form->getChoices() as $c) {
             /** @var Choice $c */
             $count = 3 - count($c->getSlots());
             for ($i = 0; $i < $count; $i++) {
@@ -84,18 +86,20 @@ switch ($step) {
             }
         }
 
-        $count = 3 - count($_SESSION['form']->getChoices());
+        $count = 3 - count($form->getChoices());
         for ($i = 0; $i < $count; $i++) {
             $c = new Choice('');
             $c->addSlot('');
             $c->addSlot('');
             $c->addSlot('');
-            $_SESSION['form']->addChoice($c);
+            $form->addChoice($c);
         }
+
+        $_SESSION['form'] = serialize($form);
 
         // Display step 2
         $smarty->assign('title', __('Step 2 date', 'Poll dates (2 on 3)'));
-        $smarty->assign('choices', $_SESSION['form']->getChoices());
+        $smarty->assign('choices', $form->getChoices());
         $smarty->assign('error', null);
 
         $smarty->display('create_date_poll_step_2.tpl');
@@ -115,7 +119,7 @@ switch ($step) {
             if (count($_POST['days']) > MAX_SLOTS_PER_POLL) {
                 // Display step 2
                 $smarty->assign('title', __('Step 2 date', 'Poll dates (2 on 3)'));
-                $smarty->assign('choices', $_SESSION['form']->getChoices());
+                $smarty->assign('choices', $form->getChoices());
                 $smarty->assign('error', __f('Error', 'You can\'t select more than %d dates', MAX_SLOTS_PER_POLL));
 
                 $smarty->display('create_date_poll_step_2.tpl');
@@ -123,7 +127,7 @@ switch ($step) {
             }
 
             // Clear previous choices
-            $_SESSION['form']->clearChoices();
+            $form->clearChoices();
 
             // Reorder moments to deal with suppressed dates
             $moments = [];
@@ -143,7 +147,7 @@ switch ($step) {
                     $date = DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $_POST['days'][$i])->setTime(0, 0, 0);
                     $time = (string) $date->getTimestamp();
                     $choice = new Choice($time);
-                    $_SESSION['form']->addChoice($choice);
+                    $form->addChoice($choice);
 
                     $schedules = $inputService->filterArray($moments[$i], FILTER_DEFAULT);
                     for ($j = 0; $j < count($schedules); $j++) {
@@ -153,12 +157,12 @@ switch ($step) {
                     }
                 }
             }
-            $_SESSION['form']->sortChoices();
+            $form->sortChoices();
         }
 
         // Display step 3
         $summary = '<ul>';
-        $choices = $_SESSION['form']->getChoices();
+        $choices = $form->getChoices();
         foreach ($choices as $choice) {
             /** @var Choice $choice */
             $summary .= '<li>' . strftime($date_format['txt_full'], $choice->getName());
@@ -173,6 +177,8 @@ switch ($step) {
         $summary .= '</ul>';
 
         $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); // textual date
+
+        $_SESSION['form'] = serialize($form);
 
         $smarty->assign('title', __('Step 3', 'Removal date and confirmation (3 on 3)'));
         $smarty->assign('summary', $summary);
@@ -196,22 +202,22 @@ switch ($step) {
                 $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
 
                 if ($time < $min_expiry_time) {
-                    $_SESSION['form']->end_date = $min_expiry_time;
+                    $form->end_date = $min_expiry_time;
                 } elseif ($max_expiry_time < $time) {
-                    $_SESSION['form']->end_date = $max_expiry_time;
+                    $form->end_date = $max_expiry_time;
                 } else {
-                    $_SESSION['form']->end_date = $time;
+                    $form->end_date = $time;
                 }
             }
         }
 
-        if (empty($_SESSION['form']->end_date)) {
+        if (empty($form->end_date)) {
             // By default, expiration date is 6 months after last day
-            $_SESSION['form']->end_date = $max_expiry_time;
+            $form->end_date = $max_expiry_time;
         }
 
         // Insert poll in database
-        $ids = $pollService->createPoll($_SESSION['form']);
+        $ids = $pollService->createPoll($form);
         $poll_id = $ids[0];
         $admin_poll_id = $ids[1];
 
@@ -219,7 +225,7 @@ switch ($step) {
         if ($config['use_smtp'] === true) {
             $message = __('Mail', "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
             $message .= '<br/><br/>';
-            $message .= Utils::htmlEscape($_SESSION['form']->admin_name) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlEscape($_SESSION['form']->title) . '".<br/>';
+            $message .= Utils::htmlEscape($form->admin_name) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlEscape($form->title) . '".<br/>';
             $message .= __('Mail', 'Thanks for filling the poll at the link above') . ' :<br/><br/><a href="%1$s">%1$s</a>';
 
             $message_admin = __('Mail', "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
@@ -228,9 +234,9 @@ switch ($step) {
             $message = sprintf($message, Utils::getUrlSondage($poll_id));
             $message_admin = sprintf($message_admin, Utils::getUrlSondage($admin_poll_id, true));
 
-            if ($mailService->isValidEmail($_SESSION['form']->admin_mail)) {
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($_SESSION['form']->title), $message_admin);
-                $mailService->send($_SESSION['form']->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($_SESSION['form']->title), $message);
+            if ($mailService->isValidEmail($form->admin_mail)) {
+                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($form->title), $message_admin);
+                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($form->title), $message);
             }
         }
 
