@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
+use Framadate\Migration\AddColumn_admin_choice_In_poll;
 use Framadate\Migration\AddColumn_closed_In_poll;
 use Framadate\Migration\AddColumn_hidden_In_poll_For_0_9;
 use Framadate\Migration\AddColumn_receiveNewComments_For_0_9;
@@ -55,6 +56,7 @@ $migrations = [
     new AddColumn_ValueMax_In_poll_For_1_1(),
     new Fix_MySQL_No_Zero_Date(),
     new AddColumn_closed_In_poll(),
+    new AddColumn_admin_choice_In_poll(),
 ];
 // ---------------------------------------
 
