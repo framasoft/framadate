@@ -101,7 +101,8 @@ const DEMO_POLL_NUMBER_VOTES = 10;
 // Config
 $config = [
     /* general config */
-    'use_smtp' => true,                     // use email for polls creation/modification/responses notification
+    'use_smtp' => true,                     // use email for polls creation/modification/responses notification (uses smtp only if `use_sendmail` is disabled)
+    'use_sendmail' => false,                // use sendmail instead of smtp
     'smtp_options' => [
         'host' => 'localhost',              // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
         'auth' => false,                    // Enable SMTP authentication
