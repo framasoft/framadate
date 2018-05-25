@@ -45,7 +45,7 @@ if (defined('FAVICON')) {
 }
 
 // Dev Mode
-if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {
+if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE'] || php_sapi_name() === 'cli-server') {
     $smarty->force_compile = true;
     $smarty->compile_check = true;
 } else {
@@ -78,6 +78,21 @@ function smarty_modifier_addslashes_single_quote($string) {
 
 function smarty_modifier_html($html) {
     return Utils::htmlEscape($html);
+}
+
+/**
+ * markdown_to_text
+ * Retrieves a markdown string and tries to make a plain text value
+ *
+ * @param array $options
+ * @return string
+ */
+function smarty_function_markdown_to_text($options, Smarty_Internal_Template $template)
+{
+    $locale = \o80\i18n\I18N::instance()->getLoadedLang();
+    $text = strip_tags(Parsedown::instance()->text($options['markdown']));
+    $number_letters = (new NumberFormatter($locale, NumberFormatter::ORDINAL))->format($options['id'] + 1);
+    return $text !== '' ? $text : __f('Poll results', '%s option', $number_letters);
 }
 
 function smarty_modifier_datepicker_path($lang) {
