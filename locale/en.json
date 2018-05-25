@@ -290,6 +290,7 @@
       "You have to provide a password to access the poll.": "You have to provide a password to access the poll."
    },
    "Poll results": {
+      "%s option": "%s option",
       "Addition": "Total",
       "Anyone will be able to access your email address after your vote": "Anyone will be able to see your email address after you voted",
       "Best choice": "Best choice",
