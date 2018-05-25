@@ -47,6 +47,17 @@ $max_expiry_time = $pollService->maxExpiryDate();
 
 $form = unserialize($_SESSION['form']);
 
+// The poll format is AUTRE (other) if we are in this file
+if (!isset($form->format)) {
+    $form->format = 'A';
+}
+
+// The poll format is AUTRE (other)
+if ($form->format !== 'A') {
+    $form->format = 'A';
+    $form->clearChoices();
+}
+
 if (!isset($form->title) || !isset($form->admin_name) || ($config['use_smtp'] && !isset($form->admin_mail))) {
     $step = 1;
 } elseif (isset($_POST['confirmation'])) {
@@ -55,12 +66,6 @@ if (!isset($form->title) || !isset($form->admin_name) || ($config['use_smtp'] &&
     $step = 2;
 } else {
     $step = 3;
-}
-
-// The poll format is AUTRE (other)
-if ($form->format !== 'A') {
-    $form->format = 'A';
-    $form->clearChoices();
 }
 
 switch ($step) {
