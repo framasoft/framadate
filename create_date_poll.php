@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft https://framagit.org/framasoft/framadate/)
  */
 use Framadate\Choice;
+use Framadate\Form;
 use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
@@ -44,7 +45,14 @@ if (is_readable('bandeaux_local.php')) {
 $min_expiry_time = $pollService->minExpiryDate();
 $max_expiry_time = $pollService->maxExpiryDate();
 
-$form = unserialize($_SESSION['form']);
+$form = isset($_SESSION['form']) ? unserialize($_SESSION['form']) : null;
+
+if ($form === null || !($form instanceof Form)) {
+    $smarty->assign('title', __('Error', 'Error!'));
+    $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
+    $smarty->display('error.tpl');
+    exit;
+}
 
 // The poll format is DATE if we are in this file
 if (!isset($form->format)) {
