@@ -82,19 +82,19 @@
                             <ul class="list-unstyled choice">
                                 <li class="yes">
                                     <input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2" {if $choice=='2'}checked {/if}/>
-                                    <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{__('Poll results', 'Vote yes for')|html} {$slots[$id]->title|html}">
+                                    <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{__('Poll results', 'Vote yes for')|html} {markdown_to_text markdown=$slots[$id]->title id=$id|html}">
                                         <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                     </label>
                                 </li>
                                 <li class="ifneedbe">
                                     <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1" {if $choice=='1'}checked {/if}/>
-                                    <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slots[$id]->title|html}">
+                                    <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{__('Poll results', 'Vote ifneedbe for')|html} {markdown_to_text markdown=$slots[$id]->title id=$id|html}">
                                         (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                     </label>
                                 </li>
                                 <li class="no">
                                     <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value="0" {if $choice=='0'}checked {/if}/>
-                                    <label class="btn btn-default btn-xs" for="n-choice-{$id}" title="{__('Poll results', 'Vote no for')|html} {$slots[$id]->title|html}">
+                                    <label class="btn btn-default btn-xs" for="n-choice-{$id}" title="{__('Poll results', 'Vote no for')|html} {markdown_to_text markdown=$slots[$id]->title id=$id|html}">
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
@@ -204,24 +204,24 @@
                                     	<input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2"
                                     		{(!isset($selectedNewVotes[$id]) || ("2" !== $selectedNewVotes[$id])) ? "" : " checked"}
                                     	/>
-                                    	<label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{__('Poll results', 'Vote yes for')|html} {$slot->title|html}">
+                                        <label class="btn btn-default btn-xs" for="y-choice-{$id}" title="{__('Poll results', 'Vote yes for')|html} {markdown_to_text markdown=$slot->title id=$id|html}">
                                        		<i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                     	</label>
                                 	</li>
-                               		 <li class="ifneedbe">
+                                    <li class="ifneedbe">
                                   	  <input type="radio" id="i-choice-{$id}" name="choices[{$id}]" value="1"
                                     		{(!isset($selectedNewVotes[$id]) || ("1" !== $selectedNewVotes[$id])) ? "" : " checked"}
                                     	/>
-                                  	  <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->title|html}">
-                                        (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
-                                    	</label>
+                                        <label class="btn btn-default btn-xs" for="i-choice-{$id}" title="{__('Poll results', 'Vote ifneedbe for')|html} {markdown_to_text markdown=$slot->title id=$id|html}">
+                                            (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
+                                        </label>
                                	 	</li>
 								{/if}
                                 <li class="no">
                                     <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value="0"
                                 		{(!isset($selectedNewVotes[$id]) || ("0" !== $selectedNewVotes[$id])) ? "" : " checked"}
                                 	/>
-                                    <label class="btn btn-default btn-xs {(!isset($selectedNewVotes[$id]) || ("0" !== $selectedNewVotes[$id])) ? "startunchecked" : ""}" for="n-choice-{$id}" title="{__('Poll results', 'Vote no for')|html} {$slot->title|html}">
+                                    <label class="btn btn-default btn-xs {(!isset($selectedNewVotes[$id]) || ("0" !== $selectedNewVotes[$id])) ? "startunchecked" : ""}" for="n-choice-{$id}" title="{__('Poll results', 'Vote no for')|html} {markdown_to_text markdown=$slot->title id=$id|html}">
                                         <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
@@ -361,9 +361,9 @@
 
                 {$i = 0}
                 <ul class="list-unstyled">
-                    {foreach $slots as $slot}
+                    {foreach $slots as $i => $slot}
                         {if $best_choices['y'][$i] == $max}
-                            <li><strong>{$slot->title|markdown:true}</strong></li>
+                            <li><strong>{markdown_to_text markdown=$slot->title id=$i}</strong></li>
                         {/if}
                         {$i = $i+1}
                     {/foreach}
