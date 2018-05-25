@@ -83,8 +83,8 @@ class Form
     public $results_publicly_visible;
 
      /**
-     * If true, the users can leave an email address while voting in the poll
-     * @var boolean
+     * Tells if voters email addresses are collected or not.
+     * @var \Framadate\CollectMail
      */
     public $collect_users_mail;
 
@@ -93,8 +93,10 @@ class Form
      */
     private $choices;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->editable = Editable::EDITABLE_BY_ALL;
+	    $this->collect_users_mail = CollectMail::NO_COLLECT;
         $this->clearChoices();
     }
 

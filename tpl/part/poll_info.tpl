@@ -233,9 +233,19 @@
                 </div>
             </div>
 	    <div id="collect_users_mail">
-            {if $poll->collect_users_mail}
-                <p><span class="glyphicon glyphicon-envelope"> </span> {__('PollInfo', 'Collecting the polled users emails')}</p>
-            {/if}
+            {if $poll->collect_users_mail == constant("Framadate\CollectMail::NO_COLLECT")}
+		{$txt=__('PollInfo', 'Voters email adresses are not collected')}
+	    {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT")}
+		{$txt=__('PollInfo', 'Voters email adresses are collected')}
+	    {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT_REQUIRED")}
+		{$txt=__('PollInfo', 'Voters email adresses are collected and required')}
+	    {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT_REQUIRED_VERIFIED")}
+		{$txt=__('PollInfo', 'Voters email adresses are collected, required and verified')}
+	    {else}
+		{$txt='Error'}
+	    {/if}
+                <p><span class="glyphicon glyphicon-envelope"> </span> {$txt|html}</p>
+
 	    </div>
         {/if}
     </div>

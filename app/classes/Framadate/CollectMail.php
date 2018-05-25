@@ -17,29 +17,19 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-// FRAMADATE version
-const VERSION = '1.2.0';
+namespace Framadate;
 
-// PHP Needed version
-const PHP_NEEDED_VERSION = '5.6';
-
-// Config constants
-const COMPILE_DIR = '/tpl_c/';
-
-// Regex
-const POLL_REGEX = '/^[a-z0-9-]*$/i';
-const ADMIN_POLL_REGEX = '/^[a-z0-9]{24}$/i';
-const CHOICE_REGEX = '/^[ 012]$/';
-const BOOLEAN_REGEX = '/^(on|off|true|false|1|0)$/i';
-const BOOLEAN_TRUE_REGEX = '/^(on|true|1)$/i';
-const EDITABLE_CHOICE_REGEX = '/^[0-2]$/';
-const COLLECT_MAIL_CHOICE_REGEX = '/^[0-3]$/';
-const BASE64_REGEX = '/^[A-Za-z0-9]+$/';
-const MD5_REGEX = '/^[A-Fa-f0-9]{32}$/';
-
-// Session constants
-const SESSION_EDIT_LINK_TOKEN = 'EditLinkToken';
-const SESSION_EDIT_LINK_TIME = "EditLinkMail";
-
-// CSRF (300s = 5min)
-const TOKEN_TIME = 300;
+/**
+ * Class CollectMail
+ *
+ * Is used to specify the poll's edition permissions.
+ * @TODO : wait to use the SplEnum
+ *
+ * @package Framadate
+ */
+class CollectMail { // extends SplEnum
+    const NO_COLLECT = 0;
+    const COLLECT = 1;
+    const COLLECT_REQUIRED = 2;
+    const COLLECT_REQUIRED_VERIFIED = 3;
+}

@@ -32,7 +32,7 @@
                                    title="{__('adminstuds', 'Remove the column')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
                                     <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                                 </a>
-				{if $poll->collect_users_mail}
+				{if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT")}
 					<a href="{poll_url id=$admin_poll_id admin=true action='collect_mail' action_value=($headersDCount)}"
 					   class="btn btn-link btn-sm collect-mail"
 		                           title="{__('adminstuds', 'Collect the emails of the polled users for the choice')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
@@ -112,9 +112,9 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
                             <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
-			    {if $poll->collect_users_mail}
-			    	<input type="email" required id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
-			    {/if}
+			                {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT")}
+                                <input type="email" {if $poll->collect_users_mail != constant("Framadate\CollectMail::COLLECT")} required {/if} id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
+			                {/if}
                         </div>
                     </td>
 
@@ -162,7 +162,7 @@
                 <tr>
 
                     {* Voted line *}
-                    <th class="bg-info">{$vote->name|html}
+                    <th class="bg-info" {if $accessGranted && $admin}title="{$vote->mail|html}"{/if}>{$vote->name|html}
                     {if $active && !$expired && $accessGranted &&
                         (
                         $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
@@ -239,11 +239,11 @@
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
-                            {if $poll->collect_users_mail}
-                                <input type="email" required id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
+                            {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT")}
+                                <input type="email" {if $poll->collect_users_mail != constant("Framadate\CollectMail::COLLECT")} required {/if} id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
                             {/if}
                         </div>
-                        {if $poll->collect_users_mail && $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')}
+                        {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT") && $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')}
                             <div class="bg-danger">
                                 <i class="glyphicon glyphicon-alert"> </i>
                                 <label> {__('Poll results', 'Anyone will be able to access your email address after your vote')} </label>
