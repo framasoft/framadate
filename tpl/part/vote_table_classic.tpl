@@ -303,7 +303,7 @@
                 });
                 var cols = [
                 {foreach $slots as $id=>$slot}
-                    $('<div/>').html('{$slot->title|markdown:true}').text(),
+                    $('<div/>').html('{markdown_to_text markdown=$slot->title id=$id}').text(),
                 {/foreach}
                 ];
 
