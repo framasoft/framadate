@@ -31,7 +31,7 @@
       "Back to administration": "Retour à l'administration",
       "Change the poll": "Modifier le sondage",
       "Confirm removal of the poll": "Confirmer la suppression du sondage",
-      "Deleted the poll": "Supprimer le sondage",
+      "Deleted the poll": "Sondage complètement supprimé",
       "Email": "Courriel",
       "Executed": "Exécutées",
       "Expiration date": "Expiration",
@@ -365,7 +365,7 @@
    "Step 1": {
       "All voters can modify any vote": "Tou·te·s les sondé·e·s peuvent modifier tous les votes",
       "Collect the polled users email addresses": "Collecte les courriels des votants",
-      "Collect users email": "Collecter les courriels des utilisateurs",
+      "Collect users email": "Collecte les courriels des utilisateurs",
       "Collect voters email": "Collecte les courriels des utilisateurs",
       "Customize the URL": "Personnaliser le lien",
       "Email addresses are collected but not required": "Les courriels sont collectés mais pas requis",
