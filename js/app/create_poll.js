@@ -60,9 +60,9 @@ $(document).ready(function () {
      */
     $("#use_ValueMax").change(function () {
         if ($(this).prop("checked")) {
-            $("#ValueMax").removeClass("hidden");
+            $("#valueMaxWrapper").removeClass("hidden");
         } else {
-            $("#ValueMax").addClass("hidden");
+            $("#valueMaxWrapper").addClass("hidden");
         }
     });
 
