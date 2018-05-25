@@ -8,18 +8,39 @@ class MailService {
 
     const MAILSERVICE_KEY = 'mailservice';
 
+    /**
+     * @var bool
+     */
     private $smtp_allowed;
 
+    /**
+     * @var array
+     */
     private $smtp_options = [];
 
+    /**
+     * @var bool
+     */
+    private $use_sendmail;
+
+    /**
+     * @var LogService
+     */
     private $logService;
 
-    function __construct($smtp_allowed, $smtp_options = []) {
+    /**
+     * MailService constructor.
+     * @param $smtp_allowed
+     * @param array $smtp_options
+     * @param bool $use_sendmail
+     */
+    public function __construct($smtp_allowed, $smtp_options = [], $use_sendmail = false) {
         $this->logService = new LogService();
         $this->smtp_allowed = $smtp_allowed;
         if (true === is_array($smtp_options)) {
             $this->smtp_options = $smtp_options;
         }
+        $this->use_sendmail = $use_sendmail;
     }
 
     public function isValidEmail($email) {
@@ -82,7 +103,11 @@ class MailService {
      * @param PHPMailer $mailer
      */
     private function configureMailer(PHPMailer $mailer) {
-        $mailer->isSMTP();
+        if ($this->use_sendmail) {
+            $mailer->isSendmail();
+        } else {
+            $mailer->isSMTP();
+        }
 
         $available_options = [
             'host' => 'Host',

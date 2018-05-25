@@ -31,7 +31,7 @@ include_once __DIR__ . '/app/inc/init.php';
 /*---------*/
 $logService = new LogService();
 $pollService = new PollService($connect, $logService);
-$mailService = new MailService($config['use_smtp'], $config['smtp_options']);
+$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
 $purgeService = new PurgeService($connect, $logService);
 $sessionService = new SessionService();
 
