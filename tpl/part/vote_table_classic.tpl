@@ -361,9 +361,9 @@
 
                 {$i = 0}
                 <ul class="list-unstyled">
-                    {foreach $slots as $slot}
+                    {foreach $slots as $i => $slot}
                         {if $best_choices['y'][$i] == $max}
-                            <li><strong>{$slot->title|markdown:true}</strong></li>
+                            <li><strong>{markdown_to_text markdown=$slot->title id=$i}</strong></li>
                         {/if}
                         {$i = $i+1}
                     {/foreach}
