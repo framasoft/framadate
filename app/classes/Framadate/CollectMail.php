@@ -20,16 +20,14 @@
 namespace Framadate;
 
 /**
- * Class Collect_mail
+ * Class CollectMail
  *
  * Is used to specify the poll's edition permissions.
  * @TODO : wait to use the SplEnum
  *
  * @package Framadate
  */
-class Collect_mail { // extends SplEnum
-    const __default = self::NO_COLLECT;
-
+class CollectMail { // extends SplEnum
     const NO_COLLECT = 0;
     const COLLECT = 1;
     const COLLECT_REQUIRED = 2;

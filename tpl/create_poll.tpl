@@ -325,7 +325,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         {* Collect users email *}
 
 			<div class="form-group">
@@ -335,19 +335,19 @@
                             <div class="col-sm-8">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="collect_users_mail" id="no_collect" {if $collect_users_mail==constant("Framadate\Collect_mail::NO_COLLECT")}checked{/if} value="{constant("Framadate\Collect_mail::NO_COLLECT")}">
+                                        <input type="radio" name="collect_users_mail" id="no_collect" {if $collect_users_mail==constant("Framadate\CollectMail::NO_COLLECT")}checked{/if} value="{constant("Framadate\CollectMail::NO_COLLECT")}">
                                         {__('Step 1', 'Email addresses are not collected')}
                                     </label>
                                     <label>
-                                        <input type="radio" name="collect_users_mail" {if $collect_users_mail==constant("Framadate\Collect_mail::COLLECT")}checked{/if} value="{constant("Framadate\Collect_mail::COLLECT")}">
+                                        <input type="radio" name="collect_users_mail" {if $collect_users_mail==constant("Framadate\CollectMail::COLLECT")}checked{/if} value="{constant("Framadate\CollectMail::COLLECT")}">
                                         {__('Step 1', 'Email addresses are collected but not required')}
                                     </label>
                                     <label>
-                                        <input type="radio" name="collect_users_mail" {if $collect_users_mail==constant("Framadate\Collect_mail::COLLECT_REQUIRED")}checked{/if} value="{constant("Framadate\Collect_mail::COLLECT_REQUIRED")}">
+                                        <input type="radio" name="collect_users_mail" {if $collect_users_mail==constant("Framadate\CollectMail::COLLECT_REQUIRED")}checked{/if} value="{constant("Framadate\CollectMail::COLLECT_REQUIRED")}">
                                         {__('Step 1', 'Email addresses are required')}
                                     </label>
 				    <label>
-                                        <input type="radio" disabled name="collect_users_mail" {if $collect_users_mail==constant("Framadate\Collect_mail::COLLECT_REQUIRED_VERIFIED")}checked{/if} value="{constant("Framadate\Collect_mail::COLLECT_REQUIRED_VERIFIED")}">
+                                        <input type="radio" disabled name="collect_users_mail" {if $collect_users_mail==constant("Framadate\CollectMail::COLLECT_REQUIRED_VERIFIED")}checked{/if} value="{constant("Framadate\CollectMail::COLLECT_REQUIRED_VERIFIED")}">
                                         {__('Step 1', 'Email addresses are required and verified')}
                                     </label>
                                 </div>
@@ -360,12 +360,12 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div> {* END div.form-group *}
-                    
+
                 </div> {* END div.collapse *}
-                
-                
+
+
                 <p class="text-right">
                     <button name="{$goToStep2}" value="{$poll_type}" type="submit"
                             class="btn btn-success">{__('Step 1', 'Go to step 2')}</button>

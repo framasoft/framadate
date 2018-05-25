@@ -69,23 +69,23 @@ class InputService {
     public function filterMail($mail) {
     	///////////////////////////////////////////////////////////////////////////////////////
         // formatting
-        
+
     	$mail = trim($mail);
-        
+
     	///////////////////////////////////////////////////////////////////////////////////////
         // e-mail validation
-        
+
         $resultat = FALSE;
-        
+
     	$validator = new EmailValidator();
-    	
+
         if ($validator->isValid($mail, new RFCValidation())) {
             $resultat = $mail;
         }
-        
+
         ///////////////////////////////////////////////////////////////////////////////////////
         // return
-        
+
         return $resultat;
     }
 
@@ -115,8 +115,8 @@ class InputService {
         return filter_var($editable, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => EDITABLE_CHOICE_REGEX]]);
     }
 
-    public function filterCollect_mail($collect_mail) {
-        return filter_var($collect_mail, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => COLLECT_MAIL_CHOICE_REGEX]]);
+    public function filterCollectMail($collectMail) {
+        return filter_var($collectMail, FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => COLLECT_MAIL_CHOICE_REGEX]]);
     }
 
     public function filterComment($comment) {

@@ -84,7 +84,7 @@ class Form
 
      /**
      * Tells if voters email addresses are collected or not.
-     * @var \Framadate\Collect_mail
+     * @var \Framadate\CollectMail
      */
     public $collect_users_mail;
 
@@ -93,9 +93,10 @@ class Form
      */
     private $choices;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->editable = Editable::EDITABLE_BY_ALL;
-	$this->collect_users_mail = Collect_mail::NO_COLLECT;
+	    $this->collect_users_mail = CollectMail::NO_COLLECT;
         $this->clearChoices();
     }
 
