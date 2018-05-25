@@ -35,18 +35,19 @@ $pollRepository = RepositoryFactory::pollRepository();
 
 /* PAGE */
 /* ---- */
+$form = isset($_SESSION['form']) ? unserialize($_SESSION['form']) : null;
 
-if (!isset($_SESSION['form'])) {
-    $_SESSION['form'] = new Form();
+if ($form === null && !($form instanceof Form)) {
+    $form = new Form();
 }
 
 // Type de sondage
 if (isset($_GET['type']) && $_GET['type'] === 'date') {
     $poll_type = 'date';
-    $_SESSION['form']->choix_sondage = $poll_type;
+    $form->choix_sondage = $poll_type;
 } else {
     $poll_type = 'classic';
-    $_SESSION['form']->choix_sondage = $poll_type;
+    $form->choix_sondage = $poll_type;
 }
 
 // We clean the data
@@ -85,21 +86,21 @@ if ($goToStep2) {
     $error_on_customized_url = false;
     $error_on_ValueMax = false;
 
-    $_SESSION['form']->title = $title;
-    $_SESSION['form']->id = $customized_url;
-    $_SESSION['form']->use_customized_url = $use_customized_url;
-    $_SESSION['form']->use_ValueMax = $use_ValueMax;
-    $_SESSION['form']->ValueMax = $ValueMax;
-    $_SESSION['form']->admin_name = $name;
-    $_SESSION['form']->admin_mail = $mail;
-    $_SESSION['form']->description = $description;
-    $_SESSION['form']->editable = $editable;
-    $_SESSION['form']->receiveNewVotes = $receiveNewVotes;
-    $_SESSION['form']->receiveNewComments = $receiveNewComments;
-    $_SESSION['form']->hidden = $hidden;
-    $_SESSION['form']->collect_users_mail = $collect_users_mail;
-    $_SESSION['form']->use_password = ($use_password !== null);
-    $_SESSION['form']->results_publicly_visible = ($results_publicly_visible !== null);
+    $form->title = $title;
+    $form->id = $customized_url;
+    $form->use_customized_url = $use_customized_url;
+    $form->use_ValueMax = $use_ValueMax;
+    $form->ValueMax = $ValueMax;
+    $form->admin_name = $name;
+    $form->admin_mail = $mail;
+    $form->description = $description;
+    $form->editable = $editable;
+    $form->receiveNewVotes = $receiveNewVotes;
+    $form->receiveNewComments = $receiveNewComments;
+    $form->hidden = $hidden;
+    $form->collect_users_mail = $collect_users_mail;
+    $form->use_password = ($use_password !== null);
+    $form->results_publicly_visible = ($results_publicly_visible !== null);
 
     if ($config['use_smtp'] === true && empty($mail)) {
         $error_on_mail = true;
@@ -152,12 +153,14 @@ if ($goToStep2) {
         && !$error_on_password && !$error_on_password_repeat &&!$error_on_ValueMax
     ) {
         // If no errors, we hash the password if needed
-        if ($_SESSION['form']->use_password) {
-            $_SESSION['form']->password_hash = PasswordHasher::hash($password);
+        if ($form->use_password) {
+            $form->password_hash = PasswordHasher::hash($password);
         } else {
-            $_SESSION['form']->password_hash = null;
-            $_SESSION['form']->results_publicly_visible = null;
+            $form->password_hash = null;
+            $form->results_publicly_visible = null;
         }
+
+        $_SESSION['form'] = serialize($form);
 
         if ($goToStep2 === 'date') {
             header('Location:create_date_poll.php');
@@ -292,21 +295,21 @@ $smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_defaul
 $smarty->assign('goToStep2', GO_TO_STEP_2);
 
 $smarty->assign('poll_type', $poll_type);
-$smarty->assign('poll_title', Utils::fromPostOrDefault('title', $_SESSION['form']->title));
-$smarty->assign('customized_url', Utils::fromPostOrDefault('customized_url', $_SESSION['form']->id));
-$smarty->assign('use_customized_url', Utils::fromPostOrDefault('use_customized_url', $_SESSION['form']->use_customized_url));
-$smarty->assign('ValueMax', Utils::fromPostOrDefault('ValueMax', $_SESSION['form']->ValueMax));
-$smarty->assign('use_ValueMax', Utils::fromPostOrDefault('use_ValueMax', $_SESSION['form']->use_ValueMax));
-$smarty->assign('collect_users_mail', Utils::fromPostOrDefault('collect_users_mail', $_SESSION['form']->collect_users_mail));
-$smarty->assign('poll_description', !empty($_POST['description']) ? $_POST['description'] :  $_SESSION['form']->description);
-$smarty->assign('poll_name', Utils::fromPostOrDefault('name', $_SESSION['form']->admin_name));
-$smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $_SESSION['form']->admin_mail));
-$smarty->assign('poll_editable', Utils::fromPostOrDefault('editable', $_SESSION['form']->editable));
-$smarty->assign('poll_receiveNewVotes', Utils::fromPostOrDefault('receiveNewVotes', $_SESSION['form']->receiveNewVotes));
-$smarty->assign('poll_receiveNewComments', Utils::fromPostOrDefault('receiveNewComments', $_SESSION['form']->receiveNewComments));
-$smarty->assign('poll_hidden', Utils::fromPostOrDefault('hidden', $_SESSION['form']->hidden));
-$smarty->assign('poll_use_password', Utils::fromPostOrDefault('use_password', $_SESSION['form']->use_password));
-$smarty->assign('poll_results_publicly_visible', Utils::fromPostOrDefault('results_publicly_visible', $_SESSION['form']->results_publicly_visible));
-$smarty->assign('form', $_SESSION['form']);
+$smarty->assign('poll_title', Utils::fromPostOrDefault('title', $form->title));
+$smarty->assign('customized_url', Utils::fromPostOrDefault('customized_url', $form->id));
+$smarty->assign('use_customized_url', Utils::fromPostOrDefault('use_customized_url', $form->use_customized_url));
+$smarty->assign('ValueMax', Utils::fromPostOrDefault('ValueMax', $form->ValueMax));
+$smarty->assign('use_ValueMax', Utils::fromPostOrDefault('use_ValueMax', $form->use_ValueMax));
+$smarty->assign('collect_users_mail', Utils::fromPostOrDefault('collect_users_mail', $form->collect_users_mail));
+$smarty->assign('poll_description', !empty($_POST['description']) ? $_POST['description'] :  $form->description);
+$smarty->assign('poll_name', Utils::fromPostOrDefault('name', $form->admin_name));
+$smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $form->admin_mail));
+$smarty->assign('poll_editable', Utils::fromPostOrDefault('editable', $form->editable));
+$smarty->assign('poll_receiveNewVotes', Utils::fromPostOrDefault('receiveNewVotes', $form->receiveNewVotes));
+$smarty->assign('poll_receiveNewComments', Utils::fromPostOrDefault('receiveNewComments', $form->receiveNewComments));
+$smarty->assign('poll_hidden', Utils::fromPostOrDefault('hidden', $form->hidden));
+$smarty->assign('poll_use_password', Utils::fromPostOrDefault('use_password', $form->use_password));
+$smarty->assign('poll_results_publicly_visible', Utils::fromPostOrDefault('results_publicly_visible', $form->results_publicly_visible));
+$smarty->assign('form', $form);
 
 $smarty->display('create_poll.tpl');
