@@ -51,7 +51,7 @@ if (!isset($form->format)) {
     $form->format = 'D';
 }
 // If we come from another format, we need to clear choices
-if (isset($form->format) && $form->format !== 'D') {
+if ($form->format !== 'D') {
     $form->format = 'D';
     $form->clearChoices();
 }
