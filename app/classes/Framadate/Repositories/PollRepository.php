@@ -106,6 +106,7 @@ class PollRepository extends AbstractRepository {
             'results_publicly_visible' => $poll->results_publicly_visible ? 1 : 0,
             'closed' => $poll->closed ? 1 : 0,
             'admin_choice' => $poll->admin_choice ? $poll->admin_choice : NULL,
+            'admin_choice_exp' => $poll->admin_choice_exp ? $poll->admin_choice_exp : "",
         ], [
             'id' => $poll->id
         ]) > 0;

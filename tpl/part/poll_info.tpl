@@ -262,7 +262,9 @@
                         {/if}
                         <p class="">{$closed_icon} {$closed_txt|html} </p>
 		</div>
+	    </div>
 	</div>
+	<div class="row">
 	{if $poll->closed}
 		<div class="col-md-4 ">
 			<div id="admin-choice">
@@ -283,6 +285,20 @@
 				{/if}
 			</div>
 		    </div>
+		    {if strcmp($poll->admin_choice,"")!=0}
+		    <div class="form-group col-md-8" id="explanation-form">
+				<label class="control-label">{__('Generic', 'Explanation of the choice')}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the explanation')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</label>
+				<div class="form-control-static well poll-explanation">{$poll->admin_choice_exp|markdown:false:false}</div>
+				{if $admin && !$expired}
+					<div class="hidden js-exp">
+				            <label class="sr-only" for="newexplanation">{__('Generic', 'Explanation of the choice')}</label>
+				            <textarea class="form-control" id="newexplanation" name="explanation" rows="2" cols="40">{$poll->admin_choice_exp|html}</textarea>
+				            <button type="submit" id="btn-new-exp" name="update_poll_info" value="explanation" class="btn btn-sm btn-success" title="{__('PollInfo', 'Save the explanation')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Save')}</span></button>
+				            <button class="btn btn-default btn-sm btn-cancel" title="{__('PollInfo', 'Cancel the explanation edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{__('Generic', 'Cancel')}</span></button>
+				        </div>
+				{/if}
+		     </div>
+		     {/if}
 	{/if}
 	</div>
 	{if $admin && !$poll->closed}

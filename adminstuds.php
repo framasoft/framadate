@@ -91,7 +91,7 @@ if ($messagePollCreated) {
 if (isset($_POST['update_poll_info'])) {
     $updated = false;
     $field = $inputService->filterAllowedValues($_POST['update_poll_info'], ['title', 'admin_mail', 'description',
-        'rules', 'expiration_date', 'name', 'hidden', 'removePassword', 'password']);
+        'rules', 'expiration_date', 'name', 'hidden', 'removePassword', 'password', 'explanation']);
 
     // Update the right poll field
     if ($field === 'title') {
@@ -111,7 +111,13 @@ if (isset($_POST['update_poll_info'])) {
         if ($description) {
             $poll->description = $description;
             $updated = true;
-        }
+	}
+    } elseif ($field === 'explanation') {
+        $explanation = $inputService->filterDescription($_POST['explanation']);
+        if ($explanation) {
+            $poll->admin_choice_exp = $explanation;
+            $updated = true;
+	}
     } elseif ($field === 'rules') {
         $rules = strip_tags($_POST['rules']);
         switch ($rules) {
@@ -531,8 +537,6 @@ $votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
 
 // Assign data to template
-var_dump($poll);
-var_dump($pollService->splitSlots($slots));
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('admin_poll_id', $admin_poll_id);
 $smarty->assign('poll', $poll);
