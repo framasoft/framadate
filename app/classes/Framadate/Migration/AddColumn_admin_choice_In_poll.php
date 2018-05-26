@@ -65,6 +65,6 @@ class AddColumn_admin_choice_In_poll implements Migration {
     private function alterPollTable(\PDO $pdo) {
         $pdo->exec('
         ALTER TABLE `' . Utils::table('poll') . '`
-        ADD `admin_choice` VARCHAR(50) DEFAULT NULL;');
+        ADD `admin_choice` VARCHAR(50) DEFAULT "";');
     }
 }

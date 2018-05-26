@@ -19,12 +19,13 @@
         <table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes of the poll')} {$poll->title|html}</caption>
             <thead>
-            {if $admin && !$expired && !$poll->closed}
+            {if $admin && !$expired}
                 <tr class="hidden-print">
                     <th role="presentation"></th>
                     {$headersDCount=0}
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $id=>$moment}
+			    {if !$poll->closed}
                             <td headers="M{$slot@key} D{$headersDCount} H{$headersDCount}">
                                 <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->day|cat:'@'|cat:$moment}"
                                    data-remove-confirmation="{__('adminstuds', 'Confirm removal of the column.')}"
@@ -40,6 +41,15 @@
 		                        </a>
 				{/if}
                             </td>
+			    {else}
+			    <td headers="M{$slot@key} D{$headersDCount} H{$headersDCount}">
+                                <a href="{poll_url id=$admin_poll_id admin=true action='select_choice' action_value=$slot->day|cat:'@'|cat:$moment}"
+                                   class="btn btn-link btn-sm select_choice"
+                                   title="{__('adminstuds', 'Select this choice')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                    <i class="glyphicon glyphicon-check text-success"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
+				</a>
+                            </td>
+			    {/if}
                             {$headersDCount = $headersDCount+1}
                         {/foreach}
                     {/foreach}
