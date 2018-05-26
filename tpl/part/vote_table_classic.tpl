@@ -19,10 +19,11 @@
         <table class="results">
             <caption class="sr-only">{__('Poll results', 'Votes of the poll')} {$poll->title|html}</caption>
             <thead>
-            {if $admin && !$expired && !$poll->closed}
+            {if $admin && !$expired}
                 <tr class="hidden-print">
                     <th role="presentation"></th>
                     {foreach $slots as $id=>$slot}
+			{if !$poll->closed}
                         <td headers="C{$id}">
                             <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->title}"
                                data-remove-confirmation="{__('adminstuds', 'Confirm removal of the column.')}"
@@ -30,6 +31,14 @@
                                 <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                             </a>
                             </td>
+			{else}
+			<td headers="C{$id}">
+                            <a href="{poll_url id=$admin_poll_id admin=true action='select_choice' action_value=$slot->title}"
+                               class="btn btn-link btn-sm select_choice" title="{__('adminstuds', 'Select this choice')} {$slot->title|html}">
+                                <i class="glyphicon glyphicon-check text-success"></i><span class="sr-only">{__('Generic', 'Select')}</span>
+                            </a>
+                            </td>
+			{/if}
                     {/foreach}
                     <td>
                         <a href="{poll_url id=$admin_poll_id admin=true action='add_column'}"
