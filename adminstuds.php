@@ -525,8 +525,6 @@ if (isset($_GET['select_choice'])) {
     }
 }
 
-
-
 // Retrieve data
 $slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
