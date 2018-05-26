@@ -492,13 +492,40 @@ if (isset($_POST['close_poll'])) {
 }
 if (isset($_POST['confirm_close_poll'])) {
     $poll->closed="1";
-	if ($adminPollService->updatePoll($poll)) {
+    if ($adminPollService->updatePoll($poll)) {
 		$message = new Message('success', __('adminstuds', 'Poll closed'));
-	    } else {
+    } else {
 		$message = new Message('danger', __('Error', 'Failed to close the poll'));
 		$poll = $pollService->findById($poll_id);
-	    }
+    }
 }
+
+// -------------------------------
+// Select admin choice
+// -------------------------------
+if (isset($_GET['select_choice'])) {
+    $column = filter_input(INPUT_GET, 'select_choice', FILTER_DEFAULT);
+    $column = Utils::base64url_decode($column);
+    /*if ($poll->format === 'D') {
+        $ex = explode('@', $column);
+
+        $slot = new stdClass();
+        $slot->title = $ex[0];
+        $slot->moment = $ex[1];
+
+        $result = $adminPollService->deleteDateSlot($poll, $slot);
+    }
+*/
+    $poll->admin_choice=$column;
+    if ($adminPollService->updatePoll($poll)) {
+		$message = new Message('success', __('adminstuds', 'Choice selected'));
+    } else {
+		$message = new Message('danger', __('Error', 'Failed to select the choice'));
+		$poll = $pollService->findById($poll_id);
+    }
+}
+
+
 
 // Retrieve data
 $slots = $pollService->allSlotsByPoll($poll);
@@ -506,6 +533,8 @@ $votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
 
 // Assign data to template
+var_dump($poll);
+var_dump($pollService->splitSlots($slots));
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('admin_poll_id', $admin_poll_id);
 $smarty->assign('poll', $poll);

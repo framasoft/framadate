@@ -280,7 +280,28 @@
                         {/if}
                         <p class="">{$closed_icon} {$closed_txt|html} </p>
 		</div>
-            </div>
+	</div>
+	{if $poll->closed}
+		<div class="col-md-4 ">
+			<div id="admin-choice">
+				<label class="control-label">{__('PollInfo', 'Admin choice')}</label>
+				{if strcmp($poll->admin_choice, "")==0}
+					<p> __('PollInfo', 'No choice has been selected by the admin yet') </p>
+				{else}
+					{if $poll->format === 'D'}
+						{$choice = explode('@', $poll->admin_choice)}
+						<p> {$choice[0]|date_format:$date_format.txt_short|html}
+						{if strcmp($choice[1], "")!=0}
+						 - {$choice[1]}
+						{/if}
+						</p>
+					{else}
+						<p> {$poll->admin_choice} </p>
+					{/if}
+				{/if}
+			</div>
+		    </div>
+	{/if}
 	</div>
 	{if $admin && !$poll->closed}
 	<div class="row">
