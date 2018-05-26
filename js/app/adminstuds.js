@@ -189,6 +189,28 @@ $(document).ready(function() {
         return false;
     });
 
+    $('#explanation-form .btn-edit').on('click', function() {
+        $('#explanation-form .well').hide();
+        $('#explanation-form .control-label .btn-edit').hide();
+        $('#explanation-form .js-exp').removeClass('hidden');
+        $('.js-exp textarea').focus();
+        if (firstOpening) {
+            firstOpening = false;
+            if ($('#rich-editor-button').hasClass('active')) {
+                wrapper.enable();
+            }
+        }
+        return false;
+    });
+
+    $('#explanation-form .btn-cancel').on('click', function() {
+        $('#explanation-form .well').show();
+        $('#explanation-form .control-label .btn-edit').show();
+        $('#explanation-form .js-exp').addClass('hidden');
+        $('.js-exp .btn-edit').focus();
+        return false;
+    });
+
     $('#poll-rules-form .btn-edit').on('click', function() {
         $('#poll-rules-form p').hide();
         $('#poll-rules-form .js-poll-rules').removeClass('hidden');
