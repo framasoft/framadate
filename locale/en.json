@@ -206,7 +206,8 @@
       "seconds": "seconds",
       "vote": "vote",
       "votes": "votes",
-      "with": "with"
+      "with": "with",
+      "Explanation of the choice" : "Explanation of the choice",
    },
    "Homepage": {
       "Make a classic poll": "Make a standard poll",
@@ -328,6 +329,9 @@
       "The poll is still opened": "The poll is still opened",
       "The poll is closed": "The poll is closed",
       "Close the poll": "Close the poll",
+      "Edit the explanation": "Edit the explanation",
+      "Save the explanation": "Save the explanation",
+      "Cancel the explanation edit": "Cancel the explanation edit",
    },
    "Step 1": {
       "All voters can modify any vote": "All voters can modify any vote",
