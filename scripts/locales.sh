@@ -1,5 +1,5 @@
 #!/bin/bash
-python -m json.tool < locale/en.json &&
+python -m json.tool < locale/en.json
 if [[ $? == 0 ]];
 then
     json2po -P -i locale/en.json -t locale/en.json -o po/framadate.pot
