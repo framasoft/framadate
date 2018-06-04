@@ -153,6 +153,20 @@ $(document).ready(function() {
         return false;
     });
 
+    $('.comment .btn-edit').on('click', function() {
+        $('.comment-body span:last-child').addClass('hidden');
+        $('.js-comment').removeClass('hidden');
+        $('.js-comment input').focus();
+        return false;
+    });
+
+    $('.comment .btn-cancel').on('click', function(e) {
+        e.preventDefault();
+        $('.comment-body span:last-child').removeClass('hidden');
+        $('.js-comment').addClass('hidden');
+        return false;
+    });
+
     $('#email-form .btn-edit').on('click', function() {
         $('#email-form p').hide();
         $('#email-form .js-email').removeClass('hidden');

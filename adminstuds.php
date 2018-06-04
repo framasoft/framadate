@@ -323,6 +323,25 @@ if (isset($_POST['confirm_remove_all_votes'])) {
 }
 
 // -------------------------------
+// edit a comment
+// -------------------------------
+
+if (!empty($_POST['edit_comment'])) {
+    $updated = false;
+    $comment_id = filter_input(INPUT_POST,'edit_id', FILTER_VALIDATE_INT);
+    if ($comment = $inputService->filterComment($_POST['editComment'])) {
+        $comment->comment = $comment;
+        $updated = true;
+    }
+
+    if ($updated && $adminPollService->updateComment($poll_id, $comment_id, $comment)) {
+        $message = new Message('success', __('Comments', 'Comment updated'));
+        $notificationService->sendUpdateNotification($poll, NotificationService::UPDATE_COMMENT);
+    } else {
+        $message = new Message('danger', __('Error', 'Failed to edit the comment')); // Database Error
+    }
+}
+// -------------------------------
 // Delete a comment
 // -------------------------------
 

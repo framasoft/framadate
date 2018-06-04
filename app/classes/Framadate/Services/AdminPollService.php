@@ -3,6 +3,7 @@ namespace Framadate\Services;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Exception\InvalidArgumentException;
 use Framadate\Exception\MomentAlreadyExistsException;
 use Framadate\Repositories\RepositoryFactory;
 
@@ -40,14 +41,29 @@ class AdminPollService {
     }
 
     /**
+     * @param $poll_id
+     * @param $comment_id
+     * @param $comment
+     * @return int
+     */
+    public function updateComment($poll_id, $comment_id, $comment){
+      return $this->commentRepository->update($poll_id, $comment_id, $comment);
+    }
+
+    /**
      * Delete a comment from a poll.
      *
      * @param $poll_id int The ID of the poll
      * @param $comment_id int The ID of the comment
-     * @return mixed true is action succeeded
+     * @return boolean if action succeeded
      */
     function deleteComment($poll_id, $comment_id) {
-        return $this->commentRepository->deleteById($poll_id, $comment_id);
+        try {
+            return $this->commentRepository->deleteById($poll_id, $comment_id);
+        } catch (InvalidArgumentException $e) {
+            $this->logService->log('DELETE_COMMENTS', $e->getMessage());
+            return false;
+        }
     }
 
     /**

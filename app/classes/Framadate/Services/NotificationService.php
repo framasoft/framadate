@@ -4,13 +4,13 @@
 namespace Framadate\Services;
 
 use \stdClass;
-use Framadate\Services\MailService;
 use Framadate\Utils;
 
 class NotificationService {
     const UPDATE_VOTE = 1;
     const ADD_VOTE = 2;
     const ADD_COMMENT = 3;
+    const UPDATE_COMMENT = 3;
     const UPDATE_POLL = 10;
     const DELETED_POLL = 11;
 

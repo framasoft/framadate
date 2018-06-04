@@ -66,4 +66,19 @@ class CommentRepository extends AbstractRepository {
 
         return $prepared->rowCount() > 0;
     }
+
+    /**
+     * @param $poll_id
+     * @param $comment_id
+     * @param $comment
+     * @return boolean
+     */
+    public function update($poll_id, $comment_id, $comment) {
+      return $this->connect->update(Utils::table('comment'), [
+            'comment' => $comment,
+        ],[
+            'poll_id' => $poll_id,
+            'id' => $comment_id,
+        ]) > 0;
+    }
 }
