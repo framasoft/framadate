@@ -38,6 +38,9 @@ class AdminPollService {
         }
             return false;
     }
+    function updateComment($poll_id,$comment_id,$comment){
+      return $this->commentRepository->update($poll_id,$comment_id,$comment);
+    }
 
     /**
      * Delete a comment from a poll.
