@@ -54,7 +54,6 @@ $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
 $notificationService = new NotificationService($mailService);
 $sessionService = new SessionService();
 
-
 /* PAGE */
 /* ---- */
 
@@ -329,18 +328,17 @@ if (isset($_POST['confirm_remove_all_votes'])) {
 
 if (!empty($_POST['edit_comment'])) {
  $_POST['edit_id'];
-  $updated=false;
-     $comment_id = filter_input(INPUT_POST,'edit_id', FILTER_VALIDATE_INT);
+  $updated = false;
+     $comment_id = filter_input(INPUT_POST, 'edit_id', FILTER_VALIDATE_INT);
     $comment = $inputService->filterComment($_POST['newcomment']);
     if ($comment) {
         $comment->comment = $comment;
         $updated = true;
     }
 
-    if ($updated && $adminPollService->updatecomment($poll_id,$comment_id,$comment)) {
+    if ($updated && $adminPollService->updatecomment($poll_id, $comment_id, $comment)) {
         $message = new Message('success', __('adminstuds', 'Poll saved'));
         $notificationService->sendUpdateNotification($poll, NotificationService::UPDATE_POLL);
-
   }else {
       $message = new Message('danger', __('Error', 'Failed to edit the comment'));//erreur BDD
   }

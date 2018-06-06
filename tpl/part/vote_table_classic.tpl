@@ -226,7 +226,11 @@
                                     </label>
                                 </li>
                                 <li class="hide">
+<<<<<<< HEAD
                                   <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" "
+=======
+                                  <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" " 
+>>>>>>> upstream/master
                                 		{(isset($selectedNewVotes[$id]) && ("" !== $selectedNewVotes[$id])) ? "" : " checked"}
                                 	/>
                                 </li>
