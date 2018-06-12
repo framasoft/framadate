@@ -49,8 +49,8 @@ class Version20180612124100 extends AbstractMigration
     {
         $poll = $schema->getTable(Utils::table('poll'));
         $poll->addColumn('closed', 'boolean', ['default' => false]);
-        $poll->addColumn('admin_choice', 'string');
-        $poll->addColumn('admin_choice_exp', 'string');
+        $poll->addColumn('admin_choice', 'string', ['notnull' => false]);
+        $poll->addColumn('admin_choice_exp', 'string', ['notnull' => false]);
     }
 
     /**
