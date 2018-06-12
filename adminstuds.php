@@ -329,8 +329,8 @@ if (isset($_POST['confirm_remove_all_votes'])) {
 if (!empty($_POST['edit_comment'])) {
     $updated = false;
     $comment_id = filter_input(INPUT_POST,'edit_id', FILTER_VALIDATE_INT);
-    if ($comment = $inputService->filterComment($_POST['editComment'])) {
-        $comment->comment = $comment;
+    $comment = $inputService->filterComment($_POST['editComment']);
+    if ($comment) {
         $updated = true;
     }
 
