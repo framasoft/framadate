@@ -290,6 +290,7 @@
       "You have to provide a password to access the poll.": "Vous devez donner le mot de passe pour avoir accès à ce sondage."
    },
    "Poll results": {
+      "%s option": "%s option",
       "Addition": "Somme",
       "Anyone will be able to access your email address after your vote": "Tout le monde pourra accéder à votre courriel après que vous ayez voté",
       "Best choice": "Meilleur choix",

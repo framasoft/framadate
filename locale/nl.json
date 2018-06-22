@@ -290,6 +290,7 @@
       "You have to provide a password to access the poll.": "Je moet een wachtwoord opgeven om toegang te krijgen tot deze poll."
    },
    "Poll results": {
+      "%s option": "%s option",
       "Addition": "Totaal",
       "Anyone will be able to access your email address after your vote": "Iedereen zal je e-mailadres kunnen zien nadat je gestemd hebt",
       "Best choice": "Beste keuze",
@@ -309,7 +310,7 @@
       "Vote no for": "Stem ‘nee’ voor",
       "Vote yes for": "Stem ‘ja’ voor",
       "Votes of the poll": "Stemmen",
-      "Warning : anyone can access to your email address after voting": "Warning : anyone can access to your email address after voting",
+      "Warning : anyone can access to your email address after voting": "Warning: Anyone can see your email address after voting",
       "polled user": "ondervraagde gebruiker",
       "polled users": "ondervraagde gebruikers"
    },
@@ -321,7 +322,7 @@
       "Cancel the name edit": "Naam bewerken annuleren",
       "Cancel the rules edit": "Regels bewerken annuleren",
       "Cancel the title edit": "Titel bewerken annuleren",
-      "Collect of the polled users email addresses": "Collect of the polled users email addresses",
+      "Collect of the polled users email addresses": "Collec the polled users' email addresses",
       "Collecting the polled users emails": "E-mailadressen van de gepolde gebruikers aan het verzamelen",
       "Edit the description": "Bewerk de beschrijving",
       "Edit the email adress": "Bewerk emailadres",
@@ -333,7 +334,7 @@
       "Expiration date": "Vervaldatum",
       "Export to CSV": "Exporteer naar CSV",
       "Initiator of the poll": "Initiatiefnemer van deze poll",
-      "No collect of the polled users email addresses": "No collect of the polled users email addresses",
+      "No collect of the polled users email addresses": "The polled users' email addresses are not collected",
       "No password": "Geen wachtwoord",
       "Only votes are protected": "Only votes are protected",
       "Password protected": "Beveiligd met een wachtwoord",
@@ -355,10 +356,10 @@
       "Save the new title": "Nieuwe titel opslaan",
       "Simple editor": "Simpele editor",
       "Title": "Titel van de poll",
-      "Voters email adresses are collected": "Voters email adresses are collected",
-      "Voters email adresses are collected and required": "Voters email adresses are collected and required",
-      "Voters email adresses are collected, required and verified": "Voters email adresses are collected, required and verified",
-      "Voters email adresses are not collected": "Voters email adresses are not collected",
+      "Voters email adresses are collected": "Voters' email adresses are collected",
+      "Voters email adresses are collected and required": "Voters' email adresses are collected and required",
+      "Voters email adresses are collected, required and verified": "Voters' email adresses are collected, required and verified",
+      "Voters email adresses are not collected": "Voters' email adresses are not collected",
       "Votes and comments are locked": "Stemmen en opmerkingen zijn uitgeschakeld",
       "Votes protected by password": "Stemmen beveiligd met een wachtwoord"
    },
@@ -366,7 +367,7 @@
       "All voters can modify any vote": "Alle stemmers kunnen elke stem aanpassen",
       "Collect the polled users email addresses": "E-mailadressen van de gepolde gebruikers aan het verzamelen",
       "Collect users email": "Verzamel de e-mailadressen van gebruikers",
-      "Collect voters email": "Collect voters email",
+      "Collect voters email": "Collect voters' email addresses",
       "Customize the URL": "Link verpersoonlijken",
       "Email addresses are collected but not required": "Email addresses are collected but not required",
       "Email addresses are not collected": "Email addresses are not collected",
@@ -396,7 +397,7 @@
       "ValueMax instructions": "stemmen per optie",
       "Voters can modify their vote themselves": "Stemmers kunnen hun eigen stem aanpassen",
       "Votes cannot be modified": "Stemmen kunnen niet worden aangepast",
-      "Warning : anyone can access to the polled users's email addresses.": "Warning : anyone can access to the polled users's email addresses.",
+      "Warning : anyone can access to the polled users's email addresses.": "Warning: Anyone can see the polled users' email addresses.",
       "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Waarschuwing: Iedereen  kan de e-mailadressen van alle stemmers zien, aangezien iedereen alle stemmen kan aanpassen. Je kan best de toegangsregels beperken.",
       "You are in the poll creation section.": "Je bent in het onderdeel poll aanmaken.",
       "You can enable or disable the editor at will.": "Je kan de editor aan of afzetten wanneer je dat wilt."
@@ -455,7 +456,7 @@
       "Back to the poll": "Terug naar de poll",
       "Choice added": "Keuze toegevoegd",
       "Collect the emails of the polled users for the choice": "Verzamel de e-mailadressen van de ondervraagde gebruikers voor de optie",
-      "Collect the emails of the polled users for this column": "Collect the emails of the polled users for this column",
+      "Collect the emails of the polled users for this column": "Collect the email addresses of the polled users for this column",
       "Column removed": "Kolom verwijderd",
       "Column's adding": "Een kolom toevoegen",
       "Comment deleted": "Opmerking verwijderd",
@@ -487,12 +488,12 @@
       "remove a column or a line with": "verwijder een kolom of regel met"
    },
    "display_mails": {
-      "People who have answered 'If need be' to this option have left those email addresses :": "People who have answered 'If need be' to this option have left those email addresses :",
-      "People who have answered 'If need be' to this option have not left any email addresses.": "People who have answered 'If need be' to this option have not left any email addresses.",
-      "People who have answered 'No' to this option have left those email addresses :": "People who have answered 'No' to this option have left those email addresses :",
-      "People who have answered 'No' to this option have not left any email addresses.": "People who have answered 'No' to this option have not left any email addresses.",
-      "People who have answered 'Yes' to this option have left those email addresses :": "People who have answered 'Yes' to this option have left those email addresses :",
-      "People who have answered 'Yes' to this option have not left any email addresses.": "People who have answered 'Yes' to this option have not left any email addresses."
+      "People who have answered 'If need be' to this option have left those email addresses :": "Users who voted 'If need be' for this option have left those email addresses:",
+      "People who have answered 'If need be' to this option have not left any email addresses.": "Users who voted 'If need be' for this option have not left any email addresses:",
+      "People who have answered 'No' to this option have left those email addresses :": "Users who voted 'No' for this option have left those email addresses:",
+      "People who have answered 'No' to this option have not left any email addresses.": "Users who voted 'No' for this option have not left any email addresses.",
+      "People who have answered 'Yes' to this option have left those email addresses :": "Users who voted 'Yes' for this option have left those email addresses:",
+      "People who have answered 'Yes' to this option have not left any email addresses.": "Users who voted 'Yes' for this option have not left any email addresses."
    },
    "studs": {
       "Adding the vote succeeded": "Stem toegevoegd",
