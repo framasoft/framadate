@@ -290,6 +290,7 @@
       "You have to provide a password to access the poll.": "Vous devez donner le mot de passe pour avoir accès à ce sondage."
    },
    "Poll results": {
+      "%s option": "%s option",
       "Addition": "Somme",
       "Anyone will be able to access your email address after your vote": "Tout le monde pourra accéder à votre courriel après que vous ayez voté",
       "Best choice": "Meilleur choix",
@@ -309,7 +310,7 @@
       "Vote no for": "Voter « non » pour",
       "Vote yes for": "Voter « oui » pour",
       "Votes of the poll": "Votes du sondage",
-      "Warning : anyone can access to your email address after voting": "Warning : anyone can access to your email address after voting",
+      "Warning : anyone can access to your email address after voting": "Warning: Anyone can see your email address after voting",
       "polled user": "votant·e",
       "polled users": "votant·e·s"
    },
@@ -321,7 +322,7 @@
       "Cancel the name edit": "Annuler le changement d'auteur·rice",
       "Cancel the rules edit": "Annuler le changement de permissions",
       "Cancel the title edit": "Annuler le changement de titre",
-      "Collect of the polled users email addresses": "Collect of the polled users email addresses",
+      "Collect of the polled users email addresses": "Collec the polled users' email addresses",
       "Collecting the polled users emails": "Collecting the polled users email addresses",
       "Edit the description": "Modifier la description",
       "Edit the email adress": "Modifier le courriel",
@@ -333,7 +334,7 @@
       "Expiration date": "Date d'expiration",
       "Export to CSV": "Export Tableur (CSV)",
       "Initiator of the poll": "Auteur·rice du sondage",
-      "No collect of the polled users email addresses": "No collect of the polled users email addresses",
+      "No collect of the polled users email addresses": "The polled users' email addresses are not collected",
       "No password": "Pas de mot de passe",
       "Only votes are protected": "Seul les votes sont protégés",
       "Password protected": "Protégé par mot de passe",
@@ -355,10 +356,10 @@
       "Save the new title": "Enregistrer le nouveau titre",
       "Simple editor": "Editeur simple",
       "Title": "Titre du sondage",
-      "Voters email adresses are collected": "Voters email adresses are collected",
-      "Voters email adresses are collected and required": "Voters email adresses are collected and required",
-      "Voters email adresses are collected, required and verified": "Voters email adresses are collected, required and verified",
-      "Voters email adresses are not collected": "Voters email adresses are not collected",
+      "Voters email adresses are collected": "Voters' email adresses are collected",
+      "Voters email adresses are collected and required": "Voters' email adresses are collected and required",
+      "Voters email adresses are collected, required and verified": "Voters' email adresses are collected, required and verified",
+      "Voters email adresses are not collected": "Voters' email adresses are not collected",
       "Votes and comments are locked": "Il n'est plus possible de voter",
       "Votes protected by password": "Votes protégés par mot de passe"
    },
@@ -366,7 +367,7 @@
       "All voters can modify any vote": "Tou·te·s les sondé·e·s peuvent modifier tous les votes",
       "Collect the polled users email addresses": "Collecting the polled users' email addresses",
       "Collect users email": "Récolter les courriels des utilisateurs",
-      "Collect voters email": "Collect voters email",
+      "Collect voters email": "Collect voters' email addresses",
       "Customize the URL": "Personnaliser le lien",
       "Email addresses are collected but not required": "Email addresses are collected but not required",
       "Email addresses are not collected": "Email addresses are not collected",
@@ -396,7 +397,7 @@
       "ValueMax instructions": "votes par choix",
       "Voters can modify their vote themselves": "Chaque sondé·e peut modifier son propre vote",
       "Votes cannot be modified": "Aucun vote ne peut être modifié",
-      "Warning : anyone can access to the polled users's email addresses.": "Warning : anyone can access to the polled users's email addresses.",
+      "Warning : anyone can access to the polled users's email addresses.": "Warning: Anyone can see the polled users' email addresses.",
       "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Warning: Anyone can see the polled users' email addresses since all voters can modify any vote. You should restrict permission rules.",
       "You are in the poll creation section.": "Vous avez choisi de créer un nouveau sondage.",
       "You can enable or disable the editor at will.": "Vous pouvez activer ou désactiver l'éditeur à votre guise."
@@ -455,7 +456,7 @@
       "Back to the poll": "Retour au sondage",
       "Choice added": "Choix ajouté",
       "Collect the emails of the polled users for the choice": "Collecte les courriels des utilisateurs pour ce choix",
-      "Collect the emails of the polled users for this column": "Collect the emails of the polled users for this column",
+      "Collect the emails of the polled users for this column": "Collect the email addresses of the polled users for this column",
       "Column removed": "Colonne supprimée",
       "Column's adding": "Ajout de colonne",
       "Comment deleted": "Commentaire supprimé",
@@ -487,12 +488,12 @@
       "remove a column or a line with": "effacer une colonne ou une ligne avec"
    },
    "display_mails": {
-      "People who have answered 'If need be' to this option have left those email addresses :": "People who have answered 'If need be' to this option have left those email addresses :",
-      "People who have answered 'If need be' to this option have not left any email addresses.": "People who have answered 'If need be' to this option have not left any email addresses.",
-      "People who have answered 'No' to this option have left those email addresses :": "People who have answered 'No' to this option have left those email addresses :",
-      "People who have answered 'No' to this option have not left any email addresses.": "People who have answered 'No' to this option have not left any email addresses.",
-      "People who have answered 'Yes' to this option have left those email addresses :": "People who have answered 'Yes' to this option have left those email addresses :",
-      "People who have answered 'Yes' to this option have not left any email addresses.": "People who have answered 'Yes' to this option have not left any email addresses."
+      "People who have answered 'If need be' to this option have left those email addresses :": "Users who voted 'If need be' for this option have left those email addresses:",
+      "People who have answered 'If need be' to this option have not left any email addresses.": "Users who voted 'If need be' for this option have not left any email addresses:",
+      "People who have answered 'No' to this option have left those email addresses :": "Users who voted 'No' for this option have left those email addresses:",
+      "People who have answered 'No' to this option have not left any email addresses.": "Users who voted 'No' for this option have not left any email addresses.",
+      "People who have answered 'Yes' to this option have left those email addresses :": "Users who voted 'Yes' for this option have left those email addresses:",
+      "People who have answered 'Yes' to this option have not left any email addresses.": "Users who voted 'Yes' for this option have not left any email addresses."
    },
    "studs": {
       "Adding the vote succeeded": "Ajout du vote réussi",

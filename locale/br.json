@@ -290,6 +290,7 @@
       "You have to provide a password to access the poll.": "Ret eo deoc'h reiñ ur ger-tremen evit mont d'ar sontadeg."
    },
    "Poll results": {
+      "%s option": "%s option",
       "Addition": "Sammad",
       "Anyone will be able to access your email address after your vote": "Anyone will be able to see your email address after you voted",
       "Best choice": "Dibab gwellañ",
@@ -309,7 +310,7 @@
       "Vote no for": "Mouezhiañ « ket » evit",
       "Vote yes for": "Mouezhiañ « ya » evit",
       "Votes of the poll": "Mouezhioù ar sontadeg",
-      "Warning : anyone can access to your email address after voting": "Warning : anyone can access to your email address after voting",
+      "Warning : anyone can access to your email address after voting": "Warning: Anyone can see your email address after voting",
       "polled user": "mouezhier",
       "polled users": "a vouezhierien"
    },
@@ -321,7 +322,7 @@
       "Cancel the name edit": "Nullañ embann an anv",
       "Cancel the rules edit": "Nullañ embann an aotreoù",
       "Cancel the title edit": "Nullañ embann an titl",
-      "Collect of the polled users email addresses": "Collect of the polled users email addresses",
+      "Collect of the polled users email addresses": "Collec the polled users' email addresses",
       "Collecting the polled users emails": "Collecting the polled users email addresses",
       "Edit the description": "Embann an deskrivadur",
       "Edit the email adress": "Embann ar chomlec'h postel",
@@ -333,7 +334,7 @@
       "Expiration date": "Deiziad diamzeriñ",
       "Export to CSV": "Ezporzhiañ e CSV",
       "Initiator of the poll": "Aozer ar sontadeg",
-      "No collect of the polled users email addresses": "No collect of the polled users email addresses",
+      "No collect of the polled users email addresses": "The polled users' email addresses are not collected",
       "No password": "Ger-tremen ebet",
       "Only votes are protected": "Only votes are protected",
       "Password protected": "Gwarezet gant ur ger-tremen",
@@ -355,10 +356,10 @@
       "Save the new title": "Enrollañ an titl nevez",
       "Simple editor": "Embanner eeun",
       "Title": "Titl ar sontadeg",
-      "Voters email adresses are collected": "Voters email adresses are collected",
-      "Voters email adresses are collected and required": "Voters email adresses are collected and required",
-      "Voters email adresses are collected, required and verified": "Voters email adresses are collected, required and verified",
-      "Voters email adresses are not collected": "Voters email adresses are not collected",
+      "Voters email adresses are collected": "Voters' email adresses are collected",
+      "Voters email adresses are collected and required": "Voters' email adresses are collected and required",
+      "Voters email adresses are collected, required and verified": "Voters' email adresses are collected, required and verified",
+      "Voters email adresses are not collected": "Voters' email adresses are not collected",
       "Votes and comments are locked": "Prennet eo ar mouezhioù hag an evezhiadennoù",
       "Votes protected by password": "Gwarezet eo ar mouezhioù gant ur ger-tremen"
    },
@@ -366,7 +367,7 @@
       "All voters can modify any vote": "An holl vouezhierien a c'hall kemmañ an holl vouezhioù",
       "Collect the polled users email addresses": "Collecting the polled users' email addresses",
       "Collect users email": "Collect users' email addresses",
-      "Collect voters email": "Collect voters email",
+      "Collect voters email": "Collect voters' email addresses",
       "Customize the URL": "Personelaat an ere",
       "Email addresses are collected but not required": "Email addresses are collected but not required",
       "Email addresses are not collected": "Email addresses are not collected",
@@ -396,7 +397,7 @@
       "ValueMax instructions": "votes per option",
       "Voters can modify their vote themselves": "Pep mouezhier a c'hell kemmañ e vouezh",
       "Votes cannot be modified": "N'hall ket ar mouezhioù bezañ kemmet",
-      "Warning : anyone can access to the polled users's email addresses.": "Warning : anyone can access to the polled users's email addresses.",
+      "Warning : anyone can access to the polled users's email addresses.": "Warning: Anyone can see the polled users' email addresses.",
       "Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.": "Warning: Anyone can see the polled users' email addresses since all voters can modify any vote. You should restrict permission rules.",
       "You are in the poll creation section.": "Dibabet ho peus krouiñ ur sontadeg nevez.",
       "You can enable or disable the editor at will.": "Gallout a rit gweredekaat pe ziweredekaat an embanner diouzh ho tibab."
@@ -455,7 +456,7 @@
       "Back to the poll": "Distreiñ d'ar sontadeg",
       "Choice added": "Dibab ouzhpennet",
       "Collect the emails of the polled users for the choice": "Collect the emails of the polled users for the choice",
-      "Collect the emails of the polled users for this column": "Collect the emails of the polled users for this column",
+      "Collect the emails of the polled users for this column": "Collect the email addresses of the polled users for this column",
       "Column removed": "Bann dilamet",
       "Column's adding": "Ouzhpennañ ur bann",
       "Comment deleted": "Dilamet eo bet an evezhiadenn",
@@ -487,12 +488,12 @@
       "remove a column or a line with": "dilemel ur bann pe ul linenn gant"
    },
    "display_mails": {
-      "People who have answered 'If need be' to this option have left those email addresses :": "People who have answered 'If need be' to this option have left those email addresses :",
-      "People who have answered 'If need be' to this option have not left any email addresses.": "People who have answered 'If need be' to this option have not left any email addresses.",
-      "People who have answered 'No' to this option have left those email addresses :": "People who have answered 'No' to this option have left those email addresses :",
-      "People who have answered 'No' to this option have not left any email addresses.": "People who have answered 'No' to this option have not left any email addresses.",
-      "People who have answered 'Yes' to this option have left those email addresses :": "People who have answered 'Yes' to this option have left those email addresses :",
-      "People who have answered 'Yes' to this option have not left any email addresses.": "People who have answered 'Yes' to this option have not left any email addresses."
+      "People who have answered 'If need be' to this option have left those email addresses :": "Users who voted 'If need be' for this option have left those email addresses:",
+      "People who have answered 'If need be' to this option have not left any email addresses.": "Users who voted 'If need be' for this option have not left any email addresses:",
+      "People who have answered 'No' to this option have left those email addresses :": "Users who voted 'No' for this option have left those email addresses:",
+      "People who have answered 'No' to this option have not left any email addresses.": "Users who voted 'No' for this option have not left any email addresses.",
+      "People who have answered 'Yes' to this option have left those email addresses :": "Users who voted 'Yes' for this option have left those email addresses:",
+      "People who have answered 'Yes' to this option have not left any email addresses.": "Users who voted 'Yes' for this option have not left any email addresses."
    },
    "studs": {
       "Adding the vote succeeded": "Mouezh ouzhpennet",

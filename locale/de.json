@@ -31,7 +31,7 @@
       "Back to administration": "Zurück zur Verwaltung",
       "Change the poll": "Umfrage ändern",
       "Confirm removal of the poll": "Bestätigen Sie die Löschung der Umfrage",
-      "Deleted the poll": "Poll deleted",
+      "Deleted the poll": "Umfrage gelöscht",
       "Email": "E-Mail-Adresse",
       "Executed": "Ausgeführt",
       "Expiration date": "Verfallsdatum",
@@ -154,7 +154,7 @@
       "The name is invalid.": "Der Name ist ungültig.",
       "The name you've chosen already exist in this poll!": "Der von Ihnen eingegebene Name existiert schon in dieser Umfrage!",
       "There is a problem with your choices": "Es gibt ein Problem mit Ihrer Auswahl",
-      "This id is not allowed": "This identifier is not allowed",
+      "This id is not allowed": "Dieser Bezeichner ist nicht erlaubt",
       "This poll doesn't exist !": "Diese Umfrage existiert nicht!",
       "Update vote failed": "Aktualisierung der Stimme fehlgeschlagen",
       "You already voted": "Sie haben bereits abgestimmt",
@@ -290,6 +290,7 @@
       "You have to provide a password to access the poll.": "Sie müssen ein Passwort eingeben um auf die Abstimmung zuzugreifen."
    },
    "Poll results": {
+      "%s option": "%s Option",
       "Addition": "Insgesamt",
       "Anyone will be able to access your email address after your vote": "Jeder wird Ihre E-Mail-Adresse sehen können nachdem Sie abgestimmt haben",
       "Best choice": "Beste Alternative",
@@ -366,7 +367,7 @@
       "All voters can modify any vote": "Jeder Teilnehmer kann jede abgegebene Stimme ändern",
       "Collect the polled users email addresses": "Sammeln der E-Mail-Adressen der zur Umfrage eingeladenen Benutzer",
       "Collect users email": "Sammeln der E-Mail-Adressen der Benutzer",
-      "Collect voters email": "Collect voters email",
+      "Collect voters email": "Sammeln der E-Mail-Adressen der Benutzer",
       "Customize the URL": "Link anpassen",
       "Email addresses are collected but not required": "E-Mail-Adressen werden gesammelt aber sind nicht benötigt",
       "Email addresses are not collected": "E-Mail-Adressen werden nicht gesammelt",
@@ -463,7 +464,7 @@
       "Confirm removal of all votes of the poll": "Bestätigen Sie die Entfernung aller Wertungen aus der Umfrage",
       "Confirm removal of the column.": "Bestätigen Sie die Entfernung der Spalte",
       "Confirm removal of the poll": "Bestätigen Sie die Löschung ihrer Umfrage",
-      "Delete the poll": "Delete poll",
+      "Delete the poll": "Umfrage löschen",
       "Finally, you can change the informations of this poll like the title, the comments or your email address.": "Abschließend können Sie Informationen wie Titel, Kommentare oder Ihre E-Mail-Adresse ändern.",
       "If you just want to add a new hour to an existant date, put the same date and choose a new hour.": "Wenn Sie nur eine neue Uhrzeit zu einem vorhandenen Datum hinzufügen möchten, geben Sie das selbe Datum an und wählen Sie eine neue Uhrzeit aus.",
       "Keep comments": "Kommentare beibehalten",
@@ -488,11 +489,11 @@
    },
    "display_mails": {
       "People who have answered 'If need be' to this option have left those email addresses :": "E-Mail-Adressen aller Benutzer, die mit \"Ja - unter Vorbehalt\" für diese Option abgestimmt haben:",
-      "People who have answered 'If need be' to this option have not left any email addresses.": "Benutzer, ",
-      "People who have answered 'No' to this option have left those email addresses :": "People who have answered 'No' to this option have left those email addresses :",
-      "People who have answered 'No' to this option have not left any email addresses.": "People who have answered 'No' to this option have not left any email addresses.",
-      "People who have answered 'Yes' to this option have left those email addresses :": "People who have answered 'Yes' to this option have left those email addresses :",
-      "People who have answered 'Yes' to this option have not left any email addresses.": "People who have answered 'Yes' to this option have not left any email addresses."
+      "People who have answered 'If need be' to this option have not left any email addresses.": "Benutzer, die mit \"Ja - unter Vorbehalt\" für diese Option abgestimmt haben, haben keine E-Mail-Adresse angegeben.",
+      "People who have answered 'No' to this option have left those email addresses :": "E-Mail-Adressen aller Benutzer, die mit \"Nein\" für diese Option abgestimmt haben:",
+      "People who have answered 'No' to this option have not left any email addresses.": "Benutzer, die mit \"Nein\" für diese Option abgestimmt haben, haben keine E-Mail-Adresse angegeben.",
+      "People who have answered 'Yes' to this option have left those email addresses :": "E-Mail-Adressen aller Benutzer, die mit \"Ja\" für diese Option abgestimmt haben:",
+      "People who have answered 'Yes' to this option have not left any email addresses.": "Benutzer, die mit \"Ja\" für diese Option abgestimmt haben, haben keine E-Mail-Adresse angegeben."
    },
    "studs": {
       "Adding the vote succeeded": "Die Stimme wurde hinzugefügt",
