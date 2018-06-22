@@ -2,7 +2,7 @@ locales:
 	scripts/locales.sh
 
 push-locales: locales
-	zanata-cli -q -B push
+	zanata-cli -q -B push --errors
 
 pull-locales:
 	zanata-cli -q -B pull --min-doc-percent 50
