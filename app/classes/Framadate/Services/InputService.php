@@ -125,7 +125,7 @@ class InputService {
     }
 
     public function filterDate($date) {
-        $dDate = DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $date)->setTime(0, 0, 0);
+        $dDate = DateTime::createFromFormat(__('Date', 'Y-m-d'), $date)->setTime(0, 0, 0);
         return $dDate->format('Y-m-d H:i:s');
     }
 

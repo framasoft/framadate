@@ -32,12 +32,12 @@
             <label>
                 <input type="checkbox" name="hidden" {if $poll_hidden}checked{/if}
                        id="hidden">
-                {__('Step 1', "Only the poll maker can see the poll's results")}
+                {__('Step 1', "Only the poll maker can see the poll results")}
             </label>
         </div>
         <div id="hiddenWithBadEditionModeError" class="alert alert-danger hidden">
             <p>
-                {__('Error', "You can't create a poll with hidden results with the following edition option:")}
+                {__('Error', "You can't create a poll with hidden results with the following option: ")}
                 "{__('Step 1', 'All voters can modify any vote')}"
             </p>
         </div>

@@ -47,7 +47,7 @@ $token_form_value = empty($_POST['token']) ? null : $_POST['token'];
 $editedVoteUniqueId = filter_input(INPUT_POST, 'editedVoteUniqueId', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
 if (is_null($poll) || $config['use_smtp'] === false || is_null($token) || is_null($token_form_value)
     || !$token->check($token_form_value) || is_null($editedVoteUniqueId)) {
-    $message = new Message('error', __('Error', 'Something is going wrong...'));
+    $message = new Message('error', __('Error', 'Something has gone wrong...'));
 }
 
 if (is_null($message)) {
