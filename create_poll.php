@@ -113,10 +113,10 @@ if ($goToStep2) {
             $error_on_customized_url = true;
         } else if ($pollRepository->existsById($customized_url)) {
             $error_on_customized_url = true;
-            $error_on_customized_url_msg = __('Error', 'Poll id already used');
+            $error_on_customized_url_msg = __('Error', 'Identifier is already used');
         } else if (in_array($customized_url, ['admin', 'vote', 'action'], true)) {
             $error_on_customized_url = true;
-            $error_on_customized_url_msg = __('Error', 'This id is not allowed');
+            $error_on_customized_url_msg = __('Error', 'This identifier is not allowed');
         }
     }
 
@@ -171,11 +171,11 @@ if ($goToStep2) {
         }
     } else {
         // Title Erreur !
-        $title = __('Error', 'Error!') . ' - ' . __('Step 1', 'Poll creation (1 on 3)');
+        $title = __('Error', 'Error!') . ' - ' . __('Step 1', 'Poll creation (1 of 3)');
     }
 } else {
     // Title OK (formulaire pas encore rempli)
-    $title = __('Step 1', 'Poll creation (1 on 3)');
+    $title = __('Step 1', 'Poll creation (1 of 3)');
 }
 
 // Prepare error messages
@@ -236,7 +236,7 @@ if (!empty($_POST[GO_TO_STEP_2])) {
     if ($error_on_customized_url) {
         $errors['customized_url']['aria'] = 'aria-describeby="customized_url" ';
         $errors['customized_url']['class'] = ' has-error';
-        $errors['customized_url']['msg'] = isset($error_on_customized_url_msg) ? $error_on_customized_url_msg : __('Error', "Something is wrong with the format: customized urls should only consist of alphanumeric characters and hyphens.");
+        $errors['customized_url']['msg'] = isset($error_on_customized_url_msg) ? $error_on_customized_url_msg : __('Error', "Something is wrong with the format: Customized URLs should only consist of alphanumeric characters and hyphens.");
     }
 
     if ($error_on_description) {
@@ -268,17 +268,17 @@ if (!empty($_POST[GO_TO_STEP_2])) {
     if ($error_on_password) {
         $errors['password']['aria'] = 'aria-describeby="poll_password_error" ';
         $errors['password']['class'] = ' has-error';
-        $errors['password']['msg'] = __('Error', 'Password is empty');
+        $errors['password']['msg'] = __('Error', 'Password is empty.');
     }
     if ($error_on_password_repeat) {
         $errors['password_repeat']['aria'] = 'aria-describeby="poll_password_repeat_error" ';
         $errors['password_repeat']['class'] = ' has-error';
-        $errors['password_repeat']['msg'] = __('Error', 'Passwords do not match');
+        $errors['password_repeat']['msg'] = __('Error', 'Passwords do not match.');
     }
 	if ($error_on_ValueMax) {
         $errors['ValueMax']['aria'] = 'aria-describeby="poll_ValueMax" ';
         $errors['ValueMax']['class'] = ' has-error';
-        $errors['ValueMax']['msg'] = __('Error', 'Error on amount of voters limitation : value must be an integer greater than 0');
+        $errors['ValueMax']['msg'] = __('Error', 'Error on amount of votes limitation: Value must be an integer greater than 0');
     }
 }
 

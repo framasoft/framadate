@@ -22,7 +22,7 @@
                 <input id="ValueMax" type="number" min="1" name="ValueMax"
                        value="{$ValueMax|html}" {$errors['ValueMax']['aria']}>
 
-                {__('Step 1', "ValueMax instructions")}
+                {__('Step 1', 'votes per option')}
             </label>
 
         </div>

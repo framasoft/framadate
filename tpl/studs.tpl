@@ -33,7 +33,7 @@
         {* Information about voting *}
         {if $expired}
             <div class="alert alert-danger">
-                <p>{__('studs', 'The poll is expired, it will be deleted soon.')}</p>
+                <p>{__('studs', 'The poll has expired, it will soon be deleted.')}</p>
                 <p>{__('studs', 'Deletion date:')} {$deletion_date|date_format:$date_format['txt_short']|html}</p>
             </div>
         {else}

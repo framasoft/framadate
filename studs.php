@@ -130,7 +130,7 @@ if ($accessGranted) {
         $slots_hash = $inputService->filterMD5($_POST['control']);
 
         if (empty($editedVote)) {
-            $message = new Message('danger', __('Error', 'Something is going wrong...'));
+            $message = new Message('danger', __('Error', 'Something has gone wrong...'));
         }
         if (count($choices) !== count($_POST['choices'])) {
             $message = new Message('danger', __('Error', 'There is a problem with your choices'));
@@ -145,7 +145,7 @@ if ($accessGranted) {
                         $editedVoteUniqueId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
                         $message = getMessageForOwnVoteEditableVote($sessionService, $smarty, $editedVoteUniqueId, $config['use_smtp'], $poll_id, $name);
                     } else {
-                        $message = new Message('success', __('studs', 'Update vote succeeded'));
+                        $message = new Message('success', __('studs', 'Vote updated'));
                     }
                     $notificationService->sendUpdateNotification($poll, NotificationService::UPDATE_VOTE, $name);
                 } else {
@@ -185,7 +185,7 @@ if ($accessGranted) {
                         $editedVoteUniqueId = $result->uniqId;
                         $message = getMessageForOwnVoteEditableVote($sessionService, $smarty, $editedVoteUniqueId, $config['use_smtp'], $poll_id, $name);
                     } else {
-                        $message = new Message('success', __('studs', 'Adding the vote succeeded'));
+                        $message = new Message('success', __('studs', 'Vote added'));
                     }
                     $notificationService->sendUpdateNotification($poll, NotificationService::ADD_VOTE, $name);
                 } else {
@@ -209,7 +209,7 @@ function getMessageForOwnVoteEditableVote(SessionService &$sessionService, Smart
     $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
     $message = new Message(
         'success',
-        __('studs', 'Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:'),
+        __('studs', 'Your vote has been saved, but please note: you need to keep this personalised link to be able to edit your vote.'),
         $urlEditVote,
         __f('Poll results', 'Edit the line: %s', $name),
         'glyphicon-pencil');

@@ -2,7 +2,7 @@
 
 <div class="form-group">
     <label for="collect_voters_email" class="col-sm-4 control-label">
-        {__('Step 1', 'Collect voters email')}
+        {__('Step 1', "Collect voters' email addresses")}
     </label>
     <div class="col-sm-8" id="collect_voters_email">
         <div class="radio">
@@ -38,7 +38,7 @@
     <div class="col-sm-offset-4 col-sm-8">
         <label class="bg-danger">
             <i class="glyphicon glyphicon-alert"></i>
-            {__('Step 1', 'Warning: anyone can access the polled users email addresses since all voters can modify any vote. You should restrict permission rules.')}
+            {__('Step 1', 'Warning: Anyone can see the polled users' email addresses since all voters can modify any vote. You should restrict permission rules.')}
         </label>
     </div>
 </div> {* END div.form-group *}

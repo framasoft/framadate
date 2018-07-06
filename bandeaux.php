@@ -30,9 +30,9 @@ function bandeau_titre($titre)
     if(count($ALLOWED_LANGUAGES) > 1){
         echo '<form method="post" action="" class="hidden-print">
             <div class="input-group input-group-sm pull-right col-md-2 col-xs-4">
-                <select name="lang" class="form-control" title="' . __('Language selector', 'Select the language') . '" >' . liste_lang() . '</select>
+                <select name="lang" class="form-control" title="' . __('Language selector', 'Select language') . '" >' . liste_lang() . '</select>
                 <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default btn-sm" title="' . __('Language selector', 'Change the language') . '">OK</button>
+                    <button type="submit" class="btn btn-default btn-sm" title="' . __('Language selector', 'Change language') . '">OK</button>
                 </span>
             </div>
         </form>';

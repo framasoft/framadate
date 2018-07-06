@@ -88,7 +88,7 @@ switch ($step) {
         $_SESSION['form'] = serialize($form);
 
         // Display step 2
-        $smarty->assign('title', __('Step 2 classic', 'Poll subjects (2 on 3)'));
+        $smarty->assign('title', __('Step 2 classic', 'Poll options (2 of 3)'));
         $smarty->assign('choices', $form->getChoices());
         $smarty->assign('allowMarkdown', $config['user_can_add_img_or_link']);
         $smarty->assign('error', null);
@@ -114,7 +114,7 @@ switch ($step) {
             }
         }
 
-        // Expiration date is initialised with config parameter. Value will be modified in step 4 if user has defined an other date
+        // Expiry date is initialised with config parameter. Value will be modified in step 4 if user has defined an other date
         $form->end_date = $max_expiry_time;
 
         // Summary
@@ -146,7 +146,7 @@ switch ($step) {
 
         $_SESSION['form'] = serialize($form);
 
-        $smarty->assign('title', __('Step 3', 'Removal date and confirmation (3 on 3)'));
+        $smarty->assign('title', __('Step 3', 'Removal date and confirmation (3 of 3)'));
         $smarty->assign('summary', $summary);
         $smarty->assign('end_date_str', $end_date_str);
         $smarty->assign('default_poll_duration', $config['default_poll_duration']);
@@ -185,17 +185,17 @@ switch ($step) {
 
         // Send confirmation by mail if enabled
         if ($config['use_smtp'] === true) {
-            $message = __('Mail', "This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
+            $message = __('Mail', "This is the message to forward to the poll participants.");
             $message .= '<br/><br/>';
-            $message .= Utils::htmlMailEscape($form->admin_name) . ' ' . __('Mail', 'hast just created a poll called') . ' : "' . Utils::htmlMailEscape($form->title) . '".<br/>';
-            $message .= sprintf(__('Mail', 'Thanks for filling the poll at the link above') . ' :<br/><br/><a href="%1$s">%1$s</a>', Utils::getUrlSondage($poll_id));
+            $message .= Utils::htmlMailEscape($form->admin_name) . ' ' . __('Mail', 'has just created a poll called') . ' : "' . Utils::htmlMailEscape($form->title) . '".<br/>';
+            $message .= sprintf(__('Mail', 'Thank you for participating in the poll at the following link') . ' :<br/><br/><a href="%1$s">%1$s</a>', Utils::getUrlSondage($poll_id));
 
-            $message_admin = __('Mail', "This message should NOT be sent to the polled people. It is private for the poll's creator.\n\nYou can now modify it at the link above");
+            $message_admin = __('Mail', "This message should NOT be sent to the poll participants. You should keep it private. <br/><br/>You can modify your poll at the following link");
             $message_admin .= sprintf(' :<br/><br/><a href="%1$s">%1$s</a>', Utils::getUrlSondage($admin_poll_id, true));
 
             if ($mailService->isValidEmail($form->admin_mail)) {
-                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Author\'s message') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message_admin);
-                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'For sending to the polled users') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message);
+                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Message for the author') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message_admin);
+                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Participant link') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message);
             }
         }
 

@@ -19,7 +19,7 @@
                         <input type="text" name="name" id="comment_name" class="form-control" maxlength="60" required>
                     </div>
                     <div class="form-group">
-                        <label for="comment" class="control-label">{__('Comments', 'Your comment')|html}</label>
+                        <label for="comment" class="control-label">{__('Comments', 'Comment')|html}</label>
                         <textarea name="comment" id="comment" class="form-control" rows="2" cols="40" required></textarea>
                     </div>
                     <div class="pull-right">
@@ -27,9 +27,9 @@
 	                        type="submit"
 	                        id="add_comment"
 	                        class="btn btn-success"
-	                        data-text-wait="{__('Comments', 'Type your name and a comment to send it')|html}"
+	                        data-text-wait="{__('Comments', 'Enter your name and comment prior to submitting the form')|html}"
                         >
-                        	{__('Comments', 'Send the comment')|html}
+                        	{__('Comments', 'Submit comment')|html}
                         </button>
                     </div>
                 </fieldset>

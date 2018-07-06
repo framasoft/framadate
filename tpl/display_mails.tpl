@@ -5,7 +5,7 @@
     {if ($mails_yes|count) === 0}
         {__('display_mails', "No one voted 'Yes' to this option.")}</br>
     {else}
-        {__('display_mails', "People who have answered 'Yes' to this option have left these email addresses:")}</br>
+        {__('display_mails', "Users who voted 'Yes' for this option have left those email addresses:")}</br>
         {strip}
         <pre>
             {foreach $mails_yes as $mail}
@@ -18,7 +18,7 @@
     {if ($mails_ifneedbe|count) === 0}
         {__('display_mails', "No one voted 'If need be' to this option.")}</br>
     {else}
-        {__('display_mails', "People who have answered 'If need be' to this option have left these email addresses:")}</br>
+        {__('display_mails', "Users who voted 'If need be' for this option have left those email addresses:")}</br>
         {strip}
         <pre>
             {foreach $mails_ifneedbe as $mail}
@@ -31,7 +31,7 @@
     {if ($mails_no|count) === 0}
         {__('display_mails', "No one voted 'No' to this option.")}</br>
     {else}
-        {__('display_mails', "People who have answered 'No' to this option have left these email addresses:")}</br>
+        {__('display_mails', "Users who voted 'No' for this option have left those email addresses:")}</br>
         {strip}
         <pre>
             {foreach $mails_no as $mail}

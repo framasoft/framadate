@@ -38,7 +38,7 @@ class NotificationService {
 
         if ($isVoteAndCanSendIt || $isCommentAndCanSendIt || $isOtherType) {
             if (self::isParticipation($type)) {
-                $translationString = 'Poll\'s participation: %s';
+                $translationString = 'Poll participation: %s';
             } else {
                 $translationString = 'Notification of poll: %s';
             }
@@ -53,24 +53,24 @@ class NotificationService {
             switch ($type) {
                 case self::UPDATE_VOTE:
                     $message .= $name . ' ';
-                    $message .= __('Mail', "updated a vote.\nYou can find your poll at the link") . " :\n\n";
+                    $message .= __('Mail', "updated a vote.<br/>You can visit your poll at the link") . " :\n\n";
                     $message .= $link;
                     break;
                 case self::ADD_VOTE:
                     $message .= $name . ' ';
-                    $message .= __('Mail', "filled a vote.\nYou can find your poll at the link") . " :\n\n";
+                    $message .= __('Mail', "added a vote.<br/>You can visit your poll at the link") . " :\n\n";
                     $message .= $link;
                     break;
                 case self::ADD_COMMENT:
                     $message .= $name . ' ';
-                    $message .= __('Mail', "wrote a comment.\nYou can find your poll at the link") . " :\n\n";
+                    $message .= __('Mail', "wrote a comment.<br/>You can visit your poll at the link") . " :\n\n";
                     $message .= $link;
                     break;
                 case self::UPDATE_POLL:
-                    $message = __f('Mail', 'Someone just change your poll available at the following link %s.', Utils::getUrlSondage($poll->admin_id, true)) . "\n\n";
+                    $message = __f('Mail', 'Someone just changed your poll at the following link <a href=\"%1$s\">%1$s</a>.', Utils::getUrlSondage($poll->admin_id, true)) . "\n\n";
                     break;
                 case self::DELETED_POLL:
-                    $message = __f('Mail', 'Someone just delete your poll %s.', Utils::htmlEscape($poll->title)) . "\n\n";
+                    $message = __f('Mail', 'Someone just deleted your poll "%s".', Utils::htmlEscape($poll->title)) . "\n\n";
                     break;
             }
 

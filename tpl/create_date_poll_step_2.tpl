@@ -3,8 +3,8 @@
 {block name="header"}
     <script type="text/javascript">
         window.date_formats = {
-            DATE: '{__('Date', 'DATE')}',
-            DATEPICKER: '{__('Date', 'datepicker')}'
+            DATE: '{__('Date', '%Y-%m-%d')}',
+            DATEPICKER: '{__('Date', 'yyyy-mm-dd')}'
         };
     </script>
     <script type="text/javascript" src="{'js/app/framadatepicker.js'|resource}"></script>
@@ -15,7 +15,7 @@
     <form name="formulaire" action="" method="POST" class="form-horizontal" role="form">
         <div class="row" id="selected-days">
             <div class="col-md-10 col-md-offset-1">
-                <h3>{__('Step 2 date', 'Choose the dates of your poll')}</h3>
+                <h3>{__('Step 2 date', 'Choose dates for your poll')}</h3>
 
                 {if $error != null}
                 <div class="alert alert-danger">
@@ -24,16 +24,16 @@
                 {/if}
 
                 <div class="alert alert-info">
-                    <p>{__('Step 2 date', 'To schedule an event you need to propose at least two choices (two hours for one day or two days).')}</p>
+                    <p>{__('Step 2 date', 'To schedule an event you need to provide at least two choices (e.g., two time slots on one day or two days).')}</p>
 
-                    <p>{__('Step 2 date', 'You can add or remove additionnal days and hours with the buttons')}
+                    <p>{__('Step 2 date', 'You can add or remove additional days and times with the buttons')}
                         <span class="glyphicon glyphicon-minus text-info"></span>
                         <span class="sr-only">{__('Generic', 'Remove')}</span>
                         <span class="glyphicon glyphicon-plus text-success"></span>
                         <span class="sr-only">{__('Generic', 'Add')}</span>
                     </p>
 
-                    <p>{__('Step 2 date', 'For each selected day, you can choose, or not, meeting hours (e.g.: "8h", "8:30", "8h-10h", "evening", etc.)')}</p>
+                    <p>{__('Step 2 date', 'For each selected day, you are free to suggest meeting times (e.g., \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)')}</p>
                 </div>
 
                 <div id="days_container">
@@ -52,8 +52,8 @@
                                         <div class="input-group date">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
                                             <input type="text" class="form-control" id="day{$i}" title="{__('Generic', 'Day')} {$i+1}"
-                                                   data-date-format="{__('Date', 'dd/mm/yyyy')}" aria-describedby="dateformat{$i}" name="days[]" value="{$day_value}"
-                                                   size="10" maxlength="10" placeholder="{__('Date', 'dd/mm/yyyy')}" autocomplete="off"/>
+                                                   data-date-format="{__('Date', 'yyyy-mm-dd')}" aria-describedby="dateformat{$i}" name="days[]" value="{$day_value}"
+                                                   size="10" maxlength="10" placeholder="{__('Date', 'yyyy-mm-dd')}" autocomplete="off"/>
                                         </div>
                                     </div>
                                     <div class="col-xs-2 col-sm-1">
@@ -63,7 +63,7 @@
                                         </button>
                                     </div>
 
-                                    <span id="dateformat{$i}" class="sr-only">({__('Date', 'dd/mm/yyyy')})</span>
+                                    <span id="dateformat{$i}" class="sr-only">({__('Date', 'yyyy-mm-dd')})</span>
                                 </legend>
 
                                 {foreach $choice->getSlots() as $j=>$slot}
@@ -76,13 +76,13 @@
 
                                 <div class="col-sm-2">
                                     <div class="btn-group btn-group-xs" style="margin-top: 5px;">
-                                        <button type="button" title="{__('Step 2 date', 'Remove an hour')}" class="remove-an-hour btn btn-default">
+                                        <button type="button" title="{__('Step 2 date', 'Remove a time slot')}" class="remove-an-hour btn btn-default">
                                             <span class="glyphicon glyphicon-minus text-info"></span>
-                                            <span class="sr-only">{__('Step 2 date', 'Remove an hour')}</span>
+                                            <span class="sr-only">{__('Step 2 date', 'Remove a time slot')}</span>
                                         </button>
-                                        <button type="button" title="{__('Step 2 date', 'Add an hour')}" class="add-an-hour btn btn-default">
+                                        <button type="button" title="{__('Step 2 date', 'Add a time slot')}" class="add-an-hour btn btn-default">
                                             <span class="glyphicon glyphicon-plus text-success"></span>
-                                            <span class="sr-only">{__('Step 2 date', 'Add an hour')}</span>
+                                            <span class="sr-only">{__('Step 2 date', 'Add a time slot')}</span>
                                         </button>
                                     </div>
                                 </div>
@@ -93,9 +93,9 @@
 
 
                 <div class="col-md-4">
-                    <button type="button" id="copyhours" class="btn btn-default disabled" title="{__('Step 2 date', 'Copy hours of the first day')}"><span
+                    <button type="button" id="copyhours" class="btn btn-default disabled" title="{__('Step 2 date', 'Copy times from the first day')}"><span
                                 class="glyphicon glyphicon-sort-by-attributes-alt text-info"></span><span
-                                class="sr-only">{__('Step 2 date', 'Copy hours of the first day')}</span></button>
+                                class="sr-only">{__('Step 2 date', 'Copy times from the first day')}</span></button>
                     <div class="btn-group btn-group">
                         <button type="button" id="remove-a-day" class="btn btn-default disabled" title="{__('Step 2 date', 'Remove a day')}"><span
                                     class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">{__('Step 2 date', 'Remove a day')}</span></button>
@@ -116,11 +116,11 @@
                         </button>
                         <ul class="dropdown-menu" role="menu">
                             <li><a id="resetdays" href="javascript:void(0)">{__('Step 2 date', 'Remove all days')}</a></li>
-                            <li><a id="resethours" href="javascript:void(0)">{__('Step 2 date', 'Remove all hours')}</a></li>
+                            <li><a id="resethours" href="javascript:void(0)">{__('Step 2 date', 'Remove all times')}</a></li>
                         </ul>
                     </div>
                     <a class="btn btn-default" href="{$SERVER_URL}create_poll.php?type=date"
-                       title="{__('Step 2', 'Back to step 1')}">{__('Generic', 'Back')}</a>
+                       title="{__('Step 2', 'Return to step 1')}">{__('Generic', 'Back')}</a>
                     <button name="choixheures" value="{__('Generic', 'Next')}" type="submit" class="btn btn-success disabled"
                             title="{__('Step 2', 'Go to step 3')}">{__('Generic', 'Next')}</button>
                 </div>
@@ -140,7 +140,7 @@
                 <div class="modal-body row">
                     <div class="col-xs-12">
                         <div class="alert alert-info">
-                            {__('Date', 'Max dates count')}
+                            {__('Date', 'You can select at most 4 months')}
                         </div>
                     </div>
                     <div class="col-xs-12">
@@ -148,8 +148,8 @@
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
                             <input type="text" class="form-control" id="range_start"
-                                   data-date-format="{__('Date', 'dd/mm/yyyy')}" size="10" maxlength="10"
-                                   placeholder="{__('Date', 'dd/mm/yyyy')}"/>
+                                   data-date-format="{__('Date', 'yyyy-mm-dd')}" size="10" maxlength="10"
+                                   placeholder="{__('Date', 'yyyy-mm-dd')}"/>
                         </div>
                     </div>
                     <div class="col-xs-12">
@@ -157,8 +157,8 @@
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
                             <input type="text" class="form-control" id="range_end"
-                                   data-date-format="{__('Date', 'dd/mm/yyyy')}" size="10" maxlength="10"
-                                   placeholder="{__('Date', 'dd/mm/yyyy')}"/>
+                                   data-date-format="{__('Date', 'yyyy-mm-dd')}" size="10" maxlength="10"
+                                   placeholder="{__('Date', 'yyyy-mm-dd')}"/>
                         </div>
                     </div>
                 </div>

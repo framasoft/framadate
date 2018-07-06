@@ -4,10 +4,10 @@
     <div class="jumbotron{if $admin} bg-danger{/if}">
         <div class="row"> {* Title | buttons*}
             <div id="title-form" class="col-md-7">
-                <h3>{$poll->title|html}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the title')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</h3>
+                <h3>{$poll->title|html}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit title')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</h3>
                 {if $admin && !$expired}
                     <div class="hidden js-title">
-                        <label class="sr-only" for="newtitle">{__('PollInfo', 'Title')}</label>
+                        <label class="sr-only" for="newtitle">{__('PollInfo', 'Title of the poll')}</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="newtitle" name="title" size="40" value="{$poll->title|html}" />
                             <span class="input-group-btn">
@@ -34,8 +34,8 @@
                             <span class="glyphicon glyphicon-trash"></span> <span class="sr-only">{__('Generic', 'Remove')}</span> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><button class="btn btn-link" type="submit" name="remove_all_votes">{__('PollInfo', 'Remove all the votes') }</button></li>
-                            <li><button class="btn btn-link" type="submit" name="remove_all_comments">{__('PollInfo', 'Remove all the comments')}</button></li>
+                            <li><button class="btn btn-link" type="submit" name="remove_all_votes">{__('PollInfo', 'Remove all votes') }</button></li>
+                            <li><button class="btn btn-link" type="submit" name="remove_all_comments">{__('PollInfo', 'Remove all comments')}</button></li>
                             <li class="divider" role="presentation"></li>
                             <li><button class="btn btn-link" type="submit" name="delete_poll">{__('PollInfo', 'Remove the poll')}</button></li>
                         </ul>
@@ -52,11 +52,11 @@
         <div class="row"> {* Admin name + email | Description *}
             <div class="form-group col-md-4">
                 <div id="name-form">
-                    <label class="control-label">{__('PollInfo', 'Initiator of the poll')}</label>
-                    <p class="form-control-static">{$poll->admin_name|html}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the name')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
+                    <label class="control-label">{__('PollInfo', 'Creator of the poll')}</label>
+                    <p class="form-control-static">{$poll->admin_name|html}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit name')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
                     {if $admin && !$expired}
                     <div class="hidden js-name">
-                        <label class="sr-only" for="newname">{__('PollInfo', 'Initiator of the poll')}</label>
+                        <label class="sr-only" for="newname">{__('PollInfo', 'Creator of the poll')}</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="newname" name="name" size="40" value="{$poll->admin_name|html}" />
                             <span class="input-group-btn">
@@ -69,7 +69,7 @@
                 </div>
                 {if $admin}
                 <div id="email-form">
-                    <p>{$poll->admin_mail|html}{if !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the email adress')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
+                    <p>{$poll->admin_mail|html}{if !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the email address')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
                     {if !$expired}
                         <div class="hidden js-email">
                             <label class="sr-only" for="admin_mail">{__('PollInfo', 'Email')}</label>
@@ -106,20 +106,20 @@
 
         <div class="row">
             <div class="form-group form-group {if $admin}col-md-4{else}col-md-6{/if}">
-                <label for="public-link"><a class="public-link" href="{poll_url id=$poll_id}">{__('PollInfo', 'Public link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                <label for="public-link"><a class="public-link" href="{poll_url id=$poll_id}">{__('PollInfo', 'Public link to the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
                 <input class="form-control" id="public-link" type="text" readonly="readonly" value="{poll_url id=$poll_id}" onclick="select();"/>
             </div>
             {if $admin}
                 <div class="form-group col-md-4">
-                    <label for="admin-link"><a class="admin-link" href="{poll_url id=$admin_poll_id admin=true}">{__('PollInfo', 'Admin link of the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
+                    <label for="admin-link"><a class="admin-link" href="{poll_url id=$admin_poll_id admin=true}">{__('PollInfo', 'Admin link for the poll')} <span class="btn-link glyphicon glyphicon-link"></span></a></label>
                     <input class="form-control" id="admin-link" type="text" readonly="readonly" value="{poll_url id=$admin_poll_id admin=true}" onclick="select();"/>
                 </div>
                 <div id="expiration-form" class="form-group col-md-4">
-                    <label class="control-label">{__('PollInfo', 'Expiration date')}</label>
-                    <p>{$poll->end_date|date_format:$date_format['txt_date']|html} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiration date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
+                    <label class="control-label">{__('PollInfo', 'Expiry date')}</label>
+                    <p>{$poll->end_date|date_format:$date_format['txt_date']|html} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiry date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
 
                         <div class="hidden js-expiration">
-                            <label class="sr-only" for="newexpirationdate">{__('PollInfo', 'Expiration date')}</label>
+                            <label class="sr-only" for="newexpirationdate">{__('PollInfo', 'Expiry date')}</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="newexpirationdate" name="expiration_date" size="40" value="{$poll->end_date|date_format:$date_format['txt_date']|html}" />
                                 <span class="input-group-btn">
@@ -232,21 +232,21 @@
                     </div>
                 </div>
             </div>
-	    <div id="collect_users_mail">
+            <div id="collect_users_mail">
             {if $poll->collect_users_mail == constant("Framadate\CollectMail::NO_COLLECT")}
-		{$txt=__('PollInfo', 'Voters email adresses are not collected')}
-	    {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT")}
-		{$txt=__('PollInfo', 'Voters email adresses are collected')}
-	    {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT_REQUIRED")}
-		{$txt=__('PollInfo', 'Voters email adresses are collected and required')}
-	    {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT_REQUIRED_VERIFIED")}
-		{$txt=__('PollInfo', 'Voters email adresses are collected, required and verified')}
-	    {else}
-		{$txt='Error'}
-	    {/if}
+                {$txt=__('PollInfo', "Voters' email addresses are not collected")}
+            {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT")}
+                {$txt=__('PollInfo', "Voters' email addresses are collected")}
+            {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT_REQUIRED")}
+                {$txt=__('PollInfo', "Voters' email addresses are collected and required")}
+            {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT_REQUIRED_VERIFIED")}
+                {$txt=__('PollInfo', "Voters' email addresses are collected, required and verified")}
+            {else}
+                {$txt='Error'}
+            {/if}
                 <p><span class="glyphicon glyphicon-envelope"> </span> {$txt|html}</p>
 
-	    </div>
+            </div>
         {/if}
     </div>
 {if $admin}</form>{/if}

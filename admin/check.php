@@ -177,14 +177,14 @@ usort($messages, 'compareCheckMessage');
         <div class="row">
             <form method="get" action="" class="hidden-print">
                 <div class="input-group input-group-sm pull-right col-xs-12 col-sm-2">
-                    <select name="lang" class="form-control" title="<?=__('Language selector', 'Select the language')?>" >
+                    <select name="lang" class="form-control" title="<?=__('Language selector', 'Select language')?>" >
                         <?php foreach ($ALLOWED_LANGUAGES as $lang_key => $language) { ?>
                         <option lang="fr" <?php if (substr($lang_key, 0, 2)===$locale) { echo 'selected';} ?> value="<?=substr($lang_key, 0, 2)?>"><?=$language?></option>
                         <?php } ?>
                     </select>
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default btn-sm" title="<?=__('Language selector', 'Select the language')?>">OK</button>
-                </span>
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default btn-sm" title="<?=__('Language selector', 'Select language')?>">OK</button>
+                    </span>
                 </div>
             </form>
         </div>
