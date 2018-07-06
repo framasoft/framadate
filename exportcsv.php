@@ -53,7 +53,7 @@ if (!empty($_GET['poll'])) {
 }
 
 if (!$poll) {
-    $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
+    $smarty->assign('error', __('Error', "This poll doesn't exist!"));
     $smarty->display('error.tpl');
     exit;
 }
@@ -104,7 +104,7 @@ foreach ($votes as $vote) {
                 $text = __('Generic', 'No');
                 break;
             case 1:
-                $text = __('Generic', 'Ifneedbe');
+                $text = __('Generic', 'Under reserve');
                 break;
             case 2:
                 $text = __('Generic', 'Yes');

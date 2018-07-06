@@ -3,8 +3,8 @@
 {block name="header"}
     <script type="text/javascript">
         window.date_formats = {
-            DATE: '{__('Date', 'DATE')}',
-            DATEPICKER: '{__('Date', 'datepicker')}'
+            DATE: '{__('Date', '%Y-%m-%d')}',
+            DATEPICKER: '{__('Date', 'yyyy-mm-dd')}'
         };
     </script>
     <script type="text/javascript" src="{'js/app/framadatepicker.js'|resource}"></script>
@@ -14,7 +14,7 @@
 
     <form action="{poll_url id=$admin_poll_id admin=true}" method="POST">
         <div class="alert alert-info text-center">
-            <h2>{__('adminstuds', 'Column\'s adding')}</h2>
+            <h2>{__('adminstuds', 'Adding a column')}</h2>
 
             {* Messages *}
             {include 'part/messages.tpl'}
@@ -25,9 +25,9 @@
                     <div class="col-md-8">
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input type="text" id="newdate" data-date-format="{__('Date', 'dd/mm/yyyy')}" aria-describedby="dateformat" name="newdate" class="form-control" placeholder="{__('Date', 'dd/mm/yyyy')}" />
+                            <input type="text" id="newdate" data-date-format="{__('Date', 'yyyy-mm-dd')}" aria-describedby="dateformat" name="newdate" class="form-control" placeholder="{__('Date', 'yyyy-mm-dd')}" />
                         </div>
-                        <span id="dateformat" class="sr-only">({__('Date', 'dd/mm/yyyy')})</span>
+                        <span id="dateformat" class="sr-only">({__('Date', 'yyyy-mm-dd')})</span>
                     </div>
                 </div>
                 <div class="form-group">

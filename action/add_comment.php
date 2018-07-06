@@ -62,7 +62,7 @@ if (!empty($_POST['poll_admin'])) {
 }
 
 if (!$poll) {
-    $message = new Message('error',  __('Error', 'This poll doesn\'t exist !'));
+    $message = new Message('error',  __('Error', "This poll doesn't exist!"));
 } else if ($poll && !$securityService->canAccessPoll($poll) && !$is_admin) {
     $message = new Message('error',  __('Password', 'Wrong password'));
 } else {
@@ -77,7 +77,7 @@ if (!$poll) {
         // Add comment
         $result = $pollService->addComment($poll_id, $name, $comment);
         if ($result) {
-            $message = new Message('success', __('Comments', 'Comment added'));
+            $message = new Message('success', __('Comments', 'Comment saved'));
             $notificationService->sendUpdateNotification($poll, NotificationService::ADD_COMMENT, $name);
         } else {
             $message = new Message('danger', __('Error', 'Comment failed'));

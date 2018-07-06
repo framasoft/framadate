@@ -9,7 +9,7 @@
  *
  * =============================
  *
- * Ce logiciel est r�gi par la licence CeCILL-B. Si une copie de cette licence
+ * Ce logiciel est régi par la licence CeCILL-B. Si une copie de cette licence
  * ne se trouve pas avec ce fichier vous pouvez l'obtenir sur
  * http://www.cecill.info/licences/Licence_CeCILL-B_V1-fr.txt
  *
@@ -56,14 +56,14 @@ class InstallService {
     public function install(Smarty &$smarty) {
         // Check values are present
         if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dbName']) || empty($this->fields['dbHost']) || empty($this->fields['dbPort']) || empty($this->fields['dbUser'])) {
-            return $this->error('MISSING_VALUES');
+            return $this->error('Missing values');
         }
 
         // Connect to database
         try {
             $connect = $this->connectTo($this->fields);
         } catch(\Doctrine\DBAL\DBALException $e) {
-            return $this->error('CANT_CONNECT_TO_DATABASE', $e->getMessage());
+            return $this->error('Unable to connect to database', $e->getMessage());
         }
 
         // Write configuration to conf.php file

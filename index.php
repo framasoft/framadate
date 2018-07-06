@@ -49,6 +49,6 @@ $smarty->assign('show_cultivate_your_garden', $config['show_cultivate_your_garde
 $smarty->assign('col_size', 12 / $nbcol);
 $smarty->assign('demo_poll_url', $demoPollURL);
 
-$smarty->assign('title', __('Generic', 'Make your polls'));
+$smarty->assign('title', __('Generic', 'Create your own polls'));
 
 $smarty->display('index.tpl');
