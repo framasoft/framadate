@@ -20,6 +20,12 @@
             </a>
         </h1>
         {if !empty($title)}<h2 class="lead col-xs-12"><i>{$title|html}</i></h2>{/if}
+
+        {if $saml_logout}
+            <a href="{$saml_logout}" class="pull-right" style="margin-top: -60px;"><span class="glyphicon glyphicon-log-out"></span> {__('Generic', 'Disconnect')}</a>
+        {/if}
+
         <div class="trait col-xs-12" role="presentation"></div>
+
     </header>
     <main role="main">
