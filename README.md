@@ -1,3 +1,10 @@
+# Warning
+
+![English](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/20px-Flag_of_the_United_Kingdom.svg.png) We use Github only as a mirror. You can open issues and merge requests on our Gitlab instance at https://framagit.org/framasoft/framadate/issues. You can easily login on https://framagit.org with your Github account. Issues opened here won't be answered. 
+
+![Français](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/20px-Flag_of_France.svg.png) Nous utilisons Github uniquement comme un mirroir. Vous pouvez ouvrir des tickets et des demandes de fusion sur notre instance Gitlab sur https://framagit.org/framasoft/framadate/issues. Vous pouvez facilement vous enregistrer sur https://framagit.org avec votre compte Github. Les tickets ouverts ici n'auront pas de réponse.
+
+
 # Framadate
 
 ![English](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/20px-Flag_of_the_United_Kingdom.svg.png) Framadate is an online service for planning an appointment or making a decision quickly and easily. No registration is required.
