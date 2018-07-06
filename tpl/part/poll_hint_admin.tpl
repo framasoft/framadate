@@ -5,7 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">{__('Generic', 'Caption')}</h4>
+                <h4 class="modal-title">{__('Generic', 'Information')}</h4>
             </div>
             <div class="modal-body">
                 <div class="alert alert-info">
@@ -19,11 +19,11 @@
                                 class="glyphicon glyphicon-plus text-success"></span><span
                                 class="sr-only">{__('adminstuds', 'Add a column')}</span>.</p>
 
-                    <p>{__('adminstuds', 'Finally, you can change the informations of this poll like the title, the comments or your email address.')}</p>
+                    <p>{__('adminstuds', 'Finally, you can change the properties of this poll such as the title, the comments or your email address.')}</p>
 
                     <p aria-hidden="true"><strong>{__('Generic', 'Legend:')}</strong> <span
                                 class="glyphicon glyphicon-ok"></span> = {__('Generic', 'Yes')}, <b>(<span
-                                    class="glyphicon glyphicon-ok"></span>)</b> = {__('Generic', 'Ifneedbe')}, <span
+                                    class="glyphicon glyphicon-ok"></span>)</b> = {__('Generic', 'Under reserve')}, <span
                                 class="glyphicon glyphicon-ban-circle"></span> = {__('Generic', 'No')}</p>
                 </div>
             </div>

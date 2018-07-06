@@ -12,6 +12,6 @@
     <i>
         {__('FindPolls','PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address.')}
         {capture name="email_url"}<a href="mailto:{$smarty.const.ADRESSEMAILADMIN}">{$smarty.const.ADRESSEMAILADMIN}</a>{/capture}
-        {__f('FindPolls',"If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s.", $smarty.capture.email_url)}
+        {__f('FindPolls',"If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator at %s.", $smarty.capture.email_url)}
     </i>
 </p>

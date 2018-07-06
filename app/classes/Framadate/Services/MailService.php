@@ -66,7 +66,7 @@ class MailService {
             $mail->Subject = $subject;
 
             // Bodies
-            $body = $body . ' <br/><br/>' . __('Mail', 'Thanks for your trust.') . ' <br/>' . NOMAPPLICATION . ' <hr/>' . __('Mail', 'FOOTER');
+            $body = $body . ' <br/><br/>' . __('Mail', 'Thank you for your trust.') . ' <br/>' . NOMAPPLICATION . ' <hr/>' . __('Mail', "\"The road is long, but the way is clear…\"<br/>Framasoft lives only by your donations.<br/>Thank you in advance for your support https://soutenir.framasoft.org");
             $mail->isHTML(true);
             $mail->msgHTML($body, ROOT_DIR, true);
 

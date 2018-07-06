@@ -150,7 +150,7 @@ $(document).ready(function () {
         }
     });
 
-    // Button "Remove all hours"
+    // Button "Remove all times"
 
     $(document).on('click', '#resethours', function () {
         $selected_days.find('fieldset').each(function () {
@@ -168,7 +168,7 @@ $(document).ready(function () {
         updateButtonState();
     });
 
-    // Button "Copy hours of the first day"
+    // Button "Copy times from the first day"
 
     function addHour(last_hour, add_button) {
 
@@ -223,14 +223,14 @@ $(document).ready(function () {
         });
     });
 
-    // Buttons "Add an hour"
+    // Buttons "Add a time slot"
 
     $(document).on('click', '.add-an-hour', function () {
         var last_hour = $(this).parent('div').parent('div').prev();
 	    addHour(last_hour, $(this));
     });
 
-    // Buttons "Remove an hour"
+    // Buttons "Remove a time slot"
 
     $(document).on('click', '.remove-an-hour', function () {
         var last_hour = $(this).parent('div').parent('div').prev();

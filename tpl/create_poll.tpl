@@ -29,10 +29,10 @@
     </div>
     <noscript>
         <div class="alert alert-danger">
-            {__('Step 1', 'Javascript is disabled on your browser. Its activation is required to create a poll.')}
+            {__('Step 1', 'JavaScript is disabled on your browser. It is required to create a poll.')}
         </div>
     </noscript>
     <div id="cookie-warning" class="alert alert-danger" style="display:none">
-        {__('Step 1', 'Cookies are disabled on your browser. Theirs activation is required to create a poll.')}
+        {__('Step 1', 'Cookies are disabled on your browser. They are required to be able to create a poll.')}
     </div>
 {/block}
