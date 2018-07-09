@@ -236,7 +236,7 @@ switch ($step) {
 
         // creation message
         $sessionService->set("Framadate", "messagePollCreated", TRUE);
-        
+
         // Redirect to poll administration
         header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
         exit;
