@@ -77,6 +77,10 @@ function smarty_modifier_html($html) {
     return Utils::htmlEscape($html);
 }
 
+function smarty_modifier_html_special_chars($html) {
+    return Utils::htmlMailEscape($html);
+}
+
 function smarty_modifier_datepicker_path($lang) {
     $i = 0;
     while (!is_file(path_for_datepicker_locale($lang)) && $i < 3) {
