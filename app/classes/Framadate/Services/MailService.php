@@ -1,7 +1,7 @@
 <?php
 namespace Framadate\Services;
 
-use PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
 
 class MailService {
     const DELAY_BEFORE_RESEND = 300;

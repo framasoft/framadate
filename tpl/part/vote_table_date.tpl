@@ -62,7 +62,7 @@
                         {$count_same = 0}
                     {/if}
 
-                    {$count_same = $count_same + $slot->moments|count}
+                    {$count_same = $count_same + ($slot->moments|count)}
 
                     {if $slot@last}
                         <th colspan="{$count_same}" class="bg-primary month" id="M{$id}">{$display}</th>
