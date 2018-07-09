@@ -95,6 +95,10 @@ function smarty_function_markdown_to_text($options, Smarty_Internal_Template $te
     return $text !== '' ? $text : __f('Poll results', '%s option', $number_letters);
 }
 
+function smarty_modifier_html_special_chars($html) {
+    return Utils::htmlMailEscape($html);
+}
+
 function smarty_modifier_datepicker_path($lang) {
     $i = 0;
     while (!is_file(path_for_datepicker_locale($lang)) && $i < 3) {
