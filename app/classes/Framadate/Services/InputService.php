@@ -104,7 +104,7 @@ class InputService {
 
     public function filterValueMax($int)
     {
-        return $this->filterInteger($int) >= 1;
+        return $this->filterInteger($int) >= 1 ? $this->filterInteger($int) : false;
     }
 
     public function filterBoolean($boolean) {
