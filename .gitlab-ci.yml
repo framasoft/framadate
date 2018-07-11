@@ -18,19 +18,19 @@ test:
     paths:
       - vendor/
 
-check-trad:
-  stage: test
-  allow_failure: true
-  script:
-    - if [ -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then echo "*** Unable to check if translations need to be pulled, exiting ***"; exit 1; fi
-    - export ORIG=$(git diff-files --shortstat)
-    - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
-    - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make push-locales; fi
-    - git status > /dev/null 2>&1
-    - export CHANGES=$(git diff-files --shortstat)
-    - if [[ $CHANGES != $ORIG ]]; then echo "*** There is changes in locales ***"; echo "*** You need to do `make pull-locales` in your repo ***"; exit 1; fi
-  only:
-    - develop
+# check-trad:
+#   stage: test
+#   allow_failure: true
+#   script:
+#     - if [ -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then echo "*** Unable to check if translations need to be pulled, exiting ***"; exit 1; fi
+#     - export ORIG=$(git diff-files --shortstat)
+#     - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
+#     - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make push-locales; fi
+#     - git status > /dev/null 2>&1
+#     - export CHANGES=$(git diff-files --shortstat)
+#     - if [[ $CHANGES != $ORIG ]]; then echo "*** There is changes in locales ***"; echo "*** You need to do `make pull-locales` in your repo ***"; exit 1; fi
+#   only:
+#     - develop
 
 # Create artifacts on master
 pages:
@@ -99,11 +99,11 @@ funky:
     - funky
 
 # Push new translations strings to https://trad.framasoft.org
-trads:
-  stage: deploy
-  image: framasoft/push-trad:latest
-  script:
-  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
-  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make push-locales; fi
-  only:
-    - develop
+# trads:
+#   stage: deploy
+#   image: framasoft/push-trad:latest
+#   script:
+#   - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
+#   - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make push-locales; fi
+#   only:
+#     - develop
