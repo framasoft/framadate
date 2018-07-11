@@ -63,8 +63,8 @@ beta:
   - git checkout develop
   - composer install -o  --no-interaction --no-progress --prefer-dist --no-dev
   - composer dump-autoload --optimize --no-dev --classmap-authoritative
-  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
-  - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make pull-locales; fi
+#   - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
+#   - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make pull-locales; fi
   - mkdir tpl_c
   - mkdir .public
   - cp -r * .public
