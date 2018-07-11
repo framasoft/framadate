@@ -1,33 +1,39 @@
 version: "2"
 services:
-  framadate-db:
+  db:
     container_name: framadate-db
     image: mysql:5.7
-    volumes:
-      - ./volumes/db/data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=motdepasseroot
       - MYSQL_USER=framadate
       - MYSQL_PASSWORD=framadatedbpassword
       - MYSQL_DATABASE=framadate
     restart: always
+    ports:
+      - "3306:3306"
 
   framadate:
     container_name: framadate
-    image: tcitworld/framadate:development
-    links:
-      - framadate-db:mysql
+    build:
+        dockerfile: ./docker/stretch/Dockerfile
+        context: .
+    depends_on:
+      - db
     ports:
       - 80:80
     environment:
+      - ENV=dev
       - DOMAIN=localhost
       - APP_NAME=Framadate
       - ADMIN_MAIL=mon@email.fr
       - MYSQL_USER=framadate
       - MYSQL_PASSWORD=framadatedbpassword
       - MYSQL_DB=framadate
-      - MYSQL_HOST=mysql
+      - MYSQL_HOST=db
       - ADMIN_USER=admin
       - ADMIN_PASSWORD=adminpassword
       - DISABLE_SMTP=true
+      - APACHE_RUN_USER=#1000
     restart: always
+    volumes:
+      - '.:/var/www/framadate'
