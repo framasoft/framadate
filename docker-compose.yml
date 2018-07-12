@@ -10,7 +10,7 @@ services:
       - MYSQL_DATABASE=framadate
     restart: always
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
   framadate:
     container_name: framadate
@@ -30,6 +30,7 @@ services:
       - MYSQL_PASSWORD=framadatedbpassword
       - MYSQL_DB=framadate
       - MYSQL_HOST=db
+      - MYSQL_PORT=3307
       - ADMIN_USER=admin
       - ADMIN_PASSWORD=adminpassword
       - DISABLE_SMTP=true

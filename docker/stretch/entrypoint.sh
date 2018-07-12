@@ -40,7 +40,7 @@ if [ ! -f $FRAMADATE_CONFIG ]; then
   sed -i -E "s/^(\/\/ )?const TABLENAME_PREFIX( )?=.*;/const TABLENAME_PREFIX = 'fd_';/g" $FRAMADATE_CONFIG
   sed -i -E "s/^(\/\/ )?const MIGRATION_TABLE( )?=.*;/const MIGRATION_TABLE = 'framadate_migration';/g" $FRAMADATE_CONFIG
   sed -i -E "s/^(\/\/ )?const DEFAULT_LANGUAGE( )?=.*;/const DEFAULT_LANGUAGE = 'fr';/g" $FRAMADATE_CONFIG
-  sed -i -E "s/^(\/\/ )?const URL_PROPRE( )?=.*;/const URL_PROPRE = false;/g" $FRAMADATE_CONFIG
+  sed -i -E "s/^(\/\/ )?const URL_PROPRE( )?=.*;/const URL_PROPRE = true;/g" $FRAMADATE_CONFIG
 else
   echo "Using existing config file " $FRAMADATE_CONFIG
 fi
