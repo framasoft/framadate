@@ -55,6 +55,23 @@ if [ ! -f /var/www/framadate/admin/.htpasswd ]; then
   fi
 fi
 
+if [ "$ENV" = "dev" ]; then
+  echo Installing PHP development dependencies
+  composer install --no-interaction --no-progress
+else
+  echo Installing PHP production dependencies
+  composer install -o  --no-interaction --no-progress --prefer-dist --no-dev
+  composer dump-autoload --optimize --no-dev --classmap-authoritative
+fi
+
+# Await MySQL Container being ready
+until /usr/bin/mysql --host=$MYSQL_HOST --user=$MYSQL_USER --password=$MYSQL_PASSWORD --silent --execute "SELECT 1;" $MYSQL_DB; do
+  >&2 echo "MySQL is unavailable - sleeping"
+  sleep 1
+done
+
+>&2 echo "Resuming setup"
+
 # Run Database migrations
 echo "Running database migrations"
 php /var/www/framadate/bin/doctrine migrations:status --no-interaction -vvv
