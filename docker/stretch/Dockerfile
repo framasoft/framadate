@@ -5,6 +5,7 @@ MAINTAINER kyane@kyane.fr
 RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq zip unzip git zlib1g-dev libicu-dev g++ mysql-client
 RUN docker-php-ext-install intl && docker-php-ext-install pdo_mysql
 
+RUN a2enmod rewrite
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -19,11 +20,7 @@ RUN set -eux; \
 ENV PATH="${PATH}:/root/.composer/vendor/bin"
 ENV COMPOSER_ALLOW_SUPERUSER 0
 
-COPY . /var/www/framadate
-
 WORKDIR /var/www/framadate
-
-ARG FRAMADATE_VERSION=develop
 
 # Some Apache and PHP configuration
 RUN if [ "$ENV" = "dev" ] ; then echo Using PHP production mode ; else echo Using PHP development mode && echo "error_reporting = E_ERROR | E_WARNING | E_PARSE\ndisplay_errors = On" > /usr/local/etc/php/conf.d/php.ini ; fi

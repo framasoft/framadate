@@ -72,6 +72,9 @@ done
 
 >&2 echo "Resuming setup"
 
+echo "Setting up .htaccess"
+cp /var/www/framadate/htaccess.txt /var/www/framadate/.htaccess
+
 # Run Database migrations
 echo "Running database migrations"
 php /var/www/framadate/bin/doctrine migrations:status --no-interaction -vvv
