@@ -10,7 +10,6 @@ test:
   stage: test
   script:
     - composer install -o  --no-interaction --no-progress --prefer-dist
-    - mkdir tpl_c
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run
     - vendor/bin/phpunit --bootstrap app/tests/bootstrap.php --debug app/tests
   cache:
@@ -39,10 +38,10 @@ pages:
   - git checkout ${latesttag}
   - composer install -o  --no-interaction --no-progress --prefer-dist --no-dev
   - composer dump-autoload --optimize --no-dev --classmap-authoritative
-  - mkdir tpl_c
   - mkdir framadate
   - mv `ls -A | grep -v framadate` ./framadate
-  - chmod -R 644 framadate/ && chmod -R 770 framadate/tpl_c/ && chmod -R 770 framadate/app/inc/
+  - find framadate/ -type d -exec chmod 750 {} \;
+  - find framadate/ -type f -exec chmod 640 {} \;
   - zip -r latest.zip framadate
   - mkdir .public
   - cp latest.zip .public
@@ -64,7 +63,6 @@ beta:
   - composer dump-autoload --optimize --no-dev --classmap-authoritative
   - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
   - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make pull-locales; fi
-  - mkdir tpl_c
   - mkdir .public
   - cp -r * .public
   - cp -r .git .public

@@ -70,7 +70,7 @@
                                     <div class="col-sm-2">
                                         <label for="d{$i}-h{$j}" class="sr-only control-label">{__('Generic', 'Time')} {$j+1}</label>
                                         <input type="text" class="form-control hours" title="{$day_value} - {__('Generic', 'Time')} {$j+1}"
-                                               placeholder="{__('Generic', 'Time')} {$j+1}" id="d{$i}-h{$j}" name="horaires{$i}[]" value="{$slot}"/>
+                                               placeholder="{__('Generic', 'Time')} {$j+1}" id="d{$i}-h{$j}" name="horaires{$i}[]" value="{$slot|html_special_chars}"/>
                                     </div>
                                 {/foreach}
 

@@ -6,7 +6,10 @@
         <form action="" method="POST">
 
             {if $error}
-                <div id="result" class="alert alert-danger">{$error}</div>
+                <div id="result" class="alert alert-danger">
+                    <h4>{$error}</h4>
+                    <small>{$error_details}</small>
+                </div>
             {/if}
 
             <fieldset>

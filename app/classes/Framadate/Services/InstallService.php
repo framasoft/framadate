@@ -55,9 +55,10 @@ class InstallService {
         }
 
         // Connect to database
-        $connect = $this->connectTo($this->fields['dbConnectionString'], $this->fields['dbUser'], $this->fields['dbPassword']);
-        if (!$connect) {
-            return $this->error('CANT_CONNECT_TO_DATABASE');
+        try {
+            $connect = $this->connectTo($this->fields['dbConnectionString'], $this->fields['dbUser'], $this->fields['dbPassword']);
+        } catch(\Exception $e) {
+            return $this->error('CANT_CONNECT_TO_DATABASE', $e->getMessage());
         }
 
         // Write configuration to conf.php file
@@ -68,15 +69,19 @@ class InstallService {
         return $this->ok();
     }
 
+    /**
+     * Connect to PDO compatible source
+     *
+     * @param string $connectionString
+     * @param string $user
+     * @param string $password
+     * @return \PDO
+     */
     function connectTo($connectionString, $user, $password) {
-        try {
-            $pdo = @new \PDO($connectionString, $user, $password);
-            $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
-            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            return $pdo;
-        } catch(\Exception $e) {
-            return null;
-        }
+        $pdo = @new \PDO($connectionString, $user, $password);
+        $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
+        $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        return $pdo;
     }
 
     function writeConfiguration(Smarty &$smarty) {
@@ -110,10 +115,11 @@ class InstallService {
      * @param $msg
      * @return array
      */
-    function error($msg) {
+    function error($msg, $details = '') {
         return [
             'status' => 'ERROR',
-            'code' => $msg
+            'code' => $msg,
+            'details' => $details,
         ];
     }
 
