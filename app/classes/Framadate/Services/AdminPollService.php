@@ -30,13 +30,23 @@ class AdminPollService {
         $this->voteRepository = RepositoryFactory::voteRepository();
         $this->commentRepository = RepositoryFactory::commentRepository();
     }
-
+    
     function updatePoll($poll) {
         global $config;
-        if ($poll->end_date > $poll->creation_date) {
-            return $this->pollRepository->update($poll);
+        
+        $end_date = strtotime($poll->end_date);
+        
+        if ($end_date < strtotime($poll->creation_date)) {
+            
+            $poll->end_date = $poll->creation_date;
+            
+        } elseif ($end_date > $this->pollService->maxExpiryDate()) {
+            
+            $poll->end_date = $this->pollService->maxExpiryDate();
+            
         }
-            return false;
+        
+        return $this->pollRepository->update($poll);
     }
 
     /**
