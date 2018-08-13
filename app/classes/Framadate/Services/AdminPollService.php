@@ -37,13 +37,9 @@ class AdminPollService {
         $end_date = strtotime($poll->end_date);
 
         if ($end_date < strtotime($poll->creation_date)) {
-            
             $poll->end_date = $poll->creation_date;
-            
         } elseif ($end_date > $this->pollService->maxExpiryDate()) {
-            
-            $poll->end_date = $this->pollService->maxExpiryDate();
-            
+            $poll->end_date = utf8_encode(strftime('%Y-%m-%d', $this->pollService->maxExpiryDate()));
         }
 
         return $this->pollRepository->update($poll);
