@@ -60,9 +60,10 @@ class InstallService {
         }
 
         // Connect to database
-        $connect = $this->connectTo($this->fields);
-        if (!$connect) {
-            return $this->error('CANT_CONNECT_TO_DATABASE');
+        try {
+            $connect = $this->connectTo($this->fields);
+        } catch(\Doctrine\DBAL\DBALException $e) {
+            return $this->error('CANT_CONNECT_TO_DATABASE', $e->getMessage());
         }
 
         // Write configuration to conf.php file
@@ -87,13 +88,7 @@ class InstallService {
             'driver' => $fields['dbDriver'],
             'charset' => $fields['dbDriver'] === 'pdo_mysql' ? 'utf8mb4' : 'utf8',
         ];
-        try {
-            return DriverManager::getConnection($connectionParams, $doctrineConfig);
-        } catch (DBALException $e) {
-            $logger = new LogService();
-            $logger->log('ERROR', $e->getMessage());
-            return null;
-        }
+        return DriverManager::getConnection($connectionParams, $doctrineConfig);
     }
 
     function writeConfiguration(Smarty &$smarty) {
@@ -128,10 +123,11 @@ class InstallService {
      * @param $msg
      * @return array
      */
-    function error($msg) {
+    function error($msg, $details = '') {
         return [
             'status' => 'ERROR',
-            'code' => $msg
+            'code' => $msg,
+            'details' => $details,
         ];
     }
 

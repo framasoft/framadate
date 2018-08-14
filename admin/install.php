@@ -37,11 +37,13 @@ if (!empty($_POST)) {
     if ($result['status'] === 'OK') {
         header(('Location: ' . Utils::get_server_name() . 'admin/migration.php'));
         exit;
-    }  
-        $error = __('Error', $result['code']);
+    }
+
+    $error = __('Error', $result['code']);
 }
 
 $smarty->assign('error', $error);
+$smarty->assign('error_details', $result['details']);
 $smarty->assign('title', __('Admin', 'Installation'));
 $smarty->assign('fields', $installService->getFields());
 $smarty->display('admin/install.tpl');
