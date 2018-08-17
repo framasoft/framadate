@@ -14,7 +14,7 @@
             </h3>
             <div class="row" v-if="polls.length > 0 || adminPolls.length > 0">
                 <div class="pull-right">
-                    <button @click="removeAllPolls" class="btn btn-sm btn-danger">{__('FindPolls', 'Remove all polls from this browser')}</button>
+                    <button @click="removeAllPolls" class="btn btn-sm btn-danger">{__('FindPolls', "Remove all my polls from this browser's index")}</button>
                 </div>
             </div>
             <div v-if="polls.length > 0">
@@ -102,13 +102,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="alert alert-info">
-                        <p>{__('FindPolls', 'Local Storage Help')}</p>
+                        <p>{__('FindPolls', 'To help you find your previous polls, we save each poll you create or access inside your browser. This data is saved inside this browser only. The following data will be saved:')}</p>
                         <ul>
-                            <li>{__('FindPolls', 'Local Storage Help Information Title')}</li>
-                            <li>{__('FindPolls', 'Local Storage Help Information Address')}</li>
-                            <li>{__('FindPolls', 'Local Storage Help Information Accessed')}</li>
+                            <li>{__('FindPolls', 'The title of the poll')}</li>
+                            <li>{__('FindPolls', 'Its address')}</li>
+                            <li>{__('FindPolls', 'The date you created or last accessed the poll')}</li>
                         </ul>
-                        <p>{__('FindPolls', 'Local Storage Help Delete')}</p>
+                        <p>{__('FindPolls', "To delete this data click the trashcan on the according line or click the « delete my polls index » option. This won't delete your polls.")}</p>
                     </div>
                 </div>
             </div>

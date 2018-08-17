@@ -67,7 +67,7 @@ if (!empty($_GET['poll'])) {
 if ($poll) {
     $poll_id = $poll->id;
 } else {
-    $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
+    $smarty->assign('error', __('Error', "This poll doesn't exist!"));
     $smarty->display('error.tpl');
     exit;
 }
@@ -81,7 +81,7 @@ $messagePollCreated = $sessionService->get("Framadate", "messagePollCreated", FA
 if ($messagePollCreated) {
 	$sessionService->remove("Framadate", "messagePollCreated");
 
-	$message = new Message('success', __('adminstuds', 'The poll is created.'));
+	$message = new Message('success', __('adminstuds', 'The poll was created.'));
 }
 
 // -------------------------------
@@ -229,7 +229,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
     $slots_hash = $inputService->filterMD5($_POST['control']);
 
     if (empty($editedVote)) {
-        $message = new Message('danger', __('Error', 'Something is going wrong...'));
+        $message = new Message('danger', __('Error', 'Something has gone wrong...'));
     }
     if (count($choices) !== count($_POST['choices'])) {
         $message = new Message('danger', __('Error', 'There is a problem with your choices'));
@@ -245,7 +245,7 @@ if (!empty($_POST['save'])) { // Save edition of an old vote
                 $message = new Message('danger', __('Error', 'Update vote failed'));
             }
         } catch (AlreadyExistsException $aee) {
-            $message = new Message('danger', __('Error', 'The name you\'ve chosen already exist in this poll!'));
+            $message = new Message('danger', __('Error', "The name you've chosen already exists in this poll!"));
         } catch (ConcurrentEditionException $cee) {
             $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
         } catch (ConcurrentVoteException $cve) {
@@ -402,7 +402,7 @@ if (isset($_GET['delete_column'])) {
     }
 
     if ($result) {
-        $message = new Message('success', __('adminstuds', 'Column removed'));
+        $message = new Message('success', __('adminstuds', 'Column deleted'));
     } else {
         $message = new Message('danger', __('Error', 'Failed to delete column'));
     }
@@ -465,7 +465,7 @@ if (isset($_POST['confirm_add_column'])) {
            exit_displaying_add_column(new Message('danger', __('Error', "Can't create an empty column.")));
         }
         if ($poll->format === 'D') {
-            $date = DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $_POST['newdate'])->setTime(0, 0, 0);
+            $date = DateTime::createFromFormat(__('Date', 'Y-m-d'), $_POST['newdate'])->setTime(0, 0, 0);
             $time = $date->getTimestamp();
             $newmoment = str_replace(',', '-', strip_tags($_POST['newmoment']));
             $adminPollService->addDateSlot($poll_id, $time, $newmoment);

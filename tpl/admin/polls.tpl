@@ -48,13 +48,13 @@
         <input type="hidden" name="csrf" value="{$crsf}"/>
         {if $poll_to_delete}
             <div class="alert alert-warning text-center">
-                <h3>{__('adminstuds', 'Confirm removal of the poll')} "{$poll_to_delete->id|html}"</h3>
+                <h3>{__('adminstuds', 'Confirm removal of your poll')} "{$poll_to_delete->id|html}"</h3>
 
                 <p>
                     <button class="btn btn-default" type="submit" value="1"
                             name="annullesuppression">{__('adminstuds', 'Keep the poll')}</button>
                     <button type="submit" name="delete_confirm" value="{$poll_to_delete->id|html}"
-                            class="btn btn-danger">{__('adminstuds', 'Delete the poll')}</button>
+                            class="btn btn-danger">{__('adminstuds', 'Delete poll')}</button>
                 </p>
             </div>
         {/if}
@@ -71,7 +71,7 @@
                         <th scope="col">{__('Admin', 'Title')}</th>
                         <th scope="col">{__('Admin', 'Author')}</th>
                         <th scope="col">{__('Admin', 'Email')}</th>
-                        <th scope="col">{__('Admin', 'Expiration date')}</th>
+                        <th scope="col">{__('Admin', 'Expiry date')}</th>
                         <th scope="col">{__('Admin', 'Votes')}</th>
                         <th scope="col">{__('Admin', 'Poll ID')}</th>
                         <th scope="col" colspan="3">{__('Admin', 'Actions')}</th>
@@ -110,9 +110,9 @@
                                             class="sr-only">{__('Admin', 'Change the poll')}</span></a></td>
                             <td>
                                 <button type="submit" name="delete_poll" value="{$poll->id|html}" class="btn btn-link"
-                                        title="{__('Admin', 'Deleted the poll')}"><span
+                                        title="{__('Admin', 'Poll deleted')}"><span
                                             class="glyphicon glyphicon-trash text-danger"></span><span
-                                            class="sr-only">{__('Admin', 'Deleted the poll')}</span>
+                                            class="sr-only">{__('Admin', 'Poll deleted')}</span>
                             </td>
                         </tr>
                     {/foreach}

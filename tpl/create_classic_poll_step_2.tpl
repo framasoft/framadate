@@ -12,10 +12,10 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="alert alert-info">
-                        <p>{__('Step 2 classic', 'To make a generic poll you need to propose at least two choices between differents subjects.')}</p>
-                        <p>{__('Step 2 classic', 'You can add or remove additional choices with the buttons')} <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">{__('Generic', 'Remove')}</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{__('Generic', 'Add')}</span></p>
+                        <p>{__('Step 2 classic', 'To create a poll you should provide at least two different choices.')}</p>
+                        <p>{__('Step 2 classic', 'You can add or remove choices with the buttons')} <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">{__('Generic', 'Remove')}</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{__('Generic', 'Add')}</span></p>
                         {if ($allowMarkdown)}
-                            <p>{__('Step 2 classic', 'It\'s possible to propose links or images by using')}<a href="http://{$locale|locale_2_lang}.wikipedia.org/wiki/Markdown">{__('Step 2 classic', 'the Markdown syntax')}</a>.</p>
+                            <p>{__('Step 2 classic', 'Links or images can be included using')} <a href="http://{$locale|locale_2_lang}.wikipedia.org/wiki/Markdown">{__('Step 2 classic', 'Markdown syntax')}</a>.</p>
                         {/if}
                     </div>
                     {foreach $choices as $i=>$choice}
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="col-md-8 text-right">
-                        <a class="btn btn-sub" href="{$SERVER_URL}/create_poll.php?type=classic" title="{__('Step 2', 'Back to step 1')}">{__('Generic', 'Back')}</a>
+                        <a class="btn btn-sub" href="{$SERVER_URL}/create_poll.php?type=classic" title="{__('Step 2', 'Return to step 1')}">{__('Generic', 'Back')}</a>
                         <button name="fin_sondage_autre" value="{__('Generic', 'Next')}" type="submit" class="btn btn-success disabled" title="{__('Step 2', 'Go to step 3')}">{__('Generic', 'Next')}</button>
                     </div>
                 </div>
