@@ -105,4 +105,4 @@ funky:
 #   - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then make push-locales; fi
 #   only:
 #     - develop
-#     - work-on-locales
+#     - master

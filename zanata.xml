@@ -2,7 +2,6 @@
 <config xmlns="http://zanata.org/namespace/config/">
   <url>https://trad.framasoft.org/</url>
   <project>framadate</project>
-  <project-version>master</project-version>
   <project-type>gettext</project-type>
   <src-dir>po</src-dir>
   <trans-dir>po</trans-dir>

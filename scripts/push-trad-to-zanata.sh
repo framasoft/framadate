@@ -7,5 +7,5 @@ then
 else
     LOCALE=$(echo $FILE | sed -e "s@_@-@g")
     json2po -i locale/$FILE.json -t locale/en.json -o po/$FILE.po
-    zanata-cli -q -B push --push-type trans -l $LOCALE
+    zanata-cli -q -B push --push-type trans -l $LOCALE --project-version $(git branch | grep \* | cut -d ' ' -f2-)
 fi
