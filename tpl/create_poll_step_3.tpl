@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="alert alert-warning">
-                    <p>{__('Step 3', 'Once you have confirmed the creation of your poll, you will automatically be redirected to the poll's administration page.')}</p>
+                    <p>{__('Step 3', 'Once you have confirmed the creation of your poll, you will automatically be redirected to the poll\'s administration page.')}</p>
                     {if $use_smtp}
                         <p>{__('Step 3', 'Then you will receive two emails: one containing the link of your poll for sending to the participants, the other containing the link to the poll administration page.')}</p>
                     {/if}
