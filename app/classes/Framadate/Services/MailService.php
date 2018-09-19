@@ -47,7 +47,8 @@ class MailService {
             // Bodies
             $body = $body . ' <br/><br/>' . __('Mail', 'Thanks for your trust.') . ' <br/>' . NOMAPPLICATION . ' <hr/>' . __('Mail', 'FOOTER');
             $mail->isHTML(true);
-            $mail->msgHTML($body, ROOT_DIR, true);
+            $mail->msgHTML($body, ROOT_DIR, function ($html) { $html = preg_replace("/<br\W*?\/>/", "\n",$html); $html = preg_replace("/<\/?a.*?>/", "",$html); return preg_replace("/<hr\W*?\/>/", "",$html); } );
+
 
             // Build headers
             $mail->CharSet = 'UTF-8';
