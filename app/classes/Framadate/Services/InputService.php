@@ -69,23 +69,23 @@ class InputService {
     public function filterMail($mail) {
     	///////////////////////////////////////////////////////////////////////////////////////
         // formatting
-        
+
     	$mail = trim($mail);
-        
+
     	///////////////////////////////////////////////////////////////////////////////////////
         // e-mail validation
-        
+
         $resultat = FALSE;
-        
+
     	$validator = new EmailValidator();
-    	
+
         if ($validator->isValid($mail, new RFCValidation())) {
             $resultat = $mail;
         }
-        
+
         ///////////////////////////////////////////////////////////////////////////////////////
         // return
-        
+
         return $resultat;
     }
 
@@ -104,7 +104,7 @@ class InputService {
 
     public function filterValueMax($int)
     {
-        return $this->filterInteger($int) >= 1;
+        return $this->filterInteger($int) >= 1 ? $this->filterInteger($int) : false;
     }
 
     public function filterBoolean($boolean) {
