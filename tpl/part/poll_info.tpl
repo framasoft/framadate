@@ -4,11 +4,7 @@
     <div class="jumbotron{if $admin} bg-danger{/if}">
         <div class="row"> {* Title | buttons*}
             <div id="title-form" class="col-md-7">
-<<<<<<< HEAD
-                <h3>{$poll->title|html}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit title')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</h3>
-=======
                 <h3>{$poll->title|html}{if $admin && !$expired && !$poll->closed} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the title')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</h3>
->>>>>>> MAJ poll_info.tpl : blocage des modifs une fois un sondage fermé
                 {if $admin && !$expired}
                     <div class="hidden js-title">
                         <label class="sr-only" for="newtitle">{__('PollInfo', 'Title of the poll')}</label>
@@ -58,13 +54,8 @@
         <div class="row"> {* Admin name + email | Description *}
             <div class="form-group col-md-4">
                 <div id="name-form">
-<<<<<<< HEAD
-                    <label class="control-label">{__('PollInfo', 'Creator of the poll')}</label>
-                    <p class="form-control-static">{$poll->admin_name|html}{if $admin && !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit name')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
-=======
                     <label class="control-label">{__('PollInfo', 'Initiator of the poll')}</label>
                     <p class="form-control-static">{$poll->admin_name|html}{if $admin && !$expired && !$poll->closed} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the name')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
->>>>>>> MAJ poll_info.tpl : blocage des modifs une fois un sondage fermé
                     {if $admin && !$expired}
                     <div class="hidden js-name">
                         <label class="sr-only" for="newname">{__('PollInfo', 'Creator of the poll')}</label>
@@ -80,11 +71,7 @@
                 </div>
                 {if $admin}
                 <div id="email-form">
-<<<<<<< HEAD
-                    <p>{$poll->admin_mail|html}{if !$expired} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the email address')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
-=======
                     <p>{$poll->admin_mail|html}{if !$expired && !$poll->closed} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the email adress')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button>{/if}</p>
->>>>>>> MAJ poll_info.tpl : blocage des modifs une fois un sondage fermé
                     {if !$expired}
                         <div class="hidden js-email">
                             <label class="sr-only" for="admin_mail">{__('PollInfo', 'Email')}</label>
@@ -130,13 +117,8 @@
                     <input class="form-control" id="admin-link" type="text" readonly="readonly" value="{poll_url id=$admin_poll_id admin=true}" onclick="select();"/>
                 </div>
                 <div id="expiration-form" class="form-group col-md-4">
-<<<<<<< HEAD
-                    <label class="control-label">{__('PollInfo', 'Expiry date')}</label>
-                    <p>{$poll->end_date|date_format:$date_format['txt_date']|html} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiry date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button></p>
-=======
                     <label class="control-label">{__('PollInfo', 'Expiration date')}</label>
                     <p>{$poll->end_date|date_format:$date_format['txt_date']|html} {if !$poll->closed} <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiration date')}"><span class="glyphicon glyphicon-pencil"></span><span class="sr-only">{__('Generic', 'Edit')}</span></button> {/if} </p>
->>>>>>> MAJ poll_info.tpl : blocage des modifs une fois un sondage fermé
 
                         <div class="hidden js-expiration">
                             <label class="sr-only" for="newexpirationdate">{__('PollInfo', 'Expiry date')}</label>
