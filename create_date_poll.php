@@ -79,22 +79,21 @@ switch ($step) {
         // Step 2/4 : Select dates of the poll
 
         // Prefill form->choices
-        foreach ($form->getChoices() as $c) {
-            /** @var Choice $c */
-            $count = 3 - count($c->getSlots());
-            for ($i = 0; $i < $count; $i++) {
-                $c->addSlot('');
-            }
-        }
+        // foreach ($form->getChoices() as $c) {
+        //     /** @var Choice $c */
+        //     $count = 2 - count($c->getSlots());
+        //     for ($i = 0; $i < $count; $i++) {
+        //         $c->addSlot('');
+        //     }
+        // }
 
-        $count = 3 - count($form->getChoices());
-        for ($i = 0; $i < $count; $i++) {
-            $c = new Choice('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $c->addSlot('');
-            $form->addChoice($c);
-        }
+        // $count = 2 - count($form->getChoices());
+        // for ($i = 0; $i < $count; $i++) {
+        //     $c = new Choice('');
+        //     $c->addSlot('');
+        //     $c->addSlot('');
+        //     $form->addChoice($c);
+        // }
 
         $_SESSION['form'] = serialize($form);
 
@@ -145,7 +144,7 @@ switch ($step) {
 
                 if (!empty($day)) {
                     // Add choice to Form data
-                    $date = DateTime::createFromFormat(__('Date', 'Y-m-d'), $_POST['days'][$i])->setTime(0, 0, 0);
+                    $date = DateTime::createFromFormat('Y-m-d', $_POST['days'][$i])->setTime(0, 0, 0);
                     $time = (string) $date->getTimestamp();
                     $choice = new Choice($time);
                     $form->addChoice($choice);
@@ -177,7 +176,7 @@ switch ($step) {
         }
         $summary .= '</ul>';
 
-        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); // textual date
+        $end_date_str = utf8_encode(strftime('%Y-%m-%d', $max_expiry_time)); // textual date
 
         $_SESSION['form'] = serialize($form);
 

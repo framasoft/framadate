@@ -60,28 +60,28 @@ $(document).ready(function () {
 
 
 
-    /**
-     * Parse a string date
-     * @param dateStr The string date
-     * @param format The format PHP style (allowed: %Y, %m and %d)
-     */
-    var parseDate = function (dateStr, format) {
-        var dtsplit = dateStr.split(/[\/ .:-]/);
-        var dfsplit = format.split(/[\/ .:-]/);
+    // /**
+    //  * Parse a string date
+    //  * @param dateStr The string date
+    //  * @param format The format PHP style (allowed: %Y, %m and %d)
+    //  */
+    // var parseDate = function (dateStr, format) {
+    //     var dtsplit = dateStr.split(/[\/ .:-]/);
+    //     var dfsplit = format.split(/[\/ .:-]/);
 
-        if (dfsplit.length != dtsplit.length) {
-            return null;
-        }
+    //     if (dfsplit.length != dtsplit.length) {
+    //         return null;
+    //     }
 
-        // creates assoc array for date
-        var df = [];
-        for (var dc = 0; dc < dtsplit.length; dc++) {
-            df[dfsplit[dc]] = dtsplit[dc];
-        }
+    //     // creates assoc array for date
+    //     var df = [];
+    //     for (var dc = 0; dc < dtsplit.length; dc++) {
+    //         df[dfsplit[dc]] = dtsplit[dc];
+    //     }
 
-        // Build date
-        return new Date(parseInt(df['%Y']), parseInt(df['%m']) - 1, parseInt(df['%d']), 0, 0, 0, 0);
-    };
+    //     // Build date
+    //     return new Date(parseInt(df['%Y']), parseInt(df['%m']) - 1, parseInt(df['%d']), 0, 0, 0, 0);
+    // };
 
     var formatDate = function (date, format) {
         return format
@@ -97,7 +97,7 @@ $(document).ready(function () {
         return parseInt(/^d([0-9]+)-h[0-9]+$/.exec($(last_day).find('.hours').filter(':first').attr('id'))[1])
     }
 
-    function newDateFields(dateStr) {
+    function newDateFields(date) {
         var last_day = $selected_days.find('fieldset').filter(':last');
         var last_day_title = last_day.find('legend input').attr('title');
         var new_day_number = getLastDayNumber(last_day) + 1;
@@ -115,7 +115,7 @@ $(document).ready(function () {
 
         last_day
             .after('<fieldset>' + new_day_html + '</fieldset>')
-            .next().find('legend input').val(dateStr);
+            .next().find('legend input').val(date.toISOString());
         $('#day' + (new_day_number)).focus();
         updateButtonState();
     }
@@ -128,12 +128,12 @@ $(document).ready(function () {
         }
     }
 
-    var useFirstEmptyDateField = function (dateStr) {
+    var useFirstEmptyDateField = function (date) {
         var used = false;
         $selected_days.find('fieldset legend input').each(function () {
             if (!used) {
                 if ($(this).val() == '') {
-                    $(this).val(dateStr);
+                    $(this).val(date.toISOString());
                     used = true;
                 }
             }
@@ -280,24 +280,25 @@ $(document).ready(function () {
     $('#interval_add').on('click', function (ev) {
         var startDateField = $('#range_start');
         var endDateField = $('#range_end');
-        var startDate = parseDate(startDateField.val(), window.date_formats.DATE);
-        var endDate = parseDate(endDateField.val(), window.date_formats.DATE);
+        var startDate = dateFns.parse(startDateField.val());
+        var endDate = dateFns.parse(endDateField.val());
 
         // Clear error classes
         startDateField.parent().removeClass('has-error');
         endDateField.parent().removeClass('has-error');
 
-        var maxDates = 123; // 123 = 4 months
-        var tooMuchDates = endDate - startDate > maxDates * 86400 * 1000;
+        var maxDate = dateFns.addMonths(startDate, 4);
+        var tooMuchDates = dateFns.isAfter(endDate, maxDate);
 
         if (startDate != null && endDate != null && !tooMuchDates) {
-            if (startDate <= endDate) {
-                while (startDate <= endDate) {
-                    var dateStr = formatDate(startDate, window.date_formats.DATE);
-                    if (!useFirstEmptyDateField(dateStr)) {
-                        newDateFields(dateStr);
+            if (dateFns.isBefore(startDate, endDate)) {
+                console.log('ready for while', dateFns.isBefore(startDate, endDate));
+                while (dateFns.isBefore(startDate, endDate)) {
+                    // var dateStr = formatDate(startDate, window.date_formats.DATE);
+                    if (!useFirstEmptyDateField(startDate)) {
+                        newDateFields(startDate);
                     }
-                    startDate.setDate(startDate.getDate() + 1);
+                    startDate = dateFns.addDays(startDate, 1);
                 }
 
                 // Hide modal

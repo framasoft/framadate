@@ -7,11 +7,10 @@
             DATEPICKER: '{__('Date', 'yyyy-mm-dd')}'
         };
     </script>
-    <script type="text/javascript" src="{'js/app/framadatepicker.js'|resource}"></script>
 {/block}
 
 {block name="main"}
-    <form name="formulaire" method="POST" class="form-horizontal" role="form">
+    <form name="formulaire" method="POST" class="form-horizontal" role="form" onsubmit="return onSubmit();">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="well summary">
@@ -26,7 +25,7 @@
                         <div class="col-sm-6">
                             <div class="input-group date">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                                <input type="text" class="form-control" id="enddate" data-date-format="{__('Date', 'yyyy-mm-dd')}" aria-describedby="dateformat" name="enddate" value="{$end_date_str}" size="10" maxlength="10" placeholder="{__('Date', 'yyyy-mm-dd')}" />
+                                <input type="date" class="form-control" id="enddate" data-date-format="{__('Date', 'yyyy-mm-dd')}" aria-describedby="dateformat" name="enddate" value="{$end_date_str}" size="10" maxlength="10" placeholder="{__('Date', 'yyyy-mm-dd')}" />
                             </div>
                         </div>
                         <span id="dateformat" class="sr-only">{__('Date', 'yyyy-mm-dd')}</span>

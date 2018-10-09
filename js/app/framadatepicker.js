@@ -16,36 +16,36 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 $(document).ready(function () {
-    var init_datepicker = function () {
-        $('.input-group.date').datepicker({
-            format: window.date_formats.DATEPICKER || "dd/mm/yyyy",
-            todayBtn: "linked",
-            orientation: "top left",
-            autoclose: true,
-            language: lang,
-            todayHighlight: true,
-            beforeShowDay: function (date) {
-                // Retrieve selected dates from text fields
-                var selected_days = [];
-                $('#selected-days').find('input[id^="day"]').each(function () {
-                    if ($(this).val() != '') {
-                        selected_days.push($(this).val());
-                    }
-                });
+    // var init_datepicker = function () {
+    //     $('.input-group.date').datepicker({
+    //         format: 'Y-m-d',
+    //         todayBtn: "linked",
+    //         orientation: "top left",
+    //         autoclose: true,
+    //         language: lang,
+    //         todayHighlight: true,
+    //         beforeShowDay: function (date) {
+    //             // Retrieve selected dates from text fields
+    //             var selected_days = [];
+    //             $('#selected-days').find('input[id^="day"]').each(function () {
+    //                 if ($(this).val() != '') {
+    //                     selected_days.push($(this).val());
+    //                 }
+    //             });
 
-                // Disable selected dates in DatePicker
-                for (var i = 0; i < selected_days.length; i++) {
-                    var selected_date = selected_days[i].split('/');
+    //             // Disable selected dates in DatePicker
+    //             for (var i = 0; i < selected_days.length; i++) {
+    //                 var selected_date = selected_days[i].split('/');
 
-                    if (date.getFullYear() == selected_date[2] && (date.getMonth() + 1) == selected_date[1] && date.getDate() == selected_date[0]) {
-                        return {
-                            classes: 'disabled selected'
-                        };
-                    }
-                }
-            }
-        });
-    };
+    //                 if (date.getFullYear() == selected_date[2] && (date.getMonth() + 1) == selected_date[1] && date.getDate() == selected_date[0]) {
+    //                     return {
+    //                         classes: 'disabled selected'
+    //                     };
+    //                 }
+    //             }
+    //         }
+    //     });
+    // };
 
     $(document).on('click', '.input-group.date .input-group-addon, .input-group.date input', function () {
         // Re-init datepicker config before displaying

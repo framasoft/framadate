@@ -12,6 +12,7 @@ $(document).ready(function() {
      * @param adminPolls
      */
     function setAdminPolls(adminPolls) {
+        localStorage.removeItem('current_poll');
         localStorage.setItem('admin_polls', JSON.stringify(adminPolls));
     }
 
