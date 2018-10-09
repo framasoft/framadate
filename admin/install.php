@@ -28,6 +28,7 @@ if (is_file(CONF_FILENAME)) {
 }
 
 $error = null;
+$result['details'] = null;
 $installService = new InstallService();
 
 if (!empty($_POST)) {
