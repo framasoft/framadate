@@ -236,8 +236,8 @@ switch ($step) {
             $message_admin = sprintf($message_admin, Utils::getUrlSondage($admin_poll_id, true));
 
             if ($mailService->isValidEmail($form->admin_mail)) {
-                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Message for the author') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($form->title), $message_admin);
-                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Participant link') . '] ' . __('Generic', 'Poll') . ': ' . Utils::htmlEscape($form->title), $message);
+                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Message for the author') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message_admin);
+                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Participant link') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message);
             }
         }
 
