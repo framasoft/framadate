@@ -39,9 +39,11 @@ class Utils {
         $dirname = $dirname === '\\' ? '/' : $dirname . '/';
         $dirname = str_replace('/admin', '', $dirname);
         $dirname = str_replace('/action', '', $dirname);
-        $server_name = (defined('APP_URL') ? APP_URL : $serverName) . $port . $dirname;
 
-        return $scheme . '://' . preg_replace('#//+#', '/', $server_name);
+        $appUrlConfig = defined('APP_URL') ? APP_URL : '';
+        $domain = $appUrlConfig === '' ? $serverName : $appUrlConfig;
+        
+        return $scheme . '://' . preg_replace('#//+#', '/', $domain . $port . $dirname);
     }
 
     /**
