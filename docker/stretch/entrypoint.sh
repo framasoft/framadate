@@ -2,7 +2,7 @@
 
 # Read environment variables or set default values
 FRAMADATE_CONFIG=${FRAMADATE_CONFIG:-/var/www/framadate/app/inc/config.php}
-DOMAIN=${DOMAIN-localhost}
+DOMAIN=${DOMAIN-}
 APP_NAME=${APP_NAME-Framadate}
 ADMIN_MAIL=${ADMIN_MAIL-}
 NO_REPLY_MAIL=${NO_REPLY_MAIL-}
@@ -18,9 +18,7 @@ if [ ! -f $FRAMADATE_CONFIG ]; then
   echo "There is no configuration file. Create one with environment variables"
   cp /var/www/framadate/tpl/admin/config.tpl $FRAMADATE_CONFIG
   # Set values on configuration file
-  if [ ! -z "$DOMAIN" ]; then
-    sed -i -E "s/^(\/\/ )?const APP_URL( )?=.*;/const APP_URL = '$DOMAIN';/g" $FRAMADATE_CONFIG
-  fi
+  sed -i -E "s/^(\/\/ )?const APP_URL( )?=.*;/const APP_URL = '$DOMAIN';/g" $FRAMADATE_CONFIG
   sed -i -E "s/^(\/\/ )?const NOMAPPLICATION( )?=.*;/const NOMAPPLICATION = '$APP_NAME';/g" $FRAMADATE_CONFIG
   # Configure mail
   sed -i -E "s/^(\/\/ )?const ADRESSEMAILADMIN( )?=.*;/const ADRESSEMAILADMIN = '$ADMIN_MAIL';/g" $FRAMADATE_CONFIG

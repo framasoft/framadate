@@ -23,7 +23,6 @@ services:
             - 80:80
         environment:
             - ENV=dev
-            - DOMAIN=localhost
             - APP_NAME=Framadate
             - ADMIN_MAIL=mon@email.fr
             - MYSQL_USER=framadate
