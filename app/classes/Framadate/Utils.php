@@ -28,7 +28,12 @@ class Utils {
         $serverName = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '';
         $serverPort = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : '';
 
-        $scheme = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) ? 'https' : 'http';
+        $scheme = (
+            (defined('FORCE_HTTPS') && FORCE_HTTPS === true) ||
+            (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ||
+            (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+        ) ? 'https' : 'http';
+
         $port = in_array($serverPort, ['80', '443'], true) ? '' : ':' . $serverPort;
         $dirname = dirname($_SERVER['SCRIPT_NAME']);
         $dirname = $dirname === '\\' ? '/' : $dirname . '/';
