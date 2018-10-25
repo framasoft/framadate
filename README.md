@@ -7,16 +7,16 @@
 ---
 # Installation
 
-Follow the instructions on our Wiki : <https://framagit.org/framasoft/framadate/wikis/home>
+Follow the instructions on our Wiki : <https://framagit.org/framasoft/framadate/framadate/wikis/home>
 
 # Contribute
 
 ## Code 
-Follow the instructions on <https://framagit.org/framasoft/framadate/wikis/coding>
+Follow the instructions on <https://framagit.org/framasoft/framadate/framadate/wikis/coding>
 
 # Traductions
 
-Follow the instructions on <https://framagit.org/framasoft/framadate/wikis/translating>
+Follow the instructions on <https://framagit.org/framasoft/framadate/framadate/wikis/translating>
 
 # Used libraries
 
