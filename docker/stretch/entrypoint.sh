@@ -22,7 +22,7 @@ if [ ! -f $FRAMADATE_CONFIG ]; then
   if [ ! -z "$DOMAIN" ]; then
     sed -i -E "s/^(\/\/ )?const APP_URL( )?=.*;/const APP_URL = '$DOMAIN';/g" $FRAMADATE_CONFIG
   fi
-  if [ "$FORCE_HTTPS" =~ true ]; then
+  if [ "$FORCE_HTTPS" = true ]; then
     sed -i -E "s/^(\/\/ )?const FORCE_HTTPS\\s*=.*;/const FORCE_HTTPS = true;/" $FRAMADATE_CONFIG
   fi
   sed -i -E "s/^(\/\/ )?const NOMAPPLICATION( )?=.*;/const NOMAPPLICATION = '$APP_NAME';/g" $FRAMADATE_CONFIG
