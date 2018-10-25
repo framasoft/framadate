@@ -1,1 +1,1 @@
-# [Now available here](https://framagit.org/framasoft/framadate/wikis/home)
+# [Now available here](https://framagit.org/framasoft/framadate/framadate/wikis/home)
