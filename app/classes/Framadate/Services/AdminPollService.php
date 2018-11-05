@@ -284,7 +284,7 @@ class AdminPollService {
 
         // Search where to insert new column
         foreach ($slots as $k=>$slot) {
-            $rowDatetime = $slot->title;
+            $rowDatetime = (int) $slot->title;
             $moments = explode(',', $slot->moments);
 
             if ($datetime === $rowDatetime) {
