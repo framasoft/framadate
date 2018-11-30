@@ -22,6 +22,8 @@
 // You *have to set this* if you are running Framadate behind a reverse proxy.
 // const APP_URL = '<www.mydomain.fr>';
 
+// const FORCE_HTTPS = false;
+
 // Application name
 const NOMAPPLICATION = '{$appName|addslashes_single_quote}';
 

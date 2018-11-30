@@ -3,6 +3,7 @@
 # Read environment variables or set default values
 FRAMADATE_CONFIG=${FRAMADATE_CONFIG:-/var/www/framadate/app/inc/config.php}
 DOMAIN=${DOMAIN-localhost}
+FORCE_HTTPS=${FORCE_HTTPS-false}
 APP_NAME=${APP_NAME-Framadate}
 ADMIN_MAIL=${ADMIN_MAIL-}
 NO_REPLY_MAIL=${NO_REPLY_MAIL-}
@@ -20,6 +21,9 @@ if [ ! -f $FRAMADATE_CONFIG ]; then
   # Set values on configuration file
   if [ ! -z "$DOMAIN" ]; then
     sed -i -E "s/^(\/\/ )?const APP_URL( )?=.*;/const APP_URL = '$DOMAIN';/g" $FRAMADATE_CONFIG
+  fi
+  if [ "$FORCE_HTTPS" = true ]; then
+    sed -i -E "s/^(\/\/ )?const FORCE_HTTPS\\s*=.*;/const FORCE_HTTPS = true;/" $FRAMADATE_CONFIG
   fi
   sed -i -E "s/^(\/\/ )?const NOMAPPLICATION( )?=.*;/const NOMAPPLICATION = '$APP_NAME';/g" $FRAMADATE_CONFIG
   # Configure mail
