@@ -29,7 +29,7 @@ class Utils {
         $serverPort = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : '';
 
         $scheme = (
-            (defined('FORCE_HTTPS') && FORCE_HTTPS === true) ||
+            (defined('FORCE_HTTPS') && FORCE_HTTPS ) ||
             (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ||
             (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
         ) ? 'https' : 'http';
