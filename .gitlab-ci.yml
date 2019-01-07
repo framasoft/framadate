@@ -42,6 +42,7 @@ pages:
   - mv `ls -A | grep -v framadate` ./framadate
   - find framadate/ -type d -exec chmod 750 {} \;
   - find framadate/ -type f -exec chmod 640 {} \;
+  - rm -rf framadate/.git
   - zip -r latest.zip framadate
   - mkdir .public
   - cp latest.zip .public
