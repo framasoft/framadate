@@ -28,6 +28,7 @@ $smarty->caching = false;
 $serverName = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '';
 
 $smarty->assign('APPLICATION_NAME', NOMAPPLICATION);
+$smarty->assign('APPLICATION_VERSION', VERSION);
 $smarty->assign('SERVER_URL', Utils::get_server_name());
 $smarty->assign('SCRIPT_NAME', $_SERVER['SCRIPT_NAME']);
 $smarty->assign('TITLE_IMAGE', IMAGE_TITRE);

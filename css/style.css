@@ -24,6 +24,12 @@ body {
   background:#eee;
 }
 
+.footer {
+    text-align: right;
+    margin-bottom: 1em;
+    margin-right: 1em;
+}
+
 .trait { /* hr */
     background-color: #EEE;
     height: 5px;
