@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-8 text-right">
                         <a class="btn btn-sub" href="{$SERVER_URL}/create_poll.php?type=classic" title="{__('Step 2', 'Return to step 1')}">{__('Generic', 'Back')}</a>
-                        <button name="fin_sondage_autre" value="{__('Generic', 'Next')}" type="submit" class="btn btn-success disabled" title="{__('Step 2', 'Go to step 3')}">{__('Generic', 'Next')}</button>
+                        <button name="fin_sondage_autre" value="{__('Generic', 'Next')}" type="submit" class="btn btn-success" title="{__('Step 2', 'Go to step 3')}">{__('Generic', 'Next')}</button>
                     </div>
                 </div>
             </div>
