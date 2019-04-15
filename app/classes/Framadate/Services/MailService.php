@@ -132,8 +132,8 @@ class MailService {
      *
      * @param PHPMailer $mailer  a PHPMailer instance
      * @param string    $html    the HTML body of an email
-     */g
-    public function html2text($mailer, $html) {
+     */
+    private function html2text(PHPMailer $mailer, $html) {
         $html = preg_replace('/<a[^>]*href="([^"]+)"[^>]*>(.*?)<\/a>/si', '${2}: ${1}', $html);
 
         return $mailer->html2text($html);
