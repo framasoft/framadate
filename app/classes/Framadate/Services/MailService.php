@@ -68,7 +68,7 @@ class MailService {
             // Bodies
             $body = $body . ' <br/><br/>' . __('Mail', 'Thank you for your trust.') . ' <br/>' . NOMAPPLICATION . ' <hr/>' . __('Mail', "\"The road is long, but the way is clear…\"<br/>Framasoft lives only by your donations.<br/>Thank you in advance for your support https://soutenir.framasoft.org");
             $mail->isHTML(true);
-            $mail->CharSet = 'utf-8';
+            $mail->CharSet = PHPMailer::CHARSET_UTF8;
             $mail->msgHTML($body, ROOT_DIR, true);
 
             // Build headers
