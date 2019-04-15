@@ -1,5 +1,11 @@
 version: '3'
 services:
+    smtp:
+        container_name: framadate-smtp
+        image: jeanberu/mailcatcher
+        ports:
+          - "1080:1080"
+
     db:
         container_name: framadate-db
         image: mysql:5.7
@@ -19,6 +25,7 @@ services:
             context: .
         depends_on:
             - db
+            - smtp
         ports:
             - 80:80
         environment:
@@ -32,8 +39,9 @@ services:
             - MYSQL_PORT=3307
             - ADMIN_USER=admin
             - ADMIN_PASSWORD=adminpassword
-            - DISABLE_SMTP=true
             - APACHE_RUN_USER=#1000
+            - FRAMADATE_DEVMODE=1
+            - SMTP_SERVER=smtp:1025
         restart: always
         volumes:
             - '.:/var/www/framadate'
