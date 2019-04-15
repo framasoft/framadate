@@ -200,7 +200,7 @@ class AdminPollService {
      * @throws \Doctrine\DBAL\ConnectionException
      */
     public function addDateSlot($poll_id, $datetime, $new_moment) {
-        $this->logService->log('ADD_COLUMN', 'id:' . $poll_id . ', datetime:' . $datetime . ', moment:' . $new_moment);
+        $this->logService->log('ADD_COLUMN', 'id:' . $poll_id . ', datetime:' . $datetime . ', moment:' . str_replace(',', '-', $new_moment));
 
         try {
             $slots = $this->slotRepository->listByPollId($poll_id);
@@ -252,7 +252,7 @@ class AdminPollService {
      * @throws \Doctrine\DBAL\DBALException
      */
     public function addClassicSlot($poll_id, $title) {
-        $this->logService->log('ADD_COLUMN', 'id:' . $poll_id . ', title:' . $title);
+        $this->logService->log('ADD_COLUMN', 'id:' . $poll_id . ', title:' . str_replace(',', '-', $title));
 
         $slots = $this->slotRepository->listByPollId($poll_id);
 
