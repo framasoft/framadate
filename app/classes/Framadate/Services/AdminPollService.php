@@ -91,7 +91,15 @@ class AdminPollService {
      */
     function deleteEntirePoll($poll_id) {
         $poll = $this->pollRepository->findById($poll_id);
-        $this->logService->log('DELETE_POLL', "id:$poll->id, format:$poll->format, admin:$poll->admin_name, mail:$poll->admin_mail");
+        $this->logService->logEntries(
+            'DELETE_POLL',
+            [
+                "id:$poll->id",
+                "format:$poll->format",
+                "admin:$poll->admin_name",
+                "mail:$poll->admin_mail"
+            ]
+        );
 
         // Delete the entire poll
         $this->voteRepository->deleteByPollId($poll_id);
@@ -110,7 +118,10 @@ class AdminPollService {
      * @return bool true if action succeeded
      */
     public function deleteDateSlot($poll, $slot) {
-        $this->logService->log('DELETE_SLOT', 'id:' . $poll->id . ', slot:' . json_encode($slot));
+        $this->logService->logEntries(
+            'DELETE_SLOT',
+            ["id:$poll->id", 'slot:' . json_encode($slot)]
+        );
 
         $datetime = $slot->title;
         $moment = $slot->moment;
@@ -158,7 +169,9 @@ class AdminPollService {
     }
 
     public function deleteClassicSlot($poll, $slot_title) {
-        $this->logService->log('DELETE_SLOT', 'id:' . $poll->id . ', slot:' . $slot_title);
+        $this->logService->logEntries(
+            ['DELETE_SLOT', "id:$poll->id", "slot:$slot_title"]
+        );
 
         $slots = $this->pollService->allSlotsByPoll($poll);
 
@@ -200,7 +213,10 @@ class AdminPollService {
      * @throws \Doctrine\DBAL\ConnectionException
      */
     public function addDateSlot($poll_id, $datetime, $new_moment) {
-        $this->logService->log('ADD_COLUMN', 'id:' . $poll_id . ', datetime:' . $datetime . ', moment:' . str_replace(',', '-', $new_moment));
+        $this->logService->logEntries(
+            'ADD_COLUMN',
+            ["id:$poll_id", "datetime:$datetime", "moment:$new_moment"]
+        );
 
         try {
             $slots = $this->slotRepository->listByPollId($poll_id);
@@ -252,7 +268,10 @@ class AdminPollService {
      * @throws \Doctrine\DBAL\DBALException
      */
     public function addClassicSlot($poll_id, $title) {
-        $this->logService->log('ADD_COLUMN', 'id:' . $poll_id . ', title:' . str_replace(',', '-', $title));
+        $this->logService->logEntries(
+            'ADD_COLUMN',
+            ["id:$poll_id", "title:$title"]
+        );
 
         $slots = $this->slotRepository->listByPollId($poll_id);
 
