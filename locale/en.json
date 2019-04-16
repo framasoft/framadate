@@ -133,6 +133,7 @@
       "Failed to save poll": "Failed to save poll",
       "Forbidden!": "Forbidden!",
       "Identifier is already used": "Identifier is already used",
+      "If you quit now, your changes will be lost.": "If you quit now, your changes will be lost.",
       "JavaScript is disabled on your browser. It is required to create a poll.": "JavaScript is disabled on your browser. It is required to create a poll.",
       "Missing values": "Missing values",
       "No polls found": "No polls found",
