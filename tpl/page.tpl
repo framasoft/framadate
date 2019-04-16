@@ -49,5 +49,6 @@
 {if isset($tracking_code)}
     {$tracking_code}
 {/if}
+<section class="footer">{__f('Version', 'Version: %s', $APPLICATION_VERSION)}</section>
 </body>
 </html>
