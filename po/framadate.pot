@@ -4,14 +4,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-06 17:06+0200\n"
+"POT-Creation-Date: 2019-04-16 15:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.3.0\n"
+"X-Generator: Translate Toolkit 2.3.1\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -65,6 +65,12 @@ msgstr ""
 
 #: .2nd+section.The+software
 msgid "The software"
+msgstr ""
+
+#: .2nd+section.This+software+needs+javascript+and+cookies+enabled.+It+is+compatible+with+the+following+web+browsers:
+msgid ""
+"This software needs javascript and cookies enabled. It is compatible with "
+"the following web browsers:"
 msgstr ""
 
 #: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days,+it+is+developed+by+the+Framasoft+association.
@@ -1365,6 +1371,7 @@ msgid "Poll creation (1 of 3)"
 msgstr ""
 
 #: .Step+1.Poll+id
+#: .Step+1.Poll+link
 msgid "Poll link"
 msgstr ""
 
@@ -1590,6 +1597,10 @@ msgstr ""
 
 #: .Step+3.after+the+last+date+of+your+poll.
 msgid "after the last date of your poll."
+msgstr ""
+
+#: .Version.Version+%25s
+msgid "Version %s"
 msgstr ""
 
 #: .adminstuds.Add+a+column

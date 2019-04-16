@@ -15,6 +15,7 @@
       "Framadate is licensed under the": "Se encuentra bajo la",
       "Framadate was initially based on": "Framadate was initially based on",
       "The software": "El software",
+      "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "This software needs javascript and cookies enabled. It is compatible with the following web browsers:",
       "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.": "un software desarrollado por la Universidad de Estrasburgo. Ahora, su desarrollo esta realizado por la asociación Framasoft."
    },
    "3rd section": {
@@ -368,6 +369,7 @@
       "Permissions": "Permisos",
       "Poll creation (1 of 3)": "Creación de la encuesta (1 de 3)",
       "Poll id": "Enlace a la encuesta",
+      "Poll link": "Enlace a la encuesta",
       "Poll title": "Título de la encuesta",
       "Receive an email for each new comment": "Recibir un correo electrónico para cada nuevo comentario",
       "Receive an email for each new vote": "Recibir un correo electrónico para cada nuevo voto",
@@ -431,7 +433,7 @@
       "after the last date of your poll.": "después de la última fecha de su encuesta"
    },
    "Version": {
-      "Version: %s": ""
+      "Version %s": "Version %s"
    },
    "adminstuds": {
       "Add a column": "Añadir una columna",

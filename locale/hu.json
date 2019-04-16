@@ -15,6 +15,7 @@
       "Framadate is licensed under the": "A Framadate licence: ",
       "Framadate was initially based on": "Framadate was initially based on",
       "The software": "A szoftver",
+      "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "This software needs javascript and cookies enabled. It is compatible with the following web browsers:",
       "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.": "szoftveren alapult, de most már a Framasoft fejleszti."
    },
    "3rd section": {
@@ -368,6 +369,7 @@
       "Permissions": "Engedélyek",
       "Poll creation (1 of 3)": "Szavazás létrehozása (1/3)",
       "Poll id": "Hivatkozás a szavazáshoz",
+      "Poll link": "Hivatkozás a szavazáshoz",
       "Poll title": "Szavazás címe",
       "Receive an email for each new comment": "E-mail értesítés küldése minden egyes hozzászóláskor",
       "Receive an email for each new vote": "E-mail értesítés küldése minden egyes szavazatkor",
@@ -431,7 +433,7 @@
       "after the last date of your poll.": "a szavazás utolsó dátuma után."
    },
    "Version": {
-      "Version: %s": ""
+      "Version %s": "Version %s"
    },
    "adminstuds": {
       "Add a column": "Oszlop hozzáadása",
