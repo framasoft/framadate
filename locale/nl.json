@@ -430,6 +430,9 @@
       "Your poll will be automatically archived in %d days.": "Je poll wordt over %d dagen automatisch gearchiveerd.",
       "after the last date of your poll.": "na de laatste datum van je poll."
    },
+   "Version": {
+      "Version: %s": ""
+   },
    "adminstuds": {
       "Add a column": "Kolom toevoegen",
       "Adding a column": "Een kolom toevoegen",

@@ -97,9 +97,9 @@
       "Add range dates": "Datumsbereich hinzufügen",
       "End date": "Enddatum",
       "Start date": "Startdatum",
-      "Y-m-d": "d.m.Y",
+      "Y-m-d": "Y-m-d",
       "You can select at most 4 months": "Es können maximal 4 Monate ausgewählt werden",
-      "yyyy-mm-dd": "dd.mm.yyyy"
+      "yyyy-mm-dd": "dd-mm-yyyy"
    },
    "EditLink": {
       "Edit link for poll \"%s\"": "Link für die Abstimmung \"%s\" bearbeiten",
@@ -429,6 +429,9 @@
       "Your poll will automatically be archived": "Ihre Umfrage wird automatisch archiviert",
       "Your poll will be automatically archived in %d days.": "Ihre Umfrage wird automatisch in %d Tagen archiviert werden.",
       "after the last date of your poll.": "nach dem letzten Termin der Abstimmung archiviert."
+   },
+   "Version": {
+      "Version: %s": ""
    },
    "adminstuds": {
       "Add a column": "Spalte hinzufügen",

@@ -448,6 +448,9 @@
       "Your poll will be automatically archived in %d days.": "Votre sondage sera automatiquement archivé dans %d jours.",
       "after the last date of your poll.": "après le dernier jour de votre sondage."
    },
+   "Version": {
+      "Version: %s": ""
+   },
    "adminstuds": {
       "Add a column": "Ajouter une colonne",
       "All comments deleted": "Tous les commentaires ont été supprimés",

@@ -41,7 +41,7 @@
       "Nothing": "Netra",
       "Pages:": "Pajennoù:",
       "Poll ID": "Naoudi ar sontadeg",
-      "Poll deleted": "Poll deleted",
+      "Poll deleted": "Dilemel ar sontadeg",
       "Polls": "Sontadegoù",
       "Purge": "Spurjañ",
       "Purge the polls": "Spurjañ ar sontadegoù",
@@ -429,6 +429,9 @@
       "Your poll will automatically be archived": "Diellaouet e vo ho sontadeg ent emgefreek",
       "Your poll will be automatically archived in %d days.": "Diellaouet e vo ho sontadeg a-benn %d a zevezhioù ent emgefreek.",
       "after the last date of your poll.": "goude devezh diwezhañ ar sontadeg."
+   },
+   "Version": {
+      "Version: %s": ""
    },
    "adminstuds": {
       "Add a column": "Ouzhpennañ ur bann",
