@@ -76,6 +76,26 @@ beta:
   only:
     - develop
 
+# Deploy on preprod
+preprod:
+    stage: beta
+    script:
+        - git checkout preprod
+        - composer install -o  --no-interaction --no-progress --prefer-dist --no-dev
+        - composer dump-autoload --optimize --no-dev --classmap-authoritative
+        - mkdir .public
+        - cp -r * .public
+        - cp -r .git .public
+        - mv .public public
+        - mkdir "${HOME}/.ssh"
+        - chmod 700 "${HOME}/.ssh"
+        - if [ ! -z ${DEPLOYEMENT_KNOWN_HOSTS+x} ]; then echo -e "${DEPLOYEMENT_KNOWN_HOSTS}" > ${HOME}/.ssh/known_hosts; fi
+        - eval `ssh-agent -s`
+        - if [ ! -z ${PREPROD_KEY+x} ]; then ssh-add <(echo "${PREPROD_KEY}" | base64 --decode -i); fi
+        - if [ ! -z ${PREPROD_KEY+x} ]; then rsync -a --delete --exclude admin/.stdout.log --exclude admin/.htpasswd --exclude app/inc/config.php --exclude stats/ --exclude error/ public/ ${PREPROD_USER}@${DEPLOYEMENT_HOST}:../../web/; fi
+    only:
+        - preprod
+
 # Deploy on funky
 funky:
   stage: funky
