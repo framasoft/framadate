@@ -136,6 +136,8 @@ class MailService {
     private function html2text(PHPMailer $mailer, $html) {
         $html = preg_replace('/<a[^>]*href="([^"]+)"[^>]*>(.*?)<\/a>/si', '${2}: ${1}', $html);
 
+        $html = preg_replace('/<br\/>/', "\n", $html);
+
         return $mailer->html2text($html);
     }
 }
