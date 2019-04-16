@@ -430,6 +430,9 @@
       "Your poll will be automatically archived in %d days.": "A szavazásod %d nap után automatikusan archiválva lesz.",
       "after the last date of your poll.": "a szavazás utolsó dátuma után."
    },
+   "Version": {
+      "Version: %s": ""
+   },
    "adminstuds": {
       "Add a column": "Oszlop hozzáadása",
       "Adding a column": "Oszlop hozzáadása",
