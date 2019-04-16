@@ -9,13 +9,9 @@
     <label for="yourname" class="col-sm-4 control-label">{__('Generic', 'Your name')} *</label>
 
     <div class="col-sm-8">
-        {if $useRemoteUser}
-            <input type="hidden" name="name" value="{$form->admin_name}" />
-            {$form->admin_name}
-        {else}
-            <input id="yourname" type="text" required name="name"
-                   class="form-control" {$errors['name']['aria']} value="{$poll_name|html}"/>
-        {/if}
+        
+        <input id="yourname" type="text" required name="name"
+               class="form-control" {$errors['name']['aria']} value="{$poll_name|html}"/>
     </div>
 </div>
 {if !empty($errors['name']['msg'])}
@@ -34,12 +30,8 @@
         </label>
 
         <div class="col-sm-8">
-            {if $useRemoteUser}
-                <input type="hidden" name="mail" value="{$form->admin_mail}">{$form->admin_mail}
-            {else}
-                <input id="email" required type="email" name="mail"
-                       class="form-control" {$errors['email']['aria']} value="{$poll_mail|html}"/>
-            {/if}
+            <input id="email" required type="email" name="mail"
+                   class="form-control" {$errors['email']['aria']} value="{$poll_mail|html}"/>
         </div>
     </div>
     {if !empty($errors['email']['msg'])}
