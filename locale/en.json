@@ -430,6 +430,9 @@
       "Your poll will be automatically archived in %d days.": "Your poll will be automatically archived in %d days.",
       "after the last date of your poll.": "after the last date of your poll."
    },
+   "Version": {
+      "Version: %s": "Version: %s"
+   },
    "adminstuds": {
       "Add a column": "Add a column",
       "Adding a column": "Adding a column",
