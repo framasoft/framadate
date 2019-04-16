@@ -15,6 +15,7 @@
       "Framadate is licensed under the": "Dindan al lañvaz",
       "Framadate was initially based on": "War",
       "The software": "Ar meziant",
+      "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "This software needs javascript and cookies enabled. It is compatible with the following web browsers:",
       "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.": "eo diazezet Framadate. Ur meziant diorroet gant Skol-Veur Straßburg an hini eo. Gant ar gevredigezh Framasoft eo diorroet bremañ."
    },
    "3rd section": {
@@ -368,6 +369,7 @@
       "Permissions": "Aotreoù",
       "Poll creation (1 of 3)": "Krouidigezh ar sontadeg (1 war 3)",
       "Poll id": "Naoudi",
+      "Poll link": "Naoudi",
       "Poll title": "Titl ar sontadeg",
       "Receive an email for each new comment": "Degemer ur postel evit pep evezhiadenn nevez",
       "Receive an email for each new vote": "Degemer ur postel evit pep mouezh nevez",
@@ -431,7 +433,7 @@
       "after the last date of your poll.": "goude devezh diwezhañ ar sontadeg."
    },
    "Version": {
-      "Version: %s": ""
+      "Version %s": "Version %s"
    },
    "adminstuds": {
       "Add a column": "Ouzhpennañ ur bann",

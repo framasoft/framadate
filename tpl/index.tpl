@@ -74,7 +74,7 @@
                     <span class="glyphicon glyphicon-cloud" style="font-size:50px"></span>
                 </p>
 
-                <p>{__('2nd section', 'Framadate was initially based on ')}
+                <p>{__('2nd section', 'Framadate was initially based on')}
                     <a href="https://sourcesup.cru.fr/projects/studs/">Studs</a>
                     {__('2nd section', 'software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.')}
                 </p>
@@ -102,7 +102,7 @@
                 </p>
 
                 <p>
-                    {__('3rd section', 'To participate in the software development, suggest improvements or simply download it, please visit ')}
+                    {__('3rd section', 'To participate in the software development, suggest improvements or simply download it, please visit')}
                     <a href="https://framagit.org/framasoft/framadate">{__('3rd section', 'the development site')}</a>.
                 </p>
                 <br/>
