@@ -31,7 +31,7 @@ $logService = new LogService();
 $sessionService = new SessionService();
 $mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
 $notificationService = new NotificationService($mailService, $smarty);
-$pollService = new PollService($connect, $logService);
+$pollService = new PollService($connect, $logService, $notificationService);
 
 $result = false;
 $message = null;
