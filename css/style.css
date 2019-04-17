@@ -529,6 +529,11 @@ table.results > tbody > tr:hover > td .glyphicon {
     height: 33px;
 }
 
+.datepicker {
+    /* workaround for the bootstrap-datepicker appearing below the #add_days modal */
+    z-index: 1060 !important; 
+}
+
 /* create_classic_poll.php */
 .md-a-img {
     text-decoration:none !important;
