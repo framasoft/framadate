@@ -47,11 +47,11 @@ $editingVoteId = 0;
 /*----------*/
 
 $logService = new LogService();
-$pollService = new PollService($connect, $logService);
-$adminPollService = new AdminPollService($connect, $pollService, $logService);
-$inputService = new InputService();
 $mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
 $notificationService = new NotificationService($mailService, $smarty);
+$pollService = new PollService($connect, $logService, $notificationService);
+$adminPollService = new AdminPollService($connect, $pollService, $logService);
+$inputService = new InputService();
 $sessionService = new SessionService();
 
 /* PAGE */
