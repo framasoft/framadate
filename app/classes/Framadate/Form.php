@@ -29,6 +29,7 @@ class Form
     public $end_date;
     public $choix_sondage;
     public $ValueMax;
+    public $errors = [];
 
     /**
      * Tells if users can modify their choices.

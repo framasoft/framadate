@@ -548,6 +548,10 @@ msgstr "Failed to save poll"
 msgid "Forbidden!"
 msgstr "Forbidden!"
 
+#: .Error.GenericErrorPollCreation
+msgid "GenericErrorPollCreation"
+msgstr "Oh no! Your poll could not be created at the moment. Sorry about that. Please try again later."
+
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
 msgstr "Identifier is already used"
@@ -1920,4 +1924,3 @@ msgid ""
 msgstr ""
 "Your vote has been saved, but please note: you need to keep this "
 "personalised link to be able to edit your vote."
-
