@@ -406,14 +406,14 @@
       "Add a time slot": "Añadir un horario",
       "Choose dates for your poll": "Elija las fechas de su encuesta",
       "Copy times from the first day": "Copiar los horarios del primer día en los otros días",
-      "For each selected day, you are free to suggest meeting times (e.g., \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)": "For each selected day, you are free to suggest meeting times (e.g., \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)",
+      "For each selected day, you are free to suggest meeting times (e.g., \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)": "Para cada día seleccionado, puede elegir o no, horarios de reunión (por ejemplo: \"8:00\", \"8:30\", \"8:00-10:00\", \"noche\", etc.)",
       "Poll dates (2 of 3)": "Elegir las fechas (2 de 3)",
       "Remove a day": "Eliminar un día",
       "Remove a time slot": "Eliminar una franja horaria",
       "Remove all days": "Borrar todos los días",
       "Remove all times": "Eliminar todos los horarios",
       "Remove this day": "Eliminar este dia",
-      "To schedule an event you need to provide at least two choices (e.g., two time slots on one day or two days).": "To schedule an event you need to provide at least two choices (e.g., two time slots on one day or two days).",
+      "To schedule an event you need to provide at least two choices (e.g., two time slots on one day or two days).": "Para programar un evento, tiene que proponer por lo menos dos opciones (dos horarios para un día, o dos días).",
       "You can add or remove additional days and times with the buttons": "Puede agregar o borrar días y horarios con los botones"
    },
    "Step 3": {

@@ -406,14 +406,14 @@
       "Add a time slot": "Idősáv hozzáadása",
       "Choose dates for your poll": "Válassz dátumokat a szavazáshoz",
       "Copy times from the first day": "Idősávok átmásolása az első napból",
-      "For each selected day, you are free to suggest meeting times (e.g., \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)": "For each selected day, you are free to suggest meeting times (e.g., \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)",
+      "For each selected day, you are free to suggest meeting times (e.g., \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)": "Minden egyes napnál szabadon adhatsz meg találkozási időket (például „8h”, „8:30”, „8h-10h”, „este” stb.)",
       "Poll dates (2 of 3)": "Szavazási dátumok (2/3)",
       "Remove a day": "Nap eltávolítása",
       "Remove a time slot": "Idősáv eltávolítása",
       "Remove all days": "Összes nap eltávolítása",
       "Remove all times": "Összes idősáv eltávolítása",
       "Remove this day": "Nap eltávolítása",
-      "To schedule an event you need to provide at least two choices (e.g., two time slots on one day or two days).": "To schedule an event you need to provide at least two choices (e.g., two time slots on one day or two days).",
+      "To schedule an event you need to provide at least two choices (e.g., two time slots on one day or two days).": "Egy esemény ütemezéséhez legalább két lehetőséget kell megadni (azaz két idősávot egy nap, vagy két napot).",
       "You can add or remove additional days and times with the buttons": "A gombokkal további napokat és idősávokat adhatsz hozzá."
    },
    "Step 3": {
