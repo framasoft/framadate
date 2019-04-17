@@ -195,7 +195,7 @@ switch ($step) {
         }
 
         // Clean Form data in $_SESSION
-        unset($_SESSION['form']);
+        $sessionService->removeAll('form');
 
         // Delete old polls
         $purgeService->repeatedCleanings();
