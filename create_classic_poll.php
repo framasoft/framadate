@@ -156,7 +156,11 @@ switch ($step) {
 
         $smarty->display('create_poll_step_3.tpl');
         exit;
-    case 4: // Step 4 : Data prepare before insert in DB
+
+    case 4:
+        // Step 4 : Data prepare before insert in DB
+
+        // Define expiration date
         $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
 
         if (!empty($enddate)) {
@@ -194,16 +198,18 @@ switch ($step) {
         unset($_SESSION['form']);
 
         // Delete old polls
-        $purgeService->purgeOldPolls();
+        $purgeService->repeatedCleanings();
 
         // creation message
         $sessionService->set("Framadate", "messagePollCreated", TRUE);
+
         // Redirect to poll administration
         header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
         exit;
 
-    case 1: // Step 1/4 : error if $_SESSION from info_sondage are not valid
+    case 1:
     default:
+        // Step 1/4 : error if $_SESSION from info_sondage are not valid
         $smarty->assign('title', __('Error', 'Error!'));
         $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
         $smarty->display('error.tpl');
