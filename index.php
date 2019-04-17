@@ -17,6 +17,9 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
+use Framadate\Services\LogService;
+use Framadate\Services\MailService;
+use Framadate\Services\NotificationService;
 use Framadate\Services\PollService;
 use Framadate\Utils;
 
@@ -29,8 +32,10 @@ if (!is_file(CONF_FILENAME)) {
 
 /* SERVICES */
 /* -------- */
-$logService = '\Framadate\Services\LogService';
-$pollService = new PollService($connect, new $logService());
+$logService = new LogService();
+$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
+$notificationService = new NotificationService($mailService, $smarty);
+$pollService = new PollService($connect, $logService, $notificationService);
 
 /* PAGE */
 /* ---- */
