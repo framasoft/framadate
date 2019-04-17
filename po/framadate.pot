@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-16 15:54+0200\n"
+"POT-Creation-Date: 2019-04-17 10:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -510,6 +510,10 @@ msgstr ""
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
+msgstr ""
+
+#: .Error.If+you+quit+now,+your+changes+will+be+lost.
+msgid "If you quit now, your changes will be lost."
 msgstr ""
 
 #: .Error.JavaScript+is+disabled+on+your+browser.+It+is+required+to+create+a+poll.

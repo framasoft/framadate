@@ -134,6 +134,7 @@
       "Failed to save poll": "A szavazás mentése sikertelen",
       "Forbidden!": "Tiltott.",
       "Identifier is already used": "Az azonosító már használatban van",
+      "If you quit now, your changes will be lost.": "If you quit now, your changes will be lost.",
       "JavaScript is disabled on your browser. It is required to create a poll.": "A JavaScript le van tiltva a böngésződben. Engedélyezni kell a szavazás létrehozásához.",
       "Missing values": "Hiányzó értékek",
       "No polls found": "A szavazás nem található",

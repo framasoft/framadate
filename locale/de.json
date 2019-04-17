@@ -134,6 +134,7 @@
       "Failed to save poll": "Speichern der Umfrage fehlgeschlagen",
       "Forbidden!": "Verboten!",
       "Identifier is already used": "Der Bezeichner ist bereits in Verwendung",
+      "If you quit now, your changes will be lost.": "If you quit now, your changes will be lost.",
       "JavaScript is disabled on your browser. It is required to create a poll.": "Javascript ist in Ihrem Browser deaktiviert. Um eine Umfrage zu erstellen, müssen Sie es aktivieren.",
       "Missing values": "Fehlende Werte",
       "No polls found": "Keine Umfragen gefunden",
