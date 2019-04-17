@@ -21,6 +21,8 @@ var form;
 
 $(document).ready(function () {
 
+    // Flag for onbeforeunload event
+    var isSubmittingVote = false;
 
     /**
      * Save a list of polls inside LocalStorage
@@ -88,6 +90,8 @@ $(document).ready(function () {
             $('html, body').animate({
                 scrollTop: messageContainer.offset().top
             }, 750);
+        } else {
+            isSubmittingVote = true;
         }
     });
 
@@ -172,6 +176,7 @@ $(document).ready(function () {
         return false;
     });
 
+
     /**
      * Disable view public results option when there's a password and the poll is not hidden
      */
@@ -180,6 +185,17 @@ $(document).ready(function () {
             $('#resultsPubliclyVisible').removeAttr('disabled');
         } else {
             $('#resultsPubliclyVisible').attr('disabled','disabled');
+        }
+    });
+
+    $(window).on('beforeunload', function(e) {
+        var name = $('#name').val().trim();
+        var comment = $('#comment').val().trim();
+
+        if ((!isSubmittingVote && name.length > 0) || comment.length > 0) {
+            var confirmationMessage = $('#preventLeaving').text();
+            e.returnValue = confirmationMessage;
+            return confirmationMessage;
         }
     });
 });

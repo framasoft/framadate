@@ -15,6 +15,7 @@
       "Framadate is licensed under the": "Es regit per la",
       "Framadate was initially based on": "Framadate es inicialament basat sus",
       "The software": "Lo logicial",
+      "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "This software needs javascript and cookies enabled. It is compatible with the following web browsers:",
       "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.": "un logicial desvolopat per l’Universitat d’Estrasborg. Uèi son desvolopament es fach per l’associacion Framasoft."
    },
    "3rd section": {
@@ -133,6 +134,7 @@
       "Failed to save poll": "Fracàs d’enregistrament del sondatge",
       "Forbidden!": "Defendut !",
       "Identifier is already used": "L’identificant es ja utilizat",
+      "If you quit now, your changes will be lost.": "If you quit now, your changes will be lost.",
       "JavaScript is disabled on your browser. It is required to create a poll.": "Javascript es desactivat sus vòstre navegador. Son activacion es requesida per la creacion d’un sondatge.",
       "Missing values": "Mancan de valors",
       "No polls found": "Cap de sondatge pas trobat",
@@ -368,6 +370,7 @@
       "Permissions": "Permissions",
       "Poll creation (1 of 3)": "Creacion de sondatge (1 sus 3)",
       "Poll id": "Identificant",
+      "Poll link": "Identificant",
       "Poll title": "Títol del sondatge",
       "Receive an email for each new comment": "Recebre un messatge per cada comentari",
       "Receive an email for each new vote": "Recebre un messatge per cada participacion",
@@ -431,7 +434,7 @@
       "after the last date of your poll.": "aprèp lo darrièr jorn del sondatge."
    },
    "Version": {
-      "Version: %s": ""
+      "Version %s": "Version %s"
    },
    "adminstuds": {
       "Add a column": "Apondre una colomna",

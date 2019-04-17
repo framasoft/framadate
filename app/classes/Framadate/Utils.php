@@ -34,14 +34,14 @@ class Utils {
             (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
         ) ? 'https' : 'http';
 
+        $domain = defined('APP_URL') ? APP_URL : $serverName;
         $port = in_array($serverPort, ['80', '443'], true) ? '' : ':' . $serverPort;
         $dirname = dirname($_SERVER['SCRIPT_NAME']);
         $dirname = $dirname === '\\' ? '/' : $dirname . '/';
         $dirname = str_replace('/admin', '', $dirname);
         $dirname = str_replace('/action', '', $dirname);
-        $server_name = (defined('APP_URL') ? APP_URL : $serverName) . $port . $dirname;
 
-        return $scheme . '://' . preg_replace('#//+#', '/', $server_name);
+        return $scheme . '://' . preg_replace('#//+#', '/', $domain . $port . $dirname);
     }
 
     /**

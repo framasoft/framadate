@@ -15,6 +15,7 @@
       "Framadate is licensed under the": "Framadate està llicenciat sota la",
       "Framadate was initially based on": "Framadate incialment es va basar en",
       "The software": "El programari",
+      "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "This software needs javascript and cookies enabled. It is compatible with the following web browsers:",
       "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.": "programari desenvolupat per la Universitat d'Estrasburg. Actualment desenvolupat per l'associació Framasoft."
    },
    "3rd section": {
@@ -133,6 +134,7 @@
       "Failed to save poll": "No ha pogut desar l'enquesta",
       "Forbidden!": "Prohibit!",
       "Identifier is already used": "Ja s'utilitza l'identificador",
+      "If you quit now, your changes will be lost.": "If you quit now, your changes will be lost.",
       "JavaScript is disabled on your browser. It is required to create a poll.": "JavaScript està desactivat al vostre navegador. Cal activar-lo per a crear una enquesta.",
       "Missing values": "Valors que falten",
       "No polls found": "No s'han trobat enquestes",
@@ -368,6 +370,7 @@
       "Permissions": "Permisos",
       "Poll creation (1 of 3)": "Creació d'enquestes (1 de 3)",
       "Poll id": "Enllaç d'enquesta",
+      "Poll link": "Enllaç d'enquesta",
       "Poll title": "Títol de l'enquesta",
       "Receive an email for each new comment": "Reps un correu electrònic per a cada comentari nou",
       "Receive an email for each new vote": "Reps un correu electrònic per a cada nou vot",
@@ -431,7 +434,7 @@
       "after the last date of your poll.": "després de l'última data de la teva enquesta."
    },
    "Version": {
-      "Version: %s": ""
+      "Version %s": "Version %s"
    },
    "adminstuds": {
       "Add a column": "Afegeix una columna",

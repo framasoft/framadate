@@ -15,6 +15,7 @@
       "Framadate is licensed under the": "Il est régi par la",
       "Framadate was initially based on": "Framadate est initialement basé sur",
       "The software": "Le logiciel",
+      "This software needs javascript and cookies enabled. It is compatible with the following web browsers:": "Ce logiciel requiert l’activation du JavaScript et des cookies. Il est compatible avec les navigateurs web suivants :",
       "software developed by the University of Strasbourg. These days, it is developed by the Framasoft association.": "un logiciel développé par l'Université de Strasbourg. Aujourd'hui, son développement est assuré par l’association Framasoft."
    },
    "3rd section": {
@@ -133,6 +134,7 @@
       "Failed to save poll": "Échec de la sauvegarde du sondage",
       "Forbidden!": "Interdit !",
       "Identifier is already used": "L'identifiant est déjà utilisé",
+      "If you quit now, your changes will be lost.": "Si vous quittez maintenant, vos modifications seront perdues.",
       "JavaScript is disabled on your browser. It is required to create a poll.": "JavaScript est désactivé sur votre navigateur. Son activation est requise pour la création d'un sondage.",
       "Missing values": "Il manque des valeurs",
       "No polls found": "Aucun sondage n'a été trouvé",
@@ -368,6 +370,7 @@
       "Permissions": "Permissions",
       "Poll creation (1 of 3)": "Création de sondage (1 sur 3)",
       "Poll id": "Lien du sondage",
+      "Poll link": "Lien du sondage",
       "Poll title": "Titre du sondage",
       "Receive an email for each new comment": "Recevoir un courriel à chaque commentaire",
       "Receive an email for each new vote": "Recevoir un courriel à chaque participation",
@@ -431,7 +434,7 @@
       "after the last date of your poll.": "après le dernier jour de votre sondage."
    },
    "Version": {
-      "Version: %s": ""
+      "Version %s": "Version %s"
    },
    "adminstuds": {
       "Add a column": "Ajouter une colonne",

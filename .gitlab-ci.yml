@@ -17,6 +17,11 @@ test:
     paths:
       - vendor/
 
+check:missing:trads:
+  stage: test
+  script:
+    - ./scripts/check-translations.py
+
 # check-trad:
 #   stage: test
 #   allow_failure: true
