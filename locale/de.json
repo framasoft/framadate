@@ -98,7 +98,7 @@
       "Add range dates": "Datumsbereich hinzufügen",
       "End date": "Enddatum",
       "Start date": "Startdatum",
-      "Y-m-d": "Y-m-d",
+      "Y-m-d": "d-m-Y",
       "You can select at most 4 months": "Es können maximal 4 Monate ausgewählt werden",
       "yyyy-mm-dd": "dd-mm-yyyy"
    },

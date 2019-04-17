@@ -100,7 +100,7 @@
       "Start date": "Data de debuta",
       "Y-m-d": "d/m/Y",
       "You can select at most 4 months": "Podètz pas causir mai de 4 meses",
-      "yyyy-mm-dd": "jj/mm/aaaa"
+      "yyyy-mm-dd": "dd/mm/yyyy"
    },
    "EditLink": {
       "Edit link for poll \"%s\"": "Ligam de modificacion del sondatge \"%s\"",

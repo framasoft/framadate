@@ -100,7 +100,7 @@
       "Start date": "Kezdő dátum",
       "Y-m-d": "Y.m.d.",
       "You can select at most 4 months": "Legfeljebb 4 hónapot válaszhatsz",
-      "yyyy-mm-dd": "yyyy-mm-dd"
+      "yyyy-mm-dd": "yyyy.mm.dd."
    },
    "EditLink": {
       "Edit link for poll \"%s\"": "A(z) „%s” szavazás hivatkozásának szerkesztése",
