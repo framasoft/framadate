@@ -40,10 +40,10 @@ $is_admin = false;
 /*----------*/
 
 $logService = new LogService();
-$pollService = new PollService($connect, $logService);
 $inputService = new InputService();
 $mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
 $notificationService = new NotificationService($mailService, $smarty);
+$pollService = new PollService($connect, $logService, $notificationService);
 $securityService = new SecurityService();
 
 /* PAGE */
