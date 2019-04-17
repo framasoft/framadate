@@ -29,6 +29,7 @@ class Form
     public $end_date;
     public $choix_sondage;
     public $ValueMax;
+    public $errors;
 
     /**
      * Tells if users can modify their choices.
@@ -95,6 +96,7 @@ class Form
 
     public function __construct()
     {
+        $this->errors = [];
         $this->editable = Editable::EDITABLE_BY_ALL;
 	    $this->collect_users_mail = CollectMail::NO_COLLECT;
         $this->clearChoices();
