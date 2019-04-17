@@ -184,19 +184,16 @@ switch ($step) {
         $admin_poll_id = $ids[1];
 
         // Send confirmation by mail if enabled
-        if ($config['use_smtp'] === true) {
-            $message = __('Mail', "This is the message to forward to the poll participants.");
-            $message .= '<br/><br/>';
-            $message .= Utils::htmlMailEscape($form->admin_name) . ' ' . __('Mail', 'has just created a poll called') . ' : "' . Utils::htmlMailEscape($form->title) . '".<br/>';
-            $message .= sprintf(__('Mail', 'Thank you for participating in the poll at the following link') . ' :<br/><br/><a href="%1$s">%1$s</a>', Utils::getUrlSondage($poll_id));
+        if ($config['use_smtp'] === true && $mailService->isValidEmail($form->admin_mail)) {
+            $smarty->assign('poll_creator_name', Utils::htmlMailEscape($form->admin_name));
+            $smarty->assign('poll_name', Utils::htmlMailEscape($form->title));
+            $smarty->assign('poll_url', Utils::getUrlSondage($poll_id));
+            $message_participants = $smarty->fetch('mail/participants_forward_email.html.tpl');
+            $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Participant link') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message_participants);
 
-            $message_admin = __('Mail', "This message should NOT be sent to the poll participants. You should keep it private. <br/><br/>You can modify your poll at the following link");
-            $message_admin .= sprintf(' :<br/><br/><a href="%1$s">%1$s</a>', Utils::getUrlSondage($admin_poll_id, true));
-
-            if ($mailService->isValidEmail($form->admin_mail)) {
-                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Message for the author') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message_admin);
-                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Participant link') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message);
-            }
+            $smarty->assign('poll_admin_url', Utils::getUrlSondage($admin_poll_id, true));
+            $message_admin = $smarty->fetch('mail/creation_notification_email.html.tpl');
+            $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Message for the author') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message_admin);
         }
 
         // Clean Form data in $_SESSION
