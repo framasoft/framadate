@@ -134,6 +134,7 @@
       "Failed to save poll": "Opslaan van de poll gefaald",
       "Forbidden!": "Verboden!",
       "Identifier is already used": "Deze ID is reeds gebruikt",
+      "If you quit now, your changes will be lost.": "If you quit now, your changes will be lost.",
       "JavaScript is disabled on your browser. It is required to create a poll.": "JavaScript is uitgeschakeld in je browser. JavaScript is nodig om een poll aan te maken.",
       "Missing values": "Ontbrekende waarden",
       "No polls found": "Geen polls gevonden",

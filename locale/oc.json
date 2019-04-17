@@ -134,6 +134,7 @@
       "Failed to save poll": "Fracàs d’enregistrament del sondatge",
       "Forbidden!": "Defendut !",
       "Identifier is already used": "L’identificant es ja utilizat",
+      "If you quit now, your changes will be lost.": "If you quit now, your changes will be lost.",
       "JavaScript is disabled on your browser. It is required to create a poll.": "Javascript es desactivat sus vòstre navegador. Son activacion es requesida per la creacion d’un sondatge.",
       "Missing values": "Mancan de valors",
       "No polls found": "Cap de sondatge pas trobat",
