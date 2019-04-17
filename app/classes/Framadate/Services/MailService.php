@@ -47,8 +47,12 @@ class MailService {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
+    public function isEnabled() {
+        return $this->smtp_allowed === true;
+    }
+
     public function send($to, $subject, $body, $msgKey = null) {
-        if ($this->smtp_allowed === true && $this->canSendMsg($msgKey)) {
+        if ($this->isEnabled() && $this->canSendMsg($msgKey)) {
             $mail = new PHPMailer(true);
             $this->configureMailer($mail);
 
