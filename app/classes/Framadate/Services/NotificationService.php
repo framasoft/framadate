@@ -15,9 +15,11 @@ class NotificationService {
     const DELETED_POLL = 11;
 
     private $mailService;
+    private $smarty;
 
-    function __construct(MailService $mailService) {
+    function __construct(MailService $mailService, \Smarty $smarty) {
         $this->mailService = $mailService;
+        $this->smarty = $smarty;
     }
 
     /**
