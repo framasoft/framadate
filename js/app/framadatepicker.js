@@ -16,7 +16,11 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 $(document).ready(function () {
+    
+    let datepickerLoaded = false;
+    
     var init_datepicker = function () {
+        
         $('.input-group.date').datepicker({
             format: window.date_formats.DATEPICKER || "dd/mm/yyyy",
             todayBtn: "linked",
@@ -25,28 +29,43 @@ $(document).ready(function () {
             language: lang,
             todayHighlight: true,
             beforeShowDay: function (date) {
+                
+                if (!datepickerLoaded) {
+                    return true;
+                }
+                
+                
                 // Retrieve selected dates from text fields
+                
                 var selected_days = [];
-                $('#selected-days').find('input[id^="day"]').each(function () {
-                    if ($(this).val() != '') {
-                        selected_days.push($(this).val());
-                    }
+                
+                $('.input-group.date').each(function () {
+                    selected_days.push($(this).datepicker("getDate").getTime());
                 });
-
+                
+                
                 // Disable selected dates in DatePicker
                 for (var i = 0; i < selected_days.length; i++) {
-                    var selected_date = selected_days[i].split('/');
-
-                    if (date.getFullYear() == selected_date[2] && (date.getMonth() + 1) == selected_date[1] && date.getDate() == selected_date[0]) {
+                    
+                    if (date.getTime() === selected_days[i]) {
                         return {
                             classes: 'disabled selected'
                         };
                     }
+                    
                 }
+                
+                return true;
+                
             }
         });
+        
+        
+        datepickerLoaded = true;
+        
     };
-
+    
+    
     $(document).on('click', '.input-group.date .input-group-addon, .input-group.date input', function () {
         // Re-init datepicker config before displaying
         init_datepicker();
