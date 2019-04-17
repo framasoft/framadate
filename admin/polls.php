@@ -19,6 +19,7 @@
 
 use Framadate\Services\AdminPollService;
 use Framadate\Services\LogService;
+use Framadate\Services\MailService;
 use Framadate\Services\PollService;
 use Framadate\Services\SecurityService;
 use Framadate\Services\SuperAdminService;
@@ -50,7 +51,9 @@ $poll_to_delete = null;
 /*----------*/
 
 $logService = new LogService();
-$pollService = new PollService($connect, $logService);
+$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
+$notificationService = new NotificationService($mailService, $smarty);
+$pollService = new PollService($connect, $logService, $notificationService);
 $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $superAdminService = new SuperAdminService();
 $securityService = new SecurityService();
