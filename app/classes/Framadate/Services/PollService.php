@@ -202,16 +202,24 @@ class PollService {
         list($poll_id, $admin_poll_id) = $this->createPoll($form);
 
         // Send confirmation by mail if enabled
-        // Everything went well
-        $this->notificationService->sendPollCreationMails($form->admin_mail, $form->admin_name, $form->title, $poll_id, $admin_poll_id);
+        if (!is_null($ids)) {
+            // Everything went well
+            $this->notificationService->sendPollCreationMails($form->admin_mail, $form->admin_name, $form->title, $poll_id, $admin_poll_id);
 
-        // Clean Form data in session
-        $this->sessionService->removeAll('form');
-        // Creation message
-        $this->sessionService->set("Framadate", "messagePollCreated", TRUE);
-
-        // Delete old polls
-        $this->purgeService->repeatedCleanings();
+            // Clean Form data in session
+            $this->sessionService->removeAll('form');
+            // Creation message
+            $this->sessionService->set("Framadate", "messagePollCreated", TRUE);
+            // Delete old polls
+            $this->purgeService->repeatedCleanings();
+        } else {
+            // Add an error in the form
+            $form->errors = [
+                __('Error', 'GenericErrorPollCreation')
+            ];
+            // TODO: change this to use sessionService function
+            $_SESSION['form'] = serialize($form);
+        }
 
         return $admin_poll_id;
     }

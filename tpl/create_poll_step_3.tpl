@@ -38,6 +38,13 @@
                         <p>{__('Step 3', 'Then you will receive two emails: one containing the link of your poll for sending to the participants, the other containing the link to the poll administration page.')}</p>
                     {/if}
                 </div>
+                {if !empty($errors)}
+                <div class="alert alert-danger">
+                    {foreach $errors as $error}
+                        <p>{$error}</p>
+                    {/foreach}
+                </div>
+                {/if}
                 <p class="text-right">
                     <button class="btn btn-default" onclick="javascript:window.history.back();" title="{__('Step 3', 'Back to step 2')}">{__('Generic', 'Back')}</button>
                     <button name="confirmation" value="confirmation" type="submit" class="btn btn-success">{__('Step 3', 'Create the poll')}</button>
