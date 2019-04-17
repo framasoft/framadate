@@ -87,6 +87,10 @@ class NotificationService {
     }
 
     function sendPollCreationMails($creator_mail, $creator_name, $poll_name, $poll_id, $admin_poll_id) {
+        if (!$this->mailService->isEnabled() || !$this->mailService->isValidEmail($creator_mail)) {
+            return null;
+        }
+
         $this->smarty->assign('poll_creator_name', Utils::htmlMailEscape($creator_name));
         $this->smarty->assign('poll_name', Utils::htmlMailEscape($poll_name));
         $this->smarty->assign('poll_url', Utils::getUrlSondage($poll_id));
