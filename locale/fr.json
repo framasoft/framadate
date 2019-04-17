@@ -134,6 +134,7 @@
       "Failed to save poll": "Échec de la sauvegarde du sondage",
       "Forbidden!": "Interdit !",
       "Identifier is already used": "L'identifiant est déjà utilisé",
+      "If you quit now, your changes will be lost.": "Si vous quittez maintenant, vos modifications seront perdues.",
       "JavaScript is disabled on your browser. It is required to create a poll.": "JavaScript est désactivé sur votre navigateur. Son activation est requise pour la création d'un sondage.",
       "Missing values": "Il manque des valeurs",
       "No polls found": "Aucun sondage n'a été trouvé",
