@@ -21,6 +21,7 @@ use Framadate\Form;
 use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
+use Framadate\Services\NotificationService;
 use Framadate\Services\PollService;
 use Framadate\Services\PurgeService;
 use Framadate\Services\SessionService;
@@ -33,6 +34,7 @@ include_once __DIR__ . '/app/inc/init.php';
 $logService = new LogService();
 $pollService = new PollService($connect, $logService);
 $mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
+$notificationService = new NotificationService($mailService, $smarty);
 $purgeService = new PurgeService($connect, $logService);
 $sessionService = new SessionService();
 
@@ -185,15 +187,7 @@ switch ($step) {
 
         // Send confirmation by mail if enabled
         if ($config['use_smtp'] === true && $mailService->isValidEmail($form->admin_mail)) {
-            $smarty->assign('poll_creator_name', Utils::htmlMailEscape($form->admin_name));
-            $smarty->assign('poll_name', Utils::htmlMailEscape($form->title));
-            $smarty->assign('poll_url', Utils::getUrlSondage($poll_id));
-            $message_participants = $smarty->fetch('mail/participants_forward_email.html.tpl');
-            $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Participant link') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message_participants);
-
-            $smarty->assign('poll_admin_url', Utils::getUrlSondage($admin_poll_id, true));
-            $message_admin = $smarty->fetch('mail/creation_notification_email.html.tpl');
-            $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Message for the author') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message_admin);
+            $notificationService->sendPollCreationMails($form->admin_mail, $form->admin_name, $form->title, $poll_id, $admin_poll_id);
         }
 
         // Clean Form data in $_SESSION
