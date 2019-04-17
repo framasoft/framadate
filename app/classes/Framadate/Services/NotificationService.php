@@ -85,4 +85,16 @@ class NotificationService {
     {
        return $type >= self::UPDATE_POLL;
     }
+
+    function sendPollCreationMails($creator_mail, $creator_name, $poll_name, $poll_id, $admin_poll_id) {
+        $this->smarty->assign('poll_creator_name', Utils::htmlMailEscape($creator_name));
+        $this->smarty->assign('poll_name', Utils::htmlMailEscape($poll_name));
+        $this->smarty->assign('poll_url', Utils::getUrlSondage($poll_id));
+        $message_participants = $this->smarty->fetch('mail/participants_forward_email.html.tpl');
+        $this->mailService->send($creator_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Participant link') . '] ' . __('Generic', 'Poll') . ': ' . $poll_name, $message_participants);
+
+        $this->smarty->assign('poll_admin_url', Utils::getUrlSondage($admin_poll_id, true));
+        $message_admin = $this->smarty->fetch('mail/creation_notification_email.html.tpl');
+        $this->mailService->send($creator_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Message for the author') . '] ' . __('Generic', 'Poll') . ': ' . $poll_name, $message_admin);
+    }
 }
