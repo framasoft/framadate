@@ -33,7 +33,7 @@
                         <span class="sr-only">{__('Generic', 'Add')}</span>
                     </p>
 
-                    <p>{__('Step 2 date', 'For each selected day, you are free to suggest meeting times (e.g., \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc.)')}</p>
+                    <p>{__('Step 2 date', 'For each selected day, you are free to suggest meeting times (e.g., "8h", "8:30", "8h-10h", "evening", etc.)')}</p>
                 </div>
 
                 <div id="days_container">
