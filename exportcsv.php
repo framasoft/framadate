@@ -35,7 +35,8 @@ $poll = null;
 /*----------*/
 
 $logService = new LogService();
-$pollService = new PollService($connect, $logService);
+$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
+$pollService = new PollService($connect, $logService, $mailService);
 $securityService = new SecurityService();
 
 /* PAGE */
