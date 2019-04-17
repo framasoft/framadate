@@ -110,4 +110,11 @@ class NotificationService {
 
         $this->mailService->send($email, $subject, $body);
     }
+
+    function sendFindPollsByMailNotification($mail, &$polls) {
+        $this->smarty->assign('polls', $polls);
+        $body = $this->smarty->fetch('mail/find_polls.tpl');
+
+        $this->mailService->send($mail, __('FindPolls', 'List of your polls') . ' - ' . NOMAPPLICATION, $body, 'SEND_POLLS');
+    }
 }

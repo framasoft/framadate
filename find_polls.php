@@ -20,6 +20,7 @@
 use Framadate\Message;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
+use Framadate\Services\NotificationService;
 use Framadate\Services\PollService;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -29,6 +30,7 @@ include_once __DIR__ . '/app/inc/init.php';
 $logService =  new LogService();
 $pollService = new PollService($connect,  $logService);
 $mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
+$notificationService = new NotificationService($mailService, $smarty);
 
 /* PAGE */
 /* ---- */
@@ -40,10 +42,7 @@ if (!empty($_POST['mail'])) {
         $polls = $pollService->findAllByAdminMail($mail);
 
         if (count($polls) > 0) {
-            $smarty->assign('polls', $polls);
-            $body = $smarty->fetch('mail/find_polls.tpl');
-
-            $mailService->send($mail, __('FindPolls', 'List of your polls') . ' - ' . NOMAPPLICATION, $body, 'SEND_POLLS');
+            $notificationService->sendFindPollsByMailNotification($mail, $polls);
             $message = new Message('success', __('FindPolls', 'Polls sent'));
         } else {
             $message = new Message('warning', __('Error', 'No polls found'));
