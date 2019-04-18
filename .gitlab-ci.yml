@@ -29,22 +29,42 @@ lint:
   script:
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run
 
-# Run doctrine on all branches
+# Run doctrine migrations with MySQL
 db:migration:mysql:
   stage: test
   variables:
     MYSQL_DATABASE: "fd_test"
     MYSQL_ROOT_PASSWORD: "coucou"
     FRAMADATE_DB_DRIVER: 'pdo_mysql'
+    FRAMADATE_DB_HOST: mysql
     FRAMADATE_DB_NAME: "${MYSQL_DATABASE}"
-    FRAMADATE_DB_HOST: database
     FRAMADATE_DB_USER: root
     FRAMADATE_DB_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
   services:
-    - name: mysql:5.6
-      alias: database
+    - 'mysql:5.6'
   script:
+    - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
     - APP_ENV=test bin/doctrine migrations:migrate --no-interaction -vvv
+
+# Run doctrine migrations with PostgreSQL
+db:migration:postgresql:
+  stage: test
+  variables:
+    POSTGRES_DB: "fd_test"
+    POSTGRES_USER: "marmotte"
+    POSTGRES_PASSWORD: "sleeping"
+    FRAMADATE_DB_DRIVER: 'pdo_pgsql'
+    FRAMADATE_DB_HOST: postgres
+    FRAMADATE_DB_NAME: "${POSTGRES_DB}"
+    FRAMADATE_DB_USER: "${POSTGRES_USER}"
+    FRAMADATE_DB_PASSWORD: "${POSTGRES_PASSWORD}"
+  services:
+    - 'postgres:9.6'
+  script:
+    - apt-get -qq -y install libpq-dev # TODO move to the framadate-ci image?
+    - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
+    - APP_ENV=test bin/doctrine migrations:migrate --no-interaction -vvv
+
 
 check:missing:trads:
   stage: test
