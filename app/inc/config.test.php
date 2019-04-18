@@ -32,22 +32,22 @@ const ADRESSEMAILADMIN = 'admin@app.tld';
 const ADRESSEMAILREPONSEAUTO = 'no@reply';
 
 // Database driver
-const DB_DRIVER = 'pdo_sqlite';
+const DB_DRIVER = FRAMADATE_DB_DRIVER;
 
 // Database name
-const DB_NAME = 'framadate';
+const DB_NAME = FRAMADATE_DB_NAME;
 
 // Database host
-const DB_HOST = '';
+const DB_HOST = FRAMADATE_DB_HOST;
 
 // Database port
-const DB_PORT = '';
+const DB_PORT = FRAMADATE_DB_PORT;
 
 // Database user
-const DB_USER = '';
+const DB_USER = FRAMADATE_DB_USER;
 
 // Database password
-const DB_PASSWORD = '';
+const DB_PASSWORD = FRAMADATE_DB_PASSWORD;
 
 // Table name prefix
 const TABLENAME_PREFIX = 'fd_';

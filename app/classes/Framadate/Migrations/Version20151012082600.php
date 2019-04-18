@@ -53,6 +53,10 @@ class Version20151012082600 extends AbstractMigration
 
         $this->skipIf($commentTable->hasColumn('date'), 'Column date in comment table already exists');
 
+        // The default for datetime types is only available for MySQL 5.6
+        // See the "Functionality Added or Changed" section,
+        // "Important Change: In MySQL, the TIMESTAMP data type" element, on
+        // https://dev.mysql.com/doc/relnotes/mysql/5.6/en/news-5-6-6.html
         $commentTable->addColumn('date', 'datetime', ['default' => 0]);
     }
 
