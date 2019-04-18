@@ -29,22 +29,42 @@ lint:
   script:
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run
 
-# Run doctrine on all branches
-db:migration:mysql:
+# Shared doctrine migrations script
+.db:migration:
   stage: test
+  variables:
+    FRAMADATE_DB_HOST: database
+    FRAMADATE_DB_USER: root
+  script:
+    - APP_ENV=test bin/doctrine migrations:migrate --no-interaction -vvv
+
+# Run doctrine migrations with MySQL
+db:migration:mysql:
+  extends: .db:migration
   variables:
     MYSQL_DATABASE: "fd_test"
     MYSQL_ROOT_PASSWORD: "coucou"
     FRAMADATE_DB_DRIVER: 'pdo_mysql'
     FRAMADATE_DB_NAME: "${MYSQL_DATABASE}"
-    FRAMADATE_DB_HOST: database
-    FRAMADATE_DB_USER: root
     FRAMADATE_DB_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
   services:
     - name: mysql:5.5
       alias: database
-  script:
-    - APP_ENV=test bin/doctrine migrations:migrate --no-interaction -vvv
+
+# Run doctrine migrations with PostgreSQL
+db:migration:postgresql:
+  extends: .db:migration
+  variables:
+    POSTGRES_DB: "fd_test"
+    POSTGRES_USER: "root"
+    POSTGRES_PASSWORD: "coucou"
+    FRAMADATE_DB_DRIVER: 'pdo_pgsql'
+    FRAMADATE_DB_NAME: "${POSTGRES_DB}"
+    FRAMADATE_DB_PASSWORD: "${POSTGRES_PASSWORD}"
+  services:
+    - name: postgresql:10
+      alias: database
+
 
 check:missing:trads:
   stage: test
