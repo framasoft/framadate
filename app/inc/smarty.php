@@ -81,21 +81,6 @@ function smarty_modifier_html($html) {
     return Utils::htmlEscape($html);
 }
 
-/**
- * markdown_to_text
- * Retrieves a markdown string and tries to make a plain text value
- *
- * @param array $options
- * @return string
- */
-function smarty_function_markdown_to_text($options, Smarty_Internal_Template $template)
-{
-    $locale = \o80\i18n\I18N::instance()->getLoadedLang();
-    $text = strip_tags(Parsedown::instance()->text($options['markdown']));
-    $number_letters = (new NumberFormatter($locale, NumberFormatter::ORDINAL))->format($options['id'] + 1);
-    return $text !== '' ? $text : __f('Poll results', '%s option', $number_letters);
-}
-
 function smarty_modifier_html_special_chars($html) {
     return Utils::htmlMailEscape($html);
 }
