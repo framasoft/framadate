@@ -25,7 +25,7 @@ define('ROOT_DIR', __DIR__ . '/../');
 /**
  * Checking for missing vendors.
  */
-if (!file_exists(ROOT_DIR . 'vendor/autoload.php') || !file_exists(ROOT_DIR . 'vendor/o80/i18n/src/shortcuts.php')) {
+if (!file_exists(ROOT_DIR . 'vendor/autoload.php')) {
     die ("ERROR: You should use <code>composer install</code> to fetch dependant libraries.");
 }
 
@@ -33,7 +33,6 @@ if (!file_exists(ROOT_DIR . 'vendor/autoload.php') || !file_exists(ROOT_DIR . 'v
  * Stripped ini sequence
  */
 require_once ROOT_DIR . 'vendor/autoload.php';
-require_once ROOT_DIR . 'vendor/o80/i18n/src/shortcuts.php';
 require_once ROOT_DIR . 'app/inc/constants.php';
 if (session_id() === '') {
     session_start();

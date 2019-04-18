@@ -25,7 +25,6 @@ use Framadate\Services\LogService;
 
 // Autoloading of dependencies with Composer
 require_once __DIR__ . '/../../vendor/autoload.php';
-require_once __DIR__ . '/../../vendor/o80/i18n/src/shortcuts.php';
 
 if (session_id() === '') {
     session_start();

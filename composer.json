@@ -57,7 +57,6 @@
         "php": ">=5.6.0",
         "ext-pdo": "*",
         "smarty/smarty": "^3.1",
-        "o80/i18n": "dev-develop",
         "phpmailer/phpmailer": "~6.0",
         "ircmaxell/password-compat": "dev-master",
         "roave/security-advisories": "dev-master",
