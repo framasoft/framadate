@@ -15,9 +15,11 @@ class NotificationService {
     const DELETED_POLL = 11;
 
     private $mailService;
+    private $smarty;
 
-    function __construct(MailService $mailService) {
+    function __construct(MailService $mailService, \Smarty $smarty) {
         $this->mailService = $mailService;
+        $this->smarty = $smarty;
     }
 
     /**
@@ -82,5 +84,37 @@ class NotificationService {
     function isParticipation($type)
     {
        return $type >= self::UPDATE_POLL;
+    }
+
+    function sendPollCreationMails($creator_mail, $creator_name, $poll_name, $poll_id, $admin_poll_id) {
+        $this->smarty->assign('poll_creator_name', Utils::htmlMailEscape($creator_name));
+        $this->smarty->assign('poll_name', Utils::htmlMailEscape($poll_name));
+        $this->smarty->assign('poll_url', Utils::getUrlSondage($poll_id));
+        $message_participants = $this->smarty->fetch('mail/participants_forward_email.html.tpl');
+        $this->mailService->send($creator_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Participant link') . '] ' . __('Generic', 'Poll') . ': ' . $poll_name, $message_participants);
+
+        $this->smarty->assign('poll_admin_url', Utils::getUrlSondage($admin_poll_id, true));
+        $message_admin = $this->smarty->fetch('mail/creation_notification_email.html.tpl');
+        $this->mailService->send($creator_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Message for the author') . '] ' . __('Generic', 'Poll') . ': ' . $poll_name, $message_admin);
+    }
+
+    function sendEditedVoteNotification($email, &$poll, $poll_id, $edited_vote_id) {
+        $url = Utils::getUrlSondage($poll_id, false, $edited_vote_id);
+
+        $this->smarty->assign('poll', $poll);
+        $this->smarty->assign('poll_id', $poll_id);
+        $this->smarty->assign('editedVoteUniqueId', $edited_vote_id);
+        $body = $this->smarty->fetch('mail/remember_edit_link.tpl');
+
+        $subject = '[' . NOMAPPLICATION . '][' . __('EditLink', 'REMINDER') . '] ' . __f('EditLink', 'Edit link for poll "%s"', $poll->title);
+
+        $this->mailService->send($email, $subject, $body);
+    }
+
+    function sendFindPollsByMailNotification($mail, &$polls) {
+        $this->smarty->assign('polls', $polls);
+        $body = $this->smarty->fetch('mail/find_polls.tpl');
+
+        $this->mailService->send($mail, __('FindPolls', 'List of your polls') . ' - ' . NOMAPPLICATION, $body, 'SEND_POLLS');
     }
 }

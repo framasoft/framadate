@@ -20,6 +20,7 @@
 use Framadate\Message;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
+use Framadate\Services\NotificationService;
 use Framadate\Services\PollService;
 use Framadate\Services\SessionService;
 use Framadate\Utils;
@@ -29,6 +30,7 @@ include_once __DIR__ . '/../app/inc/init.php';
 $logService = new LogService();
 $sessionService = new SessionService();
 $mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
+$notificationService = new NotificationService($mailService, $smarty);
 $pollService = new PollService($connect, $logService);
 
 $result = false;
@@ -70,16 +72,7 @@ if (is_null($message)) {
 }
 
 if (is_null($message)) {
-    $url = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
-
-    $smarty->assign('poll', $poll);
-    $smarty->assign('poll_id', $poll_id);
-    $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
-    $body = $smarty->fetch('mail/remember_edit_link.tpl');
-
-    $subject = '[' . NOMAPPLICATION . '][' . __('EditLink', 'REMINDER') . '] ' . __f('EditLink', 'Edit link for poll "%s"', $poll->title);
-
-    $mailService->send($email, $subject, $body);
+    $notificationService->sendEditedVoteNotification($email, $poll, $poll_id, $editedVoteUniqueId);
     $sessionService->remove("Common", SESSION_EDIT_LINK_TOKEN);
     $sessionService->set("Common", SESSION_EDIT_LINK_TIME, time());
 

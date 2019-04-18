@@ -21,6 +21,7 @@ use Framadate\Form;
 use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
+use Framadate\Services\NotificationService;
 use Framadate\Services\PollService;
 use Framadate\Services\PurgeService;
 use Framadate\Services\SessionService;
@@ -33,6 +34,7 @@ include_once __DIR__ . '/app/inc/init.php';
 $logService = new LogService();
 $pollService = new PollService($connect, $logService);
 $mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
+$notificationService = new NotificationService($mailService, $smarty);
 $purgeService = new PurgeService($connect, $logService);
 $inputService = new InputService();
 $sessionService = new SessionService();
@@ -223,22 +225,8 @@ switch ($step) {
         $admin_poll_id = $ids[1];
 
         // Send confirmation by mail if enabled
-        if ($config['use_smtp'] === true) {
-            $message = __('Mail', "This is the message to forward to the poll participants.");
-            $message .= '<br/><br/>';
-            $message .= Utils::htmlEscape($form->admin_name) . ' ' . __('Mail', 'has just created a poll called') . ' : "' . Utils::htmlEscape($form->title) . '".<br/>';
-            $message .= __('Mail', 'Thank you for participating in the poll at the following link') . ' :<br/><br/><a href="%1$s">%1$s</a>';
-
-            $message_admin = __('Mail', "This message should NOT be sent to the poll participants. You should keep it private. <br/><br/>You can modify your poll at the following link");
-            $message_admin .= ' :<br/><br/><a href="%1$s">%1$s</a>';
-
-            $message = sprintf($message, Utils::getUrlSondage($poll_id));
-            $message_admin = sprintf($message_admin, Utils::getUrlSondage($admin_poll_id, true));
-
-            if ($mailService->isValidEmail($form->admin_mail)) {
-                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Message for the author') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message_admin);
-                $mailService->send($form->admin_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Participant link') . '] ' . __('Generic', 'Poll') . ': ' . $form->title, $message);
-            }
+        if ($config['use_smtp'] === true && $mailService->isValidEmail($form->admin_mail)) {
+            $notificationService->sendPollCreationMails($form->admin_mail, $form->admin_name, $form->title, $poll_id, $admin_poll_id);
         }
 
         // Clean Form data in $_SESSION
