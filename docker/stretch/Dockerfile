@@ -3,7 +3,9 @@ FROM php:apache
 MAINTAINER kyane@kyane.fr
 
 RUN apt-get -y update && DEBIAN_FRONTEND=noninteractive apt-get install -y -qq zip unzip git zlib1g-dev libicu-dev g++ mysql-client
-RUN docker-php-ext-install intl && docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install intl && \
+      docker-php-ext-install pdo_mysql && \
+      docker-php-ext-install pdo_pgsql
 
 RUN a2enmod rewrite
 
