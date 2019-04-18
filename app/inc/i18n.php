@@ -17,19 +17,52 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-// Prepare I18N instance
-$i18n = \o80\i18n\I18N::instance();
-$i18n->setDefaultLang(DEFAULT_LANGUAGE);
-$i18n->setPath(__DIR__ . '/../../locale');
-
-// Change langauge when user asked for it
-if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'], array_keys($ALLOWED_LANGUAGES), true)) {
-    $_SESSION['lang'] = $_POST['lang'];
+// Change language when requested
+if (isset($_REQUEST['lang'])
+    && is_string($_REQUEST['lang'])
+    && in_array($_REQUEST['lang'], array_keys($ALLOWED_LANGUAGES), true)) {
+    $_SESSION['lang'] = $_REQUEST['lang'];
 }
 
-/* <html lang="$locale"> */
-$i18n->get('', 'Something, just to load the dictionary');
-$locale = str_replace('_', '-', $i18n->getLoadedLang());
+// Use the user-specified locale or the browser-specified locale
+$locale = $_SESSION['lang']
+    ?: locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+
+/* i18n helper functions */
+use Symfony\Component\Translation\Loader\PoFileLoader;
+use Symfony\Component\Translation\Translator;
+
+class __i18n {
+    private static $translator;
+    private static $fallbacktranslator;
+    public static function translate($key) {
+        if (!isset(self::$translator)) {
+            global $locale, $ALLOWED_LANGUAGES;
+            $found_locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $locale);
+            self::$translator = new Translator($found_locale);
+            self::$translator->addLoader('pofile', new PoFileLoader());
+            self::$translator->addResource('pofile', ROOT_DIR . "po/{$found_locale}.po", $found_locale);
+            # Fallback:
+            # For Symfony/Translation, empty strings are valid, but in po files, untranslated strings are "".
+            # This means we cannot use the standard $translator->setFallbackLocales() mechanism :(
+            self::$fallbacktranslator = new Translator(DEFAULT_LANGUAGE);
+            self::$fallbacktranslator->addLoader('pofile', new PoFileLoader());
+            self::$fallbacktranslator->addResource('pofile', ROOT_DIR . "po/" . DEFAULT_LANGUAGE . ".po", DEFAULT_LANGUAGE);
+        }
+        return self::$translator->trans($key)
+            ?: self::$fallbacktranslator->trans($key);
+    }
+}
+
+function __($section, $key) {
+    return __i18n::translate($key);
+}
+
+function __f($section, $key, $args) {
+    $msg = __i18n::translate($key);
+    $args = array_slice(func_get_args(), 2);
+    return vsprintf($msg, $args);
+}
 
 /* Date Format */
 $date_format['txt_full'] = __('Date', '%A, %B %e, %Y'); //summary in create_date_poll.php and removal date in choix_(date|autre).php
