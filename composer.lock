@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e66be74bb56015e4d3bb7b83fd8fc044",
+    "content-hash": "9726759acaf25655763b7bc70206e571",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -694,52 +694,6 @@
                 "password"
             ],
             "time": "2017-03-20T21:17:32+00:00"
-        },
-        {
-            "name": "o80/i18n",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/olivierperez/o80-i18n.git",
-                "reference": "8f3fbc7c965559802ed4eda602528a24d641ea15"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/olivierperez/o80-i18n/zipball/8f3fbc7c965559802ed4eda602528a24d641ea15",
-                "reference": "8f3fbc7c965559802ed4eda602528a24d641ea15",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "o80\\": "src/o80"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache License 2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Olivier Perez",
-                    "email": "olivier@olivierperez.fr",
-                    "homepage": "http://github.com/olivierperez"
-                }
-            ],
-            "description": "Easy library to manage i18n with PHP.",
-            "homepage": "https://github.com/olivierperez/o80-i18n",
-            "keywords": [
-                "i18n",
-                "internationalization",
-                "php"
-            ],
-            "time": "2015-09-21T21:18:45+00:00"
         },
         {
             "name": "ocramius/proxy-manager",
@@ -3648,7 +3602,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "o80/i18n": 20,
         "ircmaxell/password-compat": 20,
         "roave/security-advisories": 20
     },
