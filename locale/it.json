@@ -101,7 +101,7 @@
       "Y-m-d": "d/m/Y",
       "You can select at most 4 months": "Potete selezionare al massimo 4 mesi",
       "yyyy-mm-dd": "dd/mm/yyyy",
-      "yyyy-mm-dd-for-humans": "gg/mm/aaaa"
+      "yyyy-mm-dd-for-humans": "giorno / mese / anno"
    },
    "EditLink": {
       "Edit link for poll \"%s\"": "Modifica il link del sondaggio \"%s\"",

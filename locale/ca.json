@@ -101,7 +101,7 @@
       "Y-m-d": "Y-m-d",
       "You can select at most 4 months": "Pots seleccionar com a màxim 4 mesos",
       "yyyy-mm-dd": "yyyy-mm-dd",
-      "yyyy-mm-dd-for-humans": "aaaa-mm-dd"
+      "yyyy-mm-dd-for-humans": "any-mes-dia"
    },
    "EditLink": {
       "Edit link for poll \"%s\"": "Edita l'enllaç de l'enquesta \"%s\"",

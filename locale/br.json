@@ -101,7 +101,7 @@
       "Y-m-d": "d/m/Y",
       "You can select at most 4 months": "Gallout a rit diuzañ 4 miz d'ar muiañ",
       "yyyy-mm-dd": "dd/mm/yyyy",
-      "yyyy-mm-dd-for-humans": "dd/vv/bbbb"
+      "yyyy-mm-dd-for-humans": "devezh / miz / bloaz"
    },
    "EditLink": {
       "Edit link for poll \"%s\"": "Ere embann ar sontadeg \"%s\"",
