@@ -1,0 +1,1921 @@
+# Meskó Balázs <mesko.balazs@fsf.hu>, 2018. #zanata
+# Thomas Citharel <thomas.citharel@framasoft.org>, 2019. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-19 13:45+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2019-04-19 11:48+0000\n"
+"Last-Translator: Thomas Citharel <thomas.citharel@framasoft.org>\n"
+"Language-Team: Hungarian\n"
+"Language: hu\n"
+"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: .1st+section.Create+a+poll
+msgid "Create a poll"
+msgstr "Szavazás létrehozása"
+
+#: .1st+section.Define+dates+or+subjects+to+choose+from
+msgid "Define dates or subjects to choose from"
+msgstr "Választható időpontok vagy témák megadása"
+
+#: .1st+section.Discuss+and+make+a+decision
+msgid "Discuss and make a decision"
+msgstr "Megbeszélés és döntéshozás"
+
+#: .1st+section.Do+you+want+to
+msgid "Do you want to"
+msgstr "Szeretnél"
+
+#: .1st+section.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.+No+registration+is+required.
+msgid ""
+"Framadate is an online service for planning an appointment or making a "
+"decision quickly and easily. No registration is required."
+msgstr ""
+"A Framadate egy online szolgáltatás találkozók egyeztetésére vagy döntések "
+"gyors és egyszerű meghozására. Regisztráció nem szükséges."
+
+#: .1st+section.Here+is+how+it+works:
+msgid "Here is how it works:"
+msgstr "Így működik:"
+
+#: .1st+section.Send+the+poll+link+to+your+friends+or+colleagues
+msgid "Send the poll link to your friends or colleagues"
+msgstr "Szavazás elküldése ismerősöknek vagy kollégáknak"
+
+#: .1st+section.What+is+Framadate%3F
+msgid "What is Framadate?"
+msgstr "Mi a Framadate?"
+
+#: .1st+section.view+an+example%3F
+msgid "view an example?"
+msgstr "látni egy példát?"
+
+#: .2nd+section.CeCILL-B+license
+msgid "CeCILL-B license"
+msgstr "CeCILL-B licenc"
+
+#: .2nd+section.Framadate+is+licensed+under+the
+msgid "Framadate is licensed under the"
+msgstr "A Framadate licence: "
+
+#: .2nd+section.Framadate+was+initially+based+on
+msgid "Framadate was initially based on"
+msgstr ""
+
+#: .2nd+section.The+software
+msgid "The software"
+msgstr "A szoftver"
+
+#: .2nd+section.This+software+needs+javascript+and+cookies+enabled.+It+is+compatible+with+the+following+web+browsers:
+msgid ""
+"This software needs javascript and cookies enabled. It is compatible with "
+"the following web browsers:"
+msgstr ""
+
+#: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days
+#: +it+is+developed+by+the+Framasoft+association.
+msgid ""
+"software developed by the University of Strasbourg. These days, it is "
+"developed by the Framasoft association."
+msgstr "szoftveren alapult, de most már a Framasoft fejleszti."
+
+#: .3rd+section.Grow+your+own
+msgid "Grow your own"
+msgstr "Neveld a sajátod"
+
+#: .3rd+section.If+you+want+to+install+the+software+for+your+own+use+and+thus+increase+your+independence
+#: +we+can+help+you+at:
+msgid ""
+"If you want to install the software for your own use and thus increase your "
+"independence, we can help you at:"
+msgstr ""
+"Ha szeretnéd magadnak telepíteni a szoftvert saját használatra, ezzel is "
+"növelve a függetlenségedet, akkor a következő oldalon kaphatsz ehhez "
+"segítséget:"
+
+#: .3rd+section.To+participate+in+the+software+development
+#: +suggest+improvements+or+simply+download+it
+#: +please+visit
+msgid ""
+"To participate in the software development, suggest improvements or simply "
+"download it, please visit"
+msgstr ""
+
+#: .3rd+section.the+development+site
+msgid "the development site"
+msgstr "fejlesztési oldalra"
+
+#: .Admin.Actions
+msgid "Actions"
+msgstr " Műveletek"
+
+#: .Admin.Administration
+msgid "Administration"
+msgstr "Adminisztráció"
+
+#: .Admin.Author
+msgid "Author"
+msgstr "Szerző"
+
+#: .Admin.Back+to+administration
+msgid "Back to administration"
+msgstr "Vissza az adminisztrációhoz"
+
+#: .Admin.Change+the+poll
+msgid "Change the poll"
+msgstr "Szavazás módosítása"
+
+#: .Admin.Email
+#: .PollInfo.Email
+msgid "Email"
+msgstr ""
+
+#: .Admin.Executed
+msgid "Executed"
+msgstr "Végrehajtva"
+
+#: .Admin.Expiry+date
+#: .Generic.Expiry+date
+msgid "Expiry date"
+msgstr "Lejárati idő"
+
+#: .Admin.Fail
+msgid "Fail"
+msgstr "Sikertelen"
+
+#: .Admin.Failed:
+msgid "Failed:"
+msgstr "Sikertelen:"
+
+#: .Admin.Format
+msgid "Format"
+msgstr "Formátum"
+
+#: .Admin.Installation
+msgid "Installation"
+msgstr "Telepítés"
+
+#: .Admin.Logs
+msgid "Logs"
+msgstr "Naplók"
+
+#: .Admin.Migration
+msgid "Migration"
+msgstr "Áttelepítés"
+
+#: .Admin.Nothing
+msgid "Nothing"
+msgstr "Semmi"
+
+#: .Admin.Pages:
+msgid "Pages:"
+msgstr "Oldalak:"
+
+#: .Admin.Poll+ID
+msgid "Poll ID"
+msgstr "Szavazásazonosító"
+
+#: .Admin.Poll+deleted
+msgid "Poll deleted"
+msgstr "Szavazás törölve"
+
+#: .Admin.Polls
+msgid "Polls"
+msgstr "Szavazások"
+
+#: .Admin.Purge
+msgid "Purge"
+msgstr "Törlés"
+
+#: .Admin.Purge+the+polls
+msgid "Purge the polls"
+msgstr "Szavazások törlése"
+
+#: .Admin.Purged:
+msgid "Purged:"
+msgstr "Törölve:"
+
+#: .Admin.See+the+poll
+msgid "See the poll"
+msgstr "Szavazás megtekintése"
+
+#: .Admin.Skipped:
+msgid "Skipped:"
+msgstr "Kihagyva:"
+
+#: .Admin.Status
+msgid "Status"
+msgstr "Állapot"
+
+#: .Admin.Succeeded:
+msgid "Succeeded:"
+msgstr "Sikeres:"
+
+#: .Admin.Success
+msgid "Success"
+msgstr "Sikeres"
+
+#: .Admin.Summary
+msgid "Summary"
+msgstr "Összegzés"
+
+#: .Admin.Title
+#: .FindPolls.Title
+msgid "Title"
+msgstr ""
+
+#: .Admin.Votes
+#: .Poll+results.Votes
+msgid "Votes"
+msgstr ""
+
+#: .Admin.Waiting
+msgid "Waiting"
+msgstr "Várakozás"
+
+#: .Admin.polls+in+the+database+at+this+time
+msgid "polls in the database at this time"
+msgstr "szavazás van most az adatbázisban"
+
+#: .Check.Check+again
+msgid "Check again"
+msgstr "Ellenőrizd újra"
+
+#: .Check.Consider+enabling+the+PHP+extension+OpenSSL+for+increased+security.
+msgid "Consider enabling the PHP extension OpenSSL for increased security."
+msgstr ""
+"Fontold meg az OpenSSL PHP kiterjesztés engedélyezését a növelt biztonság "
+"érdekében."
+
+#: .Check.Consider+setting+the+date.timezone+in+php.ini.
+msgid "Consider setting the date.timezone in php.ini."
+msgstr "Fontold meg a data.timezone megadását a php.ini fájlban."
+
+#: .Check.Consider+setting+%C2%AB+session.cookie_httponly+%3D+1+%C2%BB+inside+your+php.ini+or+add+%C2%AB+php_value+session.cookie_httponly+1+%C2%BB+to+your+.htaccess+so+that+cookies+can%27t+be+accessed+through+Javascript.
+msgid ""
+"Consider setting « session.cookie_httponly = 1 » inside your php.ini or add "
+"« php_value session.cookie_httponly 1 » to your .htaccess so that cookies "
+"can't be accessed through Javascript."
+msgstr ""
+"Fontold meg a „session.cookie_httponly = 1” beállítását a php.ini fájlban, "
+"vagy add hozzá a „php_value session.cookie_httponly 1” szöveget a .htaccess "
+"fájlhoz, hogy a sütiket ne lehessen Javascripten keresztül elérni."
+
+#: .Check.Continue+the+installation
+msgid "Continue the installation"
+msgstr "Telepítés folytatása"
+
+#: .Check.Cookies+are+served+from+HTTP+only.
+msgid "Cookies are served from HTTP only."
+msgstr "A sütik csak HTTP felől kerülnek kiszolgálásra"
+
+#: .Check.Installation+checking
+msgid "Installation checking"
+msgstr "Telepítés ellenőrzése"
+
+#: .Check.OpenSSL+extension+loaded.
+msgid "OpenSSL extension loaded."
+msgstr "OpenSSL kiterjesztés betöltve."
+
+#: .Check.PHP+Intl+extension+is+enabled.
+msgid "PHP Intl extension is enabled."
+msgstr "PHP Intl kiterjesztés engedélyezve."
+
+#: .Check.PHP+version+%25s+is+enough+(needed+at+least+PHP+%25s).
+msgid "PHP version %s is enough (needed at least PHP %s)."
+msgstr "A PHP %s elégséges (legalább PHP %s szükséges)."
+
+#: .Check.The+config+file+directory+(%25s)+is+not+writable+and+the+config+file+(%25s)+does+not+exists.
+msgid ""
+"The config file directory (%s) is not writable and the config file (%s) does "
+"not exists."
+msgstr ""
+"A konfigurációs fájl könyvtára (%s) nem írható, és a konfigurációs fájl (%s) "
+"nem létezik."
+
+#: .Check.The+config+file+directory+(%25s)+is+writable.
+msgid "The config file directory (%s) is writable."
+msgstr "A konfigurációs fájl könyvtára (%s) írható."
+
+#: .Check.The+config+file+exists.
+msgid "The config file exists."
+msgstr "A konfigurációs fájl létezik."
+
+#: .Check.The+template+compile+directory+(%25s)+doesn%27t+exist+in+%22%25s%22.+Retry+the+installation+process.
+msgid ""
+"The template compile directory (%s) doesn't exist in \"%s\". Retry the "
+"installation process."
+msgstr ""
+"A sablonok fordítási könyvtára (%s) nem létezik itt: „%s”. Kezdd újra a "
+"telepítési folyamatot."
+
+#: .Check.The+template+compile+directory+(%25s)+is+not+writable.
+msgid "The template compile directory (%s) is not writable."
+msgstr "A sablonok fordítási könyvtára (%s) nem írható."
+
+#: .Check.The+template+compile+directory+(%25s)+is+writable.
+msgid "The template compile directory (%s) is writable."
+msgstr "A sablonok fordítási könyvtára (%s) írható."
+
+#: .Check.You+need+to+enable+the+PHP+Intl+extension.
+msgid "You need to enable the PHP Intl extension."
+msgstr "Engedélyezned kell a PHP Intl kiterjesztést."
+
+#: .Check.Your+PHP+version+(%25s)+is+too+old.+This+application+needs+at+least+PHP+%25s.
+msgid ""
+"Your PHP version (%s) is too old. This application needs at least PHP %s."
+msgstr "A PHP %s túl régi. Az alkalmazáshoz legalább PHP %s szükséges."
+
+#: .Check.date.timezone+is+set.
+msgid "date.timezone is set."
+msgstr "date.timezone beállítva."
+
+#: .Comments.Add+a+comment+to+the+poll
+msgid "Add a comment to the poll"
+msgstr "Hozzászólás hozzáadása a szavazáshoz."
+
+#: .Comments.Comment
+msgid "Comment"
+msgstr "Hozzászólás"
+
+#: .Comments.Comment+saved
+msgid "Comment saved"
+msgstr "Hozzászólás mentve"
+
+#: .Comments.Comments
+msgid "Comments"
+msgstr "Hozzászólások"
+
+#: .Comments.Enter+your+name+and+comment+prior+to+submitting+the+form
+msgid "Enter your name and comment prior to submitting the form"
+msgstr "Az űrlap elküldése előtt add meg neved és a hozzászólásod"
+
+#: .Comments.Remove+comment
+msgid "Remove comment"
+msgstr "Hozzászólás eltávolítása"
+
+#: .Comments.Submit+comment
+msgid "Submit comment"
+msgstr "Hozzászólás beküldése"
+
+#: .Date.%25A+%25e+%25B+%25Y
+msgid "%A %e %B %Y"
+msgstr "%Y. %B %e., %A"
+
+#: .Date.%25A
+#: +%25B+%25e
+#: +%25Y
+msgid "%A, %B %e, %Y"
+msgstr "%Y. %B %e., %A"
+
+#: .Date.%25B+%25Y
+msgid "%B %Y"
+msgstr "%Y %B"
+
+#: .Date.%25Y-%25m-%25d
+msgid "%Y-%m-%d"
+msgstr "%Y.%m.%d."
+
+#: .Date.%25a+%25e
+msgid "%a %e"
+msgstr "%e., %a"
+
+#: .Date.%25m/%25d/%25Y+%25H:%25M
+msgid "%m/%d/%Y %H:%M"
+msgstr "%Y.%m.%d. %H:%M"
+
+#: .Date.Add+range+dates
+msgid "Add range dates"
+msgstr "Időintervallum hozzáadása"
+
+#: .Date.End+date
+msgid "End date"
+msgstr "Záró dátum"
+
+#: .Date.Start+date
+msgid "Start date"
+msgstr "Kezdő dátum"
+
+#: .Date.Y-m-d
+msgid "Y-m-d"
+msgstr "Y.m.d."
+
+#: .Date.You+can+select+at+most+4+months
+msgid "You can select at most 4 months"
+msgstr "Legfeljebb 4 hónapot válaszhatsz"
+
+#: .Date.yyyy-mm-dd
+msgid "yyyy-mm-dd"
+msgstr "yyyy.mm.dd."
+
+#: .Date.yyyy-mm-dd-for-humans
+msgid "year-month-day"
+msgstr "év.hónap.nap."
+
+#: .EditLink.Edit+link+for+poll+%22%25s%22
+msgid "Edit link for poll \"%s\""
+msgstr "A(z) „%s” szavazás hivatkozásának szerkesztése"
+
+#: .EditLink.Here+is+the+link+for+editing+your+vote:
+msgid "Here is the link for editing your vote:"
+msgstr "A szavazatod szerkesztéséhez szükséges hivatkozás:"
+
+#: .EditLink.If+you+don%27t+want+to+lose+your+personalized+link
+#: +we+can+send+it+to+you+by+email.
+msgid ""
+"If you don't want to lose your personalized link, we can send it to you by "
+"email."
+msgstr ""
+"Ha szeretnéd, elküldhetjük e-mailben a személyre szabott hivatkozásodat. "
+
+#: .EditLink.Please+wait+%25d+seconds+before+we+can+send+an+email+to+you+then+try+again.
+msgid ""
+"Please wait %d seconds before we can send an email to you then try again."
+msgstr ""
+"Várj %d másodpercet mielőtt elküldjük neked az e-mailt, aztán próbáld újra."
+
+#: .EditLink.REMINDER
+msgid "REMINDER"
+msgstr "EMLÉKEZTETŐ"
+
+#: .EditLink.Send
+msgid "Send"
+msgstr "Elküldés"
+
+#: .EditLink.The+email+address+is+not+correct.
+msgid "The email address is not correct."
+msgstr "Az e-mail cím helytelen."
+
+#: .EditLink.Your+reminder+has+been+successfully+sent%21
+msgid "Your reminder has been successfully sent!"
+msgstr "Az emlékeztető sikeresen elküldve!"
+
+#: .Error.Adding+vote+failed
+msgid "Adding vote failed"
+msgstr "Szavazat hozzáadása sikertelen"
+
+#: .Error.Can%27t+create+an+empty+column.
+msgid "Can't create an empty column."
+msgstr "Üres oszlop nem hozható létre."
+
+#: .Error.Can%27t+create+the+config.php+file+in+%27%25s%27.
+msgid "Can't create the config.php file in '%s'."
+msgstr "Nem hozató létre a config.php fájl itt: „%s”."
+
+#: .Error.Comment+failed
+msgid "Comment failed"
+msgstr "Hozzászólás sikertelen"
+
+#: .Error.Cookies+are+disabled+on+your+browser.+They+are+required+to+be+able+to+create+a+poll.
+msgid ""
+"Cookies are disabled on your browser. They are required to be able to create "
+"a poll."
+msgstr ""
+"A sütik le vannak tiltva a böngésződben. Engedélyezni kell őket a szavazás "
+"létrehozásához."
+
+#: .Error.Enter+a+name
+msgid "Enter a name"
+msgstr "Adj meg egy nevet"
+
+#: .Error.Enter+a+name+and+a+comment%21
+msgid "Enter a name and a comment!"
+msgstr "Adj meg egy nevet és a hozzászólásod."
+
+#: .Error.Enter+a+title
+msgid "Enter a title"
+msgstr "Adj meg egy címet"
+
+#: .Error.Enter+an+email+address
+msgid "Enter an email address"
+msgstr "Adj meg egy e-mail címet"
+
+#: .Error.Error+on+amount+of+votes+limitation:+Value+must+be+an+integer+greater+than+0
+msgid ""
+"Error on amount of votes limitation: Value must be an integer greater than 0"
+msgstr ""
+"Hiba a szavazatszám korlátozásában: az érték 0-nál nagyobb egész szám kell "
+"legyen"
+
+#: .Error.Error%21
+msgid "Error!"
+msgstr "Hiba!"
+
+#: .Error.Failed+to+delete+all+comments
+msgid "Failed to delete all comments"
+msgstr "Az összes hozzászólás törlése sikertelen"
+
+#: .Error.Failed+to+delete+all+votes
+msgid "Failed to delete all votes"
+msgstr "Az összes szavazat törlése sikertelen"
+
+#: .Error.Failed+to+delete+column
+msgid "Failed to delete column"
+msgstr "Oszlop törlése sikertelen"
+
+#: .Error.Failed+to+delete+the+comment
+msgid "Failed to delete the comment"
+msgstr "Hozzászólás törlése sikertelen"
+
+#: .Error.Failed+to+delete+the+poll
+msgid "Failed to delete the poll"
+msgstr "Szavazás törlése sikertelen"
+
+#: .Error.Failed+to+delete+the+vote%21
+msgid "Failed to delete the vote!"
+msgstr "Szavazat törlése sikertelen."
+
+#: .Error.Failed+to+insert+the+comment%21
+msgid "Failed to insert the comment!"
+msgstr "Hozzászólás beszúrása sikertelen."
+
+#: .Error.Failed+to+save+poll
+msgid "Failed to save poll"
+msgstr "A szavazás mentése sikertelen"
+
+#: .Error.Forbidden%21
+msgid "Forbidden!"
+msgstr "Tiltott."
+
+#: .Error.Identifier+is+already+used
+msgid "Identifier is already used"
+msgstr "Az azonosító már használatban van"
+
+#: .Error.If+you+quit+now
+#: +your+changes+will+be+lost.
+msgid "If you quit now, your changes will be lost."
+msgstr ""
+
+#: .Error.JavaScript+is+disabled+on+your+browser.+It+is+required+to+create+a+poll.
+msgid ""
+"JavaScript is disabled on your browser. It is required to create a poll."
+msgstr ""
+"A JavaScript le van tiltva a böngésződben. Engedélyezni kell a szavazás "
+"létrehozásához."
+
+#: .Error.Missing+values
+msgid "Missing values"
+msgstr "Hiányzó értékek"
+
+#: .Error.No+polls+found
+msgid "No polls found"
+msgstr "A szavazás nem található"
+
+#: .Error.Password+is+empty.
+msgid "Password is empty."
+msgstr "A jelszó üres."
+
+#: .Error.Passwords+do+not+match.
+msgid "Passwords do not match."
+msgstr "A jelszavak nem egyeznek."
+
+#: .Error.Poll+has+been+updated+before+you+vote
+msgid "Poll has been updated before you vote"
+msgstr "A szavazás frissítve lett mielőtt szavaztál"
+
+#: .Error.Something+has+gone+wrong...
+msgid "Something has gone wrong..."
+msgstr "Valami hiba történt…"
+
+#: .Error.Something+is+wrong+with+the+format
+msgid "Something is wrong with the format"
+msgstr "Valami baj van a formátummal"
+
+#: .Error.Something+is+wrong+with+the+format:+Customized+URLs+should+only+consist+of+alphanumeric+characters+and+hyphens.
+msgid ""
+"Something is wrong with the format: Customized URLs should only consist of "
+"alphanumeric characters and hyphens."
+msgstr ""
+"Valami baj van a formátummal: a személyre szabott URL csak alfanumerikus "
+"karaktereket és kötőjeleket tartalmazhat"
+
+#: .Error.Something+is+wrong+with+the+format:+name+shouldn%27t+have+any+spaces+before+or+after
+msgid ""
+"Something is wrong with the format: name shouldn't have any spaces before or "
+"after"
+msgstr ""
+"Valami baj van a formátummal: a név elején és végén nem lehetnek szóközök"
+
+#: .Error.The+address+is+not+correct%21+You+should+enter+a+valid+email+address+(like+r.stallman@outlock.com)+in+order+to+receive+the+link+to+your+poll.
+msgid ""
+"The address is not correct! You should enter a valid email address (like r."
+"stallman@outlock.com) in order to receive the link to your poll."
+msgstr ""
+"A cím nem megfelelő. Érvényes e-mail címet kell megadj (pl. r."
+"stallman@outlock.com), hogy el tudjuk küldeni a szavazáshoz tartozó "
+"hivatkozást."
+
+#: .Error.The+column+already+exists
+msgid "The column already exists"
+msgstr "Az oszlop már létezik"
+
+#: .Error.The+name+is+invalid.
+msgid "The name is invalid."
+msgstr "A név érvénytelen."
+
+#: .Error.The+name+you%27ve+chosen+already+exists+in+this+poll%21
+msgid "The name you've chosen already exists in this poll!"
+msgstr "A választott név már szerepel ebben a szavazásban."
+
+#: .Error.There+is+a+problem+with+your+choices
+msgid "There is a problem with your choices"
+msgstr "Probléma van a választásaiddal"
+
+#: .Error.This+identifier+is+not+allowed
+msgid "This identifier is not allowed"
+msgstr "Az azonosító nem engedélyezett"
+
+#: .Error.This+poll+doesn%27t+exist%21
+msgid "This poll doesn't exist!"
+msgstr "Ez a szavazás nem létezik."
+
+#: .Error.Unable+to+connect+to+database
+msgid "Unable to connect to database"
+msgstr "Nem sikerült csatlakozni az adatbázishoz"
+
+#: .Error.Update+vote+failed
+msgid "Update vote failed"
+msgstr "Szavazat frissítése sikertelen"
+
+#: .Error.You+already+voted
+msgid "You already voted"
+msgstr "Már szavaztál"
+
+#: .Error.You+can%27t+create+a+poll+with+hidden+results+with+the+following+option:+
+msgid ""
+"You can't create a poll with hidden results with the following option: "
+msgstr ""
+"Nem hozhatsz létre rejtett eredményű szavazást a következő beállítással:"
+
+#: .Error.You+can%27t+select+more+than+%25d+dates
+msgid "You can't select more than %d dates"
+msgstr "Nem választhatsz ki többet %d dátumnál"
+
+#: .Error.You+haven%27t+filled+the+first+section+of+the+poll+creation
+#: +or+your+session+has+expired.
+msgid ""
+"You haven't filled the first section of the poll creation, or your session "
+"has expired."
+msgstr ""
+"Nem töltötted ki a szavazás létrehozás első szakaszát, vagy lejárt a "
+"munkameneted."
+
+#: .Error.Your+vote+wasn%27t+counted
+#: +because+someone+voted+in+the+meantime+and+it+conflicted+with+your+choices+and+the+poll+conditions.+Please+retry.
+msgid ""
+"Your vote wasn't counted, because someone voted in the meantime and it "
+"conflicted with your choices and the poll conditions. Please retry."
+msgstr ""
+"A szavazatod nem lett beleszámítva, mert valaki időközben szavazott, és ez "
+"ütközik a választásaiddal és a szavazás feltételeivel. Próbáld újra."
+
+#: .FindPolls.Address
+msgid "Address"
+msgstr "Cím"
+
+#: .FindPolls.Created+polls
+msgid "Created polls"
+msgstr "Létrehozott szavazások"
+
+#: .FindPolls.Have+a+good+day%21
+msgid "Have a good day!"
+msgstr "Legyen szép napod!"
+
+#: .FindPolls.Here+is+the+list+of+the+polls+that+you+manage+on+%25s:
+msgid "Here is the list of the polls that you manage on %s:"
+msgstr "Ez a szavazások listája, amit a %s alkalmazásban kezelsz:"
+
+#: .FindPolls.If+you+weren%27t+the+source+of+this+action+and+if+you+think+this+is+an+abuse+of+the+service
+#: +please+notify+the+administrator+at+%25s.
+msgid ""
+"If you weren't the source of this action and if you think this is an abuse "
+"of the service, please notify the administrator at %s."
+msgstr ""
+"Ha nem te voltál, és úgy gondolod hogy ez visszaélés, akkor értesítsd az "
+"adminisztrátort a(z) %s e-email címen."
+
+#: .FindPolls.Its+address
+msgid "Its address"
+msgstr ""
+
+#: .FindPolls.Last+access+date
+msgid "Last access date"
+msgstr "Legutóbbi elérés ideje"
+
+#: .FindPolls.List+of+your+polls
+msgid "List of your polls"
+msgstr "Szavazásaid listája"
+
+#: .FindPolls.PS:+this+email+has+been+sent+because+you+%E2%80%93+or+someone+else+%E2%80%93+asked+to+get+back+the+polls+created+with+your+email+address.
+msgid ""
+"PS: this email has been sent because you – or someone else – asked to get "
+"back the polls created with your email address."
+msgstr ""
+"UI: ez az e-mail azért lett elküldve, mert Te – vagy valaki más – kérte az "
+"erről az e-email  címről létrehozott szavazások listáját. "
+
+#: .FindPolls.Polls+saved+inside+this+browser
+msgid "Polls saved inside this browser"
+msgstr "Az ebben a böngészőben mentett szavazások"
+
+#: .FindPolls.Polls+sent
+msgid "Polls sent"
+msgstr "Szavazások listája elküldve"
+
+#: .FindPolls.Remove+all+my+polls+from+this+browser%27s+index
+msgid "Remove all my polls from this browser's index"
+msgstr "Az összes szavazás eltávolítása a böngésző indexéből"
+
+#: .FindPolls.Remove+poll+from+index
+msgid "Remove poll from index"
+msgstr "Szavazás eltávolítása az indexből"
+
+#: .FindPolls.Send+me+my+polls
+msgid "Send me my polls"
+msgstr "Szavazások elküldése"
+
+#: .FindPolls.Send+my+polls+by+email
+msgid "Send my polls by email"
+msgstr "Szavazások elküldése e-mailben"
+
+#: .FindPolls.The+date+you+created+or+last+accessed+the+poll
+msgid "The date you created or last accessed the poll"
+msgstr "Az időpont, amikor létrehoztad vagy legutóbb elérted a szavazást"
+
+#: .FindPolls.The+title+of+the+poll
+msgid "The title of the poll"
+msgstr "A szavazás címe"
+
+#: .FindPolls.There+are+no+polls+saved+inside+your+browser+yet
+msgid "There are no polls saved inside your browser yet"
+msgstr "Még nincsenek szavazások mentve a böngésződben"
+
+#: .FindPolls.To+delete+this+data+click+the+trashcan+on+the+according+line+or+click+the+%C2%AB+delete+my+polls+index+%C2%BB+option.+This+won%27t+delete+your+polls.
+msgid ""
+"To delete this data click the trashcan on the according line or click the « "
+"delete my polls index » option. This won't delete your polls."
+msgstr ""
+"Az adatok törléséhez kattintson a kuka ikonra a megfelelő sorban, vagy "
+"kattints a „szavazások indexének törlése” lehetőségre. Ez nem törli a "
+"szavazásaidat."
+
+#: .FindPolls.To+help+you+find+your+previous+polls
+#: +we+save+each+poll+you+create+or+access+inside+your+browser.+This+data+is+saved+inside+this+browser+only.+The+following+data+will+be+saved:
+msgid ""
+"To help you find your previous polls, we save each poll you create or access "
+"inside your browser. This data is saved inside this browser only. The "
+"following data will be saved:"
+msgstr ""
+"Hogy segítsünk megtalálni az előző szavazásaidat, minden szavazást elmentünk "
+"a böngésződben. Ez az adat csak a böngészőben kerül mentése. A következő "
+"adatokról van szó:"
+
+#: .FindPolls.Visited+polls
+msgid "Visited polls"
+msgstr "Meglátogatott szavazások"
+
+#: .Generic.(in+the+format+name@mail.com)
+msgid "(in the format name@mail.com)"
+msgstr "(name@mail.com formátumban)"
+
+#: .Generic.Add
+msgid "Add"
+msgstr "Hozzáadás"
+
+#: .Generic.Back
+msgid "Back"
+msgstr "Vissza"
+
+#: .Generic.Back+to+the+homepage+of
+msgid "Back to the homepage of"
+msgstr "Vissza a következő weboldalra:"
+
+#: .Generic.Cancel
+msgid "Cancel"
+msgstr "Mégse"
+
+#: .Generic.Choice
+#: .Step+1.Choice
+msgid "Choice"
+msgstr ""
+
+#: .Generic.Classic
+msgid "Classic"
+msgstr "Klasszikus"
+
+#: .Generic.Close
+msgid "Close"
+msgstr "Bezárás"
+
+#: .Generic.Create+your+own+polls
+msgid "Create your own polls"
+msgstr "Hozd létre a saját szavazásaid"
+
+#: .Generic.Creation+date:
+msgid "Creation date:"
+msgstr "Létrehozási idő:"
+
+#: .Generic.Date
+msgid "Date"
+msgstr "Dátum"
+
+#: .Generic.Day
+msgid "Day"
+msgstr "Nap"
+
+#: .Generic.Description
+msgid "Description"
+msgstr "Leírás"
+
+#: .Generic.Edit
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: .Generic.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.
+msgid ""
+"Framadate is an online service for planning an appointment or making a "
+"decision quickly and easily."
+msgstr ""
+
+#: .Generic.Home
+msgid "Home"
+msgstr "Kezdőlap"
+
+#: .Generic.Information
+msgid "Information"
+msgstr "Információ"
+
+#: .Generic.Legend:
+msgid "Legend:"
+msgstr "Jelmagyarázat:"
+
+#: .Generic.Link
+msgid "Link"
+msgstr "Hivatkozás"
+
+#: .Generic.Markdown
+msgid "Markdown"
+msgstr "Markdown"
+
+#: .Generic.Next
+msgid "Next"
+msgstr "Következő"
+
+#: .Generic.No
+msgid "No"
+msgstr "Nem"
+
+#: .Generic.Page+generated+in
+msgid "Page generated in"
+msgstr "Az oldal előállítva:"
+
+#: .Generic.Poll
+msgid "Poll"
+msgstr "Szavazás"
+
+#: .Generic.Remove
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: .Generic.Save
+msgid "Save"
+msgstr "Mentés"
+
+#: .Generic.Search
+msgid "Search"
+msgstr "Keresés"
+
+#: .Generic.Time
+msgid "Time"
+msgstr "Idő"
+
+#: .Generic.Under+reserve
+msgid "Under reserve"
+msgstr "Feltételes"
+
+#: .Generic.Validate
+msgid "Validate"
+msgstr "Érvényesítés"
+
+#: .Generic.Yes
+msgid "Yes"
+msgstr "Igen"
+
+#: .Generic.Your+email+address
+msgid "Your email address"
+msgstr "Az e-mail címed"
+
+#: .Generic.Your+name
+msgid "Your name"
+msgstr "Neved"
+
+#: .Generic.days
+msgid "days"
+msgstr "nap"
+
+#: .Generic.for
+msgid "for"
+msgstr "ennél:"
+
+#: .Generic.months
+msgid "months"
+msgstr "hónap"
+
+#: .Generic.seconds
+msgid "seconds"
+msgstr "másodperc"
+
+#: .Generic.vote
+msgid "vote"
+msgstr "szavazat alapján"
+
+#: .Generic.votes
+msgid "votes"
+msgstr "szavazat alapján"
+
+#: .Generic.with
+msgid "with"
+msgstr "–"
+
+#: .Homepage.Make+a+standard+poll
+msgid "Make a standard poll"
+msgstr "Szokásos szavazás létrehozása"
+
+#: .Homepage.Schedule+an+event
+msgid "Schedule an event"
+msgstr "Esemény ütemezése"
+
+#: .Homepage.Where+are+my+polls%3F
+msgid "Where are my polls?"
+msgstr "Hol vannak a szavazásaim?"
+
+#: .Installation.Administrator+mail+address
+msgid "Administrator mail address"
+msgstr "Adminisztrátor e-mail címe"
+
+#: .Installation.Application+name
+msgid "Application name"
+msgstr "Alkalmazás neve"
+
+#: .Installation.Clean+URL
+msgid "Clean URL"
+msgstr "Tiszta URL"
+
+#: .Installation.Database+driver
+msgid "Database driver"
+msgstr "Adatbázis-meghajtó"
+
+#: .Installation.Database+hostname
+msgid "Database hostname"
+msgstr "Adatbázis gépneve"
+
+#: .Installation.Database+name
+msgid "Database name"
+msgstr ""
+
+#: .Installation.Database+port
+msgid "Database port"
+msgstr "Adatbázis portja"
+
+#: .Installation.Default+language
+msgid "Default language"
+msgstr "Alapértelmezett nyelv"
+
+#: .Installation.General
+msgid "General"
+msgstr "Általános"
+
+#: .Installation.Install
+msgid "Install"
+msgstr "Telepítés"
+
+#: .Installation.Migration+table
+msgid "Migration table"
+msgstr "Áttelepítési tábla"
+
+#: .Installation.Password
+#: .Password.Password
+#: .Step+1.Password
+msgid "Password"
+msgstr ""
+
+#: .Installation.Prefix
+msgid "Prefix"
+msgstr "Előtag"
+
+#: .Installation.Respond-to+mail+address
+msgid "Respond-to mail address"
+msgstr "Válasz e-mail cím"
+
+#: .Installation.User
+msgid "User"
+msgstr "Felhasználó"
+
+#: .Language+selector.Change+language
+msgid "Change language"
+msgstr "Nyelv módosítása"
+
+#: .Language+selector.Select+language
+msgid "Select language"
+msgstr "Válassz nyelvet"
+
+#: .Mail.%22The+road+is+long
+#: +but+the+way+is+clear%E2%80%A6%22%3Cbr/%3EFramasoft+lives+only+by+your+donations.%3Cbr/%3EThank+you+in+advance+for+your+support+https://soutenir.framasoft.org
+msgid ""
+"\"The road is long, but the way is clear…\"<br/>Framasoft lives only by your "
+"donations.<br/>Thank you in advance for your support https://soutenir."
+"framasoft.org"
+msgstr ""
+"„Az út hosszú, de út tiszta…”<br/>A Framasoft csak az adományaitokból él.<br/"
+">Előre is köszönjük a támogatásodat itt: https://soutenir.framasoft.org"
+
+#: .Mail.Message+for+the+author
+msgid "Message for the author"
+msgstr "Üzenet a szerzőnek"
+
+#: .Mail.Notification+of+poll:+%25s
+msgid "Notification of poll: %s"
+msgstr "Szavazás értesítése: %s"
+
+#: .Mail.Participant+link
+msgid "Participant link"
+msgstr "Résztvevői hivatkozás"
+
+#: .Mail.Poll+participation:+%25s
+msgid "Poll participation: %s"
+msgstr "Részvétel a szavazásban: %s"
+
+#: .Mail.Someone+just+changed+your+poll+at+the+following+link+%3Ca+href%3D%22%251%24s%22%3E%251%24s%3C/a%3E.
+msgid ""
+"Someone just changed your poll at the following link <a href=\"%1$s\">%1$s</"
+"a>."
+msgstr ""
+"Valaki épp módosította a  szavazásodat a  <a href=\"%1$s\">%1$s</a> "
+"hivatkozáson."
+
+#: .Mail.Someone+just+deleted+your+poll+%22%25s%22.
+msgid "Someone just deleted your poll \"%s\"."
+msgstr "Valaki letörölte a(z) „%s” szavazásod."
+
+#: .Mail.Thank+you+for+participating+in+the+poll+at+the+following+link
+msgid "Thank you for participating in the poll at the following link"
+msgstr ""
+"Köszönjük, hogy részt vettél az alábbi hivatkozás mentén elérhető "
+"szavazásban"
+
+#: .Mail.Thank+you+for+your+trust.
+msgid "Thank you for your trust."
+msgstr "Köszönjük a bizalmat."
+
+#: .Mail.This+is+the+message+to+forward+to+the+poll+participants.
+msgid "This is the message to forward to the poll participants."
+msgstr "Ez a résztvevőknek küldendő üzenet."
+
+#: .Mail.This+message+should+NOT+be+sent+to+the+poll+participants.+You+should+keep+it+private.+%3Cbr/%3E%3Cbr/%3EYou+can+modify+your+poll+at+the+following+link
+msgid ""
+"This message should NOT be sent to the poll participants. You should keep it "
+"private. <br/><br/>You can modify your poll at the following link"
+msgstr ""
+"Ezt az e-mailt NE továbbítsd a szavazás résztvevőinek, hanem tartsd titokban."
+" <br/><br/>A következő hivatkozást követve módosíthatod a szavazást"
+
+#: .Mail.added+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
+msgid "added a vote.<br/>You can visit your poll at the link"
+msgstr "szavazott.<br/>A következő hivatkozással keresheted fel a szavazást"
+
+#: .Mail.has+just+created+a+poll+called
+msgid "has just created a poll called"
+msgstr "létrehozott egy szavazást"
+
+#: .Mail.updated+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
+msgid "updated a vote.<br/>You can visit your poll at the link"
+msgstr ""
+"frissített egy szavazatot.<br/>A következő hivatkozással keresheted fel a "
+"szavazást"
+
+#: .Mail.wrote+a+comment.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
+msgid "wrote a comment.<br/>You can visit your poll at the link"
+msgstr ""
+"írt egy hozzászólást.<br/>A következő hivatkozással keresheted fel a "
+"szavazást"
+
+#: .Maintenance.Thank+you+for+your+understanding.
+msgid "Thank you for your understanding."
+msgstr "Köszönjük a megértést."
+
+#: .Maintenance.The+application
+msgid "The application"
+msgstr "Az alkalmazás"
+
+#: .Maintenance.is+currently+under+maintenance.
+msgid "is currently under maintenance."
+msgstr "jelenleg karbantartás alatt van."
+
+#: .Password.Submit+access
+msgid "Submit access"
+msgstr "Hozzáférés beküldése"
+
+#: .Password.Wrong+password
+msgid "Wrong password"
+msgstr "Hibás jelszó"
+
+#: .Password.You+have+to+provide+a+password+so+you+can+participate+to+the+poll.
+msgid "You have to provide a password so you can participate to the poll."
+msgstr "A szavazásban való részvételhez meg kell adj egy jelszót."
+
+#: .Password.You+have+to+provide+a+password+to+access+the+poll.
+msgid "You have to provide a password to access the poll."
+msgstr "A szavazáshoz való hozzáféréshez meg kell adj egy jelszót."
+
+#: .Poll+results.%25s+option
+msgid "%s option"
+msgstr "%s lehetőség"
+
+#: .Poll+results.Anyone+will+be+able+to+see+your+email+address+after+you+voted
+msgid "Anyone will be able to see your email address after you voted"
+msgstr "Ha szavazol, akkor az e-mail címed bárki megtekintheti"
+
+#: .Poll+results.Best+choice
+msgid "Best choice"
+msgstr "Legjobb választás"
+
+#: .Poll+results.Best+choices
+msgid "Best choices"
+msgstr "Legjobb választások"
+
+#: .Poll+results.Chart
+msgid "Chart"
+msgstr "Grafikon"
+
+#: .Poll+results.Display+the+chart+of+the+results
+msgid "Display the chart of the results"
+msgstr "Eredmény grafikus ábrázolása"
+
+#: .Poll+results.Edit+line:+%25s
+msgid "Edit line: %s"
+msgstr "Sor szerkesztése: %s"
+
+#: .Poll+results.Link+to+edit+this+particular+line
+msgid "Link to edit this particular line"
+msgstr "Hivatkozás ennek a sornak a szerkesztéséhez"
+
+#: .Poll+results.Remove+line:
+msgid "Remove line:"
+msgstr "Sor eltávolítása:"
+
+#: .Poll+results.Save+choices
+msgid "Save choices"
+msgstr "Szavazatok mentése"
+
+#: .Poll+results.Scroll+to+the+left
+msgid "Scroll to the left"
+msgstr "Görgetés balra"
+
+#: .Poll+results.Scroll+to+the+right
+msgid "Scroll to the right"
+msgstr "Görgetés jobbra"
+
+#: .Poll+results.The+current+best+choice+is:
+msgid "The current best choice is:"
+msgstr "Jelenlegi legjobb lehetőség:"
+
+#: .Poll+results.The+current+best+choices+are:
+msgid "The current best choices are:"
+msgstr "Jelenlegi legjobb lehetőségek:"
+
+#: .Poll+results.The+link+to+edit+this+particular+line+has+been+copied+to+the+clipboard%21
+msgid ""
+"The link to edit this particular line has been copied to the clipboard!"
+msgstr ""
+"Az adott sor szerkesztéséhez szükséges hivatkozás a vágólapra lett másolva."
+
+#: .Poll+results.Total
+msgid "Total"
+msgstr "Összesen"
+
+#: .Poll+results.Vote+%22no%22+for
+msgid "Vote \"no\" for"
+msgstr "„Nem” szavazat a következőre: "
+
+#: .Poll+results.Vote+%22yes%22+for
+msgid "Vote \"yes\" for"
+msgstr "„Igen” szavazat a következőre:"
+
+#: .Poll+results.Votes+under+reserve+for
+msgid "Votes under reserve for"
+msgstr "Feltételes szavazatok ennél:"
+
+#: .Poll+results.polled+user
+msgid "polled user"
+msgstr "szavazó"
+
+#: .Poll+results.polled+users
+msgid "polled users"
+msgstr "szavazó"
+
+#: .PollInfo.Admin+link+for+the+poll
+msgid "Admin link for the poll"
+msgstr "Adminisztrációs hivatkozás a szavazáshoz"
+
+#: .PollInfo.Cancel+the+description+edit
+msgid "Cancel the description edit"
+msgstr "Leírás szerkesztésének elvetése"
+
+#: .PollInfo.Cancel+the+email+address+edit
+msgid "Cancel the email address edit"
+msgstr "E-mail cím szerkesztésének elvetése"
+
+#: .PollInfo.Cancel+the+expiration+date+edit
+msgid "Cancel the expiration date edit"
+msgstr "Lejárati idő szerkesztésének visszavonása"
+
+#: .PollInfo.Cancel+the+name+edit
+msgid "Cancel the name edit"
+msgstr "Név szerkesztésének elvetése"
+
+#: .PollInfo.Cancel+the+rules+edit
+msgid "Cancel the rules edit"
+msgstr "Szabály szerkesztésének elvetése"
+
+#: .PollInfo.Cancel+the+title+edit
+msgid "Cancel the title edit"
+msgstr "Cím szerkesztésének elvetése"
+
+#: .PollInfo.Creator+of+the+poll
+msgid "Creator of the poll"
+msgstr "Szavazás létrehozója"
+
+#: .PollInfo.Edit+name
+msgid "Edit name"
+msgstr "Név szerkesztése"
+
+#: .PollInfo.Edit+the+description
+msgid "Edit the description"
+msgstr "Leírás szerkesztése"
+
+#: .PollInfo.Edit+the+email+address
+msgid "Edit the email address"
+msgstr "E-mail cím szerkesztése"
+
+#: .PollInfo.Edit+the+expiry+date
+msgid "Edit the expiry date"
+msgstr "Lejárati idő szerkesztése"
+
+#: .PollInfo.Edit+the+poll+rules
+msgid "Edit the poll rules"
+msgstr "Szabály szerkesztése"
+
+#: .PollInfo.Edit+title
+msgid "Edit title"
+msgstr "Cím szerkesztése"
+
+#: .PollInfo.Export+to+CSV
+msgid "Export to CSV"
+msgstr "Exportálás CSV fájlba"
+
+#: .PollInfo.No+password
+msgid "No password"
+msgstr "Nincs jelszó"
+
+#: .PollInfo.Only+votes+are+protected
+msgid "Only votes are protected"
+msgstr "Csak a szavazatok védettek"
+
+#: .PollInfo.Password+protected
+msgid "Password protected"
+msgstr "Jelszóval védett"
+
+#: .PollInfo.Poll+rules
+msgid "Poll rules"
+msgstr "Szavazási szabályok"
+
+#: .PollInfo.Print
+msgid "Print"
+msgstr "Nyomtatás"
+
+#: .PollInfo.Public+link+to+the+poll
+msgid "Public link to the poll"
+msgstr "Nyilvános hivatkozás a szavazáshoz"
+
+#: .PollInfo.Remove+all+comments
+msgid "Remove all comments"
+msgstr "Összes hozzászólás törlése"
+
+#: .PollInfo.Remove+all+votes
+msgid "Remove all votes"
+msgstr "Összes szavazat törlése"
+
+#: .PollInfo.Remove+password
+msgid "Remove password"
+msgstr "Jelszó törlése"
+
+#: .PollInfo.Remove+the+poll
+msgid "Remove the poll"
+msgstr "Szavazás törlése"
+
+#: .PollInfo.Results+are+hidden
+msgid "Results are hidden"
+msgstr "A szavazatok rejtettek"
+
+#: .PollInfo.Results+are+visible
+msgid "Results are visible"
+msgstr "A szavazatok nyilvánosak"
+
+#: .PollInfo.Rich+editor
+msgid "Rich editor"
+msgstr "Részletes szerkesztő"
+
+#: .PollInfo.Save+the+description
+msgid "Save the description"
+msgstr "Leírás mentése"
+
+#: .PollInfo.Save+the+email+address
+msgid "Save the email address"
+msgstr "E-mail cím mentése"
+
+#: .PollInfo.Save+the+new+expiration+date
+msgid "Save the new expiration date"
+msgstr "Új lejárati idő mentése"
+
+#: .PollInfo.Save+the+new+name
+msgid "Save the new name"
+msgstr "Új név mentése"
+
+#: .PollInfo.Save+the+new+rules
+msgid "Save the new rules"
+msgstr "Új szabályok mentése"
+
+#: .PollInfo.Save+the+new+title
+msgid "Save the new title"
+msgstr "Új cím mentése"
+
+#: .PollInfo.Simple+editor
+msgid "Simple editor"
+msgstr "Egyszerű szerkesztő"
+
+#: .PollInfo.Title+of+the+poll
+msgid "Title of the poll"
+msgstr "A szavazás címe"
+
+#: .PollInfo.Voters%27+email+addresses+are+collected
+msgid "Voters' email addresses are collected"
+msgstr ""
+
+#: .PollInfo.Voters%27+email+addresses+are+collected+and+required
+msgid "Voters' email addresses are collected and required"
+msgstr ""
+
+#: .PollInfo.Voters%27+email+addresses+are+collected
+#: +required+and+verified
+msgid "Voters' email addresses are collected, required and verified"
+msgstr ""
+
+#: .PollInfo.Voters%27+email+addresses+are+not+collected
+msgid "Voters' email addresses are not collected"
+msgstr ""
+
+#: .PollInfo.Votes+and+comments+are+locked
+msgid "Votes and comments are locked"
+msgstr "Szavazás és hozzászólások lezárása"
+
+#: .PollInfo.Votes+protected+by+password
+msgid "Votes protected by password"
+msgstr "A szavazatok jelszóval védettek"
+
+#: .Step+1.All+voters+can+modify+any+vote
+msgid "All voters can modify any vote"
+msgstr "Minden szavazó bármelyik szavazatot módosíthatja"
+
+#: .Step+1.By+defining+an+identifier+that+can+facilitate+access+to+the+poll+for+unwanted+people.+It+is+recommended+to+protect+it+with+a+password.
+msgid ""
+"By defining an identifier that can facilitate access to the poll for "
+"unwanted people. It is recommended to protect it with a password."
+msgstr ""
+"Az azonosító megadásával a nemkívánatos személyek is könnyebben "
+"hozzáférhetnek a szavazáshoz. Javasolt jelszóval védeni."
+
+#: .Step+1.Collect+voters%27+email+addresses
+msgid "Collect voters' email addresses"
+msgstr ""
+
+#: .Step+1.Confirmation
+msgid "Confirmation"
+msgstr "Megerősítés"
+
+#: .Step+1.Customize+the+URL
+msgid "Customize the URL"
+msgstr "URL személyre szabása"
+
+#: .Step+1.Email+addresses+are+collected+but+not+required
+msgid "Email addresses are collected but not required"
+msgstr "Az e-mail cím nem kötelező jelleggel lesz gyűjtve"
+
+#: .Step+1.Email+addresses+are+not+collected
+msgid "Email addresses are not collected"
+msgstr "Az e-mail cím nem lesz gyűjtve"
+
+#: .Step+1.Email+addresses+are+required
+msgid "Email addresses are required"
+msgstr "Az e-mail cím megadása kötelező"
+
+#: .Step+1.Email+addresses+are+required+and+verified
+msgid "Email addresses are required and verified"
+msgstr "Az e-mail cím megadása kötelező, és megerősítés is szükséges"
+
+#: .Step+1.Go+to+step+2
+msgid "Go to step 2"
+msgstr "Tovább a 2. lépéshez"
+
+#: .Step+1.Limit+the+amount+of+voters+per+option
+msgid "Limit the amount of voters per option"
+msgstr "Szavazatok lehetőségenkénti számának korlátozása"
+
+#: .Step+1.More+informations+here:
+msgid "More informations here:"
+msgstr "További információk itt:"
+
+#: .Step+1.Only+the+poll+maker+can+see+the+poll+results
+msgid "Only the poll maker can see the poll results"
+msgstr "Csak a szavazás készítője láthatja az eredményt"
+
+#: .Step+1.Optional+parameters
+msgid "Optional parameters"
+msgstr "Nem kötelező paraméterek"
+
+#: .Step+1.Permissions
+msgid "Permissions"
+msgstr "Engedélyek"
+
+#: .Step+1.Poll+creation+(1+of+3)
+msgid "Poll creation (1 of 3)"
+msgstr "Szavazás létrehozása (1/3)"
+
+#: .Step+1.Poll+id
+#: .Step+1.Poll+link
+msgid "Poll link"
+msgstr "Hivatkozás a szavazáshoz"
+
+#: .Step+1.Poll+title
+msgid "Poll title"
+msgstr "Szavazás címe"
+
+#: .Step+1.Receive+an+email+for+each+new+comment
+msgid "Receive an email for each new comment"
+msgstr "E-mail értesítés küldése minden egyes hozzászóláskor"
+
+#: .Step+1.Receive+an+email+for+each+new+vote
+msgid "Receive an email for each new vote"
+msgstr "E-mail értesítés küldése minden egyes szavazatkor"
+
+#: .Step+1.Required+fields+cannot+be+left+blank.
+msgid "Required fields cannot be left blank."
+msgstr "A kötelező mezők nem maradhatnak üresen."
+
+#: .Step+1.The+identifier+can+contain+letters
+#: +numbers+and+dashes+%22-%22.
+msgid "The identifier can contain letters, numbers and dashes \"-\"."
+msgstr "Az azonosító betűket, számokat és kötőjeleket („-”) tartalmazhat."
+
+#: .Step+1.The+results+are+publicly+visible
+msgid "The results are publicly visible"
+msgstr "Az eredmények nyilvánosan láthatóak"
+
+#: .Step+1.To+make+the+description+more+attractive
+#: +you+can+use+the+Markdown+format.
+msgid ""
+"To make the description more attractive, you can use the Markdown format."
+msgstr "Markdown formátumot is használhatsz a leírás vonzóbbá tételéhez. "
+
+#: .Step+1.Use+a+password+to+restrict+access
+msgid "Use a password to restrict access"
+msgstr "Hozzáférés korlátozása jelszóval"
+
+#: .Step+1.Value+Max
+msgid "Value Max"
+msgstr "Érték maximuma"
+
+#: .Step+1.Voters+can+modify+their+vote+themselves
+msgid "Voters can modify their vote themselves"
+msgstr "A szavazók módosíthatják a saját szavazataikat"
+
+#: .Step+1.Votes+cannot+be+modified
+msgid "Votes cannot be modified"
+msgstr "A szavazatokat nem lehet módosítani"
+
+#: .Step+1.Warning:+Anyone+can+see+the+polled+users%27+email+addresses+since+all+voters+can+modify+any+vote.+You+should+restrict+permission+rules.
+msgid ""
+"Warning: Anyone can see the polled users' email addresses since all voters "
+"can modify any vote. You should restrict permission rules."
+msgstr ""
+"Figyelmeztetés: Bárki láthatja a szavazók e-mail címeit, mert bármely "
+"szavazó bármelyik szavazatot módosíthatja. Célszerű korlátozni a "
+"jogosultsági szabályokat."
+
+#: .Step+1.You+are+in+the+poll+creation+section.
+msgid "You are in the poll creation section."
+msgstr "A szavazás létrehozási szakaszban vagy."
+
+#: .Step+1.You+can+enable+or+disable+the+editor+at+will.
+msgid "You can enable or disable the editor at will."
+msgstr "Kedvedre ki- vagy bekapcsolhatod a szerkesztőt."
+
+#: .Step+1.votes+per+option
+msgid "votes per option"
+msgstr "lehetőségenkénti szavazatok száma"
+
+#: .Step+2.Go+to+step+3
+msgid "Go to step 3"
+msgstr "Tovább a 3. lépéshez"
+
+#: .Step+2.Return+to+step+1
+msgid "Return to step 1"
+msgstr "Vissza az 1. lépéshez"
+
+#: .Step+2+classic.Add+a+choice
+msgid "Add a choice"
+msgstr "Lehetőség hozzáadása"
+
+#: .Step+2+classic.Add+a+link+or+an+image
+msgid "Add a link or an image"
+msgstr "Hivatkozás vagy kép hozzáadása"
+
+#: .Step+2+classic.Alternative+text
+msgid "Alternative text"
+msgstr "Alternatív szöveg"
+
+#: .Step+2+classic.Links+or+images+can+be+included+using
+msgid "Links or images can be included using"
+msgstr "Hivatkozásokat és képeket a következő módon lehet beágyazni:"
+
+#: .Step+2+classic.Markdown+syntax
+msgid "Markdown syntax"
+msgstr "Markdown szintaxis"
+
+#: .Step+2+classic.Poll+options+(2+of+3)
+msgid "Poll options (2 of 3)"
+msgstr "Szavazási beállítások (2/3)"
+
+#: .Step+2+classic.Remove+a+choice
+msgid "Remove a choice"
+msgstr "Lehetőség eltávolítása"
+
+#: .Step+2+classic.These+fields+are+optional.+You+can+add+a+link
+#: +an+image+or+both.
+msgid "These fields are optional. You can add a link, an image or both."
+msgstr ""
+"Ezek nem kötelező mezők. Itt megadhatsz egy hivatkozást, egy képet vagy "
+"mindkettőt."
+
+#: .Step+2+classic.To+create+a+poll+you+should+provide+at+least+two+different+choices.
+msgid "To create a poll you should provide at least two different choices."
+msgstr "Egy szavazás létrehozásához legalább két lehetőséget kell megadni."
+
+#: .Step+2+classic.URL+of+the+image
+msgid "URL of the image"
+msgstr "A kép URL-e"
+
+#: .Step+2+classic.You+can+add+or+remove+choices+with+the+buttons
+msgid "You can add or remove choices with the buttons"
+msgstr "A gombokkal adhatsz hozzá és vehetsz el lehetőségeket"
+
+#: .Step+2+date.Add+a+day
+msgid "Add a day"
+msgstr "Nap hozzáadása"
+
+#: .Step+2+date.Add+a+time+slot
+msgid "Add a time slot"
+msgstr "Idősáv hozzáadása"
+
+#: .Step+2+date.Choose+dates+for+your+poll
+msgid "Choose dates for your poll"
+msgstr "Válassz dátumokat a szavazáshoz"
+
+#: .Step+2+date.Copy+times+from+the+first+day
+msgid "Copy times from the first day"
+msgstr "Idősávok átmásolása az első napból"
+
+#: .Step+2+date.For+each+selected+day
+#: +you+are+free+to+suggest+meeting+times+(e.g.
+#: +%228h%22
+#: +%228:30%22
+#: +%228h-10h%22
+#: +%22evening%22
+#: +etc.)
+msgid ""
+"For each selected day, you are free to suggest meeting times (e.g., \"8h\", "
+"\"8:30\", \"8h-10h\", \"evening\", etc.)"
+msgstr ""
+"Minden egyes napnál szabadon adhatsz meg találkozási időket (például „8h”, "
+"„8:30”, „8h-10h”, „este” stb.)"
+
+#: .Step+2+date.Poll+dates+(2+of+3)
+msgid "Poll dates (2 of 3)"
+msgstr "Szavazási dátumok (2/3)"
+
+#: .Step+2+date.Remove+a+day
+msgid "Remove a day"
+msgstr "Nap eltávolítása"
+
+#: .Step+2+date.Remove+a+time+slot
+msgid "Remove a time slot"
+msgstr "Idősáv eltávolítása"
+
+#: .Step+2+date.Remove+all+days
+msgid "Remove all days"
+msgstr "Összes nap eltávolítása"
+
+#: .Step+2+date.Remove+all+times
+msgid "Remove all times"
+msgstr "Összes idősáv eltávolítása"
+
+#: .Step+2+date.Remove+this+day
+msgid "Remove this day"
+msgstr "Nap eltávolítása"
+
+#: .Step+2+date.To+schedule+an+event+you+need+to+provide+at+least+two+choices+(e.g.
+#: +two+time+slots+on+one+day+or+two+days).
+msgid ""
+"To schedule an event you need to provide at least two choices (e.g., two "
+"time slots on one day or two days)."
+msgstr ""
+"Egy esemény ütemezéséhez legalább két lehetőséget kell megadni (azaz két "
+"idősávot egy nap, vagy két napot)."
+
+#: .Step+2+date.You+can+add+or+remove+additional+days+and+times+with+the+buttons
+msgid "You can add or remove additional days and times with the buttons"
+msgstr "A gombokkal további napokat és idősávokat adhatsz hozzá."
+
+#: .Step+3.Back+to+step+2
+msgid "Back to step 2"
+msgstr "Vissza a 2. lépéshez"
+
+#: .Step+3.Confirm+the+creation+of+your+poll
+msgid "Confirm the creation of your poll"
+msgstr "A szavazás létrehozásának megerősítése"
+
+#: .Step+3.Create+the+poll
+msgid "Create the poll"
+msgstr "Szavazás létrehozása"
+
+#: .Step+3.Expiry+date:
+msgid "Expiry date:"
+msgstr "Lejárati idő:"
+
+#: .Step+3.List+of+options
+msgid "List of options"
+msgstr "Lehetőségek listája"
+
+#: .Step+3.Once+you+have+confirmed+the+creation+of+your+poll
+#: +you+will+automatically+be+redirected+to+the+poll%27s+administration+page.
+msgid ""
+"Once you have confirmed the creation of your poll, you will automatically be "
+"redirected to the poll's administration page."
+msgstr ""
+"Ha megerősíted a szavazás létrehozását, automatikusan át leszel irányítva a "
+"szavazás adminisztrációs oldalára."
+
+#: .Step+3.Removal+date+and+confirmation+(3+of+3)
+msgid "Removal date and confirmation (3 of 3)"
+msgstr "Eltávolítási idő és megerősítés (3/3)"
+
+#: .Step+3.Then+you+will+receive+two+emails:+one+containing+the+link+of+your+poll+for+sending+to+the+participants
+#: +the+other+containing+the+link+to+the+poll+administration+page.
+msgid ""
+"Then you will receive two emails: one containing the link of your poll for "
+"sending to the participants, the other containing the link to the poll "
+"administration page."
+msgstr ""
+"Aztán két e-mailt fogsz kapni: egyet ami a résztvevőknek elküldendő "
+"hivatkozást tartalmazza, és egy másikat, amely a szavazás adminisztrációs "
+"oldalának hivatkozását tartalmazza."
+
+#: .Step+3.You+can+set+a+specific+expiry+date+for+the+poll.
+msgid "You can set a specific expiry date for the poll."
+msgstr "Lejárati időt adhatsz meg a szavazáshoz."
+
+#: .Step+3.Your+poll+will+automatically+be+archived
+msgid "Your poll will automatically be archived"
+msgstr "A szavazásod automatikusan archiválva lesz"
+
+#: .Step+3.Your+poll+will+be+automatically+archived+in+%25d+days.
+msgid "Your poll will be automatically archived in %d days."
+msgstr "A szavazásod %d nap után automatikusan archiválva lesz."
+
+#: .Step+3.after+the+last+date+of+your+poll.
+msgid "after the last date of your poll."
+msgstr "a szavazás utolsó dátuma után."
+
+#: .Version.Version+%25s
+msgid "Version %s"
+msgstr ""
+
+#: .adminstuds.Add+a+column
+msgid "Add a column"
+msgstr "Oszlop hozzáadása"
+
+#: .adminstuds.Adding+a+column
+msgid "Adding a column"
+msgstr "Oszlop hozzáadása"
+
+#: .adminstuds.All+comments+deleted
+msgid "All comments deleted"
+msgstr "Összes hozzászólás törölve"
+
+#: .adminstuds.All+votes+deleted
+msgid "All votes deleted"
+msgstr "Összes szavazat törölve"
+
+#: .adminstuds.As+poll+administrator
+#: +you+can+change+all+the+lines+of+this+poll+with+this+button
+msgid ""
+"As poll administrator, you can change all the lines of this poll with this "
+"button"
+msgstr ""
+"A szavazás adminisztrátoraként ezzel a gombbal módosíthatod a szavazás "
+"sorait"
+
+#: .adminstuds.Back+to+the+poll
+msgid "Back to the poll"
+msgstr "Vissza a szavazáshoz"
+
+#: .adminstuds.Choice+added
+msgid "Choice added"
+msgstr "Lehetőség hozzáadva"
+
+#: .adminstuds.Collect+the+emails+of+the+polled+users+for+the+choice
+msgid "Collect the emails of the polled users for the choice"
+msgstr "Az erre szavazó felhasználók e-mail címének begyűjtése"
+
+#: .adminstuds.Column+deleted
+msgid "Column deleted"
+msgstr "Oszlop törölve"
+
+#: .adminstuds.Comment+deleted
+msgid "Comment deleted"
+msgstr "Hozzászólás törölve"
+
+#: .adminstuds.Confirm+removal+of+all+comments
+msgid "Confirm removal of all comments"
+msgstr "Az összes hozzászólás eltávolításának megerősítése"
+
+#: .adminstuds.Confirm+removal+of+all+votes
+msgid "Confirm removal of all votes"
+msgstr "Az összes szavazat eltávolításának megerősítése"
+
+#: .adminstuds.Confirm+removal+of+the+column.
+msgid "Confirm removal of the column."
+msgstr "Az oszlop eltávolításának megerősítése."
+
+#: .adminstuds.Confirm+removal+of+your+poll
+msgid "Confirm removal of your poll"
+msgstr "A szavazás eltávolításának megerősítése"
+
+#: .adminstuds.Delete+poll
+msgid "Delete poll"
+msgstr "Szavazás törlése"
+
+#: .adminstuds.Finally
+#: +you+can+change+the+properties+of+this+poll+such+as+the+title
+#: +the+comments+or+your+email+address.
+msgid ""
+"Finally, you can change the properties of this poll such as the title, the "
+"comments or your email address."
+msgstr ""
+"Végül, módosíthatod a szavazás tulajdonságait, mint a címet, hozzászólásokat "
+"vagy az e-mail címedet."
+
+#: .adminstuds.Keep+comments
+msgid "Keep comments"
+msgstr "Hozzászólások megtartása"
+
+#: .adminstuds.Keep+the+comments
+msgid "Keep the comments"
+msgstr "A hozzászólások megtartása"
+
+#: .adminstuds.Keep+the+poll
+msgid "Keep the poll"
+msgstr "Szavazás megtartása"
+
+#: .adminstuds.Keep+the+votes
+msgid "Keep the votes"
+msgstr "Szavazatok megtartása"
+
+#: .adminstuds.Keep+this+poll
+msgid "Keep this poll"
+msgstr "A szavazás megtartása"
+
+#: .adminstuds.Keep+votes
+msgid "Keep votes"
+msgstr "Szavazatok megtartása"
+
+#: .adminstuds.Poll+fully+deleted
+msgid "Poll fully deleted"
+msgstr "Szavazás teljesen törölve"
+
+#: .adminstuds.Poll+saved
+msgid "Poll saved"
+msgstr "Szavazás mentve"
+
+#: .adminstuds.Remove+column
+msgid "Remove column"
+msgstr "Oszlop eltávolítása"
+
+#: .adminstuds.Remove+the+comments
+msgid "Remove the comments"
+msgstr "Hozzászólások eltávolítása"
+
+#: .adminstuds.Remove+the+votes
+msgid "Remove the votes"
+msgstr "Szavazatok eltávolítása"
+
+#: .adminstuds.The+poll+was+created.
+msgid "The poll was created."
+msgstr "A szavazás létrehozva."
+
+#: .adminstuds.Vote+added
+#: .studs.Vote+added
+msgid "Vote added"
+msgstr ""
+
+#: .adminstuds.Vote+deleted
+msgid "Vote deleted"
+msgstr "Szavazat törölve"
+
+#: .adminstuds.Vote+updated
+#: .studs.Vote+updated
+msgid "Vote updated"
+msgstr ""
+
+#: .adminstuds.You+can+add+a+new+scheduling+date+to+your+poll.
+msgid "You can add a new scheduling date to your poll."
+msgstr "Új ütemezési dátumot adhatsz hozzá a szavazáshoz."
+
+#: .adminstuds.Your+poll+has+been+removed%21
+msgid "Your poll has been removed!"
+msgstr "A szavazásod eltávolítva."
+
+#: .adminstuds.and+add+a+new+column+with
+msgid "and add a new column with"
+msgstr "és új oszlop hozzáadása ezzel:"
+
+#: .adminstuds.remove+a+column+or+a+line+with
+msgid "remove a column or a line with"
+msgstr "oszlop vagy sor törlése ezzel:"
+
+#: .display_mails.Users+who+voted+%22If+need+be%22+for+this+option+have+left+those+email+addresses:
+msgid ""
+"Users who voted \"If need be\" for this option have left those email "
+"addresses:"
+msgstr ""
+
+#: .display_mails.Users+who+voted+%22No%22+for+this+option+have+left+those+email+addresses:
+msgid "Users who voted \"No\" for this option have left those email addresses:"
+msgstr ""
+
+#: .display_mails.Users+who+voted+%22Yes%22+for+this+option+have+left+those+email+addresses:
+msgid "Users who voted \"Yes\" for this option have left those email addresses:"
+msgstr ""
+
+#: .studs.Deletion+date:
+msgid "Deletion date:"
+msgstr "Törlési idő:"
+
+#: .studs.If+you+want+to+vote+in+this+poll
+#: +you+have+to+give+your+name
+#: +make+your+choice
+#: +and+submit+it+by+selecting+the+save+button+at+the+end+of+the+line.
+msgid ""
+"If you want to vote in this poll, you have to give your name, make your "
+"choice, and submit it by selecting the save button at the end of the line."
+msgstr ""
+"Ha szeretnél részt venni ebben a szavazásban, meg kell adnod a nevet, a "
+"válaszaidat, és a sor végén lévő mentés gombra kattintva be kell küldened. "
+
+#: .studs.The+administrator+locked+this+poll.+Votes+and+comments+are+frozen
+#: +it+is+no+longer+possible+to+participate
+msgid ""
+"The administrator locked this poll. Votes and comments are frozen, it is no "
+"longer possible to participate"
+msgstr ""
+"Az adminisztrátor lezárta ezt a szavazást. A szavazatok és hozzászólások be "
+"lettek fagyasztva."
+
+#: .studs.The+poll+has+expired
+#: +it+will+soon+be+deleted.
+msgid "The poll has expired, it will soon be deleted."
+msgstr "A szavazás lejárt. Hamarosan törölve lesz."
+
+#: .studs.Your+vote+has+been+saved
+#: +but+please+note:+you+need+to+keep+this+personalised+link+to+be+able+to+edit+your+vote.
+msgid ""
+"Your vote has been saved, but please note: you need to keep this "
+"personalised link to be able to edit your vote."
+msgstr ""
+"A szavazatod el lett mentve, de ne felejtsd el megőrizni a személyre szabott "
+"hivatkozásodat, hogy a szavazatodat később módosítani tudd."
+

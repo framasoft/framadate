@@ -1,0 +1,1923 @@
+# Kersten Lohmeyer <kersten.lohmeyer@th-deg.de>, 2018. #zanata
+# Luc Didry <luc@framasoft.org>, 2018. #zanata
+# Thomas Citharel <thomas.citharel@framasoft.org>, 2018. #zanata
+# Thomas Citharel <thomas.citharel@framasoft.org>, 2019. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-19 13:45+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2019-04-19 11:47+0000\n"
+"Last-Translator: Thomas Citharel <thomas.citharel@framasoft.org>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Zanata 4.6.2\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: .1st+section.Create+a+poll
+msgid "Create a poll"
+msgstr "Create a poll"
+
+#: .1st+section.Define+dates+or+subjects+to+choose+from
+msgid "Define dates or subjects to choose from"
+msgstr "Define dates or subjects to choose from"
+
+#: .1st+section.Discuss+and+make+a+decision
+msgid "Discuss and make a decision"
+msgstr "Discuss and make a decision"
+
+#: .1st+section.Do+you+want+to
+msgid "Do you want to"
+msgstr "Do you want to"
+
+#: .1st+section.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.+No+registration+is+required.
+msgid ""
+"Framadate is an online service for planning an appointment or making a "
+"decision quickly and easily. No registration is required."
+msgstr ""
+"Framadate is an online service for planning an appointment or making a "
+"decision quickly and easily. No registration is required."
+
+#: .1st+section.Here+is+how+it+works:
+msgid "Here is how it works:"
+msgstr "Here is how it works:"
+
+#: .1st+section.Send+the+poll+link+to+your+friends+or+colleagues
+msgid "Send the poll link to your friends or colleagues"
+msgstr "Send the poll link to your friends or colleagues"
+
+#: .1st+section.What+is+Framadate%3F
+msgid "What is Framadate?"
+msgstr "What is Framadate?"
+
+#: .1st+section.view+an+example%3F
+msgid "view an example?"
+msgstr "view an example?"
+
+#: .2nd+section.CeCILL-B+license
+msgid "CeCILL-B license"
+msgstr "CeCILL-B license"
+
+#: .2nd+section.Framadate+is+licensed+under+the
+msgid "Framadate is licensed under the"
+msgstr "Framadate is licensed under the"
+
+#: .2nd+section.Framadate+was+initially+based+on
+msgid "Framadate was initially based on"
+msgstr "Framadate was initially based on"
+
+#: .2nd+section.The+software
+msgid "The software"
+msgstr "The software"
+
+#: .2nd+section.This+software+needs+javascript+and+cookies+enabled.+It+is+compatible+with+the+following+web+browsers:
+msgid ""
+"This software needs javascript and cookies enabled. It is compatible with "
+"the following web browsers:"
+msgstr ""
+"This software needs javascript and cookies enabled. It is compatible with "
+"the following web browsers:"
+
+#: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days
+#: +it+is+developed+by+the+Framasoft+association.
+msgid ""
+"software developed by the University of Strasbourg. These days, it is "
+"developed by the Framasoft association."
+msgstr ""
+"software developed by the University of Strasbourg. These days, it is "
+"developed by the Framasoft association."
+
+#: .3rd+section.Grow+your+own
+msgid "Grow your own"
+msgstr "Grow your own"
+
+#: .3rd+section.If+you+want+to+install+the+software+for+your+own+use+and+thus+increase+your+independence
+#: +we+can+help+you+at:
+msgid ""
+"If you want to install the software for your own use and thus increase your "
+"independence, we can help you at:"
+msgstr ""
+"If you want to install the software for your own use and thus increase your "
+"independence, we can help you at:"
+
+#: .3rd+section.To+participate+in+the+software+development
+#: +suggest+improvements+or+simply+download+it
+#: +please+visit
+msgid ""
+"To participate in the software development, suggest improvements or simply "
+"download it, please visit"
+msgstr ""
+"To participate in the software development, suggest improvements or simply "
+"download it, please visit"
+
+#: .3rd+section.the+development+site
+msgid "the development site"
+msgstr "the development site"
+
+#: .Admin.Actions
+msgid "Actions"
+msgstr "Actions"
+
+#: .Admin.Administration
+msgid "Administration"
+msgstr "Administration"
+
+#: .Admin.Author
+msgid "Author"
+msgstr "Author"
+
+#: .Admin.Back+to+administration
+msgid "Back to administration"
+msgstr "Back to administration"
+
+#: .Admin.Change+the+poll
+msgid "Change the poll"
+msgstr "Change the poll"
+
+#: .Admin.Email
+#: .PollInfo.Email
+msgid "Email"
+msgstr "Email"
+
+#: .Admin.Executed
+msgid "Executed"
+msgstr "Executed"
+
+#: .Admin.Expiry+date
+#: .Generic.Expiry+date
+msgid "Expiry date"
+msgstr "Expiry date"
+
+#: .Admin.Fail
+msgid "Fail"
+msgstr "Fail"
+
+#: .Admin.Failed:
+msgid "Failed:"
+msgstr "Failed:"
+
+#: .Admin.Format
+msgid "Format"
+msgstr "Format"
+
+#: .Admin.Installation
+msgid "Installation"
+msgstr "Installation"
+
+#: .Admin.Logs
+msgid "Logs"
+msgstr "Logs"
+
+#: .Admin.Migration
+msgid "Migration"
+msgstr "Migration"
+
+#: .Admin.Nothing
+msgid "Nothing"
+msgstr "Nothing"
+
+#: .Admin.Pages:
+msgid "Pages:"
+msgstr "Pages:"
+
+#: .Admin.Poll+ID
+msgid "Poll ID"
+msgstr "Poll ID"
+
+#: .Admin.Poll+deleted
+msgid "Poll deleted"
+msgstr "Poll deleted"
+
+#: .Admin.Polls
+msgid "Polls"
+msgstr "Polls"
+
+#: .Admin.Purge
+msgid "Purge"
+msgstr "Purge"
+
+#: .Admin.Purge+the+polls
+msgid "Purge the polls"
+msgstr "Purge the polls"
+
+#: .Admin.Purged:
+msgid "Purged:"
+msgstr "Purged:"
+
+#: .Admin.See+the+poll
+msgid "See the poll"
+msgstr "See the poll"
+
+#: .Admin.Skipped:
+msgid "Skipped:"
+msgstr "Skipped:"
+
+#: .Admin.Status
+msgid "Status"
+msgstr "Status"
+
+#: .Admin.Succeeded:
+msgid "Succeeded:"
+msgstr "Succeeded:"
+
+#: .Admin.Success
+msgid "Success"
+msgstr "Success"
+
+#: .Admin.Summary
+msgid "Summary"
+msgstr "Summary"
+
+#: .Admin.Title
+#: .FindPolls.Title
+msgid "Title"
+msgstr "Title"
+
+#: .Admin.Votes
+#: .Poll+results.Votes
+msgid "Votes"
+msgstr "Votes"
+
+#: .Admin.Waiting
+msgid "Waiting"
+msgstr "Waiting"
+
+#: .Admin.polls+in+the+database+at+this+time
+msgid "polls in the database at this time"
+msgstr "polls in the database at this time"
+
+#: .Check.Check+again
+msgid "Check again"
+msgstr "Check again"
+
+#: .Check.Consider+enabling+the+PHP+extension+OpenSSL+for+increased+security.
+msgid "Consider enabling the PHP extension OpenSSL for increased security."
+msgstr "Consider enabling the PHP extension OpenSSL for increased security."
+
+#: .Check.Consider+setting+the+date.timezone+in+php.ini.
+msgid "Consider setting the date.timezone in php.ini."
+msgstr "Consider setting the date.timezone in php.ini."
+
+#: .Check.Consider+setting+%C2%AB+session.cookie_httponly+%3D+1+%C2%BB+inside+your+php.ini+or+add+%C2%AB+php_value+session.cookie_httponly+1+%C2%BB+to+your+.htaccess+so+that+cookies+can%27t+be+accessed+through+Javascript.
+msgid ""
+"Consider setting « session.cookie_httponly = 1 » inside your php.ini or add "
+"« php_value session.cookie_httponly 1 » to your .htaccess so that cookies "
+"can't be accessed through Javascript."
+msgstr ""
+"Consider setting « session.cookie_httponly = 1 » inside your php.ini or add "
+"« php_value session.cookie_httponly 1 » to your .htaccess so that cookies "
+"can't be accessed through Javascript."
+
+#: .Check.Continue+the+installation
+msgid "Continue the installation"
+msgstr "Continue the installation"
+
+#: .Check.Cookies+are+served+from+HTTP+only.
+msgid "Cookies are served from HTTP only."
+msgstr "Cookies are served from HTTP only."
+
+#: .Check.Installation+checking
+msgid "Installation checking"
+msgstr "Installation checking"
+
+#: .Check.OpenSSL+extension+loaded.
+msgid "OpenSSL extension loaded."
+msgstr "OpenSSL extension loaded."
+
+#: .Check.PHP+Intl+extension+is+enabled.
+msgid "PHP Intl extension is enabled."
+msgstr "PHP Intl extension is enabled."
+
+#: .Check.PHP+version+%25s+is+enough+(needed+at+least+PHP+%25s).
+msgid "PHP version %s is enough (needed at least PHP %s)."
+msgstr "PHP version %s is enough (needed at least PHP %s)."
+
+#: .Check.The+config+file+directory+(%25s)+is+not+writable+and+the+config+file+(%25s)+does+not+exists.
+msgid ""
+"The config file directory (%s) is not writable and the config file (%s) does "
+"not exists."
+msgstr ""
+"The config file directory (%s) is not writable and the config file (%s) does "
+"not exists."
+
+#: .Check.The+config+file+directory+(%25s)+is+writable.
+msgid "The config file directory (%s) is writable."
+msgstr "The config file directory (%s) is writable."
+
+#: .Check.The+config+file+exists.
+msgid "The config file exists."
+msgstr "The config file exists."
+
+#: .Check.The+template+compile+directory+(%25s)+doesn%27t+exist+in+%22%25s%22.+Retry+the+installation+process.
+msgid ""
+"The template compile directory (%s) doesn't exist in \"%s\". Retry the "
+"installation process."
+msgstr ""
+"The template compile directory (%s) doesn't exist in \"%s\". Retry the "
+"installation process."
+
+#: .Check.The+template+compile+directory+(%25s)+is+not+writable.
+msgid "The template compile directory (%s) is not writable."
+msgstr "The template compile directory (%s) is not writable."
+
+#: .Check.The+template+compile+directory+(%25s)+is+writable.
+msgid "The template compile directory (%s) is writable."
+msgstr "The template compile directory (%s) is writable."
+
+#: .Check.You+need+to+enable+the+PHP+Intl+extension.
+msgid "You need to enable the PHP Intl extension."
+msgstr "You need to enable the PHP Intl extension."
+
+#: .Check.Your+PHP+version+(%25s)+is+too+old.+This+application+needs+at+least+PHP+%25s.
+msgid ""
+"Your PHP version (%s) is too old. This application needs at least PHP %s."
+msgstr ""
+"Your PHP version (%s) is too old. This application needs at least PHP %s."
+
+#: .Check.date.timezone+is+set.
+msgid "date.timezone is set."
+msgstr "date.timezone is set."
+
+#: .Comments.Add+a+comment+to+the+poll
+msgid "Add a comment to the poll"
+msgstr "Add a comment to the poll"
+
+#: .Comments.Comment
+msgid "Comment"
+msgstr "Comment"
+
+#: .Comments.Comment+saved
+msgid "Comment saved"
+msgstr "Comment saved"
+
+#: .Comments.Comments
+msgid "Comments"
+msgstr "Comments"
+
+#: .Comments.Enter+your+name+and+comment+prior+to+submitting+the+form
+msgid "Enter your name and comment prior to submitting the form"
+msgstr "Enter your name and comment prior to submitting the form"
+
+#: .Comments.Remove+comment
+msgid "Remove comment"
+msgstr "Remove comment"
+
+#: .Comments.Submit+comment
+msgid "Submit comment"
+msgstr "Submit comment"
+
+#: .Date.%25A+%25e+%25B+%25Y
+msgid "%A %e %B %Y"
+msgstr "%A %e %B %Y"
+
+#: .Date.%25A
+#: +%25B+%25e
+#: +%25Y
+msgid "%A, %B %e, %Y"
+msgstr "%A, %B %e, %Y"
+
+#: .Date.%25B+%25Y
+msgid "%B %Y"
+msgstr "%B %Y"
+
+#: .Date.%25Y-%25m-%25d
+msgid "%Y-%m-%d"
+msgstr "%Y-%m-%d"
+
+#: .Date.%25a+%25e
+msgid "%a %e"
+msgstr "%a %e"
+
+#: .Date.%25m/%25d/%25Y+%25H:%25M
+msgid "%m/%d/%Y %H:%M"
+msgstr "%m/%d/%Y %H:%M"
+
+#: .Date.Add+range+dates
+msgid "Add range dates"
+msgstr "Add range dates"
+
+#: .Date.End+date
+msgid "End date"
+msgstr "End date"
+
+#: .Date.Start+date
+msgid "Start date"
+msgstr "Start date"
+
+#: .Date.Y-m-d
+msgid "Y-m-d"
+msgstr "Y-m-d"
+
+#: .Date.You+can+select+at+most+4+months
+msgid "You can select at most 4 months"
+msgstr "You can select at most 4 months"
+
+#: .Date.yyyy-mm-dd
+msgid "yyyy-mm-dd"
+msgstr "yyyy-mm-dd"
+
+#: .Date.yyyy-mm-dd-for-humans
+msgid "year-month-day"
+msgstr "year-month-day"
+
+#: .EditLink.Edit+link+for+poll+%22%25s%22
+msgid "Edit link for poll \"%s\""
+msgstr "Edit link for poll \"%s\""
+
+#: .EditLink.Here+is+the+link+for+editing+your+vote:
+msgid "Here is the link for editing your vote:"
+msgstr "Here is the link for editing your vote:"
+
+#: .EditLink.If+you+don%27t+want+to+lose+your+personalized+link
+#: +we+can+send+it+to+you+by+email.
+msgid ""
+"If you don't want to lose your personalized link, we can send it to you by "
+"email."
+msgstr ""
+"If you don't want to lose your personalized link, we can send it to you by "
+"email."
+
+#: .EditLink.Please+wait+%25d+seconds+before+we+can+send+an+email+to+you+then+try+again.
+msgid ""
+"Please wait %d seconds before we can send an email to you then try again."
+msgstr ""
+"Please wait %d seconds before we can send an email to you then try again."
+
+#: .EditLink.REMINDER
+msgid "REMINDER"
+msgstr "REMINDER"
+
+#: .EditLink.Send
+msgid "Send"
+msgstr "Send"
+
+#: .EditLink.The+email+address+is+not+correct.
+msgid "The email address is not correct."
+msgstr "The email address is not correct."
+
+#: .EditLink.Your+reminder+has+been+successfully+sent%21
+msgid "Your reminder has been successfully sent!"
+msgstr "Your reminder has been successfully sent!"
+
+#: .Error.Adding+vote+failed
+msgid "Adding vote failed"
+msgstr "Adding vote failed"
+
+#: .Error.Can%27t+create+an+empty+column.
+msgid "Can't create an empty column."
+msgstr "Can't create an empty column."
+
+#: .Error.Can%27t+create+the+config.php+file+in+%27%25s%27.
+msgid "Can't create the config.php file in '%s'."
+msgstr "Can't create the config.php file in '%s'."
+
+#: .Error.Comment+failed
+msgid "Comment failed"
+msgstr "Comment failed"
+
+#: .Error.Cookies+are+disabled+on+your+browser.+They+are+required+to+be+able+to+create+a+poll.
+msgid ""
+"Cookies are disabled on your browser. They are required to be able to create "
+"a poll."
+msgstr ""
+"Cookies are disabled on your browser. They are required to be able to create "
+"a poll."
+
+#: .Error.Enter+a+name
+msgid "Enter a name"
+msgstr "Enter a name"
+
+#: .Error.Enter+a+name+and+a+comment%21
+msgid "Enter a name and a comment!"
+msgstr "Enter a name and a comment!"
+
+#: .Error.Enter+a+title
+msgid "Enter a title"
+msgstr "Enter a title"
+
+#: .Error.Enter+an+email+address
+msgid "Enter an email address"
+msgstr "Enter an email address"
+
+#: .Error.Error+on+amount+of+votes+limitation:+Value+must+be+an+integer+greater+than+0
+msgid ""
+"Error on amount of votes limitation: Value must be an integer greater than 0"
+msgstr ""
+"Error on amount of votes limitation: Value must be an integer greater than 0"
+
+#: .Error.Error%21
+msgid "Error!"
+msgstr "Error!"
+
+#: .Error.Failed+to+delete+all+comments
+msgid "Failed to delete all comments"
+msgstr "Failed to delete all comments"
+
+#: .Error.Failed+to+delete+all+votes
+msgid "Failed to delete all votes"
+msgstr "Failed to delete all votes"
+
+#: .Error.Failed+to+delete+column
+msgid "Failed to delete column"
+msgstr "Failed to delete column"
+
+#: .Error.Failed+to+delete+the+comment
+msgid "Failed to delete the comment"
+msgstr "Failed to delete the comment"
+
+#: .Error.Failed+to+delete+the+poll
+msgid "Failed to delete the poll"
+msgstr "Failed to delete the poll"
+
+#: .Error.Failed+to+delete+the+vote%21
+msgid "Failed to delete the vote!"
+msgstr "Failed to delete the vote!"
+
+#: .Error.Failed+to+insert+the+comment%21
+msgid "Failed to insert the comment!"
+msgstr "Failed to insert the comment!"
+
+#: .Error.Failed+to+save+poll
+msgid "Failed to save poll"
+msgstr "Failed to save poll"
+
+#: .Error.Forbidden%21
+msgid "Forbidden!"
+msgstr "Forbidden!"
+
+#: .Error.Identifier+is+already+used
+msgid "Identifier is already used"
+msgstr "Identifier is already used"
+
+#: .Error.If+you+quit+now
+#: +your+changes+will+be+lost.
+msgid "If you quit now, your changes will be lost."
+msgstr ""
+
+#: .Error.JavaScript+is+disabled+on+your+browser.+It+is+required+to+create+a+poll.
+msgid ""
+"JavaScript is disabled on your browser. It is required to create a poll."
+msgstr ""
+"JavaScript is disabled on your browser. It is required to create a poll."
+
+#: .Error.Missing+values
+msgid "Missing values"
+msgstr "Missing values"
+
+#: .Error.No+polls+found
+msgid "No polls found"
+msgstr "No polls found"
+
+#: .Error.Password+is+empty.
+msgid "Password is empty."
+msgstr "Password is empty."
+
+#: .Error.Passwords+do+not+match.
+msgid "Passwords do not match."
+msgstr "Passwords do not match."
+
+#: .Error.Poll+has+been+updated+before+you+vote
+msgid "Poll has been updated before you vote"
+msgstr "Poll has been updated before you vote"
+
+#: .Error.Something+has+gone+wrong...
+msgid "Something has gone wrong..."
+msgstr "Something has gone wrong..."
+
+#: .Error.Something+is+wrong+with+the+format
+msgid "Something is wrong with the format"
+msgstr "Something is wrong with the format"
+
+#: .Error.Something+is+wrong+with+the+format:+Customized+URLs+should+only+consist+of+alphanumeric+characters+and+hyphens.
+msgid ""
+"Something is wrong with the format: Customized URLs should only consist of "
+"alphanumeric characters and hyphens."
+msgstr ""
+"Something is wrong with the format: Customized URLs should only consist of "
+"alphanumeric characters and hyphens."
+
+#: .Error.Something+is+wrong+with+the+format:+name+shouldn%27t+have+any+spaces+before+or+after
+msgid ""
+"Something is wrong with the format: name shouldn't have any spaces before or "
+"after"
+msgstr ""
+"Something is wrong with the format: name shouldn't have any spaces before or "
+"after"
+
+#: .Error.The+address+is+not+correct%21+You+should+enter+a+valid+email+address+(like+r.stallman@outlock.com)+in+order+to+receive+the+link+to+your+poll.
+msgid ""
+"The address is not correct! You should enter a valid email address (like r."
+"stallman@outlock.com) in order to receive the link to your poll."
+msgstr ""
+"The address is not correct! You should enter a valid email address (like r."
+"stallman@outlock.com) in order to receive the link to your poll."
+
+#: .Error.The+column+already+exists
+msgid "The column already exists"
+msgstr "The column already exists"
+
+#: .Error.The+name+is+invalid.
+msgid "The name is invalid."
+msgstr "The name is invalid."
+
+#: .Error.The+name+you%27ve+chosen+already+exists+in+this+poll%21
+msgid "The name you've chosen already exists in this poll!"
+msgstr "The name you've chosen already exists in this poll!"
+
+#: .Error.There+is+a+problem+with+your+choices
+msgid "There is a problem with your choices"
+msgstr "There is a problem with your choices"
+
+#: .Error.This+identifier+is+not+allowed
+msgid "This identifier is not allowed"
+msgstr "This identifier is not allowed"
+
+#: .Error.This+poll+doesn%27t+exist%21
+msgid "This poll doesn't exist!"
+msgstr "This poll doesn't exist!"
+
+#: .Error.Unable+to+connect+to+database
+msgid "Unable to connect to database"
+msgstr "Unable to connect to database"
+
+#: .Error.Update+vote+failed
+msgid "Update vote failed"
+msgstr "Update vote failed"
+
+#: .Error.You+already+voted
+msgid "You already voted"
+msgstr "You already voted"
+
+#: .Error.You+can%27t+create+a+poll+with+hidden+results+with+the+following+option:+
+msgid ""
+"You can't create a poll with hidden results with the following option: "
+msgstr ""
+"You can't create a poll with hidden results with the following option: "
+
+#: .Error.You+can%27t+select+more+than+%25d+dates
+msgid "You can't select more than %d dates"
+msgstr "You can't select more than %d dates"
+
+#: .Error.You+haven%27t+filled+the+first+section+of+the+poll+creation
+#: +or+your+session+has+expired.
+msgid ""
+"You haven't filled the first section of the poll creation, or your session "
+"has expired."
+msgstr ""
+"You haven't filled the first section of the poll creation, or your session "
+"has expired."
+
+#: .Error.Your+vote+wasn%27t+counted
+#: +because+someone+voted+in+the+meantime+and+it+conflicted+with+your+choices+and+the+poll+conditions.+Please+retry.
+msgid ""
+"Your vote wasn't counted, because someone voted in the meantime and it "
+"conflicted with your choices and the poll conditions. Please retry."
+msgstr ""
+"Your vote wasn't counted, because someone voted in the meantime and it "
+"conflicted with your choices and the poll conditions. Please retry."
+
+#: .FindPolls.Address
+msgid "Address"
+msgstr "Address"
+
+#: .FindPolls.Created+polls
+msgid "Created polls"
+msgstr "Created polls"
+
+#: .FindPolls.Have+a+good+day%21
+msgid "Have a good day!"
+msgstr "Have a good day!"
+
+#: .FindPolls.Here+is+the+list+of+the+polls+that+you+manage+on+%25s:
+msgid "Here is the list of the polls that you manage on %s:"
+msgstr "Here is the list of the polls that you manage on %s:"
+
+#: .FindPolls.If+you+weren%27t+the+source+of+this+action+and+if+you+think+this+is+an+abuse+of+the+service
+#: +please+notify+the+administrator+at+%25s.
+msgid ""
+"If you weren't the source of this action and if you think this is an abuse "
+"of the service, please notify the administrator at %s."
+msgstr ""
+"If you weren't the source of this action and if you think this is an abuse "
+"of the service, please notify the administrator at %s."
+
+#: .FindPolls.Its+address
+msgid "Its address"
+msgstr "Its address"
+
+#: .FindPolls.Last+access+date
+msgid "Last access date"
+msgstr "Last access date"
+
+#: .FindPolls.List+of+your+polls
+msgid "List of your polls"
+msgstr "List of your polls"
+
+#: .FindPolls.PS:+this+email+has+been+sent+because+you+%E2%80%93+or+someone+else+%E2%80%93+asked+to+get+back+the+polls+created+with+your+email+address.
+msgid ""
+"PS: this email has been sent because you – or someone else – asked to get "
+"back the polls created with your email address."
+msgstr ""
+"PS: this email has been sent because you – or someone else – asked to get "
+"back the polls created with your email address."
+
+#: .FindPolls.Polls+saved+inside+this+browser
+msgid "Polls saved inside this browser"
+msgstr "Polls saved inside this browser"
+
+#: .FindPolls.Polls+sent
+msgid "Polls sent"
+msgstr "Polls sent"
+
+#: .FindPolls.Remove+all+my+polls+from+this+browser%27s+index
+msgid "Remove all my polls from this browser's index"
+msgstr "Remove all my polls from this browser's index"
+
+#: .FindPolls.Remove+poll+from+index
+msgid "Remove poll from index"
+msgstr "Remove poll from index"
+
+#: .FindPolls.Send+me+my+polls
+msgid "Send me my polls"
+msgstr "Send me my polls"
+
+#: .FindPolls.Send+my+polls+by+email
+msgid "Send my polls by email"
+msgstr "Send my polls by email"
+
+#: .FindPolls.The+date+you+created+or+last+accessed+the+poll
+msgid "The date you created or last accessed the poll"
+msgstr "The date you created or last accessed the poll"
+
+#: .FindPolls.The+title+of+the+poll
+msgid "The title of the poll"
+msgstr "The title of the poll"
+
+#: .FindPolls.There+are+no+polls+saved+inside+your+browser+yet
+msgid "There are no polls saved inside your browser yet"
+msgstr "There are no polls saved inside your browser yet"
+
+#: .FindPolls.To+delete+this+data+click+the+trashcan+on+the+according+line+or+click+the+%C2%AB+delete+my+polls+index+%C2%BB+option.+This+won%27t+delete+your+polls.
+msgid ""
+"To delete this data click the trashcan on the according line or click the « "
+"delete my polls index » option. This won't delete your polls."
+msgstr ""
+"To delete this data click the trashcan on the according line or click the « "
+"delete my polls index » option. This won't delete your polls."
+
+#: .FindPolls.To+help+you+find+your+previous+polls
+#: +we+save+each+poll+you+create+or+access+inside+your+browser.+This+data+is+saved+inside+this+browser+only.+The+following+data+will+be+saved:
+msgid ""
+"To help you find your previous polls, we save each poll you create or access "
+"inside your browser. This data is saved inside this browser only. The "
+"following data will be saved:"
+msgstr ""
+"To help you find your previous polls, we save each poll you create or access "
+"inside your browser. This data is saved inside this browser only. The "
+"following data will be saved:"
+
+#: .FindPolls.Visited+polls
+msgid "Visited polls"
+msgstr "Visited polls"
+
+#: .Generic.(in+the+format+name@mail.com)
+msgid "(in the format name@mail.com)"
+msgstr "(in the format name@mail.com)"
+
+#: .Generic.Add
+msgid "Add"
+msgstr "Add"
+
+#: .Generic.Back
+msgid "Back"
+msgstr "Back"
+
+#: .Generic.Back+to+the+homepage+of
+msgid "Back to the homepage of"
+msgstr "Back to the homepage of"
+
+#: .Generic.Cancel
+msgid "Cancel"
+msgstr "Cancel"
+
+#: .Generic.Choice
+#: .Step+1.Choice
+msgid "Choice"
+msgstr "Choice"
+
+#: .Generic.Classic
+msgid "Classic"
+msgstr "Classic"
+
+#: .Generic.Close
+msgid "Close"
+msgstr "Close"
+
+#: .Generic.Create+your+own+polls
+msgid "Create your own polls"
+msgstr "Create your own polls"
+
+#: .Generic.Creation+date:
+msgid "Creation date:"
+msgstr "Creation date:"
+
+#: .Generic.Date
+msgid "Date"
+msgstr "Date"
+
+#: .Generic.Day
+msgid "Day"
+msgstr "Day"
+
+#: .Generic.Description
+msgid "Description"
+msgstr "Description"
+
+#: .Generic.Edit
+msgid "Edit"
+msgstr "Edit"
+
+#: .Generic.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.
+msgid ""
+"Framadate is an online service for planning an appointment or making a "
+"decision quickly and easily."
+msgstr ""
+"Framadate is an online service for planning an appointment or making a "
+"decision quickly and easily."
+
+#: .Generic.Home
+msgid "Home"
+msgstr "Home"
+
+#: .Generic.Information
+msgid "Information"
+msgstr "Information"
+
+#: .Generic.Legend:
+msgid "Legend:"
+msgstr "Legend:"
+
+#: .Generic.Link
+msgid "Link"
+msgstr "Link"
+
+#: .Generic.Markdown
+msgid "Markdown"
+msgstr "Markdown"
+
+#: .Generic.Next
+msgid "Next"
+msgstr "Next"
+
+#: .Generic.No
+msgid "No"
+msgstr "No"
+
+#: .Generic.Page+generated+in
+msgid "Page generated in"
+msgstr "Page generated in"
+
+#: .Generic.Poll
+msgid "Poll"
+msgstr "Poll"
+
+#: .Generic.Remove
+msgid "Remove"
+msgstr "Remove"
+
+#: .Generic.Save
+msgid "Save"
+msgstr "Save"
+
+#: .Generic.Search
+msgid "Search"
+msgstr "Search"
+
+#: .Generic.Time
+msgid "Time"
+msgstr "Time"
+
+#: .Generic.Under+reserve
+msgid "Under reserve"
+msgstr "Under reserve"
+
+#: .Generic.Validate
+msgid "Validate"
+msgstr "Validate"
+
+#: .Generic.Yes
+msgid "Yes"
+msgstr "Yes"
+
+#: .Generic.Your+email+address
+msgid "Your email address"
+msgstr "Your email address"
+
+#: .Generic.Your+name
+msgid "Your name"
+msgstr "Your name"
+
+#: .Generic.days
+msgid "days"
+msgstr "days"
+
+#: .Generic.for
+msgid "for"
+msgstr "for"
+
+#: .Generic.months
+msgid "months"
+msgstr "months"
+
+#: .Generic.seconds
+msgid "seconds"
+msgstr "seconds"
+
+#: .Generic.vote
+msgid "vote"
+msgstr "vote"
+
+#: .Generic.votes
+msgid "votes"
+msgstr "votes"
+
+#: .Generic.with
+msgid "with"
+msgstr "with"
+
+#: .Homepage.Make+a+standard+poll
+msgid "Make a standard poll"
+msgstr "Make a standard poll"
+
+#: .Homepage.Schedule+an+event
+msgid "Schedule an event"
+msgstr "Schedule an event"
+
+#: .Homepage.Where+are+my+polls%3F
+msgid "Where are my polls?"
+msgstr "Where are my polls?"
+
+#: .Installation.Administrator+mail+address
+msgid "Administrator mail address"
+msgstr "Administrator mail address"
+
+#: .Installation.Application+name
+msgid "Application name"
+msgstr "Application name"
+
+#: .Installation.Clean+URL
+msgid "Clean URL"
+msgstr "Clean URL"
+
+#: .Installation.Database+driver
+msgid "Database driver"
+msgstr "Database driver"
+
+#: .Installation.Database+hostname
+msgid "Database hostname"
+msgstr "Database hostname"
+
+#: .Installation.Database+name
+msgid "Database name"
+msgstr "Database name"
+
+#: .Installation.Database+port
+msgid "Database port"
+msgstr "Database port"
+
+#: .Installation.Default+language
+msgid "Default language"
+msgstr "Default language"
+
+#: .Installation.General
+msgid "General"
+msgstr "General"
+
+#: .Installation.Install
+msgid "Install"
+msgstr "Install"
+
+#: .Installation.Migration+table
+msgid "Migration table"
+msgstr "Migration table"
+
+#: .Installation.Password
+#: .Password.Password
+#: .Step+1.Password
+msgid "Password"
+msgstr "Password"
+
+#: .Installation.Prefix
+msgid "Prefix"
+msgstr "Prefix"
+
+#: .Installation.Respond-to+mail+address
+msgid "Respond-to mail address"
+msgstr "Respond-to mail address"
+
+#: .Installation.User
+msgid "User"
+msgstr "User"
+
+#: .Language+selector.Change+language
+msgid "Change language"
+msgstr "Change language"
+
+#: .Language+selector.Select+language
+msgid "Select language"
+msgstr "Select language"
+
+#: .Mail.%22The+road+is+long
+#: +but+the+way+is+clear%E2%80%A6%22%3Cbr/%3EFramasoft+lives+only+by+your+donations.%3Cbr/%3EThank+you+in+advance+for+your+support+https://soutenir.framasoft.org
+msgid ""
+"\"The road is long, but the way is clear…\"<br/>Framasoft lives only by your "
+"donations.<br/>Thank you in advance for your support https://soutenir."
+"framasoft.org"
+msgstr ""
+"\"The road is long, but the way is clear…\"<br/>Framasoft lives only by your "
+"donations.<br/>Thank you in advance for your support https://soutenir."
+"framasoft.org"
+
+#: .Mail.Message+for+the+author
+msgid "Message for the author"
+msgstr "Message for the author"
+
+#: .Mail.Notification+of+poll:+%25s
+msgid "Notification of poll: %s"
+msgstr "Notification of poll: %s"
+
+#: .Mail.Participant+link
+msgid "Participant link"
+msgstr "Participant link"
+
+#: .Mail.Poll+participation:+%25s
+msgid "Poll participation: %s"
+msgstr "Poll participation: %s"
+
+#: .Mail.Someone+just+changed+your+poll+at+the+following+link+%3Ca+href%3D%22%251%24s%22%3E%251%24s%3C/a%3E.
+msgid ""
+"Someone just changed your poll at the following link <a href=\"%1$s\">%1$s</"
+"a>."
+msgstr ""
+"Someone just changed your poll at the following link <a href=\"%1$s\">%1$s</"
+"a>."
+
+#: .Mail.Someone+just+deleted+your+poll+%22%25s%22.
+msgid "Someone just deleted your poll \"%s\"."
+msgstr "Someone just deleted your poll \"%s\"."
+
+#: .Mail.Thank+you+for+participating+in+the+poll+at+the+following+link
+msgid "Thank you for participating in the poll at the following link"
+msgstr "Thank you for participating in the poll at the following link"
+
+#: .Mail.Thank+you+for+your+trust.
+msgid "Thank you for your trust."
+msgstr "Thank you for your trust."
+
+#: .Mail.This+is+the+message+to+forward+to+the+poll+participants.
+msgid "This is the message to forward to the poll participants."
+msgstr "This is the message to forward to the poll participants."
+
+#: .Mail.This+message+should+NOT+be+sent+to+the+poll+participants.+You+should+keep+it+private.+%3Cbr/%3E%3Cbr/%3EYou+can+modify+your+poll+at+the+following+link
+msgid ""
+"This message should NOT be sent to the poll participants. You should keep it "
+"private. <br/><br/>You can modify your poll at the following link"
+msgstr ""
+"This message should NOT be sent to the poll participants. You should keep it "
+"private. <br/><br/>You can modify your poll at the following link"
+
+#: .Mail.added+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
+msgid "added a vote.<br/>You can visit your poll at the link"
+msgstr "added a vote.<br/>You can visit your poll at the link"
+
+#: .Mail.has+just+created+a+poll+called
+msgid "has just created a poll called"
+msgstr "has just created a poll called"
+
+#: .Mail.updated+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
+msgid "updated a vote.<br/>You can visit your poll at the link"
+msgstr "updated a vote.<br/>You can visit your poll at the link"
+
+#: .Mail.wrote+a+comment.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
+msgid "wrote a comment.<br/>You can visit your poll at the link"
+msgstr "wrote a comment.<br/>You can visit your poll at the link"
+
+#: .Maintenance.Thank+you+for+your+understanding.
+msgid "Thank you for your understanding."
+msgstr "Thank you for your understanding."
+
+#: .Maintenance.The+application
+msgid "The application"
+msgstr "The application"
+
+#: .Maintenance.is+currently+under+maintenance.
+msgid "is currently under maintenance."
+msgstr "is currently under maintenance."
+
+#: .Password.Submit+access
+msgid "Submit access"
+msgstr "Submit access"
+
+#: .Password.Wrong+password
+msgid "Wrong password"
+msgstr "Wrong password"
+
+#: .Password.You+have+to+provide+a+password+so+you+can+participate+to+the+poll.
+msgid "You have to provide a password so you can participate to the poll."
+msgstr "You have to provide a password so you can participate to the poll."
+
+#: .Password.You+have+to+provide+a+password+to+access+the+poll.
+msgid "You have to provide a password to access the poll."
+msgstr "You have to provide a password to access the poll."
+
+#: .Poll+results.%25s+option
+msgid "%s option"
+msgstr "%s option"
+
+#: .Poll+results.Anyone+will+be+able+to+see+your+email+address+after+you+voted
+msgid "Anyone will be able to see your email address after you voted"
+msgstr "Anyone will be able to see your email address after you voted"
+
+#: .Poll+results.Best+choice
+msgid "Best choice"
+msgstr "Best choice"
+
+#: .Poll+results.Best+choices
+msgid "Best choices"
+msgstr "Best choices"
+
+#: .Poll+results.Chart
+msgid "Chart"
+msgstr "Chart"
+
+#: .Poll+results.Display+the+chart+of+the+results
+msgid "Display the chart of the results"
+msgstr "Display the chart of the results"
+
+#: .Poll+results.Edit+line:+%25s
+msgid "Edit line: %s"
+msgstr "Edit line: %s"
+
+#: .Poll+results.Link+to+edit+this+particular+line
+msgid "Link to edit this particular line"
+msgstr "Link to edit this particular line"
+
+#: .Poll+results.Remove+line:
+msgid "Remove line:"
+msgstr "Remove line:"
+
+#: .Poll+results.Save+choices
+msgid "Save choices"
+msgstr "Save choices"
+
+#: .Poll+results.Scroll+to+the+left
+msgid "Scroll to the left"
+msgstr "Scroll to the left"
+
+#: .Poll+results.Scroll+to+the+right
+msgid "Scroll to the right"
+msgstr "Scroll to the right"
+
+#: .Poll+results.The+current+best+choice+is:
+msgid "The current best choice is:"
+msgstr "The current best choice is:"
+
+#: .Poll+results.The+current+best+choices+are:
+msgid "The current best choices are:"
+msgstr "The current best choices are:"
+
+#: .Poll+results.The+link+to+edit+this+particular+line+has+been+copied+to+the+clipboard%21
+msgid ""
+"The link to edit this particular line has been copied to the clipboard!"
+msgstr ""
+"The link to edit this particular line has been copied to the clipboard!"
+
+#: .Poll+results.Total
+msgid "Total"
+msgstr "Total"
+
+#: .Poll+results.Vote+%22no%22+for
+msgid "Vote \"no\" for"
+msgstr "Vote \"no\" for"
+
+#: .Poll+results.Vote+%22yes%22+for
+msgid "Vote \"yes\" for"
+msgstr "Vote \"yes\" for"
+
+#: .Poll+results.Votes+under+reserve+for
+msgid "Votes under reserve for"
+msgstr "Votes under reserve for"
+
+#: .Poll+results.polled+user
+msgid "polled user"
+msgstr "polled user"
+
+#: .Poll+results.polled+users
+msgid "polled users"
+msgstr "polled users"
+
+#: .PollInfo.Admin+link+for+the+poll
+msgid "Admin link for the poll"
+msgstr "Admin link for the poll"
+
+#: .PollInfo.Cancel+the+description+edit
+msgid "Cancel the description edit"
+msgstr "Cancel the description edit"
+
+#: .PollInfo.Cancel+the+email+address+edit
+msgid "Cancel the email address edit"
+msgstr "Cancel the email address edit"
+
+#: .PollInfo.Cancel+the+expiration+date+edit
+msgid "Cancel the expiration date edit"
+msgstr "Cancel the expiration date edit"
+
+#: .PollInfo.Cancel+the+name+edit
+msgid "Cancel the name edit"
+msgstr "Cancel the name edit"
+
+#: .PollInfo.Cancel+the+rules+edit
+msgid "Cancel the rules edit"
+msgstr "Cancel the rules edit"
+
+#: .PollInfo.Cancel+the+title+edit
+msgid "Cancel the title edit"
+msgstr "Cancel the title edit"
+
+#: .PollInfo.Creator+of+the+poll
+msgid "Creator of the poll"
+msgstr "Creator of the poll"
+
+#: .PollInfo.Edit+name
+msgid "Edit name"
+msgstr "Edit name"
+
+#: .PollInfo.Edit+the+description
+msgid "Edit the description"
+msgstr "Edit the description"
+
+#: .PollInfo.Edit+the+email+address
+msgid "Edit the email address"
+msgstr "Edit the email address"
+
+#: .PollInfo.Edit+the+expiry+date
+msgid "Edit the expiry date"
+msgstr "Edit the expiry date"
+
+#: .PollInfo.Edit+the+poll+rules
+msgid "Edit the poll rules"
+msgstr "Edit the poll rules"
+
+#: .PollInfo.Edit+title
+msgid "Edit title"
+msgstr "Edit title"
+
+#: .PollInfo.Export+to+CSV
+msgid "Export to CSV"
+msgstr "Export to CSV"
+
+#: .PollInfo.No+password
+msgid "No password"
+msgstr "No password"
+
+#: .PollInfo.Only+votes+are+protected
+msgid "Only votes are protected"
+msgstr "Only votes are protected"
+
+#: .PollInfo.Password+protected
+msgid "Password protected"
+msgstr "Password protected"
+
+#: .PollInfo.Poll+rules
+msgid "Poll rules"
+msgstr "Poll rules"
+
+#: .PollInfo.Print
+msgid "Print"
+msgstr "Print"
+
+#: .PollInfo.Public+link+to+the+poll
+msgid "Public link to the poll"
+msgstr "Public link to the poll"
+
+#: .PollInfo.Remove+all+comments
+msgid "Remove all comments"
+msgstr "Remove all comments"
+
+#: .PollInfo.Remove+all+votes
+msgid "Remove all votes"
+msgstr "Remove all votes"
+
+#: .PollInfo.Remove+password
+msgid "Remove password"
+msgstr "Remove password"
+
+#: .PollInfo.Remove+the+poll
+msgid "Remove the poll"
+msgstr "Remove the poll"
+
+#: .PollInfo.Results+are+hidden
+msgid "Results are hidden"
+msgstr "Results are hidden"
+
+#: .PollInfo.Results+are+visible
+msgid "Results are visible"
+msgstr "Results are visible"
+
+#: .PollInfo.Rich+editor
+msgid "Rich editor"
+msgstr "Rich editor"
+
+#: .PollInfo.Save+the+description
+msgid "Save the description"
+msgstr "Save the description"
+
+#: .PollInfo.Save+the+email+address
+msgid "Save the email address"
+msgstr "Save the email address"
+
+#: .PollInfo.Save+the+new+expiration+date
+msgid "Save the new expiration date"
+msgstr "Save the new expiration date"
+
+#: .PollInfo.Save+the+new+name
+msgid "Save the new name"
+msgstr "Save the new name"
+
+#: .PollInfo.Save+the+new+rules
+msgid "Save the new rules"
+msgstr "Save the new rules"
+
+#: .PollInfo.Save+the+new+title
+msgid "Save the new title"
+msgstr "Save the new title"
+
+#: .PollInfo.Simple+editor
+msgid "Simple editor"
+msgstr "Simple editor"
+
+#: .PollInfo.Title+of+the+poll
+msgid "Title of the poll"
+msgstr "Title of the poll"
+
+#: .PollInfo.Voters%27+email+addresses+are+collected
+msgid "Voters' email addresses are collected"
+msgstr "Voters' email addresses are collected"
+
+#: .PollInfo.Voters%27+email+addresses+are+collected+and+required
+msgid "Voters' email addresses are collected and required"
+msgstr "Voters' email addresses are collected and required"
+
+#: .PollInfo.Voters%27+email+addresses+are+collected
+#: +required+and+verified
+msgid "Voters' email addresses are collected, required and verified"
+msgstr "Voters' email addresses are collected, required and verified"
+
+#: .PollInfo.Voters%27+email+addresses+are+not+collected
+msgid "Voters' email addresses are not collected"
+msgstr "Voters' email addresses are not collected"
+
+#: .PollInfo.Votes+and+comments+are+locked
+msgid "Votes and comments are locked"
+msgstr "Votes and comments are locked"
+
+#: .PollInfo.Votes+protected+by+password
+msgid "Votes protected by password"
+msgstr "Votes protected by password"
+
+#: .Step+1.All+voters+can+modify+any+vote
+msgid "All voters can modify any vote"
+msgstr "All voters can modify any vote"
+
+#: .Step+1.By+defining+an+identifier+that+can+facilitate+access+to+the+poll+for+unwanted+people.+It+is+recommended+to+protect+it+with+a+password.
+msgid ""
+"By defining an identifier that can facilitate access to the poll for "
+"unwanted people. It is recommended to protect it with a password."
+msgstr ""
+"By defining an identifier that can facilitate access to the poll for "
+"unwanted people. It is recommended to protect it with a password."
+
+#: .Step+1.Collect+voters%27+email+addresses
+msgid "Collect voters' email addresses"
+msgstr "Collect voters' email addresses"
+
+#: .Step+1.Confirmation
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: .Step+1.Customize+the+URL
+msgid "Customize the URL"
+msgstr "Customize the URL"
+
+#: .Step+1.Email+addresses+are+collected+but+not+required
+msgid "Email addresses are collected but not required"
+msgstr "Email addresses are collected but not required"
+
+#: .Step+1.Email+addresses+are+not+collected
+msgid "Email addresses are not collected"
+msgstr "Email addresses are not collected"
+
+#: .Step+1.Email+addresses+are+required
+msgid "Email addresses are required"
+msgstr "Email addresses are required"
+
+#: .Step+1.Email+addresses+are+required+and+verified
+msgid "Email addresses are required and verified"
+msgstr "Email addresses are required and verified"
+
+#: .Step+1.Go+to+step+2
+msgid "Go to step 2"
+msgstr "Go to step 2"
+
+#: .Step+1.Limit+the+amount+of+voters+per+option
+msgid "Limit the amount of voters per option"
+msgstr "Limit the amount of voters per option"
+
+#: .Step+1.More+informations+here:
+msgid "More informations here:"
+msgstr "More informations here:"
+
+#: .Step+1.Only+the+poll+maker+can+see+the+poll+results
+msgid "Only the poll maker can see the poll results"
+msgstr "Only the poll maker can see the poll results"
+
+#: .Step+1.Optional+parameters
+msgid "Optional parameters"
+msgstr "Optional parameters"
+
+#: .Step+1.Permissions
+msgid "Permissions"
+msgstr "Permissions"
+
+#: .Step+1.Poll+creation+(1+of+3)
+msgid "Poll creation (1 of 3)"
+msgstr "Poll creation (1 of 3)"
+
+#: .Step+1.Poll+id
+#: .Step+1.Poll+link
+msgid "Poll link"
+msgstr "Poll link"
+
+#: .Step+1.Poll+title
+msgid "Poll title"
+msgstr "Poll title"
+
+#: .Step+1.Receive+an+email+for+each+new+comment
+msgid "Receive an email for each new comment"
+msgstr "Receive an email for each new comment"
+
+#: .Step+1.Receive+an+email+for+each+new+vote
+msgid "Receive an email for each new vote"
+msgstr "Receive an email for each new vote"
+
+#: .Step+1.Required+fields+cannot+be+left+blank.
+msgid "Required fields cannot be left blank."
+msgstr "Required fields cannot be left blank."
+
+#: .Step+1.The+identifier+can+contain+letters
+#: +numbers+and+dashes+%22-%22.
+msgid "The identifier can contain letters, numbers and dashes \"-\"."
+msgstr "The identifier can contain letters, numbers and dashes \"-\"."
+
+#: .Step+1.The+results+are+publicly+visible
+msgid "The results are publicly visible"
+msgstr "The results are publicly visible"
+
+#: .Step+1.To+make+the+description+more+attractive
+#: +you+can+use+the+Markdown+format.
+msgid ""
+"To make the description more attractive, you can use the Markdown format."
+msgstr ""
+"To make the description more attractive, you can use the Markdown format."
+
+#: .Step+1.Use+a+password+to+restrict+access
+msgid "Use a password to restrict access"
+msgstr "Use a password to restrict access"
+
+#: .Step+1.Value+Max
+msgid "Value Max"
+msgstr "Value Max"
+
+#: .Step+1.Voters+can+modify+their+vote+themselves
+msgid "Voters can modify their vote themselves"
+msgstr "Voters can modify their vote themselves"
+
+#: .Step+1.Votes+cannot+be+modified
+msgid "Votes cannot be modified"
+msgstr "Votes cannot be modified"
+
+#: .Step+1.Warning:+Anyone+can+see+the+polled+users%27+email+addresses+since+all+voters+can+modify+any+vote.+You+should+restrict+permission+rules.
+msgid ""
+"Warning: Anyone can see the polled users' email addresses since all voters "
+"can modify any vote. You should restrict permission rules."
+msgstr ""
+"Warning: Anyone can see the polled users' email addresses since all voters "
+"can modify any vote. You should restrict permission rules."
+
+#: .Step+1.You+are+in+the+poll+creation+section.
+msgid "You are in the poll creation section."
+msgstr "You are in the poll creation section."
+
+#: .Step+1.You+can+enable+or+disable+the+editor+at+will.
+msgid "You can enable or disable the editor at will."
+msgstr "You can enable or disable the editor at will."
+
+#: .Step+1.votes+per+option
+msgid "votes per option"
+msgstr "votes per option"
+
+#: .Step+2.Go+to+step+3
+msgid "Go to step 3"
+msgstr "Go to step 3"
+
+#: .Step+2.Return+to+step+1
+msgid "Return to step 1"
+msgstr "Return to step 1"
+
+#: .Step+2+classic.Add+a+choice
+msgid "Add a choice"
+msgstr "Add a choice"
+
+#: .Step+2+classic.Add+a+link+or+an+image
+msgid "Add a link or an image"
+msgstr "Add a link or an image"
+
+#: .Step+2+classic.Alternative+text
+msgid "Alternative text"
+msgstr "Alternative text"
+
+#: .Step+2+classic.Links+or+images+can+be+included+using
+msgid "Links or images can be included using"
+msgstr "Links or images can be included using"
+
+#: .Step+2+classic.Markdown+syntax
+msgid "Markdown syntax"
+msgstr "Markdown syntax"
+
+#: .Step+2+classic.Poll+options+(2+of+3)
+msgid "Poll options (2 of 3)"
+msgstr "Poll options (2 of 3)"
+
+#: .Step+2+classic.Remove+a+choice
+msgid "Remove a choice"
+msgstr "Remove a choice"
+
+#: .Step+2+classic.These+fields+are+optional.+You+can+add+a+link
+#: +an+image+or+both.
+msgid "These fields are optional. You can add a link, an image or both."
+msgstr "These fields are optional. You can add a link, an image or both."
+
+#: .Step+2+classic.To+create+a+poll+you+should+provide+at+least+two+different+choices.
+msgid "To create a poll you should provide at least two different choices."
+msgstr "To create a poll you should provide at least two different choices."
+
+#: .Step+2+classic.URL+of+the+image
+msgid "URL of the image"
+msgstr "URL of the image"
+
+#: .Step+2+classic.You+can+add+or+remove+choices+with+the+buttons
+msgid "You can add or remove choices with the buttons"
+msgstr "You can add or remove choices with the buttons"
+
+#: .Step+2+date.Add+a+day
+msgid "Add a day"
+msgstr "Add a day"
+
+#: .Step+2+date.Add+a+time+slot
+msgid "Add a time slot"
+msgstr "Add a time slot"
+
+#: .Step+2+date.Choose+dates+for+your+poll
+msgid "Choose dates for your poll"
+msgstr "Choose dates for your poll"
+
+#: .Step+2+date.Copy+times+from+the+first+day
+msgid "Copy times from the first day"
+msgstr "Copy times from the first day"
+
+#: .Step+2+date.For+each+selected+day
+#: +you+are+free+to+suggest+meeting+times+(e.g.
+#: +%228h%22
+#: +%228:30%22
+#: +%228h-10h%22
+#: +%22evening%22
+#: +etc.)
+msgid ""
+"For each selected day, you are free to suggest meeting times (e.g., \"8h\", "
+"\"8:30\", \"8h-10h\", \"evening\", etc.)"
+msgstr ""
+"For each selected day, you are free to suggest meeting times (e.g., \"8h\", "
+"\"8:30\", \"8h-10h\", \"evening\", etc.)"
+
+#: .Step+2+date.Poll+dates+(2+of+3)
+msgid "Poll dates (2 of 3)"
+msgstr "Poll dates (2 of 3)"
+
+#: .Step+2+date.Remove+a+day
+msgid "Remove a day"
+msgstr "Remove a day"
+
+#: .Step+2+date.Remove+a+time+slot
+msgid "Remove a time slot"
+msgstr "Remove a time slot"
+
+#: .Step+2+date.Remove+all+days
+msgid "Remove all days"
+msgstr "Remove all days"
+
+#: .Step+2+date.Remove+all+times
+msgid "Remove all times"
+msgstr "Remove all times"
+
+#: .Step+2+date.Remove+this+day
+msgid "Remove this day"
+msgstr "Remove this day"
+
+#: .Step+2+date.To+schedule+an+event+you+need+to+provide+at+least+two+choices+(e.g.
+#: +two+time+slots+on+one+day+or+two+days).
+msgid ""
+"To schedule an event you need to provide at least two choices (e.g., two "
+"time slots on one day or two days)."
+msgstr ""
+"To schedule an event you need to provide at least two choices (e.g., two "
+"time slots on one day or two days)."
+
+#: .Step+2+date.You+can+add+or+remove+additional+days+and+times+with+the+buttons
+msgid "You can add or remove additional days and times with the buttons"
+msgstr "You can add or remove additional days and times with the buttons"
+
+#: .Step+3.Back+to+step+2
+msgid "Back to step 2"
+msgstr "Back to step 2"
+
+#: .Step+3.Confirm+the+creation+of+your+poll
+msgid "Confirm the creation of your poll"
+msgstr "Confirm the creation of your poll"
+
+#: .Step+3.Create+the+poll
+msgid "Create the poll"
+msgstr "Create the poll"
+
+#: .Step+3.Expiry+date:
+msgid "Expiry date:"
+msgstr "Expiry date:"
+
+#: .Step+3.List+of+options
+msgid "List of options"
+msgstr "List of options"
+
+#: .Step+3.Once+you+have+confirmed+the+creation+of+your+poll
+#: +you+will+automatically+be+redirected+to+the+poll%27s+administration+page.
+msgid ""
+"Once you have confirmed the creation of your poll, you will automatically be "
+"redirected to the poll's administration page."
+msgstr ""
+"Once you have confirmed the creation of your poll, you will automatically be "
+"redirected to the poll's administration page."
+
+#: .Step+3.Removal+date+and+confirmation+(3+of+3)
+msgid "Removal date and confirmation (3 of 3)"
+msgstr "Removal date and confirmation (3 of 3)"
+
+#: .Step+3.Then+you+will+receive+two+emails:+one+containing+the+link+of+your+poll+for+sending+to+the+participants
+#: +the+other+containing+the+link+to+the+poll+administration+page.
+msgid ""
+"Then you will receive two emails: one containing the link of your poll for "
+"sending to the participants, the other containing the link to the poll "
+"administration page."
+msgstr ""
+"Then you will receive two emails: one containing the link of your poll for "
+"sending to the participants, the other containing the link to the poll "
+"administration page."
+
+#: .Step+3.You+can+set+a+specific+expiry+date+for+the+poll.
+msgid "You can set a specific expiry date for the poll."
+msgstr "You can set a specific expiry date for the poll."
+
+#: .Step+3.Your+poll+will+automatically+be+archived
+msgid "Your poll will automatically be archived"
+msgstr "Your poll will automatically be archived"
+
+#: .Step+3.Your+poll+will+be+automatically+archived+in+%25d+days.
+msgid "Your poll will be automatically archived in %d days."
+msgstr "Your poll will be automatically archived in %d days."
+
+#: .Step+3.after+the+last+date+of+your+poll.
+msgid "after the last date of your poll."
+msgstr "after the last date of your poll."
+
+#: .Version.Version+%25s
+msgid "Version %s"
+msgstr "Version %s"
+
+#: .adminstuds.Add+a+column
+msgid "Add a column"
+msgstr "Add a column"
+
+#: .adminstuds.Adding+a+column
+msgid "Adding a column"
+msgstr "Adding a column"
+
+#: .adminstuds.All+comments+deleted
+msgid "All comments deleted"
+msgstr "All comments deleted"
+
+#: .adminstuds.All+votes+deleted
+msgid "All votes deleted"
+msgstr "All votes deleted"
+
+#: .adminstuds.As+poll+administrator
+#: +you+can+change+all+the+lines+of+this+poll+with+this+button
+msgid ""
+"As poll administrator, you can change all the lines of this poll with this "
+"button"
+msgstr ""
+"As poll administrator, you can change all the lines of this poll with this "
+"button"
+
+#: .adminstuds.Back+to+the+poll
+msgid "Back to the poll"
+msgstr "Back to the poll"
+
+#: .adminstuds.Choice+added
+msgid "Choice added"
+msgstr "Choice added"
+
+#: .adminstuds.Collect+the+emails+of+the+polled+users+for+the+choice
+msgid "Collect the emails of the polled users for the choice"
+msgstr "Collect the emails of the polled users for the choice"
+
+#: .adminstuds.Column+deleted
+msgid "Column deleted"
+msgstr "Column deleted"
+
+#: .adminstuds.Comment+deleted
+msgid "Comment deleted"
+msgstr "Comment deleted"
+
+#: .adminstuds.Confirm+removal+of+all+comments
+msgid "Confirm removal of all comments"
+msgstr "Confirm removal of all comments"
+
+#: .adminstuds.Confirm+removal+of+all+votes
+msgid "Confirm removal of all votes"
+msgstr "Confirm removal of all votes"
+
+#: .adminstuds.Confirm+removal+of+the+column.
+msgid "Confirm removal of the column."
+msgstr "Confirm removal of the column."
+
+#: .adminstuds.Confirm+removal+of+your+poll
+msgid "Confirm removal of your poll"
+msgstr "Confirm removal of your poll"
+
+#: .adminstuds.Delete+poll
+msgid "Delete poll"
+msgstr "Delete poll"
+
+#: .adminstuds.Finally
+#: +you+can+change+the+properties+of+this+poll+such+as+the+title
+#: +the+comments+or+your+email+address.
+msgid ""
+"Finally, you can change the properties of this poll such as the title, the "
+"comments or your email address."
+msgstr ""
+"Finally, you can change the properties of this poll such as the title, the "
+"comments or your email address."
+
+#: .adminstuds.Keep+comments
+msgid "Keep comments"
+msgstr "Keep comments"
+
+#: .adminstuds.Keep+the+comments
+msgid "Keep the comments"
+msgstr "Keep the comments"
+
+#: .adminstuds.Keep+the+poll
+msgid "Keep the poll"
+msgstr "Keep the poll"
+
+#: .adminstuds.Keep+the+votes
+msgid "Keep the votes"
+msgstr "Keep the votes"
+
+#: .adminstuds.Keep+this+poll
+msgid "Keep this poll"
+msgstr "Keep this poll"
+
+#: .adminstuds.Keep+votes
+msgid "Keep votes"
+msgstr "Keep votes"
+
+#: .adminstuds.Poll+fully+deleted
+msgid "Poll fully deleted"
+msgstr "Poll fully deleted"
+
+#: .adminstuds.Poll+saved
+msgid "Poll saved"
+msgstr "Poll saved"
+
+#: .adminstuds.Remove+column
+msgid "Remove column"
+msgstr "Remove column"
+
+#: .adminstuds.Remove+the+comments
+msgid "Remove the comments"
+msgstr "Remove the comments"
+
+#: .adminstuds.Remove+the+votes
+msgid "Remove the votes"
+msgstr "Remove the votes"
+
+#: .adminstuds.The+poll+was+created.
+msgid "The poll was created."
+msgstr "The poll was created."
+
+#: .adminstuds.Vote+added
+#: .studs.Vote+added
+msgid "Vote added"
+msgstr "Vote added"
+
+#: .adminstuds.Vote+deleted
+msgid "Vote deleted"
+msgstr "Vote deleted"
+
+#: .adminstuds.Vote+updated
+#: .studs.Vote+updated
+msgid "Vote updated"
+msgstr "Vote updated"
+
+#: .adminstuds.You+can+add+a+new+scheduling+date+to+your+poll.
+msgid "You can add a new scheduling date to your poll."
+msgstr "You can add a new scheduling date to your poll."
+
+#: .adminstuds.Your+poll+has+been+removed%21
+msgid "Your poll has been removed!"
+msgstr "Your poll has been removed!"
+
+#: .adminstuds.and+add+a+new+column+with
+msgid "and add a new column with"
+msgstr "and add a new column with"
+
+#: .adminstuds.remove+a+column+or+a+line+with
+msgid "remove a column or a line with"
+msgstr "remove a column or a line with"
+
+#: .display_mails.Users+who+voted+%22If+need+be%22+for+this+option+have+left+those+email+addresses:
+msgid ""
+"Users who voted \"If need be\" for this option have left those email "
+"addresses:"
+msgstr ""
+"Users who voted \"If need be\" for this option have left those email "
+"addresses:"
+
+#: .display_mails.Users+who+voted+%22No%22+for+this+option+have+left+those+email+addresses:
+msgid "Users who voted \"No\" for this option have left those email addresses:"
+msgstr "Users who voted \"No\" for this option have left those email addresses:"
+
+#: .display_mails.Users+who+voted+%22Yes%22+for+this+option+have+left+those+email+addresses:
+msgid "Users who voted \"Yes\" for this option have left those email addresses:"
+msgstr ""
+"Users who voted \"Yes\" for this option have left those email addresses:"
+
+#: .studs.Deletion+date:
+msgid "Deletion date:"
+msgstr "Deletion date:"
+
+#: .studs.If+you+want+to+vote+in+this+poll
+#: +you+have+to+give+your+name
+#: +make+your+choice
+#: +and+submit+it+by+selecting+the+save+button+at+the+end+of+the+line.
+msgid ""
+"If you want to vote in this poll, you have to give your name, make your "
+"choice, and submit it by selecting the save button at the end of the line."
+msgstr ""
+"If you want to vote in this poll, you have to give your name, make your "
+"choice, and submit it by selecting the save button at the end of the line."
+
+#: .studs.The+administrator+locked+this+poll.+Votes+and+comments+are+frozen
+#: +it+is+no+longer+possible+to+participate
+msgid ""
+"The administrator locked this poll. Votes and comments are frozen, it is no "
+"longer possible to participate"
+msgstr ""
+"The administrator locked this poll. Votes and comments are frozen, it is no "
+"longer possible to participate"
+
+#: .studs.The+poll+has+expired
+#: +it+will+soon+be+deleted.
+msgid "The poll has expired, it will soon be deleted."
+msgstr "The poll has expired, it will soon be deleted."
+
+#: .studs.Your+vote+has+been+saved
+#: +but+please+note:+you+need+to+keep+this+personalised+link+to+be+able+to+edit+your+vote.
+msgid ""
+"Your vote has been saved, but please note: you need to keep this "
+"personalised link to be able to edit your vote."
+msgstr ""
+"Your vote has been saved, but please note: you need to keep this "
+"personalised link to be able to edit your vote."
+
