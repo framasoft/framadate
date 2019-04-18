@@ -30,7 +30,7 @@ lint:
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run
 
 # Run doctrine migrations with MySQL
-db:migration:mysql:
+.db:migration:mysql:
   stage: test
   variables:
     APP_ENV: "test"
@@ -41,16 +41,30 @@ db:migration:mysql:
     FRAMADATE_DB_NAME: "${MYSQL_DATABASE}"
     FRAMADATE_DB_USER: "root"
     FRAMADATE_DB_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-  services:
-    - 'mysql:5.6'
   script:
     - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
     - bin/doctrine migrations:status -vvv
     - bin/doctrine migrations:migrate --no-interaction -vvv
     - bin/doctrine migrations:status -vvv
 
+db:migration:mysql:5.6:
+  extends: .db:migration:mysql
+  services:
+    - 'mysql:5.6'
+
+db:migration:mysql:5.7:
+  extends: .db:migration:mysql
+  services:
+    - 'mysql:5.7'
+
+db:migration:mysql:8:
+  extends: .db:migration:mysql
+  services:
+    - name: 'mysql:8'
+      command: '--default-authentication-plugin=mysql_native_password'
+
 # Run doctrine migrations with PostgreSQL
-db:migration:postgresql:
+.db:migration:postgresql:
   stage: test
   variables:
     APP_ENV: "test"
@@ -62,13 +76,16 @@ db:migration:postgresql:
     FRAMADATE_DB_NAME: "${POSTGRES_DB}"
     FRAMADATE_DB_USER: "${POSTGRES_USER}"
     FRAMADATE_DB_PASSWORD: "${POSTGRES_PASSWORD}"
-  services:
-    - 'postgres:9.6'
   script:
     - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
     - bin/doctrine migrations:status -vvv
     - bin/doctrine migrations:migrate --no-interaction -vvv
     - bin/doctrine migrations:status -vvv
+
+db:migration:postgresql:9.6:
+  extends: .db:migration:postgresql
+  services:
+    - 'postgres:9.6'
 
 check:missing:trads:
   stage: test
