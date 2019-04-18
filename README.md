@@ -22,7 +22,7 @@ Follow the instructions on <https://framagit.org/framasoft/framadate/framadate/w
 
 * PHP [PHP 5.6](http://php.net)
 * Templating [Smarty](http://www.smarty.net/),
-* I18N [o80-i18n](https://github.com/olivierperez/o80-i18n)
+* i18n [Symfony/Translation](https://github.com/symfony/Translation)
 * Database: PostgreSQL ou [MySQL 5.5](https://dev.mysql.com/downloads/mysql/5.5.html)
 
 ---

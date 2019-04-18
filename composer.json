@@ -65,7 +65,8 @@
         "egulias/email-validator": "~2.1",
         "doctrine/dbal": "^2.5",
         "doctrine/migrations": "^1.5",
-        "sensiolabs/ansi-to-html": "^1.1"
+        "sensiolabs/ansi-to-html": "^1.1",
+        "symfony/translation": "^3.4"
     },
 
     "require-dev": {
