@@ -30,8 +30,19 @@ lint:
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run
 
 # Run doctrine on all branches
-db:migrate:
+db:migration:mysql:
   stage: test
+  variables:
+    MYSQL_DATABASE: "fd_test"
+    MYSQL_ROOT_PASSWORD: "coucou"
+    FRAMADATE_DB_DRIVER: 'pdo_mysql'
+    FRAMADATE_DB_NAME: "${MYSQL_DATABASE}"
+    FRAMADATE_DB_HOST: database
+    FRAMADATE_DB_USER: root
+    FRAMADATE_DB_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+  services:
+    - name: mysql:5.6
+      alias: database
   script:
     - APP_ENV=test bin/doctrine migrations:migrate --no-interaction -vvv
 
