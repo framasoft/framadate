@@ -47,37 +47,33 @@ class NotificationService {
 
             $subject = '[' . NOMAPPLICATION . '] ' . __f('Mail', $translationString, $poll->title);
 
-            $message = '';
-
-            $urlSondage = Utils::getUrlSondage($poll->admin_id, true);
-            $link = '<a href="' . $urlSondage . '">' . $urlSondage . '</a>' . "\n\n";
-
+            $this->smarty->assign('username', $name);
+            $this->smarty->assign('poll_title', $poll->title);
+            $this->smarty->assign('poll_url', Utils::getUrlSondage($poll->admin_id, true));
+            $template_name = null;
             switch ($type) {
                 case self::UPDATE_VOTE:
-                    $message .= $name . ' ';
-                    $message .= __('Mail', "updated a vote.<br/>You can visit your poll at the link") . " :\n\n";
-                    $message .= $link;
+                    $template_name = 'mail/updated_vote.html.tpl';
                     break;
                 case self::ADD_VOTE:
-                    $message .= $name . ' ';
-                    $message .= __('Mail', "added a vote.<br/>You can visit your poll at the link") . " :\n\n";
-                    $message .= $link;
+                    $template_name = 'mail/added_vote.html.tpl';
                     break;
                 case self::ADD_COMMENT:
-                    $message .= $name . ' ';
-                    $message .= __('Mail', "wrote a comment.<br/>You can visit your poll at the link") . " :\n\n";
-                    $message .= $link;
+                    $template_name = 'mail/added_comment.html.tpl';
                     break;
                 case self::UPDATE_POLL:
-                    $message = __f('Mail', 'Someone just changed your poll at the following link <a href=\"%1$s\">%1$s</a>.', Utils::getUrlSondage($poll->admin_id, true)) . "\n\n";
+                    $template_name = 'mail/updated_poll.html.tpl';
                     break;
                 case self::DELETED_POLL:
-                    $message = __f('Mail', 'Someone just deleted your poll "%s".', Utils::htmlEscape($poll->title)) . "\n\n";
+                    $template_name = 'mail/deleted_poll.html.tpl';
                     break;
             }
 
-            $messageTypeKey = $type . '-' . $poll->id;
-            $this->mailService->send($poll->admin_mail, $subject, $message, $messageTypeKey);
+            if (!is_null($template_name)) {
+                $message = $this->smarty->fetch($template_name);
+                $messageTypeKey = $type . '-' . $poll->id;
+                $this->mailService->send($poll->admin_mail, $subject, $message, $messageTypeKey);
+            }
         }
     }
 
