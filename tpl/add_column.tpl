@@ -25,7 +25,7 @@
                     <div class="col-md-8">
                         <div class="input-group date">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input type="text" id="newdate" data-date-format="{__('Date', 'yyyy-mm-dd')}" aria-describedby="dateformat" name="newdate" class="form-control" placeholder="{__('Date', 'yyyy-mm-dd')}" />
+                            <input type="text" id="newdate" data-date-format="{__('Date', 'yyyy-mm-dd')}" aria-describedby="dateformat" name="newdate" class="form-control" placeholder="{__('Date', 'yyyy-mm-dd-for-humans')}" />
                         </div>
                         <span id="dateformat" class="sr-only">({__('Date', 'yyyy-mm-dd')})</span>
                     </div>

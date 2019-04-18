@@ -26,7 +26,7 @@
                         <div class="col-sm-6">
                             <div class="input-group date">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
-                                <input type="text" class="form-control" id="enddate" data-date-format="{__('Date', 'yyyy-mm-dd')}" aria-describedby="dateformat" name="enddate" value="{$end_date_str}" size="10" maxlength="10" placeholder="{__('Date', 'yyyy-mm-dd')}" />
+                                <input type="text" class="form-control" id="enddate" data-date-format="{__('Date', 'yyyy-mm-dd')}" aria-describedby="dateformat" name="enddate" value="{$end_date_str}" size="10" maxlength="10" placeholder="{__('Date', 'yyyy-mm-dd-for-humans')}" />
                             </div>
                         </div>
                         <span id="dateformat" class="sr-only">{__('Date', 'yyyy-mm-dd')}</span>
