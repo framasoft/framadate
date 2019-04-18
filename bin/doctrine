@@ -55,4 +55,5 @@ try {
     $cli->run($input, $output);
 } catch (\Exception $e) {
     $style->error($e->getMessage());
+    exit(1);
 }
