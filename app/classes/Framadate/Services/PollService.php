@@ -34,8 +34,6 @@ use RuntimeException;
 use stdClass;
 
 class PollService {
-    private $logService;
-
     private $pollRepository;
     private $slotRepository;
     private $voteRepository;
@@ -53,8 +51,12 @@ class PollService {
      */
     private $purgeService;
 
-    public function __construct(Connection $connect, LogService $logService, NotificationService $notificationService, SessionService $sessionService, PurgeService $purgeService) {
-        $this->connect = $connect;
+    /**
+     * @var LogService
+     */
+    private $logService;
+
+    public function __construct(LogService $logService, NotificationService $notificationService, SessionService $sessionService, PurgeService $purgeService) {
         $this->logService = $logService;
         $this->notificationService = $notificationService;
         $this->sessionService = $sessionService;
