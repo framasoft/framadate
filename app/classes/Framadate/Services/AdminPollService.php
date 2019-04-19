@@ -2,9 +2,12 @@
 namespace Framadate\Services;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\ConnectionException;
 use Doctrine\DBAL\DBALException;
 use Framadate\Exception\MomentAlreadyExistsException;
+use Framadate\Form;
 use Framadate\Repositories\RepositoryFactory;
+use stdClass;
 
 /**
  * Class AdminPollService
@@ -31,15 +34,15 @@ class AdminPollService {
         $this->commentRepository = RepositoryFactory::commentRepository();
     }
 
-    function updatePoll($poll) {
-        global $config;
-
-        $end_date = strtotime($poll->end_date);
-
-        if ($end_date < strtotime($poll->creation_date)) {
+    /**
+     * @param Form $poll
+     * @return bool
+     */
+    public function updatePoll($poll) {
+        if ($poll->end_date < $poll->creation_date) {
             $poll->end_date = $poll->creation_date;
-        } elseif ($end_date > $this->pollService->maxExpiryDate()) {
-            $poll->end_date = utf8_encode(strftime('%Y-%m-%d', $this->pollService->maxExpiryDate()));
+        } elseif ($poll->end_date > $this->pollService->maxExpiryDate()) {
+            $poll->end_date = $this->pollService->maxExpiryDate();
         }
 
         return $this->pollRepository->update($poll);
@@ -216,7 +219,7 @@ class AdminPollService {
      * @param $datetime int The datetime
      * @param $new_moment string The moment's name
      * @throws MomentAlreadyExistsException When the moment to add already exists in database
-     * @throws \Doctrine\DBAL\ConnectionException
+     * @throws ConnectionException
      */
     public function addDateSlot($poll_id, $datetime, $new_moment) {
         $this->logService->logEntries(
@@ -242,7 +245,7 @@ class AdminPollService {
 
                 // Check if moment already exists (maybe not necessary)
                 if (in_array($new_moment, $moments, true)) {
-                    throw new MomentAlreadyExistsException();
+                    throw new MomentAlreadyExistsException($slot, $new_moment);
                 }
 
                 // Update found slot
@@ -257,6 +260,7 @@ class AdminPollService {
             // Commit transaction
             $this->connect->commit();
         } catch (DBALException $e) {
+            $this->logService->log('ERROR', "Database error, couldn't insert date slot" . $e->getMessage());
             $this->connect->rollBack();
         }
     }
@@ -270,7 +274,7 @@ class AdminPollService {
      * @param $poll_id int The ID of the poll
      * @param $title int The title
      * @throws MomentAlreadyExistsException When the moment to add already exists in database
-     * @throws \Doctrine\DBAL\ConnectionException
+     * @throws ConnectionException
      * @throws \Doctrine\DBAL\DBALException
      */
     public function addClassicSlot($poll_id, $title) {
@@ -309,10 +313,10 @@ class AdminPollService {
      *
      * @param $slots array All the slots of the poll
      * @param $datetime int The datetime of the new slot
-     * @return \stdClass An object like this one: {insert:X, slot:Y} where Y can be null.
+     * @return stdClass An object like this one: {insert:X, slot:Y} where Y can be null.
      */
     private function findInsertPosition($slots, $datetime) {
-        $result = new \stdClass();
+        $result = new stdClass();
         $result->slot = null;
         $result->insert = 0;
 
@@ -329,11 +333,13 @@ class AdminPollService {
                 $result->insert += count($moments);
                 $result->slot = $slot;
                 break;
-            } elseif ($datetime < $rowDatetime) {
+            }
+
+            if ($datetime < $rowDatetime) {
                 // We have to insert before this slot
                 break;
             }
-                $result->insert += count($moments);
+            $result->insert += count($moments);
         }
 
         return $result;

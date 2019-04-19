@@ -166,7 +166,8 @@ switch ($step) {
         $choices = $form->getChoices();
         foreach ($choices as $choice) {
             /** @var Choice $choice */
-            $summary .= '<li>' . strftime($date_format['txt_full'], $choice->getName());
+            $date = (new DateTime())->setTimestamp((int) $choice->getName());
+            $summary .= '<li>' . $end_date_str = date_format_intl($date); //textual date
             $first = true;
             foreach ($choice->getSlots() as $slots) {
                 $summary .= $first ? ': ' : ', ';
@@ -177,7 +178,7 @@ switch ($step) {
         }
         $summary .= '</ul>';
 
-        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); // textual date
+        $end_date_str = date_format_intl($max_expiry_time); //textual date
 
         $_SESSION['form'] = serialize($form);
 

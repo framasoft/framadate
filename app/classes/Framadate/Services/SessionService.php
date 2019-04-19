@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Framadate\Services;
 
 class SessionService {

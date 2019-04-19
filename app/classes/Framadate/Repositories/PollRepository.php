@@ -1,6 +1,11 @@
 <?php
 namespace Framadate\Repositories;
 
+use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Exception\InvalidArgumentException;
+use Doctrine\DBAL\Types\Type;
+use Exception;
+use Framadate\Form;
 use Framadate\Utils;
 use PDO;
 
@@ -8,9 +13,10 @@ class PollRepository extends AbstractRepository {
     /**
      * @param $poll_id
      * @param $admin_poll_id
-     * @param $form
+     * @param Form $form
+     * @throws Exception
      */
-    public function insertPoll($poll_id, $admin_poll_id, $form)
+    public function insertPoll($poll_id, $admin_poll_id, Form $form)
     {
         $this->connect->insert(Utils::table('poll'), [
             'id' => $poll_id,
@@ -19,7 +25,7 @@ class PollRepository extends AbstractRepository {
             'description' => $form->description,
             'admin_name' => $form->admin_name,
             'admin_mail' => $form->admin_mail,
-            'end_date' => (new \DateTime)->setTimestamp($form->end_date)->format('Y-m-d H:i:s'),
+            'end_date' => $form->end_date->format('Y-m-d H:i:s'),
             'format' => $form->format,
             'editable' => ($form->editable>=0 && $form->editable<=2) ? $form->editable : 0,
             'receiveNewVotes' => $form->receiveNewVotes ? 1 : 0,
@@ -34,7 +40,7 @@ class PollRepository extends AbstractRepository {
 
     /**
      * @param $poll_id
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return mixed
      */
     public function findById($poll_id)
@@ -44,12 +50,18 @@ class PollRepository extends AbstractRepository {
         $poll = $prepared->fetch();
         $prepared->closeCursor();
 
+        /**
+         * Hack to make date a proper DateTime
+         */
+        $poll->creation_date = Type::getType(Type::DATETIME)->convertToPhpValue($poll->creation_date, $this->connect->getDatabasePlatform());
+        $poll->end_date = Type::getType(Type::DATETIME)->convertToPhpValue($poll->end_date, $this->connect->getDatabasePlatform());
+
         return $poll;
     }
 
     /**
      * @param $admin_poll_id
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return mixed
      */
     public function findByAdminId($admin_poll_id) {
@@ -58,12 +70,15 @@ class PollRepository extends AbstractRepository {
         $poll = $prepared->fetch();
         $prepared->closeCursor();
 
+        $poll->creation_date = Type::getType(Type::DATETIME)->convertToPhpValue($poll->creation_date, $this->connect->getDatabasePlatform());
+        $poll->end_date = Type::getType(Type::DATETIME)->convertToPhpValue($poll->end_date, $this->connect->getDatabasePlatform());
+
         return $poll;
     }
 
     /**
      * @param $poll_id
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return bool
      */
     public function existsById($poll_id) {
@@ -76,7 +91,7 @@ class PollRepository extends AbstractRepository {
 
     /**
      * @param $admin_poll_id
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return bool
      */
     public function existsByAdminId($admin_poll_id) {
@@ -98,7 +113,7 @@ class PollRepository extends AbstractRepository {
             'admin_name' => $poll->admin_name,
             'admin_mail' => $poll->admin_mail,
             'description' => $poll->description,
-            'end_date' => $poll->end_date, # TODO : Harmonize dates between here and insert
+            'end_date' => $poll->end_date->format('Y-m-d H:i:s'), # TODO : Harmonize dates between here and insert
             'active' => $poll->active,
             'editable' => $poll->editable >= 0 && $poll->editable <= 2 ? $poll->editable : 0,
             'hidden' => $poll->hidden ? 1 : 0,
@@ -111,7 +126,7 @@ class PollRepository extends AbstractRepository {
 
     /**
      * @param $poll_id
-     * @throws \Doctrine\DBAL\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return bool
      */
     public function deleteById($poll_id)
@@ -122,7 +137,7 @@ class PollRepository extends AbstractRepository {
     /**
      * Find old polls. Limit: 20.
      *
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return array Array of old polls
      */
     public function findOldPolls()
@@ -138,7 +153,7 @@ class PollRepository extends AbstractRepository {
      * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>..., 'mail'=>...]
      * @param int $start The number of first entry to select
      * @param int $limit The number of entries to find
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return array The found polls
      */
     public function findAll($search, $start, $limit) {
@@ -194,7 +209,7 @@ class PollRepository extends AbstractRepository {
      * Find all polls that are created with the given admin mail.
      *
      * @param string $mail Email address of the poll admin
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return array The list of matching polls
      */
     public function findAllByAdminMail($mail) {
@@ -208,7 +223,7 @@ class PollRepository extends AbstractRepository {
      * Get the total number of polls in database.
      *
      * @param array $search Array of search : ['id'=>..., 'title'=>..., 'name'=>...]
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return int The number of polls
      */
     public function count($search = null) {

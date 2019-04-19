@@ -18,6 +18,8 @@
  */
 namespace Framadate;
 
+use DateTime;
+
 class Form
 {
     public $title;
@@ -26,7 +28,17 @@ class Form
     public $admin_name;
     public $admin_mail;
     public $format;
+
+    /**
+     * @var DateTime
+     */
     public $end_date;
+
+    /**
+     * @var DateTime
+     */
+    public $creation_date;
+
     public $choix_sondage;
     public $ValueMax;
 

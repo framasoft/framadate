@@ -1,19 +1,30 @@
 <?php
 namespace Framadate\Repositories;
 
+use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Exception\InvalidArgumentException;
+use Doctrine\DBAL\Types\Type;
 use Framadate\Utils;
 
 class CommentRepository extends AbstractRepository {
     /**
      * @param $poll_id
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return array
      */
     public function findAllByPollId($poll_id) {
         $prepared = $this->prepare('SELECT * FROM ' . Utils::table('comment') . ' WHERE poll_id = ? ORDER BY id');
         $prepared->execute([$poll_id]);
 
-        return $prepared->fetchAll();
+        $comments = $prepared->fetchAll();
+
+        /**
+         * Hack to make date a proper DateTime
+         */
+        return array_map(function($comment) {
+            $comment->date = Type::getType(Type::DATETIME)->convertToPhpValue($comment->date, $this->connect->getDatabasePlatform());
+            return $comment;
+        }, $comments);
     }
 
     /**
@@ -24,7 +35,7 @@ class CommentRepository extends AbstractRepository {
      * @param $comment
      * @return bool
      */
-    function insert($poll_id, $name, $comment)
+    public function insert($poll_id, $name, $comment)
     {
         return $this->connect->insert(Utils::table('comment'), ['poll_id' => $poll_id, 'name' => $name, 'comment' => $comment]) > 0;
     }
@@ -32,10 +43,10 @@ class CommentRepository extends AbstractRepository {
     /**
      * @param $poll_id
      * @param $comment_id
-     * @throws \Doctrine\DBAL\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return bool
      */
-    function deleteById($poll_id, $comment_id)
+    public function deleteById($poll_id, $comment_id)
     {
         return $this->connect->delete(Utils::table('comment'), ['poll_id' => $poll_id, 'id' => $comment_id]) > 0;
     }
@@ -44,10 +55,10 @@ class CommentRepository extends AbstractRepository {
      * Delete all comments of a given poll.
      *
      * @param $poll_id int The ID of the given poll.
-     * @throws \Doctrine\DBAL\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      * @return bool true if action succeeded.
      */
-    function deleteByPollId($poll_id)
+    public function deleteByPollId($poll_id)
     {
         return $this->connect->delete(Utils::table('comment'), ['poll_id' => $poll_id]) > 0;
     }
@@ -56,7 +67,7 @@ class CommentRepository extends AbstractRepository {
      * @param $poll_id
      * @param $name
      * @param $comment
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return bool
      */
     public function exists($poll_id, $name, $comment)

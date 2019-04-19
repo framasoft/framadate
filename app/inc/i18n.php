@@ -17,9 +17,16 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
+const DATE_FORMAT_FULL = 'EEEE d MMMM y';
+const DATE_FORMAT_SHORT = 'EEEE d MMMM y';
+const DATE_FORMAT_DAY = 'E d';
+const DATE_FORMAT_DATE = 'dd-MM-y';
+const DATE_FORMAT_MONTH_YEAR = 'MMMM y';
+const DATE_FORMAT_DATETIME_SHORT = 'EEEE d';
+
 // Change session language when requested
 if (isset($_REQUEST['lang'])
-    && in_array($_REQUEST['lang'], array_keys($ALLOWED_LANGUAGES), true)) {
+    && array_key_exists($_REQUEST['lang'], $ALLOWED_LANGUAGES)) {
     $_SESSION['lang'] = $_REQUEST['lang'];
 }
 
@@ -32,6 +39,79 @@ if (isset($_SESSION['lang'])) {
 // Use the best available locale.
 $locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $wanted_locale, false, DEFAULT_LANGUAGE);
 
+/**
+ * Formats a DateTime according to the IntlDateFormatter
+ *
+ * @param DateTime $date
+ * @param string $pattern
+ * @param $forceLocale
+ * @return string
+ */
+function date_format_intl(DateTime $date, $pattern = DATE_FORMAT_FULL, $forceLocale = null) {
+    global $locale;
+    $local_locale = $forceLocale || $locale;
+
+    $dateFormatter = IntlDateFormatter::create(
+        $local_locale,
+        IntlDateFormatter::FULL,
+        IntlDateFormatter::FULL,
+        date_default_timezone_get(),
+        IntlDateFormatter::GREGORIAN,
+        $pattern
+    );
+    return $dateFormatter->format($date);
+}
+
+/**
+ * Formats a DateTime according to a translated format
+ *
+ * @param DateTime $date
+ * @param string $pattern
+ * @return string
+ */
+function date_format_translation(DateTime $date, $pattern = 'Y-m-d') {
+    return $date->format(__('Date', $pattern));
+}
+
+/**
+ * Converts a string into a DateTime according to the IntlDateFormatter
+ *
+ * @param $dateString
+ * @param string $pattern
+ * @param string|null $forceLocale
+ * @return DateTime|null
+ */
+function parse_intl_date($dateString, $pattern = DATE_FORMAT_DATE, $forceLocale = null) {
+    global $locale;
+    $local_locale = $forceLocale || $locale;
+
+    $dateFormatter = IntlDateFormatter::create(
+        $local_locale,
+        IntlDateFormatter::FULL,
+        IntlDateFormatter::FULL,
+        date_default_timezone_get(),
+        IntlDateFormatter::GREGORIAN,
+        $pattern
+    );
+    $timestamp = $dateFormatter->parse($dateString);
+    try {
+        return (new DateTime())->setTimestamp($timestamp);
+    } catch (Exception $e) {
+        return null;
+    }
+}
+
+/**
+ * Converts a string into a DateTime according to a translated format
+ *
+ * @param string $dateString
+ * @param string $pattern
+ * @return DateTime
+ */
+function parse_translation_date($dateString, $pattern = 'Y-m-d') {
+    return DateTime::createFromFormat(__('Date', $pattern), $dateString);
+}
+
 /* i18n helper functions */
 use Symfony\Component\Translation\Loader\PoFileLoader;
 use Symfony\Component\Translation\Translator;
@@ -39,7 +119,7 @@ use Symfony\Component\Translation\Translator;
 class __i18n {
     private static $translator;
     private static $fallbacktranslator;
-    
+
     public static function init($locale) {
         self::$translator = new Translator($locale);
         self::$translator->addLoader('pofile', new PoFileLoader());
@@ -51,7 +131,7 @@ class __i18n {
         self::$fallbacktranslator->addLoader('pofile', new PoFileLoader());
         self::$fallbacktranslator->addResource('pofile', ROOT_DIR . "po/" . DEFAULT_LANGUAGE . ".po", DEFAULT_LANGUAGE);
     }
-    
+
     public static function translate($key) {
         return self::$translator->trans($key)
             ?: self::$fallbacktranslator->trans($key);
@@ -67,17 +147,4 @@ function __f($section, $key, $args) {
     $msg = __i18n::translate($key);
     $args = array_slice(func_get_args(), 2);
     return vsprintf($msg, $args);
-}
-
-/* Date Format */
-$date_format['txt_full'] = __('Date', '%A, %B %e, %Y'); //summary in create_date_poll.php and removal date in choix_(date|autre).php
-$date_format['txt_short'] = __('Date', '%A %e %B %Y'); // radio title
-$date_format['txt_day'] = __('Date', '%a %e');
-$date_format['txt_date'] = __('Date', '%Y-%m-%d');
-$date_format['txt_month_year'] = __('Date', '%B %Y');
-$date_format['txt_datetime_short'] = __('Date', '%m/%d/%Y %H:%M');
-if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { //%e can't be used on Windows platform, use %#d instead
-    foreach ($date_format as $k => $v) {
-        $date_format[$k] = preg_replace('#(?<!%)((?:%%)*)%e#', '\1%#d', $v); //replace %e by %#d for windows
-    }
 }

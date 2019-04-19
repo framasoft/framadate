@@ -66,7 +66,7 @@ if (is_file(CONF_FILENAME)) {
     ];
 
     if (DB_DRIVER === 'pdo_sqlite') {
-        $connectionParams['path'] = 'test_database.sqlite';
+        $connectionParams['path'] = ROOT_DIR . '/test_database.sqlite';
     }
 
     try {

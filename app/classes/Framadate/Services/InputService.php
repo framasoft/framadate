@@ -20,6 +20,7 @@ namespace Framadate\Services;
 use DateTime;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\RFCValidation;
+use InvalidArgumentException;
 
 /**
  * This class helps to clean all inputs from the users or external services.
@@ -124,9 +125,16 @@ class InputService {
         return $this->returnIfNotBlank($comment);
     }
 
+    /**
+     * @param string $date
+     * @return DateTime
+     */
     public function filterDate($date) {
-        $dDate = DateTime::createFromFormat(__('Date', 'Y-m-d'), $date)->setTime(0, 0, 0);
-        return $dDate->format('Y-m-d H:i:s');
+        $dDate = parse_translation_date($date);
+        if ($dDate) {
+            return $dDate;
+        }
+        throw new InvalidArgumentException('Invalid date');
     }
 
     /**

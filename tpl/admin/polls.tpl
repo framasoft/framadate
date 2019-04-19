@@ -93,10 +93,10 @@
                             <td>{$poll->admin_name|html}</td>
                             <td>{$poll->admin_mail|html}</td>
 
-                            {if strtotime($poll->end_date) > time()}
-                                <td>{date('d/m/y', strtotime($poll->end_date))}</td>
+                            {if $poll->end_date > date_create()}
+                                <td>{$poll->end_date|date_format_intl:'d/m/Y'}</td>
                             {else}
-                                <td><span class="text-danger">{strtotime($poll->end_date)|date_format:'d/m/Y'}</span></td>
+                                <td><span class="text-danger">{$poll->end_date|date_format_intl:'d/m/Y'}</span></td>
                             {/if}
                             <td>{$poll->votes|html}</td>
                             <td>{$poll->id|html}</td>
