@@ -35,18 +35,20 @@ use Framadate\Utils;
 class PollService {
     private $connect;
     private $logService;
+    private $purgeService;
+    private $sessionService;
 
     private $pollRepository;
     private $slotRepository;
     private $voteRepository;
     private $commentRepository;
 
-    function __construct(Connection $connect, LogService $logService, NotificationService $notificationService) {
+    function __construct(Connection $connect, LogService $logService, NotificationService $notificationService, SessionService $sessionService, PurgeService $purgeService) {
         $this->connect = $connect;
         $this->logService = $logService;
         $this->notificationService = $notificationService;
-        $this->sessionService = new SessionService();
-        $this->purgeService = new PurgeService($connect, $logService);
+        $this->sessionService = $sessionService;
+        $this->purgeService = $purgeService;
         $this->pollRepository = RepositoryFactory::pollRepository();
         $this->slotRepository = RepositoryFactory::slotRepository();
         $this->voteRepository = RepositoryFactory::voteRepository();
