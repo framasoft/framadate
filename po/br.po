@@ -420,7 +420,7 @@ msgid "yyyy-mm-dd"
 msgstr "dd/mm/yyyy"
 
 #: .Date.yyyy-mm-dd-for-humans
-msgid "year-month-day"
+msgid "yyyy-mm-dd-for-humans"
 msgstr "devezh / miz / bloaz"
 
 #: .EditLink.Edit+link+for+poll+%22%25s%22

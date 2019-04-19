@@ -414,7 +414,7 @@ msgid "yyyy-mm-dd"
 msgstr "yyyy.mm.dd."
 
 #: .Date.yyyy-mm-dd-for-humans
-msgid "year-month-day"
+msgid "yyyy-mm-dd-for-humans"
 msgstr "év.hónap.nap."
 
 #: .EditLink.Edit+link+for+poll+%22%25s%22
