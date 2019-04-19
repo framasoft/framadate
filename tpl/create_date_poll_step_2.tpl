@@ -53,7 +53,7 @@
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
                                             <input type="text" class="form-control" id="day{$i}" title="{__('Generic', 'Day')} {$i+1}"
                                                    data-date-format="{__('Date', 'yyyy-mm-dd')}" aria-describedby="dateformat{$i}" name="days[]" value="{$day_value}"
-                                                   size="10" maxlength="10" placeholder="{__('Date', 'yyyy-mm-dd')}" autocomplete="off"/>
+                                                   size="10" maxlength="10" placeholder="{__('Date', 'yyyy-mm-dd-for-humans')}" autocomplete="off"/>
                                         </div>
                                     </div>
                                     <div class="col-xs-2 col-sm-1">
@@ -149,7 +149,7 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
                             <input type="text" class="form-control" id="range_start"
                                    data-date-format="{__('Date', 'yyyy-mm-dd')}" size="10" maxlength="10"
-                                   placeholder="{__('Date', 'yyyy-mm-dd')}"/>
+                                   placeholder="{__('Date', 'yyyy-mm-dd-for-humans')}"/>
                         </div>
                     </div>
                     <div class="col-xs-12">
@@ -158,7 +158,7 @@
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
                             <input type="text" class="form-control" id="range_end"
                                    data-date-format="{__('Date', 'yyyy-mm-dd')}" size="10" maxlength="10"
-                                   placeholder="{__('Date', 'yyyy-mm-dd')}"/>
+                                   placeholder="{__('Date', 'yyyy-mm-dd-for-humans')}"/>
                         </div>
                     </div>
                 </div>

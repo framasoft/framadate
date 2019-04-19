@@ -100,7 +100,8 @@
       "Start date": "Startdatum",
       "Y-m-d": "d-m-Y",
       "You can select at most 4 months": "Es können maximal 4 Monate ausgewählt werden",
-      "yyyy-mm-dd": "dd-mm-yyyy"
+      "yyyy-mm-dd": "dd-mm-yyyy",
+      "yyyy-mm-dd-for-humans": "Tag-Monat-Jahr"
    },
    "EditLink": {
       "Edit link for poll \"%s\"": "Link für die Abstimmung \"%s\" bearbeiten",

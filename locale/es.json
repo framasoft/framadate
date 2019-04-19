@@ -100,7 +100,8 @@
       "Start date": "Fecha de Inicio",
       "Y-m-d": "d/m/Y",
       "You can select at most 4 months": "Puede seleccionar como máximo 4 meses",
-      "yyyy-mm-dd": "dd/mm/yyyy"
+      "yyyy-mm-dd": "dd/mm/yyyy",
+      "yyyy-mm-dd-for-humans": "día / mes / año"
    },
    "EditLink": {
       "Edit link for poll \"%s\"": "Enlace para edición de encuesta \"%s\"",
