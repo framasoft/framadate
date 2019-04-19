@@ -56,7 +56,7 @@ if (!isset($form->title) || !isset($form->admin_name) || ($config['use_smtp'] &&
     $step = 1;
 } elseif (isset($_POST['confirmation'])) {
     $step = 4;
-} elseif (empty($_POST['fin_sondage_autre']) ) {
+} elseif (empty($form->errors) && empty($_POST['fin_sondage_autre']) ) {
     $step = 2;
 } else {
     $step = 3;
@@ -137,6 +137,7 @@ switch ($step) {
         $smarty->assign('end_date_str', $end_date_str);
         $smarty->assign('default_poll_duration', $config['default_poll_duration']);
         $smarty->assign('use_smtp', $config['use_smtp']);
+        $smarty->assign('errors', $form->errors);
 
         $smarty->display('create_poll_step_3.tpl');
         exit;
@@ -152,6 +153,10 @@ switch ($step) {
         if (!is_null($admin_poll_id)) {
             // Redirect to poll administration
             header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
+        } else {
+            // Redirect to current page
+            $referer = $_SERVER['HTTP_REFERER'];
+            header("Location: $referer");
         }
         exit;
 
