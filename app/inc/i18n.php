@@ -35,24 +35,26 @@ use Symfony\Component\Translation\Translator;
 class __i18n {
     private static $translator;
     private static $fallbacktranslator;
+    
+    public static function init($locale, $ALLOWED_LANGUAGES) {
+        $found_locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $locale, false, DEFAULT_LANGUAGE);
+        self::$translator = new Translator($found_locale);
+        self::$translator->addLoader('pofile', new PoFileLoader());
+        self::$translator->addResource('pofile', ROOT_DIR . "po/{$found_locale}.po", $found_locale);
+        # Fallback:
+        # For Symfony/Translation, empty strings are valid, but in po files, untranslated strings are "".
+        # This means we cannot use the standard $translator->setFallbackLocales() mechanism :(
+        self::$fallbacktranslator = new Translator(DEFAULT_LANGUAGE);
+        self::$fallbacktranslator->addLoader('pofile', new PoFileLoader());
+        self::$fallbacktranslator->addResource('pofile', ROOT_DIR . "po/" . DEFAULT_LANGUAGE . ".po", DEFAULT_LANGUAGE);
+    }
+    
     public static function translate($key) {
-        if (!isset(self::$translator)) {
-            global $locale, $ALLOWED_LANGUAGES;
-            $found_locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $locale, false, DEFAULT_LANGUAGE);
-            self::$translator = new Translator($found_locale);
-            self::$translator->addLoader('pofile', new PoFileLoader());
-            self::$translator->addResource('pofile', ROOT_DIR . "po/{$found_locale}.po", $found_locale);
-            # Fallback:
-            # For Symfony/Translation, empty strings are valid, but in po files, untranslated strings are "".
-            # This means we cannot use the standard $translator->setFallbackLocales() mechanism :(
-            self::$fallbacktranslator = new Translator(DEFAULT_LANGUAGE);
-            self::$fallbacktranslator->addLoader('pofile', new PoFileLoader());
-            self::$fallbacktranslator->addResource('pofile', ROOT_DIR . "po/" . DEFAULT_LANGUAGE . ".po", DEFAULT_LANGUAGE);
-        }
         return self::$translator->trans($key)
             ?: self::$fallbacktranslator->trans($key);
     }
 }
+__i18n::init($locale, $ALLOWED_LANGUAGES);
 
 function __($section, $key) {
     return __i18n::translate($key);
