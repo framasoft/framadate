@@ -13,6 +13,14 @@ class NotificationService {
     const UPDATE_POLL = 10;
     const DELETED_POLL = 11;
 
+    const TEMPLATES_MAPPING = [
+        self::UPDATE_VOTE => 'mail/updated_vote.html.tpl',
+        self::ADD_VOTE => 'mail/added_vote.html.tpl',
+        self::ADD_COMMENT => 'mail/added_comment.html.tpl',
+        self::UPDATE_POLL => 'mail/updated_poll.html.tpl',
+        self::DELETED_POLL => 'mail/deleted_poll.html.tpl'
+    ];
+
     private $mailService;
     private $smarty;
 
@@ -46,35 +54,17 @@ class NotificationService {
 
             $subject = '[' . NOMAPPLICATION . '] ' . __f('Mail', $translationString, $poll->title);
 
-            $message = '';
+            $this->smarty->assign('username', $name);
+            $this->smarty->assign('poll_title', $poll->title);
+            $this->smarty->assign('poll_url', Utils::getUrlSondage($poll->admin_id, true));
 
-            $urlSondage = Utils::getUrlSondage($poll->admin_id, true);
-            $link = '<a href="' . $urlSondage . '">' . $urlSondage . '</a>' . "\n\n";
+            $template_name = self::TEMPLATES_MAPPING[$type];
 
-            switch ($type) {
-                case self::UPDATE_VOTE:
-                    $message .= $name . ' ';
-                    $message .= __('Mail', "updated a vote.<br/>You can visit your poll at the link") . " :\n\n";
-                    $message .= $link;
-                    break;
-                case self::ADD_VOTE:
-                    $message .= $name . ' ';
-                    $message .= __('Mail', "added a vote.<br/>You can visit your poll at the link") . " :\n\n";
-                    $message .= $link;
-                    break;
-                case self::ADD_COMMENT:
-                    $message .= $name . ' ';
-                    $message .= __('Mail', "wrote a comment.<br/>You can visit your poll at the link") . " :\n\n";
-                    $message .= $link;
-                    break;
-                case self::UPDATE_POLL:
-                    $message = __f('Mail', 'Someone just changed your poll at the following link <a href=\"%1$s\">%1$s</a>.', Utils::getUrlSondage($poll->admin_id, true)) . "\n\n";
-                    break;
-                case self::DELETED_POLL:
-                    $message = __f('Mail', 'Someone just deleted your poll "%s".', Utils::htmlEscape($poll->title)) . "\n\n";
-                    break;
+            if (!is_null($template_name)) {
+                $message = $this->smarty->fetch($template_name);
+            } else {
+                $message = '';
             }
-
             $messageTypeKey = $type . '-' . $poll->id;
             $this->mailService->send($poll->admin_mail, $subject, $message, $messageTypeKey);
         }
