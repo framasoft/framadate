@@ -41,7 +41,7 @@ $sessionService = new SessionService();
 if (is_file('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
 } else {
-    include_once('bandeaux.php');
+    include_once 'bandeaux.php';
 }
 
 $max_expiry_time = $pollService->maxExpiryDate();
@@ -142,7 +142,7 @@ switch ($step) {
         }
         $summary .= '</ol>';
 
-        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); //textual date
+        $end_date_str = date_format_intl($max_expiry_time); //textual date
 
         $_SESSION['form'] = serialize($form);
 

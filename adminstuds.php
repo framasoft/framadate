@@ -16,11 +16,14 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
+
+use Doctrine\DBAL\DBALException;
 use Framadate\Editable;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Exception\ConcurrentVoteException;
 use Framadate\Exception\MomentAlreadyExistsException;
+use Framadate\Exception\SlotAlreadyExistsException;
 use Framadate\Message;
 use Framadate\Security\PasswordHasher;
 use Framadate\Services\AdminPollService;
@@ -465,7 +468,7 @@ if (isset($_POST['confirm_add_column'])) {
            exit_displaying_add_column(new Message('danger', __('Error', "Can't create an empty column.")));
         }
         if ($poll->format === 'D') {
-            $date = DateTime::createFromFormat(__('Date', 'Y-m-d'), $_POST['newdate'])->setTime(0, 0, 0);
+            $date = $inputService->filterDate($_POST['newdate']);
             $time = $date->getTimestamp();
             $newmoment = strip_tags($_POST['newmoment']);
             $adminPollService->addDateSlot($poll_id, $time, $newmoment);
@@ -475,8 +478,12 @@ if (isset($_POST['confirm_add_column'])) {
         }
 
         $message = new Message('success', __('adminstuds', 'Choice added'));
+    } catch (SlotAlreadyExistsException $e) {
+        exit_displaying_add_column(new Message('danger', __f('Error', 'The column %s already exists', $e->getSlot())));
     } catch (MomentAlreadyExistsException $e) {
-        exit_displaying_add_column(new Message('danger', __('Error', 'The column already exists')));
+        exit_displaying_add_column(new Message('danger', __f('Error', 'The column %s already exists with %s', $e->getSlot(), $e->getMoment())));
+    } catch (DBALException $e) {
+        exit_displaying_add_column(new Message('danger', __('Error', 'Error while adding a column')));
     }
 }
 
@@ -484,14 +491,16 @@ if (isset($_POST['confirm_add_column'])) {
 $slots = $pollService->allSlotsByPoll($poll);
 $votes = $pollService->allVotesByPollId($poll_id);
 $comments = $pollService->allCommentsByPollId($poll_id);
+$deletion_date = clone $poll->end_date;
+$deletion_date->add(new DateInterval('P' . PURGE_DELAY . 'D'));
 
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('admin_poll_id', $admin_poll_id);
 $smarty->assign('poll', $poll);
 $smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
-$smarty->assign('expired', strtotime($poll->end_date) < time());
-$smarty->assign('deletion_date', strtotime($poll->end_date) + PURGE_DELAY * 86400);
+$smarty->assign('expired', $poll->end_date < new DateTime());
+$smarty->assign('deletion_date', $deletion_date);
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);
 $smarty->assign('slots_hash', $pollService->hashSlots($slots));
 $smarty->assign('votes', $pollService->splitVotes($votes));

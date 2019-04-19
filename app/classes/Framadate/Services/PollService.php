@@ -17,32 +17,43 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 namespace Framadate\Services;
+
+use DateInterval;
+use DateTime;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\ConnectionException;
 use Doctrine\DBAL\DBALException;
+use Exception;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Exception\ConcurrentVoteException;
 use Framadate\Form;
 use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\Token;
-use Framadate\Services\LogService;
-use Framadate\Services\NotificationService;
-use Framadate\Services\PurgeService;
-use Framadate\Services\SessionService;
-use Framadate\Utils;
+use RuntimeException;
+use stdClass;
 
 class PollService {
-    private $connect;
     private $logService;
 
     private $pollRepository;
     private $slotRepository;
     private $voteRepository;
     private $commentRepository;
+    /**
+     * @var NotificationService
+     */
+    private $notificationService;
+    /**
+     * @var SessionService
+     */
+    private $sessionService;
+    /**
+     * @var PurgeService
+     */
+    private $purgeService;
 
-    function __construct(Connection $connect, LogService $logService, NotificationService $notificationService) {
-        $this->connect = $connect;
+    public function __construct(Connection $connect, LogService $logService, NotificationService $notificationService) {
         $this->logService = $logService;
         $this->notificationService = $notificationService;
         $this->sessionService = new SessionService();
@@ -57,7 +68,7 @@ class PollService {
      * Find a poll from its ID.
      *
      * @param $poll_id int The ID of the poll
-     * @return \stdClass|null The found poll, or null
+     * @return stdClass|null The found poll, or null
      */
     function findById($poll_id) {
         try {
@@ -142,7 +153,7 @@ class PollService {
      * @throws AlreadyExistsException
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
-     * @return \stdClass
+     * @return stdClass
      */
     function addVote($poll_id, $name, $choices, $slots_hash, $mail) {
         $this->checkVoteConstraints($choices, $poll_id, $slots_hash, $name);
@@ -218,9 +229,10 @@ class PollService {
 
     /**
      * @param Form $form
+     * @throws ConnectionException
      * @return array
      */
-    function createPoll(Form $form) {
+    public function createPoll(Form $form) {
         // Generate poll IDs, loop while poll ID already exists
 
         $this->pollRepository->beginTransaction();
@@ -230,7 +242,7 @@ class PollService {
                     $poll_id = $this->random(16);
                 } while ($this->pollRepository->existsById($poll_id));
                 $admin_poll_id = $poll_id . $this->random(8);
-            } else { // User have choosen the poll id
+            } else { // User have chosen the poll id
                 $poll_id = $form->id;
                 do {
                     $admin_poll_id = $this->random(24);
@@ -261,7 +273,7 @@ class PollService {
 
     /**
      * @param array $votes
-     * @param \stdClass $poll
+     * @param stdClass $poll
      * @return array
      */
     public function computeBestChoices($votes, $poll) {
@@ -293,8 +305,8 @@ class PollService {
     function splitSlots($slots) {
         $splitted = [];
         foreach ($slots as $slot) {
-            $obj = new \stdClass();
-            $obj->day = $slot->title;
+            $obj = new stdClass();
+            $obj->day = (new DateTime())->setTimestamp((int) $slot->title);
             $obj->moments = explode(',', $slot->moments);
 
             $splitted[] = $obj;
@@ -316,7 +328,7 @@ class PollService {
     function splitVotes($votes) {
         $splitted = [];
         foreach ($votes as $vote) {
-            $obj = new \stdClass();
+            $obj = new stdClass();
             $obj->id = $vote->id;
             $obj->name = $vote->name;
             $obj->uniqId = $vote->uniqId;
@@ -330,18 +342,25 @@ class PollService {
     }
 
     /**
-     * @return int The max timestamp allowed for expiry date
+     * @throws Exception
+     * @return DateTime The max timestamp allowed for expiry date
      */
     public function maxExpiryDate() {
-        global $config;
-        return time() + (86400 * $config['default_poll_duration']);
+        try {
+            global $config;
+            $default_poll_duration = isset($config['default_poll_duration']) ? $config['default_poll_duration'] : 60;
+            return (new DateTime())->add(new DateInterval('P' . $default_poll_duration . 'D'));
+        } catch (Exception $e) {
+            throw new RuntimeException('Configuration Exception');
+        }
     }
 
     /**
-     * @return int The min timestamp allowed for expiry date
+     * @throws Exception
+     * @return DateTime The min timestamp allowed for expiry date
      */
     public function minExpiryDate() {
-        return time() + 86400;
+        return (new DateTime())->add(new DateInterval('P1D'));
     }
 
     /**
@@ -355,7 +374,7 @@ class PollService {
     }
 
     /**
-     * @param \stdClass $poll
+     * @param stdClass $poll
      * @return array
      */
     private function computeEmptyBestChoices($poll)
@@ -440,7 +459,7 @@ class PollService {
      * This method checks if the votes doesn't conflicts the maximum votes constraint
      *
      * @param $user_choice
-     * @param \stdClass $poll
+     * @param stdClass $poll
      * @param string $poll_id
      * @throws ConcurrentVoteException
      */

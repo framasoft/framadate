@@ -218,7 +218,7 @@ function checkCommentSending() {
         button.data("textSend", button.text());
     }
 
-	if (!form.get(0).checkValidity()) {
+	if (form.get(0) && !form.get(0).checkValidity()) {
 		button.prop("disabled", true);
 		button.text(button.data("textWait"));
 	} else {

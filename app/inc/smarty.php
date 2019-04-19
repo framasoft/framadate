@@ -37,7 +37,6 @@ $smarty->assign('use_nav_js', strstr($serverName, 'framadate.org'));
 $smarty->assign('provide_fork_awesome', !isset($config['provide_fork_awesome']) || $config['provide_fork_awesome']);
 $smarty->assign('locale', $locale);
 $smarty->assign('langs', $ALLOWED_LANGUAGES);
-$smarty->assign('date_format', $date_format);
 if (isset($config['tracking_code'])) {
     $smarty->assign('tracking_code', $config['tracking_code']);
 }
@@ -46,7 +45,8 @@ if (defined('FAVICON')) {
 }
 
 // Dev Mode
-if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE'] || php_sapi_name() === 'cli-server') {
+if (php_sapi_name() === 'cli-server') {
+    $smarty->caching = 0;
     $smarty->force_compile = true;
     $smarty->compile_check = true;
 } else {
@@ -124,4 +124,39 @@ function smarty_modifier_locale_2_lang($locale) {
 
 function path_for_datepicker_locale($lang) {
     return __DIR__ . '/../../js/locales/bootstrap-datepicker.' . $lang . '.js';
+}
+
+/**
+ * @param $date
+ * @param string $pattern
+ * @return string
+ */
+function smarty_modifier_date_format_intl(DateTime $date, $pattern) {
+    return date_format_intl($date, $pattern);
+}
+
+/**
+ * @param DateTime $date
+ * @return int
+ */
+function smarty_modifier_date_to_timestamp(DateTime $date) {
+    return $date->getTimestamp();
+}
+
+/**
+ * @param integer $timestamp
+ * @throws Exception
+ * @return DateTime
+ */
+function smarty_modifier_timestamp_to_date($timestamp) {
+    return (new DateTime())->setTimestamp((int) $timestamp);
+}
+
+/**
+ * @param DateTime $date
+ * @param string $pattern
+ * @return bool|DateTime
+ */
+function smarty_modifier_date_format_translation(DateTime $date, $pattern = 'Y-m-d') {
+    return date_format_translation($date, $pattern);
 }
