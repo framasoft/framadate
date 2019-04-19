@@ -1,4 +1,4 @@
-push-locales: locales
+push-locales:
 	zanata-cli -q -B push --errors --project-version `git branch | grep \* | cut -d ' ' -f2-`
 
 pull-locales:

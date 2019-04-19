@@ -11,7 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-04-19 11:48+0000\n"
+"PO-Revision-Date: 2019-04-19 07:09+0000\n"
 "Last-Translator: Thomas Citharel <thomas.citharel@framasoft.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: Zanata 4.6.2\n"
@@ -557,6 +557,12 @@ msgstr "Échec de la sauvegarde du sondage"
 #: .Error.Forbidden%21
 msgid "Forbidden!"
 msgstr "Interdit !"
+
+#: .Error.GenericErrorPollCreation
+msgid "GenericErrorPollCreation"
+msgstr ""
+"Oh non ! Votre sondage n'a pas pu être enregistré. Nous sommes désolés. "
+"Merci de réessayer."
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
@@ -1968,4 +1974,3 @@ msgstr ""
 "Votre vote a bien été pris en compte, mais faites attention : ce sondage "
 "n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; "
 "conservez-le précieusement ! "
-

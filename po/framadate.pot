@@ -513,6 +513,10 @@ msgstr ""
 msgid "Forbidden!"
 msgstr ""
 
+#: .Error.GenericErrorPollCreation
+msgid "GenericErrorPollCreation"
+msgstr ""
+
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
 msgstr ""
