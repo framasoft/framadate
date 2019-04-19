@@ -18,25 +18,11 @@
  */
 use Framadate\Choice;
 use Framadate\Form;
-use Framadate\Services\InputService;
-use Framadate\Services\LogService;
-use Framadate\Services\MailService;
-use Framadate\Services\NotificationService;
-use Framadate\Services\PollService;
-use Framadate\Services\PurgeService;
-use Framadate\Services\SessionService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
 
-/* Service */
-/*---------*/
-$logService = new LogService();
-$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
-$notificationService = new NotificationService($mailService, $smarty);
-$pollService = new PollService($connect, $logService, $notificationService);
-$purgeService = new PurgeService($connect, $logService);
-$sessionService = new SessionService();
+$pollService = Services::poll();
 
 if (is_file('bandeaux_local.php')) {
     include_once('bandeaux_local.php');

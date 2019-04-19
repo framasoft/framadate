@@ -17,13 +17,6 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-use Framadate\Services\LogService;
-use Framadate\Services\PurgeService;
-
 include_once __DIR__ . '/../app/inc/init.php';
 
-$logService = new LogService();
-$purgeService = new PurgeService($connect, $logService);
-
-$purgeService->cleanDemoPoll();
-
+Services::purge()->cleanDemoPoll();
