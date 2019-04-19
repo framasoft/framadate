@@ -20,7 +20,6 @@
 use Framadate\Form;
 use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\PasswordHasher;
-use Framadate\Services\InputService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -30,7 +29,7 @@ const GO_TO_STEP_2 = 'gotostep2';
 /* Services */
 /*----------*/
 
-$inputService = new InputService();
+$inputService = Services::input();
 $pollRepository = RepositoryFactory::pollRepository();
 
 /* PAGE */

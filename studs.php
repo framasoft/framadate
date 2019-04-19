@@ -22,12 +22,7 @@ use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Exception\ConcurrentVoteException;
 use Framadate\Message;
 use Framadate\Security\Token;
-use Framadate\Services\InputService;
-use Framadate\Services\LogService;
-use Framadate\Services\MailService;
 use Framadate\Services\NotificationService;
-use Framadate\Services\PollService;
-use Framadate\Services\SecurityService;
 use Framadate\Services\SessionService;
 use Framadate\Utils;
 
@@ -55,13 +50,11 @@ $selectedNewVotes = [];
 /* Services */
 /*----------*/
 
-$logService = new LogService();
-$inputService = new InputService();
-$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
-$notificationService = new NotificationService($mailService, $smarty);
-$pollService = new PollService($connect, $logService, $notifierService);
-$securityService = new SecurityService();
-$sessionService = new SessionService();
+$inputService = Services::input();
+$notificationService = Services::notification();
+$pollService = Services::poll();
+$securityService = Services::security();
+$sessionService = Services::session();
 
 /* PAGE */
 /* ---- */

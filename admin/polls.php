@@ -17,11 +17,6 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-use Framadate\Services\AdminPollService;
-use Framadate\Services\LogService;
-use Framadate\Services\MailService;
-use Framadate\Services\PollService;
-use Framadate\Services\SecurityService;
 use Framadate\Services\SuperAdminService;
 
 include_once __DIR__ . '/../app/inc/init.php';
@@ -50,13 +45,10 @@ $poll_to_delete = null;
 /* Services */
 /*----------*/
 
-$logService = new LogService();
-$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
-$notificationService = new NotificationService($mailService, $smarty);
-$pollService = new PollService($connect, $logService, $notificationService);
-$adminPollService = new AdminPollService($connect, $pollService, $logService);
+$adminPollService = Services::adminPoll();
+$pollService = Services::poll();
+$securityService = Services::security();
 $superAdminService = new SuperAdminService();
-$securityService = new SecurityService();
 
 /* GET */
 /*-----*/
