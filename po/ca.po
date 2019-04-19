@@ -1,71 +1,76 @@
-#. extracted from locale/en.json, locale/en.json
-#, fuzzy
+# Antoni Serrano <antoni@serrano.cat>, 2018. #zanata
+# Antoni Serrano <antoni@serrano.cat>, 2019. #zanata
+# Thomas Citharel <thomas.citharel@framasoft.org>, 2019. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.3.1\n"
+"PO-Revision-Date: 2019-04-19 11:46+0000\n"
+"Last-Translator: Thomas Citharel <thomas.citharel@framasoft.org>\n"
+"Language-Team: Catalan\n"
+"Language: ca\n"
+"X-Generator: Zanata 4.6.2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
-msgstr ""
+msgstr "Crea una enquesta"
 
 #: .1st+section.Define+dates+or+subjects+to+choose+from
 msgid "Define dates or subjects to choose from"
-msgstr ""
+msgstr "Definir dates o temes per triar"
 
 #: .1st+section.Discuss+and+make+a+decision
 msgid "Discuss and make a decision"
-msgstr ""
+msgstr "Discutir i prendre una decisió"
 
 #: .1st+section.Do+you+want+to
 msgid "Do you want to"
-msgstr ""
+msgstr "Vols"
 
 #: .1st+section.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.+No+registration+is+required.
 msgid ""
 "Framadate is an online service for planning an appointment or making a "
 "decision quickly and easily. No registration is required."
 msgstr ""
+"Framadate és un servei en línia per planificar una cita o prendre una "
+"decisió de forma ràpida i senzilla. No cal registrar-se."
 
 #: .1st+section.Here+is+how+it+works:
 msgid "Here is how it works:"
-msgstr ""
+msgstr "Així és com funciona:"
 
 #: .1st+section.Send+the+poll+link+to+your+friends+or+colleagues
 msgid "Send the poll link to your friends or colleagues"
-msgstr ""
+msgstr "Envia l'enllaç de l'enquesta als teus amics o col·legues"
 
 #: .1st+section.What+is+Framadate%3F
 msgid "What is Framadate?"
-msgstr ""
+msgstr "Què és Framadate?"
 
 #: .1st+section.view+an+example%3F
 msgid "view an example?"
-msgstr ""
+msgstr "veure un exemple?"
 
 #: .2nd+section.CeCILL-B+license
 msgid "CeCILL-B license"
-msgstr ""
+msgstr "Llicència CeCILL-B"
 
 #: .2nd+section.Framadate+is+licensed+under+the
 msgid "Framadate is licensed under the"
-msgstr ""
+msgstr "Framadate està llicenciat sota la"
 
 #: .2nd+section.Framadate+was+initially+based+on
 msgid "Framadate was initially based on"
-msgstr ""
+msgstr "Framadate incialment es va basar en"
 
 #: .2nd+section.The+software
 msgid "The software"
-msgstr ""
+msgstr "El programari"
 
 #: .2nd+section.This+software+needs+javascript+and+cookies+enabled.+It+is+compatible+with+the+following+web+browsers:
 msgid ""
@@ -73,451 +78,484 @@ msgid ""
 "the following web browsers:"
 msgstr ""
 
-#: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days,+it+is+developed+by+the+Framasoft+association.
+#: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days
+#: +it+is+developed+by+the+Framasoft+association.
 msgid ""
 "software developed by the University of Strasbourg. These days, it is "
 "developed by the Framasoft association."
 msgstr ""
+"programari desenvolupat per la Universitat d'Estrasburg. Actualment "
+"desenvolupat per l'associació Framasoft."
 
 #: .3rd+section.Grow+your+own
 msgid "Grow your own"
-msgstr ""
+msgstr "Créixer el teu compte"
 
-#: .3rd+section.If+you+want+to+install+the+software+for+your+own+use+and+thus+increase+your+independence,+we+can+help+you+at:
+#: .3rd+section.If+you+want+to+install+the+software+for+your+own+use+and+thus+increase+your+independence
+#: +we+can+help+you+at:
 msgid ""
 "If you want to install the software for your own use and thus increase your "
 "independence, we can help you at:"
 msgstr ""
+"Si vols instal·lar el programari per al teu propi ús i, per tant, augmentar "
+"la teva independència, et podem ajudar a:"
 
-#: .3rd+section.To+participate+in+the+software+development,+suggest+improvements+or+simply+download+it,+please+visit
+#: .3rd+section.To+participate+in+the+software+development
+#: +suggest+improvements+or+simply+download+it
+#: +please+visit
 msgid ""
 "To participate in the software development, suggest improvements or simply "
 "download it, please visit"
 msgstr ""
+"Per participar en el desenvolupament del programari, suggerir millores o "
+"senzillament baixar-lo, si us plau, visita"
 
 #: .3rd+section.the+development+site
 msgid "the development site"
-msgstr ""
+msgstr "el lloc del desenvolupament"
 
 #: .Admin.Actions
 msgid "Actions"
-msgstr ""
+msgstr "Accions"
 
 #: .Admin.Administration
 msgid "Administration"
-msgstr ""
+msgstr "Administració"
 
 #: .Admin.Author
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: .Admin.Back+to+administration
 msgid "Back to administration"
-msgstr ""
+msgstr "Tornar a l'administració"
 
 #: .Admin.Change+the+poll
 msgid "Change the poll"
-msgstr ""
+msgstr "Canvia l'enquesta"
 
 #: .Admin.Email
 #: .PollInfo.Email
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: .Admin.Executed
 msgid "Executed"
-msgstr ""
+msgstr "Executat"
 
 #: .Admin.Expiry+date
 #: .Generic.Expiry+date
 msgid "Expiry date"
-msgstr ""
+msgstr "Data de caducitat"
 
 #: .Admin.Fail
 msgid "Fail"
-msgstr ""
+msgstr "Suspens"
 
 #: .Admin.Failed:
 msgid "Failed:"
-msgstr ""
+msgstr "Ha fallat:"
 
 #: .Admin.Format
 msgid "Format"
-msgstr ""
+msgstr "Format de"
 
 #: .Admin.Installation
 msgid "Installation"
-msgstr ""
+msgstr "Instal·lació"
 
 #: .Admin.Logs
 msgid "Logs"
-msgstr ""
+msgstr "Registres"
 
 #: .Admin.Migration
 msgid "Migration"
-msgstr ""
+msgstr "Migració"
 
 #: .Admin.Nothing
 msgid "Nothing"
-msgstr ""
+msgstr "Res"
 
 #: .Admin.Pages:
 msgid "Pages:"
-msgstr ""
+msgstr "Pàgines:"
 
 #: .Admin.Poll+ID
 msgid "Poll ID"
-msgstr ""
+msgstr "Enquesta ID"
 
 #: .Admin.Poll+deleted
 msgid "Poll deleted"
-msgstr ""
+msgstr "Enquesta eliminada"
 
 #: .Admin.Polls
 msgid "Polls"
-msgstr ""
+msgstr "Enquestes"
 
 #: .Admin.Purge
 msgid "Purge"
-msgstr ""
+msgstr "Purga"
 
 #: .Admin.Purge+the+polls
 msgid "Purge the polls"
-msgstr ""
+msgstr "Purga les enquestes"
 
 #: .Admin.Purged:
 msgid "Purged:"
-msgstr ""
+msgstr "Purgat:"
 
 #: .Admin.See+the+poll
 msgid "See the poll"
-msgstr ""
+msgstr "Veure l'enquesta"
 
 #: .Admin.Skipped:
 msgid "Skipped:"
-msgstr ""
+msgstr "Omesos:"
 
 #: .Admin.Status
 msgid "Status"
-msgstr ""
+msgstr "L'estat"
 
 #: .Admin.Succeeded:
 msgid "Succeeded:"
-msgstr ""
+msgstr "Amb èxit"
 
 #: .Admin.Success
 msgid "Success"
-msgstr ""
+msgstr "Èxit"
 
 #: .Admin.Summary
 msgid "Summary"
-msgstr ""
+msgstr "Resum"
 
 #: .Admin.Title
 #: .FindPolls.Title
 msgid "Title"
-msgstr ""
+msgstr "Títol"
 
 #: .Admin.Votes
 #: .Poll+results.Votes
 msgid "Votes"
-msgstr ""
+msgstr "Vots"
 
 #: .Admin.Waiting
 msgid "Waiting"
-msgstr ""
+msgstr "Esperant"
 
 #: .Admin.polls+in+the+database+at+this+time
 msgid "polls in the database at this time"
-msgstr ""
+msgstr "enquestes a la base de dades en aquest moment"
 
 #: .Check.Check+again
 msgid "Check again"
-msgstr ""
+msgstr "Comprova una altra vegada"
 
 #: .Check.Consider+enabling+the+PHP+extension+OpenSSL+for+increased+security.
 msgid "Consider enabling the PHP extension OpenSSL for increased security."
 msgstr ""
+"Per una major seguretat, considera habilitar l'extensió  OpenSSL de PHP "
+"OpenSSL "
 
 #: .Check.Consider+setting+the+date.timezone+in+php.ini.
 msgid "Consider setting the date.timezone in php.ini."
-msgstr ""
+msgstr "Considera establir la date.timezone a php.ini."
 
 #: .Check.Consider+setting+%C2%AB+session.cookie_httponly+%3D+1+%C2%BB+inside+your+php.ini+or+add+%C2%AB+php_value+session.cookie_httponly+1+%C2%BB+to+your+.htaccess+so+that+cookies+can%27t+be+accessed+through+Javascript.
 msgid ""
-"Consider setting « session.cookie_httponly = 1 » inside your php.ini or add «"
-" php_value session.cookie_httponly 1 » to your .htaccess so that cookies "
+"Consider setting « session.cookie_httponly = 1 » inside your php.ini or add "
+"« php_value session.cookie_httponly 1 » to your .htaccess so that cookies "
 "can't be accessed through Javascript."
 msgstr ""
+"Considera establir « session.cookie_httponly = 1 » a l'arxiu php.ini o "
+"afegeix « php_value session.cookie_httponly 1 » a l'arxiu .htaccess de forma "
+"que les galetes no siguin accessibles des de Javascript"
 
 #: .Check.Continue+the+installation
 msgid "Continue the installation"
-msgstr ""
+msgstr "Continuar la instal·lació"
 
 #: .Check.Cookies+are+served+from+HTTP+only.
 msgid "Cookies are served from HTTP only."
-msgstr ""
+msgstr "Les galetes només es poden enviar des d'HTTP"
 
 #: .Check.Installation+checking
 msgid "Installation checking"
-msgstr ""
+msgstr "Comprovació de la instal·lació"
 
 #: .Check.OpenSSL+extension+loaded.
 msgid "OpenSSL extension loaded."
-msgstr ""
+msgstr "Extensió OpenSSL carregada."
 
 #: .Check.PHP+Intl+extension+is+enabled.
 msgid "PHP Intl extension is enabled."
-msgstr ""
+msgstr "L'extensió de PHP Intl està habilitada."
 
 #: .Check.PHP+version+%25s+is+enough+(needed+at+least+PHP+%25s).
 msgid "PHP version %s is enough (needed at least PHP %s)."
-msgstr ""
+msgstr "Versió %s PHP és suficient (almenys necessitava PHP %s)."
 
 #: .Check.The+config+file+directory+(%25s)+is+not+writable+and+the+config+file+(%25s)+does+not+exists.
 msgid ""
 "The config file directory (%s) is not writable and the config file (%s) does "
 "not exists."
 msgstr ""
+"El directori de fitxers de configuració (%s) no es pot escriure i el fitxer "
+"de configuració (%s) no existeix."
 
 #: .Check.The+config+file+directory+(%25s)+is+writable.
 msgid "The config file directory (%s) is writable."
-msgstr ""
+msgstr "El directori de fitxers de configuració (%s) es pot escriure."
 
 #: .Check.The+config+file+exists.
 msgid "The config file exists."
-msgstr ""
+msgstr "Existeix el fitxer de configuració."
 
 #: .Check.The+template+compile+directory+(%25s)+doesn%27t+exist+in+%22%25s%22.+Retry+the+installation+process.
 msgid ""
 "The template compile directory (%s) doesn't exist in \"%s\". Retry the "
 "installation process."
 msgstr ""
+"El directori de compilació de plantilles (%s) no existeix al \"%s\". Torna a "
+"intentar el procés d'instal·lació."
 
 #: .Check.The+template+compile+directory+(%25s)+is+not+writable.
 msgid "The template compile directory (%s) is not writable."
-msgstr ""
+msgstr "El directori de compilació de plantilla (%s) no es pot escriure."
 
 #: .Check.The+template+compile+directory+(%25s)+is+writable.
 msgid "The template compile directory (%s) is writable."
-msgstr ""
+msgstr "El directori de compilació de la plantilla (%s) es pot escriure."
 
 #: .Check.You+need+to+enable+the+PHP+Intl+extension.
 msgid "You need to enable the PHP Intl extension."
-msgstr ""
+msgstr "Necessites habilitar l'extensió de PHP Intl."
 
 #: .Check.Your+PHP+version+(%25s)+is+too+old.+This+application+needs+at+least+PHP+%25s.
 msgid ""
 "Your PHP version (%s) is too old. This application needs at least PHP %s."
 msgstr ""
+"La teva versió PHP (%s) és massa vella. Aquesta aplicació necessita almenys "
+"PHP %s."
 
 #: .Check.date.timezone+is+set.
 msgid "date.timezone is set."
-msgstr ""
+msgstr "date.timezone està establert."
 
 #: .Comments.Add+a+comment+to+the+poll
 msgid "Add a comment to the poll"
-msgstr ""
+msgstr "Afegeix un comentari a l'enquesta"
 
 #: .Comments.Comment
 msgid "Comment"
-msgstr ""
+msgstr "Comentari"
 
 #: .Comments.Comment+saved
 msgid "Comment saved"
-msgstr ""
+msgstr "S'ha desat el comentari"
 
 #: .Comments.Comments
 msgid "Comments"
-msgstr ""
+msgstr "Comentaris"
 
 #: .Comments.Enter+your+name+and+comment+prior+to+submitting+the+form
 msgid "Enter your name and comment prior to submitting the form"
-msgstr ""
+msgstr "Introdueix el teu nom i el comentari abans d'enviar el formulari"
 
 #: .Comments.Remove+comment
 msgid "Remove comment"
-msgstr ""
+msgstr "Elimina el comentari"
 
 #: .Comments.Submit+comment
 msgid "Submit comment"
-msgstr ""
+msgstr "Enviar Comentari"
 
 #: .Date.%25A+%25e+%25B+%25Y
 msgid "%A %e %B %Y"
-msgstr ""
+msgstr "%A %e %B %Y"
 
-#: .Date.%25A,+%25B+%25e,+%25Y
+#: .Date.%25A
+#: +%25B+%25e
+#: +%25Y
 msgid "%A, %B %e, %Y"
-msgstr ""
+msgstr "%A, %B %e, %Y"
 
 #: .Date.%25B+%25Y
 msgid "%B %Y"
-msgstr ""
+msgstr "%B %Y"
 
 #: .Date.%25Y-%25m-%25d
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 #: .Date.%25a+%25e
 msgid "%a %e"
-msgstr ""
+msgstr "%a %e"
 
 #: .Date.%25m/%25d/%25Y+%25H:%25M
 msgid "%m/%d/%Y %H:%M"
-msgstr ""
+msgstr "%m/%d/%Y %H:%M"
 
 #: .Date.Add+range+dates
 msgid "Add range dates"
-msgstr ""
+msgstr "Afegir rang"
 
 #: .Date.End+date
 msgid "End date"
-msgstr ""
+msgstr "Data final"
 
 #: .Date.Start+date
 msgid "Start date"
-msgstr ""
+msgstr "Data d'inici"
 
 #: .Date.Y-m-d
 msgid "Y-m-d"
-msgstr ""
+msgstr "Y-m-d"
 
 #: .Date.You+can+select+at+most+4+months
 msgid "You can select at most 4 months"
-msgstr ""
+msgstr "Pots seleccionar com a màxim 4 mesos"
 
 #: .Date.yyyy-mm-dd
 msgid "yyyy-mm-dd"
-msgstr ""
+msgstr "yyyy-mm-dd"
 
 #: .Date.yyyy-mm-dd-for-humans
 msgid "yyyy-mm-dd-for-humans"
-msgstr ""
+msgstr "any-mes-dia"
 
 #: .EditLink.Edit+link+for+poll+%22%25s%22
 msgid "Edit link for poll \"%s\""
-msgstr ""
+msgstr "Edita l'enllaç de l'enquesta \"%s\""
 
 #: .EditLink.Here+is+the+link+for+editing+your+vote:
 msgid "Here is the link for editing your vote:"
-msgstr ""
+msgstr "Aquí tens l'enllaç per editar el vostre vot:"
 
-#: .EditLink.If+you+don%27t+want+to+lose+your+personalized+link,+we+can+send+it+to+you+by+email.
+#: .EditLink.If+you+don%27t+want+to+lose+your+personalized+link
+#: +we+can+send+it+to+you+by+email.
 msgid ""
 "If you don't want to lose your personalized link, we can send it to you by "
 "email."
 msgstr ""
+"Si no vols perdre el teu enllaç personalitzat, te'l podem enviar per correu "
+"electrònic."
 
 #: .EditLink.Please+wait+%25d+seconds+before+we+can+send+an+email+to+you+then+try+again.
 msgid ""
 "Please wait %d seconds before we can send an email to you then try again."
 msgstr ""
+"Espera %d segons abans que et puguem enviar un correu electrònic i torna-ho "
+"a provar."
 
 #: .EditLink.REMINDER
 msgid "REMINDER"
-msgstr ""
+msgstr "RECORDATORI"
 
 #: .EditLink.Send
 msgid "Send"
-msgstr ""
+msgstr "Envia"
 
 #: .EditLink.The+email+address+is+not+correct.
 msgid "The email address is not correct."
-msgstr ""
+msgstr "L'adreça de correu electrònic no és correcta."
 
 #: .EditLink.Your+reminder+has+been+successfully+sent%21
 msgid "Your reminder has been successfully sent!"
-msgstr ""
+msgstr "El teu recordatori s'ha enviat amb èxit!"
 
 #: .Error.Adding+vote+failed
 msgid "Adding vote failed"
-msgstr ""
+msgstr "S'ha produït un error en afegir el vot"
 
 #: .Error.Can%27t+create+an+empty+column.
 msgid "Can't create an empty column."
-msgstr ""
+msgstr "No es pot crear una columna buida."
 
 #: .Error.Can%27t+create+the+config.php+file+in+%27%25s%27.
 msgid "Can't create the config.php file in '%s'."
-msgstr ""
+msgstr "No es pot crear el fitxer config.php a '%s'."
 
 #: .Error.Comment+failed
 msgid "Comment failed"
-msgstr ""
+msgstr "Error de comentari"
 
 #: .Error.Cookies+are+disabled+on+your+browser.+They+are+required+to+be+able+to+create+a+poll.
 msgid ""
 "Cookies are disabled on your browser. They are required to be able to create "
 "a poll."
 msgstr ""
+"Les galetes estan desactivades al vostre navegador. Cal que estiguin "
+"activades per a crear una enquesta."
 
 #: .Error.Enter+a+name
 msgid "Enter a name"
-msgstr ""
+msgstr "Introdueix un nom"
 
 #: .Error.Enter+a+name+and+a+comment%21
 msgid "Enter a name and a comment!"
-msgstr ""
+msgstr "Introdueix un nom i un comentari."
 
 #: .Error.Enter+a+title
 msgid "Enter a title"
-msgstr ""
+msgstr "Introdueix un títol"
 
 #: .Error.Enter+an+email+address
 msgid "Enter an email address"
-msgstr ""
+msgstr "Introdueix una adreça de correu electrònic"
 
 #: .Error.Error+on+amount+of+votes+limitation:+Value+must+be+an+integer+greater+than+0
 msgid ""
 "Error on amount of votes limitation: Value must be an integer greater than 0"
 msgstr ""
+"Error en la limitació de la quantitat de vots: El valor ha de ser un enter "
+"més gran que 0"
 
 #: .Error.Error%21
 msgid "Error!"
-msgstr ""
+msgstr "Error!"
 
 #: .Error.Failed+to+delete+all+comments
 msgid "Failed to delete all comments"
-msgstr ""
+msgstr "No s'han pogut eliminar tots els comentaris"
 
 #: .Error.Failed+to+delete+all+votes
 msgid "Failed to delete all votes"
-msgstr ""
+msgstr "No s'han pogut eliminar tots els vots"
 
 #: .Error.Failed+to+delete+column
 msgid "Failed to delete column"
-msgstr ""
+msgstr "No s'ha pogut eliminar la columna"
 
 #: .Error.Failed+to+delete+the+comment
 msgid "Failed to delete the comment"
-msgstr ""
+msgstr "No s'han pogut eliminar el comentari"
 
 #: .Error.Failed+to+delete+the+poll
 msgid "Failed to delete the poll"
-msgstr ""
+msgstr "No s'ha pogut eliminar l'enquesta"
 
 #: .Error.Failed+to+delete+the+vote%21
 msgid "Failed to delete the vote!"
-msgstr ""
+msgstr "No s'ha pogut eliminar el vot!"
 
 #: .Error.Failed+to+insert+the+comment%21
 msgid "Failed to insert the comment!"
-msgstr ""
+msgstr "No s'ha pogut inserí el comentari"
 
 #: .Error.Failed+to+save+poll
 msgid "Failed to save poll"
-msgstr ""
+msgstr "No ha pogut desar l'enquesta"
 
 #: .Error.Forbidden%21
 msgid "Forbidden!"
-msgstr ""
+msgstr "Prohibit!"
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
-msgstr ""
+msgstr "Ja s'utilitza l'identificador"
 
-#: .Error.If+you+quit+now,+your+changes+will+be+lost.
+#: .Error.If+you+quit+now
+#: +your+changes+will+be+lost.
 msgid "If you quit now, your changes will be lost."
 msgstr ""
 
@@ -525,1088 +563,1172 @@ msgstr ""
 msgid ""
 "JavaScript is disabled on your browser. It is required to create a poll."
 msgstr ""
+"JavaScript està desactivat al vostre navegador. Cal activar-lo per a crear "
+"una enquesta."
 
 #: .Error.Missing+values
 msgid "Missing values"
-msgstr ""
+msgstr "Valors que falten"
 
 #: .Error.No+polls+found
 msgid "No polls found"
-msgstr ""
+msgstr "No s'han trobat enquestes"
 
 #: .Error.Password+is+empty.
 msgid "Password is empty."
-msgstr ""
+msgstr "La contrasenya està buida."
 
 #: .Error.Passwords+do+not+match.
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Les contrasenyes no coincideixen."
 
 #: .Error.Poll+has+been+updated+before+you+vote
 msgid "Poll has been updated before you vote"
-msgstr ""
+msgstr "L'enquesta s'ha actualitzat abans de votar"
 
 #: .Error.Something+has+gone+wrong...
 msgid "Something has gone wrong..."
-msgstr ""
+msgstr "Alguna cosa no ha anat bé..."
 
 #: .Error.Something+is+wrong+with+the+format
 msgid "Something is wrong with the format"
-msgstr ""
+msgstr "Alguna cosa està malament amb el format"
 
 #: .Error.Something+is+wrong+with+the+format:+Customized+URLs+should+only+consist+of+alphanumeric+characters+and+hyphens.
 msgid ""
 "Something is wrong with the format: Customized URLs should only consist of "
 "alphanumeric characters and hyphens."
 msgstr ""
+"Alguna cosa està malament amb el format: els URL personalitzats només han de "
+"consistir en caràcters alfanumèrics i guions."
 
 #: .Error.Something+is+wrong+with+the+format:+name+shouldn%27t+have+any+spaces+before+or+after
 msgid ""
 "Something is wrong with the format: name shouldn't have any spaces before or "
 "after"
 msgstr ""
+"Alguna cosa està malament amb el format: el nom no hauria de tenir cap espai "
+"abans o després"
 
 #: .Error.The+address+is+not+correct%21+You+should+enter+a+valid+email+address+(like+r.stallman@outlock.com)+in+order+to+receive+the+link+to+your+poll.
 msgid ""
-"The address is not correct! You should enter a valid email address (like "
-"r.stallman@outlock.com) in order to receive the link to your poll."
+"The address is not correct! You should enter a valid email address (like r."
+"stallman@outlock.com) in order to receive the link to your poll."
 msgstr ""
+"L'adreça no és correcta. Has d'introduir una adreça de correu electrònic "
+"vàlida (com ara r.stallman@outlock.com) per rebre l'enllaç a la teva "
+"enquesta."
 
 #: .Error.The+column+already+exists
 msgid "The column already exists"
-msgstr ""
+msgstr "La columna ja existeix"
 
 #: .Error.The+name+is+invalid.
 msgid "The name is invalid."
-msgstr ""
+msgstr "El nom és invàlid."
 
 #: .Error.The+name+you%27ve+chosen+already+exists+in+this+poll%21
 msgid "The name you've chosen already exists in this poll!"
-msgstr ""
+msgstr "El nom que has introduït ja existeix!"
 
 #: .Error.There+is+a+problem+with+your+choices
 msgid "There is a problem with your choices"
-msgstr ""
+msgstr "Hi ha un problema amb les teves eleccions"
 
 #: .Error.This+identifier+is+not+allowed
 msgid "This identifier is not allowed"
-msgstr ""
+msgstr "Aquest identificador no està permès"
 
 #: .Error.This+poll+doesn%27t+exist%21
 msgid "This poll doesn't exist!"
-msgstr ""
+msgstr "Aquesta enquesta no existeix!"
 
 #: .Error.Unable+to+connect+to+database
 msgid "Unable to connect to database"
-msgstr ""
+msgstr "No es pot connectar a la base de dades"
 
 #: .Error.Update+vote+failed
 msgid "Update vote failed"
-msgstr ""
+msgstr "S'ha produït un error en afegir el vot"
 
 #: .Error.You+already+voted
 msgid "You already voted"
-msgstr ""
+msgstr "Ja has votat..."
 
 #: .Error.You+can%27t+create+a+poll+with+hidden+results+with+the+following+option:+
-msgid "You can't create a poll with hidden results with the following option: "
-msgstr ""
+msgid ""
+"You can't create a poll with hidden results with the following option: "
+msgstr "No pots crear una enquesta amb resultats ocults amb la següent opció:"
 
 #: .Error.You+can%27t+select+more+than+%25d+dates
 msgid "You can't select more than %d dates"
-msgstr ""
+msgstr "No pots seleccionar més que %d dates"
 
-#: .Error.You+haven%27t+filled+the+first+section+of+the+poll+creation,+or+your+session+has+expired.
+#: .Error.You+haven%27t+filled+the+first+section+of+the+poll+creation
+#: +or+your+session+has+expired.
 msgid ""
 "You haven't filled the first section of the poll creation, or your session "
 "has expired."
 msgstr ""
+"No has omplert la primera secció de la creació de l'enquesta, o la sessió ha "
+"expirat."
 
-#: .Error.Your+vote+wasn%27t+counted,+because+someone+voted+in+the+meantime+and+it+conflicted+with+your+choices+and+the+poll+conditions.+Please+retry.
+#: .Error.Your+vote+wasn%27t+counted
+#: +because+someone+voted+in+the+meantime+and+it+conflicted+with+your+choices+and+the+poll+conditions.+Please+retry.
 msgid ""
 "Your vote wasn't counted, because someone voted in the meantime and it "
 "conflicted with your choices and the poll conditions. Please retry."
 msgstr ""
+"El teu vot no es tindrà en compte, perquè algú ha votat en el mateix moment "
+"i això entra en conflicte amb les teves opcions i les condicions de "
+"l'enquesta. Si us plau, torna a provar."
 
 #: .FindPolls.Address
 msgid "Address"
-msgstr ""
+msgstr "adreça"
 
 #: .FindPolls.Created+polls
 msgid "Created polls"
-msgstr ""
+msgstr "S'han creat les enquestes"
 
 #: .FindPolls.Have+a+good+day%21
 msgid "Have a good day!"
-msgstr ""
+msgstr "Que tinguis un bon dia!"
 
 #: .FindPolls.Here+is+the+list+of+the+polls+that+you+manage+on+%25s:
 msgid "Here is the list of the polls that you manage on %s:"
-msgstr ""
+msgstr "Aquí tens la llista de les enquestes que gestioneu a%s:"
 
-#: .FindPolls.If+you+weren%27t+the+source+of+this+action+and+if+you+think+this+is+an+abuse+of+the+service,+please+notify+the+administrator+at+%25s.
+#: .FindPolls.If+you+weren%27t+the+source+of+this+action+and+if+you+think+this+is+an+abuse+of+the+service
+#: +please+notify+the+administrator+at+%25s.
 msgid ""
 "If you weren't the source of this action and if you think this is an abuse "
 "of the service, please notify the administrator at %s."
 msgstr ""
+"Si no ets l'orígen d'aquesta acció i si creus que aquest és un abús del "
+"servei, notifica-ho a l'administrador a%s."
 
 #: .FindPolls.Its+address
 msgid "Its address"
-msgstr ""
+msgstr "La seva adreça"
 
 #: .FindPolls.Last+access+date
 msgid "Last access date"
-msgstr ""
+msgstr "Última data d'accés"
 
 #: .FindPolls.List+of+your+polls
 msgid "List of your polls"
-msgstr ""
+msgstr "Llista de les teves enquestes"
 
 #: .FindPolls.PS:+this+email+has+been+sent+because+you+%E2%80%93+or+someone+else+%E2%80%93+asked+to+get+back+the+polls+created+with+your+email+address.
 msgid ""
 "PS: this email has been sent because you – or someone else – asked to get "
 "back the polls created with your email address."
 msgstr ""
+"PS: aquest correu electrònic s'ha enviat perquè tu, o algú més, heu "
+"sol•licitat tornar les enquestes creades amb la vostra adreça de correu "
+"electrònic."
 
 #: .FindPolls.Polls+saved+inside+this+browser
 msgid "Polls saved inside this browser"
-msgstr ""
+msgstr "S'han desat les enquestes dins d'aquest navegador"
 
 #: .FindPolls.Polls+sent
 msgid "Polls sent"
-msgstr ""
+msgstr "Enquestes enviades"
 
 #: .FindPolls.Remove+all+my+polls+from+this+browser%27s+index
 msgid "Remove all my polls from this browser's index"
-msgstr ""
+msgstr "Eliminar totes les meves enquestes de l'índex del aquest navegador"
 
 #: .FindPolls.Remove+poll+from+index
 msgid "Remove poll from index"
-msgstr ""
+msgstr "Elimina l'enquesta de l'índex"
 
 #: .FindPolls.Send+me+my+polls
 msgid "Send me my polls"
-msgstr ""
+msgstr "Envia'm les enquestes"
 
 #: .FindPolls.Send+my+polls+by+email
 msgid "Send my polls by email"
-msgstr ""
+msgstr "Envia les meves enquestes per correu electrònic"
 
 #: .FindPolls.The+date+you+created+or+last+accessed+the+poll
 msgid "The date you created or last accessed the poll"
-msgstr ""
+msgstr "La data en què vas crear o vas accedir per darrer cop a l'enquesta"
 
 #: .FindPolls.The+title+of+the+poll
 msgid "The title of the poll"
-msgstr ""
+msgstr "El títol de l'enquesta"
 
 #: .FindPolls.There+are+no+polls+saved+inside+your+browser+yet
 msgid "There are no polls saved inside your browser yet"
-msgstr ""
+msgstr "Encara no hi ha enquestes desades al teu navegador"
 
 #: .FindPolls.To+delete+this+data+click+the+trashcan+on+the+according+line+or+click+the+%C2%AB+delete+my+polls+index+%C2%BB+option.+This+won%27t+delete+your+polls.
 msgid ""
 "To delete this data click the trashcan on the according line or click the « "
 "delete my polls index » option. This won't delete your polls."
 msgstr ""
+"Per eliminar aquestes dades feu clic a la paperera a la línia corresponent o "
+"feu clic a l'opció «Eliminar els índexs d'enquestes». Això no suprimirà les "
+"enquestes."
 
-#: .FindPolls.To+help+you+find+your+previous+polls,+we+save+each+poll+you+create+or+access+inside+your+browser.+This+data+is+saved+inside+this+browser+only.+The+following+data+will+be+saved:
+#: .FindPolls.To+help+you+find+your+previous+polls
+#: +we+save+each+poll+you+create+or+access+inside+your+browser.+This+data+is+saved+inside+this+browser+only.+The+following+data+will+be+saved:
 msgid ""
 "To help you find your previous polls, we save each poll you create or access "
 "inside your browser. This data is saved inside this browser only. The "
 "following data will be saved:"
 msgstr ""
+"Per ajudar-te a trobar les teves enquestes anteriors, guardem cada enquesta "
+"que creeu o accediu al teu navegador. Aquestes dades només es guarden dins "
+"d'aquest navegador. Es guardaran les dades següents:"
 
 #: .FindPolls.Visited+polls
 msgid "Visited polls"
-msgstr ""
+msgstr "Enquestes visites"
 
 #: .Generic.(in+the+format+name@mail.com)
 msgid "(in the format name@mail.com)"
-msgstr ""
+msgstr "(en format nom@mail.com)"
 
 #: .Generic.Add
 msgid "Add"
-msgstr ""
+msgstr "Afegeix"
 
 #: .Generic.Back
 msgid "Back"
-msgstr ""
+msgstr "Torna"
 
 #: .Generic.Back+to+the+homepage+of
 msgid "Back to the homepage of"
-msgstr ""
+msgstr "Torna a la pàgina d'inici de"
 
 #: .Generic.Cancel
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·lar"
 
 #: .Generic.Choice
 #: .Step+1.Choice
 msgid "Choice"
-msgstr ""
+msgstr "Elecció"
 
 #: .Generic.Classic
 msgid "Classic"
-msgstr ""
+msgstr "Clàssic"
 
 #: .Generic.Close
 msgid "Close"
-msgstr ""
+msgstr "Tanca"
 
 #: .Generic.Create+your+own+polls
 msgid "Create your own polls"
-msgstr ""
+msgstr "Crea les teves pròpies enquestes"
 
 #: .Generic.Creation+date:
 msgid "Creation date:"
-msgstr ""
+msgstr "Data de creació:"
 
 #: .Generic.Date
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: .Generic.Day
 msgid "Day"
-msgstr ""
+msgstr "Dia"
 
 #: .Generic.Description
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #: .Generic.Edit
 msgid "Edit"
-msgstr ""
+msgstr "Edita"
 
 #: .Generic.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.
 msgid ""
 "Framadate is an online service for planning an appointment or making a "
 "decision quickly and easily."
 msgstr ""
+"Framadate és un servei en línia per planificar una cita o prendre una "
+"decisió de forma ràpida i senzilla."
 
 #: .Generic.Home
 msgid "Home"
-msgstr ""
+msgstr "Inici"
 
 #: .Generic.Information
 msgid "Information"
-msgstr ""
+msgstr "Informació"
 
 #: .Generic.Legend:
 msgid "Legend:"
-msgstr ""
+msgstr "Llegenda:"
 
 #: .Generic.Link
 msgid "Link"
-msgstr ""
+msgstr "Enllaç"
 
 #: .Generic.Markdown
 msgid "Markdown"
-msgstr ""
+msgstr "Markdown"
 
 #: .Generic.Next
 msgid "Next"
-msgstr ""
+msgstr "Pròxim"
 
 #: .Generic.No
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: .Generic.Page+generated+in
 msgid "Page generated in"
-msgstr ""
+msgstr "Pàgina generada a"
 
 #: .Generic.Poll
 msgid "Poll"
-msgstr ""
+msgstr "Enquesta"
 
 #: .Generic.Remove
 msgid "Remove"
-msgstr ""
+msgstr "Elimina"
 
 #: .Generic.Save
 msgid "Save"
-msgstr ""
+msgstr "Desa"
 
 #: .Generic.Search
 msgid "Search"
-msgstr ""
+msgstr "Cerca"
 
 #: .Generic.Time
 msgid "Time"
-msgstr ""
+msgstr "Temps"
 
 #: .Generic.Under+reserve
 msgid "Under reserve"
-msgstr ""
+msgstr "Sota reserva"
 
 #: .Generic.Validate
 msgid "Validate"
-msgstr ""
+msgstr "Valida"
 
 #: .Generic.Yes
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: .Generic.Your+email+address
 msgid "Your email address"
-msgstr ""
+msgstr "la teva adreça de correu electrònic"
 
 #: .Generic.Your+name
 msgid "Your name"
-msgstr ""
+msgstr "El teu nom"
 
 #: .Generic.days
 msgid "days"
-msgstr ""
+msgstr "dies"
 
 #: .Generic.for
 msgid "for"
-msgstr ""
+msgstr "per a"
 
 #: .Generic.months
 msgid "months"
-msgstr ""
+msgstr "mesos"
 
 #: .Generic.seconds
 msgid "seconds"
-msgstr ""
+msgstr "segons"
 
 #: .Generic.vote
 msgid "vote"
-msgstr ""
+msgstr "votar"
 
 #: .Generic.votes
 msgid "votes"
-msgstr ""
+msgstr "vots"
 
 #: .Generic.with
 msgid "with"
-msgstr ""
+msgstr "amb"
 
 #: .Homepage.Make+a+standard+poll
 msgid "Make a standard poll"
-msgstr ""
+msgstr "Feu una enquesta estàndard"
 
 #: .Homepage.Schedule+an+event
 msgid "Schedule an event"
-msgstr ""
+msgstr "Programeu un esdeveniment"
 
 #: .Homepage.Where+are+my+polls%3F
 msgid "Where are my polls?"
-msgstr ""
+msgstr "On són les meves enquestes?"
 
 #: .Installation.Administrator+mail+address
 msgid "Administrator mail address"
-msgstr ""
+msgstr "Adreça de correu d'administrador"
 
 #: .Installation.Application+name
 msgid "Application name"
-msgstr ""
+msgstr "Nom de l'aplicació"
 
 #: .Installation.Clean+URL
 msgid "Clean URL"
-msgstr ""
+msgstr "Neteja URL"
 
 #: .Installation.Database+driver
 msgid "Database driver"
-msgstr ""
+msgstr "Controlador de base de dades"
 
 #: .Installation.Database+hostname
 msgid "Database hostname"
-msgstr ""
+msgstr "Nom del servidor de base de dades"
 
 #: .Installation.Database+name
 msgid "Database name"
-msgstr ""
+msgstr "Nom de la base de dades"
 
 #: .Installation.Database+port
 msgid "Database port"
-msgstr ""
+msgstr "Port de base de dades"
 
 #: .Installation.Default+language
 msgid "Default language"
-msgstr ""
+msgstr "Idioma per defecte"
 
 #: .Installation.General
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: .Installation.Install
 msgid "Install"
-msgstr ""
+msgstr "Instal·lar"
 
 #: .Installation.Migration+table
 msgid "Migration table"
-msgstr ""
+msgstr "Taula de migració"
 
 #: .Installation.Password
 #: .Password.Password
 #: .Step+1.Password
 msgid "Password"
-msgstr ""
+msgstr "Contrassenya"
 
 #: .Installation.Prefix
 msgid "Prefix"
-msgstr ""
+msgstr "Prefix"
 
 #: .Installation.Respond-to+mail+address
 msgid "Respond-to mail address"
-msgstr ""
+msgstr "Respon a l'adreça de correu"
 
 #: .Installation.User
 msgid "User"
-msgstr ""
+msgstr "Usuari"
 
 #: .Language+selector.Change+language
 msgid "Change language"
-msgstr ""
+msgstr "Canviar d'idioma"
 
 #: .Language+selector.Select+language
 msgid "Select language"
-msgstr ""
+msgstr "Escull l'idioma"
 
-#: .Mail.%22The+road+is+long,+but+the+way+is+clear%E2%80%A6%22%3Cbr/%3EFramasoft+lives+only+by+your+donations.%3Cbr/%3EThank+you+in+advance+for+your+support+https://soutenir.framasoft.org
+#: .Mail.%22The+road+is+long
+#: +but+the+way+is+clear%E2%80%A6%22%3Cbr/%3EFramasoft+lives+only+by+your+donations.%3Cbr/%3EThank+you+in+advance+for+your+support+https://soutenir.framasoft.org
 msgid ""
 "\"The road is long, but the way is clear…\"<br/>Framasoft lives only by your "
-"donations.<br/>Thank you in advance for your support "
-"https://soutenir.framasoft.org"
+"donations.<br/>Thank you in advance for your support https://soutenir."
+"framasoft.org"
 msgstr ""
+"\"El camí és llarg, però el camí està clar ...\" <br/> Framasoft només viu "
+"de les vostres donacions. <br/> Gràcies per endavant pel vostre suport https:"
+"//soutenir.framasoft.org"
 
 #: .Mail.Message+for+the+author
 msgid "Message for the author"
-msgstr ""
+msgstr "Missatge per a l'autor"
 
 #: .Mail.Notification+of+poll:+%25s
 msgid "Notification of poll: %s"
-msgstr ""
+msgstr "Notificació de l'enquesta: %s"
 
 #: .Mail.Participant+link
 msgid "Participant link"
-msgstr ""
+msgstr "Enllaç del participant"
 
 #: .Mail.Poll+participation:+%25s
 msgid "Poll participation: %s"
-msgstr ""
+msgstr "Participació en l'enquesta: %s"
 
 #: .Mail.Someone+just+changed+your+poll+at+the+following+link+%3Ca+href%3D%22%251%24s%22%3E%251%24s%3C/a%3E.
 msgid ""
-"Someone just changed your poll at the following link <a href=\"%1$s\""
-">%1$s</a>."
+"Someone just changed your poll at the following link <a href=\"%1$s\">%1$s</"
+"a>."
 msgstr ""
+"Algú ha canviat la teva enquesta al següent enllaç  <a href=\"%1$s\">%1$s</"
+"a>."
 
 #: .Mail.Someone+just+deleted+your+poll+%22%25s%22.
 msgid "Someone just deleted your poll \"%s\"."
-msgstr ""
+msgstr "Algú acaba d'eliminar la teva enquesta \"%s\"."
 
 #: .Mail.Thank+you+for+participating+in+the+poll+at+the+following+link
 msgid "Thank you for participating in the poll at the following link"
-msgstr ""
+msgstr "Gràcies per participar a l'enquesta al següent enllaç"
 
 #: .Mail.Thank+you+for+your+trust.
 msgid "Thank you for your trust."
-msgstr ""
+msgstr "Gràcies per la teva confiança."
 
 #: .Mail.This+is+the+message+to+forward+to+the+poll+participants.
 msgid "This is the message to forward to the poll participants."
 msgstr ""
+"Aquest és el missatge que es reenviarà als participants de l'enquesta."
 
 #: .Mail.This+message+should+NOT+be+sent+to+the+poll+participants.+You+should+keep+it+private.+%3Cbr/%3E%3Cbr/%3EYou+can+modify+your+poll+at+the+following+link
 msgid ""
 "This message should NOT be sent to the poll participants. You should keep it "
 "private. <br/><br/>You can modify your poll at the following link"
 msgstr ""
+"Aquest missatge NO s'haurà d'enviar als participants de l'enquesta. Has de "
+"mantenir-lo privat. <br/> <br/> Pots modificar la teva enquesta al següent "
+"enllaç"
 
 #: .Mail.added+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "added a vote.<br/>You can visit your poll at the link"
-msgstr ""
+msgstr "afegit un vot. <br/> Pots visitar la teva enquesta a l'enllaç"
 
 #: .Mail.has+just+created+a+poll+called
 msgid "has just created a poll called"
-msgstr ""
+msgstr "acaba de crear una enquesta anomenada"
 
 #: .Mail.updated+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "updated a vote.<br/>You can visit your poll at the link"
 msgstr ""
+"s'ha actualitzat una votació. <br/> Pots visitar la teva enquesta a l'enllaç"
 
 #: .Mail.wrote+a+comment.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "wrote a comment.<br/>You can visit your poll at the link"
 msgstr ""
+"s'ha escrit un comentari. <br/> Pots visitar la teva enquesta a l'enllaç"
 
 #: .Maintenance.Thank+you+for+your+understanding.
 msgid "Thank you for your understanding."
-msgstr ""
+msgstr "Gràcies per la teva comprensió."
 
 #: .Maintenance.The+application
 msgid "The application"
-msgstr ""
+msgstr "L'aplicació"
 
 #: .Maintenance.is+currently+under+maintenance.
 msgid "is currently under maintenance."
-msgstr ""
+msgstr "actualment està en manteniment"
 
 #: .Password.Submit+access
 msgid "Submit access"
-msgstr ""
+msgstr "Enviar accés"
 
 #: .Password.Wrong+password
 msgid "Wrong password"
-msgstr ""
+msgstr "Contrasenya "
 
 #: .Password.You+have+to+provide+a+password+so+you+can+participate+to+the+poll.
 msgid "You have to provide a password so you can participate to the poll."
 msgstr ""
+"Has de proporcionar una contrasenya perquè puguis participar a l'enquesta."
 
 #: .Password.You+have+to+provide+a+password+to+access+the+poll.
 msgid "You have to provide a password to access the poll."
-msgstr ""
+msgstr "Has de proporcionar una contrasenya per accedir a l'enquesta."
 
 #: .Poll+results.%25s+option
 msgid "%s option"
-msgstr ""
+msgstr "%s opció"
 
 #: .Poll+results.Anyone+will+be+able+to+see+your+email+address+after+you+voted
 msgid "Anyone will be able to see your email address after you voted"
 msgstr ""
+"Qualsevol persona podrà veure la teva adreça de correu electrònic després de "
+"que hagis votat"
 
 #: .Poll+results.Best+choice
 msgid "Best choice"
-msgstr ""
+msgstr "Millor elecció"
 
 #: .Poll+results.Best+choices
 msgid "Best choices"
-msgstr ""
+msgstr "Millors eleccions"
 
 #: .Poll+results.Chart
 msgid "Chart"
-msgstr ""
+msgstr "Gràfic"
 
 #: .Poll+results.Display+the+chart+of+the+results
 msgid "Display the chart of the results"
-msgstr ""
+msgstr "Mostra el gràfic dels resultats"
 
 #: .Poll+results.Edit+line:+%25s
 msgid "Edit line: %s"
-msgstr ""
+msgstr "Edita la línia: %s"
 
 #: .Poll+results.Link+to+edit+this+particular+line
 msgid "Link to edit this particular line"
-msgstr ""
+msgstr "Enllaça per editar aquesta línia en particular"
 
 #: .Poll+results.Remove+line:
 msgid "Remove line:"
-msgstr ""
+msgstr "Suprimeix la línia:"
 
 #: .Poll+results.Save+choices
 msgid "Save choices"
-msgstr ""
+msgstr "Desa les opcions"
 
 #: .Poll+results.Scroll+to+the+left
 msgid "Scroll to the left"
-msgstr ""
+msgstr "Desplaça't cap a l'esquerra"
 
 #: .Poll+results.Scroll+to+the+right
 msgid "Scroll to the right"
-msgstr ""
+msgstr "Desplaça't cap a la dreta"
 
 #: .Poll+results.The+current+best+choice+is:
 msgid "The current best choice is:"
-msgstr ""
+msgstr "La millor opció actual és:"
 
 #: .Poll+results.The+current+best+choices+are:
 msgid "The current best choices are:"
-msgstr ""
+msgstr "Les millors opcions actuals són:"
 
 #: .Poll+results.The+link+to+edit+this+particular+line+has+been+copied+to+the+clipboard%21
-msgid "The link to edit this particular line has been copied to the clipboard!"
+msgid ""
+"The link to edit this particular line has been copied to the clipboard!"
 msgstr ""
+"L'enllaç per editar aquesta línia en particular s'ha copiat al porta-retalls."
+""
 
 #: .Poll+results.Total
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: .Poll+results.Vote+%22no%22+for
 msgid "Vote \"no\" for"
-msgstr ""
+msgstr "Vota \"no\" per a"
 
 #: .Poll+results.Vote+%22yes%22+for
 msgid "Vote \"yes\" for"
-msgstr ""
+msgstr "Vota \"sí\" per a"
 
 #: .Poll+results.Votes+under+reserve+for
 msgid "Votes under reserve for"
-msgstr ""
+msgstr "Vots sota reserva per a"
 
 #: .Poll+results.polled+user
 msgid "polled user"
-msgstr ""
+msgstr "usuari enquestat"
 
 #: .Poll+results.polled+users
 msgid "polled users"
-msgstr ""
+msgstr "usuaris enquestats"
 
 #: .PollInfo.Admin+link+for+the+poll
 msgid "Admin link for the poll"
-msgstr ""
+msgstr "Enllaç d'administració per a l'enquesta"
 
 #: .PollInfo.Cancel+the+description+edit
 msgid "Cancel the description edit"
-msgstr ""
+msgstr "Cancel·la l'edició de la descripció"
 
 #: .PollInfo.Cancel+the+email+address+edit
 msgid "Cancel the email address edit"
-msgstr ""
+msgstr "Cancel·la l'edició de l'adreça electrònica"
 
 #: .PollInfo.Cancel+the+expiration+date+edit
 msgid "Cancel the expiration date edit"
-msgstr ""
+msgstr "Cancel·la l'edició de la data de venciment"
 
 #: .PollInfo.Cancel+the+name+edit
 msgid "Cancel the name edit"
-msgstr ""
+msgstr "Cancel·la l'edició del nom"
 
 #: .PollInfo.Cancel+the+rules+edit
 msgid "Cancel the rules edit"
-msgstr ""
+msgstr "Cancel·la l'edició de les regles"
 
 #: .PollInfo.Cancel+the+title+edit
 msgid "Cancel the title edit"
-msgstr ""
+msgstr "Cancel·la  l'edició del títol"
 
 #: .PollInfo.Creator+of+the+poll
 msgid "Creator of the poll"
-msgstr ""
+msgstr "Creador de l'enquesta"
 
 #: .PollInfo.Edit+name
 msgid "Edit name"
-msgstr ""
+msgstr "Edita el nom"
 
 #: .PollInfo.Edit+the+description
 msgid "Edit the description"
-msgstr ""
+msgstr "Edita la descripció"
 
 #: .PollInfo.Edit+the+email+address
 msgid "Edit the email address"
-msgstr ""
+msgstr "Edita l'adreça de correu electrònic"
 
 #: .PollInfo.Edit+the+expiry+date
 msgid "Edit the expiry date"
-msgstr ""
+msgstr "Edita la data de caducitat"
 
 #: .PollInfo.Edit+the+poll+rules
 msgid "Edit the poll rules"
-msgstr ""
+msgstr "Edita les regles d'enquesta"
 
 #: .PollInfo.Edit+title
 msgid "Edit title"
-msgstr ""
+msgstr "Edita el títol"
 
 #: .PollInfo.Export+to+CSV
 msgid "Export to CSV"
-msgstr ""
+msgstr "Exporta a CSV"
 
 #: .PollInfo.No+password
 msgid "No password"
-msgstr ""
+msgstr "Sense contrasenya"
 
 #: .PollInfo.Only+votes+are+protected
 msgid "Only votes are protected"
-msgstr ""
+msgstr "Només els vots estan protegits"
 
 #: .PollInfo.Password+protected
 msgid "Password protected"
-msgstr ""
+msgstr "Contrasenya protegida"
 
 #: .PollInfo.Poll+rules
 msgid "Poll rules"
-msgstr ""
+msgstr "Regles d'enquesta"
 
 #: .PollInfo.Print
 msgid "Print"
-msgstr ""
+msgstr "Imprimir"
 
 #: .PollInfo.Public+link+to+the+poll
 msgid "Public link to the poll"
-msgstr ""
+msgstr "Enllaç públic a l'enquesta"
 
 #: .PollInfo.Remove+all+comments
 msgid "Remove all comments"
-msgstr ""
+msgstr "Elimina tots els comentaris"
 
 #: .PollInfo.Remove+all+votes
 msgid "Remove all votes"
-msgstr ""
+msgstr "Elimina tots els vots"
 
 #: .PollInfo.Remove+password
 msgid "Remove password"
-msgstr ""
+msgstr "Elimina la contrasenya"
 
 #: .PollInfo.Remove+the+poll
 msgid "Remove the poll"
-msgstr ""
+msgstr "Elimina l'enquesta"
 
 #: .PollInfo.Results+are+hidden
 msgid "Results are hidden"
-msgstr ""
+msgstr "Els resultats estan amagats"
 
 #: .PollInfo.Results+are+visible
 msgid "Results are visible"
-msgstr ""
+msgstr "Els resultats són visibles"
 
 #: .PollInfo.Rich+editor
 msgid "Rich editor"
-msgstr ""
+msgstr "Editor enriquit"
 
 #: .PollInfo.Save+the+description
 msgid "Save the description"
-msgstr ""
+msgstr "Desa la descripció"
 
 #: .PollInfo.Save+the+email+address
 msgid "Save the email address"
-msgstr ""
+msgstr "Desa l'adreça de correu electrònic"
 
 #: .PollInfo.Save+the+new+expiration+date
 msgid "Save the new expiration date"
-msgstr ""
+msgstr "Desa la nova data de venciment"
 
 #: .PollInfo.Save+the+new+name
 msgid "Save the new name"
-msgstr ""
+msgstr "Desa el nom nou"
 
 #: .PollInfo.Save+the+new+rules
 msgid "Save the new rules"
-msgstr ""
+msgstr "Desa les noves regles"
 
 #: .PollInfo.Save+the+new+title
 msgid "Save the new title"
-msgstr ""
+msgstr "Desa el títol nou"
 
 #: .PollInfo.Simple+editor
 msgid "Simple editor"
-msgstr ""
+msgstr "Editor simple"
 
 #: .PollInfo.Title+of+the+poll
 msgid "Title of the poll"
-msgstr ""
+msgstr "Títol de l'enquesta"
 
 #: .PollInfo.Voters%27+email+addresses+are+collected
 msgid "Voters' email addresses are collected"
-msgstr ""
+msgstr "Es recullen les adreces de correu electrònic dels votants"
 
 #: .PollInfo.Voters%27+email+addresses+are+collected+and+required
 msgid "Voters' email addresses are collected and required"
 msgstr ""
+"Les adreces de correu electrònic dels votants es recullen i es requereixen"
 
-#: .PollInfo.Voters%27+email+addresses+are+collected,+required+and+verified
+#: .PollInfo.Voters%27+email+addresses+are+collected
+#: +required+and+verified
 msgid "Voters' email addresses are collected, required and verified"
 msgstr ""
+"Les adreces de correu electrònic dels votants es recullen, es requereixen i "
+"es verifiquen"
 
 #: .PollInfo.Voters%27+email+addresses+are+not+collected
 msgid "Voters' email addresses are not collected"
-msgstr ""
+msgstr "Les adreces de correu electrònic dels votants no es recullen"
 
 #: .PollInfo.Votes+and+comments+are+locked
 msgid "Votes and comments are locked"
-msgstr ""
+msgstr "Els vots i els comentaris estan bloquejats"
 
 #: .PollInfo.Votes+protected+by+password
 msgid "Votes protected by password"
-msgstr ""
+msgstr "Vots protegits per contrasenya"
 
 #: .Step+1.All+voters+can+modify+any+vote
 msgid "All voters can modify any vote"
-msgstr ""
+msgstr "Tots els votants poden modificar qualsevol vot"
 
 #: .Step+1.By+defining+an+identifier+that+can+facilitate+access+to+the+poll+for+unwanted+people.+It+is+recommended+to+protect+it+with+a+password.
 msgid ""
 "By defining an identifier that can facilitate access to the poll for "
 "unwanted people. It is recommended to protect it with a password."
 msgstr ""
+"Definint un identificador que podria facilitar l'accés a l'enquesta per a "
+"persones no desitjades. Es recomana protegir-lo amb una contrasenya."
 
 #: .Step+1.Collect+voters%27+email+addresses
 msgid "Collect voters' email addresses"
-msgstr ""
+msgstr "Recull les adreces de correu electrònic dels votants"
 
 #: .Step+1.Confirmation
 msgid "Confirmation"
-msgstr ""
+msgstr "Confirmació"
 
 #: .Step+1.Customize+the+URL
 msgid "Customize the URL"
-msgstr ""
+msgstr "Personalitza l'URL"
 
 #: .Step+1.Email+addresses+are+collected+but+not+required
 msgid "Email addresses are collected but not required"
-msgstr ""
+msgstr "Les adreces electròniques es recopilen però no es requereixen"
 
 #: .Step+1.Email+addresses+are+not+collected
 msgid "Email addresses are not collected"
-msgstr ""
+msgstr "No s'han recopilat adreces de correu electrònic"
 
 #: .Step+1.Email+addresses+are+required
 msgid "Email addresses are required"
-msgstr ""
+msgstr "S'han requerit les adreces de correu electrònic"
 
 #: .Step+1.Email+addresses+are+required+and+verified
 msgid "Email addresses are required and verified"
-msgstr ""
+msgstr "S'han requerit i verificat les adreces de correu electrònic"
 
 #: .Step+1.Go+to+step+2
 msgid "Go to step 2"
-msgstr ""
+msgstr "Ves al pas 2"
 
 #: .Step+1.Limit+the+amount+of+voters+per+option
 msgid "Limit the amount of voters per option"
-msgstr ""
+msgstr "Limita la quantitat de votants per opció"
 
 #: .Step+1.More+informations+here:
 msgid "More informations here:"
-msgstr ""
+msgstr "Més informació aquí:"
 
 #: .Step+1.Only+the+poll+maker+can+see+the+poll+results
 msgid "Only the poll maker can see the poll results"
-msgstr ""
+msgstr "Només el creador de l'enquesta pot veure els resultats de l'enquesta"
 
 #: .Step+1.Optional+parameters
 msgid "Optional parameters"
-msgstr ""
+msgstr "Paràmetres opcionals"
 
 #: .Step+1.Permissions
 msgid "Permissions"
-msgstr ""
+msgstr "Permisos"
 
 #: .Step+1.Poll+creation+(1+of+3)
 msgid "Poll creation (1 of 3)"
-msgstr ""
+msgstr "Creació d'enquestes (1 de 3)"
 
 #: .Step+1.Poll+id
 #: .Step+1.Poll+link
 msgid "Poll link"
-msgstr ""
+msgstr "Enllaç d'enquesta"
 
 #: .Step+1.Poll+title
 msgid "Poll title"
-msgstr ""
+msgstr "Títol de l'enquesta"
 
 #: .Step+1.Receive+an+email+for+each+new+comment
 msgid "Receive an email for each new comment"
-msgstr ""
+msgstr "Reps un correu electrònic per a cada comentari nou"
 
 #: .Step+1.Receive+an+email+for+each+new+vote
 msgid "Receive an email for each new vote"
-msgstr ""
+msgstr "Reps un correu electrònic per a cada nou vot"
 
 #: .Step+1.Required+fields+cannot+be+left+blank.
 msgid "Required fields cannot be left blank."
-msgstr ""
+msgstr "Els camps obligatoris no es poden deixar en blanc."
 
-#: .Step+1.The+identifier+can+contain+letters,+numbers+and+dashes+%22-%22.
+#: .Step+1.The+identifier+can+contain+letters
+#: +numbers+and+dashes+%22-%22.
 msgid "The identifier can contain letters, numbers and dashes \"-\"."
-msgstr ""
+msgstr "L'identificador pot contenir lletres, números i guions \"-\"."
 
 #: .Step+1.The+results+are+publicly+visible
 msgid "The results are publicly visible"
-msgstr ""
+msgstr "Els resultats són públicament visibles"
 
-#: .Step+1.To+make+the+description+more+attractive,+you+can+use+the+Markdown+format.
+#: .Step+1.To+make+the+description+more+attractive
+#: +you+can+use+the+Markdown+format.
 msgid ""
 "To make the description more attractive, you can use the Markdown format."
 msgstr ""
+"Per fer que la descripció sigui més atractiva, pots utilitzar el format "
+"Markdown."
 
 #: .Step+1.Use+a+password+to+restrict+access
 msgid "Use a password to restrict access"
-msgstr ""
+msgstr "Utilitzeu una contrasenya per restringir l'accés"
 
 #: .Step+1.Value+Max
 msgid "Value Max"
-msgstr ""
+msgstr "Valor màx"
 
 #: .Step+1.Voters+can+modify+their+vote+themselves
 msgid "Voters can modify their vote themselves"
-msgstr ""
+msgstr "Els votants poden modificar el seu vot ells mateixos"
 
 #: .Step+1.Votes+cannot+be+modified
 msgid "Votes cannot be modified"
-msgstr ""
+msgstr "Els vots no es poden modificar"
 
 #: .Step+1.Warning:+Anyone+can+see+the+polled+users%27+email+addresses+since+all+voters+can+modify+any+vote.+You+should+restrict+permission+rules.
 msgid ""
 "Warning: Anyone can see the polled users' email addresses since all voters "
 "can modify any vote. You should restrict permission rules."
 msgstr ""
+"Advertència: Qualsevol pot veure les adreces de correu electrònic dels "
+"usuaris enquestats ja que tots els votants poden modificar qualsevol vot. "
+"Heu de restringir les regles de permís."
 
 #: .Step+1.You+are+in+the+poll+creation+section.
 msgid "You are in the poll creation section."
-msgstr ""
+msgstr "Sou a la secció de creació d'enquestes."
 
 #: .Step+1.You+can+enable+or+disable+the+editor+at+will.
 msgid "You can enable or disable the editor at will."
-msgstr ""
+msgstr "Podeu habilitar o deshabilitar l'editor a voluntat."
 
 #: .Step+1.votes+per+option
 msgid "votes per option"
-msgstr ""
+msgstr "vots per opció"
 
 #: .Step+2.Go+to+step+3
 msgid "Go to step 3"
-msgstr ""
+msgstr "Vés al pas 3"
 
 #: .Step+2.Return+to+step+1
 msgid "Return to step 1"
-msgstr ""
+msgstr "Torna al pas 1"
 
 #: .Step+2+classic.Add+a+choice
 msgid "Add a choice"
-msgstr ""
+msgstr "Afegir una elecció"
 
 #: .Step+2+classic.Add+a+link+or+an+image
 msgid "Add a link or an image"
-msgstr ""
+msgstr "Afegiu un enllaç o una imatge"
 
 #: .Step+2+classic.Alternative+text
 msgid "Alternative text"
-msgstr ""
+msgstr "Text alternatiu"
 
 #: .Step+2+classic.Links+or+images+can+be+included+using
 msgid "Links or images can be included using"
-msgstr ""
+msgstr "Es poden incloure enllaços o imatges utilitzant"
 
 #: .Step+2+classic.Markdown+syntax
 msgid "Markdown syntax"
-msgstr ""
+msgstr "Sintaxi Markdown"
 
 #: .Step+2+classic.Poll+options+(2+of+3)
 msgid "Poll options (2 of 3)"
-msgstr ""
+msgstr "Opcions de votació (2 de 3)"
 
 #: .Step+2+classic.Remove+a+choice
 msgid "Remove a choice"
-msgstr ""
+msgstr "Elimina una elecció"
 
-#: .Step+2+classic.These+fields+are+optional.+You+can+add+a+link,+an+image+or+both.
+#: .Step+2+classic.These+fields+are+optional.+You+can+add+a+link
+#: +an+image+or+both.
 msgid "These fields are optional. You can add a link, an image or both."
 msgstr ""
+"Aquests camps són opcionals. Podeu afegir un enllaç, una imatge o ambdós."
 
 #: .Step+2+classic.To+create+a+poll+you+should+provide+at+least+two+different+choices.
 msgid "To create a poll you should provide at least two different choices."
 msgstr ""
+"Per crear una enquesta, heu de proporcionar almenys dues opcions diferents."
 
 #: .Step+2+classic.URL+of+the+image
 msgid "URL of the image"
-msgstr ""
+msgstr "URL de la imatge"
 
 #: .Step+2+classic.You+can+add+or+remove+choices+with+the+buttons
 msgid "You can add or remove choices with the buttons"
-msgstr ""
+msgstr "Pots afegir o eliminar opcions amb els botons"
 
 #: .Step+2+date.Add+a+day
 msgid "Add a day"
-msgstr ""
+msgstr "Afegeix un dia"
 
 #: .Step+2+date.Add+a+time+slot
 msgid "Add a time slot"
-msgstr ""
+msgstr "Afegeix un espai horari"
 
 #: .Step+2+date.Choose+dates+for+your+poll
 msgid "Choose dates for your poll"
-msgstr ""
+msgstr "Tria dates per a la teva enquesta"
 
 #: .Step+2+date.Copy+times+from+the+first+day
 msgid "Copy times from the first day"
-msgstr ""
+msgstr "Copia els temps del primer dia"
 
-#: .Step+2+date.For+each+selected+day,+you+are+free+to+suggest+meeting+times+(e.g.,+%228h%22,+%228:30%22,+%228h-10h%22,+%22evening%22,+etc.)
+#: .Step+2+date.For+each+selected+day
+#: +you+are+free+to+suggest+meeting+times+(e.g.
+#: +%228h%22
+#: +%228:30%22
+#: +%228h-10h%22
+#: +%22evening%22
+#: +etc.)
 msgid ""
 "For each selected day, you are free to suggest meeting times (e.g., \"8h\", "
 "\"8:30\", \"8h-10h\", \"evening\", etc.)"
 msgstr ""
+"Per cada dia seleccionat, pots suggerir temps de trobada (per exemple, "
+"\"8h\", \"8:30\", \"8h-10h\", \"tarda\", etc.)."
 
 #: .Step+2+date.Poll+dates+(2+of+3)
 msgid "Poll dates (2 of 3)"
-msgstr ""
+msgstr "Dates de l'enquesta (2 de 3)"
 
 #: .Step+2+date.Remove+a+day
 msgid "Remove a day"
-msgstr ""
+msgstr "Treure un dia"
 
 #: .Step+2+date.Remove+a+time+slot
 msgid "Remove a time slot"
-msgstr ""
+msgstr "Treure un espai horari"
 
 #: .Step+2+date.Remove+all+days
 msgid "Remove all days"
-msgstr ""
+msgstr "Treure tots els dies"
 
 #: .Step+2+date.Remove+all+times
 msgid "Remove all times"
-msgstr ""
+msgstr "Treure tots els temps"
 
 #: .Step+2+date.Remove+this+day
 msgid "Remove this day"
-msgstr ""
+msgstr "Treu aquest dia"
 
-#: .Step+2+date.To+schedule+an+event+you+need+to+provide+at+least+two+choices+(e.g.,+two+time+slots+on+one+day+or+two+days).
+#: .Step+2+date.To+schedule+an+event+you+need+to+provide+at+least+two+choices+(e.g.
+#: +two+time+slots+on+one+day+or+two+days).
 msgid ""
 "To schedule an event you need to provide at least two choices (e.g., two "
 "time slots on one day or two days)."
 msgstr ""
+"Per programar un esdeveniment, hauràs de proporcionar almenys dues opcions "
+"(per exemple, dos espais horaris en un o dos dies)."
 
 #: .Step+2+date.You+can+add+or+remove+additional+days+and+times+with+the+buttons
 msgid "You can add or remove additional days and times with the buttons"
-msgstr ""
+msgstr "Podeu afegir o treure dies i hores addicionals amb els botons"
 
 #: .Step+3.Back+to+step+2
 msgid "Back to step 2"
-msgstr ""
+msgstr "Torna al pas 2"
 
 #: .Step+3.Confirm+the+creation+of+your+poll
 msgid "Confirm the creation of your poll"
-msgstr ""
+msgstr "Confirma la creació de la teva enquesta"
 
 #: .Step+3.Create+the+poll
 msgid "Create the poll"
-msgstr ""
+msgstr "Crea l'enquesta"
 
 #: .Step+3.Expiry+date:
 msgid "Expiry date:"
-msgstr ""
+msgstr "Data de caducitat:"
 
 #: .Step+3.List+of+options
 msgid "List of options"
-msgstr ""
+msgstr "Llista d'opcions"
 
-#: .Step+3.Once+you+have+confirmed+the+creation+of+your+poll,+you+will+automatically+be+redirected+to+the+poll%27s+administration+page.
+#: .Step+3.Once+you+have+confirmed+the+creation+of+your+poll
+#: +you+will+automatically+be+redirected+to+the+poll%27s+administration+page.
 msgid ""
 "Once you have confirmed the creation of your poll, you will automatically be "
 "redirected to the poll's administration page."
 msgstr ""
+"Un cop hagis confirmat la creació de la teva enquesta, se't redirigirà "
+"automàticament a la pàgina d'administració de l'enquesta."
 
 #: .Step+3.Removal+date+and+confirmation+(3+of+3)
 msgid "Removal date and confirmation (3 of 3)"
-msgstr ""
+msgstr "Data de supressió i confirmació (3 de 3)"
 
-#: .Step+3.Then+you+will+receive+two+emails:+one+containing+the+link+of+your+poll+for+sending+to+the+participants,+the+other+containing+the+link+to+the+poll+administration+page.
+#: .Step+3.Then+you+will+receive+two+emails:+one+containing+the+link+of+your+poll+for+sending+to+the+participants
+#: +the+other+containing+the+link+to+the+poll+administration+page.
 msgid ""
 "Then you will receive two emails: one containing the link of your poll for "
 "sending to the participants, the other containing the link to the poll "
 "administration page."
 msgstr ""
+"A continuació, rebras dos correus electrònics: un que contindrà l'enllaç de "
+"la teva enquesta per enviar-la als participants i l'altre que contindrà "
+"l'enllaç a la pàgina d'administració de l'enquesta."
 
 #: .Step+3.You+can+set+a+specific+expiry+date+for+the+poll.
 msgid "You can set a specific expiry date for the poll."
-msgstr ""
+msgstr "Pots establir una data de caducitat específica de l'enquesta."
 
 #: .Step+3.Your+poll+will+automatically+be+archived
 msgid "Your poll will automatically be archived"
-msgstr ""
+msgstr "La teva enquesta s'arxivarà automàticament"
 
 #: .Step+3.Your+poll+will+be+automatically+archived+in+%25d+days.
 msgid "Your poll will be automatically archived in %d days."
-msgstr ""
+msgstr "La teva enquesta s'arxivarà automàticament d'aquí a %d dies."
 
 #: .Step+3.after+the+last+date+of+your+poll.
 msgid "after the last date of your poll."
-msgstr ""
+msgstr "després de l'última data de la teva enquesta."
 
 #: .Version.Version+%25s
 msgid "Version %s"
@@ -1614,187 +1736,213 @@ msgstr ""
 
 #: .adminstuds.Add+a+column
 msgid "Add a column"
-msgstr ""
+msgstr "Afegeix una columna"
 
 #: .adminstuds.Adding+a+column
 msgid "Adding a column"
-msgstr ""
+msgstr "Afegint una columna"
 
 #: .adminstuds.All+comments+deleted
 msgid "All comments deleted"
-msgstr ""
+msgstr "S'han suprimit tots els comentaris"
 
 #: .adminstuds.All+votes+deleted
 msgid "All votes deleted"
-msgstr ""
+msgstr "Tots els vots suprimits"
 
-#: .adminstuds.As+poll+administrator,+you+can+change+all+the+lines+of+this+poll+with+this+button
+#: .adminstuds.As+poll+administrator
+#: +you+can+change+all+the+lines+of+this+poll+with+this+button
 msgid ""
 "As poll administrator, you can change all the lines of this poll with this "
 "button"
 msgstr ""
+"Com a administrador, pots canviar totes les línies d'aquesta enquesta amb "
+"aquest botó"
 
 #: .adminstuds.Back+to+the+poll
 msgid "Back to the poll"
-msgstr ""
+msgstr "Torna a l'enquesta"
 
 #: .adminstuds.Choice+added
 msgid "Choice added"
-msgstr ""
+msgstr "Elecció afegida"
 
 #: .adminstuds.Collect+the+emails+of+the+polled+users+for+the+choice
 msgid "Collect the emails of the polled users for the choice"
 msgstr ""
+"Recopila els correus electrònics dels usuaris enquestats per a l'elecció"
 
 #: .adminstuds.Column+deleted
 msgid "Column deleted"
-msgstr ""
+msgstr "S'ha suprimit la columna"
 
 #: .adminstuds.Comment+deleted
 msgid "Comment deleted"
-msgstr ""
+msgstr "Comentaris eliminats"
 
 #: .adminstuds.Confirm+removal+of+all+comments
 msgid "Confirm removal of all comments"
-msgstr ""
+msgstr "Confirma l'eliminació de tots els comentaris"
 
 #: .adminstuds.Confirm+removal+of+all+votes
 msgid "Confirm removal of all votes"
-msgstr ""
+msgstr "Confirma l'eliminació de tots els vots"
 
 #: .adminstuds.Confirm+removal+of+the+column.
 msgid "Confirm removal of the column."
-msgstr ""
+msgstr "Confirma l'eliminació de la columna."
 
 #: .adminstuds.Confirm+removal+of+your+poll
 msgid "Confirm removal of your poll"
-msgstr ""
+msgstr "Confirma l'eliminació de la vostra enquesta"
 
 #: .adminstuds.Delete+poll
 msgid "Delete poll"
-msgstr ""
+msgstr "Suprimeix l'enquesta"
 
-#: .adminstuds.Finally,+you+can+change+the+properties+of+this+poll+such+as+the+title,+the+comments+or+your+email+address.
+#: .adminstuds.Finally
+#: +you+can+change+the+properties+of+this+poll+such+as+the+title
+#: +the+comments+or+your+email+address.
 msgid ""
 "Finally, you can change the properties of this poll such as the title, the "
 "comments or your email address."
 msgstr ""
+"Finalment, pots canviar les propietats d'aquesta enquesta, com ara el títol, "
+"els comentaris o la teva adreça de correu electrònic."
 
 #: .adminstuds.Keep+comments
 msgid "Keep comments"
-msgstr ""
+msgstr "Mantenir comentaris"
 
 #: .adminstuds.Keep+the+comments
 msgid "Keep the comments"
-msgstr ""
+msgstr "Conserva els comentaris"
 
 #: .adminstuds.Keep+the+poll
 msgid "Keep the poll"
-msgstr ""
+msgstr "Conserva l'enquesta"
 
 #: .adminstuds.Keep+the+votes
 msgid "Keep the votes"
-msgstr ""
+msgstr "Conserva els vots"
 
 #: .adminstuds.Keep+this+poll
 msgid "Keep this poll"
-msgstr ""
+msgstr "Conserva aquesta enquesta"
 
 #: .adminstuds.Keep+votes
 msgid "Keep votes"
-msgstr ""
+msgstr "Mantenir vots"
 
 #: .adminstuds.Poll+fully+deleted
 msgid "Poll fully deleted"
-msgstr ""
+msgstr "Enquesta eliminada completament"
 
 #: .adminstuds.Poll+saved
 msgid "Poll saved"
-msgstr ""
+msgstr "S'ha desat la votació"
 
 #: .adminstuds.Remove+column
 msgid "Remove column"
-msgstr ""
+msgstr "Elimina la columna"
 
 #: .adminstuds.Remove+the+comments
 msgid "Remove the comments"
-msgstr ""
+msgstr "Elimina els comentaris"
 
 #: .adminstuds.Remove+the+votes
 msgid "Remove the votes"
-msgstr ""
+msgstr "Elimina els vots"
 
 #: .adminstuds.The+poll+was+created.
 msgid "The poll was created."
-msgstr ""
+msgstr "S'ha creat l'enquesta."
 
 #: .adminstuds.Vote+added
 #: .studs.Vote+added
 msgid "Vote added"
-msgstr ""
+msgstr "Vot afegit"
 
 #: .adminstuds.Vote+deleted
 msgid "Vote deleted"
-msgstr ""
+msgstr "S'ha suprimit el vot"
 
 #: .adminstuds.Vote+updated
 #: .studs.Vote+updated
 msgid "Vote updated"
-msgstr ""
+msgstr "Vot actualitzat"
 
 #: .adminstuds.You+can+add+a+new+scheduling+date+to+your+poll.
 msgid "You can add a new scheduling date to your poll."
-msgstr ""
+msgstr "Pots afegir una nova data de programació a la teva enquesta."
 
 #: .adminstuds.Your+poll+has+been+removed%21
 msgid "Your poll has been removed!"
-msgstr ""
+msgstr "S'ha eliminat la teva enquesta."
 
 #: .adminstuds.and+add+a+new+column+with
 msgid "and add a new column with"
-msgstr ""
+msgstr "i afegeix una columna nova amb"
 
 #: .adminstuds.remove+a+column+or+a+line+with
 msgid "remove a column or a line with"
-msgstr ""
+msgstr "treu una columna o una línia amb"
 
 #: .display_mails.Users+who+voted+%22If+need+be%22+for+this+option+have+left+those+email+addresses:
 msgid ""
 "Users who voted \"If need be\" for this option have left those email "
 "addresses:"
 msgstr ""
+"Els usuaris que han votat \"Si cal\" per a aquesta opció han deixat aquestes "
+"adreces de correu electrònic:"
 
 #: .display_mails.Users+who+voted+%22No%22+for+this+option+have+left+those+email+addresses:
 msgid "Users who voted \"No\" for this option have left those email addresses:"
 msgstr ""
+"Els usuaris que han votat \"No\" per a aquesta opció han deixat aquestes "
+"adreces de correu electrònic:"
 
 #: .display_mails.Users+who+voted+%22Yes%22+for+this+option+have+left+those+email+addresses:
-msgid ""
-"Users who voted \"Yes\" for this option have left those email addresses:"
+msgid "Users who voted \"Yes\" for this option have left those email addresses:"
 msgstr ""
+"Els usuaris que han votat \"Sí\" per a aquesta opció han deixat aquestes "
+"adreces de correu electrònic:"
 
 #: .studs.Deletion+date:
 msgid "Deletion date:"
-msgstr ""
+msgstr "Data de supressió:"
 
-#: .studs.If+you+want+to+vote+in+this+poll,+you+have+to+give+your+name,+make+your+choice,+and+submit+it+by+selecting+the+save+button+at+the+end+of+the+line.
+#: .studs.If+you+want+to+vote+in+this+poll
+#: +you+have+to+give+your+name
+#: +make+your+choice
+#: +and+submit+it+by+selecting+the+save+button+at+the+end+of+the+line.
 msgid ""
 "If you want to vote in this poll, you have to give your name, make your "
 "choice, and submit it by selecting the save button at the end of the line."
 msgstr ""
+"Si vols votar en aquesta enquesta, hauràs de donar el teu nom, fer la teva "
+"elecció i enviar-la seleccionant el botó de desar al final de la línia."
 
-#: .studs.The+administrator+locked+this+poll.+Votes+and+comments+are+frozen,+it+is+no+longer+possible+to+participate
+#: .studs.The+administrator+locked+this+poll.+Votes+and+comments+are+frozen
+#: +it+is+no+longer+possible+to+participate
 msgid ""
 "The administrator locked this poll. Votes and comments are frozen, it is no "
 "longer possible to participate"
 msgstr ""
+"L'administrador va bloquejar aquesta enquesta. Els vots i els comentaris "
+"estan congelats, ja no és possible participar"
 
-#: .studs.The+poll+has+expired,+it+will+soon+be+deleted.
+#: .studs.The+poll+has+expired
+#: +it+will+soon+be+deleted.
 msgid "The poll has expired, it will soon be deleted."
-msgstr ""
+msgstr "L'enquesta ha caducat, aviat se suprimirà."
 
-#: .studs.Your+vote+has+been+saved,+but+please+note:+you+need+to+keep+this+personalised+link+to+be+able+to+edit+your+vote.
+#: .studs.Your+vote+has+been+saved
+#: +but+please+note:+you+need+to+keep+this+personalised+link+to+be+able+to+edit+your+vote.
 msgid ""
 "Your vote has been saved, but please note: you need to keep this "
 "personalised link to be able to edit your vote."
 msgstr ""
+"El teu vot s'ha desat, però tingues en compte que has de conservar aquest "
+"enllaç personalitzat per poder-lo modificar."
+

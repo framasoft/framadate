@@ -57,7 +57,6 @@
         "php": ">=5.6.0",
         "ext-pdo": "*",
         "smarty/smarty": "^3.1",
-        "o80/i18n": "dev-develop",
         "phpmailer/phpmailer": "~6.0",
         "ircmaxell/password-compat": "dev-master",
         "roave/security-advisories": "dev-master",
@@ -65,7 +64,8 @@
         "egulias/email-validator": "~2.1",
         "doctrine/dbal": "^2.5",
         "doctrine/migrations": "^1.5",
-        "sensiolabs/ansi-to-html": "^1.1"
+        "sensiolabs/ansi-to-html": "^1.1",
+        "symfony/translation": "^3.4"
     },
 
     "require-dev": {

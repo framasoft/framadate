@@ -71,6 +71,7 @@ $ALLOWED_LANGUAGES = [
     'it' => 'Italiano',
     'br' => 'Brezhoneg',
     'ca' => 'Catalan',
+    'hu' => 'Magyar',
 ];
 
 // Path to image file with the title

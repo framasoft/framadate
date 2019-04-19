@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3209f04f589a5ea384cad035ab70b68b",
+    "content-hash": "9726759acaf25655763b7bc70206e571",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -696,52 +696,6 @@
             "time": "2017-03-20T21:17:32+00:00"
         },
         {
-            "name": "o80/i18n",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/olivierperez/o80-i18n.git",
-                "reference": "8f3fbc7c965559802ed4eda602528a24d641ea15"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/olivierperez/o80-i18n/zipball/8f3fbc7c965559802ed4eda602528a24d641ea15",
-                "reference": "8f3fbc7c965559802ed4eda602528a24d641ea15",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "o80\\": "src/o80"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache License 2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Olivier Perez",
-                    "email": "olivier@olivierperez.fr",
-                    "homepage": "http://github.com/olivierperez"
-                }
-            ],
-            "description": "Easy library to manage i18n with PHP.",
-            "homepage": "https://github.com/olivierperez/o80-i18n",
-            "keywords": [
-                "i18n",
-                "internationalization",
-                "php"
-            ],
-            "time": "2015-09-21T21:18:45+00:00"
-        },
-        {
             "name": "ocramius/proxy-manager",
             "version": "1.0.2",
             "source": {
@@ -1419,6 +1373,76 @@
                 "shim"
             ],
             "time": "2018-04-26T10:06:28+00:00"
+        },
+        {
+            "name": "symfony/translation",
+            "version": "v3.4.26",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/translation.git",
+                "reference": "aae26f143da71adc8707eb489f1dc86aef7d376b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/aae26f143da71adc8707eb489f1dc86aef7d376b",
+                "reference": "aae26f143da71adc8707eb489f1dc86aef7d376b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "conflict": {
+                "symfony/config": "<2.8",
+                "symfony/dependency-injection": "<3.4",
+                "symfony/yaml": "<3.4"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~2.8|~3.0|~4.0",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/finder": "~2.8|~3.0|~4.0",
+                "symfony/http-kernel": "~3.4|~4.0",
+                "symfony/intl": "^2.8.18|^3.2.5|~4.0",
+                "symfony/var-dumper": "~3.4|~4.0",
+                "symfony/yaml": "~3.4|~4.0"
+            },
+            "suggest": {
+                "psr/log-implementation": "To use logging capability in translator",
+                "symfony/config": "",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Translation\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Translation Component",
+            "homepage": "https://symfony.com",
+            "time": "2019-04-10T16:00:48+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -3578,7 +3602,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "o80/i18n": 20,
         "ircmaxell/password-compat": 20,
         "roave/security-advisories": 20
     },
