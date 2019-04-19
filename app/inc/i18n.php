@@ -38,7 +38,7 @@ class __i18n {
     public static function translate($key) {
         if (!isset(self::$translator)) {
             global $locale, $ALLOWED_LANGUAGES;
-            $found_locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $locale);
+            $found_locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $locale, false, DEFAULT_LANGUAGE);
             self::$translator = new Translator($found_locale);
             self::$translator->addLoader('pofile', new PoFileLoader());
             self::$translator->addResource('pofile', ROOT_DIR . "po/{$found_locale}.po", $found_locale);
