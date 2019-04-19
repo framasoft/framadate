@@ -107,7 +107,7 @@ $config = [
     'use_smtp' => true,                     // use email for polls creation/modification/responses notification (uses smtp only if `use_sendmail` is disabled)
     'use_sendmail' => false,                // use sendmail instead of smtp
     'smtp_options' => [
-        'host' => 'localhost',              // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
+        'host' => 'SMTP_SERVER',            // SMTP server (you could add many servers (main and backup for example) : use ";" like separator
         'auth' => false,                    // Enable SMTP authentication
         'username' => '',                   // SMTP username
         'password' => '',                   // SMTP password
@@ -125,4 +125,3 @@ $config = [
     'markdown_editor_by_default' => true,   // The markdown editor for the description is enabled by default
     'provide_fork_awesome' => true,         // Whether the build-in fork-awesome should be provided
 ];
-
