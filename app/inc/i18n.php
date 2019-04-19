@@ -17,16 +17,20 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-// Change language when requested
+// Change session language when requested
 if (isset($_REQUEST['lang'])
     && in_array($_REQUEST['lang'], array_keys($ALLOWED_LANGUAGES), true)) {
     $_SESSION['lang'] = $_REQUEST['lang'];
 }
 
-// Use the user-specified locale, or the browser-specified locale, or the app default.
-$locale = $_SESSION['lang']
-    ?: locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE'])
-    ?: DEFAULT_LANGUAGE;
+// Try the user-specified locale, or the browser-specified locale.
+if (isset($_SESSION['lang'])) {
+    $wanted_locale = $_SESSION['lang'];
+} else  {
+    $wanted_locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+}
+// Use the best available locale.
+$locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $wanted_locale, false, DEFAULT_LANGUAGE);
 
 /* i18n helper functions */
 use Symfony\Component\Translation\Loader\PoFileLoader;
@@ -36,11 +40,10 @@ class __i18n {
     private static $translator;
     private static $fallbacktranslator;
     
-    public static function init($locale, $ALLOWED_LANGUAGES) {
-        $found_locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $locale, false, DEFAULT_LANGUAGE);
-        self::$translator = new Translator($found_locale);
+    public static function init($locale) {
+        self::$translator = new Translator($locale);
         self::$translator->addLoader('pofile', new PoFileLoader());
-        self::$translator->addResource('pofile', ROOT_DIR . "po/{$found_locale}.po", $found_locale);
+        self::$translator->addResource('pofile', ROOT_DIR . "po/{$locale}.po", $locale);
         # Fallback:
         # For Symfony/Translation, empty strings are valid, but in po files, untranslated strings are "".
         # This means we cannot use the standard $translator->setFallbackLocales() mechanism :(
@@ -54,7 +57,7 @@ class __i18n {
             ?: self::$fallbacktranslator->trans($key);
     }
 }
-__i18n::init($locale, $ALLOWED_LANGUAGES);
+__i18n::init($locale);
 
 function __($section, $key) {
     return __i18n::translate($key);
