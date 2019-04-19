@@ -26,13 +26,7 @@ use Framadate\Exception\MomentAlreadyExistsException;
 use Framadate\Exception\SlotAlreadyExistsException;
 use Framadate\Message;
 use Framadate\Security\PasswordHasher;
-use Framadate\Services\AdminPollService;
-use Framadate\Services\InputService;
-use Framadate\Services\LogService;
-use Framadate\Services\MailService;
 use Framadate\Services\NotificationService;
-use Framadate\Services\PollService;
-use Framadate\Services\SessionService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -49,13 +43,11 @@ $editingVoteId = 0;
 /* Services */
 /*----------*/
 
-$logService = new LogService();
-$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
-$notificationService = new NotificationService($mailService, $smarty);
-$pollService = new PollService($connect, $logService, $notificationService);
-$adminPollService = new AdminPollService($connect, $pollService, $logService);
-$inputService = new InputService();
-$sessionService = new SessionService();
+$adminPollService = Services::adminPoll();
+$inputService = Services::input();
+$notificationService = Services::notification();
+$pollService = Services::poll();
+$sessionService = Services::session();
 
 /* PAGE */
 /* ---- */

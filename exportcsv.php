@@ -16,9 +16,6 @@
  * Auteurs de STUdS (projet initial) : Guilhem BORGHESI (borghesi@unistra.fr) et Raphaël DROZ
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
-use Framadate\Services\LogService;
-use Framadate\Services\PollService;
-use Framadate\Services\SecurityService;
 use Framadate\Utils;
 
 include_once __DIR__ . '/app/inc/init.php';
@@ -34,11 +31,8 @@ $poll = null;
 /* Services */
 /*----------*/
 
-$logService = new LogService();
-$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
-$notificationService = new NotificationService($mailService, $smarty);
-$pollService = new PollService($connect, $logService, $notificationService);
-$securityService = new SecurityService();
+$pollService = Services::poll();
+$securityService = Services::security();
 
 /* PAGE */
 /* ---- */
