@@ -40,6 +40,13 @@ define('ROOT_DIR', __DIR__ . '/../../');
 $path = '/app/inc/config.php';
 if (getenv('APP_ENV') === 'test') {
     $path = '/app/inc/config.test.php';
+    // Read DB connection params from Environment Variables if possible
+    define('FRAMADATE_DB_DRIVER', getenv('FRAMADATE_DB_DRIVER') ? getenv('FRAMADATE_DB_DRIVER') : 'pdo_sqlite');
+    define('FRAMADATE_DB_NAME', getenv('FRAMADATE_DB_NAME') ? getenv('FRAMADATE_DB_NAME') : 'framadate');
+    define('FRAMADATE_DB_HOST', getenv('FRAMADATE_DB_HOST') ? getenv('FRAMADATE_DB_HOST') : '');
+    define('FRAMADATE_DB_PORT', getenv('FRAMADATE_DB_PORT') ? getenv('FRAMADATE_DB_PORT') : '');
+    define('FRAMADATE_DB_USER', getenv('FRAMADATE_DB_USER') ? getenv('FRAMADATE_DB_USER') : '');
+    define('FRAMADATE_DB_PASSWORD', getenv('FRAMADATE_DB_PASSWORD') ? getenv('FRAMADATE_DB_PASSWORD') : '');
 }
 define('CONF_FILENAME', ROOT_DIR . $path);
 
