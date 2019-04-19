@@ -1,21 +1,91 @@
-image: framasoft/framadate-ci
+variables:
+  TESTING_IMAGE: framasoft/framadate-ci:php-7.2
+
+image: ${TESTING_IMAGE}
+
+cache:
+  key: "${TESTING_IMAGE}:${CI_PROJECT_ID}"
+  paths:
+    - vendor/
+
+before_script:
+  - composer install -o  --no-interaction --no-progress --prefer-dist
+
 stages:
   - test
   - deploy
   - beta
   - funky
 
-# Run php-cs-fixer and phpunit on all branches
+# Run phpunit on all branches
 test:
   stage: test
   script:
-    - composer install -o  --no-interaction --no-progress --prefer-dist
-    - php vendor/bin/php-cs-fixer fix --verbose --dry-run
-    - APP_ENV=test bin/doctrine migrations:migrate --no-interaction -vvv
     - vendor/bin/phpunit --bootstrap app/tests/bootstrap.php --debug app/tests
-  cache:
-    paths:
-      - vendor/
+
+# Run php-cs-fixer on all branches
+lint:
+  stage: test
+  script:
+    - php vendor/bin/php-cs-fixer fix --verbose --dry-run
+
+# Run doctrine migrations with MySQL
+.db:migration:mysql:
+  stage: test
+  variables:
+    APP_ENV: "test"
+    MYSQL_DATABASE: "fd_test"
+    MYSQL_ROOT_PASSWORD: "coucou"
+    FRAMADATE_DB_DRIVER: 'pdo_mysql'
+    FRAMADATE_DB_HOST: "mysql"
+    FRAMADATE_DB_NAME: "${MYSQL_DATABASE}"
+    FRAMADATE_DB_USER: "root"
+    FRAMADATE_DB_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+  script:
+    - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
+    - bin/doctrine migrations:status -vvv
+    - bin/doctrine migrations:migrate --no-interaction -vvv
+    - bin/doctrine migrations:status -vvv
+
+db:migration:mysql:5.6:
+  extends: .db:migration:mysql
+  services:
+    - 'mysql:5.6'
+
+db:migration:mysql:5.7:
+  extends: .db:migration:mysql
+  services:
+    - 'mysql:5.7'
+
+db:migration:mysql:8:
+  extends: .db:migration:mysql
+  services:
+    - name: 'mysql:8'
+      command: ['--default-authentication-plugin=mysql_native_password']
+
+# Run doctrine migrations with PostgreSQL
+.db:migration:postgresql:
+  stage: test
+  variables:
+    APP_ENV: "test"
+    POSTGRES_DB: "fd_test"
+    POSTGRES_USER: "marmotte"
+    POSTGRES_PASSWORD: "sleeping"
+    FRAMADATE_DB_DRIVER: 'pdo_pgsql'
+    FRAMADATE_DB_HOST: "postgres"
+    FRAMADATE_DB_NAME: "${POSTGRES_DB}"
+    FRAMADATE_DB_USER: "${POSTGRES_USER}"
+    FRAMADATE_DB_PASSWORD: "${POSTGRES_PASSWORD}"
+  script:
+    - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
+    - bin/doctrine migrations:status -vvv
+    - bin/doctrine migrations:migrate --no-interaction -vvv
+    - bin/doctrine migrations:status -vvv
+
+db:migration:postgresql:9.6:
+  extends: .db:migration:postgresql
+  services:
+    - 'postgres:9.6'
 
 check:missing:trads:
   stage: test
@@ -65,7 +135,6 @@ pages:
 beta:
   stage: beta
   script:
-  - git checkout develop
   - composer install -o  --no-interaction --no-progress --prefer-dist --no-dev
   - composer dump-autoload --optimize --no-dev --classmap-authoritative
 #   - if [ ! -z ${ZANATA_CONFIG_FRAMABOT+x} ]; then mkdir -p ${HOME}/.config; echo -e "${ZANATA_CONFIG_FRAMABOT}" > ${HOME}/.config/zanata.ini; fi
@@ -87,7 +156,6 @@ beta:
 funky:
   stage: funky
   script:
-  - git checkout funky
   - composer install
   - mkdir tpl_c
   - mkdir .public
