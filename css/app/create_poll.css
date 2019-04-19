@@ -23,3 +23,13 @@
     border-top: 0 none;
     content: "";
 }
+
+input[required]:after {
+    content: "YOLO";
+    display: block;
+    background: url("icon.jpg") no-repeat;
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin: 0 6px 0 0;
+}

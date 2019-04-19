@@ -798,7 +798,7 @@ msgstr "Sondages accédés"
 
 #: .Generic.(in+the+format+name@mail.com)
 msgid "(in the format name@mail.com)"
-msgstr "(au format nom@mail.com)"
+msgstr "marie.dupont@exemple.fr"
 
 #: .Generic.Add
 msgid "Add"
@@ -927,7 +927,7 @@ msgstr "Oui"
 
 #: .Generic.Your+email+address
 msgid "Your email address"
-msgstr "Votre courriel"
+msgstr "Courriel"
 
 #: .Generic.Your+name
 msgid "Your name"
@@ -1490,7 +1490,7 @@ msgstr "Lien du sondage"
 
 #: .Step+1.Poll+title
 msgid "Poll title"
-msgstr "Titre du sondage"
+msgstr "Titre"
 
 #: .Step+1.Receive+an+email+for+each+new+comment
 msgid "Receive an email for each new comment"

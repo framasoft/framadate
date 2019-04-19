@@ -1,20 +1,32 @@
-<div class="alert alert-info">
-    <p>
-        {__('Step 1', 'You are in the poll creation section.')}<br/>
-        {__('Step 1', 'Required fields cannot be left blank.')}
-    </p>
+<div class="form-group {$errors['title']['class']}">
+    <label for="poll_title" class="col-sm-4 control-label">{__('Step 1', 'Poll title')}</label>
+
+    <div class="col-sm-8">
+        <input id="poll_title" type="text" name="title" class="form-control" placeholder="Mon sondage"
+               required {$errors['title']['aria']}
+               value="{$poll_title|html}"/>
+               (required)
+    </div>
 </div>
+{if !empty($errors['title']['msg'])}
+    <div class="alert alert-danger">
+        <p id="poll_title_error">
+            {$errors['title']['msg']}
+        </p>
+    </div>
+{/if}
 
 <div class="form-group {$errors['name']['class']}">
-    <label for="yourname" class="col-sm-4 control-label">{__('Generic', 'Your name')} *</label>
+    <label for="yourname" class="col-sm-4 control-label">{__('Generic', 'Your name')}</label>
 
     <div class="col-sm-8">
         {if $useRemoteUser}
             <input type="hidden" name="name" value="{$form->admin_name}" />
             {$form->admin_name}
         {else}
-            <input id="yourname" type="text" required name="name"
+            <input id="yourname" type="text" required name="name" placeholder="Marie Dupont"
                    class="form-control" {$errors['name']['aria']} value="{$poll_name|html}"/>
+               (required)
         {/if}
     </div>
 </div>
@@ -29,16 +41,16 @@
 {if $use_smtp}
     <div class="form-group {$errors['email']['class']}">
         <label for="email" class="col-sm-4 control-label">
-            {__('Generic', 'Your email address')} *<br/>
-            <span class="small">{__('Generic', '(in the format name@mail.com)')}</span>
+            {__('Generic', 'Your email address')}<br/>
         </label>
 
         <div class="col-sm-8">
             {if $useRemoteUser}
                 <input type="hidden" name="mail" value="{$form->admin_mail}">{$form->admin_mail}
             {else}
-                <input id="email" required type="email" name="mail"
+                <input id="email" required type="email" name="mail" placeholder="{__('Generic', '(in the format name@mail.com)')}"
                        class="form-control" {$errors['email']['aria']} value="{$poll_mail|html}"/>
+                       (required)    
             {/if}
         </div>
     </div>
@@ -49,24 +61,6 @@
             </p>
         </div>
     {/if}
-
-{/if}
-
-<div class="form-group {$errors['title']['class']}">
-    <label for="poll_title" class="col-sm-4 control-label">{__('Step 1', 'Poll title')} *</label>
-
-    <div class="col-sm-8">
-        <input id="poll_title" type="text" name="title" class="form-control"
-               required {$errors['title']['aria']}
-               value="{$poll_title|html}"/>
-    </div>
-</div>
-{if !empty($errors['title']['msg'])}
-    <div class="alert alert-danger">
-        <p id="poll_title_error">
-            {$errors['title']['msg']}
-        </p>
-    </div>
 {/if}
 
 <div class="form-group {$errors['description']['class']}">
@@ -87,7 +81,7 @@
     </div>
 {/if}
 
-{* Optionnal parameters *}
+{* Optional parameters *}
 <div class="col-sm-offset-3 col-sm-1 hidden-xs">
     <p class="lead">
         <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>

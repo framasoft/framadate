@@ -19,7 +19,6 @@
                 <img src="{$TITLE_IMAGE|resource}" alt="{$APPLICATION_NAME|html}" class="img-responsive"/>
             </a>
         </h1>
-        {if !empty($title)}<h2 class="lead col-xs-12"><i>{$title|html}</i></h2>{/if}
-        <div class="trait col-xs-12" role="presentation"></div>
+        {if !empty($title)}<h2 class="lead col-xs-12">{$title|html}</h2>{/if}
     </header>
     <main role="main">
