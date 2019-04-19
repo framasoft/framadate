@@ -27,7 +27,7 @@ test:
 lint:
   stage: test
   script:
-    - php vendor/bin/php-cs-fixer fix --verbose --dry-run
+    - php vendor/bin/php-cs-fixer fix --verbose --dry-run --diff
 
 # Run doctrine migrations with MySQL
 .db:migration:mysql:
