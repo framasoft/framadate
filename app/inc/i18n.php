@@ -19,14 +19,14 @@
 
 // Change language when requested
 if (isset($_REQUEST['lang'])
-    && is_string($_REQUEST['lang'])
     && in_array($_REQUEST['lang'], array_keys($ALLOWED_LANGUAGES), true)) {
     $_SESSION['lang'] = $_REQUEST['lang'];
 }
 
-// Use the user-specified locale or the browser-specified locale
+// Use the user-specified locale, or the browser-specified locale, or the app default.
 $locale = $_SESSION['lang']
-    ?: locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+    ?: locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE'])
+    ?: DEFAULT_LANGUAGE;
 
 /* i18n helper functions */
 use Symfony\Component\Translation\Loader\PoFileLoader;
