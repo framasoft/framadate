@@ -18,19 +18,14 @@
  */
 
 use Framadate\Message;
-use Framadate\Services\LogService;
-use Framadate\Services\MailService;
-use Framadate\Services\NotificationService;
-use Framadate\Services\PollService;
 
 include_once __DIR__ . '/app/inc/init.php';
 
 /* SERVICES */
 /* -------- */
-$logService =  new LogService();
-$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
-$notificationService = new NotificationService($mailService, $smarty);
-$pollService = new PollService($connect, $logService, $notificationService);
+
+$notificationService = Services::notification();
+$pollService = Services::poll();
 
 /* PAGE */
 /* ---- */
