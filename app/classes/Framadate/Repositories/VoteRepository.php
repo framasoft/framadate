@@ -1,12 +1,15 @@
 <?php
 namespace Framadate\Repositories;
 
+use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Driver\Statement;
+use Doctrine\DBAL\Query\QueryBuilder;
 use Framadate\Utils;
 
 class VoteRepository extends AbstractRepository {
     /**
      * @param $poll_id
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return array
      */
     public function allUserVotesByPollId($poll_id)
@@ -18,17 +21,24 @@ class VoteRepository extends AbstractRepository {
     }
 
     /**
-     * @param $poll_id
-     * @param $insert_position
-     * @throws \Doctrine\DBAL\DBALException
-     * @return bool
+     * Insert default values for slots
+     *
+     * @param string $poll_id
+     * @param integer $insert_position
+     * @return Statement|int
      */
     public function insertDefault($poll_id, $insert_position)
     {
-        # TODO : Handle this on PHP's side
-        $prepared = $this->prepare('UPDATE ' . Utils::table('vote') . ' SET choices = CONCAT(SUBSTRING(choices, 1, ?), " ", SUBSTRING(choices, ?)) WHERE poll_id = ?'); //#51 : default value for unselected vote
-
-        return $prepared->execute([$insert_position, $insert_position + 1, $poll_id]);
+        $qb = $this->createQueryBuilder();
+        $sql = $this->connect->getDatabasePlatform()->getName() === 'sqlite' ?
+            $this->generateSQLForInsertDefaultSQLite($qb, $insert_position) :
+            $this->generateSQLForInsertDefault($qb, $insert_position)
+            ;
+        $query = $qb->update(Utils::table('vote'))
+            ->set('choices', $sql)
+            ->where($qb->expr()->eq('poll_id', $qb->createNamedParameter($poll_id)))
+        ;
+        return $query->execute();
     }
 
     function insert($poll_id, $name, $choices, $token, $mail) {
@@ -48,7 +58,7 @@ class VoteRepository extends AbstractRepository {
     /**
      * @param $poll_id
      * @param $vote_id
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return bool
      */
     public function deleteById($poll_id, $vote_id)
@@ -66,7 +76,7 @@ class VoteRepository extends AbstractRepository {
      * Delete all votes of a given poll.
      *
      * @param $poll_id int The ID of the given poll.
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return bool|null true if action succeeded.
      */
     public function deleteByPollId($poll_id)
@@ -79,14 +89,20 @@ class VoteRepository extends AbstractRepository {
      *
      * @param $poll_id int The ID of the poll
      * @param $index int The index of the vote into the poll
-     * @throws \Doctrine\DBAL\DBALException
      * @return bool|null true if action succeeded.
      */
     public function deleteByIndex($poll_id, $index)
     {
-        $prepared = $this->prepare('UPDATE ' . Utils::table('vote') . ' SET choices = CONCAT(SUBSTR(choices, 1, ?), SUBSTR(choices, ?)) WHERE poll_id = ?');
-
-        return $prepared->execute([$index, $index + 2, $poll_id]);
+        $qb = $this->createQueryBuilder();
+        $sql = $this->connect->getDatabasePlatform()->getName() === 'sqlite' ?
+            $this->generateSQLForInsertDefaultSQLite($qb, $index, true) :
+            $this->generateSQLForInsertDefault($qb, $index, true)
+        ;
+        $query = $qb->update(Utils::table('vote'))
+            ->set('choices', $sql)
+            ->where($qb->expr()->eq('poll_id', $qb->createNamedParameter($poll_id)))
+        ;
+        return $query->execute();
     }
 
     /**
@@ -113,7 +129,7 @@ class VoteRepository extends AbstractRepository {
      *
      * @param int $poll_id ID of the poll
      * @param string $name Name of the vote
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return bool true if vote already exists
      */
     public function existsByPollIdAndName($poll_id, $name) {
@@ -128,13 +144,45 @@ class VoteRepository extends AbstractRepository {
      * @param int $poll_id ID of the poll
      * @param string $name Name of the vote
      * @param int $vote_id ID of the current vote
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws DBALException
      * @return bool true if vote already exists
      */
     public function existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id) {
         $prepared = $this->prepare('SELECT 1 FROM ' . Utils::table('vote') . ' WHERE poll_id = ? AND name = ? AND id != ?');
         $prepared->execute([$poll_id, $name, $vote_id]);
         return $prepared->rowCount() > 0;
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param $insert_position
+     * @param bool $delete
+     * @return string
+     */
+    private function generateSQLForInsertDefaultSQLite($qb, $insert_position, $delete = false)
+    {
+        $position = $insert_position + ($delete ? 2 : 1);
+        return 'SUBSTR(choices, 1, '
+        . $qb->createNamedParameter($insert_position)
+        . ') || " " || SUBSTR(choices, '
+            . $qb->createNamedParameter($position)
+        . ')';
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param int $insert_position
+     * @param bool $delete
+     * @return string
+     */
+    private function generateSQLForInsertDefault($qb, $insert_position, $delete = false)
+    {
+        $position = $insert_position + ($delete ? 2 : 1);
+        return 'CONCAT(SUBSTR(choices, 1, '
+            . $qb->createNamedParameter($insert_position)
+            . '), " ", SUBSTR(choices, '
+            . $qb->createNamedParameter($position)
+            . '))';
     }
 }
 

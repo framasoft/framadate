@@ -2,6 +2,11 @@
 namespace Framadate\Repositories;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\ConnectionException;
+use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Driver\Statement;
+use Doctrine\DBAL\Query\QueryBuilder;
+use PDOStatement;
 
 abstract class AbstractRepository {
     /**
@@ -24,7 +29,7 @@ abstract class AbstractRepository {
     }
 
     /**
-     * @throws \Doctrine\DBAL\ConnectionException
+     * @throws ConnectionException
      */
     public function commit()
     {
@@ -32,7 +37,7 @@ abstract class AbstractRepository {
     }
 
     /**
-     * @throws \Doctrine\DBAL\ConnectionException
+     * @throws ConnectionException
      */
     public function rollback()
     {
@@ -40,9 +45,17 @@ abstract class AbstractRepository {
     }
 
     /**
+     * @return QueryBuilder
+     */
+    public function createQueryBuilder()
+    {
+        return $this->connect->createQueryBuilder();
+    }
+
+    /**
      * @param string $sql
-     * @throws \Doctrine\DBAL\DBALException
-     * @return bool|\Doctrine\DBAL\Driver\Statement|\PDOStatement
+     *@throws DBALException
+     * @return bool|Statement|PDOStatement
      */
     public function prepare($sql)
     {
@@ -51,8 +64,8 @@ abstract class AbstractRepository {
 
     /**
      * @param string $sql
-     * @throws \Doctrine\DBAL\DBALException
-     * @return bool|\Doctrine\DBAL\Driver\Statement|\PDOStatement
+     *@throws DBALException
+     * @return bool|Statement|PDOStatement
      */
     public function query($sql)
     {
