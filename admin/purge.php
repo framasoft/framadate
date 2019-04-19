@@ -17,11 +17,6 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-use Framadate\Services\InputService;
-use Framadate\Services\LogService;
-use Framadate\Services\PurgeService;
-use Framadate\Services\SecurityService;
-
 include_once __DIR__ . '/../app/inc/init.php';
 include_once __DIR__ . '/../bandeaux.php';
 
@@ -33,10 +28,9 @@ $message = null;
 /* Services */
 /*----------*/
 
-$logService = new LogService();
-$purgeService = new PurgeService($connect, $logService);
-$securityService = new SecurityService();
-$inputService = new InputService();
+$inputService = Services::input();
+$purgeService = Services::purge();
+$securityService = Services::security();
 
 /* POST */
 /*-----*/
