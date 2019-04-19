@@ -95,3 +95,6 @@ if (is_file(CONF_FILENAME)) {
 require_once __DIR__ . '/i18n.php';
 // Smarty
 require_once __DIR__ . '/smarty.php';
+
+require_once __DIR__ . '/services.php';
+Services::init($connect, $smarty);
