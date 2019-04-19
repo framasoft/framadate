@@ -11,7 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-04-19 11:49+0000\n"
+"PO-Revision-Date: 2019-04-19 07:02+0000\n"
 "Last-Translator: Thomas Citharel <thomas.citharel@framasoft.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: Zanata 4.6.2\n"
@@ -553,6 +553,10 @@ msgstr "Fracàs d’enregistrament del sondatge"
 #: .Error.Forbidden%21
 msgid "Forbidden!"
 msgstr "Defendut !"
+
+#: .Error.GenericErrorPollCreation
+msgid "GenericErrorPollCreation"
+msgstr ""
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
@@ -1947,4 +1951,3 @@ msgstr ""
 "Vòstre vòte es estat enregistrat corrèctament, mas mèfi : aqueste sondatge "
 "permet l’edicion de vòstre vòte solament amb lo ligam personalizat "
 "seguent ; gardatz-lo preciosament ! "
-
