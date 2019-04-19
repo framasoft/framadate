@@ -32,19 +32,17 @@ include_once __DIR__ . '/app/inc/init.php';
 /* Service */
 /*---------*/
 $logService = new LogService();
-$pollService = new PollService($connect, $logService);
 $mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
 $notificationService = new NotificationService($mailService, $smarty);
 $purgeService = new PurgeService($connect, $logService);
 $inputService = new InputService();
 $sessionService = new SessionService();
+$pollService = new PollService($connect, $logService, $notificationService);
 
 if (is_readable('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
 }
 
-// Min/Max archive date
-$min_expiry_time = $pollService->minExpiryDate();
 $max_expiry_time = $pollService->maxExpiryDate();
 
 $form = isset($_SESSION['form']) ? unserialize($_SESSION['form']) : null;
@@ -193,52 +191,17 @@ switch ($step) {
         exit;
 
     case 4:
-        // Step 4 : Data prepare before insert in DB
+        // Step 4 : Do the poll creation
 
-        // Define expiration date
-        $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
+        // Read expiration date passed in POST parameters
+        $end_date = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
 
-        if (!empty($enddate)) {
-            $registredate = explode('/', $enddate);
+        $admin_poll_id = $pollService->doPollCreation($form, $end_date);
 
-            if (is_array($registredate) && count($registredate) === 3) {
-                $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
-
-                if ($time < $min_expiry_time) {
-                    $form->end_date = $min_expiry_time;
-                } elseif ($max_expiry_time < $time) {
-                    $form->end_date = $max_expiry_time;
-                } else {
-                    $form->end_date = $time;
-                }
-            }
+        if (!is_null($admin_poll_id)) {
+            // Redirect to poll administration
+            header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
         }
-
-        if (empty($form->end_date)) {
-            // By default, expiration date is 6 months after last day
-            $form->end_date = $max_expiry_time;
-        }
-
-        // Insert poll in database
-        $ids = $pollService->createPoll($form);
-        $poll_id = $ids[0];
-        $admin_poll_id = $ids[1];
-
-        // Send confirmation by mail if enabled
-        if ($config['use_smtp'] === true && $mailService->isValidEmail($form->admin_mail)) {
-            $notificationService->sendPollCreationMails($form->admin_mail, $form->admin_name, $form->title, $poll_id, $admin_poll_id);
-        }
-
-        // Clean Form data in $_SESSION
-        unset($_SESSION['form']);
-
-        $purgeService->repeatedCleanings();
-
-        // creation message
-        $sessionService->set("Framadate", "messagePollCreated", TRUE);
-
-        // Redirect to poll administration
-        header('Location:' . Utils::getUrlSondage($admin_poll_id, true));
         exit;
 
     case 1:

@@ -55,6 +55,17 @@ class SessionService {
         unset($_SESSION[$section][$key]);
     }
 
+    /**
+     * Remove a session section
+     *
+     * @param $section
+     */
+    public function removeAll($section) {
+        assert(!empty($section));
+
+        unset($_SESSION[$section]);
+    }
+
     private function initSectionIfNeeded($section) {
         if (!isset($_SESSION[$section])) {
             $_SESSION[$section] = [];

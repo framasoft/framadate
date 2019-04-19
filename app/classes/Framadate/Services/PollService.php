@@ -17,7 +17,6 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 namespace Framadate\Services;
-
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\ConnectionException;
 use Doctrine\DBAL\DBALException;
@@ -27,6 +26,11 @@ use Framadate\Exception\ConcurrentVoteException;
 use Framadate\Form;
 use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\Token;
+use Framadate\Services\LogService;
+use Framadate\Services\NotificationService;
+use Framadate\Services\PurgeService;
+use Framadate\Services\SessionService;
+use Framadate\Utils;
 
 class PollService {
     private $connect;
@@ -37,9 +41,12 @@ class PollService {
     private $voteRepository;
     private $commentRepository;
 
-    function __construct(Connection $connect, LogService $logService) {
+    function __construct(Connection $connect, LogService $logService, NotificationService $notificationService) {
         $this->connect = $connect;
         $this->logService = $logService;
+        $this->notificationService = $notificationService;
+        $this->sessionService = new SessionService();
+        $this->purgeService = new PurgeService($connect, $logService);
         $this->pollRepository = RepositoryFactory::pollRepository();
         $this->slotRepository = RepositoryFactory::slotRepository();
         $this->voteRepository = RepositoryFactory::voteRepository();
@@ -152,6 +159,61 @@ class PollService {
         }
 
         return $this->commentRepository->insert($poll_id, $name, $comment);
+    }
+
+    /**
+     * Main entry point for poll creation. This action does all the following:
+     * - Validate input data
+     * - Create the poll in database
+     * - Send emails
+     * - Cleanups post creation (session and purges)
+     *
+     * @param Form $form
+     * @param string $end_date
+     * @return string|null returns the admin_id if the poll was created
+     */
+    function doPollCreation(Form $form, $end_date) {
+        // Min/Max archive date
+        $min_expiry_time = $this->minExpiryDate();
+        $max_expiry_time = $this->maxExpiryDate();
+
+        if (!empty($end_date)) {
+            $registredate = explode('/', $end_date);
+
+            if (is_array($registredate) && count($registredate) === 3) {
+                $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
+
+                if ($time < $min_expiry_time) {
+                    $form->end_date = $min_expiry_time;
+                } elseif ($max_expiry_time < $time) {
+                    $form->end_date = $max_expiry_time;
+                } else {
+                    $form->end_date = $time;
+                }
+            }
+        }
+
+        if (empty($form->end_date)) {
+            // By default, expiration date is 6 months after last day
+            $form->end_date = $max_expiry_time;
+        }
+
+        // Insert poll in database
+        list($poll_id, $admin_poll_id) = $this->createPoll($form);
+
+        // Send confirmation by mail if enabled
+        // Everything went well
+        $this->notificationService->sendPollCreationMails($form->admin_mail, $form->admin_name, $form->title, $poll_id, $admin_poll_id);
+
+        // Clean Form data in session
+        $this->sessionService->removeAll('form');
+        // Creation message
+        $this->sessionService->set("Framadate", "messagePollCreated", TRUE);
+
+        // Delete old polls
+        $this->purgeService->repeatedCleanings();
+
+        return $admin_poll_id;
     }
 
     /**
