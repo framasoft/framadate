@@ -3,7 +3,7 @@
     "description": "Application to facilitate the schedule of events or classic polls",
     "homepage": "https://framadate.org/",
     "keywords": ["poll", "framadate"],
-    "version": "0.9.0",
+    "version": "1.2.0-alpha.1",
     "license": "CECILL-B",
 
     "type": "project",
