@@ -103,6 +103,7 @@ $config = [
         'password' => '',                   // SMTP password
         'secure' => '',                     // Enable encryption (false, tls or ssl)
         'port' => 25,                       // TCP port to connect to
+        'use_sendmail' => false,            // If you use a local email relay / mail server
     ],
     /* home */
     'show_what_is_that' => true,            // display "how to use" section
