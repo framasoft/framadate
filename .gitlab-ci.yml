@@ -31,6 +31,12 @@ check-trad:
     - develop
 
 # Create artifacts on master
+# Create a ready-to-deploy package
+# Create its sha512sum
+# Put all that in the artifact for Gitlab pages
+# Upload all the package and the sha512sum file to Gitlab
+# Update the release description
+# Add package and sha512sum file links to release assets
 pages:
   stage: deploy
   script:
@@ -45,8 +51,12 @@ pages:
   - rm -rf framadate/.git
   - export RELEASE_ZIP="framadate-${CI_COMMIT_TAG}.zip"
   - zip -r $RELEASE_ZIP framadate
+  - sha512sum $RELEASE_ZIP > SHA512SUM
   - mkdir .public
   - cp $RELEASE_ZIP .public/latest.zip
+  - cd .public
+  - sha512sum latest.zip > SHA512SUM
+  - cd ..
   - mv .public public
   - if [[ -z $GITLAB_API_TOKEN ]]; then exit; fi
   - export PROJECT_API_URL="https://framagit.org/api/v4/projects/${CI_PROJECT_ID}"
@@ -55,11 +65,14 @@ pages:
   - 'export HEADER="Private-Token: ${GITLAB_API_TOKEN}"'
   - export artifactUrl=$(curl -s --request POST --header "${HEADER}" --form "file=@${RELEASE_ZIP}" "${PROJECT_API_URL}/uploads" | jq -r .url)
   - export artifactAbsoluteUrl="${CI_PROJECT_URL}${artifactUrl}"
-  - export description=$(curl -s --header "${HEADER}" "${DESCRIPTION_URL}" | jq .release.description | sed -e 's@"@@g')
-  - if [[ $description == 'null' ]]; then export METHOD="POST"; echo -e 'You can download the release zip here:'" [${RELEASE_ZIP}](${artifactAbsoluteUrl})" > /tmp/text; fi
-  - if [[ $description != 'null' ]]; then export METHOD="PUT";  echo -e "${description}\n\n"'You can download the release zip here:'" [${RELEASE_ZIP}](${artifactAbsoluteUrl})" > /tmp/text; fi
+  - export sha512sumUrl=$(curl -s --request POST --header "${HEADER}" --form "file=@${SHA512SUM}" "${PROJECT_API_URL}/uploads" | jq -r .url)
+  - export sha512sumAbsoluteUrl="${CI_PROJECT_URL}${sha512sumUrl}"
+  - export description=$(curl -s --header "${HEADER}" "${DESCRIPTION_URL}" | jq -r .release.description)
+  - if [[ $description == 'null' ]]; then export METHOD="POST"; echo -e 'You can download the release zip here:'" [${RELEASE_ZIP}](${artifactAbsoluteUrl}) ([SHA512SUM](${sha512sumAbsoluteUrl}))" > /tmp/text; fi
+  - if [[ $description != 'null' ]]; then export METHOD="PUT";  echo -e "${description}\n\n"'You can download the release zip here:'" [${RELEASE_ZIP}](${artifactAbsoluteUrl}) ([SHA512SUM](${sha512sumAbsoluteUrl}))" > /tmp/text; fi
   - curl -s --request $METHOD --data-urlencode "description@/tmp/text" --header "${HEADER}" "${RELEASE_URL}"
   - curl -s --request POST --header "${HEADER}" --data name="${RELEASE_ZIP}" --data url="${artifactAbsoluteUrl}" "${PROJECT_API_URL}/releases/${CI_COMMIT_TAG}/assets/links"
+  - curl -s --request POST --header "${HEADER}" --data name="SHA512SUM" --data url="${sha512sumAbsoluteUrl}" "${PROJECT_API_URL}/releases/${CI_COMMIT_TAG}/assets/links"
   artifacts:
     paths:
     - public
