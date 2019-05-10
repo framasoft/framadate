@@ -90,6 +90,7 @@ class MailService {
             'username' => 'Username',
             'password' => 'Password',
             'secure' => 'SMTPSecure',
+            'autotls' => 'SMTPAutoTLS',
             'port' => 'Port',
         ];
 
