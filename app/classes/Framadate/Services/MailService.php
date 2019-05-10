@@ -94,7 +94,7 @@ class MailService {
         ];
 
         foreach ($available_options as $config_option => $mailer_option) {
-            if (true === isset($this->smtp_options[$config_option]) && false === empty($this->smtp_options[$config_option])) {
+            if (true === isset($this->smtp_options[$config_option])) {
                 $mailer->{$mailer_option} = $this->smtp_options[$config_option];
             }
         }
