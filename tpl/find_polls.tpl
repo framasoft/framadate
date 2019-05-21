@@ -10,7 +10,9 @@
         <div>
             <h3>
                 {__('FindPolls', 'Polls saved inside this browser')}
-                <a href="#" data-toggle="modal" data-target="#localstorage_help_modal"><i class="glyphicon glyphicon-info-sign"></i></a><!-- TODO Add accessibility -->
+                <a href="#" data-toggle="modal" data-target="#localstorage_help_modal">
+                    <i class="fa fa-info-sign" aria-hidden="true"></i>
+                </a><!-- TODO Add accessibility -->
             </h3>
             <div class="row" v-if="polls.length > 0 || adminPolls.length > 0">
                 <div class="pull-right">
@@ -34,7 +36,12 @@
                             <td>%% poll.title %%</td>
                             <td><a :href="poll.url">%% poll.url %%</a></td>
                             <td>%% poll.accessed | date %%</td>
-                            <td><button class="btn btn-sm btn-danger" @click="removePoll(poll.url)"><i class="glyphicon glyphicon-trash"></i><span class="sr-only">{__('Generic', 'Remove')}</span></button></td>
+                            <td>
+                                <button class="btn btn-sm btn-danger" @click="removePoll(poll.url)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    <span class="sr-only">{__('Generic', 'Remove')}</span>
+                                </button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -57,7 +64,12 @@
                             <td>%% poll.title %%</td>
                             <td><a :href="poll.url">%% poll.url %%</a></td>
                             <td>%% poll.accessed | date %%</td>
-                            <td><button class="btn btn-sm btn-danger" @click="removeAdminPoll(poll.url)"><i class="glyphicon glyphicon-trash"></i><span class="sr-only">{__('Generic', 'Remove')}</span></button></td>
+                            <td>
+                                <button class="btn btn-sm btn-danger" @click="removeAdminPoll(poll.url)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    <span class="sr-only">{__('Generic', 'Remove')}</span>
+                                </button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>

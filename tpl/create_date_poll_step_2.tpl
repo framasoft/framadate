@@ -27,9 +27,9 @@
                     <p>{__('Step 2 date', 'To schedule an event you need to provide at least two choices (e.g., two time slots on one day or two days).')}</p>
 
                     <p>{__('Step 2 date', 'You can add or remove additional days and times with the buttons')}
-                        <span class="glyphicon glyphicon-minus text-info"></span>
+                        <i class="fa fa-minus text-info" aria-hidden="true"></i>
                         <span class="sr-only">{__('Generic', 'Remove')}</span>
-                        <span class="glyphicon glyphicon-plus text-success"></span>
+                        <i class="fa fa-plus text-success" aria-hidden="true"></i>
                         <span class="sr-only">{__('Generic', 'Add')}</span>
                     </p>
 
@@ -50,7 +50,9 @@
 
                                     <div class="col-xs-10 col-sm-11">
                                         <div class="input-group date">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
+                                            <span class="input-group-addon" aria-hidden="true">
+                                                <i class="fa fa-calendar-plus-o text-info"></i>
+                                            </span>
                                             <input type="text" class="form-control" id="day{$i}" title="{__('Generic', 'Day')} {$i+1}"
                                                    data-date-format="{__('Date', 'yyyy-mm-dd')}" aria-describedby="dateformat{$i}" name="days[]" value="{$day_value}"
                                                    size="10" maxlength="10" placeholder="{__('Date', 'yyyy-mm-dd-for-humans')}" autocomplete="off"/>
@@ -58,7 +60,7 @@
                                     </div>
                                     <div class="col-xs-2 col-sm-1">
                                         <button type="button" title="{__('Step 2 date', 'Remove this day')}" class="remove-day btn btn-sm btn-link">
-                                            <span class="glyphicon glyphicon-remove text-danger"></span>
+                                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                                             <span class="sr-only">{__('Step 2 date', 'Remove this day')}</span>
                                         </button>
                                     </div>
@@ -77,11 +79,11 @@
                                 <div class="col-sm-2">
                                     <div class="btn-group btn-group-xs" style="margin-top: 5px;">
                                         <button type="button" title="{__('Step 2 date', 'Remove a time slot')}" class="remove-an-hour btn btn-default">
-                                            <span class="glyphicon glyphicon-minus text-info"></span>
+                                            <i class="fa fa-minus text-info" aria-hidden="true"></i>
                                             <span class="sr-only">{__('Step 2 date', 'Remove a time slot')}</span>
                                         </button>
                                         <button type="button" title="{__('Step 2 date', 'Add a time slot')}" class="add-an-hour btn btn-default">
-                                            <span class="glyphicon glyphicon-plus text-success"></span>
+                                            <i class="fa fa-plus text-success" aria-hidden="true"></i>
                                             <span class="sr-only">{__('Step 2 date', 'Add a time slot')}</span>
                                         </button>
                                     </div>
@@ -93,25 +95,30 @@
 
 
                 <div class="col-md-4">
-                    <button type="button" id="copyhours" class="btn btn-default disabled" title="{__('Step 2 date', 'Copy times from the first day')}"><span
-                                class="glyphicon glyphicon-sort-by-attributes-alt text-info"></span><span
-                                class="sr-only">{__('Step 2 date', 'Copy times from the first day')}</span></button>
+                    <button type="button" id="copyhours" class="btn btn-default disabled" title="{__('Step 2 date', 'Copy times from the first day')}">
+                        <i class="fa fa-history fa-flip-horizontal text-info"></i>
+                        <span class="sr-only">{__('Step 2 date', 'Copy times from the first day')}</span>
+                    </button>
                     <div class="btn-group btn-group">
-                        <button type="button" id="remove-a-day" class="btn btn-default disabled" title="{__('Step 2 date', 'Remove a day')}"><span
-                                    class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">{__('Step 2 date', 'Remove a day')}</span></button>
-                        <button type="button" id="add-a-day" class="btn btn-default" title="{__('Step 2 date', 'Add a day')}"><span
-                                    class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{__('Step 2 date', 'Add a day')}</span></button>
+                        <button type="button" id="remove-a-day" class="btn btn-default disabled" title="{__('Step 2 date', 'Remove a day')}">
+                            <i class="fa fa-minus text-info" aria-hidden="true"></i>
+                            <span class="sr-only">{__('Step 2 date', 'Remove a day')}</span>
+                        </button>
+                        <button type="button" id="add-a-day" class="btn btn-default" title="{__('Step 2 date', 'Add a day')}">
+                            <i class="fa fa-plus text-success" aria-hidden="true"></i>
+                            <span class="sr-only">{__('Step 2 date', 'Add a day')}</span>
+                        </button>
                     </div>
                     <a href="" data-toggle="modal" data-target="#add_days" class="btn btn-default" title="{__('Date', 'Add range dates')}">
-                        <span class="glyphicon glyphicon-plus text-success"></span>
-                        <span class="glyphicon glyphicon-plus text-success"></span>
+                        <i class="fa fa-plus text-success" aria-hidden="true"></i>
+                        <i class="fa fa-plus text-success" aria-hidden="true"></i>
                         <span class="sr-only">{__('Date', 'Add range dates')}</span>
                     </a>
                 </div>
                 <div class="col-md-8 text-right">
                     <div class="btn-group">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-remove text-danger"></span>
+                            <i class="fa fa-trash text-danger" aria-hidden="true"></i>
                             {__('Generic', 'Remove')} <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
@@ -146,7 +153,9 @@
                     <div class="col-xs-12">
                         <label for="range_start">{__('Date', 'Start date')}</label>
                         <div class="input-group date">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
+                            <span class="input-group-addon" aria-hidden="true">
+                                <i class="fa fa-calendar-plus-o text-info"></i>
+                            </span>
                             <input type="text" class="form-control" id="range_start"
                                    data-date-format="{__('Date', 'yyyy-mm-dd')}" size="10" maxlength="10"
                                    placeholder="{__('Date', 'yyyy-mm-dd-for-humans')}"/>
@@ -155,7 +164,9 @@
                     <div class="col-xs-12">
                         <label for="range_end">{__('Date', 'End date')}</label>
                         <div class="input-group date">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
+                            <span class="input-group-addon" aria-hidden="true">
+                                <i class="fa fa-calendar-plus-o text-info"></i>
+                            </span>
                             <input type="text" class="form-control" id="range_end"
                                    data-date-format="{__('Date', 'yyyy-mm-dd')}" size="10" maxlength="10"
                                    placeholder="{__('Date', 'yyyy-mm-dd-for-humans')}"/>

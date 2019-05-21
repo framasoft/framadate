@@ -25,7 +25,9 @@
                         <label for="enddate" class="col-sm-5 control-label">{__('Step 3', 'Expiry date:')}</label>
                         <div class="col-sm-6">
                             <div class="input-group date">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar text-info"></i></span>
+                                <span class="input-group-addon" aria-hidden="true">
+                                    <i class="fa fa-calendar text-info"></i>
+                                </span>
                                 <input type="text" class="form-control" id="enddate" data-date-format="{__('Date', 'yyyy-mm-dd')}" aria-describedby="dateformat" name="enddate" value="{$end_date_str}" size="10" maxlength="10" placeholder="{__('Date', 'yyyy-mm-dd-for-humans')}" />
                             </div>
                         </div>

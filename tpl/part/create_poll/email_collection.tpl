@@ -37,7 +37,7 @@
 <div id="collect_warning" class="hidden">
     <div class="col-sm-offset-4 col-sm-8">
         <label class="bg-danger">
-            <i class="glyphicon glyphicon-alert"></i>
+            <i class="fa fa-warning" aria-hidden="true"></i>
             {__('Step 1', "Warning: Anyone can see the polled users' email addresses since all voters can modify any vote. You should restrict permission rules.")}
         </label>
     </div>

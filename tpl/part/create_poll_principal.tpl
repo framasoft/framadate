@@ -88,14 +88,14 @@
 {/if}
 
 {* Optionnal parameters *}
-<div class="col-sm-offset-3 col-sm-1 hidden-xs">
+<div class="col-sm-offset-3 col-sm-1 hidden-xs" aria-hidden="true">
     <p class="lead">
-        <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
+        <i class="fa fa-gear"></i>
     </p>
 </div>
 <div class="col-sm-8 col-xs-12">
-    <span class="lead visible-xs-inline">
-        <i class="glyphicon glyphicon-cog" aria-hidden="true"></i>
+    <span class="lead visible-xs-inline" aria-hidden="true">
+        <i class="fa fa-gear"></i>
     </span>
     <a class="optionnal-parameters {if !$advanced_errors}collapsed{/if} lead" role="button"
        data-toggle="collapse" href="#optionnal"
