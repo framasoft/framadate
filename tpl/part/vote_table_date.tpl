@@ -5,7 +5,7 @@
 <h3>
     {__('Poll results', 'Votes')} {if $hidden}<i>({__('PollInfo', 'Results are hidden')})</i>{/if}
     {if $accessGranted}
-        <a href="" data-toggle="modal" data-target="#hint_modal"><i class="glyphicon glyphicon-info-sign"></i></a>
+        <a href="" data-toggle="modal" data-target="#hint_modal"><i class="fa fa-lightbulb-o" aria-hidden="true"></i></a>
     {/if}
 </h3>
 
@@ -30,13 +30,15 @@
                                    data-remove-confirmation="{__('adminstuds', 'Confirm removal of the column.')}"
                                    class="btn btn-link btn-sm remove-column"
                                    title="{__('adminstuds', 'Remove column')} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
-                                    <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
+                                    <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                    <span class="sr-only">{__('Generic', 'Remove')}</span>
                                 </a>
                             {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT")}
                                 <a href="{poll_url id=$admin_poll_id admin=true action='collect_mail' action_value=($headersDCount)}"
                                    class="btn btn-link btn-sm collect-mail"
                                    title="{__('adminstuds', 'Collect the emails of the polled users for the choice')} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
-                                    <i class="glyphicon glyphicon-envelope"></i><span class="sr-only">{__('Generic', 'Collect emails')}</span>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <span class="sr-only">{__('Generic', 'Collect emails')}</span>
                                 </a>
                             {/if}
                             </td>
@@ -46,7 +48,8 @@
                     <td>
                         <a href="{poll_url id=$admin_poll_id admin=true action='add_column'}"
                            class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')}">
-                            <i class="glyphicon glyphicon-plus text-success"></i><span class="sr-only">{__('Poll results', 'Add a column')}</span>
+                            <i class="fa fa-plus text-success" aria-hidden="true"></i>
+                            <span class="sr-only">{__('Poll results', 'Add a column')}</span>
                         </a>
                     </td>
                 </tr>
@@ -109,12 +112,14 @@
                 <tr class="hidden-print">
                     <td class="bg-info btn-edit">
                         <div class="input-group input-group-sm" id="edit">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <span class="input-group-addon" aria-hidden="true">
+                                <i class="fa fa-user"></i>
+                            </span>
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
                             <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
-			                {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT")}
+                            {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT")}
                                 <input type="email" {if $poll->collect_users_mail != constant("Framadate\CollectMail::COLLECT")} required {/if} id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
-			                {/if}
+                            {/if}
                         </div>
                     </td>
 
@@ -130,23 +135,29 @@
                                 <li class="yes">
                                     <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice=='2'}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{__('Poll results', 'Vote "yes" for')|html} {$slots_raw[$k]}">
-                                        <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                        <span class="sr-only">{__('Generic', 'Yes')}</span>
                                     </label>
                                 </li>
                                 <li class="ifneedbe">
                                     <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice=='1'}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{__('Poll results', 'Votes under reserve for')|html} {$slots_raw[$k]}">
-                                        (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Under reserve')}</span>
+                                        <span aria-hidden="true">(<i class="fa fa-check"></i>)</span>
+                                        <span class="sr-only">{__('Generic', 'Under reserve')}</span>
                                     </label>
                                 </li>
                                 <li class="no">
                                     <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice=='0'}checked {/if}/>
                                     <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{__('Poll results', 'Vote "no" for')|html} {$slots_raw[$k]}">
-                                        <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                        <span class="sr-only">{__('Generic', 'No')}</span>
                                     </label>
                                 </li>
                                 <li class="hide">
-                                    <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value=" " {if $choice!='2' && $choice!='1' && $choice!='0'}checked {/if}/>
+                                    <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value=" "
+                                        {if $choice!='2' && $choice!='1' && $choice!='0'}checked {/if}
+                                    />
+                                    <i class="fa fa-question" aria-hidden="true"></i>
                                 </li>
                             </ul>
                         </td>
@@ -171,13 +182,14 @@
                         ) &&
                     $slots|count gt 4
                     }
-						<span class="edit-username-left">
-							<a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit line: %s', $vote->name)|html}">
-                       		<i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>
-                       		</a>
-					</span>
-					{/if}
-					</th>
+            <span class="edit-username-left">
+                <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit line: %s', $vote->name)|html}">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    <span class="sr-only">{__('Generic', 'Edit')}</span>
+                </a>
+          </span>
+          {/if}
+          </th>
 
 
 
@@ -188,13 +200,25 @@
                         {$choice=$vote->choices[$k]}
 
                         {if $choice=='2'}
-                            <td class="bg-success text-success" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span></td>
+                            <td class="bg-success text-success" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <span class="sr-only">{__('Generic', 'Yes')}</span>
+                            </td>
                         {elseif $choice=='1'}
-                            <td class="bg-warning text-warning" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">(<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Under reserve')}</span></td>
+                            <td class="bg-warning text-warning" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">
+                                <span aria-hidden="true">(<i class="fa fa-check"></i>)</span>
+                                <span class="sr-only">{__('Generic', 'Under reserve')}</span>
+                            </td>
                         {elseif $choice=='0'}
-                            <td class="bg-danger text-danger" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span></td>
+                            <td class="bg-danger text-danger" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                                <span class="sr-only">{__('Generic', 'No')}</span>
+                            </td>
                         {else}
-                            <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}"><span class="sr-only">{__('Generic', 'Unknown')}</span></td>
+                            <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">
+                                <i class="fa fa-question" aria-hidden="true"></i>
+                                <span class="sr-only">{__('Generic', 'Unknown')}</span>
+                            </td>
                         {/if}
 
                         {$k=$k + 1}
@@ -210,16 +234,19 @@
                     }
                         <td class="hidden-print">
                             <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit line: %s', $vote->name)|html}">
-                                <i class="glyphicon glyphicon-pencil"></i><span class="sr-only">{__('Generic', 'Edit')}</span>
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                <span class="sr-only">{__('Generic', 'Edit')}</span>
                             </a>
                             {if $admin}
                                 <a href="{poll_url id=$poll->id vote_id=$vote->uniqId}" class="btn btn-default btn-sm clipboard-url" data-toggle="popover" data-trigger="manual" title="{__('Poll results', 'Link to edit this particular line')}" data-content="{__('Poll results', 'The link to edit this particular line has been copied to the clipboard!')}">
-                                    <i class="glyphicon glyphicon-link"></i><span class="sr-only">{__('Generic', 'Link')}</span>
+                                    <i class="fa fa-link" aria-hidden="true"></i>
+                                    <span class="sr-only">{__('Generic', 'Link')}</span>
                                 </a>
                                 <a href="{poll_url id=$admin_poll_id admin=true action='delete_vote' action_value=$vote->id}"
                                    class="btn btn-default btn-sm"
                                    title="{__('Poll results', 'Remove line:')} {$vote->name|html}">
-                                    <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
+                                    <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                    <span class="sr-only">{__('Generic', 'Remove')}</span>
                                 </a>
 
                             {/if}
@@ -237,7 +264,9 @@
                 <tr id="vote-form" class="hidden-print">
                     <td class="bg-info btn-edit">
                         <div class="input-group input-group-sm">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <span class="input-group-addon" aria-hidden="true">
+                                <i class="fa fa-user"></i>
+                            </span>
                             <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                             {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT")}
                                 <input type="email" {if $poll->collect_users_mail != constant("Framadate\CollectMail::COLLECT")} required {/if} id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
@@ -245,7 +274,7 @@
                         </div>
                         {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT") && $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')}
                             <div class="bg-danger">
-                                <i class="glyphicon glyphicon-alert"> </i>
+                                <i class="fa fa-warning" aria-hidden="true"></i>
                                 <label> {__('Poll results', 'Anyone will be able to see your email address after you voted')} </label>
                             </div>
                         {/if}
@@ -261,34 +290,38 @@
                                     {if $poll->ValueMax eq NULL || $best_choices['y'][$i] lt $poll->ValueMax}
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2"
-                                        	{(!isset($selectedNewVotes[$i]) || ("2" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                            {(!isset($selectedNewVotes[$i]) || ("2" !== $selectedNewVotes[$i])) ? "" : " checked"}
                                         />
                                         <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote "yes" for')|html} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
-                                            <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                            <span class="sr-only">{__('Generic', 'Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
                                         <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1"
-                                        	{(!isset($selectedNewVotes[$i]) || ("1" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                            {(!isset($selectedNewVotes[$i]) || ("1" !== $selectedNewVotes[$i])) ? "" : " checked"}
                                         />
                                         <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results', 'Votes under reserve for')|html} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
-                                            (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Under reserve')}</span>
+                                            <span aria-hidden="true">(<i class="fa fa-check"></i>)</span>
+                                            <span class="sr-only">{__('Generic', 'Under reserve')}</span>
                                         </label>
                                     </li>
                                     {/if}
 
                                     <li class="no">
                                         <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0"
-                                        	{(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                            {(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "" : " checked"}
                                         />
                                         <label class="btn btn-default btn-xs {(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "startunchecked" : ""}" for="n-choice-{$i}" title="{__('Poll results', 'Vote "no" for')|html} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
-                                            <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                            <span class="sr-only">{__('Generic', 'No')}</span>
                                         </label>
                                     </li>
                                     <li class="hide">
-                                      <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value=" "
-                                      	{(isset($selectedNewVotes[$i]) && ("" !== $selectedNewVotes[$i])) ? "" : " checked"}
-                                      />
+                                        <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value=" "
+                                            {(isset($selectedNewVotes[$i]) && ("" !== $selectedNewVotes[$i])) ? "" : " checked"}
+                                        />
+                                        <i class="fa fa-question" aria-hidden="true"></i>
                                     </li>
                                 </ul>
                             </td>
@@ -310,11 +343,27 @@
                         {foreach $best_choices['y'] as $i=>$best_moment}
                             {if $max == $best_moment}
                                 {$count_bests = $count_bests +1}
-                                <td><i class="glyphicon glyphicon-star text-info"></i><span class="yes-count">{$best_moment|html}</span>{if $best_choices['inb'][$i]>0}<br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>{/if}</td>
+                                <td>
+                                    <i class="fa fa-star text-info" aria-hidden="true"></i>
+                                    <span class="yes-count">{$best_moment|html}</span>
+                                    {if $best_choices['inb'][$i]>0}
+                                    <br>
+                                    <span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>
+                                    {/if}
+                                </td>
                             {elseif $best_moment > 0}
-                                <td><span class="yes-count">{$best_moment|html}</span>{if $best_choices['inb'][$i]>0}<br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>{/if}</td>
+                                <td>
+                                    <span class="yes-count">{$best_moment|html}</span>
+                                    {if $best_choices['inb'][$i]>0}
+                                    <br>
+                                    <span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>
+                                    {/if}
+                                </td>
                             {elseif $best_choices['inb'][$i]>0}
-                                <td><br/><span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span></td>
+                                <td>
+                                    <br>
+                                    <span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>
+                                </td>
                             {else}
                                 <td></td>
                             {/if}
@@ -332,7 +381,8 @@
         <div class="col-xs-12">
             <p class="text-center" id="showChart">
                 <button class="btn btn-lg btn-default">
-                    <span class="fa fa-fw fa-bar-chart"></span> {__('Poll results', 'Display the chart of the results')}
+                    <i class="fa fa-fw fa-bar-chart"></i>
+                    {__('Poll results', 'Display the chart of the results')}
                 </button>
             </p>
         </div>
@@ -411,11 +461,17 @@
         {if $count_bests == 1}
         <div class="col-sm-12"><h3>{__('Poll results', 'Best choice')}</h3></div>
         <div class="col-sm-6 col-sm-offset-3 alert alert-info">
-            <p><i class="glyphicon glyphicon-star text-info"></i> {__('Poll results', 'The current best choice is:')}</p>
+            <p>
+                <i class="fa fa-star text-info" aria-hidden="true"></i>
+                {__('Poll results', 'The current best choice is:')}
+            </p>
             {elseif $count_bests > 1}
             <div class="col-sm-12"><h3>{__('Poll results', 'Best choices')}</h3></div>
             <div class="col-sm-6 col-sm-offset-3 alert alert-info">
-                <p><i class="glyphicon glyphicon-star text-info"></i> {__('Poll results', 'The current best choices are:')}</p>
+                <p>
+                    <i class="fa fa-star text-info" aria-hidden="true"></i>
+                    {__('Poll results', 'The current best choices are:')}
+                </p>
                 {/if}
 
 

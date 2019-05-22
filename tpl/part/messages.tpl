@@ -8,7 +8,12 @@
                 <div class="input-group input-group-sm">
                         <span class="input-group-btn">
                             <a {if $message->linkTitle != null} title="{$message->linkTitle|escape}" {/if} class="btn btn-default btn-sm" href="{$message->link}">
-                                {if $message->linkIcon != null}<i class="glyphicon glyphicon-pencil"></i>{if $message->linkTitle != null}<span class="sr-only">{$message->linkTitle|escape}</span>{/if}{/if}
+                            {if $message->linkIcon != null}
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                {if $message->linkTitle != null}
+                                <span class="sr-only">{$message->linkTitle|escape}</span>
+                                {/if}
+                            {/if}
                             </a>
                         </span>
                     <input type="text" aria-hidden="true" value="{$message->link}" class="form-control" readonly="readonly" >

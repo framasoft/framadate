@@ -80,12 +80,12 @@
                         <tr align="center">
                             <td class="cell-format">
                                 {if $poll->format === 'D'}
-                                    <span class="glyphicon glyphicon-calendar" aria-hidden="true"
-                                          title="{__('Generic', 'Date')}"></span>
+                                    <i class="fa fa-calendar" aria-hidden="true"
+                                       title="{__('Generic', 'Date')}"></i>
                                     <span class="sr-only">{__('Generic', 'Date')}</span>
                                 {else}
-                                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"
-                                          title="{__('Generic', 'Classic')}"></span>
+                                    <i class="fa fa-th-list" aria-hidden="true"
+                                       title="{__('Generic', 'Classic')}"></i>
                                     <span class="sr-only">{__('Generic', 'Classic')}</span>
                                 {/if}
                             </td>
@@ -100,19 +100,26 @@
                             {/if}
                             <td>{$poll->votes|html}</td>
                             <td>{$poll->id|html}</td>
-                            <td><a href="{poll_url id=$poll->id}" class="btn btn-link"
-                                   title="{__('Admin', 'See the poll')}"><span
-                                            class="glyphicon glyphicon-eye-open"></span><span
-                                            class="sr-only">{__('Admin', 'See the poll')}</span></a></td>
-                            <td><a href="{poll_url id=$poll->admin_id admin=true}" class="btn btn-link"
-                                   title="{__('Admin', 'Change the poll')}"><span
-                                            class="glyphicon glyphicon-pencil"></span><span
-                                            class="sr-only">{__('Admin', 'Change the poll')}</span></a></td>
+                            <td>
+                                <a href="{poll_url id=$poll->id}" class="btn btn-link"
+                                   title="{__('Admin', 'See the poll')}">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                    <span class="sr-only">{__('Admin', 'See the poll')}</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{poll_url id=$poll->admin_id admin=true}" class="btn btn-link"
+                                   title="{__('Admin', 'Change the poll')}">
+                                   <i class="fa fa-pencil" aria-hidden="true"></i>
+                                   <span class="sr-only">{__('Admin', 'Change the poll')}</span>
+                                </a>
+                            </td>
                             <td>
                                 <button type="submit" name="delete_poll" value="{$poll->id|html}" class="btn btn-link"
-                                        title="{__('Admin', 'Poll deleted')}"><span
-                                            class="glyphicon glyphicon-trash text-danger"></span><span
-                                            class="sr-only">{__('Admin', 'Poll deleted')}</span>
+                                        title="{__('Admin', 'Poll deleted')}">
+                                    <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                                    <span class="sr-only">{__('Admin', 'Poll deleted')}</span>
+                                </button>
                             </td>
                         </tr>
                     {/foreach}
