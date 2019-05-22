@@ -3,28 +3,31 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <i aria-hidden="true">&times;</i>
                 </button>
                 <h4 class="modal-title">{__('Generic', 'Information')}</h4>
             </div>
             <div class="modal-body">
                 <div class="alert alert-info">
                     <p>{__('adminstuds', 'As poll administrator, you can change all the lines of this poll with this button')}
-                        <span class="glyphicon glyphicon-pencil"></span><span
-                                class="sr-only">{__('Generic', 'Edit')}</span>,
-                        {__('adminstuds', 'remove a column or a line with')} <span
-                                class="glyphicon glyphicon-remove text-danger"></span><span
-                                class="sr-only">{__('Generic', 'Remove')}</span>
-                        {__('adminstuds', 'and add a new column with')} <span
-                                class="glyphicon glyphicon-plus text-success"></span><span
-                                class="sr-only">{__('adminstuds', 'Add a column')}</span>.</p>
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <span class="sr-only">{__('Generic', 'Edit')}</span>,
+                        {__('adminstuds', 'remove a column or a line with')}
+                        <i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                        <span class="sr-only">{__('Generic', 'Remove')}</span>
+                        {__('adminstuds', 'and add a new column with')}
+                        <i class="fa fa-plus text-success" aria-hidden="true"></i>
+                        <span class="sr-only">{__('adminstuds', 'Add a column')}</span>.
+                    </p>
 
                     <p>{__('adminstuds', 'Finally, you can change the properties of this poll such as the title, the comments or your email address.')}</p>
 
-                    <p aria-hidden="true"><strong>{__('Generic', 'Legend:')}</strong> <span
-                                class="glyphicon glyphicon-ok"></span> = {__('Generic', 'Yes')}, <b>(<span
-                                    class="glyphicon glyphicon-ok"></span>)</b> = {__('Generic', 'Under reserve')}, <span
-                                class="glyphicon glyphicon-ban-circle"></span> = {__('Generic', 'No')}</p>
+                    <p aria-hidden="true">
+                        <b>{__('Generic', 'Legend:')}</b>
+                        <i class="fa fa-check"></i> = {__('Generic', 'Yes')},
+                        <b>(<i class="fa fa-check"></i>)</b> = {__('Generic', 'Under reserve')},
+                        <i class="fa fa-times"></i> = {__('Generic', 'No')}
+                    </p>
                 </div>
             </div>
         </div>

@@ -5,7 +5,9 @@
     <button type="button" id="simple-editor-button" class="btn btn-default btn-xs{if !$default_to_marldown_editor} active{/if}">{__('PollInfo', 'Simple editor')}</button>
 </div>
 
-<a href="" data-toggle="modal" data-target="#markdown_modal"><i class="glyphicon glyphicon-info-sign"></i></a><!-- TODO Add accessibility -->
+<a href="" data-toggle="modal" data-target="#markdown_modal">
+    <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+</a><!-- TODO Add accessibility -->
 
 <div id="markdown_modal" class="modal fade">
     <div class="modal-dialog modal-sm">
@@ -21,7 +23,6 @@
                         {__('Step 1', 'To make the description more attractive, you can use the Markdown format.')}
                      </p>
                     <p>
-
                         {__('Step 1', 'You can enable or disable the editor at will.')}
                     </p>
                     <p>

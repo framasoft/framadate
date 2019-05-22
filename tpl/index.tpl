@@ -8,7 +8,7 @@
                     <img class="img-responsive center-block" src="{'images/date.png'|resource}" alt=""/>
                     <br/>
                     <span class="btn btn-primary btn-lg">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
                         {__('Homepage', 'Schedule an event')}
                     </span>
                 </a>
@@ -20,7 +20,7 @@
                     <img alt="" class="img-responsive center-block" src="{'images/classic.png'|resource}"/>
                     <br/>
                     <span class="btn btn-info btn-lg">
-                        <span class="glyphicon glyphicon-stats"></span>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
                         {__('Homepage', 'Make a standard poll')}
                     </span>
                 </a>
@@ -30,7 +30,7 @@
             <p class="home-choice">
                 <a href="{$SERVER_URL}find_polls.php" class="opacity" role="button">
                     <span class="btn btn-warning btn-lg">
-                        <span class="glyphicon glyphicon-search"></span>
+                        <i class="fa fa-search" aria-hidden="true"></i>
                         {__('Homepage', 'Where are my polls?')}
                     </span>
                 </a>
@@ -44,8 +44,8 @@
             <div class="col-md-{$col_size}">
                 <h3>{__('1st section', 'What is Framadate?')}</h3>
 
-                <p class="text-center" role="presentation">
-                    <span class="glyphicon glyphicon-question-sign" style="font-size:50px"></span>
+                <p class="text-center" aria-hidden="true">
+                    <i class="fa fa-4x fa-question-circle"></i>
                 </p>
 
                 <p>{__('1st section', 'Framadate is an online service for planning an appointment or making a decision quickly and easily. No registration is required.')}</p>
@@ -70,8 +70,8 @@
             <div class="col-md-{$col_size}">
                 <h3>{__('2nd section', 'The software')}</h3>
 
-                <p class="text-center" role="presentation">
-                    <span class="glyphicon glyphicon-cloud" style="font-size:50px"></span>
+                <p class="text-center" aria-hidden="true">
+                    <i class="fa fa-4x fa-cloud"></i>
                 </p>
 
                 <p>{__('2nd section', 'Framadate was initially based on')}
@@ -97,8 +97,8 @@
             <div class="col-md-{$col_size}">
                 <h3>{__('3rd section', 'Grow your own')}</h3>
 
-                <p class="text-center" role="presentation">
-                    <span class="glyphicon glyphicon-tree-deciduous" style="font-size:50px"></span>
+                <p class="text-center" aria-hidden="true">
+                    <i class="fa fa-4x fa-leaf"></i>
                 </p>
 
                 <p>
@@ -110,9 +110,9 @@
                 <p>{__('3rd section', 'If you want to install the software for your own use and thus increase your independence, we can help you at:')}</p>
 
                 <p class="text-center">
-                    <a href="http://framacloud.org/cultiver-son-jardin/installation-de-framadate/"
+                    <a href="https://framacloud.org/fr/cultiver-son-jardin/framadate.html"
                        class="btn btn-success">
-                        <span class="glyphicon glyphicon-tree-deciduous"></span>
+                        <i class="fa fa-leaf" aria-hidden="true"></i>
                         framacloud.org
                     </a>
                 </p>

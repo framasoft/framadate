@@ -5,7 +5,10 @@
         {foreach $comments as $comment}
             <div class="comment">
                 {if $admin && !$expired}
-                    <button type="submit" name="delete_comment" value="{$comment->id|html}" class="btn btn-link" title="{__('Comments', 'Remove comment')}"><span class="glyphicon glyphicon-remove text-danger"></span><span class="sr-only">{__('Generic', 'Remove')}</span></button>
+                    <button type="submit" name="delete_comment" value="{$comment->id|html}" class="btn btn-link" title="{__('Comments', 'Remove comment')}">
+                        <i class="fa fa-trash text-danger"></i>
+                        <span class="sr-only">{__('Generic', 'Remove')}</span>
+                    </button>
                 {/if}
 {*                <span>{$comment->date}</span>*}
 {*                <span>{$comment->date|date_format_intl}</span>*}

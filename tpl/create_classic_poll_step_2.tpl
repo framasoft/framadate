@@ -13,7 +13,13 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="alert alert-info">
                         <p>{__('Step 2 classic', 'To create a poll you should provide at least two different choices.')}</p>
-                        <p>{__('Step 2 classic', 'You can add or remove choices with the buttons')} <span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">{__('Generic', 'Remove')}</span> <span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{__('Generic', 'Add')}</span></p>
+                        <p>
+                            {__('Step 2 classic', 'You can add or remove choices with the buttons')}
+                            <i class="fa fa-minus text-info" aria-hidden="true"></i>
+                            <span class="sr-only">{__('Generic', 'Remove')}</span>
+                            <i class="fa fa-plus text-success" aria-hidden="true"></i>
+                            <span class="sr-only">{__('Generic', 'Add')}</span>
+                        </p>
                         {if ($allowMarkdown)}
                             <p>{__('Step 2 classic', 'Links or images can be included using')} <a href="http://{$locale|locale_2_lang}.wikipedia.org/wiki/Markdown">{__('Step 2 classic', 'Markdown syntax')}</a>.</p>
                         {/if}
@@ -24,15 +30,24 @@
                             <div class="col-sm-10 input-group">
                                 <input type="text" class="form-control" name="choices[]" size="40" value="{$choice->getName()}" id="choice{$i}" />
                                 {if ($allowMarkdown) }
-                                    <span class="input-group-addon md-a-img" title="{__('Step 2 classic', 'Add a link or an image')} - {__('Generic', 'Choice')} {$i + 1}"><span class="glyphicon glyphicon-picture"></span> <span class="glyphicon glyphicon-link"></span></span>
+                                    <span class="input-group-addon md-a-img" title="{__('Step 2 classic', 'Add a link or an image')} - {__('Generic', 'Choice')} {$i + 1}">
+                                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                        <i class="fa fa-link" aria-hidden="true"></i>
+                                    </span>
                                 {/if}
                             </div>
                         </div>
                     {/foreach}
                     <div class="col-md-4">
                         <div class="btn-group btn-group">
-                            <button type="button" id="remove-a-choice" class="btn btn-sub" title="{__('Step 2 classic', 'Remove a choice')}"><span class="glyphicon glyphicon-minus text-info"></span><span class="sr-only">{__('Generic', 'Remove')}</span></button>
-                            <button type="button" id="add-a-choice" class="btn btn-sub" title="{__('Step 2 classic', 'Add a choice')}"><span class="glyphicon glyphicon-plus text-success"></span><span class="sr-only">{__('Generic', 'Add')}</span></button>
+                            <button type="button" id="remove-a-choice" class="btn btn-sub" title="{__('Step 2 classic', 'Remove a choice')}">
+                                <i class="fa fa-minus text-info" aria-hidden="true"></i>
+                                <span class="sr-only">{__('Generic', 'Remove')}</span>
+                            </button>
+                            <button type="button" id="add-a-choice" class="btn btn-sub" title="{__('Step 2 classic', 'Add a choice')}">
+                                <i class="fa fa-plus text-success" aria-hidden="true"></i>
+                                <span class="sr-only">{__('Generic', 'Add')}</span>
+                            </button>
                         </div>
                     </div>
                     <div class="col-md-8 text-right">
@@ -52,11 +67,18 @@
                     <div class="modal-body">
                         <p class="alert alert-info">{__('Step 2 classic', 'These fields are optional. You can add a link, an image or both.')}</p>
                         <div class="form-group">
-                            <label for="md-img" class="control-label"><span class="glyphicon glyphicon-picture"></span><span class="glyphicon glyphicon-link"></span>{__('Step 2 classic', 'URL of the image')}</label>
+                            <label for="md-img" class="control-label">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                <i class="fa fa-link" aria-hidden="true"></i>
+                                {__('Step 2 classic', 'URL of the image')}
+                            </label>
                             <input id="md-img" type="text" placeholder="http://…" class="form-control" size="40" />
                         </div>
                         <div class="form-group">
-                            <label for="md-a" class="control-label"><span class="glyphicon glyphicon-link"></span>{__('Generic', 'Link')}</label>
+                            <label for="md-a" class="control-label">
+                                <i class="fa fa-link" aria-hidden="true"></i>
+                                {__('Generic', 'Link')}
+                            </label>
                             <input id="md-a" type="text" placeholder="http://…" class="form-control" size="40" />
                         </div>
                         <div class="form-group">
@@ -74,4 +96,4 @@
     </form>
 
 {/block}
-    
+
