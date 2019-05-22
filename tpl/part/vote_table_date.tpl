@@ -381,7 +381,7 @@
         <div class="col-xs-12">
             <p class="text-center" id="showChart">
                 <button class="btn btn-lg btn-default">
-                    <i class="fa fa-fw fa-bar-chart" aria-hidden="true"></i>
+                    <i class="fa fa-fw fa-bar-chart"></i>
                     {__('Poll results', 'Display the chart of the results')}
                 </button>
             </p>
