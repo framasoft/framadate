@@ -2,7 +2,6 @@
 
 {block name="header"}
     <script src="{"js/Chart.min.js"|resource}" type="text/javascript"></script>
-    <script src="{"js/Chart.StackedBar.js"|resource}" type="text/javascript"></script>
     <script src="{"js/app/studs.js"|resource}" type="text/javascript"></script>
     <link rel="stylesheet" href="{'css/jquery-ui.min.css'|resource}">
 

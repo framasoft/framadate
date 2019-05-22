@@ -291,7 +291,7 @@ class PollService {
         if (0 === count($votes)) {
            return $this->computeEmptyBestChoices($poll);
         }
-        $result = ['y' => [], 'inb' => []];
+        $result = ['y' => [], 'inb' => [], 'n' => []];
 
         // if there are votes
         foreach ($votes as $vote) {
@@ -300,12 +300,16 @@ class PollService {
                 if (!isset($result['y'][$i])) {
                     $result['inb'][$i] = 0;
                     $result['y'][$i] = 0;
+                    $result['n'][$i] = 0;
                 }
                 if ($choice === "1") {
                     $result['inb'][$i]++;
                 }
                 if ($choice === "2") {
                     $result['y'][$i]++;
+                }
+                if ($choice === "0") {
+                    $result['n'][$i]++;
                 }
             }
         }
@@ -344,7 +348,7 @@ class PollService {
             $obj->name = $vote->name;
             $obj->uniqId = $vote->uniqId;
             $obj->choices = str_split($vote->choices);
-	    $obj->mail = $vote->mail;
+            $obj->mail = $vote->mail;
 
             $splitted[] = $obj;
         }
@@ -434,9 +438,9 @@ class PollService {
     private function checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id = FALSE) {
         // Check if vote already exists with the same name
         if (FALSE === $vote_id) {
-        	$exists = $this->voteRepository->existsByPollIdAndName($poll_id, $name);
+            $exists = $this->voteRepository->existsByPollIdAndName($poll_id, $name);
         } else {
-        	$exists = $this->voteRepository->existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id);
+            $exists = $this->voteRepository->existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id);
         }
 
         if ($exists) {

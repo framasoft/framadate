@@ -75,7 +75,7 @@
                             <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
                             {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT")}
                                 <input type="email" {if $poll->collect_users_mail != constant("Framadate\CollectMail::COLLECT")} required {/if} id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
-          {/if}
+                            {/if}
                         </div>
                     </td>
 
@@ -121,23 +121,26 @@
                     <td class="btn-edit"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
                 </tr>
                 {elseif !$hidden} {* Voted line *}
-                <tr>
-
-                    <th class="bg-info" {if $accessGranted && $admin && $vote->mail}title="{$vote->mail|html}"{/if}>{$vote->name|html}
-                    {if $active && !$expired && $accessGranted &&
-                    (
-                    $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
-                    or $admin
-                    or ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_OWN') && $editedVoteUniqueId == $vote->uniqId)
-                    ) && $slots|count gt 4
-                    }
-                        <span class="edit-username-left">
-                            <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit line: %s', $vote->name)|html}">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                <tr title="{$vote->name|html}">
+                    {* Voted line *}
+                    <th class="bg-info" {if $accessGranted && $admin && $vote->mail}title="{$vote->mail|html}"{/if}>
+                        {if $active && !$expired && $accessGranted &&
+                        (
+                        $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')
+                        or $admin
+                        or ($poll->editable == constant('Framadate\Editable::EDITABLE_BY_OWN') && $editedVoteUniqueId == $vote->uniqId)
+                        ) && $slots|count gt 4
+                        }
+                        <span class="edit-username-left" aria-hidden="true">{* duplicate -> aria-hidden *}
+                            <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}"
+                               class="btn btn-default btn-sm"
+                               title="{__f('Poll results', 'Edit line: %s', $vote->name)|html}">
+                                <i class="fa fa-pencil"></i>
                                 <span class="sr-only">{__('Generic', 'Edit')}</span>
                             </a>
                         </span>
-                    {/if}
+                        {/if}
+                        {$vote->name|html}
                     </th>
 
                     {$id=0}
@@ -277,34 +280,38 @@
                 {$max = max($best_choices['y'])}
                 {if $max > 0}
                     <tr id="addition">
-                        <td>{__('Poll results', 'Total')}<br/>{$votes|count} {if ($votes|count)==1}{__('Poll results', 'polled user')}{else}{__('Poll results', 'polled users')}{/if}</td>
-                        {foreach $best_choices['y'] as $i=>$best_choice}
-                            {if $max == $best_choice}
-                                {$count_bests = $count_bests +1}
-                                <td>
-                                    <i class="fa fa-star text-info" aria-hidden="true"></i>
-                                    <span class="yes-count">{$best_choice|html}</span>
-                                    {if $best_choices['inb'][$i]>0}
-                                    <br>
-                                    <span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>
-                                    {/if}
-                                </td>
-                            {elseif $best_choice > 0}
-                                <td>
-                                    <span class="yes-count">{$best_choice|html}</span>
-                                    {if $best_choices['inb'][$i]>0}
-                                    <br>
-                                    <span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>
-                                    {/if}
-                                </td>
-                            {elseif $best_choices['inb'][$i]>0}
-                                <td>
-                                    <br>
-                                    <span class="small text-muted">(+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)</span>
-                                </td>
+                        <td>
+                            {__('Poll results', 'Total')}
+                            <br>
+                            {$votes|count}
+                            {if ($votes|count)==1}
+                                {__('Poll results', 'polled user')}
                             {else}
-                                <td></td>
+                                {__('Poll results', 'polled users')}
                             {/if}
+                        </td>
+                        {foreach $best_choices['y'] as $i=>$best_moment}
+                            <td>
+                            {if $max == $best_moment}
+                                {$count_bests = $count_bests +1}
+                                <i class="fa fa-star text-info" aria-hidden="true"></i>
+                            {/if}
+                            {if $best_moment > 0}
+                                <span class="yes-count">{$best_moment|html}</span>
+                            {/if}
+                            <br>
+                            {if $best_choices['inb'][$i]>0}
+                                <span class="small text-muted">
+                                    (+<span class="inb-count">{$best_choices['inb'][$i]|html}</span>)
+                                </span>
+                            {/if}
+                            <br>
+                            {if $best_choices['n'][$i]>0}
+                                <span class="small text-muted">
+                                    (−<span class="no-count">{$best_choices['n'][$i]|html}</span>)
+                                </span>
+                            {/if}
+                            </td>
                         {/foreach}
                     </tr>
                 {/if}
@@ -319,78 +326,123 @@
         <div class="col-xs-12">
             <p class="text-center" id="showChart">
                 <button class="btn btn-lg btn-default">
-                    <i class="fa fa-fw fa-bar-chart" aria-hidden="true"></i>
+                    <i class="fa fa-fw fa-bar-chart"></i>
                     {__('Poll results', 'Display the chart of the results')}
                 </button>
             </p>
         </div>
     </div>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#showChart').on('click', function() {
-                $('#showChart')
-                        .after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>")
-                        .remove();
+        jQuery(document).ready(() => {
+            {literal}
+            const res = {
+                yes: {
+                    count: [],
+                    people: '',
+                },
+                inb: {
+                    count: [],
+                    people: '',
+                },
+                no: {
+                    count: [],
+                    people: '',
+                },
+            };
+            const cols = [];
 
-                var resIfneedbe = [];
-                var resYes = [];
+            jQuery('#addition td').each(i => {
+                // Tooltip on addition
+                if (i > 0) {
+                    const t = jQuery(`.results thead tr:last-child th:eq(${i})`).attr('title');
+                    cols.push(t);
 
-                $('#addition').find('td').each(function () {
-                    var inbCountText = $(this).find('.inb-count').text();
-                    if(inbCountText != '' && inbCountText != undefined) {
-                        resIfneedbe.push($(this).find('.inb-count').html())
-                    } else {
-                        resIfneedbe.push(0);
+                    if (jQuery('.results tbody tr').length < 50) { // not on big polls
+                      jQuery('.results tbody tr').each(j => {
+                        res.yes.people += jQuery(`.results tbody tr:eq(${j}) td:eq(${i-1})`).hasClass('text-success')
+                          ? ` ${jQuery(`.results tbody tr:eq(${j})`).attr('title')},`
+                          : '';
+                        res.inb.people += jQuery(`.results tbody tr:eq(${j}) td:eq(${i-1})`).hasClass('text-warning')
+                          ? ` ${jQuery(`.results tbody tr:eq(${j})`).attr('title')},`
+                          : '';
+                        res.no.people += jQuery(`.results tbody tr:eq(${j}) td:eq(${i-1})`).hasClass('text-danger')
+                          ? ` ${jQuery(`.results tbody tr:eq(${j})`).attr('title')},`
+                          : '';
+                      });
+                      res.yes.people = res.yes.people.replace(/,$/, '').replace(/^(.+)/, '\n✓ $1');
+                      res.inb.people = res.inb.people.replace(/,$/, '').replace(/^(.+)/, '\n+ $1');
+                      res.no.people = res.no.people.replace(/,$/, '').replace(/^(.+)/, '\n− $1');
                     }
+                    jQuery(`#addition td:eq(${i})`)
+                        .attr('title', `${t}${res.yes.people}${res.inb.people}${res.no.people}`);
 
-                    var yesCountText = $(this).find('.yes-count').text();
-                    if(yesCountText != '' && yesCountText != undefined) {
-                        resYes.push($(this).find('.yes-count').html())
-                    } else {
-                        resYes.push(0);
-                    }
-                });
-                var cols = [
-                {foreach $slots as $id=>$slot}
-                    $('<div/>').html('{markdown_to_text markdown=$slot->title id=$id}').text(),
-                {/foreach}
-                ];
+                    Object.keys(res).forEach((k) => {
+                        k === 'no'
+                        ? res[k].count.push(-jQuery(`#addition td:eq(${i})`).find('.' + k + '-count').text() || 0)
+                        : res[k].count.push(+jQuery(`#addition td:eq(${i})`).find('.' + k + '-count').text() || 0)
+                    });
+                }
+            });
+            {/literal}
+            // Chart display
+            jQuery('#showChart').on('click', () => {
+                jQuery('#showChart')
+                    .after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>")
+                    .remove();
 
-                resIfneedbe.shift();
-                resYes.shift();
-
-                var barChartData = {
+                const barChartData = {
                     labels : cols,
                     datasets : [
-                    {
-                        label: "{__('Generic', 'Under reserve')}",
-                        fillColor : "rgba(255,207,79,0.8)",
-                        highlightFill: "rgba(255,207,79,1)",
-                        barShowStroke : false,
-                        data : resIfneedbe
-                    },
-                    {
-                        label: "{__('Generic', 'Yes')}",
-                        fillColor : "rgba(103,120,53,0.8)",
-                        highlightFill : "rgba(103,120,53,1)",
-                        barShowStroke : false,
-                        data : resYes
-                    }
+                        {
+                            label: "{__('Generic', 'Yes')}",
+                            backgroundColor: 'rgba(181, 204, 111, 0.9)',
+                            borderColor: 'rgba(132, 149, 81, 1)',
+                            borderWidth: 1,
+                            data : res.yes.count,
+                        },
+                        {
+                            label: "{__('Generic', 'Under reserve')}",
+                            backgroundColor: 'rgba(255, 205, 86, 0.5)',
+                            borderColor: 'rgba(255, 205, 86, 1)',
+                            borderWidth: 1,
+                            data : res.inb.count,
+                        },
+
+                        {
+                            label: "{__('Generic', 'No')}",
+                            backgroundColor: 'rgba(255, 185, 176, 0.5)',
+                            borderColor: 'rgba(255, 185, 176, 1)',
+                            borderWidth: 1,
+                            data : res.no.count,
+                        },
                     ]
                 };
 
-                var ctx = document.getElementById("Chart").getContext("2d");
-                window.myBar = new Chart(ctx).StackedBar(barChartData, {
-                    responsive : true
+                const ctx = document.getElementById('Chart').getContext('2d');
+                window.myBar = new Chart(ctx, {
+                    type: 'bar',
+                    data: barChartData,
+                    options: {
+                        tooltips: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        responsive: true,
+                        scales: {
+                            xAxes: [{
+                                stacked: true,
+                            }],
+                            yAxes: [{
+                                stacked: true
+                            }]
+                        }
+                    }
                 });
                 return false;
             });
         });
     </script>
-
 {/if}
-
-
 
 {if !$hidden}
     {* Best votes listing *}

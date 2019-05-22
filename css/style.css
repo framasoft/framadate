@@ -332,6 +332,14 @@ table.results .btn-link.btn-sm {
     vertical-align:top;
 }
 
+#addition .text-muted {
+    visibility: hidden;
+}
+
+#addition:hover .text-muted {
+    visibility: visible;
+}
+
 #showChart {
     margin-top:30px;
 }
@@ -456,7 +464,7 @@ span.edit-username-left {
 }
 
 /* TODO : Refactor me ! */
-table.results .bg-danger .glyphicon:not(.glyphicon-alert) {
+table.results .bg-danger .fa:not(.fa-warning) {
     opacity:0;
 
     animation-name: hideNoIcon;
@@ -490,7 +498,7 @@ table.results .bg-danger .glyphicon:not(.glyphicon-alert) {
     }
 }
 
-table.results > tbody > tr:hover > td .glyphicon {
+table.results > tbody > tr:hover > td .fa {
     opacity:1
 }
 
@@ -531,7 +539,7 @@ table.results > tbody > tr:hover > td .glyphicon {
 
 .datepicker {
     /* workaround for the bootstrap-datepicker appearing below the #add_days modal */
-    z-index: 1060 !important; 
+    z-index: 1060 !important;
 }
 
 /* create_classic_poll.php */
