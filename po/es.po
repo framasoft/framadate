@@ -1347,7 +1347,7 @@ msgstr "Eliminar la encuesta"
 
 #: .PollInfo.Results+are+hidden
 msgid "Results are hidden"
-msgstr "Los resutaldos están ocultos"
+msgstr "Los resultados están ocultos"
 
 #: .PollInfo.Results+are+visible
 msgid "Results are visible"
