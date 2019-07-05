@@ -35,12 +35,6 @@
                 <p>{__('studs', 'The poll has expired, it will soon be deleted.')}</p>
                 <p>{__('studs', 'Deletion date:')} {$deletion_date|date_format_intl:DATE_FORMAT_SHORT|html}</p>
             </div>
-        {else}
-            {if $admin}
-                {include 'part/poll_hint_admin.tpl'}
-            {else}
-                {include 'part/poll_hint.tpl' active=$poll->active}
-            {/if}
         {/if}
 
         {if !$accessGranted && $resultPubliclyVisible}
