@@ -2,7 +2,6 @@
 
 {block name="header"}
     <script src="{"js/Chart.min.js"|resource}" type="text/javascript"></script>
-    <script src="{"js/Chart.StackedBar.js"|resource}" type="text/javascript"></script>
     <script src="{"js/app/studs.js"|resource}" type="text/javascript"></script>
     <link rel="stylesheet" href="{'css/jquery-ui.min.css'|resource}">
 
@@ -36,12 +35,6 @@
                 <p>{__('studs', 'The poll has expired, it will soon be deleted.')}</p>
                 <p>{__('studs', 'Deletion date:')} {$deletion_date|date_format_intl:DATE_FORMAT_SHORT|html}</p>
             </div>
-        {else}
-            {if $admin}
-                {include 'part/poll_hint_admin.tpl'}
-            {else}
-                {include 'part/poll_hint.tpl' active=$poll->active}
-            {/if}
         {/if}
 
         {if !$accessGranted && $resultPubliclyVisible}
