@@ -96,7 +96,6 @@ if ($goToStep2) {
     $form->receiveNewVotes = $receiveNewVotes;
     $form->receiveNewComments = $receiveNewComments;
     $form->hidden = $hidden;
-    $form->collect_users_mail = $collect_users_mail;
     $form->use_password = ($use_password !== null);
     $form->results_publicly_visible = ($results_publicly_visible !== null);
 
@@ -298,7 +297,6 @@ $smarty->assign('customized_url', Utils::fromPostOrDefault('customized_url', $fo
 $smarty->assign('use_customized_url', Utils::fromPostOrDefault('use_customized_url', $form->use_customized_url));
 $smarty->assign('ValueMax', Utils::fromPostOrDefault('ValueMax', $form->ValueMax));
 $smarty->assign('use_ValueMax', Utils::fromPostOrDefault('use_ValueMax', $form->use_ValueMax));
-$smarty->assign('collect_users_mail', Utils::fromPostOrDefault('collect_users_mail', $form->collect_users_mail));
 $smarty->assign('poll_description', !empty($_POST['description']) ? $_POST['description'] :  $form->description);
 $smarty->assign('poll_name', Utils::fromPostOrDefault('name', $form->admin_name));
 $smarty->assign('poll_mail', Utils::fromPostOrDefault('mail', $form->admin_mail));

@@ -92,6 +92,7 @@ $config = [
         'username' => '',                   // SMTP username
         'password' => '',                   // SMTP password
         'secure' => '',                     // Enable encryption (false, tls or ssl)
+        'autotls' => true,                  // Enable StartTLS when possible (set this to false if TLS negociation fails with your SMTP server)
         'port' => 25,                       // TCP port to connect to
     ],
     /* home */
