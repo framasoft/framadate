@@ -927,6 +927,10 @@ msgstr "Horaire"
 msgid "Under reserve"
 msgstr "Si nécessaire"
 
+#: .Generic.Unknown
+msgid "Unknown"
+msgstr "Inconnu"
+
 #: .Generic.Validate
 msgid "Validate"
 msgstr "Valider"

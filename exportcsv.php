@@ -107,7 +107,7 @@ foreach ($votes as $vote) {
                 $text = __('Generic', 'Yes');
                 break;
             default:
-                $text = 'unkown';
+                $text = __('Generic', 'Unknown');
         }
         echo Utils::csvEscape($text);
         echo ',';
