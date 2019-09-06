@@ -97,13 +97,13 @@ foreach ($votes as $vote) {
     $choices = str_split($vote->choices);
     foreach ($choices as $choice) {
         switch ($choice) {
-            case 0:
+            case '0':
                 $text = __('Generic', 'No');
                 break;
-            case 1:
+            case '1':
                 $text = __('Generic', 'Under reserve');
                 break;
-            case 2:
+            case '2':
                 $text = __('Generic', 'Yes');
                 break;
             default:
