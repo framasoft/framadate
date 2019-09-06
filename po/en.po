@@ -910,6 +910,10 @@ msgstr "Time"
 msgid "Under reserve"
 msgstr "Under reserve"
 
+#: .Generic.Unknown
+msgid "Unknown"
+msgstr "Unknown"
+
 #: .Generic.Validate
 msgid "Validate"
 msgstr "Validate"
