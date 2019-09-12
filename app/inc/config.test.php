@@ -93,7 +93,7 @@ const MAX_SLOTS_PER_POLL = 366;
 const TIME_EDIT_LINK_EMAIL = 60;
 
 // Config
-$config = [
+global $config = [
     /* general config */
     'use_smtp' => false,                     // use email for polls creation/modification/responses notification
     'smtp_options' => [
