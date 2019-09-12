@@ -51,6 +51,7 @@ class Services {
     }
 
     public static function mail() {
+        global $config;
         if (self::$mailService === null) {
             self::$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
         }
