@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2019-10-15 13:04+0000\n"
+"PO-Revision-Date: 2019-10-27 16:32+0000\n"
 "Last-Translator: Quentin <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://weblate.framasoft.org/projects/framadate/"
 "framadate/oc/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 3.9\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -498,7 +498,7 @@ msgstr ""
 
 #: .Error.Enter+a+name
 msgid "Enter a name"
-msgstr "Avètz pas picat cap de nom !"
+msgstr "Picatz un nom"
 
 #: .Error.Enter+a+name+and+a+comment%21
 msgid "Enter a name and a comment!"
@@ -506,11 +506,11 @@ msgstr "Mercé de garnir los dos camps !"
 
 #: .Error.Enter+a+title
 msgid "Enter a title"
-msgstr "Cal picar un títol !"
+msgstr "Picatz un títol"
 
 #: .Error.Enter+an+email+address
 msgid "Enter an email address"
-msgstr "Cal picar una adreça de messatjariá !"
+msgstr "Picatz una adreça de messatjariá"
 
 #: .Error.Error+on+amount+of+votes+limitation:+Value+must+be+an+integer+greater+than+0
 msgid ""
