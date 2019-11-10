@@ -127,19 +127,19 @@ function path_for_datepicker_locale($lang) {
 }
 
 /**
- * @param $date
+ * @param DateTime|null $date
  * @param string $pattern
  * @return string
  */
-function smarty_modifier_date_format_intl(DateTime $date, $pattern) {
+function smarty_modifier_date_format_intl(?DateTime $date, $pattern) {
     return date_format_intl($date, $pattern);
 }
 
 /**
- * @param DateTime $date
+ * @param DateTime|null $date
  * @return int
  */
-function smarty_modifier_date_to_timestamp(DateTime $date) {
+function smarty_modifier_date_to_timestamp(?DateTime $date) {
     return $date->getTimestamp();
 }
 

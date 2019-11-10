@@ -35,6 +35,7 @@ class NotificationService {
      * @param $poll stdClass The poll
      * @param $name string The name user who triggered the notification
      * @param $type int cf: Constants on the top of this page
+     * @throws \SmartyException
      */
     function sendUpdateNotification(stdClass $poll, $type, $name='') {
         if (!isset($_SESSION['mail_sent'])) {

@@ -43,14 +43,16 @@ $locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $wanted_locale, false, D
 /**
  * Formats a DateTime according to the IntlDateFormatter
  *
- * @param DateTime $date
+ * @param DateTime|null $date
  * @param string $pattern
  * @param $forceLocale
  * @return string
+ * @throws Exception
  */
-function date_format_intl(DateTime $date, $pattern = DATE_FORMAT_FULL, $forceLocale = null) {
+function date_format_intl(?DateTime $date, $pattern = DATE_FORMAT_FULL, $forceLocale = null) {
     global $locale;
     $local_locale = $forceLocale ?? $locale;
+    $date = $date ?? new DateTime();
 
     $dateFormatter = IntlDateFormatter::create(
         $local_locale,

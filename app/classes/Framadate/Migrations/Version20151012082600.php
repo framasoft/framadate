@@ -60,7 +60,7 @@ class Version20151012082600 extends AbstractMigration
         // See the "Functionality Added or Changed" section,
         // "Important Change: In MySQL, the TIMESTAMP data type" element, on
         // https://dev.mysql.com/doc/relnotes/mysql/5.6/en/news-5-6-6.html
-        $commentTable->addColumn('date', 'datetime', ['default' => 0]);
+        $commentTable->addColumn('date', 'datetime', ['notnull' => false, 'default' => null]);
     }
 
     /**
