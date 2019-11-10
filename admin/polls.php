@@ -91,6 +91,6 @@ $smarty->assign('crsf', $securityService->getToken('admin'));
 $smarty->assign('search', $search);
 $smarty->assign('search_query', buildSearchQuery($search));
 
-$smarty->assign('title', __('Admin', 'Polls'));
+$smarty->assign('title', t('Admin', 'Polls'));
 
 $smarty->display('admin/polls.tpl');

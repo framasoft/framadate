@@ -6,25 +6,25 @@
             <div id="title-form" class="col-md-7">
                 <h3>
                     {$poll->title|html}{if $admin && !$expired}
-                    <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit title')}">
+                    <button class="btn btn-link btn-sm btn-edit" title="{t('PollInfo', 'Edit title')}">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
-                        <span class="sr-only">{__('Generic', 'Edit')}</span>
+                        <span class="sr-only">{t('Generic', 'Edit')}</span>
                     </button>
                     {/if}
                 </h3>
                 {if $admin && !$expired}
                     <div class="hidden js-title">
-                        <label class="sr-only" for="newtitle">{__('PollInfo', 'Title of the poll')}</label>
+                        <label class="sr-only" for="newtitle">{t('PollInfo', 'Title of the poll')}</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="newtitle" name="title" size="40" value="{$poll->title|html}" />
                             <span class="input-group-btn">
-                                <button type="submit" class="btn btn-success" name="update_poll_info" value="title" title="{__('PollInfo', 'Save the new title')}">
+                                <button type="submit" class="btn btn-success" name="update_poll_info" value="title" title="{t('PollInfo', 'Save the new title')}">
                                     <i class="fa fa-check" aria-hidden="true"></i>
-                                    <span class="sr-only">{__('Generic', 'Save')}</span>
+                                    <span class="sr-only">{t('Generic', 'Save')}</span>
                                 </button>
-                                <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the title edit')}">
+                                <button class="btn btn-link btn-cancel" title="{t('PollInfo', 'Cancel the title edit')}">
                                     <i class="fa fa-remove" aria-hidden="true"></i>
-                                    <span class="sr-only">{__('Generic', 'Cancel')}</span>
+                                    <span class="sr-only">{t('Generic', 'Cancel')}</span>
                                 </button>
                             </span>
                         </div>
@@ -34,16 +34,16 @@
             <div class="col-md-5 hidden-print">
                 <div class="btn-group pull-right">
                     <button onclick="print(); return false;" class="btn btn-default">
-                        <i class="fa fa-print" aria-hidden="true"></i> {__('PollInfo', 'Print')}
+                        <i class="fa fa-print" aria-hidden="true"></i> {t('PollInfo', 'Print')}
                     </button>
                     {if $admin}
                         <a href="{$SERVER_URL|html}exportcsv.php?admin={$admin_poll_id|html}" class="btn btn-default">
-                            <i class="fa fa-download" aria-hidden="true"></i> {__('PollInfo', 'Export to CSV')}
+                            <i class="fa fa-download" aria-hidden="true"></i> {t('PollInfo', 'Export to CSV')}
                         </a>
                     {else}
                         {if !$hidden}
                             <a href="{$SERVER_URL|html}exportcsv.php?poll={$poll_id|html}" class="btn btn-default">
-                                <i class="fa fa-download"></i> {__('PollInfo', 'Export to CSV')}
+                                <i class="fa fa-download"></i> {t('PollInfo', 'Export to CSV')}
                             </a>
                         {/if}
                     {/if}
@@ -51,19 +51,19 @@
                         {if !$expired}
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-trash" aria-hidden="true"></i>
-                            <span class="sr-only">{__('Generic', 'Remove')}</span>
+                            <span class="sr-only">{t('Generic', 'Remove')}</span>
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><button class="btn btn-link" type="submit" name="remove_all_votes">{__('PollInfo', 'Remove all votes') }</button></li>
-                            <li><button class="btn btn-link" type="submit" name="remove_all_comments">{__('PollInfo', 'Remove all comments')}</button></li>
+                            <li><button class="btn btn-link" type="submit" name="remove_all_votes">{t('PollInfo', 'Remove all votes') }</button></li>
+                            <li><button class="btn btn-link" type="submit" name="remove_all_comments">{t('PollInfo', 'Remove all comments')}</button></li>
                             <li class="divider" role="presentation"></li>
-                            <li><button class="btn btn-link" type="submit" name="delete_poll">{__('PollInfo', 'Remove the poll')}</button></li>
+                            <li><button class="btn btn-link" type="submit" name="delete_poll">{t('PollInfo', 'Remove the poll')}</button></li>
                         </ul>
                         {else}
-                            <button class="btn btn-danger" type="submit" name="delete_poll" title="{__('PollInfo', 'Remove the poll')}">
+                            <button class="btn btn-danger" type="submit" name="delete_poll" title="{t('PollInfo', 'Remove the poll')}">
                                 <i class="fa fa-trash" aria-hidden="true"></span>
-                                <span class="sr-only">{__('PollInfo', 'Remove the poll')}</span>
+                                <span class="sr-only">{t('PollInfo', 'Remove the poll')}</span>
                             </button>
                         {/if}
                     {/if}
@@ -73,28 +73,28 @@
         <div class="row"> {* Admin name + email | Description *}
             <div class="form-group col-md-4">
                 <div id="name-form">
-                    <label class="control-label">{__('PollInfo', 'Creator of the poll')}</label>
+                    <label class="control-label">{t('PollInfo', 'Creator of the poll')}</label>
                     <p class="form-control-static">
                         {$poll->admin_name|html}{if $admin && !$expired}
-                        <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit name')}">
+                        <button class="btn btn-link btn-sm btn-edit" title="{t('PollInfo', 'Edit name')}">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
-                            <span class="sr-only">{__('Generic', 'Edit')}</span>
+                            <span class="sr-only">{t('Generic', 'Edit')}</span>
                         </button>
                         {/if}
                     </p>
                     {if $admin && !$expired}
                     <div class="hidden js-name">
-                        <label class="sr-only" for="newname">{__('PollInfo', 'Creator of the poll')}</label>
+                        <label class="sr-only" for="newname">{t('PollInfo', 'Creator of the poll')}</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="newname" name="name" size="40" value="{$poll->admin_name|html}" />
                             <span class="input-group-btn">
-                                <button type="submit" class="btn btn-success" name="update_poll_info" value="name" title="{__('PollInfo', 'Save the new name')}">
+                                <button type="submit" class="btn btn-success" name="update_poll_info" value="name" title="{t('PollInfo', 'Save the new name')}">
                                     <i class="fa fa-check" aria-hidden="true"></i>
-                                    <span class="sr-only">{__('Generic', 'Save')}</span>
+                                    <span class="sr-only">{t('Generic', 'Save')}</span>
                                 </button>
-                                <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the name edit')}">
+                                <button class="btn btn-link btn-cancel" title="{t('PollInfo', 'Cancel the name edit')}">
                                     <i class="fa fa-remove" aria-hidden="true"></i>
-                                    <span class="sr-only">{__('Generic', 'Cancel')}</span>
+                                    <span class="sr-only">{t('Generic', 'Cancel')}</span>
                                 </button>
                             </span>
                         </div>
@@ -105,25 +105,25 @@
                 <div id="email-form">
                     <p>
                         {$poll->admin_mail|html}{if !$expired}
-                        <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the email address')}">
+                        <button class="btn btn-link btn-sm btn-edit" title="{t('PollInfo', 'Edit the email address')}">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
-                            <span class="sr-only">{__('Generic', 'Edit')}</span>
+                            <span class="sr-only">{t('Generic', 'Edit')}</span>
                         </button>
                         {/if}
                     </p>
                     {if !$expired}
                         <div class="hidden js-email">
-                            <label class="sr-only" for="admin_mail">{__('PollInfo', 'Email')}</label>
+                            <label class="sr-only" for="admin_mail">{t('PollInfo', 'Email')}</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="admin_mail" name="admin_mail" size="40" value="{$poll->admin_mail|html}" />
                             <span class="input-group-btn">
-                                <button type="submit" name="update_poll_info" value="admin_mail" class="btn btn-success" title="{__('PollInfo', 'Save the email address')}">
+                                <button type="submit" name="update_poll_info" value="admin_mail" class="btn btn-success" title="{t('PollInfo', 'Save the email address')}">
                                     <i class="fa fa-check" aria-hidden="true"></i>
-                                    <span class="sr-only">{__('Generic', 'Save')}</span>
+                                    <span class="sr-only">{t('Generic', 'Save')}</span>
                                 </button>
-                                <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the email address edit')}">
+                                <button class="btn btn-link btn-cancel" title="{t('PollInfo', 'Cancel the email address edit')}">
                                     <i class="fa fa-remove" aria-hidden="true"></i>
-                                    <span class="sr-only">{__('Generic', 'Cancel')}</span>
+                                    <span class="sr-only">{t('Generic', 'Cancel')}</span>
                                 </button>
                             </span>
                             </div>
@@ -135,27 +135,27 @@
             {if $admin || preg_match('/[^ \r\n]/', $poll->description)}
                 <div class="form-group col-md-8" id="description-form">
                     <label class="control-label">
-                        {__('Generic', 'Description')}
+                        {t('Generic', 'Description')}
                         {if $admin && !$expired}
-                        <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the description')}">
+                        <button class="btn btn-link btn-sm btn-edit" title="{t('PollInfo', 'Edit the description')}">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
-                            <span class="sr-only">{__('Generic', 'Edit')}</span>
+                            <span class="sr-only">{t('Generic', 'Edit')}</span>
                         </button>
                         {/if}
                     </label>
                     <div class="form-control-static well poll-description">{$poll->description|markdown:false:false}</div>
                     {if $admin && !$expired}
                         <div class="hidden js-desc">
-                            <label class="sr-only" for="newdescription">{__('Generic', 'Description')}</label>
+                            <label class="sr-only" for="newdescription">{t('Generic', 'Description')}</label>
                             {include 'part/description_markdown.tpl'}
                             <textarea class="form-control" id="newdescription" name="description" rows="2" cols="40">{$poll->description|html}</textarea>
-                            <button type="submit" id="btn-new-desc" name="update_poll_info" value="description" class="btn btn-sm btn-success" title="{__('PollInfo', 'Save the description')}">
+                            <button type="submit" id="btn-new-desc" name="update_poll_info" value="description" class="btn btn-sm btn-success" title="{t('PollInfo', 'Save the description')}">
                                 <i class="fa fa-check" aria-hidden="true"></i>
-                                <span class="sr-only">{__('Generic', 'Save')}</span>
+                                <span class="sr-only">{t('Generic', 'Save')}</span>
                             </button>
-                            <button class="btn btn-default btn-sm btn-cancel" title="{__('PollInfo', 'Cancel the description edit')}">
+                            <button class="btn btn-default btn-sm btn-cancel" title="{t('PollInfo', 'Cancel the description edit')}">
                                 <i class="fa fa-remove" aria-hidden="true"></i>
-                                <span class="sr-only">{__('Generic', 'Cancel')}</span>
+                                <span class="sr-only">{t('Generic', 'Cancel')}</span>
                             </button>
                         </div>
                     {/if}
@@ -169,7 +169,7 @@
             <div class="form-group form-group {if $admin}col-md-4{else}col-md-6{/if}">
                 <label for="public-link">
                     <a class="public-link" href="{poll_url id=$poll_id}">
-                        {__('PollInfo', 'Public link to the poll')}
+                        {t('PollInfo', 'Public link to the poll')}
                         <i class="btn-link fa fa-link" aria-hidden="true"></i>
                     </a>
                 </label>
@@ -179,23 +179,23 @@
                 <div class="form-group col-md-4">
                     <label for="admin-link">
                         <a class="admin-link" href="{poll_url id=$admin_poll_id admin=true}">
-                            {__('PollInfo', 'Admin link for the poll')}
+                            {t('PollInfo', 'Admin link for the poll')}
                             <i class="btn-link fa fa-link" aria-hidden="true"></i>
                         </a>
                     </label>
                     <input class="form-control" id="admin-link" type="text" readonly="readonly" value="{poll_url id=$admin_poll_id admin=true}" onclick="select();"/>
                 </div>
                 <div id="expiration-form" class="form-group col-md-4">
-                    <label class="control-label">{__('Generic', 'Expiry date')}</label>
+                    <label class="control-label">{t('Generic', 'Expiry date')}</label>
                     <p>{$poll->end_date|date_format_intl:DATE_FORMAT_FULL|html}
-                        <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the expiry date')}">
+                        <button class="btn btn-link btn-sm btn-edit" title="{t('PollInfo', 'Edit the expiry date')}">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
-                            <span class="sr-only">{__('Generic', 'Edit')}</span>
+                            <span class="sr-only">{t('Generic', 'Edit')}</span>
                         </button>
                     </p>
 
                         <div class="hidden js-expiration">
-                            <label class="sr-only" for="newexpirationdate">{__('Generic', 'Expiry date')}</label>
+                            <label class="sr-only" for="newexpirationdate">{t('Generic', 'Expiry date')}</label>
                             <div class="input-group">
                                 <input type="text"
                                        class="form-control"
@@ -209,15 +209,15 @@
                                             class="btn btn-success"
                                             name="update_poll_info"
                                             value="expiration_date"
-                                            title="{__('PollInfo', 'Save the new expiration date')}"
+                                            title="{t('PollInfo', 'Save the new expiration date')}"
                                     >
                                         <i class="fa fa-check" aria-hidden="true"></i>
-                                        <span class="sr-only">{__('Generic', 'Save')}</span>
+                                        <span class="sr-only">{t('Generic', 'Save')}</span>
                                     </button>
                                     <button class="btn btn-link btn-cancel"
-                                            title="{__('PollInfo', 'Cancel the expiration date edit')}">
+                                            title="{t('PollInfo', 'Cancel the expiration date edit')}">
                                         <i class="fa fa-remove" aria-hidden="true"></i>
-                                        <span class="sr-only">{__('Generic', 'Cancel')}</span>
+                                        <span class="sr-only">{t('Generic', 'Cancel')}</span>
                                     </button>
                                 </span>
                             </div>
@@ -231,45 +231,45 @@
                 <div class="col-md-4">
                     <div id="password-form">
                         {if !empty($poll->password_hash) && !$poll->results_publicly_visible}
-                            {$password_text = __('PollInfo', 'Password protected')}
+                            {$password_text = t('PollInfo', 'Password protected')}
                         {elseif !empty($poll->password_hash) && $poll->results_publicly_visible}
-                            {$password_text = __('PollInfo', 'Votes protected by password')}
+                            {$password_text = t('PollInfo', 'Votes protected by password')}
                         {else}
-                            {$password_text = __('PollInfo', 'No password')}
+                            {$password_text = t('PollInfo', 'No password')}
                         {/if}
                         <p>
                             <i class="fa fa-lock" aria-hidden="true"></i> {$password_text}
-                            <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}">
+                            <button class="btn btn-link btn-sm btn-edit" title="{t('PollInfo', 'Edit the poll rules')}">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                <span class="sr-only">{__('Generic', 'Edit')}</span>
+                                <span class="sr-only">{t('Generic', 'Edit')}</span>
                             </button>
                         </p>
                         <div class="hidden js-password">
-                            <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the rules edit')}">
+                            <button class="btn btn-link btn-cancel" title="{t('PollInfo', 'Cancel the rules edit')}">
                                 <i class="fa fa-remove" aria-hidden="true"></i>
-                                <span class="sr-only">{__('Generic', 'Cancel')}</span>
+                                <span class="sr-only">{t('Generic', 'Cancel')}</span>
                             </button>
                             {if !empty($poll->password_hash)}
                                 <div class="input-group">
                                     <input type="checkbox" id="removePassword" name="removePassword"/>
-                                    <label for="removePassword">{__('PollInfo', 'Remove password')}</label>
-                                    <button type="submit" name="update_poll_info" value="removePassword" class="btn btn-success hidden" title="{__('PollInfo', 'Save the new rules')}">
+                                    <label for="removePassword">{t('PollInfo', 'Remove password')}</label>
+                                    <button type="submit" name="update_poll_info" value="removePassword" class="btn btn-success hidden" title="{t('PollInfo', 'Save the new rules')}">
                                         <i class="fa fa-check" aria-hidden="true"></i>
-                                        <span class="sr-only">{__('Generic', 'Remove password.')}</span>
+                                        <span class="sr-only">{t('Generic', 'Remove password.')}</span>
                                     </button>
                                 </div>
                             {/if}
                             <div id="password_information">
                                 <div class="input-group">
                                     <input type="checkbox" id="resultsPubliclyVisible" name="resultsPubliclyVisible" {if $poll->results_publicly_visible && $poll->hidden == false && (!empty($poll->password_hash))}checked="checked" {elseif ($poll->hidden == true || empty($poll->password_hash))} disabled="disabled"{/if}/>
-                                    <label for="resultsPubliclyVisible">{__('PollInfo', 'Only votes are protected')}</label>
+                                    <label for="resultsPubliclyVisible">{t('PollInfo', 'Only votes are protected')}</label>
                                 </div>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="password" name="password"/>
                                     <span class="input-group-btn">
-                                        <button type="submit" name="update_poll_info" value="password" class="btn btn-success" title="{__('PollInfo', 'Save the new rules')}">
+                                        <button type="submit" name="update_poll_info" value="password" class="btn btn-success" title="{t('PollInfo', 'Save the new rules')}">
                                             <i class="fa fa-check" aria-hidden="true"></i>
-                                            <span class="sr-only">{__('Generic', 'Save')}</span>
+                                            <span class="sr-only">{t('Generic', 'Save')}</span>
                                         </button>
                                     </span>
                                 </div>
@@ -282,30 +282,30 @@
                     <div id="poll-hidden-form">
                         {if $poll->hidden}
                             {$hidden_icon = "fa-eye-slash"}
-                            {$hidden_text = __('PollInfo', 'Results are hidden')}
+                            {$hidden_text = t('PollInfo', 'Results are hidden')}
                         {else}
                             {$hidden_icon = "fa-eye"}
-                            {$hidden_text = __('PollInfo', 'Results are visible')}
+                            {$hidden_text = t('PollInfo', 'Results are visible')}
                         {/if}
                         <p>
                             <i class="fa {$hidden_icon}" aria-hidden="true"></i> {$hidden_text}
-                            <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}">
+                            <button class="btn btn-link btn-sm btn-edit" title="{t('PollInfo', 'Edit the poll rules')}">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                <span class="sr-only">{__('Generic', 'Edit')}</span>
+                                <span class="sr-only">{t('Generic', 'Edit')}</span>
                             </button>
                         </p>
                         <div class="hidden js-poll-hidden">
                             <div class="input-group">
                                 <input type="checkbox" id="hidden" name="hidden" {if $poll->hidden}checked="checked"{/if}/>
-                                <label for="hidden">{__('PollInfo', 'Results are hidden')}</label>
+                                <label for="hidden">{t('PollInfo', 'Results are hidden')}</label>
                                 <span class="input-group-btn">
-                                    <button type="submit" name="update_poll_info" value="hidden" class="btn btn-success" title="{__('PollInfo', 'Save the new rules')}">
+                                    <button type="submit" name="update_poll_info" value="hidden" class="btn btn-success" title="{t('PollInfo', 'Save the new rules')}">
                                         <i class="fa fa-check" aria-hidden="true"></i>
-                                        <span class="sr-only">{__('Generic', 'Save')}</span>
+                                        <span class="sr-only">{t('Generic', 'Save')}</span>
                                     </button>
-                                    <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the rules edit')}">
+                                    <button class="btn btn-link btn-cancel" title="{t('PollInfo', 'Cancel the rules edit')}">
                                         <i class="fa fa-remove" aria-hidden="true"></i>
-                                        <span class="sr-only">{__('Generic', 'Cancel')}</span>
+                                        <span class="sr-only">{t('Generic', 'Cancel')}</span>
                                     </button>
                                 </span>
                             </div>
@@ -318,45 +318,45 @@
                             {if $poll->editable}
                                 {if $poll->editable == constant("Framadate\Editable::EDITABLE_BY_ALL")}
                                     {$rule_id = 2}
-                                    {$rule_txt = __('Step 1', 'All voters can modify any vote')}
+                                    {$rule_txt = t('Step 1', 'All voters can modify any vote')}
                                 {else}
                                     {$rule_id = 3}
-                                    {$rule_txt = __('Step 1', 'Voters can modify their vote themselves')}
+                                    {$rule_txt = t('Step 1', 'Voters can modify their vote themselves')}
                                 {/if}
                                 {$rule_icon = '<i class="fa fa-edit" aria-hidden="true"></i>'}
                             {else}
                                 {$rule_id = 1}
                                 {$rule_icon = '<i class="fa fa-check-square-o" aria-hidden="true"></i>'}
-                                {$rule_txt = __('Step 1', 'Votes cannot be modified')}
+                                {$rule_txt = t('Step 1', 'Votes cannot be modified')}
                             {/if}
                         {else}
                             {$rule_id = 0}
                             {$rule_icon = '<i class="fa fa-lock" aria-hidden="true"></i>'}
-                            {$rule_txt = __('PollInfo', 'Votes and comments are locked')}
+                            {$rule_txt = t('PollInfo', 'Votes and comments are locked')}
                         {/if}
                         <p>{$rule_icon} {$rule_txt|html}
-                            <button class="btn btn-link btn-sm btn-edit" title="{__('PollInfo', 'Edit the poll rules')}">
+                            <button class="btn btn-link btn-sm btn-edit" title="{t('PollInfo', 'Edit the poll rules')}">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                <span class="sr-only">{__('Generic', 'Edit')}</span>
+                                <span class="sr-only">{t('Generic', 'Edit')}</span>
                             </button>
                         </p>
                         <div class="hidden js-poll-rules">
-                            <label class="sr-only" for="rules">{__('PollInfo', 'Poll rules')}</label>
+                            <label class="sr-only" for="rules">{t('PollInfo', 'Poll rules')}</label>
                             <div class="input-group">
                                 <select class="form-control" id="rules" name="rules">
-                                    <option value="0"{if $rule_id==0} selected="selected"{/if}>{__('PollInfo', 'Votes and comments are locked')}</option>
-                                    <option value="1"{if $rule_id==1} selected="selected"{/if}>{__('Step 1', 'Votes cannot be modified')}</option>
-                                    <option value="3"{if $rule_id==3} selected="selected"{/if}>{__('Step 1', 'Voters can modify their vote themselves')}</option>
-                                    <option value="2"{if $rule_id==2} selected="selected"{/if}>{__('Step 1', 'All voters can modify any vote')}</option>
+                                    <option value="0"{if $rule_id==0} selected="selected"{/if}>{t('PollInfo', 'Votes and comments are locked')}</option>
+                                    <option value="1"{if $rule_id==1} selected="selected"{/if}>{t('Step 1', 'Votes cannot be modified')}</option>
+                                    <option value="3"{if $rule_id==3} selected="selected"{/if}>{t('Step 1', 'Voters can modify their vote themselves')}</option>
+                                    <option value="2"{if $rule_id==2} selected="selected"{/if}>{t('Step 1', 'All voters can modify any vote')}</option>
                                 </select>
                                 <span class="input-group-btn">
-                                    <button type="submit" name="update_poll_info" value="rules" class="btn btn-success" title="{__('PollInfo', 'Save the new rules')}">
+                                    <button type="submit" name="update_poll_info" value="rules" class="btn btn-success" title="{t('PollInfo', 'Save the new rules')}">
                                         <i class="fa fa-check" aria-hidden="true"></i>
-                                        <span class="sr-only">{__('Generic', 'Save')}</span>
+                                        <span class="sr-only">{t('Generic', 'Save')}</span>
                                     </button>
-                                    <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the rules edit')}">
+                                    <button class="btn btn-link btn-cancel" title="{t('PollInfo', 'Cancel the rules edit')}">
                                         <i class="fa fa-remove" aria-hidden="true"></i>
-                                        <span class="sr-only">{__('Generic', 'Cancel')}</span>
+                                        <span class="sr-only">{t('Generic', 'Cancel')}</span>
                                     </button>
                                 </span>
                             </div>
@@ -366,13 +366,13 @@
             </div>
             <div id="collect_users_mail">
             {if $poll->collect_users_mail == constant("Framadate\CollectMail::NO_COLLECT")}
-                {$txt=__('PollInfo', "Voters' email addresses are not collected")}
+                {$txt=t('PollInfo', "Voters' email addresses are not collected")}
             {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT")}
-                {$txt=__('PollInfo', "Voters' email addresses are collected")}
+                {$txt=t('PollInfo', "Voters' email addresses are collected")}
             {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT_REQUIRED")}
-                {$txt=__('PollInfo', "Voters' email addresses are collected and required")}
+                {$txt=t('PollInfo', "Voters' email addresses are collected and required")}
             {else if $poll->collect_users_mail == constant("Framadate\CollectMail::COLLECT_REQUIRED_VERIFIED")}
-                {$txt=__('PollInfo', "Voters' email addresses are collected, required and verified")}
+                {$txt=t('PollInfo', "Voters' email addresses are collected, required and verified")}
             {else}
                 {$txt='Error'}
             {/if}

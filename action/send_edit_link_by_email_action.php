@@ -43,13 +43,13 @@ $token_form_value = empty($_POST['token']) ? null : $_POST['token'];
 $editedVoteUniqueId = filter_input(INPUT_POST, 'editedVoteUniqueId', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
 if (is_null($poll) || $config['use_smtp'] === false || is_null($token) || is_null($token_form_value)
     || !$token->check($token_form_value) || is_null($editedVoteUniqueId)) {
-    $message = new Message('error', __('Error', 'Something has gone wrong...'));
+    $message = new Message('error', t('Error', 'Something has gone wrong...'));
 }
 
 if (is_null($message)) {
     $email = $mailService->isValidEmail($_POST['email']);
     if (is_null($email)) {
-        $message = new Message('error', __('EditLink', 'The email address is not correct.'));
+        $message = new Message('error', t('EditLink', 'The email address is not correct.'));
     }
 }
 
@@ -60,7 +60,7 @@ if (is_null($message)) {
         $remainingTime = TIME_EDIT_LINK_EMAIL - (time() - $time);
 
         if ($remainingTime > 0) {
-            $message = new Message('error', __f('EditLink', 'Please wait %d seconds before we can send an email to you then try again.', $remainingTime));
+            $message = new Message('error', n('EditLink', 'Please wait %d seconds before we can send an email to you then try again.', $remainingTime));
         }
     }
 }
@@ -70,7 +70,7 @@ if (is_null($message)) {
     $sessionService->remove("Common", SESSION_EDIT_LINK_TOKEN);
     $sessionService->set("Common", SESSION_EDIT_LINK_TIME, time());
 
-    $message = new Message('success', __('EditLink', 'Your reminder has been successfully sent!'));
+    $message = new Message('success', t('EditLink', 'Your reminder has been successfully sent!'));
     $result = true;
 }
 

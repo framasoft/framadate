@@ -18,7 +18,10 @@
  */
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\SchemaException;
+use Doctrine\Migrations\Exception\SkipMigration;
 use Framadate\AbstractMigration;
 
 /**
@@ -43,12 +46,12 @@ class Version20150101000000 extends AbstractMigration
      * This method is called only one time in the migration page.
      *
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
-     * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws DBALException
+     * @throws SkipMigration
+     * @throws SchemaException
      * @return void true is the execution succeeded
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         $this->skipIf($this->legacyCheck($schema,'Framadate\Migration\From_0_0_to_0_8_Migration'), 'Migration has been executed in an earlier database migration system');
         $sondage = $schema->createTable('sondage');
@@ -63,12 +66,12 @@ class Version20150101000000 extends AbstractMigration
         $sondage->addColumn('format', 'string', ['notnull' => false]);
         $sondage->addColumn('mailsonde', 'boolean', ['default' => false]);
         $sondage->addColumn('statut', 'integer', ['default' => '1']);
-        $sondage->addUniqueIndex(['id_sondage'], 'sondage_index_id_sondage');
+        $sondage->addUniqueIndex(['id_sondage']);
 
         $sujetStuds = $schema->createTable('sujet_studs');
         $sujetStuds->addColumn('id_sondage', 'string');
         $sujetStuds->addColumn('sujet', 'text');
-        $sujetStuds->addIndex(['id_sondage'], 'sujet_studs_index_id_sondage');
+        $sujetStuds->addIndex(['id_sondage']);
 
         $comments = $schema->createTable('comments');
         $schema->createSequence('comments_seq');
@@ -76,8 +79,8 @@ class Version20150101000000 extends AbstractMigration
         $comments->addColumn('id_sondage', 'string');
         $comments->addColumn('comment', 'text');
         $comments->addColumn('usercomment', 'text', ['notnull' => false]);
-        $comments->addUniqueIndex(['id_comment'], 'comments_index_id_comment');
-        $comments->addIndex(['id_sondage'], 'comments_index_id_sondage');
+        $comments->addUniqueIndex(['id_comment']);
+        $comments->addIndex(['id_sondage']);
 
         $userStuds = $schema->createTable('user_studs');
         $schema->createSequence('user_studs_seq');
@@ -85,11 +88,11 @@ class Version20150101000000 extends AbstractMigration
         $userStuds->addColumn('nom', 'string');
         $userStuds->addColumn('id_sondage', 'string');
         $userStuds->addColumn('reponses', 'text');
-        $userStuds->addUniqueIndex(['id_users'], 'user_studs_index_id_users');
-        $userStuds->addIndex(['id_sondage'], 'user_studs_index_id_sondage');
+        $userStuds->addUniqueIndex(['id_users']);
+        $userStuds->addIndex(['id_sondage']);
     }
 
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         $this->addSql('DROP TABLE sondage');
         $this->addSql('DROP TABLE sujet_studs');

@@ -9,7 +9,7 @@
     {else}
         <title>{$APPLICATION_NAME|html}</title>
     {/if}
-    <meta name="description" content="{__('Generic', 'Framadate is an online service for planning an appointment or making a decision quickly and easily.')}" />
+    <meta name="description" content="{t('Generic', 'Framadate is an online service for planning an appointment or making a decision quickly and easily.')}" />
 
     {if isset($favicon)}
         <link rel="icon" href="{$favicon|resource}">
@@ -49,6 +49,6 @@
 {if isset($tracking_code)}
     {$tracking_code}
 {/if}
-<section class="footer">{__f('Version', 'Version %s', $APPLICATION_VERSION)}</section>
+<section class="footer">{n('Version', 'Version %s', $APPLICATION_VERSION)}</section>
 </body>
 </html>

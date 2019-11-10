@@ -18,8 +18,11 @@
  */
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\SchemaException;
 use Doctrine\DBAL\Types\Type;
+use Doctrine\Migrations\Exception\SkipMigration;
 use Framadate\AbstractMigration;
 use Framadate\Utils;
 
@@ -43,11 +46,11 @@ class Version20151012075900 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Schema\SchemaException
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     * @throws SchemaException
+     * @throws DBALException
+     * @throws SkipMigration
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\Alter_Comment_table_for_name_length'), 'Migration has been executed in an earlier database migration system');
         $commentTable = $schema->getTable(Utils::table('comment'));
@@ -59,10 +62,10 @@ class Version20151012075900 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Schema\SchemaException
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws SchemaException
+     * @throws DBALException
      */
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         $commentTable = $schema->getTable(Utils::table('comment'));
 

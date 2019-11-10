@@ -49,7 +49,7 @@ if (!empty($_GET['poll'])) {
 }
 
 if (!$poll) {
-    $smarty->assign('error', __('Error', "This poll doesn't exist!"));
+    $smarty->assign('error', t('Error', "This poll doesn't exist!"));
     $smarty->display('error.tpl');
     exit;
 }
@@ -59,7 +59,7 @@ if (empty($admin_id)) {
     $resultsAreHidden = $poll->hidden;
 
     if ($resultsAreHidden || $forbiddenBecauseOfPassword) {
-        $smarty->assign('error', __('Error', 'Forbidden!'));
+        $smarty->assign('error', t('Error', 'Forbidden!'));
         $smarty->display('error.tpl');
         exit;
     }
@@ -74,7 +74,9 @@ if ($poll->format === 'D') {
     $titles_line = ',';
     $moments_line = ',';
     foreach ($slots as $slot) {
-        $title = Utils::csvEscape($dateFormatter->format($slot->title));
+        $timestamp = (int) $slot->title;
+        $date = (new DateTime())->setTimestamp($timestamp);
+        $title = Utils::csvEscape(date_format_translation($date));
         $moments = explode(',', $slot->moments);
 
         $titles_line .= str_repeat($title . ',', count($moments));
@@ -98,13 +100,13 @@ foreach ($votes as $vote) {
     foreach ($choices as $choice) {
         switch ($choice) {
             case '0':
-                $text = __('Generic', 'No');
+                $text = t('Generic', 'No');
                 break;
             case '1':
-                $text = __('Generic', 'Under reserve');
+                $text = t('Generic', 'Under reserve');
                 break;
             case '2':
-                $text = __('Generic', 'Yes');
+                $text = t('Generic', 'Yes');
                 break;
             default:
                 $text = 'unkown';

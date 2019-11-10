@@ -19,6 +19,6 @@
 
 require_once '../app/inc/init.php';
 
-$smarty->assign('title', __('Admin', 'Administration'));
+$smarty->assign('title', t('Admin', 'Administration'));
 $smarty->assign('logsAreReadable', is_readable('../' . LOG_FILE));
 $smarty->display('admin/index.tpl');

@@ -18,7 +18,10 @@
  */
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\SchemaException;
+use Doctrine\Migrations\Exception\SkipMigration;
 use Framadate\AbstractMigration;
 use Framadate\Utils;
 
@@ -42,11 +45,11 @@ class Version20151012082600 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
-     * @throws \Doctrine\DBAL\Schema\SchemaException
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws SkipMigration
+     * @throws SchemaException
+     * @throws DBALException
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\Alter_Comment_table_adding_date'), 'Migration has been executed in an earlier database migration system');
         $commentTable = $schema->getTable(Utils::table('comment'));
@@ -57,14 +60,14 @@ class Version20151012082600 extends AbstractMigration
         // See the "Functionality Added or Changed" section,
         // "Important Change: In MySQL, the TIMESTAMP data type" element, on
         // https://dev.mysql.com/doc/relnotes/mysql/5.6/en/news-5-6-6.html
-        $commentTable->addColumn('date', 'datetime', ['default' => 0]);
+        $commentTable->addColumn('date', 'datetime', ['notnull' => false, 'default' => null]);
     }
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws SchemaException
      */
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         $commentTable = $schema->getTable(Utils::table('comment'));
 
