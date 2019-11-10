@@ -86,55 +86,55 @@ $conf_filename = $inc_directory . 'config.php';
 
 // PHP Version
 if (version_compare(PHP_VERSION, PHP_NEEDED_VERSION) >= 0) {
-    $messages[] = new Message('info', __f('Check','PHP version %s is enough (needed at least PHP %s).', PHP_MAJOR_VERSION . "." . PHP_MINOR_VERSION, PHP_NEEDED_VERSION));
+    $messages[] = new Message('info', n('Check','PHP version %s is enough (needed at least PHP %s).', PHP_MAJOR_VERSION . "." . PHP_MINOR_VERSION, PHP_NEEDED_VERSION));
 } else {
-    $messages[] = new Message('danger', __f('Check','Your PHP version (%s) is too old. This application needs at least PHP %s.', phpversion(), PHP_NEEDED_VERSION));
+    $messages[] = new Message('danger', n('Check','Your PHP version (%s) is too old. This application needs at least PHP %s.', phpversion(), PHP_NEEDED_VERSION));
 }
 
 // INTL extension
 if (extension_loaded('intl')) {
-    $messages[] = new Message('info', __('Check','PHP Intl extension is enabled.'));
+    $messages[] = new Message('info', t('Check','PHP Intl extension is enabled.'));
 } else {
-    $messages[] = new Message('danger', __('Check','You need to enable the PHP Intl extension.'));
+    $messages[] = new Message('danger', t('Check','You need to enable the PHP Intl extension.'));
 }
 
 // Is template compile dir exists and writable ?
 if (!file_exists(ROOT_DIR . COMPILE_DIR)) {
-    $messages[] = new Message('danger', __f('Check','The template compile directory (%s) doesn\'t exist in "%s". Retry the installation process.', COMPILE_DIR, realpath(ROOT_DIR)));
+    $messages[] = new Message('danger', n('Check','The template compile directory (%s) doesn\'t exist in "%s". Retry the installation process.', COMPILE_DIR, realpath(ROOT_DIR)));
 } elseif (is_writable(ROOT_DIR . COMPILE_DIR)) {
-    $messages[] = new Message('info', __f('Check','The template compile directory (%s) is writable.', realpath(ROOT_DIR . COMPILE_DIR)));
+    $messages[] = new Message('info', n('Check','The template compile directory (%s) is writable.', realpath(ROOT_DIR . COMPILE_DIR)));
 } else {
-    $messages[] = new Message('danger', __f('Check','The template compile directory (%s) is not writable.', realpath(ROOT_DIR . COMPILE_DIR)));
+    $messages[] = new Message('danger', n('Check','The template compile directory (%s) is not writable.', realpath(ROOT_DIR . COMPILE_DIR)));
 }
 
 // Does config.php exists or is writable ?
 if (file_exists($conf_filename)) {
-    $messages[] = new Message('info', __('Check','The config file exists.'));
+    $messages[] = new Message('info', t('Check','The config file exists.'));
 } elseif (is_writable($inc_directory)) {
-    $messages[] = new Message('info', __f('Check','The config file directory (%s) is writable.', $inc_directory));
+    $messages[] = new Message('info', n('Check','The config file directory (%s) is writable.', $inc_directory));
 } else {
-    $messages[] = new Message('danger', __f('Check','The config file directory (%s) is not writable and the config file (%s) does not exists.', $inc_directory, $conf_filename));
+    $messages[] = new Message('danger', n('Check','The config file directory (%s) is not writable and the config file (%s) does not exists.', $inc_directory, $conf_filename));
 }
 
 // Security
 if (extension_loaded('openssl')) {
-    $messages[] = new Message('info', __('Check','OpenSSL extension loaded.'));
+    $messages[] = new Message('info', t('Check','OpenSSL extension loaded.'));
 } else {
-    $messages[] = new Message('warning', __('Check','Consider enabling the PHP extension OpenSSL for increased security.'));
+    $messages[] = new Message('warning', t('Check','Consider enabling the PHP extension OpenSSL for increased security.'));
 }
 
 if (ini_get('session.cookie_httponly') === '1') {
-    $messages[] = new Message('info', __('Check', 'Cookies are served from HTTP only.'));
+    $messages[] = new Message('info', t('Check', 'Cookies are served from HTTP only.'));
 } else {
-    $messages[] = new Message('warning', __('Check', "Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript."));
+    $messages[] = new Message('warning', t('Check', "Consider setting « session.cookie_httponly = 1 » inside your php.ini or add « php_value session.cookie_httponly 1 » to your .htaccess so that cookies can't be accessed through Javascript."));
 }
 
 // Datetime
 $timezone = ini_get('date.timezone');
 if (!empty($timezone)) {
-    $messages[] = new Message('info', __('Check','date.timezone is set.'));
+    $messages[] = new Message('info', t('Check','date.timezone is set.'));
 } else {
-    $messages[] = new Message('warning', __('Check','Consider setting the date.timezone in php.ini.'));
+    $messages[] = new Message('warning', t('Check','Consider setting the date.timezone in php.ini.'));
 }
 
 // The percentage of steps needed to be ready to launch the application
@@ -165,7 +165,7 @@ usort($messages, 'compareCheckMessage');
 <head>
     <meta charset="utf-8">
 
-    <title><?=__('Check', 'Installation checking') ?></title>
+    <title><?=t('Check', 'Installation checking') ?></title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -176,20 +176,20 @@ usort($messages, 'compareCheckMessage');
         <div class="row">
             <form method="get" action="" class="hidden-print">
                 <div class="input-group input-group-sm pull-right col-xs-12 col-sm-2">
-                    <select name="lang" class="form-control" title="<?=__('Language selector', 'Select language')?>" >
+                    <select name="lang" class="form-control" title="<?=t('Language selector', 'Select language')?>" >
                         <?php foreach ($ALLOWED_LANGUAGES as $lang_key => $language) { ?>
                         <option lang="fr" <?php if (substr($lang_key, 0, 2)===$locale) { echo 'selected';} ?> value="<?=substr($lang_key, 0, 2)?>"><?=$language?></option>
                         <?php } ?>
                     </select>
                     <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default btn-sm" title="<?=__('Language selector', 'Select language')?>">OK</button>
+                        <button type="submit" class="btn btn-default btn-sm" title="<?=t('Language selector', 'Select language')?>">OK</button>
                     </span>
                 </div>
             </form>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h1><?=__('Check', 'Installation checking') ?></h1>
+                <h1><?=t('Check', 'Installation checking') ?></h1>
                 <div>
                     <div class="progress">
                         <div class="progress-bar  progress-bar-<?= $readyClass ?>" role="progressbar" aria-valuenow="<?= $readyPercentage ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?= $readyPercentage ?>%;">
@@ -209,17 +209,17 @@ usort($messages, 'compareCheckMessage');
                 </div>
             </div>
             <div class="text-center">
-                <a class="btn btn-info" role="button" href=""><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <?= __('Check', 'Check again') ?></a>
+                <a class="btn btn-info" role="button" href=""><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> <?= t('Check', 'Check again') ?></a>
                 <?php
                 if (!is_file($conf_filename)) {
                     if ($errors === 0) {
                 ?>
-                    <a class="btn btn-primary" role="button" href="<?= Utils::get_server_name() . 'admin/install.php' ?>"><span class=" glyphicon glyphicon-arrow-right" aria-hidden="true"></span> <?= __('Check', 'Continue the installation') ?></a>
+                    <a class="btn btn-primary" role="button" href="<?= Utils::get_server_name() . 'admin/install.php' ?>"><span class=" glyphicon glyphicon-arrow-right" aria-hidden="true"></span> <?= t('Check', 'Continue the installation') ?></a>
                 <?php
                     }
                 } else {
                 ?>
-                    <a class="btn btn-primary" role="button" href="<?= Utils::get_server_name() . 'admin/'?>"><span class=" glyphicon glyphicon-arrow-left" aria-hidden="true"></span> <?= __('Admin', 'Back to administration') ?></a>
+                    <a class="btn btn-primary" role="button" href="<?= Utils::get_server_name() . 'admin/'?>"><span class=" glyphicon glyphicon-arrow-left" aria-hidden="true"></span> <?= t('Admin', 'Back to administration') ?></a>
                 <?php
                 }
                 ?>

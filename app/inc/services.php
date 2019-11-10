@@ -13,6 +13,7 @@ use Framadate\Services\SessionService;
 class Services {
     private static $connect;
     private static $smarty;
+    private static $config;
 
     private static $adminPollService;
     private static $inputService;
@@ -24,9 +25,10 @@ class Services {
     private static $securityService;
     private static $sessionService;
 
-    public static function init(Connection $connect, \Smarty $smarty) {
+    public static function init(Connection $connect, \Smarty $smarty, array $config) {
         self::$connect = $connect;
         self::$smarty = $smarty;
+        self::$config = $config;
     }
 
     public static function adminPoll() {
@@ -52,7 +54,7 @@ class Services {
 
     public static function mail() {
         if (self::$mailService === null) {
-            self::$mailService = new MailService($config['use_smtp'], $config['smtp_options'], $config['use_sendmail']);
+            self::$mailService = new MailService(self::$config['use_smtp'], self::$config['smtp_options'], self::$config['use_sendmail']);
         }
         return self::$mailService;
     }

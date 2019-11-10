@@ -65,7 +65,7 @@ if (!empty($_GET['poll'])) {
 }
 
 if (!$poll) {
-    $smarty->assign('error', __('Error', 'This poll doesn\'t exist !'));
+    $smarty->assign('error', t('Error', 'This poll doesn\'t exist !'));
     $smarty->display('error.tpl');
     exit;
 }
@@ -89,11 +89,11 @@ if (!is_null($poll->password_hash)) {
     $resultPubliclyVisible = $poll->results_publicly_visible;
 
     if (!$accessGranted && !empty($password)) {
-        $message = new Message('danger', __('Password', 'Wrong password'));
+        $message = new Message('danger', t('Password', 'Wrong password'));
     } else if (!$accessGranted && !$resultPubliclyVisible) {
-        $message = new Message('danger', __('Password', 'You have to provide a password to access the poll.'));
+        $message = new Message('danger', t('Password', 'You have to provide a password to access the poll.'));
     } else if (!$accessGranted && $resultPubliclyVisible) {
-        $message = new Message('danger', __('Password', 'You have to provide a password so you can participate to the poll.'));
+        $message = new Message('danger', t('Password', 'You have to provide a password so you can participate to the poll.'));
     }
 }
 
@@ -123,10 +123,10 @@ if ($accessGranted) {
         $slots_hash = $inputService->filterMD5($_POST['control']);
 
         if (empty($editedVote)) {
-            $message = new Message('danger', __('Error', 'Something has gone wrong...'));
+            $message = new Message('danger', t('Error', 'Something has gone wrong...'));
         }
         if (count($choices) !== count($_POST['choices'])) {
-            $message = new Message('danger', __('Error', 'There is a problem with your choices'));
+            $message = new Message('danger', t('Error', 'There is a problem with your choices'));
         }
 
         if ($message === null) {
@@ -138,18 +138,18 @@ if ($accessGranted) {
                         $editedVoteUniqueId = filter_input(INPUT_POST, 'edited_vote', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
                         $message = getMessageForOwnVoteEditableVote($sessionService, $smarty, $editedVoteUniqueId, $config['use_smtp'], $poll_id, $name);
                     } else {
-                        $message = new Message('success', __('studs', 'Vote updated'));
+                        $message = new Message('success', t('studs', 'Vote updated'));
                     }
                     $notificationService->sendUpdateNotification($poll, NotificationService::UPDATE_VOTE, $name);
                 } else {
-                    $message = new Message('danger', __('Error', 'Update vote failed'));
+                    $message = new Message('danger', t('Error', 'Update vote failed'));
                 }
             } catch (AlreadyExistsException $aee) {
-	            $message = new Message('danger', __('Error', 'The name you\'ve chosen already exist in this poll!'));
+	            $message = new Message('danger', t('Error', 'The name you\'ve chosen already exist in this poll!'));
 	        } catch (ConcurrentEditionException $cee) {
-                $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
+                $message = new Message('danger', t('Error', 'Poll has been updated before you vote'));
             } catch (ConcurrentVoteException $cve) {
-                $message = new Message('danger', __('Error', "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."));
+                $message = new Message('danger', t('Error', "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."));
             }
         }
     } elseif (isset($_POST['save'])) { // Add a new vote
@@ -163,10 +163,10 @@ if ($accessGranted) {
         $slots_hash = $inputService->filterMD5($_POST['control']);
 
         if ($name === null) {
-            $message = new Message('danger', __('Error', 'The name is invalid.'));
+            $message = new Message('danger', t('Error', 'The name is invalid.'));
         }
         if (count($choices) !== count($_POST['choices'])) {
-            $message = new Message('danger', __('Error', 'There is a problem with your choices'));
+            $message = new Message('danger', t('Error', 'There is a problem with your choices'));
         }
 
         if ($message === null) {
@@ -178,19 +178,19 @@ if ($accessGranted) {
                         $editedVoteUniqueId = $result->uniqId;
                         $message = getMessageForOwnVoteEditableVote($sessionService, $smarty, $editedVoteUniqueId, $config['use_smtp'], $poll_id, $name);
                     } else {
-                        $message = new Message('success', __('studs', 'Vote added'));
+                        $message = new Message('success', t('studs', 'Vote added'));
                     }
                     $notificationService->sendUpdateNotification($poll, NotificationService::ADD_VOTE, $name);
                 } else {
-                    $message = new Message('danger', __('Error', 'Adding vote failed'));
+                    $message = new Message('danger', t('Error', 'Adding vote failed'));
                 }
             } catch (AlreadyExistsException $aee) {
-                $message = new Message('danger', __('Error', 'You already voted'));
+                $message = new Message('danger', t('Error', 'You already voted'));
                 $selectedNewVotes = $choices;
             } catch (ConcurrentEditionException $cee) {
-                $message = new Message('danger', __('Error', 'Poll has been updated before you vote'));
+                $message = new Message('danger', t('Error', 'Poll has been updated before you vote'));
             } catch (ConcurrentVoteException $cve) {
-                $message = new Message('danger', __('Error', "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."));
+                $message = new Message('danger', t('Error', "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions. Please retry."));
             }
         }
     }
@@ -202,9 +202,9 @@ function getMessageForOwnVoteEditableVote(SessionService &$sessionService, Smart
     $urlEditVote = Utils::getUrlSondage($poll_id, false, $editedVoteUniqueId);
     $message = new Message(
         'success',
-        __('studs', 'Your vote has been saved, but please note: you need to keep this personalised link to be able to edit your vote.'),
+        t('studs', 'Your vote has been saved, but please note: you need to keep this personalised link to be able to edit your vote.'),
         $urlEditVote,
-        __f('Poll results', 'Edit the line: %s', $name),
+        n('Poll results', 'Edit the line: %s', $name),
         'glyphicon-pencil');
     if ($canUseSMTP) {
         $token = new Token();
@@ -231,7 +231,7 @@ $deletion_date->add(new DateInterval('P' . PURGE_DELAY . 'D'));
 // Assign data to template
 $smarty->assign('poll_id', $poll_id);
 $smarty->assign('poll', $poll);
-$smarty->assign('title', __('Generic', 'Poll') . ' - ' . $poll->title);
+$smarty->assign('title', t('Generic', 'Poll') . ' - ' . $poll->title);
 $smarty->assign('expired', $poll->end_date < new DateTime());
 $smarty->assign('deletion_date', $deletion_date);
 $smarty->assign('slots', $poll->format === 'D' ? $pollService->splitSlots($slots) : $slots);

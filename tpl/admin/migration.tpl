@@ -3,7 +3,7 @@
 {block 'admin_main'}
     <div class="row">
         <div class="col-xs-12 col-md-4">
-            <h2>{__('Admin', 'Status')}</h2>
+            <h2>{t('Admin', 'Status')}</h2>
             {if $countExecuted === $countTotal}
                 <div class="alert alert-success">
                     No migrations to execute
@@ -19,10 +19,10 @@
             {/if}
         </div>
         <div class="col-xs-12 col-md-4">
-            <h2>{__('Admin', 'Summary')}</h2>
-            {__('Admin', 'Waiting')} <span class="label label-warning">{$countWaiting|html} / {$countTotal|html}</span>
+            <h2>{t('Admin', 'Summary')}</h2>
+            {t('Admin', 'Waiting')} <span class="label label-warning">{$countWaiting|html} / {$countTotal|html}</span>
             <br/>
-            {__('Admin', 'Executed')} <span class="label label-success">{$countExecuted|html} / {$countTotal|html}</span>
+            {t('Admin', 'Executed')} <span class="label label-success">{$countExecuted|html} / {$countTotal|html}</span>
         </div>
     </div>
 {/block}

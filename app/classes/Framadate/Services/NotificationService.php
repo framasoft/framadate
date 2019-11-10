@@ -52,7 +52,7 @@ class NotificationService {
                 $translationString = 'Notification of poll: %s';
             }
 
-            $subject = '[' . NOMAPPLICATION . '] ' . tn('Mail', $translationString, $poll->title);
+            $subject = '[' . NOMAPPLICATION . '] ' . n('Mail', $translationString, $poll->title);
 
             $this->smarty->assign('username', $name);
             $this->smarty->assign('poll_title', $poll->title);
@@ -84,11 +84,11 @@ class NotificationService {
         $this->smarty->assign('poll_name', Utils::htmlMailEscape($poll_name));
         $this->smarty->assign('poll_url', Utils::getUrlSondage($poll_id));
         $message_participants = $this->smarty->fetch('mail/participants_forward_email.html.tpl');
-        $this->mailService->send($creator_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Participant link') . '] ' . __('Generic', 'Poll') . ': ' . $poll_name, $message_participants);
+        $this->mailService->send($creator_mail, '[' . NOMAPPLICATION . '][' . t('Mail', 'Participant link') . '] ' . t('Generic', 'Poll') . ': ' . $poll_name, $message_participants);
 
         $this->smarty->assign('poll_admin_url', Utils::getUrlSondage($admin_poll_id, true));
         $message_admin = $this->smarty->fetch('mail/creation_notification_email.html.tpl');
-        $this->mailService->send($creator_mail, '[' . NOMAPPLICATION . '][' . __('Mail', 'Message for the author') . '] ' . __('Generic', 'Poll') . ': ' . $poll_name, $message_admin);
+        $this->mailService->send($creator_mail, '[' . NOMAPPLICATION . '][' . t('Mail', 'Message for the author') . '] ' . t('Generic', 'Poll') . ': ' . $poll_name, $message_admin);
     }
 
     function sendEditedVoteNotification($email, &$poll, $poll_id, $edited_vote_id) {
@@ -99,7 +99,7 @@ class NotificationService {
         $this->smarty->assign('editedVoteUniqueId', $edited_vote_id);
         $body = $this->smarty->fetch('mail/remember_edit_link.tpl');
 
-        $subject = '[' . NOMAPPLICATION . '][' . __('EditLink', 'REMINDER') . '] ' . tn('EditLink', 'Edit link for poll "%s"', $poll->title);
+        $subject = '[' . NOMAPPLICATION . '][' . t('EditLink', 'REMINDER') . '] ' . n('EditLink', 'Edit link for poll "%s"', $poll->title);
 
         $this->mailService->send($email, $subject, $body);
     }
@@ -108,6 +108,6 @@ class NotificationService {
         $this->smarty->assign('polls', $polls);
         $body = $this->smarty->fetch('mail/find_polls.tpl');
 
-        $this->mailService->send($mail, __('FindPolls', 'List of your polls') . ' - ' . NOMAPPLICATION, $body, 'SEND_POLLS');
+        $this->mailService->send($mail, t('FindPolls', 'List of your polls') . ' - ' . NOMAPPLICATION, $body, 'SEND_POLLS');
     }
 }

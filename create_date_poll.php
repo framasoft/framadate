@@ -34,8 +34,8 @@ $max_expiry_time = $pollService->maxExpiryDate();
 $form = isset($_SESSION['form']) ? unserialize($_SESSION['form']) : null;
 
 if ($form === null || !($form instanceof Form)) {
-    $smarty->assign('title', __('Error', 'Error!'));
-    $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
+    $smarty->assign('title', t('Error', 'Error!'));
+    $smarty->assign('error', t('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
     $smarty->display('error.tpl');
     exit;
 }
@@ -85,7 +85,7 @@ switch ($step) {
         $_SESSION['form'] = serialize($form);
 
         // Display step 2
-        $smarty->assign('title', __('Step 2 date', 'Poll dates (2 of 3)'));
+        $smarty->assign('title', t('Step 2 date', 'Poll dates (2 of 3)'));
         $smarty->assign('choices', $form->getChoices());
         $smarty->assign('error', null);
 
@@ -105,9 +105,9 @@ switch ($step) {
             // Check if there are at most MAX_SLOTS_PER_POLL slots
             if (count($_POST['days']) > MAX_SLOTS_PER_POLL) {
                 // Display step 2
-                $smarty->assign('title', __('Step 2 date', 'Poll dates (2 of 3)'));
+                $smarty->assign('title', t('Step 2 date', 'Poll dates (2 of 3)'));
                 $smarty->assign('choices', $form->getChoices());
-                $smarty->assign('error', __f('Error', 'You can\'t select more than %d dates', MAX_SLOTS_PER_POLL));
+                $smarty->assign('error', n('Error', 'You can\'t select more than %d dates', MAX_SLOTS_PER_POLL));
 
                 $smarty->display('create_date_poll_step_2.tpl');
                 exit;
@@ -131,7 +131,7 @@ switch ($step) {
 
                 if (!empty($day)) {
                     // Add choice to Form data
-                    $date = DateTime::createFromFormat(__('Date', 'Y-m-d'), $_POST['days'][$i])->setTime(0, 0, 0);
+                    $date = DateTime::createFromFormat(t('Date', 'Y-m-d'), $_POST['days'][$i])->setTime(0, 0, 0);
                     $time = (string) $date->getTimestamp();
                     $choice = new Choice($time);
                     $form->addChoice($choice);
@@ -168,7 +168,7 @@ switch ($step) {
 
         $_SESSION['form'] = serialize($form);
 
-        $smarty->assign('title', __('Step 3', 'Removal date and confirmation (3 of 3)'));
+        $smarty->assign('title', t('Step 3', 'Removal date and confirmation (3 of 3)'));
         $smarty->assign('summary', $summary);
         $smarty->assign('end_date_str', $end_date_str);
         $smarty->assign('default_poll_duration', $config['default_poll_duration']);
@@ -199,8 +199,8 @@ switch ($step) {
     case 1:
     default:
         // Step 1/4 : error if $_SESSION from info_sondage are not valid
-        $smarty->assign('title', __('Error', 'Error!'));
-        $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
+        $smarty->assign('title', t('Error', 'Error!'));
+        $smarty->assign('error', t('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
         $smarty->display('error.tpl');
         exit;
 }

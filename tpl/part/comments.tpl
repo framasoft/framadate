@@ -13,13 +13,13 @@
         {/if}
         <div class="hidden-print jumbotron">
             <div class="col-md-6 col-md-offset-3">
-                <fieldset id="add-comment"><legend>{__('Comments', 'Add a comment to the poll')|html}</legend>
+                <fieldset id="add-comment"><legend>{t('Comments', 'Add a comment to the poll')|html}</legend>
                     <div class="form-group">
-                        <label for="comment_name" class="control-label">{__('Generic', 'Your name')|html}</label>
+                        <label for="comment_name" class="control-label">{t('Generic', 'Your name')|html}</label>
                         <input type="text" name="name" id="comment_name" class="form-control" maxlength="60" required>
                     </div>
                     <div class="form-group">
-                        <label for="comment" class="control-label">{__('Comments', 'Comment')|html}</label>
+                        <label for="comment" class="control-label">{t('Comments', 'Comment')|html}</label>
                         <textarea name="comment" id="comment" class="form-control" rows="2" cols="40" required></textarea>
                     </div>
                     <div class="pull-right">
@@ -27,9 +27,9 @@
 	                        type="submit"
 	                        id="add_comment"
 	                        class="btn btn-success"
-	                        data-text-wait="{__('Comments', 'Enter your name and comment prior to submitting the form')|html}"
+	                        data-text-wait="{t('Comments', 'Enter your name and comment prior to submitting the form')|html}"
                         >
-                        	{__('Comments', 'Submit comment')|html}
+                        	{t('Comments', 'Submit comment')|html}
                         </button>
                     </div>
                 </fieldset>

@@ -53,6 +53,6 @@ $smarty->assign('countTotal', $infos['Available Migrations']);
 $smarty->assign('countExecuted', $infos['Executed Migrations']);
 $smarty->assign('countWaiting', $infos['New Migrations']);
 $smarty->assign('executing', $executing);
-$smarty->assign('title', __('Admin', 'Migration'));
+$smarty->assign('title', t('Admin', 'Migration'));
 $smarty->assign('time', round((microtime(true)-$_SERVER['REQUEST_TIME_FLOAT']), 4));
 $smarty->display('admin/migration.tpl');

@@ -42,13 +42,13 @@ $action = $inputService->filterName(isset($_POST['action']) ? $_POST['action'] :
 
 if ($action === 'purge' && $securityService->checkCsrf('admin', $_POST['csrf'])) {
     $count = $purgeService->purgeOldPolls();
-    $message = __('Admin', 'Purged:') . ' ' . $count;
+    $message = t('Admin', 'Purged:') . ' ' . $count;
 }
 
 // Assign data to template
 $smarty->assign('message', $message);
 $smarty->assign('crsf', $securityService->getToken('admin'));
 
-$smarty->assign('title', __('Admin', 'Purge'));
+$smarty->assign('title', t('Admin', 'Purge'));
 
 $smarty->display('admin/purge.tpl');

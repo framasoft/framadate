@@ -112,10 +112,10 @@ if ($goToStep2) {
             $error_on_customized_url = true;
         } else if ($pollRepository->existsById($customized_url)) {
             $error_on_customized_url = true;
-            $error_on_customized_url_msg = __('Error', 'Identifier is already used');
+            $error_on_customized_url_msg = t('Error', 'Identifier is already used');
         } else if (in_array($customized_url, ['admin', 'vote', 'action'], true)) {
             $error_on_customized_url = true;
-            $error_on_customized_url_msg = __('Error', 'This identifier is not allowed');
+            $error_on_customized_url_msg = t('Error', 'This identifier is not allowed');
         }
     }
 
@@ -170,11 +170,11 @@ if ($goToStep2) {
         }
     } else {
         // Title Erreur !
-        $title = __('Error', 'Error!') . ' - ' . __('Step 1', 'Poll creation (1 of 3)');
+        $title = t('Error', 'Error!') . ' - ' . t('Step 1', 'Poll creation (1 of 3)');
     }
 } else {
     // Title OK (formulaire pas encore rempli)
-    $title = __('Step 1', 'Poll creation (1 of 3)');
+    $title = t('Step 1', 'Poll creation (1 of 3)');
 }
 
 // Prepare error messages
@@ -225,59 +225,59 @@ if (!empty($_POST[GO_TO_STEP_2])) {
     if (empty($_POST['title'])) {
         $errors['title']['aria'] = 'aria-describeby="poll_title_error" ';
         $errors['title']['class'] = ' has-error';
-        $errors['title']['msg'] = __('Error', 'Enter a title');
+        $errors['title']['msg'] = t('Error', 'Enter a title');
     } elseif ($error_on_title) {
         $errors['title']['aria'] = 'aria-describeby="poll_title_error" ';
         $errors['title']['class'] = ' has-error';
-        $errors['title']['msg'] = __('Error', 'Something is wrong with the format');
+        $errors['title']['msg'] = t('Error', 'Something is wrong with the format');
     }
 
     if ($error_on_customized_url) {
         $errors['customized_url']['aria'] = 'aria-describeby="customized_url" ';
         $errors['customized_url']['class'] = ' has-error';
-        $errors['customized_url']['msg'] = isset($error_on_customized_url_msg) ? $error_on_customized_url_msg : __('Error', "Something is wrong with the format: Customized URLs should only consist of alphanumeric characters and hyphens.");
+        $errors['customized_url']['msg'] = isset($error_on_customized_url_msg) ? $error_on_customized_url_msg : t('Error', "Something is wrong with the format: Customized URLs should only consist of alphanumeric characters and hyphens.");
     }
 
     if ($error_on_description) {
         $errors['description']['aria'] = 'aria-describeby="poll_comment_error" ';
         $errors['description']['class'] = ' has-error';
-        $errors['description']['msg'] = __('Error', 'Something is wrong with the format');
+        $errors['description']['msg'] = t('Error', 'Something is wrong with the format');
     }
 
     if (empty($_POST['name'])) {
         $errors['name']['aria'] = 'aria-describeby="poll_name_error" ';
         $errors['name']['class'] = ' has-error';
-        $errors['name']['msg'] = __('Error', 'Enter a name');
+        $errors['name']['msg'] = t('Error', 'Enter a name');
     } elseif ($error_on_name) {
         $errors['name']['aria'] = 'aria-describeby="poll_name_error" ';
         $errors['name']['class'] = ' has-error';
-        $errors['name']['msg'] = __('Error', "Something is wrong with the format: name shouldn't have any spaces before or after");
+        $errors['name']['msg'] = t('Error', "Something is wrong with the format: name shouldn't have any spaces before or after");
     }
 
     if (empty($_POST['mail'])) {
         $errors['email']['aria'] = 'aria-describeby="poll_name_error" ';
         $errors['email']['class'] = ' has-error';
-        $errors['email']['msg'] = __('Error', 'Enter an email address');
+        $errors['email']['msg'] = t('Error', 'Enter an email address');
     } elseif ($error_on_mail) {
         $errors['email']['aria'] = 'aria-describeby="poll_email_error" ';
         $errors['email']['class'] = ' has-error';
-        $errors['email']['msg'] = __('Error', 'The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.');
+        $errors['email']['msg'] = t('Error', 'The address is not correct! You should enter a valid email address (like r.stallman@outlock.com) in order to receive the link to your poll.');
     }
 
     if ($error_on_password) {
         $errors['password']['aria'] = 'aria-describeby="poll_password_error" ';
         $errors['password']['class'] = ' has-error';
-        $errors['password']['msg'] = __('Error', 'Password is empty.');
+        $errors['password']['msg'] = t('Error', 'Password is empty.');
     }
     if ($error_on_password_repeat) {
         $errors['password_repeat']['aria'] = 'aria-describeby="poll_password_repeat_error" ';
         $errors['password_repeat']['class'] = ' has-error';
-        $errors['password_repeat']['msg'] = __('Error', 'Passwords do not match.');
+        $errors['password_repeat']['msg'] = t('Error', 'Passwords do not match.');
     }
 	if ($error_on_ValueMax) {
         $errors['ValueMax']['aria'] = 'aria-describeby="poll_ValueMax" ';
         $errors['ValueMax']['class'] = ' has-error';
-        $errors['ValueMax']['msg'] = __('Error', 'Error on amount of votes limitation: Value must be an integer greater than 0');
+        $errors['ValueMax']['msg'] = t('Error', 'Error on amount of votes limitation: Value must be an integer greater than 0');
     }
 }
 

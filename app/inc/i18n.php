@@ -50,7 +50,7 @@ $locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $wanted_locale, false, D
  */
 function date_format_intl(DateTime $date, $pattern = DATE_FORMAT_FULL, $forceLocale = null) {
     global $locale;
-    $local_locale = $forceLocale || $locale;
+    $local_locale = $forceLocale ?? $locale;
 
     $dateFormatter = IntlDateFormatter::create(
         $local_locale,
@@ -71,7 +71,7 @@ function date_format_intl(DateTime $date, $pattern = DATE_FORMAT_FULL, $forceLoc
  * @return string
  */
 function date_format_translation(DateTime $date, $pattern = 'Y-m-d') {
-    return $date->format(__('Date', $pattern));
+    return $date->format(t('Date', $pattern));
 }
 
 /**
@@ -110,7 +110,7 @@ function parse_intl_date($dateString, $pattern = DATE_FORMAT_DATE, $forceLocale 
  * @return DateTime
  */
 function parse_translation_date($dateString, $pattern = 'Y-m-d') {
-    return DateTime::createFromFormat(__('Date', $pattern), $dateString);
+    return DateTime::createFromFormat(t('Date', $pattern), $dateString);
 }
 
 /* i18n helper functions */
@@ -140,11 +140,11 @@ class __i18n {
 }
 __i18n::init($locale);
 
-function __($section, $key) {
+function t($section, $key) {
     return __i18n::translate($key);
 }
 
-function tn($section, $key, $args) {
+function n($section, $key, $args) {
     $msg = __i18n::translate($key);
     $args = array_slice(func_get_args(), 2);
     return vsprintf($msg, $args);
