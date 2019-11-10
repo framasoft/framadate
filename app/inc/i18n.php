@@ -46,8 +46,8 @@ $locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $wanted_locale, false, D
  * @param DateTime|null $date
  * @param string $pattern
  * @param $forceLocale
- * @return string
  * @throws Exception
+ * @return string
  */
 function date_format_intl(?DateTime $date, $pattern = DATE_FORMAT_FULL, $forceLocale = null) {
     global $locale;
