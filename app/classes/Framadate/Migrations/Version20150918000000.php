@@ -19,7 +19,10 @@
 
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\SchemaException;
+use Doctrine\Migrations\Exception\SkipMigration;
 use Framadate\AbstractMigration;
 use Framadate\Utils;
 
@@ -39,11 +42,11 @@ class Version20150918000000 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
-     * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws DBALException
+     * @throws SkipMigration
+     * @throws SchemaException
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         $this->skipIf(
             $this->legacyCheck($schema, 'Framadate\Migration\RPadVotes_from_0_8'),
@@ -95,7 +98,7 @@ FROM (
         }
     }
 
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         // TODO: Implement down() method.
     }

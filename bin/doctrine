@@ -1,8 +1,10 @@
 #!/usr/bin/env php
 <?php
 
-use Doctrine\DBAL\Migrations\Configuration\Configuration;
+use Doctrine\Migrations\Configuration\Configuration;
 use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use Doctrine\Migrations\Tools\Console\Command\MigrateCommand;
+use Doctrine\Migrations\Tools\Console\Command\StatusCommand;
 use Framadate\Utils;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\HelperSet;
@@ -23,7 +25,7 @@ try {
     }
 
     // replace the ConsoleRunner::run() statement with:
-    $cli = new Application('Doctrine Command Line Interface', VERSION);
+    $cli = new Application('Doctrine Command Line Interface for Framadate', VERSION);
     $cli->setCatchExceptions(true);
 
     $helperSet = new HelperSet(
@@ -35,8 +37,8 @@ try {
 
     $cli->setHelperSet($helperSet);
 
-    $migrateCommand = new \Doctrine\DBAL\Migrations\Tools\Console\Command\MigrateCommand();
-    $statusCommand = new \Doctrine\DBAL\Migrations\Tools\Console\Command\StatusCommand();
+    $migrateCommand = new MigrateCommand();
+    $statusCommand = new StatusCommand();
 
     $migrationsDirectory = __DIR__ . '/../app/classes/Framadate/Migrations';
 

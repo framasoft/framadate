@@ -1,14 +1,6 @@
 {extends 'admin/admin_page.tpl'}
 
 {block 'admin_main'}
-    {if $executing}
-        <div class="row">
-            <pre>{$output}</pre>
-            <div class="col-xs-12 well well-sm">
-                {__('Generic', 'Page generated in')} {$time} {__('Generic', 'seconds')}
-            </div>
-        </div>
-    {/if}
     <div class="row">
         <div class="col-xs-12 col-md-4">
             <h2>{__('Admin', 'Status')}</h2>

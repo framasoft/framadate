@@ -18,16 +18,19 @@
  */
 namespace Framadate;
 
-use Doctrine\DBAL\Migrations\AbstractMigration as DoctrineAbstractMigration;
+use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Driver\Statement;
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\SchemaException;
+use Doctrine\Migrations\AbstractMigration as DoctrineAbstractMigration;
 
 abstract class AbstractMigration extends DoctrineAbstractMigration
 {
     /**
      * @param Schema $schema
      * @param $class
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws DBALException
+     * @throws SchemaException
      * @return bool
      */
     public function legacyCheck(Schema $schema, $class)
@@ -44,7 +47,7 @@ abstract class AbstractMigration extends DoctrineAbstractMigration
          * We check the migration table
          */
         if ($migration_table->hasColumn('name')) {
-            /** @var $stmt \Doctrine\DBAL\Driver\Statement */
+            /** @var $stmt Statement */
             $stmt = $this->connection->prepare('SELECT * FROM ' . Utils::table(MIGRATION_TABLE) . ' WHERE name = ?');
             $stmt->execute([$class]);
             return $stmt->rowCount() > 0;

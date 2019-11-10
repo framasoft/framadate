@@ -19,9 +19,13 @@
 namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\SchemaException;
+use Doctrine\Migrations\Exception\SkipMigration;
 use Framadate\AbstractMigration;
 use Framadate\Utils;
+use PDO;
 
 /**
  * This migration sets Poll.end_date to NULL by default
@@ -45,12 +49,13 @@ class Version20180411000000 extends AbstractMigration
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
-     * @param Connection|\PDO $connection The connection to database
+     * @param Connection|PDO $connection The connection to database
+     * @throws DBALException
      * @return bool true if the Migration should be executed.
      */
     public function preCondition(Connection $connection)
     {
-        $driver_name = $connection->getWrappedConnection()->getAttribute(\PDO::ATTR_DRIVER_NAME);
+        $driver_name = $connection->getWrappedConnection()->getAttribute(PDO::ATTR_DRIVER_NAME);
 
         if ($driver_name === 'mysql') {
             $stmt = $connection->prepare(
@@ -59,7 +64,7 @@ class Version20180411000000 extends AbstractMigration
             $stmt->bindValue(1, Utils::table('poll'));
             $stmt->bindValue(2, 'end_date');
             $stmt->execute();
-            $default = $stmt->fetch(\PDO::FETCH_COLUMN);
+            $default = $stmt->fetch(PDO::FETCH_COLUMN);
 
             return $default === null;
         }
@@ -68,11 +73,11 @@ class Version20180411000000 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Schema\SchemaException
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws SchemaException
+     * @throws SkipMigration
+     * @throws DBALException
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         // We don't disable this migration even if legacy because it wasn't working correctly before
         // $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\Fix_MySQL_No_Zero_Date'), 'Migration has been executed in an earlier database migration system');
@@ -81,7 +86,7 @@ class Version20180411000000 extends AbstractMigration
         $poll->changeColumn('end_date', ['default' => null, 'notnull' => false]);
     }
 
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         // nothing
     }

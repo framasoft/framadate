@@ -34,7 +34,8 @@ if (isset($_REQUEST['lang'])
 if (isset($_SESSION['lang'])) {
     $wanted_locale = $_SESSION['lang'];
 } else  {
-    $wanted_locale = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+    $http_lang = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? DEFAULT_LANGUAGE;
+    $wanted_locale = locale_accept_from_http($http_lang);
 }
 // Use the best available locale.
 $locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $wanted_locale, false, DEFAULT_LANGUAGE);
@@ -143,7 +144,7 @@ function __($section, $key) {
     return __i18n::translate($key);
 }
 
-function __f($section, $key, $args) {
+function tn($section, $key, $args) {
     $msg = __i18n::translate($key);
     $args = array_slice(func_get_args(), 2);
     return vsprintf($msg, $args);

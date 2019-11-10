@@ -93,7 +93,7 @@ function smarty_function_markdown_to_text($options, Smarty_Internal_Template $te
     global $locale;
     $text = strip_tags(Parsedown::instance()->text($options['markdown']));
     $number_letters = (new NumberFormatter($locale, NumberFormatter::ORDINAL))->format($options['id'] + 1);
-    return $text !== '' ? $text : __f('Poll results', '%s option', $number_letters);
+    return $text !== '' ? $text : tn('Poll results', '%s option', $number_letters);
 }
 
 function smarty_modifier_html_special_chars($html) {

@@ -52,7 +52,7 @@ class NotificationService {
                 $translationString = 'Notification of poll: %s';
             }
 
-            $subject = '[' . NOMAPPLICATION . '] ' . __f('Mail', $translationString, $poll->title);
+            $subject = '[' . NOMAPPLICATION . '] ' . tn('Mail', $translationString, $poll->title);
 
             $this->smarty->assign('username', $name);
             $this->smarty->assign('poll_title', $poll->title);
@@ -99,7 +99,7 @@ class NotificationService {
         $this->smarty->assign('editedVoteUniqueId', $edited_vote_id);
         $body = $this->smarty->fetch('mail/remember_edit_link.tpl');
 
-        $subject = '[' . NOMAPPLICATION . '][' . __('EditLink', 'REMINDER') . '] ' . __f('EditLink', 'Edit link for poll "%s"', $poll->title);
+        $subject = '[' . NOMAPPLICATION . '][' . __('EditLink', 'REMINDER') . '] ' . tn('EditLink', 'Edit link for poll "%s"', $poll->title);
 
         $this->mailService->send($email, $subject, $body);
     }

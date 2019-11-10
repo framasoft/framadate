@@ -68,7 +68,7 @@ class InstallService {
 
         // Write configuration to conf.php file
         if ($this->writeConfiguration($smarty) === false) {
-            return $this->error(__f('Error', "Can't create the config.php file in '%s'.", CONF_FILENAME));
+            return $this->error(tn('Error', "Can't create the config.php file in '%s'.", CONF_FILENAME));
         }
 
         return $this->ok();
@@ -115,7 +115,7 @@ class InstallService {
     function ok() {
         return [
             'status' => 'OK',
-            'msg' => __f('Installation', 'Ended', Utils::get_server_name())
+            'msg' => tn('Installation', 'Ended', Utils::get_server_name())
         ];
     }
 
