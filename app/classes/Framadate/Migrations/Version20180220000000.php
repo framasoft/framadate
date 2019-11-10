@@ -18,7 +18,10 @@
  */
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\SchemaException;
+use Doctrine\Migrations\Exception\SkipMigration;
 use Framadate\AbstractMigration;
 use Framadate\Utils;
 
@@ -42,11 +45,11 @@ class Version20180220000000 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Schema\SchemaException
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws SchemaException
+     * @throws SkipMigration
+     * @throws DBALException
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\AddColumn_ValueMax_In_poll_For_1_1'), 'Migration has been executed in an earlier database migration system');
         $pollTable = $schema->getTable(Utils::table('poll'));
@@ -55,9 +58,9 @@ class Version20180220000000 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws SchemaException
      */
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         $pollTable = $schema->getTable(Utils::table('poll'));
         $pollTable->dropColumn('ValueMax');

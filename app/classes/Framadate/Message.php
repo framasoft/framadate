@@ -35,4 +35,3 @@ class Message {
         $this->includeTemplate = $includeTemplate;
     }
 }
- 

@@ -38,16 +38,16 @@ if (!empty($_POST['mail'])) {
 
         if (count($polls) > 0) {
             $notificationService->sendFindPollsByMailNotification($mail, $polls);
-            $message = new Message('success', __('FindPolls', 'Polls sent'));
+            $message = new Message('success', t('FindPolls', 'Polls sent'));
         } else {
-            $message = new Message('warning', __('Error', 'No polls found'));
+            $message = new Message('warning', t('Error', 'No polls found'));
         }
     } else {
-        $message = new Message('danger', __('Error', 'Something is wrong with the format'));
+        $message = new Message('danger', t('Error', 'Something is wrong with the format'));
     }
 }
 
-$smarty->assign('title', __('Homepage', 'Where are my polls?'));
+$smarty->assign('title', t('Homepage', 'Where are my polls?'));
 $smarty->assign('message', $message);
 $smarty->assign('locale', $locale);
 

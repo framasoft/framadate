@@ -3,9 +3,8 @@
     "description": "Application to facilitate the schedule of events or classic polls",
     "homepage": "https://framadate.org/",
     "keywords": ["poll", "framadate"],
-    "version": "1.2.0-alpha.1",
+    "version": "1.2.0-alpha.2",
     "license": "CECILL-B",
-
     "type": "project",
     "support": {
         "issues": "https://framagit.org/framasoft/framadate/issues"
@@ -52,9 +51,8 @@
             "email": "raphael.droz@gmail.com"
         }
     ],
-
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.1.0",
         "ext-pdo": "*",
         "ext-intl": "*",
         "smarty/smarty": "^3.1",
@@ -62,27 +60,27 @@
         "ircmaxell/password-compat": "dev-master",
         "erusev/parsedown": "^1.7",
         "egulias/email-validator": "~2.1",
-        "doctrine/dbal": "^2.5",
-        "doctrine/migrations": "^1.5",
+        "doctrine/dbal": "^2.9",
+        "doctrine/migrations": "^2.1",
         "sensiolabs/ansi-to-html": "^1.1",
         "symfony/translation": "^3.4"
     },
-
     "require-dev": {
-        "phpunit/phpunit": "^5.7",
-        "friendsofphp/php-cs-fixer": "~2.0",
-        "roave/security-advisories": "dev-master"
+        "phpunit/phpunit": "^7.5",
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "roave/security-advisories": "dev-master",
+        "phpcompatibility/php-compatibility": "*",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0"
     },
-
+    "prefer-stable" : true,
     "autoload": {
         "psr-4": {
             "Framadate\\": "app/classes/Framadate/"
         }
     },
-
     "config": {
         "platform": {
-            "php": "5.6.0"
+            "php": "7.1.0"
         }
     }
 }

@@ -18,10 +18,22 @@ stages:
   - funky
 
 # Run phpunit on all branches
-test:
+.test:
   stage: test
   script:
     - vendor/bin/phpunit --bootstrap app/tests/bootstrap.php --debug app/tests
+
+test:php:7.1:
+    extends: .test
+    image: framasoft/framadate-ci:php-7.1
+
+test:php:7.2:
+    extends: .test
+    image: framasoft/framadate-ci:php-7.2
+
+test:php:7.3:
+    extends: .test
+    image: framasoft/framadate-ci:php-7.3
 
 # Run php-cs-fixer on all branches
 lint:
@@ -46,11 +58,6 @@ lint:
     - bin/doctrine migrations:status -vvv
     - bin/doctrine migrations:migrate --no-interaction -vvv
     - bin/doctrine migrations:status -vvv
-
-db:migration:mysql:5.6:
-  extends: .db:migration:mysql
-  services:
-    - 'mysql:5.6'
 
 db:migration:mysql:5.7:
   extends: .db:migration:mysql
@@ -86,6 +93,21 @@ db:migration:postgresql:9.6:
   extends: .db:migration:postgresql
   services:
     - 'postgres:9.6'
+
+db:migration:postgresql:10:
+    extends: .db:migration:postgresql
+    services:
+        - 'postgres:10'
+
+db:migration:postgresql:11:
+    extends: .db:migration:postgresql
+    services:
+        - 'postgres:11'
+
+db:migration:postgresql:12:
+    extends: .db:migration:postgresql
+    services:
+        - 'postgres:12'
 
 # Create artifacts on master
 pages:

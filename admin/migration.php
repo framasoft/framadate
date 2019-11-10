@@ -17,64 +17,42 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
-use Doctrine\DBAL\Migrations\Configuration\Configuration;
-use Doctrine\DBAL\Migrations\Migration;
-use Doctrine\DBAL\Migrations\OutputWriter;
-use Doctrine\DBAL\Migrations\Tools\Console\Helper\MigrationStatusInfosHelper;
+use Doctrine\Migrations\Configuration\Configuration;
+use Doctrine\Migrations\DependencyFactory;
+use Doctrine\Migrations\MigratorConfiguration;
+use Doctrine\Migrations\Tools\Console\Helper\MigrationStatusInfosHelper;
 use Framadate\Utils;
 
 require_once __DIR__ . '/../app/inc/init.php';
-
-class MigrationLogger {
-    private $log;
-
-    public function __construct()
-    {
-        $this->log = '';
-    }
-
-    public function addLine($message)
-    {
-        $this->log .= $message . "\n";
-    }
-
-    public function getLog()
-    {
-        return $this->log;
-    }
-}
+const MIGRATIONS_DIRECTORY = __DIR__ . '/../app/classes/Framadate/Migrations';
 
 $executing = false;
-$migration = null;
-$output = '';
 
 if (isset($_POST['execute'])) {
     $executing = true;
 }
 
-$migrationsDirectory = __DIR__ . '/../app/classes/Framadate/Migrations';
-$log = new MigrationLogger();
-
-$configuration = new Configuration($connect, new OutputWriter(function ($message) use ($log) {
-    $log->addLine($message);
-}));
+$configuration = new Configuration($connect);
 $configuration->setMigrationsTableName(Utils::table(MIGRATION_TABLE) . '_new');
-$configuration->setMigrationsDirectory($migrationsDirectory);
+$configuration->setMigrationsDirectory(MIGRATIONS_DIRECTORY);
 $configuration->setMigrationsNamespace('DoctrineMigrations');
-$configuration->registerMigrationsFromDirectory($migrationsDirectory);
+$configuration->registerMigrationsFromDirectory(MIGRATIONS_DIRECTORY);
 
+$dependencyFactory = new DependencyFactory($configuration);
+$migrationRepository = $dependencyFactory->getMigrationRepository();
 if ($executing) {
-    $migration = new Migration($configuration);
-    $migration->migrate();
-    $output = trim(strip_tags($log->getLog()));
+    $migrator = $dependencyFactory->getMigrator();
+    $version = $migrationRepository->getLatestVersion();
+    $migrator->migrate($version, new MigratorConfiguration());
 }
-$infos = (new MigrationStatusInfosHelper($configuration))->getMigrationsInfos();
+
+$status = new MigrationStatusInfosHelper($configuration, $migrationRepository);
+$infos = $status->getMigrationsInfos();
 
 $smarty->assign('countTotal', $infos['Available Migrations']);
 $smarty->assign('countExecuted', $infos['Executed Migrations']);
 $smarty->assign('countWaiting', $infos['New Migrations']);
 $smarty->assign('executing', $executing);
-$smarty->assign('title', __('Admin', 'Migration'));
-$smarty->assign('output', $output);
+$smarty->assign('title', t('Admin', 'Migration'));
 $smarty->assign('time', round((microtime(true)-$_SERVER['REQUEST_TIME_FLOAT']), 4));
 $smarty->display('admin/migration.tpl');

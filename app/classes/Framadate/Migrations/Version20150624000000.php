@@ -18,7 +18,10 @@
  */
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Migrations\SkipMigrationException;
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\Exception\SkipMigration;
 use Framadate\AbstractMigration;
 use Framadate\Security\Token;
 use Framadate\Utils;
@@ -38,10 +41,10 @@ class Version20150624000000 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     * @throws DBALException
+     * @throws SkipMigration
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         $this->skipIf($this->legacyCheck($schema, 'Framadate\Migration\Generate_uniqId_for_old_votes'), 'Migration has been executed in an earlier database migration system');
         foreach ([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')] as $table) {
@@ -71,7 +74,7 @@ UPDATE ' . Utils::table('vote') . '
         $this->connection->commit();
     }
 
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         // TODO: Implement down() method.
     }

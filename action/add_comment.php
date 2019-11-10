@@ -55,25 +55,25 @@ if (!empty($_POST['poll_admin'])) {
 }
 
 if (!$poll) {
-    $message = new Message('error',  __('Error', "This poll doesn't exist!"));
+    $message = new Message('error',  t('Error', "This poll doesn't exist!"));
 } else if ($poll && !$securityService->canAccessPoll($poll) && !$is_admin) {
-    $message = new Message('error',  __('Password', 'Wrong password'));
+    $message = new Message('error',  t('Password', 'Wrong password'));
 } else {
     $name = $inputService->filterName($_POST['name']);
     $comment = $inputService->filterComment($_POST['comment']);
 
     if ($name === null) {
-        $message = new Message('danger', __('Error', 'The name is invalid.'));
+        $message = new Message('danger', t('Error', 'The name is invalid.'));
     }
 
     if ($message === null) {
         // Add comment
         $result = $pollService->addComment($poll_id, $name, $comment);
         if ($result) {
-            $message = new Message('success', __('Comments', 'Comment saved'));
+            $message = new Message('success', t('Comments', 'Comment saved'));
             $notificationService->sendUpdateNotification($poll, NotificationService::ADD_COMMENT, $name);
         } else {
-            $message = new Message('danger', __('Error', 'Comment failed'));
+            $message = new Message('danger', t('Error', 'Comment failed'));
         }
     }
     $comments = $pollService->allCommentsByPollId($poll_id);

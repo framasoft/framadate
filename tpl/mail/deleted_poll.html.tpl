@@ -1,1 +1,1 @@
-{__f('Mail', 'Someone just deleted your poll "%s".', $poll_title|html)}
+{n('Mail', 'Someone just deleted your poll "%s".', $poll_title|html)}

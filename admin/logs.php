@@ -24,6 +24,6 @@ is_readable('../' . LOG_FILE) ? readfile('../' . LOG_FILE) : null;
 $content = ob_get_clean();
 
 $smarty->assign('logs', $content);
-$smarty->assign('title', __('Admin', 'Logs'));
+$smarty->assign('title', t('Admin', 'Logs'));
 
 $smarty->display('admin/logs.tpl');

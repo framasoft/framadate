@@ -18,7 +18,10 @@
  */
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\SchemaException;
+use Doctrine\Migrations\Exception\SkipMigration;
 use Framadate\AbstractMigration;
 use Framadate\Utils;
 
@@ -42,11 +45,11 @@ class Version20150102100000 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\DBALException
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
-     * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws DBALException
+     * @throws SkipMigration
+     * @throws SchemaException
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         $this->skipIf($this->legacyCheck($schema,'Framadate\Migration\From_0_8_to_0_9_Migration'), 'Migration has been executed in an earlier database migration system');
         foreach ([Utils::table('poll'), Utils::table('comment'), Utils::table('slot'), Utils::table('vote')] as $table) {
@@ -61,7 +64,7 @@ class Version20150102100000 extends AbstractMigration
         $this->dropOldTables($schema);
     }
 
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         $sondage = $schema->createTable('sondage');
         $sondage->addColumn('id_sondage', 'string');
