@@ -1,5 +1,5 @@
 variables:
-  TESTING_IMAGE_DEFAULT: framasoft/framadate-ci:php-7.2
+  TESTING_IMAGE: framasoft/framadate-ci:php-7.2
 
 image: ${TESTING_IMAGE}
 
