@@ -56,13 +56,13 @@ $(document).ready(function () {
     });
 
  /**
-     * Enable/Disable ValueMax options
+     * Enable/Disable value_max options
      */
-    $("#use_ValueMax").change(function () {
+    $("#use_value_max").change(function () {
         if ($(this).prop("checked")) {
-            $("#valueMaxWrapper").removeClass("hidden");
+            $("#value_max_wrapper").removeClass("hidden");
         } else {
-            $("#valueMaxWrapper").addClass("hidden");
+            $("#value_max_wrapper").addClass("hidden");
         }
     });
 

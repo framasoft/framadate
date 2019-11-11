@@ -54,8 +54,8 @@ $goToStep2 = filter_input(INPUT_POST, GO_TO_STEP_2, FILTER_VALIDATE_REGEXP, ['op
 if ($goToStep2) {
     $title = $inputService->filterTitle($_POST['title']);
 
-    $use_ValueMax = isset($_POST['use_ValueMax']) ? $inputService->filterBoolean($_POST['use_ValueMax']) : false;
-    $ValueMax = $use_ValueMax === true ? $inputService->filterValueMax($_POST['ValueMax']) : null;
+    $use_value_max = isset($_POST['use_value_max']) ? $inputService->filterBoolean($_POST['use_value_max']) : false;
+    $value_max = $use_value_max === true ? $inputService->filterValueMax($_POST['value_max']) : null;
 
     $use_customized_url = isset($_POST['use_customized_url']) ? $inputService->filterBoolean($_POST['use_customized_url']) : false;
     $customized_url = $use_customized_url === true ? $inputService->filterId($_POST['customized_url']) : null;
@@ -81,13 +81,13 @@ if ($goToStep2) {
     $error_on_password = false;
     $error_on_password_repeat = false;
     $error_on_customized_url = false;
-    $error_on_ValueMax = false;
+    $error_on_value_max = false;
 
     $form->title = $title;
     $form->id = $customized_url;
     $form->use_customized_url = $use_customized_url;
-    $form->use_ValueMax = $use_ValueMax;
-    $form->ValueMax = $ValueMax;
+    $form->use_value_max = $use_value_max;
+    $form->value_max = $value_max;
     $form->admin_name = $name;
     $form->admin_mail = $mail;
     $form->description = $description;
@@ -119,8 +119,8 @@ if ($goToStep2) {
         }
     }
 
-	if ($use_ValueMax && $ValueMax === false) {
-        $error_on_ValueMax = true;
+	if ($use_value_max && $value_max === false) {
+        $error_on_value_max = true;
 	}
 
     if ($name !== $_POST['name']) {
@@ -147,7 +147,7 @@ if ($goToStep2) {
     }
 
     if ($title && $name && $email_OK && !$error_on_title && !$error_on_customized_url && !$error_on_description && !$error_on_name
-        && !$error_on_password && !$error_on_password_repeat &&!$error_on_ValueMax
+        && !$error_on_password && !$error_on_password_repeat &&!$error_on_value_max
     ) {
         // If no errors, we hash the password if needed
         if ($form->use_password) {
@@ -209,7 +209,7 @@ $errors = [
         'aria' => '',
         'class' => ''
     ],
-	'ValueMax' => [
+	'value_max' => [
         'msg' => '',
         'aria' => '',
         'class' => ''
@@ -274,10 +274,10 @@ if (!empty($_POST[GO_TO_STEP_2])) {
         $errors['password_repeat']['class'] = ' has-error';
         $errors['password_repeat']['msg'] = t('Error', 'Passwords do not match.');
     }
-	if ($error_on_ValueMax) {
-        $errors['ValueMax']['aria'] = 'aria-describeby="poll_ValueMax" ';
-        $errors['ValueMax']['class'] = ' has-error';
-        $errors['ValueMax']['msg'] = t('Error', 'Error on amount of votes limitation: Value must be an integer greater than 0');
+	if ($error_on_value_max) {
+        $errors['value_max']['aria'] = 'aria-describeby="poll_value_max" ';
+        $errors['value_max']['class'] = ' has-error';
+        $errors['value_max']['msg'] = t('Error', 'Error on amount of votes limitation: Value must be an integer greater than 0');
     }
 }
 
@@ -286,7 +286,7 @@ $useRemoteUser = USE_REMOTE_USER && isset($_SERVER['REMOTE_USER']);
 $smarty->assign('title', $title);
 $smarty->assign('useRemoteUser', $useRemoteUser);
 $smarty->assign('errors', $errors);
-$smarty->assign('advanced_errors', $goToStep2 && ($error_on_ValueMax || $error_on_customized_url || $error_on_password || $error_on_password_repeat));
+$smarty->assign('advanced_errors', $goToStep2 && ($error_on_value_max || $error_on_customized_url || $error_on_password || $error_on_password_repeat));
 $smarty->assign('use_smtp', $config['use_smtp']);
 $smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
 $smarty->assign('goToStep2', GO_TO_STEP_2);
@@ -295,8 +295,8 @@ $smarty->assign('poll_type', $poll_type);
 $smarty->assign('poll_title', Utils::fromPostOrDefault('title', $form->title));
 $smarty->assign('customized_url', Utils::fromPostOrDefault('customized_url', $form->id));
 $smarty->assign('use_customized_url', Utils::fromPostOrDefault('use_customized_url', $form->use_customized_url));
-$smarty->assign('ValueMax', Utils::fromPostOrDefault('ValueMax', $form->ValueMax));
-$smarty->assign('use_ValueMax', Utils::fromPostOrDefault('use_ValueMax', $form->use_ValueMax));
+$smarty->assign('value_max', Utils::fromPostOrDefault('value_max', $form->value_max));
+$smarty->assign('use_value_max', Utils::fromPostOrDefault('use_value_max', $form->use_value_max));
 $smarty->assign('collect_users_mail', Utils::fromPostOrDefault('collect_users_mail', $form->collect_users_mail));
 $smarty->assign('poll_description', !empty($_POST['description']) ? $_POST['description'] :  $form->description);
 $smarty->assign('poll_name', Utils::fromPostOrDefault('name', $form->admin_name));
