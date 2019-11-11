@@ -59,7 +59,7 @@ test:php:7.4:
         - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
         - bin/doctrine migrations:migrate --no-interaction -vvv
     script:
-        - php -S localhost:8080
+        - php -S localhost:8080 &
         - yarn run cypress
     services:
         - 'postgres:11'

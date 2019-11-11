@@ -216,7 +216,7 @@ class PollService {
         list($poll_id, $admin_poll_id) = $this->createPoll($form);
 
         // Send confirmation by mail if enabled
-        if (!is_null($ids)) {
+        if (!is_null($poll_id) && !is_null($admin_poll_id)) {
             // Everything went well
             $this->notificationService->sendPollCreationMails($form->admin_mail, $form->admin_name, $form->title, $poll_id, $admin_poll_id);
 
