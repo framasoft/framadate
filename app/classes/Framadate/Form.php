@@ -40,7 +40,7 @@ class Form
     public $creation_date;
 
     public $choix_sondage;
-    public $ValueMax;
+    public $value_max;
     public $errors = [];
 
     /**
@@ -63,7 +63,7 @@ class Form
      * If true, only the poll maker can see the poll's results
      * @var boolean
      */
-    public $use_ValueMax;
+    public $use_value_max;
 
     /**
      * if true, there will be a limit of voters per option

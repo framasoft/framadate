@@ -33,7 +33,7 @@ class PollRepository extends AbstractRepository {
             'hidden' => $form->hidden ? 1 : 0,
             'password_hash' => $form->password_hash,
             'results_publicly_visible' => $form->results_publicly_visible ? 1 : 0,
-            'ValueMax' => $form->ValueMax,
+            'value_max' => $form->value_max,
             'collect_users_mail' => ($form->collect_users_mail >= 0 && $form->collect_users_mail <= 3) ? $form->collect_users_mail : 0,
         ]);
     }

@@ -227,7 +227,7 @@
                     {foreach $slots as $id=>$slot}
                         <td class="bg-info" headers="C{$id}">
                             <ul class="list-unstyled choice">
-                                {if $poll->ValueMax eq NULL || $best_choices['y'][$i] lt $poll->ValueMax}
+                                {if $poll->value_max eq NULL || $best_choices['y'][$i] lt $poll->value_max}
                                     <li class="yes">
                                         <input type="radio" id="y-choice-{$id}" name="choices[{$id}]" value="2"
                                             {(!isset($selectedNewVotes[$id]) || ("2" !== $selectedNewVotes[$id])) ? "" : " checked"}

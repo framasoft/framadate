@@ -482,7 +482,7 @@ class PollService {
         $best_choices = $this->computeBestChoices($votes, $poll);
         foreach ($best_choices['y'] as $i => $nb_choice) {
             // if for this option we have reached maximum value and user wants to add itself too
-            if ($poll->ValueMax !== null && $nb_choice >= $poll->ValueMax && $user_choice[$i] === "2") {
+            if ($poll->value_max !== null && $nb_choice >= $poll->value_max && $user_choice[$i] === "2") {
                 throw new ConcurrentVoteException();
             }
         }
