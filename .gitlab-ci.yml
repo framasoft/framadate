@@ -1,5 +1,5 @@
 variables:
-  TESTING_IMAGE: framasoft/framadate-ci:php-7.2
+  TESTING_IMAGE: framasoft/framadate-ci:7.2
 
 image: ${TESTING_IMAGE}
 
@@ -26,15 +26,20 @@ stages:
 
 test:php:7.1:
     extends: .test
-    image: framasoft/framadate-ci:php-7.1
+    image: framasoft/framadate-ci:7.1
 
 test:php:7.2:
     extends: .test
-    image: framasoft/framadate-ci:php-7.2
+    image: framasoft/framadate-ci:7.2
 
 test:php:7.3:
     extends: .test
-    image: framasoft/framadate-ci:php-7.3
+    image: framasoft/framadate-ci:7.3
+
+test:php:7.4:
+    extends: .test
+    image: framasoft/framadate-ci:7.4-rc
+    allow_failure: true
 
 # Run cypress on all branches
 .e2e-test:
@@ -48,15 +53,20 @@ test:php:7.3:
 
 e2e-test:php:7.1:
     extends: .e2e-test
-    image: framasoft/framadate-ci:php-7.1
+    image: framasoft/framadate-ci:7.1
 
 e2e-test:php:7.2:
     extends: .e2e-test
-    image: framasoft/framadate-ci:php-7.2
+    image: framasoft/framadate-ci:7.2
 
 e2e-test:php:7.3:
     extends: .e2e-test
-    image: framasoft/framadate-ci:php-7.3
+    image: framasoft/framadate-ci:7.3
+
+e2e-test:php:7.4:
+    extends: .e2e-test
+    image: framasoft/framadate-ci:7.4-rc
+    allow_failure: true
 
 # Run php-cs-fixer on all branches
 lint:
