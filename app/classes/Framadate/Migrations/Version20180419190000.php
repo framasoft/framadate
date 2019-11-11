@@ -19,6 +19,7 @@
 namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\Migrations\Exception\SkipMigration;
 use Framadate\AbstractMigration;
 use Framadate\Utils;
 
@@ -42,9 +43,9 @@ class Version20180419190000 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Migrations\SkipMigrationException
+     * @throws SkipMigration
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         $this->skipIf(!$schema->hasTable(Utils::table(MIGRATION_TABLE)), "The old migration table wasn't created, no need to delete it.");
         $schema->dropTable(Utils::table(MIGRATION_TABLE));
@@ -53,7 +54,7 @@ class Version20180419190000 extends AbstractMigration
     /**
      * @param Schema $schema
      */
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         // No need to recreate legacy migration table
     }

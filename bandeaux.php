@@ -30,15 +30,15 @@ function bandeau_titre($titre)
     if(count($ALLOWED_LANGUAGES) > 1){
         echo '<form method="post" action="" class="hidden-print">
             <div class="input-group input-group-sm pull-right col-md-2 col-xs-4">
-                <select name="lang" class="form-control" title="' . __('Language selector', 'Select language') . '" >' . liste_lang() . '</select>
+                <select name="lang" class="form-control" title="' . t('Language selector', 'Select language') . '" >' . liste_lang() . '</select>
                 <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default btn-sm" title="' . __('Language selector', 'Change language') . '">OK</button>
+                    <button type="submit" class="btn btn-default btn-sm" title="' . t('Language selector', 'Change language') . '">OK</button>
                 </span>
             </div>
         </form>';
     }
     echo '
-        <h1><a href="' . Utils::get_server_name() . '" title="' . __('Generic', 'Home') . ' - ' . NOMAPPLICATION . '">' . $img . '</a></h1>
+        <h1><a href="' . Utils::get_server_name() . '" title="' . t('Generic', 'Home') . ' - ' . NOMAPPLICATION . '">' . $img . '</a></h1>
         <h2 class="lead"><i>' . $titre . '</i></h2>
         <hr class="trait" role="presentation" />
     </header>

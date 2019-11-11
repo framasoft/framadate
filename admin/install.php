@@ -40,11 +40,11 @@ if (!empty($_POST)) {
         exit;
     }
 
-    $error = __('Error', $result['code']);
+    $error = t('Error', $result['code']);
 }
 
 $smarty->assign('error', $error);
 $smarty->assign('error_details', $result['details']);
-$smarty->assign('title', __('Admin', 'Installation'));
+$smarty->assign('title', t('Admin', 'Installation'));
 $smarty->assign('fields', $installService->getFields());
 $smarty->display('admin/install.tpl');

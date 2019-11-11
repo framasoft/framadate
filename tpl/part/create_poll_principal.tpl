@@ -1,12 +1,12 @@
 <div class="alert alert-info">
     <p>
-        {__('Step 1', 'You are in the poll creation section.')}<br/>
-        {__('Step 1', 'Required fields cannot be left blank.')}
+        {t('Step 1', 'You are in the poll creation section.')}<br/>
+        {t('Step 1', 'Required fields cannot be left blank.')}
     </p>
 </div>
 
 <div class="form-group {$errors['name']['class']}">
-    <label for="yourname" class="col-sm-4 control-label">{__('Generic', 'Your name')} *</label>
+    <label for="yourname" class="col-sm-4 control-label">{t('Generic', 'Your name')} *</label>
 
     <div class="col-sm-8">
         {if $useRemoteUser}
@@ -29,8 +29,8 @@
 {if $use_smtp}
     <div class="form-group {$errors['email']['class']}">
         <label for="email" class="col-sm-4 control-label">
-            {__('Generic', 'Your email address')} *<br/>
-            <span class="small">{__('Generic', '(in the format name@mail.com)')}</span>
+            {t('Generic', 'Your email address')} *<br/>
+            <span class="small">{t('Generic', '(in the format name@mail.com)')}</span>
         </label>
 
         <div class="col-sm-8">
@@ -53,7 +53,7 @@
 {/if}
 
 <div class="form-group {$errors['title']['class']}">
-    <label for="poll_title" class="col-sm-4 control-label">{__('Step 1', 'Poll title')} *</label>
+    <label for="poll_title" class="col-sm-4 control-label">{t('Step 1', 'Poll title')} *</label>
 
     <div class="col-sm-8">
         <input id="poll_title" type="text" name="title" class="form-control"
@@ -70,7 +70,7 @@
 {/if}
 
 <div class="form-group {$errors['description']['class']}">
-    <label for="poll_comments" class="col-sm-4 control-label">{__('Generic', 'Description')}</label>
+    <label for="poll_comments" class="col-sm-4 control-label">{t('Generic', 'Description')}</label>
 
     <div class="col-sm-8">
         {include 'part/description_markdown.tpl'}
@@ -100,7 +100,7 @@
     <a class="optionnal-parameters {if !$advanced_errors}collapsed{/if} lead" role="button"
        data-toggle="collapse" href="#optionnal"
        aria-expanded="{if $advanced_errors}false{else}true{/if}" aria-controls="optionnal">
-        {__('Step 1', "Optional parameters")}
+        {t('Step 1', "Optional parameters")}
         <i class="caret" aria-hidden="true"></i>
         <i class="caret caret-up" aria-hidden="true"></i>
     </a>

@@ -18,7 +18,9 @@
  */
 namespace DoctrineMigrations;
 
+use Doctrine\DBAL\DBALException;
 use Doctrine\DBAL\Schema\Schema;
+use Doctrine\DBAL\Schema\SchemaException;
 use Framadate\AbstractMigration;
 use Framadate\Utils;
 
@@ -42,10 +44,10 @@ class Version20180525110000 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Schema\SchemaException
-     * @throws \Doctrine\DBAL\DBALException
+     * @throws SchemaException
+     * @throws DBALException
      */
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         $poll = $schema->getTable(Utils::table('poll'));
         $poll->addColumn('collect_users_mail_integer', 'smallint', ['default' => 0]);
@@ -53,8 +55,9 @@ class Version20180525110000 extends AbstractMigration
 
     /**
      * @param Schema $schema
+     * @throws DBALException
      */
-    public function postUp(Schema $schema)
+    public function postUp(Schema $schema): void
     {
         $this->addSql('UPDATE ' . Utils::table('poll') . ' SET collect_users_mail_integer = collect_users_mail');
         $this->addSql('ALTER TABLE ' . Utils::table('poll') . ' DROP COLUMN collect_users_mail');
@@ -71,9 +74,9 @@ class Version20180525110000 extends AbstractMigration
 
     /**
      * @param Schema $schema
-     * @throws \Doctrine\DBAL\Schema\SchemaException
+     * @throws SchemaException
      */
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         $poll = $schema->getTable(Utils::table('poll'));
         $poll->addColumn('collect_users_mail_boolean', 'boolean', ['default' => false]);
@@ -81,8 +84,9 @@ class Version20180525110000 extends AbstractMigration
 
     /**
      * @param Schema $schema
+     * @throws DBALException
      */
-    public function postDown(Schema $schema)
+    public function postDown(Schema $schema): void
     {
         $this->addSql('UPDATE ' . Utils::table('poll') . ' SET collect_users_mail_boolean = collect_users_mail > 0');
         $this->addSql('ALTER TABLE ' . Utils::table('poll') . ' DROP COLUMN collect_users_mail');

@@ -1,13 +1,13 @@
 <div class="well">
     <form action="action/send_edit_link_by_email_action.php" method="POST" class="form-inline" id="send_edit_link_form">
-        <p>{__('EditLink', "If you don't want to lose your personalized link, we can send it to you by email.")}</p>
+        <p>{t('EditLink', "If you don't want to lose your personalized link, we can send it to you by email.")}</p>
         <input type="hidden" name="token" value="{$token}"/>
         <input type="hidden" name="poll" value="{$poll_id}"/>
         <input type="hidden" name="editedVoteUniqueId" value="{$editedVoteUniqueId}"/>
         <div class="form-group">
-            <label for="email" class="control-label">{__('PollInfo', 'Email')}</label>
+            <label for="email" class="control-label">{t('PollInfo', 'Email')}</label>
             <input type="email" name="email" id="email" class="form-control" />
-            <input type="submit" id="send_edit_link_submit" value="{__('EditLink', 'Send')}" class="btn btn-success">
+            <input type="submit" id="send_edit_link_submit" value="{t('EditLink', 'Send')}" class="btn btn-success">
         </div>
     </form>
     <div id="send_edit_link_alert"></div>

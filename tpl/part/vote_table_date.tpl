@@ -3,7 +3,7 @@
 {/if}
 
 <h3>
-    {__('Poll results', 'Votes')} {if $hidden}<i>({__('PollInfo', 'Results are hidden')})</i>{/if}
+    {t('Poll results', 'Votes')} {if $hidden}<i>({t('PollInfo', 'Results are hidden')})</i>{/if}
     {if $accessGranted}
         <a href="" data-toggle="modal" data-target="#hint_modal"><i class="fa fa-lightbulb-o" aria-hidden="true"></i></a>
     {/if}
@@ -17,7 +17,7 @@
     <form action="{if $admin}{poll_url id=$admin_poll_id admin=true}{else}{poll_url id=$poll_id}{/if}" method="POST" id="poll_form">
         <input type="hidden" name="control" value="{$slots_hash}"/>
         <table class="results">
-            <caption class="sr-only">{__('Poll results', 'Votes')} {$poll->title|html}</caption>
+            <caption class="sr-only">{t('Poll results', 'Votes')} {$poll->title|html}</caption>
             <thead>
             {if $admin && !$expired}
                 <tr class="hidden-print">
@@ -27,18 +27,18 @@
                         {foreach $slot->moments as $id=>$moment}
                             <td headers="M{$slot@key} D{$headersDCount} H{$headersDCount}">
                                 <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=($slot->day|date_to_timestamp)|cat:'@'|cat:$moment}"
-                                   data-remove-confirmation="{__('adminstuds', 'Confirm removal of the column.')}"
+                                   data-remove-confirmation="{t('adminstuds', 'Confirm removal of the column.')}"
                                    class="btn btn-link btn-sm remove-column"
-                                   title="{__('adminstuds', 'Remove column')} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
+                                   title="{t('adminstuds', 'Remove column')} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
                                     <i class="fa fa-trash text-danger" aria-hidden="true"></i>
-                                    <span class="sr-only">{__('Generic', 'Remove')}</span>
+                                    <span class="sr-only">{t('Generic', 'Remove')}</span>
                                 </a>
                             {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT")}
                                 <a href="{poll_url id=$admin_poll_id admin=true action='collect_mail' action_value=($headersDCount)}"
                                    class="btn btn-link btn-sm collect-mail"
-                                   title="{__('adminstuds', 'Collect the emails of the polled users for the choice')} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
+                                   title="{t('adminstuds', 'Collect the emails of the polled users for the choice')} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    <span class="sr-only">{__('Generic', 'Collect emails')}</span>
+                                    <span class="sr-only">{t('Generic', 'Collect emails')}</span>
                                 </a>
                             {/if}
                             </td>
@@ -47,9 +47,9 @@
                     {/foreach}
                     <td>
                         <a href="{poll_url id=$admin_poll_id admin=true action='add_column'}"
-                           class="btn btn-link btn-sm" title="{__('adminstuds', 'Add a column')}">
+                           class="btn btn-link btn-sm" title="{t('adminstuds', 'Add a column')}">
                             <i class="fa fa-plus text-success" aria-hidden="true"></i>
-                            <span class="sr-only">{__('Poll results', 'Add a column')}</span>
+                            <span class="sr-only">{t('Poll results', 'Add a column')}</span>
                         </a>
                     </td>
                 </tr>
@@ -116,9 +116,9 @@
                                 <i class="fa fa-user"></i>
                             </span>
                             <input type="hidden" name="edited_vote" value="{$vote->uniqId}"/>
-                            <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
+                            <input type="text" id="name" name="name" value="{$vote->name|html}" class="form-control" title="{t('Generic', 'Your name')}" placeholder="{t('Generic', 'Your name')}" />
                             {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT")}
-                                <input type="email" {if $poll->collect_users_mail != constant("Framadate\CollectMail::COLLECT")} required {/if} id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
+                                <input type="email" {if $poll->collect_users_mail != constant("Framadate\CollectMail::COLLECT")} required {/if} id="mail" name="mail" value="{$vote->mail|html}" class="form-control" title="{t('Generic', 'Your email address')}" placeholder="{t('Generic', 'Your email address')}" />
                             {/if}
                         </div>
                     </td>
@@ -134,23 +134,23 @@
                             <ul class="list-unstyled choice">
                                 <li class="yes">
                                     <input type="radio" id="y-choice-{$k}" name="choices[{$k}]" value="2" {if $choice=='2'}checked {/if}/>
-                                    <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{__('Poll results', 'Vote "yes" for')|html} {$slots_raw[$k]}">
+                                    <label class="btn btn-default btn-xs" for="y-choice-{$k}" title="{t('Poll results', 'Vote "yes" for')|html} {$slots_raw[$k]}">
                                         <i class="fa fa-check" aria-hidden="true"></i>
-                                        <span class="sr-only">{__('Generic', 'Yes')}</span>
+                                        <span class="sr-only">{t('Generic', 'Yes')}</span>
                                     </label>
                                 </li>
                                 <li class="ifneedbe">
                                     <input type="radio" id="i-choice-{$k}" name="choices[{$k}]" value="1" {if $choice=='1'}checked {/if}/>
-                                    <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{__('Poll results', 'Votes under reserve for')|html} {$slots_raw[$k]}">
+                                    <label class="btn btn-default btn-xs" for="i-choice-{$k}" title="{t('Poll results', 'Votes under reserve for')|html} {$slots_raw[$k]}">
                                         <span aria-hidden="true">(<i class="fa fa-check"></i>)</span>
-                                        <span class="sr-only">{__('Generic', 'Under reserve')}</span>
+                                        <span class="sr-only">{t('Generic', 'Under reserve')}</span>
                                     </label>
                                 </li>
                                 <li class="no">
                                     <input type="radio" id="n-choice-{$k}" name="choices[{$k}]" value="0" {if $choice=='0'}checked {/if}/>
-                                    <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{__('Poll results', 'Vote "no" for')|html} {$slots_raw[$k]}">
+                                    <label class="btn btn-default btn-xs" for="n-choice-{$k}" title="{t('Poll results', 'Vote "no" for')|html} {$slots_raw[$k]}">
                                         <i class="fa fa-times" aria-hidden="true"></i>
-                                        <span class="sr-only">{__('Generic', 'No')}</span>
+                                        <span class="sr-only">{t('Generic', 'No')}</span>
                                     </label>
                                 </li>
                                 <li class="hide">
@@ -166,7 +166,7 @@
                       {/foreach}
                     {/foreach}
 
-                    <td class="btn-edit"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{__('Poll results', 'Save choices')} {$vote->name|html}">{__('Generic', 'Save')}</button></td>
+                    <td class="btn-edit"><button type="submit" class="btn btn-success btn-xs" name="save" value="{$vote->id|html}" title="{t('Poll results', 'Save choices')} {$vote->name|html}">{t('Generic', 'Save')}</button></td>
 
                 </tr>
                 {elseif !$hidden}
@@ -183,9 +183,9 @@
                     $slots|count gt 4
                     }
             <span class="edit-username-left">
-                <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit line: %s', $vote->name)|html}">
+                <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{n('Poll results', 'Edit line: %s', $vote->name)|html}">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
-                    <span class="sr-only">{__('Generic', 'Edit')}</span>
+                    <span class="sr-only">{t('Generic', 'Edit')}</span>
                 </a>
           </span>
           {/if}
@@ -202,22 +202,22 @@
                         {if $choice=='2'}
                             <td class="bg-success text-success" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">
                                 <i class="fa fa-check" aria-hidden="true"></i>
-                                <span class="sr-only">{__('Generic', 'Yes')}</span>
+                                <span class="sr-only">{t('Generic', 'Yes')}</span>
                             </td>
                         {elseif $choice=='1'}
                             <td class="bg-warning text-warning" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">
                                 <span aria-hidden="true">(<i class="fa fa-check"></i>)</span>
-                                <span class="sr-only">{__('Generic', 'Under reserve')}</span>
+                                <span class="sr-only">{t('Generic', 'Under reserve')}</span>
                             </td>
                         {elseif $choice=='0'}
                             <td class="bg-danger text-danger" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">
                                 <i class="fa fa-times" aria-hidden="true"></i>
-                                <span class="sr-only">{__('Generic', 'No')}</span>
+                                <span class="sr-only">{t('Generic', 'No')}</span>
                             </td>
                         {else}
                             <td class="bg-info" headers="M{$headersM[$k]} D{$headersD[$k]} H{$k}">
                                 <i class="fa fa-question" aria-hidden="true"></i>
-                                <span class="sr-only">{__('Generic', 'Unknown')}</span>
+                                <span class="sr-only">{t('Generic', 'Unknown')}</span>
                             </td>
                         {/if}
 
@@ -233,20 +233,20 @@
                         )
                     }
                         <td class="hidden-print">
-                            <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{__f('Poll results', 'Edit line: %s', $vote->name)|html}">
+                            <a href="{if $admin}{poll_url id=$poll->admin_id vote_id=$vote->uniqId admin=true}{else}{poll_url id=$poll->id vote_id=$vote->uniqId}{/if}" class="btn btn-default btn-sm" title="{n('Poll results', 'Edit line: %s', $vote->name)|html}">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
-                                <span class="sr-only">{__('Generic', 'Edit')}</span>
+                                <span class="sr-only">{t('Generic', 'Edit')}</span>
                             </a>
                             {if $admin}
-                                <a href="{poll_url id=$poll->id vote_id=$vote->uniqId}" class="btn btn-default btn-sm clipboard-url" data-toggle="popover" data-trigger="manual" title="{__('Poll results', 'Link to edit this particular line')}" data-content="{__('Poll results', 'The link to edit this particular line has been copied to the clipboard!')}">
+                                <a href="{poll_url id=$poll->id vote_id=$vote->uniqId}" class="btn btn-default btn-sm clipboard-url" data-toggle="popover" data-trigger="manual" title="{t('Poll results', 'Link to edit this particular line')}" data-content="{t('Poll results', 'The link to edit this particular line has been copied to the clipboard!')}">
                                     <i class="fa fa-link" aria-hidden="true"></i>
-                                    <span class="sr-only">{__('Generic', 'Link')}</span>
+                                    <span class="sr-only">{t('Generic', 'Link')}</span>
                                 </a>
                                 <a href="{poll_url id=$admin_poll_id admin=true action='delete_vote' action_value=$vote->id}"
                                    class="btn btn-default btn-sm"
-                                   title="{__('Poll results', 'Remove line:')} {$vote->name|html}">
+                                   title="{t('Poll results', 'Remove line:')} {$vote->name|html}">
                                     <i class="fa fa-trash text-danger" aria-hidden="true"></i>
-                                    <span class="sr-only">{__('Generic', 'Remove')}</span>
+                                    <span class="sr-only">{t('Generic', 'Remove')}</span>
                                 </a>
 
                             {/if}
@@ -267,15 +267,15 @@
                             <span class="input-group-addon" aria-hidden="true">
                                 <i class="fa fa-user"></i>
                             </span>
-                            <input type="text" id="name" name="name" class="form-control" title="{__('Generic', 'Your name')}" placeholder="{__('Generic', 'Your name')}" />
+                            <input type="text" id="name" name="name" class="form-control" title="{t('Generic', 'Your name')}" placeholder="{t('Generic', 'Your name')}" />
                             {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT")}
-                                <input type="email" {if $poll->collect_users_mail != constant("Framadate\CollectMail::COLLECT")} required {/if} id="mail" name="mail" class="form-control" title="{__('Generic', 'Your email address')}" placeholder="{__('Generic', 'Your email address')}" />
+                                <input type="email" {if $poll->collect_users_mail != constant("Framadate\CollectMail::COLLECT")} required {/if} id="mail" name="mail" class="form-control" title="{t('Generic', 'Your email address')}" placeholder="{t('Generic', 'Your email address')}" />
                             {/if}
                         </div>
                         {if $poll->collect_users_mail != constant("Framadate\CollectMail::NO_COLLECT") && $poll->editable == constant('Framadate\Editable::EDITABLE_BY_ALL')}
                             <div class="bg-danger">
                                 <i class="fa fa-warning" aria-hidden="true"></i>
-                                <label> {__('Poll results', 'Anyone will be able to see your email address after you voted')} </label>
+                                <label> {t('Poll results', 'Anyone will be able to see your email address after you voted')} </label>
                             </div>
                         {/if}
                     </td>
@@ -292,18 +292,18 @@
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2"
                                             {(!isset($selectedNewVotes[$i]) || ("2" !== $selectedNewVotes[$i])) ? "" : " checked"}
                                         />
-                                        <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote "yes" for')|html} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
+                                        <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{t('Poll results', 'Vote "yes" for')|html} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
                                             <i class="fa fa-check" aria-hidden="true"></i>
-                                            <span class="sr-only">{__('Generic', 'Yes')}</span>
+                                            <span class="sr-only">{t('Generic', 'Yes')}</span>
                                         </label>
                                     </li>
                                     <li class="ifneedbe">
                                         <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1"
                                             {(!isset($selectedNewVotes[$i]) || ("1" !== $selectedNewVotes[$i])) ? "" : " checked"}
                                         />
-                                        <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results', 'Votes under reserve for')|html} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
+                                        <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{t('Poll results', 'Votes under reserve for')|html} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
                                             <span aria-hidden="true">(<i class="fa fa-check"></i>)</span>
-                                            <span class="sr-only">{__('Generic', 'Under reserve')}</span>
+                                            <span class="sr-only">{t('Generic', 'Under reserve')}</span>
                                         </label>
                                     </li>
                                     {/if}
@@ -312,9 +312,9 @@
                                         <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0"
                                             {(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "" : " checked"}
                                         />
-                                        <label class="btn btn-default btn-xs {(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "startunchecked" : ""}" for="n-choice-{$i}" title="{__('Poll results', 'Vote "no" for')|html} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
+                                        <label class="btn btn-default btn-xs {(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "startunchecked" : ""}" for="n-choice-{$i}" title="{t('Poll results', 'Vote "no" for')|html} {$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}">
                                             <i class="fa fa-times" aria-hidden="true"></i>
-                                            <span class="sr-only">{__('Generic', 'No')}</span>
+                                            <span class="sr-only">{t('Generic', 'No')}</span>
                                         </label>
                                     </li>
                                     <li class="hide">
@@ -329,7 +329,7 @@
                             {$i = $i+1}
                         {/foreach}
                     {/foreach}
-                    <td><button type="submit" class="btn btn-success btn-md" name="save" title="{__('Poll results', 'Save choices')}">{__('Generic', 'Save')}</button></td>
+                    <td><button type="submit" class="btn btn-success btn-md" name="save" title="{t('Poll results', 'Save choices')}">{t('Generic', 'Save')}</button></td>
                 </tr>
             {/if}
 
@@ -339,7 +339,7 @@
                 {$max = max($best_choices['y'])}
                 {if $max > 0}
                     <tr id="addition">
-                        <td>{__('Poll results', 'Total')}<br/>{$votes|count} {if ($votes|count)==1}{__('Poll results', 'polled user')}{else}{__('Poll results', 'polled users')}{/if}</td>
+                        <td>{t('Poll results', 'Total')}<br/>{$votes|count} {if ($votes|count)==1}{t('Poll results', 'polled user')}{else}{t('Poll results', 'polled users')}{/if}</td>
                         {foreach $best_choices['y'] as $i=>$best_moment}
                             {if $max == $best_moment}
                                 {$count_bests = $count_bests +1}
@@ -382,7 +382,7 @@
             <p class="text-center" id="showChart">
                 <button class="btn btn-lg btn-default">
                     <i class="fa fa-fw fa-bar-chart"></i>
-                    {__('Poll results', 'Display the chart of the results')}
+                    {t('Poll results', 'Display the chart of the results')}
                 </button>
             </p>
         </div>
@@ -391,7 +391,7 @@
         $(document).ready(function () {
             $('#showChart').on('click', function() {
                 $('#showChart')
-                        .after("<h3>{__('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>")
+                        .after("<h3>{t('Poll results', 'Chart')}</h3><canvas id=\"Chart\"></canvas>")
                         .remove();
 
                 var resIfneedbe = [];
@@ -426,14 +426,14 @@
                     labels : cols,
                     datasets : [
                     {
-                        label: "{__('Generic', 'Under reserve')}",
+                        label: "{t('Generic', 'Under reserve')}",
                         fillColor : "rgba(255,207,79,0.8)",
                         highlightFill: "rgba(255,207,79,1)",
                         barShowStroke : false,
                         data : resIfneedbe
                     },
                     {
-                        label: "{__('Generic', 'Yes')}",
+                        label: "{t('Generic', 'Yes')}",
                         fillColor : "rgba(103,120,53,0.8)",
                         highlightFill : "rgba(103,120,53,1)",
                         barShowStroke : false,
@@ -459,18 +459,18 @@
     {if $max > 0}
         <div class="row">
         {if $count_bests == 1}
-        <div class="col-sm-12"><h3>{__('Poll results', 'Best choice')}</h3></div>
+        <div class="col-sm-12"><h3>{t('Poll results', 'Best choice')}</h3></div>
         <div class="col-sm-6 col-sm-offset-3 alert alert-info">
             <p>
                 <i class="fa fa-star text-info" aria-hidden="true"></i>
-                {__('Poll results', 'The current best choice is:')}
+                {t('Poll results', 'The current best choice is:')}
             </p>
             {elseif $count_bests > 1}
-            <div class="col-sm-12"><h3>{__('Poll results', 'Best choices')}</h3></div>
+            <div class="col-sm-12"><h3>{t('Poll results', 'Best choices')}</h3></div>
             <div class="col-sm-6 col-sm-offset-3 alert alert-info">
                 <p>
                     <i class="fa fa-star text-info" aria-hidden="true"></i>
-                    {__('Poll results', 'The current best choices are:')}
+                    {t('Poll results', 'The current best choices are:')}
                 </p>
                 {/if}
 
@@ -486,7 +486,7 @@
                         {/foreach}
                     {/foreach}
                 </ul>
-                <p>{__('Generic', 'with')} <b>{$max|html}</b> {if $max==1}{__('Generic', 'vote')}{else}{__('Generic', 'votes')}{/if}.</p>
+                <p>{t('Generic', 'with')} <b>{$max|html}</b> {if $max==1}{t('Generic', 'vote')}{else}{t('Generic', 'votes')}{/if}.</p>
             </div>
         </div>
     {/if}

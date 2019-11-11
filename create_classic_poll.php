@@ -35,8 +35,8 @@ $max_expiry_time = $pollService->maxExpiryDate();
 $form = isset($_SESSION['form']) ? unserialize($_SESSION['form']) : null;
 
 if ($form === null || !($form instanceof Form)) {
-    $smarty->assign('title', __('Error', 'Error!'));
-    $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
+    $smarty->assign('title', t('Error', 'Error!'));
+    $smarty->assign('error', t('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
     $smarty->display('error.tpl');
     exit;
 }
@@ -74,7 +74,7 @@ switch ($step) {
         $_SESSION['form'] = serialize($form);
 
         // Display step 2
-        $smarty->assign('title', __('Step 2 classic', 'Poll options (2 of 3)'));
+        $smarty->assign('title', t('Step 2 classic', 'Poll options (2 of 3)'));
         $smarty->assign('choices', $form->getChoices());
         $smarty->assign('allowMarkdown', $config['user_can_add_img_or_link']);
         $smarty->assign('error', null);
@@ -111,13 +111,13 @@ switch ($step) {
             preg_match_all('/!\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_img); // Markdown ![alt](src)
             preg_match_all('/\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_a); // Markdown [text](href)
             if (isset($md_a_img[2][0]) && $md_a_img[2][0] !== '' && isset($md_a_img[3][0]) && $md_a_img[3][0] !== '') { // [![alt](src)](href)
-                $li_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0] !== '') ? stripslashes($md_a_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
+                $li_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0] !== '') ? stripslashes($md_a_img[1][0]) : t('Generic', 'Choice') . ' ' . ($i + 1);
                 $li_subject_html = '<a href="' . $md_a_img[3][0] . '"><img src="' . $md_a_img[2][0] . '" class="img-responsive" alt="' . $li_subject_text . '" /></a>';
             } elseif (isset($md_img[2][0]) && $md_img[2][0] !== '') { // ![alt](src)
-                $li_subject_text = (isset($md_img[1][0]) && $md_img[1][0] !== '') ? stripslashes($md_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
+                $li_subject_text = (isset($md_img[1][0]) && $md_img[1][0] !== '') ? stripslashes($md_img[1][0]) : t('Generic', 'Choice') . ' ' . ($i + 1);
                 $li_subject_html = '<img src="' . $md_img[2][0] . '" class="img-responsive" alt="' . $li_subject_text . '" />';
             } elseif (isset($md_a[2][0]) && $md_a[2][0] !== '') { // [text](href)
-                $li_subject_text = (isset($md_a[1][0]) && $md_a[1][0] !== '') ? stripslashes($md_a[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
+                $li_subject_text = (isset($md_a[1][0]) && $md_a[1][0] !== '') ? stripslashes($md_a[1][0]) : t('Generic', 'Choice') . ' ' . ($i + 1);
                 $li_subject_html = '<a href="' . $md_a[2][0] . '">' . $li_subject_text . '</a>';
             } else { // text only
                 $li_subject_text = stripslashes($choice->getName());
@@ -132,7 +132,7 @@ switch ($step) {
 
         $_SESSION['form'] = serialize($form);
 
-        $smarty->assign('title', __('Step 3', 'Removal date and confirmation (3 of 3)'));
+        $smarty->assign('title', t('Step 3', 'Removal date and confirmation (3 of 3)'));
         $smarty->assign('summary', $summary);
         $smarty->assign('end_date_str', $end_date_str);
         $smarty->assign('default_poll_duration', $config['default_poll_duration']);
@@ -163,8 +163,8 @@ switch ($step) {
     case 1:
     default:
         // Step 1/4 : error if $_SESSION from info_sondage are not valid
-        $smarty->assign('title', __('Error', 'Error!'));
-        $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
+        $smarty->assign('title', t('Error', 'Error!'));
+        $smarty->assign('error', t('Error', 'You haven\'t filled the first section of the poll creation, or your session has expired.'));
         $smarty->display('error.tpl');
         exit;
 }

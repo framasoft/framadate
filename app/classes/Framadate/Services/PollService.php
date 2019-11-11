@@ -229,7 +229,7 @@ class PollService {
         } else {
             // Add an error in the form
             $form->errors = [
-                __('Error', 'GenericErrorPollCreation')
+                t('Error', 'GenericErrorPollCreation')
             ];
             // TODO: change this to use sessionService function
             $_SESSION['form'] = serialize($form);
