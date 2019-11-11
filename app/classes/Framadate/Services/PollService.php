@@ -216,7 +216,7 @@ class PollService {
         list($poll_id, $admin_poll_id) = $this->createPoll($form);
 
         // Send confirmation by mail if enabled
-        if (!is_null($ids)) {
+        if (!is_null($poll_id) && !is_null($admin_poll_id)) {
             // Everything went well
             $this->notificationService->sendPollCreationMails($form->admin_mail, $form->admin_name, $form->title, $poll_id, $admin_poll_id);
 
@@ -482,7 +482,7 @@ class PollService {
         $best_choices = $this->computeBestChoices($votes, $poll);
         foreach ($best_choices['y'] as $i => $nb_choice) {
             // if for this option we have reached maximum value and user wants to add itself too
-            if ($poll->ValueMax !== null && $nb_choice >= $poll->ValueMax && $user_choice[$i] === "2") {
+            if ($poll->value_max !== null && $nb_choice >= $poll->value_max && $user_choice[$i] === "2") {
                 throw new ConcurrentVoteException();
             }
         }

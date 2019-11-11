@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "cypress": "^3.6.1",
+    "faker": "^4.1.0"
+  },
+  "name": "framadate",
+  "version": "1.2.0-alpha.1",
+  "repository": "git@framagit.org:framasoft/framadate/framadate.git",
+  "author": "Thomas Citharel <tcit@tcit.fr>",
+  "license": "CECILL-B",
+    "scripts": {
+        "cypress": "cypress run"
+    }
+}

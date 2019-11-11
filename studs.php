@@ -246,7 +246,7 @@ $smarty->assign('hidden', $poll->hidden);
 $smarty->assign('accessGranted', $accessGranted);
 $smarty->assign('resultPubliclyVisible', $resultPubliclyVisible);
 $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
-$smarty->assign('ValueMax', $poll->ValueMax);
+$smarty->assign('value_max', $poll->value_max);
 $smarty->assign('selectedNewVotes', $selectedNewVotes);
 
 $smarty->display('studs.tpl');

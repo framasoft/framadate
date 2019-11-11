@@ -35,10 +35,10 @@ if (isset($_SESSION['lang'])) {
     $wanted_locale = $_SESSION['lang'];
 } else  {
     $http_lang = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? DEFAULT_LANGUAGE;
-    $wanted_locale = locale_accept_from_http($http_lang);
+    $wanted_locale = Locale::acceptFromHttp($http_lang);
 }
 // Use the best available locale.
-$locale = locale_lookup(array_keys($ALLOWED_LANGUAGES), $wanted_locale, false, DEFAULT_LANGUAGE);
+$locale = Locale::lookup(array_keys($ALLOWED_LANGUAGES), $wanted_locale, false, DEFAULT_LANGUAGE);
 
 /**
  * Formats a DateTime according to the IntlDateFormatter
@@ -120,7 +120,9 @@ use Symfony\Component\Translation\Loader\PoFileLoader;
 use Symfony\Component\Translation\Translator;
 
 class __i18n {
+    /* @var Translator */
     private static $translator;
+    /* @var Translator */
     private static $fallbacktranslator;
 
     public static function init($locale) {

@@ -1,5 +1,5 @@
 variables:
-  TESTING_IMAGE: framasoft/framadate-ci:php-7.2
+  TESTING_IMAGE: framasoft/framadate-ci:7.3-pdo_sqlite
 
 image: ${TESTING_IMAGE}
 
@@ -8,16 +8,18 @@ cache:
   paths:
     - vendor/
 
+# Always install composer deps
 before_script:
   - composer install -o  --no-interaction --no-progress --prefer-dist
 
 stages:
   - test
+  - e2e
   - deploy
   - beta
   - funky
 
-# Run phpunit on all branches
+# Run phpunit on all branches for all PHP supported versions
 .test:
   stage: test
   script:
@@ -25,15 +27,59 @@ stages:
 
 test:php:7.1:
     extends: .test
-    image: framasoft/framadate-ci:php-7.1
+    image: framasoft/framadate-ci:7.1-pdo_sqlite
 
 test:php:7.2:
     extends: .test
-    image: framasoft/framadate-ci:php-7.2
+    image: framasoft/framadate-ci:7.2-pdo_sqlite
 
 test:php:7.3:
     extends: .test
-    image: framasoft/framadate-ci:php-7.3
+    image: framasoft/framadate-ci:7.3-pdo_sqlite
+
+test:php:7.4:
+    extends: .test
+    image: framasoft/framadate-ci:7.4-rc-pdo_sqlite
+    allow_failure: true
+
+# Run cypress on all branches, for all PHP supported versions
+.e2e-test:
+    stage: e2e
+    variables:
+        APP_ENV: "test"
+        POSTGRES_DB: "fd_test"
+        POSTGRES_USER: "marmotte"
+        POSTGRES_PASSWORD: "sleeping"
+        FRAMADATE_DB_DRIVER: 'pdo_pgsql'
+        FRAMADATE_DB_HOST: "postgres"
+        FRAMADATE_DB_NAME: "${POSTGRES_DB}"
+        FRAMADATE_DB_USER: "${POSTGRES_USER}"
+        FRAMADATE_DB_PASSWORD: "${POSTGRES_PASSWORD}"
+    before_script:
+        - yarn install
+        - bin/doctrine migrations:migrate --no-interaction -vvv
+    script:
+        - php -S localhost:8080 &
+        - if [ -z "$CYPRESS_KEY" ]; then npx cypress run; else npx cypress run --record --key $CYPRESS_KEY; fi
+    services:
+        - 'postgres:11'
+
+e2e-test:php:7.1:
+    extends: .e2e-test
+    image: framasoft/framadate-ci:7.1-pdo_pgsql-cypress
+
+e2e-test:php:7.2:
+    extends: .e2e-test
+    image: framasoft/framadate-ci:7.2-pdo_pgsql-cypress
+
+e2e-test:php:7.3:
+    extends: .e2e-test
+    image: framasoft/framadate-ci:7.3-pdo_pgsql-cypress
+
+e2e-test:php:7.4:
+    extends: .e2e-test
+    image: framasoft/framadate-ci:7.4-rc-pdo_pgsql-cypress
+    allow_failure: true
 
 # Run php-cs-fixer on all branches
 lint:
@@ -41,7 +87,7 @@ lint:
   script:
     - php vendor/bin/php-cs-fixer fix --verbose --dry-run --diff
 
-# Run doctrine migrations with MySQL
+# Run doctrine migrations with all MySQL supported versions
 .db:migration:mysql:
   stage: test
   variables:
@@ -53,8 +99,8 @@ lint:
     FRAMADATE_DB_NAME: "${MYSQL_DATABASE}"
     FRAMADATE_DB_USER: "root"
     FRAMADATE_DB_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+  image: framasoft/framadate-ci:7.3-pdo_mysql
   script:
-    - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
     - bin/doctrine migrations:status -vvv
     - bin/doctrine migrations:migrate --no-interaction -vvv
     - bin/doctrine migrations:status -vvv
@@ -83,8 +129,8 @@ db:migration:mysql:8:
     FRAMADATE_DB_NAME: "${POSTGRES_DB}"
     FRAMADATE_DB_USER: "${POSTGRES_USER}"
     FRAMADATE_DB_PASSWORD: "${POSTGRES_PASSWORD}"
+  image: framasoft/framadate-ci:7.3-pdo_pgsql
   script:
-    - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
     - bin/doctrine migrations:status -vvv
     - bin/doctrine migrations:migrate --no-interaction -vvv
     - bin/doctrine migrations:status -vvv
