@@ -920,6 +920,10 @@ msgstr "Uhrzeit"
 msgid "Under reserve"
 msgstr "Unter Vorbehalt"
 
+#: .Generic.Under+reserve
+msgid "Under reserve"
+msgstr "Unbekannt"
+
 #: .Generic.Validate
 msgid "Validate"
 msgstr "Bestätigen"
