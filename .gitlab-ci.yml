@@ -44,11 +44,22 @@ test:php:7.4:
 # Run cypress on all branches
 .e2e-test:
     stage: e2e
+    variables:
+        APP_ENV: "test"
+        POSTGRES_DB: "fd_test"
+        POSTGRES_USER: "marmotte"
+        POSTGRES_PASSWORD: "sleeping"
+        FRAMADATE_DB_DRIVER: 'pdo_pgsql'
+        FRAMADATE_DB_HOST: "postgres"
+        FRAMADATE_DB_NAME: "${POSTGRES_DB}"
+        FRAMADATE_DB_USER: "${POSTGRES_USER}"
+        FRAMADATE_DB_PASSWORD: "${POSTGRES_PASSWORD}"
     before_script:
         - yarn install
+        - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
         - bin/doctrine migrations:migrate --no-interaction -vvv
-        - php -S localhost:8080
     script:
+        - php -S localhost:8080
         - yarn run cypress
 
 e2e-test:php:7.1:
@@ -86,8 +97,9 @@ lint:
     FRAMADATE_DB_NAME: "${MYSQL_DATABASE}"
     FRAMADATE_DB_USER: "root"
     FRAMADATE_DB_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-  script:
+  before_script:
     - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
+  script:
     - bin/doctrine migrations:status -vvv
     - bin/doctrine migrations:migrate --no-interaction -vvv
     - bin/doctrine migrations:status -vvv
@@ -116,8 +128,9 @@ db:migration:mysql:8:
     FRAMADATE_DB_NAME: "${POSTGRES_DB}"
     FRAMADATE_DB_USER: "${POSTGRES_USER}"
     FRAMADATE_DB_PASSWORD: "${POSTGRES_PASSWORD}"
+  before_script:
+      - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
   script:
-    - docker-php-ext-install "${FRAMADATE_DB_DRIVER}"
     - bin/doctrine migrations:status -vvv
     - bin/doctrine migrations:migrate --no-interaction -vvv
     - bin/doctrine migrations:status -vvv
