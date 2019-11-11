@@ -12,6 +12,7 @@ tpl_c/*
 !tpl_c/.gitkeep
 .php_cs.cache
 .zanata-cache/
+node_modules/
 
 # Temp files
 *~
