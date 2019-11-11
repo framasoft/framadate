@@ -98,7 +98,7 @@ lint:
     FRAMADATE_DB_NAME: "${MYSQL_DATABASE}"
     FRAMADATE_DB_USER: "root"
     FRAMADATE_DB_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-  image: 7.3-pdo_mysql
+  image: framasoft/framadate-ci:7.3-pdo_mysql
   script:
     - bin/doctrine migrations:status -vvv
     - bin/doctrine migrations:migrate --no-interaction -vvv
@@ -128,7 +128,7 @@ db:migration:mysql:8:
     FRAMADATE_DB_NAME: "${POSTGRES_DB}"
     FRAMADATE_DB_USER: "${POSTGRES_USER}"
     FRAMADATE_DB_PASSWORD: "${POSTGRES_PASSWORD}"
-  image: 7.3-pdo_pgsql
+  image: framasoft/framadate-ci:7.3-pdo_pgsql
   script:
     - bin/doctrine migrations:status -vvv
     - bin/doctrine migrations:migrate --no-interaction -vvv
