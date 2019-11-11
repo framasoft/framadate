@@ -61,7 +61,7 @@ test:php:7.4:
         - bin/doctrine migrations:migrate --no-interaction -vvv
     script:
         - php -S localhost:8080 &
-        - yarn run cypress
+        - if [ -z "$CYPRESS_KEY" ]; then npx cypress run; else npx cypress run --record --parallel --key $CYPRESS_KEY; fi
     services:
         - 'postgres:11'
 
