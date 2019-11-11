@@ -1,0 +1,8 @@
+{
+  "fixturesFolder": false,
+  "pluginsFile": false,
+  "supportFile": false,
+  "integrationFolder": "tests/cypress/integration",
+  "video": false,
+  "projectId": "yxdfdk"
+}
