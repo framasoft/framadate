@@ -13,6 +13,7 @@ before_script:
 
 stages:
   - test
+  - e2e
   - deploy
   - beta
   - funky
@@ -33,6 +34,28 @@ test:php:7.2:
 
 test:php:7.3:
     extends: .test
+    image: framasoft/framadate-ci:php-7.3
+
+# Run cypress on all branches
+.e2e-test:
+    stage: e2e
+    before_script:
+        - yarn install
+        - bin/doctrine migrations:migrate --no-interaction -vvv
+        - php -S localhost:8080
+    script:
+        - yarn run cypress
+
+e2e-test:php:7.1:
+    extends: .e2e-test
+    image: framasoft/framadate-ci:php-7.1
+
+e2e-test:php:7.2:
+    extends: .e2e-test
+    image: framasoft/framadate-ci:php-7.2
+
+e2e-test:php:7.3:
+    extends: .e2e-test
     image: framasoft/framadate-ci:php-7.3
 
 # Run php-cs-fixer on all branches
