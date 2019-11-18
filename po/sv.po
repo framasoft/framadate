@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2019-11-18 18:39+0000\n"
-"Last-Translator: Filip Bengtsson <filipbengtsson@live.se>\n"
+"PO-Revision-Date: 2019-11-20 01:11+0000\n"
+"Last-Translator: Filip Bengtsson <filip@libreradio.org>\n"
 "Language-Team: Swedish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/sv/>\n"
 "Language: sv\n"
@@ -245,11 +245,11 @@ msgstr "Titta igen"
 
 #: .Check.Consider+enabling+the+PHP+extension+OpenSSL+for+increased+security.
 msgid "Consider enabling the PHP extension OpenSSL for increased security."
-msgstr ""
+msgstr "Överväg att aktivera PHP-tillägget OpenSSL för ökad sökerhet."
 
 #: .Check.Consider+setting+the+date.timezone+in+php.ini.
 msgid "Consider setting the date.timezone in php.ini."
-msgstr ""
+msgstr "Överväg att definiera date.timezone i php.ini."
 
 #: .Check.Consider+setting+%C2%AB+session.cookie_httponly+%3D+1+%C2%BB+inside+your+php.ini+or+add+%C2%AB+php_value+session.cookie_httponly+1+%C2%BB+to+your+.htaccess+so+that+cookies+can%27t+be+accessed+through+Javascript.
 msgid ""
@@ -260,7 +260,7 @@ msgstr ""
 
 #: .Check.Continue+the+installation
 msgid "Continue the installation"
-msgstr ""
+msgstr "Fortsätt med installationen"
 
 #: .Check.Cookies+are+served+from+HTTP+only.
 msgid "Cookies are served from HTTP only."
@@ -268,19 +268,19 @@ msgstr ""
 
 #: .Check.Installation+checking
 msgid "Installation checking"
-msgstr ""
+msgstr "Kontroll av installation"
 
 #: .Check.OpenSSL+extension+loaded.
 msgid "OpenSSL extension loaded."
-msgstr ""
+msgstr "Tillägget OpenSSL har lästs in."
 
 #: .Check.PHP+Intl+extension+is+enabled.
 msgid "PHP Intl extension is enabled."
-msgstr ""
+msgstr "PHP-tillägget Intl har aktiverats."
 
 #: .Check.PHP+version+%25s+is+enough+(needed+at+least+PHP+%25s).
 msgid "PHP version %s is enough (needed at least PHP %s)."
-msgstr ""
+msgstr "PHP version %sär tillräckligt (PHP %s är minimum)."
 
 #: .Check.The+config+file+directory+(%25s)+is+not+writable+and+the+config+file+(%25s)+does+not+exists.
 msgid ""
@@ -294,7 +294,7 @@ msgstr ""
 
 #: .Check.The+config+file+exists.
 msgid "The config file exists."
-msgstr ""
+msgstr "Konfigurationsfilen existerar."
 
 #: .Check.The+template+compile+directory+(%25s)+doesn%27t+exist+in+%22%25s%22.+Retry+the+installation+process.
 msgid ""
@@ -312,12 +312,14 @@ msgstr ""
 
 #: .Check.You+need+to+enable+the+PHP+Intl+extension.
 msgid "You need to enable the PHP Intl extension."
-msgstr ""
+msgstr "Du måste aktivera PHP-tillägget Intl."
 
 #: .Check.Your+PHP+version+(%25s)+is+too+old.+This+application+needs+at+least+PHP+%25s.
 msgid ""
 "Your PHP version (%s) is too old. This application needs at least PHP %s."
 msgstr ""
+"Din version av PHP (%s) är för gammal. Den här applikationen kräver minst "
+"PHP %s."
 
 #: .Check.date.timezone+is+set.
 msgid "date.timezone is set."
@@ -325,97 +327,99 @@ msgstr ""
 
 #: .Comments.Add+a+comment+to+the+poll
 msgid "Add a comment to the poll"
-msgstr ""
+msgstr "Lägg till en kommentar till undersökningen"
 
 #: .Comments.Comment
 msgid "Comment"
-msgstr ""
+msgstr "Kommentera"
 
 #: .Comments.Comment+saved
 msgid "Comment saved"
-msgstr ""
+msgstr "Kommentar sparad"
 
 #: .Comments.Comments
 msgid "Comments"
-msgstr ""
+msgstr "Kommentarer"
 
 #: .Comments.Enter+your+name+and+comment+prior+to+submitting+the+form
 msgid "Enter your name and comment prior to submitting the form"
-msgstr ""
+msgstr "Fyll i ditt namn och kommentar innan du skickar iväg formuläret"
 
 #: .Comments.Remove+comment
 msgid "Remove comment"
-msgstr ""
+msgstr "Ta bort kommentar"
 
 #: .Comments.Submit+comment
 msgid "Submit comment"
-msgstr ""
+msgstr "Skicka kommentar"
 
 #: .Date.%25A+%25e+%25B+%25Y
 msgid "%A %e %B %Y"
-msgstr ""
+msgstr "%B %e %Y"
 
 #: .Date.%25A,+%25B+%25e,+%25Y
 msgid "%A, %B %e, %Y"
-msgstr ""
+msgstr "%B %e %Y"
 
 #: .Date.%25B+%25Y
 msgid "%B %Y"
-msgstr ""
+msgstr "%B %Y"
 
 #: .Date.%25Y-%25m-%25d
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 #: .Date.%25a+%25e
 msgid "%a %e"
-msgstr ""
+msgstr "%a %e"
 
 #: .Date.%25m/%25d/%25Y+%25H:%25M
 msgid "%m/%d/%Y %H:%M"
-msgstr ""
+msgstr "%Y-&m-%d %H:%M"
 
 #: .Date.Add+range+dates
 msgid "Add range dates"
-msgstr ""
+msgstr "Lägg till datumspann"
 
 #: .Date.End+date
 msgid "End date"
-msgstr ""
+msgstr "Slutdatum"
 
 #: .Date.Start+date
 msgid "Start date"
-msgstr ""
+msgstr "Startdatum"
 
 #: .Date.Y-m-d
 msgid "Y-m-d"
-msgstr ""
+msgstr "åååå-mm-dd"
 
 #: .Date.You+can+select+at+most+4+months
 msgid "You can select at most 4 months"
-msgstr ""
+msgstr "Du kan välja max fyra månader"
 
 #: .Date.yyyy-mm-dd
 msgid "yyyy-mm-dd"
-msgstr ""
+msgstr "åååå-mm-dd"
 
 #: .Date.yyyy-mm-dd-for-humans
 msgid "yyyy-mm-dd-for-humans"
-msgstr ""
+msgstr "åååå-mm-dd-för-människor"
 
 #: .EditLink.Edit+link+for+poll+%22%25s%22
 msgid "Edit link for poll \"%s\""
-msgstr ""
+msgstr "Redigeringslänk för undersökningen ”%s”"
 
 #: .EditLink.Here+is+the+link+for+editing+your+vote:
 msgid "Here is the link for editing your vote:"
-msgstr ""
+msgstr "Här är en länk för att redigera din röst:"
 
 #: .EditLink.If+you+don%27t+want+to+lose+your+personalized+link,+we+can+send+it+to+you+by+email.
 msgid ""
 "If you don't want to lose your personalized link, we can send it to you by "
 "email."
 msgstr ""
+"Om du  inte vill bli av med din personliga länk, kan vi skicka dig den via "
+"e-post."
 
 #: .EditLink.Please+wait+%25d+seconds+before+we+can+send+an+email+to+you+then+try+again.
 msgid ""
