@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
+"PO-Revision-Date: 2019-10-27 16:32+0000\n"
+"Last-Translator: Quentin <quentinantonin@free.fr>\n"
+"Language-Team: Occitan <https://weblate.framasoft.org/projects/framadate/"
+"framadate/oc/>\n"
+"Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-04-19 07:02+0000\n"
-"Last-Translator: Thomas Citharel <thomas.citharel@framasoft.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: Zanata 4.6.2\n"
-"Language: oc\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.9\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -80,6 +81,8 @@ msgid ""
 "This software needs javascript and cookies enabled. It is compatible with "
 "the following web browsers:"
 msgstr ""
+"Aqueste logicial requesís l’activacion de JavaScript e dels cookies. Es "
+"compatible amb los navegators seguents :"
 
 #: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days
 #: +it+is+developed+by+the+Framasoft+association.
@@ -444,7 +447,7 @@ msgid ""
 "email."
 msgstr ""
 "Se volètz pas perdre vòstre ligam personalizat, podètz vos lo enviar per "
-"corrièl"
+"corrièl."
 
 #: .EditLink.Please+wait+%25d+seconds+before+we+can+send+an+email+to+you+then+try+again.
 msgid ""
@@ -495,7 +498,7 @@ msgstr ""
 
 #: .Error.Enter+a+name
 msgid "Enter a name"
-msgstr "Avètz pas picat cap de nom !"
+msgstr "Picatz un nom"
 
 #: .Error.Enter+a+name+and+a+comment%21
 msgid "Enter a name and a comment!"
@@ -503,11 +506,11 @@ msgstr "Mercé de garnir los dos camps !"
 
 #: .Error.Enter+a+title
 msgid "Enter a title"
-msgstr "Cal picar un títol !"
+msgstr "Picatz un títol"
 
 #: .Error.Enter+an+email+address
 msgid "Enter an email address"
-msgstr "Cal picar una adreça de messatjariá !"
+msgstr "Picatz una adreça de messatjariá"
 
 #: .Error.Error+on+amount+of+votes+limitation:+Value+must+be+an+integer+greater+than+0
 msgid ""
@@ -557,6 +560,8 @@ msgstr "Defendut !"
 #: .Error.GenericErrorPollCreation
 msgid "GenericErrorPollCreation"
 msgstr ""
+"Oo non ! Vòstre sondatge a pas pogut èsser enregistrat. O planhèm. Mercés de "
+"tornar ensajar."
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
@@ -565,7 +570,7 @@ msgstr "L’identificant es ja utilizat"
 #: .Error.If+you+quit+now
 #: +your+changes+will+be+lost.
 msgid "If you quit now, your changes will be lost."
-msgstr ""
+msgstr "Se quitatz ara, vòstras modificacions seràn perdudas."
 
 #: .Error.JavaScript+is+disabled+on+your+browser.+It+is+required+to+create+a+poll.
 msgid ""
@@ -600,7 +605,7 @@ msgstr "I a quicòm que truca..."
 
 #: .Error.Something+is+wrong+with+the+format
 msgid "Something is wrong with the format"
-msgstr "I a quicòm que truca amb lo format."
+msgstr "I a quicòm que truca amb lo format"
 
 #: .Error.Something+is+wrong+with+the+format:+Customized+URLs+should+only+consist+of+alphanumeric+characters+and+hyphens.
 msgid ""
@@ -666,8 +671,8 @@ msgstr "Avètz ja votat"
 msgid ""
 "You can't create a poll with hidden results with the following option: "
 msgstr ""
-"Podètz pas crear de sondatges amb de resultats amagats amb las opcions "
-"d’edicion seguentas : "
+"Podètz pas crear de sondatges amb de resultats amagats amb las opcions d’"
+"edicion seguentas : "
 
 #: .Error.You+can%27t+select+more+than+%25d+dates
 msgid "You can't select more than %d dates"
@@ -1054,7 +1059,7 @@ msgid ""
 msgstr ""
 "« La rota es longa, mai lo camin es liure… »<br/>Framasoft viu solament amb "
 "vòstres dons (qu’òm pòt tirar de vòstres impòstes).<br/> Mercé d’avança pel "
-"vòstre sosten https://soutenir.framasoft.org."
+"vòstre sosten https://soutenir.framasoft.org"
 
 #: .Mail.Message+for+the+author
 msgid "Message for the author"
@@ -1113,7 +1118,7 @@ msgstr ""
 
 #: .Mail.has+just+created+a+poll+called
 msgid "has just created a poll called"
-msgstr " ven de crear un sondatge titolat "
+msgstr "ven de crear un sondatge titolat"
 
 #: .Mail.updated+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "updated a vote.<br/>You can visit your poll at the link"
@@ -1145,7 +1150,7 @@ msgstr "Accedir"
 
 #: .Password.Wrong+password
 msgid "Wrong password"
-msgstr "Senhal incorrècte."
+msgstr "Senhal incorrècte"
 
 #: .Password.You+have+to+provide+a+password+so+you+can+participate+to+the+poll.
 msgid "You have to provide a password so you can participate to the poll."
@@ -1308,7 +1313,7 @@ msgstr "Pas cap de senhal"
 
 #: .PollInfo.Only+votes+are+protected
 msgid "Only votes are protected"
-msgstr "Only votes are protected"
+msgstr "Sols los vòtes son protegits"
 
 #: .PollInfo.Password+protected
 msgid "Password protected"
@@ -1473,7 +1478,7 @@ msgstr "Paramètres opcionals"
 
 #: .Step+1.Permissions
 msgid "Permissions"
-msgstr "Permissions"
+msgstr "Autorizacions"
 
 #: .Step+1.Poll+creation+(1+of+3)
 msgid "Poll creation (1 of 3)"
@@ -1540,7 +1545,7 @@ msgid ""
 msgstr ""
 "Avertiment : qual que siá pòt veire las adreças dels votants del moment que "
 "totes los votants pòdon modificar quin que siá vòte. Vos caldriá restrénher "
-"las permissions."
+"las autorizacions."
 
 #: .Step+1.You+are+in+the+poll+creation+section.
 msgid "You are in the poll creation section."
@@ -1576,7 +1581,7 @@ msgstr "Tèxte alternatiu"
 
 #: .Step+2+classic.Links+or+images+can+be+included+using
 msgid "Links or images can be included using"
-msgstr "Es possible d’inserir de ligams o d’imatges en emplegant "
+msgstr "Es possible d’inserir de ligams o d’imatges en emplegant"
 
 #: .Step+2+classic.Markdown+syntax
 msgid "Markdown syntax"
@@ -1741,7 +1746,7 @@ msgstr "aprèp lo darrièr jorn del sondatge."
 
 #: .Version.Version+%25s
 msgid "Version %s"
-msgstr ""
+msgstr "Version %s"
 
 #: .adminstuds.Add+a+column
 msgid "Add a column"
@@ -1949,5 +1954,4 @@ msgid ""
 "personalised link to be able to edit your vote."
 msgstr ""
 "Vòstre vòte es estat enregistrat corrèctament, mas mèfi : aqueste sondatge "
-"permet l’edicion de vòstre vòte solament amb lo ligam personalizat "
-"seguent ; gardatz-lo preciosament ! "
+"permet l’edicion de vòstre vòte solament amb lo ligam personalizat."
