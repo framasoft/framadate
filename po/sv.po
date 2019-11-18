@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2019-11-18 18:21+0000\n"
+"PO-Revision-Date: 2019-11-18 18:39+0000\n"
 "Last-Translator: Filip Bengtsson <filipbengtsson@live.se>\n"
 "Language-Team: Swedish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/sv/>\n"
@@ -21,69 +21,75 @@ msgstr "Skapa en undersökning"
 
 #: .1st+section.Define+dates+or+subjects+to+choose+from
 msgid "Define dates or subjects to choose from"
-msgstr ""
+msgstr "Ange datum eller ämnen att välja mellan"
 
 #: .1st+section.Discuss+and+make+a+decision
 msgid "Discuss and make a decision"
-msgstr ""
+msgstr "Diskutera och fatta ett beslut"
 
 #: .1st+section.Do+you+want+to
 msgid "Do you want to"
-msgstr ""
+msgstr "Vill du"
 
 #: .1st+section.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.+No+registration+is+required.
 msgid ""
 "Framadate is an online service for planning an appointment or making a "
 "decision quickly and easily. No registration is required."
 msgstr ""
+"Framadate är en webbtjänst för att planera ett möte eller fatta ett beslut "
+"snabbt och enkelt. Ingen registrering krävs."
 
 #: .1st+section.Here+is+how+it+works:
 msgid "Here is how it works:"
-msgstr ""
+msgstr "Så fungerar det:"
 
 #: .1st+section.Send+the+poll+link+to+your+friends+or+colleagues
 msgid "Send the poll link to your friends or colleagues"
-msgstr ""
+msgstr "Skicka undersökningens länk till dina vänner eller kollegor"
 
 #: .1st+section.What+is+Framadate%3F
 msgid "What is Framadate?"
-msgstr ""
+msgstr "Vad är Framadate?"
 
 #: .1st+section.view+an+example%3F
 msgid "view an example?"
-msgstr ""
+msgstr "se ett exempel?"
 
 #: .2nd+section.CeCILL-B+license
 msgid "CeCILL-B license"
-msgstr ""
+msgstr "licensen CeCILL-B"
 
 #: .2nd+section.Framadate+is+licensed+under+the
 msgid "Framadate is licensed under the"
-msgstr ""
+msgstr "Framadate har gjorts tillgängligt under"
 
 #: .2nd+section.Framadate+was+initially+based+on
 msgid "Framadate was initially based on"
-msgstr ""
+msgstr "Framadate baserades ursprungligen på"
 
 #: .2nd+section.The+software
 msgid "The software"
-msgstr ""
+msgstr "Mjukvaran"
 
 #: .2nd+section.This+software+needs+javascript+and+cookies+enabled.+It+is+compatible+with+the+following+web+browsers:
 msgid ""
 "This software needs javascript and cookies enabled. It is compatible with "
 "the following web browsers:"
 msgstr ""
+"Den här mjukvaran kräver att JavaScript och kakor är aktiverade. Den är "
+"kompatibel med följande webbläsare:"
 
 #: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days,+it+is+developed+by+the+Framasoft+association.
 msgid ""
 "software developed by the University of Strasbourg. These days, it is "
 "developed by the Framasoft association."
 msgstr ""
+"mjukvara utvecklad av Strasbourgs universitet. Idag utvecklas den av "
+"föreningen Framasoft."
 
 #: .3rd+section.Grow+your+own
 msgid "Grow your own"
-msgstr ""
+msgstr "Odla din egen"
 
 #: .3rd+section.If+you+want+to+install+the+software+for+your+own+use+and+thus+increase+your+independence,+we+can+help+you+at:
 msgid ""
@@ -103,32 +109,32 @@ msgstr ""
 
 #: .Admin.Actions
 msgid "Actions"
-msgstr ""
+msgstr "Åtgärder"
 
 #: .Admin.Administration
 msgid "Administration"
-msgstr ""
+msgstr "Administration"
 
 #: .Admin.Author
 msgid "Author"
-msgstr ""
+msgstr "Författa"
 
 #: .Admin.Back+to+administration
 msgid "Back to administration"
-msgstr ""
+msgstr "Tillbaka till administration"
 
 #: .Admin.Change+the+poll
 msgid "Change the poll"
-msgstr ""
+msgstr "Ändra undersökningen"
 
 #: .Admin.Email
 #: .PollInfo.Email
 msgid "Email"
-msgstr ""
+msgstr "E-post"
 
 #: .Admin.Executed
 msgid "Executed"
-msgstr ""
+msgstr "Utförd"
 
 #: .Admin.Expiry+date
 #: .Generic.Expiry+date
@@ -141,101 +147,101 @@ msgstr ""
 
 #: .Admin.Failed:
 msgid "Failed:"
-msgstr ""
+msgstr "Misslyckades:"
 
 #: .Admin.Format
 msgid "Format"
-msgstr ""
+msgstr "Format"
 
 #: .Admin.Installation
 msgid "Installation"
-msgstr ""
+msgstr "Installation"
 
 #: .Admin.Logs
 msgid "Logs"
-msgstr ""
+msgstr "Loggar"
 
 #: .Admin.Migration
 msgid "Migration"
-msgstr ""
+msgstr "Migrering"
 
 #: .Admin.Nothing
 msgid "Nothing"
-msgstr ""
+msgstr "Ingenting"
 
 #: .Admin.Pages:
 msgid "Pages:"
-msgstr ""
+msgstr "Sidor:"
 
 #: .Admin.Poll+ID
 msgid "Poll ID"
-msgstr ""
+msgstr "Undersöknings-id"
 
 #: .Admin.Poll+deleted
 msgid "Poll deleted"
-msgstr ""
+msgstr "Undersökning raderad"
 
 #: .Admin.Polls
 msgid "Polls"
-msgstr ""
+msgstr "Undersökningar"
 
 #: .Admin.Purge
 msgid "Purge"
-msgstr ""
+msgstr "Rensa"
 
 #: .Admin.Purge+the+polls
 msgid "Purge the polls"
-msgstr ""
+msgstr "Rensa undersökningarna"
 
 #: .Admin.Purged:
 msgid "Purged:"
-msgstr ""
+msgstr "Rensad:"
 
 #: .Admin.See+the+poll
 msgid "See the poll"
-msgstr ""
+msgstr "Visa undersökningen"
 
 #: .Admin.Skipped:
 msgid "Skipped:"
-msgstr ""
+msgstr "Hoppade över:"
 
 #: .Admin.Status
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: .Admin.Succeeded:
 msgid "Succeeded:"
-msgstr ""
+msgstr "Lyckades:"
 
 #: .Admin.Success
 msgid "Success"
-msgstr ""
+msgstr "Lyckades"
 
 #: .Admin.Summary
 msgid "Summary"
-msgstr ""
+msgstr "Sammanfattning"
 
 #: .Admin.Title
 #: .FindPolls.Title
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: .Admin.Votes
 #: .Poll+results.Votes
 msgid "Votes"
-msgstr ""
+msgstr "Röster"
 
 #: .Admin.Waiting
 msgid "Waiting"
-msgstr ""
+msgstr "Väntar"
 
 #: .Admin.polls+in+the+database+at+this+time
 msgid "polls in the database at this time"
-msgstr ""
+msgstr "undersökningar i databasen just nu"
 
 #: .Check.Check+again
 msgid "Check again"
-msgstr ""
+msgstr "Titta igen"
 
 #: .Check.Consider+enabling+the+PHP+extension+OpenSSL+for+increased+security.
 msgid "Consider enabling the PHP extension OpenSSL for increased security."
