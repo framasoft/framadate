@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2019-11-20 01:11+0000\n"
+"PO-Revision-Date: 2019-11-24 20:12+0000\n"
 "Last-Translator: Filip Bengtsson <filip@libreradio.org>\n"
 "Language-Team: Swedish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/sv/>\n"
@@ -96,16 +96,20 @@ msgid ""
 "If you want to install the software for your own use and thus increase your "
 "independence, we can help you at:"
 msgstr ""
+"Om du vill installera mjukvaran för eget bruk och på så sätt öka din "
+"självständighet, kan vi hjälpa dig på:"
 
 #: .3rd+section.To+participate+in+the+software+development,+suggest+improvements+or+simply+download+it,+please+visit
 msgid ""
 "To participate in the software development, suggest improvements or simply "
 "download it, please visit"
 msgstr ""
+"För att delta i mjukvaruutvecklingen, föreslå förbättringar eller ladda ner "
+"den, kan du besöka"
 
 #: .3rd+section.the+development+site
 msgid "the development site"
-msgstr ""
+msgstr "utvecklingssidan"
 
 #: .Admin.Actions
 msgid "Actions"
@@ -139,11 +143,11 @@ msgstr "Utförd"
 #: .Admin.Expiry+date
 #: .Generic.Expiry+date
 msgid "Expiry date"
-msgstr ""
+msgstr "Utgångsdatum"
 
 #: .Admin.Fail
 msgid "Fail"
-msgstr ""
+msgstr "Misslyckades"
 
 #: .Admin.Failed:
 msgid "Failed:"
@@ -264,7 +268,7 @@ msgstr "Fortsätt med installationen"
 
 #: .Check.Cookies+are+served+from+HTTP+only.
 msgid "Cookies are served from HTTP only."
-msgstr ""
+msgstr "Kakor servas endast över HTTP."
 
 #: .Check.Installation+checking
 msgid "Installation checking"
@@ -323,7 +327,7 @@ msgstr ""
 
 #: .Check.date.timezone+is+set.
 msgid "date.timezone is set."
-msgstr ""
+msgstr "date.timezone är konfigurerad."
 
 #: .Comments.Add+a+comment+to+the+poll
 msgid "Add a comment to the poll"
@@ -428,57 +432,59 @@ msgstr ""
 
 #: .EditLink.REMINDER
 msgid "REMINDER"
-msgstr ""
+msgstr "PÅMINNELSE"
 
 #: .EditLink.Send
 msgid "Send"
-msgstr ""
+msgstr "Skicka"
 
 #: .EditLink.The+email+address+is+not+correct.
 msgid "The email address is not correct."
-msgstr ""
+msgstr "E-postadressen stämmer inte."
 
 #: .EditLink.Your+reminder+has+been+successfully+sent%21
 msgid "Your reminder has been successfully sent!"
-msgstr ""
+msgstr "Din påminnelse har skickats!"
 
 #: .Error.Adding+vote+failed
 msgid "Adding vote failed"
-msgstr ""
+msgstr "Kunde inte lägga till röst"
 
 #: .Error.Can%27t+create+an+empty+column.
 msgid "Can't create an empty column."
-msgstr ""
+msgstr "Kan inte skapa en tom kolumn."
 
 #: .Error.Can%27t+create+the+config.php+file+in+%27%25s%27.
 msgid "Can't create the config.php file in '%s'."
-msgstr ""
+msgstr "Kan inte skapa filen config.php i '%s'."
 
 #: .Error.Comment+failed
 msgid "Comment failed"
-msgstr ""
+msgstr "Kunde inte skicka kommentar"
 
 #: .Error.Cookies+are+disabled+on+your+browser.+They+are+required+to+be+able+to+create+a+poll.
 msgid ""
 "Cookies are disabled on your browser. They are required to be able to create "
 "a poll."
 msgstr ""
+"Kakor är avaktiverade i din webbläsare men krävs för att kunna skapa en "
+"undersökning."
 
 #: .Error.Enter+a+name
 msgid "Enter a name"
-msgstr ""
+msgstr "Ange ett namn"
 
 #: .Error.Enter+a+name+and+a+comment%21
 msgid "Enter a name and a comment!"
-msgstr ""
+msgstr "Ange ett namn och en kommentar!"
 
 #: .Error.Enter+a+title
 msgid "Enter a title"
-msgstr ""
+msgstr "Ange en titel"
 
 #: .Error.Enter+an+email+address
 msgid "Enter an email address"
-msgstr ""
+msgstr "Uppge en e-postadress"
 
 #: .Error.Error+on+amount+of+votes+limitation:+Value+must+be+an+integer+greater+than+0
 msgid ""
@@ -487,19 +493,19 @@ msgstr ""
 
 #: .Error.Error%21
 msgid "Error!"
-msgstr ""
+msgstr "Fel!"
 
 #: .Error.Failed+to+delete+all+comments
 msgid "Failed to delete all comments"
-msgstr ""
+msgstr "Kunde inte radera samtliga kommentarer"
 
 #: .Error.Failed+to+delete+all+votes
 msgid "Failed to delete all votes"
-msgstr ""
+msgstr "Kunde inte radera samtliga röster"
 
 #: .Error.Failed+to+delete+column
 msgid "Failed to delete column"
-msgstr ""
+msgstr "Kunde inte radera kolumn"
 
 #: .Error.Failed+to+delete+the+comment
 msgid "Failed to delete the comment"
@@ -507,176 +513,193 @@ msgstr ""
 
 #: .Error.Failed+to+delete+the+poll
 msgid "Failed to delete the poll"
-msgstr ""
+msgstr "Kunde inte radera undersökningen"
 
 #: .Error.Failed+to+delete+the+vote%21
 msgid "Failed to delete the vote!"
-msgstr ""
+msgstr "Kunde inte radera rösten!"
 
 #: .Error.Failed+to+insert+the+comment%21
+#, fuzzy
 msgid "Failed to insert the comment!"
-msgstr ""
+msgstr "Kunde inte lägga till kommentaren!"
 
 #: .Error.Failed+to+save+poll
 msgid "Failed to save poll"
-msgstr ""
+msgstr "Kunde inte spara undersökning"
 
 #: .Error.Forbidden%21
 msgid "Forbidden!"
-msgstr ""
+msgstr "Förbjudet!"
 
 #: .Error.GenericErrorPollCreation
 msgid "GenericErrorPollCreation"
-msgstr ""
+msgstr "GenericErrorPollCreation"
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
-msgstr ""
+msgstr "Identifieraren används redan"
 
 #: .Error.If+you+quit+now,+your+changes+will+be+lost.
 msgid "If you quit now, your changes will be lost."
-msgstr ""
+msgstr "Om du avslutar nu kommer dina ändringar gå förlorade."
 
 #: .Error.JavaScript+is+disabled+on+your+browser.+It+is+required+to+create+a+poll.
 msgid ""
 "JavaScript is disabled on your browser. It is required to create a poll."
 msgstr ""
+"JavaScript är avaktiverat i din webbläsare men krävs för att skapa en "
+"undersökning."
 
 #: .Error.Missing+values
 msgid "Missing values"
-msgstr ""
+msgstr "Saknade värden"
 
 #: .Error.No+polls+found
 msgid "No polls found"
-msgstr ""
+msgstr "Inga undersökningar funna"
 
 #: .Error.Password+is+empty.
 msgid "Password is empty."
-msgstr ""
+msgstr "Lösenordet är tomt."
 
 #: .Error.Passwords+do+not+match.
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Lösenorden stämmer inte överens."
 
 #: .Error.Poll+has+been+updated+before+you+vote
 msgid "Poll has been updated before you vote"
-msgstr ""
+msgstr "Undersökningen har uppdaterats innan du lade din röst"
 
 #: .Error.Something+has+gone+wrong...
 msgid "Something has gone wrong..."
-msgstr ""
+msgstr "Någonting har gått snett …"
 
 #: .Error.Something+is+wrong+with+the+format
 msgid "Something is wrong with the format"
-msgstr ""
+msgstr "Någonting är fel med formatet"
 
 #: .Error.Something+is+wrong+with+the+format:+Customized+URLs+should+only+consist+of+alphanumeric+characters+and+hyphens.
 msgid ""
 "Something is wrong with the format: Customized URLs should only consist of "
 "alphanumeric characters and hyphens."
 msgstr ""
+"Någonting är fel med formatet: Egna länkadresser får endast innehålla "
+"bokstäver, siffror och bindestreck."
 
 #: .Error.Something+is+wrong+with+the+format:+name+shouldn%27t+have+any+spaces+before+or+after
 msgid ""
 "Something is wrong with the format: name shouldn't have any spaces before or "
 "after"
 msgstr ""
+"Någonting är fel med formatet: Namnet får inte börja eller sluta med "
+"blanksteg"
 
 #: .Error.The+address+is+not+correct%21+You+should+enter+a+valid+email+address+(like+r.stallman@outlock.com)+in+order+to+receive+the+link+to+your+poll.
 msgid ""
 "The address is not correct! You should enter a valid email address (like "
 "r.stallman@outlock.com) in order to receive the link to your poll."
 msgstr ""
+"Adressen är ogiltig! Du måste uppge en giltig e-postadress (som "
+"r.stallman@outlock.com) för att kunna ta emot länken till din undersökning."
 
 #: .Error.The+column+already+exists
 msgid "The column already exists"
-msgstr ""
+msgstr "Kolumnen finns redan"
 
 #: .Error.The+name+is+invalid.
 msgid "The name is invalid."
-msgstr ""
+msgstr "Namnet är ogiltigt."
 
 #: .Error.The+name+you%27ve+chosen+already+exists+in+this+poll%21
 msgid "The name you've chosen already exists in this poll!"
-msgstr ""
+msgstr "Namnet du valt finns redan i den här undersökningen!"
 
 #: .Error.There+is+a+problem+with+your+choices
 msgid "There is a problem with your choices"
-msgstr ""
+msgstr "Det finns något problem med dina val"
 
 #: .Error.This+identifier+is+not+allowed
 msgid "This identifier is not allowed"
-msgstr ""
+msgstr "Den här identifieraren är inte tillåten"
 
 #: .Error.This+poll+doesn%27t+exist%21
 msgid "This poll doesn't exist!"
-msgstr ""
+msgstr "Den här undersökningen finns inte!"
 
 #: .Error.Unable+to+connect+to+database
 msgid "Unable to connect to database"
-msgstr ""
+msgstr "Kunde inte ansluta till databasen"
 
 #: .Error.Update+vote+failed
 msgid "Update vote failed"
-msgstr ""
+msgstr "Kunde inte uppdatera röst"
 
 #: .Error.You+already+voted
 msgid "You already voted"
-msgstr ""
+msgstr "Du har redan röstat"
 
 #: .Error.You+can%27t+create+a+poll+with+hidden+results+with+the+following+option:+
 msgid "You can't create a poll with hidden results with the following option: "
 msgstr ""
+"Du kan inte skapa en undersökning med dolda resultat och följande "
+"inställningar: "
 
 #: .Error.You+can%27t+select+more+than+%25d+dates
 msgid "You can't select more than %d dates"
-msgstr ""
+msgstr "Du kan inte välja fler än %d datum"
 
 #: .Error.You+haven%27t+filled+the+first+section+of+the+poll+creation,+or+your+session+has+expired.
 msgid ""
 "You haven't filled the first section of the poll creation, or your session "
 "has expired."
 msgstr ""
+"Antingen har du inte fyllt i den första delen av processen för att skapa en "
+"undersökning eller så har din session gått ut."
 
 #: .Error.Your+vote+wasn%27t+counted,+because+someone+voted+in+the+meantime+and+it+conflicted+with+your+choices+and+the+poll+conditions.+Please+retry.
 msgid ""
 "Your vote wasn't counted, because someone voted in the meantime and it "
 "conflicted with your choices and the poll conditions. Please retry."
 msgstr ""
+"Din röst räknades inte eftersom någon röstade under tiden och det stod i "
+"konflikt med dina val och undersökningens inställningar. Försök gärna igen."
 
 #: .FindPolls.Address
 msgid "Address"
-msgstr ""
+msgstr "Adress"
 
 #: .FindPolls.Created+polls
 msgid "Created polls"
-msgstr ""
+msgstr "Skapade undersökningar"
 
 #: .FindPolls.Have+a+good+day%21
 msgid "Have a good day!"
-msgstr ""
+msgstr "Ha en trevlig dag!"
 
 #: .FindPolls.Here+is+the+list+of+the+polls+that+you+manage+on+%25s:
 msgid "Here is the list of the polls that you manage on %s:"
-msgstr ""
+msgstr "Här är listan över de undersökningar du hanterar på %s:"
 
 #: .FindPolls.If+you+weren%27t+the+source+of+this+action+and+if+you+think+this+is+an+abuse+of+the+service,+please+notify+the+administrator+at+%25s.
 msgid ""
 "If you weren't the source of this action and if you think this is an abuse "
 "of the service, please notify the administrator at %s."
 msgstr ""
+"Om du inte står bakom den här åtgärden och tror det rör sig om missbruk av "
+"tjänsten, får du gärna kontakta administratören på %s."
 
 #: .FindPolls.Its+address
 msgid "Its address"
-msgstr ""
+msgstr "Dess adress"
 
 #: .FindPolls.Last+access+date
 msgid "Last access date"
-msgstr ""
+msgstr "Senaste åtkomstdatum"
 
 #: .FindPolls.List+of+your+polls
 msgid "List of your polls"
-msgstr ""
+msgstr "Lista över dina undersökningar"
 
 #: .FindPolls.PS:+this+email+has+been+sent+because+you+%E2%80%93+or+someone+else+%E2%80%93+asked+to+get+back+the+polls+created+with+your+email+address.
 msgid ""
