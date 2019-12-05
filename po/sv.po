@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2019-11-24 20:12+0000\n"
+"PO-Revision-Date: 2019-12-06 15:13+0000\n"
 "Last-Translator: Filip Bengtsson <filip@libreradio.org>\n"
 "Language-Team: Swedish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/sv/>\n"
@@ -991,19 +991,19 @@ msgstr ""
 
 #: .Installation.Respond-to+mail+address
 msgid "Respond-to mail address"
-msgstr ""
+msgstr "E-postadress för svar"
 
 #: .Installation.User
 msgid "User"
-msgstr ""
+msgstr "Användare"
 
 #: .Language+selector.Change+language
 msgid "Change language"
-msgstr ""
+msgstr "Ändra språk"
 
 #: .Language+selector.Select+language
 msgid "Select language"
-msgstr ""
+msgstr "Välj språk"
 
 #: .Mail.%22The+road+is+long,+but+the+way+is+clear%E2%80%A6%22%3Cbr/%3EFramasoft+lives+only+by+your+donations.%3Cbr/%3EThank+you+in+advance+for+your+support+https://soutenir.framasoft.org
 msgid ""
@@ -1014,19 +1014,19 @@ msgstr ""
 
 #: .Mail.Message+for+the+author
 msgid "Message for the author"
-msgstr ""
+msgstr "Meddelande till författaren"
 
 #: .Mail.Notification+of+poll:+%25s
 msgid "Notification of poll: %s"
-msgstr ""
+msgstr "Notifikation från undersökningen %s"
 
 #: .Mail.Participant+link
 msgid "Participant link"
-msgstr ""
+msgstr "Deltagarlänk"
 
 #: .Mail.Poll+participation:+%25s
 msgid "Poll participation: %s"
-msgstr ""
+msgstr "Undersökningsdeltagande: %s"
 
 #: .Mail.Someone+just+changed+your+poll+at+the+following+link+%3Ca+href%3D%22%251%24s%22%3E%251%24s%3C/a%3E.
 msgid ""
@@ -1036,19 +1036,20 @@ msgstr ""
 
 #: .Mail.Someone+just+deleted+your+poll+%22%25s%22.
 msgid "Someone just deleted your poll \"%s\"."
-msgstr ""
+msgstr "Någon raderade din undersökning ”%s” nyss."
 
 #: .Mail.Thank+you+for+participating+in+the+poll+at+the+following+link
+#, fuzzy
 msgid "Thank you for participating in the poll at the following link"
-msgstr ""
+msgstr "Tack för ditt deltagande i undersökningen med följande länk"
 
 #: .Mail.Thank+you+for+your+trust.
 msgid "Thank you for your trust."
-msgstr ""
+msgstr "Tack för ditt förtroende."
 
 #: .Mail.This+is+the+message+to+forward+to+the+poll+participants.
 msgid "This is the message to forward to the poll participants."
-msgstr ""
+msgstr "Det här meddelandet kommer visas för undersökningens deltagare."
 
 #: .Mail.This+message+should+NOT+be+sent+to+the+poll+participants.+You+should+keep+it+private.+%3Cbr/%3E%3Cbr/%3EYou+can+modify+your+poll+at+the+following+link
 msgid ""
@@ -1058,7 +1059,7 @@ msgstr ""
 
 #: .Mail.added+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "added a vote.<br/>You can visit your poll at the link"
-msgstr ""
+msgstr "lade en röst.<br/>Du kan besöka undersökningen på"
 
 #: .Mail.has+just+created+a+poll+called
 msgid "has just created a poll called"
@@ -1066,11 +1067,11 @@ msgstr ""
 
 #: .Mail.updated+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "updated a vote.<br/>You can visit your poll at the link"
-msgstr ""
+msgstr "ändrade en röst.<br/>Du kan besöka undersökningen på"
 
 #: .Mail.wrote+a+comment.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "wrote a comment.<br/>You can visit your poll at the link"
-msgstr ""
+msgstr "skrev en kommentar.<br/>Du kan besöka undersökningen på"
 
 #: .Maintenance.Thank+you+for+your+understanding.
 msgid "Thank you for your understanding."
@@ -1078,11 +1079,11 @@ msgstr ""
 
 #: .Maintenance.The+application
 msgid "The application"
-msgstr ""
+msgstr "Applikationen"
 
 #: .Maintenance.is+currently+under+maintenance.
 msgid "is currently under maintenance."
-msgstr ""
+msgstr "underhålls för tillfället."
 
 #: .Password.Submit+access
 msgid "Submit access"
@@ -1090,15 +1091,15 @@ msgstr ""
 
 #: .Password.Wrong+password
 msgid "Wrong password"
-msgstr ""
+msgstr "Fel lösenord"
 
 #: .Password.You+have+to+provide+a+password+so+you+can+participate+to+the+poll.
 msgid "You have to provide a password so you can participate to the poll."
-msgstr ""
+msgstr "Du måste uppge ett lösenord för att kunna delta i undersökningen."
 
 #: .Password.You+have+to+provide+a+password+to+access+the+poll.
 msgid "You have to provide a password to access the poll."
-msgstr ""
+msgstr "Du måste uppge ett lösenord för att komma åt undersökningen."
 
 #: .Poll+results.%25s+option
 msgid "%s option"
@@ -1106,39 +1107,39 @@ msgstr ""
 
 #: .Poll+results.Anyone+will+be+able+to+see+your+email+address+after+you+voted
 msgid "Anyone will be able to see your email address after you voted"
-msgstr ""
+msgstr "Vem som helst kan se din e-postadress när du har röstat"
 
 #: .Poll+results.Best+choice
 msgid "Best choice"
-msgstr ""
+msgstr "Bästa val"
 
 #: .Poll+results.Best+choices
 msgid "Best choices"
-msgstr ""
+msgstr "Bästa val"
 
 #: .Poll+results.Chart
 msgid "Chart"
-msgstr ""
+msgstr "Diagram"
 
 #: .Poll+results.Display+the+chart+of+the+results
 msgid "Display the chart of the results"
-msgstr ""
+msgstr "Visa ett diagram över resultaten"
 
 #: .Poll+results.Edit+line:+%25s
 msgid "Edit line: %s"
-msgstr ""
+msgstr "Redigera rad %s"
 
 #: .Poll+results.Link+to+edit+this+particular+line
 msgid "Link to edit this particular line"
-msgstr ""
+msgstr "Länk för att redigera den här raden"
 
 #: .Poll+results.Remove+line:
 msgid "Remove line:"
-msgstr ""
+msgstr "Ta bort rad:"
 
 #: .Poll+results.Save+choices
 msgid "Save choices"
-msgstr ""
+msgstr "Spara val"
 
 #: .Poll+results.Scroll+to+the+left
 msgid "Scroll to the left"
@@ -1150,27 +1151,27 @@ msgstr ""
 
 #: .Poll+results.The+current+best+choice+is:
 msgid "The current best choice is:"
-msgstr ""
+msgstr "Det bästa valet är för tillfället:"
 
 #: .Poll+results.The+current+best+choices+are:
 msgid "The current best choices are:"
-msgstr ""
+msgstr "De bästa valen är för tillfället:"
 
 #: .Poll+results.The+link+to+edit+this+particular+line+has+been+copied+to+the+clipboard%21
 msgid "The link to edit this particular line has been copied to the clipboard!"
-msgstr ""
+msgstr "Länken för att redigera den här raden har kopierats till urklipp!"
 
 #: .Poll+results.Total
 msgid "Total"
-msgstr ""
+msgstr "Totalt"
 
 #: .Poll+results.Vote+%22no%22+for
 msgid "Vote \"no\" for"
-msgstr ""
+msgstr "Rösta ”nej” för"
 
 #: .Poll+results.Vote+%22yes%22+for
 msgid "Vote \"yes\" for"
-msgstr ""
+msgstr "Rösta ”ja” för"
 
 #: .Poll+results.Votes+under+reserve+for
 msgid "Votes under reserve for"
@@ -1178,115 +1179,115 @@ msgstr ""
 
 #: .Poll+results.polled+user
 msgid "polled user"
-msgstr ""
+msgstr "undersökt användare"
 
 #: .Poll+results.polled+users
 msgid "polled users"
-msgstr ""
+msgstr "undersökta användare"
 
 #: .PollInfo.Admin+link+for+the+poll
 msgid "Admin link for the poll"
-msgstr ""
+msgstr "Administrationslänk för undersökningen"
 
 #: .PollInfo.Cancel+the+description+edit
 msgid "Cancel the description edit"
-msgstr ""
+msgstr "Avbryt redigering av beskrivningen"
 
 #: .PollInfo.Cancel+the+email+address+edit
 msgid "Cancel the email address edit"
-msgstr ""
+msgstr "Avbryt redigering av e-postadressen"
 
 #: .PollInfo.Cancel+the+expiration+date+edit
 msgid "Cancel the expiration date edit"
-msgstr ""
+msgstr "Avbryt redigering av utgångsdatumet"
 
 #: .PollInfo.Cancel+the+name+edit
 msgid "Cancel the name edit"
-msgstr ""
+msgstr "Avbryt redigering av namnet"
 
 #: .PollInfo.Cancel+the+rules+edit
 msgid "Cancel the rules edit"
-msgstr ""
+msgstr "Avbryt redigering av reglerna"
 
 #: .PollInfo.Cancel+the+title+edit
 msgid "Cancel the title edit"
-msgstr ""
+msgstr "Avbryt redigering av titeln"
 
 #: .PollInfo.Creator+of+the+poll
 msgid "Creator of the poll"
-msgstr ""
+msgstr "Undersökningens skapare"
 
 #: .PollInfo.Edit+name
 msgid "Edit name"
-msgstr ""
+msgstr "Redigera namn"
 
 #: .PollInfo.Edit+the+description
 msgid "Edit the description"
-msgstr ""
+msgstr "Redigera beskrivningen"
 
 #: .PollInfo.Edit+the+email+address
 msgid "Edit the email address"
-msgstr ""
+msgstr "Redigera e-postadressen"
 
 #: .PollInfo.Edit+the+expiry+date
 msgid "Edit the expiry date"
-msgstr ""
+msgstr "Redigera utgångsdatumet"
 
 #: .PollInfo.Edit+the+poll+rules
 msgid "Edit the poll rules"
-msgstr ""
+msgstr "Redigera undersökningens regler"
 
 #: .PollInfo.Edit+title
 msgid "Edit title"
-msgstr ""
+msgstr "Redigera titel"
 
 #: .PollInfo.Export+to+CSV
 msgid "Export to CSV"
-msgstr ""
+msgstr "Exportera som en kommaseparerad lista"
 
 #: .PollInfo.No+password
 msgid "No password"
-msgstr ""
+msgstr "Inget lösenord"
 
 #: .PollInfo.Only+votes+are+protected
 msgid "Only votes are protected"
-msgstr ""
+msgstr "Endast röster är skyddade"
 
 #: .PollInfo.Password+protected
 msgid "Password protected"
-msgstr ""
+msgstr "Lösenordsskyddad"
 
 #: .PollInfo.Poll+rules
 msgid "Poll rules"
-msgstr ""
+msgstr "Regler för undersökningen"
 
 #: .PollInfo.Print
 msgid "Print"
-msgstr ""
+msgstr "Skriv ut"
 
 #: .PollInfo.Public+link+to+the+poll
 msgid "Public link to the poll"
-msgstr ""
+msgstr "Offentlig länk till undersökningen"
 
 #: .PollInfo.Remove+all+comments
 msgid "Remove all comments"
-msgstr ""
+msgstr "Ta bort samtliga kommentarer"
 
 #: .PollInfo.Remove+all+votes
 msgid "Remove all votes"
-msgstr ""
+msgstr "Ta bort samtliga röster"
 
 #: .PollInfo.Remove+password
 msgid "Remove password"
-msgstr ""
+msgstr "Ta bort lösenord"
 
 #: .PollInfo.Remove+the+poll
 msgid "Remove the poll"
-msgstr ""
+msgstr "Ta bort undersökningen"
 
 #: .PollInfo.Results+are+hidden
 msgid "Results are hidden"
-msgstr ""
+msgstr "Resultaten är dolda"
 
 #: .PollInfo.Results+are+visible
 msgid "Results are visible"
