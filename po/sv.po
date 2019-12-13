@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2019-12-06 15:13+0000\n"
+"PO-Revision-Date: 2019-12-14 22:13+0000\n"
 "Last-Translator: Filip Bengtsson <filip@libreradio.org>\n"
 "Language-Team: Swedish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/sv/>\n"
@@ -520,7 +520,6 @@ msgid "Failed to delete the vote!"
 msgstr "Kunde inte radera rösten!"
 
 #: .Error.Failed+to+insert+the+comment%21
-#, fuzzy
 msgid "Failed to insert the comment!"
 msgstr "Kunde inte lägga till kommentaren!"
 
@@ -534,7 +533,7 @@ msgstr "Förbjudet!"
 
 #: .Error.GenericErrorPollCreation
 msgid "GenericErrorPollCreation"
-msgstr "GenericErrorPollCreation"
+msgstr ""
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
@@ -1039,7 +1038,6 @@ msgid "Someone just deleted your poll \"%s\"."
 msgstr "Någon raderade din undersökning ”%s” nyss."
 
 #: .Mail.Thank+you+for+participating+in+the+poll+at+the+following+link
-#, fuzzy
 msgid "Thank you for participating in the poll at the following link"
 msgstr "Tack för ditt deltagande i undersökningen med följande länk"
 
