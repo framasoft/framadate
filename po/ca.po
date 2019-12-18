@@ -6,15 +6,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
+"PO-Revision-Date: 2019-12-19 23:13+0000\n"
+"Last-Translator: Francesc <francescgali@protonmail.com>\n"
+"Language-Team: Catalan <https://weblate.framasoft.org/projects/framadate/"
+"framadate/ca/>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-04-19 07:00+0000\n"
-"Last-Translator: Thomas Citharel <thomas.citharel@framasoft.org>\n"
-"Language-Team: Catalan\n"
-"Language: ca\n"
-"X-Generator: Zanata 4.6.2\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -77,6 +78,8 @@ msgid ""
 "This software needs javascript and cookies enabled. It is compatible with "
 "the following web browsers:"
 msgstr ""
+"Aquest programari necessita Javascript i cookies habilitades. És compatible "
+"amb els navegadors web següents:"
 
 #: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days
 #: +it+is+developed+by+the+Framasoft+association.
@@ -218,7 +221,7 @@ msgstr "L'estat"
 
 #: .Admin.Succeeded:
 msgid "Succeeded:"
-msgstr "Amb èxit"
+msgstr "Amb èxit:"
 
 #: .Admin.Success
 msgid "Success"
@@ -254,7 +257,7 @@ msgstr "Comprova una altra vegada"
 msgid "Consider enabling the PHP extension OpenSSL for increased security."
 msgstr ""
 "Per una major seguretat, considera habilitar l'extensió  OpenSSL de PHP "
-"OpenSSL "
+"OpenSSL."
 
 #: .Check.Consider+setting+the+date.timezone+in+php.ini.
 msgid "Consider setting the date.timezone in php.ini."
@@ -268,7 +271,7 @@ msgid ""
 msgstr ""
 "Considera establir « session.cookie_httponly = 1 » a l'arxiu php.ini o "
 "afegeix « php_value session.cookie_httponly 1 » a l'arxiu .htaccess de forma "
-"que les galetes no siguin accessibles des de Javascript"
+"que les galetes no siguin accessibles des de Javascript."
 
 #: .Check.Continue+the+installation
 msgid "Continue the installation"
@@ -276,7 +279,7 @@ msgstr "Continuar la instal·lació"
 
 #: .Check.Cookies+are+served+from+HTTP+only.
 msgid "Cookies are served from HTTP only."
-msgstr "Les galetes només es poden enviar des d'HTTP"
+msgstr "Les galetes només es poden enviar des d'HTTP."
 
 #: .Check.Installation+checking
 msgid "Installation checking"
@@ -417,7 +420,7 @@ msgstr "Pots seleccionar com a màxim 4 mesos"
 
 #: .Date.yyyy-mm-dd
 msgid "yyyy-mm-dd"
-msgstr "yyyy-mm-dd"
+msgstr "dd/mm/yyyy"
 
 #: .Date.yyyy-mm-dd-for-humans
 msgid "yyyy-mm-dd-for-humans"
@@ -493,7 +496,7 @@ msgstr "Introdueix un nom"
 
 #: .Error.Enter+a+name+and+a+comment%21
 msgid "Enter a name and a comment!"
-msgstr "Introdueix un nom i un comentari."
+msgstr "Introdueix un nom i un comentari!"
 
 #: .Error.Enter+a+title
 msgid "Enter a title"
@@ -540,7 +543,7 @@ msgstr "No s'ha pogut eliminar el vot!"
 
 #: .Error.Failed+to+insert+the+comment%21
 msgid "Failed to insert the comment!"
-msgstr "No s'ha pogut inserí el comentari"
+msgstr "No s'ha pogut inserí el comentari!"
 
 #: .Error.Failed+to+save+poll
 msgid "Failed to save poll"
@@ -561,7 +564,7 @@ msgstr "Ja s'utilitza l'identificador"
 #: .Error.If+you+quit+now
 #: +your+changes+will+be+lost.
 msgid "If you quit now, your changes will be lost."
-msgstr ""
+msgstr "Si tanqueu ara, es perdran els canvis."
 
 #: .Error.JavaScript+is+disabled+on+your+browser.+It+is+required+to+create+a+poll.
 msgid ""
@@ -657,12 +660,12 @@ msgstr "S'ha produït un error en afegir el vot"
 
 #: .Error.You+already+voted
 msgid "You already voted"
-msgstr "Ja has votat..."
+msgstr "Ja has votat"
 
 #: .Error.You+can%27t+create+a+poll+with+hidden+results+with+the+following+option:+
 msgid ""
 "You can't create a poll with hidden results with the following option: "
-msgstr "No pots crear una enquesta amb resultats ocults amb la següent opció:"
+msgstr "No pots crear una enquesta amb resultats ocults amb la següent opció:· "
 
 #: .Error.You+can%27t+select+more+than+%25d+dates
 msgid "You can't select more than %d dates"
@@ -1129,7 +1132,7 @@ msgstr "L'aplicació"
 
 #: .Maintenance.is+currently+under+maintenance.
 msgid "is currently under maintenance."
-msgstr "actualment està en manteniment"
+msgstr "actualment està en manteniment."
 
 #: .Password.Submit+access
 msgid "Submit access"
@@ -1137,7 +1140,7 @@ msgstr "Enviar accés"
 
 #: .Password.Wrong+password
 msgid "Wrong password"
-msgstr "Contrasenya "
+msgstr "Contrasenya  errònia"
 
 #: .Password.You+have+to+provide+a+password+so+you+can+participate+to+the+poll.
 msgid "You have to provide a password so you can participate to the poll."
@@ -1210,8 +1213,7 @@ msgstr "Les millors opcions actuals són:"
 msgid ""
 "The link to edit this particular line has been copied to the clipboard!"
 msgstr ""
-"L'enllaç per editar aquesta línia en particular s'ha copiat al porta-retalls."
-""
+"L'enllaç per editar aquesta línia en particular s'ha copiat al porta-retalls!"
 
 #: .Poll+results.Total
 msgid "Total"
@@ -1634,8 +1636,8 @@ msgid ""
 "For each selected day, you are free to suggest meeting times (e.g., \"8h\", "
 "\"8:30\", \"8h-10h\", \"evening\", etc.)"
 msgstr ""
-"Per cada dia seleccionat, pots suggerir temps de trobada (per exemple, "
-"\"8h\", \"8:30\", \"8h-10h\", \"tarda\", etc.)."
+"Per cada dia seleccionat, pots suggerir temps de trobada (per exemple, \"8h\""
+", \"8:30\", \"8h-10h\", \"tarda\", etc.)"
 
 #: .Step+2+date.Poll+dates+(2+of+3)
 msgid "Poll dates (2 of 3)"
@@ -1736,7 +1738,7 @@ msgstr "després de l'última data de la teva enquesta."
 
 #: .Version.Version+%25s
 msgid "Version %s"
-msgstr ""
+msgstr "Versió %s"
 
 #: .adminstuds.Add+a+column
 msgid "Add a column"
@@ -1882,7 +1884,7 @@ msgstr "Pots afegir una nova data de programació a la teva enquesta."
 
 #: .adminstuds.Your+poll+has+been+removed%21
 msgid "Your poll has been removed!"
-msgstr "S'ha eliminat la teva enquesta."
+msgstr "S'ha eliminat la teva enquesta!"
 
 #: .adminstuds.and+add+a+new+column+with
 msgid "and add a new column with"
