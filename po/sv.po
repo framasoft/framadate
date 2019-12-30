@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2019-12-14 22:13+0000\n"
+"PO-Revision-Date: 2020-01-01 17:14+0000\n"
 "Last-Translator: Filip Bengtsson <filip@libreradio.org>\n"
 "Language-Team: Swedish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/sv/>\n"
@@ -143,11 +143,11 @@ msgstr "Utförd"
 #: .Admin.Expiry+date
 #: .Generic.Expiry+date
 msgid "Expiry date"
-msgstr "Utgångsdatum"
+msgstr "Sista datum"
 
 #: .Admin.Fail
 msgid "Fail"
-msgstr "Misslyckades"
+msgstr "Misslyckande"
 
 #: .Admin.Failed:
 msgid "Failed:"
@@ -359,11 +359,11 @@ msgstr "Skicka kommentar"
 
 #: .Date.%25A+%25e+%25B+%25Y
 msgid "%A %e %B %Y"
-msgstr "%B %e %Y"
+msgstr "%A %e %B %Y"
 
 #: .Date.%25A,+%25B+%25e,+%25Y
 msgid "%A, %B %e, %Y"
-msgstr "%B %e %Y"
+msgstr "%A %e %B %Y"
 
 #: .Date.%25B+%25Y
 msgid "%B %Y"
@@ -375,11 +375,11 @@ msgstr "%Y-%m-%d"
 
 #: .Date.%25a+%25e
 msgid "%a %e"
-msgstr "%a %e"
+msgstr "%a den %e"
 
 #: .Date.%25m/%25d/%25Y+%25H:%25M
 msgid "%m/%d/%Y %H:%M"
-msgstr "%Y-&m-%d %H:%M"
+msgstr "%Y-%m-%d %H:%M"
 
 #: .Date.Add+range+dates
 msgid "Add range dates"
@@ -1411,67 +1411,69 @@ msgstr ""
 
 #: .Step+1.Permissions
 msgid "Permissions"
-msgstr ""
+msgstr "Behörigheter"
 
 #: .Step+1.Poll+creation+(1+of+3)
 msgid "Poll creation (1 of 3)"
-msgstr ""
+msgstr "Skapa undersökning (1 av 3)"
 
 #: .Step+1.Poll+id
 #: .Step+1.Poll+link
 msgid "Poll link"
-msgstr ""
+msgstr "Länk till undersökning"
 
 #: .Step+1.Poll+title
 msgid "Poll title"
-msgstr ""
+msgstr "Undersökningens rubrik"
 
 #: .Step+1.Receive+an+email+for+each+new+comment
 msgid "Receive an email for each new comment"
-msgstr ""
+msgstr "Skicka e-post för varje ny kommentar"
 
 #: .Step+1.Receive+an+email+for+each+new+vote
 msgid "Receive an email for each new vote"
-msgstr ""
+msgstr "Skicka e-post för varje ny röst"
 
 #: .Step+1.Required+fields+cannot+be+left+blank.
 msgid "Required fields cannot be left blank."
-msgstr ""
+msgstr "Obligatoriska fält får inte lämnas tomma."
 
 #: .Step+1.The+identifier+can+contain+letters,+numbers+and+dashes+%22-%22.
 msgid "The identifier can contain letters, numbers and dashes \"-\"."
-msgstr ""
+msgstr "Identifieraren får innehålla bokstäver, siffror och bindestreck."
 
 #: .Step+1.The+results+are+publicly+visible
 msgid "The results are publicly visible"
-msgstr ""
+msgstr "Resultaten är synliga offentligt"
 
 #: .Step+1.To+make+the+description+more+attractive,+you+can+use+the+Markdown+format.
 msgid ""
 "To make the description more attractive, you can use the Markdown format."
-msgstr ""
+msgstr "Du kan använda Markdown för att göra beskrivningen lite snyggare."
 
 #: .Step+1.Use+a+password+to+restrict+access
 msgid "Use a password to restrict access"
-msgstr ""
+msgstr "Använd ett lösenord för med begränsad åtkomlighet"
 
 #: .Step+1.Value+Max
 msgid "Value Max"
-msgstr ""
+msgstr "Maxvärde"
 
 #: .Step+1.Voters+can+modify+their+vote+themselves
 msgid "Voters can modify their vote themselves"
-msgstr ""
+msgstr "Användare kan ändra sina röster själva"
 
 #: .Step+1.Votes+cannot+be+modified
 msgid "Votes cannot be modified"
-msgstr ""
+msgstr "Röster kan inte ändras"
 
 #: .Step+1.Warning:+Anyone+can+see+the+polled+users%27+email+addresses+since+all+voters+can+modify+any+vote.+You+should+restrict+permission+rules.
 msgid ""
 "Warning: Anyone can see the polled users' email addresses since all voters "
 "can modify any vote. You should restrict permission rules."
 msgstr ""
+"Varning: Vem som helst kan se deltagarnas e-postadresser eftersom deltagarna "
+"kan ändra varandras röster. Du bör begränsa behörigheterna."
 
 #: .Step+1.You+are+in+the+poll+creation+section.
 msgid "You are in the poll creation section."
@@ -1479,149 +1481,156 @@ msgstr ""
 
 #: .Step+1.You+can+enable+or+disable+the+editor+at+will.
 msgid "You can enable or disable the editor at will."
-msgstr ""
+msgstr "Du kan slå av eller på redigeraren när du vill."
 
 #: .Step+1.votes+per+option
 msgid "votes per option"
-msgstr ""
+msgstr "röster per alternativ"
 
 #: .Step+2.Go+to+step+3
 msgid "Go to step 3"
-msgstr ""
+msgstr "Gå till steg 3"
 
 #: .Step+2.Return+to+step+1
 msgid "Return to step 1"
-msgstr ""
+msgstr "Gå tillbaka till steg 1"
 
 #: .Step+2+classic.Add+a+choice
 msgid "Add a choice"
-msgstr ""
+msgstr "Lägg till ett alternativ"
 
 #: .Step+2+classic.Add+a+link+or+an+image
 msgid "Add a link or an image"
-msgstr ""
+msgstr "Lägg till en länk eller bild"
 
 #: .Step+2+classic.Alternative+text
 msgid "Alternative text"
-msgstr ""
+msgstr "Alternativ text"
 
 #: .Step+2+classic.Links+or+images+can+be+included+using
 msgid "Links or images can be included using"
-msgstr ""
+msgstr "Länkar och bilder kan läggas till med"
 
 #: .Step+2+classic.Markdown+syntax
 msgid "Markdown syntax"
-msgstr ""
+msgstr "Markdown-syntax"
 
 #: .Step+2+classic.Poll+options+(2+of+3)
 msgid "Poll options (2 of 3)"
-msgstr ""
+msgstr "Alternativ för undersökningen (2 av 3)"
 
 #: .Step+2+classic.Remove+a+choice
 msgid "Remove a choice"
-msgstr ""
+msgstr "Ta bort ett alternativ"
 
 #: .Step+2+classic.These+fields+are+optional.+You+can+add+a+link,+an+image+or+both.
 msgid "These fields are optional. You can add a link, an image or both."
 msgstr ""
+"De här fälten är valfria. Du kan lägga till en länk, bild eller både och."
 
 #: .Step+2+classic.To+create+a+poll+you+should+provide+at+least+two+different+choices.
 msgid "To create a poll you should provide at least two different choices."
-msgstr ""
+msgstr "Du bör ge minst två alternativ för att skapa en undersökning."
 
 #: .Step+2+classic.URL+of+the+image
 msgid "URL of the image"
-msgstr ""
+msgstr "Länk till bilden"
 
 #: .Step+2+classic.You+can+add+or+remove+choices+with+the+buttons
 msgid "You can add or remove choices with the buttons"
-msgstr ""
+msgstr "Du kan lägga till eller ta bort val med knapparna"
 
 #: .Step+2+date.Add+a+day
 msgid "Add a day"
-msgstr ""
+msgstr "Lägg till en dag"
 
 #: .Step+2+date.Add+a+time+slot
 msgid "Add a time slot"
-msgstr ""
+msgstr "Lägg till en tid"
 
 #: .Step+2+date.Choose+dates+for+your+poll
 msgid "Choose dates for your poll"
-msgstr ""
+msgstr "Välj datum för din undersökning"
 
 #: .Step+2+date.Copy+times+from+the+first+day
 msgid "Copy times from the first day"
-msgstr ""
+msgstr "Kopiera tider från den första dagen"
 
 #: .Step+2+date.For+each+selected+day,+you+are+free+to+suggest+meeting+times+(e.g.,+%228h%22,+%228:30%22,+%228h-10h%22,+%22evening%22,+etc.)
 msgid ""
 "For each selected day, you are free to suggest meeting times (e.g., \"8h\", "
 "\"8:30\", \"8h-10h\", \"evening\", etc.)"
 msgstr ""
+"Du kan föreslå tider för varje dag (till exempel ”klockan åtta”, ”18:30”, ”"
+"kl 10–14” eller ”på kvällen”)."
 
 #: .Step+2+date.Poll+dates+(2+of+3)
 msgid "Poll dates (2 of 3)"
-msgstr ""
+msgstr "Undersökningsdatum (2 av 3)"
 
 #: .Step+2+date.Remove+a+day
 msgid "Remove a day"
-msgstr ""
+msgstr "Ta bort en dag"
 
 #: .Step+2+date.Remove+a+time+slot
 msgid "Remove a time slot"
-msgstr ""
+msgstr "Ta bort en tid"
 
 #: .Step+2+date.Remove+all+days
 msgid "Remove all days"
-msgstr ""
+msgstr "Ta bort alla dagar"
 
 #: .Step+2+date.Remove+all+times
 msgid "Remove all times"
-msgstr ""
+msgstr "Ta bort alla tider"
 
 #: .Step+2+date.Remove+this+day
 msgid "Remove this day"
-msgstr ""
+msgstr "Ta bort den här dagen"
 
 #: .Step+2+date.To+schedule+an+event+you+need+to+provide+at+least+two+choices+(e.g.,+two+time+slots+on+one+day+or+two+days).
 msgid ""
 "To schedule an event you need to provide at least two choices (e.g., two "
 "time slots on one day or two days)."
 msgstr ""
+"För att schemalägga ett evenemang måste du ange minst två val (alltså minst "
+"två tider samma dag eller två dagar)."
 
 #: .Step+2+date.You+can+add+or+remove+additional+days+and+times+with+the+buttons
 msgid "You can add or remove additional days and times with the buttons"
-msgstr ""
+msgstr "Du kan lägga till och ta bort dagar och tider med knapparna"
 
 #: .Step+3.Back+to+step+2
 msgid "Back to step 2"
-msgstr ""
+msgstr "Tillbaka till steg 2"
 
 #: .Step+3.Confirm+the+creation+of+your+poll
 msgid "Confirm the creation of your poll"
-msgstr ""
+msgstr "Bekräfta skapandet av undersökningen"
 
 #: .Step+3.Create+the+poll
 msgid "Create the poll"
-msgstr ""
+msgstr "Skapa undersökningen"
 
 #: .Step+3.Expiry+date:
 msgid "Expiry date:"
-msgstr ""
+msgstr "Utgångsdatum:"
 
 #: .Step+3.List+of+options
 msgid "List of options"
-msgstr ""
+msgstr "Lista över alternativ"
 
 #: .Step+3.Once+you+have+confirmed+the+creation+of+your+poll,+you+will+automatically+be+redirected+to+the+poll%27s+administration+page.
 msgid ""
 "Once you have confirmed the creation of your poll, you will automatically be "
 "redirected to the poll's administration page."
 msgstr ""
+"När du har bekräftat undersökningens skapande kommer du skickas vidare till "
+"dess administrationssida automatiskt."
 
 #: .Step+3.Removal+date+and+confirmation+(3+of+3)
 msgid "Removal date and confirmation (3 of 3)"
-msgstr ""
+msgstr "Raderingsdatum och bekräftelse (3 av 3)"
 
 #: .Step+3.Then+you+will+receive+two+emails:+one+containing+the+link+of+your+poll+for+sending+to+the+participants,+the+other+containing+the+link+to+the+poll+administration+page.
 msgid ""
@@ -1629,210 +1638,229 @@ msgid ""
 "sending to the participants, the other containing the link to the poll "
 "administration page."
 msgstr ""
+"Därefter kommer du få två e-postmeddelanden: ett med en länk att skicka till "
+"deltagarna och ett med din länk till undersökningens administrationssida."
 
 #: .Step+3.You+can+set+a+specific+expiry+date+for+the+poll.
 msgid "You can set a specific expiry date for the poll."
-msgstr ""
+msgstr "Du kan ange ett bäst före-datum för undersökningen."
 
 #: .Step+3.Your+poll+will+automatically+be+archived
 msgid "Your poll will automatically be archived"
-msgstr ""
+msgstr "Din undersökning kommer arkiveras automatiskt"
 
 #: .Step+3.Your+poll+will+be+automatically+archived+in+%25d+days.
 msgid "Your poll will be automatically archived in %d days."
-msgstr ""
+msgstr "Din undersökning kommer arkiveras automatiskt om %d dagar."
 
 #: .Step+3.after+the+last+date+of+your+poll.
 msgid "after the last date of your poll."
-msgstr ""
+msgstr "efter det sista datumet i din undersökning."
 
 #: .Version.Version+%25s
 msgid "Version %s"
-msgstr ""
+msgstr "Version %s"
 
 #: .adminstuds.Add+a+column
 msgid "Add a column"
-msgstr ""
+msgstr "Lägg till en kolumn"
 
 #: .adminstuds.Adding+a+column
 msgid "Adding a column"
-msgstr ""
+msgstr "Lägger till en kolumn"
 
 #: .adminstuds.All+comments+deleted
 msgid "All comments deleted"
-msgstr ""
+msgstr "Alla kommentarer raderade"
 
 #: .adminstuds.All+votes+deleted
 msgid "All votes deleted"
-msgstr ""
+msgstr "Alla röster raderade"
 
 #: .adminstuds.As+poll+administrator,+you+can+change+all+the+lines+of+this+poll+with+this+button
 msgid ""
 "As poll administrator, you can change all the lines of this poll with this "
 "button"
 msgstr ""
+"Som administratör för undersökningen kan du ändra alla rader i "
+"undersökningen med den här knappen"
 
 #: .adminstuds.Back+to+the+poll
 msgid "Back to the poll"
-msgstr ""
+msgstr "Tillbaka till undersökningen"
 
 #: .adminstuds.Choice+added
 msgid "Choice added"
-msgstr ""
+msgstr "Alternativ tillagt"
 
 #: .adminstuds.Collect+the+emails+of+the+polled+users+for+the+choice
 msgid "Collect the emails of the polled users for the choice"
-msgstr ""
+msgstr "Samla in e-postadresserna till de deltagare som röstade om alternativet"
 
 #: .adminstuds.Column+deleted
 msgid "Column deleted"
-msgstr ""
+msgstr "Kolumn raderad"
 
 #: .adminstuds.Comment+deleted
 msgid "Comment deleted"
-msgstr ""
+msgstr "Kommentar raderad"
 
 #: .adminstuds.Confirm+removal+of+all+comments
 msgid "Confirm removal of all comments"
-msgstr ""
+msgstr "Bekräfta borttagning av alla kommentarer"
 
 #: .adminstuds.Confirm+removal+of+all+votes
 msgid "Confirm removal of all votes"
-msgstr ""
+msgstr "Bekräfta borttagning av alla röster"
 
 #: .adminstuds.Confirm+removal+of+the+column.
 msgid "Confirm removal of the column."
-msgstr ""
+msgstr "Bekräfta borttagning av kolumnen."
 
 #: .adminstuds.Confirm+removal+of+your+poll
 msgid "Confirm removal of your poll"
-msgstr ""
+msgstr "Bekräfta borttagning av din undersökning"
 
 #: .adminstuds.Delete+poll
 msgid "Delete poll"
-msgstr ""
+msgstr "Radera undersökning"
 
 #: .adminstuds.Finally,+you+can+change+the+properties+of+this+poll+such+as+the+title,+the+comments+or+your+email+address.
 msgid ""
 "Finally, you can change the properties of this poll such as the title, the "
 "comments or your email address."
 msgstr ""
+"Till sist, kan du ändra undersökningens egenskaper, såsom titeln, "
+"kommentarerna och din e-postadress."
 
 #: .adminstuds.Keep+comments
 msgid "Keep comments"
-msgstr ""
+msgstr "Behåll kommentarer"
 
 #: .adminstuds.Keep+the+comments
 msgid "Keep the comments"
-msgstr ""
+msgstr "Behåll kommentarerna"
 
 #: .adminstuds.Keep+the+poll
 msgid "Keep the poll"
-msgstr ""
+msgstr "Behåll undersökningen"
 
 #: .adminstuds.Keep+the+votes
 msgid "Keep the votes"
-msgstr ""
+msgstr "Behåll rösterna"
 
 #: .adminstuds.Keep+this+poll
 msgid "Keep this poll"
-msgstr ""
+msgstr "Behåll den här undersökningen"
 
 #: .adminstuds.Keep+votes
 msgid "Keep votes"
-msgstr ""
+msgstr "Behåll röster"
 
 #: .adminstuds.Poll+fully+deleted
 msgid "Poll fully deleted"
-msgstr ""
+msgstr "Undersökningen har raderats"
 
 #: .adminstuds.Poll+saved
 msgid "Poll saved"
-msgstr ""
+msgstr "Undersökning sparad"
 
 #: .adminstuds.Remove+column
 msgid "Remove column"
-msgstr ""
+msgstr "Ta bort kolumn"
 
 #: .adminstuds.Remove+the+comments
 msgid "Remove the comments"
-msgstr ""
+msgstr "Ta bort kommentarerna"
 
 #: .adminstuds.Remove+the+votes
 msgid "Remove the votes"
-msgstr ""
+msgstr "Ta bort rösterna"
 
 #: .adminstuds.The+poll+was+created.
 msgid "The poll was created."
-msgstr ""
+msgstr "Undersökningen har skapats."
 
 #: .adminstuds.Vote+added
 #: .studs.Vote+added
 msgid "Vote added"
-msgstr ""
+msgstr "Röst tillagd"
 
 #: .adminstuds.Vote+deleted
 msgid "Vote deleted"
-msgstr ""
+msgstr "Röst raderad"
 
 #: .adminstuds.Vote+updated
 #: .studs.Vote+updated
 msgid "Vote updated"
-msgstr ""
+msgstr "Röst uppdaterad"
 
 #: .adminstuds.You+can+add+a+new+scheduling+date+to+your+poll.
 msgid "You can add a new scheduling date to your poll."
-msgstr ""
+msgstr "Du kan lägga till ett nytt schemaläggningsdatum för din undersökning."
 
 #: .adminstuds.Your+poll+has+been+removed%21
 msgid "Your poll has been removed!"
-msgstr ""
+msgstr "Din undersökning har tagits bort!"
 
 #: .adminstuds.and+add+a+new+column+with
 msgid "and add a new column with"
-msgstr ""
+msgstr "och lägg till en ny kolumn med"
 
 #: .adminstuds.remove+a+column+or+a+line+with
 msgid "remove a column or a line with"
-msgstr ""
+msgstr "ta bort en kolumn eller rad med"
 
 #: .display_mails.Users+who+voted+%22If+need+be%22+for+this+option+have+left+those+email+addresses:
 msgid ""
 "Users who voted \"If need be\" for this option have left those email "
 "addresses:"
 msgstr ""
+"De användare som röstade ”Om så behövs” på det här alternativet, lämnade "
+"följande e-postadresser:"
 
 #: .display_mails.Users+who+voted+%22No%22+for+this+option+have+left+those+email+addresses:
 msgid "Users who voted \"No\" for this option have left those email addresses:"
 msgstr ""
+"De användare som röstade ”Nej” på det här alternativet, lämnade följande "
+"e-postadresser:"
 
 #: .display_mails.Users+who+voted+%22Yes%22+for+this+option+have+left+those+email+addresses:
 msgid ""
 "Users who voted \"Yes\" for this option have left those email addresses:"
 msgstr ""
+"De användare som röstade ”Ja” på det här alternativet, lämnade följande "
+"e-postadresser:"
 
 #: .studs.Deletion+date:
 msgid "Deletion date:"
-msgstr ""
+msgstr "Raderingsdatum:"
 
 #: .studs.If+you+want+to+vote+in+this+poll,+you+have+to+give+your+name,+make+your+choice,+and+submit+it+by+selecting+the+save+button+at+the+end+of+the+line.
 msgid ""
 "If you want to vote in this poll, you have to give your name, make your "
 "choice, and submit it by selecting the save button at the end of the line."
 msgstr ""
+"Om du vill delta i den här undersökningen måste du uppge ditt namn, lägga "
+"din röst och skicka den genom att klicka på spara-knappen vid slutet av "
+"respektive rad."
 
 #: .studs.The+administrator+locked+this+poll.+Votes+and+comments+are+frozen,+it+is+no+longer+possible+to+participate
 msgid ""
 "The administrator locked this poll. Votes and comments are frozen, it is no "
 "longer possible to participate"
 msgstr ""
+"Administratören har låst den här undersökningen. Röster och kommentarer har "
+"frysts och det är inte längre möjligt att delta"
 
 #: .studs.The+poll+has+expired,+it+will+soon+be+deleted.
 msgid "The poll has expired, it will soon be deleted."
-msgstr ""
+msgstr "Undersökningen har gått ut och kommer snart raderas."
 
 #: .studs.Your+vote+has+been+saved,+but+please+note:+you+need+to+keep+this+personalised+link+to+be+able+to+edit+your+vote.
 msgid ""
 "Your vote has been saved, but please note: you need to keep this "
 "personalised link to be able to edit your vote."
 msgstr ""
+"Din röst har sparats, men kom ihåg att du måste spara den här personliga "
+"länken för att kunna ändra din röst."
