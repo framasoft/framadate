@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-01-14 14:15+0000\n"
+"PO-Revision-Date: 2020-01-16 10:15+0000\n"
 "Last-Translator: Joan Montané <joan@montane.cat>\n"
 "Language-Team: Catalan <https://weblate.framasoft.org/projects/framadate/"
 "framadate/ca/>\n"
@@ -590,7 +590,7 @@ msgstr "Les contrasenyes no coincideixen."
 
 #: .Error.Poll+has+been+updated+before+you+vote
 msgid "Poll has been updated before you vote"
-msgstr "L'enquesta s'ha actualitzat abans de votar"
+msgstr "L'enquesta s'ha actualitzat abans que votéssiu"
 
 #: .Error.Something+has+gone+wrong...
 msgid "Something has gone wrong..."
@@ -1200,11 +1200,11 @@ msgstr "Desplaça't cap a la dreta"
 
 #: .Poll+results.The+current+best+choice+is:
 msgid "The current best choice is:"
-msgstr "La millor opció actual és:"
+msgstr "Ara per ara, l'opció més votada és:"
 
 #: .Poll+results.The+current+best+choices+are:
 msgid "The current best choices are:"
-msgstr "Les millors opcions actuals són:"
+msgstr "Ara per ara, les opcions més votades són:"
 
 #: .Poll+results.The+link+to+edit+this+particular+line+has+been+copied+to+the+clipboard%21
 msgid ""
@@ -1760,7 +1760,7 @@ msgid ""
 "As poll administrator, you can change all the lines of this poll with this "
 "button"
 msgstr ""
-"Com a administrador, pots canviar totes les línies d'aquesta enquesta amb "
+"Com a administrador, podeu canviar totes les línies d'aquesta enquesta amb "
 "aquest botó"
 
 #: .adminstuds.Back+to+the+poll
@@ -1786,7 +1786,7 @@ msgstr "Comentaris eliminats"
 
 #: .adminstuds.Confirm+removal+of+all+comments
 msgid "Confirm removal of all comments"
-msgstr "Confirma l'eliminació de tots els comentaris"
+msgstr "Confirmeu l'eliminació de tots els comentaris"
 
 #: .adminstuds.Confirm+removal+of+all+votes
 msgid "Confirm removal of all votes"
@@ -1794,11 +1794,11 @@ msgstr "Confirma l'eliminació de tots els vots"
 
 #: .adminstuds.Confirm+removal+of+the+column.
 msgid "Confirm removal of the column."
-msgstr "Confirma l'eliminació de la columna."
+msgstr "Confirmeu l'eliminació de la columna."
 
 #: .adminstuds.Confirm+removal+of+your+poll
 msgid "Confirm removal of your poll"
-msgstr "Confirma l'eliminació de la vostra enquesta"
+msgstr "Confirmeu l'eliminació de l'enquesta"
 
 #: .adminstuds.Delete+poll
 msgid "Delete poll"
@@ -1811,12 +1811,12 @@ msgid ""
 "Finally, you can change the properties of this poll such as the title, the "
 "comments or your email address."
 msgstr ""
-"Finalment, pots canviar les propietats d'aquesta enquesta, com ara el títol, "
-"els comentaris o la teva adreça de correu electrònic."
+"Finalment, podeu canviar les propietats d'aquesta enquesta, com ara el "
+"títol, els comentaris o l'adreça de correu electrònic."
 
 #: .adminstuds.Keep+comments
 msgid "Keep comments"
-msgstr "Mantenir comentaris"
+msgstr "Conserva els comentaris"
 
 #: .adminstuds.Keep+the+comments
 msgid "Keep the comments"
@@ -1836,11 +1836,11 @@ msgstr "Conserva aquesta enquesta"
 
 #: .adminstuds.Keep+votes
 msgid "Keep votes"
-msgstr "Mantenir vots"
+msgstr "Conserva els vots"
 
 #: .adminstuds.Poll+fully+deleted
 msgid "Poll fully deleted"
-msgstr "Enquesta eliminada completament"
+msgstr "L'enquesta s'ha eliminat completament"
 
 #: .adminstuds.Poll+saved
 msgid "Poll saved"
@@ -1865,7 +1865,7 @@ msgstr "S'ha creat l'enquesta."
 #: .adminstuds.Vote+added
 #: .studs.Vote+added
 msgid "Vote added"
-msgstr "Vot afegit"
+msgstr "S'ha afegit el vot"
 
 #: .adminstuds.Vote+deleted
 msgid "Vote deleted"
@@ -1874,15 +1874,15 @@ msgstr "S'ha suprimit el vot"
 #: .adminstuds.Vote+updated
 #: .studs.Vote+updated
 msgid "Vote updated"
-msgstr "Vot actualitzat"
+msgstr "S'ha actualitzat el vot"
 
 #: .adminstuds.You+can+add+a+new+scheduling+date+to+your+poll.
 msgid "You can add a new scheduling date to your poll."
-msgstr "Pots afegir una nova data de programació a la teva enquesta."
+msgstr "Podeu afegir una altra data de programació a l'enquesta."
 
 #: .adminstuds.Your+poll+has+been+removed%21
 msgid "Your poll has been removed!"
-msgstr "S'ha eliminat la teva enquesta!"
+msgstr "S'ha eliminat l'enquesta!"
 
 #: .adminstuds.and+add+a+new+column+with
 msgid "and add a new column with"
@@ -1897,19 +1897,19 @@ msgid ""
 "Users who voted \"If need be\" for this option have left those email "
 "addresses:"
 msgstr ""
-"Els usuaris que han votat \"Si cal\" per a aquesta opció han deixat aquestes "
+"Els usuaris que han votat «Si cal» per a aquesta opció han deixat aquestes "
 "adreces de correu electrònic:"
 
 #: .display_mails.Users+who+voted+%22No%22+for+this+option+have+left+those+email+addresses:
 msgid "Users who voted \"No\" for this option have left those email addresses:"
 msgstr ""
-"Els usuaris que han votat \"No\" per a aquesta opció han deixat aquestes "
+"Els usuaris que han votat «No» per a aquesta opció han deixat aquestes "
 "adreces de correu electrònic:"
 
 #: .display_mails.Users+who+voted+%22Yes%22+for+this+option+have+left+those+email+addresses:
 msgid "Users who voted \"Yes\" for this option have left those email addresses:"
 msgstr ""
-"Els usuaris que han votat \"Sí\" per a aquesta opció han deixat aquestes "
+"Els usuaris que han votat «Sí» per a aquesta opció han deixat aquestes "
 "adreces de correu electrònic:"
 
 #: .studs.Deletion+date:
@@ -1924,8 +1924,8 @@ msgid ""
 "If you want to vote in this poll, you have to give your name, make your "
 "choice, and submit it by selecting the save button at the end of the line."
 msgstr ""
-"Si vols votar en aquesta enquesta, hauràs de donar el teu nom, fer la teva "
-"elecció i enviar-la seleccionant el botó de desar al final de la línia."
+"Si voleu votar en aquesta enquesta, cal que indiqueu el vostre nom, feu "
+"l'elecció i envieu-la seleccionant el botó de desar al final de la línia."
 
 #: .studs.The+administrator+locked+this+poll.+Votes+and+comments+are+frozen
 #: +it+is+no+longer+possible+to+participate
@@ -1933,8 +1933,8 @@ msgid ""
 "The administrator locked this poll. Votes and comments are frozen, it is no "
 "longer possible to participate"
 msgstr ""
-"L'administrador va bloquejar aquesta enquesta. Els vots i els comentaris "
-"estan congelats, ja no és possible participar"
+"L'administrador ha blocat aquesta enquesta. Els vots i els comentaris estan "
+"congelats, ja no és possible de participar-hi"
 
 #: .studs.The+poll+has+expired
 #: +it+will+soon+be+deleted.
@@ -1947,5 +1947,5 @@ msgid ""
 "Your vote has been saved, but please note: you need to keep this "
 "personalised link to be able to edit your vote."
 msgstr ""
-"El teu vot s'ha desat, però tingues en compte que has de conservar aquest "
-"enllaç personalitzat per poder-lo modificar."
+"S'ha desat el vostre vot, però tingueu en compte que cal que conserveu "
+"aquest enllaç personalitzat per a poder-lo modificar."
