@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2019-10-17 14:31+0000\n"
-"Last-Translator: Zilverspar <vuod@vivaldi.net>\n"
+"PO-Revision-Date: 2020-01-24 13:15+0000\n"
+"Last-Translator: Luc Didry <luc@framasoft.org>\n"
 "Language-Team: French <https://weblate.framasoft.org/projects/framadate/"
 "framadate/fr/>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9\n"
+"X-Generator: Weblate 3.9.1\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -114,7 +114,7 @@ msgid ""
 "download it, please visit"
 msgstr ""
 "Pour participer au développement du logiciel, proposer des améliorations ou "
-"simplement le télécharger, rendez-vous sur "
+"simplement le télécharger, rendez-vous sur"
 
 #: .3rd+section.the+development+site
 msgid "the development site"
@@ -801,7 +801,7 @@ msgstr ""
 "Pour vous aider à trouver vos sondages précédents, nous enregistrons des "
 "informations sur chaque sondage que vous effectuez ou auquel vous accédez "
 "dans votre navigateur. Ces données sont sauvegardées uniquement dans votre "
-"navigateur. Les données suivantes seront enregistrées:"
+"navigateur. Les données suivantes seront enregistrées :"
 
 #: .FindPolls.Visited+polls
 msgid "Visited polls"
@@ -1099,7 +1099,7 @@ msgstr "Quelqu'un·e vient de supprimer votre sondage \"%s\"."
 
 #: .Mail.Thank+you+for+participating+in+the+poll+at+the+following+link
 msgid "Thank you for participating in the poll at the following link"
-msgstr "Merci de bien vouloir participer au sondage à l'adresse suivante "
+msgstr "Merci de bien vouloir participer au sondage à l'adresse suivante"
 
 #: .Mail.Thank+you+for+your+trust.
 msgid "Thank you for your trust."
@@ -1117,9 +1117,9 @@ msgid ""
 "This message should NOT be sent to the poll participants. You should keep it "
 "private. <br/><br/>You can modify your poll at the following link"
 msgstr ""
-"Ce message ne doit PAS être diffusé aux sondé·e·s. Il est réservé à "
-"l'auteur·rice du sondage.<br/><br/>Vous pouvez modifier ce sondage à "
-"l'adresse suivante "
+"Ce message ne doit PAS être diffusé aux sondé·e·s. Il est réservé à l'auteur·"
+"rice du sondage.<br/><br/>Vous pouvez modifier ce sondage à l'adresse "
+"suivante"
 
 #: .Mail.added+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "added a vote.<br/>You can visit your poll at the link"
@@ -1128,7 +1128,7 @@ msgstr ""
 
 #: .Mail.has+just+created+a+poll+called
 msgid "has just created a poll called"
-msgstr " vient de créer un sondage intitulé "
+msgstr "vient de créer un sondage intitulé"
 
 #: .Mail.updated+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "updated a vote.<br/>You can visit your poll at the link"
@@ -1595,7 +1595,7 @@ msgstr "Texte alternatif"
 
 #: .Step+2+classic.Links+or+images+can+be+included+using
 msgid "Links or images can be included using"
-msgstr "Il est possible d’insérer des liens ou des images en utilisant "
+msgstr "Il est possible d’insérer des liens ou des images en utilisant"
 
 #: .Step+2+classic.Markdown+syntax
 msgid "Markdown syntax"
@@ -1926,19 +1926,19 @@ msgid ""
 "addresses:"
 msgstr ""
 "Les utilisateurs qui ont voté « Si nécessaire » pour cette option ont laissé "
-"les courriels suivants:"
+"les courriels suivants :"
 
 #: .display_mails.Users+who+voted+%22No%22+for+this+option+have+left+those+email+addresses:
 msgid "Users who voted \"No\" for this option have left those email addresses:"
 msgstr ""
 "Les utilisateurs qui ont voté « Non » pour cette option ont laissé les "
-"courriels suivants:"
+"courriels suivants :"
 
 #: .display_mails.Users+who+voted+%22Yes%22+for+this+option+have+left+those+email+addresses:
 msgid "Users who voted \"Yes\" for this option have left those email addresses:"
 msgstr ""
 "Les utilisateurs qui ont voté « Oui » pour cette option ont laissé les "
-"courriels suivants:"
+"courriels suivants :"
 
 #: .studs.Deletion+date:
 msgid "Deletion date:"
@@ -1978,4 +1978,4 @@ msgid ""
 msgstr ""
 "Votre vote a bien été pris en compte, mais faites attention : ce sondage "
 "n'autorise l'édition de votre vote qu'avec le lien personnalisé suivant ; "
-"conservez-le précieusement ! "
+"conservez-le précieusement !"
