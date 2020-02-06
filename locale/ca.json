@@ -7,7 +7,10 @@
         },
         "POLL_LOCKED_WARNING": "L'administrador ha blocat aquesta enquesta. Els vots i els comentaris estan congelats, ja no és possible de participar-hi",
         "Deletion date:": "Data de supressió:",
-        "Adding the vote succeeded": "S'ha afegit el vot"
+        "Adding the vote succeeded": "S'ha afegit el vot",
+        "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line": {
+            "": "Si voleu votar en aquesta enquesta, heu de donar el vostre nom, triar i enviar-lo amb el botó més al final de la línia."
+        }
     },
     "adminstuds": {
         "remove a column or a line with": "treu una columna o una línia amb",
@@ -50,7 +53,11 @@
         "As poll administrator, you can change all the lines of this poll with this button": "Com a administrador, podeu canviar totes les línies d'aquesta enquesta amb aquest botó",
         "All votes deleted": "S'han suprimit tots els vots",
         "All comments deleted": "S'han suprimit tots els comentaris",
-        "Add a column": "Afegeix una columna"
+        "Add a column": "Afegeix una columna",
+        "If you just want to add a new hour to an existant date, put the same date and choose a new hour": {
+            "": "Si només voleu afegir una franja horària nova a una data existent, afegiu aquesta data i escolliu un interval horari."
+        },
+        "Delete the poll": "Elimina la enquesta"
     },
     "Step 3": {
         "after the last date of your poll": {
@@ -157,7 +164,8 @@
         "Limit the amount of voters per option": "Limita la quantitat de votants per opció",
         "Go to step 2": "Ves al pas 2",
         "Customize the URL": "Personalitza l'URL",
-        "All voters can modify any vote": "Tots els votants poden modificar qualsevol vot"
+        "All voters can modify any vote": "Tots els votants poden modificar qualsevol vot",
+        "ValueMax instructions": "votants per opcions "
     },
     "PollInfo": {
         "Votes protected by password": "Vots protegits amb contrasenya",
@@ -220,7 +228,8 @@
         "Chart": "Gràfic",
         "Best choices": "Millors eleccions",
         "Best choice": "Millor elecció",
-        "Addition": "Total"
+        "Addition": "Total",
+        "Vote ifneedbe for": "Vota en reserva de"
     },
     "Password": {
         "You have to provide a password to access the poll": {
@@ -270,7 +279,18 @@
         "Poll's participation: %s": "Participació en l'enquesta: %s",
         "Notification of poll: %s": "Notificació de l'enquesta: %s",
         "For sending to the polled users": "Enllaç per als participants",
-        "FOOTER": "\"El camí és llarg, però el camí està clar ...\" <br/> Framasoft només viu de les vostres donacions. <br/> Gràcies per endavant pel vostre suport https://soutenir.framasoft.org"
+        "FOOTER": "\"El camí és llarg, però el camí està clar ...\" <br/> Framasoft només viu de les vostres donacions. <br/> Gràcies per endavant pel vostre suport https://soutenir.framasoft.org",
+        "[ADMINISTRATOR] New settings for your poll": "[ADMINISTRATOR] Configuració nova de la vostra enquesta",
+        "You have changed the settings of your poll": {
+            " \nYou can modify this poll with this link": "Heu canviat la configuració de la vostra enquesta. <br/>Podeu modificar aquesta enquesta amb aquest enllaç"
+        },
+        "This message should NOT be sent to the polled people": {
+            " It is private for the poll's creator": {
+                "\n\nYou can now modify it at the link above": "Aquest missatge NO s’ha d’enviar als participants a l’enquesta. Hauríeu de mantenir-lo privat. <br/><br/>Podeu modificar la vostra enquesta a l’enllaç anterior"
+            }
+        },
+        "Thanks for filling the poll at the link above": "Si us plau, ompliu l’enquesta a l’enllaç anterior",
+        "Author's message": "Missatge de l’autor"
     },
     "Language selector": {
         "Select the language": "Trieu la llengua",
@@ -288,7 +308,8 @@
         "Database": "Nom de la base de dades",
         "CleanUrl": "Neteja l'URL",
         "AppName": "Nom de l'aplicació",
-        "AppMail": "Adreça de correu d'administrador"
+        "AppMail": "Adreça de correu d'administrador",
+        "DbConnectionString": "Cadena de connexió"
     },
     "Homepage": {
         "Where are my polls": "On són les enquestes?",
@@ -334,7 +355,13 @@
         "Add": "Afegeix",
         "(in the format name@mail": {
             "com)": "(en format nom@mail.com)"
-        }
+        },
+        "Make your polls": "Feu el vostre sondeig",
+        "Framadate is an online service for planning an appointment or make a decision quickly and easily": {
+            "": "Framadate és un servei en línia per planificar una cita o prendre una decisió de forma ràpida i senzilla."
+        },
+        "Caption": "Títol",
+        "ASTERISK": "*"
     },
     "FindPolls": {
         "Send me my polls": "Envia'm les enquestes",
@@ -344,7 +371,10 @@
         },
         "List of your polls": "Llista de les vostres enquestes",
         "Here is the list of the polls that you manage on %s:": "Aquesta és la llista de les enquestes que gestioneu a %s:",
-        "Have a good day!": "Que tingueu un bon dia!"
+        "Have a good day!": "Que tingueu un bon dia!",
+        "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s": {
+            "": "Si no éreu l’origen d’aquesta acció i creieu que es tracta d’un abús del servei, notifiqueu l’administrador al %s."
+        }
     },
     "Error": {
         "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions": {
@@ -422,7 +452,15 @@
             "": "No es pot crear una columna buida."
         },
         "CANT_CONNECT_TO_DATABASE": "No es pot connectar a la base de dades",
-        "Adding vote failed": "S'ha produït un error en afegir el vot"
+        "Adding vote failed": "S'ha produït un error en afegir el vot",
+        "You haven't filled the first section of the poll creation": {
+            "": "No heu omplert la primera secció de la enquesta."
+        },
+        "This id is not allowed": "Aquest identificador no està permès",
+        "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing": {
+            "": "Framadate no està instal·lat correctament, consulteu el fitxer “INSTAL·LAR” per obtenir instruccions sobre la configuració de la base de dades abans de continuar."
+        },
+        "Error on amount of voters limitation : value must be an integer greater than 0": "Error per la quantitat de votants: el valor ha de ser un nombre enter superior a 0"
     },
     "1st section": {
         "Discuss and make a decision": "Discutiu i preneu una decisió",
@@ -450,7 +488,10 @@
             "": "Espereu %d segons abans que us puguem enviar un correu electrònic i torna-ho a provar."
         },
         "Here is the link for editing your vote:": "Aquest és l'enllaç per a editar el vostre vot:",
-        "Edit link for poll \"%s\"": "Edita l'enllaç de l'enquesta «%s»"
+        "Edit link for poll \"%s\"": "Edita l'enllaç de l'enquesta «%s»",
+        "If you don't want to lose your personalized link, we can send it to your email": {
+            "": "Si no voleu perdre el vostre enllaç personalitzat, el podem enviar al vostre correu electrònic."
+        }
     },
     "Date": {
         "dd/mm/yyyy": "dd/mm/yyyy",
@@ -473,7 +514,8 @@
         "Remove the comment": "Elimina el comentari",
         "Comments of polled people": "Comentaris",
         "Comment added": "S'ha desat el comentari",
-        "Add a comment to the poll": "Afegeix un comentari a l'enquesta"
+        "Add a comment to the poll": "Afegeix un comentari a l'enquesta",
+        "anonyme": "anònim"
     },
     "Check": {
         "date": {
@@ -574,12 +616,15 @@
         "Back to administration": "Torna a l'administració",
         "Author": "Autor",
         "Administration": "Administració",
-        "Actions": "Accions"
+        "Actions": "Accions",
+        "Deleted the poll": "S'ha suprimit el sondeig",
+        "Confirm removal of the poll": "Confirmeu que elimineu el sondeig "
     },
     "3rd section": {
         "the development site": "el lloc del desenvolupament",
         "If you want to install the software for your own use and thus increase your independence, we help you on:": "Si voleu instal·lar el programari per al vostre ús i, per tant, augmentar la vostra independència, us podem ajudar en:",
-        "Cultivate your garden": "Cultiveu el vostre jardí"
+        "Cultivate your garden": "Cultiveu el vostre jardí",
+        "To participate in the software development, suggest improvements or simply download it, please visit ": "Per participar en el desenvolupament del programari, suggerir millores o simplement descarregar-lo, visiteu "
     },
     "2nd section": {
         "a software developed by the University of Strasbourg": {
@@ -589,6 +634,10 @@
         },
         "The software": "El programari",
         "It is governed by the": "Framadate està llicenciat sota la",
-        "CeCILL-B license": "Llicència CeCILL-B"
+        "CeCILL-B license": "Llicència CeCILL-B",
+        "This software needs javascript and cookies enabled": {
+            " It is compatible with the following web browsers:": "Aquest programari necessita JavaScript i cookies habilitades. És compatible amb els navegadors web següents:"
+        },
+        "Framadate was initially based on ": "Framadate es va basar inicialment en "
     }
 }
