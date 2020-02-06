@@ -1,1 +1,594 @@
-{}
+{
+    "studs": {
+        "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "S'ha desat el vostre vot, però tingueu en compte que cal que conserveu aquest enllaç personalitzat per a poder-lo modificar.",
+        "Update vote succeeded": "S'ha actualitzat el vot",
+        "The poll is expired, it will be deleted soon": {
+            "": "L'enquesta ha caducat, aviat se suprimirà."
+        },
+        "POLL_LOCKED_WARNING": "L'administrador ha blocat aquesta enquesta. Els vots i els comentaris estan congelats, ja no és possible de participar-hi",
+        "Deletion date:": "Data de supressió:",
+        "Adding the vote succeeded": "S'ha afegit el vot"
+    },
+    "adminstuds": {
+        "remove a column or a line with": "treu una columna o una línia amb",
+        "and add a new column with": "i afegeix una columna nova amb",
+        "Your poll has been removed!": "S'ha eliminat l'enquesta!",
+        "You can add a new scheduling date to your poll": {
+            "": "Podeu afegir una altra data de programació a l'enquesta."
+        },
+        "Vote updated": "S'ha actualitzat el vot",
+        "Vote deleted": "S'ha suprimit el vot",
+        "Vote added": "S'ha afegit el vot",
+        "The poll is created": {
+            "": "S'ha creat l'enquesta."
+        },
+        "Remove the votes": "Elimina els vots",
+        "Remove the comments": "Elimina els comentaris",
+        "Remove the column": "Elimina la columna",
+        "Poll saved": "S'ha desat la votació",
+        "Poll fully deleted": "L'enquesta s'ha eliminat completament",
+        "Keep votes": "Conserva els vots",
+        "Keep this poll": "Conserva aquesta enquesta",
+        "Keep the votes": "Conserva els vots",
+        "Keep the poll": "Conserva l'enquesta",
+        "Keep the comments": "Conserva els comentaris",
+        "Keep comments": "Conserva els comentaris",
+        "Finally, you can change the informations of this poll like the title, the comments or your email address": {
+            "": "Finalment, podeu canviar les propietats d'aquesta enquesta, com ara el títol, els comentaris o l'adreça de correu electrònic."
+        },
+        "Confirm removal of the poll": "Confirmeu l'eliminació de l'enquesta",
+        "Confirm removal of the column": {
+            "": "Confirmeu l'eliminació de la columna."
+        },
+        "Confirm removal of all votes of the poll": "Confirma l'eliminació de tots els vots",
+        "Confirm removal of all comments of the poll": "Confirmeu l'eliminació de tots els comentaris",
+        "Comment deleted": "Comentaris eliminats",
+        "Column's adding": "S'està afegint una columna",
+        "Column removed": "S'ha suprimit la columna",
+        "Choice added": "S'ha afegit una opció",
+        "Back to the poll": "Torna a l'enquesta",
+        "As poll administrator, you can change all the lines of this poll with this button": "Com a administrador, podeu canviar totes les línies d'aquesta enquesta amb aquest botó",
+        "All votes deleted": "S'han suprimit tots els vots",
+        "All comments deleted": "S'han suprimit tots els comentaris",
+        "Add a column": "Afegeix una columna"
+    },
+    "Step 3": {
+        "after the last date of your poll": {
+            "": "després de l'última data de l'enquesta."
+        },
+        "Your poll will be automatically archived in %d days": {
+            "": "L'enquesta s'arxivarà automàticament d'aquí a %d dies."
+        },
+        "Your poll will automatically be archived": "L'enquesta s'arxivarà automàticament",
+        "You can set a closer archiving date for it": {
+            "": "Podeu establir una data de venciment específica de l'enquesta."
+        },
+        "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll": {
+            "": "A continuació, rebreu dos correus electrònics: un que contindrà l'enllaç de l'enquesta per a enviar-la als participants i l'altre que contindrà l'enllaç a la pàgina d'administració de l'enquesta."
+        },
+        "Removal date and confirmation (3 on 3)": "Data de supressió i confirmació (3 de 3)",
+        "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll": {
+            "": "Un cop hagis confirmat la creació de l'enquesta, se us redirigirà automàticament a la pàgina d'administració de l'enquesta."
+        },
+        "List of your choices": "Llista d'opcions",
+        "Create the poll": "Crea l'enquesta",
+        "Confirm the creation of your poll": "Confirmeu la creació de l'enquesta",
+        "Back to step 2": "Torna al pas 2",
+        "Archiving date:": "Data de venciment:"
+    },
+    "Step 2 date": {
+        "You can add or remove additionnal days and hours with the buttons": "Podeu afegir o treure dies i hores addicionals amb els botons",
+        "To schedule an event you need to propose at least two choices (two hours for one day or two days)": {
+            "": "Per a programar un esdeveniment, cal que proporcioneu almenys dues opcions (per exemple, dos espais horaris en un o dos dies)."
+        },
+        "Remove this day": "Elimina aquest dia",
+        "Remove an hour": "Elimina un espai horari",
+        "Remove all hours": "Elimina tots els temps",
+        "Remove all days": "Elimina tots els dies",
+        "Remove a day": "Elimina un dia",
+        "Poll dates (2 on 3)": "Dates de l'enquesta (2 de 3)",
+        "For each selected day, you can choose, or not, meeting hours (e": {
+            "g": {
+                ": \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc": {
+                    ")": "Per cada dia seleccionat, podeu suggerir temps de trobada (per exemple, \"8h\", \"8:30\", \"8h-10h\", \"tarda\", etc.)"
+                }
+            }
+        },
+        "Copy hours of the first day": "Copia els temps del primer dia",
+        "Choose the dates of your poll": "Tria dates per a l'enquesta",
+        "Add an hour": "Afegeix un espai horari",
+        "Add a day": "Afegeix un dia"
+    },
+    "Step 2 classic": {
+        "the Markdown syntax": "Sintaxi Markdown",
+        "You can add or remove additional choices with the buttons": "Podeu afegir o eliminar opcions amb els botons",
+        "URL of the image": "URL de la imatge",
+        "To make a generic poll you need to propose at least two choices between differents subjects": {
+            "": "Per a crear una enquesta, heu de proporcionar almenys dues opcions diferents."
+        },
+        "These fields are optional": {
+            " You can add a link, an image or both": {
+                "": "Aquests camps són opcionals. Podeu afegir un enllaç, una imatge o ambdós."
+            }
+        },
+        "Remove a choice": "Elimina una elecció",
+        "Poll subjects (2 on 3)": "Opcions de votació (2 de 3)",
+        "It's possible to propose links or images by using": "Es poden incloure enllaços o imatges utilitzant",
+        "Alternative text": "Text alternatiu",
+        "Add a link or an image": "Afegeix un enllaç o una imatge",
+        "Add a choice": "Afegeix una elecció"
+    },
+    "Step 2": {
+        "Go to step 3": "Vés al pas 3",
+        "Back to step 1": "Torna al pas 1"
+    },
+    "Step 1": {
+        "You can enable or disable the editor at will": {
+            "": "Podeu habilitar o deshabilitar l'editor a voluntat."
+        },
+        "You are in the poll creation section": {
+            "": "Sou a la secció de creació d'enquestes."
+        },
+        "Votes cannot be modified": "Els vots no es poden modificar",
+        "Voters can modify their vote themselves": "Els votants poden modificar el seu vot ells mateixos",
+        "Value Max": "Valor màxim",
+        "Use a password to restrict access": "Utilitzeu una contrasenya per restringir l'accés",
+        "To receive an email for each new vote": "Rebeu un correu electrònic per a cada nou vot",
+        "To receive an email for each new comment": "Rebreu un correu electrònic per a cada comentari nou",
+        "To make the description more attractive, you can use the Markdown format": {
+            "": "Per a fer que la descripció sigui més atractiva, podeu utilitzar el format Markdown."
+        },
+        "The results are publicly visible": "Els resultats són visibles públicament",
+        "Required fields cannot be left blank": {
+            "": "Els camps obligatoris no es poden deixar en blanc."
+        },
+        "Poll title": "Títol de l'enquesta",
+        "Poll password": "Contrasenya",
+        "Poll id warning": "Si definiu un identificador per a l'enquesta, podríeu facilitar-hi l'accés per a persones no desitjades. Es recomana protegir-la amb una contrasenya.",
+        "Poll id rules": "L'identificador pot contenir lletres, números i guions \"-\".",
+        "Poll id": "Enllaç de l'enquesta",
+        "Poll creation (1 on 3)": "Creació d'enquestes (1 de 3)",
+        "Permissions": "Permisos",
+        "Password confirmation": "Confirmació",
+        "Password choice": "Elecció",
+        "Optional parameters": "Paràmetres opcionals",
+        "Only the poll maker can see the poll's results": "Només el creador de l'enquesta pot veure els resultats de l'enquesta",
+        "More informations here:": "Més informació aquí:",
+        "Limit the amount of voters per option": "Limita la quantitat de votants per opció",
+        "Go to step 2": "Ves al pas 2",
+        "Customize the URL": "Personalitza l'URL",
+        "All voters can modify any vote": "Tots els votants poden modificar qualsevol vot"
+    },
+    "PollInfo": {
+        "Votes protected by password": "Vots protegits amb contrasenya",
+        "Votes and comments are locked": "Els vots i els comentaris estan blocats",
+        "Title": "Títol de l'enquesta",
+        "Simple editor": "Editor simple",
+        "Save the new title": "Desa el títol nou",
+        "Save the new rules": "Desa les regles noves",
+        "Save the new name": "Desa el nom nou",
+        "Save the new expiration date": "Desa la nova data de venciment",
+        "Save the email address": "Desa l'adreça de correu electrònic",
+        "Save the description": "Desa la descripció",
+        "Rich editor": "Editor enriquit",
+        "Results are visible": "Els resultats són visibles",
+        "Results are hidden": "Els resultats són ocults",
+        "Remove the poll": "Elimina l'enquesta",
+        "Remove password": "Elimina la contrasenya",
+        "Remove all the votes": "Elimina tots els vots",
+        "Remove all the comments": "Elimina tots els comentaris",
+        "Public link of the poll": "Enllaç públic de l'enquesta",
+        "Print": "Imprimeix",
+        "Poll rules": "Regles de l'enquesta",
+        "Password protected": "Contrasenya protegida",
+        "Only votes are protected": "Només els vots estan protegits",
+        "No password": "Sense contrasenya",
+        "Initiator of the poll": "Creador de l'enquesta",
+        "Export to CSV": "Exporta a CSV",
+        "Expiration date": "Data de caducitat",
+        "Email": "Adreça electrònica",
+        "Edit the title": "Edita el títol",
+        "Edit the poll rules": "Edita les regles d'enquesta",
+        "Edit the name": "Edita el nom",
+        "Edit the expiration date": "Edita la data de venciment",
+        "Edit the email adress": "Edita l'adreça de correu electrònic",
+        "Edit the description": "Edita la descripció",
+        "Cancel the title edit": "Cancel·la l'edició del títol",
+        "Cancel the rules edit": "Cancel·la l'edició de les regles",
+        "Cancel the name edit": "Cancel·la l'edició del nom",
+        "Cancel the expiration date edit": "Cancel·la l'edició de la data de venciment",
+        "Cancel the email address edit": "Cancel·la l'edició de l'adreça electrònica",
+        "Cancel the description edit": "Cancel·la l'edició de la descripció",
+        "Admin link of the poll": "Enllaç d'administració per a l'enquesta"
+    },
+    "Poll results": {
+        "polled users": "usuaris enquestats",
+        "polled user": "usuari enquestat",
+        "Votes of the poll": "Vots",
+        "Vote yes for": "Vota «sí» per a",
+        "Vote no for": "Vota «no» per a",
+        "The bests choices at this time are:": "Ara per ara, les opcions més votades són:",
+        "The best choice at this time is:": "Ara per ara, l'opció més votada és:",
+        "Scroll to the right": "Desplaça't cap a la dreta",
+        "Scroll to the left": "Desplaça't cap a l'esquerra",
+        "Save the choices": "Desa les opcions",
+        "Remove the line:": "Suprimeix la línia:",
+        "Link to edit this particular line has been copied inside the clipboard!": "L'enllaç per a editar aquesta línia en particular s'ha copiat al porta-retalls!",
+        "Link to edit this particular line": "Enllaç per a editar aquesta línia en particular",
+        "Edit the line: %s": "Edita la línia: %s",
+        "Display the chart of the results": "Mostra el gràfic dels resultats",
+        "Chart": "Gràfic",
+        "Best choices": "Millors eleccions",
+        "Best choice": "Millor elecció",
+        "Addition": "Total"
+    },
+    "Password": {
+        "You have to provide a password to access the poll": {
+            "": "Cal que proporcioneu una contrasenya per a accedir a l'enquesta."
+        },
+        "You have to provide a password so you can participate to the poll": {
+            "": "Cal que proporcioneu una contrasenya perquè pugeu participar en l'enquesta."
+        },
+        "Wrong password": "La contrasenya  és errònia",
+        "Submit access": "Enviar accés",
+        "Password": "Contrasenya"
+    },
+    "Maintenance": {
+        "is currently under maintenance": {
+            "": "actualment està en manteniment."
+        },
+        "The application": "L'aplicació",
+        "Thank you for your understanding": {
+            "": "Gràcies per la vostra comprensió."
+        }
+    },
+    "Mail": {
+        "wrote a comment": {
+            "\nYou can find your poll at the link": "ha escrit un comentari. <br/> Podeu visitar l'enquesta a l'enllaç"
+        },
+        "updated a vote": {
+            "\nYou can find your poll at the link": "s'ha actualitzat una votació. <br/> Podeu visitar l'enquesta en l'enllaç"
+        },
+        "hast just created a poll called": "acaba de crear una enquesta anomenada",
+        "filled a vote": {
+            "\nYou can find your poll at the link": "ha votat. <br/> Podeu visitar l'enquesta a l'enllaç"
+        },
+        "This is the message you have to send to the people you want to poll": {
+            " \nNow, you have to send this message to everyone you want to poll": {
+                "": "Aquest és el missatge que es reenviarà als participants de l'enquesta."
+            }
+        },
+        "Thanks for your trust": {
+            "": "Gràcies per la vostra confiança."
+        },
+        "Someone just delete your poll %s": {
+            "": "Algú acaba d'eliminar la vostra enquesta «%s»."
+        },
+        "Someone just change your poll available at the following link %s": {
+            "": "Algú ha canviat l'enquesta de l'enllaç següent <a href=\"%1$s\">%1$s</a>."
+        },
+        "Poll's participation: %s": "Participació en l'enquesta: %s",
+        "Notification of poll: %s": "Notificació de l'enquesta: %s",
+        "For sending to the polled users": "Enllaç per als participants",
+        "FOOTER": "\"El camí és llarg, però el camí està clar ...\" <br/> Framasoft només viu de les vostres donacions. <br/> Gràcies per endavant pel vostre suport https://soutenir.framasoft.org"
+    },
+    "Language selector": {
+        "Select the language": "Trieu la llengua",
+        "Change the language": "Canvia la llengua"
+    },
+    "Installation": {
+        "ResponseMail": "Respon a l'adreça de correu",
+        "MigrationTable": "Taula de migració",
+        "Install": "Instal·la",
+        "General": "General",
+        "DefaultLanguage": "Llengua predeterminada",
+        "DbUser": "Usuari",
+        "DbPrefix": "Prefix",
+        "DbPassword": "Contrasenya",
+        "Database": "Nom de la base de dades",
+        "CleanUrl": "Neteja l'URL",
+        "AppName": "Nom de l'aplicació",
+        "AppMail": "Adreça de correu d'administrador"
+    },
+    "Homepage": {
+        "Where are my polls": "On són les enquestes?",
+        "Schedule an event": "Programeu un esdeveniment",
+        "Make a classic poll": "Feu una enquesta estàndard"
+    },
+    "Generic": {
+        "with": "amb",
+        "votes": "vots",
+        "vote": "vota",
+        "seconds": "segons",
+        "months": "mesos",
+        "for": "per a",
+        "days": "dies",
+        "Your name": "El vostre nom",
+        "Your email address": "La vostra adreça de correu electrònic",
+        "Yes": "Sí",
+        "Validate": "Valida",
+        "Time": "Hora",
+        "Search": "Cerca",
+        "Save": "Desa",
+        "Remove": "Elimina",
+        "Poll": "Enquesta",
+        "Page generated in": "Pàgina generada en",
+        "No": "No",
+        "Next": "Pròxim",
+        "Markdown": "Markdown",
+        "Link": "Enllaç",
+        "Legend:": "Llegenda:",
+        "Ifneedbe": "Si és necessari",
+        "Home": "Inici",
+        "Edit": "Edita",
+        "Description": "Descripció",
+        "Day": "Dia",
+        "Date": "Data",
+        "Creation date:": "Data de creació:",
+        "Close": "Tanca",
+        "Classic": "Clàssic",
+        "Choice": "Elecció",
+        "Cancel": "Cancel·la",
+        "Back to the homepage of": "Torna a la pàgina d'inici de",
+        "Back": "Enrere",
+        "Add": "Afegeix",
+        "(in the format name@mail": {
+            "com)": "(en format nom@mail.com)"
+        }
+    },
+    "FindPolls": {
+        "Send me my polls": "Envia'm les enquestes",
+        "Polls sent": "Enquestes enviades",
+        "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address": {
+            "": "PS: aquest correu electrònic s'ha enviat perquè heu sol·licitat (o algú altre) recuperar les enquestes creades amb la vostra adreça de correu electrònic."
+        },
+        "List of your polls": "Llista de les vostres enquestes",
+        "Here is the list of the polls that you manage on %s:": "Aquesta és la llista de les enquestes que gestioneu a %s:",
+        "Have a good day!": "Que tingueu un bon dia!"
+    },
+    "Error": {
+        "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions": {
+            " Please retry": {
+                "": "El vostre vot no es tindrà en compte, perquè algú ha votat en el mateix moment i això entra en conflicte amb les vostres opcions i les condicions de l'enquesta. Torneu-ho a provar."
+            }
+        },
+        "You can't select more than %d dates": "No podeu seleccionar més de %d dates",
+        "You can't create a poll with hidden results with the following edition option:": "No podeu crear una enquesta amb resultats ocults amb la següent opció:· ",
+        "You already voted": "Ja heu votat",
+        "Update vote failed": "S'ha produït un error en actualitzar el vot",
+        "This poll doesn't exist !": "Aquesta enquesta no existeix!",
+        "There is a problem with your choices": "Hi ha un problema amb les vostres eleccions",
+        "The name you've chosen already exist in this poll!": "El nom que heu introduït ja existeix!",
+        "The name is invalid": {
+            "": "El nom no és vàlid."
+        },
+        "The column already exists": "La columna ja existeix",
+        "The address is not correct! You should enter a valid email address (like r": {
+            "stallman@outlock": {
+                "com) in order to receive the link to your poll": {
+                    "": "L'adreça no és correcta. Has d'introduir una adreça de correu electrònic vàlida (com ara r.stallman@outlock.com) per a rebre l'enllaç a l'enquesta."
+                }
+            }
+        },
+        "Something is wrong with the format: name shouldn't have any spaces before or after": "Alguna cosa està malament amb el format: el nom no hauria de tenir cap espai abans ni després",
+        "Something is wrong with the format: customized urls should only consist of alphanumeric characters and hyphens": {
+            "": "Alguna cosa està malament amb el format: els URL personalitzats només han de consistir en caràcters alfanumèrics i guions."
+        },
+        "Something is wrong with the format": "Alguna cosa està malament amb el format",
+        "Something is going wrong": {
+            "": {
+                "": {
+                    "": "Alguna cosa no ha anat bé..."
+                }
+            }
+        },
+        "Poll id already used": "Ja s'utilitza l'identificador",
+        "Poll has been updated before you vote": "L'enquesta s'ha actualitzat abans que votéssiu",
+        "Passwords do not match": "Les contrasenyes no coincideixen.",
+        "Password is empty": "La contrasenya és buida.",
+        "No polls found": "No s'ha trobat cap enquesta",
+        "MISSING_VALUES": "Valors que manquen",
+        "Javascript is disabled on your browser": {
+            " Its activation is required to create a poll": {
+                "": "JavaScript està desactivat al vostre navegador. Cal activar-lo per a crear una enquesta."
+            }
+        },
+        "Forbidden!": "Prohibit!",
+        "Failed to save poll": "No ha pogut desar l'enquesta",
+        "Failed to insert the comment!": "No s'ha pogut inserí el comentari!",
+        "Failed to delete the vote!": "No s'ha pogut eliminar el vot!",
+        "Failed to delete the poll": "No s'ha pogut eliminar l'enquesta",
+        "Failed to delete the comment": "No s'han pogut eliminar el comentari",
+        "Failed to delete column": "No s'ha pogut eliminar la columna",
+        "Failed to delete all votes": "No s'han pogut eliminar tots els vots",
+        "Failed to delete all comments": "No s'han pogut eliminar tots els comentaris",
+        "Error!": "Error!",
+        "Enter an email address": "Introduïu una adreça de correu electrònic",
+        "Enter a title": "Intrdoduïu un títol",
+        "Enter a name and a comment!": "Introduiïu un nom i un comentari!",
+        "Enter a name": "Introduïu un nom",
+        "Cookies are disabled on your browser": {
+            " Theirs activation is required to create a poll": {
+                "": "Les galetes estan desactivades al vostre navegador. Cal que estiguin activades per a poder crear una enquesta."
+            }
+        },
+        "Comment failed": "Error de comentari",
+        "Can't create the config": {
+            "php file in '%s'": {
+                "": "No es pot crear el fitxer config.php a «%s»."
+            }
+        },
+        "Can't create an empty column": {
+            "": "No es pot crear una columna buida."
+        },
+        "CANT_CONNECT_TO_DATABASE": "No es pot connectar a la base de dades",
+        "Adding vote failed": "S'ha produït un error en afegir el vot"
+    },
+    "1st section": {
+        "Discuss and make a decision": "Discutiu i preneu una decisió",
+        "Define dates or subjects to choose": "Definiu les dates o els temes per triar",
+        "view an example?": "Voleu veure un exemple?",
+        "What is that?": "Què és Framadate?",
+        "Send the poll link to your friends or colleagues": "Envieu l'enllaç de l'enquesta als amics o col·legues",
+        "Make a poll": "Creeu una enquesta",
+        "Here is how it works:": "Així és com funciona:",
+        "Framadate is an online service for planning an appointment or make a decision quickly and easily": {
+            " No registration is required": {
+                "": "Framadate és un servei en línia per a planificar una cita o prendre una decisió de forma ràpida i senzilla. No cal registrar-s'hi."
+            }
+        },
+        "Do you want to": "Voleu"
+    },
+    "EditLink": {
+        "Your reminder has been successfully sent!": "El recordatori s'ha enviat amb èxit!",
+        "The email address is not correct": {
+            "": "L'adreça de correu electrònic no és correcta."
+        },
+        "Send": "Envia",
+        "REMINDER": "RECORDATORI",
+        "Please wait %d seconds before we can send an email to you then try again": {
+            "": "Espereu %d segons abans que us puguem enviar un correu electrònic i torna-ho a provar."
+        },
+        "Here is the link for editing your vote:": "Aquest és l'enllaç per a editar el vostre vot:",
+        "Edit link for poll \"%s\"": "Edita l'enllaç de l'enquesta «%s»"
+    },
+    "Date": {
+        "dd/mm/yyyy": "dd/mm/yyyy",
+        "datetime_parseformat": "d/m/Y",
+        "datepicker": "dd/mm/yyyy",
+        "Start date": "Data d'inici",
+        "SHORT": "%A %e %B %Y",
+        "Max dates count": "Podeu seleccionar com a màxim 4 mesos",
+        "MONTH_YEAR": "%B %Y",
+        "FULL": "%A, %B %e, %Y",
+        "End date": "Data final",
+        "DAY": "%a %e",
+        "DATETIME": "%m/%d/%Y %H:%M",
+        "DATE": "%Y-%m-%d",
+        "Add range dates": "Afegeix un interval de dates"
+    },
+    "Comments": {
+        "Your comment": "Comentari",
+        "Send the comment": "Envia el comentari",
+        "Remove the comment": "Elimina el comentari",
+        "Comments of polled people": "Comentaris",
+        "Comment added": "S'ha desat el comentari",
+        "Add a comment to the poll": "Afegeix un comentari a l'enquesta"
+    },
+    "Check": {
+        "date": {
+            "timezone is set": {
+                "": "date.timezone està establert."
+            }
+        },
+        "Your PHP version (%s) is too old": {
+            " This application needs at least PHP %s": {
+                "": "La vostra versió PHP (%s) és massa vella. Aquesta aplicació necessita almenys PHP %s."
+            }
+        },
+        "You need to enable the PHP Intl extension": {
+            "": "Cal que habiliteu l'extensió de PHP Intl."
+        },
+        "The template compile directory (%s) is writable": {
+            "": "El directori de compilació de la plantilla (%s) es pot escriure."
+        },
+        "The template compile directory (%s) is not writable": {
+            "": "El directori de compilació de plantilla (%s) no es pot escriure."
+        },
+        "The template compile directory (%s) doesn't exist in \"%s\"": {
+            " Retry the installation process": {
+                "": "El directori de compilació de plantilles (%s) no existeix al «%s». Torneu a intentar el procés d'instal·lació."
+            }
+        },
+        "The config file exists": {
+            "": "Existeix el fitxer de configuració."
+        },
+        "The config file directory (%s) is writable": {
+            "": "El directori de fitxers de configuració (%s) es pot escriure."
+        },
+        "The config file directory (%s) is not writable and the config file (%s) does not exists": {
+            "": "El directori de fitxers de configuració (%s) no es pot escriure i el fitxer de configuració (%s) no existeix."
+        },
+        "PHP version %s is enough (needed at least PHP %s)": {
+            "": "La versió %s PHP és suficient (almenys es necessita PHP %s)."
+        },
+        "PHP Intl extension is enabled": {
+            "": "L'extensió de PHP Intl està habilitada."
+        },
+        "OpenSSL extension loaded": {
+            "": "L'extensió OpenSSL s'ha carregat."
+        },
+        "Installation checking": "Comprovació de la instal·lació",
+        "Cookies are served from HTTP only": {
+            "": "Les galetes només es poden enviar des d'HTTP."
+        },
+        "Continue the installation": "Continua amb la instal·lació",
+        "Consider setting « session": {
+            "cookie_httponly = 1 » inside your php": {
+                "ini or add « php_value session": {
+                    "cookie_httponly 1 » to your ": {
+                        "htaccess so that cookies can't be accessed through Javascript": {
+                            "": "Considereu definirr «session.cookie_httponly = 1» al fitxer php.ini o afegegiu «php_value session.cookie_httponly 1» al fitxer .htaccess de forma que les galetes no siguin accessibles des de Javascript."
+                        }
+                    }
+                }
+            }
+        },
+        "Consider setting the date": {
+            "timezone in php": {
+                "ini": {
+                    "": "Considereu definir un valor per a date.timezone al fitxer php.ini."
+                }
+            }
+        },
+        "Consider enabling the PHP extension OpenSSL for increased security": {
+            "": "Per a més seguretat, considereu habilitar l'extensió  OpenSSL de PHP OpenSSL."
+        },
+        "Check again": "Comprova-ho una altra vegada"
+    },
+    "Admin": {
+        "polls in the database at this time": "enquestes a la base de dades en aquest moment",
+        "Votes": "Vots",
+        "Title": "Títol",
+        "Summary": "Resum",
+        "Success": "Èxit",
+        "Succeeded:": "Amb èxit:",
+        "Skipped:": "Omesos:",
+        "See the poll": "Mostra l'enquesta",
+        "Purged:": "Purgats:",
+        "Purge the polls": "Purga les enquestes",
+        "Purge": "Purga",
+        "Polls": "Enquestes",
+        "Poll ID": "ID de l'enquesta",
+        "Pages:": "Pàgines:",
+        "Nothing": "Res",
+        "Migration": "Migració",
+        "Logs": "Registre",
+        "Installation": "Instal·lació",
+        "Format": "Format de",
+        "Failed:": "Ha fallat:",
+        "Fail": "Fallada",
+        "Expiration date": "Data de caducitat",
+        "Email": "Adreça electrònica",
+        "Change the poll": "Canvia l'enquesta",
+        "Back to administration": "Torna a l'administració",
+        "Author": "Autor",
+        "Administration": "Administració",
+        "Actions": "Accions"
+    },
+    "3rd section": {
+        "the development site": "el lloc del desenvolupament",
+        "If you want to install the software for your own use and thus increase your independence, we help you on:": "Si voleu instal·lar el programari per al vostre ús i, per tant, augmentar la vostra independència, us podem ajudar en:",
+        "Cultivate your garden": "Cultiveu el vostre jardí"
+    },
+    "2nd section": {
+        "a software developed by the University of Strasbourg": {
+            " Today, it is devevoped by the association Framasoft": {
+                "": "programari desenvolupat per la Universitat d'Estrasburg. Actualment desenvolupat per l'associació Framasoft."
+            }
+        },
+        "The software": "El programari",
+        "It is governed by the": "Framadate està llicenciat sota la",
+        "CeCILL-B license": "Llicència CeCILL-B"
+    }
+}
