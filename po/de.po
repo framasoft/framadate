@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2019-11-16 18:11+0000\n"
-"Last-Translator: Predatorix Phoenix <predatorix@web.de>\n"
+"PO-Revision-Date: 2020-02-11 19:08+0000\n"
+"Last-Translator: Jaigskim <filzstift112@gmail.com>\n"
 "Language-Team: German <https://weblate.framasoft.org/projects/framadate/"
 "framadate/de/>\n"
 "Language: de\n"
@@ -170,7 +170,7 @@ msgstr "Installation"
 
 #: .Admin.Logs
 msgid "Logs"
-msgstr "Logs"
+msgstr "Verlauf"
 
 #: .Admin.Migration
 msgid "Migration"
@@ -560,6 +560,8 @@ msgstr "Verboten!"
 #: .Error.GenericErrorPollCreation
 msgid "GenericErrorPollCreation"
 msgstr ""
+"Oh nein! Deine Umfrage konnte leider nicht erstellt werden. Bitte versuche "
+"es später erneut."
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
@@ -670,7 +672,7 @@ msgid ""
 "You can't create a poll with hidden results with the following option: "
 msgstr ""
 "Sie können mit den folgenden Optionen keine Umfrage mit versteckten "
-"Ergebnissen erzeugen:"
+"Ergebnissen erzeugen: "
 
 #: .Error.You+can%27t+select+more+than+%25d+dates
 msgid "You can't select more than %d dates"
