@@ -40,7 +40,7 @@
         "Author": "Autor",
         "Back to administration": "Tornar a l’administracion",
         "Change the poll": "Modificar lo sondatge",
-        "Confirm removal of the poll": "Confirmar la supression del sondatge",
+        "Confirm removal of the poll": "Confirmar la supression del sondatge ",
         "Deleted the poll": "Suprimir lo sondatge",
         "Email": "Corrièl",
         "Expiration date": "Expiracion",
@@ -194,10 +194,10 @@
                 "": "Los cookies son desactivats sus vòstre navigador. Lor activacion es requesida per la creacion d’un sondatge."
             }
         },
-        "Enter a name": "Avètz pas picat cap de nom !",
+        "Enter a name": "Picatz un nom",
         "Enter a name and a comment!": "Mercé de garnir los dos camps !",
-        "Enter a title": "Cal picar un títol !",
-        "Enter an email address": "Cal picar una adreça de messatjariá !",
+        "Enter a title": "Picatz un títol",
+        "Enter an email address": "Picatz una adreça de messatjariá",
         "Error on amount of voters limitation : value must be an integer greater than 0": "Error pel limit de vòtes : la valor deu èsser un entièr màger que 0",
         "Error!": "Error !",
         "Failed to delete all comments": "Fracàs de la supression de totes los comentaris",
@@ -500,7 +500,7 @@
         "To receive an email for each new vote": "Recebre un messatge per cada participacion",
         "Use a password to restrict access": "Emplegar un senhal per restrénher l’accès al sondatge",
         "Value Max": "Valor maximala",
-        "ValueMax instructions": "votants per opcions",
+        "ValueMax instructions": "votants per opcions ",
         "Voters can modify their vote themselves": "Cadun pòt modificar son pròpri vòte",
         "Votes cannot be modified": "Cap de vòte pòt pas èsser modificat",
         "You are in the poll creation section": {
