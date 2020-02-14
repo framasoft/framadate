@@ -14,7 +14,7 @@
                 <input type="radio" name="editable"
                        {if $poll_editable==constant("Framadate\Editable::EDITABLE_BY_OWN")}checked{/if}
                        value="{constant("Framadate\Editable::EDITABLE_BY_OWN")}">
-                {t('Step 1', 'Voters can modify their vote themselves')}
+                {t('Step 1', 'Voters can modify their own vote themselves')}
             </label>
             <label>
                 <input type="radio" name="editable"

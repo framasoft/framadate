@@ -1524,7 +1524,7 @@ msgid "Value Max"
 msgstr "Valor màxim"
 
 #: .Step+1.Voters+can+modify+their+vote+themselves
-msgid "Voters can modify their vote themselves"
+msgid "Voters can modify their own vote themselves"
 msgstr "Els votants poden modificar el seu vot ells mateixos"
 
 #: .Step+1.Votes+cannot+be+modified
