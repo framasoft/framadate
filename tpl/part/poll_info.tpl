@@ -321,7 +321,7 @@
                                     {$rule_txt = t('Step 1', 'All voters can modify any vote')}
                                 {else}
                                     {$rule_id = 3}
-                                    {$rule_txt = t('Step 1', 'Voters can modify their vote themselves')}
+                                    {$rule_txt = t('Step 1', 'Voters can modify their own vote themselves')}
                                 {/if}
                                 {$rule_icon = '<i class="fa fa-edit" aria-hidden="true"></i>'}
                             {else}
@@ -346,7 +346,7 @@
                                 <select class="form-control" id="rules" name="rules">
                                     <option value="0"{if $rule_id==0} selected="selected"{/if}>{t('PollInfo', 'Votes and comments are locked')}</option>
                                     <option value="1"{if $rule_id==1} selected="selected"{/if}>{t('Step 1', 'Votes cannot be modified')}</option>
-                                    <option value="3"{if $rule_id==3} selected="selected"{/if}>{t('Step 1', 'Voters can modify their vote themselves')}</option>
+                                    <option value="3"{if $rule_id==3} selected="selected"{/if}>{t('Step 1', 'Voters can modify their own vote themselves')}</option>
                                     <option value="2"{if $rule_id==2} selected="selected"{/if}>{t('Step 1', 'All voters can modify any vote')}</option>
                                 </select>
                                 <span class="input-group-btn">
