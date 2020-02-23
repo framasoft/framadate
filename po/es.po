@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-01-31 00:07+0000\n"
-"Last-Translator: Pablo Marcos <marion.moseby+framasoft@protonmail.com>\n"
+"PO-Revision-Date: 2020-02-23 03:08+0000\n"
+"Last-Translator: Alberto Teira <ateira@3fpj.com>\n"
 "Language-Team: Spanish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/es/>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 3.11\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -1169,7 +1169,7 @@ msgstr "%s opción"
 #: .Poll+results.Anyone+will+be+able+to+see+your+email+address+after+you+voted
 msgid "Anyone will be able to see your email address after you voted"
 msgstr ""
-"Cualquiera podrá ver tu dirección de correo electrónico después de votar."
+"Cualquiera podrá ver tu dirección de correo electrónico después de votar"
 
 #: .Poll+results.Best+choice
 msgid "Best choice"
@@ -1511,16 +1511,16 @@ msgstr "Recibir un correo electrónico para cada nuevo voto"
 
 #: .Step+1.Required+fields+cannot+be+left+blank.
 msgid "Required fields cannot be left blank."
-msgstr "Los campos requeridos (*) no pueden ser dejados en blanco"
+msgstr "Los campos requeridos (*) no pueden ser dejados en blanco."
 
 #: .Step+1.The+identifier+can+contain+letters
 #: +numbers+and+dashes+%22-%22.
 msgid "The identifier can contain letters, numbers and dashes \"-\"."
-msgstr "El identificador puede incluir letras, números y guiones \"-\""
+msgstr "El identificador puede incluir letras, números y guiones \"-\"."
 
 #: .Step+1.The+results+are+publicly+visible
 msgid "The results are publicly visible"
-msgstr "Los resultados son visibles públicamente."
+msgstr "Los resultados son visibles públicamente"
 
 #: .Step+1.To+make+the+description+more+attractive
 #: +you+can+use+the+Markdown+format.
@@ -1949,7 +1949,7 @@ msgid ""
 "longer possible to participate"
 msgstr ""
 "La persona a cargo de la administración bloqueó esta encuesta. Los votos y "
-"comentarios están bloqueados, ya no se permite participar."
+"comentarios están bloqueados, ya no se permite participar"
 
 #: .studs.The+poll+has+expired
 #: +it+will+soon+be+deleted.
@@ -1962,5 +1962,6 @@ msgid ""
 "Your vote has been saved, but please note: you need to keep this "
 "personalised link to be able to edit your vote."
 msgstr ""
-"Su voto fue guardado, pero tome en cuenta que esta encuesta solo permite "
-"modificar su voto a través del enlace siguiente; ¡conservelo con cuidado!"
+"Su voto fue guardado, pero tenga en cuenta que esta encuesta solo permite "
+"modificar su voto a través de este enlace personalizado (conservelo "
+"cuidadosamente)."

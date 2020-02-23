@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-01-01 17:14+0000\n"
+"PO-Revision-Date: 2020-02-23 03:08+0000\n"
 "Last-Translator: Filip Bengtsson <filip@libreradio.org>\n"
 "Language-Team: Swedish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/sv/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 3.11\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -261,6 +261,9 @@ msgid ""
 " php_value session.cookie_httponly 1 » to your .htaccess so that cookies "
 "can't be accessed through Javascript."
 msgstr ""
+"Överväg att sätta ”session.cookie_httponly = 1” i din php.ini-fil eller att "
+"lägga till ”php_value session.cookie_httponly 1” i din .htaccess så att "
+"kakor inte kan läsas med Javascript."
 
 #: .Check.Continue+the+installation
 msgid "Continue the installation"
@@ -291,10 +294,12 @@ msgid ""
 "The config file directory (%s) is not writable and the config file (%s) does "
 "not exists."
 msgstr ""
+"Konfigurationsfilens katalog (%s) går inte att skriva till och "
+"konfigurationsfilen (%s) existerar inte."
 
 #: .Check.The+config+file+directory+(%25s)+is+writable.
 msgid "The config file directory (%s) is writable."
-msgstr ""
+msgstr "Konfigurationsfilens katalog (%s) går att skriva till."
 
 #: .Check.The+config+file+exists.
 msgid "The config file exists."
@@ -305,14 +310,16 @@ msgid ""
 "The template compile directory (%s) doesn't exist in \"%s\". Retry the "
 "installation process."
 msgstr ""
+"Katalogen för kompilerade mallar (%s) går inte att hitta i ”%s”. Försök att "
+"starta om installationsprocessen."
 
 #: .Check.The+template+compile+directory+(%25s)+is+not+writable.
 msgid "The template compile directory (%s) is not writable."
-msgstr ""
+msgstr "Katalogen för kompilerade mallar (%s) går inte att skriva till."
 
 #: .Check.The+template+compile+directory+(%25s)+is+writable.
 msgid "The template compile directory (%s) is writable."
-msgstr ""
+msgstr "Katalogen för kompilerade mallar (%s) går att skriva till."
 
 #: .Check.You+need+to+enable+the+PHP+Intl+extension.
 msgid "You need to enable the PHP Intl extension."
@@ -429,6 +436,8 @@ msgstr ""
 msgid ""
 "Please wait %d seconds before we can send an email to you then try again."
 msgstr ""
+"Vänta %s sekunder så att vi kan skicka ett e-postmeddelande till dig, och "
+"försök igen därefter."
 
 #: .EditLink.REMINDER
 msgid "REMINDER"
@@ -490,6 +499,8 @@ msgstr "Uppge en e-postadress"
 msgid ""
 "Error on amount of votes limitation: Value must be an integer greater than 0"
 msgstr ""
+"Otillåten begränsning av antalet röster: Värdet måste vara ett heltal större "
+"än noll"
 
 #: .Error.Error%21
 msgid "Error!"
@@ -509,7 +520,7 @@ msgstr "Kunde inte radera kolumn"
 
 #: .Error.Failed+to+delete+the+comment
 msgid "Failed to delete the comment"
-msgstr ""
+msgstr "Kunde inte radera kommentaren"
 
 #: .Error.Failed+to+delete+the+poll
 msgid "Failed to delete the poll"
@@ -533,7 +544,7 @@ msgstr "Förbjudet!"
 
 #: .Error.GenericErrorPollCreation
 msgid "GenericErrorPollCreation"
-msgstr ""
+msgstr "GenericErrorPollCreation"
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
@@ -705,48 +716,54 @@ msgid ""
 "PS: this email has been sent because you – or someone else – asked to get "
 "back the polls created with your email address."
 msgstr ""
+"PS: det här meddelandet har skickats eftersom du, eller någon annan, har "
+"bett om att få tillbaka de undersökningar som har skapats med din "
+"e-postadress."
 
 #: .FindPolls.Polls+saved+inside+this+browser
 msgid "Polls saved inside this browser"
-msgstr ""
+msgstr "Undersökningar sparade i den här webbläsaren"
 
 #: .FindPolls.Polls+sent
 msgid "Polls sent"
-msgstr ""
+msgstr "Undersökningar skickade"
 
 #: .FindPolls.Remove+all+my+polls+from+this+browser%27s+index
 msgid "Remove all my polls from this browser's index"
-msgstr ""
+msgstr "Ta bort alla mina undersökningar från den här webbläsarens index"
 
 #: .FindPolls.Remove+poll+from+index
 msgid "Remove poll from index"
-msgstr ""
+msgstr "Ta bort undersökning från index"
 
 #: .FindPolls.Send+me+my+polls
 msgid "Send me my polls"
-msgstr ""
+msgstr "Skicka mina undersökningar till mig"
 
 #: .FindPolls.Send+my+polls+by+email
 msgid "Send my polls by email"
-msgstr ""
+msgstr "Skicka mina undersökningar via e-post"
 
 #: .FindPolls.The+date+you+created+or+last+accessed+the+poll
 msgid "The date you created or last accessed the poll"
-msgstr ""
+msgstr "Datumet då du du skapade eller senast besökte undersökningen"
 
 #: .FindPolls.The+title+of+the+poll
 msgid "The title of the poll"
-msgstr ""
+msgstr "Undersökningens titel"
 
 #: .FindPolls.There+are+no+polls+saved+inside+your+browser+yet
 msgid "There are no polls saved inside your browser yet"
-msgstr ""
+msgstr "Det finns inga undersökningar sparade i din webbläsare än"
 
 #: .FindPolls.To+delete+this+data+click+the+trashcan+on+the+according+line+or+click+the+%C2%AB+delete+my+polls+index+%C2%BB+option.+This+won%27t+delete+your+polls.
 msgid ""
 "To delete this data click the trashcan on the according line or click the « "
 "delete my polls index » option. This won't delete your polls."
 msgstr ""
+"Radera den här informationen genom att klicka på soptunnan på motsvarande "
+"rad eller välj menyalternativet ”Radera mina undersökningar från index”. "
+"Detta kommer inte radera dina undersökningar."
 
 #: .FindPolls.To+help+you+find+your+previous+polls,+we+save+each+poll+you+create+or+access+inside+your+browser.+This+data+is+saved+inside+this+browser+only.+The+following+data+will+be+saved:
 msgid ""
@@ -754,239 +771,245 @@ msgid ""
 "inside your browser. This data is saved inside this browser only. The "
 "following data will be saved:"
 msgstr ""
+"Vi sparar varje undersökning du skapar eller besöker i din webbläsare för "
+"att hjälpa dig hitta dina tidigare undersökningar. Den här informationen "
+"finns endast i din webbläsare. Följande kommer sparas:"
 
 #: .FindPolls.Visited+polls
 msgid "Visited polls"
-msgstr ""
+msgstr "Besökta undersökningar"
 
 #: .Generic.(in+the+format+name@mail.com)
 msgid "(in the format name@mail.com)"
-msgstr ""
+msgstr "(på formatet namn@example.com)"
 
 #: .Generic.Add
 msgid "Add"
-msgstr ""
+msgstr "Lägg till"
 
 #: .Generic.Back
 msgid "Back"
-msgstr ""
+msgstr "Tillbaka"
 
 #: .Generic.Back+to+the+homepage+of
 msgid "Back to the homepage of"
-msgstr ""
+msgstr "Tillbaka till startsidan för"
 
 #: .Generic.Cancel
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: .Generic.Choice
 #: .Step+1.Choice
 msgid "Choice"
-msgstr ""
+msgstr "Val"
 
 #: .Generic.Classic
 msgid "Classic"
-msgstr ""
+msgstr "Klassisk"
 
 #: .Generic.Close
 msgid "Close"
-msgstr ""
+msgstr "Stäng"
 
 #: .Generic.Create+your+own+polls
 msgid "Create your own polls"
-msgstr ""
+msgstr "Skapa dina egna undersökningar"
 
 #: .Generic.Creation+date:
 msgid "Creation date:"
-msgstr ""
+msgstr "Datum för skapande:"
 
 #: .Generic.Date
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: .Generic.Day
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: .Generic.Description
 msgid "Description"
-msgstr ""
+msgstr "Beskrivning"
 
 #: .Generic.Edit
 msgid "Edit"
-msgstr ""
+msgstr "Redigera"
 
 #: .Generic.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.
 msgid ""
 "Framadate is an online service for planning an appointment or making a "
 "decision quickly and easily."
 msgstr ""
+"Framadate är en webbtjänst för att planera ett möte eller fatta ett beslut "
+"snabbt och enkelt."
 
 #: .Generic.Home
 msgid "Home"
-msgstr ""
+msgstr "Hem"
 
 #: .Generic.Information
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: .Generic.Legend:
 msgid "Legend:"
-msgstr ""
+msgstr "Beskrivning:"
 
 #: .Generic.Link
 msgid "Link"
-msgstr ""
+msgstr "Länk"
 
 #: .Generic.Markdown
 msgid "Markdown"
-msgstr ""
+msgstr "Markdown"
 
 #: .Generic.Next
 msgid "Next"
-msgstr ""
+msgstr "Nästa"
 
 #: .Generic.No
 msgid "No"
-msgstr ""
+msgstr "Nej"
 
 #: .Generic.Page+generated+in
 msgid "Page generated in"
-msgstr ""
+msgstr "Sidan skapades på"
 
 #: .Generic.Poll
 msgid "Poll"
-msgstr ""
+msgstr "Undersökning"
 
 #: .Generic.Remove
 msgid "Remove"
-msgstr ""
+msgstr "Ta bort"
 
 #: .Generic.Save
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: .Generic.Search
 msgid "Search"
-msgstr ""
+msgstr "Sök"
 
 #: .Generic.Time
 msgid "Time"
-msgstr ""
+msgstr "Tid"
 
 #: .Generic.Under+reserve
 msgid "Under reserve"
-msgstr ""
+msgstr "Reserverad"
 
 #: .Generic.Validate
 msgid "Validate"
-msgstr ""
+msgstr "Validera"
 
 #: .Generic.Yes
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: .Generic.Your+email+address
 msgid "Your email address"
-msgstr ""
+msgstr "Din e-postadress"
 
 #: .Generic.Your+name
 msgid "Your name"
-msgstr ""
+msgstr "Ditt namn"
 
 #: .Generic.days
 msgid "days"
-msgstr ""
+msgstr "dagar"
 
 #: .Generic.for
+#, fuzzy
 msgid "for"
-msgstr ""
+msgstr "för"
 
 #: .Generic.months
 msgid "months"
-msgstr ""
+msgstr "månader"
 
 #: .Generic.seconds
 msgid "seconds"
-msgstr ""
+msgstr "sekunder"
 
 #: .Generic.vote
 msgid "vote"
-msgstr ""
+msgstr "röst"
 
 #: .Generic.votes
 msgid "votes"
-msgstr ""
+msgstr "röster"
 
 #: .Generic.with
 msgid "with"
-msgstr ""
+msgstr "med"
 
 #: .Homepage.Make+a+standard+poll
 msgid "Make a standard poll"
-msgstr ""
+msgstr "Gör en enkel undersökning"
 
 #: .Homepage.Schedule+an+event
 msgid "Schedule an event"
-msgstr ""
+msgstr "Bestäm en tid"
 
 #: .Homepage.Where+are+my+polls%3F
 msgid "Where are my polls?"
-msgstr ""
+msgstr "Var är mina undersökningar?"
 
 #: .Installation.Administrator+mail+address
 msgid "Administrator mail address"
-msgstr ""
+msgstr "Administratörens e-postadress"
 
 #: .Installation.Application+name
 msgid "Application name"
-msgstr ""
+msgstr "Applikationens namn"
 
 #: .Installation.Clean+URL
 msgid "Clean URL"
-msgstr ""
+msgstr "Ren URL"
 
 #: .Installation.Database+driver
 msgid "Database driver"
-msgstr ""
+msgstr "Databasmotor"
 
 #: .Installation.Database+hostname
 msgid "Database hostname"
-msgstr ""
+msgstr "Databasens värdnamn"
 
 #: .Installation.Database+name
 msgid "Database name"
-msgstr ""
+msgstr "Databasens namn"
 
 #: .Installation.Database+port
 msgid "Database port"
-msgstr ""
+msgstr "Databasens portnummer"
 
 #: .Installation.Default+language
 msgid "Default language"
-msgstr ""
+msgstr "Standardspråk"
 
 #: .Installation.General
 msgid "General"
-msgstr ""
+msgstr "Allmänt"
 
 #: .Installation.Install
 msgid "Install"
-msgstr ""
+msgstr "Installera"
 
 #: .Installation.Migration+table
 msgid "Migration table"
-msgstr ""
+msgstr "Migreringstabell"
 
 #: .Installation.Password
 #: .Password.Password
 #: .Step+1.Password
 msgid "Password"
-msgstr ""
+msgstr "Lösenord"
 
 #: .Installation.Prefix
 msgid "Prefix"
-msgstr ""
+msgstr "Prefix"
 
 #: .Installation.Respond-to+mail+address
 msgid "Respond-to mail address"
@@ -1010,6 +1033,8 @@ msgid ""
 "donations.<br/>Thank you in advance for your support "
 "https://soutenir.framasoft.org"
 msgstr ""
+"”Resan är lång, men vägen är fri …”<br/>Framasoft lever helt på era gåvor.<"
+"br/>Tack på förhand för ditt stöd https://soutenir.framasoft.org/"
 
 #: .Mail.Message+for+the+author
 msgid "Message for the author"
@@ -1032,6 +1057,7 @@ msgid ""
 "Someone just changed your poll at the following link <a href=\"%1$s\""
 ">%1$s</a>."
 msgstr ""
+"Någon har nyss ändrat din undersökning på sidan <a href=\"%1$s\">%1$s</a>."
 
 #: .Mail.Someone+just+deleted+your+poll+%22%25s%22.
 msgid "Someone just deleted your poll \"%s\"."
@@ -1054,6 +1080,9 @@ msgid ""
 "This message should NOT be sent to the poll participants. You should keep it "
 "private. <br/><br/>You can modify your poll at the following link"
 msgstr ""
+"Det här meddelandet ska INTE skickas till undersökningens deltagare. Du bör "
+"hålla det privat. <br/><br/>Du kan modifiera din undersökning genom att "
+"följa länken nedan"
 
 #: .Mail.added+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "added a vote.<br/>You can visit your poll at the link"
@@ -1061,7 +1090,7 @@ msgstr "lade en röst.<br/>Du kan besöka undersökningen på"
 
 #: .Mail.has+just+created+a+poll+called
 msgid "has just created a poll called"
-msgstr ""
+msgstr "har nyss skapat en undersökning med namnet"
 
 #: .Mail.updated+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "updated a vote.<br/>You can visit your poll at the link"
@@ -1073,7 +1102,7 @@ msgstr "skrev en kommentar.<br/>Du kan besöka undersökningen på"
 
 #: .Maintenance.Thank+you+for+your+understanding.
 msgid "Thank you for your understanding."
-msgstr ""
+msgstr "Tack för din förståelse."
 
 #: .Maintenance.The+application
 msgid "The application"
@@ -1085,7 +1114,7 @@ msgstr "underhålls för tillfället."
 
 #: .Password.Submit+access
 msgid "Submit access"
-msgstr ""
+msgstr "Ge åtkomst"
 
 #: .Password.Wrong+password
 msgid "Wrong password"
@@ -1101,7 +1130,7 @@ msgstr "Du måste uppge ett lösenord för att komma åt undersökningen."
 
 #: .Poll+results.%25s+option
 msgid "%s option"
-msgstr ""
+msgstr "%s alternativ"
 
 #: .Poll+results.Anyone+will+be+able+to+see+your+email+address+after+you+voted
 msgid "Anyone will be able to see your email address after you voted"
@@ -1141,11 +1170,11 @@ msgstr "Spara val"
 
 #: .Poll+results.Scroll+to+the+left
 msgid "Scroll to the left"
-msgstr ""
+msgstr "Rulla åt vänster"
 
 #: .Poll+results.Scroll+to+the+right
 msgid "Scroll to the right"
-msgstr ""
+msgstr "Rulla åt höger"
 
 #: .Poll+results.The+current+best+choice+is:
 msgid "The current best choice is:"
@@ -1173,7 +1202,7 @@ msgstr "Rösta ”ja” för"
 
 #: .Poll+results.Votes+under+reserve+for
 msgid "Votes under reserve for"
-msgstr ""
+msgstr "Röster reserverade för"
 
 #: .Poll+results.polled+user
 msgid "polled user"
@@ -1289,71 +1318,71 @@ msgstr "Resultaten är dolda"
 
 #: .PollInfo.Results+are+visible
 msgid "Results are visible"
-msgstr ""
+msgstr "Resultaten är synliga"
 
 #: .PollInfo.Rich+editor
 msgid "Rich editor"
-msgstr ""
+msgstr "Avancerad redigerare"
 
 #: .PollInfo.Save+the+description
 msgid "Save the description"
-msgstr ""
+msgstr "Spara beskrivningen"
 
 #: .PollInfo.Save+the+email+address
 msgid "Save the email address"
-msgstr ""
+msgstr "Spara e-postadressen"
 
 #: .PollInfo.Save+the+new+expiration+date
 msgid "Save the new expiration date"
-msgstr ""
+msgstr "Spara det uppdaterade sista datumet"
 
 #: .PollInfo.Save+the+new+name
 msgid "Save the new name"
-msgstr ""
+msgstr "Spara det nya namnet"
 
 #: .PollInfo.Save+the+new+rules
 msgid "Save the new rules"
-msgstr ""
+msgstr "Spara de uppdaterade reglerna"
 
 #: .PollInfo.Save+the+new+title
 msgid "Save the new title"
-msgstr ""
+msgstr "Spara den nya rubriken"
 
 #: .PollInfo.Simple+editor
 msgid "Simple editor"
-msgstr ""
+msgstr "Enkel redigerare"
 
 #: .PollInfo.Title+of+the+poll
 msgid "Title of the poll"
-msgstr ""
+msgstr "Undersökningens rubrik"
 
 #: .PollInfo.Voters%27+email+addresses+are+collected
 msgid "Voters' email addresses are collected"
-msgstr ""
+msgstr "Röstläggarnas e-postadresser samlas in"
 
 #: .PollInfo.Voters%27+email+addresses+are+collected+and+required
 msgid "Voters' email addresses are collected and required"
-msgstr ""
+msgstr "Röstläggarnas e-postadresser samlas in och måste uppges"
 
 #: .PollInfo.Voters%27+email+addresses+are+collected,+required+and+verified
 msgid "Voters' email addresses are collected, required and verified"
-msgstr ""
+msgstr "Röstläggarnas e-postadresser samlas in, måste uppges och bekräftas"
 
 #: .PollInfo.Voters%27+email+addresses+are+not+collected
 msgid "Voters' email addresses are not collected"
-msgstr ""
+msgstr "Röstläggarnas e-postadresser samlas inte in"
 
 #: .PollInfo.Votes+and+comments+are+locked
 msgid "Votes and comments are locked"
-msgstr ""
+msgstr "Röster och kommentarer har låsts"
 
 #: .PollInfo.Votes+protected+by+password
 msgid "Votes protected by password"
-msgstr ""
+msgstr "Rösterna är lösenordsskyddade"
 
 #: .Step+1.All+voters+can+modify+any+vote
 msgid "All voters can modify any vote"
-msgstr ""
+msgstr "Alla röstande kan ändra alla röster"
 
 #: .Step+1.By+defining+an+identifier+that+can+facilitate+access+to+the+poll+for+unwanted+people.+It+is+recommended+to+protect+it+with+a+password.
 msgid ""
@@ -1363,51 +1392,51 @@ msgstr ""
 
 #: .Step+1.Collect+voters%27+email+addresses
 msgid "Collect voters' email addresses"
-msgstr ""
+msgstr "Samla in röstläggarnas e-postadresser"
 
 #: .Step+1.Confirmation
 msgid "Confirmation"
-msgstr ""
+msgstr "Bekräftelse"
 
 #: .Step+1.Customize+the+URL
 msgid "Customize the URL"
-msgstr ""
+msgstr "Anpassa länken"
 
 #: .Step+1.Email+addresses+are+collected+but+not+required
 msgid "Email addresses are collected but not required"
-msgstr ""
+msgstr "Röstläggarnas e-postadresser samlas in men måste inte uppges"
 
 #: .Step+1.Email+addresses+are+not+collected
 msgid "Email addresses are not collected"
-msgstr ""
+msgstr "E-postadresser samlas inte in"
 
 #: .Step+1.Email+addresses+are+required
 msgid "Email addresses are required"
-msgstr ""
+msgstr "E-postadresser måste uppges"
 
 #: .Step+1.Email+addresses+are+required+and+verified
 msgid "Email addresses are required and verified"
-msgstr ""
+msgstr "E-postadresser måste uppges och bekräftas"
 
 #: .Step+1.Go+to+step+2
 msgid "Go to step 2"
-msgstr ""
+msgstr "Gå till steg 2"
 
 #: .Step+1.Limit+the+amount+of+voters+per+option
 msgid "Limit the amount of voters per option"
-msgstr ""
+msgstr "Begränsa antalet röstläggare per alternativ"
 
 #: .Step+1.More+informations+here:
 msgid "More informations here:"
-msgstr ""
+msgstr "Mer information finns här:"
 
 #: .Step+1.Only+the+poll+maker+can+see+the+poll+results
 msgid "Only the poll maker can see the poll results"
-msgstr ""
+msgstr "Endast undersökningens skapare kan se resultatet"
 
 #: .Step+1.Optional+parameters
 msgid "Optional parameters"
-msgstr ""
+msgstr "Frivilliga alternativ"
 
 #: .Step+1.Permissions
 msgid "Permissions"
