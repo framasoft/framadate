@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-02-23 03:08+0000\n"
+"PO-Revision-Date: 2020-02-25 01:08+0000\n"
 "Last-Translator: Filip Bengtsson <filip@libreradio.org>\n"
 "Language-Team: Swedish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/sv/>\n"
@@ -921,7 +921,6 @@ msgid "days"
 msgstr "dagar"
 
 #: .Generic.for
-#, fuzzy
 msgid "for"
 msgstr "för"
 
@@ -1389,6 +1388,8 @@ msgid ""
 "By defining an identifier that can facilitate access to the poll for "
 "unwanted people. It is recommended to protect it with a password."
 msgstr ""
+"Att ge undersökningen en identifierare kan göra den enklare att hitta för "
+"oönskade personer. Vi rekommenderar att lösenordsskydda den."
 
 #: .Step+1.Collect+voters%27+email+addresses
 msgid "Collect voters' email addresses"
@@ -1506,7 +1507,7 @@ msgstr ""
 
 #: .Step+1.You+are+in+the+poll+creation+section.
 msgid "You are in the poll creation section."
-msgstr ""
+msgstr "Nu kan du sätta ihop din undersökning."
 
 #: .Step+1.You+can+enable+or+disable+the+editor+at+will.
 msgid "You can enable or disable the editor at will."
