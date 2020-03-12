@@ -8,23 +8,24 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
+"PO-Revision-Date: 2020-03-12 22:08+0000\n"
+"Last-Translator: Italo Vignoli <italo@vignoli.org>\n"
+"Language-Team: Italian <https://weblate.framasoft.org/projects/framadate/"
+"framadate/it/>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-04-19 07:02+0000\n"
-"Last-Translator: Thomas Citharel <thomas.citharel@framasoft.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: Zanata 4.6.2\n"
-"Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.11.2\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
-msgstr "Create un sondaggio"
+msgstr "Creare un sondaggio"
 
 #: .1st+section.Define+dates+or+subjects+to+choose+from
 msgid "Define dates or subjects to choose from"
-msgstr "Definite le date o il titolo"
+msgstr "Definire date o soggetti tra cui scegliere"
 
 #: .1st+section.Discuss+and+make+a+decision
 msgid "Discuss and make a decision"
@@ -80,6 +81,8 @@ msgid ""
 "This software needs javascript and cookies enabled. It is compatible with "
 "the following web browsers:"
 msgstr ""
+"Questo software richiede l'abilitazione di javascript e cookie. È "
+"compatibile con i seguenti browser:"
 
 #: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days
 #: +it+is+developed+by+the+Framasoft+association.
@@ -544,11 +547,11 @@ msgstr "Impossibile cancellare il sondaggio"
 
 #: .Error.Failed+to+delete+the+vote%21
 msgid "Failed to delete the vote!"
-msgstr "Impossibile cancellare il voto!"
+msgstr "Impossibile cancellare il voto"
 
 #: .Error.Failed+to+insert+the+comment%21
 msgid "Failed to insert the comment!"
-msgstr "Errore nell'inserimento del commento !"
+msgstr "Errore nell'inserimento del commento"
 
 #: .Error.Failed+to+save+poll
 msgid "Failed to save poll"
@@ -556,26 +559,26 @@ msgstr "Errore nel salvataggio del sondaggio"
 
 #: .Error.Forbidden%21
 msgid "Forbidden!"
-msgstr "Proibito!"
+msgstr "Vietato"
 
 #: .Error.GenericErrorPollCreation
 msgid "GenericErrorPollCreation"
-msgstr ""
+msgstr "ErroreGenericoCreazioneSondaggio"
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
-msgstr "L'identificativo del sondaggio è già in uso"
+msgstr "L'identificativo è già in uso"
 
 #: .Error.If+you+quit+now
 #: +your+changes+will+be+lost.
 msgid "If you quit now, your changes will be lost."
-msgstr ""
+msgstr "Se esci adesso, le tue modifiche andranno perse."
 
 #: .Error.JavaScript+is+disabled+on+your+browser.+It+is+required+to+create+a+poll.
 msgid ""
 "JavaScript is disabled on your browser. It is required to create a poll."
 msgstr ""
-"Javascript è disattivato sul vostro browser. E' necessario attivarlo per "
+"Javascript è disattivato sul vostro browser. È necessario attivarlo per "
 "creare un sondaggio."
 
 #: .Error.Missing+values
@@ -600,34 +603,33 @@ msgstr "Il sondaggio è stato aggiornato prima del tuo voto"
 
 #: .Error.Something+has+gone+wrong...
 msgid "Something has gone wrong..."
-msgstr "Qualcosa non è corretto..."
+msgstr "Qualcosa non ha funzionato..."
 
 #: .Error.Something+is+wrong+with+the+format
 msgid "Something is wrong with the format"
-msgstr "Qualche errore nel formato"
+msgstr "Qualcosa non va nel formato"
 
 #: .Error.Something+is+wrong+with+the+format:+Customized+URLs+should+only+consist+of+alphanumeric+characters+and+hyphens.
 msgid ""
 "Something is wrong with the format: Customized URLs should only consist of "
 "alphanumeric characters and hyphens."
 msgstr ""
-"C'è un errore nel formato: l'URL personalizzato deve contenere solo "
+"Qualcosa non va nel formato: l'URL personalizzato può contenere solo "
 "caratteri alfanumerici e trattini."
 
 #: .Error.Something+is+wrong+with+the+format:+name+shouldn%27t+have+any+spaces+before+or+after
 msgid ""
 "Something is wrong with the format: name shouldn't have any spaces before or "
 "after"
-msgstr "C'è un errore nel formato: il nome non può avere spazi prima o dopo"
+msgstr "Qualcosa non va nel formato: il nome non può avere spazi prima o dopo"
 
 #: .Error.The+address+is+not+correct%21+You+should+enter+a+valid+email+address+(like+r.stallman@outlock.com)+in+order+to+receive+the+link+to+your+poll.
 msgid ""
 "The address is not correct! You should enter a valid email address (like r."
 "stallman@outlock.com) in order to receive the link to your poll."
 msgstr ""
-"L'indirizzo inserito non è corretto ! È necessario un indirizzo e-mail "
-"valido (per esempio r.stallman@outlock.com) per ricevere il link del "
-"sondaggio."
+"L'indirizzo non è corretto! È necessario un indirizzo e-mail valido (per "
+"esempio r.stallman@outlock.com) per ricevere il link al sondaggio."
 
 #: .Error.The+column+already+exists
 msgid "The column already exists"
@@ -635,15 +637,15 @@ msgstr "La colonna esiste già"
 
 #: .Error.The+name+is+invalid.
 msgid "The name is invalid."
-msgstr "Nome non valido."
+msgstr "Il nome non è valido."
 
 #: .Error.The+name+you%27ve+chosen+already+exists+in+this+poll%21
 msgid "The name you've chosen already exists in this poll!"
-msgstr "Il nome che avete scelto esiste già !"
+msgstr "Il nome che avete scelto esiste già in questo sondaggio!"
 
 #: .Error.There+is+a+problem+with+your+choices
 msgid "There is a problem with your choices"
-msgstr "C'è un problema con la vostra scelta"
+msgstr "C'è un problema con le vostre scelte"
 
 #: .Error.This+identifier+is+not+allowed
 msgid "This identifier is not allowed"
@@ -651,7 +653,7 @@ msgstr "Questo identificatore non è permesso"
 
 #: .Error.This+poll+doesn%27t+exist%21
 msgid "This poll doesn't exist!"
-msgstr "Questo sondaggio non esiste più !"
+msgstr "Questo sondaggio non esiste!"
 
 #: .Error.Unable+to+connect+to+database
 msgid "Unable to connect to database"
@@ -659,7 +661,7 @@ msgstr "Impossibile connettersi al database"
 
 #: .Error.Update+vote+failed
 msgid "Update vote failed"
-msgstr "Aggiornamento del voto fallito"
+msgstr "L'aggiornamento del voto è fallito"
 
 #: .Error.You+already+voted
 msgid "You already voted"
@@ -669,11 +671,12 @@ msgstr "Hai già votato"
 msgid ""
 "You can't create a poll with hidden results with the following option: "
 msgstr ""
-"Non potete creare un sondaggio con i risultati nascosti con queste opzioni: "
+"Non è possibile creare un sondaggio con risultati nascosti con la seguente "
+"opzione: "
 
 #: .Error.You+can%27t+select+more+than+%25d+dates
 msgid "You can't select more than %d dates"
-msgstr "Non puoi scegliere più di %d date"
+msgstr "Non puoi selezionare più di %d date"
 
 #: .Error.You+haven%27t+filled+the+first+section+of+the+poll+creation
 #: +or+your+session+has+expired.
@@ -681,8 +684,8 @@ msgid ""
 "You haven't filled the first section of the poll creation, or your session "
 "has expired."
 msgstr ""
-"Non hai completato la prima sezione del sondaggio o la tua sessione è "
-"scaduta."
+"Non hai compilato la prima sezione della creazione del sondaggio o la tua "
+"sessione è scaduta."
 
 #: .Error.Your+vote+wasn%27t+counted
 #: +because+someone+voted+in+the+meantime+and+it+conflicted+with+your+choices+and+the+poll+conditions.+Please+retry.
@@ -690,8 +693,9 @@ msgid ""
 "Your vote wasn't counted, because someone voted in the meantime and it "
 "conflicted with your choices and the poll conditions. Please retry."
 msgstr ""
-"IT_Your vote wasn't counted, because someone voted in the meantime and it "
-"conflicted with your choices and the poll conditions. Please retry."
+"Il tuo voto non è stato conteggiato perché nel frattempo qualcun altro ha "
+"votato, ed è andato in conflitto con le tue scelte e le condizioni del "
+"sondaggio. Per favore, riprova."
 
 #: .FindPolls.Address
 msgid "Address"
@@ -699,7 +703,7 @@ msgstr "Indirizzo"
 
 #: .FindPolls.Created+polls
 msgid "Created polls"
-msgstr "Sondaggio creato"
+msgstr "Sondaggi creati"
 
 #: .FindPolls.Have+a+good+day%21
 msgid "Have a good day!"
