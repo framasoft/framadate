@@ -5,15 +5,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
+"PO-Revision-Date: 2020-03-21 06:19+0000\n"
+"Last-Translator: Balázs Úr <balazs@urbalazs.hu>\n"
+"Language-Team: Hungarian <https://weblate.framasoft.org/projects/framadate/"
+"framadate/hu/>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-04-19 07:04+0000\n"
-"Last-Translator: Thomas Citharel <thomas.citharel@framasoft.org>\n"
-"Language-Team: Hungarian\n"
-"Language: hu\n"
-"X-Generator: Zanata 4.6.2\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.11.2\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -112,7 +113,7 @@ msgstr "fejlesztési oldalra"
 
 #: .Admin.Actions
 msgid "Actions"
-msgstr " Műveletek"
+msgstr "Műveletek"
 
 #: .Admin.Administration
 msgid "Administration"
