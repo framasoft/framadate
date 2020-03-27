@@ -1,1 +1,643 @@
-{}
+{
+    "studs": {
+        "POLL_LOCKED_WARNING": "Az adminisztrátor lezárta ezt a szavazást. A szavazatok és hozzászólások be lettek fagyasztva.",
+        "Update vote succeeded": "Szavazat frissítve",
+        "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line": {
+            "": "Ha szavazni akar ebben a szavazásban, akkor meg kell adnia a nevét, a választását és be kell küldenie a sor végén található plusz gombbal."
+        },
+        "Adding the vote succeeded": "Szavazat hozzáadva",
+        "Your vote has been registered successfully, but be careful: regarding this poll options, you need to keep this personal link to edit your own vote:": "A szavazata el lett mentve, de ne felejtse el megőrizni a személyre szabott hivatkozását, hogy módosítani tudja később a szavazatát.",
+        "The poll is expired, it will be deleted soon": {
+            "": "A szavazás lejárt. Hamarosan törölve lesz."
+        },
+        "Deletion date:": "Törlési idő:"
+    },
+    "adminstuds": {
+        "remove a column or a line with": "oszlop vagy sor törlése ezzel:",
+        "Your poll has been removed!": "A szavazása el lett távolítva.",
+        "and add a new column with": "és új oszlop hozzáadása ezzel:",
+        "Vote updated": "Szavazat frissítve",
+        "Vote added": "Szavazat hozzáadva",
+        "If you just want to add a new hour to an existant date, put the same date and choose a new hour": {
+            "": "Ha csak egy új idősávot akar felvenni egy meglévő dátumhoz, adja hozzá a dátumot itt, és válasszon egy idősávot."
+        },
+        "Delete the poll": "Szavazás törlése",
+        "You can add a new scheduling date to your poll": {
+            "": "Új ütemezési dátumot adhat hozzá a szavazáshoz."
+        },
+        "Vote deleted": "Szavazat törölve",
+        "The poll is created": {
+            "": "A szavazás létrehozva."
+        },
+        "Remove the votes": "Szavazatok eltávolítása",
+        "Remove the comments": "Hozzászólások eltávolítása",
+        "Remove the column": "Oszlop eltávolítása",
+        "Poll saved": "Szavazás mentve",
+        "Poll fully deleted": "Szavazás teljesen törölve",
+        "Keep votes": "Szavazatok megtartása",
+        "Keep this poll": "A szavazás megtartása",
+        "Keep the votes": "Szavazatok megtartása",
+        "Keep the poll": "Szavazás megtartása",
+        "Keep the comments": "A hozzászólások megtartása",
+        "Keep comments": "Hozzászólások megtartása",
+        "Finally, you can change the informations of this poll like the title, the comments or your email address": {
+            "": "Végül, módosíthatja a szavazás tulajdonságait, mint a címet, hozzászólásokat vagy az e-mail címét."
+        },
+        "Confirm removal of the poll": "A szavazás eltávolításának megerősítése",
+        "Confirm removal of the column": {
+            "": "Az oszlop eltávolításának megerősítése."
+        },
+        "Confirm removal of all votes of the poll": "Az összes szavazat eltávolításának megerősítése",
+        "Confirm removal of all comments of the poll": "Az összes hozzászólás eltávolításának megerősítése",
+        "Comment deleted": "Hozzászólás törölve",
+        "Column removed": "Oszlop törölve",
+        "Choice added": "Lehetőség hozzáadva",
+        "Back to the poll": "Vissza a szavazáshoz",
+        "As poll administrator, you can change all the lines of this poll with this button": "A szavazás adminisztrátoraként ezzel a gombbal módosíthatja a szavazás sorait",
+        "All votes deleted": "Összes szavazat törölve",
+        "All comments deleted": "Összes hozzászólás törölve",
+        "Column's adding": "Oszlop hozzáadása",
+        "Add a column": "Oszlop hozzáadása"
+    },
+    "Poll results": {
+        "Vote no for": "„Nem” szavazat a következőre:",
+        "Vote yes for": "„Igen” szavazat a következőre:",
+        "Link to edit this particular line has been copied inside the clipboard!": "Az adott sor szerkesztéséhez szükséges hivatkozás a vágólapra lett másolva.",
+        "Votes of the poll": "Szavazatok",
+        "Vote ifneedbe for": "„Ha szükséges” szavazat a következőre:",
+        "polled users": "szavazó",
+        "polled user": "szavazó",
+        "Addition": "Összesen",
+        "The bests choices at this time are:": "Jelenlegi legjobb lehetőségek:",
+        "The best choice at this time is:": "Jelenlegi legjobb lehetőség:",
+        "Scroll to the right": "Görgetés jobbra",
+        "Scroll to the left": "Görgetés balra",
+        "Save the choices": "Szavazatok mentése",
+        "Remove the line:": "Sor eltávolítása:",
+        "Link to edit this particular line": "Hivatkozás ennek a sornak a szerkesztéséhez",
+        "Edit the line: %s": "Sor szerkesztése: %s",
+        "Display the chart of the results": "Eredmény grafikus ábrázolása",
+        "Chart": "Grafikon",
+        "Best choices": "Legjobb választások",
+        "Best choice": "Legjobb választás"
+    },
+    "Step 2 date": {
+        "You can add or remove additionnal days and hours with the buttons": "A gombokkal további napokat és idősávokat adhat hozzá",
+        "To schedule an event you need to propose at least two choices (two hours for one day or two days)": {
+            "": "Egy esemény ütemezéséhez legalább két lehetőséget kell megadni (azaz két idősávot egy nap, vagy két napot)."
+        },
+        "Remove this day": "Nap eltávolítása",
+        "Remove all hours": "Összes idősáv eltávolítása",
+        "Remove all days": "Összes nap eltávolítása",
+        "Remove an hour": "Idősáv eltávolítása",
+        "Remove a day": "Nap eltávolítása",
+        "Poll dates (2 on 3)": "Szavazási dátumok (2/3)",
+        "For each selected day, you can choose, or not, meeting hours (e": {
+            "g": {
+                ": \"8h\", \"8:30\", \"8h-10h\", \"evening\", etc": {
+                    ")": "Minden egyes napnál szabadon adhat meg találkozási időket (például „8h”, „8:30”, „8h-10h”, „este” stb.)"
+                }
+            }
+        },
+        "Copy hours of the first day": "Idősávok átmásolása az első napból",
+        "Choose the dates of your poll": "Válasszon dátumokat a szavazáshoz",
+        "Add an hour": "Idősáv hozzáadása",
+        "Add a day": "Nap hozzáadása"
+    },
+    "Step 2 classic": {
+        "It's possible to propose links or images by using": "Hivatkozásokat és képeket a következő módon lehet beágyazni:",
+        "You can add or remove additional choices with the buttons": "A gombokkal adhat hozzá és vehet el lehetőségeket",
+        "URL of the image": "A kép URL-e",
+        "To make a generic poll you need to propose at least two choices between differents subjects": {
+            "": "Egy szavazás létrehozásához legalább két lehetőséget kell megadni."
+        },
+        "These fields are optional": {
+            " You can add a link, an image or both": {
+                "": "Ezek nem kötelező mezők. Itt megadhat egy hivatkozást, egy képet vagy mindkettőt."
+            }
+        },
+        "Remove a choice": "Lehetőség eltávolítása",
+        "Poll subjects (2 on 3)": "Szavazási beállítások (2/3)",
+        "the Markdown syntax": "Markdown szintaxis",
+        "Alternative text": "Alternatív szöveg",
+        "Add a link or an image": "Hivatkozás vagy kép hozzáadása",
+        "Add a choice": "Lehetőség hozzáadása"
+    },
+    "Step 1": {
+        "To make the description more attractive, you can use the Markdown format": {
+            "": "Markdown formátumot is használhat a leírás vonzóbbá tételéhez."
+        },
+        "Voters can modify their vote themselves": "A szavazók módosíthatják a szavazatukat",
+        "ValueMax instructions": "szavazatok lehetőségenként ",
+        "Poll password": "Jelszó",
+        "Password choice": "Választás",
+        "You can enable or disable the editor at will": {
+            "": "Kedvére ki- vagy bekapcsolhatja a szerkesztőt."
+        },
+        "You are in the poll creation section": {
+            "": "A szavazáslétrehozási szakaszban van."
+        },
+        "Votes cannot be modified": "A szavazatokat nem lehet módosítani",
+        "Value Max": "Érték maximuma",
+        "Use a password to restrict access": "Hozzáférés korlátozása jelszóval",
+        "The results are publicly visible": "Az eredmények nyilvánosan láthatóak",
+        "Poll id rules": "Az azonosító betűket, számokat és kötőjeleket („-”) tartalmazhat.",
+        "Required fields cannot be left blank": {
+            "": "A kötelező mezők nem maradhatnak üresen."
+        },
+        "To receive an email for each new vote": "E-mail értesítés küldése minden egyes szavazatkor",
+        "To receive an email for each new comment": "E-mail értesítés küldése minden egyes hozzászóláskor",
+        "Poll title": "Szavazás címe",
+        "Poll id": "Hivatkozás a szavazáshoz",
+        "Poll creation (1 on 3)": "Szavazás létrehozása (1/3)",
+        "Permissions": "Engedélyek",
+        "Optional parameters": "Nem kötelező paraméterek",
+        "Only the poll maker can see the poll's results": "Csak a szavazás készítője láthatja az eredményt",
+        "More informations here:": "További információk itt:",
+        "Limit the amount of voters per option": "Szavazatok lehetőségenkénti számának korlátozása",
+        "Go to step 2": "Tovább a 2. lépéshez",
+        "Customize the URL": "URL személyre szabása",
+        "Password confirmation": "Megerősítés",
+        "Poll id warning": "Az azonosító megadásával a nemkívánatos személyek is könnyebben hozzáférhetnek a szavazáshoz. Javasolt jelszóval védeni.",
+        "All voters can modify any vote": "Minden szavazó bármelyik szavazatot módosíthatja"
+    },
+    "Generic": {
+        "for": "ennél:",
+        "Page generated in": "Az oldal előállítva:",
+        "Back to the homepage of": "Vissza a következő weboldalra:",
+        "Make your polls": "Készítsen saját szavazást",
+        "Framadate is an online service for planning an appointment or make a decision quickly and easily": {
+            "": "A Framadate egy online szolgáltatás találkozó tervezéséhez, vagy gyors és könnyű döntéshozáshoz."
+        },
+        "Choice": "Választás",
+        "Caption": "Felirat",
+        "ASTERISK": "*",
+        "with": "–",
+        "votes": "szavazat alapján",
+        "vote": "szavazat alapján",
+        "seconds": "másodperc",
+        "months": "hónap",
+        "days": "nap",
+        "Your name": "Neve",
+        "Your email address": "Az e-mail címe",
+        "Yes": "Igen",
+        "Validate": "Érvényesítés",
+        "Ifneedbe": "Feltételes",
+        "Time": "Idő",
+        "Search": "Keresés",
+        "Save": "Mentés",
+        "Remove": "Eltávolítás",
+        "Poll": "Szavazás",
+        "No": "Nem",
+        "Next": "Következő",
+        "Markdown": "Markdown",
+        "Link": "Hivatkozás",
+        "Legend:": "Jelmagyarázat:",
+        "Home": "Kezdőlap",
+        "Edit": "Szerkesztés",
+        "Description": "Leírás",
+        "Day": "Nap",
+        "Date": "Dátum",
+        "Creation date:": "Létrehozási idő:",
+        "Close": "Bezárás",
+        "Classic": "Klasszikus",
+        "Cancel": "Mégse",
+        "Back": "Vissza",
+        "Add": "Hozzáadás",
+        "(in the format name@mail": {
+            "com)": "(name@mail.com formátumban)"
+        }
+    },
+    "Error": {
+        "This poll doesn't exist !": "Ez a szavazás nem létezik.",
+        "The name you've chosen already exist in this poll!": "A választott név már szerepel ebben a szavazásban.",
+        "Something is wrong with the format: customized urls should only consist of alphanumeric characters and hyphens": {
+            "": "Valami baj van a formátummal: a személyre szabott URL csak alfanumerikus karaktereket és kötőjeleket tartalmazhat."
+        },
+        "Forbidden!": "Tiltott.",
+        "Failed to insert the comment!": "Hozzászólás beszúrása sikertelen.",
+        "Failed to delete the vote!": "Szavazat törlése sikertelen.",
+        "Error!": "Hiba.",
+        "Enter a name and a comment!": "Adjon meg egy nevet és egy hozzászólást.",
+        "You haven't filled the first section of the poll creation": {
+            "": "Nem töltötte ki a szavazás első szakaszát."
+        },
+        "This id is not allowed": "Ez az azonosító nem engedélyezett",
+        "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing": {
+            "": "A Framadata nem helyesen telepített, a folytatás előtt tekintse meg az „INSTALL” fájlban található adatbázis-beállítási utasításokat."
+        },
+        "Error on amount of voters limitation : value must be an integer greater than 0": "Hiba a szavazók számának korlátozásánál: az értéknek 0-nál nagyobb egésznek kell lennie",
+        "Your vote wasn't counted, because someone voted in the meantime and it conflicted with your choices and the poll conditions": {
+            " Please retry": {
+                "": "A szavazata nem lett beleszámítva, mert valaki időközben szavazott, és ez ütközik a választásaival és a szavazás feltételeivel. Próbálja újra."
+            }
+        },
+        "You can't select more than %d dates": "Nem választhat ki %d dátumnál többet",
+        "You can't create a poll with hidden results with the following edition option:": "Nem hozhat létre rejtett eredményű szavazást a következő beállítással: ",
+        "You already voted": "Már szavazott",
+        "Update vote failed": "Szavazat frissítése sikertelen",
+        "CANT_CONNECT_TO_DATABASE": "Nem sikerült csatlakozni az adatbázishoz",
+        "There is a problem with your choices": "Probléma van a választásaival",
+        "The name is invalid": {
+            "": "A név érvénytelen."
+        },
+        "The column already exists": "Az oszlop már létezik",
+        "The address is not correct! You should enter a valid email address (like r": {
+            "stallman@outlock": {
+                "com) in order to receive the link to your poll": {
+                    "": "A cím nem megfelelő. Érvényes e-mail címet kell megadjon (pl. r.stallman@outlock.com), hogy el tudjuk küldeni a szavazáshoz tartozó hivatkozást."
+                }
+            }
+        },
+        "Something is wrong with the format: name shouldn't have any spaces before or after": "Valami baj van a formátummal: a név elején és végén nem lehetnek szóközök",
+        "Something is wrong with the format": "Valami baj van a formátummal",
+        "Something is going wrong": {
+            "": {
+                "": {
+                    "": "Valami hiba történt…"
+                }
+            }
+        },
+        "Poll has been updated before you vote": "A szavazás frissítve lett mielőtt szavazott volna",
+        "Passwords do not match": "A jelszavak nem egyeznek.",
+        "Password is empty": "A jelszó üres.",
+        "No polls found": "A szavazás nem található",
+        "MISSING_VALUES": "Hiányzó értékek",
+        "Javascript is disabled on your browser": {
+            " Its activation is required to create a poll": {
+                "": "A JavaScript le van tiltva a böngészőjében. Engedélyezni kell a szavazás létrehozásához."
+            }
+        },
+        "Poll id already used": "Az azonosító már használatban van",
+        "Failed to save poll": "A szavazás mentése sikertelen",
+        "Failed to delete the poll": "Szavazás törlése sikertelen",
+        "Failed to delete the comment": "Hozzászólás törlése sikertelen",
+        "Failed to delete column": "Oszlop törlése sikertelen",
+        "Failed to delete all votes": "Az összes szavazat törlése sikertelen",
+        "Failed to delete all comments": "Az összes hozzászólás törlése sikertelen",
+        "Enter an email address": "Adjon meg egy e-mail címet",
+        "Enter a title": "Adjon meg egy címet",
+        "Enter a name": "Adjon meg egy nevet",
+        "Cookies are disabled on your browser": {
+            " Theirs activation is required to create a poll": {
+                "": "A sütik le vannak tiltva a böngészőjében. Engedélyezni kell őket a szavazás létrehozásához."
+            }
+        },
+        "Comment failed": "Hozzászólás sikertelen",
+        "Can't create the config": {
+            "php file in '%s'": {
+                "": "Nem hozható létre a config.php fájl itt: „%s”."
+            }
+        },
+        "Can't create an empty column": {
+            "": "Üres oszlop nem hozható létre."
+        },
+        "Adding vote failed": "Szavazat hozzáadása sikertelen"
+    },
+    "Date": {
+        "datetime_parseformat": "Y.m.d.",
+        "DATE": "%Y.%m.%d.",
+        "dd/mm/yyyy": "yyyy.mm.dd.",
+        "datepicker": "yyyy.mm.dd.",
+        "Max dates count": "Legfeljebb 4 hónapot válaszhat",
+        "Start date": "Kezdő dátum",
+        "End date": "Záró dátum",
+        "Add range dates": "Időintervallum hozzáadása",
+        "DATETIME": "%Y.%m.%d. %H:%M",
+        "DAY": "%e., %a",
+        "MONTH_YEAR": "%Y %B",
+        "FULL": "%Y. %B %e., %A",
+        "SHORT": "%Y. %B %e., %A"
+    },
+    "Check": {
+        "Cookies are served from HTTP only": {
+            "": "A sütik csak HTTP felől kerülnek kiszolgálásra."
+        },
+        "date": {
+            "timezone is set": {
+                "": "date.timezone beállítva."
+            }
+        },
+        "Your PHP version (%s) is too old": {
+            " This application needs at least PHP %s": {
+                "": "A PHP %s túl régi. Az alkalmazáshoz legalább PHP %s szükséges."
+            }
+        },
+        "You need to enable the PHP Intl extension": {
+            "": "Engedélyeznie kell a PHP Intl kiterjesztést."
+        },
+        "The template compile directory (%s) is writable": {
+            "": "A sablonok fordítási könyvtára (%s) írható."
+        },
+        "The template compile directory (%s) is not writable": {
+            "": "A sablonok fordítási könyvtára (%s) nem írható."
+        },
+        "The template compile directory (%s) doesn't exist in \"%s\"": {
+            " Retry the installation process": {
+                "": "A sablonok fordítási könyvtára (%s) nem létezik itt: „%s”. Kezdd újra a telepítési folyamatot."
+            }
+        },
+        "The config file exists": {
+            "": "A konfigurációs fájl létezik."
+        },
+        "The config file directory (%s) is writable": {
+            "": "A konfigurációs fájl könyvtára (%s) írható."
+        },
+        "The config file directory (%s) is not writable and the config file (%s) does not exists": {
+            "": "A konfigurációs fájl könyvtára (%s) nem írható, és a konfigurációs fájl (%s) nem létezik."
+        },
+        "PHP version %s is enough (needed at least PHP %s)": {
+            "": "A PHP %s elégséges (legalább PHP %s szükséges)."
+        },
+        "PHP Intl extension is enabled": {
+            "": "PHP Intl kiterjesztés engedélyezve."
+        },
+        "OpenSSL extension loaded": {
+            "": "OpenSSL kiterjesztés betöltve."
+        },
+        "Installation checking": "Telepítés ellenőrzése",
+        "Continue the installation": "Telepítés folytatása",
+        "Consider setting « session": {
+            "cookie_httponly = 1 » inside your php": {
+                "ini or add « php_value session": {
+                    "cookie_httponly 1 » to your ": {
+                        "htaccess so that cookies can't be accessed through Javascript": {
+                            "": "Fontolja meg a „session.cookie_httponly = 1” beállítását a php.ini fájlban, vagy adja hozzá a „php_value session.cookie_httponly 1” szöveget a .htaccess fájlhoz, hogy a sütiket ne lehessen Javascripten keresztül elérni."
+                        }
+                    }
+                }
+            }
+        },
+        "Consider setting the date": {
+            "timezone in php": {
+                "ini": {
+                    "": "Fontolja meg a data.timezone megadását a php.ini fájlban."
+                }
+            }
+        },
+        "Consider enabling the PHP extension OpenSSL for increased security": {
+            "": "Fontolja meg az OpenSSL PHP kiterjesztés engedélyezését a növelt biztonság érdekében."
+        },
+        "Check again": "Újraellenőrzés"
+    },
+    "2nd section": {
+        "The software": "A szoftver a",
+        "It is governed by the": "A Framadate licence:",
+        "This software needs javascript and cookies enabled": {
+            " It is compatible with the following web browsers:": "A szoftverhez JavaScript és engedélyezett sütik szükségesek. A következő webböngészőkkel kompatibilis:"
+        },
+        "Framadate was initially based on ": "A Framadate eredetileg a ",
+        "a software developed by the University of Strasbourg": {
+            " Today, it is devevoped by the association Framasoft": {
+                "": "szoftveren alapul, melyet a Strasbourg-i Egyetem fejlesztett. Manapság a Framasoft fejleszti."
+            }
+        },
+        "CeCILL-B license": "CeCILL-B licenc"
+    },
+    "PollInfo": {
+        "Expiration date": "Lejárati dátum",
+        "Email": "E-mail",
+        "Votes protected by password": "A szavazatok jelszóval védettek",
+        "Votes and comments are locked": "Szavazás és hozzászólások lezárása",
+        "Title": "A szavazás címe",
+        "Simple editor": "Egyszerű szerkesztő",
+        "Save the new title": "Új cím mentése",
+        "Save the new rules": "Új szabályok mentése",
+        "Save the new name": "Új név mentése",
+        "Save the new expiration date": "Új lejárati idő mentése",
+        "Save the email address": "E-mail cím mentése",
+        "Save the description": "Leírás mentése",
+        "Rich editor": "Részletes szerkesztő",
+        "Results are visible": "A szavazatok nyilvánosak",
+        "Results are hidden": "A szavazatok rejtettek",
+        "Remove the poll": "Szavazás törlése",
+        "Remove password": "Jelszó törlése",
+        "Remove all the votes": "Összes szavazat törlése",
+        "Remove all the comments": "Összes hozzászólás törlése",
+        "Public link of the poll": "Nyilvános hivatkozás a szavazáshoz",
+        "Print": "Nyomtatás",
+        "Poll rules": "Szavazási szabályok",
+        "Password protected": "Jelszóval védett",
+        "Only votes are protected": "Csak a szavazatok védettek",
+        "No password": "Nincs jelszó",
+        "Export to CSV": "Exportálás CSV fájlba",
+        "Edit the title": "Cím szerkesztése",
+        "Edit the poll rules": "Szabály szerkesztése",
+        "Edit the expiration date": "Lejárati idő szerkesztése",
+        "Edit the email adress": "E-mail cím szerkesztése",
+        "Edit the description": "Leírás szerkesztése",
+        "Edit the name": "Név szerkesztése",
+        "Initiator of the poll": "Szavazás létrehozója",
+        "Cancel the title edit": "Cím szerkesztésének elvetése",
+        "Cancel the rules edit": "Szabály szerkesztésének elvetése",
+        "Cancel the name edit": "Név szerkesztésének elvetése",
+        "Cancel the expiration date edit": "Lejárati idő szerkesztésének visszavonása",
+        "Cancel the email address edit": "E-mail cím szerkesztésének elvetése",
+        "Cancel the description edit": "Leírás szerkesztésének elvetése",
+        "Admin link of the poll": "Adminisztrációs hivatkozás a szavazáshoz"
+    },
+    "Password": {
+        "Password": "Jelszó",
+        "You have to provide a password to access the poll": {
+            "": "A szavazáshoz való hozzáféréshez meg kell adnia egy jelszót."
+        },
+        "You have to provide a password so you can participate to the poll": {
+            "": "A szavazásban való részvételhez meg kell adnia egy jelszót."
+        },
+        "Wrong password": "Hibás jelszó",
+        "Submit access": "Hozzáférés beküldése"
+    },
+    "Mail": {
+        "[ADMINISTRATOR] New settings for your poll": "[RENDSZERGAZDA] Új beállítások a szavazásánál",
+        "You have changed the settings of your poll": {
+            " \nYou can modify this poll with this link": "Módosította a szavazás beállításait.<br/>Ezzel a hivatkozással módosíthatja a szavazást"
+        },
+        "This message should NOT be sent to the polled people": {
+            " It is private for the poll's creator": {
+                "\n\nYou can now modify it at the link above": "NE küldje el ezt az üzenetet a szavazás résztvevőinek. Tartsa meg bizalmasan.<br/><br/>A fenti hivatkozással módosíthatja a szavazást"
+            }
+        },
+        "Thanks for filling the poll at the link above": "Töltse ki a szavazást a fenti hivatkozásnál",
+        "Author's message": "Szerző üzenete",
+        "hast just created a poll called": "létrehozott egy szavazást",
+        "filled a vote": {
+            "\nYou can find your poll at the link": "szavazott.<br/>A következő hivatkozással keresheti fel a szavazást"
+        },
+        "This is the message you have to send to the people you want to poll": {
+            " \nNow, you have to send this message to everyone you want to poll": {
+                "": "Ez a résztvevőknek küldendő üzenet."
+            }
+        },
+        "Thanks for your trust": {
+            "": "Köszönjük a bizalmat."
+        },
+        "Someone just delete your poll %s": {
+            "": "Valaki letörölte a(z) „%s” szavazását."
+        },
+        "Someone just change your poll available at the following link %s": {
+            "": "Valaki épp módosította a szavazását a <a href=\"%1$s\">%1$s</a> hivatkozást követve."
+        },
+        "Poll's participation: %s": "Részvétel a szavazásban: %s",
+        "For sending to the polled users": "Résztvevői hivatkozás",
+        "Notification of poll: %s": "Szavazás értesítése: %s",
+        "FOOTER": "„Az út hosszú, de az irány tiszta…”<br/>A Framasoft csak az adományaikból él.<br/>Előre is köszönjük a támogatását itt: https://soutenir.framasoft.org",
+        "wrote a comment": {
+            "\nYou can find your poll at the link": "írt egy hozzászólást.<br/>A következő hivatkozással keresheti fel a szavazást"
+        },
+        "updated a vote": {
+            "\nYou can find your poll at the link": "frissített egy szavazatot.<br/>A következő hivatkozással keresheti fel a szavazást"
+        }
+    },
+    "Installation": {
+        "DbPassword": "Jelszó",
+        "DbConnectionString": "Kapcsolódási karakterlánc",
+        "DbUser": "Felhasználó",
+        "ResponseMail": "Válasz e-mail cím",
+        "DbPrefix": "Előtag",
+        "MigrationTable": "Áttelepítési tábla",
+        "Install": "Telepítés",
+        "General": "Általános",
+        "DefaultLanguage": "Alapértelmezett nyelv",
+        "Database": "Adatbázis neve",
+        "CleanUrl": "Tiszta URL",
+        "AppName": "Alkalmazás neve",
+        "AppMail": "Adminisztrátor e-mail címe"
+    },
+    "FindPolls": {
+        "If you weren't the source of this action and if you think this is an abuse of the service, please notify the administrator on %s": {
+            "": "Ha nem Ön volt a művelet forrása, és úgy gondolja, hogy visszaélnek a szolgáltatással, értesítse a rendszergazdát itt: %s."
+        },
+        "Send me my polls": "Szavazások elküldése",
+        "Polls sent": "Szavazások listája elküldve",
+        "PS: this email has been sent because you – or someone else – asked to get back the polls created with your email address": {
+            "": "UI: ez az e-mail azért lett elküldve, mert Ön – vagy valaki más – kérte az erről az e-email címről létrehozott szavazások listáját."
+        },
+        "List of your polls": "Szavazásai listája",
+        "Here is the list of the polls that you manage on %s:": "Ez a szavazások listája, amit a %s alkalmazásban kezel:",
+        "Have a good day!": "Legyen szép napja!"
+    },
+    "EditLink": {
+        "If you don't want to lose your personalized link, we can send it to your email": {
+            "": "Ha nem akarja elveszíteni a személyre szabott hivatkozását, elküldhetjük e-mailben."
+        },
+        "Your reminder has been successfully sent!": "Az emlékeztető sikeresen elküldve!",
+        "The email address is not correct": {
+            "": "Az e-mail cím helytelen."
+        },
+        "Send": "Elküldés",
+        "REMINDER": "EMLÉKEZTETŐ",
+        "Please wait %d seconds before we can send an email to you then try again": {
+            "": "Várjon %d másodpercet mielőtt elküldjük Önnek az e-mailt, aztán próbálja újra."
+        },
+        "Here is the link for editing your vote:": "A szavazata szerkesztéséhez szükséges hivatkozás:",
+        "Edit link for poll \"%s\"": "A(z) „%s” szavazás hivatkozásának szerkesztése"
+    },
+    "Comments": {
+        "anonyme": "aninom",
+        "Send the comment": "Hozzászólás beküldése",
+        "Remove the comment": "Hozzászólás eltávolítása",
+        "Comments of polled people": "Hozzászólások",
+        "Comment added": "Hozzászólás mentve",
+        "Your comment": "Hozzászólás",
+        "Add a comment to the poll": "Hozzászólás hozzáadása a szavazáshoz"
+    },
+    "Admin": {
+        "Votes": "Szavazatok",
+        "Expiration date": "Lejárati dátum",
+        "Email": "E-mail",
+        "Deleted the poll": "Szavazás törölve",
+        "Confirm removal of the poll": "Erősítse meg a szavazás eltávolítását ",
+        "polls in the database at this time": "szavazás van most az adatbázisban",
+        "Title": "Cím",
+        "Summary": "Összegzés",
+        "Success": "Sikeres",
+        "Succeeded:": "Sikeres:",
+        "Skipped:": "Kihagyva:",
+        "See the poll": "Szavazás megtekintése",
+        "Purged:": "Törölve:",
+        "Purge the polls": "Szavazások törlése",
+        "Purge": "Törlés",
+        "Polls": "Szavazások",
+        "Poll ID": "Szavazásazonosító",
+        "Pages:": "Oldalak:",
+        "Nothing": "Semmi",
+        "Migration": "Áttelepítés",
+        "Logs": "Naplók",
+        "Installation": "Telepítés",
+        "Format": "Formátum",
+        "Failed:": "Sikertelen:",
+        "Fail": "Sikertelen",
+        "Change the poll": "Szavazás módosítása",
+        "Back to administration": "Vissza az adminisztrációhoz",
+        "Author": "Szerző",
+        "Administration": "Adminisztráció",
+        "Actions": "Műveletek"
+    },
+    "3rd section": {
+        "To participate in the software development, suggest improvements or simply download it, please visit ": "A szoftver fejesztésében részvételhez, fejlesztések javaslatához vagy egyszerűen a letöltéshez, látogasson el ",
+        "the development site": "a fejlesztési oldalra",
+        "If you want to install the software for your own use and thus increase your independence, we help you on:": "Ha szeretné magának telepíteni a szoftvert saját használatra, ezzel is növelve a függetlenségét, akkor a következő oldalon kaphat ehhez segítséget:",
+        "Cultivate your garden": "Nevelje a sajátját"
+    },
+    "Step 3": {
+        "after the last date of your poll": {
+            "": "a szavazás utolsó dátuma után."
+        },
+        "Your poll will be automatically archived in %d days": {
+            "": "A szavazása %d nap után automatikusan archiválva lesz."
+        },
+        "Your poll will automatically be archived": "A szavazása automatikusan archiválva lesz",
+        "You can set a closer archiving date for it": {
+            "": "Lejárati időt adhat meg a szavazáshoz."
+        },
+        "Then, you will receive quickly two emails: one contening the link of your poll for sending it to the voters, the other contening the link to the administration page of your poll": {
+            "": "Aztán két e-mailt fog kapni: egyet ami a résztvevőknek elküldendő hivatkozást tartalmazza, és egy másikat, amely a szavazás adminisztrációs oldalának hivatkozását tartalmazza."
+        },
+        "Removal date and confirmation (3 on 3)": "Eltávolítási idő és megerősítés (3/3)",
+        "Once you have confirmed the creation of your poll, you will be automatically redirected on the administration page of your poll": {
+            "": "Ha megerősíti a szavazás létrehozását, automatikusan át lesz irányítva a szavazás adminisztrációs oldalára."
+        },
+        "List of your choices": "Lehetőségek listája",
+        "Archiving date:": "Lejárati idő:",
+        "Create the poll": "Szavazás létrehozása",
+        "Confirm the creation of your poll": "A szavazás létrehozásának megerősítése",
+        "Back to step 2": "Vissza a 2. lépéshez"
+    },
+    "Language selector": {
+        "Select the language": "Válasszon nyelvet",
+        "Change the language": "Nyelv módosítása"
+    },
+    "Homepage": {
+        "Where are my polls": "Hol vannak a szavazásaim?",
+        "Schedule an event": "Esemény ütemezése",
+        "Make a classic poll": "Szokásos szavazás létrehozása"
+    },
+    "Step 2": {
+        "Back to step 1": "Vissza az 1. lépéshez",
+        "Go to step 3": "Tovább a 3. lépéshez"
+    },
+    "Maintenance": {
+        "is currently under maintenance": {
+            "": "jelenleg karbantartás alatt van."
+        },
+        "The application": "Az alkalmazás",
+        "Thank you for your understanding": {
+            "": "Köszönjük a megértést."
+        }
+    },
+    "1st section": {
+        "view an example?": "látni egy példát?",
+        "What is that?": "Mi a Framadate?",
+        "Send the poll link to your friends or colleagues": "Szavazás elküldése ismerősöknek vagy kollégáknak",
+        "Here is how it works:": "Így működik:",
+        "Framadate is an online service for planning an appointment or make a decision quickly and easily": {
+            " No registration is required": {
+                "": "A Framadate egy online szolgáltatás találkozók egyeztetésére vagy döntések gyors és egyszerű meghozására. Regisztráció nem szükséges."
+            }
+        },
+        "Do you want to": "Szeretne",
+        "Discuss and make a decision": "Megbeszélés és döntéshozás",
+        "Define dates or subjects to choose": "Választható időpontok vagy témák megadása",
+        "Make a poll": "Szavazás létrehozása"
+    }
+}
