@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-03-12 22:08+0000\n"
+"PO-Revision-Date: 2020-05-19 08:24+0000\n"
 "Last-Translator: Italo Vignoli <italo@vignoli.org>\n"
 "Language-Team: Italian <https://weblate.framasoft.org/projects/framadate/"
 "framadate/it/>\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
-msgstr "Creare un sondaggio"
+msgstr "Create un sondaggio"
 
 #: .1st+section.Define+dates+or+subjects+to+choose+from
 msgid "Define dates or subjects to choose from"
-msgstr "Definire date o soggetti tra cui scegliere"
+msgstr "Definite date o soggetti tra cui scegliere"
 
 #: .1st+section.Discuss+and+make+a+decision
 msgid "Discuss and make a decision"
@@ -33,7 +33,7 @@ msgstr "Discutete e prendete la vostra decisione"
 
 #: .1st+section.Do+you+want+to
 msgid "Do you want to"
-msgstr "Volete "
+msgstr "Volete"
 
 #: .1st+section.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.+No+registration+is+required.
 msgid ""
@@ -54,7 +54,7 @@ msgstr "Inviate il link ai vostri amici o colleghi"
 
 #: .1st+section.What+is+Framadate%3F
 msgid "What is Framadate?"
-msgstr "Cos'è?"
+msgstr "Cos'è Framadate?"
 
 #: .1st+section.view+an+example%3F
 msgid "view an example?"
@@ -66,11 +66,11 @@ msgstr "licenza CeCILL-B"
 
 #: .2nd+section.Framadate+is+licensed+under+the
 msgid "Framadate is licensed under the"
-msgstr "È  disciplinato dalla"
+msgstr "Framadate è rilasciato con licenza"
 
 #: .2nd+section.Framadate+was+initially+based+on
 msgid "Framadate was initially based on"
-msgstr "Framadate si basa su "
+msgstr "Framadate si basa su"
 
 #: .2nd+section.The+software
 msgid "The software"
@@ -95,7 +95,7 @@ msgstr ""
 
 #: .3rd+section.Grow+your+own
 msgid "Grow your own"
-msgstr "Coltivate il vostro giardino"
+msgstr "Fate crescere il vostro"
 
 #: .3rd+section.If+you+want+to+install+the+software+for+your+own+use+and+thus+increase+your+independence
 #: +we+can+help+you+at:
@@ -103,8 +103,8 @@ msgid ""
 "If you want to install the software for your own use and thus increase your "
 "independence, we can help you at:"
 msgstr ""
-"Se voleste installare questo software per un vostro utilizzo e quindi "
-"aumentare la vostra autonomia, vi potremmo aiutare su:"
+"Se volete installare il software per uso personale e quindi aumentare la "
+"vostra autonomia, vi possiamo aiutare su:"
 
 #: .3rd+section.To+participate+in+the+software+development
 #: +suggest+improvements+or+simply+download+it
@@ -114,7 +114,7 @@ msgid ""
 "download it, please visit"
 msgstr ""
 "Per partecipare allo sviluppo del software, proporre dei miglioramenti o "
-"semplicemente scaricarlo, si può accedere al"
+"semplicemente scaricarlo, si può accedere a"
 
 #: .3rd+section.the+development+site
 msgid "the development site"
@@ -440,7 +440,7 @@ msgstr "Modifica il link del sondaggio \"%s\""
 
 #: .EditLink.Here+is+the+link+for+editing+your+vote:
 msgid "Here is the link for editing your vote:"
-msgstr "Ecco il link per modificare il vostro voto :"
+msgstr "Questo è il link per modificare il vostro voto:"
 
 #: .EditLink.If+you+don%27t+want+to+lose+your+personalized+link
 #: +we+can+send+it+to+you+by+email.
@@ -448,15 +448,15 @@ msgid ""
 "If you don't want to lose your personalized link, we can send it to you by "
 "email."
 msgstr ""
-"Se non vuoi perdere i tuoi link personalizzati, possiamo inviarlo con un'e-"
-"mail"
+"Se non vuoi perdere il tuo link personalizzato, possiamo inviartelo con "
+"un'e-mail."
 
 #: .EditLink.Please+wait+%25d+seconds+before+we+can+send+an+email+to+you+then+try+again.
 msgid ""
 "Please wait %d seconds before we can send an email to you then try again."
 msgstr ""
-"Prego attendi %d secondi prima che possiamo inviarvi l'e-mail, poi riprovate."
-""
+"Si prega di attendere %d secondi prima che possiamo inviarvi un e-mail, e "
+"riprovare."
 
 #: .EditLink.REMINDER
 msgid "REMINDER"
@@ -500,7 +500,7 @@ msgstr ""
 
 #: .Error.Enter+a+name
 msgid "Enter a name"
-msgstr "Non avete inserito il nome !"
+msgstr "Inserire un nome"
 
 #: .Error.Enter+a+name+and+a+comment%21
 msgid "Enter a name and a comment!"
@@ -508,18 +508,18 @@ msgstr "Inserire un nome e un commento!"
 
 #: .Error.Enter+a+title
 msgid "Enter a title"
-msgstr "È necessario inserire un titolo !"
+msgstr "Inserire un titolo"
 
 #: .Error.Enter+an+email+address
 msgid "Enter an email address"
-msgstr "È necessario inserire un indirizzo e-mail!"
+msgstr "Inserire un indirizzo e-mail"
 
 #: .Error.Error+on+amount+of+votes+limitation:+Value+must+be+an+integer+greater+than+0
 msgid ""
 "Error on amount of votes limitation: Value must be an integer greater than 0"
 msgstr ""
-"Errore sulla limitazione di quantità di voti: il valore deve essere un "
-"numero intero maggiore di 0"
+"Errore sulla limitazione del numero di voti: il valore deve essere un numero "
+"intero maggiore di 0"
 
 #: .Error.Error%21
 msgid "Error!"
@@ -539,15 +539,15 @@ msgstr "Impossibile eliminare la colonna"
 
 #: .Error.Failed+to+delete+the+comment
 msgid "Failed to delete the comment"
-msgstr "Impossibile cancellare il commento"
+msgstr "Impossibile eliminare il commento"
 
 #: .Error.Failed+to+delete+the+poll
 msgid "Failed to delete the poll"
-msgstr "Impossibile cancellare il sondaggio"
+msgstr "Impossibile eliminare il sondaggio"
 
 #: .Error.Failed+to+delete+the+vote%21
 msgid "Failed to delete the vote!"
-msgstr "Impossibile cancellare il voto"
+msgstr "Impossibile eliminare il voto"
 
 #: .Error.Failed+to+insert+the+comment%21
 msgid "Failed to insert the comment!"
@@ -974,7 +974,7 @@ msgstr "Creare un sondaggio"
 
 #: .Homepage.Schedule+an+event
 msgid "Schedule an event"
-msgstr "Creare un evento"
+msgstr "Pianificare un evento"
 
 #: .Homepage.Where+are+my+polls%3F
 msgid "Where are my polls?"
@@ -982,7 +982,7 @@ msgstr "Dove sono i miei sondaggi?"
 
 #: .Installation.Administrator+mail+address
 msgid "Administrator mail address"
-msgstr "Indirizzo e-mail dell'applicazione"
+msgstr "Indirizzo e-mail dell'amministratore"
 
 #: .Installation.Application+name
 msgid "Application name"
@@ -994,7 +994,7 @@ msgstr "Cancella URL"
 
 #: .Installation.Database+driver
 msgid "Database driver"
-msgstr "Database driver"
+msgstr "Driver del database"
 
 #: .Installation.Database+hostname
 msgid "Database hostname"
@@ -1006,7 +1006,7 @@ msgstr "Nome del database"
 
 #: .Installation.Database+port
 msgid "Database port"
-msgstr "Database port"
+msgstr "Porta del database"
 
 #: .Installation.Default+language
 msgid "Default language"
@@ -1036,7 +1036,7 @@ msgstr "Prefisso"
 
 #: .Installation.Respond-to+mail+address
 msgid "Respond-to mail address"
-msgstr "E-mail di risposta"
+msgstr "E-mail per le risposte"
 
 #: .Installation.User
 msgid "User"
@@ -1057,9 +1057,9 @@ msgid ""
 "donations.<br/>Thank you in advance for your support https://soutenir."
 "framasoft.org"
 msgstr ""
-"« La strada è lunga, ma la via è libera… »<br/> Framasoft vive solo grazie "
-"alle vostre donazioni.<br/> Grazie in anticipo per il vostro sostegno https:/"
-"/soutenir.framasoft.org."
+"\"La strada è lunga, ma la via è libera…\"<br/>Framasoft vive solo grazie "
+"alle vostre donazioni.<br/> Grazie in anticipo per il vostro sostegno "
+"https://soutenir.framasoft.org"
 
 #: .Mail.Message+for+the+author
 msgid "Message for the author"
@@ -1067,11 +1067,11 @@ msgstr "Messaggio per l'autore"
 
 #: .Mail.Notification+of+poll:+%25s
 msgid "Notification of poll: %s"
-msgstr "Notifica di sondaggio: %s"
+msgstr "Notifica del sondaggio: %s"
 
 #: .Mail.Participant+link
 msgid "Participant link"
-msgstr "Per diffondere ai partecipanti al sondaggio"
+msgstr "Link per i partecipanti"
 
 #: .Mail.Poll+participation:+%25s
 msgid "Poll participation: %s"
@@ -1082,16 +1082,16 @@ msgid ""
 "Someone just changed your poll at the following link <a href=\"%1$s\">%1$s</"
 "a>."
 msgstr ""
-"Qualcuno ha appena cambiato il vostro sondaggio disponibile al seguente link "
-"<a href=\"%1$s\">%1$s</a>."
+"Qualcuno ha appena cambiato il vostro sondaggio al seguente link <a href=\""
+"%1$s\">%1$s</a>."
 
 #: .Mail.Someone+just+deleted+your+poll+%22%25s%22.
 msgid "Someone just deleted your poll \"%s\"."
-msgstr "Qualcuno ha appena cancellato il vostro sondaggio \"%s\"."
+msgstr "Qualcuno ha appena eliminato il vostro sondaggio \"%s\"."
 
 #: .Mail.Thank+you+for+participating+in+the+poll+at+the+following+link
 msgid "Thank you for participating in the poll at the following link"
-msgstr "Grazie per la tua partecipazione al sondaggio al seguente link"
+msgstr "Grazie per aver partecipato al sondaggio al seguente link"
 
 #: .Mail.Thank+you+for+your+trust.
 msgid "Thank you for your trust."
@@ -1099,40 +1099,34 @@ msgstr "Grazie per la vostra fiducia."
 
 #: .Mail.This+is+the+message+to+forward+to+the+poll+participants.
 msgid "This is the message to forward to the poll participants."
-msgstr ""
-"Questo è il messaggio che deve essere inviato ai partecipanti. \n"
-"Potete ora inviare questo messaggio a tutte le persone a cui volete chiedere "
-"il voto."
+msgstr "Questo è il messaggio da inoltrare ai partecipanti al sondaggio."
 
 #: .Mail.This+message+should+NOT+be+sent+to+the+poll+participants.+You+should+keep+it+private.+%3Cbr/%3E%3Cbr/%3EYou+can+modify+your+poll+at+the+following+link
 msgid ""
 "This message should NOT be sent to the poll participants. You should keep it "
 "private. <br/><br/>You can modify your poll at the following link"
 msgstr ""
-"Questo messaggio NON deve essere inviato ai partecipanti. Si dovrebbe tenere "
+"Questo messaggio NON deve essere inviato ai partecipanti, e deve rimanere "
 "privato.<br/><br/>Puoi modificare il tuo sondaggio al seguente link"
 
 #: .Mail.added+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "added a vote.<br/>You can visit your poll at the link"
 msgstr ""
-"Voto aggiunto.<br/>\n"
-"Puoi visualizzare il sondaggio con il link seguente"
+"aggiunto un voto.<br/>Puoi visualizzare il tuo sondaggio al seguente link"
 
 #: .Mail.has+just+created+a+poll+called
 msgid "has just created a poll called"
-msgstr "È stato creato un sondaggio intitolato "
+msgstr "ha appena creato un sondaggio intitolato"
 
 #: .Mail.updated+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "updated a vote.<br/>You can visit your poll at the link"
 msgstr ""
-"hai appena aggiornato un voto.<br/>\n"
-"Puoi trovare il tuo sondaggio con il link seguente"
+"aggiornato un voto.<br/>Puoi visualizzare il tuo sondaggio al seguente link"
 
 #: .Mail.wrote+a+comment.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "wrote a comment.<br/>You can visit your poll at the link"
 msgstr ""
-"hai appena inserito un commento.<br/>\n"
-"Puoi trovare il tuo sondaggio con al link seguente"
+"inserito un commento.<br/>Puoi visualizzare il tuo sondaggio al seguente link"
 
 #: .Maintenance.Thank+you+for+your+understanding.
 msgid "Thank you for your understanding."
@@ -1144,7 +1138,7 @@ msgstr "L'applicazione"
 
 #: .Maintenance.is+currently+under+maintenance.
 msgid "is currently under maintenance."
-msgstr "è in manutenzione.."
+msgstr "attualmente è in manutenzione."
 
 #: .Password.Submit+access
 msgid "Submit access"
@@ -1152,19 +1146,19 @@ msgstr "Accesso"
 
 #: .Password.Wrong+password
 msgid "Wrong password"
-msgstr "Password sbagliata."
+msgstr "Password sbagliata"
 
 #: .Password.You+have+to+provide+a+password+so+you+can+participate+to+the+poll.
 msgid "You have to provide a password so you can participate to the poll."
-msgstr "Devi inserire la password per poter partecipare a questo sondaggio."
+msgstr "Devi inserire la password per poter partecipare al sondaggio."
 
 #: .Password.You+have+to+provide+a+password+to+access+the+poll.
 msgid "You have to provide a password to access the poll."
-msgstr "Devi inserire la password per accedere a questo sondaggio."
+msgstr "Devi inserire la password per accedere al sondaggio."
 
 #: .Poll+results.%25s+option
 msgid "%s option"
-msgstr "%s option"
+msgstr "%s opzione"
 
 #: .Poll+results.Anyone+will+be+able+to+see+your+email+address+after+you+voted
 msgid "Anyone will be able to see your email address after you voted"
@@ -1435,15 +1429,15 @@ msgstr "Memorizza gli indirizzi email"
 
 #: .Step+1.Confirmation
 msgid "Confirmation"
-msgstr "Conferma della password"
+msgstr "Conferma"
 
 #: .Step+1.Customize+the+URL
 msgid "Customize the URL"
-msgstr "Personalizzare il link"
+msgstr "Personalizzare l'URL"
 
 #: .Step+1.Email+addresses+are+collected+but+not+required
 msgid "Email addresses are collected but not required"
-msgstr "Gli indirizzi email sono memorizzati ma non sono richiesti"
+msgstr "Gli indirizzi email sono memorizzati ma non richiesti"
 
 #: .Step+1.Email+addresses+are+not+collected
 msgid "Email addresses are not collected"
@@ -1451,7 +1445,7 @@ msgstr "Gli indirizzi email non sono memorizzati"
 
 #: .Step+1.Email+addresses+are+required
 msgid "Email addresses are required"
-msgstr "Indirizzo email richiesto"
+msgstr "Gli indirizzi email sono richiesti"
 
 #: .Step+1.Email+addresses+are+required+and+verified
 msgid "Email addresses are required and verified"
@@ -1463,7 +1457,7 @@ msgstr "Andare al punto 2"
 
 #: .Step+1.Limit+the+amount+of+voters+per+option
 msgid "Limit the amount of voters per option"
-msgstr "Limitate la quantità di votanti per opzione"
+msgstr "Limita il numero dei votanti per opzione"
 
 #: .Step+1.More+informations+here:
 msgid "More informations here:"
@@ -1471,7 +1465,7 @@ msgstr "Maggiori informazioni qui:"
 
 #: .Step+1.Only+the+poll+maker+can+see+the+poll+results
 msgid "Only the poll maker can see the poll results"
-msgstr "Solo il creatore sondaggio può vedere i risultati"
+msgstr "Solo l'autore del sondaggio può vedere i risultati"
 
 #: .Step+1.Optional+parameters
 msgid "Optional parameters"
@@ -1488,7 +1482,7 @@ msgstr "Creazione del sondaggio (1 di 3)"
 #: .Step+1.Poll+id
 #: .Step+1.Poll+link
 msgid "Poll link"
-msgstr "ID del sondaggio"
+msgstr "Link del sondaggio"
 
 #: .Step+1.Poll+title
 msgid "Poll title"
@@ -1496,11 +1490,11 @@ msgstr "Titolo del sondaggio"
 
 #: .Step+1.Receive+an+email+for+each+new+comment
 msgid "Receive an email for each new comment"
-msgstr "Per ricevere una e-mail per ogni nuovo commento"
+msgstr "Ricevere un e-mail per ogni nuovo commento"
 
 #: .Step+1.Receive+an+email+for+each+new+vote
 msgid "Receive an email for each new vote"
-msgstr "Per ricevere un'email per ogni nuovo voto"
+msgstr "Ricevere un email per ogni nuovo voto"
 
 #: .Step+1.Required+fields+cannot+be+left+blank.
 msgid "Required fields cannot be left blank."
@@ -1509,7 +1503,7 @@ msgstr "Riempire i campi obbligatori, segnati con *."
 #: .Step+1.The+identifier+can+contain+letters
 #: +numbers+and+dashes+%22-%22.
 msgid "The identifier can contain letters, numbers and dashes \"-\"."
-msgstr "L'ID può contenere lettere,cifre e trattini \"-\"."
+msgstr "L'ID può contenere lettere, numeri e trattini \"-\"."
 
 #: .Step+1.The+results+are+publicly+visible
 msgid "The results are publicly visible"
@@ -1528,36 +1522,36 @@ msgstr "Utilizza una password per limitare l'accesso al sondaggio"
 
 #: .Step+1.Value+Max
 msgid "Value Max"
-msgstr "Valore massimos"
+msgstr "Valore massimo"
 
 #: .Step+1.Voters+can+modify+their+vote+themselves
 msgid "Voters can modify their own vote themselves"
-msgstr "I partecipanti possono modificare il loro voto in autonomia"
+msgstr "I partecipanti possono modificare il proprio voto"
 
 #: .Step+1.Votes+cannot+be+modified
 msgid "Votes cannot be modified"
-msgstr "Nessun voto può essere modificato"
+msgstr "I voti non possono essere modificati"
 
 #: .Step+1.Warning:+Anyone+can+see+the+polled+users%27+email+addresses+since+all+voters+can+modify+any+vote.+You+should+restrict+permission+rules.
 msgid ""
 "Warning: Anyone can see the polled users' email addresses since all voters "
 "can modify any vote. You should restrict permission rules."
 msgstr ""
-"Attenzione: chiunque può vedere gli indirizzi mail degli utenti fino a "
-"quando i votanti possono modificare la propria scelta. Si devono impostare "
-"delle regole di accesso."
+"Attenzione: Chiunque può vedere gli indirizzi mail degli utenti dato che i "
+"votanti possono modificare ogni voto. Dovreste limitare i permessi di "
+"accesso."
 
 #: .Step+1.You+are+in+the+poll+creation+section.
 msgid "You are in the poll creation section."
-msgstr "Hai scelto di creare un nuovo sondaggio."
+msgstr "Sei nella sezione per la creazione di un nuovo sondaggio."
 
 #: .Step+1.You+can+enable+or+disable+the+editor+at+will.
 msgid "You can enable or disable the editor at will."
-msgstr "Puoi abilitare o disabilitare l'editor"
+msgstr "Puoi abilitare o disabilitare l'editor come vuoi."
 
 #: .Step+1.votes+per+option
 msgid "votes per option"
-msgstr "Limitare la quantità di votanti per opzione"
+msgstr "voti per opzione"
 
 #: .Step+2.Go+to+step+3
 msgid "Go to step 3"
@@ -1746,7 +1740,7 @@ msgstr "dopo l'ultimo giorno del tuo sondaggio"
 
 #: .Version.Version+%25s
 msgid "Version %s"
-msgstr ""
+msgstr "Versione %s"
 
 #: .adminstuds.Add+a+column
 msgid "Add a column"
