@@ -4,56 +4,62 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-06-28 10:51+0000\n"
+"Last-Translator: Anastasios A. <anastasios@tutamail.com>\n"
+"Language-Team: Greek <https://weblate.framasoft.org/projects/framadate/"
+"framadate/el/>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.3.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.1\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
-msgstr ""
+msgstr "Δημιουργία ψηφοφορίας"
 
 #: .1st+section.Define+dates+or+subjects+to+choose+from
 msgid "Define dates or subjects to choose from"
-msgstr ""
+msgstr "Καθορίστε ημερομηνίες ή θέματα προς ψηφοφορία"
 
 #: .1st+section.Discuss+and+make+a+decision
 msgid "Discuss and make a decision"
-msgstr ""
+msgstr "Συζητήστε και λάβετε μια απόφαση"
 
 #: .1st+section.Do+you+want+to
 msgid "Do you want to"
-msgstr ""
+msgstr "Επιθυμείτε"
 
 #: .1st+section.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.+No+registration+is+required.
 msgid ""
 "Framadate is an online service for planning an appointment or making a "
 "decision quickly and easily. No registration is required."
 msgstr ""
+"Το Framadate είναι μία διαδικτυακή υπηρεσία για τον προγραμματισμό "
+"συναντήσεων ή για την εύκολη και γρήγορη λήψη αποφάσεων. Δεν απαιτείται "
+"εγγραφή."
 
 #: .1st+section.Here+is+how+it+works:
 msgid "Here is how it works:"
-msgstr ""
+msgstr "Λειτουργεί έτσι:"
 
 #: .1st+section.Send+the+poll+link+to+your+friends+or+colleagues
 msgid "Send the poll link to your friends or colleagues"
 msgstr ""
+"Αποστείλετε τον σύνδεσμο της ψηφοφορίας στους φίλους ή τους συνεργάτες σας"
 
 #: .1st+section.What+is+Framadate%3F
 msgid "What is Framadate?"
-msgstr ""
+msgstr "Τι είναι το Framadate;"
 
 #: .1st+section.view+an+example%3F
 msgid "view an example?"
-msgstr ""
+msgstr "προβολή παραδείγματος;"
 
 #: .2nd+section.CeCILL-B+license
 msgid "CeCILL-B license"
-msgstr ""
+msgstr "CeCILL-B license"
 
 #: .2nd+section.Framadate+is+licensed+under+the
 msgid "Framadate is licensed under the"
@@ -61,17 +67,19 @@ msgstr ""
 
 #: .2nd+section.Framadate+was+initially+based+on
 msgid "Framadate was initially based on"
-msgstr ""
+msgstr "Το Framadate αρχικά βασίστηκε στο"
 
 #: .2nd+section.The+software
 msgid "The software"
-msgstr ""
+msgstr "Το λογισμικό"
 
 #: .2nd+section.This+software+needs+javascript+and+cookies+enabled.+It+is+compatible+with+the+following+web+browsers:
 msgid ""
 "This software needs javascript and cookies enabled. It is compatible with "
 "the following web browsers:"
 msgstr ""
+"Αυτό το λογισμικό απαιτεί την χρήση javascript και τα cookies "
+"ενεργοποιημένα. Είναι συμβατό με τους ακόλουθους περιηγητές:"
 
 #: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days,+it+is+developed+by+the+Framasoft+association.
 msgid ""
@@ -81,48 +89,52 @@ msgstr ""
 
 #: .3rd+section.Grow+your+own
 msgid "Grow your own"
-msgstr ""
+msgstr "Καλλιεργήστε το δικό σας"
 
 #: .3rd+section.If+you+want+to+install+the+software+for+your+own+use+and+thus+increase+your+independence,+we+can+help+you+at:
 msgid ""
 "If you want to install the software for your own use and thus increase your "
 "independence, we can help you at:"
 msgstr ""
+"Αν επιθυμείτε να εγκαταστήσετε το λογισμικό για προσωπική χρήση και έτσι να "
+"ενισχύσετε την ανεξαρτησία σας, μπορούμε να σας βοηθήσουμε εδώ:"
 
 #: .3rd+section.To+participate+in+the+software+development,+suggest+improvements+or+simply+download+it,+please+visit
 msgid ""
 "To participate in the software development, suggest improvements or simply "
 "download it, please visit"
 msgstr ""
+"Για να συμμετέχετε στην ανάπτυξη του λογισμικού, να προτείνετε βελτιώσεις ή "
+"απλά να κάνετε λήψη, παρακαλούμε επισκεφθείτε"
 
 #: .3rd+section.the+development+site
 msgid "the development site"
-msgstr ""
+msgstr "τον ιστότοπο ανάπτυξης"
 
 #: .Admin.Actions
 msgid "Actions"
-msgstr ""
+msgstr "Δράσεις"
 
 #: .Admin.Administration
 msgid "Administration"
-msgstr ""
+msgstr "Διαχείριση"
 
 #: .Admin.Author
 msgid "Author"
-msgstr ""
+msgstr "Συγγραφέας"
 
 #: .Admin.Back+to+administration
 msgid "Back to administration"
-msgstr ""
+msgstr "Επιστροφή στην διαχείριση"
 
 #: .Admin.Change+the+poll
 msgid "Change the poll"
-msgstr ""
+msgstr "Μεταβολή της ψηφοφορίας"
 
 #: .Admin.Email
 #: .PollInfo.Email
 msgid "Email"
-msgstr ""
+msgstr "Διεύθυνση ηλεκτρονικού ταχυδρομείου"
 
 #: .Admin.Executed
 msgid "Executed"
@@ -131,27 +143,27 @@ msgstr ""
 #: .Admin.Expiry+date
 #: .Generic.Expiry+date
 msgid "Expiry date"
-msgstr ""
+msgstr "Ημερομηνία λήξης"
 
 #: .Admin.Fail
 msgid "Fail"
-msgstr ""
+msgstr "Αποτυχία"
 
 #: .Admin.Failed:
 msgid "Failed:"
-msgstr ""
+msgstr "Απέτυχε:"
 
 #: .Admin.Format
 msgid "Format"
-msgstr ""
+msgstr "Μορφή"
 
 #: .Admin.Installation
 msgid "Installation"
-msgstr ""
+msgstr "Εγκατάσταση"
 
 #: .Admin.Logs
 msgid "Logs"
-msgstr ""
+msgstr "Καταγραφές"
 
 #: .Admin.Migration
 msgid "Migration"
@@ -163,85 +175,86 @@ msgstr ""
 
 #: .Admin.Pages:
 msgid "Pages:"
-msgstr ""
+msgstr "Σελίδες:"
 
 #: .Admin.Poll+ID
 msgid "Poll ID"
-msgstr ""
+msgstr "Αναγνωριστικό Ψηφοφορίας"
 
 #: .Admin.Poll+deleted
 msgid "Poll deleted"
-msgstr ""
+msgstr "Η ψηφοφορία διαγράφηκε"
 
 #: .Admin.Polls
 msgid "Polls"
-msgstr ""
+msgstr "Ψηφοφορίες"
 
 #: .Admin.Purge
 msgid "Purge"
-msgstr ""
+msgstr "Εκκαθάριση"
 
 #: .Admin.Purge+the+polls
 msgid "Purge the polls"
-msgstr ""
+msgstr "Εκκαθάριση ψηφοφοριών"
 
 #: .Admin.Purged:
 msgid "Purged:"
-msgstr ""
+msgstr "Εκκαθαρίστηκαν:"
 
 #: .Admin.See+the+poll
 msgid "See the poll"
-msgstr ""
+msgstr "Προβολή ψηφοφορίας"
 
 #: .Admin.Skipped:
 msgid "Skipped:"
-msgstr ""
+msgstr "Παραλείφθηκαν:"
 
 #: .Admin.Status
 msgid "Status"
-msgstr ""
+msgstr "Κατάσταση"
 
 #: .Admin.Succeeded:
 msgid "Succeeded:"
-msgstr ""
+msgstr "Επιτυχημένα:"
 
 #: .Admin.Success
 msgid "Success"
-msgstr ""
+msgstr "Επιτυχία"
 
 #: .Admin.Summary
 msgid "Summary"
-msgstr ""
+msgstr "Σύνοψη"
 
 #: .Admin.Title
 #: .FindPolls.Title
 msgid "Title"
-msgstr ""
+msgstr "Τίτλος"
 
 #: .Admin.Votes
 #: .Poll+results.Votes
 msgid "Votes"
-msgstr ""
+msgstr "Ψήφοι"
 
 #: .Admin.Waiting
 msgid "Waiting"
-msgstr ""
+msgstr "Σε αναμονή"
 
 #: .Admin.polls+in+the+database+at+this+time
 msgid "polls in the database at this time"
-msgstr ""
+msgstr "ψηφοφορίες στην βάση δεδομένων αυτή τη στιγμή"
 
 #: .Check.Check+again
 msgid "Check again"
-msgstr ""
+msgstr "Επανέλεγχος"
 
 #: .Check.Consider+enabling+the+PHP+extension+OpenSSL+for+increased+security.
 msgid "Consider enabling the PHP extension OpenSSL for increased security."
 msgstr ""
+"Για αυξημένη ασφάλεια εξετάστε την ενεργοποίηση της PHP επέκτασης OpenSSL."
 
 #: .Check.Consider+setting+the+date.timezone+in+php.ini.
 msgid "Consider setting the date.timezone in php.ini."
-msgstr ""
+msgstr "Εξετάστε την ρύθμιση του date.timezone στο php.ini."
 
 #: .Check.Consider+setting+%C2%AB+session.cookie_httponly+%3D+1+%C2%BB+inside+your+php.ini+or+add+%C2%AB+php_value+session.cookie_httponly+1+%C2%BB+to+your+.htaccess+so+that+cookies+can%27t+be+accessed+through+Javascript.
 msgid ""
@@ -252,7 +265,7 @@ msgstr ""
 
 #: .Check.Continue+the+installation
 msgid "Continue the installation"
-msgstr ""
+msgstr "Συνέχεια εγκατάστασης"
 
 #: .Check.Cookies+are+served+from+HTTP+only.
 msgid "Cookies are served from HTTP only."
@@ -264,11 +277,11 @@ msgstr ""
 
 #: .Check.OpenSSL+extension+loaded.
 msgid "OpenSSL extension loaded."
-msgstr ""
+msgstr "Η OpenSSL επέκταση έχει φορτωθεί."
 
 #: .Check.PHP+Intl+extension+is+enabled.
 msgid "PHP Intl extension is enabled."
-msgstr ""
+msgstr "Η επέκταση PHP Intl έχει ενεργοποιηθεί."
 
 #: .Check.PHP+version+%25s+is+enough+(needed+at+least+PHP+%25s).
 msgid "PHP version %s is enough (needed at least PHP %s)."
@@ -286,7 +299,7 @@ msgstr ""
 
 #: .Check.The+config+file+exists.
 msgid "The config file exists."
-msgstr ""
+msgstr "Το config έγγραφο υπάρχει."
 
 #: .Check.The+template+compile+directory+(%25s)+doesn%27t+exist+in+%22%25s%22.+Retry+the+installation+process.
 msgid ""
@@ -304,44 +317,46 @@ msgstr ""
 
 #: .Check.You+need+to+enable+the+PHP+Intl+extension.
 msgid "You need to enable the PHP Intl extension."
-msgstr ""
+msgstr "Πρέπει να ενεργοποιήσετε την επέκταση PHP Intl."
 
 #: .Check.Your+PHP+version+(%25s)+is+too+old.+This+application+needs+at+least+PHP+%25s.
 msgid ""
 "Your PHP version (%s) is too old. This application needs at least PHP %s."
 msgstr ""
+"Η έκδοση PHP (%s) είναι πολύ παλιά. Αυτή τη εφαρμογή χρειάζεται τουλάχιστον "
+"την PHP έκδοση (%s)."
 
 #: .Check.date.timezone+is+set.
 msgid "date.timezone is set."
-msgstr ""
+msgstr "το date.timezone έχει ρυθμιστεί."
 
 #: .Comments.Add+a+comment+to+the+poll
 msgid "Add a comment to the poll"
-msgstr ""
+msgstr "Προσθέστε ένα σχόλιο στην ψηφοφορία"
 
 #: .Comments.Comment
 msgid "Comment"
-msgstr ""
+msgstr "Σχόλιο"
 
 #: .Comments.Comment+saved
 msgid "Comment saved"
-msgstr ""
+msgstr "Το σχόλιο αποθηκεύθηκε"
 
 #: .Comments.Comments
 msgid "Comments"
-msgstr ""
+msgstr "Σχόλια"
 
 #: .Comments.Enter+your+name+and+comment+prior+to+submitting+the+form
 msgid "Enter your name and comment prior to submitting the form"
-msgstr ""
+msgstr "Εισάγετε το όνομα και το σχόλιό σας πριν την υποβολλή της φόρμας"
 
 #: .Comments.Remove+comment
 msgid "Remove comment"
-msgstr ""
+msgstr "Αφαίρεση σχολίου"
 
 #: .Comments.Submit+comment
 msgid "Submit comment"
-msgstr ""
+msgstr "Υποβολή σχολίου"
 
 #: .Date.%25A+%25e+%25B+%25Y
 msgid "%A %e %B %Y"
@@ -357,7 +372,7 @@ msgstr ""
 
 #: .Date.%25Y-%25m-%25d
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Χ-%μ-%η"
 
 #: .Date.%25a+%25e
 msgid "%a %e"
@@ -365,78 +380,82 @@ msgstr ""
 
 #: .Date.%25m/%25d/%25Y+%25H:%25M
 msgid "%m/%d/%Y %H:%M"
-msgstr ""
+msgstr "%μ/%η/%Χ %Ω:%Λ"
 
 #: .Date.Add+range+dates
 msgid "Add range dates"
-msgstr ""
+msgstr "Προσθήκη φάσματος ημερομηνιών"
 
 #: .Date.End+date
 msgid "End date"
-msgstr ""
+msgstr "Τελική ημερομηνία"
 
 #: .Date.Start+date
 msgid "Start date"
-msgstr ""
+msgstr "Αρχική ημερομηνία"
 
 #: .Date.Y-m-d
 msgid "Y-m-d"
-msgstr ""
+msgstr "E-μ-η"
 
 #: .Date.You+can+select+at+most+4+months
 msgid "You can select at most 4 months"
-msgstr ""
+msgstr "Μπορείτε να επιλέξετε το μέγιστο 4 μήνες"
 
 #: .Date.yyyy-mm-dd
 msgid "yyyy-mm-dd"
-msgstr ""
+msgstr "χχχχ-μμ-ηη"
 
 #: .Date.yyyy-mm-dd-for-humans
 msgid "yyyy-mm-dd-for-humans"
-msgstr ""
+msgstr "χχχχ-μμ-ηη-για-ανθρώπους"
 
 #: .EditLink.Edit+link+for+poll+%22%25s%22
 msgid "Edit link for poll \"%s\""
-msgstr ""
+msgstr "Επεξεργασία συνδέσμου για ψηφοφορία \"%s\""
 
 #: .EditLink.Here+is+the+link+for+editing+your+vote:
 msgid "Here is the link for editing your vote:"
-msgstr ""
+msgstr "Σύνδεσμος επεξεργασίας ψηφοφορίας:"
 
 #: .EditLink.If+you+don%27t+want+to+lose+your+personalized+link,+we+can+send+it+to+you+by+email.
 msgid ""
 "If you don't want to lose your personalized link, we can send it to you by "
 "email."
 msgstr ""
+"Αν δεν θέλετε να απωλέσετε τον εξατομικευμένο σύνδεσμο, μπορούμε να σας τον "
+"αποστείλουμε με email."
 
 #: .EditLink.Please+wait+%25d+seconds+before+we+can+send+an+email+to+you+then+try+again.
 msgid ""
 "Please wait %d seconds before we can send an email to you then try again."
 msgstr ""
+"Παρακαλούμε περιμένετε %d δευτερόλεπτα μέχρι να σας αποστείλουμε το email "
+"και έπειτα δοκιμάστε ξανά."
 
 #: .EditLink.REMINDER
 msgid "REMINDER"
-msgstr ""
+msgstr "ΥΠΕΝΘΥΜΙΣΗ"
 
 #: .EditLink.Send
 msgid "Send"
-msgstr ""
+msgstr "Αποστολή"
 
 #: .EditLink.The+email+address+is+not+correct.
 msgid "The email address is not correct."
-msgstr ""
+msgstr "Η διεύθυνση email δεν είναι σωστή."
 
 #: .EditLink.Your+reminder+has+been+successfully+sent%21
 msgid "Your reminder has been successfully sent!"
-msgstr ""
+msgstr "Η υπενθύμισή σας έχει αποσταλεί!"
 
 #: .Error.Adding+vote+failed
 msgid "Adding vote failed"
-msgstr ""
+msgstr "Η προσθήκη ψήφου απέτυχε"
 
 #: .Error.Can%27t+create+an+empty+column.
 msgid "Can't create an empty column."
-msgstr ""
+msgstr "Δεν μπορεί να δημιουργηθεί κενή στήλη."
 
 #: .Error.Can%27t+create+the+config.php+file+in+%27%25s%27.
 msgid "Can't create the config.php file in '%s'."
@@ -444,74 +463,77 @@ msgstr ""
 
 #: .Error.Comment+failed
 msgid "Comment failed"
-msgstr ""
+msgstr "Ο σχολιασμός απέτυχε"
 
 #: .Error.Cookies+are+disabled+on+your+browser.+They+are+required+to+be+able+to+create+a+poll.
 msgid ""
 "Cookies are disabled on your browser. They are required to be able to create "
 "a poll."
 msgstr ""
+"Τα cookies είναι απενεργοποιημένα για τον περιηγητή σας. Είναι απαραίτητα "
+"για την δημιουργία ψηφοφορίας."
 
 #: .Error.Enter+a+name
 msgid "Enter a name"
-msgstr ""
+msgstr "Εισάγετε όνομα"
 
 #: .Error.Enter+a+name+and+a+comment%21
 msgid "Enter a name and a comment!"
-msgstr ""
+msgstr "Εισάγετε όνομα και σχόλιο!"
 
 #: .Error.Enter+a+title
 msgid "Enter a title"
-msgstr ""
+msgstr "Εισάγετε τίτλο"
 
 #: .Error.Enter+an+email+address
 msgid "Enter an email address"
-msgstr ""
+msgstr "Εισάγετε email"
 
 #: .Error.Error+on+amount+of+votes+limitation:+Value+must+be+an+integer+greater+than+0
 msgid ""
 "Error on amount of votes limitation: Value must be an integer greater than 0"
 msgstr ""
+"Σφάλμα στο όριο των ψήφων: Η τιμή πρέπει να είναι ακέραια μεγαλύτερη από 0"
 
 #: .Error.Error%21
 msgid "Error!"
-msgstr ""
+msgstr "Σφάλμα!"
 
 #: .Error.Failed+to+delete+all+comments
 msgid "Failed to delete all comments"
-msgstr ""
+msgstr "Αποτυχία διαγραφής όλων των σχολίων"
 
 #: .Error.Failed+to+delete+all+votes
 msgid "Failed to delete all votes"
-msgstr ""
+msgstr "Αποτυχία διαγραφής όλων των ψήφων"
 
 #: .Error.Failed+to+delete+column
 msgid "Failed to delete column"
-msgstr ""
+msgstr "Αποτυχία διαγραφής στήλης"
 
 #: .Error.Failed+to+delete+the+comment
 msgid "Failed to delete the comment"
-msgstr ""
+msgstr "Αποτυχία διαγραφής σχολίου"
 
 #: .Error.Failed+to+delete+the+poll
 msgid "Failed to delete the poll"
-msgstr ""
+msgstr "Αποτυχία διαγραφής ψηφοφορίας"
 
 #: .Error.Failed+to+delete+the+vote%21
 msgid "Failed to delete the vote!"
-msgstr ""
+msgstr "Αποτυχία διαγραφής ψήφου!"
 
 #: .Error.Failed+to+insert+the+comment%21
 msgid "Failed to insert the comment!"
-msgstr ""
+msgstr "Αποτυχία εισαγωγής σχολίου!"
 
 #: .Error.Failed+to+save+poll
 msgid "Failed to save poll"
-msgstr ""
+msgstr "Αποτυχία αποθήκευσης ψηφοφορίας"
 
 #: .Error.Forbidden%21
 msgid "Forbidden!"
-msgstr ""
+msgstr "Απαγορευμένο!"
 
 #: .Error.GenericErrorPollCreation
 msgid "GenericErrorPollCreation"
@@ -523,130 +545,145 @@ msgstr ""
 
 #: .Error.If+you+quit+now,+your+changes+will+be+lost.
 msgid "If you quit now, your changes will be lost."
-msgstr ""
+msgstr "Αν εγκαταλείψετε τώρα, οι αλλαγές σας θα απολεστούν."
 
 #: .Error.JavaScript+is+disabled+on+your+browser.+It+is+required+to+create+a+poll.
 msgid ""
 "JavaScript is disabled on your browser. It is required to create a poll."
 msgstr ""
+"Η JavaScript είναι απενεργοποιημένη στον περιηγητή σας. Απαιτείται για την "
+"δημιουργία ψηφοφορίας."
 
 #: .Error.Missing+values
 msgid "Missing values"
-msgstr ""
+msgstr "Λείπουν τιμές"
 
 #: .Error.No+polls+found
 msgid "No polls found"
-msgstr ""
+msgstr "Δεν βρέθηκαν ψηφοφορίες"
 
 #: .Error.Password+is+empty.
 msgid "Password is empty."
-msgstr ""
+msgstr "Ο κωδικός είναι κενός."
 
 #: .Error.Passwords+do+not+match.
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Οι κωδικοί δεν ταιριάζουν."
 
 #: .Error.Poll+has+been+updated+before+you+vote
 msgid "Poll has been updated before you vote"
-msgstr ""
+msgstr "Η ψηφοφορία έχει ενημερωθεί πριν ψηφήσετε"
 
 #: .Error.Something+has+gone+wrong...
 msgid "Something has gone wrong..."
-msgstr ""
+msgstr "Κάτι πήγε στραβά..."
 
 #: .Error.Something+is+wrong+with+the+format
 msgid "Something is wrong with the format"
-msgstr ""
+msgstr "Κάτι δεν είναι σωστό στην μορφή"
 
 #: .Error.Something+is+wrong+with+the+format:+Customized+URLs+should+only+consist+of+alphanumeric+characters+and+hyphens.
 msgid ""
 "Something is wrong with the format: Customized URLs should only consist of "
 "alphanumeric characters and hyphens."
 msgstr ""
+"Κάτι είναι λάθος στην μορφή: Τα εξατομικευμένα URL πρέπει να αποτελούνται "
+"μόνο από αλφαριθμητικούς χαρακτήρες και παύλες."
 
 #: .Error.Something+is+wrong+with+the+format:+name+shouldn%27t+have+any+spaces+before+or+after
 msgid ""
 "Something is wrong with the format: name shouldn't have any spaces before or "
 "after"
 msgstr ""
+"Κάτι δεν είναι λάθος στην μορφή: το όνομα δεν πρέπει να έχει κενά στην αρχή "
+"ή στο τέλος"
 
 #: .Error.The+address+is+not+correct%21+You+should+enter+a+valid+email+address+(like+r.stallman@outlock.com)+in+order+to+receive+the+link+to+your+poll.
 msgid ""
 "The address is not correct! You should enter a valid email address (like "
 "r.stallman@outlock.com) in order to receive the link to your poll."
 msgstr ""
+"Η διεύθυνση δεν είναι σωστή! Πρέπει να εισάγετε ένα έγκυρο email (της μορφής "
+"r.stallman@outlock.com) ώστε να λάβετε τον σύνδεσμο της ψηφοφορίας σας."
 
 #: .Error.The+column+already+exists
 msgid "The column already exists"
-msgstr ""
+msgstr "Η στήλη υπάρχει ήδη"
 
 #: .Error.The+name+is+invalid.
 msgid "The name is invalid."
-msgstr ""
+msgstr "Το όνομα δεν είναι έγκυρο."
 
 #: .Error.The+name+you%27ve+chosen+already+exists+in+this+poll%21
 msgid "The name you've chosen already exists in this poll!"
-msgstr ""
+msgstr "Το όνομα που έχετε επιλέξει υπάρχει ήδη στην συγκεκριμη ψηφοφορία!"
 
 #: .Error.There+is+a+problem+with+your+choices
 msgid "There is a problem with your choices"
-msgstr ""
+msgstr "Υπάρχει ένα πρόβλημα με τις επιλογές σας"
 
 #: .Error.This+identifier+is+not+allowed
 msgid "This identifier is not allowed"
-msgstr ""
+msgstr "Αυτό το αναγνωριστικό δεν επιτρέπεται"
 
 #: .Error.This+poll+doesn%27t+exist%21
 msgid "This poll doesn't exist!"
-msgstr ""
+msgstr "Αυτή η ψηφοφορία δεν υπάρχει!"
 
 #: .Error.Unable+to+connect+to+database
 msgid "Unable to connect to database"
-msgstr ""
+msgstr "Αποτυχία σύνδεσης στην βάση δεδομένων"
 
 #: .Error.Update+vote+failed
 msgid "Update vote failed"
-msgstr ""
+msgstr "Η ενημέρωση της ψήφου απέτυχε"
 
 #: .Error.You+already+voted
 msgid "You already voted"
-msgstr ""
+msgstr "Έχετε ψηφήσει ήδη"
 
 #: .Error.You+can%27t+create+a+poll+with+hidden+results+with+the+following+option:+
 msgid "You can't create a poll with hidden results with the following option: "
 msgstr ""
+"Δεν μπορείτε να δημιουργήσετε μια ψηφοφορία με κρυφά αποτελέσματα με την "
+"ακόλουθη επιλογή: "
 
 #: .Error.You+can%27t+select+more+than+%25d+dates
 msgid "You can't select more than %d dates"
-msgstr ""
+msgstr "Δεν μπορείτε να επιλέξετε περισσότερες από %d ημερομηνίες"
 
 #: .Error.You+haven%27t+filled+the+first+section+of+the+poll+creation,+or+your+session+has+expired.
 msgid ""
 "You haven't filled the first section of the poll creation, or your session "
 "has expired."
 msgstr ""
+"Δεν έχετε συμπληρώσει το πρώτο τμήμα της δημιουργίας ψηφοφορίας, ή έχει "
+"λήξει η συνεδρία σας."
 
 #: .Error.Your+vote+wasn%27t+counted,+because+someone+voted+in+the+meantime+and+it+conflicted+with+your+choices+and+the+poll+conditions.+Please+retry.
 msgid ""
 "Your vote wasn't counted, because someone voted in the meantime and it "
 "conflicted with your choices and the poll conditions. Please retry."
 msgstr ""
+"Η ψήφος σας δεν έχει καταμετρηθεί, διότι κάποιος άλλος ψήφισε στο μεταξύ "
+"προκαλώντας σύκγρουση με την επιλογή σας και με τους όρους της ψηφοφορίας. "
+"Παρακαλώ δοκιμάστε ξανά."
 
 #: .FindPolls.Address
 msgid "Address"
-msgstr ""
+msgstr "Διεύθυνση"
 
 #: .FindPolls.Created+polls
 msgid "Created polls"
-msgstr ""
+msgstr "Δημιουργηθείσες ψηφοφορίες"
 
 #: .FindPolls.Have+a+good+day%21
 msgid "Have a good day!"
-msgstr ""
+msgstr "Καλή σας μέρα!"
 
 #: .FindPolls.Here+is+the+list+of+the+polls+that+you+manage+on+%25s:
 msgid "Here is the list of the polls that you manage on %s:"
-msgstr ""
+msgstr "Αυτή είναι μια λίστα των ψηφοφοριών που διαχειρίζεστε στο %s:"
 
 #: .FindPolls.If+you+weren%27t+the+source+of+this+action+and+if+you+think+this+is+an+abuse+of+the+service,+please+notify+the+administrator+at+%25s.
 msgid ""
@@ -660,59 +697,64 @@ msgstr ""
 
 #: .FindPolls.Last+access+date
 msgid "Last access date"
-msgstr ""
+msgstr "Τελευταία πρόσβαση"
 
 #: .FindPolls.List+of+your+polls
 msgid "List of your polls"
-msgstr ""
+msgstr "Η λίστα των ψηφοφοριών σας"
 
 #: .FindPolls.PS:+this+email+has+been+sent+because+you+%E2%80%93+or+someone+else+%E2%80%93+asked+to+get+back+the+polls+created+with+your+email+address.
 msgid ""
 "PS: this email has been sent because you – or someone else – asked to get "
 "back the polls created with your email address."
 msgstr ""
+"ΥΓ: αυτό το email έχει σταλεί γιατί εσείς - ή κάποιος άλλος - ζήτησε να "
+"λαμβάνει τις ψηφοφορίες που δημιουργήθηκαν με το email σας."
 
 #: .FindPolls.Polls+saved+inside+this+browser
 msgid "Polls saved inside this browser"
-msgstr ""
+msgstr "Ψηφοφορίες που αποθηκεύθηκαν σε αυτόν τον περιηγητή"
 
 #: .FindPolls.Polls+sent
 msgid "Polls sent"
-msgstr ""
+msgstr "Αποσταλείσες ψηφοφορίες"
 
 #: .FindPolls.Remove+all+my+polls+from+this+browser%27s+index
 msgid "Remove all my polls from this browser's index"
-msgstr ""
+msgstr "Αφαιρέστε όλες τις ψηφοφορίες μου από τον κατάλογο αυτού του περιηγητή"
 
 #: .FindPolls.Remove+poll+from+index
 msgid "Remove poll from index"
-msgstr ""
+msgstr "Αφαίρεση ψηφοφορίας από τον κατάλογο"
 
 #: .FindPolls.Send+me+my+polls
 msgid "Send me my polls"
-msgstr ""
+msgstr "Αποστείλετέ μου τις ψηφοφορίες μου"
 
 #: .FindPolls.Send+my+polls+by+email
 msgid "Send my polls by email"
-msgstr ""
+msgstr "Αποστολή των ψηφοφοριών μου με email"
 
 #: .FindPolls.The+date+you+created+or+last+accessed+the+poll
 msgid "The date you created or last accessed the poll"
-msgstr ""
+msgstr "Η ημερομηνία δημιουργίας ή τελευταίας πρόσβασης στην ψηφοφορία"
 
 #: .FindPolls.The+title+of+the+poll
 msgid "The title of the poll"
-msgstr ""
+msgstr "Ο τίτλος της ψηφοφορίας"
 
 #: .FindPolls.There+are+no+polls+saved+inside+your+browser+yet
 msgid "There are no polls saved inside your browser yet"
-msgstr ""
+msgstr "Δεν υπάρχουν αποθηκευμένες ψηφοφορίες ακόμα στον περιηγητή σας"
 
 #: .FindPolls.To+delete+this+data+click+the+trashcan+on+the+according+line+or+click+the+%C2%AB+delete+my+polls+index+%C2%BB+option.+This+won%27t+delete+your+polls.
 msgid ""
 "To delete this data click the trashcan on the according line or click the « "
 "delete my polls index » option. This won't delete your polls."
 msgstr ""
+"Για να διαγράψετε αυτά τα δεδομένα επιλέξτε τον κάδο στην αντίστοιχη γραμμή "
+"ή επιλέξτε το «Διαγράψτε τον κατάλογο των ψηφοφοριών μου». Αυτή η ενέργεια "
+"δεν θα διαγράψει τις ψηφοφορίες σας."
 
 #: .FindPolls.To+help+you+find+your+previous+polls,+we+save+each+poll+you+create+or+access+inside+your+browser.+This+data+is+saved+inside+this+browser+only.+The+following+data+will+be+saved:
 msgid ""
@@ -720,6 +762,10 @@ msgid ""
 "inside your browser. This data is saved inside this browser only. The "
 "following data will be saved:"
 msgstr ""
+"Για την διευκόλυνση της αναζήτησης προηγούμενων ψηφοφοριών, αποθηκεύουμε "
+"στον περιηγητή σας κάθε ψηφοφορία που δημιουργείτε ή έχετε προσπελάσει. Αυτά "
+"τα δεδομένα αποθηκεύονται μόνο εντός του συγκεκριμένου περιηγητή. Θα "
+"αποθηκευτούν τα ακόλουθα δεδομένα:"
 
 #: .FindPolls.Visited+polls
 msgid "Visited polls"
