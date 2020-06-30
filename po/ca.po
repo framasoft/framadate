@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-01-16 10:15+0000\n"
+"PO-Revision-Date: 2020-07-01 08:51+0000\n"
 "Last-Translator: Joan Montané <joan@montane.cat>\n"
 "Language-Team: Catalan <https://weblate.framasoft.org/projects/framadate/"
 "framadate/ca/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.1\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -55,7 +55,7 @@ msgstr "Què és Framadate?"
 
 #: .1st+section.view+an+example%3F
 msgid "view an example?"
-msgstr "Voleu veure un exemple?"
+msgstr "veure'n un exemple?"
 
 #: .2nd+section.CeCILL-B+license
 msgid "CeCILL-B license"
@@ -379,7 +379,7 @@ msgstr "%A %e %B %Y"
 #: +%25B+%25e
 #: +%25Y
 msgid "%A, %B %e, %Y"
-msgstr "%A, %B %e, %Y"
+msgstr "%A, %e %B, %Y"
 
 #: .Date.%25B+%25Y
 msgid "%B %Y"
@@ -387,7 +387,7 @@ msgstr "%B %Y"
 
 #: .Date.%25Y-%25m-%25d
 msgid "%Y-%m-%d"
-msgstr "%Y-%m-%d"
+msgstr "%d/%m/%Y"
 
 #: .Date.%25a+%25e
 msgid "%a %e"
