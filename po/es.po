@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-06-25 10:51+0000\n"
-"Last-Translator: Berto Te <ateira@3fpj.com>\n"
+"PO-Revision-Date: 2020-07-04 10:32+0000\n"
+"Last-Translator: Santiago Salvador <ssalvador@educa.madrid.org>\n"
 "Language-Team: Spanish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/es/>\n"
 "Language: es\n"
@@ -54,8 +54,9 @@ msgid "Send the poll link to your friends or colleagues"
 msgstr "Enviar el enlace de la encuesta a sus amigos o colegas"
 
 #: .1st+section.What+is+Framadate%3F
+#, fuzzy
 msgid "What is Framadate?"
-msgstr "¿Qué es Framasoft?"
+msgstr "Familiarizarse con"
 
 #: .1st+section.view+an+example%3F
 msgid "view an example?"
@@ -130,8 +131,9 @@ msgid "Administration"
 msgstr "Administración"
 
 #: .Admin.Author
+#, fuzzy
 msgid "Author"
-msgstr "Autor"
+msgstr "Autor/a"
 
 #: .Admin.Back+to+administration
 msgid "Back to administration"
