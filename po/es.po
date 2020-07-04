@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-07-04 22:08+0000\n"
+"PO-Revision-Date: 2020-07-04 22:10+0000\n"
 "Last-Translator: Santiago Salvador <ssalvador@educa.madrid.org>\n"
 "Language-Team: Spanish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/es/>\n"
@@ -284,7 +284,7 @@ msgstr "Continuar con la instalación"
 
 #: .Check.Cookies+are+served+from+HTTP+only.
 msgid "Cookies are served from HTTP only."
-msgstr "Los cookies son accesibles únicamente a través de HTTP."
+msgstr "Los cookies son accesibles desde HTTP únicamente."
 
 #: .Check.Installation+checking
 msgid "Installation checking"
