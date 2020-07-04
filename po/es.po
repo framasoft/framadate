@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-07-04 22:10+0000\n"
-"Last-Translator: Santiago Salvador <ssalvador@educa.madrid.org>\n"
+"PO-Revision-Date: 2020-07-05 22:51+0000\n"
+"Last-Translator: Berto Te <ateira@3fpj.com>\n"
 "Language-Team: Spanish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/es/>\n"
 "Language: es\n"
@@ -130,9 +130,8 @@ msgid "Administration"
 msgstr "Administración"
 
 #: .Admin.Author
-#, fuzzy
 msgid "Author"
-msgstr "Autor/a"
+msgstr "Autor"
 
 #: .Admin.Back+to+administration
 msgid "Back to administration"
@@ -284,7 +283,7 @@ msgstr "Continuar con la instalación"
 
 #: .Check.Cookies+are+served+from+HTTP+only.
 msgid "Cookies are served from HTTP only."
-msgstr "Los cookies son accesibles desde HTTP únicamente."
+msgstr "Los cookies son accesibles únicamente a través de HTTP."
 
 #: .Check.Installation+checking
 msgid "Installation checking"
