@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
 "PO-Revision-Date: 2020-07-05 22:51+0000\n"
-"Last-Translator: Berto Te <ateira@3fpj.com>\n"
+"Last-Translator: Santiago Salvador <ssalvador@educa.madrid.org>\n"
 "Language-Team: Spanish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/es/>\n"
 "Language: es\n"
@@ -291,11 +291,11 @@ msgstr "Verificación de instalación"
 
 #: .Check.OpenSSL+extension+loaded.
 msgid "OpenSSL extension loaded."
-msgstr "extensión PHP OpenSSL cargada."
+msgstr "La extensión OpenSSL está cargada."
 
 #: .Check.PHP+Intl+extension+is+enabled.
 msgid "PHP Intl extension is enabled."
-msgstr "extensión PHP Intl cargada."
+msgstr "La extensión PHP Intl está cargada."
 
 #: .Check.PHP+version+%25s+is+enough+(needed+at+least+PHP+%25s).
 msgid "PHP version %s is enough (needed at least PHP %s)."
