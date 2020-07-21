@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-07-21 05:43+0000\n"
+"PO-Revision-Date: 2020-07-22 05:51+0000\n"
 "Last-Translator: Santiago Salvador <ssalvador@educa.madrid.org>\n"
 "Language-Team: Spanish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/es/>\n"
@@ -467,7 +467,7 @@ msgstr "Enviar"
 
 #: .EditLink.The+email+address+is+not+correct.
 msgid "The email address is not correct."
-msgstr "La dirección de correo electrónico no es correcta."
+msgstr "La dirección de correo electrónico incorrecta."
 
 #: .EditLink.Your+reminder+has+been+successfully+sent%21
 msgid "Your reminder has been successfully sent!"
