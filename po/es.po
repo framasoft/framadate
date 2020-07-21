@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-07-05 22:51+0000\n"
+"PO-Revision-Date: 2020-07-21 05:43+0000\n"
 "Last-Translator: Santiago Salvador <ssalvador@educa.madrid.org>\n"
 "Language-Team: Spanish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/es/>\n"
@@ -440,7 +440,7 @@ msgstr "Enlace para edición de encuesta \"%s\""
 
 #: .EditLink.Here+is+the+link+for+editing+your+vote:
 msgid "Here is the link for editing your vote:"
-msgstr "Este es el enlace para editar su votación:"
+msgstr "Este es el enlace para editar su voto:"
 
 #: .EditLink.If+you+don%27t+want+to+lose+your+personalized+link
 #: +we+can+send+it+to+you+by+email.
