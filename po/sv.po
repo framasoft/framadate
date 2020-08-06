@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-02-25 01:08+0000\n"
+"PO-Revision-Date: 2020-08-07 21:51+0000\n"
 "Last-Translator: Filip Bengtsson <filip@libreradio.org>\n"
 "Language-Team: Swedish <https://weblate.framasoft.org/projects/framadate/"
 "framadate/sv/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.11\n"
+"X-Generator: Weblate 4.1\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -429,7 +429,7 @@ msgid ""
 "If you don't want to lose your personalized link, we can send it to you by "
 "email."
 msgstr ""
-"Om du  inte vill bli av med din personliga länk, kan vi skicka dig den via "
+"Om du inte vill bli av med din personliga länk, kan vi skicka dig den via "
 "e-post."
 
 #: .EditLink.Please+wait+%25d+seconds+before+we+can+send+an+email+to+you+then+try+again.
@@ -746,7 +746,7 @@ msgstr "Skicka mina undersökningar via e-post"
 
 #: .FindPolls.The+date+you+created+or+last+accessed+the+poll
 msgid "The date you created or last accessed the poll"
-msgstr "Datumet då du du skapade eller senast besökte undersökningen"
+msgstr "Datumet då du skapade eller senast besökte undersökningen"
 
 #: .FindPolls.The+title+of+the+poll
 msgid "The title of the poll"
