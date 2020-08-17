@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-07-01 08:51+0000\n"
+"PO-Revision-Date: 2020-08-10 20:51+0000\n"
 "Last-Translator: Joan Montané <joan@montane.cat>\n"
 "Language-Team: Catalan <https://weblate.framasoft.org/projects/framadate/"
 "framadate/ca/>\n"
@@ -256,7 +256,7 @@ msgstr "Comprova-ho una altra vegada"
 #: .Check.Consider+enabling+the+PHP+extension+OpenSSL+for+increased+security.
 msgid "Consider enabling the PHP extension OpenSSL for increased security."
 msgstr ""
-"Per a més seguretat, considereu habilitar l'extensió  OpenSSL de PHP OpenSSL."
+"Per a més seguretat, considereu habilitar l'extensió OpenSSL de PHP OpenSSL."
 
 #: .Check.Consider+setting+the+date.timezone+in+php.ini.
 msgid "Consider setting the date.timezone in php.ini."
@@ -761,7 +761,7 @@ msgstr "Envia les meves enquestes per correu electrònic"
 
 #: .FindPolls.The+date+you+created+or+last+accessed+the+poll
 msgid "The date you created or last accessed the poll"
-msgstr "La data en què vau crear o  accedir per darrer cop a l'enquesta"
+msgstr "La data en què vau crear o accedir per darrer cop a l'enquesta"
 
 #: .FindPolls.The+title+of+the+poll
 msgid "The title of the poll"
@@ -950,7 +950,7 @@ msgstr "segons"
 
 #: .Generic.vote
 msgid "vote"
-msgstr "vota"
+msgstr "vot"
 
 #: .Generic.votes
 msgid "votes"
@@ -1137,7 +1137,7 @@ msgstr "Enviar accés"
 
 #: .Password.Wrong+password
 msgid "Wrong password"
-msgstr "La contrasenya  és errònia"
+msgstr "La contrasenya és errònia"
 
 #: .Password.You+have+to+provide+a+password+so+you+can+participate+to+the+poll.
 msgid "You have to provide a password so you can participate to the poll."
@@ -1744,7 +1744,7 @@ msgstr "Afegeix una columna"
 
 #: .adminstuds.Adding+a+column
 msgid "Adding a column"
-msgstr "S'està afegint una columna"
+msgstr "Creació d'una columna"
 
 #: .adminstuds.All+comments+deleted
 msgid "All comments deleted"
