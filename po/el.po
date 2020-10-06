@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-06-29 21:51+0000\n"
-"Last-Translator: Anastasios A. <anastasios@tutamail.com>\n"
+"PO-Revision-Date: 2020-10-07 11:51+0000\n"
+"Last-Translator: Dimitris T. <dimitris@stinpriza.org>\n"
 "Language-Team: Greek <https://weblate.framasoft.org/projects/framadate/"
 "framadate/el/>\n"
 "Language: el\n"
@@ -550,7 +550,9 @@ msgstr "Απαγορευμένο!"
 
 #: .Error.GenericErrorPollCreation
 msgid "GenericErrorPollCreation"
-msgstr "GenericErrorPollCreation"
+msgstr ""
+"Ώχ όχι! Η ψηφοφορία δεν μπορεί να δημιουργηθεί αυτή τη στιγμή. Λυπούμαστε "
+"γι' αυτό. Παρακαλούμε δοκιμάστε ξανά αργότερα."
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
