@@ -5,7 +5,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
 "PO-Revision-Date: 2020-10-07 11:51+0000\n"
-"Last-Translator: Dimitris T. <dimitris@stinpriza.org>\n"
+"Last-Translator: Anastasios A. <anastasios@tutamail.com>\n"
 "Language-Team: Greek <https://weblate.framasoft.org/projects/framadate/"
 "framadate/el/>\n"
 "Language: el\n"
@@ -169,7 +169,7 @@ msgstr "Αρχεία καταγραφής"
 
 #: .Admin.Migration
 msgid "Migration"
-msgstr "Αποδημία"
+msgstr "Μεταφορά"
 
 #: .Admin.Nothing
 msgid "Nothing"
@@ -278,7 +278,7 @@ msgstr "Τα cookies εξυπηρετούνται μόνο από το HTTP."
 
 #: .Check.Installation+checking
 msgid "Installation checking"
-msgstr "Η εγκατάσταση κάνει έλεγχο"
+msgstr "Έλεγχος εγκατάστασης"
 
 #: .Check.OpenSSL+extension+loaded.
 msgid "OpenSSL extension loaded."
