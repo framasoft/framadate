@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-05-19 08:24+0000\n"
-"Last-Translator: Italo Vignoli <italo@vignoli.org>\n"
+"PO-Revision-Date: 2020-11-03 17:51+0000\n"
+"Last-Translator: Paolo Mauri <paolo@paolomauri.it>\n"
 "Language-Team: Italian <https://weblate.framasoft.org/projects/framadate/"
 "framadate/it/>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.11.2\n"
+"X-Generator: Weblate 4.1\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -1670,7 +1670,7 @@ msgid ""
 "To schedule an event you need to provide at least two choices (e.g., two "
 "time slots on one day or two days)."
 msgstr ""
-"Per creare un evento,  è meglio proporre almeno 2 scelte (2 orari per lo "
+"Per creare un evento, è meglio proporre almeno 2 scelte (2 orari per lo "
 "stesso giorno o 2 giorni)."
 
 #: .Step+2+date.You+can+add+or+remove+additional+days+and+times+with+the+buttons
@@ -1736,7 +1736,7 @@ msgstr "Il tuo sondaggio verrà archiviata automaticamente in %d giorni."
 
 #: .Step+3.after+the+last+date+of+your+poll.
 msgid "after the last date of your poll."
-msgstr "dopo l'ultimo giorno del tuo sondaggio"
+msgstr "dopo l'ultimo giorno del tuo sondaggio."
 
 #: .Version.Version+%25s
 msgid "Version %s"
@@ -1801,7 +1801,7 @@ msgstr "Confermare l'eliminazione della colonna."
 
 #: .adminstuds.Confirm+removal+of+your+poll
 msgid "Confirm removal of your poll"
-msgstr "Confermare l'eliminazione del sondaggio "
+msgstr "Confermare l'eliminazione del sondaggio"
 
 #: .adminstuds.Delete+poll
 msgid "Delete poll"
@@ -1895,7 +1895,7 @@ msgstr ""
 
 #: .adminstuds.remove+a+column+or+a+line+with
 msgid "remove a column or a line with"
-msgstr " cancellare una colonna o una riga con "
+msgstr "cancellare una colonna o una riga con"
 
 #: .display_mails.Users+who+voted+%22If+need+be%22+for+this+option+have+left+those+email+addresses:
 msgid ""
@@ -1955,4 +1955,4 @@ msgid ""
 msgstr ""
 "Il tuo voto è stato preso in considerazione, ma attenzione: questa indagine "
 "consente la modifica del voto solo con il seguente link personalizzato; "
-"tenerlo al sicuro!"
+"tenerlo al sicuro."
