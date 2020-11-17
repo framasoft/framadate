@@ -76,7 +76,7 @@
 
                 <p>{__('2nd section', 'Framadate was initially based on ')}
                     <a href="https://sourcesup.cru.fr/projects/studs/">Studs</a>
-                    {__('2nd section', 'a software developed by the University of Strasbourg. Today, it is devevoped by the association Framasoft.')}
+                    {__('2nd section', 'a software developed by the University of Strasbourg. Today, it is developed by the association Framasoft.')}
                 </p>
 
                 <p>{__('2nd section', 'This software needs javascript and cookies enabled. It is compatible with the following web browsers:')}</p>
