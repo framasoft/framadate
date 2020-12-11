@@ -21,7 +21,7 @@
 const VERSION = '1.1.11';
 
 // PHP Needed version
-const PHP_NEEDED_VERSION = '5.6';
+const PHP_NEEDED_VERSION = '7.3';
 
 // Config constants
 const COMPILE_DIR = '/tpl_c/';

@@ -2,10 +2,12 @@
     "name": "framasoft/framadate",
     "description": "Application to facilitate the schedule of events or classic polls",
     "homepage": "https://framadate.org/",
-    "keywords": ["poll", "framadate"],
+    "keywords": [
+        "poll",
+        "framadate"
+    ],
     "version": "0.9.0",
     "license": "CECILL-B",
-
     "type": "project",
     "support": {
         "issues": "https://framagit.org/framasoft/framadate/issues"
@@ -52,33 +54,29 @@
             "email": "raphael.droz@gmail.com"
         }
     ],
-
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.3.0",
         "ext-pdo": "*",
         "smarty/smarty": "^3.1",
         "o80/i18n": "dev-develop",
-        "phpmailer/phpmailer": "~6.0",
+        "phpmailer/phpmailer": "~6.2",
         "ircmaxell/password-compat": "dev-master",
         "roave/security-advisories": "dev-master",
         "erusev/parsedown": "^1.7",
         "egulias/email-validator": "~2.1"
     },
-
     "require-dev": {
-        "phpunit/phpunit": "^5.7",
+        "phpunit/phpunit": "^9",
         "friendsofphp/php-cs-fixer": "~2.0"
     },
-
     "autoload": {
         "psr-4": {
             "Framadate\\": "app/classes/Framadate/"
         }
     },
-
     "config": {
         "platform": {
-            "php": "5.6.0"
+            "php": "7.3.0"
         }
     }
 }
