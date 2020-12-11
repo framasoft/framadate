@@ -205,7 +205,7 @@
                                     </label>
                                 </li>
                                 <li class="hide">
-                                  <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" " 
+                                  <input type="radio" id="n-choice-{$id}" name="choices[{$id}]" value=" "
                                 		{(isset($selectedNewVotes[$id]) && ("" !== $selectedNewVotes[$id])) ? "" : " checked"}
                                 	/>
                                 </li>
