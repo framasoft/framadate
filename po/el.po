@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2020-10-07 11:51+0000\n"
+"PO-Revision-Date: 2021-01-27 14:14+0000\n"
 "Last-Translator: Anastasios A. <anastasios@tutamail.com>\n"
 "Language-Team: Greek <https://weblate.framasoft.org/projects/framadate/"
 "framadate/el/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.1\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -385,7 +385,7 @@ msgstr "%B %Y"
 
 #: .Date.%25Y-%25m-%25d
 msgid "%Y-%m-%d"
-msgstr "%Χ-%μ-%η"
+msgstr "%Y-%m-%d"
 
 #: .Date.%25a+%25e
 msgid "%a %e"
@@ -393,7 +393,7 @@ msgstr "%a %e"
 
 #: .Date.%25m/%25d/%25Y+%25H:%25M
 msgid "%m/%d/%Y %H:%M"
-msgstr "%μ/%η/%Χ %Ω:%Λ"
+msgstr "%m/%d/%Y %H:%M"
 
 #: .Date.Add+range+dates
 msgid "Add range dates"
