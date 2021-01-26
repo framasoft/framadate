@@ -168,6 +168,7 @@ pages:
   - find framadate/ -type d -exec chmod 750 {} \;
   - find framadate/ -type f -exec chmod 640 {} \;
   - rm -rf framadate/.git
+  - echo ${latesttag} > framadate/CURRENT_VERSION
   - zip -r latest.zip framadate
   - mkdir .public
   - cp latest.zip .public
