@@ -6,15 +6,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
+"PO-Revision-Date: 2021-01-27 14:14+0000\n"
+"Last-Translator: Robbert <framasoft@beardhatcode.be>\n"
+"Language-Team: Dutch <https://weblate.framasoft.org/projects/framadate/"
+"framadate/nl/>\n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-04-19 07:00+0000\n"
-"Last-Translator: Thomas Citharel <thomas.citharel@framasoft.org>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"X-Generator: Zanata 4.6.2\n"
-"Language: nl\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -66,7 +67,7 @@ msgstr "Framadate is gelicenseerd onder de"
 
 #: .2nd+section.Framadate+was+initially+based+on
 msgid "Framadate was initially based on"
-msgstr ""
+msgstr "Framadate was oorspronkelijk gebaseerd op"
 
 #: .2nd+section.The+software
 msgid "The software"
@@ -77,6 +78,8 @@ msgid ""
 "This software needs javascript and cookies enabled. It is compatible with "
 "the following web browsers:"
 msgstr ""
+"Deze software heeft javascript en cookies nodig. Het is compatibel met de "
+"volgende webbrowsers:"
 
 #: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days
 #: +it+is+developed+by+the+Framasoft+association.
@@ -107,6 +110,8 @@ msgid ""
 "To participate in the software development, suggest improvements or simply "
 "download it, please visit"
 msgstr ""
+"Om deel te nemen aan de softwareontwikkeling, verbeteringen voor te stellen "
+"of om het te downloaden, kunt u terecht bij"
 
 #: .3rd+section.the+development+site
 msgid "the development site"
@@ -135,7 +140,7 @@ msgstr "Bewerk poll"
 #: .Admin.Email
 #: .PollInfo.Email
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: .Admin.Executed
 msgid "Executed"
@@ -184,7 +189,7 @@ msgstr "Poll ID"
 
 #: .Admin.Poll+deleted
 msgid "Poll deleted"
-msgstr ""
+msgstr "Poll verwijderd"
 
 #: .Admin.Polls
 msgid "Polls"
@@ -229,12 +234,12 @@ msgstr "Samenvatting"
 #: .Admin.Title
 #: .FindPolls.Title
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: .Admin.Votes
 #: .Poll+results.Votes
 msgid "Votes"
-msgstr ""
+msgstr "Stemmen"
 
 #: .Admin.Waiting
 msgid "Waiting"
@@ -503,8 +508,7 @@ msgstr "Voer een emailadres in"
 #: .Error.Error+on+amount+of+votes+limitation:+Value+must+be+an+integer+greater+than+0
 msgid ""
 "Error on amount of votes limitation: Value must be an integer greater than 0"
-msgstr ""
-"Fout over de hoeveelheid stemmen: waarde moet een getal groter dan 0 zijn."
+msgstr "Ongeldig limit op stemmen: de waarde moet een getal groter dan 0 zijn"
 
 #: .Error.Error%21
 msgid "Error!"
@@ -549,6 +553,8 @@ msgstr "Verboden!"
 #: .Error.GenericErrorPollCreation
 msgid "GenericErrorPollCreation"
 msgstr ""
+"Oh neen! Uw poll kon niet worden opgeslagen. Het spijt ons. Gelieve het "
+"opnieuw te proberen."
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
@@ -557,7 +563,7 @@ msgstr "Deze ID is reeds gebruikt"
 #: .Error.If+you+quit+now
 #: +your+changes+will+be+lost.
 msgid "If you quit now, your changes will be lost."
-msgstr ""
+msgstr "Als u dit afsluit, zullen je wijzigingen verloren gaan."
 
 #: .Error.JavaScript+is+disabled+on+your+browser.+It+is+required+to+create+a+poll.
 msgid ""
@@ -576,11 +582,11 @@ msgstr "Geen polls gevonden"
 
 #: .Error.Password+is+empty.
 msgid "Password is empty."
-msgstr "Het wachtwoord is leeg"
+msgstr "Het wachtwoord is leeg."
 
 #: .Error.Passwords+do+not+match.
 msgid "Passwords do not match."
-msgstr "De wachtwoorden zijn niet gelijk"
+msgstr "De wachtwoorden zijn niet gelijk."
 
 #: .Error.Poll+has+been+updated+before+you+vote
 msgid "Poll has been updated before you vote"
@@ -636,7 +642,7 @@ msgstr "Er is een probleem met je keuzes"
 
 #: .Error.This+identifier+is+not+allowed
 msgid "This identifier is not allowed"
-msgstr ""
+msgstr "Deze identificator is niet toegestaan"
 
 #: .Error.This+poll+doesn%27t+exist%21
 msgid "This poll doesn't exist!"
@@ -678,8 +684,9 @@ msgid ""
 "Your vote wasn't counted, because someone voted in the meantime and it "
 "conflicted with your choices and the poll conditions. Please retry."
 msgstr ""
-"Your vote wasn't counted, because someone voted in the meantime and it "
-"conflicted with your choices and the poll conditions. Please retry."
+"Uw stem werd niet geteld omdat iemand ander ondertussen ook gestemd heeft "
+"waardoor jou stem niet meer aan de voorwaarden van de poll voldoet. Gelieve "
+"opnieuw te proberen."
 
 #: .FindPolls.Address
 msgid "Address"
@@ -708,7 +715,7 @@ msgstr ""
 
 #: .FindPolls.Its+address
 msgid "Its address"
-msgstr ""
+msgstr "Zijn adres"
 
 #: .FindPolls.Last+access+date
 msgid "Last access date"
@@ -809,7 +816,7 @@ msgstr "Annuleren"
 #: .Generic.Choice
 #: .Step+1.Choice
 msgid "Choice"
-msgstr ""
+msgstr "Keuze"
 
 #: .Generic.Classic
 msgid "Classic"
@@ -848,6 +855,8 @@ msgid ""
 "Framadate is an online service for planning an appointment or making a "
 "decision quickly and easily."
 msgstr ""
+"Framadate is een online dienst om snel en eenvoudig afspraken te plannen en "
+"samen beslissingen te nemen."
 
 #: .Generic.Home
 msgid "Home"
@@ -983,7 +992,7 @@ msgstr "Database hostname"
 
 #: .Installation.Database+name
 msgid "Database name"
-msgstr ""
+msgstr "Database naam"
 
 #: .Installation.Database+port
 msgid "Database port"
@@ -1009,7 +1018,7 @@ msgstr "Migratietabel"
 #: .Password.Password
 #: .Step+1.Password
 msgid "Password"
-msgstr ""
+msgstr "Wachtwoord"
 
 #: .Installation.Prefix
 msgid "Prefix"
@@ -1038,9 +1047,9 @@ msgid ""
 "donations.<br/>Thank you in advance for your support https://soutenir."
 "framasoft.org"
 msgstr ""
-"\"Het is een lange weg, maar de doel is duidelijk...\"<br/>Framasoft "
+"\"Het is een lange weg, maar het doel is duidelijk...\"<br/>Framasoft "
 "overleeft enkel door jouw donaties.<br/>Alvast bedankt voor je ondersteuning "
-" https://soutenir.framasoft.org"
+"https://soutenir.framasoft.org"
 
 #: .Mail.Message+for+the+author
 msgid "Message for the author"
@@ -1137,7 +1146,7 @@ msgstr "Je moet een wachtwoord opgeven om toegang te krijgen tot deze poll."
 
 #: .Poll+results.%25s+option
 msgid "%s option"
-msgstr ""
+msgstr "%s optie"
 
 #: .Poll+results.Anyone+will+be+able+to+see+your+email+address+after+you+voted
 msgid "Anyone will be able to see your email address after you voted"
@@ -1189,7 +1198,7 @@ msgstr "De beste keuze is op dit moment:"
 
 #: .Poll+results.The+current+best+choices+are:
 msgid "The current best choices are:"
-msgstr "De beste keuzes zijn op dit moment:"
+msgstr "De beste keuzes op dit moment zijn:"
 
 #: .Poll+results.The+link+to+edit+this+particular+line+has+been+copied+to+the+clipboard%21
 msgid ""
@@ -1250,7 +1259,7 @@ msgstr "Titel bewerken annuleren"
 
 #: .PollInfo.Creator+of+the+poll
 msgid "Creator of the poll"
-msgstr "Initiatiefnemer van deze poll"
+msgstr "Aanmaker van deze poll"
 
 #: .PollInfo.Edit+name
 msgid "Edit name"
@@ -1286,7 +1295,7 @@ msgstr "Geen wachtwoord"
 
 #: .PollInfo.Only+votes+are+protected
 msgid "Only votes are protected"
-msgstr "Only votes are protected"
+msgstr "Enkel de stemmen zelf zijn beschermd"
 
 #: .PollInfo.Password+protected
 msgid "Password protected"
@@ -1298,7 +1307,7 @@ msgstr "Regels voor de poll"
 
 #: .PollInfo.Print
 msgid "Print"
-msgstr "Print"
+msgstr "Afdrukken"
 
 #: .PollInfo.Public+link+to+the+poll
 msgid "Public link to the poll"
@@ -1322,11 +1331,11 @@ msgstr "Verwijder de poll"
 
 #: .PollInfo.Results+are+hidden
 msgid "Results are hidden"
-msgstr "Resultaten zijn verborgen."
+msgstr "Resultaten zijn verborgen"
 
 #: .PollInfo.Results+are+visible
 msgid "Results are visible"
-msgstr "Resultaten zijn zichtbaar."
+msgstr "Resultaten zijn zichtbaar"
 
 #: .PollInfo.Rich+editor
 msgid "Rich editor"
@@ -1366,20 +1375,22 @@ msgstr "Titel van de poll"
 
 #: .PollInfo.Voters%27+email+addresses+are+collected
 msgid "Voters' email addresses are collected"
-msgstr ""
+msgstr "De e-mailadressen van de stemmers worden verzameld"
 
 #: .PollInfo.Voters%27+email+addresses+are+collected+and+required
 msgid "Voters' email addresses are collected and required"
-msgstr ""
+msgstr "De e-mailadressen van de stemmers zijn vereist en worden verzameld"
 
 #: .PollInfo.Voters%27+email+addresses+are+collected
 #: +required+and+verified
 msgid "Voters' email addresses are collected, required and verified"
 msgstr ""
+"De e-mailadressen van de stemmers zijn vereist, worden geverifieerd en "
+"worden verzameld"
 
 #: .PollInfo.Voters%27+email+addresses+are+not+collected
 msgid "Voters' email addresses are not collected"
-msgstr ""
+msgstr "De e-mailadressen van de stemmers worden niet verzameld"
 
 #: .PollInfo.Votes+and+comments+are+locked
 msgid "Votes and comments are locked"
@@ -1403,7 +1414,7 @@ msgstr ""
 
 #: .Step+1.Collect+voters%27+email+addresses
 msgid "Collect voters' email addresses"
-msgstr ""
+msgstr "Sla de e-mailadressen van stemmers op"
 
 #: .Step+1.Confirmation
 msgid "Confirmation"
@@ -1415,19 +1426,19 @@ msgstr "Link verpersoonlijken"
 
 #: .Step+1.Email+addresses+are+collected+but+not+required
 msgid "Email addresses are collected but not required"
-msgstr ""
+msgstr "E-mailadressen worden opgeslagen maar zijn niet vereist"
 
 #: .Step+1.Email+addresses+are+not+collected
 msgid "Email addresses are not collected"
-msgstr ""
+msgstr "E-mailadressen worden niet verzameld"
 
 #: .Step+1.Email+addresses+are+required
 msgid "Email addresses are required"
-msgstr ""
+msgstr "E-mailadressen zijn vereist"
 
 #: .Step+1.Email+addresses+are+required+and+verified
 msgid "Email addresses are required and verified"
-msgstr ""
+msgstr "E-mailadressen zijn vereist en worden geverifieerd"
 
 #: .Step+1.Go+to+step+2
 msgid "Go to step 2"
@@ -1516,9 +1527,8 @@ msgid ""
 "Warning: Anyone can see the polled users' email addresses since all voters "
 "can modify any vote. You should restrict permission rules."
 msgstr ""
-"Waarschuwing: Iedereen  kan de e-mailadressen van alle stemmers zien, "
-"aangezien iedereen alle stemmen kan aanpassen. Je kan best de toegangsregels "
-"beperken."
+"Waarschuwing: Iedereen kan de e-mailadressen van alle stemmers zien, omdat "
+"iedereen alle stemmen kan aanpassen. Je beperkt best de toegang."
 
 #: .Step+1.You+are+in+the+poll+creation+section.
 msgid "You are in the poll creation section."
@@ -1716,7 +1726,7 @@ msgstr "na de laatste datum van je poll."
 
 #: .Version.Version+%25s
 msgid "Version %s"
-msgstr ""
+msgstr "Versie %s"
 
 #: .adminstuds.Add+a+column
 msgid "Add a column"
@@ -1781,7 +1791,7 @@ msgstr "Bevestig het verwijderen van de poll"
 
 #: .adminstuds.Delete+poll
 msgid "Delete poll"
-msgstr ""
+msgstr "Poll verwijderen"
 
 #: .adminstuds.Finally
 #: +you+can+change+the+properties+of+this+poll+such+as+the+title
@@ -1844,7 +1854,7 @@ msgstr "De poll is aangemaakt."
 #: .adminstuds.Vote+added
 #: .studs.Vote+added
 msgid "Vote added"
-msgstr ""
+msgstr "Stem toegevoegd"
 
 #: .adminstuds.Vote+deleted
 msgid "Vote deleted"
@@ -1853,7 +1863,7 @@ msgstr "Stem verwijderd"
 #: .adminstuds.Vote+updated
 #: .studs.Vote+updated
 msgid "Vote updated"
-msgstr ""
+msgstr "Stem bijgewerkt"
 
 #: .adminstuds.You+can+add+a+new+scheduling+date+to+your+poll.
 msgid "You can add a new scheduling date to your poll."
@@ -1876,14 +1886,20 @@ msgid ""
 "Users who voted \"If need be\" for this option have left those email "
 "addresses:"
 msgstr ""
+"Gebruikers die \"Indien nodig\" hebben gestemd voor deze optie hebben deze e-"
+"mailadressen achtergelaten:"
 
 #: .display_mails.Users+who+voted+%22No%22+for+this+option+have+left+those+email+addresses:
 msgid "Users who voted \"No\" for this option have left those email addresses:"
 msgstr ""
+"Gebruikers die \"Nee\" hebben gestemd voor deze optie hebben deze e-"
+"mailadressen achtergelaten:"
 
 #: .display_mails.Users+who+voted+%22Yes%22+for+this+option+have+left+those+email+addresses:
 msgid "Users who voted \"Yes\" for this option have left those email addresses:"
 msgstr ""
+"Gebruikers die \"Ja\" hebben gestemd voor deze optie hebben deze e-"
+"mailadressen achtergelaten:"
 
 #: .studs.Deletion+date:
 msgid "Deletion date:"
@@ -1898,7 +1914,7 @@ msgid ""
 "choice, and submit it by selecting the save button at the end of the line."
 msgstr ""
 "Als je wilt stemmen in deze poll, moet je je naam ingeven, een keuze maken "
-"en indienen door op de bewaar-knop op het einde van de lijn te klikken."
+"en indienen door op de opslaan-knop op het einde van de lijn te klikken."
 
 #: .studs.The+administrator+locked+this+poll.+Votes+and+comments+are+frozen
 #: +it+is+no+longer+possible+to+participate
@@ -1907,7 +1923,7 @@ msgid ""
 "longer possible to participate"
 msgstr ""
 "De beheerder heeft deze poll gesloten. Stemmen en opmerkingen zijn bevroren, "
-"je kunt niet meer deelnemen."
+"je kunt niet meer deelnemen"
 
 #: .studs.The+poll+has+expired
 #: +it+will+soon+be+deleted.
