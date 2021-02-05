@@ -4,18 +4,21 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-02-06 09:14+0000\n"
+"Last-Translator: Aliaksandr Hrankin <archon.san@gmail.com>\n"
+"Language-Team: Russian <https://weblate.framasoft.org/projects/framadate/"
+"framadate/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.3.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.4.2\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
-msgstr ""
+msgstr "Создать опрос"
 
 #: .1st+section.Define+dates+or+subjects+to+choose+from
 msgid "Define dates or subjects to choose from"
@@ -23,7 +26,7 @@ msgstr ""
 
 #: .1st+section.Discuss+and+make+a+decision
 msgid "Discuss and make a decision"
-msgstr ""
+msgstr "Обсудить и принять решение"
 
 #: .1st+section.Do+you+want+to
 msgid "Do you want to"
@@ -45,7 +48,7 @@ msgstr ""
 
 #: .1st+section.What+is+Framadate%3F
 msgid "What is Framadate?"
-msgstr ""
+msgstr "Что такое Framadate?"
 
 #: .1st+section.view+an+example%3F
 msgid "view an example?"
@@ -53,11 +56,11 @@ msgstr ""
 
 #: .2nd+section.CeCILL-B+license
 msgid "CeCILL-B license"
-msgstr ""
+msgstr "CeCILL-B"
 
 #: .2nd+section.Framadate+is+licensed+under+the
 msgid "Framadate is licensed under the"
-msgstr ""
+msgstr "Framadate работает под лицензией"
 
 #: .2nd+section.Framadate+was+initially+based+on
 msgid "Framadate was initially based on"
