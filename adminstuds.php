@@ -113,7 +113,7 @@ if (isset($_POST['update_poll_info'])) {
             $updated = true;
         }
     } elseif ($field === 'rules') {
-        $rules = strip_tags($_POST['rules']);
+        $rules = (int) strip_tags($_POST['rules']);
         switch ($rules) {
             case 0:
                 $poll->active = false;
