@@ -28,7 +28,7 @@
                         {if $useRemoteUser}
                             <input type="hidden" name="name" value="{$form->admin_name}" />{$form->admin_name}
                         {else}
-                            <input id="yourname" type="text" required name="name" class="form-control" {$errors['name']['aria']} value="{$poll_name|html}" />
+                            <input id="yourname" type="text" required maxlength="32" name="name" class="form-control" {$errors['name']['aria']} value="{$poll_name|html}" />
                         {/if}
                     </div>
                 </div>
