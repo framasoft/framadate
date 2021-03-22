@@ -58,7 +58,7 @@
                     <div class="hidden js-name">
                         <label class="sr-only" for="newname">{__('PollInfo', 'Initiator of the poll')}</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="newname" name="name" size="40" value="{$poll->admin_name|html}" />
+                            <input type="text" class="form-control" id="newname" name="name" size="40" maxlength="32" value="{$poll->admin_name|html}" />
                             <span class="input-group-btn">
                             <button type="submit" class="btn btn-success" name="update_poll_info" value="name" title="{__('PollInfo', 'Save the new name')}"><span class="glyphicon glyphicon-ok"></span><span class="sr-only">{__('Generic', 'Save')}</span></button>
                             <button class="btn btn-link btn-cancel" title="{__('PollInfo', 'Cancel the name edit')}"><span class="glyphicon glyphicon-remove"></span><span class="sr-only">{__('Generic', 'Cancel')}</span></button>

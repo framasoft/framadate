@@ -143,7 +143,9 @@ if (isset($_POST['update_poll_info'])) {
             $updated = true;
         }
     } elseif ($field === 'name') {
-        $admin_name = $inputService->filterName($_POST['name']);
+        $admin_name = $_POST['name'];
+        $admin_name = mb_substr($admin_name, 0, 32);
+        $admin_name = $inputService->filterName($admin_name);
         if ($admin_name) {
             $poll->admin_name = $admin_name;
             $updated = true;

@@ -99,6 +99,13 @@ if (extension_loaded('intl')) {
     $messages[] = new Message('danger', __('Check','You need to enable the PHP Intl extension.'));
 }
 
+// mbstring extension
+if (extension_loaded('mbstring')) {
+    $messages[] = new Message('info', __('Check','PHP mbstring extension is enabled.'));
+} else {
+    $messages[] = new Message('danger', __('Check','You need to enable the PHP mbstring extension.'));
+}
+
 // Is template compile dir exists and writable ?
 if (!file_exists(ROOT_DIR . COMPILE_DIR)) {
     $messages[] = new Message('danger', __f('Check','The template compile directory (%s) doesn\'t exist in "%s". Retry the installation process.', COMPILE_DIR, realpath(ROOT_DIR)));

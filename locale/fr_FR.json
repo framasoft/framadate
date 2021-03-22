@@ -66,6 +66,7 @@
       "Installation checking": "Vérifications de l'installation",
       "OpenSSL extension loaded.": "L'extension PHP OpenSSL est chargée.",
       "PHP Intl extension is enabled.": "L'extension PHP Intl est activée.",
+      "PHP mbstring extension is enabled.": "L'extension PHP mbstring est activée.",
       "PHP version %s is enough (needed at least PHP %s).": "Version de PHP %s suffisante (nécessite au moins PHP %s).",
       "The config file directory (%s) is not writable and the config file (%s) does not exists.": "Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'existe pas.",
       "The config file directory (%s) is writable.": "Le dossier du fichier de configuration (%s) est accessible en écriture.",
@@ -74,6 +75,7 @@
       "The template compile directory (%s) is not writable.": "Le dossier de compilation des templates (%s) n'est pas accessible en écriture.",
       "The template compile directory (%s) is writable.": "Le dossier de compilation des templates (%s) est accessible en écriture.",
       "You need to enable the PHP Intl extension.": "Vous devez activer l'extension PHP Intl.",
+      "You need to enable the PHP mbstring extension.": "Vous devez activer l'extension PHP mbstring.",
       "Your PHP version (%s) is too old. This application needs at least PHP %s.": "Votre version de PHP (%s) est trop vieille. Cette application a besoin de PHP %s au moins.",
       "date.timezone is set.": "date.timezone est défini."
    },
@@ -136,6 +138,7 @@
       "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "Framadate n'est pas installé correctement, lisez le fichier INSTALL pour configurer la base de données avant de continuer.",
       "Javascript is disabled on your browser. Its activation is required to create a poll.": "JavaScript est désactivé sur votre navigateur. Son activation est requise pour la création d'un sondage.",
       "MISSING_VALUES": "Il manque des valeurs",
+      "Name is limited to 32 characters": "Le nom est limité à 32 caractères",
       "No polls found": "Aucun sondage n'a été trouvé",
       "Password is empty": "Le mot de passe est vide.",
       "Passwords do not match": "Les mots de passe ne correspondent pas.",

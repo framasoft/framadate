@@ -62,7 +62,7 @@ if ($goToStep2) {
 
     $use_customized_url = isset($_POST['use_customized_url']) ? $inputService->filterBoolean($_POST['use_customized_url']) : false;
     $customized_url = $use_customized_url === true ? $inputService->filterId($_POST['customized_url']) : null;
-    $name = $inputService->filterName($_POST['name']);
+    $name = mb_substr($inputService->filterName($_POST['name']), 0, 32);
     $mail = $config['use_smtp'] === true ? $inputService->filterMail($_POST['mail']) : null;
     $description = $inputService->filterDescription($_POST['description']);
     $editable = $inputService->filterEditable($_POST['editable']);
@@ -248,6 +248,10 @@ if (!empty($_POST[GO_TO_STEP_2])) {
         $errors['name']['aria'] = 'aria-describeby="poll_name_error" ';
         $errors['name']['class'] = ' has-error';
         $errors['name']['msg'] = __('Error', 'Enter a name');
+    } elseif (mb_strlen($inputService->filterName($_POST['name'])) > 32) {
+        $errors['name']['aria'] = 'aria-describeby="poll_name_error" ';
+        $errors['name']['class'] = ' has-error';
+        $errors['name']['msg'] = __('Error', "Name is limited to 32 characters");
     } elseif ($error_on_name) {
         $errors['name']['aria'] = 'aria-describeby="poll_name_error" ';
         $errors['name']['class'] = ' has-error';

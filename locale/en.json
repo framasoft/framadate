@@ -66,6 +66,7 @@
       "Installation checking": "Installation checking",
       "OpenSSL extension loaded.": "OpenSSL extension loaded.",
       "PHP Intl extension is enabled.": "PHP Intl extension is enabled.",
+      "PHP mbstring extension is enabled.": "PHP mbstring extension is enabled.",
       "PHP version %s is enough (needed at least PHP %s).": "PHP version %s is enough (needed at least PHP %s).",
       "The config file directory (%s) is not writable and the config file (%s) does not exists.": "The config file directory (%s) is not writable and the config file (%s) does not exists.",
       "The config file directory (%s) is writable.": "The config file directory (%s) is writable.",
@@ -74,6 +75,7 @@
       "The template compile directory (%s) is not writable.": "The template compile directory (%s) is not writable.",
       "The template compile directory (%s) is writable.": "The template compile directory (%s) is writable.",
       "You need to enable the PHP Intl extension.": "You need to enable the PHP Intl extension.",
+      "You need to enable the PHP mbstring extension.": "You need to enable the PHP mbstring extension.",
       "Your PHP version (%s) is too old. This application needs at least PHP %s.": "Your PHP version (%s) is too old. This application needs at least PHP %s.",
       "date.timezone is set.": "date.timezone is set."
    },
@@ -136,6 +138,7 @@
       "Framadate is not properly installed, please check the \"INSTALL\" to setup the database before continuing.": "Framadate is not properly installed, please see the 'INSTALL' file for instructions on setting up the database before continuing.",
       "Javascript is disabled on your browser. Its activation is required to create a poll.": "JavaScript is disabled on your browser. It is required to create a poll.",
       "MISSING_VALUES": "Missing values",
+      "Name is limited to 32 characters": "Name is limited to 32 characters",
       "No polls found": "No polls found",
       "Password is empty": "Password is empty.",
       "Passwords do not match": "Passwords do not match.",
