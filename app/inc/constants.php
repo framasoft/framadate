@@ -18,7 +18,7 @@
  */
 
 // FRAMADATE version
-const VERSION = '1.1.14';
+const VERSION = '1.1.15';
 
 // PHP Needed version
 const PHP_NEEDED_VERSION = '7.3';
