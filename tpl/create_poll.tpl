@@ -2,6 +2,7 @@
 
 {block name="header"}
     <script src="{"js/simplemde.min.js"|resource}" type="text/javascript"></script>
+    <script src="{"js/dompurify.js"|resource}" type="text/javascript"></script>
     <script src="{"js/mde-wrapper.js"|resource}" type="text/javascript"></script>
     <script src="{"js/app/create_poll.js"|resource}" type="text/javascript"></script>
     <link rel="stylesheet" href="{"css/app/create_poll.css"|resource}">

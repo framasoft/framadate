@@ -3,7 +3,7 @@ function myPreviewRender (text) {
         return '&#'+i.charCodeAt(0)+';';
     });
     text = SimpleMDE.prototype.markdown(text);
-    text = text.replace(/ /g, '&nbsp;');
+    text = DOMPurify.sanitize(text);
 
     return text;
 };
