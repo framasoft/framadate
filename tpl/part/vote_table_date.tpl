@@ -480,8 +480,12 @@
                     {foreach $slots as $slot}
                         {foreach $slot->moments as $moment}
                             {if $best_choices['y'][$i] == $max}
-                                <li><strong>{$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}</strong></li>
-                            {/if}
+                                {assign var="space" value="`$slot->day|date_format_intl:DATE_FORMAT_DATE|html`|`$moment`"}
+                                <li><strong>{$slot->day|date_format_intl:DATE_FORMAT_SHORT|html} - {$moment|html}
+                                        <a href="{poll_url id=$poll_id action='get_ical_file' action_value=($space)}" class="btn btn-link btn-sm" title="{t('studs', 'Download as ical/ics file')}">
+                                            <i class="fa fa-calendar text-muted" aria-hidden="true"></i></a>
+                                    </strong></li>
+                                {/if}
                             {$i = $i+1}
                         {/foreach}
                     {/foreach}

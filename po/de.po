@@ -1928,6 +1928,10 @@ msgstr ""
 "Benutzer, die mit \"Ja\" für diese Option abgestimmt haben, haben folgende E-"
 "Mail-Adressen:"
 
+#: .studs.Download+as+ical/ics+file
+msgid "Download as ical/ics file"
+msgstr "Als ical/ics-Datei herunterladen"
+
 #: .studs.Deletion+date:
 msgid "Deletion date:"
 msgstr "Löschdatum:"

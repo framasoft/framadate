@@ -50,6 +50,7 @@ $selectedNewVotes = [];
 /* Services */
 /*----------*/
 
+$icalService = Services::ical();
 $inputService = Services::input();
 $notificationService = Services::notification();
 $pollService = Services::poll();
@@ -216,6 +217,20 @@ function getMessageForOwnVoteEditableVote(SessionService &$sessionService, Smart
         $smarty->clearAssign('token');
     }
     return $message;
+}
+
+// -------------------------------
+// Get iCal file
+// -------------------------------
+if (isset($_GET['get_ical_file'])) {
+    $dayAndTime = strval(filter_input(INPUT_GET, 'get_ical_file', FILTER_DEFAULT));
+    $dayAndTime = strval(Utils::base64url_decode($dayAndTime));
+    $elements = explode("|", $dayAndTime);
+    if(count($elements) > 1) {
+        $icalService->getEvent($poll, strval($elements[0]), strval($elements[1]));
+    }
+    header('HTTP/1.1 500 Internal Server Error');
+    echo 'Internal error';
 }
 
 // Retrieve data

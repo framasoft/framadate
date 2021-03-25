@@ -1893,6 +1893,10 @@ msgid "Users who voted \"Yes\" for this option have left those email addresses:"
 msgstr ""
 "Users who voted \"Yes\" for this option have left those email addresses:"
 
+#: .studs.Download+as+ical/ics+file
+msgid "Download as ical/ics file"
+msgstr "Download as ical/ics file"
+
 #: .studs.Deletion+date:
 msgid "Deletion date:"
 msgstr "Deletion date:"
