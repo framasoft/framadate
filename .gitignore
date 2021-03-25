@@ -27,3 +27,6 @@ Thumbs.db
 .idea/
 *.iml
 test_database.sqlite
+
+#ics temp file
+out.ics

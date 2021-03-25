@@ -1,6 +1,7 @@
 <?php
 use Doctrine\DBAL\Connection;
 use Framadate\Services\AdminPollService;
+use Framadate\Services\ICalService;
 use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
@@ -21,6 +22,7 @@ class Services {
     private static $mailService;
     private static $notificationService;
     private static $pollService;
+    private static $icalService;
     private static $purgeService;
     private static $securityService;
     private static $sessionService;
@@ -71,6 +73,13 @@ class Services {
             self::$pollService = new PollService(self::log(), self::notification(), self::session(), self::purge());
         }
         return self::$pollService;
+    }
+
+    public static function ical() {
+        if (self::$icalService === null) {
+            self::$icalService = new ICalService(self::log(), self::notification(), self::session(), self::purge());
+        }
+        return self::$icalService;
     }
 
     public static function purge() {
