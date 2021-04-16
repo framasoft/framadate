@@ -55,9 +55,22 @@ class ICalService {
         }
 
         $ical_text = "";
+        $elements = explode("-", $start_time);
+        $end_time = null;
+        if(count($elements) === 2) {
+            $start_time = trim($elements[0]);
+            $end_time = trim($elements[1]);
+        }
         $start_time = $this->reviseTimeString($start_time);
+        if($end_time !== null) {
+            $end_time = $this->reviseTimeString($end_time);
+        }
         if($start_time !== null) {
-            $ical_text = $this->getTimedEvent1Hour($poll, $start_day . " " . $start_time);
+            if($end_time !== null) {
+                $ical_text = $this->getTimedEvent($poll, $start_day . " " . $start_time, $start_day . " " . $end_time);
+            } else {
+                $ical_text = $this->getTimedEvent1Hour($poll, $start_day . " " . $start_time);
+            }
         }
         else {
             $date = DateTime::createFromFormat('d-m-Y', $start_day);
