@@ -87,6 +87,7 @@ class MailService {
         $available_options = [
             'host' => 'Host',
             'auth' => 'SMTPAuth',
+            'authtype' => 'AuthType',
             'username' => 'Username',
             'password' => 'Password',
             'secure' => 'SMTPSecure',
