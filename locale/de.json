@@ -445,6 +445,7 @@
    "studs": {
       "Adding the vote succeeded": "Die Wertung wurde hinzugefügt",
       "Deletion date:": "Löschdatum:",
+      "Download as ical/ics file": "Als ical/ics-Datei herunterladen",
       "If you want to vote in this poll, you have to give your name, choose the values that fit best for you and validate with the plus button at the end of the line.": "Wenn Sie an dieser Umfrage teilnehmen möchten, müssen Sie ihren Namen angeben, die Auswahl treffen, die Ihnen am ehesten zusagt und mit dem Plus-Button am Ende der Zeile bestätigen.",
       "POLL_LOCKED_WARNING": "Die Abstimmung wurde vom Administrator gesperrt. Bewertungen und Kommentare werden eingefroren; es ist nicht mehr möglich teilzunehmen",
       "The poll is expired, it will be deleted soon.": "Der Zeitraum für die Umfrage ist überschritten, sie wird bald gelöscht werden.",

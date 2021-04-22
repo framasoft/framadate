@@ -42,3 +42,6 @@ const SESSION_EDIT_LINK_TIME = "EditLinkMail";
 
 // CSRF (300s = 5min)
 const TOKEN_TIME = 300;
+
+const ICAL_ENDING = ".ics";
+const ICAL_PRODID = "-//Framasoft//Framadate//EN";

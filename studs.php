@@ -22,6 +22,7 @@ use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Exception\ConcurrentVoteException;
 use Framadate\Message;
 use Framadate\Security\Token;
+use Framadate\Services\ICalService;
 use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
@@ -62,6 +63,7 @@ $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
 $notificationService = new NotificationService($mailService);
 $securityService = new SecurityService();
 $sessionService = new SessionService();
+$icalService = new ICalService($logService, $notificationService, $sessionService);
 
 /* PAGE */
 /* ---- */
@@ -213,6 +215,20 @@ function getMessageForOwnVoteEditableVote(SessionService &$sessionService, Smart
         $smarty->clearAssign('token');
     }
     return $message;
+}
+
+// -------------------------------
+// Get iCal file
+// -------------------------------
+if (isset($_GET['get_ical_file'])) {
+    $dayAndTime = strval(filter_input(INPUT_GET, 'get_ical_file', FILTER_DEFAULT));
+    $dayAndTime = strval(Utils::base64url_decode($dayAndTime));
+    $elements = explode("|", $dayAndTime);
+    if(count($elements) > 1) {
+        $icalService->getEvent($poll, strval($elements[0]), strval($elements[1]));
+    }
+    header('HTTP/1.1 500 Internal Server Error');
+    echo 'Internal error';
 }
 
 // Retrieve data
