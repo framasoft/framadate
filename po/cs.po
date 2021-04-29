@@ -4,56 +4,60 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-05-01 09:41+0000\n"
+"Last-Translator: JJZ <jero@zvano.net>\n"
+"Language-Team: Czech <https://weblate.framasoft.org/projects/framadate/"
+"framadate/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.3.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.6\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
-msgstr ""
+msgstr "Vytvořit hlasování"
 
 #: .1st+section.Define+dates+or+subjects+to+choose+from
 msgid "Define dates or subjects to choose from"
-msgstr ""
+msgstr "Určit datumy či jiné položky k výběru"
 
 #: .1st+section.Discuss+and+make+a+decision
 msgid "Discuss and make a decision"
-msgstr ""
+msgstr "Diskutovat a rozhodnout"
 
 #: .1st+section.Do+you+want+to
 msgid "Do you want to"
-msgstr ""
+msgstr "Chcete"
 
 #: .1st+section.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.+No+registration+is+required.
 msgid ""
 "Framadate is an online service for planning an appointment or making a "
 "decision quickly and easily. No registration is required."
 msgstr ""
+"Framadate je online služba pro rychlé a snadné plánování schůzek a "
+"rozhodování. Nevyžaduje registraci."
 
 #: .1st+section.Here+is+how+it+works:
 msgid "Here is how it works:"
-msgstr ""
+msgstr "Jak to funguje:"
 
 #: .1st+section.Send+the+poll+link+to+your+friends+or+colleagues
 msgid "Send the poll link to your friends or colleagues"
-msgstr ""
+msgstr "Pošlete svým přátelům nebo kolegům odkaz na hlasování"
 
 #: .1st+section.What+is+Framadate%3F
 msgid "What is Framadate?"
-msgstr ""
+msgstr "Co je Framadate?"
 
 #: .1st+section.view+an+example%3F
 msgid "view an example?"
-msgstr ""
+msgstr "prohlédnout si příklad?"
 
 #: .2nd+section.CeCILL-B+license
 msgid "CeCILL-B license"
-msgstr ""
+msgstr "licence CeCILL-B"
 
 #: .2nd+section.Framadate+is+licensed+under+the
 msgid "Framadate is licensed under the"
@@ -72,6 +76,8 @@ msgid ""
 "This software needs javascript and cookies enabled. It is compatible with "
 "the following web browsers:"
 msgstr ""
+"Tento software vyžaduje aktivní javascript a cookies. Je kompatibilní s "
+"následujícími prohlížeči:"
 
 #: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days,+it+is+developed+by+the+Framasoft+association.
 msgid ""
@@ -94,6 +100,8 @@ msgid ""
 "To participate in the software development, suggest improvements or simply "
 "download it, please visit"
 msgstr ""
+"Pro účast na softwarovém vývoji, návrhy vylepšení nebo jen pro stažení "
+"navštivte"
 
 #: .3rd+section.the+development+site
 msgid "the development site"
@@ -105,24 +113,24 @@ msgstr ""
 
 #: .Admin.Administration
 msgid "Administration"
-msgstr ""
+msgstr "Správa"
 
 #: .Admin.Author
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: .Admin.Back+to+administration
 msgid "Back to administration"
-msgstr ""
+msgstr "Zpět ke správě"
 
 #: .Admin.Change+the+poll
 msgid "Change the poll"
-msgstr ""
+msgstr "Změna hlasování"
 
 #: .Admin.Email
 #: .PollInfo.Email
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: .Admin.Executed
 msgid "Executed"
@@ -131,15 +139,15 @@ msgstr ""
 #: .Admin.Expiry+date
 #: .Generic.Expiry+date
 msgid "Expiry date"
-msgstr ""
+msgstr "Datum vypršení"
 
 #: .Admin.Fail
 msgid "Fail"
-msgstr ""
+msgstr "Chyba"
 
 #: .Admin.Failed:
 msgid "Failed:"
-msgstr ""
+msgstr "Selhalo:"
 
 #: .Admin.Format
 msgid "Format"
@@ -147,7 +155,7 @@ msgstr ""
 
 #: .Admin.Installation
 msgid "Installation"
-msgstr ""
+msgstr "Instalace"
 
 #: .Admin.Logs
 msgid "Logs"
@@ -155,27 +163,27 @@ msgstr ""
 
 #: .Admin.Migration
 msgid "Migration"
-msgstr ""
+msgstr "Migrace"
 
 #: .Admin.Nothing
 msgid "Nothing"
-msgstr ""
+msgstr "Nic"
 
 #: .Admin.Pages:
 msgid "Pages:"
-msgstr ""
+msgstr "Stránky:"
 
 #: .Admin.Poll+ID
 msgid "Poll ID"
-msgstr ""
+msgstr "ID hlasování"
 
 #: .Admin.Poll+deleted
 msgid "Poll deleted"
-msgstr ""
+msgstr "Smazané hlasování"
 
 #: .Admin.Polls
 msgid "Polls"
-msgstr ""
+msgstr "Hlasování"
 
 #: .Admin.Purge
 msgid "Purge"
@@ -183,65 +191,65 @@ msgstr ""
 
 #: .Admin.Purge+the+polls
 msgid "Purge the polls"
-msgstr ""
+msgstr "Smazat hlasování"
 
 #: .Admin.Purged:
 msgid "Purged:"
-msgstr ""
+msgstr "Smazáno:"
 
 #: .Admin.See+the+poll
 msgid "See the poll"
-msgstr ""
+msgstr "Prohlédnout hlasování"
 
 #: .Admin.Skipped:
 msgid "Skipped:"
-msgstr ""
+msgstr "Přeskočeno:"
 
 #: .Admin.Status
 msgid "Status"
-msgstr ""
+msgstr "Stav"
 
 #: .Admin.Succeeded:
 msgid "Succeeded:"
-msgstr ""
+msgstr "Uspělo:"
 
 #: .Admin.Success
 msgid "Success"
-msgstr ""
+msgstr "Úspěch"
 
 #: .Admin.Summary
 msgid "Summary"
-msgstr ""
+msgstr "Shrnutí"
 
 #: .Admin.Title
 #: .FindPolls.Title
 msgid "Title"
-msgstr ""
+msgstr "Název"
 
 #: .Admin.Votes
 #: .Poll+results.Votes
 msgid "Votes"
-msgstr ""
+msgstr "Hlasy"
 
 #: .Admin.Waiting
 msgid "Waiting"
-msgstr ""
+msgstr "Čekání"
 
 #: .Admin.polls+in+the+database+at+this+time
 msgid "polls in the database at this time"
-msgstr ""
+msgstr "hlasování toho času v databázi"
 
 #: .Check.Check+again
 msgid "Check again"
-msgstr ""
+msgstr "Znovu ověřit"
 
 #: .Check.Consider+enabling+the+PHP+extension+OpenSSL+for+increased+security.
 msgid "Consider enabling the PHP extension OpenSSL for increased security."
-msgstr ""
+msgstr "Pro zvýšení bezpečnosti zvažte zapnutí rozšíření PHP zvané OpenSSL."
 
 #: .Check.Consider+setting+the+date.timezone+in+php.ini.
 msgid "Consider setting the date.timezone in php.ini."
-msgstr ""
+msgstr "Zvažte nastavení data.timezone v php.ini."
 
 #: .Check.Consider+setting+%C2%AB+session.cookie_httponly+%3D+1+%C2%BB+inside+your+php.ini+or+add+%C2%AB+php_value+session.cookie_httponly+1+%C2%BB+to+your+.htaccess+so+that+cookies+can%27t+be+accessed+through+Javascript.
 msgid ""
@@ -252,7 +260,7 @@ msgstr ""
 
 #: .Check.Continue+the+installation
 msgid "Continue the installation"
-msgstr ""
+msgstr "Pokračovat s instalací"
 
 #: .Check.Cookies+are+served+from+HTTP+only.
 msgid "Cookies are served from HTTP only."
@@ -260,33 +268,35 @@ msgstr ""
 
 #: .Check.Installation+checking
 msgid "Installation checking"
-msgstr ""
+msgstr "Zkouška instalace"
 
 #: .Check.OpenSSL+extension+loaded.
 msgid "OpenSSL extension loaded."
-msgstr ""
+msgstr "Nahráno rozšíření OpenSSL."
 
 #: .Check.PHP+Intl+extension+is+enabled.
 msgid "PHP Intl extension is enabled."
-msgstr ""
+msgstr "Aktivováno rozšíření PHP Intl."
 
 #: .Check.PHP+version+%25s+is+enough+(needed+at+least+PHP+%25s).
 msgid "PHP version %s is enough (needed at least PHP %s)."
-msgstr ""
+msgstr "Verze PHP %s je dostatečná (zapotřebí PHP nejméně %s)."
 
 #: .Check.The+config+file+directory+(%25s)+is+not+writable+and+the+config+file+(%25s)+does+not+exists.
 msgid ""
 "The config file directory (%s) is not writable and the config file (%s) does "
 "not exists."
 msgstr ""
+"Konfigurační adresář (%s) není zapisovatelný and konfigurační soubor (%s) "
+"neexistuje."
 
 #: .Check.The+config+file+directory+(%25s)+is+writable.
 msgid "The config file directory (%s) is writable."
-msgstr ""
+msgstr "Konfigurační adresář (%s) je zapisovatelný."
 
 #: .Check.The+config+file+exists.
 msgid "The config file exists."
-msgstr ""
+msgstr "Konfigurační soubor existuje."
 
 #: .Check.The+template+compile+directory+(%25s)+doesn%27t+exist+in+%22%25s%22.+Retry+the+installation+process.
 msgid ""
@@ -317,31 +327,31 @@ msgstr ""
 
 #: .Comments.Add+a+comment+to+the+poll
 msgid "Add a comment to the poll"
-msgstr ""
+msgstr "Okomentovat hlasování"
 
 #: .Comments.Comment
 msgid "Comment"
-msgstr ""
+msgstr "Komentář"
 
 #: .Comments.Comment+saved
 msgid "Comment saved"
-msgstr ""
+msgstr "Komentář uložen"
 
 #: .Comments.Comments
 msgid "Comments"
-msgstr ""
+msgstr "Komentáře"
 
 #: .Comments.Enter+your+name+and+comment+prior+to+submitting+the+form
 msgid "Enter your name and comment prior to submitting the form"
-msgstr ""
+msgstr "Před odesláním formuláře zadejte své jméno a komentář"
 
 #: .Comments.Remove+comment
 msgid "Remove comment"
-msgstr ""
+msgstr "Odstranit komentář"
 
 #: .Comments.Submit+comment
 msgid "Submit comment"
-msgstr ""
+msgstr "Odeslat komentář"
 
 #: .Date.%25A+%25e+%25B+%25Y
 msgid "%A %e %B %Y"
@@ -369,74 +379,78 @@ msgstr ""
 
 #: .Date.Add+range+dates
 msgid "Add range dates"
-msgstr ""
+msgstr "Přidat posloupnost datumů"
 
 #: .Date.End+date
 msgid "End date"
-msgstr ""
+msgstr "Koncové datum"
 
 #: .Date.Start+date
 msgid "Start date"
-msgstr ""
+msgstr "Počáteční datum"
 
 #: .Date.Y-m-d
 msgid "Y-m-d"
-msgstr ""
+msgstr "d-m-Y"
 
 #: .Date.You+can+select+at+most+4+months
 msgid "You can select at most 4 months"
-msgstr ""
+msgstr "Můžete zvolit nejvýše čtyři měsíce"
 
 #: .Date.yyyy-mm-dd
 msgid "yyyy-mm-dd"
-msgstr ""
+msgstr "dd-mm-yyyy"
 
 #: .Date.yyyy-mm-dd-for-humans
 msgid "yyyy-mm-dd-for-humans"
-msgstr ""
+msgstr "den-měsíc-rok"
 
 #: .EditLink.Edit+link+for+poll+%22%25s%22
 msgid "Edit link for poll \"%s\""
-msgstr ""
+msgstr "Editovat odkaz pro hlasování \"%s\""
 
 #: .EditLink.Here+is+the+link+for+editing+your+vote:
 msgid "Here is the link for editing your vote:"
-msgstr ""
+msgstr "Odkaz pro změnu vašeho hlasu:"
 
 #: .EditLink.If+you+don%27t+want+to+lose+your+personalized+link,+we+can+send+it+to+you+by+email.
 msgid ""
 "If you don't want to lose your personalized link, we can send it to you by "
 "email."
 msgstr ""
+"Pokud nechcete riskovat ztrátu svého osobního odkazu, můžeme vám ho poslat "
+"emailem."
 
 #: .EditLink.Please+wait+%25d+seconds+before+we+can+send+an+email+to+you+then+try+again.
 msgid ""
 "Please wait %d seconds before we can send an email to you then try again."
 msgstr ""
+"Prosím, vyčkejte %d sekund, než vám budeme moci znovu poslat email, a pak to "
+"zkuste znovu."
 
 #: .EditLink.REMINDER
 msgid "REMINDER"
-msgstr ""
+msgstr "PŘIPOMÍNKA"
 
 #: .EditLink.Send
 msgid "Send"
-msgstr ""
+msgstr "Odeslat"
 
 #: .EditLink.The+email+address+is+not+correct.
 msgid "The email address is not correct."
-msgstr ""
+msgstr "E-mailová adresa je chybná."
 
 #: .EditLink.Your+reminder+has+been+successfully+sent%21
 msgid "Your reminder has been successfully sent!"
-msgstr ""
+msgstr "Vaše připomínka byla v pořádku odeslána!"
 
 #: .Error.Adding+vote+failed
 msgid "Adding vote failed"
-msgstr ""
+msgstr "Přidání hlasu selhalo"
 
 #: .Error.Can%27t+create+an+empty+column.
 msgid "Can't create an empty column."
-msgstr ""
+msgstr "Nelze vytvořit prázdný sloupec."
 
 #: .Error.Can%27t+create+the+config.php+file+in+%27%25s%27.
 msgid "Can't create the config.php file in '%s'."
@@ -444,38 +458,39 @@ msgstr ""
 
 #: .Error.Comment+failed
 msgid "Comment failed"
-msgstr ""
+msgstr "Komentování selhalo"
 
 #: .Error.Cookies+are+disabled+on+your+browser.+They+are+required+to+be+able+to+create+a+poll.
 msgid ""
 "Cookies are disabled on your browser. They are required to be able to create "
 "a poll."
 msgstr ""
+"Váš prohlížeč má zakázané cookies. Pro vytváření hlasování jsou vyžadovány."
 
 #: .Error.Enter+a+name
 msgid "Enter a name"
-msgstr ""
+msgstr "Zadejte jméno"
 
 #: .Error.Enter+a+name+and+a+comment%21
 msgid "Enter a name and a comment!"
-msgstr ""
+msgstr "Zadejte jméno a komentář!"
 
 #: .Error.Enter+a+title
 msgid "Enter a title"
-msgstr ""
+msgstr "Zadejte název"
 
 #: .Error.Enter+an+email+address
 msgid "Enter an email address"
-msgstr ""
+msgstr "Zadejte emailovou adresu"
 
 #: .Error.Error+on+amount+of+votes+limitation:+Value+must+be+an+integer+greater+than+0
 msgid ""
 "Error on amount of votes limitation: Value must be an integer greater than 0"
-msgstr ""
+msgstr "Chyba v omezení počtu hlasů: Hodnota musí být kladné přirozené číslo"
 
 #: .Error.Error%21
 msgid "Error!"
-msgstr ""
+msgstr "Chyba!"
 
 #: .Error.Failed+to+delete+all+comments
 msgid "Failed to delete all comments"
@@ -523,7 +538,7 @@ msgstr ""
 
 #: .Error.If+you+quit+now,+your+changes+will+be+lost.
 msgid "If you quit now, your changes will be lost."
-msgstr ""
+msgstr "Pokud teď odejdete, změny budou ztraceny."
 
 #: .Error.JavaScript+is+disabled+on+your+browser.+It+is+required+to+create+a+poll.
 msgid ""
@@ -540,53 +555,57 @@ msgstr ""
 
 #: .Error.Password+is+empty.
 msgid "Password is empty."
-msgstr ""
+msgstr "Prázdné heslo."
 
 #: .Error.Passwords+do+not+match.
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Hesla si neodpovídají."
 
 #: .Error.Poll+has+been+updated+before+you+vote
 msgid "Poll has been updated before you vote"
-msgstr ""
+msgstr "Před vaším hlasem bylo hlasování změněno"
 
 #: .Error.Something+has+gone+wrong...
 msgid "Something has gone wrong..."
-msgstr ""
+msgstr "Něco se pokazilo..."
 
 #: .Error.Something+is+wrong+with+the+format
 msgid "Something is wrong with the format"
-msgstr ""
+msgstr "Formátování není v pořádku"
 
 #: .Error.Something+is+wrong+with+the+format:+Customized+URLs+should+only+consist+of+alphanumeric+characters+and+hyphens.
 msgid ""
 "Something is wrong with the format: Customized URLs should only consist of "
 "alphanumeric characters and hyphens."
 msgstr ""
+"Formátování není v pořádku: Upravená URL smí obsahovat jen alfanumerické "
+"znaky a pomlčky."
 
 #: .Error.Something+is+wrong+with+the+format:+name+shouldn%27t+have+any+spaces+before+or+after
 msgid ""
 "Something is wrong with the format: name shouldn't have any spaces before or "
 "after"
-msgstr ""
+msgstr "Formátování není v pořádku: jméno nesmí začínat ani končit mezerou"
 
 #: .Error.The+address+is+not+correct%21+You+should+enter+a+valid+email+address+(like+r.stallman@outlock.com)+in+order+to+receive+the+link+to+your+poll.
 msgid ""
 "The address is not correct! You should enter a valid email address (like "
 "r.stallman@outlock.com) in order to receive the link to your poll."
 msgstr ""
+"Adresa není v pořádku! Abyste mohli získat odkaz k hlasování, zvolte platnou "
+"emailovou adresu (například r.stallman@outlock.com)."
 
 #: .Error.The+column+already+exists
 msgid "The column already exists"
-msgstr ""
+msgstr "Sloupec již existuje"
 
 #: .Error.The+name+is+invalid.
 msgid "The name is invalid."
-msgstr ""
+msgstr "Neplatné jméno."
 
 #: .Error.The+name+you%27ve+chosen+already+exists+in+this+poll%21
 msgid "The name you've chosen already exists in this poll!"
-msgstr ""
+msgstr "Zvolené jméno již v tomto hlasování existuje!"
 
 #: .Error.There+is+a+problem+with+your+choices
 msgid "There is a problem with your choices"
@@ -598,19 +617,19 @@ msgstr ""
 
 #: .Error.This+poll+doesn%27t+exist%21
 msgid "This poll doesn't exist!"
-msgstr ""
+msgstr "Toto hlasování neexistuje!"
 
 #: .Error.Unable+to+connect+to+database
 msgid "Unable to connect to database"
-msgstr ""
+msgstr "Nefunguje připojení k databázi"
 
 #: .Error.Update+vote+failed
 msgid "Update vote failed"
-msgstr ""
+msgstr "Změna hlasu selhala"
 
 #: .Error.You+already+voted
 msgid "You already voted"
-msgstr ""
+msgstr "Již jste hlasoval"
 
 #: .Error.You+can%27t+create+a+poll+with+hidden+results+with+the+following+option:+
 msgid "You can't create a poll with hidden results with the following option: "
@@ -1710,7 +1729,7 @@ msgstr ""
 
 #: .adminstuds.Poll+fully+deleted
 msgid "Poll fully deleted"
-msgstr ""
+msgstr "Hlasování zcela smazáno"
 
 #: .adminstuds.Poll+saved
 msgid "Poll saved"
@@ -1718,33 +1737,33 @@ msgstr ""
 
 #: .adminstuds.Remove+column
 msgid "Remove column"
-msgstr ""
+msgstr "Odstranit sloupec"
 
 #: .adminstuds.Remove+the+comments
 msgid "Remove the comments"
-msgstr ""
+msgstr "Odstranit komentáře"
 
 #: .adminstuds.Remove+the+votes
 msgid "Remove the votes"
-msgstr ""
+msgstr "Odstranit hlasy"
 
 #: .adminstuds.The+poll+was+created.
 msgid "The poll was created."
-msgstr ""
+msgstr "Hlasování bylo vytvořeno."
 
 #: .adminstuds.Vote+added
 #: .studs.Vote+added
 msgid "Vote added"
-msgstr ""
+msgstr "Hlas přidán"
 
 #: .adminstuds.Vote+deleted
 msgid "Vote deleted"
-msgstr ""
+msgstr "Hlas smazán"
 
 #: .adminstuds.Vote+updated
 #: .studs.Vote+updated
 msgid "Vote updated"
-msgstr ""
+msgstr "Hlas aktualizován"
 
 #: .adminstuds.You+can+add+a+new+scheduling+date+to+your+poll.
 msgid "You can add a new scheduling date to your poll."
@@ -1779,7 +1798,7 @@ msgstr ""
 
 #: .studs.Deletion+date:
 msgid "Deletion date:"
-msgstr ""
+msgstr "Datum smazání:"
 
 #: .studs.If+you+want+to+vote+in+this+poll,+you+have+to+give+your+name,+make+your+choice,+and+submit+it+by+selecting+the+save+button+at+the+end+of+the+line.
 msgid ""
