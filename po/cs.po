@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2021-05-01 09:41+0000\n"
+"PO-Revision-Date: 2021-05-26 15:15+0000\n"
 "Last-Translator: JJZ <jero@zvano.net>\n"
 "Language-Team: Czech <https://weblate.framasoft.org/projects/framadate/"
 "framadate/cs/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.6\n"
+"X-Generator: Weblate 4.6.2\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -61,15 +61,15 @@ msgstr "licence CeCILL-B"
 
 #: .2nd+section.Framadate+is+licensed+under+the
 msgid "Framadate is licensed under the"
-msgstr ""
+msgstr "Framadate je licencován pod"
 
 #: .2nd+section.Framadate+was+initially+based+on
 msgid "Framadate was initially based on"
-msgstr ""
+msgstr "Framadate byl původně založen na"
 
 #: .2nd+section.The+software
 msgid "The software"
-msgstr ""
+msgstr "Software"
 
 #: .2nd+section.This+software+needs+javascript+and+cookies+enabled.+It+is+compatible+with+the+following+web+browsers:
 msgid ""
@@ -84,6 +84,8 @@ msgid ""
 "software developed by the University of Strasbourg. These days, it is "
 "developed by the Framasoft association."
 msgstr ""
+"software byl vyvinut na Štrasburské univerzitě. Dnes jej vyvíjí asociace "
+"Framasoft."
 
 #: .3rd+section.Grow+your+own
 msgid "Grow your own"
