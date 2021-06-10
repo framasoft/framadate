@@ -4,14 +4,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-06-09 23:15+0000\n"
+"Last-Translator: Pedro <universosubatomico@protonmail.ch>\n"
+"Language-Team: Portuguese (Brazil) <https://weblate.framasoft.org/projects/"
+"framadate/framadate/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 2.3.1\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.6.2\n"
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
@@ -105,11 +107,11 @@ msgstr ""
 
 #: .Admin.Administration
 msgid "Administration"
-msgstr ""
+msgstr "Administração"
 
 #: .Admin.Author
 msgid "Author"
-msgstr ""
+msgstr "Autor"
 
 #: .Admin.Back+to+administration
 msgid "Back to administration"
@@ -122,11 +124,11 @@ msgstr ""
 #: .Admin.Email
 #: .PollInfo.Email
 msgid "Email"
-msgstr ""
+msgstr "E-mail (correio eletrônico)"
 
 #: .Admin.Executed
 msgid "Executed"
-msgstr ""
+msgstr "Executado"
 
 #: .Admin.Expiry+date
 #: .Generic.Expiry+date
@@ -135,35 +137,35 @@ msgstr ""
 
 #: .Admin.Fail
 msgid "Fail"
-msgstr ""
+msgstr "Erro"
 
 #: .Admin.Failed:
 msgid "Failed:"
-msgstr ""
+msgstr "Falha:"
 
 #: .Admin.Format
 msgid "Format"
-msgstr ""
+msgstr "Formato"
 
 #: .Admin.Installation
 msgid "Installation"
-msgstr ""
+msgstr "Instalação"
 
 #: .Admin.Logs
 msgid "Logs"
-msgstr ""
+msgstr "Logs de depuração"
 
 #: .Admin.Migration
 msgid "Migration"
-msgstr ""
+msgstr "Migração"
 
 #: .Admin.Nothing
 msgid "Nothing"
-msgstr ""
+msgstr "Nada"
 
 #: .Admin.Pages:
 msgid "Pages:"
-msgstr ""
+msgstr "Páginas:"
 
 #: .Admin.Poll+ID
 msgid "Poll ID"
@@ -175,11 +177,11 @@ msgstr ""
 
 #: .Admin.Polls
 msgid "Polls"
-msgstr ""
+msgstr "Pesquisas"
 
 #: .Admin.Purge
 msgid "Purge"
-msgstr ""
+msgstr "Expurgar"
 
 #: .Admin.Purge+the+polls
 msgid "Purge the polls"
@@ -187,7 +189,7 @@ msgstr ""
 
 #: .Admin.Purged:
 msgid "Purged:"
-msgstr ""
+msgstr "Expurgado:"
 
 #: .Admin.See+the+poll
 msgid "See the poll"
@@ -195,37 +197,37 @@ msgstr ""
 
 #: .Admin.Skipped:
 msgid "Skipped:"
-msgstr ""
+msgstr "Pulado:"
 
 #: .Admin.Status
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: .Admin.Succeeded:
 msgid "Succeeded:"
-msgstr ""
+msgstr "Com êxito:"
 
 #: .Admin.Success
 msgid "Success"
-msgstr ""
+msgstr "Sucesso"
 
 #: .Admin.Summary
 msgid "Summary"
-msgstr ""
+msgstr "Resumo"
 
 #: .Admin.Title
 #: .FindPolls.Title
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: .Admin.Votes
 #: .Poll+results.Votes
 msgid "Votes"
-msgstr ""
+msgstr "Votos"
 
 #: .Admin.Waiting
 msgid "Waiting"
-msgstr ""
+msgstr "Em espera"
 
 #: .Admin.polls+in+the+database+at+this+time
 msgid "polls in the database at this time"
@@ -321,7 +323,7 @@ msgstr ""
 
 #: .Comments.Comment
 msgid "Comment"
-msgstr ""
+msgstr "Comentário"
 
 #: .Comments.Comment+saved
 msgid "Comment saved"
@@ -329,7 +331,7 @@ msgstr ""
 
 #: .Comments.Comments
 msgid "Comments"
-msgstr ""
+msgstr "Comentários"
 
 #: .Comments.Enter+your+name+and+comment+prior+to+submitting+the+form
 msgid "Enter your name and comment prior to submitting the form"
@@ -357,7 +359,7 @@ msgstr ""
 
 #: .Date.%25Y-%25m-%25d
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%d/%m/%Y"
 
 #: .Date.%25a+%25e
 msgid "%a %e"
@@ -381,7 +383,7 @@ msgstr ""
 
 #: .Date.Y-m-d
 msgid "Y-m-d"
-msgstr ""
+msgstr "d-m-Y"
 
 #: .Date.You+can+select+at+most+4+months
 msgid "You can select at most 4 months"
@@ -389,11 +391,11 @@ msgstr ""
 
 #: .Date.yyyy-mm-dd
 msgid "yyyy-mm-dd"
-msgstr ""
+msgstr "dd-mm-yyyy"
 
 #: .Date.yyyy-mm-dd-for-humans
 msgid "yyyy-mm-dd-for-humans"
-msgstr ""
+msgstr "dd-mm-yyyy-para-humanos"
 
 #: .EditLink.Edit+link+for+poll+%22%25s%22
 msgid "Edit link for poll \"%s\""
@@ -416,11 +418,11 @@ msgstr ""
 
 #: .EditLink.REMINDER
 msgid "REMINDER"
-msgstr ""
+msgstr "LEMBRETE"
 
 #: .EditLink.Send
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 #: .EditLink.The+email+address+is+not+correct.
 msgid "The email address is not correct."
@@ -475,7 +477,7 @@ msgstr ""
 
 #: .Error.Error%21
 msgid "Error!"
-msgstr ""
+msgstr "Erro!"
 
 #: .Error.Failed+to+delete+all+comments
 msgid "Failed to delete all comments"
@@ -511,11 +513,11 @@ msgstr ""
 
 #: .Error.Forbidden%21
 msgid "Forbidden!"
-msgstr ""
+msgstr "Acesso não-autorizado!"
 
 #: .Error.GenericErrorPollCreation
 msgid "GenericErrorPollCreation"
-msgstr ""
+msgstr "ErroGenericoDeCriaçãoDePesquisa"
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
@@ -634,7 +636,7 @@ msgstr ""
 
 #: .FindPolls.Address
 msgid "Address"
-msgstr ""
+msgstr "Endereço"
 
 #: .FindPolls.Created+polls
 msgid "Created polls"
@@ -731,11 +733,11 @@ msgstr ""
 
 #: .Generic.Add
 msgid "Add"
-msgstr ""
+msgstr "Adicionar"
 
 #: .Generic.Back
 msgid "Back"
-msgstr ""
+msgstr "Voltar"
 
 #: .Generic.Back+to+the+homepage+of
 msgid "Back to the homepage of"
@@ -743,20 +745,20 @@ msgstr ""
 
 #: .Generic.Cancel
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: .Generic.Choice
 #: .Step+1.Choice
 msgid "Choice"
-msgstr ""
+msgstr "Escolha"
 
 #: .Generic.Classic
 msgid "Classic"
-msgstr ""
+msgstr "Clássico"
 
 #: .Generic.Close
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 #: .Generic.Create+your+own+polls
 msgid "Create your own polls"
@@ -768,19 +770,19 @@ msgstr ""
 
 #: .Generic.Date
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: .Generic.Day
 msgid "Day"
-msgstr ""
+msgstr "Dia"
 
 #: .Generic.Description
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
 #: .Generic.Edit
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 #: .Generic.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.
 msgid ""
@@ -790,19 +792,19 @@ msgstr ""
 
 #: .Generic.Home
 msgid "Home"
-msgstr ""
+msgstr "Tela inicial"
 
 #: .Generic.Information
 msgid "Information"
-msgstr ""
+msgstr "Informação"
 
 #: .Generic.Legend:
 msgid "Legend:"
-msgstr ""
+msgstr "Legenda:"
 
 #: .Generic.Link
 msgid "Link"
-msgstr ""
+msgstr "Link"
 
 #: .Generic.Markdown
 msgid "Markdown"
