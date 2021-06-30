@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2021-06-09 23:15+0000\n"
-"Last-Translator: Pedro <universosubatomico@protonmail.ch>\n"
+"PO-Revision-Date: 2021-07-02 04:15+0000\n"
+"Last-Translator: framabr <framabr@protonmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://weblate.framasoft.org/projects/"
 "framadate/framadate/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,93 +17,103 @@ msgstr ""
 
 #: .1st+section.Create+a+poll
 msgid "Create a poll"
-msgstr ""
+msgstr "Criar uma pesquisa"
 
 #: .1st+section.Define+dates+or+subjects+to+choose+from
 msgid "Define dates or subjects to choose from"
-msgstr ""
+msgstr "Definir datas ou assuntos a escolher"
 
 #: .1st+section.Discuss+and+make+a+decision
 msgid "Discuss and make a decision"
-msgstr ""
+msgstr "Conversar e tomar uma decisão"
 
 #: .1st+section.Do+you+want+to
 msgid "Do you want to"
-msgstr ""
+msgstr "Você quer"
 
 #: .1st+section.Framadate+is+an+online+service+for+planning+an+appointment+or+making+a+decision+quickly+and+easily.+No+registration+is+required.
 msgid ""
 "Framadate is an online service for planning an appointment or making a "
 "decision quickly and easily. No registration is required."
 msgstr ""
+"Framadate é um serviço fácil e rápido de planejamento de encontros ou tomada "
+"de decisão. Nenhum cadastro é necessário."
 
 #: .1st+section.Here+is+how+it+works:
 msgid "Here is how it works:"
-msgstr ""
+msgstr "Veja como funciona:"
 
 #: .1st+section.Send+the+poll+link+to+your+friends+or+colleagues
 msgid "Send the poll link to your friends or colleagues"
-msgstr ""
+msgstr "Envie o link da pesquisa para seus amigos ou colegas"
 
 #: .1st+section.What+is+Framadate%3F
 msgid "What is Framadate?"
-msgstr ""
+msgstr "O que é Framadate?"
 
 #: .1st+section.view+an+example%3F
 msgid "view an example?"
-msgstr ""
+msgstr "Ver um exemplo?"
 
 #: .2nd+section.CeCILL-B+license
 msgid "CeCILL-B license"
-msgstr ""
+msgstr "Licença CeCILL-B"
 
 #: .2nd+section.Framadate+is+licensed+under+the
 msgid "Framadate is licensed under the"
-msgstr ""
+msgstr "Framadate está sob a licença de"
 
 #: .2nd+section.Framadate+was+initially+based+on
 msgid "Framadate was initially based on"
-msgstr ""
+msgstr "Framadate foi inicialmente baseado em"
 
 #: .2nd+section.The+software
 msgid "The software"
-msgstr ""
+msgstr "O aplicativo"
 
 #: .2nd+section.This+software+needs+javascript+and+cookies+enabled.+It+is+compatible+with+the+following+web+browsers:
 msgid ""
 "This software needs javascript and cookies enabled. It is compatible with "
 "the following web browsers:"
 msgstr ""
+"Este aplicativo requer a ativação do javascript e do cookies. E é compatível "
+"com os seguintes navegadores:"
 
 #: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days,+it+is+developed+by+the+Framasoft+association.
 msgid ""
 "software developed by the University of Strasbourg. These days, it is "
 "developed by the Framasoft association."
 msgstr ""
+"aplicativo desenvolvido pela Universidade de Strasbourg. Atualmente ele é "
+"desenvolvido pela Associação Framasoft."
 
 #: .3rd+section.Grow+your+own
 msgid "Grow your own"
-msgstr ""
+msgstr "Cultive seu jardim"
 
 #: .3rd+section.If+you+want+to+install+the+software+for+your+own+use+and+thus+increase+your+independence,+we+can+help+you+at:
 msgid ""
 "If you want to install the software for your own use and thus increase your "
 "independence, we can help you at:"
 msgstr ""
+"Se você quiser instalar o aplicativo por você mesmo e assim aumentar sua "
+"independência, podemos te ajudar em:"
 
 #: .3rd+section.To+participate+in+the+software+development,+suggest+improvements+or+simply+download+it,+please+visit
 msgid ""
 "To participate in the software development, suggest improvements or simply "
 "download it, please visit"
 msgstr ""
+"Para participar no desenvolvimento do aplicativo, sugerir melhorias ou "
+"simplesmente baixá-lo, favor visitar"
 
 #: .3rd+section.the+development+site
 msgid "the development site"
-msgstr ""
+msgstr "o site de desenvolvimento"
 
 #: .Admin.Actions
 msgid "Actions"
-msgstr ""
+msgstr "Ações"
 
 #: .Admin.Administration
 msgid "Administration"
@@ -115,11 +125,11 @@ msgstr "Autor"
 
 #: .Admin.Back+to+administration
 msgid "Back to administration"
-msgstr ""
+msgstr "Voltar à Administração"
 
 #: .Admin.Change+the+poll
 msgid "Change the poll"
-msgstr ""
+msgstr "Modificar a pesquisa"
 
 #: .Admin.Email
 #: .PollInfo.Email
@@ -133,7 +143,7 @@ msgstr "Executado"
 #: .Admin.Expiry+date
 #: .Generic.Expiry+date
 msgid "Expiry date"
-msgstr ""
+msgstr "Data de validade"
 
 #: .Admin.Fail
 msgid "Fail"
@@ -169,11 +179,11 @@ msgstr "Páginas:"
 
 #: .Admin.Poll+ID
 msgid "Poll ID"
-msgstr ""
+msgstr "ID da Pesquisa"
 
 #: .Admin.Poll+deleted
 msgid "Poll deleted"
-msgstr ""
+msgstr "Pesquisa apagada"
 
 #: .Admin.Polls
 msgid "Polls"
@@ -185,7 +195,7 @@ msgstr "Expurgar"
 
 #: .Admin.Purge+the+polls
 msgid "Purge the polls"
-msgstr ""
+msgstr "Depurar a pesquisa"
 
 #: .Admin.Purged:
 msgid "Purged:"
@@ -193,7 +203,7 @@ msgstr "Expurgado:"
 
 #: .Admin.See+the+poll
 msgid "See the poll"
-msgstr ""
+msgstr "Ver a pesquisa"
 
 #: .Admin.Skipped:
 msgid "Skipped:"
@@ -231,19 +241,19 @@ msgstr "Em espera"
 
 #: .Admin.polls+in+the+database+at+this+time
 msgid "polls in the database at this time"
-msgstr ""
+msgstr "Pesquisa presente na base de dados atualmente"
 
 #: .Check.Check+again
 msgid "Check again"
-msgstr ""
+msgstr "Verificar novamente"
 
 #: .Check.Consider+enabling+the+PHP+extension+OpenSSL+for+increased+security.
 msgid "Consider enabling the PHP extension OpenSSL for increased security."
-msgstr ""
+msgstr "Considere ativar a extensão PHP Open SSL para aumentar a segurança."
 
 #: .Check.Consider+setting+the+date.timezone+in+php.ini.
 msgid "Consider setting the date.timezone in php.ini."
-msgstr ""
+msgstr "Considere configurar date e o fuso horário no php.ini."
 
 #: .Check.Consider+setting+%C2%AB+session.cookie_httponly+%3D+1+%C2%BB+inside+your+php.ini+or+add+%C2%AB+php_value+session.cookie_httponly+1+%C2%BB+to+your+.htaccess+so+that+cookies+can%27t+be+accessed+through+Javascript.
 msgid ""
@@ -251,75 +261,84 @@ msgid ""
 " php_value session.cookie_httponly 1 » to your .htaccess so that cookies "
 "can't be accessed through Javascript."
 msgstr ""
+"Considere configurar « session.cookie_httponly = 1 » no seu php.ini ou "
+"adicione-o « php_value session.cookie_httponly 1 » no seu .htaccess de modo "
+"que os cookies não possam ser acessados através do Javascript."
 
 #: .Check.Continue+the+installation
 msgid "Continue the installation"
-msgstr ""
+msgstr "Continue a instalação"
 
 #: .Check.Cookies+are+served+from+HTTP+only.
 msgid "Cookies are served from HTTP only."
-msgstr ""
+msgstr "Cookies são servidos apenas do HTTP."
 
 #: .Check.Installation+checking
 msgid "Installation checking"
-msgstr ""
+msgstr "Verificação da instalação"
 
 #: .Check.OpenSSL+extension+loaded.
 msgid "OpenSSL extension loaded."
-msgstr ""
+msgstr "Extensão OpenSSL está carregada."
 
 #: .Check.PHP+Intl+extension+is+enabled.
 msgid "PHP Intl extension is enabled."
-msgstr ""
+msgstr "A extensão PHP está ativada."
 
 #: .Check.PHP+version+%25s+is+enough+(needed+at+least+PHP+%25s).
 msgid "PHP version %s is enough (needed at least PHP %s)."
-msgstr ""
+msgstr "PHP versão %s é suficiente (precisa de pelo ao menos PHP %s)."
 
 #: .Check.The+config+file+directory+(%25s)+is+not+writable+and+the+config+file+(%25s)+does+not+exists.
 msgid ""
 "The config file directory (%s) is not writable and the config file (%s) does "
 "not exists."
 msgstr ""
+"O diretório de configuração (%s) não é gravável e o arquivo config (%s) não "
+"existe."
 
 #: .Check.The+config+file+directory+(%25s)+is+writable.
 msgid "The config file directory (%s) is writable."
-msgstr ""
+msgstr "O diretório config do arquivo config é gravável."
 
 #: .Check.The+config+file+exists.
 msgid "The config file exists."
-msgstr ""
+msgstr "O arquivo config existe."
 
 #: .Check.The+template+compile+directory+(%25s)+doesn%27t+exist+in+%22%25s%22.+Retry+the+installation+process.
 msgid ""
 "The template compile directory (%s) doesn't exist in \"%s\". Retry the "
 "installation process."
 msgstr ""
+"O diretório de compilação de modelos (%s) não existe \"%s\". Tente novamente "
+"o processo de instalação."
 
 #: .Check.The+template+compile+directory+(%25s)+is+not+writable.
 msgid "The template compile directory (%s) is not writable."
-msgstr ""
+msgstr "O diretório de compilação de modelos (%s) não pode ser registrado."
 
 #: .Check.The+template+compile+directory+(%25s)+is+writable.
 msgid "The template compile directory (%s) is writable."
-msgstr ""
+msgstr "O diretório de compilação de modelos (%s) pode ser registrado."
 
 #: .Check.You+need+to+enable+the+PHP+Intl+extension.
 msgid "You need to enable the PHP Intl extension."
-msgstr ""
+msgstr "Você precisa ativar a extensão PHP Intl."
 
 #: .Check.Your+PHP+version+(%25s)+is+too+old.+This+application+needs+at+least+PHP+%25s.
 msgid ""
 "Your PHP version (%s) is too old. This application needs at least PHP %s."
 msgstr ""
+"Sua versão PHP (%s) é muito antiga. Este aplicativo precisa pelo ao menos do "
+"PHP %s."
 
 #: .Check.date.timezone+is+set.
 msgid "date.timezone is set."
-msgstr ""
+msgstr "date.timezone está definido."
 
 #: .Comments.Add+a+comment+to+the+poll
 msgid "Add a comment to the poll"
-msgstr ""
+msgstr "Adicionar um comentário na pesquisa"
 
 #: .Comments.Comment
 msgid "Comment"
@@ -327,7 +346,7 @@ msgstr "Comentário"
 
 #: .Comments.Comment+saved
 msgid "Comment saved"
-msgstr ""
+msgstr "Comentário salvado"
 
 #: .Comments.Comments
 msgid "Comments"
@@ -335,27 +354,29 @@ msgstr "Comentários"
 
 #: .Comments.Enter+your+name+and+comment+prior+to+submitting+the+form
 msgid "Enter your name and comment prior to submitting the form"
-msgstr ""
+msgstr "Insira seu nome e comentário antes de enviar o formulário"
 
 #: .Comments.Remove+comment
 msgid "Remove comment"
-msgstr ""
+msgstr "Remova o comentário"
 
 #: .Comments.Submit+comment
 msgid "Submit comment"
-msgstr ""
+msgstr "Enviar comentário"
 
 #: .Date.%25A+%25e+%25B+%25Y
+#, fuzzy
 msgid "%A %e %B %Y"
-msgstr ""
+msgstr "%A %e %B %Y"
 
 #: .Date.%25A,+%25B+%25e,+%25Y
+#, fuzzy
 msgid "%A, %B %e, %Y"
-msgstr ""
+msgstr "%A, %B %e, %Y"
 
 #: .Date.%25B+%25Y
 msgid "%B %Y"
-msgstr ""
+msgstr "%B %Y"
 
 #: .Date.%25Y-%25m-%25d
 msgid "%Y-%m-%d"
@@ -363,23 +384,23 @@ msgstr "%d/%m/%Y"
 
 #: .Date.%25a+%25e
 msgid "%a %e"
-msgstr ""
+msgstr "%a %e"
 
 #: .Date.%25m/%25d/%25Y+%25H:%25M
 msgid "%m/%d/%Y %H:%M"
-msgstr ""
+msgstr "%d-%m-%Y %H:%M"
 
 #: .Date.Add+range+dates
 msgid "Add range dates"
-msgstr ""
+msgstr "Adicione um intervalo de datas"
 
 #: .Date.End+date
 msgid "End date"
-msgstr ""
+msgstr "Data do fim"
 
 #: .Date.Start+date
 msgid "Start date"
-msgstr ""
+msgstr "Data de início"
 
 #: .Date.Y-m-d
 msgid "Y-m-d"
