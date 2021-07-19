@@ -73,6 +73,10 @@ function smarty_modifier_addslashes_single_quote($string) {
     return addcslashes($string, '\\\'');
 }
 
+function smarty_modifier_addslashes($string) {
+    return addslashes($string);
+}
+
 function smarty_modifier_html($html) {
     return Utils::htmlEscape($html);
 }

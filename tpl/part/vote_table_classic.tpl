@@ -282,7 +282,7 @@
                 });
                 var cols = [
                 {foreach $slots as $id=>$slot}
-                    $('<div/>').html('{$slot->title|markdown:true}').text(),
+                    "{$slot->title|markdown:true|addslashes}",
                 {/foreach}
                 ];
 
