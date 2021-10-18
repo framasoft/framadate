@@ -64,8 +64,6 @@ a:focus { /* a11y */
     outline:#000 dotted 1px;
 }
 
-header, footer {
-}
 main {
     margin-top: 20px;
 }
@@ -185,7 +183,7 @@ caption {
     font-weight:bold;
 }
 
-.results a.btn-default.btn-sm {
+.results a.btn-default.btn-sm, .best-choice .list-unstyled a.btn-default.btn-sm {
     padding: 3px 7px;
     font-size: 0.7em;
 }

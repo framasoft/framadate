@@ -389,7 +389,7 @@
     {* Best votes listing *}
     {$max = max($best_choices['y'])}
     {if $max > 0}
-        <div class="row">
+        <div class="row best-choice">
         {if $count_bests == 1}
         <div class="col-sm-12"><h3>{__('Poll results', 'Best choice')}</h3></div>
         <div class="col-sm-6 col-sm-offset-3 alert alert-info">
@@ -408,8 +408,11 @@
                             {if $best_choices['y'][$i] == $max}
                                 {assign var="space" value="`$slot->day|date_format:'d-m-Y'|html`|`$moment`"}
                                 <li><strong>{$slot->day|date_format:$date_format.txt_full|html} - {$moment|html}</strong>
-                                    <a href="{poll_url id=$poll_id action='get_ical_file' action_value=($space)}" class="btn btn-link btn-sm" title="{__('studs', 'Download as ical/ics file')}">
-                                        <i class="fa fa-calendar text-muted" aria-hidden="true"></i></a></li>
+                                    <a href="{poll_url id=$poll_id action='get_ical_file' action_value=($space)}" class="btn btn-default btn-sm" title="{__('studs', 'Download as ical/ics file')}">
+                                        <span class="fa fa-calendar text-muted"></span>
+                                        <span class="sr-only">{__('studs', 'Download as ical/ics file')}</span>
+                                    </a>
+                                </li>
                             {/if}
                             {$i = $i+1}
                         {/foreach}
