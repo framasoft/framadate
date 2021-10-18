@@ -129,7 +129,7 @@ class ICalService {
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
-        header("Content-Type: text/plain");
+        header("Content-Type: text/calendar");
         echo $ical_text;
         exit;
     }
