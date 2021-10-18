@@ -10,7 +10,7 @@ vendor
 cache/
 tpl_c/*
 !tpl_c/.gitkeep
-.php_cs.cache
+.php-cs-fixer.cache
 .zanata-cache/
 
 # Temp files
