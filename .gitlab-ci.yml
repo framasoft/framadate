@@ -26,6 +26,7 @@ pages:
   - composer dump-autoload --optimize --no-dev --classmap-authoritative
   - mkdir framadate
   - mv `ls -A | grep -v framadate` ./framadate
+  - echo $latesttag > framadate/VERSION
   - find framadate/ -type d -exec chmod 750 {} \;
   - find framadate/ -type f -exec chmod 640 {} \;
   - rm -rf framadate/.git
