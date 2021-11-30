@@ -4,19 +4,21 @@
 
 ![Français](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/20px-Flag_of_France.svg.png) Framadate est un service en ligne permettant de planifier un rendez-vous ou prendre des décisions rapidement et simplement. Aucune inscription préalable n’est nécessaire.
 
+**Framadate is now in maintenance mode.** [Read more](https://framagit.org/framasoft/framadate/framadate/-/issues/545#note_920869)
+
 ---
 # Installation
 
-Follow the instructions on our Wiki : <https://framagit.org/framasoft/framadate/wikis/home>
+Follow the instructions on our Wiki : <https://framagit.org/framasoft/framadate/framadate/-/wikis/home>
 
 # Contribute
 
 ## Code 
-Follow the instructions on <https://framagit.org/framasoft/framadate/wikis/coding>
+Follow the instructions on <https://framagit.org/framasoft/framadate/framadate/-/wikis/coding>
 
 # Traductions
 
-Follow the instructions on <https://framagit.org/framasoft/framadate/wikis/translating>
+Follow the instructions on <https://framagit.org/framasoft/framadate/framadate/-/wikis/translating>
 
 # Used libraries
 
