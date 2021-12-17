@@ -80,7 +80,7 @@ $messagePollCreated = $sessionService->get("Framadate", "messagePollCreated", FA
 
 if ($messagePollCreated) {
 	$sessionService->remove("Framadate", "messagePollCreated");
-	
+
 	$message = new Message('success', __('adminstuds', 'The poll is created.'));
 }
 
@@ -137,9 +137,9 @@ if (isset($_POST['update_poll_info'])) {
                 break;
         }
     } elseif ($field === 'expiration_date') {
-        $expiration_date = $inputService->filterDate($_POST['expiration_date']);
+        $expiration_date = $inputService->validateDate($_POST['expiration_date'], $pollService->minExpiryDate(), $pollService->maxExpiryDate());
         if ($expiration_date) {
-            $poll->end_date = $expiration_date;
+            $poll->end_date = $expiration_date->getTimestamp();
             $updated = true;
         }
     } elseif ($field === 'name') {

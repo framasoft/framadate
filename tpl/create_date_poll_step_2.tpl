@@ -1,18 +1,18 @@
 {extends file='page.tpl'}
 
 {block name="header"}
-    <script type="text/javascript">
+    <script>
         window.date_formats = {
             DATE: '{__('Date', 'DATE')}',
             DATEPICKER: '{__('Date', 'datepicker')}'
         };
     </script>
-    <script type="text/javascript" src="{'js/app/framadatepicker.js'|resource}"></script>
-    <script type="text/javascript" src="{'js/app/date_poll.js'|resource}"></script>
+    <script src="{'js/app/framadatepicker.js'|resource}"></script>
+    <script src="{'js/app/date_poll.js'|resource}"></script>
 {/block}
 
 {block name=main}
-    <form name="formulaire" action="" method="POST" class="form-horizontal" role="form">
+    <form name="formulaire" method="POST" class="form-horizontal">
         <div class="row" id="selected-days">
             <div class="col-md-10 col-md-offset-1">
                 <h3>{__('Step 2 date', 'Choose the dates of your poll')}</h3>

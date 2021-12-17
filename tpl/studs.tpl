@@ -1,17 +1,22 @@
 {extends file='page.tpl'}
 
 {block name="header"}
-    <script src="{"js/Chart.min.js"|resource}" type="text/javascript"></script>
-    <script src="{"js/Chart.StackedBar.js"|resource}" type="text/javascript"></script>
-    <script src="{"js/app/studs.js"|resource}" type="text/javascript"></script>
+    <script src="{"js/Chart.min.js"|resource}"></script>
+    <script src="{"js/Chart.StackedBar.js"|resource}"></script>
+    <script src="{"js/app/studs.js"|resource}"></script>
     <link rel="stylesheet" href="{'css/jquery-ui.min.css'|resource}">
 
     {if $admin}
-        <script src="{"js/simplemde.min.js"|resource}" type="text/javascript"></script>
-        <script src="{"js/dompurify.js"|resource}" type="text/javascript"></script>
-        <script src="{"js/mde-wrapper.js"|resource}" type="text/javascript"></script>
-        <script src="{"js/app/adminstuds.js"|resource}" type="text/javascript"></script>
-        <link rel="stylesheet" href="{'css/simplemde.min.css'|resource}">
+        <script src="{"js/easymde.min.js"|resource}"></script>
+        <script src="{"js/dompurify.js"|resource}"></script>
+        <script src="{"js/mde-wrapper.js"|resource}"></script>
+        <script src="{"js/app/adminstuds.js"|resource}"></script>
+        <link rel="stylesheet" href="{'css/easymde.min.css'|resource}">
+    {/if}
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:title" content="{$poll->title|html} - {$APPLICATION_NAME|html}" />
+    {if $poll->description}
+        <meta property="og:description" content="{$poll->description|markdown:true}" />
     {/if}
 
 {/block}

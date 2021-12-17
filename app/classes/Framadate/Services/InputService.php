@@ -120,9 +120,22 @@ class InputService {
         return $this->returnIfNotBlank($comment);
     }
 
-    public function filterDate($date) {
-        $dDate = DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $date)->setTime(0, 0, 0);
-        return $dDate->format('Y-m-d H:i:s');
+    public function validateDate(string $date, DateTime $maxDate, DateTime $minDate): DateTime {
+        $dDate = $this->parseDate($date);
+        if (!$dDate) return $maxDate;
+        if ($dDate < $minDate) {
+            return $minDate;
+        } elseif ($maxDate < $dDate) {
+            return $maxDate;
+        }  
+            return $dDate;
+    }
+
+    /**
+     * @return DateTime|false
+     */
+    private function parseDate(string $date) {
+        return DateTime::createFromFormat(__('Date', 'datetime_parseformat'), $date)->setTime(0, 0, 0);
     }
 
     /**

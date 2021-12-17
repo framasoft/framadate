@@ -3,7 +3,7 @@
 {block 'main'}
 <div class="row">
     <div class="col-md-12">
-        <form action="" method="POST">
+        <form method="POST">
 
             {if $error}
                 <div id="result" class="alert alert-danger">

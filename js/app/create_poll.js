@@ -17,13 +17,13 @@
  */
 
 $(document).ready(function () {
-
     /**
      * Error check when submitting form
      */
     $("#formulaire").submit(function (event) {
-        var isHidden = $("#hidden").prop('checked');
-        var isOptionAllUserCanModifyEverything = $("#editableByAll").is(":checked");
+        var isHidden = $("#hidden").prop("checked");
+        var isOptionAllUserCanModifyEverything =
+            $("#editableByAll").is(":checked");
 
         if (isHidden && isOptionAllUserCanModifyEverything) {
             event.preventDefault();
@@ -44,22 +44,23 @@ $(document).ready(function () {
         }
     });
 
- /**
+    /**
      * Enable/Disable ValueMax options
      */
-    $("#use_ValueMax").change(function () {
-        if ($(this).prop("checked")) {
-            $("#ValueMax").removeClass("hidden");
+    const useValueMax = document.querySelector("#use_ValueMax");
+    useValueMax.addEventListener("change", function () {
+        const valueMaxOptions = document.querySelector("#value_max_options");
+        if (useValueMax.checked) {
+            valueMaxOptions.classList.remove("hidden");
         } else {
-            $("#ValueMax").addClass("hidden");
+            valueMaxOptions.classList.add("hidden");
         }
     });
-
 
     /**
      * Hide/Show password options
      */
-    $("#use_password").change(function(){
+    $("#use_password").change(function () {
         if ($(this).prop("checked")) {
             $("#password_options").removeClass("hidden");
         } else {
@@ -88,9 +89,12 @@ $(document).ready(function () {
         document.getElementById("cookie-warning").setAttribute("style", "");
     }
 
-    var wrapper = new MDEWrapper($('#poll_comments')[0], $('#rich-editor-button'), $('#simple-editor-button'));
-    if ($('#rich-editor-button').hasClass('active')) {
+    var wrapper = new MDEWrapper(
+        $("#poll_comments")[0],
+        $("#rich-editor-button"),
+        $("#simple-editor-button")
+    );
+    if ($("#rich-editor-button").hasClass("active")) {
         wrapper.enable();
     }
-
 });

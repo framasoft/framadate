@@ -54,10 +54,15 @@
             "email": "raphael.droz@gmail.com"
         }
     ],
+    "scripts": {
+        "cs:check": "php-cs-fixer fix --dry-run --diff",
+        "cs:fix": "php-cs-fixer fix",
+        "lint": "find . -name \\*.php -not -path './vendor/*' -not -path './build/*' -not -path './tests/integration/vendor/*' -print0 | xargs -0 -n1 php -l"
+    },
     "require": {
         "php": ">=7.3.0",
         "ext-pdo": "*",
-        "smarty/smarty": "^3.1",
+        "smarty/smarty": "^4.0",
         "o80/i18n": "dev-develop",
         "phpmailer/phpmailer": "~6.2",
         "ircmaxell/password-compat": "dev-master",

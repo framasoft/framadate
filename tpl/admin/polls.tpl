@@ -1,14 +1,14 @@
 {extends 'admin/admin_page.tpl'}
 
 {block name="header"}
-    <script src="{"js/app/admin/polls.js"|resource}" type="text/javascript"></script>
+    <script src="{"js/app/admin/polls.js"|resource}"></script>
 {/block}
 
 {block 'admin_main'}
     <div class="panel panel-default" id="poll_search">
         <div class="panel-heading">{__('Generic', 'Search')}</div>
         <div class="panel-body" style="display: none;">
-            <form action="" method="GET">
+            <form method="GET">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <form action="" method="POST">
+    <form method="POST">
         <input type="hidden" name="csrf" value="{$crsf}"/>
         {if $poll_to_delete}
             <div class="alert alert-warning text-center">

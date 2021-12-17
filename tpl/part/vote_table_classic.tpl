@@ -255,7 +255,7 @@
             </p>
         </div>
     </div>
-    <script type="text/javascript">
+    <script>
         $(document).ready(function () {
             $('#showChart').on('click', function() {
                 $('#showChart')

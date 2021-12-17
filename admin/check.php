@@ -46,6 +46,7 @@ $ALLOWED_LANGUAGES = [
     'de' => 'Deutsch',
     'it' => 'Italiano',
     'br' => 'Brezhoneg',
+    'ca' => 'Català',
 ];
 const DEFAULT_LANGUAGE = 'en';
 require_once ROOT_DIR . 'app/inc/i18n.php';
@@ -182,7 +183,7 @@ usort($messages, 'compareCheckMessage');
 <body>
     <div class="container ombre">
         <div class="row">
-            <form method="get" action="" class="hidden-print">
+            <form method="get" class="hidden-print">
                 <div class="input-group input-group-sm pull-right col-xs-12 col-sm-2">
                     <select name="lang" class="form-control" title="<?=__('Language selector', 'Select the language')?>" >
                         <?php foreach ($ALLOWED_LANGUAGES as $lang_key => $language) { ?>

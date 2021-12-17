@@ -1,13 +1,13 @@
 {extends file='page.tpl'}
 
 {block name="header"}
-    <script type="text/javascript">
+    <script>
         window.date_formats = {
             DATE: '{__('Date', 'DATE')}',
             DATEPICKER: '{__('Date', 'datepicker')}'
         };
     </script>
-    <script type="text/javascript" src="{'js/app/framadatepicker.js'|resource}"></script>
+    <script src="{'js/app/framadatepicker.js'|resource}"></script>
 {/block}
 
 {block name=main}
