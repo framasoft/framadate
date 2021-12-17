@@ -55,6 +55,7 @@ if (is_file(CONF_FILENAME)) {
         'de' => 'Deutsch',
         'it' => 'Italiano',
         'br' => 'Brezhoneg',
+        'ca' => 'Català'
     ];
 }
 

@@ -46,6 +46,7 @@ $ALLOWED_LANGUAGES = [
     'de' => 'Deutsch',
     'it' => 'Italiano',
     'br' => 'Brezhoneg',
+    'ca' => 'Català',
 ];
 const DEFAULT_LANGUAGE = 'en';
 require_once ROOT_DIR . 'app/inc/i18n.php';
