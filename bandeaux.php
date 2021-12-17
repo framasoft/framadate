@@ -43,7 +43,7 @@ function bandeau_titre($titre)
         <hr class="trait" role="presentation" />
     </header>
     <main role="main">';
-    
+
     global $connect;
     $tables = $connect->allTables();
     $diff = array_diff([Utils::table('comment'), Utils::table('poll'), Utils::table('slot'), Utils::table('vote')], $tables);

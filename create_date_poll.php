@@ -40,10 +40,6 @@ if (is_readable('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
 }
 
-// Min/Max archive date
-$min_expiry_time = $pollService->minExpiryDate();
-$max_expiry_time = $pollService->maxExpiryDate();
-
 $form = unserialize($_SESSION['form']);
 
 // The poll format is DATE if we are in this file
@@ -175,7 +171,7 @@ switch ($step) {
         }
         $summary .= '</ul>';
 
-        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); // textual date
+        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $pollService->maxExpiryDate()->getTimestamp())); // textual date
 
         $_SESSION['form'] = serialize($form);
 
@@ -192,28 +188,8 @@ switch ($step) {
         // Step 4 : Data prepare before insert in DB
 
         // Define expiration date
-        $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
-
-        if (!empty($enddate)) {
-            $registredate = explode('/', $enddate);
-
-            if (is_array($registredate) && count($registredate) === 3) {
-                $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
-
-                if ($time < $min_expiry_time) {
-                    $form->end_date = $min_expiry_time;
-                } elseif ($max_expiry_time < $time) {
-                    $form->end_date = $max_expiry_time;
-                } else {
-                    $form->end_date = $time;
-                }
-            }
-        }
-
-        if (empty($form->end_date)) {
-            // By default, expiration date is 6 months after last day
-            $form->end_date = $max_expiry_time;
-        }
+        $expiration_date = $inputService->validateDate($_POST['enddate'], $pollService->minExpiryDate(), $pollService->maxExpiryDate());
+        $form->end_date = $expiration_date->getTimestamp();
 
         // Insert poll in database
         $ids = $pollService->createPoll($form);

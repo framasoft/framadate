@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 use Framadate\Choice;
+use Framadate\Services\InputService;
 use Framadate\Services\LogService;
 use Framadate\Services\MailService;
 use Framadate\Services\PollService;
@@ -33,6 +34,7 @@ $pollService = new PollService($connect, $logService);
 $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
 $purgeService = new PurgeService($connect, $logService);
 $sessionService = new SessionService();
+$inputService = new InputService();
 
 if (is_file('bandeaux_local.php')) {
     include_once('bandeaux_local.php');
@@ -49,10 +51,6 @@ if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? 
     $smarty->display('error.tpl');
     exit;
 }
-    // Min/Max archive date
-    $min_expiry_time = $pollService->minExpiryDate();
-    $max_expiry_time = $pollService->maxExpiryDate();
-
     // The poll format is other (A) if we are in this file
     if (!isset($form->format)) {
         $form->format = 'A';
@@ -66,28 +64,8 @@ if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? 
     // Step 4 : Data prepare before insert in DB
     if (isset($_POST['confirmation'])) {
         // Define expiration date
-        $enddate = filter_input(INPUT_POST, 'enddate', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => '#^[0-9]{2}/[0-9]{2}/[0-9]{4}$#']]);
-
-        if (!empty($enddate)) {
-            $registredate = explode('/', $enddate);
-
-            if (is_array($registredate) && count($registredate) === 3) {
-                $time = mktime(0, 0, 0, $registredate[1], $registredate[0], $registredate[2]);
-
-                if ($time < $min_expiry_time) {
-                    $form->end_date = $min_expiry_time;
-                } elseif ($max_expiry_time < $time) {
-                    $form->end_date = $max_expiry_time;
-                } else {
-                    $form->end_date = $time;
-                }
-            }
-        }
-
-        if (empty($form->end_date)) {
-            // By default, expiration date is 6 months after last day
-            $form->end_date = $max_expiry_time;
-        }
+        $expiration_date = $inputService->validateDate($_POST['expiration_date'], $pollService->minExpiryDate(), $pollService->maxExpiryDate());
+        $form->end_date = $expiration_date->getTimestamp();
 
         // Insert poll in database
         $ids = $pollService->createPoll($form);
@@ -137,7 +115,7 @@ if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? 
         }
 
         // Expiration date is initialised with config parameter. Value will be modified in step 4 if user has defined an other date
-        $form->end_date = $max_expiry_time;
+        $form->end_date = $pollService->maxExpiryDate()->format('Y-m-d H:i:s');
 
         // Summary
         $summary = '<ol>';
@@ -163,7 +141,7 @@ if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? 
         }
         $summary .= '</ol>';
 
-        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $max_expiry_time)); //textual date
+        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $pollService->maxExpiryDate()->getTimestamp())); //textual date
 
         $_SESSION['form'] = serialize($form);
 
