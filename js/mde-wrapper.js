@@ -17,47 +17,53 @@ function MDEWrapper(textarea, enableButton, disableButton) {
     var wrapper = this;
 
     if (this.enableButton) {
-        this.enableButton.on('click', function() {wrapper.enable()});
+        this.enableButton.on("click", function () {
+            wrapper.enable();
+        });
     }
     if (this.disableButton) {
-        this.disableButton.on('click', function() {wrapper.disable()});
+        this.disableButton.on("click", function () {
+            wrapper.disable();
+        });
     }
 }
 
-MDEWrapper.prototype.enable = function() {
+MDEWrapper.prototype.enable = function () {
     var wrapper = this;
     if (this.simplemde == null) {
-        this.simplemde = new SimpleMDE({
+        this.simplemde = new EasyMDE({
             element: wrapper.element,
             forceSync: true,
             status: true,
             previewRender: myPreviewRender,
             spellChecker: false,
             promptURLs: true,
-            autoDownloadFontAwesome: false
+            minHeight: "200px",
+            maxHeight: "300px",
+            autoDownloadFontAwesome: false,
         });
         if (this.enableButton) {
-            this.enableButton.addClass('active');
+            this.enableButton.addClass("active");
         }
         if (this.disableButton) {
-            this.disableButton.removeClass('active');
+            this.disableButton.removeClass("active");
         }
     }
-}
+};
 
-MDEWrapper.prototype.disable = function() {
+MDEWrapper.prototype.disable = function () {
     if (this.simplemde != null) {
         this.simplemde.toTextArea();
         this.simplemde = null;
         if (this.disableButton) {
-            this.disableButton.addClass('active');
+            this.disableButton.addClass("active");
         }
         if (this.enableButton) {
-            this.enableButton.removeClass('active');
+            this.enableButton.removeClass("active");
         }
     }
-}
+};
 
-MDEWrapper.prototype.isEnabled = function() {
+MDEWrapper.prototype.isEnabled = function () {
     return this.simplemde != null;
-}
+};
