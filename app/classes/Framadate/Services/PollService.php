@@ -253,7 +253,10 @@ class PollService {
      */
     public function sortSlorts(&$slots) {
         uasort($slots, function ($a, $b) {
-            return $a->title > $b->title;
+            if ($a->title === $b->title) {
+                return 0;
+            }
+            return $a->title > $b->title ? 1 : -1;
         });
         return $slots;
     }
