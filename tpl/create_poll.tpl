@@ -129,36 +129,30 @@
 
                         {* Value MAX *}
                         <div class="form-group {$errors['ValueMax']['class']}">
-                                    <label for="use_valueMax" class="col-sm-4 control-label">
-                        {__('Step 1', 'Value Max')}<br/>
-                                    </label>
-                                    <div class="col-sm-8">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input id="use_ValueMax" name="use_ValueMax" type="checkbox" {if $use_ValueMax}checked{/if}>
-                                    {__('Step 1', "Limit the amount of voters per option")}
-                                </label>
-                                        </div>
-                                    </div>
-                        </div>
-
-                        <div class="form-group {$errors['ValueMax']['class']}">
-                            <div id="ValueMax" {if !$use_ValueMax}class="hidden"{/if}>
-
-                                <div class="col-sm-offset-4 col-sm-8">
+                            <label for="use_valueMax" class="col-sm-4 control-label">
+                                {__('Step 1', 'Value Max')}<br/>
+                            </label>
+                            <div class="col-sm-8">
+                                <div class="checkbox">
                                     <label>
-                                            <input id="ValueMax" type="number" min="0" name="ValueMax" value="{$ValueMax|html}" {$errors['ValueMax']['aria']}>
-
-                                            {__('Step 1', "ValueMax instructions")}
+                                        <input id="use_ValueMax" name="use_ValueMax" type="checkbox" {if $use_ValueMax}checked{/if} />
+                                            {__('Step 1', "Limit the amount of voters per option")}
                                     </label>
-
                                 </div>
                             </div>
-                       </div>
+                            <div id="value_max_options" {if !$use_ValueMax}class="hidden"{/if}>
+                                <div class="col-sm-offset-4 col-sm-8">
+                                    <label for="ValueMax">
+                                            <input id="ValueMax" type="number" min="0" name="ValueMax" value="{$ValueMax|html}" {$errors['ValueMax']['aria']} />
+                                            {__('Step 1', "ValueMax instructions")}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
                         {if !empty($errors['ValueMax']['msg'])}
                             <div class="alert alert-danger">
-                                <p id="poll_customized_url_error">
+                                <p id="poll_value_max_error">
                                     {$errors['ValueMax']['msg']}
                                 </p>
                             </div>
@@ -209,7 +203,7 @@
                         {* Password *}
 
                         <div class="form-group">
-                            <label for="poll_id" class="col-sm-4 control-label">
+                            <label for="use_password" class="col-sm-4 control-label">
                                 {__('Step 1', 'Poll password')}
                             </label>
 
@@ -263,7 +257,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="poll_id" class="col-sm-4 control-label">
+                            <label class="col-sm-4 control-label">
                                 {__('Step 1', 'Permissions')}
                             </label>
                             <div class="col-sm-8">
