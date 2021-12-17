@@ -13,6 +13,11 @@
         <script src="{"js/app/adminstuds.js"|resource}"></script>
         <link rel="stylesheet" href="{'css/easymde.min.css'|resource}">
     {/if}
+    <meta name="twitter:card" content="summary" />
+    <meta property="og:title" content="{$poll->title|html} - {$APPLICATION_NAME|html}" />
+    {if $poll->description}
+        <meta property="og:description" content="{$poll->description|markdown:true}" />
+    {/if}
 
 {/block}
 
