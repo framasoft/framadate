@@ -1,6 +1,6 @@
-    <header role="banner" class="clearfix">
+    <header class="clearfix">
     {if count($langs)>1}
-        <form method="post" action="" class="hidden-print">
+        <form method="post" class="hidden-print">
             <div class="input-group input-group-sm pull-right col-xs-12 col-sm-2">
                 <select name="lang" class="form-control" title="{__('Language selector', 'Select the language')}" >
                 {foreach $langs as $lang_key=>$lang_value}
@@ -22,4 +22,4 @@
         {if !empty($title)}<h2 class="lead col-xs-12"><i>{$title|html}</i></h2>{/if}
         <div class="trait col-xs-12" role="presentation"></div>
     </header>
-    <main role="main">
+    <main>

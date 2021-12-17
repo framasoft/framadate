@@ -181,7 +181,7 @@ if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? 
         bandeau_titre(__('Step 2 classic', 'Poll subjects (2 on 3)'));
 
         echo '
-    <form name="formulaire" action="' . Utils::get_server_name() . 'create_classic_poll.php" method="POST" class="form-horizontal" role="form">
+    <form name="formulaire" action="' . Utils::get_server_name() . 'create_classic_poll.php" method="POST" class="form-horizontal">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">';
         echo '
@@ -255,8 +255,8 @@ if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? 
     </div>
     </form>
 
-    <script type="text/javascript" src="js/app/framadatepicker.js"></script>
-    <script type="text/javascript" src="js/app/classic_poll.js"></script>
+    <script src="js/app/framadatepicker.js"></script>
+    <script src="js/app/classic_poll.js"></script>
     ' . "\n";
 
         bandeau_pied();

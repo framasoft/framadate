@@ -1,19 +1,19 @@
 {extends file='page.tpl'}
 
 {block name="header"}
-    <script src="{"js/simplemde.min.js"|resource}" type="text/javascript"></script>
-    <script src="{"js/dompurify.js"|resource}" type="text/javascript"></script>
-    <script src="{"js/mde-wrapper.js"|resource}" type="text/javascript"></script>
-    <script src="{"js/app/create_poll.js"|resource}" type="text/javascript"></script>
+    <script src="{"js/easymde.min.js"|resource}"></script>
+    <script src="{"js/dompurify.js"|resource}"></script>
+    <script src="{"js/mde-wrapper.js"|resource}"></script>
+    <script src="{"js/app/create_poll.js"|resource}"></script>
     <link rel="stylesheet" href="{"css/app/create_poll.css"|resource}">
-    <link rel="stylesheet" href="{"css/simplemde.min.css"|resource}">
+    <link rel="stylesheet" href="{"css/easymde.min.css"|resource}">
 
 {/block}
 
 {block name=main}
     <div class="row" style="display:none" id="form-block">
         <div class="col-md-8 col-md-offset-2">
-            <form name="formulaire" id="formulaire" action="" method="POST" class="form-horizontal" role="form">
+            <form name="formulaire" id="formulaire" method="POST" class="form-horizontal">
 
                 <div class="alert alert-info">
                     <p>
@@ -335,7 +335,7 @@
                             class="btn btn-success">{__('Step 1', 'Go to step 2')}</button>
                 </p>
 
-                <script type="text/javascript">document.formulaire.title.focus();</script>
+                <script>document.formulaire.title.focus();</script>
 
             </form>
         </div>
