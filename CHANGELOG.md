@@ -1,5 +1,20 @@
 # Changelog de framadate
 
+## 1.1.18
+20-12-2021
+
+### Changed
+- Dependency updates
+- Replace abandonned SimpleMDE with EasyMDE fork
+
+### Fixed
+- Enforce the instance expiration limits when editing the poll expiration date once created, from poll admin
+- Fixed some HTML markup validity
+
+### Translations
+- Fixed a missing french language key
+- Enable Catalan language
+
 ## 1.1.17
 18-10-2021
 ### Added
