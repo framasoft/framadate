@@ -208,7 +208,8 @@
       "seconds": "segondas",
       "vote": "vòte",
       "votes": "vòtes",
-      "with": "amb"
+      "with": "amb",
+      "Unknown": "Inconnu"
    },
    "Homepage": {
       "Make a classic poll": "Crear un sondatge classic",

@@ -19,6 +19,7 @@
 namespace Framadate\Migration;
 
 use Framadate\Utils;
+use PDO;
 
 /**
  * This migration alter the comment table to set a length to the name column.
@@ -27,7 +28,7 @@ use Framadate\Utils;
  * @version 1.0
  */
 class Alter_Comment_table_for_name_length implements Migration {
-    function __construct() {
+    public function __construct() {
     }
 
     /**
@@ -35,7 +36,7 @@ class Alter_Comment_table_for_name_length implements Migration {
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description(): string {
         return 'Alter the comment table to set a length to the name column.';
     }
 
@@ -43,26 +44,27 @@ class Alter_Comment_table_for_name_length implements Migration {
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true is the Migration should be executed.
      */
-    function preCondition(\PDO $pdo) {
+    public function preCondition(PDO $pdo): bool {
         return true;
     }
 
     /**
      * This methode is called only one time in the migration page.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true is the execution succeeded
      */
-    function execute(\PDO $pdo) {
+    public function execute(PDO $pdo): bool {
         $this->alterCommentTable($pdo);
 
         return true;
     }
 
-    private function alterCommentTable(\PDO $pdo) {
+    private function alterCommentTable(PDO $pdo): void
+    {
         $pdo->exec('
         ALTER TABLE `' . Utils::table('comment') . '`
         CHANGE `name` `name` VARCHAR( 64 ) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL ;');

@@ -18,29 +18,30 @@
  */
 namespace Framadate\Migration;
 
+use PDO;
+
 interface Migration {
     /**
      * This method should describe in english what is the purpose of the migration class.
      *
      * @return string The description of the migration class
      */
-    function description();
+    public function description(): string;
 
     /**
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true if the Migration should be executed
      */
-    function preCondition(\PDO $pdo);
+    public function preCondition(PDO $pdo): bool;
 
     /**
      * This methode is called only one time in the migration page.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true if the execution succeeded
      */
-    function execute(\PDO $pdo);
+    public function execute(PDO $pdo): bool;
 }
- 

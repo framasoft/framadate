@@ -5,7 +5,7 @@ use Framadate\Security\PasswordHasher;
 use Framadate\Security\Token;
 
 class SecurityService {
-    function __construct() {
+    public function __construct() {
     }
 
     /**
@@ -18,9 +18,10 @@ class SecurityService {
      * </ul>
      *
      * @param $tokan_name string The name of the CSRF token
-     * @return Token The token
+     * @return string The token
      */
-    function getToken($tokan_name) {
+    function getToken(string $tokan_name): string
+    {
         if (!isset($_SESSION['tokens'])) {
             $_SESSION['tokens'] = [];
         }
@@ -38,7 +39,8 @@ class SecurityService {
      * @param $csrf string Value to check
      * @return bool true if the token is well checked
      */
-    public function checkCsrf($tokan_name, $csrf) {
+    public function checkCsrf(string $tokan_name, string $csrf): bool
+    {
         $checked = $_SESSION['tokens'][$tokan_name]->getValue() === $csrf;
 
         if($checked) {
@@ -54,17 +56,18 @@ class SecurityService {
      * @param $poll \stdClass The poll which we seek access
      * @return bool true if the current session can access this poll
      */
-    public function canAccessPoll($poll) {
+    public function canAccessPoll($poll): bool
+    {
         if (is_null($poll->password_hash)) {
             return true;
         }
 
         $this->ensureSessionPollSecurityIsCreated();
 
-        $currentPassword = isset($_SESSION['poll_security'][$poll->id]) ? $_SESSION['poll_security'][$poll->id] : null;
+        $currentPassword = $_SESSION['poll_security'][$poll->id] ?? null;
         if (!empty($currentPassword) && PasswordHasher::verify($currentPassword, $poll->password_hash)) {
             return true;
-        }  
+        }
             unset($_SESSION['poll_security'][$poll->id]);
             return false;
     }
@@ -75,17 +78,18 @@ class SecurityService {
      * @param $poll \stdClass The poll which we seek access
      * @param $password string the password to compare
      */
-    public function submitPollAccess($poll, $password) {
+    public function submitPollAccess($poll, string $password): void
+    {
         if (!empty($password)) {
             $this->ensureSessionPollSecurityIsCreated();
             $_SESSION['poll_security'][$poll->id] = $password;
         }
     }
 
-    private function ensureSessionPollSecurityIsCreated() {
+    private function ensureSessionPollSecurityIsCreated(): void
+    {
         if (!isset($_SESSION['poll_security'])) {
             $_SESSION['poll_security'] = [];
         }
     }
 }
- 

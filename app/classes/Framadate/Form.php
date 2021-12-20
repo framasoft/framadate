@@ -32,7 +32,7 @@ class Form
 
     /**
      * Tells if users can modify their choices.
-     * @var \Framadate\Editable
+     * @var int
      */
     public $editable;
 
@@ -92,11 +92,12 @@ class Form
         $this->clearChoices();
     }
 
-    public function clearChoices() {
+    public function clearChoices(): void
+    {
         $this->choices = [];
     }
 
-    public function addChoice(Choice $choice)
+    public function addChoice(Choice $choice): void
     {
         $this->choices[] = $choice;
     }
@@ -106,8 +107,8 @@ class Form
         return $this->choices;
     }
 
-    public function sortChoices()
+    public function sortChoices(): void
     {
-        usort($this->choices, ['Framadate\Choice', 'compare']);
+        usort($this->choices, [Choice::class, 'compare']);
     }
 }

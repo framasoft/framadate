@@ -19,6 +19,7 @@
 namespace Framadate\Migration;
 
 use Framadate\Utils;
+use PDO;
 
 /**
  * This migration sets Poll.end_date to NULL by default
@@ -27,7 +28,7 @@ use Framadate\Utils;
  * @version 1.1
  */
 class Fix_MySQL_No_Zero_Date implements Migration {
-    function __construct() {
+    public function __construct() {
     }
 
     /**
@@ -35,7 +36,7 @@ class Fix_MySQL_No_Zero_Date implements Migration {
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description(): string {
         return 'Sets Poll end_date to NULL by default (work around MySQL NO_ZERO_DATE)';
     }
 
@@ -43,17 +44,17 @@ class Fix_MySQL_No_Zero_Date implements Migration {
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true if the Migration should be executed.
      */
-    function preCondition(\PDO $pdo) {
+    public function preCondition(PDO $pdo): bool {
         $stmt = $pdo->prepare("SELECT Column_Default from Information_Schema.Columns where Table_Name = ? AND Column_Name = ?;");
         $stmt->bindValue(1, Utils::table('poll'));
         $stmt->bindValue(2, 'end_date');
         $stmt->execute();
-        $default = $stmt->fetch(\PDO::FETCH_COLUMN);
+        $default = $stmt->fetch(PDO::FETCH_COLUMN);
 
-        $driver_name = $pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
+        $driver_name = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
 
         return $default !== null && $driver_name === 'mysql';
     }
@@ -61,10 +62,11 @@ class Fix_MySQL_No_Zero_Date implements Migration {
     /**
      * This method is called only one time in the migration page.
      *
-     * @param \PDO $pdo The connection to database
-     * @return bool|void if the execution succeeded
+     * @param PDO $pdo The connection to database
+     * @return bool if the execution succeeded
      */
-    function execute(\PDO $pdo) {
+    public function execute(PDO $pdo): bool {
         $pdo->exec('ALTER TABLE ' . Utils::table('poll') . ' MODIFY end_date TIMESTAMP NULL DEFAULT NULL;');
+        return true;
     }
 }

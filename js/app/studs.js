@@ -66,8 +66,7 @@ $(document).ready(function () {
                 url: form.attr('action'),
                 data: form.serialize(),
                 dataType: 'json',
-                success: function(data)
-                {
+                success: function(data) {
                     $('#comment').val('');
                     if (data.result) {
                         $('#comments_list')
@@ -94,6 +93,9 @@ $(document).ready(function () {
                             scrollTop: commentsAlert.offset().top
                         }, 750);
                     }
+                },
+                error: function (data) {
+                    console.error(data);
                 },
                 complete: function() {
                     $('#add_comment').removeAttr("disabled");

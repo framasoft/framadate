@@ -23,7 +23,7 @@
     {if $provide_fork_awesome}
         <link rel="stylesheet" href="{'css/fork-awesome.min.css'|resource}">
     {/if}
-    <script src="{'js/jquery-1.12.4.min.js'|resource}"></script>
+    <script src="{'js/jquery-3.6.0.min.js'|resource}"></script>
     <script src="{'js/bootstrap.min.js'|resource}"></script>
     <script src="{'js/bootstrap-datepicker.js'|resource}"></script>
     {if 'en' != $locale}

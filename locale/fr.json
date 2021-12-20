@@ -208,7 +208,8 @@
       "seconds": "secondes",
       "vote": "vote",
       "votes": "votes",
-      "with": "avec"
+      "with": "avec",
+      "Unknown": "Inconnu"
    },
    "Homepage": {
       "Make a classic poll": "Créer un sondage classique",
@@ -317,14 +318,14 @@
       "Remove the poll": "Supprimer le sondage",
       "Results are hidden": "Les résultats sont cachés",
       "Results are visible": "Les résultats sont visibles",
-      "Rich editor": "Editeur avancé",
+      "Rich editor": "Éditeur avancé",
       "Save the description": "Enregistrer la description",
       "Save the email address": "Enregistrer le courriel",
       "Save the new expiration date": "Enregistrer la date d'expiration",
       "Save the new name": "Enregistrer l'auteur·rice",
       "Save the new rules": "Enregistrer les nouvelles permissions",
       "Save the new title": "Enregistrer le nouveau titre",
-      "Simple editor": "Editeur simple",
+      "Simple editor": "Éditeur simple",
       "Title": "Titre du sondage",
       "Votes and comments are locked": "Il n'est plus possible de voter",
       "Votes protected by password": "Votes protégés par mot de passe"

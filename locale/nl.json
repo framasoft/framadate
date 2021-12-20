@@ -208,7 +208,8 @@
       "seconds": "seconden",
       "vote": "stem",
       "votes": "stemmen",
-      "with": "met"
+      "with": "met",
+      "Unknown": "Onbekend"
    },
    "Homepage": {
       "Make a classic poll": "Maak een standaard poll",

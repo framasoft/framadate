@@ -4,9 +4,10 @@ namespace Framadate\Services;
 use Framadate\FramaTestCase;
 
 class MailServiceUnitTest extends FramaTestCase {
-    const MSG_KEY = '666';
+    public const MSG_KEY = '666';
 
-    public function test_should_send_a_2nd_mail_after_a_good_interval() {
+    public function test_should_send_a_2nd_mail_after_a_good_interval(): void
+    {
         // Given
         $mailService = new MailService(true);
         $_SESSION[MailService::MAILSERVICE_KEY] = [self::MSG_KEY => time() - 1000];
@@ -15,10 +16,11 @@ class MailServiceUnitTest extends FramaTestCase {
         $canSendMsg = $mailService->canSendMsg(self::MSG_KEY);
 
         // Then
-        $this->assertSame(true, $canSendMsg);
+        $this->assertTrue($canSendMsg);
     }
 
-    public function test_should_not_send_2_mails_in_a_short_interval() {
+    public function test_should_not_send_2_mails_in_a_short_interval(): void
+    {
         // Given
         $mailService = new MailService(true);
         $_SESSION[MailService::MAILSERVICE_KEY] = [self::MSG_KEY => time()];
@@ -27,6 +29,6 @@ class MailServiceUnitTest extends FramaTestCase {
         $canSendMsg = $mailService->canSendMsg(self::MSG_KEY);
 
         // Then
-        $this->assertSame(false, $canSendMsg);
+        $this->assertFalse($canSendMsg);
     }
 }

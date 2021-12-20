@@ -20,16 +20,17 @@ namespace Framadate\Services;
 
 use DateInterval;
 use DateTime;
+use Exception;
 use Framadate\Exception\AlreadyExistsException;
 use Framadate\Exception\ConcurrentEditionException;
 use Framadate\Exception\ConcurrentVoteException;
+use Framadate\Exception\PollNotFoundException;
 use Framadate\Form;
-use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
 use Framadate\Security\Token;
+use stdClass;
 
 class PollService {
-    private $connect;
     private $logService;
 
     private $pollRepository;
@@ -37,8 +38,7 @@ class PollService {
     private $voteRepository;
     private $commentRepository;
 
-    function __construct(FramaDB $connect, LogService $logService) {
-        $this->connect = $connect;
+    public function __construct(LogService $logService) {
         $this->logService = $logService;
         $this->pollRepository = RepositoryFactory::pollRepository();
         $this->slotRepository = RepositoryFactory::slotRepository();
@@ -49,10 +49,10 @@ class PollService {
     /**
      * Find a poll from its ID.
      *
-     * @param $poll_id int The ID of the poll
-     * @return \stdClass|null The found poll, or null
+     * @param string $poll_id The ID of the poll
+     * @return stdClass|null The found poll, or null
      */
-    function findById($poll_id) {
+    public function findById(string $poll_id) {
         if (preg_match(POLL_REGEX, $poll_id)) {
             return $this->pollRepository->findById($poll_id);
         }
@@ -60,7 +60,7 @@ class PollService {
         return null;
     }
 
-    public function findByAdminId($admin_poll_id) {
+    public function findByAdminId(string $admin_poll_id) {
         if (preg_match(ADMIN_POLL_REGEX, $admin_poll_id)) {
             return $this->pollRepository->findByAdminId($admin_poll_id);
         }
@@ -68,15 +68,15 @@ class PollService {
         return null;
     }
 
-    function allCommentsByPollId($poll_id) {
+    public function allCommentsByPollId(string $poll_id) {
         return $this->commentRepository->findAllByPollId($poll_id);
     }
 
-    function allVotesByPollId($poll_id) {
+    public function allVotesByPollId(string $poll_id) {
         return $this->voteRepository->allUserVotesByPollId($poll_id);
     }
 
-    function allSlotsByPoll($poll) {
+    public function allSlotsByPoll(stdClass $poll) {
         $slots = $this->slotRepository->listByPollId($poll->id);
         if ($poll->format === 'D') {
             $this->sortSlorts($slots);
@@ -85,44 +85,45 @@ class PollService {
     }
 
     /**
-     * @param $poll_id
-     * @param $vote_id
-     * @param $name
-     * @param $choices
-     * @param $slots_hash
+     * @param string $poll_id
+     * @param int $vote_id
+     * @param string $name
+     * @param array $choices
+     * @param string $slots_hash
      * @throws AlreadyExistsException
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
      * @return bool
      */
-    public function updateVote($poll_id, $vote_id, $name, $choices, $slots_hash) {
+    public function updateVote(string $poll_id, int $vote_id, string $name, array $choices, string $slots_hash): bool
+    {
         $this->checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id);
 
         // Update vote
-        $choices = implode($choices);
-        return $this->voteRepository->update($poll_id, $vote_id, $name, $choices);
+        return $this->voteRepository->update($poll_id, $vote_id, $name, implode($choices));
     }
 
     /**
-     * @param $poll_id
-     * @param $name
-     * @param $choices
-     * @param $slots_hash
-     * @throws AlreadyExistsException
+     * @param string $poll_id
+     * @param string $name
+     * @param array $choices
+     * @param string $slots_hash
      * @throws ConcurrentEditionException
      * @throws ConcurrentVoteException
-     * @return \stdClass
+     * @throws PollNotFoundException
+     * @throws AlreadyExistsException
+     * @return stdClass
      */
-    function addVote($poll_id, $name, $choices, $slots_hash) {
+    public function addVote(string $poll_id, string $name, array $choices, string $slots_hash): stdClass
+    {
         $this->checkVoteConstraints($choices, $poll_id, $slots_hash, $name);
 
         // Insert new vote
-        $choices = implode($choices);
-        $token = $this->random(16);
-        return $this->voteRepository->insert($poll_id, $name, $choices, $token);
+        return $this->voteRepository->insert($poll_id, $name, implode($choices), $this->random(16));
     }
 
-    function addComment($poll_id, $name, $comment) {
+    public function addComment($poll_id, $name, $comment): bool
+    {
         if ($this->commentRepository->exists($poll_id, $name, $comment)) {
             return true;
         }
@@ -134,7 +135,8 @@ class PollService {
      * @param Form $form
      * @return array
      */
-    function createPoll(Form $form) {
+    public function createPoll(Form $form): array
+    {
         // Generate poll IDs, loop while poll ID already exists
 
         if (empty($form->id)) { // User want us to generate an id for him
@@ -160,16 +162,18 @@ class PollService {
         return [$poll_id, $admin_poll_id];
     }
 
-    public function findAllByAdminMail($mail) {
+    public function findAllByAdminMail($mail): array
+    {
         return $this->pollRepository->findAllByAdminMail($mail);
     }
 
     /**
      * @param array $votes
-     * @param \stdClass $poll
+     * @param stdClass $poll
      * @return array
      */
-    public function computeBestChoices($votes, $poll) {
+    public function computeBestChoices(array $votes, $poll): array
+    {
         if (0 === count($votes)) {
            return $this->computeEmptyBestChoices($poll);
         }
@@ -195,10 +199,11 @@ class PollService {
         return $result;
     }
 
-    function splitSlots($slots) {
+    public function splitSlots($slots): array
+    {
         $splitted = [];
         foreach ($slots as $slot) {
-            $obj = new \stdClass();
+            $obj = new stdClass();
             $obj->day = $slot->title;
             $obj->moments = explode(',', $slot->moments);
 
@@ -212,16 +217,18 @@ class PollService {
      * @param $slots array The slots to hash
      * @return string The hash
      */
-    public function hashSlots($slots) {
-        return md5(array_reduce($slots, function($carry, $item) {
+    public function hashSlots(array $slots): string
+    {
+        return md5(array_reduce($slots, static function($carry, $item) {
             return $carry . $item->id . '@' . $item->moments . ';';
         }));
     }
 
-    function splitVotes($votes) {
+    public function splitVotes(array $votes): array
+    {
         $splitted = [];
         foreach ($votes as $vote) {
-            $obj = new \stdClass();
+            $obj = new stdClass();
             $obj->id = $vote->id;
             $obj->name = $vote->name;
             $obj->uniqId = $vote->uniqId;
@@ -234,6 +241,7 @@ class PollService {
     }
 
     /**
+     * @throws Exception
      * @return DateTime The max date allowed for expiry date
      */
     public function maxExpiryDate(): DateTime {
@@ -244,15 +252,16 @@ class PollService {
     /**
      * @return DateTime The min date allowed for expiry date
      */
-    public function minExpiryDate() {
+    public function minExpiryDate(): DateTime
+    {
         return (new DateTime())->add(new DateInterval('P1D'));
     }
 
     /**
      * @return mixed
      */
-    public function sortSlorts(&$slots) {
-        uasort($slots, function ($a, $b) {
+    public function sortSlorts(array &$slots): array {
+        uasort($slots, static function ($a, $b) {
             if ($a->title === $b->title) {
                 return 0;
             }
@@ -262,10 +271,10 @@ class PollService {
     }
 
     /**
-     * @param \stdClass $poll
+     * @param stdClass $poll
      * @return array
      */
-    private function computeEmptyBestChoices($poll)
+    private function computeEmptyBestChoices($poll): array
     {
         $result = ['y' => [], 'inb' => []];
         // if there is no votes, calculates the number of slot
@@ -275,7 +284,7 @@ class PollService {
         if ($poll->format === 'A') {
             // poll format classic
 
-            for ($i = 0; $i < count($slots); $i++) {
+            for ($i = 0, $iMax = count($slots); $i < $iMax; $i++) {
                 $result['y'][] = 0;
                 $result['inb'][] = 0;
             }
@@ -285,7 +294,7 @@ class PollService {
             $slots = $this->splitSlots($slots);
 
             foreach ($slots as $slot) {
-                for ($i = 0; $i < count($slot->moments); $i++) {
+                for ($i = 0, $iMax = count($slot->moments); $i < $iMax; $i++) {
                     $result['y'][] = 0;
                     $result['inb'][] = 0;
                 }
@@ -294,23 +303,26 @@ class PollService {
         return $result;
     }
 
-    private function random($length) {
+    private function random(int $length): string
+    {
         return Token::getToken($length);
     }
 
     /**
-     * @param $choices
-     * @param $poll_id
-     * @param $slots_hash
-     * @param $name
-     * @param string $vote_id
+     * @param array $choices
+     * @param string $poll_id
+     * @param string $slots_hash
+     * @param string $name
+     * @param bool|int $vote_id
      * @throws AlreadyExistsException
-     * @throws ConcurrentVoteException
      * @throws ConcurrentEditionException
+     * @throws ConcurrentVoteException
+     * @throws PollNotFoundException
      */
-    private function checkVoteConstraints($choices, $poll_id, $slots_hash, $name, $vote_id = FALSE) {
+    private function checkVoteConstraints(array $choices, string $poll_id, string $slots_hash, string $name, $vote_id = false): void
+    {
         // Check if vote already exists with the same name
-        if (FALSE === $vote_id) {
+        if (false === $vote_id) {
         	$exists = $this->voteRepository->existsByPollIdAndName($poll_id, $name);
         } else {
         	$exists = $this->voteRepository->existsByPollIdAndNameAndVoteId($poll_id, $name, $vote_id);
@@ -321,6 +333,10 @@ class PollService {
         }
 
         $poll = $this->findById($poll_id);
+
+        if (!$poll) {
+            throw new PollNotFoundException();
+        }
 
         // Check that no-one voted in the meantime and it conflicts the maximum votes constraint
         $this->checkMaxVotes($choices, $poll, $poll_id);
@@ -336,7 +352,8 @@ class PollService {
      * @param $slots_hash string The hash sent by the user
      * @throws ConcurrentEditionException Thrown when hashes are differents
      */
-    private function checkThatSlotsDidntChanged($poll, $slots_hash) {
+    private function checkThatSlotsDidntChanged(stdClass $poll, string $slots_hash): void
+    {
         $slots = $this->allSlotsByPoll($poll);
         if ($slots_hash !== $this->hashSlots($slots)) {
             throw new ConcurrentEditionException();
@@ -347,11 +364,12 @@ class PollService {
      * This method checks if the votes doesn't conflicts the maximum votes constraint
      *
      * @param $user_choice
-     * @param \stdClass $poll
+     * @param stdClass $poll
      * @param string $poll_id
      * @throws ConcurrentVoteException
      */
-    private function checkMaxVotes($user_choice, $poll, $poll_id) {
+    private function checkMaxVotes(array $user_choice, $poll, string $poll_id): void
+    {
         $votes = $this->allVotesByPollId($poll_id);
         if (count($votes) <= 0) {
             return;

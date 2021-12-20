@@ -3,19 +3,22 @@
 namespace Framadate\Services;
 
 use \stdClass;
-use Framadate\Services\MailService;
+use function __;
+use function __f;
 use Framadate\Utils;
+use o80\i18n\CantLoadDictionaryException;
+use PHPMailer\PHPMailer\Exception;
 
 class NotificationService {
-    const UPDATE_VOTE = 1;
-    const ADD_VOTE = 2;
-    const ADD_COMMENT = 3;
-    const UPDATE_POLL = 10;
-    const DELETED_POLL = 11;
+    public const UPDATE_VOTE = 1;
+    public const ADD_VOTE = 2;
+    public const ADD_COMMENT = 3;
+    public const UPDATE_POLL = 10;
+    public const DELETED_POLL = 11;
 
     private $mailService;
 
-    function __construct(MailService $mailService) {
+    public function __construct(MailService $mailService) {
         $this->mailService = $mailService;
     }
 
@@ -25,8 +28,10 @@ class NotificationService {
      * @param $poll stdClass The poll
      * @param $name string The name user who triggered the notification
      * @param $type int cf: Constants on the top of this page
+     * @throws Exception|CantLoadDictionaryException
      */
-    function sendUpdateNotification(stdClass $poll, $type, $name='') {
+    public function sendUpdateNotification($poll, int $type, string $name=''): void
+    {
         if (!isset($_SESSION['mail_sent'])) {
             $_SESSION['mail_sent'] = [];
         }
@@ -36,7 +41,7 @@ class NotificationService {
         $isOtherType = $type !== self::UPDATE_VOTE && $type !== self::ADD_VOTE && $type !== self::ADD_COMMENT;
 
         if ($isVoteAndCanSendIt || $isCommentAndCanSendIt || $isOtherType) {
-            if (self::isParticipation($type)) {
+            if ($this->isParticipation($type)) {
                 $translationString = 'Poll\'s participation: %s';
             } else {
                 $translationString = 'Notification of poll: %s';
@@ -74,11 +79,13 @@ class NotificationService {
             }
 
             $messageTypeKey = $type . '-' . $poll->id;
-            $this->mailService->send($poll->admin_mail, $subject, $message, $messageTypeKey);
+            if ($poll->admin_mail) {
+                $this->mailService->send($poll->admin_mail, $subject, $message, $messageTypeKey);
+            }
         }
     }
 
-    function isParticipation($type)
+    public function isParticipation(int $type): bool
     {
        return $type >= self::UPDATE_POLL;
     }

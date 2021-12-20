@@ -23,14 +23,13 @@ namespace Framadate;
  * Class Editable
  *
  * Is used to specify the poll's edition permissions.
- * @TODO : wait to use the SplEnum
  *
  * @package Framadate
  */
 class Editable { // extends SplEnum
     const __default = self::EDITABLE_BY_ALL;
 
-    const NOT_EDITABLE = 0;
-    const EDITABLE_BY_ALL = 1;
-    const EDITABLE_BY_OWN = 2;
+    public const NOT_EDITABLE = 0;
+    public const EDITABLE_BY_ALL = 1;
+    public const EDITABLE_BY_OWN = 2;
 }

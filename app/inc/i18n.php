@@ -18,12 +18,14 @@
  */
 
 // Prepare I18N instance
-$i18n = \o80\i18n\I18N::instance();
+use o80\i18n\I18N;
+
+$i18n = I18N::instance();
 $i18n->setDefaultLang(DEFAULT_LANGUAGE);
 $i18n->setPath(__DIR__ . '/../../locale');
 
-// Change langauge when user asked for it
-if (isset($_POST['lang']) && is_string($_POST['lang']) && in_array($_POST['lang'], array_keys($ALLOWED_LANGUAGES), true)) {
+// Change language when user asked for it
+if (isset($_POST['lang']) && is_string($_POST['lang']) && array_key_exists($_POST['lang'], $ALLOWED_LANGUAGES)) {
     $_SESSION['lang'] = $_POST['lang'];
 }
 
@@ -38,7 +40,7 @@ $date_format['txt_day'] = __('Date', 'DAY');
 $date_format['txt_date'] = __('Date', 'DATE');
 $date_format['txt_month_year'] = __('Date', 'MONTH_YEAR');
 $date_format['txt_datetime_short'] = __('Date', 'DATETIME');
-if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') { //%e can't be used on Windows platform, use %#d instead
+if (PHP_OS_FAMILY === 'Windows') { //%e can't be used on Windows platform, use %#d instead
     foreach ($date_format as $k => $v) {
         $date_format[$k] = preg_replace('#(?<!%)((?:%%)*)%e#', '\1%#d', $v); //replace %e by %#d for windows
     }

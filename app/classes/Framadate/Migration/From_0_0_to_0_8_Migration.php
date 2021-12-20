@@ -19,6 +19,7 @@
 namespace Framadate\Migration;
 
 use Framadate\Utils;
+use PDO;
 
 /**
  * Class From_0_0_to_0_8_Migration
@@ -27,7 +28,7 @@ use Framadate\Utils;
  * @version 0.8
  */
 class From_0_0_to_0_8_Migration implements Migration {
-    function __construct() {
+    public function __construct() {
     }
 
     /**
@@ -35,7 +36,7 @@ class From_0_0_to_0_8_Migration implements Migration {
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description(): string {
         return 'First installation of the Framadate application (v0.8)';
     }
 
@@ -43,12 +44,12 @@ class From_0_0_to_0_8_Migration implements Migration {
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true is the Migration should be executed.
      */
-    function preCondition(\PDO $pdo) {
+    public function preCondition(PDO $pdo): bool {
         $stmt = $pdo->query('SHOW TABLES like \'' . TABLENAME_PREFIX . '%\'');  //issue187 : pouvoir installer framadate dans une base contenant d'autres tables.
-        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+        $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
         // Check if there is no tables but the MIGRATION_TABLE one
         $diff = array_diff($tables, [Utils::table(MIGRATION_TABLE)]);
@@ -58,10 +59,10 @@ class From_0_0_to_0_8_Migration implements Migration {
     /**
      * This method is called only one time in the migration page.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true is the execution succeeded
      */
-    function execute(\PDO $pdo) {
+    public function execute(PDO $pdo): bool {
         $pdo->exec('
 CREATE TABLE IF NOT EXISTS `sondage` (
   `id_sondage` char(16) NOT NULL,
@@ -104,5 +105,6 @@ CREATE TABLE IF NOT EXISTS `user_studs` (
   PRIMARY KEY (`id_users`),
   KEY `id_sondage` (`id_sondage`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;');
+        return true;
     }
 }

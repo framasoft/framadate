@@ -5,7 +5,8 @@ use Framadate\FramaTestCase;
 
 class InputServiceUnitTest extends FramaTestCase
 {
-    public function liste_emails() {
+    public function liste_emails(): array
+    {
         return [
             // valids addresses
             "valid address" 		=> ["example@example.com", "example@example.com"],
@@ -23,7 +24,8 @@ class InputServiceUnitTest extends FramaTestCase
 	/**
 	 * @dataProvider liste_emails
 	 */
-	public function test_filterMail($email, $expected) {
+	public function test_filterMail($email, $expected): void
+    {
 		$inputService = new InputService();
 		$filtered = $inputService->filterMail($email);
 

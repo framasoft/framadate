@@ -29,7 +29,7 @@ include_once __DIR__ . '/../app/inc/init.php';
 $logService = new LogService();
 $sessionService = new SessionService();
 $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
-$pollService = new PollService($connect, $logService);
+$pollService = new PollService($logService);
 
 $result = false;
 $message = null;
@@ -45,7 +45,7 @@ if (!empty($_POST['poll'])) {
 $token = $sessionService->get("Common", SESSION_EDIT_LINK_TOKEN);
 $token_form_value = empty($_POST['token']) ? null : $_POST['token'];
 $editedVoteUniqueId = filter_input(INPUT_POST, 'editedVoteUniqueId', FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-if (is_null($poll) || $config['use_smtp'] === false || is_null($token) || is_null($token_form_value)
+if ($config['use_smtp'] === false || is_null($poll) || is_null($token) || is_null($token_form_value)
     || !$token->check($token_form_value) || is_null($editedVoteUniqueId)) {
     $message = new Message('error', __('Error', 'Something is going wrong...'));
 }
@@ -91,4 +91,4 @@ $smarty->error_reporting = E_ALL & ~E_NOTICE;
 
 $response = ['result' => $result, 'message' => $message];
 
-echo json_encode($response);
+echo json_encode($response, JSON_THROW_ON_ERROR);

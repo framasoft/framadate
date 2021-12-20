@@ -2,7 +2,7 @@ function myPreviewRender(text) {
     text = text.replace(/[\u00A0-\u9999<>\&]/gim, function (i) {
         return "&#" + i.charCodeAt(0) + ";";
     });
-    text = SimpleMDE.prototype.markdown(text);
+    text = EasyMDE.prototype.markdown(text);
     text = DOMPurify.sanitize(text);
 
     return text;
@@ -35,7 +35,12 @@ MDEWrapper.prototype.enable = function () {
             element: wrapper.element,
             forceSync: true,
             status: true,
-            previewRender: myPreviewRender,
+            // previewRender: myPreviewRender,
+            renderingConfig: {
+                sanitizerFunction: function (text) {
+                    return DOMPurify.sanitize(text);
+                },
+            },
             spellChecker: false,
             promptURLs: true,
             minHeight: "200px",

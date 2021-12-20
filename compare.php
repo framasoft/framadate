@@ -10,8 +10,8 @@ include_once __DIR__ . '/app/inc/init.php';
     $goodLang = $_GET['good'];
     $testLang = $_GET['test'];
 
-    $good = json_decode(file_get_contents(__DIR__ . '/locale/' . $goodLang . '.json'), true);
-    $test = json_decode(file_get_contents(__DIR__ . '/locale/' . $testLang . '.json'), true);
+    $good = json_decode(file_get_contents(__DIR__ . '/locale/' . $goodLang . '.json'), true, 512, JSON_THROW_ON_ERROR);
+    $test = json_decode(file_get_contents(__DIR__ . '/locale/' . $testLang . '.json'), true, 512, JSON_THROW_ON_ERROR);
 
     $diffSection = false;
 
@@ -46,8 +46,8 @@ include_once __DIR__ . '/app/inc/init.php';
             }
         }
 
-        if (!$diffSection and array_keys($good[$sectionName]) !== array_keys($test[$sectionName])) {
-            $diff[$sectionName]['order_good'] = array_keys($good[$sectionName]);
+        if (!$diffSection and array_keys($section) !== array_keys($test[$sectionName])) {
+            $diff[$sectionName]['order_good'] = array_keys($section);
             $diff[$sectionName]['order_test'] = array_keys($test[$sectionName]);
         }
     }

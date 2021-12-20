@@ -54,14 +54,14 @@ function bandeau_titre($titre)
     }
 }
 
-function liste_lang()
+function liste_lang(): string
 {
     global $ALLOWED_LANGUAGES; global $locale;
 
     $str = '';
 
     foreach ($ALLOWED_LANGUAGES as $k => $v ) {
-        if (substr($k,0,2)===$locale) {
+        if (strpos($k, $locale) === 0) {
             $str .= '<option lang="' . substr($k,0,2) . '" selected value="' . $k . '">' . $v . '</option>' . "\n" ;
         } else {
             $str .= '<option lang="' . substr($k,0,2) . '" value="' . $k . '">' . $v . '</option>' . "\n" ;

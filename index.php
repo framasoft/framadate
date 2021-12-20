@@ -1,4 +1,6 @@
 <?php
+
+use Framadate\Services\LogService;
 /**
  * This software is governed by the CeCILL-B license. If a copy of this license
  * is not distributed with this file, you can obtain one at
@@ -29,8 +31,7 @@ if (!is_file(CONF_FILENAME)) {
 
 /* SERVICES */
 /* -------- */
-$logService = '\Framadate\Services\LogService';
-$pollService = new PollService($connect, new $logService());
+$pollService = new PollService(new LogService());
 
 /* PAGE */
 /* ---- */

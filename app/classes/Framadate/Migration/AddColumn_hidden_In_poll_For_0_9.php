@@ -19,6 +19,7 @@
 namespace Framadate\Migration;
 
 use Framadate\Utils;
+use PDO;
 
 /**
  * This migration adds the field hidden on the poll table.
@@ -27,7 +28,7 @@ use Framadate\Utils;
  * @version 0.9
  */
 class AddColumn_hidden_In_poll_For_0_9 implements Migration {
-    function __construct() {
+    public function __construct() {
     }
 
     /**
@@ -35,7 +36,8 @@ class AddColumn_hidden_In_poll_For_0_9 implements Migration {
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description(): string
+    {
         return 'Add column "hidden" in table "vote" for version 0.9';
     }
 
@@ -43,12 +45,13 @@ class AddColumn_hidden_In_poll_For_0_9 implements Migration {
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true is the Migration should be executed.
      */
-    function preCondition(\PDO $pdo) {
+    public function preCondition(PDO $pdo): bool
+    {
         $stmt = $pdo->query('SHOW TABLES');
-        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+        $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
         // Check if tables of v0.9 are presents
         $diff = array_diff([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')], $tables);
@@ -58,16 +61,18 @@ class AddColumn_hidden_In_poll_For_0_9 implements Migration {
     /**
      * This method is called only one time in the migration page.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true is the execution succeeded
      */
-    function execute(\PDO $pdo) {
+    public function execute(PDO $pdo): bool
+    {
         $this->alterPollTable($pdo);
 
         return true;
     }
 
-    private function alterPollTable(\PDO $pdo) {
+    private function alterPollTable(PDO $pdo): void
+    {
         $pdo->exec('
         ALTER TABLE `' . Utils::table('poll') . '`
         ADD `hidden` TINYINT( 1 ) NOT NULL DEFAULT "0"');

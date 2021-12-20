@@ -2,7 +2,7 @@
 
 {block name="header"}
     <script src="{"js/easymde.min.js"|resource}"></script>
-    <script src="{"js/dompurify.js"|resource}"></script>
+    <script src="{"js/purify.min.js"|resource}"></script>
     <script src="{"js/mde-wrapper.js"|resource}"></script>
     <script src="{"js/app/create_poll.js"|resource}"></script>
     <link rel="stylesheet" href="{"css/app/create_poll.css"|resource}">

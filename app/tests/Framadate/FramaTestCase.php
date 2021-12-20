@@ -4,11 +4,12 @@ namespace Framadate;
 use PHPUnit\Framework\TestCase;
 
 abstract class FramaTestCase extends TestCase {
-    protected function getTestResourcePath($resourcepath) {
+    protected function getTestResourcePath(string $resourcepath): string
+    {
         return __DIR__ . '/../resources/' . $resourcepath;
     }
 
-    protected function readTestResource($resourcepath) {
+    protected function readTestResource(string $resourcepath) {
         return file_get_contents($this->getTestResourcePath($resourcepath));
     }
 

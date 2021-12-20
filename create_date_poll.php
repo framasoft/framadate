@@ -30,9 +30,9 @@ include_once __DIR__ . '/app/inc/init.php';
 /* Service */
 /*---------*/
 $logService = new LogService();
-$pollService = new PollService($connect, $logService);
+$pollService = new PollService($logService);
 $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
-$purgeService = new PurgeService($connect, $logService);
+$purgeService = new PurgeService($logService);
 $inputService = new InputService();
 $sessionService = new SessionService();
 
@@ -52,7 +52,7 @@ if (isset($form->format) && $form->format !== 'D') {
     $form->clearChoices();
 }
 
-if (!isset($form->title) || !isset($form->admin_name) || ($config['use_smtp'] && !isset($form->admin_mail))) {
+if (!isset($form->title, $form->admin_name) || ($config['use_smtp'] && !isset($form->admin_mail))) {
     $step = 1;
 } else if (!empty($_POST['confirmation'])) {
     $step = 4;
@@ -107,7 +107,7 @@ switch ($step) {
         // Handle Step2 submission
         if (!empty($_POST['days'])) {
             // Remove empty dates
-            $_POST['days'] = array_filter($_POST['days'], function ($d) {
+            $_POST['days'] = array_filter($_POST['days'], static function ($d) {
                 return !empty($d);
             });
 
@@ -135,7 +135,7 @@ switch ($step) {
                 $i++;
             }
 
-            for ($i = 0; $i < count($_POST['days']); $i++) {
+            for ($i = 0, $iMax = count($_POST['days']); $i < $iMax; $i++) {
                 $day = $_POST['days'][$i];
 
                 if (!empty($day)) {
@@ -146,7 +146,7 @@ switch ($step) {
                     $form->addChoice($choice);
 
                     $schedules = $inputService->filterArray($moments[$i], FILTER_DEFAULT);
-                    for ($j = 0; $j < count($schedules); $j++) {
+                    for ($j = 0, $jMax = count($schedules); $j < $jMax; $j++) {
                         if (!empty($schedules[$j])) {
                             $choice->addSlot(strip_tags($schedules[$j]));
                         }
@@ -188,8 +188,8 @@ switch ($step) {
         // Step 4 : Data prepare before insert in DB
 
         // Define expiration date
-        $expiration_date = $inputService->validateDate($_POST['enddate'], $pollService->minExpiryDate(), $pollService->maxExpiryDate());
-        $form->end_date = $expiration_date->getTimestamp();
+        $expiration_date = $inputService->parseDate($_POST['enddate']);
+        $form->end_date = $inputService->validateDate($expiration_date, $pollService->minExpiryDate(), $pollService->maxExpiryDate())->getTimestamp();
 
         // Insert poll in database
         $ids = $pollService->createPoll($form);

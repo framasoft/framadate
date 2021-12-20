@@ -20,6 +20,7 @@ namespace Framadate\Migration;
 
 use Framadate\Security\Token;
 use Framadate\Utils;
+use PDO;
 
 /**
  * This migration generate uniqId for all legacy votes.
@@ -28,16 +29,16 @@ use Framadate\Utils;
  * @version 0.9
  */
 class Generate_uniqId_for_old_votes implements Migration {
-    function __construct() {
+    public function __construct() {
     }
 
-    function description() {
+    public function description(): string {
         return 'Generate "uniqId" in "vote" table for all legacy votes';
     }
 
-    function preCondition(\PDO $pdo) {
+    public function preCondition(PDO $pdo): bool {
         $stmt = $pdo->query('SHOW TABLES');
-        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+        $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
         // Check if tables of v0.9 are presents
         $diff = array_diff([Utils::table('poll'), Utils::table('slot'), Utils::table('vote'), Utils::table('comment')], $tables);
@@ -47,10 +48,10 @@ class Generate_uniqId_for_old_votes implements Migration {
     /**
      * This methode is called only one time in the migration page.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true is the execution succeeded
      */
-    function execute(\PDO $pdo) {
+    public function execute(PDO $pdo): bool {
         $pdo->beginTransaction();
         $this->generateUniqIdsForEmptyOnes($pdo);
         $pdo->commit();
@@ -58,7 +59,8 @@ class Generate_uniqId_for_old_votes implements Migration {
         return true;
     }
 
-    private function generateUniqIdsForEmptyOnes($pdo) {
+    private function generateUniqIdsForEmptyOnes(PDO $pdo): void
+    {
         $select = $pdo->query('
 SELECT `id`
   FROM `' . Utils::table('vote') . '`
@@ -69,7 +71,7 @@ UPDATE `' . Utils::table('vote') . '`
    SET `uniqid` = :uniqid
  WHERE `id` = :id');
 
-        while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
+        while ($row = $select->fetch(PDO::FETCH_OBJ)) {
             $token = Token::getToken(16);
             $update->execute([
                 'uniqid' => $token,

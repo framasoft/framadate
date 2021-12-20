@@ -50,9 +50,10 @@ if (isset($_SERVER['FRAMADATE_DEVMODE']) && $_SERVER['FRAMADATE_DEVMODE']) {
     $smarty->compile_check = false;
 }
 
-function smarty_function_poll_url($params, Smarty_Internal_Template $template) {
+function smarty_function_poll_url($params, Smarty_Internal_Template $template): string
+{
     $poll_id =  filter_var($params['id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]);
-    $admin =  (isset($params['admin']) && $params['admin']) ? true : false;
+    $admin = isset($params['admin']) && $params['admin'];
     $action =  (isset($params['action']) && !empty($params['action'])) ? Utils::htmlEscape($params['action']) : false;
     $action_value = (isset($params['action_value']) && !empty($params['action_value'])) ? $params['action_value'] : false;
     $vote_unique_id = isset($params['vote_id']) ? filter_var($params['vote_id'], FILTER_VALIDATE_REGEXP, ['options' => ['regexp' => POLL_REGEX]]) : '';
@@ -62,30 +63,40 @@ function smarty_function_poll_url($params, Smarty_Internal_Template $template) {
     return Utils::getUrlSondage($poll_id, $admin, $vote_unique_id, $action, $action_value);
 }
 
-function smarty_modifier_markdown($md, $clear = false, $inline=true) {
+function smarty_modifier_markdown(string $md, bool $clear = false, bool $inline=true): string
+{
     return Utils::markdown($md, $clear, $inline);
 }
 
-function smarty_modifier_resource($link) {
+function smarty_modifier_resource(string $link): string
+{
     return Utils::get_server_name() . $link;
 }
-function smarty_modifier_addslashes_single_quote($string) {
+function smarty_modifier_addslashes_single_quote(string $string): string
+{
     return addcslashes($string, '\\\'');
 }
 
-function smarty_modifier_addslashes($string) {
+function smarty_modifier_addslashes(string $string): string
+{
     return addslashes($string);
 }
 
-function smarty_modifier_html($html) {
+function smarty_modifier_html(?string $html): string
+{
+    if (!$html) {
+        return '';
+    }
     return Utils::htmlEscape($html);
 }
 
-function smarty_modifier_html_special_chars($html) {
+function smarty_modifier_html_special_chars(string $html): string
+{
     return Utils::htmlMailEscape($html);
 }
 
-function smarty_modifier_datepicker_path($lang) {
+function smarty_modifier_datepicker_path(string $lang): string
+{
     $i = 0;
     while (!is_file(path_for_datepicker_locale($lang)) && $i < 3) {
         $lang_arr = explode('-', $lang);
@@ -94,12 +105,13 @@ function smarty_modifier_datepicker_path($lang) {
         } else {
             $lang = 'en';
         }
-        $i += 1;
+        ++$i;
     }
     return 'js/locales/bootstrap-datepicker.' . $lang . '.js';
 }
 
-function smarty_modifier_locale_2_lang($locale) {
+function smarty_modifier_locale_2_lang(string $locale): string
+{
     $lang_arr = explode('-', $locale);
     if ($lang_arr && count($lang_arr) > 1) {
         return $lang_arr[0];
@@ -107,6 +119,7 @@ function smarty_modifier_locale_2_lang($locale) {
     return $locale;
 }
 
-function path_for_datepicker_locale($lang) {
+function path_for_datepicker_locale(string $lang): string
+{
     return __DIR__ . '/../../js/locales/bootstrap-datepicker.' . $lang . '.js';
 }

@@ -23,19 +23,21 @@ use PDO;
 class FramaDB {
     /**
      * PDO Object, connection to database.
+     * @var PDO
      */
-    private $pdo = null;
+    private $pdo;
 
-    function __construct($connection_string, $user, $password) {
-        $this->pdo = new \PDO($connection_string, $user, $password);
-        $this->pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
-        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+    public function __construct(string $connection_string, string $user, string $password) {
+        $this->pdo = new PDO($connection_string, $user, $password);
+        $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     /**
-     * @return \PDO Connection to database
+     * @return PDO Connection to database
      */
-    function getPDO() {
+    public function getPDO(): PDO
+    {
         return $this->pdo;
     }
 
@@ -44,42 +46,50 @@ class FramaDB {
      *
      * @return array The array of table names
      */
-    function allTables() {
-        $result = $this->pdo->query('SHOW TABLES');
-        $schemas = $result->fetchAll(\PDO::FETCH_COLUMN);
-
-        return $schemas;
+    public function allTables(): array
+    {
+        return $this->pdo->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    function prepare($sql) {
+    /**
+     * @return \PDOStatement|false
+     */
+    public function prepare(string $sql) {
         return $this->pdo->prepare($sql);
     }
 
-    function beginTransaction() {
+    public function beginTransaction(): void
+    {
         $this->pdo->beginTransaction();
     }
 
-    function commit() {
+    public function commit(): void
+    {
         $this->pdo->commit();
     }
 
-    function rollback() {
+    public function rollback(): void
+    {
         $this->pdo->rollback();
     }
 
-    function errorCode() {
+    public function errorCode(): ?string {
         return $this->pdo->errorCode();
     }
 
-    function errorInfo() {
+    public function errorInfo(): array
+    {
         return $this->pdo->errorInfo();
     }
 
-    function query($sql) {
+    /**
+     * @return \PDOStatement|false
+     */
+    public function query($sql) {
         return $this->pdo->query($sql);
     }
 
-    public function lastInsertId() {
+    public function lastInsertId(): string {
         return $this->pdo->lastInsertId();
     }
 }

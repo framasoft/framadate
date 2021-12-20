@@ -17,7 +17,10 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 namespace Framadate\Services;
+use function __f;
+use Exception;
 use Framadate\Utils;
+use PDO;
 use Smarty;
 
 /**
@@ -40,15 +43,17 @@ class InstallService {
         'migrationTable' => 'framadate_migration'
     ];
 
-    function __construct() {}
+    public function __construct() {}
 
-    public function updateFields($data) {
+    public function updateFields($data): void
+    {
         foreach ($data as $field => $value) {
             $this->fields[$field] = $value;
         }
     }
 
-    public function install(Smarty &$smarty) {
+    public function install(Smarty &$smarty): array
+    {
         // Check values are present
         if (empty($this->fields['appName']) || empty($this->fields['appMail']) || empty($this->fields['defaultLanguage']) || empty($this->fields['dbConnectionString']) || empty($this->fields['dbUser'])) {
             return $this->error('MISSING_VALUES');
@@ -57,7 +62,7 @@ class InstallService {
         // Connect to database
         try {
             $connect = $this->connectTo($this->fields['dbConnectionString'], $this->fields['dbUser'], $this->fields['dbPassword']);
-        } catch(\Exception $e) {
+        } catch(Exception $e) {
             return $this->error('CANT_CONNECT_TO_DATABASE', $e->getMessage());
         }
 
@@ -75,16 +80,20 @@ class InstallService {
      * @param string $connectionString
      * @param string $user
      * @param string $password
-     * @return \PDO
+     * @return PDO
      */
-    function connectTo($connectionString, $user, $password) {
-        $pdo = @new \PDO($connectionString, $user, $password);
-        $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
-        $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+    public function connectTo(string $connectionString, string $user, string $password): PDO
+    {
+        $pdo = @new PDO($connectionString, $user, $password);
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $pdo;
     }
 
-    function writeConfiguration(Smarty &$smarty) {
+    /**
+     * @return false|int
+     */
+    public function writeConfiguration(Smarty &$smarty) {
         foreach($this->fields as $field=>$value) {
             $smarty->assign($field, $value);
         }
@@ -96,15 +105,17 @@ class InstallService {
 
     /**
      * @param $content
+     * @return false|int
      */
-    function writeToFile($content) {
+    public function writeToFile(string $content) {
         return @file_put_contents(CONF_FILENAME, $content);
     }
 
     /**
      * @return array
      */
-    function ok() {
+    public function ok(): array
+    {
         return [
             'status' => 'OK',
             'msg' => __f('Installation', 'Ended', Utils::get_server_name())
@@ -112,10 +123,12 @@ class InstallService {
     }
 
     /**
-     * @param $msg
+     * @param string $msg
+     * @param string $details
      * @return array
      */
-    function error($msg, $details = '') {
+    public function error(string $msg, string $details = ''): array
+    {
         return [
             'status' => 'ERROR',
             'code' => $msg,
@@ -123,7 +136,8 @@ class InstallService {
         ];
     }
 
-    public function getFields() {
+    public function getFields(): array
+    {
         return $this->fields;
     }
 }

@@ -13,31 +13,40 @@ abstract class AbstractRepository {
      * PollRepository constructor.
      * @param FramaDB $connect
      */
-    function __construct(FramaDB $connect) {
+    public function __construct(FramaDB $connect) {
         $this->connect = $connect;
     }
 
-    public function beginTransaction() {
+    public function beginTransaction(): void
+    {
         $this->connect->beginTransaction();
     }
 
-    public function commit() {
+    public function commit(): void
+    {
         $this->connect->commit();
     }
 
-    function rollback() {
+    public function rollback(): void
+    {
         $this->connect->rollback();
     }
 
-    public function prepare($sql) {
+    /**
+     * @return \PDOStatement|false
+     */
+    public function prepare(string $sql) {
         return $this->connect->prepare($sql);
     }
 
-    function query($sql) {
+    /**
+     * @return \PDOStatement|false
+     */
+    public function query($sql) {
         return $this->connect->query($sql);
     }
 
-    function lastInsertId() {
+    public function lastInsertId(): string {
         return $this->connect->lastInsertId();
     }
 }

@@ -208,7 +208,8 @@
       "seconds": "secondi",
       "vote": "voto",
       "votes": "voti",
-      "with": "con"
+      "with": "con",
+      "Unknown": "Sconosciuto"
    },
    "Homepage": {
       "Make a classic poll": "Creare un sondaggio",

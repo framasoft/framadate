@@ -17,6 +17,7 @@
  * Auteurs de Framadate/OpenSondage : Framasoft (https://github.com/framasoft)
  */
 
+use Framadate\FramaDB;
 use Framadate\Migration\AddColumn_hidden_In_poll_For_0_9;
 use Framadate\Migration\AddColumn_receiveNewComments_For_0_9;
 use Framadate\Migration\AddColumn_uniqId_In_vote_For_0_9;
@@ -57,7 +58,7 @@ $migrations = [
 // ---------------------------------------
 
 // Check if MIGRATION_TABLE already exists
-/** @var \Framadate\FramaDB $connect */
+/** @var FramaDB $connect */
 $tables = $connect->allTables();
 $pdo = $connect->getPDO();
 $prefixedMigrationTable = Utils::table(MIGRATION_TABLE);
