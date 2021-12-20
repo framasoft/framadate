@@ -1,5 +1,192 @@
 # Changelog de framadate
 
+## 1.1.17
+18-10-2021
+### Added
+
+- Allow to export to ICS the best choices
+
+### Changed
+
+- Allow configuring AuthType for MailService
+
+### Security
+
+- Fix an XSS possibility in the result graph
+
+## 1.1.16
+22-03-2021
+### Changed
+
+- **Framadate now requires the `mbstring` PHP extension.** Make sure it's installed and activated before updating.
+
+### Fixed
+
+- Handle poll creator names being too long properly
+
+
+## 1.1.15
+22-03-2021
+### Security
+
+- Fixed cross-site scripting (XSS) attacks in poll description markdown preview. All administrators are encouraged to upgrade, especially if you have sensitive services and data on the same domain name.
+  This was reported by @martgil
+  https://framagit.org/framasoft/framadate/framadate/-/issues/546
+
+## 1.1.14
+08-03-2021
+### Fixed
+
+- Avoid error with a name too long https://framagit.org/framasoft/framadate/framadate/-/issues/530
+
+## 1.1.13
+08-03-2021
+### Fixed
+
+- Fixed error when closing a poll https://framagit.org/framasoft/framadate/framadate/-/issues/532
+
+## 1.1.12
+18-12-2020
+
+### Changed
+
+* Framadate now requires PHP 7.3
+
+## 1.1.11
+18-12-2020
+### Fixed
+
+- Fixed translations keys missing into emails https://framagit.org/framasoft/framadate/framadate/-/issues/463
+
+### Translations
+
+- Added Catalan translation
+
+## 1.1.10
+
+### Fixed
+* Remove .git folder inside releases.
+* Create releases through CI
+
+## 1.1.9
+
+### Fixed
+- Fixes session issue https://framagit.org/framasoft/framadate/framadate/issues/255
+- Fixes bug when editing column https://framagit.org/framasoft/framadate/framadate/issues/379
+- Fix mail subject escaping https://framagit.org/framasoft/framadate/framadate/issues/375
+
+## 1.1.8
+### Fixed
+- Stop creating `tpl_c` directory in releases and add a `.gitkeep`
+- Show database connection issue details on installation panel
+- Set the proper file rights on release packages
+- Added `session.cookie_httponly = 1` to local php.ini file
+
+## 1.1.7
+### Fixed
+
+- Fix issue with maximum number of participants https://framagit.org/framasoft/framadate/issues/353 (thanks to @lohmeyer for reporting it)
+
+## 1.1.6
+
+### Fixed
+
+- Bump dependencies, including PHPMailer to version 6.x
+- Fix an small issue with Smarty template
+
+## 1.1.5
+### Fixed
+
+- Restrict custom poll URLs against app urls (thanks @mosterdt)
+- Add a parameter to disable build-in font-awesome (thanks @mm)
+- Fix an XSS security issue with time slots (thanks https://bitsoffreedom.nl for responsibly disclosing it).
+
+## 1.1.4
+
+### Fixed
+* Add Fork-awesome, remove dependency to Font-Awesome Bootstrap CDN, add an option to disable it (https://framagit.org/framasoft/framadate/merge_requests/300 - @tcit)
+
+## 1.1.3
+
+### Fixed
+* Fixing issue when no choice is selected introducted in https://framagit.org/framasoft/framadate/merge_requests/284 (https://framagit.org/framasoft/framadate/merge_requests/298 - @mm)
+
+## 1.1.2
+
+### Fixed
+- Use Parsedown's Safe Mode
+
+## 1.1.1
+
+### Bug fixes
+
+- Send email with correct vote address (thanks to @lohmeyer for finding it)
+
+## 1.1.0
+
+### Warning
+
+**Framadate now requires PHP 5.6** to be used (it should still work under 5.4 but will not be supported anymore).
+
+### Features
+
+- Markdown editor for descriptions ! (@Antonin)
+- Adding a maximum participants number (@SuperNach0)
+- Allow setting SMTP config (Simon LEBLANC)
+- Allow admins to give the vote link back to the voters (@mm, @tcit)
+- Sending voters emails to remind themselves their voting url now works (@mm)
+
+### Enhancements
+
+- UI improvements for responsive design (@marjolaine-v)
+- Better coherence for visible results and passwords (@TDavid)
+- Added an edit button on the right when too many options (@SuperNach0)
+- Emails with international characters are now allowed (added an unit test) (@mm)
+
+### Translations
+
+**New strings are available, don't hesitate to head to <https://trad.framasoft.org/zanata/project/view/framadate> to translate them into your language !**
+
+### Fixed
+
+- Reschedule function (https://framagit.org/framasoft/framadate/issues/203) (@TDavid)
+- lang attribute must be a valid IETF language tag (@Rudloff)
+- Fix datepicker js locale file path
+- Fix everyone can always vote #267
+- Fix MySQL error with `NO_ZERO_DATE` #224
+- SimpleMDE Markdown Editor has been updated the latest version to remove console.log calls
+- Fix width of `if need be` vote option and missing parenthesis
+- Remove autocomplete on date fields
+- Various fixes for value max error handling
+- New error strings for bad formatted inputs (admin name, wrong value max option)
+- Email is now a email field (better for virtual keyboards) and is html required as well as title
+- Advanced settings for poll are now opened if there's error within them
+- css fixes for pictures inside columns, and little space between editor and description text area (@marjolaine-v)
+- released zip files now have proper chmod rights (@tcit)
+- Best choices now work properly when there's no votes (@mm)
+- Don't allow an existing name when updating a vote (@mm)
+- Keep vote selections when there's an error on the name (@mm)
+- Add a message « Your poll has been created » at the end of the poll form process (@mm)
+
+### Documentation
+
+- Move everything to wiki, translate everything to English
+
+### Technical
+
+- Continuous Integration handles the release process
+- Translations with Zanata : https://trad.framasoft.org/zanata/project/view/framadate (@luc)
+- Style fixes with PHP-CS
+- Libraries updated
+- Improved a few docs
+- Use own Framadate Docker Image for CI
+- https://beta.framadate.org now gets the latest translations for each deployment (@luc)
+- A CI job tells if translations strings are up-to-date (@luc)
+
+## 1.0.3
+
+- Corrections de wording (fr / en)
+
 ## Version 1.0 (Erik - Markus - Ecmu - Julien - Imre - Luc - Pierre - Antonin - Olivier)
     - Amélioration : Conserver les votes en cours lors que l'utilisateur envoie un commentaire
     - Amélioration : Les mails sont envoyés en multipart pour les lecteurs ne supportant pas HTML
@@ -105,7 +292,7 @@
     - Fix : Bug à la création d'un sondage sans Javascript ou sans Cookies
     - Fix : Erreur d'url avec les noms de domaine contenant "admin"
     - Fix : Mise à jour de la doc d'installation
-    
+
 ## Version 0.8 (juillet 2014 Pascal Chevrel - Armony Altinier - JosephK)
 	- Améliorations sur l'accessibilité
 	- Améliorations sur l'ergonomie
@@ -139,7 +326,7 @@
 
 ## Changelog des 22 et 23 juin (pyg@framasoft.net)
 	- très nombreuses modifications CSS
-	- ajout de buttons.css pour des boutons plus propres 
+	- ajout de buttons.css pour des boutons plus propres
 	- ajout de print.css pour une impression sans la classe "corps"
 	- refonte de la page d'accueil
 	- ajout de la framanav
@@ -205,7 +392,7 @@
 	- Traduction de STUdS en anglais, allemand et espagnol,
 	- Changement de la CSS avec ajout du logo de l'Université de Strasbourg,
 	- Possibilité d'ajouter un commentaire pour les sondés.
-	
+
 	Changelog version 0.4 (janvier 2009) :
 	- Possibilité de faire un export PDF pour envoyer la lettre de convocation à la date de réunion,
 	- Possibilité de rajouter des colonnes dans la partie administration de sondage,
@@ -216,7 +403,7 @@
 	- Mise en place d'un repository Subversion pour partager les nouvelles versions de STUdS,
 	- Amélioration de la CSS pour un meilleur affichage,
 	- Modification du code source pour le rendre portable vers une autre machine.
-	
+
 	Changelog version 0.2 (novembre 2008) :
 	- Lors de la création d'un sondage DATE, classement des dates par ordre croissant,
 	- Lors de la création d'un sondage DATE, accepter les horaires au format "8h" ou "8H",
