@@ -18,5 +18,7 @@
  */
 
 include_once __DIR__ . '/app/inc/init.php';
-
+if (isset($error)) {
+    $smarty->assign('error', $error);
+}
 $smarty->display('maintenance.tpl');

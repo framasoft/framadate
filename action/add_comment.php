@@ -40,7 +40,7 @@ $is_admin = false;
 /*----------*/
 
 $logService = new LogService();
-$pollService = new PollService($connect, $logService);
+$pollService = new PollService($logService);
 $inputService = new InputService();
 $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
 $notificationService = new NotificationService($mailService);
@@ -63,7 +63,7 @@ if (!empty($_POST['poll_admin'])) {
 
 if (!$poll) {
     $message = new Message('error',  __('Error', 'This poll doesn\'t exist !'));
-} else if ($poll && !$securityService->canAccessPoll($poll) && !$is_admin) {
+} else if (!$is_admin && !$securityService->canAccessPoll($poll)) {
     $message = new Message('error',  __('Password', 'Wrong password'));
 } else {
     $name = $inputService->filterName($_POST['name']);
@@ -88,8 +88,10 @@ if (!$poll) {
 
 $smarty->error_reporting = E_ALL & ~E_NOTICE;
 $smarty->assign('comments', $comments);
+$smarty->assign('poll_id', $poll_id);
+$smarty->assign('admin_poll_id', $admin_poll_id);
 $comments_html = $smarty->fetch('part/comments_list.tpl');
 
 $response = ['result' => $result, 'message' => $message, 'comments' => $comments_html];
 
-echo json_encode($response);
+echo json_encode($response, JSON_THROW_ON_ERROR);

@@ -21,7 +21,7 @@ class AdminPollService {
     private $voteRepository;
     private $commentRepository;
 
-    function __construct(FramaDB $connect, PollService $pollService, LogService $logService) {
+    public function __construct(FramaDB $connect, PollService $pollService, LogService $logService) {
         $this->connect = $connect;
         $this->pollService = $pollService;
         $this->logService = $logService;
@@ -31,32 +31,34 @@ class AdminPollService {
         $this->commentRepository = RepositoryFactory::commentRepository();
     }
 
-    function updatePoll($poll) {
+    public function updatePoll($poll): bool
+    {
         global $config;
         if ($poll->end_date > $poll->creation_date) {
             return $this->pollRepository->update($poll);
-        }  
+        }
             return false;
     }
 
     /**
      * Delete a comment from a poll.
      *
-     * @param $poll_id int The ID of the poll
+     * @param string $poll_id The ID of the poll
      * @param $comment_id int The ID of the comment
      * @return mixed true is action succeeded
      */
-    function deleteComment($poll_id, $comment_id) {
+    public function deleteComment(string $poll_id, int $comment_id) {
         return $this->commentRepository->deleteById($poll_id, $comment_id);
     }
 
     /**
      * Remove all comments of a poll.
      *
-     * @param $poll_id int The ID a the poll
+     * @param string $poll_id The ID a the poll
      * @return bool|null true is action succeeded
      */
-    function cleanComments($poll_id) {
+    public function cleanComments(string $poll_id): ?bool
+    {
         $this->logService->log("CLEAN_COMMENTS", "id:$poll_id");
         return $this->commentRepository->deleteByPollId($poll_id);
     }
@@ -64,21 +66,23 @@ class AdminPollService {
     /**
      * Delete a vote from a poll.
      *
-     * @param $poll_id int The ID of the poll
+     * @param string $poll_id The ID of the poll
      * @param $vote_id int The ID of the vote
-     * @return mixed true is action succeeded
+     * @return bool true is action succeeded
      */
-    function deleteVote($poll_id, $vote_id) {
+    public function deleteVote(string $poll_id, int $vote_id): bool
+    {
         return $this->voteRepository->deleteById($poll_id, $vote_id);
     }
 
     /**
      * Remove all votes of a poll.
      *
-     * @param $poll_id int The ID of the poll
+     * @param string $poll_id The ID of the poll
      * @return bool|null true is action succeeded
      */
-    function cleanVotes($poll_id) {
+    public function cleanVotes(string $poll_id): ?bool
+    {
         $this->logService->log('CLEAN_VOTES', 'id:' . $poll_id);
         return $this->voteRepository->deleteByPollId($poll_id);
     }
@@ -86,10 +90,11 @@ class AdminPollService {
     /**
      * Delete the entire given poll.
      *
-     * @param $poll_id int The ID of the poll
+     * @param $poll_id string The ID of the poll
      * @return bool true is action succeeded
      */
-    function deleteEntirePoll($poll_id) {
+    public function deleteEntirePoll(string $poll_id): bool
+    {
         $poll = $this->pollRepository->findById($poll_id);
         $this->logService->log('DELETE_POLL', "id:$poll->id, format:$poll->format, admin:$poll->admin_name, mail:$poll->admin_mail");
 
@@ -109,7 +114,8 @@ class AdminPollService {
      * @param object $slot The slot informations (datetime + moment)
      * @return bool true if action succeeded
      */
-    public function deleteDateSlot($poll, $slot) {
+    public function deleteDateSlot(object $poll, object $slot): bool
+    {
         $this->logService->log('DELETE_SLOT', 'id:' . $poll->id . ', slot:' . json_encode($slot));
 
         $datetime = $slot->title;
@@ -120,7 +126,9 @@ class AdminPollService {
         // We can't delete the last slot
         if ($poll->format === 'D' && count($slots) === 1 && strpos($slots[0]->moments, ',') === false) {
             return false;
-        } elseif ($poll->format === 'A' && count($slots) === 1) {
+        }
+
+        if ($poll->format === 'A' && count($slots) === 1) {
             return false;
         }
 
@@ -157,7 +165,8 @@ class AdminPollService {
         return true;
     }
 
-    public function deleteClassicSlot($poll, $slot_title) {
+    public function deleteClassicSlot($poll, string $slot_title): bool
+    {
         $this->logService->log('DELETE_SLOT', 'id:' . $poll->id . ', slot:' . $slot_title);
 
         $slots = $this->pollService->allSlotsByPoll($poll);
@@ -193,12 +202,13 @@ class AdminPollService {
      *  <li>Create a new moment if a slot already exists for the given date</li>
      * </ul>
      *
-     * @param $poll_id int The ID of the poll
+     * @param string $poll_id The ID of the poll
      * @param $datetime int The datetime
      * @param $new_moment string The moment's name
      * @throws MomentAlreadyExistsException When the moment to add already exists in database
      */
-    public function addDateSlot($poll_id, $datetime, $new_moment) {
+    public function addDateSlot(string $poll_id, int $datetime, string $new_moment): void
+    {
         $this->logService->log('ADD_COLUMN', 'id:' . $poll_id . ', datetime:' . $datetime . ', moment:' . $new_moment);
 
         $slots = $this->slotRepository->listByPollId($poll_id);
@@ -235,17 +245,18 @@ class AdminPollService {
      *  <li>Create a new slot if no one exists for the given title</li>
      * </ul>
      *
-     * @param $poll_id int The ID of the poll
-     * @param $title int The title
+     * @param string $poll_id The ID of the poll
+     * @param string $title The title
      * @throws MomentAlreadyExistsException When the moment to add already exists in database
      */
-    public function addClassicSlot($poll_id, $title) {
+    public function addClassicSlot(string $poll_id, string $title): void
+    {
         $this->logService->log('ADD_COLUMN', 'id:' . $poll_id . ', title:' . $title);
 
         $slots = $this->slotRepository->listByPollId($poll_id);
 
         // Check if slot already exists
-        $titles = array_map(function ($slot) {
+        $titles = array_map(static function ($slot) {
             return $slot->title;
         }, $slots);
         if (in_array($title, $titles, true)) {
@@ -274,7 +285,7 @@ class AdminPollService {
      * @param $datetime int The datetime of the new slot
      * @return \stdClass An object like this one: {insert:X, slot:Y} where Y can be null.
      */
-    private function findInsertPosition($slots, $datetime) {
+    private function findInsertPosition(array $slots, int $datetime) {
         $result = new \stdClass();
         $result->slot = null;
         $result->insert = 0;
@@ -292,14 +303,15 @@ class AdminPollService {
                 $result->insert += count($moments);
                 $result->slot = $slot;
                 break;
-            } elseif ($datetime < $rowDatetime) {
+            }
+
+            if ($datetime < $rowDatetime) {
                 // We have to insert before this slot
                 break;
-            }  
-                $result->insert += count($moments);
+            }
+            $result->insert += count($moments);
         }
 
         return $result;
     }
 }
- 

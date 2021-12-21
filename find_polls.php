@@ -27,7 +27,7 @@ include_once __DIR__ . '/app/inc/init.php';
 /* SERVICES */
 /* -------- */
 $logService =  new LogService();
-$pollService = new PollService($connect,  $logService);
+$pollService = new PollService($logService);
 $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
 
 /* PAGE */

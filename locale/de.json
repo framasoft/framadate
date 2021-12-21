@@ -208,7 +208,8 @@
       "seconds": "Sekunden",
       "vote": "Stimme",
       "votes": "Stimmen",
-      "with": "mit"
+      "with": "mit",
+      "Unknown": "Unbekannt"
    },
    "Homepage": {
       "Make a classic poll": "Klassische Umfrage",

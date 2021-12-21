@@ -11,7 +11,7 @@ use Framadate\Repositories\RepositoryFactory;
 class SuperAdminService {
     private $pollRepository;
 
-    function __construct() {
+    public function __construct() {
         $this->pollRepository = RepositoryFactory::pollRepository();
     }
 
@@ -23,7 +23,8 @@ class SuperAdminService {
      * @param int $limit The limit size
      * @return array ['polls' => The {$limit} polls, 'count' => Entries found by the query, 'total' => Total count]
      */
-    public function findAllPolls($search, $page, $limit) {
+    public function findAllPolls(array $search, int $page, int $limit): array
+    {
         $start = $page * $limit;
         $polls = $this->pollRepository->findAll($search, $start, $limit);
         $count = $this->pollRepository->count($search);
@@ -32,4 +33,3 @@ class SuperAdminService {
         return ['polls' => $polls, 'count' => $count, 'total' => $total];
     }
 }
- 

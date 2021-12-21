@@ -15,7 +15,7 @@ class PurgeService {
     private $voteRepository;
     private $commentRepository;
 
-    function __construct(FramaDB $connect, LogService $logService) {
+    public function __construct(LogService $logService) {
         $this->logService = $logService;
         $this->pollRepository = RepositoryFactory::pollRepository();
         $this->slotRepository = RepositoryFactory::slotRepository();
@@ -26,9 +26,10 @@ class PurgeService {
     /**
      * This methode purges all old polls (the ones with end_date in past).
      *
-     * @return bool true is action succeeded
+     * @return int number of purged polls
      */
-    function purgeOldPolls() {
+    public function purgeOldPolls(): int
+    {
         $oldPolls = $this->pollRepository->findOldPolls();
         $count = count($oldPolls);
 
@@ -50,10 +51,11 @@ class PurgeService {
     /**
      * This methode delete all data about a poll.
      *
-     * @param $poll_id int The ID of the poll
+     * @param string $poll_id The ID of the poll
      * @return bool true is action succeeded
      */
-    function purgePollById($poll_id) {
+    public function purgePollById(string $poll_id): bool
+    {
         $done = true;
 
         $this->pollRepository->beginTransaction();
@@ -71,4 +73,3 @@ class PurgeService {
         return $done;
     }
 }
- 

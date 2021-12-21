@@ -18,6 +18,7 @@
  */
 use Framadate\FramaDB;
 use Framadate\Repositories\RepositoryFactory;
+use Framadate\Utils;
 
 // Autoloading of dependencies with Composer
 require_once __DIR__ . '/../../vendor/autoload.php';
@@ -39,10 +40,17 @@ require_once __DIR__ . '/constants.php';
 if (is_file(CONF_FILENAME)) {
     @include_once __DIR__ . '/config.php';
 
-    // Connection to database
-    $connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
-    RepositoryFactory::init($connect);
-    $err = 0;
+    try {
+        // Connection to database
+        $connect = new FramaDB(DB_CONNECTION_STRING, DB_USER, DB_PASSWORD);
+        RepositoryFactory::init($connect);
+    } catch (PDOException $e) {
+        if ($_SERVER['SCRIPT_NAME'] !== '/maintenance.php') {
+            header(('Location: ' . Utils::get_server_name() . 'maintenance.php'));
+            exit;
+        }
+        $error = $e->getMessage();
+    }
 } else {
     define('NOMAPPLICATION', 'Framadate');
     define('DEFAULT_LANGUAGE', 'fr');

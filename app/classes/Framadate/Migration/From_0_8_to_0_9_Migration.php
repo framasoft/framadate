@@ -19,6 +19,7 @@
 namespace Framadate\Migration;
 
 use Framadate\Utils;
+use PDO;
 
 /**
  * This class executes the aciton in database to migrate data from version 0.8 to 0.9.
@@ -27,7 +28,7 @@ use Framadate\Utils;
  * @version 0.9
  */
 class From_0_8_to_0_9_Migration implements Migration {
-    function __construct() {
+    public function __construct() {
     }
 
     /**
@@ -35,7 +36,7 @@ class From_0_8_to_0_9_Migration implements Migration {
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description(): string {
         return 'From 0.8 to 0.9';
     }
 
@@ -43,12 +44,12 @@ class From_0_8_to_0_9_Migration implements Migration {
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true is the Migration should be executed.
      */
-    function preCondition(\PDO $pdo) {
+    public function preCondition(PDO $pdo): bool {
         $stmt = $pdo->query('SHOW TABLES');
-        $tables = $stmt->fetchAll(\PDO::FETCH_COLUMN);
+        $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
         // Check if tables of v0.8 are presents
         $diff = array_diff(['sondage', 'sujet_studs', 'comments', 'user_studs'], $tables);
@@ -58,10 +59,10 @@ class From_0_8_to_0_9_Migration implements Migration {
     /**
      * This method is called only one time in the migration page.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true is the execution succeeded
      */
-    function execute(\PDO $pdo) {
+    public function execute(PDO $pdo): bool {
         $this->createPollTable($pdo);
         $this->createCommentTable($pdo);
         $this->createSlotTable($pdo);
@@ -79,7 +80,8 @@ class From_0_8_to_0_9_Migration implements Migration {
         return true;
     }
 
-    private function createPollTable(\PDO $pdo) {
+    private function createPollTable(PDO $pdo): void
+    {
         $pdo->exec('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
   `id`              CHAR(16)  NOT NULL,
@@ -100,7 +102,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('poll') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromSondageToPoll(\PDO $pdo) {
+    private function migrateFromSondageToPoll(PDO $pdo): void
+    {
         $select = $pdo->query('
 SELECT
     `id_sondage`,
@@ -126,7 +129,7 @@ INSERT INTO `' . Utils::table('poll') . '`
 (`id`, `admin_id`, `title`, `description`, `admin_name`, `admin_mail`, `creation_date`, `end_date`, `format`, `editable`, `receiveNewVotes`, `active`)
 VALUE (?,?,?,?,?,?,?,?,?,?,?,?)');
 
-        while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
+        while ($row = $select->fetch(PDO::FETCH_OBJ)) {
             $insert->execute([
                 $row->id_sondage,
                 $row->id_sondage_admin,
@@ -144,7 +147,8 @@ VALUE (?,?,?,?,?,?,?,?,?,?,?,?)');
         }
     }
 
-    private function createSlotTable(\PDO $pdo) {
+    private function createSlotTable(PDO $pdo): void
+    {
         $pdo->exec('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -158,7 +162,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromSujetStudsToSlot(\PDO $pdo) {
+    private function migrateFromSujetStudsToSlot(PDO $pdo): void
+    {
         $stmt = $pdo->query('SELECT * FROM sujet_studs');
         $sujets = $stmt->fetchAll();
         $slots = [];
@@ -180,7 +185,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('slot') . '` (
         }
     }
 
-    private function createCommentTable(\PDO $pdo) {
+    private function createCommentTable(PDO $pdo): void
+    {
         $pdo->exec('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('comment') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -194,7 +200,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('comment') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromCommentsToComment(\PDO $pdo) {
+    private function migrateFromCommentsToComment(PDO $pdo): void
+    {
         $select = $pdo->query('
 SELECT
     `id_sondage`,
@@ -206,7 +213,7 @@ SELECT
 INSERT INTO `' . Utils::table('comment') . '` (`poll_id`, `name`, `comment`)
 VALUE (?,?,?)');
 
-        while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
+        while ($row = $select->fetch(PDO::FETCH_OBJ)) {
             $insert->execute([
                 $row->id_sondage,
                 $this->unescape($row->usercomment),
@@ -215,7 +222,8 @@ VALUE (?,?,?)');
         }
     }
 
-    private function createVoteTable(\PDO $pdo) {
+    private function createVoteTable(PDO $pdo): void
+    {
         $pdo->exec('
 CREATE TABLE IF NOT EXISTS `' . Utils::table('vote') . '` (
   `id`      INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -229,7 +237,8 @@ CREATE TABLE IF NOT EXISTS `' . Utils::table('vote') . '` (
   DEFAULT CHARSET = utf8');
     }
 
-    private function migrateFromUserStudsToVote(\PDO $pdo) {
+    private function migrateFromUserStudsToVote(PDO $pdo): void
+    {
         $select = $pdo->query('
 SELECT
     `id_sondage`,
@@ -241,7 +250,7 @@ SELECT
 INSERT INTO `' . Utils::table('vote') . '` (`poll_id`, `name`, `choices`)
 VALUE (?,?,?)');
 
-        while ($row = $select->fetch(\PDO::FETCH_OBJ)) {
+        while ($row = $select->fetch(PDO::FETCH_OBJ)) {
             $insert->execute([
                                  $row->id_sondage,
                                  $this->unescape($row->nom),
@@ -250,7 +259,8 @@ VALUE (?,?,?)');
         }
     }
 
-    private function transformSujetToSlot($sujet) {
+    private function transformSujetToSlot($sujet): array
+    {
         $slots = [];
         $ex = explode(',', $sujet->sujet);
         $isDatePoll = strpos($sujet->sujet, '@');
@@ -279,14 +289,16 @@ VALUE (?,?,?)');
         return $slots;
     }
 
-    private function dropOldTables(\PDO $pdo) {
+    private function dropOldTables(PDO $pdo): void
+    {
         $pdo->exec('DROP TABLE `comments`');
         $pdo->exec('DROP TABLE `sujet_studs`');
         $pdo->exec('DROP TABLE `user_studs`');
         $pdo->exec('DROP TABLE `sondage`');
     }
 
-    private function unescape($value) {
+    private function unescape(string $value): string
+    {
         return stripslashes(html_entity_decode($value, ENT_QUOTES));
     }
 }

@@ -19,6 +19,7 @@
 namespace Framadate\Migration;
 
 use Framadate\Utils;
+use PDO;
 
 /**
  * This migration adds the field Value_Max on the poll table.
@@ -27,7 +28,7 @@ use Framadate\Utils;
  * @version 0.9
  */
 class AddColumn_ValueMax_In_poll_For_1_1 implements Migration {
-    function __construct() {
+    public function __construct() {
     }
 
     /**
@@ -35,7 +36,7 @@ class AddColumn_ValueMax_In_poll_For_1_1 implements Migration {
      *
      * @return string The description of the migration class
      */
-    function description() {
+    public function description():string {
         return 'Add column "ValueMax" in table "vote" for version 0.9';
     }
 
@@ -43,26 +44,27 @@ class AddColumn_ValueMax_In_poll_For_1_1 implements Migration {
      * This method could check if the execute method should be called.
      * It is called before the execute method.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true is the Migration should be executed.
      */
-    function preCondition(\PDO $pdo) {
+    public function preCondition(PDO $pdo): bool {
         return true;
     }
 
     /**
      * This method is called only one time in the migration page.
      *
-     * @param \PDO $pdo The connection to database
+     * @param PDO $pdo The connection to database
      * @return bool true is the execution succeeded
      */
-    function execute(\PDO $pdo) {
+    public function execute(PDO $pdo): bool {
         $this->alterPollTable($pdo);
 
         return true;
     }
 
-    private function alterPollTable(\PDO $pdo) {
+    private function alterPollTable(PDO $pdo): void
+    {
         $pdo->exec('
         ALTER TABLE `' . Utils::table('poll') . '`
         ADD `ValueMax` TINYINT NULL;');

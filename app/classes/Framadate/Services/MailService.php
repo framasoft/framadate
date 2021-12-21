@@ -1,12 +1,13 @@
 <?php
 namespace Framadate\Services;
 
+use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
 class MailService {
-    const DELAY_BEFORE_RESEND = 300;
+    public const DELAY_BEFORE_RESEND = 300;
 
-    const MAILSERVICE_KEY = 'mailservice';
+    public const MAILSERVICE_KEY = 'mailservice';
 
     private $smtp_allowed;
 
@@ -14,7 +15,7 @@ class MailService {
 
     private $logService;
 
-    function __construct($smtp_allowed, $smtp_options = []) {
+    public function __construct($smtp_allowed, $smtp_options = []) {
         $this->logService = new LogService();
         $this->smtp_allowed = $smtp_allowed;
         if (true === is_array($smtp_options)) {
@@ -22,11 +23,18 @@ class MailService {
         }
     }
 
+    /**
+     * @return false|string
+     */
     public function isValidEmail($email) {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
 
-    public function send($to, $subject, $body, $msgKey = null) {
+    /**
+     * @throws Exception
+     */
+    public function send(string $to, string $subject, string $body, ?string $msgKey = null): void
+    {
         if ($this->smtp_allowed === true && $this->canSendMsg($msgKey)) {
             $mail = new PHPMailer(true);
             $this->configureMailer($mail);
@@ -45,7 +53,7 @@ class MailService {
             $mail->Subject = $subject;
 
             // Bodies
-            $body = $body . ' <br/><br/>' . __('Mail', 'Thanks for your trust.') . ' <br/>' . NOMAPPLICATION . ' <hr/>' . __('Mail', 'FOOTER');
+            $body .= ' <br/><br/>' . __('Mail', 'Thanks for your trust.') . ' <br/>' . NOMAPPLICATION . ' <hr/>' . __('Mail', 'FOOTER');
             $mail->isHTML(true);
             $mail->msgHTML($body, ROOT_DIR, true);
 
@@ -61,19 +69,25 @@ class MailService {
             $this->logService->log('MAIL', 'Mail sent to: ' . $to . ', key: ' . $msgKey);
 
             // Store the mail sending date
+            $this->initializeSession();
             $_SESSION[self::MAILSERVICE_KEY][$msgKey] = time();
         }
     }
 
-    public function canSendMsg($msgKey) {
+    public function canSendMsg(?string $msgKey): bool
+    {
         if ($msgKey === null) {
             return true;
         }
 
+        $this->initializeSession();
+        return !isset($_SESSION[self::MAILSERVICE_KEY][$msgKey]) || time() - $_SESSION[self::MAILSERVICE_KEY][$msgKey] > self::DELAY_BEFORE_RESEND;
+    }
+
+    private function initializeSession(): void {
         if (!isset($_SESSION[self::MAILSERVICE_KEY])) {
             $_SESSION[self::MAILSERVICE_KEY] = [];
         }
-        return !isset($_SESSION[self::MAILSERVICE_KEY][$msgKey]) || time() - $_SESSION[self::MAILSERVICE_KEY][$msgKey] > self::DELAY_BEFORE_RESEND;
     }
 
     /**
@@ -81,7 +95,8 @@ class MailService {
      *
      * @param PHPMailer $mailer
      */
-    private function configureMailer(PHPMailer $mailer) {
+    private function configureMailer(PHPMailer $mailer): void
+    {
         $mailer->isSMTP();
 
         $available_options = [

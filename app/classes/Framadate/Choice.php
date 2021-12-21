@@ -24,34 +24,34 @@ class Choice
      * Name of the Choice
      */
     private $name;
-    
+
     /**
      * All availables slots for this Choice.
      */
     private $slots;
-    
+
     public function __construct($name='')
     {
         $this->name = $name;
         $this->slots = [];
     }
-    
-    public function addSlot($slot)
+
+    public function addSlot($slot): void
     {
         $this->slots[] = $slot;
     }
-    
-    public function getName()
+
+    public function getName(): string
     {
         return $this->name;
     }
-    
-    public function getSlots()
+
+    public function getSlots(): array
     {
         return $this->slots;
     }
-    
-    static function compare(Choice $a, Choice $b)
+
+    public static function compare(Choice $a, Choice $b): int
     {
         return strcmp($a->name, $b->name);
     }

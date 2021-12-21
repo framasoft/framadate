@@ -34,14 +34,14 @@ $message = null;
 /*----------*/
 
 $logService = new LogService();
-$purgeService = new PurgeService($connect, $logService);
+$purgeService = new PurgeService($logService);
 $securityService = new SecurityService();
 $inputService = new InputService();
 
 /* POST */
 /*-----*/
 
-$action = $inputService->filterName(isset($_POST['action']) ? $_POST['action'] : null);
+$action = $inputService->filterName($_POST['action'] ?? null);
 
 /* PAGE */
 /* ---- */

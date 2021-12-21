@@ -47,7 +47,7 @@ $editingVoteId = 0;
 /*----------*/
 
 $logService = new LogService();
-$pollService = new PollService($connect, $logService);
+$pollService = new PollService($logService);
 $adminPollService = new AdminPollService($connect, $pollService, $logService);
 $inputService = new InputService();
 $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
@@ -137,9 +137,10 @@ if (isset($_POST['update_poll_info'])) {
                 break;
         }
     } elseif ($field === 'expiration_date') {
-        $expiration_date = $inputService->validateDate($_POST['expiration_date'], $pollService->minExpiryDate(), $pollService->maxExpiryDate());
-        if ($expiration_date) {
-            $poll->end_date = $expiration_date->getTimestamp();
+        $givenExpirationDate = $inputService->parseDate($_POST['expiration_date']);
+        $expiration_date = $inputService->validateDate($givenExpirationDate, $pollService->minExpiryDate(), $pollService->maxExpiryDate());
+        if ($poll->end_date !== $expiration_date->format('Y-m-d H:i:s')) {
+            $poll->end_date = $expiration_date->format('Y-m-d H:i:s');
             $updated = true;
         }
     } elseif ($field === 'name') {
@@ -151,26 +152,26 @@ if (isset($_POST['update_poll_info'])) {
             $updated = true;
         }
     } elseif ($field === 'hidden') {
-        $hidden = isset($_POST['hidden']) ? $inputService->filterBoolean($_POST['hidden']) : false;
+        $hidden = isset($_POST['hidden']) && $inputService->filterBoolean($_POST['hidden']);
         if ($hidden !== $poll->hidden) {
             $poll->hidden = $hidden;
 	    $poll->results_publicly_visible = false;
             $updated = true;
         }
     } elseif ($field === 'removePassword') {
-        $removePassword = isset($_POST['removePassword']) ? $inputService->filterBoolean($_POST['removePassword']) : false;
+        $removePassword = isset($_POST['removePassword']) && $inputService->filterBoolean($_POST['removePassword']);
         if ($removePassword) {
             $poll->results_publicly_visible = false;
             $poll->password_hash = null;
             $updated = true;
         }
     } elseif ($field === 'password') {
-        $password = isset($_POST['password']) ? $_POST['password'] : null;
+        $password = $_POST['password'] ?? null;
 
         /**
          * Did the user choose results to be publicly visible ?
          */
-        $resultsPubliclyVisible = isset($_POST['resultsPubliclyVisible']) ? $inputService->filterBoolean($_POST['resultsPubliclyVisible']) : false;
+        $resultsPubliclyVisible = isset($_POST['resultsPubliclyVisible']) && $inputService->filterBoolean($_POST['resultsPubliclyVisible']);
         /**
          * If there's one, save the password
          */

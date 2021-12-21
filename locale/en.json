@@ -212,7 +212,8 @@
       "seconds": "seconds",
       "vote": "vote",
       "votes": "votes",
-      "with": "with"
+      "with": "with",
+      "Unknown": "Unknown"
    },
    "Homepage": {
       "Make a classic poll": "Make a standard poll",

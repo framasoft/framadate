@@ -30,9 +30,9 @@ include_once __DIR__ . '/app/inc/init.php';
 /* Service */
 /*---------*/
 $logService = new LogService();
-$pollService = new PollService($connect, $logService);
+$pollService = new PollService($logService);
 $mailService = new MailService($config['use_smtp'], $config['smtp_options']);
-$purgeService = new PurgeService($connect, $logService);
+$purgeService = new PurgeService($logService);
 $sessionService = new SessionService();
 $inputService = new InputService();
 
@@ -45,7 +45,7 @@ if (is_file('bandeaux_local.php')) {
 $form = unserialize($_SESSION['form']);
 
 // Step 1/4 : error if $_SESSION from info_sondage are not valid
-if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? empty($form->admin_mail) : false)) {
+if (empty($form->title) || empty($form->admin_name) || ($config['use_smtp'] && empty($form->admin_mail))) {
     $smarty->assign('title', __('Error', 'Error!'));
     $smarty->assign('error', __('Error', 'You haven\'t filled the first section of the poll creation.'));
     $smarty->display('error.tpl');
@@ -64,8 +64,8 @@ if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? 
     // Step 4 : Data prepare before insert in DB
     if (isset($_POST['confirmation'])) {
         // Define expiration date
-        $expiration_date = $inputService->validateDate($_POST['expiration_date'], $pollService->minExpiryDate(), $pollService->maxExpiryDate());
-        $form->end_date = $expiration_date->getTimestamp();
+        $expiration_date = $inputService->parseDate($_POST['enddate']);
+        $form->end_date = $inputService->validateDate($expiration_date, $pollService->minExpiryDate(), $pollService->maxExpiryDate())->getTimestamp();
 
         // Insert poll in database
         $ids = $pollService->createPoll($form);
@@ -123,7 +123,7 @@ if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? 
             preg_match_all('/\[!\[(.*?)\]\((.*?)\)\]\((.*?)\)/', $choice->getName(), $md_a_img); // Markdown [![alt](src)](href)
             preg_match_all('/!\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_img); // Markdown ![alt](src)
             preg_match_all('/\[(.*?)\]\((.*?)\)/', $choice->getName(), $md_a); // Markdown [text](href)
-            if (isset($md_a_img[2][0]) && $md_a_img[2][0] !== '' && isset($md_a_img[3][0]) && $md_a_img[3][0] !== '') { // [![alt](src)](href)
+            if (isset($md_a_img[2][0], $md_a_img[3][0]) && $md_a_img[2][0] !== '' && $md_a_img[3][0] !== '') { // [![alt](src)](href)
                 $li_subject_text = (isset($md_a_img[1][0]) && $md_a_img[1][0] !== '') ? stripslashes($md_a_img[1][0]) : __('Generic', 'Choice') . ' ' . ($i + 1);
                 $li_subject_html = '<a href="' . $md_a_img[3][0] . '"><img src="' . $md_a_img[2][0] . '" class="img-responsive" alt="' . $li_subject_text . '" /></a>';
             } elseif (isset($md_img[2][0]) && $md_img[2][0] !== '') { // ![alt](src)
@@ -175,7 +175,7 @@ if (empty($form->title) || empty($form->admin_name) || (($config['use_smtp']) ? 
         $choices = $form->getChoices();
         $nb_choices = max(count($choices), 5);
         for ($i = 0; $i < $nb_choices; $i++) {
-            $choice = isset($choices[$i]) ? $choices[$i] : new Choice();
+            $choice = $choices[$i] ?? new Choice();
             echo '
             <div class="form-group choice-field">
                 <label for="choice' . $i . '" class="col-sm-2 control-label">' . __('Generic', 'Choice') . ' ' . ($i + 1) . '</label>

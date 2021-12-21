@@ -35,7 +35,7 @@ $poll = null;
 /*----------*/
 
 $logService = new LogService();
-$pollService = new PollService($connect, $logService);
+$pollService = new PollService($logService);
 $securityService = new SecurityService();
 
 /* PAGE */
@@ -110,7 +110,7 @@ foreach ($votes as $vote) {
                 $text = __('Generic', 'Yes');
                 break;
             default:
-                $text = 'unkown';
+                $text = __('Generic', 'Unknown');
         }
         echo Utils::csvEscape($text);
         echo ',';

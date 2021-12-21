@@ -281,7 +281,8 @@
         "Make your polls": "Feu el vostre sondeig",
         "Framadate is an online service for planning an appointment or make a decision quickly and easily.": "Framadate és un servei en línia per planificar una cita o prendre una decisió de forma ràpida i senzilla.",
         "Caption": "Títol",
-        "ASTERISK": "*"
+        "ASTERISK": "*",
+        "Unknown": "Desconegut"
     },
     "FindPolls": {
         "Send me my polls": "Envia'm les enquestes",

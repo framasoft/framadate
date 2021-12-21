@@ -208,7 +208,8 @@
       "seconds": "ثواني",
       "vote": "vote",
       "votes": "أصوات",
-      "with": "with"
+      "with": "with",
+      "Unknown": "مجهول"
    },
    "Homepage": {
       "Make a classic poll": "Make a standard poll",
