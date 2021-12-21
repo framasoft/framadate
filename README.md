@@ -22,10 +22,10 @@ Follow the instructions on <https://framagit.org/framasoft/framadate/framadate/-
 
 # Used libraries
 
-* PHP [PHP 5.6](http://php.net)
+* PHP [PHP 7.3](http://php.net)
 * Templating [Smarty](http://www.smarty.net/),
-* I18N [o80-i18n](https://github.com/olivierperez/o80-i18n)
-* Database: PostgreSQL ou [MySQL 5.5](https://dev.mysql.com/downloads/mysql/5.5.html)
+* I18N [o80-i18n](https://framagit.org/framasoft/framadate/o80-i18nn)
+* Database: MySQL or MariaDB.
 
 ---
 
