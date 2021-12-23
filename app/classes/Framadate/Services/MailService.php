@@ -61,6 +61,7 @@ class MailService {
             $mail->CharSet = 'UTF-8';
             $mail->addCustomHeader('Auto-Submitted', 'auto-generated');
             $mail->addCustomHeader('Return-Path', '<>');
+            $mail->XMailer = ' ';
 
             // Send mail
             $mail->send();
