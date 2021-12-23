@@ -1,5 +1,13 @@
 # Changelog de framadate
 
+## 1.1.19
+
+23-12-2021
+
+### Fixed
+
+- Remove the X-Mailer header in e-mails, as this causes some email servers to see emails sent by Framadate as spam
+
 ## 1.1.18
 20-12-2021
 
