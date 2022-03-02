@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-19 13:45+0200\n"
-"PO-Revision-Date: 2022-03-01 17:38+0000\n"
+"PO-Revision-Date: 2022-03-02 13:08+0000\n"
 "Last-Translator: miren <mail@miren.bz>\n"
 "Language-Team: Basque <https://weblate.framasoft.org/projects/framadate/"
 "framadate/eu/>\n"
@@ -61,15 +61,17 @@ msgstr "CeCILL-B lizentzia"
 
 #: .2nd+section.Framadate+is+licensed+under+the
 msgid "Framadate is licensed under the"
-msgstr ""
+msgstr "Framadate lizentziatua dago"
 
 #: .2nd+section.Framadate+was+initially+based+on
+#, fuzzy
 msgid "Framadate was initially based on"
-msgstr ""
+msgstr "Jatorriz, Framadate"
 
 #: .2nd+section.The+software
+#, fuzzy
 msgid "The software"
-msgstr ""
+msgstr "Softwarea"
 
 #: .2nd+section.This+software+needs+javascript+and+cookies+enabled.+It+is+compatible+with+the+following+web+browsers:
 msgid ""
@@ -80,14 +82,17 @@ msgstr ""
 "nabigatzaileekin bateragarria da:"
 
 #: .2nd+section.software+developed+by+the+University+of+Strasbourg.+These+days,+it+is+developed+by+the+Framasoft+association.
+#, fuzzy
 msgid ""
 "software developed by the University of Strasbourg. These days, it is "
 "developed by the Framasoft association."
 msgstr ""
+"Strasbourg-eko Unibertsitateak garatutako softwarean oinarrituta zegoen. "
+"Gaur egun, Framasoft elkarteak garatzen du."
 
 #: .3rd+section.Grow+your+own
 msgid "Grow your own"
-msgstr ""
+msgstr "Landatu zure"
 
 #: .3rd+section.If+you+want+to+install+the+software+for+your+own+use+and+thus+increase+your+independence,+we+can+help+you+at:
 msgid ""
@@ -136,7 +141,7 @@ msgstr "Emaila"
 
 #: .Admin.Executed
 msgid "Executed"
-msgstr ""
+msgstr "Egina"
 
 #: .Admin.Expiry+date
 #: .Generic.Expiry+date
@@ -145,7 +150,7 @@ msgstr "Iraungitze data"
 
 #: .Admin.Fail
 msgid "Fail"
-msgstr ""
+msgstr "Hutsegitea"
 
 #: .Admin.Failed:
 msgid "Failed:"
@@ -189,15 +194,15 @@ msgstr "Galdeketak"
 
 #: .Admin.Purge
 msgid "Purge"
-msgstr ""
+msgstr "Purgatu"
 
 #: .Admin.Purge+the+polls
 msgid "Purge the polls"
-msgstr ""
+msgstr "Purgatu galdeketak"
 
 #: .Admin.Purged:
 msgid "Purged:"
-msgstr ""
+msgstr "Purgatua:"
 
 #: .Admin.See+the+poll
 msgid "See the poll"
@@ -239,7 +244,7 @@ msgstr "Zain"
 
 #: .Admin.polls+in+the+database+at+this+time
 msgid "polls in the database at this time"
-msgstr ""
+msgstr "galdeketa datu-basean une honetan"
 
 #: .Check.Check+again
 msgid "Check again"
@@ -260,6 +265,9 @@ msgid ""
 " php_value session.cookie_httponly 1 » to your .htaccess so that cookies "
 "can't be accessed through Javascript."
 msgstr ""
+"Gogoan hartu \"session.cookie_httponly = 1\" ezartzea zure php.ini-an edo "
+"gehitu \"php_value session.cookie_httponly 1\" zure .htaccess fitxategira "
+"cookieak Javascript bitartez irisgarri izan ez daitezen."
 
 #: .Check.Continue+the+installation
 msgid "Continue the installation"
@@ -270,8 +278,9 @@ msgid "Cookies are served from HTTP only."
 msgstr "Cookieak HTTP bidez soilik zerbitzatzen dira."
 
 #: .Check.Installation+checking
+#, fuzzy
 msgid "Installation checking"
-msgstr ""
+msgstr "Instalazioa egiaztatzen"
 
 #: .Check.OpenSSL+extension+loaded.
 msgid "OpenSSL extension loaded."
@@ -290,28 +299,32 @@ msgid ""
 "The config file directory (%s) is not writable and the config file (%s) does "
 "not exists."
 msgstr ""
+"Konfigurazio fitxategiaren direktorioan (%s) ez dago idazteko baimenik eta "
+"konfigurazio fitxategia (%s) ez da existitzen."
 
 #: .Check.The+config+file+directory+(%25s)+is+writable.
 msgid "The config file directory (%s) is writable."
-msgstr ""
+msgstr "Konfigurazio fitxategiaren direktorioan (%s) idatz daiteke."
 
 #: .Check.The+config+file+exists.
 msgid "The config file exists."
-msgstr ""
+msgstr "Konfigurazio fitxategia existitzen da."
 
 #: .Check.The+template+compile+directory+(%25s)+doesn%27t+exist+in+%22%25s%22.+Retry+the+installation+process.
 msgid ""
 "The template compile directory (%s) doesn't exist in \"%s\". Retry the "
 "installation process."
 msgstr ""
+"Txantiloien konpilazio direktorioa (%s) ez da existitzen \"%s\"(e)n. Saiatu "
+"instalazio prozesua berrabiarazten."
 
 #: .Check.The+template+compile+directory+(%25s)+is+not+writable.
 msgid "The template compile directory (%s) is not writable."
-msgstr ""
+msgstr "Txantiloien konpilazio direktorioan (%s) ezin da idatzi."
 
 #: .Check.The+template+compile+directory+(%25s)+is+writable.
 msgid "The template compile directory (%s) is writable."
-msgstr ""
+msgstr "Txantiloien konpilazio direktorioan (%s) idatz daiteke."
 
 #: .Check.You+need+to+enable+the+PHP+Intl+extension.
 msgid "You need to enable the PHP Intl extension."
@@ -350,7 +363,7 @@ msgstr "Adierazi zure izena eta iruzkina formularioa bidali aurretik"
 
 #: .Comments.Remove+comment
 msgid "Remove comment"
-msgstr "Iruzkina ezabatu"
+msgstr "Iruzkina kendu"
 
 #: .Comments.Submit+comment
 msgid "Submit comment"
@@ -358,27 +371,25 @@ msgstr "Iruzkina bidali"
 
 #: .Date.%25A+%25e+%25B+%25Y
 msgid "%A %e %B %Y"
-msgstr ""
+msgstr "%A %e %B %Y"
 
 #: .Date.%25A,+%25B+%25e,+%25Y
 msgid "%A, %B %e, %Y"
-msgstr ""
+msgstr "%A, %B %e, %Y"
 
 #: .Date.%25B+%25Y
 msgid "%B %Y"
-msgstr ""
+msgstr "%B %Y"
 
 #: .Date.%25Y-%25m-%25d
-#, fuzzy
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
 
 #: .Date.%25a+%25e
 msgid "%a %e"
-msgstr ""
+msgstr "%a %e"
 
 #: .Date.%25m/%25d/%25Y+%25H:%25M
-#, fuzzy
 msgid "%m/%d/%Y %H:%M"
 msgstr "%m/%d/%Y %H:%M"
 
@@ -429,6 +440,8 @@ msgstr ""
 msgid ""
 "Please wait %d seconds before we can send an email to you then try again."
 msgstr ""
+"Mesedez, itxaron %d segundo email bat bidaltzeko denbora izan dezagun eta "
+"saiatu berriro."
 
 #: .EditLink.REMINDER
 msgid "REMINDER"
@@ -535,7 +548,7 @@ msgstr "Debekatuta!"
 
 #: .Error.GenericErrorPollCreation
 msgid "GenericErrorPollCreation"
-msgstr ""
+msgstr "GaldeketaSorreraErroreGenerikoa"
 
 #: .Error.Identifier+is+already+used
 msgid "Identifier is already used"
@@ -641,6 +654,7 @@ msgstr "Botoa eman duzu dagoeneko"
 #: .Error.You+can%27t+create+a+poll+with+hidden+results+with+the+following+option:+
 msgid "You can't create a poll with hidden results with the following option: "
 msgstr ""
+"Ezin duzu galdeketa bat sortu emaitza ezkutuekin eta ondorengo aukerarekin: "
 
 #: .Error.You+can%27t+select+more+than+%25d+dates
 msgid "You can't select more than %d dates"
@@ -651,12 +665,16 @@ msgid ""
 "You haven't filled the first section of the poll creation, or your session "
 "has expired."
 msgstr ""
+"Ez duzu galdeketa sorrerako lehen atala bete, ala zure saioa iraungi egin da."
 
 #: .Error.Your+vote+wasn%27t+counted,+because+someone+voted+in+the+meantime+and+it+conflicted+with+your+choices+and+the+poll+conditions.+Please+retry.
 msgid ""
 "Your vote wasn't counted, because someone voted in the meantime and it "
 "conflicted with your choices and the poll conditions. Please retry."
 msgstr ""
+"Zure botoa ez da kontuan hartu, norbaitek bitartean botoa eman baitu eta "
+"zure aukerekin eta galdeketaren baldintzekin talka egin duelako. Mesedez, "
+"saiatu berriro."
 
 #: .FindPolls.Address
 msgid "Address"
@@ -679,10 +697,13 @@ msgid ""
 "If you weren't the source of this action and if you think this is an abuse "
 "of the service, please notify the administrator at %s."
 msgstr ""
+"Ez bazara ekintza honen iturria izan eta zerbitzuaren abusua izan dela uste "
+"baduzu, mesedez jar zaitez administrariarekin harremanetan %s bitartez."
 
 #: .FindPolls.Its+address
+#, fuzzy
 msgid "Its address"
-msgstr ""
+msgstr "Haren helbidea"
 
 #: .FindPolls.Last+access+date
 msgid "Last access date"
@@ -697,10 +718,12 @@ msgid ""
 "PS: this email has been sent because you – or someone else – asked to get "
 "back the polls created with your email address."
 msgstr ""
+"PD: email hau bidali da zuk (ala beste norbaitek) zure email helbidearekin "
+"sortutako galdeketak berreskuratzeko eskatu duzulako."
 
 #: .FindPolls.Polls+saved+inside+this+browser
 msgid "Polls saved inside this browser"
-msgstr ""
+msgstr "Nabigatzaile honetan gordetako galdeketak"
 
 #: .FindPolls.Polls+sent
 msgid "Polls sent"
@@ -708,11 +731,11 @@ msgstr "Bidalitako galdeketak"
 
 #: .FindPolls.Remove+all+my+polls+from+this+browser%27s+index
 msgid "Remove all my polls from this browser's index"
-msgstr "Ezabatu nire galdeketa guztiak nabigatzaile honen indizetik"
+msgstr "Kendu nire galdeketa guztiak nabigatzaile honen indizetik"
 
 #: .FindPolls.Remove+poll+from+index
 msgid "Remove poll from index"
-msgstr "Ezabatu galdeketa indizetik"
+msgstr "Kendu galdeketa indizetik"
 
 #: .FindPolls.Send+me+my+polls
 msgid "Send me my polls"
@@ -724,7 +747,7 @@ msgstr "Bidali nire galdeketak email bidez"
 
 #: .FindPolls.The+date+you+created+or+last+accessed+the+poll
 msgid "The date you created or last accessed the poll"
-msgstr ""
+msgstr "Galdeketa sortu edo azkenekoz bisitatu zenuen data"
 
 #: .FindPolls.The+title+of+the+poll
 msgid "The title of the poll"
@@ -739,6 +762,9 @@ msgid ""
 "To delete this data click the trashcan on the according line or click the « "
 "delete my polls index » option. This won't delete your polls."
 msgstr ""
+"Datu hauek ezabatzeko klikatu zakarrontziak dagokion lerroan ala klikatu "
+"\"ezabatu nire galdeketaren indizea\" aukera. Honek ez ditu zure galdeketak "
+"ezabatuko."
 
 #: .FindPolls.To+help+you+find+your+previous+polls,+we+save+each+poll+you+create+or+access+inside+your+browser.+This+data+is+saved+inside+this+browser+only.+The+following+data+will+be+saved:
 msgid ""
@@ -746,6 +772,9 @@ msgid ""
 "inside your browser. This data is saved inside this browser only. The "
 "following data will be saved:"
 msgstr ""
+"Zure aurreko galdeketak aurkitzeko, zure nabigatzailearen baitan gordetzen "
+"dugu sortu edo bisitatzen duzun galdeketa oro. Datu hauek nabigatzaile "
+"honetan bakarrik gordetzen dira. Honako datuak dira gordetzen direnak:"
 
 #: .FindPolls.Visited+polls
 msgid "Visited polls"
@@ -765,7 +794,7 @@ msgstr "Atzera"
 
 #: .Generic.Back+to+the+homepage+of
 msgid "Back to the homepage of"
-msgstr ""
+msgstr "Itzuli honakoaren hasiera-orrira"
 
 #: .Generic.Cancel
 msgid "Cancel"
@@ -813,6 +842,8 @@ msgid ""
 "Framadate is an online service for planning an appointment or making a "
 "decision quickly and easily."
 msgstr ""
+"Framadate hitzordu bat antolatu edo erabaki bat hartzeko lineako zerbitzua "
+"da, azkar eta erraz."
 
 #: .Generic.Home
 msgid "Home"
@@ -824,7 +855,7 @@ msgstr "Informazioa"
 
 #: .Generic.Legend:
 msgid "Legend:"
-msgstr ""
+msgstr "Legenda:"
 
 #: .Generic.Link
 msgid "Link"
@@ -844,7 +875,7 @@ msgstr "Ez"
 
 #: .Generic.Page+generated+in
 msgid "Page generated in"
-msgstr ""
+msgstr "Orria sortua"
 
 #: .Generic.Poll
 msgid "Poll"
@@ -852,7 +883,7 @@ msgstr "Galdeketa"
 
 #: .Generic.Remove
 msgid "Remove"
-msgstr "Ezabatu"
+msgstr "Kendu"
 
 #: .Generic.Save
 msgid "Save"
@@ -868,7 +899,7 @@ msgstr "Ordua"
 
 #: .Generic.Under+reserve
 msgid "Under reserve"
-msgstr ""
+msgstr "Erreserbapean"
 
 #: .Generic.Validate
 msgid "Validate"
@@ -936,15 +967,15 @@ msgstr "Aplikazioaren izena"
 
 #: .Installation.Clean+URL
 msgid "Clean URL"
-msgstr ""
+msgstr "Garbitu URLa"
 
 #: .Installation.Database+driver
 msgid "Database driver"
-msgstr ""
+msgstr "Datu-basearen kontrolatzailea"
 
 #: .Installation.Database+hostname
 msgid "Database hostname"
-msgstr ""
+msgstr "Datu-basearen ostalari-izena"
 
 #: .Installation.Database+name
 msgid "Database name"
@@ -952,7 +983,7 @@ msgstr "Datu-basearen izena"
 
 #: .Installation.Database+port
 msgid "Database port"
-msgstr ""
+msgstr "Datu-basearen portua"
 
 #: .Installation.Default+language
 msgid "Default language"
@@ -968,7 +999,7 @@ msgstr "Instalatu"
 
 #: .Installation.Migration+table
 msgid "Migration table"
-msgstr ""
+msgstr "Migrazio taula"
 
 #: .Installation.Password
 #: .Password.Password
@@ -1002,6 +1033,9 @@ msgid ""
 "donations.<br/>Thank you in advance for your support "
 "https://soutenir.framasoft.org"
 msgstr ""
+"\"Errepidea luzea da, baina bidea argia...\"<br/>Framasoft zure donazioei "
+"esker bizi da.<br/>Eskerrik asko aldez aurretik zure laguntzagatik "
+"https://soutenir.framasoft.org"
 
 #: .Mail.Message+for+the+author
 msgid "Message for the author"
@@ -1024,6 +1058,8 @@ msgid ""
 "Someone just changed your poll at the following link <a href=\"%1$s\""
 ">%1$s</a>."
 msgstr ""
+"Norbaitek zure galdeketa aldatu berri du honako estekan <a href=\"%1$s\""
+">%1$s</a>."
 
 #: .Mail.Someone+just+deleted+your+poll+%22%25s%22.
 msgid "Someone just deleted your poll \"%s\"."
@@ -1031,11 +1067,11 @@ msgstr "Norbaitek zure \"%s\" galdeketa ezabatu berri du."
 
 #: .Mail.Thank+you+for+participating+in+the+poll+at+the+following+link
 msgid "Thank you for participating in the poll at the following link"
-msgstr ""
+msgstr "Eskerrik asko galdeketan parte-hartzeagatik, honako estekan"
 
 #: .Mail.Thank+you+for+your+trust.
 msgid "Thank you for your trust."
-msgstr ""
+msgstr "Ezkerrik asko zure konfiantzagatik."
 
 #: .Mail.This+is+the+message+to+forward+to+the+poll+participants.
 msgid "This is the message to forward to the poll participants."
@@ -1046,38 +1082,42 @@ msgid ""
 "This message should NOT be sent to the poll participants. You should keep it "
 "private. <br/><br/>You can modify your poll at the following link"
 msgstr ""
+"Mezu hau EZ litzateke galdeketako parte-hartzaileei bidali behar. Pribatuan "
+"mantendu behar zenuke.<br/><br/>Zure galdeketa alda dezakezu honako estekan"
 
 #: .Mail.added+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "added a vote.<br/>You can visit your poll at the link"
-msgstr ""
+msgstr "boto bat gehitu du.<br/>Zure galdeketa bisita dezakezu honako estekan"
 
 #: .Mail.has+just+created+a+poll+called
 msgid "has just created a poll called"
-msgstr ""
+msgstr "(e)k galdeketa bat sortu berri du honako izenarekin"
 
 #: .Mail.updated+a+vote.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "updated a vote.<br/>You can visit your poll at the link"
 msgstr ""
+"(e)k boto bat eguneratu du.<br/>Zure galdeketa bisita dezakezu honako estekan"
 
 #: .Mail.wrote+a+comment.%3Cbr/%3EYou+can+visit+your+poll+at+the+link
 msgid "wrote a comment.<br/>You can visit your poll at the link"
 msgstr ""
+"(e)k iruzkin bat idatzi du.<br/>Zure galdeketa bisita dezakezu honako estekan"
 
 #: .Maintenance.Thank+you+for+your+understanding.
 msgid "Thank you for your understanding."
-msgstr ""
+msgstr "Eskerrik asko ulertzeagatik."
 
 #: .Maintenance.The+application
 msgid "The application"
-msgstr ""
+msgstr "Aplikazioa"
 
 #: .Maintenance.is+currently+under+maintenance.
 msgid "is currently under maintenance."
-msgstr ""
+msgstr "mantenupean dago une honetan."
 
 #: .Password.Submit+access
 msgid "Submit access"
-msgstr ""
+msgstr "Bidali sarbidea"
 
 #: .Password.Wrong+password
 msgid "Wrong password"
@@ -1085,19 +1125,19 @@ msgstr "Pasahitz okerra"
 
 #: .Password.You+have+to+provide+a+password+so+you+can+participate+to+the+poll.
 msgid "You have to provide a password so you can participate to the poll."
-msgstr ""
+msgstr "Pasahitz bat ezarri behar duzu galdeketan parte hartzeko."
 
 #: .Password.You+have+to+provide+a+password+to+access+the+poll.
 msgid "You have to provide a password to access the poll."
-msgstr ""
+msgstr "Pasahitz bat ezarri behar duzu galdeketara sartzeko."
 
 #: .Poll+results.%25s+option
 msgid "%s option"
-msgstr ""
+msgstr "%s aukera"
 
 #: .Poll+results.Anyone+will+be+able+to+see+your+email+address+after+you+voted
 msgid "Anyone will be able to see your email address after you voted"
-msgstr ""
+msgstr "Edonork ikusi ahalko du zure email helbidea behin botoa eman duzunean"
 
 #: .Poll+results.Best+choice
 msgid "Best choice"
@@ -1121,11 +1161,11 @@ msgstr "Editatu lerroa: %s"
 
 #: .Poll+results.Link+to+edit+this+particular+line
 msgid "Link to edit this particular line"
-msgstr ""
+msgstr "Lerro zehatz hau editatzeko esteka"
 
 #: .Poll+results.Remove+line:
 msgid "Remove line:"
-msgstr "Ezabatu lerroa:"
+msgstr "Kendu lerroa:"
 
 #: .Poll+results.Save+choices
 msgid "Save choices"
@@ -1133,11 +1173,11 @@ msgstr "Gorde aukerak"
 
 #: .Poll+results.Scroll+to+the+left
 msgid "Scroll to the left"
-msgstr ""
+msgstr "Korritu ezkerrera"
 
 #: .Poll+results.Scroll+to+the+right
 msgid "Scroll to the right"
-msgstr ""
+msgstr "Korritu eskubira"
 
 #: .Poll+results.The+current+best+choice+is:
 msgid "The current best choice is:"
@@ -1149,7 +1189,7 @@ msgstr "Uneko aukerarik onenak honakoak dira:"
 
 #: .Poll+results.The+link+to+edit+this+particular+line+has+been+copied+to+the+clipboard%21
 msgid "The link to edit this particular line has been copied to the clipboard!"
-msgstr ""
+msgstr "Lerro zehatz hau editatzeko esteka arbelean kopiatu da!"
 
 #: .Poll+results.Total
 msgid "Total"
@@ -1157,23 +1197,23 @@ msgstr "Guztira"
 
 #: .Poll+results.Vote+%22no%22+for
 msgid "Vote \"no\" for"
-msgstr ""
+msgstr "Bozkatu \"ez\""
 
 #: .Poll+results.Vote+%22yes%22+for
 msgid "Vote \"yes\" for"
-msgstr ""
+msgstr "Bozkatu \"bai\""
 
 #: .Poll+results.Votes+under+reserve+for
 msgid "Votes under reserve for"
-msgstr ""
+msgstr "Botoak erreserbapean"
 
 #: .Poll+results.polled+user
 msgid "polled user"
-msgstr ""
+msgstr "inkestatutako erabiltzailea"
 
 #: .Poll+results.polled+users
 msgid "polled users"
-msgstr ""
+msgstr "inkestatutako erabiltzaileak"
 
 #: .PollInfo.Admin+link+for+the+poll
 msgid "Admin link for the poll"
@@ -1241,7 +1281,7 @@ msgstr "Pasahitzik ez"
 
 #: .PollInfo.Only+votes+are+protected
 msgid "Only votes are protected"
-msgstr ""
+msgstr "Botoak bakarrik daude babestuta"
 
 #: .PollInfo.Password+protected
 msgid "Password protected"
@@ -1261,19 +1301,19 @@ msgstr "Galdeketarako esteka publikoa"
 
 #: .PollInfo.Remove+all+comments
 msgid "Remove all comments"
-msgstr "Iruzkin guztiak ezabatu"
+msgstr "Iruzkin guztiak kendu"
 
 #: .PollInfo.Remove+all+votes
 msgid "Remove all votes"
-msgstr "Boto guztiak ezabatu"
+msgstr "Boto guztiak kendu"
 
 #: .PollInfo.Remove+password
 msgid "Remove password"
-msgstr "Pasahitza ezabatu"
+msgstr "Pasahitza kendu"
 
 #: .PollInfo.Remove+the+poll
 msgid "Remove the poll"
-msgstr "Galdeketa ezabatu"
+msgstr "Galdeketa kendu"
 
 #: .PollInfo.Results+are+hidden
 msgid "Results are hidden"
@@ -1321,23 +1361,25 @@ msgstr "Galdeketaren izenburua"
 
 #: .PollInfo.Voters%27+email+addresses+are+collected
 msgid "Voters' email addresses are collected"
-msgstr ""
+msgstr "Boto-emaileen helbideak bildu egiten dira"
 
 #: .PollInfo.Voters%27+email+addresses+are+collected+and+required
 msgid "Voters' email addresses are collected and required"
-msgstr ""
+msgstr "Boto-emaileen email helbideak bildu egiten dira eta nahitaezkoak dira"
 
 #: .PollInfo.Voters%27+email+addresses+are+collected,+required+and+verified
 msgid "Voters' email addresses are collected, required and verified"
 msgstr ""
+"Boto-emaileen email helbideak bildu eta egiaztatu egiten dira, eta "
+"nahitaezkoak dira"
 
 #: .PollInfo.Voters%27+email+addresses+are+not+collected
 msgid "Voters' email addresses are not collected"
-msgstr ""
+msgstr "Boto-emaileen email helbiderik ez da biltzen"
 
 #: .PollInfo.Votes+and+comments+are+locked
 msgid "Votes and comments are locked"
-msgstr ""
+msgstr "Botoak eta iruzkinak blokeatuta daude"
 
 #: .PollInfo.Votes+protected+by+password
 msgid "Votes protected by password"
@@ -1348,14 +1390,17 @@ msgid "All voters can modify any vote"
 msgstr "Boto-emaile guztiek edozein boto alda dezakete"
 
 #: .Step+1.By+defining+an+identifier+that+can+facilitate+access+to+the+poll+for+unwanted+people.+It+is+recommended+to+protect+it+with+a+password.
+#, fuzzy
 msgid ""
 "By defining an identifier that can facilitate access to the poll for "
 "unwanted people. It is recommended to protect it with a password."
 msgstr ""
+"Identifikatzaile bat definituz, nahi ez den pertsonen galdeketarako sarbidea "
+"erraz dezakeena. Gomendatzen da pasahitzez babestea."
 
 #: .Step+1.Collect+voters%27+email+addresses
 msgid "Collect voters' email addresses"
-msgstr ""
+msgstr "Bildu boto-emaileen email helbideak"
 
 #: .Step+1.Confirmation
 msgid "Confirmation"
@@ -1367,19 +1412,19 @@ msgstr "Pertsonalizatu URLa"
 
 #: .Step+1.Email+addresses+are+collected+but+not+required
 msgid "Email addresses are collected but not required"
-msgstr ""
+msgstr "Email helbideak bildu egiten dira baina ez dira ezinbestekoak"
 
 #: .Step+1.Email+addresses+are+not+collected
 msgid "Email addresses are not collected"
-msgstr ""
+msgstr "Email helbideak ez dira biltzen"
 
 #: .Step+1.Email+addresses+are+required
 msgid "Email addresses are required"
-msgstr ""
+msgstr "Email helbideak nahitaezkoak dira"
 
 #: .Step+1.Email+addresses+are+required+and+verified
 msgid "Email addresses are required and verified"
-msgstr ""
+msgstr "Email helbideak nahitaezkoak dira eta egiaztatu egiten dira"
 
 #: .Step+1.Go+to+step+2
 msgid "Go to step 2"
@@ -1395,7 +1440,7 @@ msgstr "Informazio gehiago hemen:"
 
 #: .Step+1.Only+the+poll+maker+can+see+the+poll+results
 msgid "Only the poll maker can see the poll results"
-msgstr ""
+msgstr "Galdeketaren egileak bakarrik ikusi ditzake galdeketaren emaitzak"
 
 #: .Step+1.Optional+parameters
 msgid "Optional parameters"
@@ -1420,200 +1465,212 @@ msgstr "Galdeketaren izenburua"
 
 #: .Step+1.Receive+an+email+for+each+new+comment
 msgid "Receive an email for each new comment"
-msgstr ""
+msgstr "Emaila jaso iruzkin berri bakoitzeko"
 
 #: .Step+1.Receive+an+email+for+each+new+vote
 msgid "Receive an email for each new vote"
-msgstr ""
+msgstr "Emaila jaso boto berri bakoitzeko"
 
 #: .Step+1.Required+fields+cannot+be+left+blank.
 msgid "Required fields cannot be left blank."
-msgstr ""
+msgstr "Nahitaezko eremuak ezin dira hutsik utzi."
 
 #: .Step+1.The+identifier+can+contain+letters,+numbers+and+dashes+%22-%22.
 msgid "The identifier can contain letters, numbers and dashes \"-\"."
-msgstr ""
+msgstr "Identifikatzaileak letrak, zenbakiak eta marrak \"-\" izan ditzake."
 
 #: .Step+1.The+results+are+publicly+visible
 msgid "The results are publicly visible"
-msgstr ""
+msgstr "Emaitzak publikoki ikusgai daude"
 
 #: .Step+1.To+make+the+description+more+attractive,+you+can+use+the+Markdown+format.
 msgid ""
 "To make the description more attractive, you can use the Markdown format."
 msgstr ""
+"Deskribapena erakargarriagoa egiteko, Markdown formatua erabil dezakezu."
 
 #: .Step+1.Use+a+password+to+restrict+access
 msgid "Use a password to restrict access"
-msgstr ""
+msgstr "Erabili pasahitz bat sarbidea mugatzeko"
 
 #: .Step+1.Value+Max
 msgid "Value Max"
-msgstr ""
+msgstr "Balio Max"
 
 #: .Step+1.Voters+can+modify+their+vote+themselves
 msgid "Voters can modify their own vote themselves"
-msgstr ""
+msgstr "Boto-emaileek euren botoa alda dezakete"
 
 #: .Step+1.Votes+cannot+be+modified
 msgid "Votes cannot be modified"
-msgstr ""
+msgstr "Botoak ezin dira aldatu"
 
 #: .Step+1.Warning:+Anyone+can+see+the+polled+users%27+email+addresses+since+all+voters+can+modify+any+vote.+You+should+restrict+permission+rules.
 msgid ""
 "Warning: Anyone can see the polled users' email addresses since all voters "
 "can modify any vote. You should restrict permission rules."
 msgstr ""
+"Ohartarazpena: Edonork ikus ditzake inkestatutako erabiltzaileen email "
+"helbideak, boto-emaile guztiek edozein boto alda dezakete eta. Baimen arauak "
+"mugatu behar zenituzke."
 
 #: .Step+1.You+are+in+the+poll+creation+section.
 msgid "You are in the poll creation section."
-msgstr ""
+msgstr "Galdeketaren sorrera atalean zaude."
 
 #: .Step+1.You+can+enable+or+disable+the+editor+at+will.
 msgid "You can enable or disable the editor at will."
-msgstr ""
+msgstr "Nahi duzunean gaitu ala desgaitu dezakezu editorea."
 
 #: .Step+1.votes+per+option
 msgid "votes per option"
-msgstr ""
+msgstr "boto aukera bakoitzeko"
 
 #: .Step+2.Go+to+step+3
 msgid "Go to step 3"
-msgstr ""
+msgstr "Joan 3. pausora"
 
 #: .Step+2.Return+to+step+1
 msgid "Return to step 1"
-msgstr ""
+msgstr "Itzuli 1. pausora"
 
 #: .Step+2+classic.Add+a+choice
 msgid "Add a choice"
-msgstr ""
+msgstr "Aukera bat gehitu"
 
 #: .Step+2+classic.Add+a+link+or+an+image
 msgid "Add a link or an image"
-msgstr ""
+msgstr "Esteka edo irudi bat gehitu"
 
 #: .Step+2+classic.Alternative+text
 msgid "Alternative text"
-msgstr ""
+msgstr "Ordezko testua"
 
 #: .Step+2+classic.Links+or+images+can+be+included+using
 msgid "Links or images can be included using"
-msgstr ""
+msgstr "Estekak edo irudiak erantsi daitezke honakoa erabiliz"
 
 #: .Step+2+classic.Markdown+syntax
 msgid "Markdown syntax"
-msgstr ""
+msgstr "Markdown sintaxia"
 
 #: .Step+2+classic.Poll+options+(2+of+3)
 msgid "Poll options (2 of 3)"
-msgstr ""
+msgstr "Galdeketaren aukerak (3tik 2)"
 
 #: .Step+2+classic.Remove+a+choice
 msgid "Remove a choice"
-msgstr ""
+msgstr "Aukera bat kendu"
 
 #: .Step+2+classic.These+fields+are+optional.+You+can+add+a+link,+an+image+or+both.
 msgid "These fields are optional. You can add a link, an image or both."
 msgstr ""
+"Eremu hauek hautazkoak dira. Esteka bat, irudi bat ala biak gehitu ditzakezu."
 
 #: .Step+2+classic.To+create+a+poll+you+should+provide+at+least+two+different+choices.
 msgid "To create a poll you should provide at least two different choices."
 msgstr ""
+"Galdeketa bat sortzeko gutxienez bi aukera ezberdin idatzi behar dituzu."
 
 #: .Step+2+classic.URL+of+the+image
 msgid "URL of the image"
-msgstr ""
+msgstr "Irudiaren URLa"
 
 #: .Step+2+classic.You+can+add+or+remove+choices+with+the+buttons
 msgid "You can add or remove choices with the buttons"
-msgstr ""
+msgstr "Aukerak gehitu ala kendu ditzakezu honako botoiak erabiliz"
 
 #: .Step+2+date.Add+a+day
 msgid "Add a day"
-msgstr ""
+msgstr "Egun bat gehitu"
 
 #: .Step+2+date.Add+a+time+slot
 msgid "Add a time slot"
-msgstr ""
+msgstr "Denbora-tarte bat gehitu"
 
 #: .Step+2+date.Choose+dates+for+your+poll
 msgid "Choose dates for your poll"
-msgstr ""
+msgstr "Hautatu zure galdeketarako datak"
 
 #: .Step+2+date.Copy+times+from+the+first+day
 msgid "Copy times from the first day"
-msgstr ""
+msgstr "Lehen eguneko orduak kopiatu"
 
 #: .Step+2+date.For+each+selected+day,+you+are+free+to+suggest+meeting+times+(e.g.,+%228h%22,+%228:30%22,+%228h-10h%22,+%22evening%22,+etc.)
 msgid ""
 "For each selected day, you are free to suggest meeting times (e.g., \"8h\", "
 "\"8:30\", \"8h-10h\", \"evening\", etc.)"
 msgstr ""
+"Hautatutako egun bakoitzeko, modu librean iradoki ditzakezu bilera orduak ("
+"adibidez, \"08ak\", \"08:30\", \"08-10\", \"arratsaldea\", eta abar)"
 
 #: .Step+2+date.Poll+dates+(2+of+3)
 msgid "Poll dates (2 of 3)"
-msgstr ""
+msgstr "Galdeketaren datak (3tik 2)"
 
 #: .Step+2+date.Remove+a+day
 msgid "Remove a day"
-msgstr ""
+msgstr "Kendu egun bat"
 
 #: .Step+2+date.Remove+a+time+slot
 msgid "Remove a time slot"
-msgstr ""
+msgstr "Denbora-tarte bat kendu"
 
 #: .Step+2+date.Remove+all+days
 msgid "Remove all days"
-msgstr ""
+msgstr "Kendu egun guztiak"
 
 #: .Step+2+date.Remove+all+times
 msgid "Remove all times"
-msgstr ""
+msgstr "Kendu ordu guztiak"
 
 #: .Step+2+date.Remove+this+day
 msgid "Remove this day"
-msgstr ""
+msgstr "Kendu egun hau"
 
 #: .Step+2+date.To+schedule+an+event+you+need+to+provide+at+least+two+choices+(e.g.,+two+time+slots+on+one+day+or+two+days).
 msgid ""
 "To schedule an event you need to provide at least two choices (e.g., two "
 "time slots on one day or two days)."
 msgstr ""
+"Gertaera bat planifikatzeko gutxienez bi aukera proposatu behar dituzu ("
+"adibidez, bi denbora-tarte egun berean edo bi egun)."
 
 #: .Step+2+date.You+can+add+or+remove+additional+days+and+times+with+the+buttons
 msgid "You can add or remove additional days and times with the buttons"
-msgstr ""
+msgstr "Egun eta orduak gehitu ala kendu ditzakezu honako botoiekin"
 
 #: .Step+3.Back+to+step+2
 msgid "Back to step 2"
-msgstr ""
+msgstr "Itzuli 2. pausora"
 
 #: .Step+3.Confirm+the+creation+of+your+poll
 msgid "Confirm the creation of your poll"
-msgstr ""
+msgstr "Zure galdeketaren sorrera baieztatu"
 
 #: .Step+3.Create+the+poll
 msgid "Create the poll"
-msgstr ""
+msgstr "Sortu galdeketa"
 
 #: .Step+3.Expiry+date:
 msgid "Expiry date:"
-msgstr ""
+msgstr "Iraungitze-data:"
 
 #: .Step+3.List+of+options
 msgid "List of options"
-msgstr ""
+msgstr "Aukeren zerrenda"
 
 #: .Step+3.Once+you+have+confirmed+the+creation+of+your+poll,+you+will+automatically+be+redirected+to+the+poll%27s+administration+page.
 msgid ""
 "Once you have confirmed the creation of your poll, you will automatically be "
 "redirected to the poll's administration page."
 msgstr ""
+"Zure galdeketaren sorrera baieztatu duzunean, automatikoki joango zara "
+"galdeketaren administrazio orrira."
 
 #: .Step+3.Removal+date+and+confirmation+(3+of+3)
 msgid "Removal date and confirmation (3 of 3)"
-msgstr ""
+msgstr "Ezabapen-data eta baieztapena (3tik 3)"
 
 #: .Step+3.Then+you+will+receive+two+emails:+one+containing+the+link+of+your+poll+for+sending+to+the+participants,+the+other+containing+the+link+to+the+poll+administration+page.
 msgid ""
@@ -1621,210 +1678,228 @@ msgid ""
 "sending to the participants, the other containing the link to the poll "
 "administration page."
 msgstr ""
+"Gero bi email jasoko dituzu: bat parte-hartzaileei bidaltzeko galdeketaren "
+"esteka duena, eta bestea galdeketaren administrazio orrirako esteka duena."
 
 #: .Step+3.You+can+set+a+specific+expiry+date+for+the+poll.
 msgid "You can set a specific expiry date for the poll."
-msgstr ""
+msgstr "Iraungitze-data zehatz bat ezarri dezakezu galdeketarentzat."
 
 #: .Step+3.Your+poll+will+automatically+be+archived
 msgid "Your poll will automatically be archived"
-msgstr ""
+msgstr "Zure galdeketa automatikoki artxibatuko da"
 
 #: .Step+3.Your+poll+will+be+automatically+archived+in+%25d+days.
 msgid "Your poll will be automatically archived in %d days."
-msgstr ""
+msgstr "Zure galdeketa automatikoki artxibatuko da %d egunetan."
 
 #: .Step+3.after+the+last+date+of+your+poll.
 msgid "after the last date of your poll."
-msgstr ""
+msgstr "zure galdeketaren azken dataren ondoren."
 
 #: .Version.Version+%25s
 msgid "Version %s"
-msgstr ""
+msgstr "%s bertsioa"
 
 #: .adminstuds.Add+a+column
 msgid "Add a column"
-msgstr ""
+msgstr "Zutabe bat gehitu"
 
 #: .adminstuds.Adding+a+column
 msgid "Adding a column"
-msgstr ""
+msgstr "Zutabe bat gehitzen"
 
 #: .adminstuds.All+comments+deleted
 msgid "All comments deleted"
-msgstr ""
+msgstr "Iruzkin guztiak ezabatuta"
 
 #: .adminstuds.All+votes+deleted
 msgid "All votes deleted"
-msgstr ""
+msgstr "Boto guztiak ezabatuta"
 
 #: .adminstuds.As+poll+administrator,+you+can+change+all+the+lines+of+this+poll+with+this+button
 msgid ""
 "As poll administrator, you can change all the lines of this poll with this "
 "button"
 msgstr ""
+"Galdeketaren administratzaile gisa, galdeketa honetako lerro guztiak alda "
+"ditzakezu honako botoiarekin"
 
 #: .adminstuds.Back+to+the+poll
 msgid "Back to the poll"
-msgstr ""
+msgstr "Itzuli galdeketara"
 
 #: .adminstuds.Choice+added
 msgid "Choice added"
-msgstr ""
+msgstr "Aukera gehituta"
 
 #: .adminstuds.Collect+the+emails+of+the+polled+users+for+the+choice
 msgid "Collect the emails of the polled users for the choice"
-msgstr ""
+msgstr "Bildu inkestatutako erabiltzaileen emailak honako aukerarako"
 
 #: .adminstuds.Column+deleted
 msgid "Column deleted"
-msgstr ""
+msgstr "Zutabea ezabatuta"
 
 #: .adminstuds.Comment+deleted
 msgid "Comment deleted"
-msgstr ""
+msgstr "Iruzkina ezabatuta"
 
 #: .adminstuds.Confirm+removal+of+all+comments
 msgid "Confirm removal of all comments"
-msgstr ""
+msgstr "Baieztatu iruzkin guztien ezabapena"
 
 #: .adminstuds.Confirm+removal+of+all+votes
 msgid "Confirm removal of all votes"
-msgstr ""
+msgstr "Baieztatu boto guztien ezabapena"
 
 #: .adminstuds.Confirm+removal+of+the+column.
 msgid "Confirm removal of the column."
-msgstr ""
+msgstr "Baieztatu zutabearen ezabapena."
 
 #: .adminstuds.Confirm+removal+of+your+poll
 msgid "Confirm removal of your poll"
-msgstr ""
+msgstr "Baieztatu zure galdeketaren ezabapena"
 
 #: .adminstuds.Delete+poll
 msgid "Delete poll"
-msgstr ""
+msgstr "Ezabatu galdeketa"
 
 #: .adminstuds.Finally,+you+can+change+the+properties+of+this+poll+such+as+the+title,+the+comments+or+your+email+address.
 msgid ""
 "Finally, you can change the properties of this poll such as the title, the "
 "comments or your email address."
 msgstr ""
+"Azkenik, galdeketa honen ezaugarriak alda ditzakezu, hala nola izenburua, "
+"iruzkinak zein zure email helbidea."
 
 #: .adminstuds.Keep+comments
 msgid "Keep comments"
-msgstr ""
+msgstr "Mantendu iruzkinak"
 
 #: .adminstuds.Keep+the+comments
 msgid "Keep the comments"
-msgstr ""
+msgstr "Mantendu iruzkinak"
 
 #: .adminstuds.Keep+the+poll
 msgid "Keep the poll"
-msgstr ""
+msgstr "Mantendu galdeketa"
 
 #: .adminstuds.Keep+the+votes
 msgid "Keep the votes"
-msgstr ""
+msgstr "Mantendu botoak"
 
 #: .adminstuds.Keep+this+poll
 msgid "Keep this poll"
-msgstr ""
+msgstr "Mantendu galdeketa hau"
 
 #: .adminstuds.Keep+votes
 msgid "Keep votes"
-msgstr ""
+msgstr "Mantendu botoak"
 
 #: .adminstuds.Poll+fully+deleted
 msgid "Poll fully deleted"
-msgstr ""
+msgstr "Galdeketa erabat ezabatuta"
 
 #: .adminstuds.Poll+saved
 msgid "Poll saved"
-msgstr ""
+msgstr "Galdeketa gordeta"
 
 #: .adminstuds.Remove+column
 msgid "Remove column"
-msgstr ""
+msgstr "Kendu zutabea"
 
 #: .adminstuds.Remove+the+comments
 msgid "Remove the comments"
-msgstr ""
+msgstr "Kendu iruzkinak"
 
 #: .adminstuds.Remove+the+votes
 msgid "Remove the votes"
-msgstr ""
+msgstr "Kendu botoak"
 
 #: .adminstuds.The+poll+was+created.
 msgid "The poll was created."
-msgstr ""
+msgstr "Galdeketa sortu da."
 
 #: .adminstuds.Vote+added
 #: .studs.Vote+added
 msgid "Vote added"
-msgstr ""
+msgstr "Botoa gehituta"
 
 #: .adminstuds.Vote+deleted
 msgid "Vote deleted"
-msgstr ""
+msgstr "Botoa ezabatuta"
 
 #: .adminstuds.Vote+updated
 #: .studs.Vote+updated
 msgid "Vote updated"
-msgstr ""
+msgstr "Botoa eguneratuta"
 
 #: .adminstuds.You+can+add+a+new+scheduling+date+to+your+poll.
 msgid "You can add a new scheduling date to your poll."
-msgstr ""
+msgstr "Programazio data berri bat gehitu dezakezu zure galdeketara."
 
 #: .adminstuds.Your+poll+has+been+removed%21
 msgid "Your poll has been removed!"
-msgstr ""
+msgstr "Zure galdeketa kendu da!"
 
 #: .adminstuds.and+add+a+new+column+with
 msgid "and add a new column with"
-msgstr ""
+msgstr "eta zutabe berri bat gehitu honakoarekin"
 
 #: .adminstuds.remove+a+column+or+a+line+with
 msgid "remove a column or a line with"
-msgstr ""
+msgstr "ezabatu zutabe edo lerro bat honakoarekin"
 
 #: .display_mails.Users+who+voted+%22If+need+be%22+for+this+option+have+left+those+email+addresses:
 msgid ""
 "Users who voted \"If need be\" for this option have left those email "
 "addresses:"
 msgstr ""
+"Aukera honetarako \"Beharko balitz\" bozkatu duten erabiltzaileek honako "
+"email helbideak utzi dituzte:"
 
 #: .display_mails.Users+who+voted+%22No%22+for+this+option+have+left+those+email+addresses:
 msgid "Users who voted \"No\" for this option have left those email addresses:"
 msgstr ""
+"Aukera honetarako \"Ez\" bozkatu duten erabiltzaileek honako email helbideak "
+"utzi dituzte:"
 
 #: .display_mails.Users+who+voted+%22Yes%22+for+this+option+have+left+those+email+addresses:
 msgid ""
 "Users who voted \"Yes\" for this option have left those email addresses:"
 msgstr ""
+"Aukera honetarako \"Bai\" bozkatu duten erabiltzaileek honako email "
+"helbideak utzi dituzte:"
 
 #: .studs.Deletion+date:
 msgid "Deletion date:"
-msgstr ""
+msgstr "Ezabapen data:"
 
 #: .studs.If+you+want+to+vote+in+this+poll,+you+have+to+give+your+name,+make+your+choice,+and+submit+it+by+selecting+the+save+button+at+the+end+of+the+line.
 msgid ""
 "If you want to vote in this poll, you have to give your name, make your "
 "choice, and submit it by selecting the save button at the end of the line."
 msgstr ""
+"Galdeketa honetan bozkatu nahi baduzu, zure izena eman behar duzu, hautu bat "
+"egin, eta bidali lerro amaierako \"Gorde\" botoia sakatuz."
 
 #: .studs.The+administrator+locked+this+poll.+Votes+and+comments+are+frozen,+it+is+no+longer+possible+to+participate
 msgid ""
 "The administrator locked this poll. Votes and comments are frozen, it is no "
 "longer possible to participate"
 msgstr ""
+"Administratzaileak galdeketa hau blokeatu du. Botoak eta iruzkinak izoztuta "
+"daude, ezin da gehiago parte hartu"
 
 #: .studs.The+poll+has+expired,+it+will+soon+be+deleted.
 msgid "The poll has expired, it will soon be deleted."
-msgstr ""
+msgstr "Galdeketa iraungi da, laster ezabatuko da."
 
 #: .studs.Your+vote+has+been+saved,+but+please+note:+you+need+to+keep+this+personalised+link+to+be+able+to+edit+your+vote.
 msgid ""
 "Your vote has been saved, but please note: you need to keep this "
 "personalised link to be able to edit your vote."
 msgstr ""
+"Zure botoa gorde da, baina mesedez kontuan izan: esteka pertsonalizatu hau "
+"gorde behar duzu zure botoa editatu ahal izateko."
