@@ -469,4 +469,5 @@ $smarty->assign('editedVoteUniqueId', '');
 $smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
 $smarty->assign('selectedNewVotes', $selectedNewVotes);
 
+header("X-Robots-Tag: noindex, nofollow, nosnippet, noarchive");
 $smarty->display('studs.tpl');

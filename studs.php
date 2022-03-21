@@ -260,4 +260,5 @@ $smarty->assign('editedVoteUniqueId', $editedVoteUniqueId);
 $smarty->assign('ValueMax', $poll->ValueMax);
 $smarty->assign('selectedNewVotes', $selectedNewVotes);
 
+header("X-Robots-Tag: noindex, nofollow, nosnippet, noarchive");
 $smarty->display('studs.tpl');
