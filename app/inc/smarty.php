@@ -18,6 +18,10 @@
  */
 use Framadate\Utils;
 
+global $locale;
+global $ALLOWED_LANGUAGES;
+global $date_format;
+
 require_once __DIR__ . '/../../vendor/smarty/smarty/libs/Smarty.class.php';
 $smarty = new \Smarty();
 $smarty->setTemplateDir(ROOT_DIR . '/tpl/');
@@ -117,6 +121,10 @@ function smarty_modifier_locale_2_lang(string $locale): string
         return $lang_arr[0];
     }
     return $locale;
+}
+
+function smarty_modifier_intl_date_format($date, string $pattern): string {
+    return formatDate($pattern, $date);
 }
 
 function path_for_datepicker_locale(string $lang): string

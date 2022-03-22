@@ -271,9 +271,10 @@ table.results thead th {
     padding: 5px;
     min-width:40px;
     font-size:12px;
-    max-width:100px;
+    max-width:200px;
     overflow:hidden;
     text-overflow:ellipsis;
+    white-space: nowrap;
 }
 
 table.results thead th img {
