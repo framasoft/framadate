@@ -160,7 +160,7 @@ switch ($step) {
         $summary = '<ul>';
         $choices = $form->getChoices();
         foreach ($choices as $choice) {
-            $summary .= '<li>' . strftime($date_format['txt_full'], $choice->getName());
+            $summary .= '<li>' . formatDate($date_format['txt_full'], $choice->getName());
             $first = true;
             foreach ($choice->getSlots() as $slots) {
                 $summary .= $first ? ': ' : ', ';
@@ -171,7 +171,7 @@ switch ($step) {
         }
         $summary .= '</ul>';
 
-        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $pollService->maxExpiryDate()->getTimestamp())); // textual date
+        $end_date_str = utf8_encode(formatDate($date_format['txt_date'], $pollService->maxExpiryDate()->getTimestamp())); // textual date
 
         $_SESSION['form'] = serialize($form);
 

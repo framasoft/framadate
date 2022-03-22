@@ -39,7 +39,7 @@
                 <div id="days_container">
                     {foreach $choices as $i=>$choice}
                         {if $choice->getName()}
-                            {$day_value = $choice->getName()|date_format:$date_format['txt_date']}
+                            {$day_value = $choice->getName()|intl_date_format:$date_format['txt_date']}
                         {else}
                             {$day_value = ''}
                         {/if}

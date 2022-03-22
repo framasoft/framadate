@@ -38,6 +38,10 @@ $logService = new LogService();
 $pollService = new PollService($logService);
 $securityService = new SecurityService();
 
+/* Globals */
+global $smarty;
+global $date_format;
+
 /* PAGE */
 /* ---- */
 
@@ -77,7 +81,7 @@ if ($poll->format === 'D') {
     $titles_line = ',';
     $moments_line = ',';
     foreach ($slots as $slot) {
-        $title = Utils::csvEscape(strftime($date_format['txt_date'], $slot->title));
+        $title = Utils::csvEscape(formatDate($date_format['txt_date'], $slot->title));
         $moments = explode(',', $slot->moments);
 
         $titles_line .= str_repeat($title . ',', count($moments));

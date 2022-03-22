@@ -63,6 +63,7 @@
         "php": ">=7.3.0",
         "ext-pdo": "*",
         "ext-json": "*",
+        "ext-intl": "*",
         "smarty/smarty": "^4.0",
         "o80/i18n": "dev-develop",
         "phpmailer/phpmailer": "~6.2",

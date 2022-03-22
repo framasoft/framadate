@@ -29,7 +29,7 @@
                                 <a href="{poll_url id=$admin_poll_id admin=true action='delete_column' action_value=$slot->day|cat:'@'|cat:$moment}"
                                    data-remove-confirmation="{__('adminstuds', 'Confirm removal of the column.')}"
                                    class="btn btn-link btn-sm remove-column"
-                                   title="{__('adminstuds', 'Remove the column')} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                   title="{__('adminstuds', 'Remove the column')} {$slot->day|intl_date_format:$date_format.txt_short|html} - {$moment|html}">
                                     <i class="glyphicon glyphicon-remove text-danger"></i><span class="sr-only">{__('Generic', 'Remove')}</span>
                                 </a>
                             </td>
@@ -49,7 +49,7 @@
                 {$count_same = 0}
                 {$previous = 0}
                 {foreach $slots as $id=>$slot}
-                    {$display = $slot->day|date_format:$date_format.txt_month_year|html}
+                    {$display = $slot->day|intl_date_format:$date_format.txt_month_year|html}
                     {if $previous !== 0 && $previous != $display}
                         <th colspan="{$count_same}" class="bg-primary month" id="M{$id}">{$previous}</th>
                         {$count_same = 0}
@@ -72,7 +72,7 @@
             <tr>
                 <th role="presentation"></th>
                 {foreach $slots as $id=>$slot}
-                    <th colspan="{$slot->moments|count}" class="bg-primary day" id="D{$id}">{$slot->day|date_format:$date_format.txt_day|html}</th>
+                    <th colspan="{$slot->moments|count}" class="bg-primary day" id="D{$id}">{$slot->day|intl_date_format:$date_format.txt_day|html}</th>
                     {for $foo=0 to ($slot->moments|count)-1}
                         {append var='headersD' value=$id}
                     {/for}
@@ -88,7 +88,7 @@
                         <th colspan="1" class="bg-info" id="H{$headersDCount}">{$moment|html}</th>
                         {append var='headersH' value=$headersDCount}
                         {$headersDCount = $headersDCount+1}
-                        {$slots_raw[] = $slot->day|date_format:$date_format.txt_full|cat:' - '|cat:$moment}
+                        {$slots_raw[] = $slot->day|intl_date_format:$date_format.txt_full|cat:' - '|cat:$moment}
                     {/foreach}
                 {/foreach}
                 <th></th>
@@ -245,7 +245,7 @@
                                         <input type="radio" id="y-choice-{$i}" name="choices[{$i}]" value="2"
                                         	{(!isset($selectedNewVotes[$i]) || ("2" !== $selectedNewVotes[$i])) ? "" : " checked"}
                                         />
-                                        <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                        <label class="btn btn-default btn-xs" for="y-choice-{$i}" title="{__('Poll results', 'Vote yes for')|html} {$slot->day|intl_date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <i class="glyphicon glyphicon-ok"></i><span class="sr-only">{__('Generic', 'Yes')}</span>
                                         </label>
                                     </li>
@@ -253,7 +253,7 @@
                                         <input type="radio" id="i-choice-{$i}" name="choices[{$i}]" value="1"
                                         	{(!isset($selectedNewVotes[$i]) || ("1" !== $selectedNewVotes[$i])) ? "" : " checked"}
                                         />
-                                        <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                        <label class="btn btn-default btn-xs" for="i-choice-{$i}" title="{__('Poll results', 'Vote ifneedbe for')|html} {$slot->day|intl_date_format:$date_format.txt_short|html} - {$moment|html}">
                                             (<i class="glyphicon glyphicon-ok"></i>)<span class="sr-only">{__('Generic', 'Ifneedbe')}</span>
                                         </label>
                                     </li>
@@ -263,7 +263,7 @@
                                         <input type="radio" id="n-choice-{$i}" name="choices[{$i}]" value="0"
                                         	{(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "" : " checked"}
                                         />
-                                        <label class="btn btn-default btn-xs {(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "startunchecked" : ""}" for="n-choice-{$i}" title="{__('Poll results', 'Vote no for')|html} {$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}">
+                                        <label class="btn btn-default btn-xs {(!isset($selectedNewVotes[$i]) || ("0" !== $selectedNewVotes[$i])) ? "startunchecked" : ""}" for="n-choice-{$i}" title="{__('Poll results', 'Vote no for')|html} {$slot->day|intl_date_format:$date_format.txt_short|html} - {$moment|html}">
                                             <i class="glyphicon glyphicon-ban-circle"></i><span class="sr-only">{__('Generic', 'No')}</span>
                                         </label>
                                     </li>
@@ -346,7 +346,7 @@
                 var cols = [
                 {foreach $slots as $slot}
                     {foreach $slot->moments as $moment}
-                        $('<div/>').html('{$slot->day|date_format:$date_format.txt_short|html} - {$moment|html}').text(),
+                        $('<div/>').html('{$slot->day|intl_date_format:$date_format.txt_short|html} - {$moment|html}').text(),
                     {/foreach}
                 {/foreach}
                 ];
@@ -407,7 +407,7 @@
                         {foreach $slot->moments as $moment}
                             {if $best_choices['y'][$i] == $max}
                                 {assign var="space" value="`$slot->day|date_format:'d-m-Y'|html`|`$moment`"}
-                                <li><strong>{$slot->day|date_format:$date_format.txt_full|html} - {$moment|html}</strong>
+                                <li><strong>{$slot->day|intl_date_format:$date_format.txt_full|html} - {$moment|html}</strong>
                                     <a href="{poll_url id=$poll_id action='get_ical_file' action_value=($space)}" class="btn btn-default btn-sm" title="{__('studs', 'Download as ical/ics file')}">
                                         <span class="fa fa-calendar text-muted"></span>
                                         <span class="sr-only">{__('studs', 'Download as ical/ics file')}</span>
