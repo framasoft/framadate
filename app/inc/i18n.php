@@ -50,6 +50,10 @@ $date_format['txt_datetime_short'] = 'dd-MM-y HH:mm';
 
 function formatDate(string $format, $date) {
     global $locale;
+    $locales = ResourceBundle::getLocales('');
+    if (!in_array($locale, $locales, true)) {
+        $locale = DEFAULT_LANGUAGE;
+    }
     $formatter = new IntlDateFormatter($locale, IntlDateFormatter::SHORT, IntlDateFormatter::NONE);
     if ($format !== '') {
         $formatter->setPattern($format);
