@@ -43,6 +43,12 @@ $poll = null;
 $message = null;
 $editingVoteId = 0;
 
+/* Globals */
+/* ------- */
+global $smarty;
+global $connect;
+global $config;
+
 /* Services */
 /*----------*/
 
@@ -468,6 +474,5 @@ $smarty->assign('resultPubliclyVisible', true);
 $smarty->assign('editedVoteUniqueId', '');
 $smarty->assign('default_to_marldown_editor', $config['markdown_editor_by_default']);
 $smarty->assign('selectedNewVotes', $selectedNewVotes);
-
 header("X-Robots-Tag: noindex, nofollow, nosnippet, noarchive");
 $smarty->display('studs.tpl');

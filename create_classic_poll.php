@@ -141,7 +141,7 @@ if (empty($form->title) || empty($form->admin_name) || ($config['use_smtp'] && e
         }
         $summary .= '</ol>';
 
-        $end_date_str = utf8_encode(strftime($date_format['txt_date'], $pollService->maxExpiryDate()->getTimestamp())); //textual date
+        $end_date_str = utf8_encode(formatDate($date_format['txt_date'], $pollService->maxExpiryDate()->getTimestamp())); //textual date
 
         $_SESSION['form'] = serialize($form);
 

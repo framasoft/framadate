@@ -63,6 +63,7 @@
         "php": ">=7.3.0",
         "ext-pdo": "*",
         "ext-json": "*",
+        "ext-intl": "*",
         "smarty/smarty": "^4.0",
         "o80/i18n": "dev-develop",
         "phpmailer/phpmailer": "~6.2",
@@ -70,7 +71,7 @@
         "roave/security-advisories": "dev-master",
         "erusev/parsedown": "^1.7",
         "egulias/email-validator": "^3.1",
-        "sabre/vobject": "~4.1"
+        "sabre/vobject": "~4.1",
     },
     "require-dev": {
         "phpunit/phpunit": "^9",
