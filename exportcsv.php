@@ -92,7 +92,7 @@ if ($poll->format === 'D') {
 } else {
     echo ',';
     foreach ($slots as $slot) {
-        echo Utils::markdown($slot->title, true) . ',';
+        echo Utils::csvEscape(Utils::markdown($slot->title, true)) . ',';
     }
     echo "\r\n";
 }
