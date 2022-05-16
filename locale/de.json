@@ -66,6 +66,7 @@
       "Installation checking": "Überprüfung der Installation",
       "OpenSSL extension loaded.": "Die OpenSSL-Erweiterung ist geladen.",
       "PHP Intl extension is enabled.": "Die PHP-Erweiterung Intl ist aktiviert.",
+      "PHP mbstring extension is enabled.": "Die PHP-Erweiterung mbstring ist aktiviert.",
       "PHP version %s is enough (needed at least PHP %s).": "PHP Version %s ist ausreichend (mindestens PHP %s wird benötigt).",
       "The config file directory (%s) is not writable and the config file (%s) does not exists.": "Der Konfigurationspfad (%s) ist nicht beschreibbar und es existiert keine Konfigurationsdatei (%s).",
       "The config file directory (%s) is writable.": "Die Konfigurationsdatei (%s) ist beschreibbar.",
