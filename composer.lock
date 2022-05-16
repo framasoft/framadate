@@ -256,7 +256,7 @@
             "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://framagit.org/framasoft/framadate/o80-i18n",
+                "url": "https://framagit.org/framasoft/framadate/o80-i18n.git",
                 "reference": "7b59cf9b2bc47b1084ac7e754d41ca595ff6c33d"
             },
             "require": {
