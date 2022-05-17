@@ -58,7 +58,7 @@ class MailService {
             $mail->msgHTML($body, ROOT_DIR, true);
 
             // Build headers
-            $mail->CharSet = 'UTF-8';
+            $mail->CharSet = PHPMailer::CHARSET_UTF8;
             $mail->addCustomHeader('Auto-Submitted', 'auto-generated');
             $mail->addCustomHeader('Return-Path', '<>');
             $mail->XMailer = ' ';
