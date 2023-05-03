@@ -250,6 +250,7 @@ caption {
 #tableContainer {
     overflow-x:auto;
     margin:5px auto;
+    contain: layout;
 }
 
 table.results {
