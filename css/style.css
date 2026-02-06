@@ -242,6 +242,7 @@ caption {
 #tableContainer {
     overflow-x:auto;
     margin:5px auto;
+    position: relative;
 }
 
 table.results {
